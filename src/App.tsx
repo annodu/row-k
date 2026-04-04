@@ -286,6 +286,26 @@ export default function App() {
     void handleSearch({ scroll: false });
   }, [category, subcategory, selectedRegions]);
 
+  useEffect(() => {
+    const desktopMediaQuery = window.matchMedia("(min-width: 1024px)");
+
+    const syncMobileFilterState = (event: MediaQueryList | MediaQueryListEvent) => {
+      if (event.matches) {
+        setMobileFiltersOpen(false);
+      }
+    };
+
+    syncMobileFilterState(desktopMediaQuery);
+
+    if (typeof desktopMediaQuery.addEventListener === "function") {
+      desktopMediaQuery.addEventListener("change", syncMobileFilterState);
+      return () => desktopMediaQuery.removeEventListener("change", syncMobileFilterState);
+    }
+
+    desktopMediaQuery.addListener(syncMobileFilterState);
+    return () => desktopMediaQuery.removeListener(syncMobileFilterState);
+  }, []);
+
   return (
     <div className="min-h-screen bg-white text-left">
       <header className="border-b border-neutral-200">
@@ -422,7 +442,7 @@ export default function App() {
             "hidden w-full border-t border-neutral-200 py-6",
             "lg:block lg:w-72 lg:flex-none lg:self-stretch lg:border-t-0 lg:border-l lg:py-6 lg:pl-8",
             mobileFiltersOpen &&
-              "fixed inset-0 z-50 flex h-screen w-full flex-col border-b-0 bg-white py-0",
+              "fixed inset-0 z-50 flex h-screen w-full flex-col border-b-0 bg-white py-0 lg:static lg:z-auto lg:h-auto lg:w-72 lg:bg-transparent",
           )}
         >
           <div className="flex items-center justify-between border-b border-neutral-200 px-6 py-5 lg:hidden">
