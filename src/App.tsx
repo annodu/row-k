@@ -254,6 +254,17 @@ export default function App() {
         body: JSON.stringify({ category, subcategory, regions: selectedRegions }),
       });
 
+      const contentType = response.headers.get("content-type") ?? "";
+      if (!contentType.includes("application/json")) {
+        const rawResponse = await response.text();
+        const summary = rawResponse.replace(/\s+/g, " ").trim().slice(0, 140);
+        throw new Error(
+          summary
+            ? `Search API returned HTML instead of JSON: ${summary}`
+            : "Search API returned HTML instead of JSON.",
+        );
+      }
+
       const payload = (await response.json()) as SearchResponse;
       if (!response.ok || !payload.ok) {
         throw new Error(payload.message || "Search failed.");
