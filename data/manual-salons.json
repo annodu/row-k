@@ -1,8 +1,8 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-04-04T12:08:30.803Z",
-    "count": 256,
+    "updatedAt": "2026-04-05T00:31:04.924Z",
+    "count": 260,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
@@ -2667,7 +2667,10 @@
         "Texture release",
         "Trim / Hair cut",
         "Silk press",
-        "Full head colour"
+        "Full head colour",
+        "Balayage",
+        "Highlights",
+        "Traditional sew-in"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -6350,8 +6353,12 @@
       ],
       "id": "lorraine-styles",
       "name": "Lorraine Styles",
-      "areaId": "all-london",
-      "areaLabel": "London",
+      "areaId": "north",
+      "areaIds": [
+        "north",
+        "mobile"
+      ],
+      "areaLabel": "North",
       "neighbourhood": "London",
       "postcode": "",
       "bookingPlatform": "Instagram",
@@ -6579,6 +6586,77 @@
         "Silk press",
         "Traditional sew-in",
         "Keratin treatment"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "silk-and-sage",
+      "name": "Silk & Sage",
+      "areaId": "all-london",
+      "areaLabel": "London",
+      "neighbourhood": "London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://siilkandsage.as.me/schedule/32366ef3",
+      "websiteUrl": "https://siilkandsage.as.me/schedule/32366ef3",
+      "instagramUrl": "https://www.instagram.com/siilkandsage/",
+      "services": [
+        "Wash & blowdry",
+        "Silk press"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "jo-johnson-ltd",
+      "name": "Jo Johnson Ltd",
+      "areaId": "south-west",
+      "areaLabel": "South West",
+      "neighbourhood": "South West London",
+      "postcode": "",
+      "bookingPlatform": "Direct website",
+      "bookingUrl": "https://www.jojohnsonltd.co.uk/services",
+      "websiteUrl": "https://www.jojohnsonltd.co.uk/services",
+      "instagramUrl": "https://www.instagram.com/jojohnsonltd/",
+      "services": [
+        "Full head colour",
+        "Highlights",
+        "Balayage",
+        "Wash & blowdry",
+        "Silk press",
+        "Keratin treatment"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "refined-hair-uk",
+      "name": "Refined Hair UK",
+      "areaId": "east",
+      "areaLabel": "East",
+      "neighbourhood": "East London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/refinedhairuk/",
+      "instagramUrl": "https://www.instagram.com/refinedhairuk/",
+      "services": [
+        "Silk press",
+        "Traditional sew-in",
+        "Ponytail",
+        "Flipover / Versatile sew-in",
+        "Half up half down",
+        "Cornrows",
+        "Quick weave"
       ]
     }
   ]
