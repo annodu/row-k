@@ -53,7 +53,7 @@ const categoryMap = {
   },
   "locs-services": {
     label: "Locs",
-    subcategories: ["all", "Butterfly locs", "Faux locs", "Retwist", "Starter locs"],
+    subcategories: ["all", "Butterfly locs", "Faux locs", "Microlocs / Sisterlocs", "Retwist", "Starter locs"],
   },
   "sew-in-weave": {
     label: "Sew in / weave",

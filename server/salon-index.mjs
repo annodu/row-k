@@ -42,7 +42,7 @@ const categoryMap = {
     "Stitch braids",
     "Braid take-down",
   ],
-  "locs-services": ["Starter locs", "Retwist", "Faux locs", "Butterfly locs"],
+  "locs-services": ["Starter locs", "Retwist", "Faux locs", "Butterfly locs", "Microlocs / Sisterlocs"],
   "natural-hair-services": [
     "Curly cut / Wash & go",
     "Wash & blowdry",
@@ -82,6 +82,9 @@ const serviceAliases = {
   Locs: "Starter locs",
   "Loc styling": "Starter locs",
   "Invisible locs": "Faux locs",
+  "Micro locs": "Microlocs / Sisterlocs",
+  Microlocs: "Microlocs / Sisterlocs",
+  Sisterlocs: "Microlocs / Sisterlocs",
 };
 
 export async function readSalonIndex() {
