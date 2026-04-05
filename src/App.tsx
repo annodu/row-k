@@ -25,7 +25,7 @@ const standaloneRegionIds = ["kent", "essex", "mobile"] as const;
 
 const categoryMap = {
   all: {
-    label: "All categories",
+    label: "All services",
     subcategories: ["all"],
   },
   "braiding-services": {
