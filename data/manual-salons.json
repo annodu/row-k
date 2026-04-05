@@ -1,8 +1,8 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-04-05T00:31:04.924Z",
-    "count": 260,
+    "updatedAt": "2026-04-05T01:24:27.417Z",
+    "count": 268,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
@@ -6657,6 +6657,229 @@
         "Half up half down",
         "Cornrows",
         "Quick weave"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "damian-gray-creative",
+      "name": "Damian Gray Creative",
+      "areaId": "central",
+      "areaLabel": "Central",
+      "neighbourhood": "Central London",
+      "postcode": "",
+      "bookingPlatform": "Direct website",
+      "bookingUrl": "https://www.hershesons.com/collections/meet-the-experts/products/damian-g?_pos=9&_fid=5ee0736cf&_ss=c",
+      "websiteUrl": "https://www.hershesons.com/collections/meet-the-experts/products/damian-g?_pos=9&_fid=5ee0736cf&_ss=c",
+      "instagramUrl": "https://www.instagram.com/damian.gray.creative/",
+      "services": [
+        "Full head colour",
+        "Highlights",
+        "Balayage"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "salon-abv",
+      "name": "Salon ABV",
+      "areaId": "kent",
+      "areaLabel": "Kent",
+      "neighbourhood": "Kent",
+      "postcode": "",
+      "bookingPlatform": "Direct website",
+      "bookingUrl": "https://www.salonabv.com/services",
+      "websiteUrl": "https://www.salonabv.com/services",
+      "instagramUrl": "https://www.instagram.com/salonabv/",
+      "services": [
+        "Relaxer",
+        "Olaplex treatment",
+        "Texture release",
+        "Keratin treatment",
+        "Moisturising treatment"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "josh-hair-and-beauty",
+      "name": "Josh Hair and Beauty",
+      "areaId": "croydon",
+      "areaLabel": "Croydon",
+      "neighbourhood": "Croydon",
+      "postcode": "",
+      "bookingPlatform": "BookingPortal",
+      "bookingUrl": "https://s-iq.co/BookingPortal/dist/?salonid=d2a0befa-1630-485f-897b-b606c8c4bf4b&tab=book",
+      "websiteUrl": "https://s-iq.co/BookingPortal/dist/?salonid=d2a0befa-1630-485f-897b-b606c8c4bf4b&tab=book",
+      "instagramUrl": "https://www.instagram.com/joshhairandbeauty/",
+      "services": [
+        "Relaxer",
+        "Full head colour",
+        "Highlights",
+        "Olaplex treatment",
+        "Silk press",
+        "Wash & blowdry",
+        "Trim / Hair cut",
+        "Texture release",
+        "Keratin treatment",
+        "Cornrows",
+        "Knotless braids",
+        "Wig install",
+        "Traditional sew-in",
+        "Moisturising treatment"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "parisimo-beauty",
+      "name": "Parisimo Beauty",
+      "areaId": "essex",
+      "areaLabel": "Essex",
+      "neighbourhood": "Essex",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://parisimobeauty.as.me/schedule/f106c9b3",
+      "websiteUrl": "https://parisimobeauty.as.me/schedule/f106c9b3",
+      "instagramUrl": "https://www.instagram.com/parisimo_beauty/",
+      "services": [
+        "Silk press",
+        "Moisturising treatment",
+        "Scalp care",
+        "Texture release",
+        "Olaplex treatment",
+        "Keratin treatment",
+        "K-18 treatment",
+        "Relaxer"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "grants-hair-and-wellbeing",
+      "name": "Grant's Hair and Wellbeing",
+      "areaId": "central",
+      "areaIds": [
+        "central",
+        "north"
+      ],
+      "areaLabel": "Central",
+      "neighbourhood": "Central / North London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/grantshairandwellbeing/",
+      "instagramUrl": "https://www.instagram.com/grantshairandwellbeing/",
+      "services": [
+        "Hair Botox",
+        "Wash & blowdry",
+        "Silk press",
+        "Trim / Hair cut",
+        "Full head colour",
+        "Highlights",
+        "Balayage",
+        "Relaxer",
+        "Keratin treatment",
+        "Texture release",
+        "Traditional sew-in",
+        "Sew-in take-down",
+        "Knotless braids",
+        "Feed-in braids"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "hair-assured-salon",
+      "name": "Hair Assured Salon",
+      "areaId": "west",
+      "areaLabel": "West",
+      "neighbourhood": "Wembley",
+      "postcode": "",
+      "bookingPlatform": "Fresha",
+      "bookingUrl": "https://www.fresha.com/a/hair-assured-salon-wembley-118-wembley-park-drive-zyn79j8o",
+      "websiteUrl": "https://www.fresha.com/a/hair-assured-salon-wembley-118-wembley-park-drive-zyn79j8o",
+      "instagramUrl": "https://www.instagram.com/hairassuredsalon/",
+      "services": [
+        "Relaxer",
+        "Full head colour",
+        "Highlights",
+        "Olaplex treatment",
+        "Silk press",
+        "Wash & blowdry",
+        "Trim / Hair cut",
+        "Cornrows",
+        "Knotless braids",
+        "Wig install",
+        "Traditional sew-in",
+        "Moisturising treatment"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "caeslique",
+      "name": "Caeslique",
+      "areaId": "south-west",
+      "areaLabel": "South West",
+      "neighbourhood": "South West London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/caeslique/",
+      "instagramUrl": "https://www.instagram.com/caeslique/",
+      "services": [
+        "Silk press",
+        "K-tips",
+        "Texture release",
+        "Tape-ins"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "awralla-london",
+      "name": "Awralla London",
+      "areaId": "north",
+      "areaLabel": "North",
+      "neighbourhood": "North London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://awralla.as.me/schedule/241cab73",
+      "websiteUrl": "https://awralla.as.me/schedule/241cab73",
+      "instagramUrl": "https://www.instagram.com/awrallalondon/",
+      "services": [
+        "Full head colour",
+        "Highlights",
+        "Balayage",
+        "Silk press",
+        "Wash & blowdry",
+        "Trim / Hair cut",
+        "Olaplex treatment",
+        "Hair Botox",
+        "Keratin treatment"
       ]
     }
   ]
