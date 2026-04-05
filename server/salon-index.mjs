@@ -16,6 +16,7 @@ const categoryMap = {
     "Quick weave",
     "Hybrid sew-in",
     "Sew-in take-down",
+    "Tracks sewn in",
   ],
   "wig-services": ["Wig install", "Wig colour", "Custom wig"],
   "extension-services": ["K-tips", "LA weave", "Tape-ins", "Microlinks", "Clip-ins"],
