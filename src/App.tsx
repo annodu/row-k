@@ -409,11 +409,11 @@ export default function App() {
         <div className="mx-auto flex w-full max-w-[1280px] items-start px-4 sm:px-6 lg:px-10">
           <div className="min-w-0 flex-1 py-8">
             <div className="flex flex-col items-start gap-2 px-4">
-              <p className="w-full text-left text-xs font-medium uppercase tracking-[0.28em] text-neutral-500">
+              <p className="w-full text-left text-xs font-semibold uppercase tracking-[0.18em] text-neutral-500">
                 Row K LDN
               </p>
               <h1 className="-ml-[0.03em] w-full text-left font-figtree text-[32px] font-semibold leading-[40px] tracking-tight text-neutral-900 sm:text-[40px] sm:leading-[48px] lg:text-[48px]">
-                The Black hair directory
+                Black hair directory
               </h1>
               <p className="mt-1 w-full max-w-3xl text-left text-sm leading-7 text-neutral-600 sm:text-base">
                 Specialists in afro hairstyles, relaxed & natural hair. London, UK and surrounding areas.
