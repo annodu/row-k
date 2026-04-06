@@ -1,7 +1,6 @@
-import { Fragment, useEffect, useState } from "react";
-import { Globe, LoaderCircle } from "lucide-react";
+import { Fragment, useEffect, useRef, useState } from "react";
+import { Globe } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { cn } from "@/lib/utils";
 
@@ -160,6 +159,8 @@ const sortedCategoryEntries = [
     .sort(([, left], [, right]) => left.label.localeCompare(right.label)),
 ] as [CategoryId, (typeof categoryMap)[CategoryId]][];
 
+const RESULTS_BATCH_SIZE = 20;
+
 function getLocationLabels(result: SalonResult) {
   const shouldUseDisplayLabel =
     Boolean(result.areaLabel) &&
@@ -199,10 +200,12 @@ export default function App() {
   const [selectedCategories, setSelectedCategories] = useState<ServiceCategoryId[]>([]);
   const [selectedSubcategories, setSelectedSubcategories] = useState<ServiceSubcategoryId[]>([]);
   const [results, setResults] = useState<SalonResult[]>([]);
+  const [visibleResultCount, setVisibleResultCount] = useState(RESULTS_BATCH_SIZE);
   const [isSearching, setIsSearching] = useState(false);
   const [searchError, setSearchError] = useState<string | null>(null);
   const [hasSearched, setHasSearched] = useState(false);
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
+  const loadMoreRef = useRef<HTMLDivElement | null>(null);
 
   function clearFilters() {
     setSelectedCategories([]);
@@ -333,6 +336,35 @@ export default function App() {
   }, [selectedCategories, selectedSubcategories, selectedRegions]);
 
   useEffect(() => {
+    setVisibleResultCount(RESULTS_BATCH_SIZE);
+  }, [results]);
+
+  useEffect(() => {
+    const node = loadMoreRef.current;
+    if (!node || visibleResultCount >= results.length) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries;
+        if (!entry?.isIntersecting) {
+          return;
+        }
+
+        setVisibleResultCount((currentCount) => Math.min(currentCount + RESULTS_BATCH_SIZE, results.length));
+      },
+      {
+        rootMargin: "240px 0px",
+      },
+    );
+
+    observer.observe(node);
+
+    return () => observer.disconnect();
+  }, [results.length, visibleResultCount]);
+
+  useEffect(() => {
     const desktopMediaQuery = window.matchMedia("(min-width: 1024px)");
 
     const syncMobileFilterState = (event: MediaQueryList | MediaQueryListEvent) => {
@@ -351,6 +383,8 @@ export default function App() {
     desktopMediaQuery.addListener(syncMobileFilterState);
     return () => desktopMediaQuery.removeListener(syncMobileFilterState);
   }, []);
+
+  const visibleResults = results.slice(0, visibleResultCount);
 
   return (
     <div className="min-h-screen bg-white text-left">
@@ -375,20 +409,20 @@ export default function App() {
 
       <div className="mx-auto flex w-full max-w-[1280px] flex-col px-4 sm:px-6 lg:flex-row lg:items-start lg:px-10">
         <section id="live-results" className="min-w-0 flex-1 py-6">
-          <div className="mb-4 flex w-full items-center justify-between border-b border-neutral-100 px-4 pb-3">
+          <div className="mb-4 flex w-full items-end justify-between border-b border-neutral-100 px-4 pb-6">
             {hasSearched ? (
-              <h2 className="text-[14px] font-medium text-neutral-500">
+              <h2 className="text-[14px] font-medium leading-none text-neutral-500">
                 {results.length} {results.length === 1 ? "result" : "results"}
               </h2>
             ) : (
-              <h2 className="text-[14px] font-medium text-neutral-500">Results</h2>
+              <h2 className="text-[14px] font-medium leading-none text-neutral-500">Results</h2>
             )}
 
             <div className="flex items-center gap-2 text-[13px] text-neutral-500 lg:hidden">
               <button
                 type="button"
                 onClick={() => setMobileFiltersOpen(true)}
-                className="rounded-[6px] px-2 py-1 transition-colors hover:bg-neutral-100 hover:text-neutral-800"
+                className="min-h-11 rounded-[6px] px-3 py-2 transition-colors hover:bg-neutral-100 hover:text-neutral-800"
               >
                 Filter
               </button>
@@ -402,16 +436,16 @@ export default function App() {
           ) : null}
 
           {!searchError ? (
-            <div className="flex w-full flex-col items-start">
-              {results.map((result) => {
+            <ul className="flex w-full list-none flex-col items-start">
+              {visibleResults.map((result) => {
                 const locationLabels = getLocationLabels(result);
 
                 return (
-                  <article
+                  <li
                     key={result.id}
                     className="flex w-full flex-col items-start gap-2 border-b border-neutral-100 px-4 py-4 text-left"
                   >
-                    <div className="flex w-full flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+                    <article className="flex w-full flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                       <div className="min-w-0 grow">
                         <h3 className="text-[17px] font-semibold text-neutral-900">{result.name}</h3>
                         {locationLabels.length > 0 ? (
@@ -428,7 +462,7 @@ export default function App() {
                           {result.services.map((service) => (
                             <span
                               key={`${result.id}-${service}`}
-                              className="rounded bg-neutral-100 px-2 py-0.5 text-[11px] font-normal leading-[16.5px] text-neutral-600"
+                              className="rounded-[2px] bg-neutral-100 px-2 py-0.5 text-[11px] font-normal leading-[16.5px] tracking-[0.02em] text-neutral-600"
                             >
                               {service}
                             </span>
@@ -442,9 +476,10 @@ export default function App() {
                             href={result.bookingUrl}
                             target="_blank"
                             rel="noreferrer"
-                            className="inline-flex h-10 flex-1 items-center justify-center rounded-[10px] bg-neutral-900 px-4 text-[14px] font-medium text-white transition-colors duration-150 hover:bg-neutral-700 sm:flex-none"
+                            className="inline-flex min-h-11 flex-1 items-center justify-center rounded-[10px] bg-neutral-900 px-4 py-2 text-[14px] font-medium text-white transition-colors duration-150 hover:bg-neutral-700 sm:flex-none"
                           >
                             Book
+                            <span className="sr-only"> - {result.name} - opens in a new tab</span>
                           </a>
                         ) : null}
                         {result.instagramUrl ? (
@@ -452,10 +487,10 @@ export default function App() {
                             href={result.instagramUrl}
                             target="_blank"
                             rel="noreferrer"
-                            className="inline-flex h-10 items-center justify-center gap-2 rounded-[10px] border border-neutral-200 bg-white px-4 text-[14px] font-medium text-neutral-900 transition-colors duration-150 hover:border-neutral-300 hover:bg-neutral-100"
-                            aria-label={`Open ${result.name} Instagram`}
+                            className="inline-flex min-h-11 items-center justify-center gap-2 rounded-[10px] border border-neutral-200 bg-white px-4 py-2 text-[14px] font-medium text-neutral-900 transition-colors duration-150 hover:border-neutral-300 hover:bg-neutral-100"
                           >
                             <InstagramIcon className="size-4" />
+                            <span className="sr-only">{result.name} instagram - opens in a new tab</span>
                           </a>
                         ) : null}
                         {result.websiteUrl && result.websiteUrl !== result.bookingUrl ? (
@@ -463,18 +498,20 @@ export default function App() {
                             href={result.websiteUrl}
                             target="_blank"
                             rel="noreferrer"
-                            className="inline-flex h-10 items-center justify-center rounded-[10px] border border-neutral-200 bg-white px-4 text-[14px] font-medium text-neutral-900 transition-colors duration-150 hover:border-neutral-300 hover:bg-neutral-100"
+                            className="inline-flex min-h-11 items-center justify-center rounded-[10px] border border-neutral-200 bg-white px-4 py-2 text-[14px] font-medium text-neutral-900 transition-colors duration-150 hover:border-neutral-300 hover:bg-neutral-100"
                           >
                             <Globe className="size-4" />
                           </a>
                         ) : null}
                       </div>
-                    </div>
-                  </article>
+                    </article>
+                  </li>
                 );
               })}
-            </div>
+            </ul>
           ) : null}
+
+          {!searchError && visibleResultCount < results.length ? <div ref={loadMoreRef} className="h-1 w-full" aria-hidden="true" /> : null}
 
           {!searchError && hasSearched && results.length === 0 ? (
             <div className="border border-dashed border-neutral-200 px-4 py-6 text-sm leading-7 text-neutral-500">
@@ -495,7 +532,7 @@ export default function App() {
             <button
               type="button"
               onClick={clearFilters}
-              className="text-[13px] font-medium text-neutral-400 transition hover:text-neutral-700"
+              className="min-h-11 px-2 py-2 text-[13px] font-medium text-neutral-600 transition hover:text-neutral-800"
             >
               Reset
             </button>
@@ -503,24 +540,24 @@ export default function App() {
             <button
               type="button"
               onClick={() => setMobileFiltersOpen(false)}
-              className="text-[13px] font-medium text-neutral-500 transition hover:text-neutral-800"
+              className="min-h-11 px-2 py-2 text-[13px] font-medium text-neutral-500 transition hover:text-neutral-800"
             >
               Close
             </button>
           </div>
 
-          <div className="hidden w-full items-center justify-between px-2 py-1 lg:flex">
-            <h2 className="text-[15px] font-semibold text-neutral-900">Filters</h2>
+          <div className="relative hidden w-full border-b border-neutral-100 px-2 pb-6 lg:block">
+            <h2 className="text-[15px] font-semibold leading-none text-neutral-900">Filters</h2>
             <button
               type="button"
               onClick={clearFilters}
-              className="text-[13px] font-medium text-neutral-400 transition hover:text-neutral-700"
+              className="absolute right-2 top-0 inline-flex min-h-11 items-start px-2 py-0 text-[13px] font-medium leading-none text-neutral-600 transition hover:text-neutral-800"
             >
               Reset
             </button>
           </div>
 
-          <div className="mt-4 flex-1 space-y-6 overflow-y-auto border-t border-neutral-100 px-6 pb-6 pt-4 lg:mt-4 lg:flex-none lg:space-y-6 lg:px-0 lg:pb-0">
+          <div className="mt-4 flex-1 space-y-6 overflow-y-auto px-6 pb-6 pt-4 lg:mt-0 lg:flex-none lg:space-y-6 lg:px-0 lg:pb-0">
             <div>
               <p className="px-2 text-[15px] font-medium text-neutral-900">Services</p>
               <div className="mt-2 space-y-2">
@@ -538,27 +575,39 @@ export default function App() {
 
                   return (
                     <div key={id} className="space-y-2">
-                      <label className="flex w-full cursor-pointer items-start gap-3 rounded-[6px] px-2 py-1.5 text-left transition-colors hover:bg-neutral-50">
+                      <div
+                        className="flex w-full cursor-pointer items-start gap-3 rounded-[6px] px-2 py-1.5 text-left transition-colors hover:bg-neutral-50"
+                        onClick={() => toggleCategory(id as CategoryId)}
+                      >
                         <Checkbox
                           checked={isActive}
+                          aria-labelledby={`${id}-label`}
+                          onClick={(event) => event.stopPropagation()}
                           onCheckedChange={() => toggleCategory(id as CategoryId)}
                         />
-                        <span className="text-[15px] text-neutral-800">{item.label}</span>
-                      </label>
+                        <span id={`${id}-label`} className="text-[15px] text-neutral-800">
+                          {item.label}
+                        </span>
+                      </div>
 
                       {showSubcategories && visibleSubcategories.length > 0 ? (
                         <div className="space-y-2 pl-8">
                           {visibleSubcategories.map((itemSubcategory) => (
-                            <label
+                            <div
                               key={itemSubcategory}
                               className="flex w-full cursor-pointer items-start gap-3 rounded-[6px] px-2 py-1.5 text-left transition-colors hover:bg-neutral-50"
+                              onClick={() => toggleSubcategory(itemSubcategory as ServiceSubcategoryId)}
                             >
                               <Checkbox
                                 checked={selectedSubcategories.includes(itemSubcategory as ServiceSubcategoryId)}
+                                aria-labelledby={`${id}-${itemSubcategory}-label`}
+                                onClick={(event) => event.stopPropagation()}
                                 onCheckedChange={() => toggleSubcategory(itemSubcategory as ServiceSubcategoryId)}
                               />
-                              <span className="text-[15px] text-neutral-800">{itemSubcategory}</span>
-                            </label>
+                              <span id={`${id}-${itemSubcategory}-label`} className="text-[15px] text-neutral-800">
+                                {itemSubcategory}
+                              </span>
+                            </div>
                           ))}
                         </div>
                       ) : null}
@@ -569,7 +618,7 @@ export default function App() {
             </div>
 
             <div>
-              <p className="px-2 text-[15px] font-medium text-neutral-900">Location</p>
+              <p className="px-2 text-[15px] font-medium text-neutral-900">Locations</p>
               <div className="mt-2 space-y-2">
                 {(() => {
                   const allLocations = regions.find((item) => item.id === "all");
@@ -578,15 +627,35 @@ export default function App() {
 
                   return allLocations && london ? (
                     <>
-                      <label className="flex w-full cursor-pointer items-start gap-3 rounded-[6px] px-2 py-1.5 text-left transition-colors hover:bg-neutral-50">
-                        <Checkbox checked={isRegionSelected(allLocations.id)} onCheckedChange={() => toggleRegion(allLocations.id)} />
-                        <span className="text-[15px] text-neutral-800">{allLocations.label}</span>
-                      </label>
+                      <div
+                        className="flex w-full cursor-pointer items-start gap-3 rounded-[6px] px-2 py-1.5 text-left transition-colors hover:bg-neutral-50"
+                        onClick={() => toggleRegion(allLocations.id)}
+                      >
+                        <Checkbox
+                          checked={isRegionSelected(allLocations.id)}
+                          aria-labelledby={`${allLocations.id}-label`}
+                          onClick={(event) => event.stopPropagation()}
+                          onCheckedChange={() => toggleRegion(allLocations.id)}
+                        />
+                        <span id={`${allLocations.id}-label`} className="text-[15px] text-neutral-800">
+                          {allLocations.label}
+                        </span>
+                      </div>
 
-                      <label className="flex w-full cursor-pointer items-start gap-3 rounded-[6px] px-2 py-1.5 text-left transition-colors hover:bg-neutral-50">
-                        <Checkbox checked={isRegionSelected(london.id)} onCheckedChange={() => toggleRegion(london.id)} />
-                        <span className="text-[15px] text-neutral-800">{london.label}</span>
-                      </label>
+                      <div
+                        className="flex w-full cursor-pointer items-start gap-3 rounded-[6px] px-2 py-1.5 text-left transition-colors hover:bg-neutral-50"
+                        onClick={() => toggleRegion(london.id)}
+                      >
+                        <Checkbox
+                          checked={isRegionSelected(london.id)}
+                          aria-labelledby={`${london.id}-label`}
+                          onClick={(event) => event.stopPropagation()}
+                          onCheckedChange={() => toggleRegion(london.id)}
+                        />
+                        <span id={`${london.id}-label`} className="text-[15px] text-neutral-800">
+                          {london.label}
+                        </span>
+                      </div>
 
                       {londonExpanded ? (
                         <div className="space-y-2 pl-8">
@@ -595,13 +664,21 @@ export default function App() {
                             if (!item) return null;
 
                             return (
-                              <label
+                              <div
                                 key={item.id}
                                 className="flex w-full cursor-pointer items-start gap-3 rounded-[6px] px-2 py-1.5 text-left transition-colors hover:bg-neutral-50"
+                                onClick={() => toggleRegion(item.id)}
                               >
-                                <Checkbox checked={isRegionSelected(item.id)} onCheckedChange={() => toggleRegion(item.id)} />
-                                <span className="text-[15px] text-neutral-800">{item.label}</span>
-                              </label>
+                                <Checkbox
+                                  checked={isRegionSelected(item.id)}
+                                  aria-labelledby={`${item.id}-label`}
+                                  onClick={(event) => event.stopPropagation()}
+                                  onCheckedChange={() => toggleRegion(item.id)}
+                                />
+                                <span id={`${item.id}-label`} className="text-[15px] text-neutral-800">
+                                  {item.label}
+                                </span>
+                              </div>
                             );
                           })}
                         </div>
@@ -615,45 +692,38 @@ export default function App() {
                   if (!item) return null;
 
                   return (
-                    <label
+                    <div
                       key={item.id}
                       className="flex w-full cursor-pointer items-start gap-3 rounded-[6px] px-2 py-1.5 text-left transition-colors hover:bg-neutral-50"
+                      onClick={() => toggleRegion(item.id)}
                     >
-                      <Checkbox checked={isRegionSelected(item.id)} onCheckedChange={() => toggleRegion(item.id)} />
-                      <span className="text-[15px] text-neutral-800">{item.label}</span>
-                    </label>
+                      <Checkbox
+                        checked={isRegionSelected(item.id)}
+                        aria-labelledby={`${item.id}-label`}
+                        onClick={(event) => event.stopPropagation()}
+                        onCheckedChange={() => toggleRegion(item.id)}
+                      />
+                      <span id={`${item.id}-label`} className="text-[15px] text-neutral-800">
+                        {item.label}
+                      </span>
+                    </div>
                   );
                 })}
               </div>
             </div>
           </div>
 
-          <div className="border-t border-neutral-200 bg-white px-6 py-4 lg:hidden">
-            <Button
-              size="lg"
-              className="h-11 w-full rounded-[10px] bg-neutral-900 text-[14px] text-white hover:bg-neutral-800"
-              onClick={async () => {
-                await handleSearch();
-                setMobileFiltersOpen(false);
-              }}
-              disabled={isSearching}
-              aria-label={isSearching ? "Searching" : "Apply filters"}
-            >
-              {isSearching ? <LoaderCircle className="mr-2 size-4 animate-spin" /> : null}
-              {isSearching ? "Searching..." : "Apply filters"}
-            </Button>
-          </div>
         </aside>
       </div>
 
       <footer className="mt-auto border-t border-neutral-100 px-6 py-4 sm:px-10">
         <div className="mx-auto flex w-full max-w-[1280px] flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
-          <span className="text-[14px] text-neutral-400">ROW K © 2026</span>
+          <span className="text-[14px] text-neutral-600">ROW K © 2026</span>
           <a
             href="https://tally.so/r/VLY10g"
             target="_blank"
             rel="noreferrer"
-            className="text-[14px] text-neutral-500 transition hover:text-neutral-800"
+            className="inline-flex min-h-11 items-center py-2 text-[14px] text-neutral-500 transition hover:text-neutral-800"
           >
             Submit a stylist
           </a>
