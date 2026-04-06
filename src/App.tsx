@@ -109,6 +109,8 @@ const categoryMap = {
 type RegionId = (typeof regions)[number]["id"];
 type CategoryId = keyof typeof categoryMap;
 type SubcategoryId = (typeof categoryMap)[CategoryId]["subcategories"][number];
+type ServiceCategoryId = Exclude<CategoryId, "all">;
+type ServiceSubcategoryId = Exclude<SubcategoryId, "all">;
 
 type SalonResult = {
   id: string;
@@ -187,8 +189,8 @@ function InstagramIcon({ className }: { className?: string }) {
 
 export default function App() {
   const [selectedRegions, setSelectedRegions] = useState<RegionId[]>(["all"]);
-  const [category, setCategory] = useState<CategoryId>("all");
-  const [subcategory, setSubcategory] = useState<SubcategoryId>("all");
+  const [selectedCategories, setSelectedCategories] = useState<ServiceCategoryId[]>([]);
+  const [selectedSubcategories, setSelectedSubcategories] = useState<ServiceSubcategoryId[]>([]);
   const [results, setResults] = useState<SalonResult[]>([]);
   const [isSearching, setIsSearching] = useState(false);
   const [searchError, setSearchError] = useState<string | null>(null);
@@ -196,24 +198,56 @@ export default function App() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 
   function clearFilters() {
-    setCategory("all");
-    setSubcategory("all");
+    setSelectedCategories([]);
+    setSelectedSubcategories([]);
     setSelectedRegions(["all"]);
   }
 
+  function isCategorySelected(categoryId: ServiceCategoryId) {
+    return selectedCategories.includes(categoryId);
+  }
+
+  function categoryHasSelectedSubcategories(categoryId: ServiceCategoryId) {
+    const availableSubcategories = categoryMap[categoryId].subcategories.filter(
+      (subcategory): subcategory is ServiceSubcategoryId => subcategory !== "all",
+    );
+
+    return availableSubcategories.some((subcategory) => selectedSubcategories.includes(subcategory));
+  }
+
   function toggleCategory(nextCategory: CategoryId) {
-    if (category === nextCategory) {
-      setCategory("all");
-      setSubcategory("all");
+    if (nextCategory === "all") {
+      setSelectedCategories([]);
+      setSelectedSubcategories([]);
       return;
     }
 
-    setCategory(nextCategory);
-    setSubcategory("all");
+    setSelectedCategories((currentCategories) => {
+      const isActive = currentCategories.includes(nextCategory);
+      if (isActive) {
+        const nextSubcategories = new Set(
+          categoryMap[nextCategory].subcategories.filter(
+            (subcategory): subcategory is ServiceSubcategoryId => subcategory !== "all",
+          ),
+        );
+
+        setSelectedSubcategories((currentSubcategories) =>
+          currentSubcategories.filter((subcategory) => !nextSubcategories.has(subcategory)),
+        );
+
+        return currentCategories.filter((categoryId) => categoryId !== nextCategory);
+      }
+
+      return [...currentCategories, nextCategory];
+    });
   }
 
-  function toggleSubcategory(nextSubcategory: SubcategoryId) {
-    setSubcategory((currentSubcategory) => (currentSubcategory === nextSubcategory ? "all" : nextSubcategory));
+  function toggleSubcategory(nextSubcategory: ServiceSubcategoryId) {
+    setSelectedSubcategories((currentSubcategories) =>
+      currentSubcategories.includes(nextSubcategory)
+        ? currentSubcategories.filter((subcategory) => subcategory !== nextSubcategory)
+        : [...currentSubcategories, nextSubcategory],
+    );
   }
 
   function isRegionSelected(regionId: RegionId) {
@@ -252,7 +286,11 @@ export default function App() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ category, subcategory, regions: selectedRegions }),
+        body: JSON.stringify({
+          categories: selectedCategories,
+          subcategories: selectedSubcategories,
+          regions: selectedRegions,
+        }),
       });
 
       const contentType = response.headers.get("content-type") ?? "";
@@ -285,7 +323,7 @@ export default function App() {
 
   useEffect(() => {
     void handleSearch({ scroll: false });
-  }, [category, subcategory, selectedRegions]);
+  }, [selectedCategories, selectedSubcategories, selectedRegions]);
 
   useEffect(() => {
     const desktopMediaQuery = window.matchMedia("(min-width: 1024px)");
@@ -480,8 +518,14 @@ export default function App() {
               <p className="px-2 text-[15px] font-medium text-neutral-900">Services</p>
               <div className="mt-2 space-y-2">
                 {Object.entries(categoryMap).map(([id, item]) => {
-                  const isActive = category === id;
+                  const isAllServices = id === "all";
+                  const isActive = isAllServices
+                    ? selectedCategories.length === 0 && selectedSubcategories.length === 0
+                    : isCategorySelected(id as ServiceCategoryId);
                   const visibleSubcategories = item.subcategories.filter((subItem) => subItem !== "all");
+                  const showSubcategories =
+                    !isAllServices &&
+                    (isCategorySelected(id as ServiceCategoryId) || categoryHasSelectedSubcategories(id as ServiceCategoryId));
 
                   return (
                     <div key={id} className="space-y-2">
@@ -493,7 +537,7 @@ export default function App() {
                         <span className="text-[15px] text-neutral-800">{item.label}</span>
                       </label>
 
-                      {isActive && visibleSubcategories.length > 0 ? (
+                      {showSubcategories && visibleSubcategories.length > 0 ? (
                         <div className="space-y-2 pl-8">
                           {visibleSubcategories.map((itemSubcategory) => (
                             <label
@@ -501,8 +545,8 @@ export default function App() {
                               className="flex w-full cursor-pointer items-start gap-3 rounded-[6px] px-2 py-1.5 text-left transition-colors hover:bg-neutral-50"
                             >
                               <Checkbox
-                                checked={subcategory === itemSubcategory}
-                                onCheckedChange={() => toggleSubcategory(itemSubcategory)}
+                                checked={selectedSubcategories.includes(itemSubcategory as ServiceSubcategoryId)}
+                                onCheckedChange={() => toggleSubcategory(itemSubcategory as ServiceSubcategoryId)}
                               />
                               <span className="text-[15px] text-neutral-800">{itemSubcategory}</span>
                             </label>

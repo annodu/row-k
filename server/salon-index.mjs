@@ -111,14 +111,17 @@ export async function readSalonIndex() {
   };
 }
 
-export async function searchSalons({ category = "all", subcategory = "all", regions = ["all"] } = {}) {
+export async function searchSalons({ categories = [], subcategories = [], regions = ["all"] } = {}) {
   const index = await readSalonIndex();
   const normalizedRegions = Array.isArray(regions) && regions.length > 0 ? regions : ["all"];
+  const normalizedCategories = Array.isArray(categories) ? categories.filter(Boolean) : [];
+  const normalizedSubcategories = Array.isArray(subcategories) ? subcategories.filter(Boolean) : [];
 
   const results = index.salons
     .filter(
       (salon) =>
-        matchesRegion(salon, normalizedRegions) && matchesServiceSelection(salon, category, subcategory),
+        matchesRegion(salon, normalizedRegions) &&
+        matchesServiceSelection(salon, normalizedCategories, normalizedSubcategories),
     )
     .map((salon) => ({
       ...salon,
@@ -170,19 +173,23 @@ function matchesRegion(salon, regions) {
   });
 }
 
-function matchesServiceSelection(salon, category, subcategory) {
+function matchesServiceSelection(salon, categories, subcategories) {
   const services = normalizeServices(salon.services);
 
-  if (subcategory !== "all") {
-    return services.includes(subcategory);
-  }
-
-  if (category === "all") {
+  if ((!categories || categories.length === 0) && (!subcategories || subcategories.length === 0)) {
     return true;
   }
 
-  const categoryServices = categoryMap[category] ?? [];
-  return categoryServices.some((service) => services.includes(service));
+  const matchesCategories = (categories ?? []).every((category) => {
+    const categoryServices = categoryMap[category] ?? [];
+    return categoryServices.some((service) => services.includes(service));
+  });
+
+  if (!matchesCategories) {
+    return false;
+  }
+
+  return (subcategories ?? []).every((subcategory) => services.includes(subcategory));
 }
 
 function compareSalons(left, right) {
