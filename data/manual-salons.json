@@ -1,8 +1,8 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-04-06T19:05:00.000Z",
-    "count": 290,
+    "updatedAt": "2026-04-06T19:12:00.000Z",
+    "count": 291,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
@@ -7601,6 +7601,34 @@
         "Traditional sew-in",
         "Wash & blowdry",
         "Custom wig"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "sbeks-hair",
+      "name": "Sbeks Hair",
+      "areaId": "south-east",
+      "areaLabel": "South East",
+      "neighbourhood": "South East London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://smstudio.as.me/schedule/f67a4e2a",
+      "websiteUrl": "https://smstudio.as.me/schedule/f67a4e2a",
+      "instagramUrl": "https://www.instagram.com/sbekshair/",
+      "services": [
+        "Butterfly locs",
+        "Feed-in braids",
+        "Fulani braids",
+        "Half braids, half sew-in",
+        "Traditional sew-in",
+        "Knotless braids",
+        "Tape-ins",
+        "Wash & blowdry",
+        "Flipover / Versatile sew-in"
       ]
     }
   ]

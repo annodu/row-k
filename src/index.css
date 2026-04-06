@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --font-sans: "Figtree", ui-sans-serif, system-ui, sans-serif;
 }
@@ -24,6 +26,48 @@
   --ring: oklch(0.8 0.01 45);
 }
 
+html.dark {
+  --background: oklch(0.19 0.01 45);
+  --foreground: oklch(0.94 0.004 75);
+  --card: oklch(0.22 0.01 45);
+  --card-foreground: oklch(0.94 0.004 75);
+  --popover: oklch(0.22 0.01 45);
+  --popover-foreground: oklch(0.94 0.004 75);
+  --primary: oklch(0.92 0.004 75);
+  --primary-foreground: oklch(0.2 0.01 45);
+  --secondary: oklch(0.28 0.01 45);
+  --secondary-foreground: oklch(0.94 0.004 75);
+  --muted: oklch(0.26 0.01 45);
+  --muted-foreground: oklch(0.72 0.01 60);
+  --accent: oklch(0.82 0.07 55);
+  --accent-foreground: oklch(0.18 0.01 45);
+  --border: oklch(0.34 0.01 45);
+  --input: oklch(0.34 0.01 45);
+  --ring: oklch(0.68 0.01 60);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: oklch(0.19 0.01 45);
+    --foreground: oklch(0.94 0.004 75);
+    --card: oklch(0.22 0.01 45);
+    --card-foreground: oklch(0.94 0.004 75);
+    --popover: oklch(0.22 0.01 45);
+    --popover-foreground: oklch(0.94 0.004 75);
+    --primary: oklch(0.92 0.004 75);
+    --primary-foreground: oklch(0.2 0.01 45);
+    --secondary: oklch(0.28 0.01 45);
+    --secondary-foreground: oklch(0.94 0.004 75);
+    --muted: oklch(0.26 0.01 45);
+    --muted-foreground: oklch(0.72 0.01 60);
+    --accent: oklch(0.82 0.07 55);
+    --accent-foreground: oklch(0.18 0.01 45);
+    --border: oklch(0.34 0.01 45);
+    --input: oklch(0.34 0.01 45);
+    --ring: oklch(0.68 0.01 60);
+  }
+}
+
 @layer base {
   * {
     border-color: var(--border);
@@ -34,6 +78,25 @@
     background-image:
       radial-gradient(circle at top left, rgba(255, 193, 146, 0.2), transparent 26%),
       linear-gradient(180deg, #fffaf4 0%, #f8f2ea 100%);
+  }
+
+  html.dark {
+    color-scheme: dark;
+  }
+
+  html.dark body {
+    background-image:
+      radial-gradient(circle at top left, rgba(236, 161, 109, 0.12), transparent 24%),
+      linear-gradient(180deg, #201c18 0%, #171411 100%);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    body {
+      color-scheme: dark;
+      background-image:
+        radial-gradient(circle at top left, rgba(236, 161, 109, 0.12), transparent 24%),
+        linear-gradient(180deg, #201c18 0%, #171411 100%);
+    }
   }
 
   h1,

@@ -440,18 +440,18 @@ export default function App() {
   const selectedLocationCount = selectedRegions.filter((regionId) => regionId !== "all").length;
 
   return (
-    <div className="min-h-screen bg-white text-left">
-      <header className="border-b border-neutral-200">
+    <div className="min-h-screen bg-white text-left dark:bg-stone-950">
+      <header className="border-b border-neutral-200 dark:border-stone-800">
         <div className="mx-auto flex w-full max-w-[1280px] items-start px-4 sm:px-6 lg:px-10">
           <div className="min-w-0 flex-1 py-8">
             <div className="flex flex-col items-start gap-2 px-4">
-              <p className="w-full text-left text-xs font-semibold uppercase tracking-[0.18em] text-neutral-500">
+              <p className="w-full text-left text-xs font-semibold uppercase tracking-[0.18em] text-neutral-500 dark:text-stone-400">
                 Row K LDN
               </p>
-              <h1 className="-ml-[0.03em] w-full text-left font-figtree text-[32px] font-semibold leading-[40px] tracking-tight text-neutral-900 sm:text-[40px] sm:leading-[48px] lg:text-[48px]">
+              <h1 className="-ml-[0.03em] w-full text-left font-figtree text-[32px] font-semibold leading-[40px] tracking-tight text-neutral-900 dark:text-stone-50 sm:text-[40px] sm:leading-[48px] lg:text-[48px]">
                 Black hair directory
               </h1>
-              <p className="mt-1 w-full max-w-3xl text-left text-sm leading-7 text-neutral-600 sm:text-base">
+              <p className="mt-1 w-full max-w-3xl text-left text-sm leading-7 text-neutral-600 dark:text-stone-300 sm:text-base">
                 Specialists in afro hairstyles, relaxed & natural hair. London, UK and surrounding areas.
               </p>
             </div>
@@ -462,20 +462,20 @@ export default function App() {
 
       <div className="mx-auto flex w-full max-w-[1280px] flex-col px-4 sm:px-6 lg:flex-row lg:items-start lg:px-10">
         <section id="live-results" className="min-w-0 flex-1 pb-6 pt-4 lg:pb-6 lg:pt-0">
-          <div className="sticky top-0 z-30 mb-4 flex w-full items-center justify-between border-b border-neutral-100 bg-white px-4 pb-4 pt-2 lg:h-[82px] lg:items-end lg:pb-6 lg:pt-2">
+          <div className="sticky top-0 z-30 mb-4 flex w-full items-center justify-between border-b border-neutral-100 bg-white px-4 pb-4 pt-2 dark:border-stone-800 dark:bg-stone-950 lg:h-[82px] lg:items-end lg:pb-6 lg:pt-2">
             {hasSearched ? (
-              <h2 className="text-[14px] font-medium leading-none text-neutral-500">
+              <h2 className="text-[14px] font-medium leading-none text-neutral-500 dark:text-stone-400">
                 {results.length} {results.length === 1 ? "result" : "results"}
               </h2>
             ) : (
-              <h2 className="text-[14px] font-medium leading-none text-neutral-500">Results</h2>
+              <h2 className="text-[14px] font-medium leading-none text-neutral-500 dark:text-stone-400">Results</h2>
             )}
 
-            <div className="flex items-center gap-2 text-[13px] text-neutral-500 lg:hidden">
+            <div className="flex items-center gap-2 text-[13px] text-neutral-500 dark:text-stone-400 lg:hidden">
               <button
                 type="button"
                 onClick={() => setMobileFiltersOpen(true)}
-                className="min-h-11 rounded-[6px] px-3 py-2 transition-colors hover:bg-neutral-100 hover:text-neutral-800"
+                className="min-h-11 rounded-[6px] px-3 py-2 transition-colors hover:bg-neutral-100 hover:text-neutral-800 dark:hover:bg-stone-800 dark:hover:text-stone-100"
               >
                 Filter
               </button>
@@ -483,7 +483,7 @@ export default function App() {
           </div>
 
           {searchError ? (
-            <div className="border border-rose-200 bg-rose-50 px-4 py-4 text-sm leading-7 text-rose-700">
+            <div className="border border-rose-200 bg-rose-50 px-4 py-4 text-sm leading-7 text-rose-700 dark:border-rose-900 dark:bg-rose-950/40 dark:text-rose-300">
               <p>{searchError}</p>
             </div>
           ) : null}
@@ -496,13 +496,13 @@ export default function App() {
                 return (
                   <li
                     key={result.id}
-                    className="flex w-full flex-col items-start gap-2 border-b border-neutral-100 px-4 py-4 text-left"
+                    className="flex w-full flex-col items-start gap-2 border-b border-neutral-100 px-4 py-4 text-left dark:border-stone-800"
                   >
                     <article className="flex w-full flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                       <div className="min-w-0 grow">
-                        <h3 className="text-[17px] font-semibold text-neutral-900">{result.name}</h3>
+                        <h3 className="text-[17px] font-semibold text-neutral-900 dark:text-stone-50">{result.name}</h3>
                         {locationLabels.length > 0 ? (
-                          <div className="mt-1 flex flex-wrap items-center gap-2 text-[14px] text-neutral-500">
+                          <div className="mt-1 flex flex-wrap items-center gap-2 text-[14px] text-neutral-500 dark:text-stone-400">
                             {locationLabels.map((label, index) => (
                               <Fragment key={label}>
                                 {index > 0 ? <span>•</span> : null}
@@ -515,7 +515,7 @@ export default function App() {
                           {result.services.map((service) => (
                             <span
                               key={`${result.id}-${service}`}
-                              className="rounded-[2px] bg-neutral-100 px-2 py-0.5 text-[11px] font-normal leading-[16.5px] tracking-[0.02em] text-neutral-600"
+                              className="rounded-[2px] bg-neutral-100 px-2 py-0.5 text-[11px] font-normal leading-[16.5px] tracking-[0.02em] text-neutral-600 dark:bg-stone-900 dark:text-stone-300"
                             >
                               {service}
                             </span>
@@ -529,7 +529,7 @@ export default function App() {
                             href={result.bookingUrl}
                             target="_blank"
                             rel="noreferrer"
-                            className="inline-flex min-h-11 flex-1 items-center justify-center rounded-[10px] bg-neutral-900 px-4 py-2 text-[14px] font-medium text-white transition-colors duration-150 hover:bg-neutral-700 sm:flex-none"
+                            className="inline-flex min-h-11 flex-1 items-center justify-center rounded-[10px] bg-neutral-900 px-4 py-2 text-[14px] font-medium text-white transition-colors duration-150 hover:bg-neutral-700 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-stone-300 sm:flex-none"
                           >
                             Book
                             <span className="sr-only"> - {result.name} - opens in a new tab</span>
@@ -540,7 +540,7 @@ export default function App() {
                             href={result.instagramUrl}
                             target="_blank"
                             rel="noreferrer"
-                            className="inline-flex min-h-11 items-center justify-center gap-2 rounded-[10px] border border-neutral-200 bg-white px-4 py-2 text-[14px] font-medium text-neutral-900 transition-colors duration-150 hover:border-neutral-300 hover:bg-neutral-100"
+                            className="inline-flex min-h-11 items-center justify-center gap-2 rounded-[10px] border border-neutral-200 bg-white px-4 py-2 text-[14px] font-medium text-neutral-900 transition-colors duration-150 hover:border-neutral-300 hover:bg-neutral-100 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100 dark:hover:border-stone-600 dark:hover:bg-stone-800"
                           >
                             <InstagramIcon className="size-4" />
                             <span className="sr-only">{result.name} instagram - opens in a new tab</span>
@@ -551,7 +551,7 @@ export default function App() {
                             href={result.websiteUrl}
                             target="_blank"
                             rel="noreferrer"
-                            className="inline-flex min-h-11 items-center justify-center rounded-[10px] border border-neutral-200 bg-white px-4 py-2 text-[14px] font-medium text-neutral-900 transition-colors duration-150 hover:border-neutral-300 hover:bg-neutral-100"
+                            className="inline-flex min-h-11 items-center justify-center rounded-[10px] border border-neutral-200 bg-white px-4 py-2 text-[14px] font-medium text-neutral-900 transition-colors duration-150 hover:border-neutral-300 hover:bg-neutral-100 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100 dark:hover:border-stone-600 dark:hover:bg-stone-800"
                           >
                             <Globe className="size-4" />
                           </a>
@@ -567,7 +567,7 @@ export default function App() {
           {!searchError && visibleResultCount < results.length ? <div ref={loadMoreRef} className="h-1 w-full" aria-hidden="true" /> : null}
 
           {!searchError && hasSearched && results.length === 0 ? (
-            <div className="border border-dashed border-neutral-200 px-4 py-6 text-sm leading-7 text-neutral-500">
+            <div className="border border-dashed border-neutral-200 px-4 py-6 text-sm leading-7 text-neutral-500 dark:border-stone-700 dark:text-stone-400">
               No qualified salons matched the current filters. Try widening the service or location.
             </div>
           ) : null}
@@ -575,36 +575,36 @@ export default function App() {
 
         <aside
           className={cn(
-            "hidden w-full border-t border-neutral-200 py-6",
-            "lg:sticky lg:top-0 lg:flex lg:h-screen lg:w-72 lg:flex-none lg:self-start lg:flex-col lg:border-t-0 lg:border-l lg:py-0 lg:pl-8",
+            "hidden w-full border-t border-neutral-200 py-6 dark:border-stone-800",
+            "lg:sticky lg:top-0 lg:flex lg:h-screen lg:w-72 lg:flex-none lg:self-start lg:flex-col lg:border-t-0 lg:border-l lg:py-0 lg:pl-8 dark:border-stone-800",
             mobileFiltersOpen &&
-              "fixed inset-0 z-50 flex h-screen w-full flex-col border-b-0 bg-white py-0 lg:static lg:z-auto lg:h-auto lg:w-72 lg:bg-transparent",
+              "fixed inset-0 z-50 flex h-screen w-full flex-col border-b-0 bg-white py-0 dark:bg-stone-950 lg:static lg:z-auto lg:h-auto lg:w-72 lg:bg-transparent",
           )}
         >
-          <div className="flex items-center justify-between border-b border-neutral-200 px-6 py-5 lg:hidden">
+          <div className="flex items-center justify-between border-b border-neutral-200 px-6 py-5 dark:border-stone-800 lg:hidden">
             <button
               type="button"
               onClick={clearFilters}
-              className="min-h-11 px-2 py-2 text-[13px] font-medium text-neutral-600 transition hover:text-neutral-800"
+              className="min-h-11 px-2 py-2 text-[13px] font-medium text-neutral-600 transition hover:text-neutral-800 dark:text-stone-300 dark:hover:text-stone-100"
             >
               Reset
             </button>
-            <h2 className="text-[15px] font-semibold text-neutral-900">Filters</h2>
+            <h2 className="text-[15px] font-semibold text-neutral-900 dark:text-stone-50">Filters</h2>
             <button
               type="button"
               onClick={() => setMobileFiltersOpen(false)}
-              className="min-h-11 px-2 py-2 text-[13px] font-medium text-neutral-500 transition hover:text-neutral-800"
+              className="min-h-11 px-2 py-2 text-[13px] font-medium text-neutral-500 transition hover:text-neutral-800 dark:text-stone-400 dark:hover:text-stone-100"
             >
               Close
             </button>
           </div>
 
-          <div className="hidden h-[82px] w-full shrink-0 border-b border-neutral-100 bg-white px-2 pb-6 pt-2 lg:flex lg:items-end lg:justify-between">
-            <h2 className="text-[15px] font-semibold leading-none text-neutral-900">Filters</h2>
+          <div className="hidden h-[82px] w-full shrink-0 border-b border-neutral-100 bg-white px-2 pb-6 pt-2 dark:border-stone-800 dark:bg-stone-950 lg:flex lg:items-end lg:justify-between">
+            <h2 className="text-[15px] font-semibold leading-none text-neutral-900 dark:text-stone-50">Filters</h2>
             <button
               type="button"
               onClick={clearFilters}
-              className="inline-flex min-h-11 items-end self-end px-2 py-0 text-[13px] font-medium leading-none text-neutral-600 transition hover:text-neutral-800"
+              className="inline-flex min-h-11 items-end self-end px-2 py-0 text-[13px] font-medium leading-none text-neutral-600 transition hover:text-neutral-800 dark:text-stone-300 dark:hover:text-stone-100"
             >
               Reset
             </button>
@@ -616,19 +616,19 @@ export default function App() {
                 type="button"
                 aria-pressed={selectedHijabiFriendly}
                 onClick={() => setSelectedHijabiFriendly((current) => !current)}
-                className="flex min-h-11 w-full items-center justify-between rounded-[6px] px-2 py-2 text-left transition-colors hover:bg-neutral-50"
+                className="flex min-h-11 w-full items-center justify-between rounded-[6px] px-2 py-2 text-left transition-colors hover:bg-neutral-50 dark:hover:bg-stone-900"
               >
-                <span className="text-[15px] font-medium text-neutral-900">Hijabi-friendly</span>
+                <span className="text-[15px] font-medium text-neutral-900 dark:text-stone-100">Hijabi-friendly</span>
                 <span
                   aria-hidden="true"
                   className={cn(
-                    "relative inline-flex h-6 w-11 shrink-0 rounded-full bg-neutral-200 transition-colors",
-                    selectedHijabiFriendly && "bg-neutral-900",
+                    "relative inline-flex h-6 w-11 shrink-0 rounded-full bg-neutral-200 transition-colors dark:bg-stone-700",
+                    selectedHijabiFriendly && "bg-neutral-900 dark:bg-stone-100",
                   )}
                 >
                   <span
                     className={cn(
-                      "absolute left-0.5 top-0.5 h-5 w-5 rounded-full bg-white transition-transform",
+                      "absolute left-0.5 top-0.5 h-5 w-5 rounded-full bg-white transition-transform dark:bg-stone-950",
                       selectedHijabiFriendly && "translate-x-5",
                     )}
                   />
@@ -641,17 +641,17 @@ export default function App() {
                 type="button"
                 aria-expanded={servicesOpen}
                 onClick={() => setServicesOpen((current) => !current)}
-                className="flex min-h-11 w-full items-center justify-between rounded-[6px] px-2 py-2 text-left transition-colors hover:bg-neutral-50"
+                className="flex min-h-11 w-full items-center justify-between rounded-[6px] px-2 py-2 text-left transition-colors hover:bg-neutral-50 dark:hover:bg-stone-900"
               >
-                <span className="text-[15px] font-medium text-neutral-900">Services</span>
+                <span className="text-[15px] font-medium text-neutral-900 dark:text-stone-100">Services</span>
                 <span className="flex items-center gap-2">
                   {selectedServiceCount > 0 ? (
-                    <span className="inline-flex min-h-5 min-w-5 items-center justify-center rounded-full bg-neutral-900 px-1.5 text-[11px] font-bold leading-none text-white">
+                    <span className="inline-flex min-h-5 min-w-5 items-center justify-center rounded-full bg-neutral-900 px-1.5 text-[11px] font-bold leading-none text-white dark:bg-stone-100 dark:text-stone-950">
                       {selectedServiceCount}
                     </span>
                   ) : null}
                   <ChevronDown
-                    className={cn("size-4 text-neutral-500 transition-transform", servicesOpen && "rotate-180")}
+                    className={cn("size-4 text-neutral-500 transition-transform dark:text-stone-400", servicesOpen && "rotate-180")}
                     aria-hidden="true"
                   />
                 </span>
@@ -675,19 +675,19 @@ export default function App() {
                       <button
                         type="button"
                         aria-pressed={isActive}
-                        className="flex w-full cursor-pointer items-start gap-3 rounded-[6px] px-2 py-1.5 text-left transition-colors hover:bg-neutral-50"
+                        className="flex w-full cursor-pointer items-start gap-3 rounded-[6px] px-2 py-1.5 text-left transition-colors hover:bg-neutral-50 dark:hover:bg-stone-900"
                         onClick={() => toggleCategory(id as CategoryId)}
                       >
                         <span
                           aria-hidden="true"
                           className={cn(
-                            "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-[4px] border border-stone-500 bg-white text-white transition",
-                            isActive && "border-stone-950 bg-stone-950",
+                            "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-[4px] border border-stone-500 bg-white text-white transition dark:border-stone-500 dark:bg-stone-900",
+                            isActive && "border-stone-950 bg-stone-950 dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950",
                           )}
                         >
                           {isActive ? <Check className="size-3.5" /> : null}
                         </span>
-                        <span id={categoryLabelId} className="text-[15px] text-neutral-800">
+                        <span id={categoryLabelId} className="text-[15px] text-neutral-800 dark:text-stone-200">
                           {item.label}
                         </span>
                       </button>
@@ -704,19 +704,19 @@ export default function App() {
                                 aria-pressed={isSubcategoryActive}
                                 aria-labelledby={subcategoryLabelId}
                                 key={itemSubcategory}
-                                className="flex w-full cursor-pointer items-start gap-3 rounded-[6px] px-2 py-1.5 text-left transition-colors hover:bg-neutral-50"
+                                className="flex w-full cursor-pointer items-start gap-3 rounded-[6px] px-2 py-1.5 text-left transition-colors hover:bg-neutral-50 dark:hover:bg-stone-900"
                                 onClick={() => toggleSubcategory(itemSubcategory as ServiceSubcategoryId)}
                               >
                                 <span
                                   aria-hidden="true"
                                   className={cn(
-                                    "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-[4px] border border-stone-500 bg-white text-white transition",
-                                    isSubcategoryActive && "border-stone-950 bg-stone-950",
+                                    "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-[4px] border border-stone-500 bg-white text-white transition dark:border-stone-500 dark:bg-stone-900",
+                                    isSubcategoryActive && "border-stone-950 bg-stone-950 dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950",
                                   )}
                                 >
                                   {isSubcategoryActive ? <Check className="size-3.5" /> : null}
                                 </span>
-                                <span id={subcategoryLabelId} className="text-[15px] text-neutral-800">
+                                <span id={subcategoryLabelId} className="text-[15px] text-neutral-800 dark:text-stone-200">
                                   {itemSubcategory}
                                 </span>
                               </button>
@@ -735,17 +735,17 @@ export default function App() {
                 type="button"
                 aria-expanded={locationsOpen}
                 onClick={() => setLocationsOpen((current) => !current)}
-                className="flex min-h-11 w-full items-center justify-between rounded-[6px] px-2 py-2 text-left transition-colors hover:bg-neutral-50"
+                className="flex min-h-11 w-full items-center justify-between rounded-[6px] px-2 py-2 text-left transition-colors hover:bg-neutral-50 dark:hover:bg-stone-900"
               >
-                <span className="text-[15px] font-medium text-neutral-900">Locations</span>
+                <span className="text-[15px] font-medium text-neutral-900 dark:text-stone-100">Locations</span>
                 <span className="flex items-center gap-2">
                   {selectedLocationCount > 0 ? (
-                    <span className="inline-flex min-h-5 min-w-5 items-center justify-center rounded-full bg-neutral-900 px-1.5 text-[11px] font-bold leading-none text-white">
+                    <span className="inline-flex min-h-5 min-w-5 items-center justify-center rounded-full bg-neutral-900 px-1.5 text-[11px] font-bold leading-none text-white dark:bg-stone-100 dark:text-stone-950">
                       {selectedLocationCount}
                     </span>
                   ) : null}
                   <ChevronDown
-                    className={cn("size-4 text-neutral-500 transition-transform", locationsOpen && "rotate-180")}
+                    className={cn("size-4 text-neutral-500 transition-transform dark:text-stone-400", locationsOpen && "rotate-180")}
                     aria-hidden="true"
                   />
                 </span>
@@ -765,7 +765,7 @@ export default function App() {
                         tabIndex={0}
                         aria-checked={isRegionSelected(allLocations.id)}
                         aria-labelledby={allLocationsLabelId}
-                        className="flex w-full cursor-pointer items-start gap-3 rounded-[6px] px-2 py-1.5 text-left transition-colors hover:bg-neutral-50"
+                        className="flex w-full cursor-pointer items-start gap-3 rounded-[6px] px-2 py-1.5 text-left transition-colors hover:bg-neutral-50 dark:hover:bg-stone-900"
                         onClick={() => toggleRegion(allLocations.id)}
                         onKeyDown={(event) => handleToggleKeyDown(event, () => toggleRegion(allLocations.id))}
                       >
@@ -775,7 +775,7 @@ export default function App() {
                           tabIndex={-1}
                           className="pointer-events-none"
                         />
-                        <span id={allLocationsLabelId} className="text-[15px] text-neutral-800">
+                        <span id={allLocationsLabelId} className="text-[15px] text-neutral-800 dark:text-stone-200">
                           {allLocations.label}
                         </span>
                       </div>
@@ -785,7 +785,7 @@ export default function App() {
                         tabIndex={0}
                         aria-checked={isRegionSelected(london.id)}
                         aria-labelledby={londonLabelId}
-                        className="flex w-full cursor-pointer items-start gap-3 rounded-[6px] px-2 py-1.5 text-left transition-colors hover:bg-neutral-50"
+                        className="flex w-full cursor-pointer items-start gap-3 rounded-[6px] px-2 py-1.5 text-left transition-colors hover:bg-neutral-50 dark:hover:bg-stone-900"
                         onClick={() => toggleRegion(london.id)}
                         onKeyDown={(event) => handleToggleKeyDown(event, () => toggleRegion(london.id))}
                       >
@@ -795,7 +795,7 @@ export default function App() {
                           tabIndex={-1}
                           className="pointer-events-none"
                         />
-                        <span id={londonLabelId} className="text-[15px] text-neutral-800">
+                        <span id={londonLabelId} className="text-[15px] text-neutral-800 dark:text-stone-200">
                           {london.label}
                         </span>
                       </div>
@@ -814,7 +814,7 @@ export default function App() {
                                 aria-checked={isRegionSelected(item.id)}
                                 aria-labelledby={regionLabelId}
                                 key={item.id}
-                                className="flex w-full cursor-pointer items-start gap-3 rounded-[6px] px-2 py-1.5 text-left transition-colors hover:bg-neutral-50"
+                                className="flex w-full cursor-pointer items-start gap-3 rounded-[6px] px-2 py-1.5 text-left transition-colors hover:bg-neutral-50 dark:hover:bg-stone-900"
                                 onClick={() => toggleRegion(item.id)}
                                 onKeyDown={(event) => handleToggleKeyDown(event, () => toggleRegion(item.id))}
                               >
@@ -824,7 +824,7 @@ export default function App() {
                                   tabIndex={-1}
                                   className="pointer-events-none"
                                 />
-                                <span id={regionLabelId} className="text-[15px] text-neutral-800">
+                                <span id={regionLabelId} className="text-[15px] text-neutral-800 dark:text-stone-200">
                                   {item.label}
                                 </span>
                               </div>
@@ -848,7 +848,7 @@ export default function App() {
                       aria-checked={isRegionSelected(item.id)}
                       aria-labelledby={regionLabelId}
                       key={item.id}
-                      className="flex w-full cursor-pointer items-start gap-3 rounded-[6px] px-2 py-1.5 text-left transition-colors hover:bg-neutral-50"
+                      className="flex w-full cursor-pointer items-start gap-3 rounded-[6px] px-2 py-1.5 text-left transition-colors hover:bg-neutral-50 dark:hover:bg-stone-900"
                       onClick={() => toggleRegion(item.id)}
                       onKeyDown={(event) => handleToggleKeyDown(event, () => toggleRegion(item.id))}
                     >
@@ -858,7 +858,7 @@ export default function App() {
                         tabIndex={-1}
                         className="pointer-events-none"
                       />
-                      <span id={regionLabelId} className="text-[15px] text-neutral-800">
+                      <span id={regionLabelId} className="text-[15px] text-neutral-800 dark:text-stone-200">
                         {item.label}
                       </span>
                     </div>
@@ -871,14 +871,14 @@ export default function App() {
         </aside>
       </div>
 
-      <footer className="mt-auto border-t border-neutral-100 px-6 py-4 sm:px-10">
+      <footer className="mt-auto border-t border-neutral-100 px-6 py-4 dark:border-stone-800 sm:px-10">
         <div className="mx-auto flex w-full max-w-[1280px] flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
-          <span className="text-[14px] text-neutral-600">ROW K 2026</span>
+          <span className="text-[14px] text-neutral-600 dark:text-stone-300">ROW K 2026</span>
           <a
             href="https://tally.so/r/VLY10g"
             target="_blank"
             rel="noreferrer"
-            className="inline-flex min-h-11 items-center py-2 text-[14px] text-neutral-500 transition hover:text-neutral-800"
+            className="inline-flex min-h-11 items-center py-2 text-[14px] text-neutral-500 transition hover:text-neutral-800 dark:text-stone-400 dark:hover:text-stone-100"
           >
             Submit a stylist
           </a>
