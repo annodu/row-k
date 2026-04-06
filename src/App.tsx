@@ -71,7 +71,7 @@ const categoryMap = {
   },
   "styling-services": {
     label: "Style / Finish (Sew-in / Relaxer)",
-    subcategories: ["all", "Half up half down", "Pixie cut / wrap", "Ponytail", "Updo"],
+    subcategories: ["all", "Half up half down", "Pixie / finger waves", "Ponytail", "Updo"],
   },
   "straightening-treatments": {
     label: "Treatments",

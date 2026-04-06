@@ -52,7 +52,7 @@ const categoryMap = {
     "Cornrows",
   ],
   "colour-services": ["Full head colour", "Highlights", "Balayage", "Wig colour"],
-  "styling-services": ["Ponytail", "Updo", "Half up half down", "Pixie cut / wrap"],
+  "styling-services": ["Ponytail", "Updo", "Half up half down", "Pixie / finger waves"],
 };
 
 const serviceAliases = {
@@ -77,8 +77,10 @@ const serviceAliases = {
   "Hair cut / Trim": "Trim / Hair cut",
   Trim: "Trim / Hair cut",
   "Glueless wig": "Wig install",
-  "Pixie cut": "Pixie cut / wrap",
-  Wrap: "Pixie cut / wrap",
+  "Pixie cut": "Pixie / finger waves",
+  "Pixie cut / wrap": "Pixie / finger waves",
+  Wrap: "Pixie / finger waves",
+  "Finger waves": "Pixie / finger waves",
   Locs: "Starter locs",
   "Loc styling": "Starter locs",
   "Invisible locs": "Faux locs",

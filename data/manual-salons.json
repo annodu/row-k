@@ -1,8 +1,8 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-04-05T02:05:00.000Z",
-    "count": 277,
+    "updatedAt": "2026-04-06T01:10:00.000Z",
+    "count": 281,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
@@ -101,7 +101,8 @@
         "Ponytail",
         "Traditional sew-in",
         "Braid take-down",
-        "Sew-in take-down"
+        "Sew-in take-down",
+        "Pixie / finger waves"
       ],
       "summary": "Starter verified entry for a South West London salon on Phorest that was identified as relevant to textured-hair clients searching for smoothing services.",
       "source": "manual",
@@ -212,7 +213,6 @@
         "Microlinks",
         "Tape-ins",
         "Ponytail",
-        "Pixie cut / wrap",
         "Updo",
         "Half up half down",
         "Sew-in take-down"
@@ -363,7 +363,6 @@
         "Silk press",
         "Full head colour",
         "Ponytail",
-        "Pixie cut / wrap",
         "Updo",
         "Half up half down",
         "K-tips",
@@ -447,7 +446,7 @@
         "Clip-ins",
         "Silk press",
         "Wash & blowdry",
-        "Pixie cut / wrap",
+        "Pixie / finger waves",
         "Relaxer",
         "Keratin treatment",
         "Texture release",
@@ -921,28 +920,21 @@
     {
       "id": "goldenn-touch",
       "name": "Golden N Touch",
-      "areaId": "south-east",
-      "areaLabel": "South East",
-      "neighbourhood": "South East London",
+      "areaId": "essex",
+      "areaLabel": "Essex",
+      "neighbourhood": "Essex",
       "postcode": "",
       "bookingPlatform": ".as.me",
-      "bookingUrl": "https://goldenntouch.as.me/schedule/4b9f4acd",
-      "websiteUrl": "https://goldenntouch.as.me/schedule/4b9f4acd",
-      "instagramUrl": "https://www.instagram.com/goldenntouch.co/",
+      "bookingUrl": "https://goldenntouchh.as.me/schedule/5b847e30",
+      "websiteUrl": "https://goldenntouchh.as.me/schedule/5b847e30",
+      "instagramUrl": "https://www.instagram.com/golden_tuchhhh/",
       "services": [
         "Wig install",
-        "Half up half down",
-        "Ponytail",
+        "Pixie / finger waves",
         "Traditional sew-in",
-        "Flipover / Versatile sew-in",
-        "Closure sew-in",
-        "Frontal sew-in",
-        "Quick weave",
-        "Silk press",
-        "Updo",
-        "Custom wig"
+        "Closure sew-in"
       ],
-      "summary": "Manual entry added from your South East London styling, sew-in, quick weave, and wigs list.",
+      "summary": "Manual entry updated from your latest Essex salon update batch.",
       "source": "manual",
       "evidence": [
         "User-provided manual addition."
@@ -961,7 +953,6 @@
       "instagramUrl": "https://www.instagram.com/jbshairr/",
       "services": [
         "Ponytail",
-        "Pixie cut / wrap",
         "Updo",
         "Half up half down",
         "Moisturising treatment",
@@ -1208,7 +1199,6 @@
         "Fulani braids",
         "Boho braids",
         "Tracks sewn in",
-        "Feed-in braids",
         "Quick weave",
         "Half up half down"
       ],
@@ -1256,7 +1246,6 @@
       "services": [
         "Knotless braids",
         "Ponytail",
-        "Pixie cut / wrap",
         "Updo",
         "Half up half down"
       ],
@@ -1462,7 +1451,6 @@
         "Butterfly locs",
         "Wig install",
         "Ponytail",
-        "Pixie cut / wrap",
         "Updo",
         "Half up half down",
         "Traditional sew-in",
@@ -1578,7 +1566,6 @@
       "services": [
         "Wig install",
         "Ponytail",
-        "Pixie cut / wrap",
         "Updo",
         "Half up half down",
         "Quick weave",
@@ -1606,7 +1593,6 @@
         "Moisturising treatment",
         "Silk press",
         "Ponytail",
-        "Pixie cut / wrap",
         "Updo",
         "Half up half down",
         "Traditional sew-in",
@@ -1647,7 +1633,6 @@
         "Microlinks",
         "Tape-ins",
         "Ponytail",
-        "Pixie cut / wrap",
         "Updo",
         "Half up half down",
         "Traditional sew-in",
@@ -1723,7 +1708,7 @@
       "instagramUrl": "https://www.instagram.com/sliqtouchuk/",
       "services": [
         "Ponytail",
-        "Pixie cut / wrap",
+        "Pixie / finger waves",
         "Updo",
         "Half up half down"
       ],
@@ -1748,7 +1733,6 @@
         "Wig install",
         "Traditional sew-in",
         "Ponytail",
-        "Pixie cut / wrap",
         "Updo",
         "Half up half down",
         "Wig colour",
@@ -1833,7 +1817,6 @@
         "Wig install",
         "Wig colour",
         "Ponytail",
-        "Pixie cut / wrap",
         "Updo",
         "Half up half down",
         "Traditional sew-in",
@@ -1842,8 +1825,6 @@
         "K-tips",
         "Trim / Hair cut",
         "Silk press",
-        "Cornrows",
-        "Full head colour",
         "Highlights",
         "Custom wig"
       ],
@@ -1867,7 +1848,7 @@
       "services": [
         "Wig install",
         "Ponytail",
-        "Pixie cut / wrap",
+        "Pixie / finger waves",
         "Updo",
         "Half up half down",
         "Quick weave",
@@ -1892,7 +1873,6 @@
       "instagramUrl": "https://www.instagram.com/mbhair.1/",
       "services": [
         "Ponytail",
-        "Pixie cut / wrap",
         "Updo",
         "Half up half down",
         "Traditional sew-in",
@@ -1918,9 +1898,9 @@
       "instagramUrl": "https://www.instagram.com/thestuddio/",
       "services": [
         "Ponytail",
-        "Pixie cut / wrap",
         "Updo",
-        "Half up half down"
+        "Half up half down",
+        "Quick weave"
       ],
       "summary": "Manual entry added from your Kent styling list.",
       "source": "manual",
@@ -2017,7 +1997,6 @@
         "Knotless braids",
         "Traditional sew-in",
         "Ponytail",
-        "Pixie cut / wrap",
         "Updo",
         "Half up half down"
       ],
@@ -2042,7 +2021,6 @@
         "Knotless braids",
         "Traditional sew-in",
         "Ponytail",
-        "Pixie cut / wrap",
         "Updo",
         "Half up half down",
         "Wig install",
@@ -2630,7 +2608,6 @@
         "Texture release",
         "Relaxer",
         "Traditional sew-in",
-        "Pixie cut / wrap",
         "Tracks sewn in"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
@@ -2706,14 +2683,23 @@
       "postcode": "",
       "bookingPlatform": "Direct website",
       "bookingUrl": "https://www.maisonstyle.co.uk",
-      "websiteUrl": "https://www.maisonstyle.co.uk",
+      "websiteUrl": "",
       "instagramUrl": "https://www.instagram.com/maisonstylehair/",
       "services": [
         "Wig install",
         "Texture release",
         "Silk press",
         "Full head colour",
-        "Pixie cut / wrap"
+        "Pixie / finger waves",
+        "Keratin treatment",
+        "K-18 treatment",
+        "Olaplex treatment",
+        "Traditional sew-in",
+        "Tracks sewn in",
+        "LA weave",
+        "Sew-in take-down",
+        "Cornrows",
+        "Custom wig"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -2882,8 +2868,7 @@
       "services": [
         "Traditional sew-in",
         "Wig install",
-        "Silk press",
-        "Pixie cut / wrap"
+        "Silk press"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -3113,12 +3098,10 @@
         "Twists",
         "Fulani braids",
         "Butterfly locs",
-        "Faux locs",
         "Cornrows",
         "Scalp care",
         "Relaxer",
         "Wash & blowdry",
-        "Pixie cut / wrap",
         "Trim / Hair cut",
         "Silk press",
         "Sew-in take-down",
@@ -3127,7 +3110,6 @@
         "Keratin treatment",
         "Texture release",
         "Retwist",
-        "Full head colour",
         "Wig colour",
         "Balayage",
         "Half braids, half sew-in"
@@ -3823,7 +3805,6 @@
         "Olaplex treatment",
         "Highlights",
         "LA weave",
-        "Traditional sew-in",
         "Cornrows",
         "Tracks sewn in"
       ],
@@ -3977,7 +3958,6 @@
         "Highlights",
         "Keratin treatment",
         "Olaplex treatment",
-        "Trim / Hair cut",
         "Curly cut / Wash & go",
         "Clip-ins",
         "Tape-ins",
@@ -4547,7 +4527,7 @@
       "services": [
         "Silk press",
         "Wash & blowdry",
-        "Pixie cut / wrap",
+        "Pixie / finger waves",
         "Relaxer",
         "Keratin treatment",
         "Texture release",
@@ -5134,7 +5114,7 @@
         "Keratin treatment",
         "Wig install",
         "Trim / Hair cut",
-        "Micro locs",
+        "Microlocs / Sisterlocs",
         "Faux locs",
         "Tracks sewn in"
       ],
@@ -5194,8 +5174,8 @@
       ]
     },
     {
-      "id": "unruly-curls",
-      "name": "Unruly Curls",
+      "id": "curls-by-gabrielle",
+      "name": "Curls by Gabrielle",
       "areaId": "central",
       "areaLabel": "Central",
       "neighbourhood": "Central London",
@@ -5203,11 +5183,11 @@
       "bookingPlatform": "Fresha",
       "bookingUrl": "https://www.fresha.com/a/unruly-curls-london-96b-leather-lane-in00bv7m/booking?",
       "websiteUrl": "https://www.fresha.com/a/unruly-curls-london-96b-leather-lane-in00bv7m/booking?",
-      "instagramUrl": "https://www.instagram.com/unrulycurls/?hl=en",
+      "instagramUrl": "https://www.instagram.com/curlsbygabrielle/",
       "services": [
         "Curly cut / Wash & go"
       ],
-      "summary": "Manual entry added from your latest salon update batch.",
+      "summary": "Manual entry updated from your latest central London salon update batch.",
       "source": "manual",
       "evidence": [
         "User-provided manual addition."
@@ -5442,7 +5422,7 @@
         "Trim / Hair cut",
         "Wash & blowdry",
         "Silk press",
-        "Pixie cut / wrap",
+        "Pixie / finger waves",
         "Scalp care",
         "Texture release",
         "Relaxer",
@@ -5753,7 +5733,6 @@
         "Fulani braids",
         "Boho braids",
         "Knotless braids",
-        "Pixie cut / wrap",
         "Updo",
         "Trim / Hair cut",
         "Silk press",
@@ -6537,7 +6516,7 @@
       "services": [
         "Wash & blowdry",
         "Cornrows",
-        "Pixie cut / wrap",
+        "Pixie / finger waves",
         "Half up half down",
         "Traditional sew-in",
         "Wig install",
@@ -6826,7 +6805,8 @@
         "Wig install",
         "Traditional sew-in",
         "Moisturising treatment",
-        "Tracks sewn in"
+        "Tracks sewn in",
+        "Pixie / finger waves"
       ]
     },
     {
@@ -7211,6 +7191,117 @@
       "instagramUrl": "https://www.instagram.com/omoadelocs/",
       "services": [
         "Microlocs / Sisterlocs"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "serenity-luxury-hair",
+      "name": "Serenity Luxury Hair",
+      "areaId": "kent",
+      "areaLabel": "Kent",
+      "neighbourhood": "Kent",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://app.acuityscheduling.com/schedule/8dde07fb",
+      "websiteUrl": "https://app.acuityscheduling.com/schedule/8dde07fb",
+      "instagramUrl": "https://www.instagram.com/serenityluxuryhair_/",
+      "services": [
+        "Pixie / finger waves"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "mane-li-studios",
+      "name": "Mane Li Studios",
+      "areaId": "east",
+      "areaLabel": "East",
+      "neighbourhood": "East London",
+      "postcode": "",
+      "bookingPlatform": "Direct website",
+      "bookingUrl": "https://www.manelistudios.com/",
+      "websiteUrl": "https://www.manelistudios.com/",
+      "instagramUrl": "https://www.instagram.com/manelistudios/",
+      "services": [
+        "Pixie / finger waves",
+        "Relaxer",
+        "Ponytail",
+        "Updo"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "fd-hair-and-beauty",
+      "name": "F D Hair and Beauty",
+      "areaId": "north",
+      "areaLabel": "North",
+      "neighbourhood": "North London",
+      "postcode": "",
+      "bookingPlatform": ".as.me",
+      "bookingUrl": "https://fdhairbeauty.as.me/schedule/cf064183",
+      "websiteUrl": "https://fdhairbeauty.as.me/schedule/cf064183",
+      "instagramUrl": "https://www.instagram.com/f.dhairandbeauty/",
+      "services": [
+        "Pixie / finger waves",
+        "Relaxer",
+        "Trim / Hair cut",
+        "Wash & blowdry",
+        "Ponytail",
+        "Half up half down",
+        "Traditional sew-in",
+        "Closure sew-in",
+        "Wig install"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "b-versatile",
+      "name": "B Versatile",
+      "areaId": "north",
+      "areaLabel": "North",
+      "neighbourhood": "North London",
+      "postcode": "",
+      "bookingPlatform": ".as.me",
+      "bookingUrl": "https://bversatile.as.me/schedule/cb8c7777",
+      "websiteUrl": "https://bversatile.as.me/schedule/cb8c7777",
+      "instagramUrl": "https://www.instagram.com/b_versatile/",
+      "services": [
+        "Pixie / finger waves",
+        "Moisturising treatment",
+        "Relaxer",
+        "Wash & blowdry",
+        "Silk press",
+        "Feed-in braids",
+        "Knotless braids",
+        "Fulani braids",
+        "Faux locs",
+        "Half braids, half sew-in",
+        "Full head colour",
+        "Highlights",
+        "Custom wig",
+        "Trim / Hair cut",
+        "Ponytail",
+        "Wig install",
+        "Tracks sewn in",
+        "Half up half down",
+        "Closure sew-in",
+        "Frontal sew-in",
+        "Flipover / Versatile sew-in"
       ]
     }
   ]
