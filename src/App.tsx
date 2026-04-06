@@ -425,8 +425,8 @@ export default function App() {
       </header>
 
       <div className="mx-auto flex w-full max-w-[1280px] flex-col px-4 sm:px-6 lg:flex-row lg:items-start lg:px-10">
-        <section id="live-results" className="min-w-0 flex-1 py-6">
-          <div className="mb-4 flex w-full items-end justify-between border-b border-neutral-100 px-4 pb-6">
+        <section id="live-results" className="min-w-0 flex-1 pb-6 pt-4 lg:py-6">
+          <div className="mb-4 flex w-full items-center justify-between border-b border-neutral-100 px-4 pb-4 lg:items-end lg:pb-6">
             {hasSearched ? (
               <h2 className="text-[14px] font-medium leading-none text-neutral-500">
                 {results.length} {results.length === 1 ? "result" : "results"}
