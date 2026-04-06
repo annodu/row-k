@@ -641,7 +641,7 @@ export default function App() {
           </div>
 
           <div className="mt-0 flex-1 space-y-6 overflow-y-auto px-6 pb-6 pt-0 lg:min-h-0 lg:flex-1 lg:space-y-6 lg:px-0 lg:pt-0 lg:pb-6">
-            <div>
+            <div className="pt-6">
               <button
                 type="button"
                 aria-pressed={selectedHijabiFriendly}
