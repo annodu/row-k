@@ -21,8 +21,9 @@ export default async function handler(req, res) {
     const regions = Array.isArray(req.body?.regions)
       ? req.body.regions.map((region) => String(region)).filter(Boolean)
       : [String(req.body?.region || "all")];
+    const hijabiFriendly = req.body?.hijabiFriendly === true;
 
-    const payload = await searchSalons({ categories, subcategories, regions });
+    const payload = await searchSalons({ categories, subcategories, regions, hijabiFriendly });
     return res.status(200).json(payload);
   } catch (error) {
     console.error("Search API failed", error);

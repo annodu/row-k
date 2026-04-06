@@ -40,8 +40,9 @@ app.post("/api/search", async (req, res) => {
   const regions = Array.isArray(req.body?.regions)
     ? req.body.regions.map((region) => String(region)).filter(Boolean)
     : [String(req.body?.region || "all")];
+  const hijabiFriendly = req.body?.hijabiFriendly === true;
 
-  return res.json(await searchSalons({ categories, subcategories, regions }));
+  return res.json(await searchSalons({ categories, subcategories, regions, hijabiFriendly }));
 });
 
 const server = http.createServer(app);

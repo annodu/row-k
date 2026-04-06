@@ -1,5 +1,5 @@
 import { Fragment, useEffect, useRef, useState } from "react";
-import { Check, Globe } from "lucide-react";
+import { Check, ChevronDown, Globe } from "lucide-react";
 
 import { Checkbox } from "@/components/ui/checkbox";
 import { cn } from "@/lib/utils";
@@ -124,6 +124,7 @@ type SalonResult = {
   instagramUrl?: string;
   websiteUrl?: string;
   services: string[];
+  hijabiFriendly?: boolean;
   summary: string;
   source: string;
 };
@@ -213,12 +214,16 @@ export default function App() {
   const [searchError, setSearchError] = useState<string | null>(null);
   const [hasSearched, setHasSearched] = useState(false);
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
+  const [selectedHijabiFriendly, setSelectedHijabiFriendly] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(true);
+  const [locationsOpen, setLocationsOpen] = useState(true);
   const loadMoreRef = useRef<HTMLDivElement | null>(null);
 
   function clearFilters() {
     setSelectedCategories([]);
     setSelectedSubcategories([]);
     setSelectedRegions(["all"]);
+    setSelectedHijabiFriendly(false);
   }
 
   function isCategorySelected(categoryId: ServiceCategoryId) {
@@ -256,11 +261,32 @@ export default function App() {
         return currentCategories.filter((categoryId) => categoryId !== nextCategory);
       }
 
+      const nextSubcategories = new Set(
+        categoryMap[nextCategory].subcategories.filter(
+          (subcategory): subcategory is ServiceSubcategoryId => subcategory !== "all",
+        ),
+      );
+
+      setSelectedSubcategories((currentSubcategories) =>
+        currentSubcategories.filter((subcategory) => !nextSubcategories.has(subcategory)),
+      );
+
       return [...currentCategories, nextCategory];
     });
   }
 
   function toggleSubcategory(nextSubcategory: ServiceSubcategoryId) {
+    const parentCategory = (Object.entries(categoryMap) as [CategoryId, (typeof categoryMap)[CategoryId]][]).find(
+      ([categoryId, category]) =>
+        categoryId !== "all" && category.subcategories.includes(nextSubcategory as SubcategoryId),
+    )?.[0] as ServiceCategoryId | undefined;
+
+    if (parentCategory) {
+      setSelectedCategories((currentCategories) =>
+        currentCategories.filter((categoryId) => categoryId !== parentCategory),
+      );
+    }
+
     setSelectedSubcategories((currentSubcategories) =>
       currentSubcategories.includes(nextSubcategory)
         ? currentSubcategories.filter((subcategory) => subcategory !== nextSubcategory)
@@ -317,6 +343,7 @@ export default function App() {
           categories: selectedCategories,
           subcategories: selectedSubcategories,
           regions: selectedRegions,
+          hijabiFriendly: selectedHijabiFriendly,
         }),
       });
 
@@ -350,7 +377,7 @@ export default function App() {
 
   useEffect(() => {
     void handleSearch({ scroll: false });
-  }, [selectedCategories, selectedSubcategories, selectedRegions]);
+  }, [selectedCategories, selectedSubcategories, selectedRegions, selectedHijabiFriendly]);
 
   useEffect(() => {
     setVisibleResultCount(RESULTS_BATCH_SIZE);
@@ -402,6 +429,15 @@ export default function App() {
   }, []);
 
   const visibleResults = results.slice(0, visibleResultCount);
+  const selectedServiceCount = sortedCategoryEntries.reduce((count, [id]) => {
+    if (id === "all") {
+      return count;
+    }
+
+    const categoryId = id as ServiceCategoryId;
+    return isCategorySelected(categoryId) || categoryHasSelectedSubcategories(categoryId) ? count + 1 : count;
+  }, 0);
+  const selectedLocationCount = selectedRegions.filter((regionId) => regionId !== "all").length;
 
   return (
     <div className="min-h-screen bg-white text-left">
@@ -425,8 +461,8 @@ export default function App() {
       </header>
 
       <div className="mx-auto flex w-full max-w-[1280px] flex-col px-4 sm:px-6 lg:flex-row lg:items-start lg:px-10">
-        <section id="live-results" className="min-w-0 flex-1 pb-6 pt-4 lg:py-6">
-          <div className="mb-4 flex w-full items-center justify-between border-b border-neutral-100 px-4 pb-4 lg:items-end lg:pb-6">
+        <section id="live-results" className="min-w-0 flex-1 pb-6 pt-4 lg:pb-6 lg:pt-0">
+          <div className="sticky top-0 z-30 mb-4 flex w-full items-center justify-between border-b border-neutral-100 bg-white px-4 pb-4 pt-2 lg:h-[102px] lg:items-end lg:pb-6 lg:pt-6">
             {hasSearched ? (
               <h2 className="text-[14px] font-medium leading-none text-neutral-500">
                 {results.length} {results.length === 1 ? "result" : "results"}
@@ -540,7 +576,7 @@ export default function App() {
         <aside
           className={cn(
             "hidden w-full border-t border-neutral-200 py-6",
-            "lg:block lg:w-72 lg:flex-none lg:self-stretch lg:border-t-0 lg:border-l lg:py-6 lg:pl-8",
+            "lg:sticky lg:top-0 lg:flex lg:h-screen lg:w-72 lg:flex-none lg:self-start lg:flex-col lg:border-t-0 lg:border-l lg:py-0 lg:pl-8",
             mobileFiltersOpen &&
               "fixed inset-0 z-50 flex h-screen w-full flex-col border-b-0 bg-white py-0 lg:static lg:z-auto lg:h-auto lg:w-72 lg:bg-transparent",
           )}
@@ -563,21 +599,59 @@ export default function App() {
             </button>
           </div>
 
-          <div className="relative hidden w-full border-b border-neutral-100 px-2 pb-6 lg:block">
+          <div className="hidden h-[102px] w-full shrink-0 border-b border-neutral-100 bg-white px-2 pb-6 pt-6 lg:flex lg:items-end lg:justify-between">
             <h2 className="text-[15px] font-semibold leading-none text-neutral-900">Filters</h2>
             <button
               type="button"
               onClick={clearFilters}
-              className="absolute right-2 top-0 inline-flex min-h-11 items-start px-2 py-0 text-[13px] font-medium leading-none text-neutral-600 transition hover:text-neutral-800"
+              className="inline-flex min-h-11 items-end self-end px-2 py-0 text-[13px] font-medium leading-none text-neutral-600 transition hover:text-neutral-800"
             >
               Reset
             </button>
           </div>
 
-          <div className="mt-4 flex-1 space-y-6 overflow-y-auto px-6 pb-6 pt-4 lg:mt-0 lg:flex-none lg:space-y-6 lg:px-0 lg:pb-0">
+          <div className="mt-4 flex-1 space-y-6 overflow-y-auto px-6 pb-6 pt-4 lg:mt-0 lg:min-h-0 lg:flex-1 lg:space-y-6 lg:px-0 lg:pb-6">
             <div>
-              <p className="px-2 text-[15px] font-medium text-neutral-900">Services</p>
-              <div className="mt-2 space-y-2">
+              <button
+                type="button"
+                aria-pressed={selectedHijabiFriendly}
+                onClick={() => setSelectedHijabiFriendly((current) => !current)}
+                className="flex min-h-11 w-full items-start gap-3 rounded-[6px] px-2 py-2 text-left transition-colors hover:bg-neutral-50"
+              >
+                <span
+                  aria-hidden="true"
+                  className={cn(
+                    "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-[4px] border border-stone-500 bg-white text-white transition",
+                    selectedHijabiFriendly && "border-stone-950 bg-stone-950",
+                  )}
+                >
+                  {selectedHijabiFriendly ? <Check className="size-3.5" /> : null}
+                </span>
+                <span className="text-[15px] font-medium text-neutral-900">Hijabi-friendly</span>
+              </button>
+            </div>
+
+            <div>
+              <button
+                type="button"
+                aria-expanded={servicesOpen}
+                onClick={() => setServicesOpen((current) => !current)}
+                className="flex min-h-11 w-full items-center justify-between rounded-[6px] px-2 py-2 text-left transition-colors hover:bg-neutral-50"
+              >
+                <span className="text-[15px] font-medium text-neutral-900">Services</span>
+                <span className="flex items-center gap-2">
+                  {selectedServiceCount > 0 ? (
+                    <span className="inline-flex min-h-5 min-w-5 items-center justify-center rounded-full bg-neutral-900 px-1.5 text-[11px] font-bold leading-none text-white">
+                      {selectedServiceCount}
+                    </span>
+                  ) : null}
+                  <ChevronDown
+                    className={cn("size-4 text-neutral-500 transition-transform", servicesOpen && "rotate-180")}
+                    aria-hidden="true"
+                  />
+                </span>
+              </button>
+              {servicesOpen ? <div className="mt-2 space-y-2">
                 {sortedCategoryEntries.map(([id, item]) => {
                   const isAllServices = id === "all";
                   const isActive = isAllServices
@@ -648,12 +722,30 @@ export default function App() {
                     </div>
                   );
                 })}
-              </div>
+              </div> : null}
             </div>
 
             <div>
-              <p className="px-2 text-[15px] font-medium text-neutral-900">Locations</p>
-              <div className="mt-2 space-y-2">
+              <button
+                type="button"
+                aria-expanded={locationsOpen}
+                onClick={() => setLocationsOpen((current) => !current)}
+                className="flex min-h-11 w-full items-center justify-between rounded-[6px] px-2 py-2 text-left transition-colors hover:bg-neutral-50"
+              >
+                <span className="text-[15px] font-medium text-neutral-900">Locations</span>
+                <span className="flex items-center gap-2">
+                  {selectedLocationCount > 0 ? (
+                    <span className="inline-flex min-h-5 min-w-5 items-center justify-center rounded-full bg-neutral-900 px-1.5 text-[11px] font-bold leading-none text-white">
+                      {selectedLocationCount}
+                    </span>
+                  ) : null}
+                  <ChevronDown
+                    className={cn("size-4 text-neutral-500 transition-transform", locationsOpen && "rotate-180")}
+                    aria-hidden="true"
+                  />
+                </span>
+              </button>
+              {locationsOpen ? <div className="mt-2 space-y-2">
                 {(() => {
                   const allLocations = regions.find((item) => item.id === "all");
                   const london = regions.find((item) => item.id === "london");
@@ -767,7 +859,7 @@ export default function App() {
                     </div>
                   );
                 })}
-              </div>
+              </div> : null}
             </div>
           </div>
 
