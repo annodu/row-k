@@ -153,6 +153,13 @@ const resultLocationLabelMap: Record<string, string> = {
   south: "South London",
 };
 
+const sortedCategoryEntries = [
+  ...Object.entries(categoryMap).filter(([id]) => id === "all"),
+  ...Object.entries(categoryMap)
+    .filter(([id]) => id !== "all")
+    .sort(([, left], [, right]) => left.label.localeCompare(right.label)),
+] as [CategoryId, (typeof categoryMap)[CategoryId]][];
+
 function getLocationLabels(result: SalonResult) {
   const shouldUseDisplayLabel =
     Boolean(result.areaLabel) &&
@@ -517,12 +524,14 @@ export default function App() {
             <div>
               <p className="px-2 text-[15px] font-medium text-neutral-900">Services</p>
               <div className="mt-2 space-y-2">
-                {Object.entries(categoryMap).map(([id, item]) => {
+                {sortedCategoryEntries.map(([id, item]) => {
                   const isAllServices = id === "all";
                   const isActive = isAllServices
                     ? selectedCategories.length === 0 && selectedSubcategories.length === 0
                     : isCategorySelected(id as ServiceCategoryId);
-                  const visibleSubcategories = item.subcategories.filter((subItem) => subItem !== "all");
+                  const visibleSubcategories = item.subcategories
+                    .filter((subItem) => subItem !== "all")
+                    .sort((left, right) => left.localeCompare(right));
                   const showSubcategories =
                     !isAllServices &&
                     (isCategorySelected(id as ServiceCategoryId) || categoryHasSelectedSubcategories(id as ServiceCategoryId));
