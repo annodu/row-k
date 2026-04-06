@@ -413,10 +413,10 @@ export default function App() {
                 Row K LDN
               </p>
               <h1 className="-ml-[0.03em] w-full text-left font-figtree text-[32px] font-semibold leading-[40px] tracking-tight text-neutral-900 sm:text-[40px] sm:leading-[48px] lg:text-[48px]">
-                Black hair directory
+                The Black hair directory
               </h1>
               <p className="mt-1 w-full max-w-3xl text-left text-sm leading-7 text-neutral-600 sm:text-base">
-                Find specialists in coily hair and afro hairstyles across London and the surrounding areas.
+                Specialists in afro hairstyles, relaxed & natural hair. London, UK and surrounding areas.
               </p>
             </div>
           </div>
