@@ -520,7 +520,15 @@ export default function App() {
                   >
                     <article className="flex w-full flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                       <div className="min-w-0 grow">
-                        <h3 className="text-[17px] font-semibold text-neutral-900 dark:text-stone-50">{result.name}</h3>
+                        <div className="flex flex-wrap items-center gap-2">
+                          <h3 className="text-[17px] font-semibold text-neutral-900 dark:text-stone-50">{result.name}</h3>
+                          {result.hijabiFriendly ? (
+                            <span className="inline-flex items-center gap-1 rounded-[4px] bg-emerald-100 pl-1.5 pr-2 py-1 text-[11px] font-medium leading-none text-emerald-800 dark:bg-emerald-950/50 dark:text-emerald-300">
+                              <Check className="size-3.5" aria-hidden="true" />
+                              Hijabi-friendly
+                            </span>
+                          ) : null}
+                        </div>
                         {locationLabels.length > 0 ? (
                           <div className="mt-1 flex flex-wrap items-center gap-2 text-[14px] text-neutral-500 dark:text-stone-400">
                             {locationLabels.map((label, index) => (

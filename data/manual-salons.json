@@ -1678,27 +1678,6 @@
       ]
     },
     {
-      "id": "curluxe",
-      "name": "Curluxe",
-      "areaId": "all-london",
-      "areaLabel": "London",
-      "neighbourhood": "London",
-      "postcode": "",
-      "bookingPlatform": "Direct website",
-      "bookingUrl": "https://curluxe.planway.com",
-      "websiteUrl": "https://curluxe.planway.com",
-      "instagramUrl": "https://www.instagram.com/curluxe/",
-      "services": [
-        "Curly cut / Wash & go",
-        "Full head colour"
-      ],
-      "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
-      "source": "manual",
-      "evidence": [
-        "User-provided Instagram handle awaiting categorisation."
-      ]
-    },
-    {
       "id": "dstylistt",
       "name": "D Stylist",
       "areaId": "south-east",
@@ -1938,7 +1917,7 @@
     },
     {
       "id": "ebuni-ajiduah-hair",
-      "name": "Ebuni Ajiduah Hair",
+      "name": "Untype",
       "areaId": "south-east",
       "areaLabel": "South East",
       "neighbourhood": "South East London",
@@ -1946,7 +1925,7 @@
       "bookingPlatform": "Direct website",
       "bookingUrl": "https://www.untypeyourhair.com",
       "websiteUrl": "https://www.untypeyourhair.com",
-      "instagramUrl": "https://www.instagram.com/ebuniajiduahhair/",
+      "instagramUrl": "https://www.instagram.com/untypeyourhair/",
       "services": [
         "Curly cut / Wash & go",
         "Trim / Hair cut",
@@ -2834,8 +2813,8 @@
       ]
     },
     {
-      "id": "hair-by-yairo",
-      "name": "Hair by Yairo",
+      "id": "Yairoby Hair & Beauty",
+      "name": "Yairoby Hair & Beauty",
       "areaId": "south-east",
       "areaLabel": "South East",
       "neighbourhood": "South East London",
@@ -4026,15 +4005,23 @@
       "areaLabel": "South East",
       "neighbourhood": "South East London",
       "postcode": "",
-      "bookingPlatform": "Instagram",
-      "bookingUrl": "https://www.instagram.com/kinkbynaturekbn/",
+      "bookingPlatform": "Direct website",
+      "bookingUrl": "https://book.getslick.com/#/salon/4338/",
       "websiteUrl": "",
       "instagramUrl": "https://www.instagram.com/kinkbynaturekbn/",
       "services": [
         "Curly cut / Wash & go",
         "Trim / Hair cut",
         "Moisturising treatment",
-        "Full head colour"
+        "Full head colour",
+        "Balayage",
+        "Highlights",
+        "Wash & blowdry",
+        "Scalp care",
+        "K-18 treatment",
+        "Moisturising treatment",
+        "Keratin treatment",
+        "Relaxer"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
