@@ -6482,9 +6482,9 @@
     {
       "id": "texturehairbyfloria",
       "name": "Texturehairbyfloria",
-      "areaId": "south-east",
-      "areaLabel": "South East",
-      "neighbourhood": "South East London",
+      "areaId": "south-west",
+      "areaLabel": "South West",
+      "neighbourhood": "South West London",
       "postcode": "",
       "bookingPlatform": "Direct website",
       "bookingUrl": "https://texture.hairbyfloria.co.uk",
