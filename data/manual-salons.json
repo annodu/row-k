@@ -1,8 +1,8 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-04-06T15:05:00.000Z",
-    "count": 288,
+    "updatedAt": "2026-04-06T19:05:00.000Z",
+    "count": 290,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
@@ -7537,6 +7537,70 @@
         "Trim / Hair cut",
         "Twist out",
         "Wash & blowdry"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "pheliamarie",
+      "name": "Phelia Marie",
+      "areaId": "south-east",
+      "areaIds": [
+        "south-east",
+        "mobile"
+      ],
+      "areaLabel": "South East",
+      "neighbourhood": "South East London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://pheliamarie.as.me/schedule/2bf40a73",
+      "websiteUrl": "https://pheliamarie.as.me/schedule/2bf40a73",
+      "instagramUrl": "https://www.instagram.com/pheliamarie/",
+      "services": [
+        "Full head colour",
+        "Tape-ins",
+        "LA weave",
+        "Wash & blowdry",
+        "Cornrows",
+        "Traditional sew-in",
+        "Flipover / Versatile sew-in",
+        "Closure sew-in",
+        "Half up half down",
+        "Updo",
+        "Ponytail",
+        "Custom wig"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "marievhair",
+      "name": "Marie V Hair",
+      "areaId": "east",
+      "areaLabel": "East",
+      "neighbourhood": "East London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://marievhair.as.me/schedule/a811c81c",
+      "websiteUrl": "https://marievhair.as.me/schedule/a811c81c",
+      "instagramUrl": "https://www.instagram.com/marievhair/",
+      "services": [
+        "Cornrows",
+        "Closure sew-in",
+        "Flipover / Versatile sew-in",
+        "Frontal sew-in",
+        "Hybrid sew-in",
+        "Quick weave",
+        "Tracks sewn in",
+        "Traditional sew-in",
+        "Wash & blowdry",
+        "Custom wig"
       ]
     }
   ]

@@ -462,7 +462,7 @@ export default function App() {
 
       <div className="mx-auto flex w-full max-w-[1280px] flex-col px-4 sm:px-6 lg:flex-row lg:items-start lg:px-10">
         <section id="live-results" className="min-w-0 flex-1 pb-6 pt-4 lg:pb-6 lg:pt-0">
-          <div className="sticky top-0 z-30 mb-4 flex w-full items-center justify-between border-b border-neutral-100 bg-white px-4 pb-4 pt-2 lg:h-[102px] lg:items-end lg:pb-6 lg:pt-6">
+          <div className="sticky top-0 z-30 mb-4 flex w-full items-center justify-between border-b border-neutral-100 bg-white px-4 pb-4 pt-2 lg:h-[82px] lg:items-end lg:pb-6 lg:pt-2">
             {hasSearched ? (
               <h2 className="text-[14px] font-medium leading-none text-neutral-500">
                 {results.length} {results.length === 1 ? "result" : "results"}
@@ -599,7 +599,7 @@ export default function App() {
             </button>
           </div>
 
-          <div className="hidden h-[102px] w-full shrink-0 border-b border-neutral-100 bg-white px-2 pb-6 pt-6 lg:flex lg:items-end lg:justify-between">
+          <div className="hidden h-[82px] w-full shrink-0 border-b border-neutral-100 bg-white px-2 pb-6 pt-2 lg:flex lg:items-end lg:justify-between">
             <h2 className="text-[15px] font-semibold leading-none text-neutral-900">Filters</h2>
             <button
               type="button"
