@@ -219,6 +219,26 @@ export default function App() {
   const [locationsOpen, setLocationsOpen] = useState(false);
   const loadMoreRef = useRef<HTMLDivElement | null>(null);
 
+  function toggleServicesOpen() {
+    setServicesOpen((current) => {
+      const nextIsOpen = !current;
+      if (nextIsOpen) {
+        setLocationsOpen(false);
+      }
+      return nextIsOpen;
+    });
+  }
+
+  function toggleLocationsOpen() {
+    setLocationsOpen((current) => {
+      const nextIsOpen = !current;
+      if (nextIsOpen) {
+        setServicesOpen(false);
+      }
+      return nextIsOpen;
+    });
+  }
+
   function clearFilters() {
     setSelectedCategories([]);
     setSelectedSubcategories([]);
@@ -612,7 +632,7 @@ export default function App() {
             </button>
           </div>
 
-          <div className="mt-4 flex-1 space-y-6 overflow-y-auto px-6 pb-6 pt-4 lg:mt-0 lg:min-h-0 lg:flex-1 lg:space-y-6 lg:px-0 lg:pb-6">
+          <div className="mt-0 flex-1 space-y-6 overflow-y-auto px-6 pb-6 pt-0 lg:min-h-0 lg:flex-1 lg:space-y-6 lg:px-0 lg:pt-0 lg:pb-6">
             <div>
               <button
                 type="button"
@@ -638,12 +658,12 @@ export default function App() {
               </button>
             </div>
 
-            <div>
+            <div className="sticky top-0 z-10 bg-white pb-2 dark:bg-stone-950">
               <button
                 type="button"
                 aria-expanded={servicesOpen}
-                onClick={() => setServicesOpen((current) => !current)}
-                className="flex min-h-11 w-full items-center justify-between rounded-[8px] px-2 py-2 text-left transition-colors hover:bg-neutral-50 dark:hover:bg-stone-900"
+                onClick={toggleServicesOpen}
+                className="flex min-h-11 w-full items-center justify-between rounded-[8px] bg-white px-2 py-2 text-left transition-colors hover:bg-neutral-50 dark:bg-stone-950 dark:hover:bg-stone-900"
               >
                 <span className="text-[15px] font-medium text-neutral-900 dark:text-stone-100">Services</span>
                 <span className="flex items-center gap-2">
@@ -658,86 +678,87 @@ export default function App() {
                   />
                 </span>
               </button>
-              {servicesOpen ? <div className="mt-2 space-y-2">
-                {sortedCategoryEntries.map(([id, item]) => {
-                  const isAllServices = id === "all";
-                  const isActive = isAllServices
-                    ? selectedCategories.length === 0 && selectedSubcategories.length === 0
-                    : isCategorySelected(id as ServiceCategoryId);
-                  const categoryLabelId = makeFilterLabelId("service-category", id);
-                  const visibleSubcategories = item.subcategories
-                    .filter((subItem) => subItem !== "all")
-                    .sort((left, right) => left.localeCompare(right));
-                  const showSubcategories =
-                    !isAllServices &&
-                    (isCategorySelected(id as ServiceCategoryId) || categoryHasSelectedSubcategories(id as ServiceCategoryId));
-
-                  return (
-                    <div key={id} className="space-y-2">
-                      <button
-                        type="button"
-                        aria-pressed={isActive}
-                        className="flex w-full cursor-pointer items-start gap-3 rounded-[8px] px-2 py-2 text-left transition-colors hover:bg-neutral-50 dark:hover:bg-stone-900"
-                        onClick={() => toggleCategory(id as CategoryId)}
-                      >
-                        <span
-                          aria-hidden="true"
-                          className={cn(
-                            "mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-[4px] border border-stone-500 bg-white text-white transition dark:border-stone-500 dark:bg-stone-900",
-                            isActive && "border-stone-950 bg-stone-950 dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950",
-                          )}
-                        >
-                          {isActive ? <Check className="size-3.5" /> : null}
-                        </span>
-                        <span id={categoryLabelId} className="text-[15px] text-neutral-800 dark:text-stone-200">
-                          {item.label}
-                        </span>
-                      </button>
-
-                      {showSubcategories && visibleSubcategories.length > 0 ? (
-                        <div className="space-y-2 pl-8">
-                          {visibleSubcategories.map((itemSubcategory) => {
-                            const subcategoryLabelId = makeFilterLabelId("service-subcategory", id, itemSubcategory);
-                            const isSubcategoryActive = selectedSubcategories.includes(itemSubcategory as ServiceSubcategoryId);
-
-                            return (
-                              <button
-                                type="button"
-                                aria-pressed={isSubcategoryActive}
-                                aria-labelledby={subcategoryLabelId}
-                                key={itemSubcategory}
-                                className="flex w-full cursor-pointer items-start gap-3 rounded-[8px] px-2 py-2 text-left transition-colors hover:bg-neutral-50 dark:hover:bg-stone-900"
-                                onClick={() => toggleSubcategory(itemSubcategory as ServiceSubcategoryId)}
-                              >
-                                <span
-                                  aria-hidden="true"
-                                  className={cn(
-                                    "mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-[4px] border border-stone-500 bg-white text-white transition dark:border-stone-500 dark:bg-stone-900",
-                                    isSubcategoryActive && "border-stone-950 bg-stone-950 dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950",
-                                  )}
-                                >
-                                  {isSubcategoryActive ? <Check className="size-3.5" /> : null}
-                                </span>
-                                <span id={subcategoryLabelId} className="text-[15px] text-neutral-800 dark:text-stone-200">
-                                  {itemSubcategory}
-                                </span>
-                              </button>
-                            );
-                          })}
-                        </div>
-                      ) : null}
-                    </div>
-                  );
-                })}
-              </div> : null}
             </div>
 
-            <div>
+            {servicesOpen ? <div className="space-y-2">
+              {sortedCategoryEntries.map(([id, item]) => {
+                const isAllServices = id === "all";
+                const isActive = isAllServices
+                  ? selectedCategories.length === 0 && selectedSubcategories.length === 0
+                  : isCategorySelected(id as ServiceCategoryId);
+                const categoryLabelId = makeFilterLabelId("service-category", id);
+                const visibleSubcategories = item.subcategories
+                  .filter((subItem) => subItem !== "all")
+                  .sort((left, right) => left.localeCompare(right));
+                const showSubcategories =
+                  !isAllServices &&
+                  (isCategorySelected(id as ServiceCategoryId) || categoryHasSelectedSubcategories(id as ServiceCategoryId));
+
+                return (
+                  <div key={id} className="space-y-2">
+                    <button
+                      type="button"
+                      aria-pressed={isActive}
+                      className="flex w-full cursor-pointer items-start gap-3 rounded-[8px] px-2 py-2 text-left transition-colors hover:bg-neutral-50 dark:hover:bg-stone-900"
+                      onClick={() => toggleCategory(id as CategoryId)}
+                    >
+                      <span
+                        aria-hidden="true"
+                        className={cn(
+                          "mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-[4px] border border-stone-500 bg-white text-white transition dark:border-stone-500 dark:bg-stone-900",
+                          isActive && "border-stone-950 bg-stone-950 dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950",
+                        )}
+                      >
+                        {isActive ? <Check className="size-3.5" /> : null}
+                      </span>
+                      <span id={categoryLabelId} className="text-[15px] text-neutral-800 dark:text-stone-200">
+                        {item.label}
+                      </span>
+                    </button>
+
+                    {showSubcategories && visibleSubcategories.length > 0 ? (
+                      <div className="space-y-2 pl-8">
+                        {visibleSubcategories.map((itemSubcategory) => {
+                          const subcategoryLabelId = makeFilterLabelId("service-subcategory", id, itemSubcategory);
+                          const isSubcategoryActive = selectedSubcategories.includes(itemSubcategory as ServiceSubcategoryId);
+
+                          return (
+                            <button
+                              type="button"
+                              aria-pressed={isSubcategoryActive}
+                              aria-labelledby={subcategoryLabelId}
+                              key={itemSubcategory}
+                              className="flex w-full cursor-pointer items-start gap-3 rounded-[8px] px-2 py-2 text-left transition-colors hover:bg-neutral-50 dark:hover:bg-stone-900"
+                              onClick={() => toggleSubcategory(itemSubcategory as ServiceSubcategoryId)}
+                            >
+                              <span
+                                aria-hidden="true"
+                                className={cn(
+                                  "mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-[4px] border border-stone-500 bg-white text-white transition dark:border-stone-500 dark:bg-stone-900",
+                                  isSubcategoryActive && "border-stone-950 bg-stone-950 dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950",
+                                )}
+                              >
+                                {isSubcategoryActive ? <Check className="size-3.5" /> : null}
+                              </span>
+                              <span id={subcategoryLabelId} className="text-[15px] text-neutral-800 dark:text-stone-200">
+                                {itemSubcategory}
+                              </span>
+                            </button>
+                          );
+                        })}
+                      </div>
+                    ) : null}
+                  </div>
+                );
+              })}
+            </div> : null}
+
+            <div className="sticky top-11 z-10 bg-white pb-2 dark:bg-stone-950">
               <button
                 type="button"
                 aria-expanded={locationsOpen}
-                onClick={() => setLocationsOpen((current) => !current)}
-                className="flex min-h-11 w-full items-center justify-between rounded-[8px] px-2 py-2 text-left transition-colors hover:bg-neutral-50 dark:hover:bg-stone-900"
+                onClick={toggleLocationsOpen}
+                className="flex min-h-11 w-full items-center justify-between rounded-[8px] bg-white px-2 py-2 text-left transition-colors hover:bg-neutral-50 dark:bg-stone-950 dark:hover:bg-stone-900"
               >
                 <span className="text-[15px] font-medium text-neutral-900 dark:text-stone-100">Locations</span>
                 <span className="flex items-center gap-2">
@@ -752,122 +773,123 @@ export default function App() {
                   />
                 </span>
               </button>
-              {locationsOpen ? <div className="mt-2 space-y-2">
-                {(() => {
-                  const allLocations = regions.find((item) => item.id === "all");
-                  const london = regions.find((item) => item.id === "london");
-                  const londonExpanded = isRegionSelected("london") || nestedLondonRegionIds.some((regionId) => isRegionSelected(regionId));
-                  const allLocationsLabelId = allLocations ? makeFilterLabelId("region", allLocations.id) : "";
-                  const londonLabelId = london ? makeFilterLabelId("region", london.id) : "";
+            </div>
 
-                  return allLocations && london ? (
-                    <>
-                      <div
-                        role="checkbox"
-                        tabIndex={0}
-                        aria-checked={isRegionSelected(allLocations.id)}
-                        aria-labelledby={allLocationsLabelId}
-                        className="flex w-full cursor-pointer items-start gap-3 rounded-[8px] px-2 py-2 text-left transition-colors hover:bg-neutral-50 dark:hover:bg-stone-900"
-                        onClick={() => toggleRegion(allLocations.id)}
-                        onKeyDown={(event) => handleToggleKeyDown(event, () => toggleRegion(allLocations.id))}
-                      >
-                        <Checkbox
-                          checked={isRegionSelected(allLocations.id)}
-                          aria-hidden="true"
-                          tabIndex={-1}
-                          className="pointer-events-none"
-                        />
-                        <span id={allLocationsLabelId} className="text-[15px] text-neutral-800 dark:text-stone-200">
-                          {allLocations.label}
-                        </span>
-                      </div>
+            {locationsOpen ? <div className="space-y-2">
+              {(() => {
+                const allLocations = regions.find((item) => item.id === "all");
+                const london = regions.find((item) => item.id === "london");
+                const londonExpanded = isRegionSelected("london") || nestedLondonRegionIds.some((regionId) => isRegionSelected(regionId));
+                const allLocationsLabelId = allLocations ? makeFilterLabelId("region", allLocations.id) : "";
+                const londonLabelId = london ? makeFilterLabelId("region", london.id) : "";
 
-                      <div
-                        role="checkbox"
-                        tabIndex={0}
-                        aria-checked={isRegionSelected(london.id)}
-                        aria-labelledby={londonLabelId}
-                        className="flex w-full cursor-pointer items-start gap-3 rounded-[8px] px-2 py-2 text-left transition-colors hover:bg-neutral-50 dark:hover:bg-stone-900"
-                        onClick={() => toggleRegion(london.id)}
-                        onKeyDown={(event) => handleToggleKeyDown(event, () => toggleRegion(london.id))}
-                      >
-                        <Checkbox
-                          checked={isRegionSelected(london.id)}
-                          aria-hidden="true"
-                          tabIndex={-1}
-                          className="pointer-events-none"
-                        />
-                        <span id={londonLabelId} className="text-[15px] text-neutral-800 dark:text-stone-200">
-                          {london.label}
-                        </span>
-                      </div>
-
-                      {londonExpanded ? (
-                        <div className="space-y-2 pl-8">
-                          {nestedLondonRegionIds.map((regionId) => {
-                            const item = regions.find((regionItem) => regionItem.id === regionId);
-                            if (!item) return null;
-                            const regionLabelId = makeFilterLabelId("region", item.id);
-
-                            return (
-                              <div
-                                role="checkbox"
-                                tabIndex={0}
-                                aria-checked={isRegionSelected(item.id)}
-                                aria-labelledby={regionLabelId}
-                                key={item.id}
-                                className="flex w-full cursor-pointer items-start gap-3 rounded-[8px] px-2 py-2 text-left transition-colors hover:bg-neutral-50 dark:hover:bg-stone-900"
-                                onClick={() => toggleRegion(item.id)}
-                                onKeyDown={(event) => handleToggleKeyDown(event, () => toggleRegion(item.id))}
-                              >
-                                <Checkbox
-                                  checked={isRegionSelected(item.id)}
-                                  aria-hidden="true"
-                                  tabIndex={-1}
-                                  className="pointer-events-none"
-                                />
-                                <span id={regionLabelId} className="text-[15px] text-neutral-800 dark:text-stone-200">
-                                  {item.label}
-                                </span>
-                              </div>
-                            );
-                          })}
-                        </div>
-                      ) : null}
-                    </>
-                  ) : null;
-                })()}
-
-                {standaloneRegionIds.map((regionId) => {
-                  const item = regions.find((regionItem) => regionItem.id === regionId);
-                  if (!item) return null;
-                  const regionLabelId = makeFilterLabelId("region", item.id);
-
-                  return (
+                return allLocations && london ? (
+                  <>
                     <div
                       role="checkbox"
                       tabIndex={0}
-                      aria-checked={isRegionSelected(item.id)}
-                      aria-labelledby={regionLabelId}
-                      key={item.id}
+                      aria-checked={isRegionSelected(allLocations.id)}
+                      aria-labelledby={allLocationsLabelId}
                       className="flex w-full cursor-pointer items-start gap-3 rounded-[8px] px-2 py-2 text-left transition-colors hover:bg-neutral-50 dark:hover:bg-stone-900"
-                      onClick={() => toggleRegion(item.id)}
-                      onKeyDown={(event) => handleToggleKeyDown(event, () => toggleRegion(item.id))}
+                      onClick={() => toggleRegion(allLocations.id)}
+                      onKeyDown={(event) => handleToggleKeyDown(event, () => toggleRegion(allLocations.id))}
                     >
                       <Checkbox
-                        checked={isRegionSelected(item.id)}
+                        checked={isRegionSelected(allLocations.id)}
                         aria-hidden="true"
                         tabIndex={-1}
                         className="pointer-events-none"
                       />
-                      <span id={regionLabelId} className="text-[15px] text-neutral-800 dark:text-stone-200">
-                        {item.label}
+                      <span id={allLocationsLabelId} className="text-[15px] text-neutral-800 dark:text-stone-200">
+                        {allLocations.label}
                       </span>
                     </div>
-                  );
-                })}
-              </div> : null}
-            </div>
+
+                    <div
+                      role="checkbox"
+                      tabIndex={0}
+                      aria-checked={isRegionSelected(london.id)}
+                      aria-labelledby={londonLabelId}
+                      className="flex w-full cursor-pointer items-start gap-3 rounded-[8px] px-2 py-2 text-left transition-colors hover:bg-neutral-50 dark:hover:bg-stone-900"
+                      onClick={() => toggleRegion(london.id)}
+                      onKeyDown={(event) => handleToggleKeyDown(event, () => toggleRegion(london.id))}
+                    >
+                      <Checkbox
+                        checked={isRegionSelected(london.id)}
+                        aria-hidden="true"
+                        tabIndex={-1}
+                        className="pointer-events-none"
+                      />
+                      <span id={londonLabelId} className="text-[15px] text-neutral-800 dark:text-stone-200">
+                        {london.label}
+                      </span>
+                    </div>
+
+                    {londonExpanded ? (
+                      <div className="space-y-2 pl-8">
+                        {nestedLondonRegionIds.map((regionId) => {
+                          const item = regions.find((regionItem) => regionItem.id === regionId);
+                          if (!item) return null;
+                          const regionLabelId = makeFilterLabelId("region", item.id);
+
+                          return (
+                            <div
+                              role="checkbox"
+                              tabIndex={0}
+                              aria-checked={isRegionSelected(item.id)}
+                              aria-labelledby={regionLabelId}
+                              key={item.id}
+                              className="flex w-full cursor-pointer items-start gap-3 rounded-[8px] px-2 py-2 text-left transition-colors hover:bg-neutral-50 dark:hover:bg-stone-900"
+                              onClick={() => toggleRegion(item.id)}
+                              onKeyDown={(event) => handleToggleKeyDown(event, () => toggleRegion(item.id))}
+                            >
+                              <Checkbox
+                                checked={isRegionSelected(item.id)}
+                                aria-hidden="true"
+                                tabIndex={-1}
+                                className="pointer-events-none"
+                              />
+                              <span id={regionLabelId} className="text-[15px] text-neutral-800 dark:text-stone-200">
+                                {item.label}
+                              </span>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    ) : null}
+                  </>
+                ) : null;
+              })()}
+
+              {standaloneRegionIds.map((regionId) => {
+                const item = regions.find((regionItem) => regionItem.id === regionId);
+                if (!item) return null;
+                const regionLabelId = makeFilterLabelId("region", item.id);
+
+                return (
+                  <div
+                    role="checkbox"
+                    tabIndex={0}
+                    aria-checked={isRegionSelected(item.id)}
+                    aria-labelledby={regionLabelId}
+                    key={item.id}
+                    className="flex w-full cursor-pointer items-start gap-3 rounded-[8px] px-2 py-2 text-left transition-colors hover:bg-neutral-50 dark:hover:bg-stone-900"
+                    onClick={() => toggleRegion(item.id)}
+                    onKeyDown={(event) => handleToggleKeyDown(event, () => toggleRegion(item.id))}
+                  >
+                    <Checkbox
+                      checked={isRegionSelected(item.id)}
+                      aria-hidden="true"
+                      tabIndex={-1}
+                      className="pointer-events-none"
+                    />
+                    <span id={regionLabelId} className="text-[15px] text-neutral-800 dark:text-stone-200">
+                      {item.label}
+                    </span>
+                  </div>
+                );
+              })}
+            </div> : null}
           </div>
 
         </aside>
