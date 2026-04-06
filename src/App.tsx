@@ -616,18 +616,23 @@ export default function App() {
                 type="button"
                 aria-pressed={selectedHijabiFriendly}
                 onClick={() => setSelectedHijabiFriendly((current) => !current)}
-                className="flex min-h-11 w-full items-start gap-3 rounded-[6px] px-2 py-2 text-left transition-colors hover:bg-neutral-50"
+                className="flex min-h-11 w-full items-center justify-between rounded-[6px] px-2 py-2 text-left transition-colors hover:bg-neutral-50"
               >
+                <span className="text-[15px] font-medium text-neutral-900">Hijabi-friendly</span>
                 <span
                   aria-hidden="true"
                   className={cn(
-                    "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-[4px] border border-stone-500 bg-white text-white transition",
-                    selectedHijabiFriendly && "border-stone-950 bg-stone-950",
+                    "relative inline-flex h-6 w-11 shrink-0 rounded-full bg-neutral-200 transition-colors",
+                    selectedHijabiFriendly && "bg-neutral-900",
                   )}
                 >
-                  {selectedHijabiFriendly ? <Check className="size-3.5" /> : null}
+                  <span
+                    className={cn(
+                      "absolute left-0.5 top-0.5 h-5 w-5 rounded-full bg-white transition-transform",
+                      selectedHijabiFriendly && "translate-x-5",
+                    )}
+                  />
                 </span>
-                <span className="text-[15px] font-medium text-neutral-900">Hijabi-friendly</span>
               </button>
             </div>
 
