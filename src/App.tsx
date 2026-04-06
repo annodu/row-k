@@ -215,8 +215,8 @@ export default function App() {
   const [hasSearched, setHasSearched] = useState(false);
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   const [selectedHijabiFriendly, setSelectedHijabiFriendly] = useState(false);
-  const [servicesOpen, setServicesOpen] = useState(true);
-  const [locationsOpen, setLocationsOpen] = useState(true);
+  const [servicesOpen, setServicesOpen] = useState(false);
+  const [locationsOpen, setLocationsOpen] = useState(false);
   const loadMoreRef = useRef<HTMLDivElement | null>(null);
 
   function clearFilters() {
