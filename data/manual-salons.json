@@ -1,8 +1,8 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-04-06T01:10:00.000Z",
-    "count": 281,
+    "updatedAt": "2026-04-06T01:35:00.000Z",
+    "count": 283,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
@@ -6319,7 +6319,7 @@
         "User-provided manual addition."
       ],
       "id": "philip-eric-hair",
-      "name": "Philip Eri Hair",
+      "name": "Philip Eric Hair",
       "areaId": "north",
       "areaLabel": "North",
       "neighbourhood": "North London",
@@ -6806,7 +6806,9 @@
         "Traditional sew-in",
         "Moisturising treatment",
         "Tracks sewn in",
-        "Pixie / finger waves"
+        "Pixie / finger waves",
+        "Braid take-down",
+        "Sew-in take-down"
       ]
     },
     {
@@ -7302,6 +7304,58 @@
         "Closure sew-in",
         "Frontal sew-in",
         "Flipover / Versatile sew-in"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "byrhii-studios",
+      "name": "Byrhii Studios",
+      "areaId": "south-west",
+      "areaLabel": "South West",
+      "neighbourhood": "South West London",
+      "postcode": "",
+      "bookingPlatform": ".as.me",
+      "bookingUrl": "https://byrhiistudios.as.me/schedule/56aca0e1",
+      "websiteUrl": "https://byrhiistudios.as.me/schedule/56aca0e1",
+      "instagramUrl": "https://www.instagram.com/byrhii.studios/",
+      "services": [
+        "Silk press",
+        "Wash & blowdry",
+        "Feed-in braids",
+        "Stitch braids",
+        "Traditional sew-in",
+        "Half braids, half sew-in",
+        "Half up half down",
+        "Ponytail"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "the-haircode",
+      "name": "The Haircode",
+      "areaId": "north",
+      "areaLabel": "North",
+      "neighbourhood": "North London",
+      "postcode": "",
+      "bookingPlatform": ".as.me",
+      "bookingUrl": "https://thehaircode.as.me/schedule/5bef47aa",
+      "websiteUrl": "https://thehaircode.as.me/schedule/5bef47aa",
+      "instagramUrl": "https://www.instagram.com/the.haircode/",
+      "services": [
+        "Half up half down",
+        "Ponytail",
+        "Flipover / Versatile sew-in",
+        "Cornrows",
+        "Wig install",
+        "Half braids, half sew-in"
       ]
     }
   ]
