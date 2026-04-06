@@ -776,7 +776,7 @@ export default function App() {
 
       <footer className="mt-auto border-t border-neutral-100 px-6 py-4 sm:px-10">
         <div className="mx-auto flex w-full max-w-[1280px] flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
-          <span className="text-[14px] text-neutral-600">ROW K © 2026</span>
+          <span className="text-[14px] text-neutral-600">ROW K 2026</span>
           <a
             href="https://tally.so/r/VLY10g"
             target="_blank"
