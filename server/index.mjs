@@ -27,13 +27,21 @@ app.get("/api/index-status", async (_req, res) => {
 });
 
 app.post("/api/search", async (req, res) => {
-  const category = String(req.body?.category || "all");
-  const subcategory = String(req.body?.subcategory || "all");
+  const categories = Array.isArray(req.body?.categories)
+    ? req.body.categories.map((category) => String(category)).filter(Boolean)
+    : req.body?.category && req.body.category !== "all"
+      ? [String(req.body.category)]
+      : [];
+  const subcategories = Array.isArray(req.body?.subcategories)
+    ? req.body.subcategories.map((subcategory) => String(subcategory)).filter(Boolean)
+    : req.body?.subcategory && req.body.subcategory !== "all"
+      ? [String(req.body.subcategory)]
+      : [];
   const regions = Array.isArray(req.body?.regions)
     ? req.body.regions.map((region) => String(region)).filter(Boolean)
     : [String(req.body?.region || "all")];
 
-  return res.json(await searchSalons({ category, subcategory, regions }));
+  return res.json(await searchSalons({ categories, subcategories, regions }));
 });
 
 const server = http.createServer(app);

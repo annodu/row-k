@@ -1,11 +1,6 @@
 Manual salons live in [manual-salons.json](/Users/kibitiyudaromosu/Documents/row-k/data/manual-salons.json).
 
-Exa-generated salons live in [exa-salons.json](/Users/kibitiyudaromosu/Documents/row-k/data/exa-salons.json).
-
-How the merge works:
-- the app searches both files together
-- manual records win if the same booking URL appears in both
-- `npm run sync:exa` only updates `exa-salons.json`
+This file is now the single source of truth for the directory dataset.
 
 Recommended salon shape:
 

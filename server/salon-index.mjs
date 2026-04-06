@@ -5,7 +5,6 @@ import { fileURLToPath } from "node:url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const manualIndexPath = path.resolve(__dirname, "../data/manual-salons.json");
-const exaIndexPath = path.resolve(__dirname, "../data/exa-salons.json");
 
 const categoryMap = {
   "sew-in-weave": [
@@ -90,24 +89,21 @@ const serviceAliases = {
 };
 
 export async function readSalonIndex() {
-  const [manualIndex, exaIndex] = await Promise.all([
-    readIndexFile(manualIndexPath, "manual"),
-    readIndexFile(exaIndexPath, "exa-webset"),
-  ]);
-
-  const mergedSalons = dedupeSalons([...manualIndex.salons, ...exaIndex.salons]);
+  const manualIndex = await readIndexFile(manualIndexPath, "manual");
+  const normalizedSalons = manualIndex.salons
+    .map((salon) => ({
+      ...salon,
+      services: normalizeServices(salon.services),
+    }))
+    .sort(compareSalons);
 
   return {
     meta: {
-      source: "hybrid",
-      updatedAt: maxDate(manualIndex.meta.updatedAt, exaIndex.meta.updatedAt),
-      count: mergedSalons.length,
-      sources: {
-        manual: manualIndex.salons.length,
-        exa: exaIndex.salons.length,
-      },
+      source: "manual",
+      updatedAt: manualIndex.meta.updatedAt ?? null,
+      count: normalizedSalons.length,
     },
-    salons: mergedSalons,
+    salons: normalizedSalons,
   };
 }
 
@@ -123,10 +119,6 @@ export async function searchSalons({ categories = [], subcategories = [], region
         matchesRegion(salon, normalizedRegions) &&
         matchesServiceSelection(salon, normalizedCategories, normalizedSubcategories),
     )
-    .map((salon) => ({
-      ...salon,
-      services: normalizeServices(salon.services),
-    }))
     .sort(compareSalons);
 
   return {
@@ -194,29 +186,6 @@ function matchesServiceSelection(salon, categories, subcategories) {
 
 function compareSalons(left, right) {
   return left.name.localeCompare(right.name);
-}
-
-function dedupeSalons(salons) {
-  const seen = new Map();
-
-  for (const salon of salons) {
-    const key = salon.bookingUrl || salon.id;
-    if (!key) {
-      continue;
-    }
-
-    if (!seen.has(key) || seen.get(key).source !== "manual") {
-      seen.set(key, salon);
-    }
-  }
-
-  return [...seen.values()];
-}
-
-function maxDate(left, right) {
-  if (!left) return right ?? null;
-  if (!right) return left ?? null;
-  return new Date(left) > new Date(right) ? left : right;
 }
 
 function normalizeServices(services = []) {

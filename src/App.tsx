@@ -1,5 +1,5 @@
 import { Fragment, useEffect, useRef, useState } from "react";
-import { Globe } from "lucide-react";
+import { Check, Globe } from "lucide-react";
 
 import { Checkbox } from "@/components/ui/checkbox";
 import { cn } from "@/lib/utils";
@@ -161,6 +161,14 @@ const sortedCategoryEntries = [
 
 const RESULTS_BATCH_SIZE = 20;
 
+function makeFilterLabelId(...parts: string[]) {
+  return parts
+    .join("-")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
 function getLocationLabels(result: SalonResult) {
   const shouldUseDisplayLabel =
     Boolean(result.areaLabel) &&
@@ -282,6 +290,15 @@ export default function App() {
 
       return nextRegions.length > 0 ? nextRegions : ["all"];
     });
+  }
+
+  function handleToggleKeyDown(event: React.KeyboardEvent, onToggle: () => void) {
+    if (event.key !== " " && event.key !== "Enter") {
+      return;
+    }
+
+    event.preventDefault();
+    onToggle();
   }
 
   async function handleSearch(options?: { scroll?: boolean }) {
@@ -566,6 +583,7 @@ export default function App() {
                   const isActive = isAllServices
                     ? selectedCategories.length === 0 && selectedSubcategories.length === 0
                     : isCategorySelected(id as ServiceCategoryId);
+                  const categoryLabelId = makeFilterLabelId("service-category", id);
                   const visibleSubcategories = item.subcategories
                     .filter((subItem) => subItem !== "all")
                     .sort((left, right) => left.localeCompare(right));
@@ -575,40 +593,56 @@ export default function App() {
 
                   return (
                     <div key={id} className="space-y-2">
-                      <div
+                      <button
+                        type="button"
+                        aria-pressed={isActive}
                         className="flex w-full cursor-pointer items-start gap-3 rounded-[6px] px-2 py-1.5 text-left transition-colors hover:bg-neutral-50"
                         onClick={() => toggleCategory(id as CategoryId)}
                       >
-                        <Checkbox
-                          checked={isActive}
-                          aria-labelledby={`${id}-label`}
-                          onClick={(event) => event.stopPropagation()}
-                          onCheckedChange={() => toggleCategory(id as CategoryId)}
-                        />
-                        <span id={`${id}-label`} className="text-[15px] text-neutral-800">
+                        <span
+                          aria-hidden="true"
+                          className={cn(
+                            "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-[4px] border border-stone-500 bg-white text-white transition",
+                            isActive && "border-stone-950 bg-stone-950",
+                          )}
+                        >
+                          {isActive ? <Check className="size-3.5" /> : null}
+                        </span>
+                        <span id={categoryLabelId} className="text-[15px] text-neutral-800">
                           {item.label}
                         </span>
-                      </div>
+                      </button>
 
                       {showSubcategories && visibleSubcategories.length > 0 ? (
                         <div className="space-y-2 pl-8">
-                          {visibleSubcategories.map((itemSubcategory) => (
-                            <div
-                              key={itemSubcategory}
-                              className="flex w-full cursor-pointer items-start gap-3 rounded-[6px] px-2 py-1.5 text-left transition-colors hover:bg-neutral-50"
-                              onClick={() => toggleSubcategory(itemSubcategory as ServiceSubcategoryId)}
-                            >
-                              <Checkbox
-                                checked={selectedSubcategories.includes(itemSubcategory as ServiceSubcategoryId)}
-                                aria-labelledby={`${id}-${itemSubcategory}-label`}
-                                onClick={(event) => event.stopPropagation()}
-                                onCheckedChange={() => toggleSubcategory(itemSubcategory as ServiceSubcategoryId)}
-                              />
-                              <span id={`${id}-${itemSubcategory}-label`} className="text-[15px] text-neutral-800">
-                                {itemSubcategory}
-                              </span>
-                            </div>
-                          ))}
+                          {visibleSubcategories.map((itemSubcategory) => {
+                            const subcategoryLabelId = makeFilterLabelId("service-subcategory", id, itemSubcategory);
+                            const isSubcategoryActive = selectedSubcategories.includes(itemSubcategory as ServiceSubcategoryId);
+
+                            return (
+                              <button
+                                type="button"
+                                aria-pressed={isSubcategoryActive}
+                                aria-labelledby={subcategoryLabelId}
+                                key={itemSubcategory}
+                                className="flex w-full cursor-pointer items-start gap-3 rounded-[6px] px-2 py-1.5 text-left transition-colors hover:bg-neutral-50"
+                                onClick={() => toggleSubcategory(itemSubcategory as ServiceSubcategoryId)}
+                              >
+                                <span
+                                  aria-hidden="true"
+                                  className={cn(
+                                    "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-[4px] border border-stone-500 bg-white text-white transition",
+                                    isSubcategoryActive && "border-stone-950 bg-stone-950",
+                                  )}
+                                >
+                                  {isSubcategoryActive ? <Check className="size-3.5" /> : null}
+                                </span>
+                                <span id={subcategoryLabelId} className="text-[15px] text-neutral-800">
+                                  {itemSubcategory}
+                                </span>
+                              </button>
+                            );
+                          })}
                         </div>
                       ) : null}
                     </div>
@@ -624,35 +658,47 @@ export default function App() {
                   const allLocations = regions.find((item) => item.id === "all");
                   const london = regions.find((item) => item.id === "london");
                   const londonExpanded = isRegionSelected("london") || nestedLondonRegionIds.some((regionId) => isRegionSelected(regionId));
+                  const allLocationsLabelId = allLocations ? makeFilterLabelId("region", allLocations.id) : "";
+                  const londonLabelId = london ? makeFilterLabelId("region", london.id) : "";
 
                   return allLocations && london ? (
                     <>
                       <div
+                        role="checkbox"
+                        tabIndex={0}
+                        aria-checked={isRegionSelected(allLocations.id)}
+                        aria-labelledby={allLocationsLabelId}
                         className="flex w-full cursor-pointer items-start gap-3 rounded-[6px] px-2 py-1.5 text-left transition-colors hover:bg-neutral-50"
                         onClick={() => toggleRegion(allLocations.id)}
+                        onKeyDown={(event) => handleToggleKeyDown(event, () => toggleRegion(allLocations.id))}
                       >
                         <Checkbox
                           checked={isRegionSelected(allLocations.id)}
-                          aria-labelledby={`${allLocations.id}-label`}
-                          onClick={(event) => event.stopPropagation()}
-                          onCheckedChange={() => toggleRegion(allLocations.id)}
+                          aria-hidden="true"
+                          tabIndex={-1}
+                          className="pointer-events-none"
                         />
-                        <span id={`${allLocations.id}-label`} className="text-[15px] text-neutral-800">
+                        <span id={allLocationsLabelId} className="text-[15px] text-neutral-800">
                           {allLocations.label}
                         </span>
                       </div>
 
                       <div
+                        role="checkbox"
+                        tabIndex={0}
+                        aria-checked={isRegionSelected(london.id)}
+                        aria-labelledby={londonLabelId}
                         className="flex w-full cursor-pointer items-start gap-3 rounded-[6px] px-2 py-1.5 text-left transition-colors hover:bg-neutral-50"
                         onClick={() => toggleRegion(london.id)}
+                        onKeyDown={(event) => handleToggleKeyDown(event, () => toggleRegion(london.id))}
                       >
                         <Checkbox
                           checked={isRegionSelected(london.id)}
-                          aria-labelledby={`${london.id}-label`}
-                          onClick={(event) => event.stopPropagation()}
-                          onCheckedChange={() => toggleRegion(london.id)}
+                          aria-hidden="true"
+                          tabIndex={-1}
+                          className="pointer-events-none"
                         />
-                        <span id={`${london.id}-label`} className="text-[15px] text-neutral-800">
+                        <span id={londonLabelId} className="text-[15px] text-neutral-800">
                           {london.label}
                         </span>
                       </div>
@@ -662,20 +708,26 @@ export default function App() {
                           {nestedLondonRegionIds.map((regionId) => {
                             const item = regions.find((regionItem) => regionItem.id === regionId);
                             if (!item) return null;
+                            const regionLabelId = makeFilterLabelId("region", item.id);
 
                             return (
                               <div
+                                role="checkbox"
+                                tabIndex={0}
+                                aria-checked={isRegionSelected(item.id)}
+                                aria-labelledby={regionLabelId}
                                 key={item.id}
                                 className="flex w-full cursor-pointer items-start gap-3 rounded-[6px] px-2 py-1.5 text-left transition-colors hover:bg-neutral-50"
                                 onClick={() => toggleRegion(item.id)}
+                                onKeyDown={(event) => handleToggleKeyDown(event, () => toggleRegion(item.id))}
                               >
                                 <Checkbox
                                   checked={isRegionSelected(item.id)}
-                                  aria-labelledby={`${item.id}-label`}
-                                  onClick={(event) => event.stopPropagation()}
-                                  onCheckedChange={() => toggleRegion(item.id)}
+                                  aria-hidden="true"
+                                  tabIndex={-1}
+                                  className="pointer-events-none"
                                 />
-                                <span id={`${item.id}-label`} className="text-[15px] text-neutral-800">
+                                <span id={regionLabelId} className="text-[15px] text-neutral-800">
                                   {item.label}
                                 </span>
                               </div>
@@ -690,20 +742,26 @@ export default function App() {
                 {standaloneRegionIds.map((regionId) => {
                   const item = regions.find((regionItem) => regionItem.id === regionId);
                   if (!item) return null;
+                  const regionLabelId = makeFilterLabelId("region", item.id);
 
                   return (
                     <div
+                      role="checkbox"
+                      tabIndex={0}
+                      aria-checked={isRegionSelected(item.id)}
+                      aria-labelledby={regionLabelId}
                       key={item.id}
                       className="flex w-full cursor-pointer items-start gap-3 rounded-[6px] px-2 py-1.5 text-left transition-colors hover:bg-neutral-50"
                       onClick={() => toggleRegion(item.id)}
+                      onKeyDown={(event) => handleToggleKeyDown(event, () => toggleRegion(item.id))}
                     >
                       <Checkbox
                         checked={isRegionSelected(item.id)}
-                        aria-labelledby={`${item.id}-label`}
-                        onClick={(event) => event.stopPropagation()}
-                        onCheckedChange={() => toggleRegion(item.id)}
+                        aria-hidden="true"
+                        tabIndex={-1}
+                        className="pointer-events-none"
                       />
-                      <span id={`${item.id}-label`} className="text-[15px] text-neutral-800">
+                      <span id={regionLabelId} className="text-[15px] text-neutral-800">
                         {item.label}
                       </span>
                     </div>
