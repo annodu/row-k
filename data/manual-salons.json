@@ -34,9 +34,9 @@
     {
       "id": "7styles",
       "name": "7styles",
-      "areaId": "south-east",
-      "areaLabel": "South East",
-      "neighbourhood": "South East London",
+      "areaId": "south",
+      "areaLabel": "South",
+      "neighbourhood": "South London",
       "postcode": "",
       "bookingPlatform": "Direct website",
       "bookingUrl": "https://www.7styles.co.uk/book-with-me/",

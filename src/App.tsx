@@ -516,7 +516,7 @@ export default function App() {
                 return (
                   <li
                     key={result.id}
-                    className="flex w-full flex-col items-start gap-2 border-b border-neutral-100 px-4 py-4 text-left dark:border-stone-800"
+                    className="flex w-full flex-col items-start gap-2 border-b border-neutral-100 px-4 py-4 text-left last:border-b-0 dark:border-stone-800"
                   >
                     <article className="flex w-full flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                       <div className="min-w-0 grow">
@@ -606,7 +606,7 @@ export default function App() {
             "hidden w-full border-t border-neutral-200 py-6 dark:border-stone-800",
             "lg:sticky lg:top-0 lg:flex lg:h-screen lg:w-72 lg:flex-none lg:self-start lg:flex-col lg:border-t-0 lg:border-l lg:py-0 lg:pl-8 dark:border-stone-800",
             mobileFiltersOpen &&
-              "fixed inset-0 z-50 flex h-screen w-full flex-col border-b-0 bg-white py-0 dark:bg-stone-950 lg:static lg:z-auto lg:h-auto lg:w-72 lg:bg-transparent",
+              "fixed inset-0 z-50 flex h-dvh min-h-dvh w-full flex-col overflow-hidden border-b-0 bg-white py-0 dark:bg-stone-950 lg:static lg:z-auto lg:h-auto lg:min-h-0 lg:w-72 lg:bg-transparent",
           )}
         >
           <div className="flex items-center justify-between border-b border-neutral-200 px-6 py-5 dark:border-stone-800 lg:hidden">
@@ -640,7 +640,7 @@ export default function App() {
             </button>
           </div>
 
-          <div className="mt-0 flex-1 space-y-6 overflow-y-auto px-6 pb-6 pt-0 lg:min-h-0 lg:flex-1 lg:space-y-6 lg:px-0 lg:pt-0 lg:pb-6">
+          <div className="mt-0 flex-1 space-y-6 overflow-y-auto px-6 pt-0 pb-[max(1.5rem,env(safe-area-inset-bottom))] lg:min-h-0 lg:flex-1 lg:space-y-6 lg:px-0 lg:pt-0 lg:pb-6">
             <div className="pt-6">
               <button
                 type="button"
