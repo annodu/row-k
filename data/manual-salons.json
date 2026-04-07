@@ -124,9 +124,9 @@
       ],
       "id": "afrotherapy",
       "name": "Afrotherapy",
-      "areaId": "north",
-      "areaLabel": "North",
-      "neighbourhood": "North London",
+      "areaId": "london",
+      "areaLabel": "London",
+      "neighbourhood": "London",
       "postcode": "",
       "bookingPlatform": "Zenoti",
       "bookingUrl": "https://afrotherapy.zenoti.com/webstoreNew/services",
@@ -180,8 +180,12 @@
       "id": "akuabeauxhair",
       "name": "Akuabeauxhair",
       "areaId": "north",
+      "areaIds": [
+        "north",
+        "east"
+      ],
       "areaLabel": "North",
-      "neighbourhood": "North London",
+      "neighbourhood": "North and East London",
       "postcode": "",
       "bookingPlatform": "Acuity",
       "bookingUrl": "https://app.acuityscheduling.com/schedule.php?owner=20648576",
@@ -332,8 +336,12 @@
       "id": "arinze-studios",
       "name": "Arinze Studios",
       "areaId": "east",
+      "areaIds": [
+        "east",
+        "central"
+      ],
       "areaLabel": "East",
-      "neighbourhood": "East London",
+      "neighbourhood": "East and Central London",
       "postcode": "",
       "bookingPlatform": "Instagram",
       "bookingUrl": "https://www.instagram.com/arinzestudios/?g=5",
@@ -556,9 +564,9 @@
     {
       "id": "be-styled-by-chen",
       "name": "Be Styled by Chen",
-      "areaId": "south-west",
-      "areaLabel": "South West",
-      "neighbourhood": "South West London",
+      "areaId": "london",
+      "areaLabel": "London",
+      "neighbourhood": "London",
       "postcode": "",
       "bookingPlatform": "Treatwell",
       "bookingUrl": "https://widget.treatwell.co.uk/place/be-styled-by-chen/",
@@ -698,6 +706,7 @@
       "bookingUrl": "https://beautykulture.co.uk/services",
       "websiteUrl": "https://beautykulture.co.uk/services",
       "instagramUrl": "https://www.instagram.com/beautykultureuk/",
+      "hijabiFriendly": true,
       "services": [
         "Wash & blowdry",
         "Silk press",
@@ -881,7 +890,10 @@
         "Wash & blowdry",
         "Silk press",
         "Full head colour",
-        "Highlights"
+        "Highlights",
+        "Balayage",
+        "Trim / Hair cut",
+        "Hair Botox"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -1188,9 +1200,9 @@
       "instagramUrl": "https://www.instagram.com/bybrittss/",
       "services": [
         "Traditional sew-in",
-        "Wig install",
-        "Trim / Hair cut",
-        "Full head colour"
+        "Flipover / Versatile sew-in",
+        "Half up half down",
+        "Ponytail"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -3026,13 +3038,15 @@
       "neighbourhood": "South East London",
       "postcode": "",
       "bookingPlatform": "Direct website",
-      "bookingUrl": "https://www.hairbyoceanne.com",
-      "websiteUrl": "https://www.hairbyoceanne.com",
+      "bookingUrl": "https://hairbyoceanne.as.me/schedule/87b2b39a",
+      "websiteUrl": "https://hairbyoceanne.as.me/schedule/87b2b39a",
       "instagramUrl": "https://www.instagram.com/hairbyoceanne/",
       "services": [
         "Traditional sew-in",
-        "Trim / Hair cut",
-        "Full head colour"
+        "Half braids, half sew-in",
+        "Tape-ins",
+        "Clip-ins",
+        "Closure sew-in"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -4756,11 +4770,10 @@
         "Wig install",
         "Wig colour",
         "Frontal sew-in",
-        "Trim / Hair cut",
-        "Full head colour",
-        "Highlights",
         "Ponytail",
-        "Custom wig"
+        "Custom wig",
+        "Faux locs",
+        "Frontal sew-in"
       ],
       "summary": "Manual entry added from your South East London braids, colour, sew-ins, and wigs list.",
       "source": "manual",
@@ -5219,10 +5232,13 @@
       "instagramUrl": "https://www.instagram.com/paintedbykrystel/",
       "services": [
         "Traditional sew-in",
+        "Flipover / Versatile sew-in",
+        "Half up half down",
+        "Closure sew-in",
+        "Frontal sew-in",
+        "Quick weave",
         "Wig install",
-        "Full head colour",
-        "Highlights",
-        "Balayage"
+        "Custom wig"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -6165,7 +6181,8 @@
         "Starter locs",
         "Retwist",
         "Tape-ins",
-        "K-tips"
+        "K-tips",
+        "Braid take-down"
       ],
       "summary": "Manual entry added from your South West London list covering braids, sew-ins, natural hair, treatments, extensions, and styling.",
       "source": "manual",
@@ -6767,7 +6784,7 @@
         "Wig install",
         "Ponytail",
         "Flipover / Versatile sew-in",
-        "Full head colour",
+        "Wig colour",
         "Custom wig",
         "Tracks sewn in"
       ],
@@ -6887,6 +6904,7 @@
       "bookingUrl": "https://www.thecurlbarlondon.com/book-appointment-1",
       "websiteUrl": "https://www.thecurlbarlondon.com/book-appointment-1",
       "instagramUrl": "https://www.instagram.com/thecurlbarlondon/",
+      "hijabiFriendly": true,
       "services": [
         "Curly cut / Wash & go",
         "Moisturising treatment"
@@ -7046,8 +7064,7 @@
         "Tape-ins",
         "Knotless braids",
         "Stitch braids",
-        "Silk press",
-        "Full head colour"
+        "Silk press"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -7222,11 +7239,15 @@
       ]
     },
     {
-      "id": "vhudzi-hair-by-alicia-pearl",
-      "name": "Vhudzi Hair by Alicia Pearl",
-      "areaId": "north",
-      "areaLabel": "North",
-      "neighbourhood": "North London",
+  "id": "vhudzi-hair-by-alicia-pearl",
+  "name": "Vhudzi Hair by Alicia Pearl",
+  "areaId": "north",
+  "areaIds": [
+    "north",
+    "east"
+  ],
+  "areaLabel": "North",
+  "neighbourhood": "North and East London",
       "postcode": "",
       "bookingPlatform": "Setmore",
       "bookingUrl": "https://vhudzihairbyaliciapearl.setmore.com/",

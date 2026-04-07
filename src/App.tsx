@@ -172,21 +172,16 @@ function makeFilterLabelId(...parts: string[]) {
 }
 
 function getLocationLabels(result: SalonResult) {
-  const shouldUseDisplayLabel =
-    Boolean(result.areaLabel) &&
-    Boolean(result.areaId) &&
-    Boolean(result.areaIds?.length) &&
-    !result.areaIds?.includes(result.areaId ?? "");
+  const areaIds = result.areaIds?.length ? result.areaIds : result.areaId ? [result.areaId] : [];
+  const isSouthUmbrella =
+    result.areaId === "south" &&
+    result.areaIds?.length === 2 &&
+    result.areaIds.includes("south-east") &&
+    result.areaIds.includes("south-west");
 
-  const locationLabels = shouldUseDisplayLabel
-    ? [result.areaLabel]
-    : [
-        ...new Set(
-          (result.areaIds?.length ? result.areaIds : result.areaId ? [result.areaId] : [])
-            .map((areaId) => regionLabelMap[areaId])
-            .filter(Boolean),
-        ),
-      ];
+  const locationLabels = isSouthUmbrella
+    ? [result.areaLabel || "South"]
+    : [...new Set(areaIds.map((areaId) => regionLabelMap[areaId]).filter(Boolean))];
 
   if (!locationLabels.length && result.areaLabel) {
     locationLabels.push(result.areaLabel);
@@ -750,7 +745,12 @@ export default function App() {
               </button>
             </div>
 
-            <div className="sticky top-0 z-10 bg-white pb-2 dark:bg-stone-950">
+            <div
+              className={cn(
+                "sticky top-0 z-10 bg-white pb-2 dark:bg-stone-950",
+                servicesOpen && "border-b border-neutral-100 dark:border-stone-800",
+              )}
+            >
               <button
                 type="button"
                 aria-expanded={servicesOpen}
@@ -797,13 +797,13 @@ export default function App() {
                       <span
                         aria-hidden="true"
                         className={cn(
-                          "mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-[4px] border border-stone-500 bg-white text-white transition dark:border-stone-500 dark:bg-stone-900",
+                          "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-[4px] border border-stone-500 bg-white text-white transition dark:border-stone-500 dark:bg-stone-900",
                           isActive && "border-stone-950 bg-stone-950 dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950",
                         )}
                       >
                         {isActive ? <Check className="size-3.5" /> : null}
                       </span>
-                      <span id={categoryLabelId} className="text-[15px] text-neutral-800 dark:text-stone-200">
+                      <span id={categoryLabelId} className="translate-y-[1.5px] text-[15px] text-neutral-800 dark:text-stone-200">
                         {item.label}
                       </span>
                     </button>
@@ -826,13 +826,13 @@ export default function App() {
                               <span
                                 aria-hidden="true"
                                 className={cn(
-                                  "mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-[4px] border border-stone-500 bg-white text-white transition dark:border-stone-500 dark:bg-stone-900",
+                                  "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-[4px] border border-stone-500 bg-white text-white transition dark:border-stone-500 dark:bg-stone-900",
                                   isSubcategoryActive && "border-stone-950 bg-stone-950 dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950",
                                 )}
                               >
                                 {isSubcategoryActive ? <Check className="size-3.5" /> : null}
                               </span>
-                              <span id={subcategoryLabelId} className="text-[15px] text-neutral-800 dark:text-stone-200">
+                              <span id={subcategoryLabelId} className="translate-y-[1.5px] text-[15px] text-neutral-800 dark:text-stone-200">
                                 {itemSubcategory}
                               </span>
                             </button>
@@ -845,7 +845,12 @@ export default function App() {
               })}
             </div> : null}
 
-            <div className="sticky top-11 z-10 bg-white pb-2 dark:bg-stone-950">
+            <div
+              className={cn(
+                "sticky top-11 z-10 bg-white pb-2 dark:bg-stone-950",
+                locationsOpen && "border-b border-neutral-100 dark:border-stone-800",
+              )}
+            >
               <button
                 type="button"
                 aria-expanded={locationsOpen}
@@ -892,7 +897,7 @@ export default function App() {
                         tabIndex={-1}
                         className="pointer-events-none"
                       />
-                      <span id={allLocationsLabelId} className="text-[15px] text-neutral-800 dark:text-stone-200">
+                      <span id={allLocationsLabelId} className="translate-y-[1.5px] text-[15px] text-neutral-800 dark:text-stone-200">
                         {allLocations.label}
                       </span>
                     </div>
@@ -912,7 +917,7 @@ export default function App() {
                         tabIndex={-1}
                         className="pointer-events-none"
                       />
-                      <span id={londonLabelId} className="text-[15px] text-neutral-800 dark:text-stone-200">
+                      <span id={londonLabelId} className="translate-y-[1.5px] text-[15px] text-neutral-800 dark:text-stone-200">
                         {london.label}
                       </span>
                     </div>
@@ -941,7 +946,7 @@ export default function App() {
                                 tabIndex={-1}
                                 className="pointer-events-none"
                               />
-                              <span id={regionLabelId} className="text-[15px] text-neutral-800 dark:text-stone-200">
+                              <span id={regionLabelId} className="translate-y-[1.5px] text-[15px] text-neutral-800 dark:text-stone-200">
                                 {item.label}
                               </span>
                             </div>
@@ -975,7 +980,7 @@ export default function App() {
                       tabIndex={-1}
                       className="pointer-events-none"
                     />
-                    <span id={regionLabelId} className="text-[15px] text-neutral-800 dark:text-stone-200">
+                    <span id={regionLabelId} className="translate-y-[1.5px] text-[15px] text-neutral-800 dark:text-stone-200">
                       {item.label}
                     </span>
                   </div>
