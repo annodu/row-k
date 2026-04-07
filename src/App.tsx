@@ -161,6 +161,7 @@ const sortedCategoryEntries = [
 ] as [CategoryId, (typeof categoryMap)[CategoryId]][];
 
 const RESULTS_BATCH_SIZE = 20;
+const RESULTS_SKELETON_COUNT = 6;
 
 function makeFilterLabelId(...parts: string[]) {
   return parts
@@ -509,7 +510,7 @@ export default function App() {
               <button
                 type="button"
                 onClick={() => setMobileFiltersOpen(true)}
-                className="min-h-11 rounded-[8px] px-3 py-2 transition-colors hover:bg-neutral-100 hover:text-neutral-800 dark:hover:bg-stone-800 dark:hover:text-stone-100"
+                className="min-h-11 rounded-[8px] px-3 py-2 text-neutral-600 transition-colors hover:bg-neutral-100 hover:text-neutral-800 dark:text-stone-300 dark:hover:bg-stone-800 dark:hover:text-stone-100"
               >
                 Filter
               </button>
@@ -517,12 +518,51 @@ export default function App() {
           </div>
 
           {searchError ? (
-            <div className="border border-rose-200 bg-rose-50 px-4 py-4 text-sm leading-7 text-rose-700 dark:border-rose-900 dark:bg-rose-950/40 dark:text-rose-300">
-              <p>{searchError}</p>
+            <div className="bg-rose-50 px-4 py-6 text-left dark:bg-rose-950/30 lg:mr-4">
+              <h3 className="text-[17px] font-semibold text-rose-900 dark:text-rose-200">Something went wrong</h3>
+              <p className="mt-2 text-sm leading-7 text-rose-800 dark:text-rose-300">You can:</p>
+              <ul className="mt-1 list-disc space-y-1 pl-5 text-sm leading-7 text-rose-800 dark:text-rose-300">
+                <li>
+                  <button
+                    type="button"
+                    onClick={() => window.location.reload()}
+                    className="inline text-rose-900 underline decoration-current underline-offset-4 transition-colors hover:text-rose-700 dark:text-rose-100 dark:hover:text-rose-200"
+                  >
+                    Try again
+                  </button>
+                </li>
+                <li>Search elsewhere, for example on Instagram, TikTok or booking sites.</li>
+              </ul>
             </div>
           ) : null}
 
-          {!searchError ? (
+          {isSearching ? (
+            <ul className="flex w-full list-none flex-col items-start" aria-hidden="true">
+              {Array.from({ length: RESULTS_SKELETON_COUNT }, (_, index) => (
+                <li
+                  key={`skeleton-${index}`}
+                  className="flex w-full flex-col items-start gap-2 border-b border-neutral-100 px-4 py-4 text-left last:border-b-0 dark:border-stone-800"
+                >
+                  <article className="flex w-full flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+                    <div className="min-w-0 grow">
+                      <div className="h-6 w-48 animate-pulse bg-neutral-200 dark:bg-stone-800" />
+                      <div className="mt-2 h-5 w-32 animate-pulse bg-neutral-100 dark:bg-stone-900" />
+                      <div className="mt-3 flex flex-wrap items-center gap-2">
+                        <span className="h-6 w-24 animate-pulse bg-neutral-100 dark:bg-stone-900" />
+                        <span className="h-6 w-28 animate-pulse bg-neutral-100 dark:bg-stone-900" />
+                        <span className="h-6 w-20 animate-pulse bg-neutral-100 dark:bg-stone-900" />
+                      </div>
+                    </div>
+
+                    <div className="flex w-full shrink-0 items-center gap-2 sm:w-auto">
+                      <span className="h-11 flex-1 animate-pulse bg-neutral-200 dark:bg-stone-800 sm:w-28 sm:flex-none" />
+                      <span className="h-11 w-11 animate-pulse bg-neutral-100 dark:bg-stone-900" />
+                    </div>
+                  </article>
+                </li>
+              ))}
+            </ul>
+          ) : !searchError ? (
             <ul className="flex w-full list-none flex-col items-start">
               {visibleResults.map((result) => {
                 const locationLabels = getLocationLabels(result);
@@ -606,11 +646,41 @@ export default function App() {
             </ul>
           ) : null}
 
-          {!searchError && visibleResultCount < results.length ? <div ref={loadMoreRef} className="h-1 w-full" aria-hidden="true" /> : null}
+          {!isSearching && !searchError && visibleResultCount < results.length ? <div ref={loadMoreRef} className="h-1 w-full" aria-hidden="true" /> : null}
 
-          {!searchError && hasSearched && results.length === 0 ? (
-            <div className="border border-dashed border-neutral-200 px-4 py-6 text-sm leading-7 text-neutral-500 dark:border-stone-700 dark:text-stone-400">
-              No qualified salons matched the current filters. Try widening the service or location.
+          {!isSearching && !searchError && hasSearched && results.length === 0 ? (
+            <div className="bg-neutral-50 px-4 py-6 text-left dark:bg-stone-900/60 lg:mr-4">
+              <h3 className="text-[17px] font-semibold text-neutral-900 dark:text-stone-50">
+                No salons or stylists match your current filters
+              </h3>
+              <p className="mt-2 text-sm leading-7 text-neutral-700 dark:text-stone-300">You can:</p>
+              <ul className="mt-1 list-disc space-y-1 pl-5 text-sm leading-7 text-neutral-700 dark:text-stone-300">
+                <li>
+                  Change your filters, or{" "}
+                  <button
+                    type="button"
+                    onClick={clearFilters}
+                    className="inline text-neutral-900 underline underline-offset-4 transition-colors hover:text-neutral-700 dark:text-stone-100 dark:hover:text-stone-300"
+                  >
+                    reset
+                  </button>
+                </li>
+                <li>Search elsewhere, for example on Instagram, TikTok or booking sites</li>
+              </ul>
+              <div className="mt-4 border-t border-neutral-200 pt-4 dark:border-stone-700">
+                <div className="flex flex-wrap items-center gap-3 text-sm leading-7 text-neutral-700 dark:text-stone-300">
+                <span>Know someone who fits this criteria?</span>
+                <a
+                  href="https://tally.so/r/VLY10g"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex min-h-11 items-center text-[14px] font-medium text-neutral-900 underline underline-offset-4 transition-colors hover:text-neutral-700 dark:text-stone-100 dark:hover:text-stone-300"
+                >
+                  Submit a stylist
+                  <span className="sr-only"> - opens in a new tab</span>
+                </a>
+                </div>
+              </div>
             </div>
           ) : null}
         </section>
