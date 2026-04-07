@@ -531,7 +531,7 @@ export default function App() {
                     Try again
                   </button>
                 </li>
-                <li>Search elsewhere, for example on Instagram, TikTok or booking sites.</li>
+                <li>Search elsewhere, for example on Instagram, TikTok, or booking sites</li>
               </ul>
             </div>
           ) : null}
@@ -665,7 +665,7 @@ export default function App() {
                     reset
                   </button>
                 </li>
-                <li>Search elsewhere, for example on Instagram, TikTok or booking sites</li>
+                <li>Search elsewhere, for example on Instagram, TikTok, or booking sites</li>
               </ul>
               <div className="mt-4 border-t border-neutral-200 pt-4 dark:border-stone-700">
                 <div className="flex flex-wrap items-center gap-3 text-sm leading-7 text-neutral-700 dark:text-stone-300">
