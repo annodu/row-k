@@ -404,6 +404,20 @@ export default function App() {
   }, [results]);
 
   useEffect(() => {
+    if (!mobileFiltersOpen) {
+      document.body.style.overflow = "";
+      return;
+    }
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [mobileFiltersOpen]);
+
+  useEffect(() => {
     const node = loadMoreRef.current;
     if (!node || visibleResultCount >= results.length) {
       return;
