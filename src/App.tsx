@@ -545,18 +545,18 @@ export default function App() {
                 >
                   <article className="flex w-full flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                     <div className="min-w-0 grow">
-                      <div className="h-6 w-48 animate-pulse bg-neutral-200 dark:bg-stone-800" />
-                      <div className="mt-2 h-5 w-32 animate-pulse bg-neutral-100 dark:bg-stone-900" />
+                      <div className="h-6 w-48 animate-pulse rounded-[4px] bg-neutral-200/70 dark:bg-stone-800/70" />
+                      <div className="mt-2 h-5 w-32 animate-pulse rounded-[4px] bg-neutral-100/70 dark:bg-stone-900/70" />
                       <div className="mt-3 flex flex-wrap items-center gap-2">
-                        <span className="h-6 w-24 animate-pulse bg-neutral-100 dark:bg-stone-900" />
-                        <span className="h-6 w-28 animate-pulse bg-neutral-100 dark:bg-stone-900" />
-                        <span className="h-6 w-20 animate-pulse bg-neutral-100 dark:bg-stone-900" />
+                        <span className="h-6 w-24 animate-pulse rounded-[4px] bg-neutral-100/70 dark:bg-stone-900/70" />
+                        <span className="h-6 w-28 animate-pulse rounded-[4px] bg-neutral-100/70 dark:bg-stone-900/70" />
+                        <span className="h-6 w-20 animate-pulse rounded-[4px] bg-neutral-100/70 dark:bg-stone-900/70" />
                       </div>
                     </div>
 
                     <div className="flex w-full shrink-0 items-center gap-2 sm:w-auto">
-                      <span className="h-11 flex-1 animate-pulse bg-neutral-200 dark:bg-stone-800 sm:w-28 sm:flex-none" />
-                      <span className="h-11 w-11 animate-pulse bg-neutral-100 dark:bg-stone-900" />
+                      <span className="h-11 flex-1 animate-pulse rounded-[8px] bg-neutral-200/70 dark:bg-stone-800/70 sm:w-28 sm:flex-none" />
+                      <span className="h-11 w-11 animate-pulse rounded-[8px] bg-neutral-100/70 dark:bg-stone-900/70" />
                     </div>
                   </article>
                 </li>
