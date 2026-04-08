@@ -572,7 +572,7 @@ export default function App() {
   return (
     <div className="min-h-screen bg-white text-left dark:bg-stone-950">
       <header className="border-b border-neutral-200 dark:border-stone-800">
-        <div className="mx-auto flex w-full max-w-[1280px] items-start px-4 sm:px-6 lg:px-10">
+        <div className="mx-auto flex w-full max-w-[1120px] items-start px-4 sm:px-6 lg:px-10">
           <div className="min-w-0 flex-1 pb-16 pt-12">
             <div className="flex flex-col items-start gap-11 px-4">
               <p className="inline-flex items-center bg-neutral-100 px-3 py-2 text-left text-[11px] font-bold uppercase leading-none tracking-[0.11em] text-neutral-700 dark:bg-stone-700 dark:text-stone-100">
@@ -594,7 +594,7 @@ export default function App() {
         </div>
       </header>
 
-      <div className="mx-auto flex w-full max-w-[1280px] flex-col px-4 sm:px-6 lg:flex-row lg:items-start lg:px-10">
+      <div className="mx-auto flex w-full max-w-[1120px] flex-col px-4 sm:px-6 lg:flex-row lg:items-start lg:px-10">
         <section id="live-results" className="min-w-0 flex-1 pb-6 pt-4 lg:pb-6 lg:pt-0">
           <div className="sticky top-0 z-30 flex w-full items-center justify-between border-b border-neutral-100 bg-white px-4 pb-4 pt-2 dark:border-stone-800 dark:bg-stone-950 lg:h-20 lg:items-end lg:pb-6 lg:pt-2">
             {hasSearched ? (
@@ -671,61 +671,63 @@ export default function App() {
                     key={result.id}
                     className="flex w-full flex-col items-start gap-2 border-b border-neutral-100 px-4 py-4 text-left last:border-b-0 dark:border-stone-800"
                   >
-                    <article className="flex w-full flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-                      <div className="min-w-0 grow">
-                        <div className="flex items-start justify-between gap-3">
-                          <div className="min-w-0">
-                            <div className="flex flex-wrap items-center gap-2">
-                              <h3 className="text-[17px] font-semibold text-neutral-900 dark:text-stone-50">{result.name}</h3>
-                              {result.hijabiFriendly ? (
-                                <span className="inline-flex items-center gap-1 rounded-[4px] bg-emerald-100 pl-1.5 pr-2 py-1 text-[11px] font-medium leading-none text-emerald-800 dark:bg-emerald-950/50 dark:text-emerald-300">
-                                  <Check className="size-3.5" aria-hidden="true" />
-                                  Hijabi-friendly
-                                </span>
+                    <article className="flex w-full flex-col gap-3 sm:grid sm:grid-cols-[minmax(0,1fr)_auto] sm:items-start sm:gap-x-4 sm:gap-y-3">
+                      <div className="min-w-0">
+                        <div className="min-w-0 grow">
+                          <div className="flex items-start justify-between gap-3">
+                            <div className="min-w-0">
+                              <div className="flex flex-wrap items-center gap-2">
+                                <h3 className="text-[17px] font-semibold text-neutral-900 dark:text-stone-50">{result.name}</h3>
+                                {result.hijabiFriendly ? (
+                                  <span className="inline-flex items-center gap-1 rounded-[4px] bg-emerald-100 pl-1.5 pr-2 py-1 text-[11px] font-medium leading-none text-emerald-800 dark:bg-emerald-950/50 dark:text-emerald-300">
+                                    <Check className="size-3.5" aria-hidden="true" />
+                                    Hijabi-friendly
+                                  </span>
+                                ) : null}
+                              </div>
+                              {locationLabels.length > 0 ? (
+                                <div className="mt-0.5 flex flex-wrap items-center gap-2 text-[14px] text-neutral-500 dark:text-stone-400">
+                                  {locationLabels.map((label, index) => (
+                                    <Fragment key={label}>
+                                      {index > 0 ? <span>•</span> : null}
+                                      <span>{label}</span>
+                                    </Fragment>
+                                  ))}
+                                </div>
                               ) : null}
                             </div>
-                            {locationLabels.length > 0 ? (
-                              <div className="mt-1 flex flex-wrap items-center gap-2 text-[14px] text-neutral-500 dark:text-stone-400">
-                                {locationLabels.map((label, index) => (
-                                  <Fragment key={label}>
-                                    {index > 0 ? <span>•</span> : null}
-                                    <span>{label}</span>
-                                  </Fragment>
-                                ))}
-                              </div>
+                            {result.instagramUrl ? (
+                              <a
+                                href={result.instagramUrl}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-none bg-white px-4 py-2 text-[14px] font-medium text-neutral-900 transition-colors duration-150 hover:bg-neutral-100 dark:bg-transparent dark:text-stone-100 dark:hover:bg-stone-800 sm:hidden"
+                              >
+                                <InstagramIcon className="size-4" />
+                                <span className="sr-only">{result.name} instagram - opens in a new tab</span>
+                              </a>
                             ) : null}
                           </div>
-                          {result.instagramUrl ? (
-                            <a
-                              href={result.instagramUrl}
-                              target="_blank"
-                              rel="noreferrer"
-                              className="inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-none bg-white px-4 py-2 text-[14px] font-medium text-neutral-900 transition-colors duration-150 hover:bg-neutral-100 dark:bg-transparent dark:text-stone-100 dark:hover:bg-stone-800 sm:hidden"
-                            >
-                              <InstagramIcon className="size-4" />
-                              <span className="sr-only">{result.name} instagram - opens in a new tab</span>
-                            </a>
-                          ) : null}
                         </div>
-                        <div className="mt-3 flex flex-wrap items-center gap-2">
-                          {result.services.map((service) => (
-                            <span
-                              key={`${result.id}-${service}`}
-                              className="rounded-[2px] bg-neutral-100 px-2 py-1 text-[11px] font-normal leading-[16.5px] tracking-[0.02em] text-neutral-600 dark:bg-stone-900 dark:text-stone-300"
-                            >
-                              {service}
-                            </span>
-                          ))}
-                        </div>
+
                       </div>
 
-                      <div className="flex w-full shrink-0 items-center gap-2 sm:w-auto">
+                      <div className="order-2 mb-2 w-full rounded-none bg-neutral-50 px-3 py-2 text-[11px] font-medium uppercase leading-[18px] tracking-[0.02em] text-neutral-600 dark:bg-stone-900 dark:text-stone-300 sm:order-3 sm:col-span-2">
+                        {result.services.map((service, index) => (
+                          <Fragment key={`${result.id}-${service}`}>
+                            {index > 0 ? <span className="text-neutral-400 dark:text-stone-500"> · </span> : null}
+                            <span>{service}</span>
+                          </Fragment>
+                        ))}
+                      </div>
+
+                      <div className="order-3 flex w-full shrink-0 items-center gap-2 sm:order-2 sm:w-auto sm:justify-self-end">
                         {result.instagramUrl ? (
                           <a
                             href={result.instagramUrl}
                             target="_blank"
                             rel="noreferrer"
-                            className="hidden min-h-11 items-center justify-center gap-2 rounded-none bg-white px-4 py-2 text-[14px] font-medium text-neutral-900 transition-colors duration-150 hover:bg-neutral-100 dark:bg-transparent dark:text-stone-100 dark:hover:bg-stone-800 sm:inline-flex"
+                            className="hidden min-h-[46px] items-center justify-center gap-2 rounded-none bg-white px-4 py-2 text-[14px] font-medium text-neutral-900 transition-colors duration-150 hover:bg-neutral-100 dark:bg-transparent dark:text-stone-100 dark:hover:bg-stone-800 sm:inline-flex"
                           >
                             <InstagramIcon className="size-4" />
                             <span className="sr-only">{result.name} instagram - opens in a new tab</span>
@@ -736,7 +738,7 @@ export default function App() {
                             href={result.bookingUrl}
                             target="_blank"
                             rel="noreferrer"
-                            className="inline-flex min-h-11 flex-1 items-center justify-center rounded-none bg-neutral-900 px-4 py-2 text-[14px] font-medium text-white transition-colors duration-150 hover:bg-neutral-700 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-stone-300 sm:flex-none"
+                            className="inline-flex min-h-[46px] flex-1 items-center justify-center rounded-none bg-neutral-900 px-4 py-2 text-[14px] font-medium text-white transition-colors duration-150 hover:bg-neutral-700 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-stone-300 sm:flex-none"
                           >
                             Book
                             <span className="sr-only"> - {result.name} - opens in a new tab</span>
