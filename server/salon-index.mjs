@@ -194,6 +194,13 @@ function matchesHijabiFriendly(salon, hijabiFriendly) {
 }
 
 function compareSalons(left, right) {
+  const leftStartsWithDigit = /^\d/.test(left.name);
+  const rightStartsWithDigit = /^\d/.test(right.name);
+
+  if (leftStartsWithDigit !== rightStartsWithDigit) {
+    return leftStartsWithDigit ? 1 : -1;
+  }
+
   return left.name.localeCompare(right.name);
 }
 
