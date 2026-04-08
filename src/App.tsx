@@ -785,7 +785,7 @@ export default function App() {
               </ul>
               <div className="mt-4 border-t border-neutral-200 pt-4 dark:border-stone-700">
                 <div className="flex flex-wrap items-center gap-3 text-sm leading-7 text-neutral-700 dark:text-stone-300">
-                <span>Know someone who matches this criteria?</span>
+                <span>Know someone who meets this criteria?</span>
                 <a
                   href="https://tally.so/r/VLY10g"
                   target="_blank"
