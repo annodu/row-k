@@ -575,7 +575,7 @@ export default function App() {
         <div className="mx-auto flex w-full max-w-[1280px] items-start px-4 sm:px-6 lg:px-10">
           <div className="min-w-0 flex-1 pb-16 pt-12">
             <div className="flex flex-col items-start gap-11 px-4">
-              <p className="inline-flex items-center bg-neutral-100 px-3 py-2 text-left text-[11px] font-bold uppercase leading-none tracking-[0.11em] text-neutral-700 dark:bg-stone-100 dark:text-stone-950">
+              <p className="inline-flex items-center bg-neutral-100 px-3 py-2 text-left text-[11px] font-bold uppercase leading-none tracking-[0.11em] text-neutral-700 dark:bg-stone-700 dark:text-stone-100">
                 Row K LDN
               </p>
               <div className="flex flex-col items-start gap-3">
@@ -700,7 +700,7 @@ export default function App() {
                               href={result.instagramUrl}
                               target="_blank"
                               rel="noreferrer"
-                              className="inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-none bg-white px-4 py-2 text-[14px] font-medium text-neutral-900 transition-colors duration-150 hover:bg-neutral-100 dark:bg-stone-900 dark:text-stone-100 dark:hover:bg-stone-800 sm:hidden"
+                              className="inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-none bg-white px-4 py-2 text-[14px] font-medium text-neutral-900 transition-colors duration-150 hover:bg-neutral-100 dark:bg-transparent dark:text-stone-100 dark:hover:bg-stone-800 sm:hidden"
                             >
                               <InstagramIcon className="size-4" />
                               <span className="sr-only">{result.name} instagram - opens in a new tab</span>
@@ -725,7 +725,7 @@ export default function App() {
                             href={result.instagramUrl}
                             target="_blank"
                             rel="noreferrer"
-                            className="hidden min-h-11 items-center justify-center gap-2 rounded-none bg-white px-4 py-2 text-[14px] font-medium text-neutral-900 transition-colors duration-150 hover:bg-neutral-100 dark:bg-stone-900 dark:text-stone-100 dark:hover:bg-stone-800 sm:inline-flex"
+                            className="hidden min-h-11 items-center justify-center gap-2 rounded-none bg-white px-4 py-2 text-[14px] font-medium text-neutral-900 transition-colors duration-150 hover:bg-neutral-100 dark:bg-transparent dark:text-stone-100 dark:hover:bg-stone-800 sm:inline-flex"
                           >
                             <InstagramIcon className="size-4" />
                             <span className="sr-only">{result.name} instagram - opens in a new tab</span>
