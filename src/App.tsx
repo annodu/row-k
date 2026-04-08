@@ -579,7 +579,7 @@ export default function App() {
                 Row K LDN
               </p>
               <div className="flex flex-col items-start gap-3">
-                <h1 className="-ml-[0.045em] w-full text-left text-[44px] italic font-medium leading-[46px] tracking-tight text-neutral-900 dark:text-stone-50 sm:text-[56px] sm:leading-[58px] lg:text-[68px] lg:leading-[70px] lg:whitespace-nowrap" style={{ fontFamily: "Junicode, Instrument Serif, Georgia, Times New Roman, serif" }}>
+                <h1 className="-ml-[0.045em] w-full text-left text-[44px] italic font-medium leading-[46px] tracking-tight text-neutral-900 dark:text-stone-50 sm:text-[56px] sm:leading-[58px] lg:text-[68px] lg:leading-[70px] lg:whitespace-nowrap" style={{ fontFamily: "Junicode" }}>
                   Black hair directory
                 </h1>
                 <p className="w-full max-w-3xl text-left text-[18px] leading-[1.55] text-neutral-600 dark:text-stone-300 sm:text-[19px]">
