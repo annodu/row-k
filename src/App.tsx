@@ -712,7 +712,7 @@ export default function App() {
 
                       </div>
 
-                      <div className="order-2 mb-2 w-full rounded-none bg-neutral-50 px-3 py-2 text-[11px] font-medium uppercase leading-[18px] tracking-[0.02em] text-neutral-600 dark:bg-stone-900 dark:text-stone-300 sm:order-3 sm:col-span-2">
+                      <div className="order-2 mb-2 w-full rounded-none bg-neutral-50 px-3 py-2 text-[12px] font-normal lowercase leading-[18px] tracking-[0.02em] text-neutral-600 dark:bg-stone-900 dark:text-stone-300 sm:order-3 sm:col-span-2">
                         {result.services.map((service, index) => (
                           <Fragment key={`${result.id}-${service}`}>
                             {index > 0 ? <span className="text-neutral-400 dark:text-stone-500"> · </span> : null}
