@@ -9,6 +9,7 @@ const regions = [
   { id: "london", label: "London" },
   { id: "central", label: "Central" },
   { id: "north", label: "North" },
+  { id: "north-west", label: "North West" },
   { id: "east", label: "East" },
   { id: "south-east", label: "South East" },
   { id: "south-west", label: "South West" },
@@ -19,7 +20,7 @@ const regions = [
   { id: "mobile", label: "Mobile" },
 ] as const;
 
-const nestedLondonRegionIds = ["central", "north", "east", "south-east", "south-west", "west", "croydon"] as const;
+const nestedLondonRegionIds = ["central", "north", "north-west", "east", "south-east", "south-west", "west", "croydon"] as const;
 const standaloneRegionIds = ["kent", "essex", "mobile"] as const;
 
 const categoryMap = {
@@ -146,6 +147,7 @@ const resultLocationLabelMap: Record<string, string> = {
   "all-london": "London",
   central: "Central London",
   north: "North London",
+  "north-west": "North West London",
   east: "East London",
   "south-east": "South East London",
   "south-west": "South West London",
@@ -188,6 +190,39 @@ function getLocationLabels(result: SalonResult) {
   }
 
   return locationLabels.map((label) => resultLocationLabelMap[label.toLowerCase().replace(/\s+/g, "-")] ?? label);
+}
+
+function orderServicesBySelection(
+  services: string[],
+  selectedCategories: ServiceCategoryId[],
+  selectedSubcategories: ServiceSubcategoryId[],
+) {
+  if (selectedCategories.length === 0 && selectedSubcategories.length === 0) {
+    return services;
+  }
+
+  const prioritizedServices = new Set<string>(selectedSubcategories);
+
+  selectedCategories.forEach((categoryId) => {
+    categoryMap[categoryId].subcategories.forEach((subcategory) => {
+      if (subcategory !== "all") {
+        prioritizedServices.add(subcategory);
+      }
+    });
+  });
+
+  const matchingServices: string[] = [];
+  const remainingServices: string[] = [];
+
+  services.forEach((service) => {
+    if (prioritizedServices.has(service)) {
+      matchingServices.push(service);
+    } else {
+      remainingServices.push(service);
+    }
+  });
+
+  return [...matchingServices, ...remainingServices];
 }
 
 function InstagramIcon({ className }: { className?: string }) {
@@ -300,6 +335,122 @@ function AnimatedCollapsible({
   );
 }
 
+function ServicesSummary({ services }: { services: string[] }) {
+  const lineRef = useRef<HTMLDivElement | null>(null);
+  const separatorMeasureRef = useRef<HTMLSpanElement | null>(null);
+  const serviceMeasureRefs = useRef<(HTMLSpanElement | null)[]>([]);
+  const suffixMeasureRefs = useRef<Record<number, HTMLSpanElement | null>>({});
+  const [visibleCount, setVisibleCount] = useState(services.length);
+
+  useEffect(() => {
+    const lineElement = lineRef.current;
+    const separatorElement = separatorMeasureRef.current;
+
+    if (!lineElement || !separatorElement) {
+      return;
+    }
+
+    const measure = () => {
+      const availableWidth = lineElement.clientWidth;
+      const safetyBuffer = 14;
+      if (!availableWidth) {
+        return;
+      }
+
+      const serviceWidths = services.map((_, index) => serviceMeasureRefs.current[index]?.offsetWidth ?? 0);
+      const separatorWidth = separatorElement.offsetWidth;
+
+      let nextVisibleCount = services.length;
+
+      for (let count = services.length; count >= 0; count -= 1) {
+        const hiddenCount = services.length - count;
+        const visibleServicesWidth = serviceWidths.slice(0, count).reduce((sum, width) => sum + width, 0);
+        const visibleSeparatorsWidth = Math.max(0, count - 1) * separatorWidth;
+        const suffixWidth =
+          hiddenCount > 0 ? (suffixMeasureRefs.current[hiddenCount]?.offsetWidth ?? 0) + (count > 0 ? separatorWidth : 0) : 0;
+
+        if (visibleServicesWidth + visibleSeparatorsWidth + suffixWidth <= availableWidth - safetyBuffer) {
+          nextVisibleCount = count;
+          break;
+        }
+      }
+
+      setVisibleCount(nextVisibleCount);
+    };
+
+    measure();
+
+    const resizeObserver = typeof ResizeObserver !== "undefined" ? new ResizeObserver(measure) : null;
+    resizeObserver?.observe(lineElement);
+
+    window.addEventListener("resize", measure);
+
+    return () => {
+      resizeObserver?.disconnect();
+      window.removeEventListener("resize", measure);
+    };
+  }, [services]);
+
+  const hiddenCount = Math.max(0, services.length - visibleCount);
+  const fullServicesLabel = services.join(" · ");
+
+  return (
+    <div>
+      <div
+        ref={lineRef}
+        className="overflow-hidden whitespace-nowrap"
+        title={hiddenCount > 0 ? fullServicesLabel : undefined}
+        aria-label={fullServicesLabel}
+      >
+        {services.slice(0, visibleCount).map((service, index) => (
+          <Fragment key={`${service}-${index}`}>
+            {index > 0 ? <span className="text-stone-500/70 dark:text-stone-500/80"> · </span> : null}
+            <span>{service}</span>
+          </Fragment>
+        ))}
+        {hiddenCount > 0 ? (
+          <>
+            {visibleCount > 0 ? <span className="text-stone-500/70 dark:text-stone-500/80"> · </span> : null}
+            <span className="text-stone-600 dark:text-stone-400">+ {hiddenCount} {hiddenCount === 1 ? "service" : "services"}</span>
+          </>
+        ) : null}
+      </div>
+
+      <div className="pointer-events-none absolute left-0 top-0 -z-10 opacity-0" aria-hidden="true">
+        <span ref={separatorMeasureRef} className="text-[12px] font-normal lowercase leading-[18px] tracking-[0.02em]">
+          {" · "}
+        </span>
+        {services.map((service, index) => (
+          <span
+            key={`measure-${service}-${index}`}
+            ref={(element) => {
+              serviceMeasureRefs.current[index] = element;
+            }}
+            className="inline-block text-[12px] font-normal lowercase leading-[18px] tracking-[0.02em]"
+          >
+            {service}
+          </span>
+        ))}
+        {services.map((_, hiddenCountIndex) => {
+          const count = hiddenCountIndex + 1;
+
+          return (
+            <span
+              key={`suffix-${count}`}
+              ref={(element) => {
+                suffixMeasureRefs.current[count] = element;
+              }}
+              className="inline-block text-[12px] font-normal lowercase leading-[18px] tracking-[0.02em]"
+            >
+              + {count} {count === 1 ? "service" : "services"}
+            </span>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
 export default function App() {
   const [selectedRegions, setSelectedRegions] = useState<RegionId[]>(["all"]);
   const [selectedCategories, setSelectedCategories] = useState<ServiceCategoryId[]>([]);
@@ -311,6 +462,7 @@ export default function App() {
   const [hasSearched, setHasSearched] = useState(false);
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   const [selectedHijabiFriendly, setSelectedHijabiFriendly] = useState(false);
+  const [hijabiHoverLocked, setHijabiHoverLocked] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const [locationsOpen, setLocationsOpen] = useState(false);
   const loadMoreRef = useRef<HTMLDivElement | null>(null);
@@ -570,22 +722,22 @@ export default function App() {
   const selectedLocationCount = selectedRegions.filter((regionId) => regionId !== "all").length;
 
   return (
-    <div className="min-h-screen bg-white text-left dark:bg-stone-950">
-      <header className="border-b border-neutral-200 dark:border-stone-800">
+    <div className="min-h-screen bg-stone-100 text-left dark:bg-stone-950">
+      <header className="border-b border-stone-300 dark:border-stone-800">
         <div className="mx-auto flex w-full max-w-[1120px] items-start px-4 sm:px-6 lg:px-10">
           <div className="min-w-0 flex-1 pb-10 pt-10 sm:pb-16 sm:pt-12">
             <div className="flex flex-col items-start gap-11 px-0">
-              <p className="inline-flex items-center bg-neutral-100 px-3 py-2 text-left text-[11px] font-bold uppercase leading-none tracking-[0.11em] text-neutral-700 dark:bg-stone-700 dark:text-stone-100">
+              <p className="inline-flex items-center bg-stone-200 px-3 py-2 text-left text-[11px] font-bold uppercase leading-none tracking-[0.11em] text-stone-700 dark:bg-stone-700 dark:text-stone-100">
                 Row K LDN
               </p>
               <div className="flex flex-col items-start gap-3">
-                <h1 className="-ml-[0.045em] w-full text-left text-[38px] italic font-medium leading-[40px] tracking-tight text-neutral-900 dark:text-stone-50 sm:text-[56px] sm:leading-[58px] lg:text-[68px] lg:leading-[70px] lg:whitespace-nowrap" style={{ fontFamily: "Junicode" }}>
+                <h1 className="-ml-[0.045em] w-full text-left text-[38px] italic font-medium leading-[40px] tracking-tight text-stone-950 dark:text-stone-50 sm:text-[56px] sm:leading-[58px] lg:text-[68px] lg:leading-[70px] lg:whitespace-nowrap" style={{ fontFamily: "Junicode" }}>
                   Black hair directory
                 </h1>
-                <p className="w-full max-w-3xl text-left text-[16px] leading-[1.55] text-neutral-600 dark:text-stone-300 sm:text-[19px]">
+                <p className="w-full max-w-3xl text-left text-[16px] leading-[1.55] text-stone-700 dark:text-stone-300 sm:text-[19px]">
                   Find afro hair stylists in & around London.
                   <br />
-                  <span className="inline-block">Natural, relaxed, braids, sew-ins, wigs etc.</span>
+                  <span className="inline-block">Natural or relaxed. Braids, sew-ins, wigs etc.</span>
                 </p>
               </div>
             </div>
@@ -596,20 +748,20 @@ export default function App() {
 
       <div className="mx-auto flex w-full max-w-[1120px] flex-col px-4 sm:px-6 lg:flex-row lg:items-start lg:px-10">
         <section id="live-results" className="min-w-0 flex-1 pb-6 pt-4 lg:pb-6 lg:pr-8 lg:pt-0">
-          <div className="sticky top-0 z-30 flex w-full items-center justify-between border-b border-neutral-200 bg-white px-0 pb-4 pt-2 dark:border-stone-800 dark:bg-stone-950 lg:h-20 lg:items-end lg:pb-6 lg:pt-2">
+          <div className="sticky top-0 z-30 flex w-full items-center justify-between border-b border-stone-300 bg-stone-100 px-0 pb-4 pt-2 dark:border-stone-800 dark:bg-stone-950 lg:h-20 lg:items-end lg:pb-6 lg:pt-2">
             {hasSearched ? (
-              <h2 className="text-[14px] font-medium leading-none text-neutral-500 dark:text-stone-400">
+              <h2 className="text-[14px] font-medium leading-none text-stone-500 dark:text-stone-400">
                 {results.length} {results.length === 1 ? "result" : "results"}
               </h2>
             ) : (
-              <h2 className="text-[14px] font-medium leading-none text-neutral-500 dark:text-stone-400">Results</h2>
+              <h2 className="text-[14px] font-medium leading-none text-stone-500 dark:text-stone-400">Results</h2>
             )}
 
-            <div className="flex items-center gap-2 text-[13px] text-neutral-500 dark:text-stone-400 lg:hidden">
+            <div className="flex items-center gap-2 text-[13px] text-stone-500 dark:text-stone-400 lg:hidden">
               <button
                 type="button"
                 onClick={() => setMobileFiltersOpen(true)}
-                className="min-h-11 rounded-none px-3 py-2 text-neutral-600 transition-colors hover:bg-neutral-100 hover:text-neutral-800 dark:text-stone-300 dark:hover:bg-stone-800 dark:hover:text-stone-100"
+                className="min-h-11 rounded-none px-3 py-2 text-stone-700 transition-colors hover:bg-stone-200 hover:text-stone-900 dark:text-stone-300 dark:hover:bg-stone-800 dark:hover:text-stone-100"
               >
                 Filter
               </button>
@@ -617,7 +769,7 @@ export default function App() {
           </div>
 
           {searchError ? (
-            <div className="mt-4 bg-rose-50 px-4 py-6 text-left dark:bg-rose-950/30 lg:mr-4">
+            <div className="mt-4 bg-rose-100 px-4 py-6 text-left dark:bg-rose-950/30 lg:mr-4">
               <h3 className="text-[17px] font-semibold text-rose-900 dark:text-rose-200">Something went wrong</h3>
               <p className="mt-2 text-sm leading-7 text-rose-800 dark:text-rose-300">You can:</p>
               <ul className="mt-1 list-disc space-y-1 pl-5 text-sm leading-7 text-rose-800 dark:text-rose-300">
@@ -640,22 +792,22 @@ export default function App() {
               {Array.from({ length: RESULTS_SKELETON_COUNT }, (_, index) => (
                 <li
                   key={`skeleton-${index}`}
-                  className="flex w-full flex-col items-start gap-2 border-b border-neutral-200 px-0 py-5 text-left last:border-b-0 dark:border-stone-800"
+                  className="flex w-full flex-col items-start gap-2 border-b border-stone-300 px-0 py-5 text-left last:border-b-0 dark:border-stone-800"
                 >
                   <article className="flex w-full flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                     <div className="min-w-0 grow">
-                      <div className="h-6 w-48 animate-pulse rounded-[4px] bg-neutral-200/70 dark:bg-stone-800/70" />
-                      <div className="mt-2 h-5 w-32 animate-pulse rounded-[4px] bg-neutral-100/70 dark:bg-stone-900/70" />
+                      <div className="h-6 w-48 animate-pulse rounded-[4px] bg-stone-300/70 dark:bg-stone-800/70" />
+                      <div className="mt-2 h-5 w-32 animate-pulse rounded-[4px] bg-stone-200/70 dark:bg-stone-900/70" />
                       <div className="mt-3 flex flex-wrap items-center gap-2">
-                        <span className="h-6 w-24 animate-pulse rounded-[4px] bg-neutral-100/70 dark:bg-stone-900/70" />
-                        <span className="h-6 w-28 animate-pulse rounded-[4px] bg-neutral-100/70 dark:bg-stone-900/70" />
-                        <span className="h-6 w-20 animate-pulse rounded-[4px] bg-neutral-100/70 dark:bg-stone-900/70" />
+                        <span className="h-6 w-24 animate-pulse rounded-[4px] bg-stone-200/70 dark:bg-stone-900/70" />
+                        <span className="h-6 w-28 animate-pulse rounded-[4px] bg-stone-200/70 dark:bg-stone-900/70" />
+                        <span className="h-6 w-20 animate-pulse rounded-[4px] bg-stone-200/70 dark:bg-stone-900/70" />
                       </div>
                     </div>
 
                     <div className="flex w-full shrink-0 items-center gap-2 sm:w-auto">
-                      <span className="h-11 flex-1 animate-pulse rounded-[8px] bg-neutral-200/70 dark:bg-stone-800/70 sm:w-28 sm:flex-none" />
-                      <span className="h-11 w-11 animate-pulse rounded-[8px] bg-neutral-100/70 dark:bg-stone-900/70" />
+                      <span className="h-11 flex-1 animate-pulse rounded-[8px] bg-stone-300/70 dark:bg-stone-800/70 sm:w-28 sm:flex-none" />
+                      <span className="h-11 w-11 animate-pulse rounded-[8px] bg-stone-200/70 dark:bg-stone-900/70" />
                     </div>
                   </article>
                 </li>
@@ -665,11 +817,12 @@ export default function App() {
             <ul className="flex w-full list-none flex-col items-start">
               {visibleResults.map((result) => {
                 const locationLabels = getLocationLabels(result);
+                const orderedServices = orderServicesBySelection(result.services, selectedCategories, selectedSubcategories);
 
                 return (
                   <li
                     key={result.id}
-                    className="flex w-full flex-col items-start gap-2 border-b border-neutral-200 px-0 py-5 text-left last:border-b-0 dark:border-stone-800"
+                    className="flex w-full flex-col items-start gap-2 border-b border-stone-300 px-0 py-5 text-left last:border-b-0 dark:border-stone-800"
                   >
                     <article className="flex w-full flex-col gap-2.5 sm:grid sm:grid-cols-[minmax(0,1fr)_auto] sm:items-start sm:gap-x-4 sm:gap-y-2.5">
                       <div className="min-w-0">
@@ -677,16 +830,16 @@ export default function App() {
                           <div className="flex items-start justify-between gap-3">
                             <div className="min-w-0">
                               <div className="flex flex-wrap items-center gap-2">
-                                <h3 className="text-[17px] font-semibold text-neutral-900 dark:text-stone-50">{result.name}</h3>
+                                <h3 className="text-[17px] font-semibold text-stone-950 dark:text-stone-50">{result.name}</h3>
                                 {result.hijabiFriendly ? (
-                                  <span className="inline-flex items-center gap-1 rounded-none bg-emerald-100 pl-1.5 pr-2 py-1 text-[11px] font-medium leading-none text-emerald-800 dark:bg-emerald-950/50 dark:text-emerald-300">
+                                  <span className="inline-flex items-center gap-1 rounded-none bg-emerald-100 pb-1 pl-1 pr-1.5 pt-1 text-[11px] font-medium leading-none text-emerald-800 dark:bg-emerald-950/50 dark:text-emerald-300">
                                     <Check className="size-3.5" aria-hidden="true" />
                                     Hijabi-friendly
                                   </span>
                                 ) : null}
                               </div>
                               {locationLabels.length > 0 ? (
-                                <div className="mt-0.5 flex flex-wrap items-center gap-2 text-[14px] text-neutral-500 dark:text-stone-400">
+                                <div className="mt-0.5 flex flex-wrap items-center gap-2 text-[14px] text-stone-500 dark:text-stone-400">
                                   {locationLabels.map((label, index) => (
                                     <Fragment key={label}>
                                       {index > 0 ? <span>•</span> : null}
@@ -701,7 +854,7 @@ export default function App() {
                                 href={result.instagramUrl}
                                 target="_blank"
                                 rel="noreferrer"
-                                className="inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-none bg-white px-4 py-2 text-[14px] font-medium text-neutral-900 transition-colors duration-150 hover:bg-neutral-100 dark:bg-transparent dark:text-stone-100 dark:hover:bg-stone-800 sm:hidden"
+                                className="inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-none bg-transparent px-4 py-2 text-[14px] font-medium text-stone-950 transition-colors duration-150 hover:bg-stone-200 dark:bg-transparent dark:text-stone-100 dark:hover:bg-stone-800 sm:hidden"
                               >
                                 <InstagramIcon className="size-4" />
                                 <span className="sr-only">{result.name} instagram - opens in a new tab</span>
@@ -712,22 +865,17 @@ export default function App() {
 
                       </div>
 
-                      <div className="order-2 w-full rounded-none bg-neutral-50 px-3 py-2 text-[12px] font-normal lowercase leading-[18px] tracking-[0.02em] text-neutral-600 dark:bg-stone-900 dark:text-stone-300 sm:order-3 sm:col-span-2 lg:mt-2">
-                        {result.services.map((service, index) => (
-                          <Fragment key={`${result.id}-${service}`}>
-                            {index > 0 ? <span className="text-neutral-400/80 dark:text-stone-500/80"> · </span> : null}
-                            <span>{service}</span>
-                          </Fragment>
-                        ))}
+                      <div className="order-2 w-full rounded-none border-l-4 border-stone-300 bg-stone-200/45 px-3 py-2 text-[12px] font-normal lowercase leading-[18px] tracking-[0.02em] text-stone-700 dark:border-stone-700 dark:bg-stone-900/48 dark:text-stone-300 sm:order-3 sm:col-span-2 lg:mt-2">
+                        <ServicesSummary services={orderedServices} />
                       </div>
 
-                      <div className="order-3 flex w-full shrink-0 items-center gap-2 sm:order-2 sm:h-full sm:w-auto sm:self-stretch sm:items-stretch sm:justify-self-end">
+                      <div className="order-3 mt-2 flex w-full shrink-0 items-center gap-2 sm:order-2 sm:mt-0 sm:h-full sm:w-auto sm:self-stretch sm:items-stretch sm:justify-self-end">
                         {result.instagramUrl ? (
                           <a
                             href={result.instagramUrl}
                             target="_blank"
                             rel="noreferrer"
-                            className="hidden min-h-[46px] items-center justify-center gap-2 rounded-none bg-white px-4 py-2 text-[14px] font-medium text-neutral-900 transition-colors duration-150 hover:bg-neutral-100 dark:bg-transparent dark:text-stone-100 dark:hover:bg-stone-800 sm:inline-flex sm:h-full sm:min-h-0"
+                            className="hidden min-h-[46px] items-center justify-center gap-2 rounded-none bg-transparent px-4 py-2 text-[14px] font-medium text-stone-950 transition-colors duration-150 hover:bg-stone-200 dark:bg-transparent dark:text-stone-100 dark:hover:bg-stone-800 sm:inline-flex sm:h-full sm:min-h-0"
                           >
                             <InstagramIcon className="size-4" />
                             <span className="sr-only">{result.name} instagram - opens in a new tab</span>
@@ -738,7 +886,7 @@ export default function App() {
                             href={result.bookingUrl}
                             target="_blank"
                             rel="noreferrer"
-                            className="inline-flex min-h-[46px] flex-1 items-center justify-center rounded-none bg-neutral-900 px-5 py-2 text-[14px] font-medium text-white transition-colors duration-150 hover:bg-neutral-700 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-stone-300 sm:h-full sm:min-h-0 sm:flex-none"
+                            className="inline-flex min-h-[46px] flex-1 items-center justify-center rounded-none bg-stone-950 px-5 py-2 text-[14px] font-medium text-stone-100 transition-colors duration-150 hover:bg-stone-800 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-stone-300 sm:h-full sm:min-h-0 sm:flex-none sm:px-6"
                           >
                             Book
                             <span className="sr-only"> - {result.name} - opens in a new tab</span>
@@ -749,7 +897,7 @@ export default function App() {
                             href={result.websiteUrl}
                             target="_blank"
                             rel="noreferrer"
-                            className="inline-flex min-h-11 items-center justify-center rounded-none border border-neutral-200 bg-white px-4 py-2 text-[14px] font-medium text-neutral-900 transition-colors duration-150 hover:border-neutral-300 hover:bg-neutral-100 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100 dark:hover:border-stone-600 dark:hover:bg-stone-800"
+                            className="inline-flex min-h-11 items-center justify-center rounded-none border border-stone-300 bg-stone-50 px-4 py-2 text-[14px] font-medium text-stone-950 transition-colors duration-150 hover:border-stone-400 hover:bg-stone-200 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100 dark:hover:border-stone-600 dark:hover:bg-stone-800"
                           >
                             <Globe className="size-4" />
                           </a>
@@ -765,32 +913,32 @@ export default function App() {
           {!isSearching && !searchError && visibleResultCount < results.length ? <div ref={loadMoreRef} className="h-1 w-full" aria-hidden="true" /> : null}
 
           {!isSearching && !searchError && hasSearched && results.length === 0 ? (
-            <div className="mt-4 bg-neutral-50 px-4 py-6 text-left dark:bg-stone-900/60 lg:mr-4">
-              <h3 className="text-[17px] font-semibold text-neutral-900 dark:text-stone-50">
+            <div className="mt-4 bg-stone-200 px-4 py-6 text-left dark:bg-stone-900/60 lg:mr-4">
+              <h3 className="text-[17px] font-semibold text-stone-950 dark:text-stone-50">
                 No salons or stylists found
               </h3>
-              <p className="mt-2 text-sm leading-7 text-neutral-700 dark:text-stone-300">You can:</p>
-              <ul className="mt-1 list-disc space-y-1 pl-5 text-sm leading-7 text-neutral-700 dark:text-stone-300">
+              <p className="mt-2 text-sm leading-7 text-stone-700 dark:text-stone-300">You can:</p>
+              <ul className="mt-1 list-disc space-y-1 pl-5 text-sm leading-7 text-stone-700 dark:text-stone-300">
                 <li>
                   Change your filters, or{" "}
                   <button
                     type="button"
                     onClick={clearFilters}
-                    className="inline text-neutral-900 underline underline-offset-4 transition-colors hover:text-neutral-700 dark:text-stone-100 dark:hover:text-stone-300"
+                    className="inline text-stone-950 underline underline-offset-4 transition-colors hover:text-stone-700 dark:text-stone-100 dark:hover:text-stone-300"
                   >
                     reset
                   </button>
                 </li>
                 <li>Search elsewhere, for example on booking sites, Instagram, or TikTok</li>
               </ul>
-              <div className="mt-4 border-t border-neutral-200 pt-4 dark:border-stone-700">
-                <div className="flex flex-wrap items-center gap-3 text-sm leading-7 text-neutral-700 dark:text-stone-300">
+              <div className="mt-4 border-t border-stone-300 pt-4 dark:border-stone-700">
+                <div className="flex flex-wrap items-center gap-3 text-sm leading-7 text-stone-700 dark:text-stone-300">
                 <span>Know someone who meets this criteria?</span>
                 <a
                   href="https://tally.so/r/VLY10g"
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex min-h-11 items-center text-[14px] font-medium text-neutral-900 underline underline-offset-4 transition-colors hover:text-neutral-700 dark:text-stone-100 dark:hover:text-stone-300"
+                  className="inline-flex min-h-11 items-center text-[14px] font-medium text-stone-950 underline underline-offset-4 transition-colors hover:text-stone-700 dark:text-stone-100 dark:hover:text-stone-300"
                 >
                   Submit a stylist
                   <span className="sr-only"> - opens in a new tab</span>
@@ -803,332 +951,347 @@ export default function App() {
 
         <aside
           className={cn(
-            "hidden w-full border-t border-neutral-200 py-6 dark:border-stone-800",
-            "lg:sticky lg:top-0 lg:flex lg:h-screen lg:w-72 lg:flex-none lg:self-start lg:flex-col lg:border-t-0 lg:border-l lg:py-0 lg:pl-8 dark:border-stone-800",
+            "hidden w-full border-t border-stone-300 py-6 dark:border-stone-800",
+            "lg:sticky lg:top-0 lg:flex lg:h-screen lg:w-72 lg:flex-none lg:self-start lg:flex-col lg:border-t-0 lg:border-l lg:pl-8 lg:pr-6 lg:py-0 dark:border-stone-800",
             mobileFiltersOpen &&
-              "fixed inset-0 z-50 flex h-dvh min-h-dvh w-full flex-col overflow-hidden border-b-0 bg-white py-0 dark:bg-stone-950 lg:static lg:z-auto lg:h-auto lg:min-h-0 lg:w-72 lg:bg-transparent",
+              "fixed inset-0 z-50 flex h-dvh min-h-dvh w-full flex-col overflow-hidden border-b-0 bg-stone-100 px-4 py-0 dark:bg-stone-950 sm:px-6 lg:static lg:z-auto lg:h-auto lg:min-h-0 lg:w-72 lg:bg-transparent",
           )}
         >
-          <div className="flex items-center justify-between border-b border-neutral-200 px-0 py-5 dark:border-stone-800 lg:hidden">
-            <button
-              type="button"
-              onClick={clearFilters}
-              className="min-h-11 px-2 py-2 text-[13px] font-medium text-neutral-600 transition hover:text-black dark:text-stone-300 dark:hover:text-stone-50"
-            >
-              Reset
-            </button>
-            <h2 className="text-[15px] font-semibold text-neutral-900 dark:text-stone-50">Filters</h2>
-            <button
-              type="button"
-              onClick={() => setMobileFiltersOpen(false)}
-              className="min-h-11 px-2 py-2 text-[13px] font-medium text-neutral-500 transition hover:text-neutral-800 dark:text-stone-400 dark:hover:text-stone-100"
-            >
-              Close
-            </button>
-          </div>
-
-          <div className="hidden h-20 w-full shrink-0 border-b border-neutral-200 bg-white px-0 pb-4 pt-4 dark:border-stone-800 dark:bg-stone-950 lg:flex lg:items-end lg:justify-between">
-            <div className="inline-flex h-11 items-end pb-2">
-              <h2 className="text-[15px] font-semibold leading-none text-neutral-900 dark:text-stone-50">Filters</h2>
-            </div>
-            <button
-              type="button"
-              onClick={clearFilters}
-              className="inline-flex h-11 items-end self-end px-2 pb-2 pt-0 text-[13px] font-medium leading-none text-neutral-600 transition hover:text-black dark:text-stone-300 dark:hover:text-stone-50"
-            >
-              <span>Reset</span>
-            </button>
-          </div>
-
-          <div className="mt-0 flex-1 space-y-6 overflow-y-auto px-6 pt-0 pb-[max(1.5rem,env(safe-area-inset-bottom))] lg:min-h-0 lg:flex-1 lg:space-y-6 lg:px-0 lg:pt-0 lg:pb-6">
-            <div className="pt-6">
+          <div className="flex items-center justify-between border-b border-stone-300 px-0 py-5 dark:border-stone-800 lg:hidden">
               <button
                 type="button"
-                aria-pressed={selectedHijabiFriendly}
-                onClick={() => setSelectedHijabiFriendly((current) => !current)}
-                className="flex min-h-11 w-full items-center justify-between rounded-[8px] px-0 py-2 text-left transition-colors hover:bg-neutral-50 dark:hover:bg-stone-900"
+                onClick={clearFilters}
+                className="min-h-11 px-2 py-2 text-[13px] font-medium text-stone-700 transition hover:text-stone-500 dark:text-stone-300 dark:hover:text-stone-50"
               >
-                <span className="text-[15px] font-medium text-neutral-900 dark:text-stone-100">Hijabi-friendly</span>
-                <span
-                  aria-hidden="true"
-                  className={cn(
-                    "relative inline-flex h-7 w-12 shrink-0 rounded-full bg-neutral-200 transition-colors dark:bg-stone-700",
-                    selectedHijabiFriendly && "bg-neutral-900 dark:bg-stone-100",
-                  )}
-                >
-                  <span
-                    className={cn(
-                      "absolute left-1 top-1 h-5 w-5 rounded-full bg-white transition-transform dark:bg-stone-950",
-                      selectedHijabiFriendly && "translate-x-5",
-                    )}
-                  />
-                </span>
+                Reset
+              </button>
+              <h2 className="text-[15px] font-semibold text-stone-950 dark:text-stone-50">Filters</h2>
+              <button
+                type="button"
+                onClick={() => setMobileFiltersOpen(false)}
+                className="min-h-11 px-2 py-2 text-[13px] font-medium text-stone-500 transition hover:text-stone-800 dark:text-stone-400 dark:hover:text-stone-100"
+              >
+                Close
               </button>
             </div>
 
-            <div>
-              <div
-                className={cn(
-                  "sticky top-0 z-10 bg-white pb-2 dark:bg-stone-950",
-                  servicesOpen && "border-b border-neutral-200 dark:border-stone-800",
-                )}
-              >
+          <div className="hidden h-20 w-full shrink-0 border-b border-stone-300 bg-stone-100 pb-4 pt-4 dark:border-stone-800 dark:bg-stone-950 lg:block">
+            <div className="flex items-end justify-between">
+                <div className="inline-flex h-11 items-end pb-2">
+                  <h2 className="text-[15px] font-semibold leading-none text-stone-950 dark:text-stone-50">Filters</h2>
+                </div>
                 <button
                   type="button"
-                  aria-expanded={servicesOpen}
-                  onClick={toggleServicesOpen}
-                  className="flex min-h-11 w-full items-center justify-between rounded-[8px] bg-white px-0 py-2 text-left transition-colors hover:bg-neutral-50 dark:bg-stone-950 dark:hover:bg-stone-900"
+                  onClick={clearFilters}
+                  className="inline-flex h-11 items-end self-end px-2 pb-2 pt-0 text-[13px] font-medium leading-none text-stone-700 transition hover:text-stone-500 dark:text-stone-200 dark:hover:text-stone-400"
                 >
-                  <span className="text-[15px] font-medium text-neutral-900 dark:text-stone-100">Services</span>
-                  <span className="flex items-center gap-2">
-                    {selectedServiceCount > 0 ? (
-                      <span className="inline-flex min-h-5 min-w-5 items-center justify-center rounded-full bg-neutral-900 px-2 text-[11px] font-bold leading-none text-white dark:bg-stone-100 dark:text-stone-950">
-                        {selectedServiceCount}
-                      </span>
-                    ) : null}
-                    <ChevronDown
-                      className={cn("size-4 text-neutral-500 transition-transform dark:text-stone-400", servicesOpen && "rotate-180")}
-                      aria-hidden="true"
-                    />
-                  </span>
+                  <span>Reset</span>
                 </button>
               </div>
-
-              <AnimatedCollapsible open={servicesOpen}>
-                <div className="space-y-2">
-                {sortedCategoryEntries.map(([id, item]) => {
-                  const isAllServices = id === "all";
-                  const isActive = isAllServices
-                    ? selectedCategories.length === 0 && selectedSubcategories.length === 0
-                    : isCategorySelected(id as ServiceCategoryId);
-                  const categoryLabelId = makeFilterLabelId("service-category", id);
-                  const visibleSubcategories = item.subcategories
-                    .filter((subItem) => subItem !== "all")
-                    .sort((left, right) => left.localeCompare(right));
-                  const showSubcategories =
-                    !isAllServices &&
-                    (isCategorySelected(id as ServiceCategoryId) || categoryHasSelectedSubcategories(id as ServiceCategoryId));
-
-                  return (
-                    <div key={id} className="space-y-2">
-                      <button
-                        type="button"
-                        aria-pressed={isActive}
-                        className="flex w-full cursor-pointer items-start gap-3 rounded-[8px] px-2 py-2 text-left transition-colors hover:bg-neutral-50 dark:hover:bg-stone-900"
-                        onClick={() => toggleCategory(id as CategoryId)}
-                      >
-                        <span
-                          aria-hidden="true"
-                          className={cn(
-                            "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-[4px] border border-stone-500 bg-white text-white transition dark:border-stone-500 dark:bg-stone-900",
-                            isActive && "border-stone-950 bg-stone-950 dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950",
-                          )}
-                        >
-                          {isActive ? <Check className="size-3.5" /> : null}
-                        </span>
-                        <span id={categoryLabelId} className="translate-y-[1.5px] text-[15px] text-neutral-800 dark:text-stone-200">
-                          {item.label}
-                        </span>
-                      </button>
-
-                      {showSubcategories && visibleSubcategories.length > 0 ? (
-                        <div className="space-y-2 pl-8">
-                          {visibleSubcategories.map((itemSubcategory) => {
-                            const subcategoryLabelId = makeFilterLabelId("service-subcategory", id, itemSubcategory);
-                            const isSubcategoryActive = selectedSubcategories.includes(itemSubcategory as ServiceSubcategoryId);
-
-                            return (
-                              <button
-                                type="button"
-                                aria-pressed={isSubcategoryActive}
-                                aria-labelledby={subcategoryLabelId}
-                                key={itemSubcategory}
-                                className="flex w-full cursor-pointer items-start gap-3 rounded-[8px] px-2 py-2 text-left transition-colors hover:bg-neutral-50 dark:hover:bg-stone-900"
-                                onClick={() => toggleSubcategory(itemSubcategory as ServiceSubcategoryId)}
-                              >
-                                <span
-                                  aria-hidden="true"
-                                  className={cn(
-                                    "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-[4px] border border-stone-500 bg-white text-white transition dark:border-stone-500 dark:bg-stone-900",
-                                    isSubcategoryActive && "border-stone-950 bg-stone-950 dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950",
-                                  )}
-                                >
-                                  {isSubcategoryActive ? <Check className="size-3.5" /> : null}
-                                </span>
-                                <span id={subcategoryLabelId} className="translate-y-[1.5px] text-[15px] text-neutral-800 dark:text-stone-200">
-                                  {itemSubcategory}
-                                </span>
-                              </button>
-                            );
-                          })}
-                        </div>
-                      ) : null}
-                    </div>
-                  );
-                })}
-                </div>
-              </AnimatedCollapsible>
-            </div>
-
-            <div>
-              <div
-                className={cn(
-                  "sticky top-11 z-10 bg-white pb-2 dark:bg-stone-950",
-                  locationsOpen && "border-b border-neutral-200 dark:border-stone-800",
-                )}
-              >
-                <button
-                  type="button"
-                  aria-expanded={locationsOpen}
-                  onClick={toggleLocationsOpen}
-                  className="flex min-h-11 w-full items-center justify-between rounded-[8px] bg-white px-0 py-2 text-left transition-colors hover:bg-neutral-50 dark:bg-stone-950 dark:hover:bg-stone-900"
-                >
-                  <span className="text-[15px] font-medium text-neutral-900 dark:text-stone-100">Locations</span>
-                  <span className="flex items-center gap-2">
-                    {selectedLocationCount > 0 ? (
-                      <span className="inline-flex min-h-5 min-w-5 items-center justify-center rounded-full bg-neutral-900 px-2 text-[11px] font-bold leading-none text-white dark:bg-stone-100 dark:text-stone-950">
-                        {selectedLocationCount}
-                      </span>
-                    ) : null}
-                    <ChevronDown
-                      className={cn("size-4 text-neutral-500 transition-transform dark:text-stone-400", locationsOpen && "rotate-180")}
-                      aria-hidden="true"
-                    />
-                  </span>
-                </button>
-              </div>
-
-              <AnimatedCollapsible open={locationsOpen}>
-                <div className="space-y-2">
-                {(() => {
-                  const allLocations = regions.find((item) => item.id === "all");
-                  const london = regions.find((item) => item.id === "london");
-                  const londonExpanded = isRegionSelected("london") || nestedLondonRegionIds.some((regionId) => isRegionSelected(regionId));
-                  const allLocationsLabelId = allLocations ? makeFilterLabelId("region", allLocations.id) : "";
-                  const londonLabelId = london ? makeFilterLabelId("region", london.id) : "";
-
-                  return allLocations && london ? (
-                    <>
-                      <div
-                        role="checkbox"
-                        tabIndex={0}
-                        aria-checked={isRegionSelected(allLocations.id)}
-                        aria-labelledby={allLocationsLabelId}
-                        className="flex w-full cursor-pointer items-start gap-3 rounded-[8px] px-2 py-2 text-left transition-colors hover:bg-neutral-50 dark:hover:bg-stone-900"
-                        onClick={() => toggleRegion(allLocations.id)}
-                        onKeyDown={(event) => handleToggleKeyDown(event, () => toggleRegion(allLocations.id))}
-                      >
-                        <Checkbox
-                          checked={isRegionSelected(allLocations.id)}
-                          aria-hidden="true"
-                          tabIndex={-1}
-                          className="pointer-events-none"
-                        />
-                        <span id={allLocationsLabelId} className="translate-y-[1.5px] text-[15px] text-neutral-800 dark:text-stone-200">
-                          {allLocations.label}
-                        </span>
-                      </div>
-
-                      <div
-                        role="checkbox"
-                        tabIndex={0}
-                        aria-checked={isRegionSelected(london.id)}
-                        aria-labelledby={londonLabelId}
-                        className="flex w-full cursor-pointer items-start gap-3 rounded-[8px] px-2 py-2 text-left transition-colors hover:bg-neutral-50 dark:hover:bg-stone-900"
-                        onClick={() => toggleRegion(london.id)}
-                        onKeyDown={(event) => handleToggleKeyDown(event, () => toggleRegion(london.id))}
-                      >
-                        <Checkbox
-                          checked={isRegionSelected(london.id)}
-                          aria-hidden="true"
-                          tabIndex={-1}
-                          className="pointer-events-none"
-                        />
-                        <span id={londonLabelId} className="translate-y-[1.5px] text-[15px] text-neutral-800 dark:text-stone-200">
-                          {london.label}
-                        </span>
-                      </div>
-
-                      {londonExpanded ? (
-                        <div className="space-y-2 pl-8">
-                          {nestedLondonRegionIds.map((regionId) => {
-                            const item = regions.find((regionItem) => regionItem.id === regionId);
-                            if (!item) return null;
-                            const regionLabelId = makeFilterLabelId("region", item.id);
-
-                            return (
-                              <div
-                                role="checkbox"
-                                tabIndex={0}
-                                aria-checked={isRegionSelected(item.id)}
-                                aria-labelledby={regionLabelId}
-                                key={item.id}
-                                className="flex w-full cursor-pointer items-start gap-3 rounded-[8px] px-2 py-2 text-left transition-colors hover:bg-neutral-50 dark:hover:bg-stone-900"
-                                onClick={() => toggleRegion(item.id)}
-                                onKeyDown={(event) => handleToggleKeyDown(event, () => toggleRegion(item.id))}
-                              >
-                                <Checkbox
-                                  checked={isRegionSelected(item.id)}
-                                  aria-hidden="true"
-                                  tabIndex={-1}
-                                  className="pointer-events-none"
-                                />
-                                <span id={regionLabelId} className="translate-y-[1.5px] text-[15px] text-neutral-800 dark:text-stone-200">
-                                  {item.label}
-                                </span>
-                              </div>
-                            );
-                          })}
-                        </div>
-                      ) : null}
-                    </>
-                  ) : null;
-                })()}
-
-                {standaloneRegionIds.map((regionId) => {
-                  const item = regions.find((regionItem) => regionItem.id === regionId);
-                  if (!item) return null;
-                  const regionLabelId = makeFilterLabelId("region", item.id);
-
-                  return (
-                    <div
-                      role="checkbox"
-                      tabIndex={0}
-                      aria-checked={isRegionSelected(item.id)}
-                      aria-labelledby={regionLabelId}
-                      key={item.id}
-                      className="flex w-full cursor-pointer items-start gap-3 rounded-[8px] px-2 py-2 text-left transition-colors hover:bg-neutral-50 dark:hover:bg-stone-900"
-                      onClick={() => toggleRegion(item.id)}
-                      onKeyDown={(event) => handleToggleKeyDown(event, () => toggleRegion(item.id))}
-                    >
-                      <Checkbox
-                        checked={isRegionSelected(item.id)}
-                        aria-hidden="true"
-                        tabIndex={-1}
-                        className="pointer-events-none"
-                      />
-                      <span id={regionLabelId} className="translate-y-[1.5px] text-[15px] text-neutral-800 dark:text-stone-200">
-                        {item.label}
-                      </span>
-                    </div>
-                  );
-                })}
-                </div>
-              </AnimatedCollapsible>
-            </div>
           </div>
 
+          <div className="mt-0 flex-1 space-y-6 overflow-y-auto px-0 pt-0 pb-[max(1.5rem,env(safe-area-inset-bottom))] lg:min-h-0 lg:flex-1 lg:space-y-6 lg:px-0 lg:pt-0 lg:pb-6">
+            <div className="pt-6">
+                <button
+                  type="button"
+                  aria-pressed={selectedHijabiFriendly}
+                  onClick={() => {
+                    setSelectedHijabiFriendly((current) => !current);
+                    setHijabiHoverLocked(true);
+                  }}
+                  onMouseLeave={() => setHijabiHoverLocked(false)}
+                  className="group flex min-h-11 w-full items-center justify-between rounded-none px-0 py-2 text-left"
+                >
+                  <span
+                    className={cn(
+                      "text-[15px] font-medium text-stone-950 transition-colors dark:text-stone-100",
+                      !hijabiHoverLocked && "group-hover:text-stone-500 dark:group-hover:text-stone-500",
+                    )}
+                  >
+                    Hijabi-friendly
+                  </span>
+                  <span
+                    aria-hidden="true"
+                    className={cn(
+                      "relative inline-flex h-7 w-12 shrink-0 rounded-full bg-stone-500 transition-colors dark:bg-stone-500",
+                      !hijabiHoverLocked && "group-hover:bg-stone-300 dark:group-hover:bg-stone-700",
+                      selectedHijabiFriendly && "bg-stone-950 dark:bg-stone-100",
+                    )}
+                  >
+                    <span
+                      className={cn(
+                        "absolute left-1 top-1 h-5 w-5 rounded-full bg-white transition-transform dark:bg-stone-950",
+                        selectedHijabiFriendly && "translate-x-5",
+                      )}
+                    />
+                  </span>
+                </button>
+              </div>
+
+              <div>
+                <div
+                  className={cn(
+                    "sticky top-0 z-10 bg-stone-100 pb-2 dark:bg-stone-950",
+                    servicesOpen && "border-b border-stone-300 dark:border-stone-800",
+                  )}
+                >
+                    <button
+                      type="button"
+                      aria-expanded={servicesOpen}
+                      onClick={toggleServicesOpen}
+                    className="group flex min-h-11 w-full items-center justify-between rounded-none bg-transparent px-0 py-2 text-left"
+                    >
+                    <span className="text-[15px] font-medium text-stone-950 transition-colors group-hover:text-stone-500 dark:text-stone-100 dark:group-hover:text-stone-500">Services</span>
+                    <span className="flex items-center gap-2">
+                      {selectedServiceCount > 0 ? (
+                        <span className="inline-flex min-h-5 min-w-5 items-center justify-center rounded-full bg-stone-950 px-2 text-[11px] font-bold leading-none text-stone-100 transition-colors group-hover:bg-stone-500 dark:bg-stone-100 dark:text-stone-950 dark:group-hover:bg-stone-500">
+                          {selectedServiceCount}
+                        </span>
+                      ) : null}
+                      <ChevronDown
+                        className={cn("size-4 text-stone-700 transition-colors transition-transform group-hover:text-stone-500 dark:text-stone-200 dark:group-hover:text-stone-500", servicesOpen && "rotate-180")}
+                        aria-hidden="true"
+                      />
+                    </span>
+                  </button>
+                </div>
+
+                <AnimatedCollapsible open={servicesOpen}>
+                  <div className="space-y-2 pt-3">
+                    {sortedCategoryEntries.map(([id, item]) => {
+                      const isAllServices = id === "all";
+                      const isActive = isAllServices
+                        ? selectedCategories.length === 0 && selectedSubcategories.length === 0
+                        : isCategorySelected(id as ServiceCategoryId);
+                      const categoryLabelId = makeFilterLabelId("service-category", id);
+                      const visibleSubcategories = item.subcategories
+                        .filter((subItem) => subItem !== "all")
+                        .sort((left, right) => left.localeCompare(right));
+                      const showSubcategories =
+                        !isAllServices &&
+                        (isCategorySelected(id as ServiceCategoryId) || categoryHasSelectedSubcategories(id as ServiceCategoryId));
+
+                      return (
+                        <div key={id} className="space-y-2">
+                          <button
+                            type="button"
+                            aria-pressed={isActive}
+                            className="flex w-full cursor-pointer items-start gap-3 rounded-none px-2 py-2 text-left transition-colors hover:bg-stone-200 dark:hover:bg-stone-900"
+                            onClick={() => toggleCategory(id as CategoryId)}
+                          >
+                            <span
+                              aria-hidden="true"
+                              className={cn(
+                                "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-none border border-stone-500 bg-white text-white transition dark:border-stone-500 dark:bg-stone-900",
+                                isActive && "border-stone-950 bg-stone-950 dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950",
+                              )}
+                            >
+                              {isActive ? <Check className="size-3.5" /> : null}
+                            </span>
+                            <span id={categoryLabelId} className="translate-y-[1.5px] text-[15px] text-stone-800 dark:text-stone-200">
+                              {item.label}
+                            </span>
+                          </button>
+
+                          {showSubcategories && visibleSubcategories.length > 0 ? (
+                            <div className="space-y-2 pl-8">
+                              {visibleSubcategories.map((itemSubcategory) => {
+                                const subcategoryLabelId = makeFilterLabelId("service-subcategory", id, itemSubcategory);
+                                const isSubcategoryActive = selectedSubcategories.includes(itemSubcategory as ServiceSubcategoryId);
+
+                                return (
+                                  <button
+                                    type="button"
+                                    aria-pressed={isSubcategoryActive}
+                                    aria-labelledby={subcategoryLabelId}
+                                    key={itemSubcategory}
+                                    className="flex w-full cursor-pointer items-start gap-3 rounded-none px-2 py-2 text-left transition-colors hover:bg-stone-200 dark:hover:bg-stone-900"
+                                    onClick={() => toggleSubcategory(itemSubcategory as ServiceSubcategoryId)}
+                                  >
+                                    <span
+                                      aria-hidden="true"
+                                      className={cn(
+                                        "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-none border border-stone-500 bg-white text-white transition dark:border-stone-500 dark:bg-stone-900",
+                                        isSubcategoryActive && "border-stone-950 bg-stone-950 dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950",
+                                      )}
+                                    >
+                                      {isSubcategoryActive ? <Check className="size-3.5" /> : null}
+                                    </span>
+                                    <span id={subcategoryLabelId} className="translate-y-[1.5px] text-[15px] text-stone-800 dark:text-stone-200">
+                                      {itemSubcategory}
+                                    </span>
+                                  </button>
+                                );
+                              })}
+                            </div>
+                          ) : null}
+                        </div>
+                      );
+                    })}
+                  </div>
+                </AnimatedCollapsible>
+              </div>
+
+            <div>
+                <div
+                  className={cn(
+                    "sticky top-11 z-10 bg-stone-100 pb-2 dark:bg-stone-950",
+                    locationsOpen && "border-b border-stone-300 dark:border-stone-800",
+                  )}
+                >
+                  <div>
+                    <button
+                      type="button"
+                      aria-expanded={locationsOpen}
+                      onClick={toggleLocationsOpen}
+                      className="group flex min-h-11 w-full items-center justify-between rounded-none bg-transparent px-0 py-2 text-left"
+                    >
+                      <span className="text-[15px] font-medium text-stone-950 transition-colors group-hover:text-stone-500 dark:text-stone-100 dark:group-hover:text-stone-500">Locations</span>
+                      <span className="flex items-center gap-2">
+                        {selectedLocationCount > 0 ? (
+                          <span className="inline-flex min-h-5 min-w-5 items-center justify-center rounded-full bg-stone-950 px-2 text-[11px] font-bold leading-none text-stone-100 transition-colors group-hover:bg-stone-500 dark:bg-stone-100 dark:text-stone-950 dark:group-hover:bg-stone-500">
+                            {selectedLocationCount}
+                          </span>
+                        ) : null}
+                        <ChevronDown
+                          className={cn("size-4 text-stone-700 transition-colors transition-transform group-hover:text-stone-500 dark:text-stone-200 dark:group-hover:text-stone-400", locationsOpen && "rotate-180")}
+                          aria-hidden="true"
+                        />
+                      </span>
+                    </button>
+                  </div>
+                </div>
+
+                <AnimatedCollapsible open={locationsOpen}>
+                  <div className="space-y-2 pt-3">
+                    {(() => {
+                      const allLocations = regions.find((item) => item.id === "all");
+                      const london = regions.find((item) => item.id === "london");
+                      const londonExpanded = isRegionSelected("london") || nestedLondonRegionIds.some((regionId) => isRegionSelected(regionId));
+                      const allLocationsLabelId = allLocations ? makeFilterLabelId("region", allLocations.id) : "";
+                      const londonLabelId = london ? makeFilterLabelId("region", london.id) : "";
+
+                      return allLocations && london ? (
+                        <>
+                          <div
+                            role="checkbox"
+                            tabIndex={0}
+                            aria-checked={isRegionSelected(allLocations.id)}
+                            aria-labelledby={allLocationsLabelId}
+                            className="flex w-full cursor-pointer items-start gap-3 rounded-none px-2 py-2 text-left transition-colors hover:bg-stone-200 dark:hover:bg-stone-900"
+                            onClick={() => toggleRegion(allLocations.id)}
+                            onKeyDown={(event) => handleToggleKeyDown(event, () => toggleRegion(allLocations.id))}
+                          >
+                            <Checkbox
+                              checked={isRegionSelected(allLocations.id)}
+                              aria-hidden="true"
+                              tabIndex={-1}
+                              className="pointer-events-none mt-0.5"
+                            />
+                            <span id={allLocationsLabelId} className="translate-y-[1.5px] text-[15px] text-stone-800 dark:text-stone-200">
+                              {allLocations.label}
+                            </span>
+                          </div>
+
+                          <div
+                            role="checkbox"
+                            tabIndex={0}
+                            aria-checked={isRegionSelected(london.id)}
+                            aria-labelledby={londonLabelId}
+                            className="flex w-full cursor-pointer items-start gap-3 rounded-none px-2 py-2 text-left transition-colors hover:bg-stone-200 dark:hover:bg-stone-900"
+                            onClick={() => toggleRegion(london.id)}
+                            onKeyDown={(event) => handleToggleKeyDown(event, () => toggleRegion(london.id))}
+                          >
+                            <Checkbox
+                              checked={isRegionSelected(london.id)}
+                              aria-hidden="true"
+                              tabIndex={-1}
+                              className="pointer-events-none mt-0.5"
+                            />
+                            <span id={londonLabelId} className="translate-y-[1.5px] text-[15px] text-stone-800 dark:text-stone-200">
+                              {london.label}
+                            </span>
+                          </div>
+
+                          {londonExpanded ? (
+                            <div className="space-y-2 pl-8">
+                              {nestedLondonRegionIds.map((regionId) => {
+                                const item = regions.find((regionItem) => regionItem.id === regionId);
+                                if (!item) return null;
+                                const regionLabelId = makeFilterLabelId("region", item.id);
+
+                                return (
+                                  <div
+                                    role="checkbox"
+                                    tabIndex={0}
+                                    aria-checked={isRegionSelected(item.id)}
+                                    aria-labelledby={regionLabelId}
+                                    key={item.id}
+                                    className="flex w-full cursor-pointer items-start gap-3 rounded-none px-2 py-2 text-left transition-colors hover:bg-stone-200 dark:hover:bg-stone-900"
+                                    onClick={() => toggleRegion(item.id)}
+                                    onKeyDown={(event) => handleToggleKeyDown(event, () => toggleRegion(item.id))}
+                                  >
+                                    <Checkbox
+                                      checked={isRegionSelected(item.id)}
+                                      aria-hidden="true"
+                                      tabIndex={-1}
+                                      className="pointer-events-none mt-0.5"
+                                    />
+                                    <span id={regionLabelId} className="translate-y-[1.5px] text-[15px] text-stone-800 dark:text-stone-200">
+                                      {item.label}
+                                    </span>
+                                  </div>
+                                );
+                              })}
+                            </div>
+                          ) : null}
+                        </>
+                      ) : null;
+                    })()}
+
+                    {standaloneRegionIds.map((regionId) => {
+                      const item = regions.find((regionItem) => regionItem.id === regionId);
+                      if (!item) return null;
+                      const regionLabelId = makeFilterLabelId("region", item.id);
+
+                      return (
+                        <div
+                          role="checkbox"
+                          tabIndex={0}
+                          aria-checked={isRegionSelected(item.id)}
+                          aria-labelledby={regionLabelId}
+                          key={item.id}
+                          className="flex w-full cursor-pointer items-start gap-3 rounded-none px-2 py-2 text-left transition-colors hover:bg-stone-200 dark:hover:bg-stone-900"
+                          onClick={() => toggleRegion(item.id)}
+                          onKeyDown={(event) => handleToggleKeyDown(event, () => toggleRegion(item.id))}
+                        >
+                          <Checkbox
+                            checked={isRegionSelected(item.id)}
+                            aria-hidden="true"
+                            tabIndex={-1}
+                            className="pointer-events-none mt-0.5"
+                          />
+                          <span id={regionLabelId} className="translate-y-[1.5px] text-[15px] text-stone-800 dark:text-stone-200">
+                            {item.label}
+                          </span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </AnimatedCollapsible>
+              </div>
+          </div>
         </aside>
       </div>
 
-      <footer className="mt-auto border-t border-neutral-100 px-6 py-4 dark:border-stone-800 sm:px-10">
+      <footer className="mt-auto border-t border-stone-300 px-6 py-4 dark:border-stone-800 sm:px-10">
         <div className="mx-auto flex w-full max-w-[1280px] flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
-          <span className="text-[14px] text-neutral-600 dark:text-stone-300">ROW K 2026</span>
+          <span className="text-[14px] text-stone-700 dark:text-stone-300">ROW K 2026</span>
           <a
             href="https://tally.so/r/VLY10g"
             target="_blank"
             rel="noreferrer"
-            className="inline-flex min-h-11 items-center py-2 text-[14px] text-neutral-500 transition hover:text-neutral-800 dark:text-stone-400 dark:hover:text-stone-100"
+            className="inline-flex min-h-11 items-center py-2 text-[14px] text-stone-500 transition hover:text-stone-800 dark:text-stone-400 dark:hover:text-stone-100"
           >
             Submit a stylist
             <span className="sr-only"> - opens in a new tab</span>

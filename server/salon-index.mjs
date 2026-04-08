@@ -150,7 +150,7 @@ async function readIndexFile(filePath, source) {
 
 function matchesRegion(salon, regions) {
   const areaIds = Array.isArray(salon.areaIds) ? salon.areaIds : salon.areaId ? [salon.areaId] : [];
-  const londonAreas = new Set(["all-london", "central", "north", "east", "south-east", "south-west", "west", "croydon"]);
+  const londonAreas = new Set(["all-london", "central", "north", "north-west", "east", "south-east", "south-west", "west", "croydon"]);
   const selectedRegions = Array.isArray(regions) && regions.length > 0 ? regions : ["all"];
 
   if (selectedRegions.includes("all")) {
