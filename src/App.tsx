@@ -573,17 +573,21 @@ export default function App() {
     <div className="min-h-screen bg-white text-left dark:bg-stone-950">
       <header className="border-b border-neutral-200 dark:border-stone-800">
         <div className="mx-auto flex w-full max-w-[1280px] items-start px-4 sm:px-6 lg:px-10">
-          <div className="min-w-0 flex-1 py-8">
-            <div className="flex flex-col items-start gap-2 px-4">
-              <p className="w-full text-left text-xs font-semibold uppercase tracking-[0.18em] text-neutral-500 dark:text-stone-400">
+          <div className="min-w-0 flex-1 pb-16 pt-12">
+            <div className="flex flex-col items-start gap-11 px-4">
+              <p className="inline-flex items-center bg-neutral-100 px-3 py-2 text-left text-[11px] font-bold uppercase leading-none tracking-[0.11em] text-neutral-700 dark:bg-stone-100 dark:text-stone-950">
                 Row K LDN
               </p>
-              <h1 className="-ml-[0.03em] w-full text-left font-figtree text-[32px] font-semibold leading-[40px] tracking-tight text-neutral-900 dark:text-stone-50 sm:text-[40px] sm:leading-[48px] lg:text-[48px]">
-                Black hair directory
-              </h1>
-              <p className="mt-1 w-full max-w-3xl text-left text-sm leading-7 text-neutral-600 dark:text-stone-300 sm:text-base">
-                Specialists in afro hairstyles, relaxed & natural hair. London, UK and surrounding areas.
-              </p>
+              <div className="flex flex-col items-start gap-3">
+                <h1 className="-ml-[0.045em] w-full text-left text-[44px] italic font-medium leading-[46px] tracking-tight text-neutral-900 dark:text-stone-50 sm:text-[56px] sm:leading-[58px] lg:text-[68px] lg:leading-[70px] lg:whitespace-nowrap" style={{ fontFamily: "Junicode, Instrument Serif, Georgia, Times New Roman, serif" }}>
+                  Black hair directory
+                </h1>
+                <p className="w-full max-w-3xl text-left text-[18px] leading-[1.55] text-neutral-600 dark:text-stone-300 sm:text-[19px]">
+                  Find afro hair stylists & salons in and around London.
+                  <br className="hidden lg:block" />
+                  <span className="inline-block">Natural, relaxed, braids, weaves, wigs etc.</span>
+                </p>
+              </div>
             </div>
           </div>
           <div className="hidden w-72 flex-none border-l border-transparent pl-8 lg:block" />
@@ -592,7 +596,7 @@ export default function App() {
 
       <div className="mx-auto flex w-full max-w-[1280px] flex-col px-4 sm:px-6 lg:flex-row lg:items-start lg:px-10">
         <section id="live-results" className="min-w-0 flex-1 pb-6 pt-4 lg:pb-6 lg:pt-0">
-          <div className="sticky top-0 z-30 mb-4 flex w-full items-center justify-between border-b border-neutral-100 bg-white px-4 pb-4 pt-2 dark:border-stone-800 dark:bg-stone-950 lg:h-20 lg:items-end lg:pb-6 lg:pt-2">
+          <div className="sticky top-0 z-30 flex w-full items-center justify-between border-b border-neutral-100 bg-white px-4 pb-4 pt-2 dark:border-stone-800 dark:bg-stone-950 lg:h-20 lg:items-end lg:pb-6 lg:pt-2">
             {hasSearched ? (
               <h2 className="text-[14px] font-medium leading-none text-neutral-500 dark:text-stone-400">
                 {results.length} {results.length === 1 ? "result" : "results"}
@@ -605,7 +609,7 @@ export default function App() {
               <button
                 type="button"
                 onClick={() => setMobileFiltersOpen(true)}
-                className="min-h-11 rounded-[8px] px-3 py-2 text-neutral-600 transition-colors hover:bg-neutral-100 hover:text-neutral-800 dark:text-stone-300 dark:hover:bg-stone-800 dark:hover:text-stone-100"
+                className="min-h-11 rounded-none px-3 py-2 text-neutral-600 transition-colors hover:bg-neutral-100 hover:text-neutral-800 dark:text-stone-300 dark:hover:bg-stone-800 dark:hover:text-stone-100"
               >
                 Filter
               </button>
@@ -669,25 +673,40 @@ export default function App() {
                   >
                     <article className="flex w-full flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                       <div className="min-w-0 grow">
-                        <div className="flex flex-wrap items-center gap-2">
-                          <h3 className="text-[17px] font-semibold text-neutral-900 dark:text-stone-50">{result.name}</h3>
-                          {result.hijabiFriendly ? (
-                            <span className="inline-flex items-center gap-1 rounded-[4px] bg-emerald-100 pl-1.5 pr-2 py-1 text-[11px] font-medium leading-none text-emerald-800 dark:bg-emerald-950/50 dark:text-emerald-300">
-                              <Check className="size-3.5" aria-hidden="true" />
-                              Hijabi-friendly
-                            </span>
+                        <div className="flex items-start justify-between gap-3">
+                          <div className="min-w-0">
+                            <div className="flex flex-wrap items-center gap-2">
+                              <h3 className="text-[17px] font-semibold text-neutral-900 dark:text-stone-50">{result.name}</h3>
+                              {result.hijabiFriendly ? (
+                                <span className="inline-flex items-center gap-1 rounded-[4px] bg-emerald-100 pl-1.5 pr-2 py-1 text-[11px] font-medium leading-none text-emerald-800 dark:bg-emerald-950/50 dark:text-emerald-300">
+                                  <Check className="size-3.5" aria-hidden="true" />
+                                  Hijabi-friendly
+                                </span>
+                              ) : null}
+                            </div>
+                            {locationLabels.length > 0 ? (
+                              <div className="mt-1 flex flex-wrap items-center gap-2 text-[14px] text-neutral-500 dark:text-stone-400">
+                                {locationLabels.map((label, index) => (
+                                  <Fragment key={label}>
+                                    {index > 0 ? <span>•</span> : null}
+                                    <span>{label}</span>
+                                  </Fragment>
+                                ))}
+                              </div>
+                            ) : null}
+                          </div>
+                          {result.instagramUrl ? (
+                            <a
+                              href={result.instagramUrl}
+                              target="_blank"
+                              rel="noreferrer"
+                              className="inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-none bg-white px-4 py-2 text-[14px] font-medium text-neutral-900 transition-colors duration-150 hover:bg-neutral-100 dark:bg-stone-900 dark:text-stone-100 dark:hover:bg-stone-800 sm:hidden"
+                            >
+                              <InstagramIcon className="size-4" />
+                              <span className="sr-only">{result.name} instagram - opens in a new tab</span>
+                            </a>
                           ) : null}
                         </div>
-                        {locationLabels.length > 0 ? (
-                          <div className="mt-1 flex flex-wrap items-center gap-2 text-[14px] text-neutral-500 dark:text-stone-400">
-                            {locationLabels.map((label, index) => (
-                              <Fragment key={label}>
-                                {index > 0 ? <span>•</span> : null}
-                                <span>{label}</span>
-                              </Fragment>
-                            ))}
-                          </div>
-                        ) : null}
                         <div className="mt-3 flex flex-wrap items-center gap-2">
                           {result.services.map((service) => (
                             <span
@@ -701,26 +720,26 @@ export default function App() {
                       </div>
 
                       <div className="flex w-full shrink-0 items-center gap-2 sm:w-auto">
-                        {result.bookingPlatform !== "Instagram" ? (
-                          <a
-                            href={result.bookingUrl}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="inline-flex min-h-11 flex-1 items-center justify-center rounded-[12px] bg-neutral-900 px-4 py-2 text-[14px] font-medium text-white transition-colors duration-150 hover:bg-neutral-700 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-stone-300 sm:flex-none"
-                          >
-                            Book
-                            <span className="sr-only"> - {result.name} - opens in a new tab</span>
-                          </a>
-                        ) : null}
                         {result.instagramUrl ? (
                           <a
                             href={result.instagramUrl}
                             target="_blank"
                             rel="noreferrer"
-                            className="inline-flex min-h-11 items-center justify-center gap-2 rounded-[12px] border border-neutral-200 bg-white px-4 py-2 text-[14px] font-medium text-neutral-900 transition-colors duration-150 hover:border-neutral-300 hover:bg-neutral-100 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100 dark:hover:border-stone-600 dark:hover:bg-stone-800"
+                            className="hidden min-h-11 items-center justify-center gap-2 rounded-none bg-white px-4 py-2 text-[14px] font-medium text-neutral-900 transition-colors duration-150 hover:bg-neutral-100 dark:bg-stone-900 dark:text-stone-100 dark:hover:bg-stone-800 sm:inline-flex"
                           >
                             <InstagramIcon className="size-4" />
                             <span className="sr-only">{result.name} instagram - opens in a new tab</span>
+                          </a>
+                        ) : null}
+                        {result.bookingPlatform !== "Instagram" ? (
+                          <a
+                            href={result.bookingUrl}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="inline-flex min-h-11 flex-1 items-center justify-center rounded-none bg-neutral-900 px-4 py-2 text-[14px] font-medium text-white transition-colors duration-150 hover:bg-neutral-700 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-stone-300 sm:flex-none"
+                          >
+                            Book
+                            <span className="sr-only"> - {result.name} - opens in a new tab</span>
                           </a>
                         ) : null}
                         {result.websiteUrl && result.websiteUrl !== result.bookingUrl ? (
@@ -728,7 +747,7 @@ export default function App() {
                             href={result.websiteUrl}
                             target="_blank"
                             rel="noreferrer"
-                            className="inline-flex min-h-11 items-center justify-center rounded-[12px] border border-neutral-200 bg-white px-4 py-2 text-[14px] font-medium text-neutral-900 transition-colors duration-150 hover:border-neutral-300 hover:bg-neutral-100 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100 dark:hover:border-stone-600 dark:hover:bg-stone-800"
+                            className="inline-flex min-h-11 items-center justify-center rounded-none border border-neutral-200 bg-white px-4 py-2 text-[14px] font-medium text-neutral-900 transition-colors duration-150 hover:border-neutral-300 hover:bg-neutral-100 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100 dark:hover:border-stone-600 dark:hover:bg-stone-800"
                           >
                             <Globe className="size-4" />
                           </a>
@@ -792,7 +811,7 @@ export default function App() {
             <button
               type="button"
               onClick={clearFilters}
-              className="min-h-11 px-2 py-2 text-[13px] font-medium text-neutral-600 transition hover:text-neutral-800 dark:text-stone-300 dark:hover:text-stone-100"
+              className="min-h-11 px-2 py-2 text-[13px] font-medium text-neutral-600 transition hover:text-black dark:text-stone-300 dark:hover:text-stone-50"
             >
               Reset
             </button>
@@ -813,7 +832,7 @@ export default function App() {
             <button
               type="button"
               onClick={clearFilters}
-              className="inline-flex h-11 items-end self-end px-2 pb-2 pt-0 text-[13px] font-medium leading-none text-neutral-600 transition hover:text-neutral-800 dark:text-stone-300 dark:hover:text-stone-100"
+              className="inline-flex h-11 items-end self-end px-2 pb-2 pt-0 text-[13px] font-medium leading-none text-neutral-600 transition hover:text-black dark:text-stone-300 dark:hover:text-stone-50"
             >
               <span>Reset</span>
             </button>
@@ -845,35 +864,36 @@ export default function App() {
               </button>
             </div>
 
-            <div
-              className={cn(
-                "sticky top-0 z-10 bg-white pb-2 dark:bg-stone-950",
-                servicesOpen && "border-b border-neutral-100 dark:border-stone-800",
-              )}
-            >
-              <button
-                type="button"
-                aria-expanded={servicesOpen}
-                onClick={toggleServicesOpen}
-                className="flex min-h-11 w-full items-center justify-between rounded-[8px] bg-white px-2 py-2 text-left transition-colors hover:bg-neutral-50 dark:bg-stone-950 dark:hover:bg-stone-900"
+            <div>
+              <div
+                className={cn(
+                  "sticky top-0 z-10 bg-white pb-2 dark:bg-stone-950",
+                  servicesOpen && "border-b border-neutral-100 dark:border-stone-800",
+                )}
               >
-                <span className="text-[15px] font-medium text-neutral-900 dark:text-stone-100">Services</span>
-                <span className="flex items-center gap-2">
-                  {selectedServiceCount > 0 ? (
-                    <span className="inline-flex min-h-5 min-w-5 items-center justify-center rounded-full bg-neutral-900 px-2 text-[11px] font-bold leading-none text-white dark:bg-stone-100 dark:text-stone-950">
-                      {selectedServiceCount}
-                    </span>
-                  ) : null}
-                  <ChevronDown
-                    className={cn("size-4 text-neutral-500 transition-transform dark:text-stone-400", servicesOpen && "rotate-180")}
-                    aria-hidden="true"
-                  />
-                </span>
-              </button>
-            </div>
+                <button
+                  type="button"
+                  aria-expanded={servicesOpen}
+                  onClick={toggleServicesOpen}
+                  className="flex min-h-11 w-full items-center justify-between rounded-[8px] bg-white px-2 py-2 text-left transition-colors hover:bg-neutral-50 dark:bg-stone-950 dark:hover:bg-stone-900"
+                >
+                  <span className="text-[15px] font-medium text-neutral-900 dark:text-stone-100">Services</span>
+                  <span className="flex items-center gap-2">
+                    {selectedServiceCount > 0 ? (
+                      <span className="inline-flex min-h-5 min-w-5 items-center justify-center rounded-full bg-neutral-900 px-2 text-[11px] font-bold leading-none text-white dark:bg-stone-100 dark:text-stone-950">
+                        {selectedServiceCount}
+                      </span>
+                    ) : null}
+                    <ChevronDown
+                      className={cn("size-4 text-neutral-500 transition-transform dark:text-stone-400", servicesOpen && "rotate-180")}
+                      aria-hidden="true"
+                    />
+                  </span>
+                </button>
+              </div>
 
-            <AnimatedCollapsible open={servicesOpen}>
-              <div className="space-y-2">
+              <AnimatedCollapsible open={servicesOpen}>
+                <div className="space-y-2">
                 {sortedCategoryEntries.map(([id, item]) => {
                   const isAllServices = id === "all";
                   const isActive = isAllServices
@@ -944,38 +964,40 @@ export default function App() {
                     </div>
                   );
                 })}
-              </div>
-            </AnimatedCollapsible>
-
-            <div
-              className={cn(
-                "sticky top-11 z-10 bg-white pb-2 dark:bg-stone-950",
-                locationsOpen && "border-b border-neutral-100 dark:border-stone-800",
-              )}
-            >
-              <button
-                type="button"
-                aria-expanded={locationsOpen}
-                onClick={toggleLocationsOpen}
-                className="flex min-h-11 w-full items-center justify-between rounded-[8px] bg-white px-2 py-2 text-left transition-colors hover:bg-neutral-50 dark:bg-stone-950 dark:hover:bg-stone-900"
-              >
-                <span className="text-[15px] font-medium text-neutral-900 dark:text-stone-100">Locations</span>
-                <span className="flex items-center gap-2">
-                  {selectedLocationCount > 0 ? (
-                    <span className="inline-flex min-h-5 min-w-5 items-center justify-center rounded-full bg-neutral-900 px-2 text-[11px] font-bold leading-none text-white dark:bg-stone-100 dark:text-stone-950">
-                      {selectedLocationCount}
-                    </span>
-                  ) : null}
-                  <ChevronDown
-                    className={cn("size-4 text-neutral-500 transition-transform dark:text-stone-400", locationsOpen && "rotate-180")}
-                    aria-hidden="true"
-                  />
-                </span>
-              </button>
+                </div>
+              </AnimatedCollapsible>
             </div>
 
-            <AnimatedCollapsible open={locationsOpen}>
-              <div className="space-y-2">
+            <div>
+              <div
+                className={cn(
+                  "sticky top-11 z-10 bg-white pb-2 dark:bg-stone-950",
+                  locationsOpen && "border-b border-neutral-100 dark:border-stone-800",
+                )}
+              >
+                <button
+                  type="button"
+                  aria-expanded={locationsOpen}
+                  onClick={toggleLocationsOpen}
+                  className="flex min-h-11 w-full items-center justify-between rounded-[8px] bg-white px-2 py-2 text-left transition-colors hover:bg-neutral-50 dark:bg-stone-950 dark:hover:bg-stone-900"
+                >
+                  <span className="text-[15px] font-medium text-neutral-900 dark:text-stone-100">Locations</span>
+                  <span className="flex items-center gap-2">
+                    {selectedLocationCount > 0 ? (
+                      <span className="inline-flex min-h-5 min-w-5 items-center justify-center rounded-full bg-neutral-900 px-2 text-[11px] font-bold leading-none text-white dark:bg-stone-100 dark:text-stone-950">
+                        {selectedLocationCount}
+                      </span>
+                    ) : null}
+                    <ChevronDown
+                      className={cn("size-4 text-neutral-500 transition-transform dark:text-stone-400", locationsOpen && "rotate-180")}
+                      aria-hidden="true"
+                    />
+                  </span>
+                </button>
+              </div>
+
+              <AnimatedCollapsible open={locationsOpen}>
+                <div className="space-y-2">
                 {(() => {
                   const allLocations = regions.find((item) => item.id === "all");
                   const london = regions.find((item) => item.id === "london");
@@ -1089,8 +1111,9 @@ export default function App() {
                     </div>
                   );
                 })}
-              </div>
-            </AnimatedCollapsible>
+                </div>
+              </AnimatedCollapsible>
+            </div>
           </div>
 
         </aside>
