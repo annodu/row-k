@@ -573,7 +573,7 @@ export default function App() {
     <div className="min-h-screen bg-white text-left dark:bg-stone-950">
       <header className="border-b border-neutral-200 dark:border-stone-800">
         <div className="mx-auto flex w-full max-w-[1120px] items-start px-4 sm:px-6 lg:px-10">
-          <div className="min-w-0 flex-1 pb-16 pt-12">
+          <div className="min-w-0 flex-1 pb-10 pt-10 sm:pb-16 sm:pt-12">
             <div className="flex flex-col items-start gap-11 px-4">
               <p className="inline-flex items-center bg-neutral-100 px-3 py-2 text-left text-[11px] font-bold uppercase leading-none tracking-[0.11em] text-neutral-700 dark:bg-stone-700 dark:text-stone-100">
                 Row K LDN
@@ -583,9 +583,9 @@ export default function App() {
                   Black hair directory
                 </h1>
                 <p className="w-full max-w-3xl text-left text-[18px] leading-[1.55] text-neutral-600 dark:text-stone-300 sm:text-[19px]">
-                  Find afro hair stylists and salons in & around London.
-                  <br className="hidden lg:block" />
-                  <span className="inline-block">Natural, relaxed, braids, weaves, wigs etc.</span>
+                  Find afro hair stylists in & around London.
+                  <br />
+                  <span className="inline-block">Natural, relaxed, braids, sew-ins, wigs etc.</span>
                 </p>
               </div>
             </div>
@@ -595,7 +595,7 @@ export default function App() {
       </header>
 
       <div className="mx-auto flex w-full max-w-[1120px] flex-col px-4 sm:px-6 lg:flex-row lg:items-start lg:px-10">
-        <section id="live-results" className="min-w-0 flex-1 pb-6 pt-4 lg:pb-6 lg:pt-0">
+        <section id="live-results" className="min-w-0 flex-1 pb-6 pt-4 lg:pb-6 lg:pr-8 lg:pt-0">
           <div className="sticky top-0 z-30 flex w-full items-center justify-between border-b border-neutral-100 bg-white px-4 pb-4 pt-2 dark:border-stone-800 dark:bg-stone-950 lg:h-20 lg:items-end lg:pb-6 lg:pt-2">
             {hasSearched ? (
               <h2 className="text-[14px] font-medium leading-none text-neutral-500 dark:text-stone-400">
@@ -617,7 +617,7 @@ export default function App() {
           </div>
 
           {searchError ? (
-            <div className="bg-rose-50 px-4 py-6 text-left dark:bg-rose-950/30 lg:mr-4">
+            <div className="mt-4 bg-rose-50 px-4 py-6 text-left dark:bg-rose-950/30 lg:mr-4">
               <h3 className="text-[17px] font-semibold text-rose-900 dark:text-rose-200">Something went wrong</h3>
               <p className="mt-2 text-sm leading-7 text-rose-800 dark:text-rose-300">You can:</p>
               <ul className="mt-1 list-disc space-y-1 pl-5 text-sm leading-7 text-rose-800 dark:text-rose-300">
@@ -765,7 +765,7 @@ export default function App() {
           {!isSearching && !searchError && visibleResultCount < results.length ? <div ref={loadMoreRef} className="h-1 w-full" aria-hidden="true" /> : null}
 
           {!isSearching && !searchError && hasSearched && results.length === 0 ? (
-            <div className="bg-neutral-50 px-4 py-6 text-left dark:bg-stone-900/60 lg:mr-4">
+            <div className="mt-4 bg-neutral-50 px-4 py-6 text-left dark:bg-stone-900/60 lg:mr-4">
               <h3 className="text-[17px] font-semibold text-neutral-900 dark:text-stone-50">
                 No salons or stylists found
               </h3>
