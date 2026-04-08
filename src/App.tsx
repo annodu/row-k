@@ -583,7 +583,7 @@ export default function App() {
                   Black hair directory
                 </h1>
                 <p className="w-full max-w-3xl text-left text-[18px] leading-[1.55] text-neutral-600 dark:text-stone-300 sm:text-[19px]">
-                  Find afro hair stylists & salons in and around London.
+                  Find afro hair stylists and salons in & around London.
                   <br className="hidden lg:block" />
                   <span className="inline-block">Natural, relaxed, braids, weaves, wigs etc.</span>
                 </p>
