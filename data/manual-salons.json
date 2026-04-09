@@ -1,8 +1,8 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-04-09T14:25:00.000Z",
-    "count": 313,
+    "updatedAt": "2026-04-09T14:48:00.000Z",
+    "count": 314,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
@@ -8380,6 +8380,32 @@
         "Wash & blowdry",
         "Moisturising treatment",
         "Trim / Hair cut"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "salt-salon-london",
+      "name": "Salt Salon London",
+      "areaId": "south-east",
+      "areaIds": [
+        "south-east",
+        "east"
+      ],
+      "areaLabel": "South East",
+      "neighbourhood": "South East London",
+      "postcode": "",
+      "bookingPlatform": "Fresha",
+      "bookingUrl": "https://www.fresha.com/providers/salt-salon-orb2pmqe?pId=518378",
+      "websiteUrl": "https://www.fresha.com/providers/salt-salon-orb2pmqe?pId=518378",
+      "instagramUrl": "https://www.instagram.com/saltsalonlondon/",
+      "services": [
+        "Silk press",
+        "Trim / Hair cut",
+        "Curly cut / Wash & go"
       ]
     }
   ]
