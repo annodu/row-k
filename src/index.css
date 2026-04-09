@@ -76,11 +76,13 @@ html.dark {
   html {
     background-color: var(--background);
     background-image: none;
+    scrollbar-gutter: stable both-edges;
   }
 
   body {
     @apply bg-[var(--background)] text-[var(--foreground)] font-sans antialiased;
     background-image: none;
+    scrollbar-gutter: stable both-edges;
   }
 
   html.dark {

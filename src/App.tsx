@@ -268,67 +268,13 @@ function AnimatedCollapsible({
   children: ReactNode;
   className?: string;
 }) {
-  const contentRef = useRef<HTMLDivElement | null>(null);
-  const prefersReducedMotion = usePrefersReducedMotion();
-  const [height, setHeight] = useState<number | "auto">(open ? "auto" : 0);
-
-  useEffect(() => {
-    const node = contentRef.current;
-    if (!node) {
-      return;
-    }
-
-    if (prefersReducedMotion) {
-      setHeight(open ? "auto" : 0);
-      return;
-    }
-
-    const contentHeight = node.scrollHeight;
-    let timeoutId: number | undefined;
-    let frameId: number | undefined;
-
-    if (open) {
-      setHeight(0);
-      frameId = window.requestAnimationFrame(() => {
-        setHeight(contentHeight);
-        timeoutId = window.setTimeout(() => {
-          setHeight("auto");
-        }, 220);
-      });
-    } else {
-      setHeight(contentHeight);
-      frameId = window.requestAnimationFrame(() => {
-        setHeight(0);
-      });
-    }
-
-    return () => {
-      if (frameId !== undefined) {
-        window.cancelAnimationFrame(frameId);
-      }
-      if (timeoutId !== undefined) {
-        window.clearTimeout(timeoutId);
-      }
-    };
-  }, [open, prefersReducedMotion, children]);
-
   return (
     <div
       aria-hidden={!open}
-      className={cn(
-        "overflow-hidden",
-        prefersReducedMotion ? undefined : "transition-[height] duration-200 ease-out",
-        className,
-      )}
-      style={{ height }}
+      className={cn("overflow-hidden", className)}
+      style={{ height: open ? "auto" : 0 }}
     >
-      <div
-        ref={contentRef}
-        className={cn(
-          !prefersReducedMotion && "transition-[opacity,transform] duration-200 ease-out",
-          open ? "translate-y-0 opacity-100" : "translate-y-1 opacity-0 pointer-events-none",
-        )}
-      >
+      <div className={cn(open ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-0 opacity-0")}>
         {children}
       </div>
     </div>
@@ -352,7 +298,7 @@ function ServicesSummary({ services }: { services: string[] }) {
 
     const measure = () => {
       const availableWidth = lineElement.clientWidth;
-      const safetyBuffer = 14;
+      const safetyBuffer = 28;
       if (!availableWidth) {
         return;
       }
@@ -829,12 +775,11 @@ export default function App() {
                         <div className="min-w-0 grow">
                           <div className="flex items-start justify-between gap-3">
                             <div className="min-w-0">
-                              <div className="flex flex-wrap items-center gap-2">
+                              <div className="flex flex-wrap items-end gap-2">
                                 <h3 className="text-[17px] font-semibold text-stone-950 dark:text-stone-50">{result.name}</h3>
                                 {result.hijabiFriendly ? (
-                                  <span className="inline-flex items-center gap-1 rounded-none bg-emerald-100 pb-1 pl-1 pr-1.5 pt-1 text-[11px] font-medium leading-none text-emerald-800 dark:bg-emerald-950/50 dark:text-emerald-300">
-                                    <Check className="size-3.5" aria-hidden="true" />
-                                    Hijabi-friendly
+                                  <span className="mb-[3.5px] inline-flex items-center rounded-none bg-emerald-100 p-1 text-[11px] font-medium lowercase leading-none text-emerald-800 dark:bg-emerald-950/50 dark:text-emerald-300">
+                                    hijabi-friendly
                                   </span>
                                 ) : null}
                               </div>
@@ -865,7 +810,7 @@ export default function App() {
 
                       </div>
 
-                      <div className="order-2 w-full rounded-none border-l-4 border-stone-300 bg-stone-200/45 px-3 py-2 text-[12px] font-normal lowercase leading-[18px] tracking-[0.02em] text-stone-700 dark:border-stone-700 dark:bg-stone-900/48 dark:text-stone-300 sm:order-3 sm:col-span-2 lg:mt-2">
+                      <div className="order-2 w-full rounded-none border-l-4 border-stone-300 bg-stone-200/45 px-2 py-2 text-[12px] font-normal lowercase leading-[18px] tracking-[0.02em] text-stone-700 dark:border-stone-700 dark:bg-stone-900/48 dark:text-stone-300 sm:order-3 sm:col-span-2 lg:mt-2">
                         <ServicesSummary services={orderedServices} />
                       </div>
 
@@ -975,7 +920,7 @@ export default function App() {
               </button>
             </div>
 
-          <div className="hidden h-20 w-full shrink-0 border-b border-stone-300 bg-stone-100 pb-4 pt-4 dark:border-stone-800 dark:bg-stone-950 lg:block">
+          <div className="hidden h-20 w-full shrink-0 border-b border-stone-300 bg-stone-100 pb-4 pt-4 dark:border-stone-800 dark:bg-stone-950 lg:sticky lg:top-0 lg:z-20 lg:block">
             <div className="flex items-end justify-between">
                 <div className="inline-flex h-11 items-end pb-2">
                   <h2 className="text-[15px] font-semibold leading-none text-stone-950 dark:text-stone-50">Filters</h2>
@@ -990,7 +935,10 @@ export default function App() {
               </div>
           </div>
 
-          <div className="mt-0 flex-1 space-y-6 overflow-y-auto px-0 pt-0 pb-[max(1.5rem,env(safe-area-inset-bottom))] lg:min-h-0 lg:flex-1 lg:space-y-6 lg:px-0 lg:pt-0 lg:pb-6">
+          <section
+            aria-label="Filter options"
+            className="mt-0 flex-1 space-y-6 overflow-y-auto px-0 pt-0 pb-[max(1.5rem,env(safe-area-inset-bottom))] [scrollbar-gutter:stable_both-edges] lg:min-h-0 lg:flex-1 lg:space-y-6 lg:overflow-y-scroll lg:px-0 lg:pt-0 lg:pb-6"
+          >
             <div className="pt-6">
                 <button
                   type="button"
@@ -1014,7 +962,7 @@ export default function App() {
                     aria-hidden="true"
                     className={cn(
                       "relative inline-flex h-7 w-12 shrink-0 rounded-full bg-stone-500 transition-colors dark:bg-stone-500",
-                      !hijabiHoverLocked && "group-hover:bg-stone-300 dark:group-hover:bg-stone-700",
+                      !hijabiHoverLocked && "group-hover:bg-stone-400 dark:group-hover:bg-stone-600",
                       selectedHijabiFriendly && "bg-stone-950 dark:bg-stone-100",
                     )}
                   >
@@ -1135,7 +1083,7 @@ export default function App() {
             <div>
                 <div
                   className={cn(
-                    "sticky top-11 z-10 bg-stone-100 pb-2 dark:bg-stone-950",
+                    "sticky top-[52px] z-10 bg-stone-100 pb-2 dark:bg-stone-950",
                     locationsOpen && "border-b border-stone-300 dark:border-stone-800",
                   )}
                 >
@@ -1280,7 +1228,7 @@ export default function App() {
                   </div>
                 </AnimatedCollapsible>
               </div>
-          </div>
+          </section>
         </aside>
       </div>
 

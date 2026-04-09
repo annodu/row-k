@@ -1,8 +1,8 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-04-07T13:58:00.000Z",
-    "count": 311,
+    "updatedAt": "2026-04-09T17:56:00.000Z",
+    "count": 312,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
@@ -2584,6 +2584,33 @@
       ]
     },
     {
+      "id": "groath-hair",
+      "name": "Groath Hair",
+      "areaId": "east",
+      "areaLabel": "East",
+      "neighbourhood": "East London",
+      "postcode": "",
+      "bookingPlatform": ".as.me",
+      "bookingUrl": "https://groathhair.as.me/schedule/f998a360",
+      "websiteUrl": "https://groathhair.as.me/schedule/f998a360",
+      "instagramUrl": "https://www.instagram.com/groathhair_/",
+      "services": [
+        "Wash & blowdry",
+        "Scalp care",
+        "Cornrows",
+        "Trim / Hair cut",
+        "Sew-in take-down",
+        "Braid take-down",
+        "Traditional sew-in",
+        "Half braids, half sew-in"
+      ],
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ]
+    },
+    {
       "id": "gslaysuk",
       "name": "Gslaysuk",
       "areaId": "south-east",
@@ -5145,7 +5172,6 @@
       "services": [
         "Wash & blowdry",
         "Trim / Hair cut",
-        "Keratin treatment",
         "Olaplex treatment",
         "Full head colour",
         "Highlights",
