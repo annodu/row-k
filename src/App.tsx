@@ -289,6 +289,7 @@ function ServicesSummary({ services }: { services: string[] }) {
   const [visibleCount, setVisibleCount] = useState(services.length);
   const [isMobileViewport, setIsMobileViewport] = useState(false);
   const [isExpandedOnMobile, setIsExpandedOnMobile] = useState(false);
+  const [isHoveredOnDesktop, setIsHoveredOnDesktop] = useState(false);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(max-width: 639px)");
@@ -361,10 +362,18 @@ function ServicesSummary({ services }: { services: string[] }) {
     setIsExpandedOnMobile(false);
   }, [services]);
 
+  useEffect(() => {
+    if (isMobileViewport) {
+      setIsHoveredOnDesktop(false);
+    }
+  }, [isMobileViewport]);
+
   const hiddenCount = Math.max(0, services.length - visibleCount);
   const fullServicesLabel = services.join(" · ");
   const isExpandableOnMobile = isMobileViewport && hiddenCount > 0;
+  const isExpandableOnDesktop = !isMobileViewport && hiddenCount > 0;
   const showExpandedList = isExpandableOnMobile && isExpandedOnMobile;
+  const showExpandedOnDesktop = isExpandableOnDesktop && isHoveredOnDesktop;
   const collapsedSummary = (
     <>
       {services.slice(0, visibleCount).map((service, index) => (
@@ -383,7 +392,11 @@ function ServicesSummary({ services }: { services: string[] }) {
   );
 
   return (
-    <div className="relative">
+    <div
+      className="relative"
+      onMouseEnter={isExpandableOnDesktop ? () => setIsHoveredOnDesktop(true) : undefined}
+      onMouseLeave={isExpandableOnDesktop ? () => setIsHoveredOnDesktop(false) : undefined}
+    >
       {isExpandableOnMobile ? (
         <>
           <button
@@ -401,13 +414,12 @@ function ServicesSummary({ services }: { services: string[] }) {
             {showExpandedList ? fullServicesLabel : collapsedSummary}
           </div>
         </>
+      ) : showExpandedOnDesktop ? (
+        <div ref={lineRef} className="whitespace-normal" aria-label={fullServicesLabel}>
+          {fullServicesLabel}
+        </div>
       ) : (
-        <div
-          ref={lineRef}
-          className="overflow-hidden whitespace-nowrap"
-          title={hiddenCount > 0 ? fullServicesLabel : undefined}
-          aria-label={fullServicesLabel}
-        >
+        <div ref={lineRef} className="overflow-hidden whitespace-nowrap" aria-label={fullServicesLabel}>
           {collapsedSummary}
         </div>
       )}
