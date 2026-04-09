@@ -287,6 +287,26 @@ function ServicesSummary({ services }: { services: string[] }) {
   const serviceMeasureRefs = useRef<(HTMLSpanElement | null)[]>([]);
   const suffixMeasureRefs = useRef<Record<number, HTMLSpanElement | null>>({});
   const [visibleCount, setVisibleCount] = useState(services.length);
+  const [isMobileViewport, setIsMobileViewport] = useState(false);
+  const [isExpandedOnMobile, setIsExpandedOnMobile] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 639px)");
+
+    const syncViewport = (event: MediaQueryList | MediaQueryListEvent) => {
+      setIsMobileViewport(event.matches);
+    };
+
+    syncViewport(mediaQuery);
+
+    if (typeof mediaQuery.addEventListener === "function") {
+      mediaQuery.addEventListener("change", syncViewport);
+      return () => mediaQuery.removeEventListener("change", syncViewport);
+    }
+
+    mediaQuery.addListener(syncViewport);
+    return () => mediaQuery.removeListener(syncViewport);
+  }, []);
 
   useEffect(() => {
     const lineElement = lineRef.current;
@@ -337,30 +357,60 @@ function ServicesSummary({ services }: { services: string[] }) {
     };
   }, [services]);
 
+  useEffect(() => {
+    setIsExpandedOnMobile(false);
+  }, [services]);
+
   const hiddenCount = Math.max(0, services.length - visibleCount);
   const fullServicesLabel = services.join(" · ");
+  const isExpandableOnMobile = isMobileViewport && hiddenCount > 0;
+  const showExpandedList = isExpandableOnMobile && isExpandedOnMobile;
+  const collapsedSummary = (
+    <>
+      {services.slice(0, visibleCount).map((service, index) => (
+        <Fragment key={`${service}-${index}`}>
+          {index > 0 ? <span className="text-stone-500/70 dark:text-stone-500/80"> · </span> : null}
+          <span>{service}</span>
+        </Fragment>
+      ))}
+      {hiddenCount > 0 ? (
+        <>
+          {visibleCount > 0 ? <span className="text-stone-500/70 dark:text-stone-500/80"> · </span> : null}
+          <span className="text-stone-600 dark:text-stone-400">+ {hiddenCount} {hiddenCount === 1 ? "service" : "services"}</span>
+        </>
+      ) : null}
+    </>
+  );
 
   return (
-    <div>
-      <div
-        ref={lineRef}
-        className="overflow-hidden whitespace-nowrap"
-        title={hiddenCount > 0 ? fullServicesLabel : undefined}
-        aria-label={fullServicesLabel}
-      >
-        {services.slice(0, visibleCount).map((service, index) => (
-          <Fragment key={`${service}-${index}`}>
-            {index > 0 ? <span className="text-stone-500/70 dark:text-stone-500/80"> · </span> : null}
-            <span>{service}</span>
-          </Fragment>
-        ))}
-        {hiddenCount > 0 ? (
-          <>
-            {visibleCount > 0 ? <span className="text-stone-500/70 dark:text-stone-500/80"> · </span> : null}
-            <span className="text-stone-600 dark:text-stone-400">+ {hiddenCount} {hiddenCount === 1 ? "service" : "services"}</span>
-          </>
-        ) : null}
-      </div>
+    <div className="relative">
+      {isExpandableOnMobile ? (
+        <>
+          <button
+            type="button"
+            onClick={() => setIsExpandedOnMobile((current) => !current)}
+            aria-expanded={isExpandedOnMobile}
+            aria-label={`${isExpandedOnMobile ? "Hide" : "Show"} full services list`}
+            className="absolute inset-x-0 -inset-y-1 z-10 block"
+          />
+          <div
+            ref={lineRef}
+            className={cn(showExpandedList ? "whitespace-normal" : "overflow-hidden whitespace-nowrap")}
+            aria-label={fullServicesLabel}
+          >
+            {showExpandedList ? fullServicesLabel : collapsedSummary}
+          </div>
+        </>
+      ) : (
+        <div
+          ref={lineRef}
+          className="overflow-hidden whitespace-nowrap"
+          title={hiddenCount > 0 ? fullServicesLabel : undefined}
+          aria-label={fullServicesLabel}
+        >
+          {collapsedSummary}
+        </div>
+      )}
 
       <div className="pointer-events-none absolute left-0 top-0 -z-10 opacity-0" aria-hidden="true">
         <span ref={separatorMeasureRef} className="text-[12px] font-normal lowercase leading-[18px] tracking-[0.02em]">
@@ -810,7 +860,7 @@ export default function App() {
 
                       </div>
 
-                      <div className="order-2 w-full rounded-none border-l-4 border-stone-300 bg-stone-200/45 px-2 py-2 text-[12px] font-normal lowercase leading-[18px] tracking-[0.02em] text-stone-700 dark:border-stone-700 dark:bg-stone-900/48 dark:text-stone-300 sm:order-3 sm:col-span-2 lg:mt-2">
+                      <div className="order-2 my-1 w-full rounded-none border-l-4 border-stone-300 bg-stone-200/45 px-2 py-2 text-[12px] font-normal lowercase leading-[18px] tracking-[0.02em] text-stone-700 dark:border-stone-700 dark:bg-stone-900/48 dark:text-stone-300 sm:order-3 sm:col-span-2 sm:my-0 lg:mt-2">
                         <ServicesSummary services={orderedServices} />
                       </div>
 
