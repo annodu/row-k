@@ -1,8 +1,8 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-04-09T14:48:00.000Z",
-    "count": 314,
+    "updatedAt": "2026-04-09T14:55:00.000Z",
+    "count": 316,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
@@ -8393,7 +8393,8 @@
       "areaId": "south-east",
       "areaIds": [
         "south-east",
-        "east"
+        "east",
+        "central"
       ],
       "areaLabel": "South East",
       "neighbourhood": "South East London",
@@ -8406,6 +8407,55 @@
         "Silk press",
         "Trim / Hair cut",
         "Curly cut / Wash & go"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "elegant-hair-uk",
+      "name": "Elegant Hair UK",
+      "areaId": "south-east",
+      "areaLabel": "South East",
+      "neighbourhood": "South East London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://eleganthairruk.as.me/schedule/fe259895",
+      "websiteUrl": "https://eleganthairruk.as.me/schedule/fe259895",
+      "instagramUrl": "https://www.instagram.com/elegant_hairuk/",
+      "services": [
+        "Quick weave",
+        "Traditional sew-in",
+        "Flipover / Versatile sew-in"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "chop-chop-london",
+      "name": "Chop Chop London",
+      "areaId": "central",
+      "areaIds": [
+        "central",
+        "north-west",
+        "north"
+      ],
+      "areaLabel": "Central",
+      "neighbourhood": "Central London",
+      "postcode": "",
+      "bookingPlatform": "Fresha",
+      "bookingUrl": "https://www.fresha.com/providers/chop-chop-london-fats5xkk",
+      "websiteUrl": "https://www.fresha.com/providers/chop-chop-london-fats5xkk",
+      "instagramUrl": "https://www.instagram.com/chopchopldn/",
+      "services": [
+        "Trim / Hair cut",
+        "Curly cut / Wash & go",
+        "Wash & blowdry"
       ]
     }
   ]
