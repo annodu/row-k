@@ -744,7 +744,7 @@ export default function App() {
 
       <div className="mx-auto flex w-full max-w-[1120px] flex-col px-4 sm:px-6 lg:flex-row lg:items-start lg:px-10">
         <section id="live-results" className="min-w-0 flex-1 pb-6 pt-4 lg:pb-6 lg:pr-8 lg:pt-0">
-          <div className="sticky top-0 z-30 flex w-full items-center justify-between border-b border-stone-300 bg-stone-100 px-0 pb-4 pt-2 dark:border-stone-800 dark:bg-stone-950 lg:h-20 lg:items-end lg:pb-6 lg:pt-2">
+          <div className="sticky top-0 z-30 flex w-full items-center justify-between border-b border-stone-300 bg-stone-100 px-0 pb-3 pt-1 dark:border-stone-800 dark:bg-stone-950 lg:h-20 lg:items-end lg:pb-6 lg:pt-2">
             {hasSearched ? (
               <h2 className="text-[14px] font-medium leading-none text-stone-500 dark:text-stone-400">
                 {results.length} {results.length === 1 ? "result" : "results"}
@@ -952,7 +952,7 @@ export default function App() {
               "fixed inset-0 z-50 flex h-dvh min-h-dvh w-full flex-col overflow-hidden border-b-0 bg-stone-100 px-4 py-0 dark:bg-stone-950 sm:px-6 lg:static lg:z-auto lg:h-auto lg:min-h-0 lg:w-72 lg:bg-transparent",
           )}
         >
-          <div className="flex items-center justify-between border-b border-stone-300 px-0 py-5 dark:border-stone-800 lg:hidden">
+          <div className="flex items-center justify-between border-b border-stone-300 px-0 py-4 dark:border-stone-800 lg:hidden">
               <button
                 type="button"
                 onClick={clearFilters}
