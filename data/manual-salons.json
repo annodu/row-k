@@ -1,8 +1,8 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-04-09T14:55:00.000Z",
-    "count": 316,
+    "updatedAt": "2026-04-10T00:05:00.000Z",
+    "count": 317,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
@@ -8455,6 +8455,32 @@
       "services": [
         "Trim / Hair cut",
         "Curly cut / Wash & go",
+        "Wash & blowdry"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "alevenn-hair",
+      "name": "Alevenn Hair",
+      "areaId": "north-west",
+      "areaLabel": "North West",
+      "neighbourhood": "North West London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://alevennhair.as.me/schedule/87443df7",
+      "websiteUrl": "https://alevennhair.as.me/schedule/87443df7",
+      "instagramUrl": "https://www.instagram.com/alevenn_hair/",
+      "services": [
+        "Silk press",
+        "Texture release",
+        "Traditional sew-in",
+        "Closure sew-in",
+        "Quick weave",
+        "Sew-in take-down",
         "Wash & blowdry"
       ]
     }
