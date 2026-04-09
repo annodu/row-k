@@ -4,6 +4,8 @@
 
 @theme {
   --font-sans: "Figtree", ui-sans-serif, system-ui, sans-serif;
+  --breakpoint-sm: 48.0625rem;
+  --breakpoint-lg: 48.0625rem;
 }
 
 :root {

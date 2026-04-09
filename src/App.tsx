@@ -4,6 +4,14 @@ import { Check, ChevronDown, Globe } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
 import { cn } from "@/lib/utils";
 
+declare global {
+  interface Window {
+    umami?: {
+      track: (eventName: string, data?: Record<string, string | number | boolean | null>) => void;
+    };
+  }
+}
+
 const regions = [
   { id: "all", label: "All locations" },
   { id: "london", label: "London" },
@@ -165,6 +173,10 @@ const sortedCategoryEntries = [
 const RESULTS_BATCH_SIZE = 20;
 const RESULTS_SKELETON_COUNT = 6;
 
+function trackUmamiEvent(eventName: string, data?: Record<string, string | number | boolean | null>) {
+  window.umami?.track(eventName, data);
+}
+
 function makeFilterLabelId(...parts: string[]) {
   return parts
     .join("-")
@@ -292,7 +304,7 @@ function ServicesSummary({ services }: { services: string[] }) {
   const [isHoveredOnDesktop, setIsHoveredOnDesktop] = useState(false);
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia("(max-width: 639px)");
+    const mediaQuery = window.matchMedia("(max-width: 768px)");
 
     const syncViewport = (event: MediaQueryList | MediaQueryListEvent) => {
       setIsMobileViewport(event.matches);
@@ -481,6 +493,10 @@ export default function App() {
       if (nextIsOpen) {
         setLocationsOpen(false);
       }
+      trackUmamiEvent("filter_section_toggled", {
+        section: "services",
+        expanded: nextIsOpen,
+      });
       return nextIsOpen;
     });
   }
@@ -491,11 +507,20 @@ export default function App() {
       if (nextIsOpen) {
         setServicesOpen(false);
       }
+      trackUmamiEvent("filter_section_toggled", {
+        section: "locations",
+        expanded: nextIsOpen,
+      });
       return nextIsOpen;
     });
   }
 
   function clearFilters() {
+    trackUmamiEvent("filter_reset", {
+      selected_services: selectedCategories.length + selectedSubcategories.length,
+      selected_locations: selectedRegions.filter((region) => region !== "all").length,
+      hijabi_friendly: selectedHijabiFriendly,
+    });
     setSelectedCategories([]);
     setSelectedSubcategories([]);
     setSelectedRegions(["all"]);
@@ -516,10 +541,22 @@ export default function App() {
 
   function toggleCategory(nextCategory: CategoryId) {
     if (nextCategory === "all") {
+      trackUmamiEvent("service_filter_selected", {
+        selection: "all",
+        selected: selectedCategories.length > 0 || selectedSubcategories.length > 0,
+      });
       setSelectedCategories([]);
       setSelectedSubcategories([]);
       return;
     }
+
+    const nextCategoryLabel = categoryMap[nextCategory].label;
+    const isCurrentlyActive = selectedCategories.includes(nextCategory as ServiceCategoryId);
+    trackUmamiEvent("service_filter_selected", {
+      selection: nextCategoryLabel,
+      selected: !isCurrentlyActive,
+      type: "category",
+    });
 
     setSelectedCategories((currentCategories) => {
       const isActive = currentCategories.includes(nextCategory);
@@ -552,6 +589,12 @@ export default function App() {
   }
 
   function toggleSubcategory(nextSubcategory: ServiceSubcategoryId) {
+    trackUmamiEvent("service_filter_selected", {
+      selection: nextSubcategory,
+      selected: !selectedSubcategories.includes(nextSubcategory),
+      type: "subcategory",
+    });
+
     const parentCategory = (Object.entries(categoryMap) as [CategoryId, (typeof categoryMap)[CategoryId]][]).find(
       ([categoryId, category]) =>
         categoryId !== "all" && category.subcategories.includes(nextSubcategory as SubcategoryId),
@@ -575,6 +618,17 @@ export default function App() {
   }
 
   function toggleRegion(nextRegion: RegionId) {
+    const regionLabel = regionLabelMap[nextRegion] ?? nextRegion;
+    const isCurrentlyActive =
+      nextRegion === "all"
+        ? selectedRegions.length > 1 || !selectedRegions.includes("all")
+        : selectedRegions.includes(nextRegion);
+
+    trackUmamiEvent("location_filter_selected", {
+      selection: regionLabel,
+      selected: !isCurrentlyActive,
+    });
+
     setSelectedRegions((currentRegions) => {
       if (nextRegion === "all") {
         return ["all"];
@@ -699,7 +753,7 @@ export default function App() {
   }, [results.length, visibleResultCount]);
 
   useEffect(() => {
-    const desktopMediaQuery = window.matchMedia("(min-width: 1024px)");
+    const desktopMediaQuery = window.matchMedia("(min-width: 769px)");
 
     const syncMobileFilterState = (event: MediaQueryList | MediaQueryListEvent) => {
       if (event.matches) {
@@ -745,7 +799,7 @@ export default function App() {
                 <p className="w-full max-w-3xl text-left text-[16px] leading-[1.55] text-stone-700 dark:text-stone-300 sm:text-[19px]">
                   Find afro hair stylists in & around London.
                   <br />
-                  <span className="inline-block">Natural or relaxed. Braids, sew-ins, wigs etc.</span>
+                  <span className="inline-block">Natural or relaxed. Braids, sew-ins, wigs, locs.</span>
                 </p>
               </div>
             </div>
@@ -768,7 +822,10 @@ export default function App() {
             <div className="flex items-center gap-2 text-[13px] text-stone-500 dark:text-stone-400 lg:hidden">
               <button
                 type="button"
-                onClick={() => setMobileFiltersOpen(true)}
+                onClick={() => {
+                  trackUmamiEvent("filter_opened", { source: "results_header" });
+                  setMobileFiltersOpen(true);
+                }}
                 className="min-h-11 rounded-none pl-3 pr-0 py-2 text-stone-700 transition-colors hover:bg-stone-200 hover:text-stone-900 dark:text-stone-300 dark:hover:bg-stone-800 dark:hover:text-stone-100"
               >
                 Filter
@@ -777,11 +834,12 @@ export default function App() {
           </div>
 
           {searchError ? (
-            <div className="mt-4 bg-rose-100 px-4 py-6 text-left dark:bg-rose-950/30 lg:mr-4">
+            <div className="mt-4 bg-rose-100 px-4 py-6 text-left dark:bg-rose-950/30">
               <h3 className="text-[17px] font-semibold text-rose-900 dark:text-rose-200">Something went wrong</h3>
               <p className="mt-2 text-sm leading-7 text-rose-800 dark:text-rose-300">You can:</p>
               <ul className="mt-1 list-disc space-y-1 pl-5 text-sm leading-7 text-rose-800 dark:text-rose-300">
                 <li>
+                  Refresh or
                   <button
                     type="button"
                     onClick={() => window.location.reload()}
@@ -790,7 +848,7 @@ export default function App() {
                     Try again
                   </button>
                 </li>
-                <li>Search elsewhere, for example on booking sites, Instagram, or TikTok</li>
+                <li>Search elsewhere, for example on salon booking sites, Instagram, or TikTok</li>
               </ul>
             </div>
           ) : null}
@@ -861,6 +919,12 @@ export default function App() {
                                 href={result.instagramUrl}
                                 target="_blank"
                                 rel="noreferrer"
+                                onClick={() =>
+                                  trackUmamiEvent("instagram_click", {
+                                    salon: result.name,
+                                    placement: "mobile",
+                                  })
+                                }
                                 className="inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-none bg-transparent px-4 py-2 text-[14px] font-medium text-stone-950 transition-colors duration-150 hover:bg-stone-200 dark:bg-transparent dark:text-stone-100 dark:hover:bg-stone-800 sm:hidden"
                               >
                                 <InstagramIcon className="size-4" />
@@ -872,7 +936,7 @@ export default function App() {
 
                       </div>
 
-                      <div className="order-2 my-1 w-full rounded-none border-l-4 border-stone-300 bg-stone-200/45 px-2 py-2 text-[12px] font-normal lowercase leading-[18px] tracking-[0.02em] text-stone-700 dark:border-stone-700 dark:bg-stone-900/48 dark:text-stone-300 sm:order-3 sm:col-span-2 sm:my-0 lg:mt-2">
+                      <div className="order-2 my-1 w-full rounded-none border-l-4 border-stone-300 bg-stone-200/45 pl-2 pr-3 py-2 text-[12px] font-normal lowercase leading-[18px] tracking-[0.02em] text-stone-700 dark:border-stone-700 dark:bg-stone-900/48 dark:text-stone-300 sm:order-3 sm:col-span-2 sm:my-0 lg:mt-2">
                         <ServicesSummary services={orderedServices} />
                       </div>
 
@@ -882,6 +946,12 @@ export default function App() {
                             href={result.instagramUrl}
                             target="_blank"
                             rel="noreferrer"
+                            onClick={() =>
+                              trackUmamiEvent("instagram_click", {
+                                salon: result.name,
+                                placement: "desktop",
+                              })
+                            }
                             className="hidden min-h-[46px] items-center justify-center gap-2 rounded-none bg-transparent px-4 py-2 text-[14px] font-medium text-stone-950 transition-colors duration-150 hover:bg-stone-200 dark:bg-transparent dark:text-stone-100 dark:hover:bg-stone-800 sm:inline-flex sm:h-full sm:min-h-0"
                           >
                             <InstagramIcon className="size-4" />
@@ -893,6 +963,13 @@ export default function App() {
                             href={result.bookingUrl}
                             target="_blank"
                             rel="noreferrer"
+                            onClick={() =>
+                              trackUmamiEvent("book_click", {
+                                salon: result.name,
+                                platform: result.bookingPlatform,
+                                location: result.areaLabel,
+                              })
+                            }
                             className="inline-flex min-h-[46px] flex-1 items-center justify-center rounded-none bg-stone-950 px-5 py-2 text-[14px] font-medium text-stone-100 transition-colors duration-150 hover:bg-stone-800 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-stone-300 sm:h-full sm:min-h-0 sm:flex-none sm:px-6"
                           >
                             Book
@@ -920,7 +997,7 @@ export default function App() {
           {!isSearching && !searchError && visibleResultCount < results.length ? <div ref={loadMoreRef} className="h-1 w-full" aria-hidden="true" /> : null}
 
           {!isSearching && !searchError && hasSearched && results.length === 0 ? (
-            <div className="mt-4 bg-stone-200 px-4 py-6 text-left dark:bg-stone-900/60 lg:mr-4">
+            <div className="mt-4 bg-stone-200 px-4 py-6 text-left dark:bg-stone-900/60">
               <h3 className="text-[17px] font-semibold text-stone-950 dark:text-stone-50">
                 No salons or stylists found
               </h3>
@@ -936,7 +1013,7 @@ export default function App() {
                     reset
                   </button>
                 </li>
-                <li>Search elsewhere, for example on booking sites, Instagram, or TikTok</li>
+                <li>Search elsewhere, for example on salon booking sites, Instagram, or TikTok</li>
               </ul>
               <div className="mt-4 border-t border-stone-300 pt-4 dark:border-stone-700">
                 <div className="flex flex-wrap items-center gap-3 text-sm leading-7 text-stone-700 dark:text-stone-300">
@@ -1006,6 +1083,9 @@ export default function App() {
                   type="button"
                   aria-pressed={selectedHijabiFriendly}
                   onClick={() => {
+                    trackUmamiEvent("hijabi_toggle_changed", {
+                      enabled: !selectedHijabiFriendly,
+                    });
                     setSelectedHijabiFriendly((current) => !current);
                     setHijabiHoverLocked(true);
                   }}
@@ -1041,7 +1121,7 @@ export default function App() {
               <div>
                 <div
                   className={cn(
-                    "sticky top-0 z-10 bg-stone-100 pb-2 dark:bg-stone-950",
+                    "bg-stone-100 pb-2 dark:bg-stone-950 lg:sticky lg:top-0 lg:z-10",
                     servicesOpen && "border-b border-stone-300 dark:border-stone-800",
                   )}
                 >
@@ -1145,7 +1225,7 @@ export default function App() {
             <div>
                 <div
                   className={cn(
-                    "sticky top-[52px] z-10 bg-stone-100 pb-2 dark:bg-stone-950",
+                    "bg-stone-100 pb-2 dark:bg-stone-950 lg:sticky lg:top-0 lg:z-20",
                     locationsOpen && "border-b border-stone-300 dark:border-stone-800",
                   )}
                 >

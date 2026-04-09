@@ -1,8 +1,8 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-04-09T17:56:00.000Z",
-    "count": 312,
+    "updatedAt": "2026-04-09T14:25:00.000Z",
+    "count": 313,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
@@ -8357,6 +8357,29 @@
         "K-18 treatment",
         "Texture release",
         "Custom wig"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "hair-studio-by-enitan",
+      "name": "Hair Studio by Enitan",
+      "areaId": "west",
+      "areaLabel": "West",
+      "neighbourhood": "West London",
+      "postcode": "",
+      "bookingPlatform": "Direct website",
+      "bookingUrl": "https://www.healthyhairstudio.co.uk/pages/appointment",
+      "websiteUrl": "https://www.healthyhairstudio.co.uk/pages/appointment",
+      "instagramUrl": "https://www.instagram.com/hairstudiobyenitan/",
+      "services": [
+        "Scalp care",
+        "Wash & blowdry",
+        "Moisturising treatment",
+        "Trim / Hair cut"
       ]
     }
   ]
