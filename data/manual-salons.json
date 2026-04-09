@@ -1,8 +1,8 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-04-10T00:05:00.000Z",
-    "count": 317,
+    "updatedAt": "2026-04-10T00:12:00.000Z",
+    "count": 318,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
@@ -8483,6 +8483,27 @@
         "Quick weave",
         "Sew-in take-down",
         "Wash & blowdry"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "slayed-by-bailey",
+      "name": "Slayed by Bailey",
+      "areaId": "south-east",
+      "areaLabel": "South East",
+      "neighbourhood": "South East London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://app.acuityscheduling.com/schedule/99e02953",
+      "websiteUrl": "https://app.acuityscheduling.com/schedule/99e02953",
+      "instagramUrl": "https://www.instagram.com/slayedbybailey/",
+      "services": [
+        "Wig install",
+        "Ponytail"
       ]
     }
   ]
