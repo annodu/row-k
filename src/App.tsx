@@ -693,6 +693,7 @@ export default function App() {
         throw new Error(payload.message || "Search failed.");
       }
 
+      setVisibleResultCount(RESULTS_BATCH_SIZE);
       setResults(payload.results ?? []);
       if (options?.scroll !== false) {
         document.getElementById("live-results")?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -708,10 +709,6 @@ export default function App() {
   useEffect(() => {
     void handleSearch({ scroll: false });
   }, [selectedCategories, selectedSubcategories, selectedRegions, selectedHijabiFriendly]);
-
-  useEffect(() => {
-    setVisibleResultCount(RESULTS_BATCH_SIZE);
-  }, [results]);
 
   useEffect(() => {
     if (!mobileFiltersOpen) {
