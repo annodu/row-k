@@ -77,8 +77,8 @@
       "neighbourhood": "East London",
       "postcode": "",
       "bookingPlatform": "Direct website",
-      "bookingUrl": "https://www.adornedbyanj.co.uk/",
-      "websiteUrl": "https://www.adornedbyanj.co.uk/",
+      "bookingUrl": "https://www.adornedbyanj.co.uk/book-an-appointment",
+      "websiteUrl": "",
       "instagramUrl": "https://www.instagram.com/adornedbyanj/",
       "services": [
         "Custom wig",
@@ -89,7 +89,8 @@
         "Traditional sew-in",
         "LA weave",
         "Flipover / Versatile sew-in",
-        "Hybrid sew-in"
+        "Hybrid sew-in",
+        "Tracks sewn in"
       ],
       "summary": "Manual entry added from your latest salon update batch.",
       "source": "manual",
