@@ -1,8 +1,8 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-04-10T00:12:00.000Z",
-    "count": 318,
+    "updatedAt": "2026-04-10T00:20:00.000Z",
+    "count": 324,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
@@ -8504,6 +8504,142 @@
       "services": [
         "Wig install",
         "Ponytail"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "mk-laced-it",
+      "name": "MK Laced It",
+      "areaId": "south-east",
+      "areaLabel": "South East",
+      "neighbourhood": "South East London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://mklacedit.as.me/schedule/85728d9d",
+      "websiteUrl": "https://mklacedit.as.me/schedule/85728d9d",
+      "instagramUrl": "https://www.instagram.com/mklacedit/",
+      "services": [
+        "Wig install",
+        "Tape-ins"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "rias-beauty-studio",
+      "name": "Rias Beauty Studio",
+      "areaId": "croydon",
+      "areaLabel": "Croydon",
+      "neighbourhood": "Croydon",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://riasbeautystudio.as.me/schedule/db75f533",
+      "websiteUrl": "https://riasbeautystudio.as.me/schedule/db75f533",
+      "instagramUrl": "https://www.instagram.com/riasbeautystudio/",
+      "services": [
+        "Traditional sew-in",
+        "Hybrid sew-in",
+        "Sew-in take-down",
+        "Flipover / Versatile sew-in"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "touch-of-class-hair-lounge",
+      "name": "Touch of Class Hair Lounge",
+      "areaId": "south-west",
+      "areaLabel": "South West",
+      "neighbourhood": "South West London",
+      "postcode": "",
+      "bookingPlatform": "Phorest",
+      "bookingUrl": "https://www.phorest.com/salon/touchofclasshairlounge",
+      "websiteUrl": "https://www.phorest.com/salon/touchofclasshairlounge",
+      "instagramUrl": "https://www.instagram.com/touchofclass_12/",
+      "services": [
+        "Pixie / finger waves",
+        "Silk press",
+        "Wash & blowdry",
+        "Trim / Hair cut",
+        "Relaxer",
+        "Traditional sew-in",
+        "Olaplex treatment",
+        "K-18 treatment"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "the-lace-cassanova",
+      "name": "The Lace Cassanova",
+      "areaId": "east",
+      "areaLabel": "East",
+      "neighbourhood": "East London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://thelacecassanova.as.me/schedule/f1c5cdb1",
+      "websiteUrl": "https://thelacecassanova.as.me/schedule/f1c5cdb1",
+      "instagramUrl": "https://www.instagram.com/thelacecassanova/",
+      "services": [
+        "Wig install",
+        "Ponytail"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "by-fatoujai",
+      "name": "By Fatoujai",
+      "areaId": "south-west",
+      "areaLabel": "South West",
+      "neighbourhood": "South West London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://fatoujai.as.me/schedule/2cf99b2d",
+      "websiteUrl": "https://fatoujai.as.me/schedule/2cf99b2d",
+      "instagramUrl": "https://www.instagram.com/byfatoujai/",
+      "services": [
+        "Wig install"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "chae-hair",
+      "name": "Chae Hair",
+      "areaId": "south-east",
+      "areaLabel": "South East",
+      "neighbourhood": "South East London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://chaehair.as.me/schedule/ad9788d9",
+      "websiteUrl": "https://chaehair.as.me/schedule/ad9788d9",
+      "instagramUrl": "https://www.instagram.com/chaehair__/",
+      "services": [
+        "Ponytail",
+        "Half up half down",
+        "Traditional sew-in",
+        "Quick weave",
+        "Flipover / Versatile sew-in"
       ]
     }
   ]
