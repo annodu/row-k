@@ -33,11 +33,14 @@ const categoryMap = {
   "braiding-services": [
     "Knotless braids",
     "Boho braids",
+    "Box braids",
+    "Creative braids",
     "Feed-in braids",
     "Fulani braids",
     "French curl",
     "Half braids, half sew-in",
     "Twists",
+    "Microbraids",
     "Stitch braids",
     "Braid take-down",
   ],
@@ -57,6 +60,7 @@ const categoryMap = {
 const serviceAliases = {
   "Flipover sew-in": "Flipover / Versatile sew-in",
   "Feed in braids": "Feed-in braids",
+  "Feed in / All back braids": "Feed-in braids",
   "French curl braids": "French curl",
   "Braid takedown": "Braid take-down",
   "Natural hair care": "Moisturising treatment",
@@ -111,7 +115,9 @@ export async function searchSalons({ categories = [], subcategories = [], region
   const index = await readSalonIndex();
   const normalizedRegions = Array.isArray(regions) && regions.length > 0 ? regions : ["all"];
   const normalizedCategories = Array.isArray(categories) ? categories.filter(Boolean) : [];
-  const normalizedSubcategories = Array.isArray(subcategories) ? subcategories.filter(Boolean) : [];
+  const normalizedSubcategories = Array.isArray(subcategories)
+    ? subcategories.filter(Boolean).map((subcategory) => serviceAliases[subcategory] ?? subcategory)
+    : [];
 
   const results = index.salons
     .filter(

@@ -1,8 +1,8 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-04-10T00:20:00.000Z",
-    "count": 324,
+    "updatedAt": "2026-04-11T00:50:00.000Z",
+    "count": 344,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
@@ -255,6 +255,8 @@
         "Wash & blowdry",
         "Curly cut / Wash & go",
         "Knotless braids",
+        "Box braids",
+        "Microbraids",
         "Cornrows",
         "Starter locs",
         "Retwist",
@@ -309,6 +311,7 @@
         "Fulani braids",
         "French curl",
         "Knotless braids",
+        "Box braids",
         "Stitch braids",
         "Twists",
         "Retwist",
@@ -330,6 +333,7 @@
       "instagramUrl": "https://www.instagram.com/arewauk/",
       "services": [
         "Knotless braids",
+        "Box braids",
         "Boho braids",
         "Half braids, half sew-in",
         "Faux locs",
@@ -337,7 +341,8 @@
         "Cornrows",
         "Traditional sew-in",
         "Stitch braids",
-        "Twists"
+        "Twists",
+        "Microbraids"
       ],
       "summary": "Manual entry added from your North London braids list.",
       "source": "manual",
@@ -396,7 +401,8 @@
         "Fulani braids",
         "Traditional sew-in",
         "Closure sew-in",
-        "Custom wig"
+        "Custom wig",
+        "Microbraids"
       ],
       "summary": "Manual entry added from your East London braids list.",
       "source": "manual",
@@ -532,6 +538,7 @@
         "Silk press",
         "Feed-in braids",
         "Knotless braids",
+        "Box braids",
         "Fulani braids",
         "Faux locs",
         "Half braids, half sew-in",
@@ -545,7 +552,8 @@
         "Half up half down",
         "Closure sew-in",
         "Frontal sew-in",
-        "Flipover / Versatile sew-in"
+        "Flipover / Versatile sew-in",
+        "Cornrows"
       ]
     },
     {
@@ -561,8 +569,8 @@
       "neighbourhood": "Croydon",
       "postcode": "",
       "bookingPlatform": "Direct website",
-      "bookingUrl": "https://www.baambibeauty.com/appointments",
-      "websiteUrl": "https://www.baambibeauty.com/appointments",
+      "bookingUrl": "https://www.baambibeauty.com",
+      "websiteUrl": "",
       "instagramUrl": "https://www.instagram.com/baambibeauty/",
       "services": [
         "Boho braids",
@@ -570,6 +578,7 @@
         "Fulani braids",
         "French curl",
         "Knotless braids",
+        "Box braids",
         "Stitch braids",
         "Twists",
         "Starter locs",
@@ -658,7 +667,8 @@
         "Knotless braids",
         "Boho braids",
         "Faux locs",
-        "Stitch braids"
+        "Stitch braids",
+        "Microbraids"
       ],
       "summary": "Manual entry added from your Essex braids list.",
       "source": "manual",
@@ -679,6 +689,7 @@
       "instagramUrl": "https://www.instagram.com/beauty_by_shakyra/",
       "services": [
         "Knotless braids",
+        "Box braids",
         "Boho braids",
         "Fulani braids",
         "Stitch braids"
@@ -787,9 +798,9 @@
       "areaLabel": "West",
       "neighbourhood": "West London",
       "postcode": "",
-      "bookingPlatform": "Phorest",
-      "bookingUrl": "https://www.phorest.com/salon/bellamoore",
-      "websiteUrl": "https://www.phorest.com/salon/bellamoore",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "",
+      "websiteUrl": "",
       "instagramUrl": "https://www.instagram.com/bella.moore_x/",
       "services": [
         "Texture release",
@@ -833,6 +844,7 @@
       "services": [
         "Traditional sew-in",
         "Knotless braids",
+        "Box braids",
         "Feed-in braids",
         "Wig install",
         "Boho braids",
@@ -869,6 +881,7 @@
         "Trim / Hair cut",
         "Ponytail",
         "Knotless braids",
+        "Box braids",
         "Tracks sewn in"
       ],
       "summary": "Manual entry added from your North London extensions, treatments, and braids list.",
@@ -1063,7 +1076,8 @@
       "services": [
         "Knotless braids",
         "Boho braids",
-        "Fulani braids"
+        "Fulani braids",
+        "Creative braids"
       ],
       "summary": "Manual Instagram-led entry added from your London-wide braids list.",
       "source": "manual",
@@ -1824,6 +1838,7 @@
         "Fulani braids",
         "French curl",
         "Knotless braids",
+        "Box braids",
         "Cornrows",
         "Stitch braids"
       ],
@@ -1934,6 +1949,7 @@
       "instagramUrl": "https://www.instagram.com/dunnys_touch_uk/",
       "services": [
         "Knotless braids",
+        "Box braids",
         "Wash & blowdry",
         "Fulani braids",
         "Twists",
@@ -2849,6 +2865,7 @@
       "instagramUrl": "https://www.instagram.com/hair_by_resa/",
       "services": [
         "Knotless braids",
+        "Box braids",
         "Faux locs",
         "Stitch braids",
         "Fulani braids",
@@ -2951,6 +2968,7 @@
       "instagramUrl": "https://www.instagram.com/hairzonesuk/",
       "services": [
         "Knotless braids",
+        "Box braids",
         "Traditional sew-in",
         "Moisturising treatment",
         "Silk press",
@@ -3191,7 +3209,8 @@
         "Wig colour",
         "Closure sew-in",
         "Frontal sew-in",
-        "Knotless braids"
+        "Knotless braids",
+        "Box braids"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -3369,6 +3388,7 @@
         "Keratin treatment",
         "Cornrows",
         "Knotless braids",
+        "Box braids",
         "Wig install",
         "Traditional sew-in",
         "Moisturising treatment",
@@ -4664,15 +4684,6 @@
         "Closure sew-in",
         "Frontal sew-in",
         "Flipover / Versatile sew-in",
-        "Relaxer",
-        "Knotless braids",
-        "Feed-in braids",
-        "Stitch braids",
-        "Silk press",
-        "Cornrows",
-        "Scalp care",
-        "Olaplex treatment",
-        "Half up half down",
         "Custom wig"
       ],
       "summary": "Manual entry added from your South East London wigs list.",
@@ -4775,6 +4786,7 @@
       "services": [
         "Traditional sew-in",
         "Knotless braids",
+        "Box braids",
         "Boho braids",
         "French curl",
         "Twists",
@@ -5292,6 +5304,7 @@
       "instagramUrl": "https://www.instagram.com/ovieyalondon/",
       "services": [
         "Knotless braids",
+        "Box braids",
         "Moisturising treatment",
         "Silk press",
         "Wig install",
@@ -5783,6 +5796,7 @@
         "Keratin treatment",
         "Cornrows",
         "Knotless braids",
+        "Box braids",
         "Wig install",
         "Traditional sew-in",
         "Moisturising treatment",
@@ -6095,6 +6109,7 @@
         "Feed-in braids",
         "Fulani braids",
         "Knotless braids",
+        "Box braids",
         "Twists",
         "Ponytail"
       ],
@@ -6346,6 +6361,7 @@
       "instagramUrl": "https://www.instagram.com/southwestsixsalon/",
       "services": [
         "Knotless braids",
+        "Box braids",
         "Boho braids",
         "Half braids, half sew-in",
         "French curl",
@@ -6443,7 +6459,6 @@
       "websiteUrl": "https://styledbyariii.as.me/schedule/f3f3ec94",
       "instagramUrl": "https://www.instagram.com/styledbyarii_/",
       "services": [
-        "Knotless braids",
         "Feed-in braids",
         "Half braids, half sew-in",
         "Traditional sew-in",
@@ -6525,6 +6540,8 @@
         "Wig install",
         "Microlinks",
         "Knotless braids",
+        "Box braids",
+        "Microbraids",
         "Faux locs",
         "Full head colour",
         "Ponytail",
@@ -6766,6 +6783,7 @@
       "instagramUrl": "https://www.instagram.com/thehairloungeuk_/",
       "services": [
         "Knotless braids",
+        "Box braids",
         "Butterfly locs",
         "Wig install",
         "Ponytail",
@@ -7136,6 +7154,7 @@
         "Fulani braids",
         "French curl",
         "Knotless braids",
+        "Box braids",
         "Faux locs",
         "Butterfly locs",
         "Half up half down",
@@ -7324,6 +7343,7 @@
         "Boho braids",
         "Fulani braids",
         "Knotless braids",
+        "Box braids",
         "Ponytail",
         "Half up half down",
         "Microlocs / Sisterlocs"
@@ -7349,7 +7369,8 @@
         "Boho braids",
         "Fulani braids",
         "Knotless braids",
-        "Half braids, half sew-in"
+        "Half braids, half sew-in",
+        "Creative braids"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -7707,6 +7728,7 @@
         "French curl",
         "Fulani braids",
         "Knotless braids",
+        "Box braids",
         "Stitch braids",
         "Twists",
         "Traditional sew-in",
@@ -8093,6 +8115,7 @@
         "Half braids, half sew-in",
         "Traditional sew-in",
         "Knotless braids",
+        "Creative braids",
         "Tape-ins",
         "Wash & blowdry",
         "Flipover / Versatile sew-in"
@@ -8640,6 +8663,515 @@
         "Traditional sew-in",
         "Quick weave",
         "Flipover / Versatile sew-in"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "regal-roots",
+      "name": "Regal Roots",
+      "areaId": "south-east",
+      "areaLabel": "South East",
+      "neighbourhood": "South East London",
+      "postcode": "",
+      "bookingPlatform": "Direct website",
+      "bookingUrl": "https://www.regalroot.com/book-online",
+      "websiteUrl": "https://www.regalroot.com/book-online",
+      "instagramUrl": "https://www.instagram.com/regal_roots/",
+      "services": [
+        "Faux locs",
+        "Starter locs",
+        "Retwist",
+        "Microlocs / Sisterlocs",
+        "Scalp care",
+        "Wash & blowdry",
+        "Braid take-down",
+        "Silk press",
+        "Twist out",
+        "Knotless braids",
+        "Fulani braids",
+        "Cornrows",
+        "Moisturising treatment",
+        "Full head colour"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "purely-natural-salon",
+      "name": "Purely Natural Salon",
+      "areaId": "east",
+      "areaLabel": "East",
+      "neighbourhood": "East London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://purelynaturalhair.as.me/schedule/873e6058",
+      "websiteUrl": "https://purelynaturalhair.as.me/schedule/873e6058",
+      "instagramUrl": "https://www.instagram.com/purelynaturalsalon/?hl=en-gb",
+      "services": [
+        "Full head colour",
+        "Trim / Hair cut",
+        "Moisturising treatment",
+        "Wash & blowdry",
+        "Curly cut / Wash & go",
+        "Starter locs",
+        "Retwist",
+        "Microlocs / Sisterlocs",
+        "Cornrows",
+        "Twist out",
+        "Fulani braids",
+        "Feed-in braids",
+        "Silk press",
+        "Olaplex treatment"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "natural-gloe",
+      "name": "Natural Gloe",
+      "areaId": "east",
+      "areaLabel": "East",
+      "neighbourhood": "East London",
+      "postcode": "",
+      "bookingPlatform": "Direct website",
+      "bookingUrl": "https://www.naturalgloe.com/book",
+      "websiteUrl": "https://www.naturalgloe.com/book",
+      "services": [
+        "Curly cut / Wash & go",
+        "Silk press",
+        "Wash & blowdry",
+        "Microlocs / Sisterlocs",
+        "Retwist",
+        "Cornrows",
+        "Full head colour",
+        "Highlights"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "hair-by-wynn",
+      "name": "Hair by Wynn",
+      "areaId": "south-east",
+      "areaLabel": "South East",
+      "neighbourhood": "South East London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://hairbywynn.as.me/schedule/e36fe2d8",
+      "websiteUrl": "https://hairbywynn.as.me/schedule/e36fe2d8",
+      "instagramUrl": "https://www.instagram.com/hairbywynn/",
+      "services": [
+        "Fulani braids",
+        "Stitch braids",
+        "Knotless braids",
+        "Half braids, half sew-in",
+        "Cornrows",
+        "Wash & blowdry",
+        "Braid take-down"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "pej-styles",
+      "name": "Pej Styles",
+      "areaId": "mobile",
+      "areaLabel": "Mobile",
+      "neighbourhood": "Mobile",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/pej_styles/",
+      "instagramUrl": "https://www.instagram.com/pej_styles/",
+      "services": [
+        "Knotless braids",
+        "Twists",
+        "Faux locs",
+        "Microbraids",
+        "Half braids, half sew-in",
+        "Wash & blowdry",
+        "Trim / Hair cut",
+        "Braid take-down"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "braided-by-tayla",
+      "name": "Braided by Tayla",
+      "areaId": "south-east",
+      "areaLabel": "South East",
+      "neighbourhood": "South East London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://braidedbytayla.as.me/schedule/33b23481",
+      "websiteUrl": "https://braidedbytayla.as.me/schedule/33b23481",
+      "instagramUrl": "https://www.instagram.com/braidedbytayla/",
+      "services": [
+        "Knotless braids",
+        "Boho braids",
+        "Feed-in braids",
+        "Fulani braids",
+        "Creative braids"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "momos-hair",
+      "name": "Momos Hair",
+      "areaId": "north-west",
+      "areaLabel": "North West",
+      "neighbourhood": "North West London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://app.acuityscheduling.com/schedule/c88c31be",
+      "websiteUrl": "https://app.acuityscheduling.com/schedule/c88c31be",
+      "instagramUrl": "https://www.instagram.com/momoshair/",
+      "services": [
+        "Boho braids",
+        "Half braids, half sew-in",
+        "Microbraids",
+        "Faux locs",
+        "Feed-in braids",
+        "Cornrows",
+        "Twists"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "get-inkzpired",
+      "name": "Get Inkzpired",
+      "areaId": "mobile",
+      "areaLabel": "Mobile",
+      "neighbourhood": "Mobile",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://getinkzpired.as.me/schedule/523a1cde",
+      "websiteUrl": "https://getinkzpired.as.me/schedule/523a1cde",
+      "instagramUrl": "https://www.instagram.com/get_inkzpired/",
+      "services": [
+        "Boho braids",
+        "Knotless braids",
+        "Half braids, half sew-in",
+        "Feed-in braids",
+        "French curl",
+        "Fulani braids"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "ss-hair-lounge",
+      "name": "SS Hair Lounge",
+      "areaId": "south-west",
+      "areaLabel": "South West",
+      "neighbourhood": "South West London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/sshairlounge/",
+      "instagramUrl": "https://www.instagram.com/sshairlounge/",
+      "services": [
+        "Fulani braids",
+        "Feed-in braids",
+        "Boho braids",
+        "Knotless braids"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "jo-did-it",
+      "name": "Jo Did It",
+      "areaId": "north-west",
+      "areaLabel": "North West",
+      "neighbourhood": "North West London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://jdit.as.me/schedule/ad762e90",
+      "websiteUrl": "https://jdit.as.me/schedule/ad762e90",
+      "instagramUrl": "https://www.instagram.com/jo.did_it/",
+      "services": [
+        "Boho braids",
+        "Knotless braids",
+        "Box braids",
+        "French curl",
+        "Faux locs",
+        "Butterfly locs",
+        "Cornrows"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "forever-braids-uk",
+      "name": "Forever Braids UK",
+      "areaId": "south-east",
+      "areaLabel": "South East",
+      "neighbourhood": "South East London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/foreverbraidsuk/",
+      "instagramUrl": "https://www.instagram.com/foreverbraidsuk/",
+      "services": [
+        "Faux locs",
+        "Microlocs / Sisterlocs"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "claire-the-curl-therapist",
+      "name": "Claire the Curl Therapist",
+      "areaId": "central",
+      "areaLabel": "Central",
+      "neighbourhood": "Central London",
+      "postcode": "",
+      "bookingPlatform": "Fresha",
+      "bookingUrl": "https://www.fresha.com/a/salon64-london-14-bateman-street-greater-avk70c5j/booking?employeeId=all&cartId=fb2dcbbc-5c76-4f71-be78-a3666c52c6b2",
+      "websiteUrl": "https://www.fresha.com/a/salon64-london-14-bateman-street-greater-avk70c5j/booking?employeeId=all&cartId=fb2dcbbc-5c76-4f71-be78-a3666c52c6b2",
+      "instagramUrl": "https://www.instagram.com/claire_the_curl_therapist/",
+      "services": [
+        "Wash & blowdry",
+        "Curly cut / Wash & go",
+        "Full head colour",
+        "Highlights",
+        "Balayage",
+        "Olaplex treatment",
+        "K-18 treatment",
+        "Moisturising treatment"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "lathaniels-couture-hair-and-beauty",
+      "name": "Lathaniels Couture Hair and Beauty",
+      "areaId": "south-east",
+      "areaLabel": "South East",
+      "neighbourhood": "South East London",
+      "postcode": "",
+      "bookingPlatform": "Fresha",
+      "bookingUrl": "https://www.fresha.com/a/lathaniels-couture-hair-and-beauty-london-196-coldharbour-lane-dd0ou2cn/booking",
+      "websiteUrl": "https://www.fresha.com/a/lathaniels-couture-hair-and-beauty-london-196-coldharbour-lane-dd0ou2cn/booking",
+      "instagramUrl": "https://www.instagram.com/lathanielscouture/",
+      "services": [
+        "Moisturising treatment",
+        "Wash & blowdry",
+        "Relaxer",
+        "Cornrows",
+        "Silk press",
+        "Trim / Hair cut",
+        "Full head colour",
+        "Texture release",
+        "Sew-in take-down",
+        "Tracks sewn in",
+        "Traditional sew-in",
+        "Wig install"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "the-beauty-parlour-by-kimberly-graham",
+      "name": "The Beauty Parlour by Kimberly Graham",
+      "areaId": "south-west",
+      "areaLabel": "South West",
+      "neighbourhood": "South West London",
+      "postcode": "",
+      "bookingPlatform": "Treatwell",
+      "bookingUrl": "https://www.treatwell.co.uk/place/the-beauty-parlour-by-kimberly-graham",
+      "websiteUrl": "https://www.treatwell.co.uk/place/the-beauty-parlour-by-kimberly-graham",
+      "instagramUrl": "https://www.instagram.com/tbp_ldn/",
+      "services": [
+        "Feed-in braids",
+        "Braid take-down",
+        "Wash & blowdry",
+        "Silk press"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "marnis-touch",
+      "name": "Marnis Touch",
+      "areaId": "south-west",
+      "areaLabel": "South West",
+      "neighbourhood": "South West London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://marnistouch.as.me/schedule/491722ee",
+      "websiteUrl": "https://marnistouch.as.me/schedule/491722ee",
+      "instagramUrl": "https://www.instagram.com/marnistouch/",
+      "services": [
+        "Feed-in braids",
+        "Boho braids",
+        "Fulani braids",
+        "Knotless braids",
+        "Traditional sew-in",
+        "Half braids, half sew-in",
+        "Wash & blowdry"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "touched-by-mo",
+      "name": "Touched by Mo",
+      "areaId": "all-london",
+      "areaLabel": "London",
+      "neighbourhood": "London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/t0uchedbymo/",
+      "instagramUrl": "https://www.instagram.com/t0uchedbymo/",
+      "services": [
+        "Boho braids",
+        "Feed-in braids",
+        "French curl",
+        "Knotless braids",
+        "Creative braids"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "styled-by-wasike",
+      "name": "Styled by Wasike",
+      "areaId": "all-london",
+      "areaLabel": "London",
+      "neighbourhood": "London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/styledbywasike/",
+      "instagramUrl": "https://www.instagram.com/styledbywasike/",
+      "services": [
+        "Creative braids"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "kayy-the-braider",
+      "name": "Kayy the Braider",
+      "areaId": "north-west",
+      "areaLabel": "North West",
+      "neighbourhood": "North West London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://kayythebraider-ktb.as.me/schedule/34b7fea6",
+      "websiteUrl": "https://kayythebraider-ktb.as.me/schedule/34b7fea6",
+      "instagramUrl": "https://www.instagram.com/kayythebraider/",
+      "services": [
+        "Retwist",
+        "Creative braids",
+        "Fulani braids",
+        "Boho braids",
+        "French curl",
+        "Feed-in braids",
+        "Knotless braids",
+        "Cornrows",
+        "Box braids",
+        "Twists"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "jaam-hair",
+      "name": "Jaam Hair",
+      "areaId": "south-east",
+      "areaLabel": "South East",
+      "neighbourhood": "South East London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/jaam.hair/",
+      "instagramUrl": "https://www.instagram.com/jaam.hair/",
+      "services": [
+        "Creative braids"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "in-faithful-hands",
+      "name": "In Faithful Hands",
+      "areaId": "south-east",
+      "areaLabel": "South East",
+      "neighbourhood": "South East London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://infaithfulhands.as.me/schedule/74c6bf58",
+      "websiteUrl": "https://infaithfulhands.as.me/schedule/74c6bf58",
+      "instagramUrl": "https://www.instagram.com/infaithfulhands_/",
+      "services": [
+        "Fulani braids",
+        "Half braids, half sew-in",
+        "Stitch braids",
+        "Flipover / Versatile sew-in",
+        "Cornrows",
+        "Knotless braids"
       ]
     }
   ]
