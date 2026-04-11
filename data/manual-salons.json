@@ -354,12 +354,8 @@
       "id": "arinze-studios",
       "name": "Arinze Studios",
       "areaId": "east",
-      "areaIds": [
-        "east",
-        "central"
-      ],
       "areaLabel": "East",
-      "neighbourhood": "East and Central London",
+      "neighbourhood": "East London",
       "postcode": "",
       "bookingPlatform": "Instagram",
       "bookingUrl": "https://www.instagram.com/arinzestudios/?g=5",
@@ -5436,7 +5432,8 @@
         "Flipover / Versatile sew-in",
         "Traditional sew-in",
         "Stitch braids",
-        "Scalp care"
+        "Scalp care",
+        "Creative braids"
       ],
       "summary": "Manual entry added from your latest salon update batch.",
       "source": "manual",
@@ -7860,7 +7857,8 @@
         "Custom wig",
         "Silk press",
         "Braid take-down",
-        "Sew-in take-down"
+        "Sew-in take-down",
+        "Creative braids"
       ]
     },
     {
@@ -8856,7 +8854,8 @@
         "Faux locs",
         "Feed-in braids",
         "Cornrows",
-        "Twists"
+        "Twists",
+        "Creative braids"
       ]
     },
     {
@@ -9056,7 +9055,8 @@
         "Knotless braids",
         "Traditional sew-in",
         "Half braids, half sew-in",
-        "Wash & blowdry"
+        "Wash & blowdry",
+        "Creative braids"
       ]
     },
     {
