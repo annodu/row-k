@@ -7307,17 +7307,17 @@
       "areaLabel": "North West",
       "neighbourhood": "North West London",
       "postcode": "",
-      "bookingPlatform": ".as.me",
-      "bookingUrl": "https://tressavenue.as.me",
-      "websiteUrl": "https://tressavenue.as.me",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://tressavenue.as.me/schedule/bb1fda2c",
+      "websiteUrl": "https://tressavenue.as.me/schedule/bb1fda2c",
       "instagramUrl": "https://www.instagram.com/tressavenue_/",
       "services": [
-        "Wig install",
-        "Traditional sew-in",
         "Ponytail",
+        "Half braids, half sew-in",
+        "Traditional sew-in",
         "Closure sew-in",
-        "Half up half down",
-        "Half braids, half sew-in"
+        "Wig install",
+        "Custom wig"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -7795,14 +7795,406 @@
       "instagramUrl": "https://www.instagram.com/marievhair/",
       "services": [
         "Cornrows",
+        "Quick weave",
         "Traditional sew-in",
         "Closure sew-in",
-        "Half braids, half sew-in",
         "Flipover / Versatile sew-in",
+        "Half braids, half sew-in",
         "Wash & blowdry",
+        "Braid take-down",
         "Sew-in take-down",
         "Wig install",
         "Custom wig"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "stallistyles",
+      "name": "Stalli Styles",
+      "areaId": "kent",
+      "areaLabel": "Kent",
+      "neighbourhood": "Kent",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://stallistyless.as.me/schedule/b3684150",
+      "websiteUrl": "https://stallistyless.as.me/schedule/b3684150",
+      "instagramUrl": "https://www.instagram.com/stallistyles_/",
+      "services": [
+        "Ponytail",
+        "Updo",
+        "Flipover / Versatile sew-in",
+        "Half up half down",
+        "Quick weave",
+        "Traditional sew-in",
+        "Closure sew-in"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "chiavhair",
+      "name": "Chiav Hair",
+      "areaId": "east",
+      "areaLabel": "East",
+      "neighbourhood": "East London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://chiavhair.as.me/schedule/a5bb2bee",
+      "websiteUrl": "https://chiavhair.as.me/schedule/a5bb2bee",
+      "instagramUrl": "https://www.instagram.com/chiavhair/",
+      "services": [
+        "Wig install",
+        "Traditional sew-in",
+        "Closure sew-in",
+        "Frontal sew-in"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "divas-by-claudia",
+      "name": "Divas by Claudia",
+      "areaId": "east",
+      "areaLabel": "East",
+      "neighbourhood": "East London",
+      "postcode": "",
+      "bookingPlatform": "Direct website",
+      "bookingUrl": "https://www.divasbyclaudia.com/book-appointment",
+      "websiteUrl": "https://www.divasbyclaudia.com/book-appointment",
+      "instagramUrl": "https://www.instagram.com/divasbyclaudia/",
+      "services": [
+        "Wig install",
+        "Custom wig",
+        "Wig colour",
+        "Ponytail",
+        "Updo",
+        "Relaxer",
+        "Full head colour",
+        "Cornrows",
+        "Feed-in braids",
+        "Twists",
+        "Faux locs",
+        "Closure sew-in",
+        "Frontal sew-in",
+        "Sew-in take-down",
+        "Tracks sewn in",
+        "Flipover / Versatile sew-in",
+        "Silk press",
+        "Pixie / finger waves",
+        "Moisturising treatment"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "by-danniiej",
+      "name": "By Danniiej",
+      "areaId": "east",
+      "areaLabel": "East",
+      "neighbourhood": "East London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://bydanniiej.as.me/schedule/db30f449",
+      "websiteUrl": "https://bydanniiej.as.me/schedule/db30f449",
+      "instagramUrl": "https://www.instagram.com/bydanniiej/",
+      "services": [
+        "Wig install",
+        "Traditional sew-in",
+        "Flipover / Versatile sew-in"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "cabelobeau",
+      "name": "Cabelo Beau",
+      "areaId": "south-east",
+      "areaLabel": "South East",
+      "neighbourhood": "South East London",
+      "postcode": "",
+      "bookingPlatform": "Setmore",
+      "bookingUrl": "https://cabelobeau.setmore.com/",
+      "websiteUrl": "https://cabelobeau.setmore.com/",
+      "instagramUrl": "https://www.instagram.com/cabelobeau/",
+      "services": [
+        "Wig install",
+        "Closure sew-in",
+        "Tape-ins",
+        "Flipover / Versatile sew-in",
+        "Sew-in take-down"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "adeline-tresses",
+      "name": "Adeline Tresses",
+      "areaId": "london",
+      "areaLabel": "London",
+      "neighbourhood": "London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://adelinetresses.as.me/schedule/f23a2530",
+      "websiteUrl": "https://adelinetresses.as.me/schedule/f23a2530",
+      "instagramUrl": "https://www.instagram.com/adelinetresses/",
+      "services": [
+        "Knotless braids",
+        "Tape-ins",
+        "Butterfly locs",
+        "Faux locs",
+        "Traditional sew-in",
+        "Flipover / Versatile sew-in",
+        "Closure sew-in",
+        "Frontal sew-in",
+        "Sew-in take-down",
+        "LA weave",
+        "Stitch braids",
+        "Fulani braids",
+        "Twists",
+        "Wig install"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "nhanced-hair",
+      "name": "Nhanced Hair",
+      "areaId": "london",
+      "areaLabel": "London",
+      "neighbourhood": "London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://nhancedhair.as.me/schedule/7f86294a",
+      "websiteUrl": "https://nhancedhair.as.me/schedule/7f86294a",
+      "instagramUrl": "https://www.instagram.com/nhancedhair/",
+      "services": [
+        "Traditional sew-in",
+        "Closure sew-in",
+        "Tape-ins"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "majestik-styles",
+      "name": "Majestik Styles",
+      "areaId": "north-west",
+      "areaLabel": "North West",
+      "neighbourhood": "North West London",
+      "postcode": "",
+      "bookingPlatform": "Direct website",
+      "bookingUrl": "https://majestikstyles.co.uk/pages/book-an-appoinntment",
+      "websiteUrl": "https://majestikstyles.co.uk/pages/book-an-appoinntment",
+      "instagramUrl": "https://www.instagram.com/majestikstyles/",
+      "services": [
+        "Clip-ins",
+        "Half up half down",
+        "Traditional sew-in",
+        "Tape-ins",
+        "Microlinks",
+        "Ponytail",
+        "Keratin treatment",
+        "Sew-in take-down",
+        "Silk press",
+        "Texture release",
+        "Scalp care"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "slaybynay",
+      "name": "Slaybynay",
+      "areaId": "essex",
+      "areaLabel": "Essex",
+      "neighbourhood": "Essex",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://slaybynay.as.me/schedule/b8b1c4fc",
+      "websiteUrl": "https://slaybynay.as.me/schedule/b8b1c4fc",
+      "instagramUrl": "https://www.instagram.com/slaybynay_/",
+      "services": [
+        "Custom wig",
+        "Wig install",
+        "Ponytail",
+        "Traditional sew-in",
+        "Half up half down"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "h-lounge-uk",
+      "name": "H Lounge UK",
+      "areaId": "south-east",
+      "areaLabel": "South East",
+      "neighbourhood": "South East London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://hloungeuk8.as.me/schedule/aef0639e",
+      "websiteUrl": "https://hloungeuk8.as.me/schedule/aef0639e",
+      "instagramUrl": "https://www.instagram.com/hloungeuk/",
+      "services": [
+        "Knotless braids",
+        "Boho braids",
+        "Feed-in braids",
+        "Fulani braids",
+        "Quick weave",
+        "Retwist",
+        "Twists",
+        "Wig install",
+        "Traditional sew-in",
+        "Half braids, half sew-in",
+        "Flipover / Versatile sew-in",
+        "Closure sew-in"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "sleeked-on-point",
+      "name": "Sleeked On Point",
+      "areaId": "south-east",
+      "areaLabel": "South East",
+      "neighbourhood": "South East London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/sleekedonpoint/",
+      "instagramUrl": "https://www.instagram.com/sleekedonpoint/",
+      "services": [
+        "Wig install",
+        "Ponytail",
+        "Traditional sew-in"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "o-so-snatched",
+      "name": "O'so Snatched",
+      "areaId": "north",
+      "areaLabel": "North",
+      "neighbourhood": "North London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://ososnatched.as.me/schedule/174faa7d",
+      "websiteUrl": "https://ososnatched.as.me/schedule/174faa7d",
+      "instagramUrl": "https://www.instagram.com/ososnatched/",
+      "services": [
+        "Cornrows",
+        "Knotless braids",
+        "Ponytail",
+        "Half up half down",
+        "Traditional sew-in",
+        "Closure sew-in",
+        "Frontal sew-in",
+        "Half braids, half sew-in",
+        "Wig install"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "tle-hair",
+      "name": "TLE Hair",
+      "areaId": "london",
+      "areaLabel": "London",
+      "neighbourhood": "London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/tlehair/",
+      "instagramUrl": "https://www.instagram.com/tlehair/",
+      "services": [
+        "Wig install",
+        "Traditional sew-in"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "scalpedit",
+      "name": "Scalpedit",
+      "areaId": "east",
+      "areaLabel": "East",
+      "neighbourhood": "East London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/scalpedit/",
+      "instagramUrl": "https://www.instagram.com/scalpedit/",
+      "services": [
+        "Traditional sew-in",
+        "Flipover / Versatile sew-in",
+        "Wig install"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "the-glo-upp-beauty-salon",
+      "name": "The Glo Upp Beauty Salon",
+      "areaId": "north",
+      "areaLabel": "North",
+      "neighbourhood": "North London",
+      "postcode": "",
+      "bookingPlatform": "Fresha",
+      "bookingUrl": "https://www.fresha.com/a/the-glo-upp-beauty-salon-london-679-high-road-leyton-flae4lmt/booking",
+      "websiteUrl": "https://www.fresha.com/a/the-glo-upp-beauty-salon-london-679-high-road-leyton-flae4lmt/booking",
+      "instagramUrl": "https://www.instagram.com/theglouppbeautysalon/",
+      "services": [
+        "Traditional sew-in",
+        "Wash & blowdry",
+        "Closure sew-in",
+        "Ponytail",
+        "Custom wig",
+        "Wig install",
+        "Full head colour",
+        "Highlights"
       ]
     },
     {
