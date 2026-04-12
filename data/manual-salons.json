@@ -6353,8 +6353,12 @@
       "id": "south-west-six-salon",
       "name": "South West Six Salon",
       "areaId": "south-west",
+      "areaIds": [
+        "south-west",
+        "west"
+      ],
       "areaLabel": "South West",
-      "neighbourhood": "South West London",
+      "neighbourhood": "South West and West London",
       "postcode": "",
       "bookingPlatform": "Vagaro",
       "bookingUrl": "https://www.vagaro.com/southwestsixsalon",
