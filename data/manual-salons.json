@@ -1,8 +1,8 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-04-11T00:50:00.000Z",
-    "count": 344,
+    "updatedAt": "2026-04-12T01:00:00.000Z",
+    "count": 359,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
@@ -64,6 +64,7 @@
         "Custom wig"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
+      "hijabiFriendly": true,
       "source": "manual",
       "evidence": [
         "User-provided Instagram handle awaiting categorisation."
@@ -6138,6 +6139,7 @@
         "Balayage",
         "Highlights"
       ],
+      "hijabiFriendly": true,
       "summary": "Manual entry added from your latest salon update batch.",
       "source": "manual",
       "evidence": [
@@ -9171,6 +9173,376 @@
         "Flipover / Versatile sew-in",
         "Cornrows",
         "Knotless braids"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "hair-by-kuks",
+      "name": "Hair by Kuks",
+      "areaId": "south-east",
+      "areaLabel": "South East",
+      "neighbourhood": "South East London",
+      "postcode": "",
+      "bookingPlatform": ".as.me",
+      "bookingUrl": "https://hairbykuks.as.me/schedule/5d2ddc2b",
+      "websiteUrl": "https://hairbykuks.as.me/schedule/5d2ddc2b",
+      "instagramUrl": "https://www.instagram.com/hair.bykuks/",
+      "services": [
+        "Knotless braids",
+        "Boho braids",
+        "French curl",
+        "Butterfly locs",
+        "Faux locs",
+        "Stitch braids",
+        "Fulani braids",
+        "Half braids, half sew-in"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "zks-touch",
+      "name": "ZKs Touch",
+      "areaId": "south-east",
+      "areaLabel": "South East",
+      "neighbourhood": "South East London",
+      "postcode": "",
+      "bookingPlatform": ".as.me",
+      "bookingUrl": "https://zkstouch.as.me/schedule/39b4e5da",
+      "websiteUrl": "https://zkstouch.as.me/schedule/39b4e5da",
+      "instagramUrl": "https://www.instagram.com/zkstouch/",
+      "services": [
+        "Twists",
+        "Boho braids",
+        "Knotless braids",
+        "Stitch braids",
+        "Half braids, half sew-in"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "ellise-tresses",
+      "name": "Ellise Tresses",
+      "areaId": "east",
+      "areaLabel": "East",
+      "neighbourhood": "East London",
+      "postcode": "",
+      "bookingPlatform": ".as.me",
+      "bookingUrl": "https://ellisetresses.as.me/schedule/90447f29",
+      "websiteUrl": "https://ellisetresses.as.me/schedule/90447f29",
+      "instagramUrl": "https://www.instagram.com/ellisetresses/",
+      "services": [
+        "Fulani braids",
+        "Knotless braids",
+        "Retwist",
+        "Starter locs",
+        "Half braids, half sew-in",
+        "Creative braids",
+        "Ponytail",
+        "Half up half down"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "tress-studios",
+      "name": "Tress Studios",
+      "areaId": "south-east",
+      "areaLabel": "South East",
+      "neighbourhood": "South East London",
+      "postcode": "",
+      "bookingPlatform": ".as.me",
+      "bookingUrl": "https://tressstudios.as.me/schedule/d80dec80",
+      "websiteUrl": "https://tressstudios.as.me/schedule/d80dec80",
+      "instagramUrl": "https://www.instagram.com/tress.studios/",
+      "services": [
+        "Quick weave",
+        "Traditional sew-in",
+        "Flipover / Versatile sew-in"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "noque-salon",
+      "name": "Noque Salon",
+      "areaId": "east",
+      "areaLabel": "East",
+      "neighbourhood": "East London",
+      "postcode": "",
+      "bookingPlatform": ".as.me",
+      "bookingUrl": "https://noquesalon.as.me/schedule/2baf9de3",
+      "websiteUrl": "https://noquesalon.as.me/schedule/2baf9de3",
+      "instagramUrl": "https://www.instagram.com/noquesalon/",
+      "services": [
+        "Creative braids",
+        "Knotless braids",
+        "Fulani braids",
+        "Boho braids",
+        "Stitch braids",
+        "Half braids, half sew-in",
+        "Retwist",
+        "Cornrows"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "christine-the-hair-braider",
+      "name": "Christine the Hair Braider",
+      "areaId": "south-east",
+      "areaLabel": "South East",
+      "neighbourhood": "South East London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/christinethehairbraider/",
+      "instagramUrl": "https://www.instagram.com/christinethehairbraider/",
+      "services": [
+        "Boho braids",
+        "Knotless braids",
+        "French curl",
+        "Cornrows"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "house-of-e",
+      "name": "House of E",
+      "areaId": "south-east",
+      "areaLabel": "South East",
+      "neighbourhood": "South East London",
+      "postcode": "",
+      "bookingPlatform": ".as.me",
+      "bookingUrl": "https://houseofeservices.as.me/schedule/4969b2b3",
+      "websiteUrl": "https://houseofeservices.as.me/schedule/4969b2b3",
+      "instagramUrl": "https://www.instagram.com/houseofe__/",
+      "services": [
+        "Knotless braids",
+        "Twists",
+        "French curl",
+        "Microbraids"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "ns-galore",
+      "name": "NS Galore",
+      "areaId": "croydon",
+      "areaLabel": "Croydon",
+      "neighbourhood": "Croydon",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/nsgalore/",
+      "instagramUrl": "https://www.instagram.com/nsgalore/",
+      "services": [
+        "Boho braids",
+        "Half braids, half sew-in",
+        "French curl",
+        "Fulani braids",
+        "Knotless braids",
+        "Stitch braids"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "braided-by-tobs",
+      "name": "Braided by Tobs",
+      "areaId": "mobile",
+      "areaLabel": "Mobile",
+      "neighbourhood": "Mobile",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/braidedby_tobs/",
+      "instagramUrl": "https://www.instagram.com/braidedby_tobs/",
+      "services": [
+        "Knotless braids",
+        "French curl",
+        "Fulani braids",
+        "Feed-in braids"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "dbd-hair-studio",
+      "name": "DBD Hair Studio",
+      "areaId": "south-east",
+      "areaLabel": "South East",
+      "neighbourhood": "South East London",
+      "postcode": "",
+      "bookingPlatform": ".as.me",
+      "bookingUrl": "https://dbdhairstudio.as.me/schedule/1458c5ba",
+      "websiteUrl": "https://dbdhairstudio.as.me/schedule/1458c5ba",
+      "instagramUrl": "https://www.instagram.com/dbdhairstudio/",
+      "services": [
+        "Knotless braids",
+        "Fulani braids",
+        "Boho braids",
+        "Feed-in braids",
+        "Traditional sew-in",
+        "Half braids, half sew-in",
+        "Frontal sew-in",
+        "Ponytail",
+        "Half up half down",
+        "Wig install"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "agn-salon",
+      "name": "AGN Salon",
+      "areaId": "north-west",
+      "areaLabel": "North West",
+      "neighbourhood": "North West London",
+      "postcode": "",
+      "bookingPlatform": ".as.me",
+      "bookingUrl": "https://agnsalon.as.me/schedule/9dddeb5c",
+      "websiteUrl": "https://agnsalon.as.me/schedule/9dddeb5c",
+      "instagramUrl": "https://www.instagram.com/agn_salon/",
+      "services": [
+        "Knotless braids",
+        "Cornrows",
+        "Twists",
+        "French curl"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "czee-studios",
+      "name": "CZee Studios",
+      "areaId": "south-east",
+      "areaLabel": "South East",
+      "neighbourhood": "South East London",
+      "postcode": "",
+      "bookingPlatform": ".as.me",
+      "bookingUrl": "https://czeestudios.as.me/schedule/7283a415",
+      "websiteUrl": "https://czeestudios.as.me/schedule/7283a415",
+      "instagramUrl": "https://www.instagram.com/czeestudios/",
+      "services": [
+        "Wig install",
+        "Ponytail"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "sandra-webb-hairdressing",
+      "name": "Sandra Webb Hairdressing",
+      "areaId": "south-west",
+      "areaLabel": "South West",
+      "neighbourhood": "South West London",
+      "postcode": "",
+      "bookingPlatform": "Vagaro",
+      "bookingUrl": "https://www.vagaro.com/sandrawebbhair",
+      "websiteUrl": "https://www.vagaro.com/sandrawebbhair",
+      "instagramUrl": "https://www.instagram.com/sandrawebbhairdressing/",
+      "services": [
+        "Trim / Hair cut",
+        "Wash & blowdry",
+        "Texture release",
+        "Tracks sewn in",
+        "LA weave",
+        "Sew-in take-down",
+        "Full head colour",
+        "Highlights",
+        "Balayage",
+        "Relaxer",
+        "K-18 treatment",
+        "Keratin treatment",
+        "Pixie / finger waves"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "yemmie-beauty-touch",
+      "name": "Yemmie Beauty Touch",
+      "areaId": "south-east",
+      "areaLabel": "South East",
+      "neighbourhood": "South East London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/yemmie_beauty_touch/",
+      "instagramUrl": "https://www.instagram.com/yemmie_beauty_touch/",
+      "services": [
+        "Boho braids",
+        "Knotless braids",
+        "French curl",
+        "Box braids",
+        "Feed-in braids"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "fruittii-london",
+      "name": "Fruittii London",
+      "areaId": "south-east",
+      "areaLabel": "South East",
+      "neighbourhood": "South East London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/fruittii.london/",
+      "instagramUrl": "https://www.instagram.com/fruittii.london/",
+      "services": [
+        "Trim / Hair cut",
+        "Curly cut / Wash & go",
+        "Full head colour",
+        "Highlights",
+        "Balayage",
+        "Wash & blowdry"
       ]
     }
   ]
