@@ -50,6 +50,7 @@ const categoryMap = {
       "Half braids, half sew-in",
       "Knotless braids",
       "Microbraids",
+      "Pre-parting",
       "Stitch braids",
       "Twists",
     ],
