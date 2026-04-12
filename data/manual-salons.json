@@ -9944,6 +9944,29 @@
         "Balayage",
         "Wash & blowdry"
       ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "silone-sensei",
+      "name": "Silone Sensei",
+      "areaId": "south-east",
+      "areaLabel": "South East",
+      "neighbourhood": "South East London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/silonesensei_/",
+      "instagramUrl": "https://www.instagram.com/silonesensei_/",
+      "services": [
+        "Knotless braids",
+        "Boho braids",
+        "Twists",
+        "Fulani braids",
+        "Faux locs"
+      ]
     }
   ]
 }
