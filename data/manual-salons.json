@@ -9967,6 +9967,45 @@
         "Fulani braids",
         "Faux locs"
       ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "kannis-beauty",
+      "name": "Kannis Beauty",
+      "areaId": "south-east",
+      "areaLabel": "South East",
+      "neighbourhood": "South East London",
+      "postcode": "",
+      "bookingPlatform": "Vagaro",
+      "bookingUrl": "https://www.vagaro.com/kannisbeauty/book-now",
+      "websiteUrl": "https://www.vagaro.com/kannisbeauty/book-now",
+      "instagramUrl": "https://www.instagram.com/kannisbeauty",
+      "services": [
+        "Cornrows",
+        "Clip-ins",
+        "Wash & blowdry",
+        "Relaxer",
+        "Full head colour",
+        "Wig colour",
+        "Silk press",
+        "Scalp care",
+        "Moisturising treatment",
+        "Flipover / Versatile sew-in",
+        "Closure sew-in",
+        "Half up half down",
+        "Wig install",
+        "Ponytail",
+        "Tracks sewn in",
+        "Sew-in take-down",
+        "Knotless braids",
+        "Boho braids",
+        "Feed-in braids",
+        "Fulani braids"
+      ]
     }
   ]
 }
