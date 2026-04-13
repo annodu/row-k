@@ -1046,7 +1046,6 @@ export default function App() {
               <button
                 type="button"
                 onClick={openMobileFilters}
-                className="min-h-11 px-0 py-2 text-[14px] font-medium text-stone-500 transition hover:text-stone-800 dark:text-stone-400 dark:hover:text-stone-100"
                 className="min-h-11 px-0 py-2 text-[14px] font-medium text-stone-500 transition hover:text-stone-800 active:text-stone-800 dark:text-stone-400 dark:hover:text-stone-100 dark:active:text-stone-100"
               >
                 Filter / Sort
@@ -1146,7 +1145,7 @@ export default function App() {
                                     placement: "mobile",
                                   })
                                 }
-                                className="inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-none bg-transparent px-4 py-2 text-[14px] font-medium text-stone-950 transition-colors duration-150 hover:bg-stone-200 dark:bg-transparent dark:text-stone-100 dark:hover:bg-stone-800 sm:hidden"
+                                className="inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-none bg-transparent px-4 py-2 text-[14px] font-medium text-stone-950 transition-colors duration-150 hover:bg-stone-200 active:bg-stone-200 dark:bg-transparent dark:text-stone-100 dark:hover:bg-stone-800 dark:active:bg-stone-800 sm:hidden"
                               >
                                 <InstagramIcon className="size-4" />
                                 <span className="sr-only">{result.name} instagram - opens in a new tab</span>
@@ -1191,7 +1190,7 @@ export default function App() {
                                 location: result.areaLabel,
                               })
                             }
-                            className="inline-flex min-h-[46px] flex-1 items-center justify-center rounded-none bg-stone-950 px-5 py-2 text-[14px] font-medium text-stone-100 transition-colors duration-150 hover:bg-stone-800 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-stone-300 sm:h-full sm:min-h-0 sm:flex-none sm:px-6"
+                            className="inline-flex min-h-[46px] flex-1 items-center justify-center rounded-none bg-stone-950 px-5 py-2 text-[14px] font-medium text-stone-100 transition-colors duration-150 hover:bg-stone-800 active:bg-stone-800 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-stone-300 dark:active:bg-stone-300 sm:h-full sm:min-h-0 sm:flex-none sm:px-6"
                           >
                             Book
                             <span className="sr-only"> - {result.name} - opens in a new tab</span>
@@ -1202,7 +1201,7 @@ export default function App() {
                             href={result.websiteUrl}
                             target="_blank"
                             rel="noreferrer"
-                            className="inline-flex min-h-11 items-center justify-center rounded-none border border-stone-300 bg-stone-50 px-4 py-2 text-[14px] font-medium text-stone-950 transition-colors duration-150 hover:border-stone-400 hover:bg-stone-200 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100 dark:hover:border-stone-600 dark:hover:bg-stone-800"
+                            className="inline-flex min-h-11 items-center justify-center rounded-none border border-stone-300 bg-stone-50 px-4 py-2 text-[14px] font-medium text-stone-950 transition-colors duration-150 hover:border-stone-400 hover:bg-stone-200 active:border-stone-400 active:bg-stone-200 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100 dark:hover:border-stone-600 dark:hover:bg-stone-800 dark:active:border-stone-600 dark:active:bg-stone-800"
                           >
                             <Globe className="size-4" />
                           </a>
@@ -1642,7 +1641,7 @@ export default function App() {
               <button
                 type="button"
                 onClick={applyMobileFilters}
-                className="inline-flex min-h-[48px] w-full items-center justify-center rounded-none bg-stone-950 px-5 py-3 text-[14px] font-medium text-stone-100 transition-colors duration-150 hover:bg-stone-800 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-stone-300"
+                className="inline-flex min-h-[48px] w-full items-center justify-center rounded-none bg-stone-950 px-5 py-3 text-[14px] font-medium text-stone-100 transition-colors duration-150 hover:bg-stone-800 active:bg-stone-800 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-stone-300 dark:active:bg-stone-300"
               >
                 Apply
               </button>
