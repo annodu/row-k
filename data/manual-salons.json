@@ -1052,7 +1052,8 @@
       "instagramUrl": "https://www.instagram.com/braids_by_aduke/",
       "services": [
         "Knotless braids",
-        "Boho braids"
+        "Boho braids",
+        "Twists"
       ],
       "summary": "Manual Instagram-led entry added from your South West London braids list.",
       "source": "manual",
@@ -1376,7 +1377,18 @@
       "services": [
         "Moisturising treatment",
         "Japanese straightening",
-        "Keratin treatment"
+        "Keratin treatment",
+        "Wash & blowdry",
+        "Balayage",
+        "Full head colour",
+        "Clip-ins",
+        "K-tips",
+        "Tape-ins",
+        "Closure sew-in",
+        "Flipover / Versatile sew-in",
+        "Hybrid sew-in",
+        "Frontal sew-in",
+        "Wig install"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -4957,7 +4969,8 @@
       "instagramUrl": "https://www.instagram.com/mksuite/",
       "services": [
         "Traditional sew-in",
-        "Flipover / Versatile sew-in"
+        "Flipover / Versatile sew-in",
+        "Wig install"
       ],
       "summary": "Manual entry added from your known South London sew-in list. Region mapped to South East for now because the current app does not yet have a separate South London filter.",
       "source": "manual",
@@ -5958,7 +5971,9 @@
       "websiteUrl": "",
       "instagramUrl": "https://www.instagram.com/selbraids/",
       "services": [
-        "Knotless braids"
+        "Knotless braids",
+        "Boho braids",
+        "Twists"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -7565,7 +7580,11 @@
       "websiteUrl": "https://yayslickeditt.as.me/schedule.php",
       "instagramUrl": "https://www.instagram.com/yayslickeditt/",
       "services": [
-        "Ponytail"
+        "Ponytail",
+        "Half up half down",
+        "Traditional sew-in",
+        "Quick weave",
+        "Cornrows"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -9016,26 +9035,6 @@
       "services": [
         "Wig install",
         "Ponytail"
-      ]
-    },
-    {
-      "summary": "Manual entry added from your latest salon update batch.",
-      "source": "manual",
-      "evidence": [
-        "User-provided manual addition."
-      ],
-      "id": "by-fatoujai",
-      "name": "By Fatoujai",
-      "areaId": "south-west",
-      "areaLabel": "South West",
-      "neighbourhood": "South West London",
-      "postcode": "",
-      "bookingPlatform": "Acuity",
-      "bookingUrl": "https://fatoujai.as.me/schedule/2cf99b2d",
-      "websiteUrl": "https://fatoujai.as.me/schedule/2cf99b2d",
-      "instagramUrl": "https://www.instagram.com/byfatoujai/",
-      "services": [
-        "Wig install"
       ]
     },
     {

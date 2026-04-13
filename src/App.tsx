@@ -123,6 +123,7 @@ type CategoryId = keyof typeof categoryMap;
 type SubcategoryId = (typeof categoryMap)[CategoryId]["subcategories"][number];
 type ServiceCategoryId = Exclude<CategoryId, "all">;
 type ServiceSubcategoryId = Exclude<SubcategoryId, "all">;
+type SortOption = "default" | "alphabetical-asc" | "alphabetical-desc" | "most-specialised" | "most-services";
 
 type SalonResult = {
   id: string;
@@ -176,6 +177,49 @@ const sortedCategoryEntries = [
 
 const RESULTS_BATCH_SIZE = 20;
 const RESULTS_SKELETON_COUNT = 6;
+const sortOptions: { id: SortOption; label: string }[] = [
+  { id: "alphabetical-asc", label: "A → Z" },
+  { id: "alphabetical-desc", label: "Z → A" },
+  { id: "most-specialised", label: "Most specialised" },
+  { id: "most-services", label: "Most services" },
+];
+
+function compareSalonNames(left: SalonResult, right: SalonResult) {
+  const leftStartsWithDigit = /^\d/.test(left.name);
+  const rightStartsWithDigit = /^\d/.test(right.name);
+
+  if (leftStartsWithDigit !== rightStartsWithDigit) {
+    return leftStartsWithDigit ? 1 : -1;
+  }
+
+  return left.name.localeCompare(right.name);
+}
+
+function compareSalonNamesDesc(left: SalonResult, right: SalonResult) {
+  return compareSalonNames(right, left);
+}
+
+function sortResults(
+  results: SalonResult[],
+  sortOption: SortOption,
+  _hasActiveFilters: boolean,
+  _selectedCategories: ServiceCategoryId[],
+  _selectedSubcategories: ServiceSubcategoryId[],
+) {
+  switch (sortOption) {
+    case "alphabetical-asc":
+      return [...results].sort(compareSalonNames);
+    case "alphabetical-desc":
+      return [...results].sort(compareSalonNamesDesc);
+    case "most-services":
+      return [...results].sort((left, right) => right.services.length - left.services.length || compareSalonNames(left, right));
+    case "most-specialised":
+      return [...results].sort((left, right) => left.services.length - right.services.length || compareSalonNames(left, right));
+    case "default":
+    default:
+      return [...results].sort(compareSalonNames);
+  }
+}
 
 function trackUmamiEvent(eventName: string, data?: Record<string, string | number | boolean | null>) {
   window.umami?.track(eventName, data);
@@ -480,16 +524,108 @@ export default function App() {
   const [selectedCategories, setSelectedCategories] = useState<ServiceCategoryId[]>([]);
   const [selectedSubcategories, setSelectedSubcategories] = useState<ServiceSubcategoryId[]>([]);
   const [results, setResults] = useState<SalonResult[]>([]);
+  const [sortOption, setSortOption] = useState<SortOption>("alphabetical-asc");
+  const [draftSelectedRegions, setDraftSelectedRegions] = useState<RegionId[]>(["all"]);
+  const [draftSelectedCategories, setDraftSelectedCategories] = useState<ServiceCategoryId[]>([]);
+  const [draftSelectedSubcategories, setDraftSelectedSubcategories] = useState<ServiceSubcategoryId[]>([]);
+  const [draftSelectedHijabiFriendly, setDraftSelectedHijabiFriendly] = useState(false);
+  const [draftSortOption, setDraftSortOption] = useState<SortOption>("alphabetical-asc");
   const [visibleResultCount, setVisibleResultCount] = useState(RESULTS_BATCH_SIZE);
   const [isSearching, setIsSearching] = useState(false);
   const [searchError, setSearchError] = useState<string | null>(null);
   const [hasSearched, setHasSearched] = useState(false);
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   const [selectedHijabiFriendly, setSelectedHijabiFriendly] = useState(false);
+  const [isDesktopViewport, setIsDesktopViewport] = useState(false);
   const [hijabiHoverLocked, setHijabiHoverLocked] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const [locationsOpen, setLocationsOpen] = useState(false);
   const loadMoreRef = useRef<HTMLDivElement | null>(null);
+  const isMobileModalEditing = mobileFiltersOpen && !isDesktopViewport;
+  const currentSelectedRegions = isMobileModalEditing ? draftSelectedRegions : selectedRegions;
+  const currentSelectedCategories = isMobileModalEditing ? draftSelectedCategories : selectedCategories;
+  const currentSelectedSubcategories = isMobileModalEditing ? draftSelectedSubcategories : selectedSubcategories;
+  const currentSelectedHijabiFriendly = isMobileModalEditing ? draftSelectedHijabiFriendly : selectedHijabiFriendly;
+  const currentSortOption = isMobileModalEditing ? draftSortOption : sortOption;
+
+  function syncDraftFiltersFromApplied() {
+    setDraftSelectedRegions(selectedRegions);
+    setDraftSelectedCategories(selectedCategories);
+    setDraftSelectedSubcategories(selectedSubcategories);
+    setDraftSelectedHijabiFriendly(selectedHijabiFriendly);
+    setDraftSortOption(sortOption);
+  }
+
+  function openMobileFilters() {
+    syncDraftFiltersFromApplied();
+    trackUmamiEvent("filter_opened", { source: "results_header" });
+    setMobileFiltersOpen(true);
+  }
+
+  function cancelMobileFilters() {
+    syncDraftFiltersFromApplied();
+    setMobileFiltersOpen(false);
+  }
+
+  function applyMobileFilters() {
+    setSelectedRegions(draftSelectedRegions);
+    setSelectedCategories(draftSelectedCategories);
+    setSelectedSubcategories(draftSelectedSubcategories);
+    setSelectedHijabiFriendly(draftSelectedHijabiFriendly);
+    setSortOption(draftSortOption);
+    setVisibleResultCount(RESULTS_BATCH_SIZE);
+    setMobileFiltersOpen(false);
+  }
+
+  function updateRegions(updater: RegionId[] | ((current: RegionId[]) => RegionId[])) {
+    if (isMobileModalEditing) {
+      setDraftSelectedRegions(updater);
+      return;
+    }
+
+    setSelectedRegions(updater);
+  }
+
+  function updateCategories(
+    updater: ServiceCategoryId[] | ((current: ServiceCategoryId[]) => ServiceCategoryId[]),
+  ) {
+    if (isMobileModalEditing) {
+      setDraftSelectedCategories(updater);
+      return;
+    }
+
+    setSelectedCategories(updater);
+  }
+
+  function updateSubcategories(
+    updater: ServiceSubcategoryId[] | ((current: ServiceSubcategoryId[]) => ServiceSubcategoryId[]),
+  ) {
+    if (isMobileModalEditing) {
+      setDraftSelectedSubcategories(updater);
+      return;
+    }
+
+    setSelectedSubcategories(updater);
+  }
+
+  function updateHijabiFriendly(updater: boolean | ((current: boolean) => boolean)) {
+    if (isMobileModalEditing) {
+      setDraftSelectedHijabiFriendly(updater);
+      return;
+    }
+
+    setSelectedHijabiFriendly(updater);
+  }
+
+  function updateSortOption(nextSort: SortOption) {
+    if (isMobileModalEditing) {
+      setDraftSortOption(nextSort);
+      return;
+    }
+
+    setSortOption(nextSort);
+    setVisibleResultCount(RESULTS_BATCH_SIZE);
+  }
 
   function toggleServicesOpen() {
     setServicesOpen((current) => {
@@ -521,18 +657,19 @@ export default function App() {
 
   function clearFilters() {
     trackUmamiEvent("filter_reset", {
-      selected_services: selectedCategories.length + selectedSubcategories.length,
-      selected_locations: selectedRegions.filter((region) => region !== "all").length,
-      hijabi_friendly: selectedHijabiFriendly,
+      selected_services: currentSelectedCategories.length + currentSelectedSubcategories.length,
+      selected_locations: currentSelectedRegions.filter((region) => region !== "all").length,
+      hijabi_friendly: currentSelectedHijabiFriendly,
     });
-    setSelectedCategories([]);
-    setSelectedSubcategories([]);
-    setSelectedRegions(["all"]);
-    setSelectedHijabiFriendly(false);
+    updateCategories([]);
+    updateSubcategories([]);
+    updateRegions(["all"]);
+    updateHijabiFriendly(false);
+    updateSortOption("alphabetical-asc");
   }
 
   function isCategorySelected(categoryId: ServiceCategoryId) {
-    return selectedCategories.includes(categoryId);
+    return currentSelectedCategories.includes(categoryId);
   }
 
   function categoryHasSelectedSubcategories(categoryId: ServiceCategoryId) {
@@ -540,29 +677,29 @@ export default function App() {
       (subcategory): subcategory is ServiceSubcategoryId => subcategory !== "all",
     );
 
-    return availableSubcategories.some((subcategory) => selectedSubcategories.includes(subcategory));
+    return availableSubcategories.some((subcategory) => currentSelectedSubcategories.includes(subcategory));
   }
 
   function toggleCategory(nextCategory: CategoryId) {
     if (nextCategory === "all") {
       trackUmamiEvent("service_filter_selected", {
         selection: "all",
-        selected: selectedCategories.length > 0 || selectedSubcategories.length > 0,
+        selected: currentSelectedCategories.length > 0 || currentSelectedSubcategories.length > 0,
       });
-      setSelectedCategories([]);
-      setSelectedSubcategories([]);
+      updateCategories([]);
+      updateSubcategories([]);
       return;
     }
 
     const nextCategoryLabel = categoryMap[nextCategory].label;
-    const isCurrentlyActive = selectedCategories.includes(nextCategory as ServiceCategoryId);
+    const isCurrentlyActive = currentSelectedCategories.includes(nextCategory as ServiceCategoryId);
     trackUmamiEvent("service_filter_selected", {
       selection: nextCategoryLabel,
       selected: !isCurrentlyActive,
       type: "category",
     });
 
-    setSelectedCategories((currentCategories) => {
+    updateCategories((currentCategories) => {
       const isActive = currentCategories.includes(nextCategory);
       if (isActive) {
         const nextSubcategories = new Set(
@@ -571,7 +708,7 @@ export default function App() {
           ),
         );
 
-        setSelectedSubcategories((currentSubcategories) =>
+        updateSubcategories((currentSubcategories) =>
           currentSubcategories.filter((subcategory) => !nextSubcategories.has(subcategory)),
         );
 
@@ -584,7 +721,7 @@ export default function App() {
         ),
       );
 
-      setSelectedSubcategories((currentSubcategories) =>
+      updateSubcategories((currentSubcategories) =>
         currentSubcategories.filter((subcategory) => !nextSubcategories.has(subcategory)),
       );
 
@@ -595,7 +732,7 @@ export default function App() {
   function toggleSubcategory(nextSubcategory: ServiceSubcategoryId) {
     trackUmamiEvent("service_filter_selected", {
       selection: nextSubcategory,
-      selected: !selectedSubcategories.includes(nextSubcategory),
+      selected: !currentSelectedSubcategories.includes(nextSubcategory),
       type: "subcategory",
     });
 
@@ -604,42 +741,76 @@ export default function App() {
         categoryId !== "all" && category.subcategories.includes(nextSubcategory as SubcategoryId),
     )?.[0] as ServiceCategoryId | undefined;
 
-    if (parentCategory) {
-      setSelectedCategories((currentCategories) =>
-        currentCategories.filter((categoryId) => categoryId !== parentCategory),
-      );
-    }
-
-    setSelectedSubcategories((currentSubcategories) =>
-      currentSubcategories.includes(nextSubcategory)
+    updateSubcategories((currentSubcategories) => {
+      const isCurrentlySelected = currentSubcategories.includes(nextSubcategory);
+      const nextSubcategories = isCurrentlySelected
         ? currentSubcategories.filter((subcategory) => subcategory !== nextSubcategory)
-        : [...currentSubcategories, nextSubcategory],
-    );
+        : [...currentSubcategories, nextSubcategory];
+
+      if (parentCategory) {
+        const parentSubcategories = categoryMap[parentCategory].subcategories.filter(
+          (subcategory): subcategory is ServiceSubcategoryId => subcategory !== "all",
+        );
+        const hasSelectedSiblingSubcategory = parentSubcategories.some((subcategory) => nextSubcategories.includes(subcategory));
+
+        updateCategories((currentCategories) => {
+          const categoriesWithoutParent = currentCategories.filter((categoryId) => categoryId !== parentCategory);
+
+          if (hasSelectedSiblingSubcategory) {
+            return categoriesWithoutParent;
+          }
+
+          return [...categoriesWithoutParent, parentCategory];
+        });
+      }
+
+      return nextSubcategories;
+    });
   }
 
   function isRegionSelected(regionId: RegionId) {
-    return selectedRegions.includes(regionId);
+    return currentSelectedRegions.includes(regionId);
   }
 
   function toggleRegion(nextRegion: RegionId) {
     const regionLabel = regionLabelMap[nextRegion] ?? nextRegion;
     const isCurrentlyActive =
       nextRegion === "all"
-        ? selectedRegions.length > 1 || !selectedRegions.includes("all")
-        : selectedRegions.includes(nextRegion);
+        ? currentSelectedRegions.length > 1 || !currentSelectedRegions.includes("all")
+        : currentSelectedRegions.includes(nextRegion);
 
     trackUmamiEvent("location_filter_selected", {
       selection: regionLabel,
       selected: !isCurrentlyActive,
     });
 
-    setSelectedRegions((currentRegions) => {
+    updateRegions((currentRegions) => {
       if (nextRegion === "all") {
         return ["all"];
       }
 
       if (nextRegion === "london") {
         return currentRegions.includes("london") ? ["all"] : ["london"];
+      }
+
+      if (nestedLondonRegionIds.includes(nextRegion as (typeof nestedLondonRegionIds)[number])) {
+        const currentLondonSubregions = currentRegions.filter((regionId) =>
+          nestedLondonRegionIds.includes(regionId as (typeof nestedLondonRegionIds)[number]),
+        );
+        const isActive = currentLondonSubregions.includes(nextRegion);
+        const nextLondonSubregions = isActive
+          ? currentLondonSubregions.filter((regionId) => regionId !== nextRegion)
+          : [...currentLondonSubregions, nextRegion];
+
+        if (nextLondonSubregions.length === 0) {
+          return ["london"];
+        }
+
+        const nonLondonRegions = currentRegions.filter(
+          (regionId) => regionId !== "all" && regionId !== "london" && !nestedLondonRegionIds.includes(regionId as (typeof nestedLondonRegionIds)[number]),
+        );
+
+        return [...nonLondonRegions, ...nextLondonSubregions];
       }
 
       const withoutUmbrellas = currentRegions.filter((regionId) => regionId !== "all" && regionId !== "london");
@@ -715,6 +886,24 @@ export default function App() {
   }, [selectedCategories, selectedSubcategories, selectedRegions, selectedHijabiFriendly]);
 
   useEffect(() => {
+    const desktopMediaQuery = window.matchMedia("(min-width: 1024px)");
+
+    const syncDesktopViewport = (event: MediaQueryList | MediaQueryListEvent) => {
+      setIsDesktopViewport(event.matches);
+    };
+
+    syncDesktopViewport(desktopMediaQuery);
+
+    if (typeof desktopMediaQuery.addEventListener === "function") {
+      desktopMediaQuery.addEventListener("change", syncDesktopViewport);
+      return () => desktopMediaQuery.removeEventListener("change", syncDesktopViewport);
+    }
+
+    desktopMediaQuery.addListener(syncDesktopViewport);
+    return () => desktopMediaQuery.removeListener(syncDesktopViewport);
+  }, []);
+
+  useEffect(() => {
     if (!mobileFiltersOpen) {
       document.body.style.overflow = "";
       return;
@@ -728,9 +917,17 @@ export default function App() {
     };
   }, [mobileFiltersOpen]);
 
+  const hasActiveFilters =
+    selectedCategories.length > 0 ||
+    selectedSubcategories.length > 0 ||
+    selectedHijabiFriendly ||
+    selectedRegions.length !== 1 ||
+    selectedRegions[0] !== "all";
+  const sortedResults = sortResults(results, sortOption, hasActiveFilters, selectedCategories, selectedSubcategories);
+
   useEffect(() => {
     const node = loadMoreRef.current;
-    if (!node || visibleResultCount >= results.length) {
+    if (!node || visibleResultCount >= sortedResults.length) {
       return;
     }
 
@@ -741,7 +938,7 @@ export default function App() {
           return;
         }
 
-        setVisibleResultCount((currentCount) => Math.min(currentCount + RESULTS_BATCH_SIZE, results.length));
+        setVisibleResultCount((currentCount) => Math.min(currentCount + RESULTS_BATCH_SIZE, sortedResults.length));
       },
       {
         rootMargin: "240px 0px",
@@ -751,13 +948,14 @@ export default function App() {
     observer.observe(node);
 
     return () => observer.disconnect();
-  }, [results.length, visibleResultCount]);
+  }, [sortedResults.length, visibleResultCount]);
 
   useEffect(() => {
     const desktopMediaQuery = window.matchMedia("(min-width: 769px)");
 
     const syncMobileFilterState = (event: MediaQueryList | MediaQueryListEvent) => {
       if (event.matches) {
+        syncDraftFiltersFromApplied();
         setMobileFiltersOpen(false);
       }
     };
@@ -773,7 +971,7 @@ export default function App() {
     return () => desktopMediaQuery.removeListener(syncMobileFilterState);
   }, []);
 
-  const visibleResults = results.slice(0, visibleResultCount);
+  const visibleResults = sortedResults.slice(0, visibleResultCount);
   const selectedServiceCount = sortedCategoryEntries.reduce((count, [id]) => {
     if (id === "all") {
       return count;
@@ -782,7 +980,7 @@ export default function App() {
     const categoryId = id as ServiceCategoryId;
     return isCategorySelected(categoryId) || categoryHasSelectedSubcategories(categoryId) ? count + 1 : count;
   }, 0);
-  const selectedLocationCount = selectedRegions.filter((regionId) => regionId !== "all").length;
+  const selectedLocationCount = currentSelectedRegions.filter((regionId) => regionId !== "all").length;
 
   return (
     <div className="min-h-screen bg-stone-100 text-left dark:bg-stone-950">
@@ -814,7 +1012,7 @@ export default function App() {
           <div className="sticky top-0 z-30 flex w-full items-center justify-between border-b border-stone-300 bg-stone-100 px-0 pb-3 pt-1 dark:border-stone-800 dark:bg-stone-950 lg:h-20 lg:items-end lg:pb-6 lg:pt-2">
             {hasSearched ? (
               <h2 className="text-[14px] font-medium leading-none text-stone-500 dark:text-stone-400">
-                {results.length} {results.length === 1 ? "result" : "results"}
+                {sortedResults.length} {sortedResults.length === 1 ? "result" : "results"}
               </h2>
             ) : (
               <h2 className="text-[14px] font-medium leading-none text-stone-500 dark:text-stone-400">Results</h2>
@@ -823,13 +1021,10 @@ export default function App() {
             <div className="flex items-center gap-2 text-[13px] text-stone-500 dark:text-stone-400 lg:hidden">
               <button
                 type="button"
-                onClick={() => {
-                  trackUmamiEvent("filter_opened", { source: "results_header" });
-                  setMobileFiltersOpen(true);
-                }}
-                className="min-h-11 rounded-none pl-3 pr-0 py-2 text-stone-700 transition-colors hover:bg-stone-200 hover:text-stone-900 dark:text-stone-300 dark:hover:bg-stone-800 dark:hover:text-stone-100"
+                onClick={openMobileFilters}
+                className="min-h-11 px-0 py-2 text-[13px] font-medium text-stone-500 transition hover:text-stone-800 dark:text-stone-400 dark:hover:text-stone-100"
               >
-                Filter
+                Filter / Sort
               </button>
             </div>
           </div>
@@ -995,9 +1190,9 @@ export default function App() {
             </ul>
           ) : null}
 
-          {!isSearching && !searchError && visibleResultCount < results.length ? <div ref={loadMoreRef} className="h-1 w-full" aria-hidden="true" /> : null}
+          {!isSearching && !searchError && visibleResultCount < sortedResults.length ? <div ref={loadMoreRef} className="h-1 w-full" aria-hidden="true" /> : null}
 
-          {!isSearching && !searchError && hasSearched && results.length === 0 ? (
+          {!isSearching && !searchError && hasSearched && sortedResults.length === 0 ? (
             <div className="mt-4 bg-stone-200 px-4 py-6 text-left dark:bg-stone-900/60">
               <h3 className="text-[17px] font-semibold text-stone-950 dark:text-stone-50">
                 No salons or stylists found
@@ -1050,20 +1245,20 @@ export default function App() {
               >
                 Reset
               </button>
-              <h2 className="text-[15px] font-semibold text-stone-950 dark:text-stone-50">Filters</h2>
+              <h2 className="text-[15px] font-semibold text-stone-950 dark:text-stone-50">Filter / Sort</h2>
               <button
                 type="button"
-                onClick={() => setMobileFiltersOpen(false)}
+                onClick={cancelMobileFilters}
                 className="min-h-11 px-0 py-2 text-[13px] font-medium text-stone-500 transition hover:text-stone-800 dark:text-stone-400 dark:hover:text-stone-100"
               >
-                Close
+                Cancel
               </button>
             </div>
 
           <div className="hidden h-20 w-full shrink-0 border-b border-stone-300 bg-stone-100 pb-4 pt-4 dark:border-stone-800 dark:bg-stone-950 lg:sticky lg:top-0 lg:z-20 lg:block">
             <div className="flex items-end justify-between">
                 <div className="inline-flex h-11 items-end pb-2">
-                  <h2 className="text-[15px] font-semibold leading-none text-stone-950 dark:text-stone-50">Filters</h2>
+                  <h2 className="text-[15px] font-semibold leading-none text-stone-950 dark:text-stone-50">Filter / Sort</h2>
                 </div>
                 <button
                   type="button"
@@ -1077,17 +1272,46 @@ export default function App() {
 
           <section
             aria-label="Filter options"
-            className="mt-0 flex-1 space-y-6 overflow-y-auto px-0 pt-0 pb-[max(1.5rem,env(safe-area-inset-bottom))] [scrollbar-gutter:stable_both-edges] lg:min-h-0 lg:flex-1 lg:space-y-6 lg:overflow-y-scroll lg:px-0 lg:pt-0 lg:pb-6"
+            className="mt-0 flex-1 space-y-6 overflow-y-auto px-0 pt-0 pb-[calc(env(safe-area-inset-bottom)+7.5rem)] [scrollbar-gutter:stable_both-edges] lg:min-h-0 lg:flex-1 lg:space-y-6 lg:overflow-y-scroll lg:px-0 lg:pt-0 lg:pb-6"
           >
             <div className="pt-6">
+              <div className="space-y-2">
+                <label className="block">
+                  <span className="sr-only">Sort results</span>
+                  <div className="relative">
+                    <select
+                      value={currentSortOption}
+                      onChange={(event) => {
+                        const nextSort = event.target.value as SortOption;
+                        trackUmamiEvent("sort_changed", { sort: nextSort });
+                        updateSortOption(nextSort);
+                      }}
+                      className="min-h-11 w-full appearance-none rounded-none border border-stone-300 bg-stone-50 pl-4 pr-12 py-2 text-[13px] text-stone-900 outline-none transition-colors hover:border-stone-400 focus:border-stone-950 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100 dark:hover:border-stone-500 dark:focus:border-stone-100"
+                    >
+                      {sortOptions.map((option) => (
+                        <option key={option.id} value={option.id}>
+                          {option.label}
+                        </option>
+                      ))}
+                    </select>
+                    <ChevronDown
+                      className="pointer-events-none absolute right-4 top-1/2 size-4 -translate-y-1/2 text-stone-500 dark:text-stone-400"
+                      aria-hidden="true"
+                    />
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <div className="pt-1">
                 <button
                   type="button"
-                  aria-pressed={selectedHijabiFriendly}
+                  aria-pressed={currentSelectedHijabiFriendly}
                   onClick={() => {
                     trackUmamiEvent("hijabi_toggle_changed", {
-                      enabled: !selectedHijabiFriendly,
+                      enabled: !currentSelectedHijabiFriendly,
                     });
-                    setSelectedHijabiFriendly((current) => !current);
+                    updateHijabiFriendly((current) => !current);
                     setHijabiHoverLocked(true);
                   }}
                   onMouseLeave={() => setHijabiHoverLocked(false)}
@@ -1106,13 +1330,13 @@ export default function App() {
                     className={cn(
                       "relative inline-flex h-7 w-12 shrink-0 rounded-full bg-stone-500 transition-colors dark:bg-stone-500",
                       !hijabiHoverLocked && "group-hover:bg-stone-400 dark:group-hover:bg-stone-600",
-                      selectedHijabiFriendly && "bg-stone-950 dark:bg-stone-100",
+                      currentSelectedHijabiFriendly && "bg-stone-950 dark:bg-stone-100",
                     )}
                   >
                     <span
                       className={cn(
                         "absolute left-1 top-1 h-5 w-5 rounded-full bg-white transition-transform dark:bg-stone-950",
-                        selectedHijabiFriendly && "translate-x-5",
+                        currentSelectedHijabiFriendly && "translate-x-5",
                       )}
                     />
                   </span>
@@ -1152,7 +1376,7 @@ export default function App() {
                     {sortedCategoryEntries.map(([id, item]) => {
                       const isAllServices = id === "all";
                       const isActive = isAllServices
-                        ? selectedCategories.length === 0 && selectedSubcategories.length === 0
+                        ? currentSelectedCategories.length === 0 && currentSelectedSubcategories.length === 0
                         : isCategorySelected(id as ServiceCategoryId);
                       const categoryLabelId = makeFilterLabelId("service-category", id);
                       const visibleSubcategories = item.subcategories
@@ -1188,7 +1412,9 @@ export default function App() {
                             <div className="space-y-2 pl-8">
                               {visibleSubcategories.map((itemSubcategory) => {
                                 const subcategoryLabelId = makeFilterLabelId("service-subcategory", id, itemSubcategory);
-                                const isSubcategoryActive = selectedSubcategories.includes(itemSubcategory as ServiceSubcategoryId);
+                                const isSubcategoryActive = currentSelectedSubcategories.includes(
+                                  itemSubcategory as ServiceSubcategoryId,
+                                );
 
                                 return (
                                   <button
@@ -1373,6 +1599,17 @@ export default function App() {
               </div>
           </section>
         </aside>
+        {mobileFiltersOpen ? (
+          <div className="fixed inset-x-0 bottom-0 z-[60] border-t border-stone-300 bg-stone-100 px-4 pb-[max(1rem,env(safe-area-inset-bottom))] pt-3 dark:border-stone-800 dark:bg-stone-950 sm:px-6 lg:hidden">
+            <button
+              type="button"
+              onClick={applyMobileFilters}
+              className="inline-flex min-h-[48px] w-full items-center justify-center rounded-none bg-stone-950 px-5 py-3 text-[14px] font-medium text-stone-100 transition-colors duration-150 hover:bg-stone-800 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-stone-300"
+            >
+              Apply
+            </button>
+          </div>
+        ) : null}
       </div>
 
       <footer className="mt-auto border-t border-stone-300 px-6 py-4 dark:border-stone-800 sm:px-10">
