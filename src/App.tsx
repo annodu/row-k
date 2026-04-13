@@ -1047,6 +1047,7 @@ export default function App() {
                 type="button"
                 onClick={openMobileFilters}
                 className="min-h-11 px-0 py-2 text-[14px] font-medium text-stone-500 transition hover:text-stone-800 dark:text-stone-400 dark:hover:text-stone-100"
+                className="min-h-11 px-0 py-2 text-[14px] font-medium text-stone-500 transition hover:text-stone-800 active:text-stone-800 dark:text-stone-400 dark:hover:text-stone-100 dark:active:text-stone-100"
               >
                 Filter / Sort
               </button>
@@ -1265,7 +1266,7 @@ export default function App() {
               <button
                 type="button"
                 onClick={clearFilters}
-                className="min-h-11 px-0 py-2 text-[13px] font-medium text-stone-700 transition hover:text-stone-500 dark:text-stone-300 dark:hover:text-stone-50"
+                className="min-h-11 px-0 py-2 text-[13px] font-medium text-stone-700 transition hover:text-stone-500 active:text-stone-500 dark:text-stone-300 dark:hover:text-stone-50 dark:active:text-stone-50"
               >
                 Reset
               </button>
@@ -1273,7 +1274,7 @@ export default function App() {
               <button
                 type="button"
                 onClick={cancelMobileFilters}
-                className="min-h-11 px-0 py-2 text-[13px] font-medium text-stone-500 transition hover:text-stone-800 dark:text-stone-400 dark:hover:text-stone-100"
+                className="min-h-11 px-0 py-2 text-[13px] font-medium text-stone-500 transition hover:text-stone-800 active:text-stone-800 dark:text-stone-400 dark:hover:text-stone-100 dark:active:text-stone-100"
               >
                 Cancel
               </button>
@@ -1313,7 +1314,7 @@ export default function App() {
                       trackUmamiEvent("sort_changed", { sort: nextSort });
                       updateSortOption(nextSort);
                     }}
-                    className="min-h-11 w-full appearance-none rounded-none border border-stone-300 bg-stone-50 pl-4 pr-12 py-2 text-[13px] text-stone-900 outline-none transition-colors hover:border-stone-400 focus:border-stone-950 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100 dark:hover:border-stone-500 dark:focus:border-stone-100"
+                    className="min-h-11 w-full appearance-none rounded-none border border-stone-300 bg-stone-50 pl-4 pr-12 py-2 text-[13px] text-stone-900 outline-none transition-colors hover:border-stone-400 active:border-stone-400 focus:border-stone-950 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100 dark:hover:border-stone-500 dark:active:border-stone-500 dark:focus:border-stone-100"
                   >
                     {sortOptions.map((option) => (
                       <option key={option.id} value={option.id}>
@@ -1346,7 +1347,7 @@ export default function App() {
                   <span
                     className={cn(
                       "text-[15px] font-medium text-stone-950 transition-colors dark:text-stone-100",
-                      !hijabiHoverLocked && "group-hover:text-stone-500 dark:group-hover:text-stone-500",
+                      !hijabiHoverLocked && "group-hover:text-stone-500 group-active:text-stone-500 dark:group-hover:text-stone-500 dark:group-active:text-stone-500",
                     )}
                   >
                     Hijabi-friendly
@@ -1382,7 +1383,7 @@ export default function App() {
                       onClick={toggleServicesOpen}
                     className="group flex min-h-11 w-full items-center justify-between rounded-none bg-transparent px-0 py-2 text-left"
                     >
-                    <span className="text-[15px] font-medium text-stone-950 transition-colors group-hover:text-stone-500 dark:text-stone-100 dark:group-hover:text-stone-500">Services</span>
+                    <span className="text-[15px] font-medium text-stone-950 transition-colors group-hover:text-stone-500 group-active:text-stone-500 dark:text-stone-100 dark:group-hover:text-stone-500 dark:group-active:text-stone-500">Services</span>
                     <span className="flex items-center gap-2">
                       {selectedServiceCount > 0 ? (
                         <span className="inline-flex min-h-5 min-w-5 items-center justify-center rounded-full bg-stone-950 px-2 text-[11px] font-bold leading-none text-stone-100 transition-colors group-hover:bg-stone-500 dark:bg-stone-100 dark:text-stone-950 dark:group-hover:bg-stone-500">
@@ -1390,7 +1391,7 @@ export default function App() {
                         </span>
                       ) : null}
                       <ChevronDown
-                        className={cn("size-4 text-stone-700 transition-colors transition-transform group-hover:text-stone-500 dark:text-stone-200 dark:group-hover:text-stone-500", servicesOpen && "rotate-180")}
+                        className={cn("size-4 text-stone-700 transition-colors transition-transform group-hover:text-stone-500 group-active:text-stone-500 dark:text-stone-200 dark:group-hover:text-stone-500 dark:group-active:text-stone-500", servicesOpen && "rotate-180")}
                         aria-hidden="true"
                       />
                     </span>
@@ -1417,7 +1418,9 @@ export default function App() {
                           <button
                             type="button"
                             aria-pressed={isActive}
-                            className="flex w-full cursor-pointer items-start gap-3 rounded-none px-2 py-2 text-left transition-colors hover:bg-stone-200 dark:hover:bg-stone-900"
+                            className={cn(
+                              "flex w-full cursor-pointer items-start gap-3 rounded-none px-2 py-2 text-left transition-colors hover:bg-stone-200 active:bg-stone-200 dark:hover:bg-stone-900 dark:active:bg-stone-900",
+                            )}
                             onClick={() => toggleCategory(id as CategoryId)}
                           >
                             <span
@@ -1448,7 +1451,9 @@ export default function App() {
                                     aria-pressed={isSubcategoryActive}
                                     aria-labelledby={subcategoryLabelId}
                                     key={itemSubcategory}
-                                    className="flex w-full cursor-pointer items-start gap-3 rounded-none px-2 py-2 text-left transition-colors hover:bg-stone-200 dark:hover:bg-stone-900"
+                                    className={cn(
+                                      "flex w-full cursor-pointer items-start gap-3 rounded-none px-2 py-2 text-left transition-colors hover:bg-stone-200 active:bg-stone-200 dark:hover:bg-stone-900 dark:active:bg-stone-900",
+                                    )}
                                     onClick={() => toggleSubcategory(itemSubcategory as ServiceSubcategoryId)}
                                   >
                                     <span
@@ -1489,7 +1494,7 @@ export default function App() {
                       onClick={toggleLocationsOpen}
                       className="group flex min-h-11 w-full items-center justify-between rounded-none bg-transparent px-0 py-2 text-left"
                     >
-                      <span className="text-[15px] font-medium text-stone-950 transition-colors group-hover:text-stone-500 dark:text-stone-100 dark:group-hover:text-stone-500">Locations</span>
+                      <span className="text-[15px] font-medium text-stone-950 transition-colors group-hover:text-stone-500 group-active:text-stone-500 dark:text-stone-100 dark:group-hover:text-stone-500 dark:group-active:text-stone-500">Locations</span>
                       <span className="flex items-center gap-2">
                         {selectedLocationCount > 0 ? (
                           <span className="inline-flex min-h-5 min-w-5 items-center justify-center rounded-full bg-stone-950 px-2 text-[11px] font-bold leading-none text-stone-100 transition-colors group-hover:bg-stone-500 dark:bg-stone-100 dark:text-stone-950 dark:group-hover:bg-stone-500">
@@ -1497,7 +1502,7 @@ export default function App() {
                           </span>
                         ) : null}
                         <ChevronDown
-                          className={cn("size-4 text-stone-700 transition-colors transition-transform group-hover:text-stone-500 dark:text-stone-200 dark:group-hover:text-stone-400", locationsOpen && "rotate-180")}
+                          className={cn("size-4 text-stone-700 transition-colors transition-transform group-hover:text-stone-500 group-active:text-stone-500 dark:text-stone-200 dark:group-hover:text-stone-400 dark:group-active:text-stone-400", locationsOpen && "rotate-180")}
                           aria-hidden="true"
                         />
                       </span>
@@ -1521,7 +1526,9 @@ export default function App() {
                             tabIndex={0}
                             aria-checked={isRegionSelected(allLocations.id)}
                             aria-labelledby={allLocationsLabelId}
-                            className="flex w-full cursor-pointer items-start gap-3 rounded-none px-2 py-2 text-left transition-colors hover:bg-stone-200 dark:hover:bg-stone-900"
+                            className={cn(
+                              "flex w-full cursor-pointer items-start gap-3 rounded-none px-2 py-2 text-left transition-colors hover:bg-stone-200 active:bg-stone-200 dark:hover:bg-stone-900 dark:active:bg-stone-900",
+                            )}
                             onClick={() => toggleRegion(allLocations.id)}
                             onKeyDown={(event) => handleToggleKeyDown(event, () => toggleRegion(allLocations.id))}
                           >
@@ -1541,7 +1548,9 @@ export default function App() {
                             tabIndex={0}
                             aria-checked={isRegionSelected(london.id)}
                             aria-labelledby={londonLabelId}
-                            className="flex w-full cursor-pointer items-start gap-3 rounded-none px-2 py-2 text-left transition-colors hover:bg-stone-200 dark:hover:bg-stone-900"
+                            className={cn(
+                              "flex w-full cursor-pointer items-start gap-3 rounded-none px-2 py-2 text-left transition-colors hover:bg-stone-200 active:bg-stone-200 dark:hover:bg-stone-900 dark:active:bg-stone-900",
+                            )}
                             onClick={() => toggleRegion(london.id)}
                             onKeyDown={(event) => handleToggleKeyDown(event, () => toggleRegion(london.id))}
                           >
@@ -1570,7 +1579,9 @@ export default function App() {
                                     aria-checked={isRegionSelected(item.id)}
                                     aria-labelledby={regionLabelId}
                                     key={item.id}
-                                    className="flex w-full cursor-pointer items-start gap-3 rounded-none px-2 py-2 text-left transition-colors hover:bg-stone-200 dark:hover:bg-stone-900"
+                                    className={cn(
+                                      "flex w-full cursor-pointer items-start gap-3 rounded-none px-2 py-2 text-left transition-colors hover:bg-stone-200 active:bg-stone-200 dark:hover:bg-stone-900 dark:active:bg-stone-900",
+                                    )}
                                     onClick={() => toggleRegion(item.id)}
                                     onKeyDown={(event) => handleToggleKeyDown(event, () => toggleRegion(item.id))}
                                   >
@@ -1604,7 +1615,9 @@ export default function App() {
                           aria-checked={isRegionSelected(item.id)}
                           aria-labelledby={regionLabelId}
                           key={item.id}
-                          className="flex w-full cursor-pointer items-start gap-3 rounded-none px-2 py-2 text-left transition-colors hover:bg-stone-200 dark:hover:bg-stone-900"
+                          className={cn(
+                            "flex w-full cursor-pointer items-start gap-3 rounded-none px-2 py-2 text-left transition-colors hover:bg-stone-200 active:bg-stone-200 dark:hover:bg-stone-900 dark:active:bg-stone-900",
+                          )}
                           onClick={() => toggleRegion(item.id)}
                           onKeyDown={(event) => handleToggleKeyDown(event, () => toggleRegion(item.id))}
                         >
