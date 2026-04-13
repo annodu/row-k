@@ -1272,7 +1272,7 @@ export default function App() {
 
           <section
             aria-label="Filter options"
-            className="mt-0 flex-1 space-y-6 overflow-y-auto px-0 pt-0 pb-[calc(env(safe-area-inset-bottom)+7.5rem)] [scrollbar-gutter:stable_both-edges] lg:min-h-0 lg:flex-1 lg:space-y-6 lg:overflow-y-scroll lg:px-0 lg:pt-0 lg:pb-6"
+            className="mt-0 flex-1 space-y-6 overflow-y-auto px-0 pt-0 pb-6 [scrollbar-gutter:stable_both-edges] lg:min-h-0 lg:flex-1 lg:space-y-6 lg:overflow-y-scroll lg:px-0 lg:pt-0 lg:pb-6"
           >
             <div className="pt-6">
               <div className="space-y-2">
@@ -1600,18 +1600,18 @@ export default function App() {
                 </AnimatedCollapsible>
               </div>
           </section>
+          {mobileFiltersOpen ? (
+            <div className="border-t border-stone-300 bg-stone-100 px-4 pb-[max(1rem,env(safe-area-inset-bottom))] pt-3 dark:border-stone-800 dark:bg-stone-950 sm:px-6 lg:hidden">
+              <button
+                type="button"
+                onClick={applyMobileFilters}
+                className="inline-flex min-h-[48px] w-full items-center justify-center rounded-none bg-stone-950 px-5 py-3 text-[14px] font-medium text-stone-100 transition-colors duration-150 hover:bg-stone-800 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-stone-300"
+              >
+                Apply
+              </button>
+            </div>
+          ) : null}
         </aside>
-        {mobileFiltersOpen ? (
-          <div className="fixed inset-x-0 bottom-0 z-[60] border-t border-stone-300 bg-stone-100 px-4 pb-[max(1rem,env(safe-area-inset-bottom))] pt-3 dark:border-stone-800 dark:bg-stone-950 sm:px-6 lg:hidden">
-            <button
-              type="button"
-              onClick={applyMobileFilters}
-              className="inline-flex min-h-[48px] w-full items-center justify-center rounded-none bg-stone-950 px-5 py-3 text-[14px] font-medium text-stone-100 transition-colors duration-150 hover:bg-stone-800 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-stone-300"
-            >
-              Apply
-            </button>
-          </div>
-        ) : null}
       </div>
 
       <footer className="mt-auto border-t border-stone-300 px-6 py-4 dark:border-stone-800 sm:px-10">
