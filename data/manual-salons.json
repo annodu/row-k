@@ -8288,10 +8288,10 @@
         "User-provided manual addition."
       ],
       "id": "paula-mademe",
-      "name": "Paula Mademe",
-      "areaId": "central",
-      "areaLabel": "Central",
-      "neighbourhood": "Central London",
+      "name": "Paula Made Me",
+      "areaId": "south-east",
+      "areaLabel": "South East",
+      "neighbourhood": "South East London",
       "postcode": "",
       "bookingPlatform": "Acuity",
       "bookingUrl": "https://paulamadmeuk.as.me/schedule/2d0be9bc",
@@ -8307,7 +8307,8 @@
         "Tape-ins",
         "Traditional sew-in",
         "Flipover / Versatile sew-in",
-        "Closure sew-in"
+        "Closure sew-in",
+        "Hybrid sew-in"
       ]
     },
     {
