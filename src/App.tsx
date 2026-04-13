@@ -1022,7 +1022,7 @@ export default function App() {
               <button
                 type="button"
                 onClick={openMobileFilters}
-                className="min-h-11 px-0 py-2 text-[13px] font-medium text-stone-500 transition hover:text-stone-800 dark:text-stone-400 dark:hover:text-stone-100"
+                className="min-h-11 px-0 py-2 text-[14px] font-medium text-stone-500 transition hover:text-stone-800 dark:text-stone-400 dark:hover:text-stone-100"
               >
                 Filter / Sort
               </button>
@@ -1276,30 +1276,32 @@ export default function App() {
           >
             <div className="pt-6">
               <div className="space-y-2">
-                <label className="block">
-                  <span className="sr-only">Sort results</span>
-                  <div className="relative">
-                    <select
-                      value={currentSortOption}
-                      onChange={(event) => {
-                        const nextSort = event.target.value as SortOption;
-                        trackUmamiEvent("sort_changed", { sort: nextSort });
-                        updateSortOption(nextSort);
-                      }}
-                      className="min-h-11 w-full appearance-none rounded-none border border-stone-300 bg-stone-50 pl-4 pr-12 py-2 text-[13px] text-stone-900 outline-none transition-colors hover:border-stone-400 focus:border-stone-950 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100 dark:hover:border-stone-500 dark:focus:border-stone-100"
-                    >
-                      {sortOptions.map((option) => (
-                        <option key={option.id} value={option.id}>
-                          {option.label}
-                        </option>
-                      ))}
-                    </select>
-                    <ChevronDown
-                      className="pointer-events-none absolute right-4 top-1/2 size-4 -translate-y-1/2 text-stone-500 dark:text-stone-400"
-                      aria-hidden="true"
-                    />
-                  </div>
+                <label htmlFor="sort-results" className="sr-only">
+                  Sort results
                 </label>
+                <div className="relative">
+                  <select
+                    id="sort-results"
+                    aria-label="Sort results"
+                    value={currentSortOption}
+                    onChange={(event) => {
+                      const nextSort = event.target.value as SortOption;
+                      trackUmamiEvent("sort_changed", { sort: nextSort });
+                      updateSortOption(nextSort);
+                    }}
+                    className="min-h-11 w-full appearance-none rounded-none border border-stone-300 bg-stone-50 pl-4 pr-12 py-2 text-[13px] text-stone-900 outline-none transition-colors hover:border-stone-400 focus:border-stone-950 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100 dark:hover:border-stone-500 dark:focus:border-stone-100"
+                  >
+                    {sortOptions.map((option) => (
+                      <option key={option.id} value={option.id}>
+                        {option.label}
+                      </option>
+                    ))}
+                  </select>
+                  <ChevronDown
+                    className="pointer-events-none absolute right-4 top-1/2 size-4 -translate-y-1/2 text-stone-500 dark:text-stone-400"
+                    aria-hidden="true"
+                  />
+                </div>
               </div>
             </div>
 
