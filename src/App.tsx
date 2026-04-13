@@ -906,14 +906,37 @@ export default function App() {
   useEffect(() => {
     if (!mobileFiltersOpen) {
       document.body.style.overflow = "";
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.left = "";
+      document.body.style.right = "";
+      document.body.style.width = "";
       return;
     }
 
+    const scrollY = window.scrollY;
     const previousOverflow = document.body.style.overflow;
+    const previousPosition = document.body.style.position;
+    const previousTop = document.body.style.top;
+    const previousLeft = document.body.style.left;
+    const previousRight = document.body.style.right;
+    const previousWidth = document.body.style.width;
+
     document.body.style.overflow = "hidden";
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.left = "0";
+    document.body.style.right = "0";
+    document.body.style.width = "100%";
 
     return () => {
       document.body.style.overflow = previousOverflow;
+      document.body.style.position = previousPosition;
+      document.body.style.top = previousTop;
+      document.body.style.left = previousLeft;
+      document.body.style.right = previousRight;
+      document.body.style.width = previousWidth;
+      window.scrollTo(0, scrollY);
     };
   }, [mobileFiltersOpen]);
 
@@ -1008,6 +1031,7 @@ export default function App() {
       </header>
 
       <div className="mx-auto flex w-full max-w-[1120px] flex-col px-4 sm:px-6 lg:flex-row lg:items-start lg:px-10">
+        {mobileFiltersOpen ? <div className="fixed inset-0 z-40 bg-stone-100 dark:bg-stone-950 lg:hidden" aria-hidden="true" /> : null}
         <section id="live-results" className="min-w-0 flex-1 pb-6 pt-4 lg:pb-6 lg:pr-8 lg:pt-0">
           <div className="sticky top-0 z-30 flex w-full items-center justify-between border-b border-stone-300 bg-stone-100 px-0 pb-3 pt-1 dark:border-stone-800 dark:bg-stone-950 lg:h-20 lg:items-end lg:pb-6 lg:pt-2">
             {hasSearched ? (
@@ -1234,7 +1258,7 @@ export default function App() {
             "hidden w-full border-t border-stone-300 py-6 dark:border-stone-800",
             "lg:sticky lg:top-0 lg:flex lg:h-screen lg:w-72 lg:flex-none lg:self-start lg:flex-col lg:border-t-0 lg:border-l lg:pl-8 lg:pr-6 lg:py-0 dark:border-stone-800",
             mobileFiltersOpen &&
-              "fixed inset-0 z-50 grid h-dvh min-h-dvh w-full grid-rows-[auto_minmax(0,1fr)_auto] overflow-hidden border-b-0 bg-stone-100 px-4 py-0 dark:bg-stone-950 sm:px-6 lg:static lg:z-auto lg:h-auto lg:min-h-0 lg:w-72 lg:bg-transparent lg:flex lg:flex-col",
+              "fixed inset-0 z-50 grid h-dvh min-h-dvh w-full grid-rows-[auto_minmax(0,1fr)_auto] overflow-hidden border-b-0 bg-stone-100 px-4 py-0 overscroll-contain dark:bg-stone-950 sm:px-6 lg:static lg:z-auto lg:h-auto lg:min-h-0 lg:w-72 lg:bg-transparent lg:flex lg:flex-col",
           )}
         >
           <div className="flex items-center justify-between border-b border-stone-300 px-0 py-4 dark:border-stone-800 lg:hidden">
