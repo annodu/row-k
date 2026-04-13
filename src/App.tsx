@@ -1234,7 +1234,7 @@ export default function App() {
             "hidden w-full border-t border-stone-300 py-6 dark:border-stone-800",
             "lg:sticky lg:top-0 lg:flex lg:h-screen lg:w-72 lg:flex-none lg:self-start lg:flex-col lg:border-t-0 lg:border-l lg:pl-8 lg:pr-6 lg:py-0 dark:border-stone-800",
             mobileFiltersOpen &&
-              "fixed inset-0 z-50 flex h-dvh min-h-dvh w-full flex-col overflow-hidden border-b-0 bg-stone-100 px-4 py-0 dark:bg-stone-950 sm:px-6 lg:static lg:z-auto lg:h-auto lg:min-h-0 lg:w-72 lg:bg-transparent",
+              "fixed inset-0 z-50 grid h-dvh min-h-dvh w-full grid-rows-[auto_minmax(0,1fr)_auto] overflow-hidden border-b-0 bg-stone-100 px-4 py-0 dark:bg-stone-950 sm:px-6 lg:static lg:z-auto lg:h-auto lg:min-h-0 lg:w-72 lg:bg-transparent lg:flex lg:flex-col",
           )}
         >
           <div className="flex items-center justify-between border-b border-stone-300 px-0 py-4 dark:border-stone-800 lg:hidden">
@@ -1272,7 +1272,7 @@ export default function App() {
 
           <section
             aria-label="Filter options"
-            className="mt-0 flex-1 space-y-6 overflow-y-auto px-0 pt-0 pb-6 [scrollbar-gutter:stable_both-edges] lg:min-h-0 lg:flex-1 lg:space-y-6 lg:overflow-y-scroll lg:px-0 lg:pt-0 lg:pb-6"
+            className="mt-0 min-h-0 flex-1 space-y-6 overflow-y-auto px-0 pt-0 pb-6 [scrollbar-gutter:stable_both-edges] lg:min-h-0 lg:flex-1 lg:space-y-6 lg:overflow-y-scroll lg:px-0 lg:pt-0 lg:pb-6"
           >
             <div className="pt-6">
               <div className="space-y-2">
@@ -1601,7 +1601,7 @@ export default function App() {
               </div>
           </section>
           {mobileFiltersOpen ? (
-            <div className="border-t border-stone-300 bg-stone-100 px-4 pb-[max(1rem,env(safe-area-inset-bottom))] pt-3 dark:border-stone-800 dark:bg-stone-950 sm:px-6 lg:hidden">
+            <div className="shrink-0 border-t border-stone-300 bg-stone-100 px-4 pb-[max(1rem,env(safe-area-inset-bottom))] pt-3 dark:border-stone-800 dark:bg-stone-950 sm:px-6 lg:hidden">
               <button
                 type="button"
                 onClick={applyMobileFilters}
