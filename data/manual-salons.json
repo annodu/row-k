@@ -1065,15 +1065,19 @@
       "id": "braids-n-that",
       "name": "Braids N That",
       "areaId": "all-london",
+      "areaIds": [
+        "all-london",
+        "mobile"
+      ],
       "areaLabel": "London",
-      "neighbourhood": "London",
+      "neighbourhood": "London and Mobile",
       "postcode": "",
       "bookingPlatform": "Instagram",
       "bookingUrl": "https://www.instagram.com/braidsnthat/?g=5",
       "websiteUrl": "",
       "instagramUrl": "https://www.instagram.com/braidsnthat/?g=5",
       "services": [
-        "Bridal hair",
+        "Bridal / Editorial",
         "Knotless braids",
         "Boho braids",
         "Fulani braids",
@@ -1220,7 +1224,7 @@
       "websiteUrl": "https://bymilmade.as.me/schedule/0705c124",
       "instagramUrl": "https://www.instagram.com/bymilmade/",
       "services": [
-        "Bridal hair",
+        "Bridal / Editorial",
         "Wig install",
         "Wig colour",
         "Ponytail",
@@ -1349,7 +1353,7 @@
       "websiteUrl": "https://www.capitaolondon.com/appointments",
       "instagramUrl": "https://www.instagram.com/capitaolondon/",
       "services": [
-        "Bridal hair",
+        "Bridal / Editorial",
         "Updo",
         "Ponytail",
         "Traditional sew-in",
@@ -9243,15 +9247,19 @@
       "id": "momos-hair",
       "name": "Momos Hair",
       "areaId": "north-west",
+      "areaIds": [
+        "north-west",
+        "mobile"
+      ],
       "areaLabel": "North West",
-      "neighbourhood": "North West London",
+      "neighbourhood": "North West London and Mobile",
       "postcode": "",
       "bookingPlatform": "Acuity",
       "bookingUrl": "https://app.acuityscheduling.com/schedule/c88c31be",
       "websiteUrl": "https://app.acuityscheduling.com/schedule/c88c31be",
       "instagramUrl": "https://www.instagram.com/momoshair/",
       "services": [
-        "Bridal hair",
+        "Bridal / Editorial",
         "Boho braids",
         "Half braids, half sew-in",
         "Microbraids",
@@ -9479,7 +9487,7 @@
       "bookingUrl": "https://www.instagram.com/t0uchedbymo/",
       "instagramUrl": "https://www.instagram.com/t0uchedbymo/",
       "services": [
-        "Bridal hair",
+        "Bridal / Editorial",
         "Boho braids",
         "Feed-in braids",
         "French curl",
@@ -9496,14 +9504,18 @@
       "id": "styled-by-wasike",
       "name": "Styled by Wasike",
       "areaId": "all-london",
+      "areaIds": [
+        "all-london",
+        "mobile"
+      ],
       "areaLabel": "London",
-      "neighbourhood": "London",
+      "neighbourhood": "London and Mobile",
       "postcode": "",
       "bookingPlatform": "Instagram",
       "bookingUrl": "https://www.instagram.com/styledbywasike/",
       "instagramUrl": "https://www.instagram.com/styledbywasike/",
       "services": [
-        "Bridal hair",
+        "Bridal / Editorial",
         "Creative braids"
       ]
     },
@@ -9545,14 +9557,18 @@
       "id": "jaam-hair",
       "name": "Jaam Hair",
       "areaId": "south-east",
+      "areaIds": [
+        "south-east",
+        "mobile"
+      ],
       "areaLabel": "South East",
-      "neighbourhood": "South East London",
+      "neighbourhood": "South East London and Mobile",
       "postcode": "",
       "bookingPlatform": "Instagram",
       "bookingUrl": "https://www.instagram.com/jaam.hair/",
       "instagramUrl": "https://www.instagram.com/jaam.hair/",
       "services": [
-        "Bridal hair",
+        "Bridal / Editorial",
         "Creative braids"
       ]
     },
@@ -10038,7 +10054,7 @@
       "websiteUrl": "https://www.lizzdavies.com/bookings",
       "instagramUrl": "https://www.instagram.com/lizzdavieshair/",
       "services": [
-        "Bridal hair"
+        "Bridal / Editorial"
       ]
     },
     {
@@ -10062,7 +10078,7 @@
       "websiteUrl": "https://www.rachelarike.com/contact",
       "instagramUrl": "https://www.instagram.com/rachel_arikebridal/",
       "services": [
-        "Bridal hair"
+        "Bridal / Editorial"
       ]
     },
     {
@@ -10085,7 +10101,7 @@
       "bookingUrl": "https://www.instagram.com/moshbridal/",
       "instagramUrl": "https://www.instagram.com/moshbridal/",
       "services": [
-        "Bridal hair"
+        "Bridal / Editorial"
       ]
     },
     {
@@ -10109,7 +10125,7 @@
       "websiteUrl": "https://www.papachichistyle.com/pages/appointment",
       "instagramUrl": "https://www.instagram.com/papachichistyle/",
       "services": [
-        "Bridal hair",
+        "Bridal / Editorial",
         "Wig install",
         "Olaplex treatment",
         "Tape-ins",
@@ -10141,7 +10157,7 @@
       "websiteUrl": "https://www.platinumtressesandbeauty.com/destination-bridal-services",
       "instagramUrl": "https://www.instagram.com/platinumtressesbridal/",
       "services": [
-        "Bridal hair"
+        "Bridal / Editorial"
       ]
     },
     {
@@ -10164,7 +10180,7 @@
       "bookingUrl": "https://www.instagram.com/allurehousebridal/",
       "instagramUrl": "https://www.instagram.com/allurehousebridal/",
       "services": [
-        "Bridal hair"
+        "Bridal / Editorial"
       ]
     },
     {
@@ -10188,7 +10204,7 @@
       "websiteUrl": "https://www.rshairuk.co.uk/bridal",
       "instagramUrl": "https://www.instagram.com/foreverbyrs/",
       "services": [
-        "Bridal hair"
+        "Bridal / Editorial"
       ]
     },
     {
@@ -10212,7 +10228,7 @@
       "websiteUrl": "https://bookceohair.as.me/schedule/a6008e21",
       "instagramUrl": "https://www.instagram.com/ceohairlondon/",
       "services": [
-        "Bridal hair",
+        "Bridal / Editorial",
         "Wig install",
         "Pixie / finger waves",
         "Updo",
@@ -10244,7 +10260,7 @@
       "websiteUrl": "https://www.deborahlola.com/bookings",
       "instagramUrl": "https://www.instagram.com/dl_bridal/",
       "services": [
-        "Bridal hair"
+        "Bridal / Editorial"
       ]
     },
     {
@@ -10267,7 +10283,7 @@
       "bookingUrl": "https://www.instagram.com/sdhair__/",
       "instagramUrl": "https://www.instagram.com/sdhair__/",
       "services": [
-        "Bridal hair"
+        "Bridal / Editorial"
       ]
     },
     {
@@ -10290,7 +10306,7 @@
       "bookingUrl": "https://www.instagram.com/hairbychrisbecks/",
       "instagramUrl": "https://www.instagram.com/hairbychrisbecks/",
       "services": [
-        "Bridal hair"
+        "Bridal / Editorial"
       ]
     },
     {
@@ -10313,7 +10329,7 @@
       "bookingUrl": "https://www.instagram.com/renzbridaluk/",
       "instagramUrl": "https://www.instagram.com/renzbridaluk/",
       "services": [
-        "Bridal hair"
+        "Bridal / Editorial"
       ]
     },
     {
@@ -10336,7 +10352,7 @@
       "bookingUrl": "https://www.instagram.com/lyc.bridal/",
       "instagramUrl": "https://www.instagram.com/lyc.bridal/",
       "services": [
-        "Bridal hair"
+        "Bridal / Editorial"
       ]
     },
     {
@@ -10451,15 +10467,19 @@
       "id": "eugenze",
       "name": "Eugenze",
       "areaId": "all-london",
+      "areaIds": [
+        "all-london",
+        "mobile"
+      ],
       "areaLabel": "London",
-      "neighbourhood": "London",
+      "neighbourhood": "London and Mobile",
       "postcode": "",
       "bookingPlatform": "Setmore",
       "bookingUrl": "https://eugenze.setmore.com/",
       "websiteUrl": "https://eugenze.setmore.com/",
       "instagramUrl": "https://www.instagram.com/eugenze/",
       "services": [
-        "Bridal hair",
+        "Bridal / Editorial",
         "Traditional sew-in",
         "Closure sew-in",
         "Wig install",

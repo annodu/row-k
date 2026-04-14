@@ -61,7 +61,7 @@ const categoryMap = {
   },
   "bridal-session-services": {
     label: "Bridal / Editorial",
-    subcategories: ["all", "Bridal hair", "Editorial styling"],
+    subcategories: ["all"],
   },
   "extension-services": {
     label: "Extensions",
@@ -121,6 +121,59 @@ const categoryMap = {
     subcategories: ["all", "Custom wig", "Wig colour", "Wig install"],
   },
 } as const;
+
+const categoryServiceMap = {
+  "braiding-services": [
+    "Boho braids",
+    "Braid take-down",
+    "Box braids",
+    "Creative braids",
+    "Feed in / All back braids",
+    "French curl",
+    "Fulani braids",
+    "Half braids, half sew-in",
+    "Knotless braids",
+    "Microbraids",
+    "Pre-parting",
+    "Stitch braids",
+    "Twists",
+  ],
+  "colour-services": ["Balayage", "Full head colour", "Highlights", "Wig colour"],
+  "bridal-session-services": ["Bridal / Editorial"],
+  "extension-services": ["Clip-ins", "K-tips", "LA weave", "Microlinks", "Tape-ins"],
+  "locs-services": ["Butterfly locs", "Faux locs", "Microlocs / Sisterlocs", "Retwist", "Starter locs"],
+  "sew-in-weave": [
+    "Closure sew-in",
+    "Flipover / Versatile sew-in",
+    "Frontal sew-in",
+    "Hybrid sew-in",
+    "Quick weave",
+    "Sew-in take-down",
+    "Tracks sewn in (per row)",
+    "Traditional sew-in",
+  ],
+  "styling-services": ["Half up half down", "Pixie / finger waves", "Ponytail", "Updo"],
+  "straightening-treatments": [
+    "Hair Botox",
+    "Japanese straightening",
+    "K-18 treatment",
+    "Keratin treatment",
+    "Moisturising treatment",
+    "Olaplex treatment",
+    "Relaxer",
+    "Scalp care",
+    "Texture release",
+  ],
+  "natural-hair-services": [
+    "Cornrows",
+    "Curly cut / Wash & go",
+    "Silk press",
+    "Trim / Hair cut",
+    "Twist out",
+    "Wash & blowdry",
+  ],
+  "wig-services": ["Custom wig", "Wig colour", "Wig install"],
+} as const satisfies Record<ServiceCategoryId, readonly string[]>;
 
 type RegionId = (typeof regions)[number]["id"];
 type CategoryId = keyof typeof categoryMap;
@@ -268,10 +321,8 @@ function orderServicesBySelection(
   const prioritizedServices = new Set<string>(selectedSubcategories);
 
   selectedCategories.forEach((categoryId) => {
-    categoryMap[categoryId].subcategories.forEach((subcategory) => {
-      if (subcategory !== "all") {
-        prioritizedServices.add(subcategory);
-      }
+    categoryServiceMap[categoryId].forEach((service) => {
+      prioritizedServices.add(service);
     });
   });
 
