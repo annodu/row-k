@@ -13,7 +13,7 @@
       "areaLabel": "Central",
       "neighbourhood": "Central London",
       "postcode": "",
-      "bookingPlatform": "Direct website",
+      "bookingPlatform": "Fresha",
       "bookingUrl": "https://www.3thirty.co.uk/hairandbeauty.html",
       "websiteUrl": "https://www.3thirty.co.uk/hairandbeauty.html",
       "instagramUrl": "https://www.instagram.com/3thirtysalon/",
@@ -24,7 +24,7 @@
         "Relaxer",
         "Olaplex treatment",
         "Moisturising treatment",
-        "Tracks sewn in (per row)",
+        "Tracks (per row)",
         "Traditional sew-in",
         "Cornrows",
         "Scalp care",
@@ -91,7 +91,7 @@
         "LA weave",
         "Flipover / Versatile sew-in",
         "Hybrid sew-in",
-        "Tracks sewn in (per row)"
+        "Tracks (per row)"
       ],
       "summary": "Manual entry added from your latest salon update batch.",
       "source": "manual",
@@ -154,8 +154,7 @@
         "Knotless braids",
         "Wig install",
         "Traditional sew-in",
-        "Moisturising treatment",
-        "Tracks sewn in (per row)"
+        "Moisturising treatment"
       ]
     },
     {
@@ -272,7 +271,7 @@
         "Trim / Hair cut",
         "Microlocs / Sisterlocs",
         "Faux locs",
-        "Tracks sewn in (per row)"
+        "Tracks (per row)"
       ],
       "summary": "Manual entry added from your latest salon update batch.",
       "source": "manual",
@@ -306,7 +305,7 @@
         "Relaxer",
         "Wig install",
         "Custom wig",
-        "Tracks sewn in (per row)",
+        "Tracks (per row)",
         "Boho braids",
         "Feed-in braids",
         "Fulani braids",
@@ -545,7 +544,7 @@
         "Trim / Hair cut",
         "Ponytail",
         "Wig install",
-        "Tracks sewn in (per row)",
+        "Tracks (per row)",
         "Half up half down",
         "Closure sew-in",
         "Frontal sew-in",
@@ -646,7 +645,7 @@
         "Wig install",
         "Traditional sew-in",
         "Moisturising treatment",
-        "Tracks sewn in (per row)"
+        "Tracks (per row)"
       ]
     },
     {
@@ -819,7 +818,7 @@
         "Quick weave",
         "Wig install",
         "Custom wig",
-        "Tracks sewn in (per row)"
+        "Tracks (per row)"
       ],
       "summary": "Manual entry added from your latest salon update batch.",
       "source": "manual",
@@ -879,7 +878,7 @@
         "Ponytail",
         "Knotless braids",
         "Box braids",
-        "Tracks sewn in (per row)"
+        "Tracks (per row)"
       ],
       "summary": "Manual entry added from your North London extensions, treatments, and braids list.",
       "source": "manual",
@@ -1370,7 +1369,7 @@
         "Frontal sew-in",
         "Wig install",
         "Custom wig",
-        "Tracks sewn in (per row)"
+        "Tracks (per row)"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -1430,7 +1429,7 @@
         "Flipover / Versatile sew-in",
         "Silk press",
         "Wash & blowdry",
-        "Tracks sewn in (per row)"
+        "Tracks (per row)"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -1983,7 +1982,7 @@
         "Traditional sew-in",
         "Closure sew-in",
         "Ponytail",
-        "Tracks sewn in (per row)"
+        "Tracks (per row)"
       ],
       "summary": "Manual entry added from your Essex braids list.",
       "source": "manual",
@@ -2011,7 +2010,7 @@
         "LA weave",
         "Flipover / Versatile sew-in",
         "Hybrid sew-in",
-        "Tracks sewn in (per row)"
+        "Tracks (per row)"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -2745,27 +2744,26 @@
       ],
       "id": "hair-assured-salon",
       "name": "Hair Assured Salon",
-      "areaId": "west",
-      "areaLabel": "West",
-      "neighbourhood": "Wembley",
+      "areaId": "north-west",
+      "areaLabel": "North West",
+      "neighbourhood": "North West London",
       "postcode": "",
       "bookingPlatform": "Fresha",
-      "bookingUrl": "https://www.fresha.com/a/hair-assured-salon-wembley-118-wembley-park-drive-zyn79j8o",
-      "websiteUrl": "https://www.fresha.com/a/hair-assured-salon-wembley-118-wembley-park-drive-zyn79j8o",
+      "bookingUrl": "https://www.fresha.com/a/hair-assured-salon-wembley-118-wembley-park-drive-zyn79j8o/booking?allOffer=true&menu=true&pId=2517733&cartId=27dde854-957d-4a90-b479-4937c32875f8",
+      "websiteUrl": "https://www.fresha.com/a/hair-assured-salon-wembley-118-wembley-park-drive-zyn79j8o/booking?allOffer=true&menu=true&pId=2517733&cartId=27dde854-957d-4a90-b479-4937c32875f8",
       "instagramUrl": "https://www.instagram.com/hairassuredsalon/",
       "services": [
-        "Relaxer",
-        "Full head colour",
-        "Highlights",
-        "Olaplex treatment",
-        "Silk press",
-        "Wash & blowdry",
-        "Trim / Hair cut",
         "Cornrows",
+        "Wash & blowdry",
+        "Moisturising treatment",
+        "Trim / Hair cut",
+        "Relaxer",
         "Knotless braids",
-        "Wig install",
+        "Boho braids",
+        "Fulani braids",
+        "Twists",
         "Traditional sew-in",
-        "Moisturising treatment"
+        "Silk press"
       ]
     },
     {
@@ -3043,7 +3041,7 @@
         "Highlights",
         "LA weave",
         "Cornrows",
-        "Tracks sewn in (per row)"
+        "Tracks (per row)"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -3350,7 +3348,7 @@
         "Scalp care",
         "Texture release",
         "Relaxer",
-        "Tracks sewn in (per row)"
+        "Tracks (per row)"
       ],
       "summary": "Manual entry added from your latest salon update batch.",
       "source": "manual",
@@ -3372,7 +3370,6 @@
       "services": [
         "Traditional sew-in",
         "Relaxer",
-        "Updo",
         "Half up half down",
         "Knotless braids",
         "Feed-in braids",
@@ -3381,11 +3378,11 @@
         "Full head colour",
         "Wash & blowdry",
         "Texture release",
-        "Scalp care",
         "LA weave",
         "Closure sew-in",
         "Wig install",
-        "Custom wig"
+        "Custom wig",
+        "Bridal / Editorial"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -3420,7 +3417,7 @@
         "Wig install",
         "Traditional sew-in",
         "Moisturising treatment",
-        "Tracks sewn in (per row)"
+        "Tracks (per row)"
       ],
       "summary": "Starter verified entry for a London textured-hair business using Zenoti, included because it was repeatedly identified as a better fit than generic keratin search results.",
       "source": "manual",
@@ -3569,7 +3566,8 @@
         "Texture release",
         "Keratin treatment",
         "Silk press",
-        "Wash & blowdry"
+        "Wash & blowdry",
+        "Tracks (per row)"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -3679,7 +3677,7 @@
         "Wig install",
         "Traditional sew-in",
         "Moisturising treatment",
-        "Tracks sewn in (per row)"
+        "Tracks (per row)"
       ],
       "summary": "Manual entry added from your latest salon update batch.",
       "source": "manual",
@@ -4057,7 +4055,7 @@
         "Wig install",
         "Traditional sew-in",
         "Moisturising treatment",
-        "Tracks sewn in (per row)",
+        "Tracks (per row)",
         "Pixie / finger waves",
         "Braid take-down",
         "Sew-in take-down"
@@ -4110,7 +4108,7 @@
         "Moisturising treatment",
         "Silk press",
         "Keratin treatment",
-        "Tracks sewn in (per row)"
+        "Tracks (per row)"
       ],
       "summary": "Manual entry added from your Kent list covering braids, sew-ins, locs, natural hair, and treatments.",
       "source": "manual",
@@ -4266,7 +4264,7 @@
         "Ponytail",
         "Half up half down",
         "Closure sew-in",
-        "Tracks sewn in (per row)",
+        "Tracks (per row)",
         "Flipover / Versatile sew-in",
         "Custom wig",
         "Wig install"
@@ -4645,8 +4643,8 @@
       "areaLabel": "South West",
       "neighbourhood": "South West London",
       "postcode": "",
-      "bookingPlatform": "Direct website",
-      "bookingUrl": "https://www.maisonstyle.co.uk",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "",
       "websiteUrl": "",
       "instagramUrl": "https://www.instagram.com/maisonstylehair/",
       "services": [
@@ -4659,7 +4657,7 @@
         "K-18 treatment",
         "Olaplex treatment",
         "Traditional sew-in",
-        "Tracks sewn in (per row)",
+        "Tracks (per row)",
         "LA weave",
         "Sew-in take-down",
         "Cornrows",
@@ -4791,7 +4789,7 @@
         "Balayage",
         "Highlights",
         "Traditional sew-in",
-        "Tracks sewn in (per row)"
+        "Tracks (per row)"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -5016,7 +5014,7 @@
         "Ponytail",
         "Relaxer",
         "Keratin treatment",
-        "Tracks sewn in (per row)"
+        "Tracks (per row)"
       ],
       "summary": "Manual entry added from your latest salon update batch.",
       "source": "manual",
@@ -5219,7 +5217,7 @@
         "Relaxer",
         "Cornrows",
         "Traditional sew-in",
-        "Tracks sewn in (per row)",
+        "Tracks (per row)",
         "Silk press",
         "Scalp care",
         "Moisturising treatment"
@@ -5311,7 +5309,7 @@
         "Texture release",
         "Relaxer",
         "Traditional sew-in",
-        "Tracks sewn in (per row)"
+        "Tracks (per row)"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -5383,7 +5381,7 @@
         "Custom wig",
         "Keratin treatment",
         "Trim / Hair cut",
-        "Tracks sewn in (per row)"
+        "Tracks (per row)"
       ],
       "summary": "Starter verified entry for a South East London salon the project identified as relevant for textured-hair clients looking for smoothing and care services.",
       "source": "manual",
@@ -5556,7 +5554,7 @@
         "Flipover / Versatile sew-in",
         "Traditional sew-in",
         "Half up half down",
-        "Tracks sewn in (per row)"
+        "Tracks (per row)"
       ]
     },
     {
@@ -5871,7 +5869,6 @@
         "Wig install",
         "Traditional sew-in",
         "Moisturising treatment",
-        "Tracks sewn in (per row)",
         "Scalp care",
         "LA weave",
         "Microlinks",
@@ -6738,7 +6735,7 @@
         "Braid take-down",
         "Sew-in take-down",
         "Traditional sew-in",
-        "Tracks sewn in (per row)"
+        "Tracks (per row)"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -6860,7 +6857,7 @@
         "Fulani braids",
         "Silk press",
         "Relaxer",
-        "Tracks sewn in (per row)"
+        "Tracks (per row)"
       ]
     },
     {
@@ -7022,7 +7019,7 @@
         "Flipover / Versatile sew-in",
         "Wig colour",
         "Custom wig",
-        "Tracks sewn in (per row)"
+        "Tracks (per row)"
       ],
       "summary": "Manual entry added from your known South East London flipover sew-in list.",
       "source": "manual",
@@ -7254,7 +7251,7 @@
         "Wig install",
         "Braid take-down",
         "Sew-in take-down",
-        "Tracks sewn in (per row)"
+        "Tracks (per row)"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -7468,7 +7465,7 @@
         "Starter locs",
         "Ponytail",
         "Wash & blowdry",
-        "Tracks sewn in (per row)",
+        "Tracks (per row)",
         "Microlocs / Sisterlocs"
       ],
       "summary": "Manual entry added from your latest salon update batch.",
@@ -7624,7 +7621,6 @@
         "K-tips",
         "Texture release",
         "Japanese straightening",
-        "Tracks sewn in (per row)",
         "Moisturising treatment"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
@@ -7923,7 +7919,7 @@
         "Closure sew-in",
         "Frontal sew-in",
         "Sew-in take-down",
-        "Tracks sewn in (per row)",
+        "Tracks (per row)",
         "Flipover / Versatile sew-in",
         "Silk press",
         "Pixie / finger waves",
@@ -9426,7 +9422,7 @@
         "Full head colour",
         "Texture release",
         "Sew-in take-down",
-        "Tracks sewn in (per row)",
+        "Tracks (per row)",
         "Traditional sew-in",
         "Wig install"
       ]
@@ -9919,7 +9915,7 @@
         "Trim / Hair cut",
         "Wash & blowdry",
         "Texture release",
-        "Tracks sewn in (per row)",
+        "Tracks (per row)",
         "LA weave",
         "Sew-in take-down",
         "Full head colour",
@@ -10033,7 +10029,7 @@
         "Half up half down",
         "Wig install",
         "Ponytail",
-        "Tracks sewn in (per row)",
+        "Tracks (per row)",
         "Sew-in take-down",
         "Braid take-down",
         "Knotless braids",
@@ -10521,7 +10517,7 @@
         "Relaxer",
         "Closure sew-in",
         "Traditional sew-in",
-        "Tracks sewn in (per row)",
+        "Tracks (per row)",
         "Tape-ins",
         "Moisturising treatment",
         "Full head colour",
@@ -10759,7 +10755,7 @@
         "Ponytail",
         "Traditional sew-in",
         "Tape-ins",
-        "Tracks sewn in (per row)",
+        "Tracks (per row)",
         "Wig install",
         "Custom wig"
       ]
@@ -10849,7 +10845,7 @@
         "Wig install",
         "Traditional sew-in",
         "Moisturising treatment",
-        "Tracks sewn in (per row)"
+        "Tracks (per row)"
       ]
     },
     {
@@ -10870,7 +10866,7 @@
       "instagramUrl": "https://www.instagram.com/theybstudio.uk/",
       "services": [
         "Wash & blowdry",
-        "Tracks sewn in (per row)",
+        "Tracks (per row)",
         "Sew-in take-down",
         "Braid take-down",
         "Traditional sew-in",
@@ -11053,6 +11049,28 @@
         "Wash & blowdry",
         "Olaplex treatment",
         "Updo"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "shadia-styles",
+      "name": "Shadia Styles",
+      "areaId": "south-east",
+      "areaLabel": "South East",
+      "neighbourhood": "South East London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/shadiastyles/",
+      "websiteUrl": "https://www.instagram.com/shadiastyles/",
+      "instagramUrl": "https://www.instagram.com/shadiastyles/",
+      "services": [
+        "Boho braids",
+        "Twists",
+        "Knotless braids"
       ]
     }
   ]
