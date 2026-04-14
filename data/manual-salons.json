@@ -24,7 +24,7 @@
         "Relaxer",
         "Olaplex treatment",
         "Moisturising treatment",
-        "Tracks sewn in",
+        "Tracks sewn in (per row)",
         "Traditional sew-in",
         "Cornrows",
         "Scalp care",
@@ -91,7 +91,7 @@
         "LA weave",
         "Flipover / Versatile sew-in",
         "Hybrid sew-in",
-        "Tracks sewn in"
+        "Tracks sewn in (per row)"
       ],
       "summary": "Manual entry added from your latest salon update batch.",
       "source": "manual",
@@ -155,7 +155,7 @@
         "Wig install",
         "Traditional sew-in",
         "Moisturising treatment",
-        "Tracks sewn in"
+        "Tracks sewn in (per row)"
       ]
     },
     {
@@ -272,7 +272,7 @@
         "Trim / Hair cut",
         "Microlocs / Sisterlocs",
         "Faux locs",
-        "Tracks sewn in"
+        "Tracks sewn in (per row)"
       ],
       "summary": "Manual entry added from your latest salon update batch.",
       "source": "manual",
@@ -306,7 +306,7 @@
         "Relaxer",
         "Wig install",
         "Custom wig",
-        "Tracks sewn in",
+        "Tracks sewn in (per row)",
         "Boho braids",
         "Feed-in braids",
         "Fulani braids",
@@ -545,7 +545,7 @@
         "Trim / Hair cut",
         "Ponytail",
         "Wig install",
-        "Tracks sewn in",
+        "Tracks sewn in (per row)",
         "Half up half down",
         "Closure sew-in",
         "Frontal sew-in",
@@ -646,7 +646,7 @@
         "Wig install",
         "Traditional sew-in",
         "Moisturising treatment",
-        "Tracks sewn in"
+        "Tracks sewn in (per row)"
       ]
     },
     {
@@ -819,7 +819,7 @@
         "Quick weave",
         "Wig install",
         "Custom wig",
-        "Tracks sewn in"
+        "Tracks sewn in (per row)"
       ],
       "summary": "Manual entry added from your latest salon update batch.",
       "source": "manual",
@@ -879,7 +879,7 @@
         "Ponytail",
         "Knotless braids",
         "Box braids",
-        "Tracks sewn in"
+        "Tracks sewn in (per row)"
       ],
       "summary": "Manual entry added from your North London extensions, treatments, and braids list.",
       "source": "manual",
@@ -1216,8 +1216,12 @@
       "id": "by-mil-made",
       "name": "By Mil Made",
       "areaId": "east",
+      "areaIds": [
+        "east",
+        "mobile"
+      ],
       "areaLabel": "East",
-      "neighbourhood": "East London",
+      "neighbourhood": "East London and Mobile",
       "postcode": "",
       "bookingPlatform": ".as.me",
       "bookingUrl": "https://bymilmade.as.me/schedule/0705c124",
@@ -1345,8 +1349,12 @@
       "id": "capitaolondon",
       "name": "Capitaolondon",
       "areaId": "east",
+      "areaIds": [
+        "east",
+        "mobile"
+      ],
       "areaLabel": "East",
-      "neighbourhood": "East London",
+      "neighbourhood": "East London and Mobile",
       "postcode": "",
       "bookingPlatform": "Direct website",
       "bookingUrl": "https://www.capitaolondon.com/appointments",
@@ -1362,7 +1370,7 @@
         "Frontal sew-in",
         "Wig install",
         "Custom wig",
-        "Tracks sewn in"
+        "Tracks sewn in (per row)"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -1422,7 +1430,7 @@
         "Flipover / Versatile sew-in",
         "Silk press",
         "Wash & blowdry",
-        "Tracks sewn in"
+        "Tracks sewn in (per row)"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -1469,7 +1477,8 @@
         "Trim / Hair cut",
         "Silk press",
         "Highlights",
-        "Relaxer"
+        "Relaxer",
+        "Clip-ins"
       ],
       "summary": "Manual entry added from your latest salon update batch.",
       "source": "manual",
@@ -1974,7 +1983,7 @@
         "Traditional sew-in",
         "Closure sew-in",
         "Ponytail",
-        "Tracks sewn in"
+        "Tracks sewn in (per row)"
       ],
       "summary": "Manual entry added from your Essex braids list.",
       "source": "manual",
@@ -2002,7 +2011,7 @@
         "LA weave",
         "Flipover / Versatile sew-in",
         "Hybrid sew-in",
-        "Tracks sewn in"
+        "Tracks sewn in (per row)"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -3034,7 +3043,7 @@
         "Highlights",
         "LA weave",
         "Cornrows",
-        "Tracks sewn in"
+        "Tracks sewn in (per row)"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -3341,7 +3350,7 @@
         "Scalp care",
         "Texture release",
         "Relaxer",
-        "Tracks sewn in"
+        "Tracks sewn in (per row)"
       ],
       "summary": "Manual entry added from your latest salon update batch.",
       "source": "manual",
@@ -3411,7 +3420,7 @@
         "Wig install",
         "Traditional sew-in",
         "Moisturising treatment",
-        "Tracks sewn in"
+        "Tracks sewn in (per row)"
       ],
       "summary": "Starter verified entry for a London textured-hair business using Zenoti, included because it was repeatedly identified as a better fit than generic keratin search results.",
       "source": "manual",
@@ -3670,7 +3679,7 @@
         "Wig install",
         "Traditional sew-in",
         "Moisturising treatment",
-        "Tracks sewn in"
+        "Tracks sewn in (per row)"
       ],
       "summary": "Manual entry added from your latest salon update batch.",
       "source": "manual",
@@ -4048,7 +4057,7 @@
         "Wig install",
         "Traditional sew-in",
         "Moisturising treatment",
-        "Tracks sewn in",
+        "Tracks sewn in (per row)",
         "Pixie / finger waves",
         "Braid take-down",
         "Sew-in take-down"
@@ -4101,7 +4110,7 @@
         "Moisturising treatment",
         "Silk press",
         "Keratin treatment",
-        "Tracks sewn in"
+        "Tracks sewn in (per row)"
       ],
       "summary": "Manual entry added from your Kent list covering braids, sew-ins, locs, natural hair, and treatments.",
       "source": "manual",
@@ -4257,7 +4266,7 @@
         "Ponytail",
         "Half up half down",
         "Closure sew-in",
-        "Tracks sewn in",
+        "Tracks sewn in (per row)",
         "Flipover / Versatile sew-in",
         "Custom wig",
         "Wig install"
@@ -4650,7 +4659,7 @@
         "K-18 treatment",
         "Olaplex treatment",
         "Traditional sew-in",
-        "Tracks sewn in",
+        "Tracks sewn in (per row)",
         "LA weave",
         "Sew-in take-down",
         "Cornrows",
@@ -4782,7 +4791,7 @@
         "Balayage",
         "Highlights",
         "Traditional sew-in",
-        "Tracks sewn in"
+        "Tracks sewn in (per row)"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -5007,7 +5016,7 @@
         "Ponytail",
         "Relaxer",
         "Keratin treatment",
-        "Tracks sewn in"
+        "Tracks sewn in (per row)"
       ],
       "summary": "Manual entry added from your latest salon update batch.",
       "source": "manual",
@@ -5210,7 +5219,7 @@
         "Relaxer",
         "Cornrows",
         "Traditional sew-in",
-        "Tracks sewn in",
+        "Tracks sewn in (per row)",
         "Silk press",
         "Scalp care",
         "Moisturising treatment"
@@ -5302,7 +5311,7 @@
         "Texture release",
         "Relaxer",
         "Traditional sew-in",
-        "Tracks sewn in"
+        "Tracks sewn in (per row)"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -5374,7 +5383,7 @@
         "Custom wig",
         "Keratin treatment",
         "Trim / Hair cut",
-        "Tracks sewn in"
+        "Tracks sewn in (per row)"
       ],
       "summary": "Starter verified entry for a South East London salon the project identified as relevant for textured-hair clients looking for smoothing and care services.",
       "source": "manual",
@@ -5547,7 +5556,7 @@
         "Flipover / Versatile sew-in",
         "Traditional sew-in",
         "Half up half down",
-        "Tracks sewn in"
+        "Tracks sewn in (per row)"
       ]
     },
     {
@@ -5862,7 +5871,7 @@
         "Wig install",
         "Traditional sew-in",
         "Moisturising treatment",
-        "Tracks sewn in",
+        "Tracks sewn in (per row)",
         "Scalp care",
         "LA weave",
         "Microlinks",
@@ -6729,7 +6738,7 @@
         "Braid take-down",
         "Sew-in take-down",
         "Traditional sew-in",
-        "Tracks sewn in"
+        "Tracks sewn in (per row)"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -6851,7 +6860,7 @@
         "Fulani braids",
         "Silk press",
         "Relaxer",
-        "Tracks sewn in"
+        "Tracks sewn in (per row)"
       ]
     },
     {
@@ -7013,7 +7022,7 @@
         "Flipover / Versatile sew-in",
         "Wig colour",
         "Custom wig",
-        "Tracks sewn in"
+        "Tracks sewn in (per row)"
       ],
       "summary": "Manual entry added from your known South East London flipover sew-in list.",
       "source": "manual",
@@ -7245,7 +7254,7 @@
         "Wig install",
         "Braid take-down",
         "Sew-in take-down",
-        "Tracks sewn in"
+        "Tracks sewn in (per row)"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -7459,7 +7468,7 @@
         "Starter locs",
         "Ponytail",
         "Wash & blowdry",
-        "Tracks sewn in",
+        "Tracks sewn in (per row)",
         "Microlocs / Sisterlocs"
       ],
       "summary": "Manual entry added from your latest salon update batch.",
@@ -7615,6 +7624,7 @@
         "K-tips",
         "Texture release",
         "Japanese straightening",
+        "Tracks sewn in (per row)",
         "Moisturising treatment"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
@@ -7913,7 +7923,7 @@
         "Closure sew-in",
         "Frontal sew-in",
         "Sew-in take-down",
-        "Tracks sewn in",
+        "Tracks sewn in (per row)",
         "Flipover / Versatile sew-in",
         "Silk press",
         "Pixie / finger waves",
@@ -9416,7 +9426,7 @@
         "Full head colour",
         "Texture release",
         "Sew-in take-down",
-        "Tracks sewn in",
+        "Tracks sewn in (per row)",
         "Traditional sew-in",
         "Wig install"
       ]
@@ -9909,7 +9919,7 @@
         "Trim / Hair cut",
         "Wash & blowdry",
         "Texture release",
-        "Tracks sewn in",
+        "Tracks sewn in (per row)",
         "LA weave",
         "Sew-in take-down",
         "Full head colour",
@@ -10023,7 +10033,7 @@
         "Half up half down",
         "Wig install",
         "Ponytail",
-        "Tracks sewn in",
+        "Tracks sewn in (per row)",
         "Sew-in take-down",
         "Braid take-down",
         "Knotless braids",
@@ -10485,6 +10495,564 @@
         "Wig install",
         "Custom wig",
         "Ponytail"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "helens-london",
+      "name": "Helens London",
+      "areaId": "west",
+      "areaLabel": "West",
+      "neighbourhood": "West London",
+      "postcode": "",
+      "bookingPlatform": "Direct website",
+      "bookingUrl": "https://www.helenslondon.net/services",
+      "websiteUrl": "https://www.helenslondon.net/services",
+      "instagramUrl": "https://www.instagram.com/helens_london/",
+      "services": [
+        "Curly cut / Wash & go",
+        "Wash & blowdry",
+        "Silk press",
+        "Keratin treatment",
+        "Relaxer",
+        "Closure sew-in",
+        "Traditional sew-in",
+        "Tracks sewn in (per row)",
+        "Tape-ins",
+        "Moisturising treatment",
+        "Full head colour",
+        "Balayage",
+        "Wig install",
+        "Box braids",
+        "Cornrows"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "hair-cupid-london",
+      "name": "Hair Cupid London",
+      "areaId": "east",
+      "areaLabel": "East",
+      "neighbourhood": "East London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://haircupidlondon.as.me/schedule/72d2bef8",
+      "websiteUrl": "https://haircupidlondon.as.me/schedule/72d2bef8",
+      "instagramUrl": "https://www.instagram.com/haircupidlondon/",
+      "services": [
+        "Tape-ins",
+        "Traditional sew-in",
+        "Silk press"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "oceanes-hair",
+      "name": "Oceanes Hair",
+      "areaId": "south-west",
+      "areaLabel": "South West",
+      "neighbourhood": "South West London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://oceaneshair.as.me/schedule/01d5cdd2",
+      "websiteUrl": "https://oceaneshair.as.me/schedule/01d5cdd2",
+      "instagramUrl": "https://www.instagram.com/oceaneshair/",
+      "services": [
+        "Wig install",
+        "Custom wig",
+        "Closure sew-in"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "cee-laid-it",
+      "name": "Cee Laid It",
+      "areaId": "south-east",
+      "areaLabel": "South East",
+      "neighbourhood": "South East London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://ceelaidit.as.me/schedule/42ff3d4c",
+      "websiteUrl": "https://ceelaidit.as.me/schedule/42ff3d4c",
+      "instagramUrl": "https://www.instagram.com/ceelaidit/",
+      "services": [
+        "Wig install",
+        "Custom wig",
+        "Frontal sew-in",
+        "Traditional sew-in"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "dhairlux",
+      "name": "Dhairlux",
+      "areaId": "south-east",
+      "areaLabel": "South East",
+      "neighbourhood": "South East London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://dhairdoctorlnd.as.me/schedule/a70ea215",
+      "websiteUrl": "https://dhairdoctorlnd.as.me/schedule/a70ea215",
+      "instagramUrl": "https://www.instagram.com/dhairlux/",
+      "services": [
+        "Boho braids",
+        "Knotless braids",
+        "Feed-in braids",
+        "Fulani braids",
+        "Relaxer",
+        "Keratin treatment",
+        "Texture release",
+        "Trim / Hair cut",
+        "Silk press",
+        "Faux locs",
+        "Butterfly locs",
+        "Starter locs",
+        "Retwist",
+        "Cornrows",
+        "Braid take-down",
+        "Sew-in take-down",
+        "Pixie / finger waves",
+        "Scalp care",
+        "Wash & blowdry",
+        "Custom wig",
+        "Wig install",
+        "Half up half down",
+        "Traditional sew-in",
+        "Closure sew-in",
+        "Frontal sew-in",
+        "Quick weave"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "the-sewn-muse",
+      "name": "The Sewn Muse",
+      "areaId": "east",
+      "areaLabel": "East",
+      "neighbourhood": "East London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/thesewnmuse/",
+      "instagramUrl": "https://www.instagram.com/thesewnmuse/",
+      "services": [
+        "Traditional sew-in"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "rawmantic-hair",
+      "name": "Rawmantic Hair",
+      "areaId": "west",
+      "areaLabel": "West",
+      "neighbourhood": "West London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://rawmantichair.as.me/schedule/23a1d363",
+      "websiteUrl": "https://rawmantichair.as.me/schedule/23a1d363",
+      "instagramUrl": "https://www.instagram.com/rawmantic_hair/",
+      "services": [
+        "Traditional sew-in",
+        "Flipover / Versatile sew-in",
+        "Closure sew-in",
+        "Wig install",
+        "Custom wig"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "ines-does-my-hair",
+      "name": "Ines Does My Hair",
+      "areaId": "east",
+      "areaLabel": "East",
+      "neighbourhood": "East London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://nabirasaloon.as.me/schedule/ffa1e058",
+      "websiteUrl": "https://nabirasaloon.as.me/schedule/ffa1e058",
+      "instagramUrl": "https://www.instagram.com/inesdoesmyhair/",
+      "services": [
+        "Traditional sew-in",
+        "Closure sew-in",
+        "Wig install",
+        "Flipover / Versatile sew-in",
+        "Quick weave",
+        "Cornrows"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "walvan-hair",
+      "name": "Walvan Hair",
+      "areaId": "east",
+      "areaLabel": "East",
+      "neighbourhood": "East London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://walvanhair.as.me/schedule/16aae1f3",
+      "websiteUrl": "https://walvanhair.as.me/schedule/16aae1f3",
+      "instagramUrl": "https://www.instagram.com/walvanhair/",
+      "services": [
+        "Custom wig",
+        "Wig install",
+        "Closure sew-in",
+        "Tape-ins",
+        "Frontal sew-in",
+        "Ponytail",
+        "Updo",
+        "Traditional sew-in"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "shyann-shanece-hair",
+      "name": "Shyann Shanece Hair",
+      "areaId": "east",
+      "areaLabel": "East",
+      "neighbourhood": "East London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://shyannshanecehair.as.me/schedule/2137e0db",
+      "websiteUrl": "https://shyannshanecehair.as.me/schedule/2137e0db",
+      "instagramUrl": "https://www.instagram.com/shyannshanecehair/",
+      "services": [
+        "Knotless braids",
+        "Ponytail",
+        "Traditional sew-in",
+        "Tape-ins",
+        "Tracks sewn in (per row)",
+        "Wig install",
+        "Custom wig"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "jazzy-thee-hair-artist",
+      "name": "Jazzy Thee Hair Artist",
+      "areaId": "north-west",
+      "areaLabel": "North West",
+      "neighbourhood": "North West London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://jazzytheehairartist.as.me/schedule/dd9becd1",
+      "websiteUrl": "https://jazzytheehairartist.as.me/schedule/dd9becd1",
+      "instagramUrl": "https://www.instagram.com/jazzytheehairartist/",
+      "services": [
+        "Microlinks",
+        "Custom wig",
+        "LA weave",
+        "Wash & blowdry",
+        "Relaxer",
+        "Scalp care",
+        "Sew-in take-down",
+        "Traditional sew-in",
+        "Ponytail",
+        "Closure sew-in"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "the-lace-bandit",
+      "name": "The Lace Bandit",
+      "areaId": "east",
+      "areaLabel": "East",
+      "neighbourhood": "East London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://thelacebandit.as.me/schedule/75cad4ab",
+      "websiteUrl": "https://thelacebandit.as.me/schedule/75cad4ab",
+      "instagramUrl": "https://www.instagram.com/thelacebandit/",
+      "services": [
+        "Bridal / Editorial",
+        "Wig install",
+        "Custom wig",
+        "Tape-ins",
+        "Closure sew-in"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "snm-london-hair-studio",
+      "name": "SNM London Hair Studio",
+      "areaId": "croydon",
+      "areaLabel": "Croydon",
+      "neighbourhood": "Croydon",
+      "postcode": "",
+      "bookingPlatform": "Phorest",
+      "bookingUrl": "https://www.phorest.com/salon/snmlondonhairstudio/book/service-selection",
+      "websiteUrl": "https://www.phorest.com/salon/snmlondonhairstudio/book/service-selection",
+      "instagramUrl": "https://www.instagram.com/snm_london_hair_studio/",
+      "services": [
+        "Relaxer",
+        "Full head colour",
+        "Highlights",
+        "Olaplex treatment",
+        "Silk press",
+        "Wash & blowdry",
+        "Trim / Hair cut",
+        "Texture release",
+        "Keratin treatment",
+        "Cornrows",
+        "Knotless braids",
+        "Box braids",
+        "Wig install",
+        "Traditional sew-in",
+        "Moisturising treatment",
+        "Tracks sewn in (per row)"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "yb-studio-uk",
+      "name": "YB Studio UK",
+      "areaId": "north-west",
+      "areaLabel": "North West",
+      "neighbourhood": "North West London",
+      "postcode": "",
+      "bookingPlatform": "Direct website",
+      "bookingUrl": "https://ybstudiouk.square.site/",
+      "websiteUrl": "https://ybstudiouk.square.site/",
+      "instagramUrl": "https://www.instagram.com/theybstudio.uk/",
+      "services": [
+        "Wash & blowdry",
+        "Tracks sewn in (per row)",
+        "Sew-in take-down",
+        "Braid take-down",
+        "Traditional sew-in",
+        "Scalp care",
+        "Relaxer",
+        "Ponytail",
+        "LA weave",
+        "Half up half down",
+        "Texture release"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "ify-london",
+      "name": "Ify London",
+      "areaId": "east",
+      "areaLabel": "East",
+      "neighbourhood": "East London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://ifylondon.as.me/schedule/9b0d21a2",
+      "websiteUrl": "https://ifylondon.as.me/schedule/9b0d21a2",
+      "instagramUrl": "https://www.instagram.com/ify_london/",
+      "services": [
+        "Custom wig",
+        "Wig install"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "haus-of-shee",
+      "name": "Haus of Shee",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london",
+        "mobile"
+      ],
+      "areaLabel": "London",
+      "neighbourhood": "London and Mobile",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/hausofshee/",
+      "websiteUrl": "https://www.instagram.com/hausofshee/",
+      "instagramUrl": "https://www.instagram.com/hausofshee/",
+      "services": [
+        "Bridal / Editorial"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "the-maneline",
+      "name": "The Maneline",
+      "areaId": "north",
+      "areaLabel": "North",
+      "neighbourhood": "North London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://themaneline.as.me/schedule/3bee8908",
+      "websiteUrl": "https://themaneline.as.me/schedule/3bee8908",
+      "instagramUrl": "https://www.instagram.com/the.maneline/",
+      "services": [
+        "Wig install",
+        "Wig colour"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "za-wigs",
+      "name": "ZA Wigs",
+      "areaId": "south-east",
+      "areaLabel": "South East",
+      "neighbourhood": "South East London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://zawigs.as.me/schedule/837228cf",
+      "websiteUrl": "https://zawigs.as.me/schedule/837228cf",
+      "instagramUrl": "https://www.instagram.com/zawigs/",
+      "services": [
+        "Custom wig",
+        "Wig install",
+        "Ponytail",
+        "Tape-ins",
+        "Wig colour"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "hair-by-lauralyn-clinton-london",
+      "name": "Hair by Lauralyn Clinton London",
+      "areaId": "all-london",
+      "areaLabel": "London",
+      "neighbourhood": "London",
+      "postcode": "",
+      "bookingPlatform": "Square",
+      "bookingUrl": "https://book.squareup.com/appointments/bingcolopt1xux/location/J9P093K7N6ZKH/services",
+      "websiteUrl": "https://book.squareup.com/appointments/bingcolopt1xux/location/J9P093K7N6ZKH/services",
+      "instagramUrl": "https://www.instagram.com/hairbylauralynclintonlondon/",
+      "services": [
+        "Faux locs",
+        "Boho braids",
+        "Knotless braids",
+        "Tape-ins",
+        "Feed-in braids",
+        "Relaxer",
+        "Wig install",
+        "Trim / Hair cut",
+        "Silk press",
+        "Olaplex treatment",
+        "Ponytail",
+        "Full head colour",
+        "Highlights",
+        "Pixie / finger waves",
+        "Cornrows"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "by-laid-ldn",
+      "name": "By Laide LDN",
+      "areaId": "east",
+      "areaLabel": "East",
+      "neighbourhood": "East London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://bylaideldn.as.me/schedule/d6e2cfa4",
+      "websiteUrl": "https://bylaideldn.as.me/schedule/d6e2cfa4",
+      "instagramUrl": "https://www.instagram.com/bylaideldn/",
+      "services": [
+        "Wig install",
+        "Custom wig"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "gias-hair-salon",
+      "name": "Gias Hair Salon",
+      "areaId": "south-west",
+      "areaLabel": "South West",
+      "neighbourhood": "South West London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://giashair.as.me/schedule/ab92ade9",
+      "websiteUrl": "https://giashair.as.me/schedule/ab92ade9",
+      "instagramUrl": "https://www.instagram.com/giashairsalon/",
+      "services": [
+        "LA weave",
+        "Microlinks",
+        "Tape-ins",
+        "Silk press",
+        "Traditional sew-in",
+        "K-tips",
+        "Wash & blowdry",
+        "Olaplex treatment",
+        "Updo"
       ]
     }
   ]

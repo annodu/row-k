@@ -81,7 +81,7 @@ const categoryMap = {
       "Hybrid sew-in",
       "Quick weave",
       "Sew-in take-down",
-      "Tracks sewn in",
+      "Tracks sewn in (per row)",
       "Traditional sew-in",
     ],
   },
