@@ -1073,6 +1073,7 @@
       "websiteUrl": "",
       "instagramUrl": "https://www.instagram.com/braidsnthat/?g=5",
       "services": [
+        "Bridal hair",
         "Knotless braids",
         "Boho braids",
         "Fulani braids",
@@ -1219,6 +1220,7 @@
       "websiteUrl": "https://bymilmade.as.me/schedule/0705c124",
       "instagramUrl": "https://www.instagram.com/bymilmade/",
       "services": [
+        "Bridal hair",
         "Wig install",
         "Wig colour",
         "Ponytail",
@@ -1347,6 +1349,7 @@
       "websiteUrl": "https://www.capitaolondon.com/appointments",
       "instagramUrl": "https://www.instagram.com/capitaolondon/",
       "services": [
+        "Bridal hair",
         "Updo",
         "Ponytail",
         "Traditional sew-in",
@@ -3802,7 +3805,6 @@
         "Feed-in braids",
         "Fulani braids",
         "Boho braids",
-        "Tracks sewn in",
         "Quick weave",
         "Half up half down"
       ],
@@ -5016,7 +5018,7 @@
       "areaLabel": "East",
       "neighbourhood": "East London",
       "postcode": "",
-      "bookingPlatform": "Instagram",
+      "bookingPlatform": "Direct website",
       "bookingUrl": "https://mulaaxhair.as.me/schedule/23033e4d",
       "websiteUrl": "",
       "instagramUrl": "https://www.instagram.com/mulaaxhair/",
@@ -5871,7 +5873,7 @@
       "areaLabel": "South East",
       "neighbourhood": "South East London",
       "postcode": "",
-      "bookingPlatform": "Instagram",
+      "bookingPlatform": "Direct website",
       "bookingUrl": "https://humanhairbohobraids.as.me/schedule/ddf8e055",
       "websiteUrl": "",
       "instagramUrl": "https://www.instagram.com/sasheamari/?g=5",
@@ -8808,7 +8810,7 @@
         "User-provided manual addition."
       ],
       "id": "hair-studio-by-enitan",
-      "name": "Hair Studio by Enitan",
+      "name": "Healthy Hair Studio by Enitan",
       "areaId": "west",
       "areaLabel": "West",
       "neighbourhood": "West London",
@@ -9249,6 +9251,7 @@
       "websiteUrl": "https://app.acuityscheduling.com/schedule/c88c31be",
       "instagramUrl": "https://www.instagram.com/momoshair/",
       "services": [
+        "Bridal hair",
         "Boho braids",
         "Half braids, half sew-in",
         "Microbraids",
@@ -9476,6 +9479,7 @@
       "bookingUrl": "https://www.instagram.com/t0uchedbymo/",
       "instagramUrl": "https://www.instagram.com/t0uchedbymo/",
       "services": [
+        "Bridal hair",
         "Boho braids",
         "Feed-in braids",
         "French curl",
@@ -9499,6 +9503,7 @@
       "bookingUrl": "https://www.instagram.com/styledbywasike/",
       "instagramUrl": "https://www.instagram.com/styledbywasike/",
       "services": [
+        "Bridal hair",
         "Creative braids"
       ]
     },
@@ -9547,6 +9552,7 @@
       "bookingUrl": "https://www.instagram.com/jaam.hair/",
       "instagramUrl": "https://www.instagram.com/jaam.hair/",
       "services": [
+        "Bridal hair",
         "Creative braids"
       ]
     },
@@ -10009,6 +10015,456 @@
         "Boho braids",
         "Feed-in braids",
         "Fulani braids"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your bridal and editorial list.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "lizz-davies-hair",
+      "name": "Lizz Davies Hair",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london",
+        "mobile"
+      ],
+      "areaLabel": "London",
+      "neighbourhood": "London and Mobile",
+      "postcode": "",
+      "bookingPlatform": "Direct website",
+      "bookingUrl": "https://www.lizzdavies.com/bookings",
+      "websiteUrl": "https://www.lizzdavies.com/bookings",
+      "instagramUrl": "https://www.instagram.com/lizzdavieshair/",
+      "services": [
+        "Bridal hair"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your bridal and editorial list.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "rachel-arike-bridal",
+      "name": "Rachel Arike Bridal",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london",
+        "mobile"
+      ],
+      "areaLabel": "London",
+      "neighbourhood": "London and Mobile",
+      "postcode": "",
+      "bookingPlatform": "Direct website",
+      "bookingUrl": "https://www.rachelarike.com/contact",
+      "websiteUrl": "https://www.rachelarike.com/contact",
+      "instagramUrl": "https://www.instagram.com/rachel_arikebridal/",
+      "services": [
+        "Bridal hair"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your bridal and editorial list.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "mosh-bridal",
+      "name": "Mosh Bridal",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london",
+        "mobile"
+      ],
+      "areaLabel": "London",
+      "neighbourhood": "London and Mobile",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/moshbridal/",
+      "instagramUrl": "https://www.instagram.com/moshbridal/",
+      "services": [
+        "Bridal hair"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your bridal and editorial list.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "papachichi-style",
+      "name": "Papachichi Style",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london",
+        "mobile"
+      ],
+      "areaLabel": "London",
+      "neighbourhood": "London and Mobile",
+      "postcode": "",
+      "bookingPlatform": "Direct website",
+      "bookingUrl": "https://www.papachichistyle.com/pages/appointment",
+      "websiteUrl": "https://www.papachichistyle.com/pages/appointment",
+      "instagramUrl": "https://www.instagram.com/papachichistyle/",
+      "services": [
+        "Bridal hair",
+        "Wig install",
+        "Olaplex treatment",
+        "Tape-ins",
+        "Relaxer",
+        "Traditional sew-in",
+        "Ponytail",
+        "Closure sew-in",
+        "Frontal sew-in"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your bridal and editorial list.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "platinum-tresses-bridal",
+      "name": "Platinum Tresses Bridal",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london",
+        "mobile"
+      ],
+      "areaLabel": "London",
+      "neighbourhood": "London and Mobile",
+      "postcode": "",
+      "bookingPlatform": "Direct website",
+      "bookingUrl": "https://www.platinumtressesandbeauty.com/destination-bridal-services",
+      "websiteUrl": "https://www.platinumtressesandbeauty.com/destination-bridal-services",
+      "instagramUrl": "https://www.instagram.com/platinumtressesbridal/",
+      "services": [
+        "Bridal hair"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your bridal and editorial list.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "allure-house-bridal",
+      "name": "Allure House Bridal",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london",
+        "mobile"
+      ],
+      "areaLabel": "London",
+      "neighbourhood": "London and Mobile",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/allurehousebridal/",
+      "instagramUrl": "https://www.instagram.com/allurehousebridal/",
+      "services": [
+        "Bridal hair"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your bridal and editorial list.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "forever-by-rs",
+      "name": "Forever by RS",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london",
+        "mobile"
+      ],
+      "areaLabel": "London",
+      "neighbourhood": "London and Mobile",
+      "postcode": "",
+      "bookingPlatform": "Direct website",
+      "bookingUrl": "https://www.rshairuk.co.uk/bridal",
+      "websiteUrl": "https://www.rshairuk.co.uk/bridal",
+      "instagramUrl": "https://www.instagram.com/foreverbyrs/",
+      "services": [
+        "Bridal hair"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your bridal and editorial list.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "ceo-hair-london",
+      "name": "CEO Hair London",
+      "areaId": "south-east",
+      "areaIds": [
+        "south-east",
+        "mobile"
+      ],
+      "areaLabel": "South East",
+      "neighbourhood": "South East London and Mobile",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://bookceohair.as.me/schedule/a6008e21",
+      "websiteUrl": "https://bookceohair.as.me/schedule/a6008e21",
+      "instagramUrl": "https://www.instagram.com/ceohairlondon/",
+      "services": [
+        "Bridal hair",
+        "Wig install",
+        "Pixie / finger waves",
+        "Updo",
+        "Ponytail",
+        "Traditional sew-in",
+        "Closure sew-in",
+        "Frontal sew-in",
+        "Flipover / Versatile sew-in"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your bridal and editorial list.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "deborah-lola-bridal",
+      "name": "Deborah Lola Bridal",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london",
+        "mobile"
+      ],
+      "areaLabel": "London",
+      "neighbourhood": "London and Mobile",
+      "postcode": "",
+      "bookingPlatform": "Direct website",
+      "bookingUrl": "https://www.deborahlola.com/bookings",
+      "websiteUrl": "https://www.deborahlola.com/bookings",
+      "instagramUrl": "https://www.instagram.com/dl_bridal/",
+      "services": [
+        "Bridal hair"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your bridal and editorial list.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "sd-hair",
+      "name": "SD Hair",
+      "areaId": "essex",
+      "areaIds": [
+        "essex",
+        "mobile"
+      ],
+      "areaLabel": "Essex",
+      "neighbourhood": "Essex and Mobile",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/sdhair__/",
+      "instagramUrl": "https://www.instagram.com/sdhair__/",
+      "services": [
+        "Bridal hair"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your bridal and editorial list.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "hair-by-chris-becks",
+      "name": "Hair by Chris Becks",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london",
+        "mobile"
+      ],
+      "areaLabel": "London",
+      "neighbourhood": "London and Mobile",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/hairbychrisbecks/",
+      "instagramUrl": "https://www.instagram.com/hairbychrisbecks/",
+      "services": [
+        "Bridal hair"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your bridal and editorial list.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "renz-bridal-uk",
+      "name": "Renz Bridal UK",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london",
+        "mobile"
+      ],
+      "areaLabel": "London",
+      "neighbourhood": "London and Mobile",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/renzbridaluk/",
+      "instagramUrl": "https://www.instagram.com/renzbridaluk/",
+      "services": [
+        "Bridal hair"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your bridal and editorial list.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "lyc-bridal",
+      "name": "LYC Bridal",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london",
+        "mobile"
+      ],
+      "areaLabel": "London",
+      "neighbourhood": "London and Mobile",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/lyc.bridal/",
+      "instagramUrl": "https://www.instagram.com/lyc.bridal/",
+      "services": [
+        "Bridal hair"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "nialees-hair-salon",
+      "name": "Nialees Hair Salon",
+      "areaId": "east",
+      "areaLabel": "East",
+      "neighbourhood": "East London",
+      "postcode": "",
+      "bookingPlatform": "Direct website",
+      "bookingUrl": "https://www.nialeesshair.co.uk/book-online",
+      "websiteUrl": "https://www.nialeesshair.co.uk/book-online",
+      "instagramUrl": "https://www.instagram.com/nialeesshairsalon/",
+      "services": [
+        "Wig install",
+        "Custom wig",
+        "Traditional sew-in",
+        "Half up half down",
+        "Ponytail",
+        "Retwist",
+        "Wash & blowdry"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "allure-by-ec",
+      "name": "Allure by EC",
+      "areaId": "central",
+      "areaLabel": "Central",
+      "neighbourhood": "Central London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://allurehouse.as.me/schedule/59a6e8e4",
+      "websiteUrl": "https://allurehouse.as.me/schedule/59a6e8e4",
+      "instagramUrl": "https://www.instagram.com/allurebyec/",
+      "services": [
+        "Knotless braids",
+        "Boho braids",
+        "Faux locs",
+        "Feed-in braids",
+        "Twists",
+        "Stitch braids",
+        "Cornrows",
+        "Ponytail",
+        "Updo",
+        "Half up half down",
+        "Traditional sew-in",
+        "Half braids, half sew-in",
+        "Flipover / Versatile sew-in",
+        "Closure sew-in",
+        "Tape-ins",
+        "Sew-in take-down"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "pony-room",
+      "name": "Pony Room",
+      "areaId": "croydon",
+      "areaLabel": "Croydon",
+      "neighbourhood": "Croydon",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://ponyroom.as.me/schedule/55a1078c",
+      "websiteUrl": "https://ponyroom.as.me/schedule/55a1078c",
+      "instagramUrl": "https://www.instagram.com/ponyroom_/",
+      "services": [
+        "Ponytail",
+        "Updo",
+        "Half up half down"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "renz-hair",
+      "name": "Renz Hair",
+      "areaId": "east",
+      "areaLabel": "East",
+      "neighbourhood": "East London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/renzhair/",
+      "instagramUrl": "https://www.instagram.com/renzhair/",
+      "services": [
+        "Wig install",
+        "Custom wig"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "eugenze",
+      "name": "Eugenze",
+      "areaId": "all-london",
+      "areaLabel": "London",
+      "neighbourhood": "London",
+      "postcode": "",
+      "bookingPlatform": "Setmore",
+      "bookingUrl": "https://eugenze.setmore.com/",
+      "websiteUrl": "https://eugenze.setmore.com/",
+      "instagramUrl": "https://www.instagram.com/eugenze/",
+      "services": [
+        "Bridal hair",
+        "Traditional sew-in",
+        "Closure sew-in",
+        "Wig install",
+        "Custom wig",
+        "Ponytail"
       ]
     }
   ]

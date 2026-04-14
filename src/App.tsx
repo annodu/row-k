@@ -59,6 +59,10 @@ const categoryMap = {
     label: "Colour",
     subcategories: ["all", "Balayage", "Full head colour", "Highlights", "Wig colour"],
   },
+  "bridal-session-services": {
+    label: "Bridal / Editorial",
+    subcategories: ["all", "Bridal hair", "Editorial styling"],
+  },
   "extension-services": {
     label: "Extensions",
     subcategories: ["all", "Clip-ins", "K-tips", "LA weave", "Microlinks", "Tape-ins"],
