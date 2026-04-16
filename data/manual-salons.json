@@ -8255,7 +8255,8 @@
         "Stitch braids",
         "Wig install",
         "Traditional sew-in",
-        "Closure sew-in"
+        "Closure sew-in",
+        "Bridal / Editorial"
       ]
     },
     {
@@ -11074,6 +11075,38 @@
         "Boho braids",
         "Twists",
         "Knotless braids"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "serene-hair-lounge",
+      "name": "Serene Hair Lounge",
+      "areaId": "east",
+      "areaIds": [
+        "east",
+        "central"
+      ],
+      "areaLabel": "East",
+      "neighbourhood": "East and Central London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://serenehairlounge.as.me/schedule/c9db4f48",
+      "websiteUrl": "https://serenehairlounge.as.me/schedule/c9db4f48",
+      "instagramUrl": "https://www.instagram.com/serenehairlounge/",
+      "services": [
+        "Tape-ins",
+        "Microlinks",
+        "Wash & blowdry",
+        "Traditional sew-in",
+        "Flipover / Versatile sew-in",
+        "Hybrid sew-in",
+        "Cornrows",
+        "Ponytail",
+        "Half up half down"
       ]
     }
   ]
