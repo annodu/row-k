@@ -150,6 +150,7 @@
         "Trim / Hair cut",
         "Texture release",
         "Keratin treatment",
+        "Crochet",
         "Cornrows / Twists",
         "Knotless braids",
         "Wig install",
@@ -2064,7 +2065,9 @@
         "Traditional sew-in",
         "Braid take-down",
         "Sew-in take-down",
-        "Pixie / finger waves"
+        "Pixie / finger waves",
+        "Twist out / Flexi rod",
+        "Cornrows / Twists"
       ],
       "summary": "Starter verified entry for a South West London salon on Phorest that was identified as relevant to textured-hair clients searching for smoothing services.",
       "source": "manual",
@@ -4664,7 +4667,9 @@
         "LA weave",
         "Sew-in take-down",
         "Cornrows / Twists",
-        "Custom wig"
+        "Custom wig",
+        "Twist out / Flexi rod",
+        "Tracks (per row)"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -5013,6 +5018,7 @@
         "Trim / Hair cut",
         "Traditional sew-in",
         "Balayage",
+        "Crochet",
         "Cornrows / Twists",
         "Ponytail",
         "Relaxer",
@@ -9169,7 +9175,8 @@
         "Retwist",
         "Cornrows / Twists",
         "Full head colour",
-        "Highlights"
+        "Highlights",
+        "Bridal / Editorial"
       ]
     },
     {
@@ -11616,6 +11623,83 @@
         "Flipover / Versatile sew-in",
         "Traditional sew-in",
         "Silk press"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "strands-ldn",
+      "name": "Strands LDN",
+      "areaId": "north",
+      "areaLabel": "North",
+      "neighbourhood": "North London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/strandsldn/",
+      "websiteUrl": "https://www.instagram.com/strandsldn/",
+      "instagramUrl": "https://www.instagram.com/strandsldn/",
+      "services": [
+        "Silk press"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "subrina-kidd-hair",
+      "name": "Subrina Kidd Hair",
+      "areaId": "east",
+      "areaLabel": "East",
+      "neighbourhood": "East London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/subrinakiddhair_skh/",
+      "websiteUrl": "https://www.instagram.com/subrinakiddhair_skh/",
+      "instagramUrl": "https://www.instagram.com/subrinakiddhair_skh/",
+      "services": [
+        "Trim / Hair cut",
+        "Full head colour",
+        "Highlights",
+        "Balayage",
+        "Wash & blowdry",
+        "Silk press",
+        "Curly cut",
+        "Twist out / Flexi rod",
+        "Bridal / Editorial"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "styled-by-kb",
+      "name": "Styled by KB",
+      "areaId": "mobile",
+      "areaLabel": "Mobile",
+      "neighbourhood": "Mobile",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://styledbykibong.as.me/schedule/b5bc0329",
+      "websiteUrl": "https://styledbykibong.as.me/schedule/b5bc0329",
+      "instagramUrl": "https://www.instagram.com/styled_by_kb/",
+      "services": [
+        "Box braids",
+        "Retwist",
+        "Faux locs",
+        "Feed-in braids",
+        "Traditional sew-in",
+        "Closure sew-in",
+        "Half braids, half sew-in",
+        "Cornrows / Twists",
+        "Wash & blowdry",
+        "Braid take-down"
       ]
     }
   ]
