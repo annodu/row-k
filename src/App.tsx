@@ -52,7 +52,7 @@ const categoryMap = {
       "Microbraids",
       "Pre-parting",
       "Stitch braids",
-      "Twists",
+      "Twists (with extensions)",
     ],
   },
   "colour-services": {
@@ -108,11 +108,11 @@ const categoryMap = {
     label: "Wash / Style / Finish (Natural hair)",
     subcategories: [
       "all",
-      "Cornrows",
+      "Cornrows / Twists",
       "Curly cut / Wash & go",
       "Silk press",
       "Trim / Hair cut",
-      "Twist out",
+      "Twist out / Flexi rod",
       "Wash & blowdry",
     ],
   },
@@ -136,7 +136,7 @@ const categoryServiceMap = {
     "Microbraids",
     "Pre-parting",
     "Stitch braids",
-    "Twists",
+    "Twists (with extensions)",
   ],
   "colour-services": ["Balayage", "Full head colour", "Highlights", "Wig colour"],
   "bridal-session-services": ["Bridal / Editorial"],
@@ -165,11 +165,11 @@ const categoryServiceMap = {
     "Texture release",
   ],
   "natural-hair-services": [
-    "Cornrows",
+    "Cornrows / Twists",
     "Curly cut / Wash & go",
     "Silk press",
     "Trim / Hair cut",
-    "Twist out",
+    "Twist out / Flexi rod",
     "Wash & blowdry",
   ],
   "wig-services": ["Custom wig", "Wig colour", "Wig install"],
@@ -1103,7 +1103,7 @@ export default function App() {
                 onClick={openMobileFilters}
                 className="min-h-11 px-0 py-2 text-[14px] font-medium text-stone-500 transition hover:text-stone-800 active:text-stone-800 dark:text-stone-400 dark:hover:text-stone-100 dark:active:text-stone-100"
               >
-                Filter / Sort
+                Filter
               </button>
             </div>
           </div>
