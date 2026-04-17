@@ -273,7 +273,8 @@
         "Microlocs / Sisterlocs",
         "Faux locs",
         "Tracks (per row)",
-        "Twist out / Flexi rod"
+        "Twist out / Flexi rod",
+        "Crochet"
       ],
       "summary": "Manual entry added from your latest salon update batch.",
       "source": "manual",
@@ -911,7 +912,8 @@
         "Ponytail",
         "Traditional sew-in",
         "Closure sew-in",
-        "Half up half down"
+        "Half up half down",
+        "Crochet"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -2651,7 +2653,8 @@
         "Sew-in take-down",
         "Braid take-down",
         "Traditional sew-in",
-        "Half braids, half sew-in"
+        "Half braids, half sew-in",
+        "Crochet"
       ],
       "summary": "Manual entry added from your latest salon update batch.",
       "source": "manual",
@@ -2769,7 +2772,8 @@
         "Fulani braids",
         "Twists (with extensions)",
         "Traditional sew-in",
-        "Silk press"
+        "Silk press",
+        "Crochet"
       ]
     },
     {
@@ -3020,7 +3024,8 @@
         "Cornrows / Twists",
         "Full head colour",
         "Ponytail",
-        "Half braids, half sew-in"
+        "Half braids, half sew-in",
+        "Crochet"
       ],
       "summary": "Manual entry added from your East London braids, extensions, sew-ins, and natural hair list.",
       "source": "manual",
@@ -3074,7 +3079,8 @@
         "Knotless braids",
         "Cornrows / Twists",
         "Fulani braids",
-        "Twists (with extensions)"
+        "Twists (with extensions)",
+        "Crochet"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -3423,7 +3429,8 @@
         "Wig install",
         "Traditional sew-in",
         "Moisturising treatment",
-        "Tracks (per row)"
+        "Tracks (per row)",
+        "Crochet"
       ],
       "summary": "Starter verified entry for a London textured-hair business using Zenoti, included because it was repeatedly identified as a better fit than generic keratin search results.",
       "source": "manual",
@@ -4064,7 +4071,8 @@
         "Tracks (per row)",
         "Pixie / finger waves",
         "Braid take-down",
-        "Sew-in take-down"
+        "Sew-in take-down",
+        "Crochet"
       ]
     },
     {
@@ -6607,7 +6615,8 @@
         "Wig colour",
         "Balayage",
         "Half braids, half sew-in",
-        "Pixie / finger waves"
+        "Pixie / finger waves",
+        "Crochet"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -6667,9 +6676,9 @@
       "areaLabel": "East",
       "neighbourhood": "East London",
       "postcode": "",
-      "bookingPlatform": "Fresha",
-      "bookingUrl": "https://fresha.com/a/swish-london-london-203a-freemasons-road-pxttyyak/booking",
-      "websiteUrl": "https://fresha.com/a/swish-london-london-203a-freemasons-road-pxttyyak/booking",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "",
+      "websiteUrl": "",
       "instagramUrl": "https://www.instagram.com/swish_london/",
       "services": [
         "Wash & blowdry",
@@ -6935,7 +6944,6 @@
         "Half up half down",
         "Ponytail",
         "Flipover / Versatile sew-in",
-        "Cornrows / Twists",
         "Wig install",
         "Half braids, half sew-in"
       ]
@@ -7128,7 +7136,8 @@
         "Twists (with extensions)",
         "French curl",
         "Boho braids",
-        "Knotless braids"
+        "Knotless braids",
+        "Crochet"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -7476,7 +7485,8 @@
         "Ponytail",
         "Wash & blowdry",
         "Tracks (per row)",
-        "Microlocs / Sisterlocs"
+        "Microlocs / Sisterlocs",
+        "Crochet"
       ],
       "summary": "Manual entry added from your latest salon update batch.",
       "source": "manual",
@@ -7679,7 +7689,8 @@
         "Olaplex treatment",
         "K-18 treatment",
         "Keratin treatment",
-        "Relaxer"
+        "Relaxer",
+        "Twist out / Flexi rod"
       ],
       "summary": "Manual entry added from your latest salon update batch.",
       "source": "manual",
@@ -7781,7 +7792,8 @@
         "Traditional sew-in",
         "Cornrows / Twists",
         "Silk press",
-        "Wash & blowdry"
+        "Wash & blowdry",
+        "Crochet"
       ]
     },
     {
@@ -9116,7 +9128,9 @@
         "Fulani braids",
         "Cornrows / Twists",
         "Moisturising treatment",
-        "Full head colour"
+        "Full head colour",
+        "Bridal / Editorial",
+        "Crochet"
       ]
     },
     {
@@ -9149,7 +9163,8 @@
         "Fulani braids",
         "Feed-in braids",
         "Silk press",
-        "Olaplex treatment"
+        "Olaplex treatment",
+        "Crochet"
       ]
     },
     {
@@ -9285,7 +9300,8 @@
         "Feed-in braids",
         "Cornrows / Twists",
         "Twists (with extensions)",
-        "Creative braids"
+        "Creative braids",
+        "Crochet"
       ]
     },
     {
@@ -10048,7 +10064,8 @@
         "Trim / Hair cut",
         "Boho braids",
         "Feed-in braids",
-        "Fulani braids"
+        "Fulani braids",
+        "Crochet"
       ]
     },
     {
@@ -10858,7 +10875,9 @@
         "Wig install",
         "Traditional sew-in",
         "Moisturising treatment",
-        "Tracks (per row)"
+        "Tracks (per row)",
+        "Bridal / Editorial",
+        "Crochet"
       ]
     },
     {
@@ -11013,7 +11032,8 @@
         "Full head colour",
         "Highlights",
         "Pixie / finger waves",
-        "Cornrows / Twists"
+        "Cornrows / Twists",
+        "Crochet"
       ]
     },
     {
@@ -11175,7 +11195,8 @@
         "Scalp care",
         "Moisturising treatment",
         "Traditional sew-in",
-        "Closure sew-in"
+        "Closure sew-in",
+        "Crochet"
       ]
     },
     {
@@ -11622,7 +11643,8 @@
         "Tracks (per row)",
         "Flipover / Versatile sew-in",
         "Traditional sew-in",
-        "Silk press"
+        "Silk press",
+        "Crochet"
       ]
     },
     {
