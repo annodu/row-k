@@ -8932,7 +8932,8 @@
       "services": [
         "Trim / Hair cut",
         "Curly cut / Wash & go",
-        "Wash & blowdry"
+        "Wash & blowdry",
+        "Twist out / Flexi rod"
       ]
     },
     {
@@ -11723,6 +11724,79 @@
         "Cornrows / Twists",
         "Wash & blowdry",
         "Braid take-down"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "adeline-hair-and-beauty",
+      "name": "Adeline Hair and Beauty",
+      "areaId": "north",
+      "areaLabel": "North",
+      "neighbourhood": "North London",
+      "postcode": "",
+      "bookingPlatform": "Direct website",
+      "bookingUrl": "https://adelinehair.com/request-a-booking/",
+      "websiteUrl": "https://adelinehair.com/request-a-booking/",
+      "instagramUrl": "https://www.instagram.com/adelinehairandbeauty/",
+      "services": [
+        "Keratin treatment",
+        "Updo",
+        "Wash & blowdry",
+        "Silk press",
+        "Crochet",
+        "Curly cut / Wash & go",
+        "Olaplex treatment",
+        "Moisturising treatment",
+        "Scalp care",
+        "Traditional sew-in",
+        "Closure sew-in",
+        "Frontal sew-in",
+        "Wig install",
+        "Tape-ins",
+        "Tracks (per row)",
+        "Relaxer",
+        "Cornrows / Twists",
+        "Box braids",
+        "Knotless braids",
+        "Fulani braids",
+        "Full head colour"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "hair-by-ebony-b",
+      "name": "Hair by Ebony B",
+      "areaId": "north",
+      "areaLabel": "North",
+      "neighbourhood": "North London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://app.acuityscheduling.com/schedule.php?owner=33257859",
+      "websiteUrl": "https://app.acuityscheduling.com/schedule.php?owner=33257859",
+      "instagramUrl": "https://www.instagram.com/hairbyebonyb/",
+      "services": [
+        "Moisturising treatment",
+        "Wash & blowdry",
+        "Curly cut / Wash & go",
+        "Cornrows / Twists",
+        "Silk press",
+        "Relaxer",
+        "Texture release",
+        "Full head colour",
+        "Feed-in braids",
+        "Traditional sew-in",
+        "Closure sew-in",
+        "Flipover / Versatile sew-in",
+        "Knotless braids",
+        "Box braids"
       ]
     }
   ]
