@@ -11798,6 +11798,45 @@
         "Knotless braids",
         "Box braids"
       ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "tapes-n-co-ldn",
+      "name": "Tapes N Co LDN",
+      "areaId": "south-east",
+      "areaLabel": "South East",
+      "neighbourhood": "South East London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://tapesncoldn.as.me/schedule/de02ad9c",
+      "websiteUrl": "https://tapesncoldn.as.me/schedule/de02ad9c",
+      "instagramUrl": "https://www.instagram.com/tapesnco.ldn/",
+      "services": [
+        "K-tips",
+        "Tape-ins",
+        "Traditional sew-in",
+        "Flipover / Versatile sew-in",
+        "Closure sew-in",
+        "Half up half down",
+        "Hybrid sew-in",
+        "Microlinks",
+        "LA weave",
+        "Quick weave",
+        "Sew-in take-down",
+        "Keratin treatment",
+        "Texture release",
+        "Relaxer",
+        "Wash & blowdry",
+        "Silk press",
+        "Cornrows / Twists",
+        "Bridal / Editorial",
+        "Scalp care",
+        "Moisturising treatment"
+      ]
     }
   ]
 }
