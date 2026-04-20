@@ -55,7 +55,7 @@
         "Trim / Hair cut",
         "Silk press",
         "Quick weave",
-        "Ponytail",
+        "Ponytail / bun",
         "Tape-ins",
         "Traditional sew-in",
         "Half up half down",
@@ -85,7 +85,7 @@
         "Custom wig",
         "Half up half down",
         "Wig install",
-        "Ponytail",
+        "Ponytail / bun",
         "Quick weave",
         "Traditional sew-in",
         "LA weave",
@@ -204,7 +204,7 @@
         "Traditional sew-in",
         "Knotless braids",
         "Cornrows / Twists",
-        "Ponytail",
+        "Ponytail / bun",
         "Feed-in braids",
         "Half braids, half sew-in",
         "Traditional sew-in"
@@ -232,7 +232,7 @@
         "Twists (with extensions)",
         "Feed-in braids",
         "French curl",
-        "Fulani braids",
+        "Fulani / Lemonade braids",
         "Faux locs"
       ],
       "summary": "Manual entry added from your latest salon update batch.",
@@ -311,7 +311,7 @@
         "Tracks (per row)",
         "Boho braids",
         "Feed-in braids",
-        "Fulani braids",
+        "Fulani / Lemonade braids",
         "French curl",
         "Knotless braids",
         "Box braids",
@@ -320,7 +320,8 @@
         "Retwist",
         "Traditional sew-in",
         "Closure sew-in",
-        "Ponytail"
+        "Ponytail / bun",
+        "Crochet"
       ]
     },
     {
@@ -340,7 +341,7 @@
         "Boho braids",
         "Half braids, half sew-in",
         "Faux locs",
-        "Ponytail",
+        "Ponytail / bun",
         "Cornrows / Twists",
         "Traditional sew-in",
         "Stitch braids",
@@ -391,13 +392,13 @@
         "Knotless braids",
         "Feed-in braids",
         "French curl",
-        "Ponytail",
+        "Ponytail / bun",
         "Half up half down",
         "Flipover / Versatile sew-in",
         "Closure sew-in",
         "Wig install",
         "Half braids, half sew-in",
-        "Fulani braids",
+        "Fulani / Lemonade braids",
         "Traditional sew-in",
         "Closure sew-in",
         "Custom wig",
@@ -424,7 +425,7 @@
       "instagramUrl": "https://www.instagram.com/artistrybyserena_/",
       "services": [
         "Knotless braids",
-        "Fulani braids",
+        "Fulani / Lemonade braids",
         "Boho braids",
         "Stitch braids",
         "Half braids, half sew-in"
@@ -540,14 +541,14 @@
         "Feed-in braids",
         "Knotless braids",
         "Box braids",
-        "Fulani braids",
+        "Fulani / Lemonade braids",
         "Faux locs",
         "Half braids, half sew-in",
         "Full head colour",
         "Highlights",
         "Custom wig",
         "Trim / Hair cut",
-        "Ponytail",
+        "Ponytail / bun",
         "Wig install",
         "Tracks (per row)",
         "Half up half down",
@@ -570,13 +571,13 @@
       "neighbourhood": "Croydon",
       "postcode": "",
       "bookingPlatform": "Direct website",
-      "bookingUrl": "https://www.baambibeauty.com",
+      "bookingUrl": "https://baambi.as.me/schedule/c6f0820d",
       "websiteUrl": "",
       "instagramUrl": "https://www.instagram.com/baambibeauty/",
       "services": [
         "Boho braids",
         "Feed-in braids",
-        "Fulani braids",
+        "Fulani / Lemonade braids",
         "French curl",
         "Knotless braids",
         "Box braids",
@@ -692,7 +693,7 @@
         "Knotless braids",
         "Box braids",
         "Boho braids",
-        "Fulani braids",
+        "Fulani / Lemonade braids",
         "Stitch braids"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
@@ -717,7 +718,7 @@
       "websiteUrl": "https://beautybysolange.as.me/schedule/20a8c997",
       "instagramUrl": "https://www.instagram.com/beautybysolange/",
       "services": [
-        "Ponytail",
+        "Ponytail / bun",
         "Half up half down",
         "Traditional sew-in",
         "Closure sew-in",
@@ -814,7 +815,7 @@
         "Wash & blowdry",
         "Olaplex treatment",
         "Silk press",
-        "Ponytail",
+        "Ponytail / bun",
         "Relaxer",
         "Closure sew-in",
         "Frontal sew-in",
@@ -880,7 +881,7 @@
         "Highlights",
         "Relaxer",
         "Trim / Hair cut",
-        "Ponytail",
+        "Ponytail / bun",
         "Knotless braids",
         "Box braids",
         "Tracks (per row)"
@@ -903,13 +904,13 @@
       "websiteUrl": "https://bimmytouch.as.me",
       "instagramUrl": "https://www.instagram.com/bimmytouch/",
       "services": [
-        "Fulani braids",
+        "Fulani / Lemonade braids",
         "Twists (with extensions)",
         "Cornrows / Twists",
         "Butterfly locs",
         "Feed-in braids",
         "Knotless braids",
-        "Ponytail",
+        "Ponytail / bun",
         "Traditional sew-in",
         "Closure sew-in",
         "Half up half down",
@@ -967,7 +968,7 @@
       "services": [
         "Boho braids",
         "Feed-in braids",
-        "Fulani braids",
+        "Fulani / Lemonade braids",
         "French curl",
         "Knotless braids",
         "Pre-parting",
@@ -1085,8 +1086,8 @@
         "Bridal / Editorial",
         "Knotless braids",
         "Boho braids",
-        "Fulani braids",
-        "Creative braids"
+        "Fulani / Lemonade braids",
+        "Creative braids / Patewo"
       ],
       "summary": "Manual Instagram-led entry added from your London-wide braids list.",
       "source": "manual",
@@ -1132,7 +1133,7 @@
       "services": [
         "Knotless braids",
         "Boho braids",
-        "Fulani braids",
+        "Fulani / Lemonade braids",
         "Feed-in braids"
       ],
       "summary": "Manual entry added from your latest salon update batch.",
@@ -1160,7 +1161,9 @@
         "French curl",
         "Faux locs",
         "Traditional sew-in",
-        "Twists (with extensions)"
+        "Twists (with extensions)",
+        "Crochet",
+        "Miracle knots"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -1236,7 +1239,7 @@
         "Bridal / Editorial",
         "Wig install",
         "Wig colour",
-        "Ponytail",
+        "Ponytail / bun",
         "Updo",
         "Half up half down",
         "Traditional sew-in",
@@ -1269,7 +1272,7 @@
         "Traditional sew-in",
         "Flipover / Versatile sew-in",
         "Half up half down",
-        "Ponytail"
+        "Ponytail / bun"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -1293,7 +1296,7 @@
         "Boho braids",
         "Feed-in braids",
         "Half braids, half sew-in",
-        "Fulani braids"
+        "Fulani / Lemonade braids"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -1325,7 +1328,7 @@
         "Traditional sew-in",
         "Half braids, half sew-in",
         "Half up half down",
-        "Ponytail"
+        "Ponytail / bun"
       ]
     },
     {
@@ -1368,7 +1371,7 @@
       "services": [
         "Bridal / Editorial",
         "Updo",
-        "Ponytail",
+        "Ponytail / bun",
         "Traditional sew-in",
         "Flipover / Versatile sew-in",
         "Closure sew-in",
@@ -1431,7 +1434,7 @@
       "services": [
         "Traditional sew-in",
         "Half up half down",
-        "Ponytail",
+        "Ponytail / bun",
         "Flipover / Versatile sew-in",
         "Silk press",
         "Wash & blowdry",
@@ -1457,7 +1460,7 @@
       "services": [
         "Knotless braids",
         "Boho braids",
-        "Fulani braids",
+        "Fulani / Lemonade braids",
         "Cornrows / Twists"
       ],
       "summary": "Manual entry added from your Kent braids list.",
@@ -1507,7 +1510,7 @@
         "Traditional sew-in",
         "Frontal sew-in",
         "Wig install",
-        "Ponytail",
+        "Ponytail / bun",
         "Quick weave"
       ],
       "summary": "Manual entry added from your latest salon update batch.",
@@ -1565,7 +1568,8 @@
         "Boho braids",
         "Feed-in braids",
         "Twists (with extensions)",
-        "Fulani braids"
+        "Fulani / Lemonade braids",
+        "Pre-parting"
       ],
       "summary": "Manual entry added from your East London braids list.",
       "source": "manual",
@@ -1587,7 +1591,7 @@
       "services": [
         "Silk press",
         "Moisturising treatment",
-        "Ponytail",
+        "Ponytail / bun",
         "Relaxer",
         "Trim / Hair cut",
         "Texture release",
@@ -1642,7 +1646,8 @@
         "Boho braids",
         "Twists (with extensions)",
         "Feed-in braids",
-        "Fulani braids"
+        "Fulani / Lemonade braids",
+        "Crochet"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -1795,7 +1800,7 @@
       "instagramUrl": "https://www.instagram.com/dstylistt/",
       "services": [
         "Wig install",
-        "Ponytail",
+        "Ponytail / bun",
         "Custom wig",
         "K-18 treatment",
         "Moisturising treatment",
@@ -1867,12 +1872,13 @@
       "services": [
         "Feed-in braids",
         "Boho braids",
-        "Fulani braids",
+        "Fulani / Lemonade braids",
         "French curl",
         "Knotless braids",
         "Box braids",
         "Cornrows / Twists",
-        "Stitch braids"
+        "Stitch braids",
+        "Pre-parting"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -1892,7 +1898,7 @@
       "websiteUrl": "https://app.squarespacescheduling.com/schedule.php?owner=25135447",
       "instagramUrl": "https://www.instagram.com/dglowempire/",
       "services": [
-        "Ponytail",
+        "Ponytail / bun",
         "Updo"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
@@ -1959,8 +1965,9 @@
         "Feed-in braids",
         "Stitch braids",
         "Cornrows / Twists",
-        "Fulani braids",
-        "Twists (with extensions)"
+        "Fulani / Lemonade braids",
+        "Twists (with extensions)",
+        "Creative braids / Patewo"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -1983,11 +1990,11 @@
         "Knotless braids",
         "Box braids",
         "Wash & blowdry",
-        "Fulani braids",
+        "Fulani / Lemonade braids",
         "Twists (with extensions)",
         "Traditional sew-in",
         "Closure sew-in",
-        "Ponytail",
+        "Ponytail / bun",
         "Tracks (per row)"
       ],
       "summary": "Manual entry added from your Essex braids list.",
@@ -2009,7 +2016,7 @@
       "instagramUrl": "https://www.instagram.com/dvh_salon/",
       "services": [
         "Traditional sew-in",
-        "Ponytail",
+        "Ponytail / bun",
         "Half up half down",
         "Frontal sew-in",
         "Clip-ins",
@@ -2063,7 +2070,7 @@
         "Relaxer",
         "Keratin treatment",
         "Texture release",
-        "Ponytail",
+        "Ponytail / bun",
         "Traditional sew-in",
         "Braid take-down",
         "Sew-in take-down",
@@ -2217,8 +2224,9 @@
       "services": [
         "Knotless braids",
         "Feed-in braids",
-        "Fulani braids",
-        "Ponytail"
+        "Fulani / Lemonade braids",
+        "Ponytail / bun",
+        "Crochet"
       ],
       "summary": "Manual entry added from your South East London braids list.",
       "source": "manual",
@@ -2240,7 +2248,7 @@
       "services": [
         "Knotless braids",
         "Feed-in braids",
-        "Fulani braids",
+        "Fulani / Lemonade braids",
         "Boho braids"
       ],
       "summary": "Manual entry added from your East London braids list.",
@@ -2256,21 +2264,23 @@
       "areaLabel": "East",
       "neighbourhood": "East London",
       "postcode": "E5",
-      "bookingPlatform": ".as.me",
-      "bookingUrl": "https://estheticshair.as.me",
-      "websiteUrl": "https://estheticshair.as.me",
+      "bookingPlatform": "Direct website",
+      "bookingUrl": "https://www.estheticshair.com/services",
+      "websiteUrl": "https://www.estheticshair.com/services",
       "instagramUrl": "https://www.instagram.com/estheticshair/",
       "services": [
         "Traditional sew-in",
+        "Closure sew-in",
         "Wig install",
         "Feed-in braids",
-        "Ponytail",
-        "Updo",
+        "Fulani / Lemonade braids",
         "Knotless braids",
-        "Braid take-down",
+        "Twists (with extensions)",
+        "Box braids",
         "Wash & blowdry",
         "Cornrows / Twists",
-        "Half braids, half sew-in"
+        "Half braids, half sew-in",
+        "Half up half down"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -2291,7 +2301,7 @@
       "instagramUrl": "https://www.instagram.com/e_stylish1/",
       "services": [
         "Knotless braids",
-        "Ponytail",
+        "Ponytail / bun",
         "Updo",
         "Half up half down",
         "Boho braids",
@@ -2325,7 +2335,7 @@
         "Relaxer",
         "Trim / Hair cut",
         "Wash & blowdry",
-        "Ponytail",
+        "Ponytail / bun",
         "Half up half down",
         "Traditional sew-in",
         "Closure sew-in",
@@ -2346,7 +2356,7 @@
       "services": [
         "Feed-in braids",
         "Knotless braids",
-        "Ponytail",
+        "Ponytail / bun",
         "Twists (with extensions)",
         "Starter locs",
         "Cornrows / Twists",
@@ -2375,7 +2385,7 @@
         "Wig install",
         "Custom wig",
         "Wig colour",
-        "Ponytail",
+        "Ponytail / bun",
         "Closure sew-in",
         "Wash & blowdry",
         "Traditional sew-in"
@@ -2436,7 +2446,7 @@
         "Cornrows / Twists",
         "Feed-in braids",
         "Quick weave",
-        "Fulani braids",
+        "Fulani / Lemonade braids",
         "Stitch braids"
       ],
       "summary": "Manual entry added from your South East London braids list.",
@@ -2461,7 +2471,7 @@
         "Boho braids",
         "Feed-in braids",
         "Traditional sew-in",
-        "Fulani braids"
+        "Fulani / Lemonade braids"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -2518,7 +2528,7 @@
         "Wig colour",
         "Tape-ins",
         "Silk press",
-        "Ponytail",
+        "Ponytail / bun",
         "Half up half down",
         "Custom wig"
       ],
@@ -2681,7 +2691,7 @@
         "Butterfly locs",
         "Half braids, half sew-in",
         "Half up half down",
-        "Ponytail"
+        "Ponytail / bun"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -2769,7 +2779,7 @@
         "Relaxer",
         "Knotless braids",
         "Boho braids",
-        "Fulani braids",
+        "Fulani / Lemonade braids",
         "Twists (with extensions)",
         "Traditional sew-in",
         "Silk press",
@@ -2791,7 +2801,7 @@
         "Wig install",
         "Moisturising treatment",
         "Silk press",
-        "Ponytail",
+        "Ponytail / bun",
         "Updo",
         "Half up half down",
         "Traditional sew-in",
@@ -2903,11 +2913,11 @@
         "Box braids",
         "Faux locs",
         "Stitch braids",
-        "Fulani braids",
+        "Fulani / Lemonade braids",
         "Half braids, half sew-in",
         "Half up half down",
         "Relaxer",
-        "Ponytail",
+        "Ponytail / bun",
         "Twists (with extensions)",
         "Cornrows / Twists",
         "Wash & blowdry",
@@ -2933,7 +2943,7 @@
       "services": [
         "Knotless braids",
         "Boho braids",
-        "Fulani braids",
+        "Fulani / Lemonade braids",
         "Feed-in braids",
         "Faux locs",
         "Retwist",
@@ -2960,7 +2970,7 @@
         "Wig install",
         "Traditional sew-in",
         "Frontal sew-in",
-        "Ponytail",
+        "Ponytail / bun",
         "Custom wig"
       ],
       "summary": "Manual entry added from your South East London wigs list.",
@@ -3023,7 +3033,7 @@
         "Trim / Hair cut",
         "Cornrows / Twists",
         "Full head colour",
-        "Ponytail",
+        "Ponytail / bun",
         "Half braids, half sew-in",
         "Crochet"
       ],
@@ -3078,7 +3088,7 @@
         "Half braids, half sew-in",
         "Knotless braids",
         "Cornrows / Twists",
-        "Fulani braids",
+        "Fulani / Lemonade braids",
         "Twists (with extensions)",
         "Crochet"
       ],
@@ -3100,7 +3110,7 @@
       "websiteUrl": "",
       "instagramUrl": "https://www.instagram.com/hairbyamaraa/",
       "services": [
-        "Ponytail",
+        "Ponytail / bun",
         "Half up half down",
         "Updo"
       ],
@@ -3125,10 +3135,10 @@
         "Feed-in braids",
         "Boho braids",
         "Faux locs",
-        "Fulani braids",
+        "Fulani / Lemonade braids",
         "Knotless braids",
         "Wig install",
-        "Ponytail"
+        "Ponytail / bun"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -3152,7 +3162,8 @@
         "Boho braids",
         "French curl",
         "Twists (with extensions)",
-        "Fulani braids"
+        "Fulani / Lemonade braids",
+        "Miracle knots"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -3279,7 +3290,7 @@
         "Half braids, half sew-in",
         "Closure sew-in",
         "French curl",
-        "Fulani braids",
+        "Fulani / Lemonade braids",
         "Faux locs",
         "Butterfly locs"
       ],
@@ -3501,7 +3512,7 @@
         "LA weave",
         "Microlinks",
         "Tape-ins",
-        "Ponytail",
+        "Ponytail / bun",
         "Updo",
         "Half up half down",
         "Traditional sew-in",
@@ -3600,7 +3611,7 @@
       "websiteUrl": "https://houseofiye.setmore.com",
       "instagramUrl": "https://www.instagram.com/houseofiye/",
       "services": [
-        "Fulani braids",
+        "Fulani / Lemonade braids",
         "Twists (with extensions)",
         "Knotless braids",
         "Feed-in braids",
@@ -3651,7 +3662,7 @@
       "instagramUrl": "https://www.instagram.com/hur.hairr/",
       "services": [
         "Wig install",
-        "Ponytail",
+        "Ponytail / bun",
         "Pixie / finger waves",
         "Updo",
         "Half up half down",
@@ -3718,7 +3729,7 @@
         "Keratin treatment",
         "Texture release",
         "Trim / Hair cut",
-        "Ponytail",
+        "Ponytail / bun",
         "Updo",
         "Half up half down"
       ],
@@ -3780,8 +3791,9 @@
         "French curl",
         "Boho braids",
         "Knotless braids",
-        "Fulani braids",
-        "Feed-in braids"
+        "Fulani / Lemonade braids",
+        "Feed-in braids",
+        "Crochet"
       ]
     },
     {
@@ -3802,7 +3814,7 @@
         "Silk press",
         "Half braids, half sew-in",
         "Cornrows / Twists",
-        "Fulani braids",
+        "Fulani / Lemonade braids",
         "Stitch braids"
       ],
       "summary": "Manual entry added from your East London braids, sew-in, and natural hair list.",
@@ -3824,10 +3836,10 @@
       "instagramUrl": "https://www.instagram.com/jstylezldn/",
       "services": [
         "Knotless braids",
-        "Ponytail",
+        "Ponytail / bun",
         "Half braids, half sew-in",
         "Feed-in braids",
-        "Fulani braids",
+        "Fulani / Lemonade braids",
         "Boho braids",
         "Quick weave",
         "Half up half down"
@@ -3856,10 +3868,10 @@
         "Faux locs",
         "Butterfly locs",
         "Retwist",
-        "Ponytail",
+        "Ponytail / bun",
         "Twists (with extensions)",
         "Half up half down",
-        "Fulani braids",
+        "Fulani / Lemonade braids",
         "Cornrows / Twists",
         "Custom wig",
         "Wig install"
@@ -3885,7 +3897,7 @@
         "Knotless braids",
         "Boho braids",
         "Feed-in braids",
-        "Fulani braids",
+        "Fulani / Lemonade braids",
         "Cornrows / Twists"
       ],
       "summary": "Manual entry added from your South East London braids list.",
@@ -3906,7 +3918,7 @@
       "websiteUrl": "https://jbshairr.as.me/schedule/58ddd979",
       "instagramUrl": "https://www.instagram.com/jbshairr/",
       "services": [
-        "Ponytail",
+        "Ponytail / bun",
         "Updo",
         "Half up half down",
         "Moisturising treatment",
@@ -3969,7 +3981,7 @@
         "French curl",
         "Traditional sew-in",
         "Closure sew-in",
-        "Ponytail",
+        "Ponytail / bun",
         "Half up half down",
         "Full head colour",
         "Balayage",
@@ -3995,7 +4007,7 @@
       "instagramUrl": "https://www.instagram.com/jluxe_hair/",
       "services": [
         "Feed-in braids",
-        "Ponytail",
+        "Ponytail / bun",
         "K-tips",
         "Half up half down",
         "Closure sew-in",
@@ -4090,7 +4102,7 @@
         "Boho braids",
         "Feed-in braids",
         "French curl",
-        "Fulani braids",
+        "Fulani / Lemonade braids",
         "Knotless braids",
         "Stitch braids",
         "Twists (with extensions)"
@@ -4275,7 +4287,7 @@
         "Silk press",
         "Wash & blowdry",
         "Trim / Hair cut",
-        "Ponytail",
+        "Ponytail / bun",
         "Half up half down",
         "Closure sew-in",
         "Tracks (per row)",
@@ -4305,7 +4317,7 @@
         "Cornrows / Twists",
         "Twists (with extensions)",
         "Boho braids",
-        "Ponytail",
+        "Ponytail / bun",
         "Stitch braids"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
@@ -4370,7 +4382,7 @@
       "services": [
         "Knotless braids",
         "Boho braids",
-        "Fulani braids",
+        "Fulani / Lemonade braids",
         "French curl"
       ],
       "summary": "Manual Instagram-led entry added from your South East London braids list.",
@@ -4422,7 +4434,7 @@
       "instagramUrl": "https://www.instagram.com/laidbyjhair/",
       "services": [
         "Wig install",
-        "Ponytail",
+        "Ponytail / bun",
         "Updo",
         "Half up half down",
         "Quick weave",
@@ -4446,7 +4458,7 @@
       "websiteUrl": "https://laidbysophh.as.me/schedule/d4f1116b",
       "instagramUrl": "https://www.instagram.com/laidbysoph/",
       "services": [
-        "Ponytail",
+        "Ponytail / bun",
         "Quick weave",
         "Traditional sew-in",
         "Flipover / Versatile sew-in"
@@ -4476,7 +4488,7 @@
         "Frontal sew-in",
         "Traditional sew-in",
         "Half up half down",
-        "Ponytail",
+        "Ponytail / bun",
         "Half braids, half sew-in"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
@@ -4499,7 +4511,7 @@
       "services": [
         "Knotless braids",
         "Traditional sew-in",
-        "Ponytail",
+        "Ponytail / bun",
         "Updo",
         "Half up half down",
         "Wig install",
@@ -4507,7 +4519,7 @@
         "Frontal sew-in",
         "Boho braids",
         "Feed-in braids",
-        "Fulani braids",
+        "Fulani / Lemonade braids",
         "French curl",
         "Faux locs",
         "Butterfly locs"
@@ -4609,7 +4621,7 @@
       "instagramUrl": "https://www.instagram.com/maggieshair_/",
       "services": [
         "LA weave",
-        "Ponytail",
+        "Ponytail / bun",
         "Tape-ins",
         "Wash & blowdry",
         "Silk press",
@@ -4704,7 +4716,7 @@
       "services": [
         "Pixie / finger waves",
         "Relaxer",
-        "Ponytail",
+        "Ponytail / bun",
         "Updo"
       ]
     },
@@ -4770,7 +4782,7 @@
       "websiteUrl": "https://mbhair1.as.me/schedule/618eda83",
       "instagramUrl": "https://www.instagram.com/mbhair.1/",
       "services": [
-        "Ponytail",
+        "Ponytail / bun",
         "Updo",
         "Half up half down",
         "Traditional sew-in",
@@ -4833,7 +4845,7 @@
         "Twists (with extensions)",
         "Faux locs",
         "Cornrows / Twists",
-        "Ponytail"
+        "Ponytail / bun"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -4879,7 +4891,7 @@
       "services": [
         "Wig install",
         "Traditional sew-in",
-        "Ponytail",
+        "Ponytail / bun",
         "Updo",
         "Half up half down",
         "Wig colour",
@@ -4945,17 +4957,18 @@
       "services": [
         "Knotless braids",
         "Feed-in braids",
-        "Fulani braids",
+        "Fulani / Lemonade braids",
         "Closure sew-in",
         "Half up half down",
         "Traditional sew-in",
         "Wig install",
         "Wig colour",
         "Frontal sew-in",
-        "Ponytail",
+        "Ponytail / bun",
         "Custom wig",
         "Faux locs",
-        "Frontal sew-in"
+        "Frontal sew-in",
+        "Box braids"
       ],
       "summary": "Manual entry added from your South East London braids, colour, sew-ins, and wigs list.",
       "source": "manual",
@@ -5028,7 +5041,7 @@
         "Balayage",
         "Crochet",
         "Cornrows / Twists",
-        "Ponytail",
+        "Ponytail / bun",
         "Relaxer",
         "Keratin treatment",
         "Tracks (per row)"
@@ -5113,7 +5126,7 @@
         "Wig install",
         "Traditional sew-in",
         "Wig colour",
-        "Ponytail",
+        "Ponytail / bun",
         "Custom wig",
         "Frontal sew-in",
         "Closure sew-in",
@@ -5201,7 +5214,7 @@
         "Flipover / Versatile sew-in",
         "Frontal sew-in",
         "Hybrid sew-in",
-        "Ponytail",
+        "Ponytail / bun",
         "Quick weave",
         "Silk press",
         "Traditional sew-in",
@@ -5277,9 +5290,9 @@
       "services": [
         "Knotless braids",
         "Boho braids",
-        "Fulani braids",
+        "Fulani / Lemonade braids",
         "Stitch braids",
-        "Ponytail"
+        "Ponytail / bun"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -5358,7 +5371,7 @@
         "Wash & blowdry",
         "Trim / Hair cut",
         "Cornrows / Twists",
-        "Ponytail",
+        "Ponytail / bun",
         "Half braids, half sew-in"
       ],
       "summary": "Manual entry added from your North London braids, natural hair, and wigs list.",
@@ -5390,9 +5403,9 @@
         "Wash & blowdry",
         "Closure sew-in",
         "Wig install",
-        "Ponytail",
+        "Ponytail / bun",
         "Feed-in braids",
-        "Fulani braids",
+        "Fulani / Lemonade braids",
         "Sew-in take-down",
         "Wig colour",
         "Custom wig",
@@ -5473,14 +5486,14 @@
       "websiteUrl": "https://paulebaptiste.as.me/schedule/18ba925c",
       "instagramUrl": "https://www.instagram.com/paulebaptiste/",
       "services": [
-        "Ponytail",
+        "Ponytail / bun",
         "Updo",
         "Silk press",
         "Flipover / Versatile sew-in",
         "Traditional sew-in",
         "Stitch braids",
         "Scalp care",
-        "Creative braids"
+        "Creative braids / Patewo"
       ],
       "summary": "Manual entry added from your latest salon update batch.",
       "source": "manual",
@@ -5534,9 +5547,9 @@
         "Knotless braids",
         "Faux locs",
         "Cornrows / Twists",
-        "Ponytail",
+        "Ponytail / bun",
         "Feed-in braids",
-        "Fulani braids",
+        "Fulani / Lemonade braids",
         "Wash & blowdry",
         "Traditional sew-in",
         "Flipover / Versatile sew-in",
@@ -5659,9 +5672,12 @@
       "services": [
         "Boho braids",
         "Feed-in braids",
-        "Fulani braids",
+        "Fulani / Lemonade braids",
         "French curl",
-        "Twists (with extensions)"
+        "Twists (with extensions)",
+        "Crochet",
+        "Box braids",
+        "Miracle knots"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -5713,7 +5729,7 @@
       "services": [
         "Silk press",
         "Traditional sew-in",
-        "Ponytail",
+        "Ponytail / bun",
         "Flipover / Versatile sew-in",
         "Half up half down",
         "Cornrows / Twists",
@@ -5734,7 +5750,7 @@
       "services": [
         "Wig install",
         "Traditional sew-in",
-        "Ponytail",
+        "Ponytail / bun",
         "Half up half down",
         "Custom wig"
       ],
@@ -5762,7 +5778,7 @@
         "LA weave",
         "Microlinks",
         "Tape-ins",
-        "Ponytail",
+        "Ponytail / bun",
         "Updo",
         "Half up half down",
         "Sew-in take-down"
@@ -5879,8 +5895,8 @@
         "Silk press",
         "Wash & blowdry",
         "Trim / Hair cut",
-        "Ponytail",
-        "Fulani braids",
+        "Ponytail / bun",
+        "Fulani / Lemonade braids",
         "Cornrows / Twists",
         "Knotless braids",
         "Wig install",
@@ -5926,7 +5942,7 @@
       "instagramUrl": "https://www.instagram.com/savsstyles/",
       "services": [
         "Feed-in braids",
-        "Fulani braids",
+        "Fulani / Lemonade braids",
         "Knotless braids"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
@@ -6081,7 +6097,7 @@
         "Moisturising treatment",
         "Wig colour",
         "Wig install",
-        "Ponytail",
+        "Ponytail / bun",
         "Half up half down",
         "Flipover / Versatile sew-in",
         "Hybrid sew-in",
@@ -6152,11 +6168,11 @@
       "instagramUrl": "https://www.instagram.com/sirisstudio/",
       "services": [
         "Feed-in braids",
-        "Fulani braids",
+        "Fulani / Lemonade braids",
         "Knotless braids",
         "Box braids",
         "Twists (with extensions)",
-        "Ponytail"
+        "Ponytail / bun"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -6207,7 +6223,7 @@
       "services": [
         "Knotless braids",
         "Traditional sew-in",
-        "Ponytail",
+        "Ponytail / bun",
         "Updo",
         "Half up half down",
         "Flipover / Versatile sew-in",
@@ -6288,7 +6304,9 @@
         "Feed-in braids",
         "Faux locs",
         "Stitch braids",
-        "Twists (with extensions)"
+        "Twists (with extensions)",
+        "Creative braids / Patewo",
+        "Bridal / Editorial"
       ],
       "summary": "Manual entry added from your East London braids list.",
       "source": "manual",
@@ -6336,9 +6354,9 @@
         "Retwist",
         "Stitch braids",
         "Half up half down",
-        "Fulani braids",
+        "Fulani / Lemonade braids",
         "Flipover / Versatile sew-in",
-        "Ponytail",
+        "Ponytail / bun",
         "Custom wig",
         "Wig install"
       ],
@@ -6360,7 +6378,7 @@
       "websiteUrl": "",
       "instagramUrl": "https://www.instagram.com/sliqtouchuk/",
       "services": [
-        "Ponytail",
+        "Ponytail / bun",
         "Updo",
         "Half up half down"
       ],
@@ -6384,7 +6402,7 @@
       "services": [
         "Knotless braids",
         "Faux locs",
-        "Fulani braids",
+        "Fulani / Lemonade braids",
         "Feed-in braids",
         "Faux locs"
       ],
@@ -6415,19 +6433,20 @@
         "Boho braids",
         "Half braids, half sew-in",
         "French curl",
-        "Fulani braids",
+        "Fulani / Lemonade braids",
         "Relaxer",
         "Cornrows / Twists",
         "Trim / Hair cut",
         "Wash & blowdry",
         "Texture release",
         "Feed-in braids",
-        "Ponytail",
+        "Ponytail / bun",
         "Starter locs",
         "Retwist",
         "Tape-ins",
         "K-tips",
-        "Braid take-down"
+        "Braid take-down",
+        "Creative braids / Patewo"
       ],
       "summary": "Manual entry added from your South West London list covering braids, sew-ins, natural hair, treatments, extensions, and styling.",
       "source": "manual",
@@ -6450,7 +6469,7 @@
         "Wig install",
         "Cornrows / Twists",
         "Feed-in braids",
-        "Fulani braids",
+        "Fulani / Lemonade braids",
         "Knotless braids",
         "Twists (with extensions)",
         "Faux locs",
@@ -6482,7 +6501,7 @@
         "Traditional sew-in",
         "Closure sew-in",
         "Flipover / Versatile sew-in",
-        "Ponytail",
+        "Ponytail / bun",
         "Updo",
         "Tape-ins",
         "LA weave",
@@ -6513,7 +6532,7 @@
         "Half braids, half sew-in",
         "Traditional sew-in",
         "Flipover / Versatile sew-in",
-        "Ponytail",
+        "Ponytail / bun",
         "Wig install",
         "Quick weave"
       ],
@@ -6594,11 +6613,11 @@
         "Microbraids",
         "Faux locs",
         "Full head colour",
-        "Ponytail",
+        "Ponytail / bun",
         "Boho braids",
         "French curl",
         "Twists (with extensions)",
-        "Fulani braids",
+        "Fulani / Lemonade braids",
         "Butterfly locs",
         "Cornrows / Twists",
         "Scalp care",
@@ -6683,13 +6702,13 @@
       "services": [
         "Wash & blowdry",
         "Stitch braids",
-        "Fulani braids",
+        "Fulani / Lemonade braids",
         "Boho braids",
         "Knotless braids",
         "Updo",
         "Trim / Hair cut",
         "Silk press",
-        "Ponytail",
+        "Ponytail / bun",
         "Braid take-down",
         "Cornrows / Twists"
       ],
@@ -6719,7 +6738,7 @@
         "Moisturising treatment",
         "Silk press",
         "Full head colour",
-        "Ponytail",
+        "Ponytail / bun",
         "Updo",
         "Half up half down",
         "K-tips",
@@ -6787,12 +6806,12 @@
         "Texture release",
         "Boho braids",
         "Feed-in braids",
-        "Fulani braids",
+        "Fulani / Lemonade braids",
         "French curl",
         "Twists (with extensions)",
         "Stitch braids",
         "Faux locs",
-        "Ponytail",
+        "Ponytail / bun",
         "Half braids, half sew-in",
         "Sew-in take-down"
       ],
@@ -6838,7 +6857,7 @@
         "Box braids",
         "Butterfly locs",
         "Wig install",
-        "Ponytail",
+        "Ponytail / bun",
         "Updo",
         "Half up half down",
         "Traditional sew-in",
@@ -6873,7 +6892,7 @@
         "Clip-ins",
         "Wash & blowdry",
         "Knotless braids",
-        "Fulani braids",
+        "Fulani / Lemonade braids",
         "Silk press",
         "Relaxer",
         "Tracks (per row)"
@@ -6942,7 +6961,7 @@
       "instagramUrl": "https://www.instagram.com/the.haircode/",
       "services": [
         "Half up half down",
-        "Ponytail",
+        "Ponytail / bun",
         "Flipover / Versatile sew-in",
         "Wig install",
         "Half braids, half sew-in"
@@ -7033,7 +7052,7 @@
         "Traditional sew-in",
         "Knotless braids",
         "Wig install",
-        "Ponytail",
+        "Ponytail / bun",
         "Flipover / Versatile sew-in",
         "Wig colour",
         "Custom wig",
@@ -7058,11 +7077,11 @@
       "instagramUrl": "https://www.instagram.com/crownconciergee/",
       "services": [
         "Feed-in braids",
-        "Fulani braids",
+        "Fulani / Lemonade braids",
         "Half braids, half sew-in",
         "Knotless braids",
         "Butterfly locs",
-        "Ponytail",
+        "Ponytail / bun",
         "Half up half down"
       ],
       "summary": "Manual entry added from your East London braids, locs, and styling list.",
@@ -7106,7 +7125,7 @@
       "websiteUrl": "https://tthestuddio.as.me/schedule/a5655924",
       "instagramUrl": "https://www.instagram.com/thestuddio/",
       "services": [
-        "Ponytail",
+        "Ponytail / bun",
         "Updo",
         "Half up half down",
         "Quick weave"
@@ -7200,10 +7219,10 @@
       "instagramUrl": "https://www.instagram.com/theesbnuk/",
       "services": [
         "Feed-in braids",
-        "Ponytail",
+        "Ponytail / bun",
         "Twists (with extensions)",
         "Wig install",
-        "Fulani braids",
+        "Fulani / Lemonade braids",
         "French curl",
         "Knotless braids",
         "Box braids",
@@ -7337,7 +7356,7 @@
       "websiteUrl": "https://app.acuityscheduling.com/schedule.php?owner=37947073",
       "instagramUrl": "https://www.instagram.com/tinatailss/",
       "services": [
-        "Ponytail",
+        "Ponytail / bun",
         "Half up half down",
         "Traditional sew-in"
       ],
@@ -7359,7 +7378,7 @@
       "websiteUrl": "https://tressavenue.as.me/schedule/bb1fda2c",
       "instagramUrl": "https://www.instagram.com/tressavenue_/",
       "services": [
-        "Ponytail",
+        "Ponytail / bun",
         "Half braids, half sew-in",
         "Traditional sew-in",
         "Closure sew-in",
@@ -7393,12 +7412,14 @@
         "Wig install",
         "Retwist",
         "Boho braids",
-        "Fulani braids",
+        "Fulani / Lemonade braids",
         "Knotless braids",
         "Box braids",
-        "Ponytail",
+        "Ponytail / bun",
         "Half up half down",
-        "Microlocs / Sisterlocs"
+        "Microlocs / Sisterlocs",
+        "Box braids",
+        "Miracle knots"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -7419,10 +7440,12 @@
       "instagramUrl": "https://www.instagram.com/tthairbarldn/",
       "services": [
         "Boho braids",
-        "Fulani braids",
+        "Fulani / Lemonade braids",
         "Knotless braids",
         "Half braids, half sew-in",
-        "Creative braids"
+        "Creative braids / Patewo",
+        "Pre-parting",
+        "Miracle knots"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -7442,7 +7465,7 @@
       "websiteUrl": "https://updolondon.as.me",
       "instagramUrl": "https://www.instagram.com/updo_london/",
       "services": [
-        "Ponytail",
+        "Ponytail / bun",
         "Updo"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
@@ -7476,17 +7499,18 @@
         "Feed-in braids",
         "Knotless braids",
         "Boho braids",
-        "Fulani braids",
+        "Fulani / Lemonade braids",
         "Cornrows / Twists",
         "Wig install",
         "Full head colour",
         "Highlights",
         "Starter locs",
-        "Ponytail",
+        "Ponytail / bun",
         "Wash & blowdry",
         "Tracks (per row)",
         "Microlocs / Sisterlocs",
-        "Crochet"
+        "Crochet",
+        "Boho braids"
       ],
       "summary": "Manual entry added from your latest salon update batch.",
       "source": "manual",
@@ -7538,7 +7562,7 @@
         "Traditional sew-in",
         "Faux locs",
         "Boho braids",
-        "Fulani braids",
+        "Fulani / Lemonade braids",
         "Half braids, half sew-in",
         "Knotless braids",
         "Faux locs",
@@ -7567,7 +7591,7 @@
         "Wig install",
         "Traditional sew-in",
         "Boho braids",
-        "Fulani braids",
+        "Fulani / Lemonade braids",
         "Flipover / Versatile sew-in",
         "Custom wig"
       ],
@@ -7593,7 +7617,7 @@
         "Traditional sew-in",
         "Closure sew-in",
         "Frontal sew-in",
-        "Ponytail"
+        "Ponytail / bun"
       ],
       "summary": "Manual entry added from your Croydon wigs list.",
       "source": "manual",
@@ -7613,7 +7637,7 @@
       "websiteUrl": "https://yayslickeditt.as.me/schedule.php",
       "instagramUrl": "https://www.instagram.com/yayslickeditt/",
       "services": [
-        "Ponytail",
+        "Ponytail / bun",
         "Half up half down",
         "Traditional sew-in",
         "Quick weave",
@@ -7714,7 +7738,7 @@
         "Feed-in braids",
         "Knotless braids",
         "Stitch braids",
-        "Fulani braids"
+        "Fulani / Lemonade braids"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -7784,7 +7808,7 @@
         "Boho braids",
         "Feed-in braids",
         "French curl",
-        "Fulani braids",
+        "Fulani / Lemonade braids",
         "Knotless braids",
         "Box braids",
         "Stitch braids",
@@ -7827,7 +7851,7 @@
         "Closure sew-in",
         "Half up half down",
         "Updo",
-        "Ponytail",
+        "Ponytail / bun",
         "Custom wig"
       ]
     },
@@ -7878,7 +7902,7 @@
       "websiteUrl": "https://stallistyless.as.me/schedule/b3684150",
       "instagramUrl": "https://www.instagram.com/stallistyles_/",
       "services": [
-        "Ponytail",
+        "Ponytail / bun",
         "Updo",
         "Flipover / Versatile sew-in",
         "Half up half down",
@@ -7930,7 +7954,7 @@
         "Wig install",
         "Custom wig",
         "Wig colour",
-        "Ponytail",
+        "Ponytail / bun",
         "Updo",
         "Relaxer",
         "Full head colour",
@@ -8022,7 +8046,7 @@
         "Sew-in take-down",
         "LA weave",
         "Stitch braids",
-        "Fulani braids",
+        "Fulani / Lemonade braids",
         "Twists (with extensions)",
         "Wig install"
       ]
@@ -8071,7 +8095,7 @@
         "Traditional sew-in",
         "Tape-ins",
         "Microlinks",
-        "Ponytail",
+        "Ponytail / bun",
         "Keratin treatment",
         "Sew-in take-down",
         "Silk press",
@@ -8098,7 +8122,7 @@
       "services": [
         "Custom wig",
         "Wig install",
-        "Ponytail",
+        "Ponytail / bun",
         "Traditional sew-in",
         "Half up half down"
       ]
@@ -8123,7 +8147,7 @@
         "Knotless braids",
         "Boho braids",
         "Feed-in braids",
-        "Fulani braids",
+        "Fulani / Lemonade braids",
         "Quick weave",
         "Retwist",
         "Twists (with extensions)",
@@ -8151,7 +8175,7 @@
       "instagramUrl": "https://www.instagram.com/sleekedonpoint/",
       "services": [
         "Wig install",
-        "Ponytail",
+        "Ponytail / bun",
         "Traditional sew-in"
       ]
     },
@@ -8174,7 +8198,7 @@
       "services": [
         "Cornrows / Twists",
         "Knotless braids",
-        "Ponytail",
+        "Ponytail / bun",
         "Half up half down",
         "Traditional sew-in",
         "Closure sew-in",
@@ -8244,7 +8268,7 @@
         "Traditional sew-in",
         "Wash & blowdry",
         "Closure sew-in",
-        "Ponytail",
+        "Ponytail / bun",
         "Custom wig",
         "Wig install",
         "Full head colour",
@@ -8270,8 +8294,8 @@
       "services": [
         "Boho braids",
         "Knotless braids",
-        "Fulani braids",
-        "Ponytail",
+        "Fulani / Lemonade braids",
+        "Ponytail / bun",
         "Stitch braids",
         "Wig install",
         "Traditional sew-in",
@@ -8303,7 +8327,7 @@
         "Faux locs",
         "Starter locs",
         "Retwist",
-        "Ponytail",
+        "Ponytail / bun",
         "Traditional sew-in",
         "Half up half down",
         "Closure sew-in",
@@ -8313,7 +8337,7 @@
         "Silk press",
         "Braid take-down",
         "Sew-in take-down",
-        "Creative braids"
+        "Bridal / Editorial"
       ]
     },
     {
@@ -8485,7 +8509,7 @@
         "Flipover / Versatile sew-in",
         "Half up half down",
         "Cornrows / Twists",
-        "Ponytail",
+        "Ponytail / bun",
         "Traditional sew-in",
         "Wig install",
         "Custom wig"
@@ -8509,7 +8533,7 @@
       "instagramUrl": "https://www.instagram.com/gxtouched/",
       "services": [
         "Half up half down",
-        "Ponytail",
+        "Ponytail / bun",
         "Quick weave",
         "Traditional sew-in",
         "Flipover / Versatile sew-in",
@@ -8565,7 +8589,7 @@
       "services": [
         "Butterfly locs",
         "Feed-in braids",
-        "Fulani braids",
+        "Fulani / Lemonade braids",
         "Half braids, half sew-in",
         "Traditional sew-in",
         "Knotless braids",
@@ -8642,7 +8666,7 @@
       "instagramUrl": "https://www.instagram.com/styledbybritsuk/",
       "services": [
         "Wig install",
-        "Ponytail",
+        "Ponytail / bun",
         "Traditional sew-in",
         "Closure sew-in"
       ]
@@ -8760,7 +8784,7 @@
       "instagramUrl": "https://www.instagram.com/amjhair/",
       "services": [
         "Traditional sew-in",
-        "Ponytail",
+        "Ponytail / bun",
         "Quick weave",
         "Wig install",
         "Custom wig"
@@ -8980,7 +9004,7 @@
       "instagramUrl": "https://www.instagram.com/slayedbybailey/",
       "services": [
         "Wig install",
-        "Ponytail"
+        "Ponytail / bun"
       ]
     },
     {
@@ -9072,7 +9096,7 @@
       "instagramUrl": "https://www.instagram.com/thelacecassanova/",
       "services": [
         "Wig install",
-        "Ponytail"
+        "Ponytail / bun"
       ]
     },
     {
@@ -9092,7 +9116,7 @@
       "websiteUrl": "https://chaehair.as.me/schedule/ad9788d9",
       "instagramUrl": "https://www.instagram.com/chaehair__/",
       "services": [
-        "Ponytail",
+        "Ponytail / bun",
         "Half up half down",
         "Traditional sew-in",
         "Quick weave",
@@ -9126,7 +9150,7 @@
         "Silk press",
         "Twist out / Flexi rod",
         "Knotless braids",
-        "Fulani braids",
+        "Fulani / Lemonade braids",
         "Cornrows / Twists",
         "Moisturising treatment",
         "Full head colour",
@@ -9161,11 +9185,12 @@
         "Microlocs / Sisterlocs",
         "Cornrows / Twists",
         "Twist out / Flexi rod",
-        "Fulani braids",
+        "Fulani / Lemonade braids",
         "Feed-in braids",
         "Silk press",
         "Olaplex treatment",
-        "Crochet"
+        "Crochet",
+        "Bridal / Editorial"
       ]
     },
     {
@@ -9213,7 +9238,7 @@
       "websiteUrl": "https://hairbywynn.as.me/schedule/e36fe2d8",
       "instagramUrl": "https://www.instagram.com/hairbywynn/",
       "services": [
-        "Fulani braids",
+        "Fulani / Lemonade braids",
         "Stitch braids",
         "Knotless braids",
         "Pre-parting",
@@ -9269,8 +9294,8 @@
         "Knotless braids",
         "Boho braids",
         "Feed-in braids",
-        "Fulani braids",
-        "Creative braids"
+        "Fulani / Lemonade braids",
+        "Creative braids / Patewo"
       ]
     },
     {
@@ -9302,7 +9327,6 @@
         "Feed-in braids",
         "Cornrows / Twists",
         "Twists (with extensions)",
-        "Creative braids",
         "Crochet"
       ]
     },
@@ -9328,7 +9352,9 @@
         "Half braids, half sew-in",
         "Feed-in braids",
         "French curl",
-        "Fulani braids"
+        "Fulani / Lemonade braids",
+        "Crochet",
+        "Miracle knots"
       ]
     },
     {
@@ -9347,10 +9373,11 @@
       "bookingUrl": "https://www.instagram.com/sshairlounge/",
       "instagramUrl": "https://www.instagram.com/sshairlounge/",
       "services": [
-        "Fulani braids",
+        "Fulani / Lemonade braids",
         "Feed-in braids",
         "Boho braids",
-        "Knotless braids"
+        "Knotless braids",
+        "Creative braids / Patewo"
       ]
     },
     {
@@ -9499,12 +9526,13 @@
       "services": [
         "Feed-in braids",
         "Boho braids",
-        "Fulani braids",
+        "Fulani / Lemonade braids",
         "Knotless braids",
         "Traditional sew-in",
         "Half braids, half sew-in",
         "Wash & blowdry",
-        "Creative braids"
+        "Creative braids / Patewo",
+        "Crochet"
       ]
     },
     {
@@ -9528,7 +9556,7 @@
         "Feed-in braids",
         "French curl",
         "Knotless braids",
-        "Creative braids"
+        "Creative braids / Patewo"
       ]
     },
     {
@@ -9552,7 +9580,7 @@
       "instagramUrl": "https://www.instagram.com/styledbywasike/",
       "services": [
         "Bridal / Editorial",
-        "Creative braids"
+        "Creative braids / Patewo"
       ]
     },
     {
@@ -9573,8 +9601,8 @@
       "instagramUrl": "https://www.instagram.com/kayythebraider/",
       "services": [
         "Retwist",
-        "Creative braids",
-        "Fulani braids",
+        "Creative braids / Patewo",
+        "Fulani / Lemonade braids",
         "Boho braids",
         "French curl",
         "Feed-in braids",
@@ -9605,7 +9633,7 @@
       "instagramUrl": "https://www.instagram.com/jaam.hair/",
       "services": [
         "Bridal / Editorial",
-        "Creative braids"
+        "Creative braids / Patewo"
       ]
     },
     {
@@ -9625,7 +9653,7 @@
       "websiteUrl": "https://infaithfulhands.as.me/schedule/74c6bf58",
       "instagramUrl": "https://www.instagram.com/infaithfulhands_/",
       "services": [
-        "Fulani braids",
+        "Fulani / Lemonade braids",
         "Half braids, half sew-in",
         "Stitch braids",
         "Flipover / Versatile sew-in",
@@ -9656,7 +9684,7 @@
         "Butterfly locs",
         "Faux locs",
         "Stitch braids",
-        "Fulani braids",
+        "Fulani / Lemonade braids",
         "Half braids, half sew-in"
       ]
     },
@@ -9701,13 +9729,13 @@
       "websiteUrl": "https://ellisetresses.as.me/schedule/90447f29",
       "instagramUrl": "https://www.instagram.com/ellisetresses/",
       "services": [
-        "Fulani braids",
+        "Fulani / Lemonade braids",
         "Knotless braids",
         "Retwist",
         "Starter locs",
         "Half braids, half sew-in",
-        "Creative braids",
-        "Ponytail",
+        "Creative braids / Patewo",
+        "Ponytail / bun",
         "Half up half down"
       ]
     },
@@ -9750,9 +9778,9 @@
       "websiteUrl": "https://noquesalon.as.me/schedule/2baf9de3",
       "instagramUrl": "https://www.instagram.com/noquesalon/",
       "services": [
-        "Creative braids",
+        "Creative braids / Patewo",
         "Knotless braids",
-        "Fulani braids",
+        "Fulani / Lemonade braids",
         "Boho braids",
         "Stitch braids",
         "Half braids, half sew-in",
@@ -9825,9 +9853,10 @@
         "Boho braids",
         "Half braids, half sew-in",
         "French curl",
-        "Fulani braids",
+        "Fulani / Lemonade braids",
         "Knotless braids",
-        "Stitch braids"
+        "Stitch braids",
+        "Miracle knots"
       ]
     },
     {
@@ -9848,7 +9877,7 @@
       "services": [
         "Knotless braids",
         "French curl",
-        "Fulani braids",
+        "Fulani / Lemonade braids",
         "Feed-in braids"
       ]
     },
@@ -9870,15 +9899,16 @@
       "instagramUrl": "https://www.instagram.com/dbdhairstudio/",
       "services": [
         "Knotless braids",
-        "Fulani braids",
+        "Fulani / Lemonade braids",
         "Boho braids",
         "Feed-in braids",
         "Traditional sew-in",
         "Half braids, half sew-in",
         "Frontal sew-in",
-        "Ponytail",
+        "Ponytail / bun",
         "Half up half down",
-        "Wig install"
+        "Wig install",
+        "Miracle knots"
       ]
     },
     {
@@ -9922,7 +9952,7 @@
       "instagramUrl": "https://www.instagram.com/czeestudios/",
       "services": [
         "Wig install",
-        "Ponytail"
+        "Ponytail / bun"
       ]
     },
     {
@@ -10023,7 +10053,7 @@
         "Knotless braids",
         "Boho braids",
         "Twists (with extensions)",
-        "Fulani braids",
+        "Fulani / Lemonade braids",
         "Faux locs"
       ]
     },
@@ -10058,7 +10088,7 @@
         "Closure sew-in",
         "Half up half down",
         "Wig install",
-        "Ponytail",
+        "Ponytail / bun",
         "Tracks (per row)",
         "Sew-in take-down",
         "Braid take-down",
@@ -10066,7 +10096,7 @@
         "Trim / Hair cut",
         "Boho braids",
         "Feed-in braids",
-        "Fulani braids",
+        "Fulani / Lemonade braids",
         "Crochet"
       ]
     },
@@ -10168,7 +10198,7 @@
         "Tape-ins",
         "Relaxer",
         "Traditional sew-in",
-        "Ponytail",
+        "Ponytail / bun",
         "Closure sew-in",
         "Frontal sew-in"
       ]
@@ -10269,7 +10299,7 @@
         "Wig install",
         "Pixie / finger waves",
         "Updo",
-        "Ponytail",
+        "Ponytail / bun",
         "Traditional sew-in",
         "Closure sew-in",
         "Frontal sew-in",
@@ -10413,7 +10443,7 @@
         "Custom wig",
         "Traditional sew-in",
         "Half up half down",
-        "Ponytail",
+        "Ponytail / bun",
         "Retwist",
         "Wash & blowdry"
       ]
@@ -10442,7 +10472,7 @@
         "Twists (with extensions)",
         "Stitch braids",
         "Cornrows / Twists",
-        "Ponytail",
+        "Ponytail / bun",
         "Updo",
         "Half up half down",
         "Traditional sew-in",
@@ -10470,7 +10500,7 @@
       "websiteUrl": "https://ponyroom.as.me/schedule/55a1078c",
       "instagramUrl": "https://www.instagram.com/ponyroom_/",
       "services": [
-        "Ponytail",
+        "Ponytail / bun",
         "Updo",
         "Half up half down"
       ]
@@ -10521,7 +10551,7 @@
         "Closure sew-in",
         "Wig install",
         "Custom wig",
-        "Ponytail"
+        "Ponytail / bun"
       ]
     },
     {
@@ -10646,7 +10676,7 @@
         "Boho braids",
         "Knotless braids",
         "Feed-in braids",
-        "Fulani braids",
+        "Fulani / Lemonade braids",
         "Relaxer",
         "Keratin treatment",
         "Texture release",
@@ -10668,7 +10698,8 @@
         "Traditional sew-in",
         "Closure sew-in",
         "Frontal sew-in",
-        "Quick weave"
+        "Quick weave",
+        "Crochet"
       ]
     },
     {
@@ -10761,7 +10792,7 @@
         "Closure sew-in",
         "Tape-ins",
         "Frontal sew-in",
-        "Ponytail",
+        "Ponytail / bun",
         "Updo",
         "Traditional sew-in"
       ]
@@ -10784,7 +10815,7 @@
       "instagramUrl": "https://www.instagram.com/shyannshanecehair/",
       "services": [
         "Knotless braids",
-        "Ponytail",
+        "Ponytail / bun",
         "Traditional sew-in",
         "Tape-ins",
         "Tracks (per row)",
@@ -10817,7 +10848,7 @@
         "Scalp care",
         "Sew-in take-down",
         "Traditional sew-in",
-        "Ponytail",
+        "Ponytail / bun",
         "Closure sew-in"
       ]
     },
@@ -10906,7 +10937,7 @@
         "Traditional sew-in",
         "Scalp care",
         "Relaxer",
-        "Ponytail",
+        "Ponytail / bun",
         "LA weave",
         "Half up half down",
         "Texture release",
@@ -10998,7 +11029,7 @@
       "services": [
         "Custom wig",
         "Wig install",
-        "Ponytail",
+        "Ponytail / bun",
         "Tape-ins",
         "Wig colour"
       ]
@@ -11030,7 +11061,7 @@
         "Trim / Hair cut",
         "Silk press",
         "Olaplex treatment",
-        "Ponytail",
+        "Ponytail / bun",
         "Full head colour",
         "Highlights",
         "Pixie / finger waves",
@@ -11137,7 +11168,7 @@
         "Flipover / Versatile sew-in",
         "Hybrid sew-in",
         "Cornrows / Twists",
-        "Ponytail",
+        "Ponytail / bun",
         "Half up half down"
       ]
     },
@@ -11193,7 +11224,7 @@
         "Wash & blowdry",
         "Cornrows / Twists",
         "Pixie / finger waves",
-        "Ponytail",
+        "Ponytail / bun",
         "Scalp care",
         "Moisturising treatment",
         "Traditional sew-in",
@@ -11327,7 +11358,7 @@
       "instagramUrl": "https://www.instagram.com/empressbeautique/",
       "services": [
         "Knotless braids",
-        "Fulani braids",
+        "Fulani / Lemonade braids",
         "Stitch braids",
         "Boho braids",
         "Braid take-down",
@@ -11395,7 +11426,7 @@
         "Silk press",
         "Pixie / finger waves",
         "Wig install",
-        "Ponytail",
+        "Ponytail / bun",
         "Trim / Hair cut",
         "Retwist"
       ]
@@ -11627,7 +11658,7 @@
         "Wash & blowdry",
         "Cornrows / Twists",
         "Twist out / Flexi rod",
-        "Fulani braids",
+        "Fulani / Lemonade braids",
         "Knotless braids",
         "Relaxer",
         "Texture release",
@@ -11641,7 +11672,7 @@
         "French curl",
         "Twists (with extensions)",
         "Stitch braids",
-        "Ponytail",
+        "Ponytail / bun",
         "Tracks (per row)",
         "Flipover / Versatile sew-in",
         "Traditional sew-in",
@@ -11762,7 +11793,7 @@
         "Cornrows / Twists",
         "Box braids",
         "Knotless braids",
-        "Fulani braids",
+        "Fulani / Lemonade braids",
         "Full head colour"
       ]
     },
@@ -11836,6 +11867,447 @@
         "Bridal / Editorial",
         "Scalp care",
         "Moisturising treatment"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "divine-divas",
+      "name": "Divine Divas",
+      "areaId": "south-east",
+      "areaLabel": "South East",
+      "neighbourhood": "South East London",
+      "postcode": "",
+      "bookingPlatform": "Direct website",
+      "bookingUrl": "https://booksolo.co/divine-divas-1/book/treatments",
+      "websiteUrl": "https://booksolo.co/divine-divas-1/book/treatments",
+      "instagramUrl": "https://www.instagram.com/_divine_divas/",
+      "services": [
+        "Wash & blowdry",
+        "Cornrows / Twists",
+        "Full head colour",
+        "Highlights",
+        "Balayage",
+        "Moisturising treatment",
+        "Scalp care",
+        "Silk press",
+        "Traditional sew-in",
+        "Half up half down",
+        "Ponytail / bun",
+        "Closure sew-in",
+        "Sew-in take-down",
+        "Wig install"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "hair-design-studio",
+      "name": "Hair Design Studio",
+      "areaId": "north-west",
+      "areaLabel": "North West",
+      "neighbourhood": "North West London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/hairdesignstudio_/",
+      "websiteUrl": "https://www.instagram.com/hairdesignstudio_/",
+      "instagramUrl": "https://www.instagram.com/hairdesignstudio_/",
+      "services": [
+        "Pixie / finger waves"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "gold-hairline",
+      "name": "Gold Hairline",
+      "areaId": "kent",
+      "areaLabel": "Kent",
+      "neighbourhood": "Kent",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/goldhairline_/",
+      "websiteUrl": "https://www.instagram.com/goldhairline_/",
+      "instagramUrl": "https://www.instagram.com/goldhairline_/",
+      "services": [
+        "Wig install",
+        "Wig colour",
+        "Bridal / Editorial",
+        "Ponytail / bun",
+        "Traditional sew-in",
+        "Closure sew-in",
+        "Frontal sew-in",
+        "Custom wig"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "adonai-hair-ldn",
+      "name": "Adonai Hair LDN",
+      "areaId": "east",
+      "areaLabel": "East",
+      "neighbourhood": "East London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/adonaihairldn/",
+      "websiteUrl": "https://www.instagram.com/adonaihairldn/",
+      "instagramUrl": "https://www.instagram.com/adonaihairldn/",
+      "services": [
+        "Traditional sew-in",
+        "Closure sew-in",
+        "Flipover / Versatile sew-in",
+        "Knotless braids",
+        "Boho braids",
+        "Texture release",
+        "Half braids, half sew-in",
+        "Silk press"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "precision-n-hair-and-beauty",
+      "name": "Precision N Hair and Beauty",
+      "areaId": "west",
+      "areaLabel": "West",
+      "neighbourhood": "West London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/precisionnhairandbeauty/",
+      "websiteUrl": "https://www.instagram.com/precisionnhairandbeauty/",
+      "instagramUrl": "https://www.instagram.com/precisionnhairandbeauty/",
+      "services": [
+        "Boho braids",
+        "Knotless braids",
+        "Miracle knots",
+        "Box braids",
+        "Retwist",
+        "Starter locs",
+        "Fulani / Lemonade braids",
+        "Twists (with extensions)",
+        "Cornrows / Twists",
+        "French curl",
+        "Stitch braids"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "as-braids-n-beauty",
+      "name": "AS Braids N Beauty",
+      "areaId": "south-west",
+      "areaLabel": "South West",
+      "neighbourhood": "South West London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/as_braidsnbeauty/",
+      "websiteUrl": "https://www.instagram.com/as_braidsnbeauty/",
+      "instagramUrl": "https://www.instagram.com/as_braidsnbeauty/",
+      "services": [
+        "Feed-in braids",
+        "Fulani / Lemonade braids",
+        "Knotless braids",
+        "Boho braids",
+        "Retwist",
+        "Starter locs",
+        "Miracle knots",
+        "Ponytail / bun",
+        "Half braids, half sew-in",
+        "Half up half down",
+        "Flipover / Versatile sew-in",
+        "Quick weave",
+        "Traditional sew-in",
+        "Stitch braids",
+        "Twists (with extensions)"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "os-hair",
+      "name": "OS Hair",
+      "areaId": "north",
+      "areaLabel": "North",
+      "neighbourhood": "North London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://oshair.as.me/schedule/6412f3ba",
+      "websiteUrl": "https://oshair.as.me/schedule/6412f3ba",
+      "instagramUrl": "https://www.instagram.com/oshairr/",
+      "services": [
+        "Traditional sew-in",
+        "Closure sew-in",
+        "Flipover / Versatile sew-in",
+        "Wig install",
+        "Custom wig",
+        "Ponytail / bun"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "teesh-hair",
+      "name": "Teesh Hair",
+      "areaId": "north",
+      "areaLabel": "North",
+      "neighbourhood": "North London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://teeshhair.as.me/schedule/22ee785f",
+      "websiteUrl": "https://teeshhair.as.me/schedule/22ee785f",
+      "instagramUrl": "https://www.instagram.com/teeshhair/",
+      "services": [
+        "Boho braids",
+        "Fulani / Lemonade braids",
+        "Knotless braids",
+        "Feed-in braids",
+        "Traditional sew-in",
+        "Closure sew-in",
+        "Flipover / Versatile sew-in",
+        "Wig install",
+        "Half braids, half sew-in"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "dxa-beauty",
+      "name": "DXA Beauty",
+      "areaId": "north",
+      "areaLabel": "North",
+      "neighbourhood": "North London",
+      "postcode": "",
+      "bookingPlatform": "Fresha",
+      "bookingUrl": "https://www.fresha.com/en-GB/a/dxa-beauty-enfield-enfield-ws1ufcep/booking",
+      "websiteUrl": "https://www.fresha.com/en-GB/a/dxa-beauty-enfield-enfield-ws1ufcep/booking",
+      "instagramUrl": "https://www.instagram.com/dxa.beauty/",
+      "services": [
+        "Traditional sew-in",
+        "Wig install",
+        "Wig colour",
+        "Ponytail / bun"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "kioni-hair-uk",
+      "name": "Kioni Hair UK",
+      "areaId": "all-london",
+      "areaLabel": "London",
+      "neighbourhood": "South London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/kionihairuk/",
+      "websiteUrl": "https://www.instagram.com/kionihairuk/",
+      "instagramUrl": "https://www.instagram.com/kionihairuk/",
+      "services": [
+        "Traditional sew-in",
+        "Closure sew-in",
+        "Flipover / Versatile sew-in",
+        "Frontal sew-in",
+        "Wig install",
+        "Custom wig",
+        "Ponytail / bun"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "danis-dolls",
+      "name": "Danis Dolls",
+      "areaId": "east",
+      "areaLabel": "East",
+      "neighbourhood": "East London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://danisdolls.as.me/schedule/04c3de61",
+      "websiteUrl": "https://danisdolls.as.me/schedule/04c3de61",
+      "instagramUrl": "https://www.instagram.com/danisdolls_/",
+      "services": [
+        "Wig install",
+        "Custom wig",
+        "Traditional sew-in",
+        "Flipover / Versatile sew-in",
+        "Closure sew-in"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "dee-sleek",
+      "name": "Dee Sleek",
+      "areaId": "east",
+      "areaLabel": "East",
+      "neighbourhood": "East London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://deesleek.as.me/schedule/0f09daf8",
+      "websiteUrl": "https://deesleek.as.me/schedule/0f09daf8",
+      "instagramUrl": "https://www.instagram.com/deesleek_/",
+      "services": [
+        "Ponytail / bun",
+        "Half up half down",
+        "Cornrows / Twists"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "si-hair-uk",
+      "name": "SI Hair UK",
+      "areaId": "south-east",
+      "areaLabel": "South East",
+      "neighbourhood": "South East London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://sihairuk.as.me/schedule/4700b861",
+      "websiteUrl": "https://sihairuk.as.me/schedule/4700b861",
+      "instagramUrl": "https://www.instagram.com/sihairuk/",
+      "services": [
+        "Boho braids",
+        "Feed-in braids",
+        "Fulani / Lemonade braids",
+        "Knotless braids",
+        "Traditional sew-in",
+        "Flipover / Versatile sew-in",
+        "Half braids, half sew-in"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "styled-by-nicia",
+      "name": "Styled by Nicia",
+      "areaId": "south-east",
+      "areaLabel": "South East",
+      "neighbourhood": "South East London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://styledbynicia.as.me/schedule/f0a6d86f",
+      "websiteUrl": "https://styledbynicia.as.me/schedule/f0a6d86f",
+      "instagramUrl": "https://www.instagram.com/styledbynicia/",
+      "services": [
+        "Traditional sew-in",
+        "Flipover / Versatile sew-in",
+        "Half up half down",
+        "Ponytail / bun",
+        "Wash & blowdry",
+        "Moisturising treatment"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "styled-by-barros",
+      "name": "Styled by Barros",
+      "areaId": "north",
+      "areaLabel": "North",
+      "neighbourhood": "North London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://styledbybarros.as.me/schedule/55371554",
+      "websiteUrl": "https://styledbybarros.as.me/schedule/55371554",
+      "instagramUrl": "https://www.instagram.com/styledbybarros/",
+      "services": [
+        "Traditional sew-in",
+        "Flipover / Versatile sew-in"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "lush-london",
+      "name": "Lush London",
+      "areaId": "west",
+      "areaLabel": "West",
+      "neighbourhood": "West London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/lushlondon/",
+      "websiteUrl": "https://www.instagram.com/lushlondon/",
+      "instagramUrl": "https://www.instagram.com/lushlondon/",
+      "services": [
+        "Silk press",
+        "Knotless braids",
+        "Boho braids",
+        "Half braids, half sew-in",
+        "Retwist",
+        "Stitch braids",
+        "Traditional sew-in",
+        "Miracle knots"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "irene-amadasun",
+      "name": "Irene Amadasun",
+      "areaId": "south-east",
+      "areaLabel": "South East",
+      "neighbourhood": "South East London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/ireneamadasun0/",
+      "websiteUrl": "https://www.instagram.com/ireneamadasun0/",
+      "instagramUrl": "https://www.instagram.com/ireneamadasun0/",
+      "services": [
+        "French curl",
+        "Knotless braids",
+        "Twists (with extensions)",
+        "Creative braids / Patewo"
       ]
     }
   ]
