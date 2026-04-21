@@ -8,7 +8,7 @@ const manualIndexPath = path.resolve(__dirname, "../data/manual-salons.json");
 
 const categoryMap = {
   "sew-in-weave": [
-    "Traditional sew-in",
+    "Traditional sew-in / leave out",
     "Closure sew-in",
     "Frontal sew-in",
     "Flipover / Versatile sew-in",

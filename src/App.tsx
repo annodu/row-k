@@ -83,7 +83,7 @@ const categoryMap = {
       "Quick weave",
       "Sew-in take-down",
       "Tracks (per row)",
-      "Traditional sew-in",
+      "Traditional sew-in / leave out",
     ],
   },
   "styling-services": {
@@ -153,7 +153,7 @@ const categoryServiceMap = {
     "Quick weave",
     "Sew-in take-down",
     "Tracks (per row)",
-    "Traditional sew-in",
+    "Traditional sew-in / leave out",
   ],
   "styling-services": ["Half up half down", "Pixie / finger waves", "Ponytail / bun", "Updo"],
   "straightening-treatments": [
