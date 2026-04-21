@@ -40,11 +40,11 @@ const categoryMap = {
     label: "Braids",
     subcategories: [
       "all",
-      "Boho braids",
+      "Boho braids / microbraids",
       "Braid take-down",
       "Box braids",
       "Crochet",
-      "Creative braids / Patewo",
+      "Creative braids (e.g. patewo)",
       "Feed in / All back braids",
       "French curl",
       "Fulani / Lemonade braids",
@@ -125,11 +125,11 @@ const categoryMap = {
 
 const categoryServiceMap = {
   "braiding-services": [
-    "Boho braids",
+    "Boho braids / microbraids",
     "Braid take-down",
     "Box braids",
     "Crochet",
-    "Creative braids / Patewo",
+    "Creative braids (e.g. patewo)",
     "Feed in / All back braids",
     "French curl",
     "Fulani / Lemonade braids",
