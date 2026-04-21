@@ -173,7 +173,7 @@
         "Traditional sew-in",
         "Texture release",
         "Silk press",
-        "K-tips",
+        "K-tips / Invisible strands",
         "LA weave",
         "Microlinks",
         "Tape-ins",
@@ -472,6 +472,7 @@
       "bookingUrl": "https://avedalss.zenoti.com/webstoreNew/services",
       "websiteUrl": "https://avedalss.zenoti.com/webstoreNew/services",
       "instagramUrl": "https://www.instagram.com/avedacoventgarden/",
+      "hijabiFriendly": true,
       "services": [
         "Full head colour",
         "Highlights",
@@ -874,7 +875,7 @@
       "instagramUrl": "https://www.instagram.com/beyondglam/",
       "services": [
         "LA weave",
-        "K-tips",
+        "K-tips / Invisible strands",
         "Microlinks",
         "Texture release",
         "Silk press",
@@ -1246,7 +1247,7 @@
         "Traditional sew-in",
         "Closure sew-in",
         "Frontal sew-in",
-        "K-tips",
+        "K-tips / Invisible strands",
         "Trim / Hair cut",
         "Silk press",
         "Highlights",
@@ -1349,7 +1350,7 @@
       "instagramUrl": "https://www.instagram.com/caeslique/",
       "services": [
         "Silk press",
-        "K-tips",
+        "K-tips / Invisible strands",
         "Texture release",
         "Tape-ins"
       ]
@@ -1407,7 +1408,7 @@
         "Balayage",
         "Full head colour",
         "Clip-ins",
-        "K-tips",
+        "K-tips / Invisible strands",
         "Tape-ins",
         "Closure sew-in",
         "Flipover / Versatile sew-in",
@@ -2420,7 +2421,7 @@
         "Tape-ins",
         "LA weave",
         "Traditional sew-in",
-        "K-tips",
+        "K-tips / Invisible strands",
         "Hybrid sew-in",
         "Sew-in take-down"
       ],
@@ -2806,7 +2807,7 @@
         "Updo",
         "Half up half down",
         "Traditional sew-in",
-        "K-tips",
+        "K-tips / Invisible strands",
         "LA weave",
         "Microlinks",
         "Tape-ins",
@@ -3018,7 +3019,7 @@
         "Traditional sew-in",
         "Moisturising treatment",
         "Silk press",
-        "K-tips",
+        "K-tips / Invisible strands",
         "LA weave",
         "Microlinks",
         "Tape-ins",
@@ -3509,7 +3510,7 @@
       "websiteUrl": "https://hm-hair.com/pages/book-with-me",
       "instagramUrl": "https://www.instagram.com/hmhairuk/",
       "services": [
-        "K-tips",
+        "K-tips / Invisible strands",
         "LA weave",
         "Microlinks",
         "Tape-ins",
@@ -3517,7 +3518,8 @@
         "Updo",
         "Half up half down",
         "Traditional sew-in",
-        "Wig install"
+        "Wig install",
+        "Bridal / Editorial"
       ],
       "summary": "Manual entry added from your South East London extensions, styling, sew-ins, and wigs list.",
       "source": "manual",
@@ -3580,7 +3582,7 @@
       "websiteUrl": "",
       "instagramUrl": "https://www.instagram.com/houseofhairuk/",
       "services": [
-        "K-tips",
+        "K-tips / Invisible strands",
         "Tape-ins",
         "Microlinks",
         "Traditional sew-in",
@@ -3636,7 +3638,7 @@
       "websiteUrl": "https://houseoflocscheduling.as.me/schedule/93e3e9ef",
       "instagramUrl": "https://www.instagram.com/houseoflocsuk/",
       "services": [
-        "K-tips",
+        "K-tips / Invisible strands",
         "Boho braids / microbraids",
         "Butterfly locs",
         "Retwist",
@@ -3926,7 +3928,7 @@
         "Silk press",
         "Traditional sew-in",
         "Wig install",
-        "K-tips",
+        "K-tips / Invisible strands",
         "LA weave",
         "Microlinks",
         "Tape-ins"
@@ -4009,7 +4011,7 @@
       "services": [
         "Feed-in braids",
         "Ponytail / bun",
-        "K-tips",
+        "K-tips / Invisible strands",
         "Half up half down",
         "Closure sew-in",
         "Flipover / Versatile sew-in",
@@ -4255,11 +4257,12 @@
       "bookingPlatform": "Direct website",
       "bookingUrl": "https://bookings.gettimely.com/kinson/book",
       "websiteUrl": "https://bookings.gettimely.com/kinson/book",
-      "instagramUrl": "https://www.instagram.com/kinsonbykizzy/",
+      "instagramUrl": "https://www.instagram.com/kinsonhairstudio/",
       "services": [
         "Curly cut / Wash & go",
         "Trim / Hair cut",
         "K-18 treatment",
+        "Bridal / Editorial",
         "Olaplex treatment",
         "Full head colour",
         "Highlights",
@@ -4409,7 +4412,7 @@
         "Closure sew-in",
         "Frontal sew-in",
         "Hybrid sew-in",
-        "K-tips",
+        "K-tips / Invisible strands",
         "Silk press",
         "Texture release",
         "Relaxer",
@@ -4761,7 +4764,7 @@
         "Traditional sew-in",
         "Closure sew-in",
         "Flipover / Versatile sew-in",
-        "K-tips",
+        "K-tips / Invisible strands",
         "Japanese straightening",
         "Sew-in take-down"
       ],
@@ -4989,7 +4992,7 @@
       "websiteUrl": "",
       "instagramUrl": "https://www.instagram.com/millilinks/",
       "services": [
-        "K-tips",
+        "K-tips / Invisible strands",
         "LA weave",
         "Microlinks",
         "Tape-ins"
@@ -5630,7 +5633,8 @@
         "Traditional sew-in",
         "Quick weave",
         "Tape-ins",
-        "Hybrid sew-in"
+        "Hybrid sew-in",
+        "Bridal / Editorial"
       ],
       "summary": "Manual entry added from your South East London sew-in and wig install list.",
       "source": "manual",
@@ -5775,7 +5779,7 @@
       "services": [
         "Flipover / Versatile sew-in",
         "Traditional sew-in",
-        "K-tips",
+        "K-tips / Invisible strands",
         "LA weave",
         "Microlinks",
         "Tape-ins",
@@ -6445,7 +6449,7 @@
         "Starter locs",
         "Retwist",
         "Tape-ins",
-        "K-tips",
+        "K-tips / Invisible strands",
         "Braid take-down",
         "Creative braids (e.g. patewo)"
       ],
@@ -6582,7 +6586,7 @@
       "websiteUrl": "https://book.squareup.com/appointments/m56r9d15tn5tgg/location/LY51RMTY6E5DM/services",
       "instagramUrl": "https://www.instagram.com/stylesbyfarahpearl/",
       "services": [
-        "K-tips",
+        "K-tips / Invisible strands",
         "Tape-ins",
         "Microlinks",
         "Texture release",
@@ -6742,7 +6746,7 @@
         "Ponytail / bun",
         "Updo",
         "Half up half down",
-        "K-tips",
+        "K-tips / Invisible strands",
         "LA weave",
         "Microlinks",
         "Tape-ins",
@@ -7663,7 +7667,7 @@
       "instagramUrl": "https://www.instagram.com/zantibloom/",
       "services": [
         "Traditional sew-in",
-        "K-tips",
+        "K-tips / Invisible strands",
         "Texture release",
         "Japanese straightening",
         "Moisturising treatment"
@@ -8358,7 +8362,7 @@
       "websiteUrl": "https://paulamadmeuk.as.me/schedule/2d0be9bc",
       "instagramUrl": "https://www.instagram.com/paulamademe/",
       "services": [
-        "K-tips",
+        "K-tips / Invisible strands",
         "LA weave",
         "Clip-ins",
         "Silk press",
@@ -8618,7 +8622,7 @@
       "services": [
         "Traditional sew-in",
         "Closure sew-in",
-        "K-tips",
+        "K-tips / Invisible strands",
         "Tape-ins",
         "Microlinks",
         "LA weave",
@@ -11113,7 +11117,7 @@
         "Tape-ins",
         "Silk press",
         "Traditional sew-in",
-        "K-tips",
+        "K-tips / Invisible strands",
         "Wash & blowdry",
         "Olaplex treatment",
         "Updo"
@@ -11848,7 +11852,7 @@
       "websiteUrl": "https://tapesncoldn.as.me/schedule/de02ad9c",
       "instagramUrl": "https://www.instagram.com/tapesnco.ldn/",
       "services": [
-        "K-tips",
+        "K-tips / Invisible strands",
         "Tape-ins",
         "Traditional sew-in",
         "Flipover / Versatile sew-in",

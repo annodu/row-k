@@ -18,7 +18,7 @@ const categoryMap = {
     "Tracks (per row)",
   ],
   "wig-services": ["Wig install", "Wig colour", "Custom wig"],
-  "extension-services": ["K-tips", "LA weave", "Tape-ins", "Microlinks", "Clip-ins"],
+  "extension-services": ["K-tips / Invisible strands", "LA weave", "Tape-ins", "Microlinks", "Clip-ins"],
   "bridal-session-services": ["Bridal / Editorial"],
   "straightening-treatments": [
     "Keratin treatment",

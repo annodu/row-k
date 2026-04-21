@@ -66,7 +66,7 @@ const categoryMap = {
   },
   "extension-services": {
     label: "Extensions",
-    subcategories: ["all", "Clip-ins", "K-tips", "LA weave", "Microlinks", "Tape-ins"],
+    subcategories: ["all", "Clip-ins", "K-tips / Invisible strands", "LA weave", "Microlinks", "Tape-ins"],
   },
   "locs-services": {
     label: "Locs",
@@ -143,7 +143,7 @@ const categoryServiceMap = {
   ],
   "colour-services": ["Balayage", "Full head colour", "Highlights", "Wig colour"],
   "bridal-session-services": ["Bridal / Editorial"],
-  "extension-services": ["Clip-ins", "K-tips", "LA weave", "Microlinks", "Tape-ins"],
+  "extension-services": ["Clip-ins", "K-tips / Invisible strands", "LA weave", "Microlinks", "Tape-ins"],
   "locs-services": ["Butterfly locs", "Faux locs", "Microlocs / Sisterlocs", "Retwist", "Starter locs"],
   "sew-in-weave": [
     "Closure sew-in",
