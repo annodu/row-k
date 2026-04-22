@@ -2047,7 +2047,8 @@
       "services": [
         "Curly cut / Wash & go",
         "Trim / Hair cut",
-        "Scalp care"
+        "Scalp care",
+        "Natural hair educators"
       ],
       "summary": "Manual entry added from your latest salon update batch.",
       "source": "manual",
@@ -2188,10 +2189,15 @@
     },
     {
       "id": "errold-douglas-ldn",
-      "name": "Errold Douglas LDN",
+      "name": "Errol Douglas LDN",
       "areaId": "central",
+      "areaIds": [
+        "south-west",
+        "central",
+        "west"
+      ],
       "areaLabel": "Central",
-      "neighbourhood": "Central London",
+      "neighbourhood": "South West, Central and West London",
       "postcode": "",
       "bookingPlatform": "Direct website",
       "bookingUrl": "https://www.erroldouglas.com/new-page-1",
@@ -4036,8 +4042,13 @@
       "id": "jo-johnson-ltd",
       "name": "Jo Johnson Ltd",
       "areaId": "south-west",
+      "areaIds": [
+        "south-west",
+        "central",
+        "west"
+      ],
       "areaLabel": "South West",
-      "neighbourhood": "South West London",
+      "neighbourhood": "South West, Central and West London",
       "postcode": "",
       "bookingPlatform": "Direct website",
       "bookingUrl": "https://www.jojohnsonltd.co.uk/services",
@@ -5049,7 +5060,8 @@
         "Ponytail / bun",
         "Relaxer",
         "Keratin treatment",
-        "Tracks (per row)"
+        "Tracks (per row)",
+        "Natural hair educators"
       ],
       "summary": "Manual entry added from your latest salon update batch.",
       "source": "manual",
@@ -6839,7 +6851,8 @@
       "websiteUrl": "https://www.thecurlcoach.com/full-price-list",
       "instagramUrl": "https://www.instagram.com/the.curl.coach/",
       "services": [
-        "Curly cut / Wash & go"
+        "Curly cut / Wash & go",
+        "Natural hair educators"
       ],
       "summary": "Manual entry added from your latest salon update batch.",
       "source": "manual",
@@ -8886,7 +8899,8 @@
         "Scalp care",
         "Wash & blowdry",
         "Moisturising treatment",
-        "Trim / Hair cut"
+        "Trim / Hair cut",
+        "Natural hair educators"
       ]
     },
     {
@@ -11394,7 +11408,28 @@
       "services": [
         "Scalp care",
         "Wash and go",
-        "Moisturising treatment"
+        "Moisturising treatment",
+        "Natural hair educators"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "afro-hair-coach",
+      "name": "Afro Hair Coach",
+      "areaId": "all-london",
+      "areaLabel": "London",
+      "neighbourhood": "London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/afrohaircoach/",
+      "websiteUrl": "https://www.instagram.com/afrohaircoach/",
+      "instagramUrl": "https://www.instagram.com/afrohaircoach/",
+      "services": [
+        "Natural hair educators"
       ]
     },
     {
@@ -12404,6 +12439,36 @@
         "Traditional sew-in / leave out",
         "Cornrows / Twists",
         "Twists (with extensions)"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "hair-by-rachael-b",
+      "name": "Hair by Rachael B",
+      "areaId": "all-london",
+      "areaLabel": "London",
+      "neighbourhood": "London",
+      "postcode": "",
+      "bookingPlatform": "Setmore",
+      "bookingUrl": "https://hairbyrachaelb.setmore.com/",
+      "websiteUrl": "https://hairbyrachaelb.setmore.com/",
+      "instagramUrl": "https://www.instagram.com/hairbyrachael.b/",
+      "services": [
+        "Box braids",
+        "Twists (with extensions)",
+        "Fulani / Lemonade braids",
+        "Knotless braids",
+        "Boho braids / microbraids",
+        "Creative braids (e.g. patewo)",
+        "Feed-in braids",
+        "Traditional sew-in / leave out",
+        "Half up half down",
+        "Ponytail / bun",
+        "Bridal / Editorial"
       ]
     }
   ]

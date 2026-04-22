@@ -111,6 +111,7 @@ const categoryMap = {
       "all",
       "Cornrows / Twists",
       "Curly cut / Wash & go",
+      "Natural hair educators",
       "Silk press",
       "Trim / Hair cut",
       "Twist out / Flexi rod",
@@ -170,6 +171,7 @@ const categoryServiceMap = {
   "natural-hair-services": [
     "Cornrows / Twists",
     "Curly cut / Wash & go",
+    "Natural hair educators",
     "Silk press",
     "Trim / Hair cut",
     "Twist out / Flexi rod",
