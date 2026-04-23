@@ -2041,14 +2041,15 @@
       "neighbourhood": "South East London",
       "postcode": "",
       "bookingPlatform": "Direct website",
-      "bookingUrl": "https://www.untypeyourhair.com",
-      "websiteUrl": "https://www.untypeyourhair.com",
+      "bookingUrl": "https://www.untypeyourhair.com/appointments",
+      "websiteUrl": "",
       "instagramUrl": "https://www.instagram.com/untypeyourhair/",
       "services": [
         "Curly cut / Wash & go",
         "Trim / Hair cut",
         "Scalp care",
-        "Natural hair educators"
+        "Natural hair education",
+        "Cornrows / Twists"
       ],
       "summary": "Manual entry added from your latest salon update batch.",
       "source": "manual",
@@ -5061,7 +5062,7 @@
         "Relaxer",
         "Keratin treatment",
         "Tracks (per row)",
-        "Natural hair educators"
+        "Natural hair education"
       ],
       "summary": "Manual entry added from your latest salon update batch.",
       "source": "manual",
@@ -6852,7 +6853,10 @@
       "instagramUrl": "https://www.instagram.com/the.curl.coach/",
       "services": [
         "Curly cut / Wash & go",
-        "Natural hair educators"
+        "Natural hair education",
+        "Moisturising treatment",
+        "Full head colour",
+        "Highlights"
       ],
       "summary": "Manual entry added from your latest salon update batch.",
       "source": "manual",
@@ -8900,7 +8904,7 @@
         "Wash & blowdry",
         "Moisturising treatment",
         "Trim / Hair cut",
-        "Natural hair educators"
+        "Natural hair education"
       ]
     },
     {
@@ -11409,7 +11413,7 @@
         "Scalp care",
         "Wash and go",
         "Moisturising treatment",
-        "Natural hair educators"
+        "Natural hair education"
       ]
     },
     {
@@ -11429,7 +11433,7 @@
       "websiteUrl": "https://www.instagram.com/afrohaircoach/",
       "instagramUrl": "https://www.instagram.com/afrohaircoach/",
       "services": [
-        "Natural hair educators"
+        "Natural hair education"
       ]
     },
     {
