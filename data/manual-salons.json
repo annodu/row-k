@@ -12474,6 +12474,30 @@
         "Ponytail / bun",
         "Bridal / Editorial"
       ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "gripped-it",
+      "name": "Gripped It",
+      "areaId": "south-east",
+      "areaLabel": "South East",
+      "neighbourhood": "South East London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://thegrip.as.me/schedule/0d67ca98",
+      "websiteUrl": "https://thegrip.as.me/schedule/0d67ca98",
+      "instagramUrl": "https://www.instagram.com/gripped_it/",
+      "services": [
+        "Traditional sew-in / leave out",
+        "Half braids, half sew-in",
+        "French curl",
+        "Knotless braids",
+        "Boho braids / microbraids"
+      ]
     }
   ]
 }
