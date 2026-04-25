@@ -7573,7 +7573,7 @@
         "Faux locs",
         "Cornrows / Twists",
         "Stitch braids",
-        "Twist out / Flexi rod",
+        "Twists (with extensions)",
         "Cornrows / Twists"
       ],
       "summary": "Manual entry added from your North London braids list.",
@@ -12026,9 +12026,9 @@
       "areaLabel": "East",
       "neighbourhood": "East London",
       "postcode": "",
-      "bookingPlatform": "Instagram",
-      "bookingUrl": "https://www.instagram.com/adonaihairldn/",
-      "websiteUrl": "https://www.instagram.com/adonaihairldn/",
+      "bookingPlatform": "Direct website",
+      "bookingUrl": "adonaihairldn.jena.site",
+      "websiteUrl": "",
       "instagramUrl": "https://www.instagram.com/adonaihairldn/",
       "services": [
         "Traditional sew-in / leave out",
