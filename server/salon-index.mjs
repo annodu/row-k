@@ -132,7 +132,13 @@ export async function readSalonIndex() {
   };
 }
 
-export async function searchSalons({ categories = [], subcategories = [], regions = ["all"], hijabiFriendly = false } = {}) {
+export async function searchSalons({
+  categories = [],
+  subcategories = [],
+  regions = ["all"],
+  hijabiFriendly = false,
+  canBraidWithoutGel = false,
+} = {}) {
   const index = await readSalonIndex();
   const normalizedRegions = Array.isArray(regions) && regions.length > 0 ? regions : ["all"];
   const normalizedCategories = Array.isArray(categories) ? categories.filter(Boolean) : [];
@@ -145,7 +151,8 @@ export async function searchSalons({ categories = [], subcategories = [], region
       (salon) =>
         matchesRegion(salon, normalizedRegions) &&
         matchesServiceSelection(salon, normalizedCategories, normalizedSubcategories) &&
-        matchesHijabiFriendly(salon, hijabiFriendly),
+        matchesHijabiFriendly(salon, hijabiFriendly) &&
+        matchesCanBraidWithoutGel(salon, canBraidWithoutGel),
     )
     .sort(compareSalons);
 
@@ -218,6 +225,14 @@ function matchesHijabiFriendly(salon, hijabiFriendly) {
   }
 
   return salon.hijabiFriendly === true;
+}
+
+function matchesCanBraidWithoutGel(salon, canBraidWithoutGel) {
+  if (!canBraidWithoutGel) {
+    return true;
+  }
+
+  return salon.canBraidWithoutGel === true;
 }
 
 function compareSalons(left, right) {

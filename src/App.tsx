@@ -201,6 +201,7 @@ type SalonResult = {
   websiteUrl?: string;
   services: string[];
   hijabiFriendly?: boolean;
+  canBraidWithoutGel?: boolean;
   summary: string;
   source: string;
 };
@@ -589,6 +590,7 @@ export default function App() {
   const [draftSelectedCategories, setDraftSelectedCategories] = useState<ServiceCategoryId[]>([]);
   const [draftSelectedSubcategories, setDraftSelectedSubcategories] = useState<ServiceSubcategoryId[]>([]);
   const [draftSelectedHijabiFriendly, setDraftSelectedHijabiFriendly] = useState(false);
+  const [draftSelectedCanBraidWithoutGel, setDraftSelectedCanBraidWithoutGel] = useState(false);
   const [draftSortOption, setDraftSortOption] = useState<SortOption>("alphabetical-asc");
   const [visibleResultCount, setVisibleResultCount] = useState(RESULTS_BATCH_SIZE);
   const [isSearching, setIsSearching] = useState(false);
@@ -596,16 +598,18 @@ export default function App() {
   const [hasSearched, setHasSearched] = useState(false);
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   const [selectedHijabiFriendly, setSelectedHijabiFriendly] = useState(false);
+  const [selectedCanBraidWithoutGel, setSelectedCanBraidWithoutGel] = useState(false);
   const [isDesktopViewport, setIsDesktopViewport] = useState(false);
-  const [hijabiHoverLocked, setHijabiHoverLocked] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const [locationsOpen, setLocationsOpen] = useState(false);
+  const [additionalNeedsOpen, setAdditionalNeedsOpen] = useState(false);
   const loadMoreRef = useRef<HTMLDivElement | null>(null);
   const isMobileModalEditing = mobileFiltersOpen && !isDesktopViewport;
   const currentSelectedRegions = isMobileModalEditing ? draftSelectedRegions : selectedRegions;
   const currentSelectedCategories = isMobileModalEditing ? draftSelectedCategories : selectedCategories;
   const currentSelectedSubcategories = isMobileModalEditing ? draftSelectedSubcategories : selectedSubcategories;
   const currentSelectedHijabiFriendly = isMobileModalEditing ? draftSelectedHijabiFriendly : selectedHijabiFriendly;
+  const currentSelectedCanBraidWithoutGel = isMobileModalEditing ? draftSelectedCanBraidWithoutGel : selectedCanBraidWithoutGel;
   const currentSortOption = isMobileModalEditing ? draftSortOption : sortOption;
 
   function syncDraftFiltersFromApplied() {
@@ -613,6 +617,7 @@ export default function App() {
     setDraftSelectedCategories(selectedCategories);
     setDraftSelectedSubcategories(selectedSubcategories);
     setDraftSelectedHijabiFriendly(selectedHijabiFriendly);
+    setDraftSelectedCanBraidWithoutGel(selectedCanBraidWithoutGel);
     setDraftSortOption(sortOption);
   }
 
@@ -632,6 +637,7 @@ export default function App() {
     setSelectedCategories(draftSelectedCategories);
     setSelectedSubcategories(draftSelectedSubcategories);
     setSelectedHijabiFriendly(draftSelectedHijabiFriendly);
+    setSelectedCanBraidWithoutGel(draftSelectedCanBraidWithoutGel);
     setSortOption(draftSortOption);
     setVisibleResultCount(RESULTS_BATCH_SIZE);
     setMobileFiltersOpen(false);
@@ -677,6 +683,15 @@ export default function App() {
     setSelectedHijabiFriendly(updater);
   }
 
+  function updateCanBraidWithoutGel(updater: boolean | ((current: boolean) => boolean)) {
+    if (isMobileModalEditing) {
+      setDraftSelectedCanBraidWithoutGel(updater);
+      return;
+    }
+
+    setSelectedCanBraidWithoutGel(updater);
+  }
+
   function updateSortOption(nextSort: SortOption) {
     if (isMobileModalEditing) {
       setDraftSortOption(nextSort);
@@ -692,6 +707,7 @@ export default function App() {
       const nextIsOpen = !current;
       if (nextIsOpen) {
         setLocationsOpen(false);
+        setAdditionalNeedsOpen(false);
       }
       trackUmamiEvent("filter_section_toggled", {
         section: "services",
@@ -706,9 +722,25 @@ export default function App() {
       const nextIsOpen = !current;
       if (nextIsOpen) {
         setServicesOpen(false);
+        setAdditionalNeedsOpen(false);
       }
       trackUmamiEvent("filter_section_toggled", {
         section: "locations",
+        expanded: nextIsOpen,
+      });
+      return nextIsOpen;
+    });
+  }
+
+  function toggleAdditionalNeedsOpen() {
+    setAdditionalNeedsOpen((current) => {
+      const nextIsOpen = !current;
+      if (nextIsOpen) {
+        setServicesOpen(false);
+        setLocationsOpen(false);
+      }
+      trackUmamiEvent("filter_section_toggled", {
+        section: "additional_needs",
         expanded: nextIsOpen,
       });
       return nextIsOpen;
@@ -719,12 +751,15 @@ export default function App() {
     trackUmamiEvent("filter_reset", {
       selected_services: currentSelectedCategories.length + currentSelectedSubcategories.length,
       selected_locations: currentSelectedRegions.filter((region) => region !== "all").length,
+      selected_additional_needs: (currentSelectedHijabiFriendly ? 1 : 0) + (currentSelectedCanBraidWithoutGel ? 1 : 0),
       hijabi_friendly: currentSelectedHijabiFriendly,
+      can_braid_without_gel: currentSelectedCanBraidWithoutGel,
     });
     updateCategories([]);
     updateSubcategories([]);
     updateRegions(["all"]);
     updateHijabiFriendly(false);
+    updateCanBraidWithoutGel(false);
     updateSortOption("alphabetical-asc");
   }
 
@@ -828,6 +863,22 @@ export default function App() {
     });
   }
 
+  function toggleCanBraidWithoutGel() {
+    const nextSelected = !currentSelectedCanBraidWithoutGel;
+    trackUmamiEvent("braiding_preference_selected", {
+      selection: "Can braid without gel",
+      selected: nextSelected,
+    });
+    updateCanBraidWithoutGel(nextSelected);
+  }
+
+  function toggleHijabiFriendly() {
+    trackUmamiEvent("hijabi_toggle_changed", {
+      enabled: !currentSelectedHijabiFriendly,
+    });
+    updateHijabiFriendly((current) => !current);
+  }
+
   function isRegionSelected(regionId: RegionId) {
     return currentSelectedRegions.includes(regionId);
   }
@@ -909,6 +960,7 @@ export default function App() {
           subcategories: selectedSubcategories,
           regions: selectedRegions,
           hijabiFriendly: selectedHijabiFriendly,
+          canBraidWithoutGel: selectedCanBraidWithoutGel,
         }),
       });
 
@@ -943,7 +995,7 @@ export default function App() {
 
   useEffect(() => {
     void handleSearch({ scroll: false });
-  }, [selectedCategories, selectedSubcategories, selectedRegions, selectedHijabiFriendly]);
+  }, [selectedCategories, selectedSubcategories, selectedRegions, selectedHijabiFriendly, selectedCanBraidWithoutGel]);
 
   useEffect(() => {
     const desktopMediaQuery = window.matchMedia("(min-width: 1024px)");
@@ -1004,6 +1056,7 @@ export default function App() {
     selectedCategories.length > 0 ||
     selectedSubcategories.length > 0 ||
     selectedHijabiFriendly ||
+    selectedCanBraidWithoutGel ||
     selectedRegions.length !== 1 ||
     selectedRegions[0] !== "all";
   const sortedResults = sortResults(results, sortOption, hasActiveFilters, selectedCategories, selectedSubcategories);
@@ -1064,6 +1117,8 @@ export default function App() {
     return isCategorySelected(categoryId) || categoryHasSelectedSubcategories(categoryId) ? count + 1 : count;
   }, 0);
   const selectedLocationCount = currentSelectedRegions.filter((regionId) => regionId !== "all").length;
+  const selectedAdditionalNeedsCount =
+    (currentSelectedHijabiFriendly ? 1 : 0) + (currentSelectedCanBraidWithoutGel ? 1 : 0);
 
   return (
     <div className="min-h-screen bg-stone-100 text-left dark:bg-stone-950">
@@ -1180,6 +1235,11 @@ export default function App() {
                                 {result.hijabiFriendly ? (
                                   <span className="mb-[3.5px] inline-flex items-center rounded-none bg-emerald-100 p-1 text-[11px] font-medium lowercase leading-none text-emerald-800 dark:bg-emerald-950/50 dark:text-emerald-300">
                                     hijabi-friendly
+                                  </span>
+                                ) : null}
+                                {result.canBraidWithoutGel ? (
+                                  <span className="mb-[3.5px] inline-flex items-center rounded-none bg-pink-100 p-1 text-[11px] font-medium lowercase leading-none text-pink-800 dark:bg-pink-950/50 dark:text-pink-300">
+                                    can braid without gel
                                   </span>
                                 ) : null}
                               </div>
@@ -1388,46 +1448,6 @@ export default function App() {
                 </div>
               </div>
             </div>
-
-            <div className="pt-1">
-                <button
-                  type="button"
-                  aria-pressed={currentSelectedHijabiFriendly}
-                  onClick={() => {
-                    trackUmamiEvent("hijabi_toggle_changed", {
-                      enabled: !currentSelectedHijabiFriendly,
-                    });
-                    updateHijabiFriendly((current) => !current);
-                    setHijabiHoverLocked(true);
-                  }}
-                  onMouseLeave={() => setHijabiHoverLocked(false)}
-                  className="group flex min-h-11 w-full items-center justify-between rounded-none px-0 py-2 text-left"
-                >
-                  <span
-                    className={cn(
-                      "text-[15px] font-medium text-stone-950 transition-colors dark:text-stone-100",
-                      !hijabiHoverLocked && "group-hover:text-stone-500 group-active:text-stone-500 dark:group-hover:text-stone-500 dark:group-active:text-stone-500",
-                    )}
-                  >
-                    Hijabi-friendly
-                  </span>
-                  <span
-                    aria-hidden="true"
-                    className={cn(
-                      "relative inline-flex h-7 w-12 shrink-0 rounded-full bg-stone-500 transition-colors dark:bg-stone-500",
-                      !hijabiHoverLocked && "group-hover:bg-stone-400 dark:group-hover:bg-stone-600",
-                      currentSelectedHijabiFriendly && "bg-stone-950 dark:bg-stone-100",
-                    )}
-                  >
-                    <span
-                      className={cn(
-                        "absolute left-1 top-1 h-5 w-5 rounded-full bg-white transition-transform dark:bg-stone-950",
-                        currentSelectedHijabiFriendly && "translate-x-5",
-                      )}
-                    />
-                  </span>
-                </button>
-              </div>
 
               <div>
                 <div
@@ -1692,6 +1712,84 @@ export default function App() {
                         </div>
                       );
                     })}
+                  </div>
+                </AnimatedCollapsible>
+              </div>
+
+              <div>
+                <div
+                  className={cn(
+                    "bg-stone-100 pb-2 dark:bg-stone-950 lg:sticky lg:top-0 lg:z-20",
+                    additionalNeedsOpen && "border-b border-stone-300 dark:border-stone-800",
+                  )}
+                >
+                  <button
+                    type="button"
+                    aria-expanded={additionalNeedsOpen}
+                    onClick={toggleAdditionalNeedsOpen}
+                    className="group flex min-h-11 w-full items-center justify-between rounded-none bg-transparent px-0 py-2 text-left"
+                  >
+                    <span className="text-[15px] font-medium text-stone-950 transition-colors group-hover:text-stone-500 group-active:text-stone-500 dark:text-stone-100 dark:group-hover:text-stone-500 dark:group-active:text-stone-500">
+                      Additional needs
+                    </span>
+                    <span className="flex items-center gap-2">
+                      {selectedAdditionalNeedsCount > 0 ? (
+                        <span className="inline-flex min-h-5 min-w-5 items-center justify-center rounded-full bg-stone-950 px-2 text-[11px] font-bold leading-none text-stone-100 transition-colors group-hover:bg-stone-500 dark:bg-stone-100 dark:text-stone-950 dark:group-hover:bg-stone-500">
+                          {selectedAdditionalNeedsCount}
+                        </span>
+                      ) : null}
+                      <ChevronDown
+                        className={cn("size-4 text-stone-700 transition-colors transition-transform group-hover:text-stone-500 group-active:text-stone-500 dark:text-stone-200 dark:group-hover:text-stone-400 dark:group-active:text-stone-400", additionalNeedsOpen && "rotate-180")}
+                        aria-hidden="true"
+                      />
+                    </span>
+                  </button>
+                </div>
+
+                <AnimatedCollapsible open={additionalNeedsOpen}>
+                  <div className="space-y-2 pt-3">
+                    <p className="px-2 text-[12px] leading-4 text-stone-500 dark:text-stone-500">
+                      You may need to double-check with the salon or stylist beforehand to confirm the following
+                    </p>
+                    <button
+                      type="button"
+                      aria-pressed={currentSelectedHijabiFriendly}
+                      onClick={toggleHijabiFriendly}
+                      className="flex w-full cursor-pointer items-start gap-3 rounded-none px-2 py-2 text-left transition-colors hover:bg-stone-200 active:bg-stone-200 dark:hover:bg-stone-900 dark:active:bg-stone-900"
+                    >
+                      <span
+                        aria-hidden="true"
+                        className={cn(
+                          "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-none border border-stone-500 bg-white text-white transition dark:border-stone-500 dark:bg-stone-900",
+                          currentSelectedHijabiFriendly && "border-stone-950 bg-stone-950 dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950",
+                        )}
+                      >
+                        {currentSelectedHijabiFriendly ? <Check className="size-3.5" /> : null}
+                      </span>
+                      <span className="translate-y-[1.5px] text-[15px] text-stone-800 dark:text-stone-200">
+                        Hijabi-friendly
+                      </span>
+                    </button>
+
+                    <button
+                      type="button"
+                      aria-pressed={currentSelectedCanBraidWithoutGel}
+                      onClick={toggleCanBraidWithoutGel}
+                      className="flex w-full cursor-pointer items-start gap-3 rounded-none px-2 py-2 text-left transition-colors hover:bg-stone-200 active:bg-stone-200 dark:hover:bg-stone-900 dark:active:bg-stone-900"
+                    >
+                      <span
+                        aria-hidden="true"
+                        className={cn(
+                          "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-none border border-stone-500 bg-white text-white transition dark:border-stone-500 dark:bg-stone-900",
+                          currentSelectedCanBraidWithoutGel && "border-stone-950 bg-stone-950 dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950",
+                        )}
+                      >
+                        {currentSelectedCanBraidWithoutGel ? <Check className="size-3.5" /> : null}
+                      </span>
+                      <span className="translate-y-[1.5px] text-[15px] text-stone-800 dark:text-stone-200">
+                        Can braid without gel
+                      </span>
+                    </button>
                   </div>
                 </AnimatedCollapsible>
               </div>

@@ -1,8 +1,8 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-04-12T01:00:00.000Z",
-    "count": 359,
+    "updatedAt": "2026-04-25T00:00:00.000Z",
+    "count": 473,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
@@ -276,6 +276,7 @@
         "Twist out / Flexi rod",
         "Crochet"
       ],
+      "canBraidWithoutGel": true,
       "summary": "Manual entry added from your latest salon update batch.",
       "source": "manual",
       "evidence": [
@@ -322,7 +323,8 @@
         "Closure sew-in",
         "Ponytail / bun",
         "Crochet"
-      ]
+      ],
+      "canBraidWithoutGel": true
     },
     {
       "id": "arewa-uk",
@@ -594,7 +596,8 @@
         "Keratin treatment",
         "Silk press",
         "Texture release"
-      ]
+      ],
+      "canBraidWithoutGel": true
     },
     {
       "id": "be-styled-by-chen",
@@ -856,6 +859,7 @@
         "Frontal sew-in",
         "Closure sew-in"
       ],
+      "canBraidWithoutGel": true,
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
       "evidence": [
@@ -978,7 +982,8 @@
         "Twists (with extensions)",
         "Starter locs",
         "Retwist"
-      ]
+      ],
+      "canBraidWithoutGel": true
     },
     {
       "id": "boldbeautyhouse",
@@ -1167,6 +1172,7 @@
         "Crochet",
         "Miracle knots"
       ],
+      "canBraidWithoutGel": true,
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
       "evidence": [
@@ -2675,6 +2681,7 @@
         "Half braids, half sew-in",
         "Crochet"
       ],
+      "canBraidWithoutGel": true,
       "summary": "Manual entry added from your latest salon update batch.",
       "source": "manual",
       "evidence": [
@@ -3769,6 +3776,7 @@
         "Feed-in braids",
         "Half braids, half sew-in"
       ],
+      "canBraidWithoutGel": true,
       "summary": "Manual entry added from your South West London braids list.",
       "source": "manual",
       "evidence": [
@@ -4152,6 +4160,7 @@
         "Keratin treatment",
         "Tracks (per row)"
       ],
+      "canBraidWithoutGel": true,
       "summary": "Manual entry added from your Kent list covering braids, sew-ins, locs, natural hair, and treatments.",
       "source": "manual",
       "evidence": [
@@ -4402,6 +4411,7 @@
         "Fulani / Lemonade braids",
         "French curl"
       ],
+      "canBraidWithoutGel": true,
       "summary": "Manual Instagram-led entry added from your South East London braids list.",
       "source": "manual",
       "evidence": [
@@ -5698,6 +5708,7 @@
         "Box braids",
         "Miracle knots"
       ],
+      "canBraidWithoutGel": true,
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
       "evidence": [
@@ -6701,6 +6712,7 @@
         "Stitch braids",
         "Boho braids / microbraids"
       ],
+      "canBraidWithoutGel": true,
       "summary": "Manual Instagram-led entry added from your Peckham braids list.",
       "source": "manual",
       "evidence": [
@@ -7763,6 +7775,7 @@
         "Stitch braids",
         "Fulani / Lemonade braids"
       ],
+      "canBraidWithoutGel": true,
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
       "evidence": [
@@ -7841,7 +7854,8 @@
         "Silk press",
         "Wash & blowdry",
         "Crochet"
-      ]
+      ],
+      "canBraidWithoutGel": true
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -9296,7 +9310,8 @@
         "Wash & blowdry",
         "Trim / Hair cut",
         "Braid take-down"
-      ]
+      ],
+      "canBraidWithoutGel": true
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -9899,7 +9914,9 @@
       "bookingUrl": "https://www.instagram.com/braidedby_tobs/",
       "instagramUrl": "https://www.instagram.com/braidedby_tobs/",
       "services": [
+        "Boho braids / microbraids",
         "Knotless braids",
+        "Stitch braids",
         "French curl",
         "Fulani / Lemonade braids",
         "Feed-in braids"
@@ -9956,7 +9973,8 @@
         "Cornrows / Twists",
         "Twists (with extensions)",
         "French curl"
-      ]
+      ],
+      "canBraidWithoutGel": true
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -10032,7 +10050,8 @@
         "French curl",
         "Box braids",
         "Feed-in braids"
-      ]
+      ],
+      "canBraidWithoutGel": true
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -10724,7 +10743,8 @@
         "Frontal sew-in",
         "Quick weave",
         "Crochet"
-      ]
+      ],
+      "canBraidWithoutGel": true
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -12497,7 +12517,303 @@
         "French curl",
         "Knotless braids",
         "Boho braids / microbraids"
+      ],
+      "canBraidWithoutGel": true
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "kl-hairport",
+      "name": "KL Hairport",
+      "areaId": "south",
+      "areaIds": [
+        "south",
+        "mobile"
+      ],
+      "areaLabel": "South",
+      "neighbourhood": "South London and mobile",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/klhairport/",
+      "websiteUrl": "https://www.instagram.com/klhairport/",
+      "instagramUrl": "https://www.instagram.com/klhairport/",
+      "services": [
+        "Miracle knots",
+        "Fulani / Lemonade braids",
+        "Stitch braids",
+        "Knotless braids",
+        "Boho braids / microbraids",
+        "Twists (with extensions)"
+      ],
+      "canBraidWithoutGel": true
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "bromley-uk-braider",
+      "name": "Bromley UK Braider",
+      "areaId": "south-east",
+      "areaLabel": "South East",
+      "neighbourhood": "South East London",
+      "postcode": "",
+      "bookingPlatform": ".as.me",
+      "bookingUrl": "https://beautybynnedaddy.as.me/schedule/12960e9d",
+      "websiteUrl": "https://beautybynnedaddy.as.me/schedule/12960e9d",
+      "instagramUrl": "https://www.instagram.com/bromley_ukbraider/",
+      "services": [
+        "Boho braids / microbraids",
+        "French curl",
+        "Wash & blowdry",
+        "Knotless braids",
+        "Twists (with extensions)",
+        "Cornrows / Twists",
+        "Half braids, half sew-in"
       ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "styled-by-kadie",
+      "name": "Styled by Kadie",
+      "areaId": "south-east",
+      "areaLabel": "South East",
+      "neighbourhood": "South East London",
+      "postcode": "",
+      "bookingPlatform": ".as.me",
+      "bookingUrl": "https://styledbykadiee.as.me/schedule/54f27717",
+      "websiteUrl": "https://styledbykadiee.as.me/schedule/54f27717",
+      "instagramUrl": "https://www.instagram.com/styledbykadie_/",
+      "services": [
+        "Fulani / Lemonade braids",
+        "Knotless braids",
+        "Ponytail / bun",
+        "Half up half down",
+        "Updo",
+        "Stitch braids",
+        "Half braids, half sew-in",
+        "Twists (with extensions)"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "rikky-luxe",
+      "name": "Rikky Luxe",
+      "areaId": "south-east",
+      "areaLabel": "South East",
+      "neighbourhood": "South East London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/rikkyluxe/",
+      "websiteUrl": "https://www.instagram.com/rikkyluxe/",
+      "instagramUrl": "https://www.instagram.com/rikkyluxe/",
+      "services": [
+        "French curl",
+        "Boho braids / microbraids",
+        "Stitch braids",
+        "Fulani / Lemonade braids",
+        "Half braids, half sew-in",
+        "Feed-in braids",
+        "Knotless braids"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "shiannes-touch",
+      "name": "Shianne's Touch",
+      "areaId": "mobile",
+      "areaLabel": "Mobile",
+      "neighbourhood": "Mobile",
+      "postcode": "",
+      "bookingPlatform": ".as.me",
+      "bookingUrl": "https://shiannestouch.as.me/schedule/19eaae4f",
+      "websiteUrl": "https://shiannestouch.as.me/schedule/19eaae4f",
+      "instagramUrl": "https://www.instagram.com/shiannestouch/",
+      "services": [
+        "Feed-in braids",
+        "Knotless braids",
+        "Twists (with extensions)",
+        "Retwist",
+        "Cornrows / Twists",
+        "Starter locs",
+        "Half braids, half sew-in",
+        "Faux locs"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "braider-in-london",
+      "name": "Braider in London",
+      "areaId": "south-east",
+      "areaLabel": "South East",
+      "neighbourhood": "South East London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/braiderinlondon_/",
+      "websiteUrl": "https://www.instagram.com/braiderinlondon_/",
+      "instagramUrl": "https://www.instagram.com/braiderinlondon_/",
+      "services": [
+        "French curl",
+        "Boho braids / microbraids",
+        "Stitch braids",
+        "Fulani / Lemonade braids",
+        "Half braids, half sew-in",
+        "Feed-in braids",
+        "Knotless braids",
+        "Cornrows / Twists",
+        "Relaxer",
+        "Wash & blowdry"
+      ],
+      "canBraidWithoutGel": true
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "ksanya-hair",
+      "name": "Ksanya Hair",
+      "areaId": "south-east",
+      "areaLabel": "South East",
+      "neighbourhood": "South East London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://app.acuityscheduling.com/schedule/e612e3c3",
+      "websiteUrl": "https://app.acuityscheduling.com/schedule/e612e3c3",
+      "instagramUrl": "https://www.instagram.com/ksanyahair/",
+      "services": [
+        "Feed-in braids",
+        "Fulani / Lemonade braids",
+        "Knotless braids",
+        "Boho braids / microbraids",
+        "Ponytail / bun"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "touch-by-temmie",
+      "name": "Touch by Temmie",
+      "areaId": "north",
+      "areaLabel": "North",
+      "neighbourhood": "North London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/touch_by_temmie/",
+      "websiteUrl": "https://www.instagram.com/touch_by_temmie/",
+      "instagramUrl": "https://www.instagram.com/touch_by_temmie/",
+      "services": [
+        "Knotless braids",
+        "Boho braids / microbraids",
+        "Fulani / Lemonade braids",
+        "Feed-in braids",
+        "Twists (with extensions)"
+      ],
+      "canBraidWithoutGel": true
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "bdl-uk",
+      "name": "BDL UK",
+      "areaId": "north-west",
+      "areaLabel": "North West",
+      "neighbourhood": "North West London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/bdl.uk/",
+      "websiteUrl": "https://www.instagram.com/bdl.uk/",
+      "instagramUrl": "https://www.instagram.com/bdl.uk/",
+      "services": [
+        "Butterfly locs",
+        "Faux locs"
+      ],
+      "canBraidWithoutGel": true
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "the-hairplus",
+      "name": "The Hairplus",
+      "areaId": "kent",
+      "areaLabel": "Kent",
+      "neighbourhood": "Kent",
+      "postcode": "",
+      "bookingPlatform": "Direct website",
+      "bookingUrl": "https://www.thehairplusofficial.com/book-online",
+      "websiteUrl": "https://www.thehairplusofficial.com/book-online",
+      "instagramUrl": "https://www.instagram.com/the.hairplus_/",
+      "services": [
+        "Knotless braids",
+        "Box braids",
+        "French curl",
+        "Fulani / Lemonade braids",
+        "Twists (with extensions)",
+        "Faux locs",
+        "Ponytail / bun",
+        "Traditional sew-in / leave out",
+        "Boho braids / microbraids"
+      ],
+      "canBraidWithoutGel": true
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "les-braid-it",
+      "name": "Les Braid It",
+      "areaId": "all-london",
+      "areaLabel": "London",
+      "neighbourhood": "London",
+      "postcode": "",
+      "bookingPlatform": "Direct website",
+      "bookingUrl": "https://www.lesbraidit.co.uk/",
+      "websiteUrl": "https://www.lesbraidit.co.uk/",
+      "instagramUrl": "https://www.instagram.com/lesbraidit/",
+      "services": [
+        "Boho braids / microbraids",
+        "Knotless braids",
+        "Creative braids (e.g. patewo)",
+        "Box braids",
+        "Traditional sew-in / leave out",
+        "French curl",
+        "Half braids, half sew-in",
+        "Cornrows / Twists",
+        "Crochet"
+      ],
+      "canBraidWithoutGel": true
     }
   ]
 }
