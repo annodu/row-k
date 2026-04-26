@@ -22,8 +22,9 @@ export default async function handler(req, res) {
       ? req.body.regions.map((region) => String(region)).filter(Boolean)
       : [String(req.body?.region || "all")];
     const hijabiFriendly = req.body?.hijabiFriendly === true;
+    const canBraidWithoutGel = req.body?.canBraidWithoutGel === true;
 
-    const payload = await searchSalons({ categories, subcategories, regions, hijabiFriendly });
+    const payload = await searchSalons({ categories, subcategories, regions, hijabiFriendly, canBraidWithoutGel });
     return res.status(200).json(payload);
   } catch (error) {
     console.error("Search API failed", error);
