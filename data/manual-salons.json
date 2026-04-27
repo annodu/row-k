@@ -2732,8 +2732,13 @@
         "French curl",
         "Half braids, half sew-in",
         "Boho braids / microbraids",
-        "Flipover / Versatile sew-in"
+        "Flipover / Versatile sew-in",
+        "Closure sew-in",
+        "Wig install",
+        "Custom wig",
+        "Wig colour"
       ],
+      "canBraidWithoutGel": true,
       "summary": "Manual entry added from your East London braids and sew-ins list.",
       "source": "manual",
       "evidence": [
