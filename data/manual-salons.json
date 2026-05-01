@@ -2527,9 +2527,9 @@
     {
       "id": "glo-lounge-london",
       "name": "Glo Lounge London",
-      "areaId": "south-east",
-      "areaLabel": "South East",
-      "neighbourhood": "South East London",
+      "areaId": "south-west",
+      "areaLabel": "South West",
+      "neighbourhood": "South West London",
       "postcode": "",
       "bookingPlatform": ".as.me",
       "bookingUrl": "https://glotresseslondon.as.me/schedule/5c3a13f4",
