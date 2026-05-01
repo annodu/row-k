@@ -2525,8 +2525,8 @@
       ]
     },
     {
-      "id": "glo-tresses-london",
-      "name": "Glo Tresses London",
+      "id": "glo-lounge-london",
+      "name": "Glo Lounge London",
       "areaId": "south-east",
       "areaLabel": "South East",
       "neighbourhood": "South East London",
@@ -2534,7 +2534,7 @@
       "bookingPlatform": ".as.me",
       "bookingUrl": "https://glotresseslondon.as.me/schedule/5c3a13f4",
       "websiteUrl": "https://glotresseslondon.as.me/schedule/5c3a13f4",
-      "instagramUrl": "https://www.instagram.com/glotresseslondon/",
+      "instagramUrl": "https://www.instagram.com/gloloungelondon/",
       "services": [
         "Wig install",
         "Traditional sew-in / leave out",
