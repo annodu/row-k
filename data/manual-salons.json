@@ -1,8 +1,8 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-04-25T00:00:00.000Z",
-    "count": 473,
+    "updatedAt": "2026-04-29T00:00:00.000Z",
+    "count": 474,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
@@ -5721,6 +5721,34 @@
       ]
     },
     {
+      "id": "rb-hair-uk",
+      "name": "RB Hair UK",
+      "areaId": "east",
+      "areaLabel": "East",
+      "neighbourhood": "East London",
+      "postcode": "",
+      "bookingPlatform": ".as.me",
+      "bookingUrl": "https://rbhair.as.me/schedule/d70828dd",
+      "websiteUrl": "https://rbhair.as.me/schedule/d70828dd",
+      "instagramUrl": "https://www.instagram.com/rbhairuk/",
+      "services": [
+        "Ponytail / bun",
+        "Cornrows / Twists",
+        "Feed-in braids",
+        "Stitch braids",
+        "Half braids, half sew-in",
+        "Half up half down",
+        "Quick weave",
+        "Traditional sew-in / leave out",
+        "Wig install"
+      ],
+      "summary": "Manual entry added from your East London braids, weave, sew-in, and wig install list.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ]
+    },
+    {
       "id": "rd-hairstudio",
       "name": "Rd Hairstudio",
       "areaId": "south-west",
@@ -5787,7 +5815,8 @@
         "Traditional sew-in / leave out",
         "Ponytail / bun",
         "Half up half down",
-        "Custom wig"
+        "Custom wig",
+        "Bridal / Editorial"
       ],
       "summary": "Manual entry added from your South East London wigs list.",
       "source": "manual",
@@ -10763,11 +10792,14 @@
       "areaLabel": "East",
       "neighbourhood": "East London",
       "postcode": "",
-      "bookingPlatform": "Instagram",
-      "bookingUrl": "https://www.instagram.com/thesewnmuse/",
+      "bookingPlatform": "Direct website",
+      "bookingUrl": "https://coilemuse.com/pages/book-an-appointment",
+      "websiteUrl": "https://coilemuse.com/pages/book-an-appointment",
       "instagramUrl": "https://www.instagram.com/thesewnmuse/",
       "services": [
-        "Traditional sew-in / leave out"
+        "Traditional sew-in / leave out",
+        "Closure sew-in",
+        "Flipover / Versatile sew-in"
       ]
     },
     {

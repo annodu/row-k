@@ -25,7 +25,7 @@ const regions = [
   { id: "croydon", label: "Croydon" },
   { id: "kent", label: "Kent" },
   { id: "essex", label: "Essex" },
-  { id: "mobile", label: "Mobile" },
+  { id: "mobile", label: "Mobile/ home service" },
 ] as const;
 
 const nestedLondonRegionIds = ["central", "north", "north-west", "east", "south-east", "south-west", "west", "croydon"] as const;
