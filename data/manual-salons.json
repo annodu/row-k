@@ -1,8 +1,8 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-04-29T00:00:00.000Z",
-    "count": 474,
+    "updatedAt": "2026-05-02T00:00:00.000Z",
+    "count": 475,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
@@ -122,6 +122,31 @@
       "source": "manual",
       "evidence": [
         "User-provided manual addition."
+      ]
+    },
+    {
+      "summary": "Manual Instagram-led entry added from your mobile wigs and sew-ins list.",
+      "source": "manual",
+      "evidence": [
+        "User-provided Instagram handle and service list."
+      ],
+      "id": "hairby-fiera",
+      "name": "Hairby Fiera",
+      "areaId": "mobile",
+      "areaLabel": "Mobile",
+      "neighbourhood": "Mobile",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/hairby.fiera/",
+      "websiteUrl": "https://www.instagram.com/hairby.fiera/",
+      "instagramUrl": "https://www.instagram.com/hairby.fiera/",
+      "services": [
+        "Wig install",
+        "Custom wig",
+        "Wig colour",
+        "Frontal sew-in",
+        "Closure sew-in",
+        "Traditional sew-in / leave out"
       ]
     },
     {
