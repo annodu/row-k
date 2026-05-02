@@ -25,7 +25,7 @@ const regions = [
   { id: "croydon", label: "Croydon" },
   { id: "kent", label: "Kent" },
   { id: "essex", label: "Essex" },
-  { id: "mobile", label: "Mobile/ Home service" },
+  { id: "mobile", label: "Mobile / Home service" },
 ] as const;
 
 const nestedLondonRegionIds = ["central", "north", "north-west", "east", "south-east", "south-west", "west", "croydon"] as const;
@@ -40,7 +40,7 @@ const categoryMap = {
     label: "Braids",
     subcategories: [
       "all",
-      "Boho braids / microbraids",
+      "Boho braids / Goddess braids",
       "Braid take-down",
       "Box braids",
       "Crochet",
@@ -51,6 +51,7 @@ const categoryMap = {
       "Half braids, half sew-in",
       "Knotless braids",
       "Miracle knots",
+      "Microbraids",
       "Pre-parting",
       "Stitch braids",
       "Twists (with extensions)",
@@ -80,6 +81,7 @@ const categoryMap = {
       "Flipover / Versatile sew-in",
       "Frontal sew-in",
       "Hybrid sew-in",
+      "Pixie wig / weave install",
       "Quick weave",
       "Sew-in take-down",
       "Tracks (per row)",
@@ -120,13 +122,13 @@ const categoryMap = {
   },
   "wig-services": {
     label: "Wigs",
-    subcategories: ["all", "Custom wig", "Wig colour", "Wig install"],
+    subcategories: ["all", "Custom wig", "Pixie wig / weave install", "U-Part wig install", "Wig colour", "Wig install (frontal / closure)"],
   },
 } as const;
 
 const categoryServiceMap = {
   "braiding-services": [
-    "Boho braids / microbraids",
+    "Boho braids / goddess braids",
     "Braid take-down",
     "Box braids",
     "Crochet",
@@ -151,6 +153,7 @@ const categoryServiceMap = {
     "Flipover / Versatile sew-in",
     "Frontal sew-in",
     "Hybrid sew-in",
+    "Pixie wig / weave install",
     "Quick weave",
     "Sew-in take-down",
     "Tracks (per row)",
@@ -177,7 +180,7 @@ const categoryServiceMap = {
     "Twist out / Flexi rod",
     "Wash & blowdry",
   ],
-  "wig-services": ["Custom wig", "Wig colour", "Wig install"],
+  "wig-services": ["Custom wig", "Pixie wig / weave install", "U-Part wig install", "Wig colour", "Wig install (frontal / closure)"],
 } as const satisfies Record<ServiceCategoryId, readonly string[]>;
 
 type RegionId = (typeof regions)[number]["id"];
