@@ -25,7 +25,7 @@ const regions = [
   { id: "croydon", label: "Croydon" },
   { id: "kent", label: "Kent" },
   { id: "essex", label: "Essex" },
-  { id: "mobile", label: "Mobile/ home service" },
+  { id: "mobile", label: "Mobile/ Home service" },
 ] as const;
 
 const nestedLondonRegionIds = ["central", "north", "north-west", "east", "south-east", "south-west", "west", "croydon"] as const;
@@ -1230,17 +1230,21 @@ export default function App() {
                         <div className="min-w-0 grow">
                           <div className="flex items-start justify-between gap-3">
                             <div className="min-w-0">
-                              <div className="flex flex-wrap items-end gap-2">
+                              <div className="flex flex-col items-start gap-1.5 sm:flex-row sm:flex-wrap sm:items-end sm:gap-2">
                                 <h3 className="text-[17px] font-semibold text-stone-950 dark:text-stone-50">{result.name}</h3>
-                                {result.hijabiFriendly ? (
-                                  <span className="mb-[3.5px] inline-flex items-center rounded-none bg-emerald-100 p-1 text-[11px] font-medium lowercase leading-none text-emerald-800 dark:bg-emerald-950/50 dark:text-emerald-300">
-                                    hijabi-friendly
-                                  </span>
-                                ) : null}
-                                {result.canBraidWithoutGel ? (
-                                  <span className="mb-[3.5px] inline-flex items-center rounded-none bg-pink-100 p-1 text-[11px] font-medium lowercase leading-none text-pink-800 dark:bg-pink-950/50 dark:text-pink-300">
-                                    can braid without gel
-                                  </span>
+                                {result.hijabiFriendly || result.canBraidWithoutGel ? (
+                                  <div className="flex max-w-full flex-wrap items-center gap-2 sm:mb-[3.5px]">
+                                    {result.hijabiFriendly ? (
+                                      <span className="inline-flex items-center rounded-none bg-emerald-100 p-1 text-[11px] font-medium lowercase leading-none text-emerald-800 dark:bg-emerald-950/50 dark:text-emerald-300">
+                                        hijabi-friendly
+                                      </span>
+                                    ) : null}
+                                    {result.canBraidWithoutGel ? (
+                                      <span className="inline-flex items-center rounded-none bg-pink-100 p-1 text-[11px] font-medium lowercase leading-none text-pink-800 dark:bg-pink-950/50 dark:text-pink-300">
+                                        can braid without gel
+                                      </span>
+                                    ) : null}
+                                  </div>
                                 ) : null}
                               </div>
                               {locationLabels.length > 0 ? (
