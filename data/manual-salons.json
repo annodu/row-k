@@ -641,7 +641,8 @@
         "Wig install",
         "Traditional sew-in / leave out",
         "Closure sew-in",
-        "U-Part wig install"
+        "U-Part wig install",
+        "Custom wig"
       ]
     },
     {
@@ -2346,7 +2347,15 @@
         "Silk press",
         "Highlights",
         "Relaxer",
-        "Clip-ins"
+        "Clip-ins",
+        "Scalp care",
+        "Full head colour",
+        "Knotless braids",
+        "Microbraids",
+        "Boho braids / goddess braids",
+        "Feed-in braids",
+        "Twists (with extensions)",
+        "Traditional sew-in / leave out"
       ],
       "summary": "Manual entry added from your latest salon update batch.",
       "source": "manual",
@@ -2707,7 +2716,8 @@
         "Traditional sew-in / leave out",
         "Half up half down",
         "Closure sew-in",
-        "U-Part wig install"
+        "U-Part wig install",
+        "Custom wig"
       ],
       "summary": "Manual entry added from your latest salon update batch.",
       "source": "manual",
@@ -3887,7 +3897,8 @@
       "instagramUrl": "https://www.instagram.com/foreverbraidsuk/",
       "services": [
         "Faux locs",
-        "Microlocs / Sisterlocs"
+        "Microlocs / Sisterlocs",
+        "Microbraids"
       ]
     },
     {
@@ -6621,7 +6632,8 @@
         "Fulani / Lemonade braids",
         "Crochet",
         "U-Part wig install",
-        "Pixie wig / weave install"
+        "Pixie wig / weave install",
+        "Custom wig"
       ]
     },
     {
@@ -11256,7 +11268,8 @@
         "Half braids, half sew-in",
         "Pixie / finger waves",
         "Crochet",
-        "U-Part wig install"
+        "U-Part wig install",
+        "Custom wig"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -11576,7 +11589,8 @@
         "Ponytail / bun",
         "Half braids, half sew-in",
         "Sew-in take-down",
-        "U-Part wig install"
+        "U-Part wig install",
+        "Custom wig"
       ],
       "summary": "Manual entry added from your South East London sew-in and wig install list.",
       "source": "manual",
@@ -11759,7 +11773,8 @@
         "Flipover / Versatile sew-in",
         "Wig install",
         "Half braids, half sew-in",
-        "U-Part wig install"
+        "U-Part wig install",
+        "Custom wig"
       ]
     },
     {
