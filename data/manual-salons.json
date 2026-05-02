@@ -4024,8 +4024,12 @@
         "Texture release",
         "Tape-ins",
         "Wash & blowdry",
+        "Twist out / Flexi rod",
         "Trim / Hair cut",
         "Knotless braids",
+        "Cornrows / Twists",
+        "Miracle knots",
+        "Boho braids / microbraids",
         "Relaxer",
         "French curl",
         "Traditional sew-in / leave out",
@@ -4041,7 +4045,8 @@
       "evidence": [
         "User-provided manual addition."
       ],
-      "hijabiFriendly": true
+      "hijabiFriendly": true,
+      "canBraidWithoutGel": true
     },
     {
       "id": "jluxe-hair",
@@ -12876,6 +12881,55 @@
         "Crochet"
       ],
       "canBraidWithoutGel": true
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "hairweather-uk",
+      "name": "Hairweather UK",
+      "areaId": "east",
+      "areaLabel": "East",
+      "neighbourhood": "East London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/hairweatheruk/",
+      "websiteUrl": "https://www.instagram.com/hairweatheruk/",
+      "instagramUrl": "https://www.instagram.com/hairweatheruk/",
+      "services": [
+        "Wig install",
+        "Custom wig",
+        "Wig colour",
+        "Moisturising treatment",
+        "Wash & blowdry",
+        "Trim / Hair cut",
+        "Cornrows / Twists",
+        "Tracks (per row)",
+        "Traditional sew-in / leave out"
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "hair-by-rosie-grace",
+      "name": "Hair By Rosie Grace",
+      "areaId": "all-london",
+      "areaLabel": "London",
+      "neighbourhood": "London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/hair.by.rosie.grace/",
+      "websiteUrl": "https://www.instagram.com/hair.by.rosie.grace/",
+      "instagramUrl": "https://www.instagram.com/hair.by.rosie.grace/",
+      "services": [
+        "Creative braids (e.g. patewo)",
+        "Bridal / Editorial"
+      ]
     }
   ]
 }
