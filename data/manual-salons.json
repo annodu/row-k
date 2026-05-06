@@ -2,7 +2,7 @@
   "meta": {
     "source": "manual",
     "updatedAt": "2026-05-02T00:00:00.000Z",
-    "count": 482,
+    "count": 484,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
@@ -24,7 +24,7 @@
         "Relaxer",
         "Olaplex treatment",
         "Moisturising treatment",
-        "Tracks (per row)",
+        "Tracks / Silk press + tracks",
         "Traditional sew-in / leave out",
         "Cornrows / Twists",
         "Scalp care",
@@ -56,7 +56,7 @@
         "Silk press",
         "Quick weave",
         "Ponytail / bun",
-        "Tape-ins",
+        "Tape ins / Silk press + Tape ins",
         "Traditional sew-in / leave out",
         "Half up half down",
         "Closure sew-in",
@@ -101,15 +101,17 @@
         "Closure sew-in",
         "Frontal sew-in",
         "Wig install",
-        "Tape-ins",
-        "Tracks (per row)",
+        "Tape ins / Silk press + Tape ins",
+        "Tracks / Silk press + tracks",
         "Relaxer",
         "Cornrows / Twists",
         "Box braids",
         "Knotless braids",
         "Fulani / Lemonade braids",
         "Full head colour",
-        "Twist out / Flexi rod"
+        "Twist out / Flexi rod",
+        "Braid take-down",
+        "Sew-in take-down"
       ]
     },
     {
@@ -130,7 +132,7 @@
       "instagramUrl": "https://www.instagram.com/adelinetresses/",
       "services": [
         "Knotless braids",
-        "Tape-ins",
+        "Tape ins / Silk press + Tape ins",
         "Butterfly locs",
         "Faux locs",
         "Traditional sew-in / leave out",
@@ -193,7 +195,7 @@
         "LA weave",
         "Flipover / Versatile sew-in",
         "Hybrid sew-in",
-        "Tracks (per row)"
+        "Tracks / Silk press + tracks"
       ],
       "summary": "Manual entry added from your latest salon update batch.",
       "source": "manual",
@@ -328,7 +330,7 @@
         "K-tips / Invisible strands",
         "LA weave",
         "Microlinks",
-        "Tape-ins",
+        "Tape ins / Silk press + Tape ins",
         "Wash & blowdry"
       ],
       "summary": "Manual entry added from your South East London extensions, sew-ins, and treatments list.",
@@ -390,7 +392,10 @@
         "Closure sew-in",
         "Quick weave",
         "Sew-in take-down",
-        "Wash & blowdry"
+        "Wash & blowdry",
+        "Clip ins / Silk press + Clip ins",
+        "Tracks / Silk press + tracks",
+        "Olaplex treatment"
       ]
     },
     {
@@ -424,7 +429,7 @@
         "Half braids, half sew-in",
         "Flipover / Versatile sew-in",
         "Closure sew-in",
-        "Tape-ins",
+        "Tape ins / Silk press + Tape ins",
         "Sew-in take-down"
       ]
     },
@@ -508,7 +513,7 @@
         "Trim / Hair cut",
         "Microlocs / Sisterlocs",
         "Faux locs",
-        "Tracks (per row)",
+        "Tracks / Silk press + tracks",
         "Twist out / Flexi rod",
         "Crochet",
         "U-Part wig install"
@@ -546,7 +551,7 @@
         "Relaxer",
         "Wig install",
         "Custom wig",
-        "Tracks (per row)",
+        "Tracks / Silk press + tracks",
         "Boho braids / goddess braids",
         "Feed-in braids",
         "Fulani / Lemonade braids",
@@ -615,7 +620,7 @@
         "Olaplex treatment",
         "Pixie / finger waves",
         "Traditional sew-in / leave out",
-        "Tracks (per row)",
+        "Tracks / Silk press + tracks",
         "Sew-in take-down"
       ]
     },
@@ -846,7 +851,7 @@
         "Traditional sew-in / leave out",
         "Closure sew-in",
         "Frontal sew-in",
-        "Tracks (per row)",
+        "Tracks / Silk press + tracks",
         "Microlinks",
         "Cornrows / Twists"
       ]
@@ -942,7 +947,7 @@
         "Trim / Hair cut",
         "Ponytail / bun",
         "Wig install",
-        "Tracks (per row)",
+        "Tracks / Silk press + tracks",
         "Half up half down",
         "Closure sew-in",
         "Frontal sew-in",
@@ -1068,7 +1073,7 @@
         "Wig install",
         "Traditional sew-in / leave out",
         "Moisturising treatment",
-        "Tracks (per row)"
+        "Tracks / Silk press + tracks"
       ]
     },
     {
@@ -1203,7 +1208,9 @@
         "Half up half down",
         "Closure sew-in",
         "Flipover / Versatile sew-in",
-        "Pixie wig / weave install"
+        "Pixie wig / weave install",
+        "Tracks / Silk press + tracks",
+        "Sew-in take-down"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -1271,7 +1278,7 @@
         "Quick weave",
         "Wig install",
         "Custom wig",
-        "Tracks (per row)"
+        "Tracks / Silk press + tracks"
       ],
       "summary": "Manual entry added from your latest salon update batch.",
       "source": "manual",
@@ -1306,7 +1313,7 @@
         "Pixie / finger waves",
         "Knotless braids",
         "Boho braids / goddess braids",
-        "Tracks (per row)",
+        "Tracks / Silk press + tracks",
         "Box braids",
         "Feed-in braids",
         "Twists (with extensions)",
@@ -1378,7 +1385,7 @@
         "Twists (with extensions)",
         "Stitch braids",
         "Ponytail / bun",
-        "Tracks (per row)",
+        "Tracks / Silk press + tracks",
         "Flipover / Versatile sew-in",
         "Traditional sew-in / leave out",
         "Silk press",
@@ -1409,7 +1416,7 @@
         "Ponytail / bun",
         "Knotless braids",
         "Box braids",
-        "Tracks (per row)"
+        "Tracks / Silk press + tracks"
       ],
       "summary": "Manual entry added from your North London extensions, treatments, and braids list.",
       "source": "manual",
@@ -1896,7 +1903,7 @@
         "Hybrid sew-in",
         "Closure sew-in",
         "Traditional sew-in / leave out",
-        "Tape-ins",
+        "Tape ins / Silk press + Tape ins",
         "Wig install",
         "Flipover / Versatile sew-in",
         "Custom wig",
@@ -2106,7 +2113,7 @@
       "services": [
         "Wig install",
         "Closure sew-in",
-        "Tape-ins",
+        "Tape ins / Silk press + Tape ins",
         "Flipover / Versatile sew-in",
         "Sew-in take-down",
         "U-Part wig install"
@@ -2131,7 +2138,7 @@
         "Silk press",
         "K-tips / Invisible strands",
         "Texture release",
-        "Tape-ins"
+        "Tape ins / Silk press + Tape ins"
       ]
     },
     {
@@ -2159,7 +2166,7 @@
         "Frontal sew-in",
         "Wig install",
         "Custom wig",
-        "Tracks (per row)",
+        "Tracks / Silk press + tracks",
         "U-Part wig install"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
@@ -2187,9 +2194,9 @@
         "Wash & blowdry",
         "Balayage",
         "Full head colour",
-        "Clip-ins",
+        "Clip ins / Silk press + Clip ins",
         "K-tips / Invisible strands",
-        "Tape-ins",
+        "Tape ins / Silk press + Tape ins",
         "Closure sew-in",
         "Flipover / Versatile sew-in",
         "Hybrid sew-in",
@@ -2220,7 +2227,7 @@
         "Flipover / Versatile sew-in",
         "Silk press",
         "Wash & blowdry",
-        "Tracks (per row)"
+        "Tracks / Silk press + tracks"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -2347,7 +2354,7 @@
         "Silk press",
         "Highlights",
         "Relaxer",
-        "Clip-ins",
+        "Clip ins / Silk press + Clip ins",
         "Scalp care",
         "Full head colour",
         "Knotless braids",
@@ -2594,7 +2601,8 @@
         "Relaxer",
         "Trim / Hair cut",
         "Texture release",
-        "Wash & blowdry"
+        "Wash & blowdry",
+        "Clip ins / Silk press + Clip ins"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -3062,7 +3070,7 @@
         "Boho braids / goddess braids",
         "Trim / Hair cut",
         "Traditional sew-in / leave out",
-        "Tracks (per row)",
+        "Tracks / Silk press + tracks",
         "Cornrows / Twists"
       ]
     },
@@ -3130,7 +3138,9 @@
         "Closure sew-in",
         "Frontal sew-in",
         "Quick weave",
-        "Crochet"
+        "Crochet",
+        "Braid take-down",
+        "Tracks / Silk press + tracks"
       ],
       "canBraidWithoutGel": true
     },
@@ -3186,7 +3196,7 @@
         "Closure sew-in",
         "Frontal sew-in",
         "Sew-in take-down",
-        "Tracks (per row)",
+        "Tracks / Silk press + tracks",
         "Flipover / Versatile sew-in",
         "Silk press",
         "Pixie / finger waves",
@@ -3294,7 +3304,7 @@
         "Traditional sew-in / leave out",
         "Closure sew-in",
         "Ponytail / bun",
-        "Tracks (per row)"
+        "Tracks / Silk press + tracks"
       ],
       "summary": "Manual entry added from your Essex braids list.",
       "source": "manual",
@@ -3318,11 +3328,11 @@
         "Ponytail / bun",
         "Half up half down",
         "Frontal sew-in",
-        "Clip-ins",
+        "Clip ins / Silk press + Clip ins",
         "LA weave",
         "Flipover / Versatile sew-in",
         "Hybrid sew-in",
-        "Tracks (per row)"
+        "Tracks / Silk press + tracks"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -3441,6 +3451,44 @@
       "hijabiFriendly": true
     },
     {
+      "id": "ella-iman-hair",
+      "name": "Ella Iman Hair",
+      "areaId": "south-west",
+      "areaLabel": "South West",
+      "neighbourhood": "South West London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://ellaimanhair.as.me/schedule/0602937c",
+      "websiteUrl": "https://ellaimanhair.as.me/schedule/0602937c",
+      "instagramUrl": "https://www.instagram.com/ellaimanhair/",
+      "services": [
+        "Wash & blowdry",
+        "Silk press",
+        "Trim / Hair cut",
+        "Olaplex treatment",
+        "Moisturising treatment",
+        "Cornrows / Twists",
+        "Curly cut / Wash & go",
+        "Twist out / Flexi rod",
+        "Relaxer",
+        "Full head colour",
+        "Balayage",
+        "Highlights",
+        "Traditional sew-in / leave out",
+        "U-Part wig install",
+        "Tracks / Silk press + tracks",
+        "LA weave",
+        "Wig colour",
+        "Sew-in take-down",
+        "Texture release"
+      ],
+      "summary": "Manual entry added from your South West London salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ]
+    },
+    {
       "summary": "Manual entry added from your latest salon update batch.",
       "source": "manual",
       "evidence": [
@@ -3522,8 +3570,8 @@
         "Microlinks",
         "Traditional sew-in / leave out",
         "Closure sew-in",
-        "Tape-ins",
-        "Clip-ins",
+        "Tape ins / Silk press + Tape ins",
+        "Clip ins / Silk press + Clip ins",
         "Half up half down",
         "Half braids, half sew-in",
         "Sew-in take-down",
@@ -3867,7 +3915,7 @@
         "Silk press",
         "Texture release",
         "Keratin treatment",
-        "Tape-ins",
+        "Tape ins / Silk press + Tape ins",
         "LA weave",
         "Traditional sew-in / leave out",
         "K-tips / Invisible strands",
@@ -4045,7 +4093,7 @@
       "services": [
         "LA weave",
         "Microlinks",
-        "Tape-ins",
+        "Tape ins / Silk press + Tape ins",
         "Silk press",
         "Traditional sew-in / leave out",
         "K-tips / Invisible strands",
@@ -4101,11 +4149,12 @@
         "Flipover / Versatile sew-in",
         "Closure sew-in",
         "Wig colour",
-        "Tape-ins",
+        "Tape ins / Silk press + Tape ins",
         "Silk press",
         "Ponytail / bun",
         "Half up half down",
-        "Custom wig"
+        "Custom wig",
+        "Sew-in take-down"
       ],
       "summary": "Manual entry added from your South East London sew-in and wig install list.",
       "source": "manual",
@@ -4227,8 +4276,8 @@
       "areaLabel": "Central",
       "neighbourhood": "Central / North London",
       "postcode": "",
-      "bookingPlatform": "Instagram",
-      "bookingUrl": "https://www.instagram.com/grantshairandwellbeing/",
+      "bookingPlatform": "Direct website",
+      "bookingUrl": "https://bookings.gettimely.com/grantshairwellbeing/book/",
       "instagramUrl": "https://www.instagram.com/grantshairandwellbeing/",
       "services": [
         "Hair Botox",
@@ -4473,7 +4522,6 @@
         "Fulani / Lemonade braids",
         "Twists (with extensions)",
         "Traditional sew-in / leave out",
-        "Silk press",
         "Crochet",
         "Creative braids (e.g. patewo)"
       ]
@@ -4500,7 +4548,7 @@
         "K-tips / Invisible strands",
         "LA weave",
         "Microlinks",
-        "Tape-ins",
+        "Tape ins / Silk press + Tape ins",
         "Closure sew-in",
         "Frontal sew-in",
         "Flipover / Versatile sew-in",
@@ -4616,7 +4664,7 @@
         "Olaplex treatment",
         "Silk press",
         "Texture release",
-        "Tape-ins",
+        "Tape ins / Silk press + Tape ins",
         "Wash & blowdry",
         "Cornrows / Twists",
         "Pixie / finger waves",
@@ -4625,7 +4673,9 @@
         "Moisturising treatment",
         "Traditional sew-in / leave out",
         "Closure sew-in",
-        "Crochet"
+        "Crochet",
+        "Sew-in take-down",
+        "Tracks / Silk press + tracks"
       ]
     },
     {
@@ -4675,7 +4725,7 @@
         "Faux locs",
         "Boho braids / goddess braids",
         "Knotless braids",
-        "Tape-ins",
+        "Tape ins / Silk press + Tape ins",
         "Feed-in braids",
         "Relaxer",
         "Wig install",
@@ -4946,9 +4996,10 @@
       "websiteUrl": "https://haircupidlondon.as.me/schedule/72d2bef8",
       "instagramUrl": "https://www.instagram.com/haircupidlondon/",
       "services": [
-        "Tape-ins",
+        "Tape ins / Silk press + Tape ins",
         "Traditional sew-in / leave out",
-        "Silk press"
+        "Silk press",
+        "Sew-in take-down"
       ]
     },
     {
@@ -5018,7 +5069,7 @@
         "K-tips / Invisible strands",
         "LA weave",
         "Microlinks",
-        "Tape-ins",
+        "Tape ins / Silk press + Tape ins",
         "Wig install",
         "Relaxer",
         "Texture release",
@@ -5060,7 +5111,7 @@
         "Highlights",
         "LA weave",
         "Cornrows / Twists",
-        "Tracks (per row)"
+        "Tracks / Silk press + tracks"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -5280,8 +5331,8 @@
       "services": [
         "Traditional sew-in / leave out",
         "Half braids, half sew-in",
-        "Tape-ins",
-        "Clip-ins",
+        "Tape ins / Silk press + Tape ins",
+        "Clip ins / Silk press + Clip ins",
         "Closure sew-in"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
@@ -5304,7 +5355,7 @@
       "services": [
         "Closure sew-in",
         "Quick weave",
-        "Tape-ins",
+        "Tape ins / Silk press + Tape ins",
         "Traditional sew-in / leave out",
         "Hybrid sew-in"
       ],
@@ -5399,7 +5450,7 @@
         "Wash & blowdry",
         "Trim / Hair cut",
         "Cornrows / Twists",
-        "Tracks (per row)",
+        "Tracks / Silk press + tracks",
         "Traditional sew-in / leave out"
       ]
     },
@@ -5495,7 +5546,7 @@
         "Traditional sew-in / leave out",
         "Flipover / Versatile sew-in",
         "Hybrid sew-in",
-        "Tape-ins"
+        "Tape ins / Silk press + Tape ins"
       ],
       "summary": "Manual entry added from your latest salon update batch.",
       "source": "manual",
@@ -5550,7 +5601,7 @@
         "Scalp care",
         "Texture release",
         "Relaxer",
-        "Tracks (per row)"
+        "Tracks / Silk press + tracks"
       ],
       "summary": "Manual entry added from your latest salon update batch.",
       "source": "manual",
@@ -5582,8 +5633,8 @@
         "Relaxer",
         "Closure sew-in",
         "Traditional sew-in / leave out",
-        "Tracks (per row)",
-        "Tape-ins",
+        "Tracks / Silk press + tracks",
+        "Tape ins / Silk press + Tape ins",
         "Moisturising treatment",
         "Full head colour",
         "Balayage",
@@ -5654,7 +5705,7 @@
         "Wig install",
         "Traditional sew-in / leave out",
         "Moisturising treatment",
-        "Tracks (per row)",
+        "Tracks / Silk press + tracks",
         "Crochet"
       ],
       "summary": "Starter verified entry for a London textured-hair business using Zenoti, included because it was repeatedly identified as a better fit than generic keratin search results.",
@@ -5725,7 +5776,7 @@
         "K-tips / Invisible strands",
         "LA weave",
         "Microlinks",
-        "Tape-ins",
+        "Tape ins / Silk press + Tape ins",
         "Ponytail / bun",
         "Updo",
         "Half up half down",
@@ -5801,7 +5852,7 @@
       "instagramUrl": "https://www.instagram.com/_houseofsisters_/",
       "services": [
         "Traditional sew-in / leave out",
-        "Clip-ins",
+        "Clip ins / Silk press + Clip ins",
         "Cornrows / Twists",
         "Relaxer",
         "Texture release",
@@ -5844,7 +5895,7 @@
       "instagramUrl": "https://www.instagram.com/houseofhairuk/",
       "services": [
         "K-tips / Invisible strands",
-        "Tape-ins",
+        "Tape ins / Silk press + Tape ins",
         "Microlinks",
         "Traditional sew-in / leave out",
         "Texture release",
@@ -5855,7 +5906,7 @@
         "Keratin treatment",
         "Silk press",
         "Wash & blowdry",
-        "Tracks (per row)",
+        "Tracks / Silk press + tracks",
         "Custom wig",
         "U-Part wig install"
       ],
@@ -5966,7 +6017,7 @@
         "Knotless braids",
         "Traditional sew-in / leave out",
         "Moisturising treatment",
-        "Tracks (per row)"
+        "Tracks / Silk press + tracks"
       ],
       "summary": "Manual entry added from your latest salon update batch.",
       "source": "manual",
@@ -5986,7 +6037,7 @@
       "websiteUrl": "https://iamolaeletu.as.me/schedule/d8cbe21f",
       "instagramUrl": "https://www.instagram.com/iamolaeletu_/",
       "services": [
-        "Clip-ins",
+        "Clip ins / Silk press + Clip ins",
         "Silk press",
         "Wash & blowdry",
         "Pixie / finger waves",
@@ -5996,7 +6047,8 @@
         "Trim / Hair cut",
         "Ponytail / bun",
         "Updo",
-        "Half up half down"
+        "Half up half down",
+        "Tracks / Silk press + tracks"
       ],
       "summary": "Manual entry added from your South East London list. Notes mention pixie cut, sew-in, relaxer, keratin, and texture release.",
       "source": "manual",
@@ -6131,7 +6183,7 @@
         "Fulani / Lemonade braids",
         "Feed-in braids",
         "Crochet",
-        "Tracks (per row)"
+        "Tracks / Silk press + tracks"
       ]
     },
     {
@@ -6172,7 +6224,6 @@
         "Knotless braids",
         "Traditional sew-in / leave out",
         "Moisturising treatment",
-        "Silk press",
         "Half braids, half sew-in",
         "Cornrows / Twists",
         "Fulani / Lemonade braids",
@@ -6342,7 +6393,7 @@
         "K-tips / Invisible strands",
         "LA weave",
         "Microlinks",
-        "Tape-ins"
+        "Tape ins / Silk press + Tape ins"
       ],
       "summary": "Manual entry added from your South East London styling, natural hair, sew-ins, extensions, and wigs list.",
       "source": "manual",
@@ -6387,7 +6438,7 @@
       "services": [
         "Silk press",
         "Texture release",
-        "Tape-ins",
+        "Tape ins / Silk press + Tape ins",
         "Wash & blowdry",
         "Twist out / Flexi rod",
         "Trim / Hair cut",
@@ -6403,7 +6454,8 @@
         "Half up half down",
         "Full head colour",
         "Balayage",
-        "Flipover / Versatile sew-in"
+        "Flipover / Versatile sew-in",
+        "Clip ins / Silk press + Clip ins"
       ],
       "summary": "Manual entry added from your latest salon update batch.",
       "source": "manual",
@@ -6431,10 +6483,11 @@
         "Half up half down",
         "Closure sew-in",
         "Flipover / Versatile sew-in",
-        "Tape-ins",
+        "Tape ins / Silk press + Tape ins",
         "Silk press",
         "Texture release",
-        "Wig install"
+        "Wig install",
+        "Sew-in take-down"
       ],
       "summary": "Manual entry added from your latest salon update batch.",
       "source": "manual",
@@ -6530,7 +6583,7 @@
         "Wig install",
         "Traditional sew-in / leave out",
         "Moisturising treatment",
-        "Tracks (per row)",
+        "Tracks / Silk press + tracks",
         "Pixie / finger waves",
         "Braid take-down",
         "Sew-in take-down",
@@ -6566,7 +6619,7 @@
         "Balayage",
         "Relaxer",
         "Traditional sew-in / leave out",
-        "Clip-ins",
+        "Clip ins / Silk press + Clip ins",
         "Keratin treatment",
         "Bridal / Editorial"
       ]
@@ -6609,7 +6662,7 @@
       "instagramUrl": "https://www.instagram.com/kannisbeauty",
       "services": [
         "Cornrows / Twists",
-        "Clip-ins",
+        "Clip ins / Silk press + Clip ins",
         "Wash & blowdry",
         "Relaxer",
         "Full head colour",
@@ -6623,7 +6676,7 @@
         "Half up half down",
         "Wig install",
         "Ponytail / bun",
-        "Tracks (per row)",
+        "Tracks / Silk press + tracks",
         "Sew-in take-down",
         "Braid take-down",
         "Knotless braids",
@@ -6684,7 +6737,7 @@
         "Moisturising treatment",
         "Silk press",
         "Keratin treatment",
-        "Tracks (per row)"
+        "Tracks / Silk press + tracks"
       ],
       "canBraidWithoutGel": true,
       "summary": "Manual entry added from your Kent list covering braids, sew-ins, locs, natural hair, and treatments.",
@@ -6871,7 +6924,7 @@
         "Ponytail / bun",
         "Half up half down",
         "Closure sew-in",
-        "Tracks (per row)",
+        "Tracks / Silk press + tracks",
         "Flipover / Versatile sew-in",
         "Custom wig",
         "Wig install"
@@ -7230,7 +7283,7 @@
         "Full head colour",
         "Texture release",
         "Sew-in take-down",
-        "Tracks (per row)",
+        "Tracks / Silk press + tracks",
         "Traditional sew-in / leave out",
         "Wig install"
       ]
@@ -7335,9 +7388,9 @@
       "websiteUrl": "",
       "instagramUrl": "https://www.instagram.com/linksldn/",
       "services": [
-        "Tape-ins",
+        "Tape ins / Silk press + Tape ins",
         "Microlinks",
-        "Clip-ins",
+        "Clip ins / Silk press + Clip ins",
         "LA weave"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
@@ -7417,11 +7470,11 @@
         "Traditional sew-in / leave out",
         "Closure sew-in",
         "Frontal sew-in",
-        "Tracks (per row)",
+        "Tracks / Silk press + tracks",
         "Half up half down",
         "Sew-in take-down",
         "Full head colour",
-        "Tape-ins",
+        "Tape ins / Silk press + Tape ins",
         "Knotless braids",
         "Feed-in braids",
         "Box braids",
@@ -7530,7 +7583,7 @@
       "services": [
         "LA weave",
         "Ponytail / bun",
-        "Tape-ins",
+        "Tape ins / Silk press + Tape ins",
         "Wash & blowdry",
         "Silk press",
         "Keratin treatment",
@@ -7591,13 +7644,13 @@
         "K-18 treatment",
         "Olaplex treatment",
         "Traditional sew-in / leave out",
-        "Tracks (per row)",
+        "Tracks / Silk press + tracks",
         "LA weave",
         "Sew-in take-down",
         "Cornrows / Twists",
         "Custom wig",
         "Twist out / Flexi rod",
-        "Tracks (per row)"
+        "Tracks / Silk press + tracks"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -7622,10 +7675,10 @@
       "websiteUrl": "https://majestikstyles.co.uk/pages/book-an-appoinntment",
       "instagramUrl": "https://www.instagram.com/majestikstyles/",
       "services": [
-        "Clip-ins",
+        "Clip ins / Silk press + Clip ins",
         "Half up half down",
         "Traditional sew-in / leave out",
-        "Tape-ins",
+        "Tape ins / Silk press + Tape ins",
         "Microlinks",
         "Ponytail / bun",
         "Keratin treatment",
@@ -7661,9 +7714,13 @@
     {
       "id": "maos-abencoadas",
       "name": "Maos Abencoadas",
-      "areaId": "essex",
-      "areaLabel": "Essex",
-      "neighbourhood": "Essex",
+      "areaId": "east",
+      "areaIds": [
+        "east",
+        "essex"
+      ],
+      "areaLabel": "East",
+      "neighbourhood": "East London / Essex",
       "postcode": "",
       "bookingPlatform": "Instagram",
       "bookingUrl": "https://www.instagram.com/maosabencoadas/",
@@ -7674,9 +7731,9 @@
         "Box braids",
         "Traditional sew-in / leave out",
         "Full head colour",
-        "Tracks (per row)",
+        "Tracks / Silk press + tracks",
         "Highlights",
-        "Tape-ins",
+        "Tape ins / Silk press + Tape ins",
         "Cornrows / Twists",
         "Ponytail / bun"
       ],
@@ -7842,7 +7899,7 @@
         "Balayage",
         "Highlights",
         "Traditional sew-in / leave out",
-        "Tracks (per row)"
+        "Tracks / Silk press + tracks"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -8041,7 +8098,7 @@
         "K-tips / Invisible strands",
         "LA weave",
         "Microlinks",
-        "Tape-ins"
+        "Tape ins / Silk press + Tape ins"
       ],
       "summary": "Manual Instagram-led entry added from your London-wide extensions list.",
       "source": "manual",
@@ -8067,7 +8124,7 @@
       "instagramUrl": "https://www.instagram.com/mklacedit/",
       "services": [
         "Wig install",
-        "Tape-ins"
+        "Tape ins / Silk press + Tape ins"
       ]
     },
     {
@@ -8147,7 +8204,7 @@
         "Ponytail / bun",
         "Relaxer",
         "Keratin treatment",
-        "Tracks (per row)",
+        "Tracks / Silk press + tracks",
         "Natural hair education"
       ],
       "summary": "Manual entry added from your latest salon update batch.",
@@ -8194,15 +8251,15 @@
         "Traditional sew-in / leave out",
         "Wash & blowdry",
         "Trim / Hair cut",
-        "Silk press",
         "Full head colour",
         "Highlights",
         "Keratin treatment",
         "Olaplex treatment",
         "Curly cut / Wash & go",
-        "Clip-ins",
-        "Tape-ins",
-        "LA weave"
+        "Clip ins / Silk press + Clip ins",
+        "Tape ins / Silk press + Tape ins",
+        "LA weave",
+        "Cornrows / Twists"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -8210,6 +8267,33 @@
         "User-provided Instagram handle awaiting categorisation."
       ],
       "hijabiFriendly": true
+    },
+    {
+      "id": "mz-parlour",
+      "name": "Mz Parlour",
+      "areaId": "east",
+      "areaLabel": "East",
+      "neighbourhood": "East London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://mzparlour.as.me/schedule/00284c6f",
+      "websiteUrl": "https://mzparlour.as.me/schedule/00284c6f",
+      "instagramUrl": "https://www.instagram.com/mzparlour/",
+      "services": [
+        "Wig install",
+        "Wig colour",
+        "Custom wig",
+        "Traditional sew-in / leave out",
+        "Closure sew-in",
+        "Quick weave",
+        "Frontal sew-in",
+        "Flipover / Versatile sew-in"
+      ],
+      "summary": "Manual entry added from your East London salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ]
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -8358,7 +8442,7 @@
       "services": [
         "Traditional sew-in / leave out",
         "Closure sew-in",
-        "Tape-ins"
+        "Tape ins / Silk press + Tape ins"
       ]
     },
     {
@@ -8469,7 +8553,8 @@
         "Silk press",
         "Traditional sew-in / leave out",
         "Trim / Hair cut",
-        "Half up half down"
+        "Half up half down",
+        "Tracks / Silk press + tracks"
       ]
     },
     {
@@ -8573,7 +8658,7 @@
         "Relaxer",
         "Cornrows / Twists",
         "Traditional sew-in / leave out",
-        "Tracks (per row)",
+        "Tracks / Silk press + tracks",
         "Silk press",
         "Scalp care",
         "Moisturising treatment"
@@ -8685,13 +8770,15 @@
       "websiteUrl": "https://onlyluxhair.as.me/schedule/da6ac561",
       "instagramUrl": "https://www.instagram.com/onlyluxhair/",
       "services": [
-        "Tape-ins",
+        "Tape ins / Silk press + Tape ins",
         "Silk press",
         "Wash & blowdry",
         "Traditional sew-in / leave out",
         "Flipover / Versatile sew-in",
         "Hybrid sew-in",
-        "Updo"
+        "Updo",
+        "Sew-in take-down",
+        "Tracks / Silk press + tracks"
       ]
     },
     {
@@ -8739,7 +8826,7 @@
         "Texture release",
         "Relaxer",
         "Traditional sew-in / leave out",
-        "Tracks (per row)",
+        "Tracks / Silk press + tracks",
         "U-Part wig install"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
@@ -8812,7 +8899,7 @@
         "Custom wig",
         "Keratin treatment",
         "Trim / Hair cut",
-        "Tracks (per row)"
+        "Tracks / Silk press + tracks"
       ],
       "summary": "Starter verified entry for a South East London salon the project identified as relevant for textured-hair clients looking for smoothing and care services.",
       "source": "manual",
@@ -8873,7 +8960,7 @@
         "Bridal / Editorial",
         "Wig install",
         "Olaplex treatment",
-        "Tape-ins",
+        "Tape ins / Silk press + Tape ins",
         "Relaxer",
         "Traditional sew-in / leave out",
         "Ponytail / bun",
@@ -8906,7 +8993,8 @@
         "Olaplex treatment",
         "Keratin treatment",
         "K-18 treatment",
-        "Relaxer"
+        "Relaxer",
+        "Natural hair education"
       ]
     },
     {
@@ -8948,11 +9036,11 @@
       "services": [
         "K-tips / Invisible strands",
         "LA weave",
-        "Clip-ins",
+        "Clip ins / Silk press + Clip ins",
         "Silk press",
         "Texture release",
         "Half up half down",
-        "Tape-ins",
+        "Tape ins / Silk press + Tape ins",
         "Traditional sew-in / leave out",
         "Flipover / Versatile sew-in",
         "Closure sew-in",
@@ -9098,7 +9186,7 @@
       "instagramUrl": "https://www.instagram.com/pheliamarie/",
       "services": [
         "Full head colour",
-        "Tape-ins",
+        "Tape ins / Silk press + Tape ins",
         "LA weave",
         "Wash & blowdry",
         "Cornrows / Twists",
@@ -9165,7 +9253,7 @@
         "Flipover / Versatile sew-in",
         "Traditional sew-in / leave out",
         "Half up half down",
-        "Tracks (per row)"
+        "Tracks / Silk press + tracks"
       ]
     },
     {
@@ -9285,7 +9373,7 @@
         "Frontal sew-in",
         "Traditional sew-in / leave out",
         "Quick weave",
-        "Tape-ins",
+        "Tape ins / Silk press + Tape ins",
         "Hybrid sew-in",
         "Bridal / Editorial"
       ],
@@ -9584,7 +9672,7 @@
         "K-tips / Invisible strands",
         "LA weave",
         "Microlinks",
-        "Tape-ins",
+        "Tape ins / Silk press + Tape ins",
         "Ponytail / bun",
         "Updo",
         "Half up half down",
@@ -9810,7 +9898,7 @@
         "Traditional sew-in / leave out",
         "Moisturising treatment",
         "Japanese straightening",
-        "Clip-ins",
+        "Clip ins / Silk press + Clip ins",
         "Balayage"
       ],
       "summary": "Manual entry added from your latest salon update batch.",
@@ -9855,7 +9943,8 @@
         "LA weave",
         "Microlinks",
         "Full head colour",
-        "Highlights"
+        "Highlights",
+        "Tracks / Silk press + tracks"
       ]
     },
     {
@@ -9905,7 +9994,7 @@
         "Trim / Hair cut",
         "Wash & blowdry",
         "Texture release",
-        "Tracks (per row)",
+        "Tracks / Silk press + tracks",
         "LA weave",
         "Sew-in take-down",
         "Full head colour",
@@ -9975,7 +10064,7 @@
         "Highlights",
         "Balayage",
         "LA weave",
-        "Tape-ins",
+        "Tape ins / Silk press + Tape ins",
         "Hybrid sew-in",
         "Traditional sew-in / leave out",
         "Wash & blowdry",
@@ -9983,7 +10072,8 @@
         "Silk press",
         "Relaxer",
         "Wig install",
-        "Custom wig"
+        "Custom wig",
+        "Tracks / Silk press + tracks"
       ],
       "summary": "Manual entry added from your latest salon update batch.",
       "source": "manual",
@@ -10014,7 +10104,7 @@
         "Half braids, half sew-in",
         "Traditional sew-in / leave out",
         "Knotless braids",
-        "Tape-ins",
+        "Tape ins / Silk press + Tape ins",
         "Wash & blowdry",
         "Flipover / Versatile sew-in"
       ]
@@ -10128,7 +10218,7 @@
       "websiteUrl": "https://serenehairlounge.as.me/schedule/c9db4f48",
       "instagramUrl": "https://www.instagram.com/serenehairlounge/",
       "services": [
-        "Tape-ins",
+        "Tape ins / Silk press + Tape ins",
         "Microlinks",
         "Wash & blowdry",
         "Traditional sew-in / leave out",
@@ -10196,11 +10286,11 @@
       "services": [
         "Closure sew-in",
         "Quick weave",
-        "Tape-ins",
+        "Tape ins / Silk press + Tape ins",
         "Traditional sew-in / leave out",
         "Feed-in braids",
         "Closure sew-in",
-        "Tape-ins",
+        "Tape ins / Silk press + Tape ins",
         "Hybrid sew-in"
       ],
       "summary": "Manual entry added from your South East London sew-in and wig install list.",
@@ -10246,7 +10336,7 @@
         "Closure sew-in",
         "Silk press",
         "Microlinks",
-        "Tape-ins",
+        "Tape ins / Silk press + Tape ins",
         "Relaxer",
         "Traditional sew-in / leave out",
         "Wash & blowdry",
@@ -10259,7 +10349,8 @@
         "Flipover / Versatile sew-in",
         "Hybrid sew-in",
         "Updo",
-        "U-Part wig install"
+        "U-Part wig install",
+        "Tracks / Silk press + tracks"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -10314,8 +10405,8 @@
         "Knotless braids",
         "Ponytail / bun",
         "Traditional sew-in / leave out",
-        "Tape-ins",
-        "Tracks (per row)",
+        "Tape ins / Silk press + Tape ins",
+        "Tracks / Silk press + tracks",
         "Wig install",
         "Custom wig"
       ]
@@ -10386,7 +10477,7 @@
       "services": [
         "Silk press",
         "Scalp care",
-        "Tape-ins",
+        "Tape ins / Silk press + Tape ins",
         "Full head colour",
         "Updo",
         "Traditional sew-in / leave out"
@@ -10543,7 +10634,7 @@
         "Silk press",
         "Feed-in braids",
         "Braid take-down",
-        "Tracks (per row)",
+        "Tracks / Silk press + tracks",
         "Traditional sew-in / leave out",
         "Silk press"
       ],
@@ -10798,10 +10889,10 @@
         "Box braids",
         "Traditional sew-in / leave out",
         "Moisturising treatment",
-        "Tracks (per row)",
+        "Tracks / Silk press + tracks",
         "Bridal / Editorial",
         "Crochet",
-        "Clip-ins"
+        "Clip ins / Silk press + Clip ins"
       ]
     },
     {
@@ -10824,7 +10915,7 @@
         "Traditional sew-in / leave out",
         "Closure sew-in",
         "K-tips / Invisible strands",
-        "Tape-ins",
+        "Tape ins / Silk press + Tape ins",
         "Microlinks",
         "LA weave",
         "Silk press",
@@ -10863,7 +10954,7 @@
         "Ponytail / bun",
         "Starter locs",
         "Retwist",
-        "Tape-ins",
+        "Tape ins / Silk press + Tape ins",
         "K-tips / Invisible strands",
         "Braid take-down",
         "Creative braids (e.g. patewo)"
@@ -10998,7 +11089,7 @@
         "Flipover / Versatile sew-in",
         "Ponytail / bun",
         "Updo",
-        "Tape-ins",
+        "Tape ins / Silk press + Tape ins",
         "LA weave",
         "Hair Botox",
         "Wig install",
@@ -11247,7 +11338,7 @@
       "instagramUrl": "https://www.instagram.com/stylesbyfarahpearl/",
       "services": [
         "K-tips / Invisible strands",
-        "Tape-ins",
+        "Tape ins / Silk press + Tape ins",
         "Microlinks",
         "Texture release",
         "Silk press",
@@ -11292,7 +11383,7 @@
         "Silk press",
         "Sew-in take-down",
         "Braid take-down",
-        "Tape-ins",
+        "Tape ins / Silk press + Tape ins",
         "Keratin treatment",
         "Texture release",
         "Retwist",
@@ -11431,16 +11522,6 @@
         "Frontal sew-in",
         "Traditional sew-in / leave out",
         "Wig install",
-        "Moisturising treatment",
-        "Silk press",
-        "Full head colour",
-        "Ponytail / bun",
-        "Updo",
-        "Half up half down",
-        "K-tips / Invisible strands",
-        "LA weave",
-        "Microlinks",
-        "Tape-ins",
         "Custom wig"
       ],
       "summary": "Manual entry added from your South East London sew-in and wig install list, expanded with natural hair, colour, styling, and extensions.",
@@ -11467,7 +11548,7 @@
       "instagramUrl": "https://www.instagram.com/tapesnco.ldn/",
       "services": [
         "K-tips / Invisible strands",
-        "Tape-ins",
+        "Tape ins / Silk press + Tape ins",
         "Traditional sew-in / leave out",
         "Flipover / Versatile sew-in",
         "Closure sew-in",
@@ -11536,7 +11617,7 @@
         "Braid take-down",
         "Sew-in take-down",
         "Traditional sew-in / leave out",
-        "Tracks (per row)"
+        "Tracks / Silk press + tracks"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -11607,7 +11688,7 @@
         "Frontal sew-in",
         "Traditional sew-in / leave out",
         "Wig install",
-        "Tape-ins",
+        "Tape ins / Silk press + Tape ins",
         "Knotless braids",
         "Keratin treatment",
         "Relaxer",
@@ -11730,13 +11811,13 @@
         "Keratin treatment",
         "Scalp care",
         "Traditional sew-in / leave out",
-        "Clip-ins",
+        "Clip ins / Silk press + Clip ins",
         "Wash & blowdry",
         "Knotless braids",
         "Fulani / Lemonade braids",
         "Silk press",
         "Relaxer",
-        "Tracks (per row)"
+        "Tracks / Silk press + tracks"
       ]
     },
     {
@@ -11781,7 +11862,8 @@
       "services": [
         "Silk press",
         "Traditional sew-in / leave out",
-        "Keratin treatment"
+        "Keratin treatment",
+        "Tracks / Silk press + tracks"
       ]
     },
     {
@@ -11885,7 +11967,7 @@
         "Bridal / Editorial",
         "Wig install",
         "Custom wig",
-        "Tape-ins",
+        "Tape ins / Silk press + Tape ins",
         "Closure sew-in"
       ]
     },
@@ -11976,7 +12058,7 @@
         "Flipover / Versatile sew-in",
         "Wig colour",
         "Custom wig",
-        "Tracks (per row)",
+        "Tracks / Silk press + tracks",
         "U-Part wig install",
         "Pixie wig / weave install"
       ],
@@ -12278,7 +12360,7 @@
         "Closure sew-in",
         "Braid take-down",
         "Sew-in take-down",
-        "Tracks (per row)"
+        "Tracks / Silk press + tracks"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -12323,7 +12405,7 @@
       "instagramUrl": "https://www.instagram.com/thesilqmistsalon/",
       "services": [
         "Wig install",
-        "Tape-ins",
+        "Tape ins / Silk press + Tape ins",
         "Knotless braids",
         "Stitch braids",
         "Silk press"
@@ -12538,7 +12620,8 @@
         "Moisturising treatment",
         "Olaplex treatment",
         "Scalp care",
-        "Texture release"
+        "Texture release",
+        "Curly cut / Wash & go"
       ]
     },
     {
@@ -12568,13 +12651,10 @@
         "Half up half down",
         "Microlocs / Sisterlocs",
         "Box braids",
-        "Miracle knots"
+        "Miracle knots",
+        "Sew-in take-down"
       ],
-      "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
-      "source": "manual",
-      "evidence": [
-        "User-provided Instagram handle awaiting categorisation."
-      ]
+      "canBraidWithoutGel": true
     },
     {
       "id": "tthairbarldn",
@@ -12662,7 +12742,7 @@
         "Texture release",
         "Keratin treatment",
         "Relaxer",
-        "Tape-ins",
+        "Tape ins / Silk press + Tape ins",
         "Traditional sew-in / leave out",
         "Microlinks",
         "Flipover / Versatile sew-in",
@@ -12680,7 +12760,7 @@
         "Starter locs",
         "Ponytail / bun",
         "Wash & blowdry",
-        "Tracks (per row)",
+        "Tracks / Silk press + tracks",
         "Microlocs / Sisterlocs",
         "Crochet",
         "Boho braids / goddess braids"
@@ -12768,7 +12848,7 @@
         "Custom wig",
         "Wig install",
         "Closure sew-in",
-        "Tape-ins",
+        "Tape ins / Silk press + Tape ins",
         "Frontal sew-in",
         "Ponytail / bun",
         "Updo",
@@ -12823,8 +12903,8 @@
         "Quick weave",
         "Hybrid sew-in",
         "Sew-in take-down",
-        "Tape-ins",
-        "Clip-ins",
+        "Tape ins / Silk press + Tape ins",
+        "Clip ins / Silk press + Clip ins",
         "Wig install",
         "Half up half down",
         "K-18 treatment",
@@ -12919,7 +12999,7 @@
       "instagramUrl": "https://www.instagram.com/theybstudio.uk/",
       "services": [
         "Wash & blowdry",
-        "Tracks (per row)",
+        "Tracks / Silk press + tracks",
         "Sew-in take-down",
         "Braid take-down",
         "Traditional sew-in / leave out",
@@ -12929,7 +13009,7 @@
         "LA weave",
         "Half up half down",
         "Texture release",
-        "Tracks (per row)"
+        "Tracks / Silk press + tracks"
       ]
     },
     {
@@ -12976,7 +13056,7 @@
         "Custom wig",
         "Wig install",
         "Ponytail / bun",
-        "Tape-ins",
+        "Tape ins / Silk press + Tape ins",
         "Wig colour"
       ]
     },

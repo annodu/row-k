@@ -16,10 +16,10 @@ const categoryMap = {
     "Hybrid sew-in",
     "Pixie wig / weave install",
     "Sew-in take-down",
-    "Tracks (per row)",
+    "Tracks / Silk press + tracks",
   ],
   "wig-services": ["Wig install (frontal / closure)", "Wig colour", "Custom wig", "U-Part wig install", "Pixie wig / weave install"],
-  "extension-services": ["K-tips / Invisible strands", "LA weave", "Tape-ins", "Microlinks", "Clip-ins"],
+  "extension-services": ["K-tips / Invisible strands", "LA weave", "Tape ins / Silk press + Tape ins", "Microlinks", "Clip ins / Silk press + Clip ins"],
   "bridal-session-services": ["Bridal / Editorial"],
   "straightening-treatments": [
     "Keratin treatment",
@@ -64,6 +64,17 @@ const categoryMap = {
 };
 
 const serviceAliases = {
+  "Tracks (per row)": "Tracks / Silk press + tracks",
+  "Rows of tracks": "Tracks / Silk press + tracks",
+  "Rows of Tracks": "Tracks / Silk press + tracks",
+  "Silk press + tracks": "Tracks / Silk press + tracks",
+  "Silk press with tracks": "Tracks / Silk press + tracks",
+  "Clip-ins": "Clip ins / Silk press + Clip ins",
+  "Clip ins": "Clip ins / Silk press + Clip ins",
+  "Silk press + clip-ins": "Clip ins / Silk press + Clip ins",
+  "Silk press + Clip ins": "Clip ins / Silk press + Clip ins",
+  "Silk press with clip-ins": "Clip ins / Silk press + Clip ins",
+  "Silk press with Clip ins": "Clip ins / Silk press + Clip ins",
   "Flipover sew-in": "Flipover / Versatile sew-in",
   "Boho braids / microbraids": "Boho braids / goddess braids",
   "Goddess braids": "Boho braids / goddess braids",
