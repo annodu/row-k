@@ -2,7 +2,7 @@
   "meta": {
     "source": "manual",
     "updatedAt": "2026-05-02T00:00:00.000Z",
-    "count": 481,
+    "count": 482,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
@@ -6130,7 +6130,8 @@
         "Knotless braids",
         "Fulani / Lemonade braids",
         "Feed-in braids",
-        "Crochet"
+        "Crochet",
+        "Tracks (per row)"
       ]
     },
     {
@@ -7658,6 +7659,34 @@
       ]
     },
     {
+      "id": "maos-abencoadas",
+      "name": "Maos Abencoadas",
+      "areaId": "essex",
+      "areaLabel": "Essex",
+      "neighbourhood": "Essex",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/maosabencoadas/",
+      "websiteUrl": "https://www.instagram.com/maosabencoadas/",
+      "instagramUrl": "https://www.instagram.com/maosabencoadas/",
+      "services": [
+        "Silk press",
+        "Box braids",
+        "Traditional sew-in / leave out",
+        "Full head colour",
+        "Tracks (per row)",
+        "Highlights",
+        "Tape-ins",
+        "Cornrows / Twists",
+        "Ponytail / bun"
+      ],
+      "summary": "Manual entry added from your Essex salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ]
+    },
+    {
       "id": "mariah-ldn",
       "name": "Mariah LDN",
       "areaId": "south-east",
@@ -8710,7 +8739,8 @@
         "Texture release",
         "Relaxer",
         "Traditional sew-in / leave out",
-        "Tracks (per row)"
+        "Tracks (per row)",
+        "U-Part wig install"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -10512,7 +10542,10 @@
         "Stitch braids",
         "Silk press",
         "Feed-in braids",
-        "Braid take-down"
+        "Braid take-down",
+        "Tracks (per row)",
+        "Traditional sew-in / leave out",
+        "Silk press"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
