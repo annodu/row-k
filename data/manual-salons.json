@@ -2,7 +2,7 @@
   "meta": {
     "source": "manual",
     "updatedAt": "2026-05-02T00:00:00.000Z",
-    "count": 484,
+    "count": 490,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
@@ -648,6 +648,39 @@
         "Closure sew-in",
         "U-Part wig install",
         "Custom wig"
+      ]
+    },
+    {
+      "id": "annels-braids",
+      "name": "Annels Braids",
+      "areaId": "west",
+      "areaIds": [
+        "west",
+        "mobile"
+      ],
+      "areaLabel": "West",
+      "neighbourhood": "West London / Mobile",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/annelsbraids/",
+      "websiteUrl": "https://www.instagram.com/annelsbraids/",
+      "instagramUrl": "https://www.instagram.com/annelsbraids/",
+      "services": [
+        "Miracle knots",
+        "Butterfly locs",
+        "Faux locs",
+        "Twists (with extensions)",
+        "French curl",
+        "Boho braids / goddess braids",
+        "Cornrows / Twists",
+        "Box braids",
+        "Knotless braids",
+        "Feed-in braids"
+      ],
+      "summary": "Manual entry added from your West London and mobile braids update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
       ]
     },
     {
@@ -2995,6 +3028,33 @@
       ]
     },
     {
+      "id": "london-braid-boss",
+      "name": "London Braid Boss",
+      "areaId": "mobile",
+      "areaLabel": "Mobile",
+      "neighbourhood": "Mobile",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/londonbraidboss/",
+      "websiteUrl": "https://www.instagram.com/londonbraidboss/",
+      "instagramUrl": "https://www.instagram.com/londonbraidboss/",
+      "services": [
+        "French curl",
+        "Traditional sew-in / leave out",
+        "Fulani / Lemonade braids",
+        "Twists (with extensions)",
+        "Boho braids / goddess braids",
+        "Creative braids (e.g. patewo)",
+        "Wig install",
+        "Ponytail / bun"
+      ],
+      "summary": "Manual entry added from your mobile salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ]
+    },
+    {
       "summary": "Manual entry added from your latest salon update batch.",
       "source": "manual",
       "evidence": [
@@ -3362,6 +3422,31 @@
         "Wig colour",
         "Ponytail / bun"
       ]
+    },
+    {
+      "id": "eda-lnd",
+      "name": "Eda LND",
+      "areaId": "north-west",
+      "areaLabel": "North West",
+      "neighbourhood": "North West London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/eda.lnd/",
+      "websiteUrl": "https://www.instagram.com/eda.lnd/",
+      "instagramUrl": "https://www.instagram.com/eda.lnd/",
+      "services": [
+        "Traditional sew-in / leave out",
+        "Half braids, half sew-in",
+        "Flipover / Versatile sew-in",
+        "French curl",
+        "Fulani / Lemonade braids"
+      ],
+      "summary": "Manual entry added from your North West London salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "canBraidWithoutGel": true
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -7142,7 +7227,8 @@
         "Knotless braids",
         "Boho braids / goddess braids",
         "Fulani / Lemonade braids",
-        "French curl"
+        "French curl",
+        "Miracle knots"
       ],
       "canBraidWithoutGel": true,
       "summary": "Manual Instagram-led entry added from your South East London braids list.",
@@ -7741,7 +7827,8 @@
       "source": "manual",
       "evidence": [
         "User-provided manual addition."
-      ]
+      ],
+      "canBraidWithoutGel": true
     },
     {
       "id": "mariah-ldn",
@@ -11070,6 +11157,36 @@
       ]
     },
     {
+      "id": "steaze-glam",
+      "name": "Steaze Glam",
+      "areaId": "essex",
+      "areaLabel": "Essex",
+      "neighbourhood": "Essex",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://steazeglam.as.me/schedule/48e1d671",
+      "websiteUrl": "https://steazeglam.as.me/schedule/48e1d671",
+      "instagramUrl": "https://www.instagram.com/steazeglam/",
+      "services": [
+        "Boho braids / goddess braids",
+        "French curl",
+        "Fulani / Lemonade braids",
+        "Knotless braids",
+        "Faux locs",
+        "Cornrows / Twists",
+        "Pre-parting",
+        "Curly cut / Wash & go",
+        "Miracle knots",
+        "Stitch braids"
+      ],
+      "summary": "Manual entry added from your Essex salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "canBraidWithoutGel": true
+    },
+    {
       "id": "stephanie-lebby-hair-limited",
       "name": "Stephanie Lebby Hair Limited",
       "areaId": "south-east",
@@ -11121,6 +11238,34 @@
       "instagramUrl": "https://www.instagram.com/strandsldn/",
       "services": [
         "Silk press"
+      ]
+    },
+    {
+      "id": "studio29-uk",
+      "name": "Studio29 UK",
+      "areaId": "east",
+      "areaIds": [
+        "east",
+        "mobile"
+      ],
+      "areaLabel": "East",
+      "neighbourhood": "East London / Mobile",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/studio29.uk/",
+      "websiteUrl": "https://www.instagram.com/studio29.uk/",
+      "instagramUrl": "https://www.instagram.com/studio29.uk/",
+      "services": [
+        "Boho braids / goddess braids",
+        "French curl",
+        "Creative braids (e.g. patewo)",
+        "Knotless braids"
+      ],
+      "canBraidWithoutGel": true,
+      "summary": "Manual entry added from your East London and mobile braids update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
       ]
     },
     {
@@ -12653,6 +12798,37 @@
         "Box braids",
         "Miracle knots",
         "Sew-in take-down"
+      ],
+      "canBraidWithoutGel": true
+    },
+    {
+      "id": "tricho-naturals",
+      "name": "Tricho Naturals",
+      "areaId": "south-east",
+      "areaIds": [
+        "south-east",
+        "kent"
+      ],
+      "areaLabel": "South East",
+      "neighbourhood": "South East London / Kent",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/trichonaturals/",
+      "websiteUrl": "https://www.instagram.com/trichonaturals/",
+      "instagramUrl": "https://www.instagram.com/trichonaturals/",
+      "services": [
+        "Natural hair education",
+        "Curly cut / Wash & go",
+        "Scalp care",
+        "Cornrows / Twists",
+        "Wash & blowdry",
+        "Braid take-down",
+        "Trim / Hair cut"
+      ],
+      "summary": "Manual entry added from your South East London and Kent natural hair update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
       ],
       "canBraidWithoutGel": true
     },
