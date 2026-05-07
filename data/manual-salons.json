@@ -498,7 +498,7 @@
         "Curly cut / Wash & go",
         "Knotless braids",
         "Box braids",
-        "Microbraids",
+        "Microbraids / x-small braids",
         "Cornrows / Twists",
         "Starter locs",
         "Retwist",
@@ -705,7 +705,7 @@
         "Traditional sew-in / leave out",
         "Stitch braids",
         "Twists (with extensions)",
-        "Microbraids"
+        "Microbraids / x-small braids"
       ],
       "summary": "Manual entry added from your North London braids list.",
       "source": "manual",
@@ -761,7 +761,7 @@
         "Traditional sew-in / leave out",
         "Closure sew-in",
         "Custom wig",
-        "Microbraids",
+        "Microbraids / x-small braids",
         "Knotless braids",
         "Boho braids / goddess braids",
         "Bridal / Editorial",
@@ -1125,7 +1125,7 @@
         "Boho braids / goddess braids",
         "Faux locs",
         "Stitch braids",
-        "Microbraids"
+        "Microbraids / x-small braids"
       ],
       "summary": "Manual entry added from your Essex braids list.",
       "source": "manual",
@@ -2391,7 +2391,7 @@
         "Scalp care",
         "Full head colour",
         "Knotless braids",
-        "Microbraids",
+        "Microbraids / x-small braids",
         "Boho braids / goddess braids",
         "Feed-in braids",
         "Twists (with extensions)",
@@ -4031,7 +4031,7 @@
       "services": [
         "Faux locs",
         "Microlocs / Sisterlocs",
-        "Microbraids"
+        "Microbraids / x-small braids"
       ]
     },
     {
@@ -5158,7 +5158,7 @@
         "Wig install",
         "Relaxer",
         "Texture release",
-        "Microbraids",
+        "Microbraids / x-small braids",
         "Boho braids / goddess braids",
         "French curl",
         "Twists (with extensions)",
@@ -5915,7 +5915,7 @@
         "Knotless braids",
         "Twists (with extensions)",
         "French curl",
-        "Microbraids",
+        "Microbraids / x-small braids",
         "Pre-parting"
       ]
     },
@@ -7827,8 +7827,7 @@
       "source": "manual",
       "evidence": [
         "User-provided manual addition."
-      ],
-      "canBraidWithoutGel": true
+      ]
     },
     {
       "id": "mariah-ldn",
@@ -8260,7 +8259,7 @@
         "Bridal / Editorial",
         "Boho braids / goddess braids",
         "Half braids, half sew-in",
-        "Microbraids",
+        "Microbraids / x-small braids",
         "Faux locs",
         "Feed-in braids",
         "Cornrows / Twists",
@@ -9213,7 +9212,7 @@
         "Knotless braids",
         "Twists (with extensions)",
         "Faux locs",
-        "Microbraids",
+        "Microbraids / x-small braids",
         "Half braids, half sew-in",
         "Wash & blowdry",
         "Trim / Hair cut",
@@ -10859,7 +10858,7 @@
       "bookingPlatform": ".as.me",
       "bookingUrl": "https://slayedbylsbl.as.me",
       "websiteUrl": "https://slayedbylsbl.as.me",
-      "instagramUrl": "https://www.instagram.com/slayedbyl/",
+      "instagramUrl": "https://www.instagram.com/_slayedbyl/",
       "services": [
         "Wash & blowdry",
         "Half braids, half sew-in",
@@ -11511,7 +11510,7 @@
         "Microlinks",
         "Knotless braids",
         "Box braids",
-        "Microbraids",
+        "Microbraids / x-small braids",
         "Faux locs",
         "Full head colour",
         "Ponytail / bun",
