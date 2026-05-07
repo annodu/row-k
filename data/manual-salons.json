@@ -1,8 +1,8 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-05-02T00:00:00.000Z",
-    "count": 490,
+    "updatedAt": "2026-05-08T00:00:00.000Z",
+    "count": 491,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
@@ -4302,9 +4302,9 @@
     {
       "id": "goldenn-touch",
       "name": "Golden N Touch",
-      "areaId": "essex",
-      "areaLabel": "Essex",
-      "neighbourhood": "Essex",
+      "areaId": "north",
+      "areaLabel": "North",
+      "neighbourhood": "North London",
       "postcode": "",
       "bookingPlatform": ".as.me",
       "bookingUrl": "https://goldenntouchh.as.me/schedule/5b847e30",
@@ -4317,7 +4317,35 @@
         "Closure sew-in",
         "Pixie wig / weave install"
       ],
-      "summary": "Manual entry updated from your latest Essex salon update batch.",
+      "summary": "Manual entry updated from your latest North London salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ]
+    },
+    {
+      "id": "golden-n-touch-south-east",
+      "name": "Golden N Touch",
+      "areaId": "south-east",
+      "areaLabel": "South East",
+      "neighbourhood": "South East London",
+      "postcode": "",
+      "bookingPlatform": ".as.me",
+      "bookingUrl": "https://goldenntouch.as.me/schedule/4b9f4acd",
+      "websiteUrl": "https://goldenntouch.as.me/schedule/4b9f4acd",
+      "instagramUrl": "https://www.instagram.com/goldenntouch.co/",
+      "services": [
+        "Ponytail / bun",
+        "Wig install (frontal / closure)",
+        "Half up half down",
+        "Quick weave",
+        "Traditional sew-in / leave out",
+        "Closure sew-in",
+        "Flipover / Versatile sew-in",
+        "U-Part wig install",
+        "Custom wig"
+      ],
+      "summary": "Manual entry updated from your latest South East London ponytail, wig, quick weave, and sew-in list.",
       "source": "manual",
       "evidence": [
         "User-provided manual addition."
@@ -9603,28 +9631,23 @@
       ]
     },
     {
-      "id": "rb-hair-uk",
-      "name": "RB Hair UK",
+      "id": "rb-styles-uk",
+      "name": "RB Styles UK",
       "areaId": "east",
       "areaLabel": "East",
       "neighbourhood": "East London",
       "postcode": "",
-      "bookingPlatform": ".as.me",
-      "bookingUrl": "https://rbhair.as.me/schedule/d70828dd",
-      "websiteUrl": "https://rbhair.as.me/schedule/d70828dd",
-      "instagramUrl": "https://www.instagram.com/rbhairuk/",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/rbstyles.uk/",
+      "websiteUrl": "https://www.instagram.com/rbstyles.uk/",
+      "instagramUrl": "https://www.instagram.com/rbstyles.uk/",
       "services": [
+        "Wig install (frontal / closure)",
+        "Custom wig",
         "Ponytail / bun",
-        "Cornrows / Twists",
-        "Feed-in braids",
-        "Stitch braids",
-        "Half braids, half sew-in",
-        "Half up half down",
-        "Quick weave",
-        "Traditional sew-in / leave out",
-        "Wig install"
+        "Half up half down"
       ],
-      "summary": "Manual entry added from your East London braids, weave, sew-in, and wig install list.",
+      "summary": "Manual entry updated from your East London wig install, custom wig, ponytail, and half up half down list.",
       "source": "manual",
       "evidence": [
         "User-provided manual addition."
@@ -11666,7 +11689,8 @@
         "Frontal sew-in",
         "Traditional sew-in / leave out",
         "Wig install",
-        "Custom wig"
+        "Custom wig",
+        "U-Part wig install"
       ],
       "summary": "Manual entry added from your South East London sew-in and wig install list, expanded with natural hair, colour, styling, and extensions.",
       "source": "manual",
