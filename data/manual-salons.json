@@ -2835,8 +2835,12 @@
       "id": "cotresshairlounge",
       "name": "Cotresshairlounge",
       "areaId": "kent",
-      "areaLabel": "Kent",
-      "neighbourhood": "Kent",
+      "areaIds": [
+        "south-east",
+        "kent"
+      ],
+      "areaLabel": "South East London / Kent",
+      "neighbourhood": "South East London / Kent",
       "postcode": "",
       "bookingPlatform": "Booksy",
       "bookingUrl": "https://cotress.booksy.com",
@@ -4152,8 +4156,12 @@
       "id": "fbnhairuk",
       "name": "Fbnhairuk",
       "areaId": "kent",
-      "areaLabel": "Kent",
-      "neighbourhood": "Kent",
+      "areaIds": [
+        "south-east",
+        "kent"
+      ],
+      "areaLabel": "South East London / Kent",
+      "neighbourhood": "South East London / Kent",
       "postcode": "",
       "bookingPlatform": ".as.me",
       "bookingUrl": "https://fbnhairuk.as.me/schedule.php",
@@ -5512,8 +5520,12 @@
       "id": "hairbyamaraa",
       "name": "Hairbyamaraa",
       "areaId": "kent",
-      "areaLabel": "Kent",
-      "neighbourhood": "Kent",
+      "areaIds": [
+        "south-east",
+        "kent"
+      ],
+      "areaLabel": "South East London / Kent",
+      "neighbourhood": "South East London / Kent",
       "postcode": "",
       "bookingPlatform": "Instagram",
       "bookingUrl": "https://www.instagram.com/hairbyamaraa/",
@@ -13111,7 +13123,7 @@
         "south-east",
         "kent"
       ],
-      "areaLabel": "South East",
+      "areaLabel": "South East London / Kent",
       "neighbourhood": "South East London / Kent",
       "postcode": "",
       "bookingPlatform": "Instagram",
@@ -13138,8 +13150,12 @@
       "id": "tthairbarldn",
       "name": "Tthairbarldn",
       "areaId": "kent",
-      "areaLabel": "Kent",
-      "neighbourhood": "Kent",
+      "areaIds": [
+        "south-east",
+        "kent"
+      ],
+      "areaLabel": "South East London / Kent",
+      "neighbourhood": "South East London / Kent",
       "postcode": "",
       "bookingPlatform": ".as.me",
       "bookingUrl": "https://tthairbarldn.as.me",
@@ -13329,12 +13345,16 @@
       "id": "vstylsz",
       "name": "Vstylsz",
       "areaId": "kent",
-      "areaLabel": "Kent",
-      "neighbourhood": "Kent",
+      "areaIds": [
+        "south-east",
+        "kent"
+      ],
+      "areaLabel": "South East London / Kent",
+      "neighbourhood": "South East London / Kent",
       "postcode": "",
       "bookingPlatform": ".as.me",
-      "bookingUrl": "https://vstylsz.as.me",
-      "websiteUrl": "https://vstylsz.as.me",
+      "bookingUrl": "https://vstylsz.as.me/schedule/ed30d471",
+      "websiteUrl": "https://vstylsz.as.me/schedule/ed30d471",
       "instagramUrl": "https://www.instagram.com/vstylsz/",
       "services": [
         "Traditional sew-in / leave out",
