@@ -2,7 +2,7 @@
   "meta": {
     "source": "manual",
     "updatedAt": "2026-05-10T00:00:00.000Z",
-    "count": 501,
+    "count": 503,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
@@ -3134,6 +3134,29 @@
         "Half up half down",
         "Wig install",
         "Miracle knots"
+      ]
+    },
+    {
+      "id": "dbp-hair",
+      "name": "DBP Hair",
+      "areaId": "essex",
+      "areaLabel": "Essex",
+      "neighbourhood": "Ilford",
+      "postcode": "IG1",
+      "bookingPlatform": "Direct website",
+      "bookingUrl": "https://www.dbphair.com/dbp-hair-contact",
+      "websiteUrl": "https://www.dbphair.com/dbp-hair-contact",
+      "instagramUrl": "https://www.instagram.com/dbphair/",
+      "services": [
+        "Wig install (frontal / closure)",
+        "Custom wig"
+      ],
+      "summary": "Ilford wig specialist added from the supplied DBP Hair contact and Instagram links.",
+      "source": "manual",
+      "evidence": [
+        "User-provided Instagram profile: https://www.instagram.com/dbphair/",
+        "DBP Hair contact page: https://www.dbphair.com/dbp-hair-contact",
+        "User-provided service categories: wig install and custom wig."
       ]
     },
     {
@@ -13135,6 +13158,53 @@
       "source": "manual",
       "evidence": [
         "User-provided Instagram handle awaiting categorisation."
+      ]
+    },
+    {
+      "id": "uni-tinas-saloon",
+      "name": "Uni Tina's Saloon",
+      "areaId": "north",
+      "areaIds": [
+        "north",
+        "east"
+      ],
+      "areaLabel": "North & East",
+      "neighbourhood": "Stoke Newington",
+      "postcode": "",
+      "bookingPlatform": "Fresha",
+      "bookingUrl": "https://www.fresha.com/en-GB/a/uni-tinas-saloon-london-14-stoke-newington-high-street-v66n1cdn/booking",
+      "websiteUrl": "https://www.fresha.com/en-GB/a/uni-tinas-saloon-london-14-stoke-newington-high-street-v66n1cdn/booking",
+      "instagramUrl": "https://www.instagram.com/unitinassaloon/",
+      "services": [
+        "Wash & blowdry",
+        "Braid take-down",
+        "Moisturising treatment",
+        "Scalp care",
+        "Knotless braids",
+        "Fulani / Lemonade braids",
+        "Creative braids (e.g. patewo)",
+        "Boho braids / goddess braids",
+        "Feed-in braids",
+        "Cornrows / Twists",
+        "Retwist",
+        "Crochet",
+        "Wig install (frontal / closure)",
+        "Ponytail / bun",
+        "Traditional sew-in / leave out",
+        "Closure sew-in",
+        "Frontal sew-in",
+        "Silk press",
+        "Full head colour",
+        "Pixie / finger waves",
+        "Relaxer",
+        "Trim / Hair cut"
+      ],
+      "summary": "Stoke Newington salon added from the supplied Fresha and Instagram links, covering hair care, braids, cornrows, locs, crochet, wigs, ponytails, sew-ins, silk press, colour, cutting, and relaxer services.",
+      "source": "manual",
+      "evidence": [
+        "User-provided Instagram profile: https://www.instagram.com/unitinassaloon/",
+        "Fresha listing: Uni Tina's Saloon, 14 Stoke Newington High Street, London.",
+        "User-provided service menu includes Hair Care & Preparation, Braids & Singles, Natural Cornrows & Singles, Locs Care & Styling, Crochet Braids, Wig Services, Ponytail Collection, Weave / Sew-In Services, Silk Press & Finishing, Colour Services, Cutting & Shaping, Relaxer Services, and Add-ons."
       ]
     },
     {
