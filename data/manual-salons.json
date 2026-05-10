@@ -2,7 +2,7 @@
   "meta": {
     "source": "manual",
     "updatedAt": "2026-05-10T00:00:00.000Z",
-    "count": 503,
+    "count": 504,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
@@ -230,6 +230,34 @@
       "source": "manual",
       "evidence": [
         "User-provided manual addition."
+      ]
+    },
+    {
+      "id": "tayra-hair",
+      "name": "Tayra Hair",
+      "areaId": "all-london",
+      "areaLabel": "London",
+      "neighbourhood": "London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/tayrahair_/",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/tayrahair_/",
+      "services": [
+        "Knotless braids",
+        "Boho braids / goddess braids",
+        "Half braids, half sew-in",
+        "Microbraids / x-small braids",
+        "French curl",
+        "Stitch braids",
+        "Fulani / Lemonade braids",
+        "Feed-in braids"
+      ],
+      "summary": "Instagram-led braid specialist entry added from the supplied handle and service list.",
+      "source": "manual",
+      "evidence": [
+        "User-provided Instagram profile: https://www.instagram.com/tayrahair_/",
+        "User-provided services: knotless braids, boho braids, half braid half sew-in, micro braids, French curl, stitch braids, Fulani braids, and feed-in braids."
       ]
     },
     {
