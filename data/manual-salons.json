@@ -1,8 +1,8 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-05-08T00:00:00.000Z",
-    "count": 500,
+    "updatedAt": "2026-05-10T00:00:00.000Z",
+    "count": 501,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
@@ -12385,6 +12385,35 @@
       "services": [
         "Wig install",
         "Ponytail / bun"
+      ]
+    },
+    {
+      "id": "the-lace-suite",
+      "name": "The Lace Suite",
+      "areaId": "south-east",
+      "areaLabel": "South East",
+      "neighbourhood": "South East London",
+      "postcode": "SE2",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://thelacesuite.as.me/schedule/95e6dec5",
+      "websiteUrl": "https://thelacesuite.as.me/schedule/95e6dec5",
+      "instagramUrl": "https://www.instagram.com/thelacesuite/",
+      "services": [
+        "Wig install (frontal / closure)",
+        "Custom wig",
+        "Ponytail / bun",
+        "Updo",
+        "Tape ins / Silk press + Tape ins",
+        "Closure sew-in",
+        "Frontal sew-in",
+        "Traditional sew-in / leave out",
+        "Bridal / Editorial"
+      ],
+      "summary": "South East London lace, wig, ponytail, updo, tape-in, sew-in, and bridal styling specialist added from the supplied Instagram and Acuity booking links.",
+      "source": "manual",
+      "evidence": [
+        "User-provided Instagram profile: https://www.instagram.com/thelacesuite/",
+        "Acuity booking page: The Lace Suite services include wigs, frontal ponytails, tape-ins, closure sew-ins, frontal sew-ins, traditional leave-out sew-ins, and updo styling."
       ]
     },
     {
