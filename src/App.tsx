@@ -89,8 +89,8 @@ const categoryMap = {
     ],
   },
   "styling-services": {
-    label: "Style / Finish (Sew-in / Relaxer / texturiser)",
-    subcategories: ["all", "Half up half down", "Pixie / finger waves", "Ponytail / bun", "Updo"],
+    label: "Style / Finish (Sew-in / Frontal / Relaxer)",
+    subcategories: ["all", "Frontal ponytail / updo", "Half up half down", "Pixie / finger waves", "Sleek ponytail / updo"],
   },
   "straightening-treatments": {
     label: "Treatments",
@@ -159,7 +159,7 @@ const categoryServiceMap = {
     "Tracks / Silk press + tracks / Invisible sew-in",
     "Traditional sew-in / leave out",
   ],
-  "styling-services": ["Half up half down", "Pixie / finger waves", "Ponytail / bun", "Updo"],
+  "styling-services": ["Frontal ponytail / updo", "Half up half down", "Pixie / finger waves", "Sleek ponytail / updo"],
   "straightening-treatments": [
     "Hair Botox",
     "Japanese straightening",
