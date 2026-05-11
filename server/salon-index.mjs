@@ -23,7 +23,7 @@ const categoryMap = {
   "bridal-session-services": ["Bridal / Editorial"],
   "straightening-treatments": [
     "Keratin treatment",
-    "Relaxer",
+    "Relaxer / texturiser",
     "Texture release",
     "Japanese straightening",
     "Hair Botox",
@@ -103,6 +103,9 @@ const serviceAliases = {
   "Natural hair education": "Natural hair education",
   "Braid takedown": "Braid take-down",
   "Natural hair care": "Moisturising treatment",
+  Relaxer: "Relaxer / texturiser",
+  Texturiser: "Relaxer / texturiser",
+  Texturizer: "Relaxer / texturiser",
   Colour: "Full head colour",
   "Permanent colour": "Full head colour",
   "Permanent tint": "Full head colour",

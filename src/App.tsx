@@ -89,7 +89,7 @@ const categoryMap = {
     ],
   },
   "styling-services": {
-    label: "Style / Finish (Sew-in / Relaxer)",
+    label: "Style / Finish (Sew-in / Relaxer / texturiser)",
     subcategories: ["all", "Half up half down", "Pixie / finger waves", "Ponytail / bun", "Updo"],
   },
   "straightening-treatments": {
@@ -102,7 +102,7 @@ const categoryMap = {
       "Keratin treatment",
       "Moisturising treatment",
       "Olaplex treatment",
-      "Relaxer",
+      "Relaxer / texturiser",
       "Scalp care",
       "Texture release",
     ],
@@ -167,7 +167,7 @@ const categoryServiceMap = {
     "Keratin treatment",
     "Moisturising treatment",
     "Olaplex treatment",
-    "Relaxer",
+    "Relaxer / texturiser",
     "Scalp care",
     "Texture release",
   ],
