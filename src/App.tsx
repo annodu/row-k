@@ -589,13 +589,13 @@ export default function App() {
   const [selectedCategories, setSelectedCategories] = useState<ServiceCategoryId[]>([]);
   const [selectedSubcategories, setSelectedSubcategories] = useState<ServiceSubcategoryId[]>([]);
   const [results, setResults] = useState<SalonResult[]>([]);
-  const [sortOption, setSortOption] = useState<SortOption>("default");
+  const [sortOption, setSortOption] = useState<SortOption>("alphabetical-asc");
   const [draftSelectedRegions, setDraftSelectedRegions] = useState<RegionId[]>(["all"]);
   const [draftSelectedCategories, setDraftSelectedCategories] = useState<ServiceCategoryId[]>([]);
   const [draftSelectedSubcategories, setDraftSelectedSubcategories] = useState<ServiceSubcategoryId[]>([]);
   const [draftSelectedHijabiFriendly, setDraftSelectedHijabiFriendly] = useState(false);
   const [draftSelectedCanBraidWithoutGel, setDraftSelectedCanBraidWithoutGel] = useState(false);
-  const [draftSortOption, setDraftSortOption] = useState<SortOption>("default");
+  const [draftSortOption, setDraftSortOption] = useState<SortOption>("alphabetical-asc");
   const [visibleResultCount, setVisibleResultCount] = useState(RESULTS_BATCH_SIZE);
   const [isSearching, setIsSearching] = useState(false);
   const [searchError, setSearchError] = useState<string | null>(null);
@@ -764,7 +764,7 @@ export default function App() {
     updateRegions(["all"]);
     updateHijabiFriendly(false);
     updateCanBraidWithoutGel(false);
-    updateSortOption("default");
+    updateSortOption("alphabetical-asc");
   }
 
   function isCategorySelected(categoryId: ServiceCategoryId) {
@@ -1435,7 +1435,7 @@ export default function App() {
                   <select
                     id="sort-results"
                     aria-label="Sort results"
-                    value={currentSortOption === "default" ? "" : currentSortOption}
+                    value={currentSortOption}
                     onChange={(event) => {
                       const nextSort = event.target.value as SortOption;
                       trackUmamiEvent("sort_changed", { sort: nextSort });
@@ -1443,9 +1443,6 @@ export default function App() {
                     }}
                     className="min-h-11 w-full appearance-none rounded-none border border-stone-300 bg-stone-50 pl-4 pr-12 py-2 text-[13px] text-stone-900 outline-none transition-colors hover:border-stone-400 active:border-stone-400 focus:border-stone-950 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100 dark:hover:border-stone-500 dark:active:border-stone-500 dark:focus:border-stone-100"
                   >
-                    <option value="" hidden>
-                      Sort results
-                    </option>
                     {sortOptions.map((option) => (
                       <option key={option.id} value={option.id}>
                         {option.label}

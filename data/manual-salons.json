@@ -1,8 +1,8 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-05-12T17:56:51.730Z",
-    "count": 545,
+    "updatedAt": "2026-05-12T18:11:54.378Z",
+    "count": 546,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
@@ -15017,6 +15017,29 @@
         "User-provided Instagram profile: https://www.instagram.com/hairbycarollassey/",
         "User-provided booking page: https://hairbycarollassey.as.me/schedule/a94b4776",
         "User-provided service menu includes silk press, relaxers, trims, tracks, sew-ins, colour/highlights, Kerastase treatments, blowdry, and pixie cut services."
+      ]
+    },
+    {
+      "id": "bysandraamika",
+      "name": "By Sandra Amika",
+      "areaId": "north-west",
+      "areaLabel": "North West",
+      "neighbourhood": "North West London",
+      "postcode": "",
+      "bookingPlatform": ".as.me",
+      "bookingUrl": "https://bysandraamika.as.me/schedule/6f44aa66",
+      "websiteUrl": "https://bysandraamika.as.me/schedule/6f44aa66",
+      "instagramUrl": "https://www.instagram.com/bysandraamika/",
+      "services": [
+        "Custom wig",
+        "Wig install (frontal / closure)"
+      ],
+      "summary": "Manual Instagram-led entry added from user-provided booking menu.",
+      "source": "manual",
+      "evidence": [
+        "User-provided Instagram profile: https://www.instagram.com/bysandraamika/",
+        "User-provided booking page: https://bysandraamika.as.me/schedule/6f44aa66",
+        "User-provided service menu includes handmade wigs, lace replacement/reinstall, styling, and ready-made wig services."
       ]
     }
   ]
