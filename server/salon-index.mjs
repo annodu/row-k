@@ -56,11 +56,11 @@ const categoryMap = {
     "Trim / Hair cut",
     "Silk press",
     "Twist out / Flexi rod",
-    "Cornrows / Twists",
+    "Cornrows / Twists / Underwig cornrows",
     "Natural hair education",
   ],
   "colour-services": ["Full head colour", "Highlights", "Balayage", "Wig colour"],
-  "styling-services": ["Sleek ponytail / updo", "Frontal ponytail / updo", "Half up half down", "Pixie / finger waves"],
+  "styling-services": ["Sleek ponytail / bun / updo", "Frontal ponytail / bun / updo", "Half up half down", "Pixie / finger waves"],
 };
 
 const serviceAliases = {
@@ -98,20 +98,27 @@ const serviceAliases = {
   microbraids: "Microbraids / x-small braids",
   "X-small braids": "Microbraids / x-small braids",
   "x-small braids": "Microbraids / x-small braids",
-  Ponytail: "Sleek ponytail / updo",
-  "Ponytail / bun": "Sleek ponytail / updo",
-  "Ponytail / updo": "Sleek ponytail / updo",
-  "Sleek ponytail": "Sleek ponytail / updo",
-  "Sleek ponytails": "Sleek ponytail / updo",
-  "Sleek bun": "Sleek ponytail / updo",
-  "Sleek updo": "Sleek ponytail / updo",
-  Updo: "Sleek ponytail / updo",
-  "Frontal ponytail": "Frontal ponytail / updo",
-  "Frontal ponytails": "Frontal ponytail / updo",
-  "Frontal ponytail updo": "Frontal ponytail / updo",
-  "Frontal ponytail / updo": "Frontal ponytail / updo",
-  Bun: "Sleek ponytail / updo",
+  Ponytail: "Sleek ponytail / bun / updo",
+  "Ponytail / bun": "Sleek ponytail / bun / updo",
+  "Ponytail / updo": "Sleek ponytail / bun / updo",
+  "Sleek ponytail": "Sleek ponytail / bun / updo",
+  "Sleek ponytail / updo": "Sleek ponytail / bun / updo",
+  "Sleek ponytails": "Sleek ponytail / bun / updo",
+  "Sleek bun": "Sleek ponytail / bun / updo",
+  "Sleek updo": "Sleek ponytail / bun / updo",
+  Updo: "Sleek ponytail / bun / updo",
+  "Frontal ponytail": "Frontal ponytail / bun / updo",
+  "Frontal ponytails": "Frontal ponytail / bun / updo",
+  "Frontal ponytail updo": "Frontal ponytail / bun / updo",
+  "Frontal ponytail / updo": "Frontal ponytail / bun / updo",
+  "Frontal ponytail / bun / updo": "Frontal ponytail / bun / updo",
+  Bun: "Sleek ponytail / bun / updo",
   "Crochet braids": "Crochet",
+  Cornrows: "Cornrows / Twists / Underwig cornrows",
+  "Cornrows / Twists": "Cornrows / Twists / Underwig cornrows",
+  "Underwig cornrows": "Cornrows / Twists / Underwig cornrows",
+  "Under wig cornrows": "Cornrows / Twists / Underwig cornrows",
+  "Wig cornrows": "Cornrows / Twists / Underwig cornrows",
   "Natural hair education": "Natural hair education",
   "Braid takedown": "Braid take-down",
   "Natural hair care": "Moisturising treatment",
@@ -162,11 +169,12 @@ const serviceAliases = {
 export async function readSalonIndex() {
   const manualIndex = await readIndexFile(manualIndexPath, "manual");
   const normalizedSalons = manualIndex.salons
-    .map((salon) => ({
+    .map((salon, addedIndex) => ({
       ...salon,
+      addedIndex,
       services: normalizeServices(salon.services),
     }))
-    .sort(compareSalons);
+    .sort(compareRecentlyAdded);
 
   return {
     meta: {
@@ -200,7 +208,7 @@ export async function searchSalons({
         matchesHijabiFriendly(salon, hijabiFriendly) &&
         matchesCanBraidWithoutGel(salon, canBraidWithoutGel),
     )
-    .sort(compareSalons);
+    .sort(compareRecentlyAdded);
 
   return {
     ok: true,
@@ -290,6 +298,10 @@ function compareSalons(left, right) {
   }
 
   return left.name.localeCompare(right.name);
+}
+
+function compareRecentlyAdded(left, right) {
+  return (right.addedIndex ?? 0) - (left.addedIndex ?? 0) || compareSalons(left, right);
 }
 
 function normalizeServices(services = []) {
