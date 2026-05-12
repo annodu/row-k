@@ -67,7 +67,7 @@ const categoryMap = {
   },
   "extension-services": {
     label: "Extensions",
-    subcategories: ["all", "Clip ins / Silk press + Clip ins", "K-tips / Invisible strands", "LA weave", "Microlinks", "Tape ins / Silk press + Tape ins"],
+    subcategories: ["all", "Clip ins / Silk press + Clip ins", "K-tips / Invisible strands", "LA weave", "Microlinks", "Tape ins"],
   },
   "locs-services": {
     label: "Locs",
@@ -89,8 +89,8 @@ const categoryMap = {
     ],
   },
   "styling-services": {
-    label: "Style / Finish (Sew-in / Frontal / Relaxer)",
-    subcategories: ["all", "Frontal ponytail / bun / updo", "Half up half down", "Pixie / finger waves", "Sleek ponytail / bun / updo"],
+    label: "Style (Sew-in / Relaxer)",
+    subcategories: ["all", "Frontal ponytail / bun", "Half up half down", "Pixie / finger waves", "Sleek ponytail / bun", "Updo"],
   },
   "straightening-treatments": {
     label: "Treatments",
@@ -108,7 +108,7 @@ const categoryMap = {
     ],
   },
   "natural-hair-services": {
-    label: "Wash / Style / Finish (Natural hair)",
+    label: "Wash / Style (Natural hair)",
     subcategories: [
       "all",
       "Cornrows / Twists / Underwig cornrows",
@@ -146,7 +146,7 @@ const categoryServiceMap = {
   ],
   "colour-services": ["Balayage", "Full head colour", "Highlights", "Wig colour"],
   "bridal-session-services": ["Bridal / Editorial"],
-  "extension-services": ["Clip ins / Silk press + Clip ins", "K-tips / Invisible strands", "LA weave", "Microlinks", "Tape ins / Silk press + Tape ins"],
+  "extension-services": ["Clip ins / Silk press + Clip ins", "K-tips / Invisible strands", "LA weave", "Microlinks", "Tape ins"],
   "locs-services": ["Butterfly locs", "Faux locs", "Microlocs / Sisterlocs", "Retwist", "Starter locs"],
   "sew-in-weave": [
     "Closure sew-in",
@@ -159,7 +159,7 @@ const categoryServiceMap = {
     "Tracks / Silk press + tracks / Invisible sew-in",
     "Traditional sew-in / leave out",
   ],
-  "styling-services": ["Frontal ponytail / bun / updo", "Half up half down", "Pixie / finger waves", "Sleek ponytail / bun / updo"],
+  "styling-services": ["Frontal ponytail / bun", "Half up half down", "Pixie / finger waves", "Sleek ponytail / bun", "Updo"],
   "straightening-treatments": [
     "Hair Botox",
     "Japanese straightening",
