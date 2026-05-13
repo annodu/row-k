@@ -14634,9 +14634,9 @@
     {
       "id": "fhairapy",
       "name": "Fhairapy",
-      "areaId": "west",
-      "areaLabel": "West",
-      "neighbourhood": "West",
+      "areaId": "south-east",
+      "areaLabel": "South East London",
+      "neighbourhood": "South East London",
       "postcode": "",
       "bookingPlatform": "Direct website",
       "bookingUrl": "https://fhairapy.as.me",
