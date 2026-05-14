@@ -1,8 +1,8 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-05-12T23:19:06.356Z",
-    "count": 552,
+    "updatedAt": "2026-05-14T00:00:00.000Z",
+    "count": 570,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
@@ -4728,8 +4728,8 @@
       "neighbourhood": "South East London",
       "postcode": "",
       "bookingPlatform": ".as.me",
-      "bookingUrl": "https://goldenntouch.as.me/schedule/4b9f4acd",
-      "websiteUrl": "https://goldenntouch.as.me/schedule/4b9f4acd",
+      "bookingUrl": "",
+      "websiteUrl": "",
       "instagramUrl": "https://www.instagram.com/goldenntouch.co/",
       "services": [
         "Sleek ponytail / bun",
@@ -6806,11 +6806,10 @@
       "name": "Jaam Hair",
       "areaId": "south-east",
       "areaIds": [
-        "south-east",
-        "mobile"
+        "south-east"
       ],
       "areaLabel": "South East",
-      "neighbourhood": "South East London and Mobile",
+      "neighbourhood": "South East London",
       "postcode": "",
       "bookingPlatform": "Instagram",
       "bookingUrl": "https://www.instagram.com/jaam.hair/",
@@ -11846,10 +11845,15 @@
       ]
     },
     {
-      "summary": "Manual entry added from your latest salon update batch.",
+      "summary": "Manual Instagram-led entry updated from user-provided booking menu.",
       "source": "manual",
       "evidence": [
-        "User-provided manual addition."
+        "User-provided manual addition.",
+        "User-provided manual update on 2026-05-14.",
+        "Instagram source: https://www.instagram.com/styledbybarros/",
+        "Booking source: https://styledbybarros.as.me/schedule/55371554",
+        "User-provided location: North.",
+        "User-provided service menu includes leave-out sew-in, sew-in maintenance, styling for installed sew-ins/wigs, and versatile/flipover sew-in."
       ],
       "id": "styled-by-barros",
       "name": "Styled by Barros",
@@ -11857,7 +11861,7 @@
       "areaLabel": "North",
       "neighbourhood": "North London",
       "postcode": "",
-      "bookingPlatform": "Acuity",
+      "bookingPlatform": ".as.me",
       "bookingUrl": "https://styledbybarros.as.me/schedule/55371554",
       "websiteUrl": "https://styledbybarros.as.me/schedule/55371554",
       "instagramUrl": "https://www.instagram.com/styledbybarros/",
@@ -11956,13 +11960,12 @@
       ],
       "id": "styled-by-wasike",
       "name": "Styled by Wasike",
-      "areaId": "all-london",
+      "areaId": "london",
       "areaIds": [
-        "all-london",
-        "mobile"
+        "london"
       ],
       "areaLabel": "London",
-      "neighbourhood": "London and Mobile",
+      "neighbourhood": "London",
       "postcode": "",
       "bookingPlatform": "Instagram",
       "bookingUrl": "https://www.instagram.com/styledbywasike/",
@@ -13969,56 +13972,6 @@
       "evidence": [
         "User-provided manual addition."
       ],
-      "id": "zateesha-barbour",
-      "name": "Zateesha Barbour",
-      "areaId": "south-east",
-      "areaLabel": "South East",
-      "neighbourhood": "South East London",
-      "postcode": "",
-      "bookingPlatform": "Fresha",
-      "bookingUrl": "https://www.fresha.com/a/zateesha-barbour-london-untype-uk-39-webber-street-edqojfqv/booking",
-      "websiteUrl": "https://www.fresha.com/a/zateesha-barbour-london-untype-uk-39-webber-street-edqojfqv/booking",
-      "instagramUrl": "https://www.instagram.com/zateeshahairstylist/",
-      "services": [
-        "Scalp care",
-        "Wash & blowdry"
-      ]
-    },
-    {
-      "summary": "Manual entry added from your latest salon update batch.",
-      "source": "manual",
-      "evidence": [
-        "User-provided manual addition."
-      ],
-      "id": "zateesha-hairstylist",
-      "name": "Zateesha Hairstylist",
-      "areaId": "central",
-      "areaIds": [
-        "central",
-        "south-east"
-      ],
-      "areaLabel": "Central",
-      "neighbourhood": "Central and South East London",
-      "postcode": "",
-      "bookingPlatform": "Instagram",
-      "bookingUrl": "https://www.instagram.com/zateeshahairstylist/",
-      "websiteUrl": "https://www.instagram.com/zateeshahairstylist/",
-      "instagramUrl": "https://www.instagram.com/zateeshahairstylist/",
-      "services": [
-        "Bridal / Editorial",
-        "Wash & blowdry",
-        "Trim / Hair cut",
-        "Curly cut / Wash & go",
-        "Full head colour",
-        "Traditional sew-in / leave out"
-      ]
-    },
-    {
-      "summary": "Manual entry added from your latest salon update batch.",
-      "source": "manual",
-      "evidence": [
-        "User-provided manual addition."
-      ],
       "id": "zks-touch",
       "name": "ZKs Touch",
       "areaId": "south-east",
@@ -14621,7 +14574,8 @@
         "Traditional sew-in / leave out",
         "Flipover / Versatile sew-in",
         "Closure sew-in",
-        "Custom wig"
+        "Custom wig",
+        "Bridal / Editorial"
       ],
       "summary": "Manual Instagram-led entry enriched from spreadsheet import.",
       "source": "manual",
@@ -15271,6 +15225,612 @@
         "Booking source: https://silkstylistuk.as.me/schedule/702b1040",
         "User-provided location: SE / Central.",
         "User-provided service menu includes tape-ins, LA weave, clip-ins, K-tip/invisible K-tip installs, I-tip/tape-in maintenance/removal, silk press, texture release, trim, and styling."
+      ]
+    },
+    {
+      "id": "moniquecharleshair",
+      "name": "Monique Charles Hair",
+      "areaId": "west",
+      "areaLabel": "West",
+      "neighbourhood": "West London",
+      "postcode": "",
+      "bookingPlatform": ".as.me",
+      "bookingUrl": "https://moniquecharleshair.as.me/schedule/6dd95b2d",
+      "websiteUrl": "https://moniquecharleshair.as.me/schedule/6dd95b2d",
+      "instagramUrl": "https://www.instagram.com/moniquecharleshair/",
+      "services": [
+        "Custom wig",
+        "Wig install (frontal / closure)",
+        "U-Part wig install",
+        "Traditional sew-in / leave out",
+        "Frontal sew-in",
+        "Closure sew-in",
+        "Flipover / Versatile sew-in",
+        "Half up half down",
+        "Frontal ponytail / bun",
+        "Sleek ponytail / bun",
+        "Pixie wig / weave install",
+        "Wig colour",
+        "Olaplex treatment",
+        "Moisturising treatment",
+        "Sew-in take-down"
+      ],
+      "summary": "Manual Instagram-led entry added from user-provided booking menu.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition on 2026-05-13.",
+        "Instagram source: https://www.instagram.com/moniquecharleshair/",
+        "Booking source: https://moniquecharleshair.as.me/schedule/6dd95b2d",
+        "User-provided location: West.",
+        "User-provided service menu includes custom frontal/closure/full lace/U-part/premade wigs, closure/frontal replacement, take out and reinstall, sew-in maintenance, styling, frontal/leave-out/vixen/pixie/closure sew-ins, lace frontal ponytail, ponytail, extension colouring, Olaplex repair, strengthening, protein/moisture, hot oil, and hydration treatments."
+      ]
+    },
+    {
+      "id": "slhairuk",
+      "name": "SL Hair UK",
+      "areaId": "north",
+      "areaLabel": "North",
+      "neighbourhood": "North London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/slhairuk/",
+      "services": [
+        "Wig install (frontal / closure)",
+        "Traditional sew-in / leave out",
+        "Bridal / Editorial"
+      ],
+      "summary": "Manual Instagram-led entry added from user-provided service list.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition on 2026-05-13.",
+        "Instagram source: https://www.instagram.com/slhairuk/",
+        "User-provided location: N.",
+        "User-provided filters: WIG INSTALL, TRADITIONAL SEW IN, BRIDAL."
+      ]
+    },
+    {
+      "id": "chrissybales",
+      "name": "Chrissy Bales",
+      "areaId": "north-west",
+      "areaLabel": "North West",
+      "neighbourhood": "North West London",
+      "postcode": "",
+      "bookingPlatform": "Direct website",
+      "bookingUrl": "https://chrissybales.com/products/wig-consultation",
+      "websiteUrl": "https://chrissybales.com/products/wig-consultation",
+      "instagramUrl": "https://www.instagram.com/chrissybales/",
+      "services": [
+        "Custom wig"
+      ],
+      "summary": "Manual Instagram-led entry added from user-provided link and filter.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition on 2026-05-13.",
+        "Instagram source: https://www.instagram.com/chrissybales/",
+        "Booking source: https://chrissybales.com/products/wig-consultation",
+        "User-provided location: NW.",
+        "User-provided filter: custom wig."
+      ]
+    },
+    {
+      "id": "wondersbeautybar",
+      "name": "Wonders Beauty Bar",
+      "areaId": "kent",
+      "areaLabel": "Kent",
+      "neighbourhood": "Kent",
+      "postcode": "",
+      "bookingPlatform": ".as.me",
+      "bookingUrl": "https://wondersbeautybar.as.me/schedule/97d8e272",
+      "websiteUrl": "https://wondersbeautybar.as.me/schedule/97d8e272",
+      "instagramUrl": "https://www.instagram.com/wondersbeautybar/",
+      "services": [
+        "Custom wig",
+        "Wig install (frontal / closure)",
+        "U-Part wig install",
+        "Frontal ponytail / bun",
+        "Updo",
+        "Half up half down",
+        "Moisturising treatment"
+      ],
+      "summary": "Manual Instagram-led entry added from user-provided booking menu.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition on 2026-05-13.",
+        "Instagram source: https://www.instagram.com/wondersbeautybar/",
+        "Booking source: https://wondersbeautybar.as.me/schedule/97d8e272",
+        "User-provided location: Kent.",
+        "User-provided service menu includes custom lace frontal/mini frontal/closure wigs, premade wig install, U/V-part/half wig install, HD lace wigs, lace frontal pony/messy updo/bun, lace-free wigs, wig maintenance, lace frontal/closure/mini frontal replacement, and reinstall/styling."
+      ]
+    },
+    {
+      "id": "laurslounge",
+      "name": "Laurs Lounge",
+      "areaId": "south-east",
+      "areaLabel": "South East",
+      "neighbourhood": "South East London",
+      "postcode": "",
+      "bookingPlatform": ".as.me",
+      "bookingUrl": "https://laurslounge.as.me/schedule/4ca67d66",
+      "websiteUrl": "https://laurslounge.as.me/schedule/4ca67d66",
+      "instagramUrl": "https://www.instagram.com/laurslounge/",
+      "services": [
+        "Tape ins",
+        "Traditional sew-in / leave out",
+        "Flipover / Versatile sew-in",
+        "Quick weave",
+        "Half up half down",
+        "Hybrid sew-in",
+        "U-Part wig install"
+      ],
+      "summary": "Manual Instagram-led entry added from user-provided booking menu.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition on 2026-05-13.",
+        "Instagram source: https://www.instagram.com/laurslounge/",
+        "Booking source: https://laurslounge.as.me/schedule/4ca67d66",
+        "User-provided location: SE.",
+        "User-provided service menu includes tape-ins, tape-in removal/maintenance, middle/side/versatile sew-ins, half up half down quick weave, quick weave, hybrid sew-in, and U-part wig install."
+      ]
+    },
+    {
+      "id": "flawsrawsome",
+      "name": "Flaws Rawsome",
+      "areaId": "south-east",
+      "areaLabel": "South East",
+      "neighbourhood": "South East London",
+      "postcode": "",
+      "bookingPlatform": "Acuity Scheduling",
+      "bookingUrl": "https://app.acuityscheduling.com/schedule/7a634868/category/X19hbGxfXw%3D%3D",
+      "websiteUrl": "https://app.acuityscheduling.com/schedule/7a634868/category/X19hbGxfXw%3D%3D",
+      "instagramUrl": "https://www.instagram.com/flawsrawsome/",
+      "services": [
+        "Wig colour",
+        "Custom wig",
+        "Wig install (frontal / closure)",
+        "U-Part wig install",
+        "Silk press",
+        "Wash & blowdry",
+        "Quick weave",
+        "Closure sew-in",
+        "Traditional sew-in / leave out",
+        "Flipover / Versatile sew-in",
+        "Half up half down"
+      ],
+      "summary": "Manual Instagram-led entry added from user-provided booking menu.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition on 2026-05-13.",
+        "Instagram source: https://www.instagram.com/flawsrawsome/",
+        "Booking source: https://app.acuityscheduling.com/schedule/7a634868/category/X19hbGxfXw%3D%3D",
+        "User-provided location: SE.",
+        "User-provided service menu includes wig colour services for bundles/frontals/closures, custom lace frontal and closure wigs, U-part wig, premade frontal/closure wig installs, silk press, wash and blowdry, quick weaves, frontal/closure replacement, sew-in refresh, closure sew-in, traditional sew-in, versatile sew-in, flipover sew-in, and half up half down."
+      ]
+    },
+    {
+      "id": "joycekartistry",
+      "name": "Joyce Kartistry",
+      "areaId": "north",
+      "areaLabel": "North",
+      "neighbourhood": "North London",
+      "postcode": "",
+      "bookingPlatform": ".as.me",
+      "bookingUrl": "https://joycekartistry.as.me/schedule/ff7ebb69",
+      "websiteUrl": "https://joycekartistry.as.me/schedule/ff7ebb69",
+      "instagramUrl": "https://www.instagram.com/joycekartistry/",
+      "services": [
+        "Sleek ponytail / bun",
+        "Updo",
+        "Quick weave",
+        "Half up half down",
+        "Traditional sew-in / leave out",
+        "Flipover / Versatile sew-in",
+        "U-Part wig install"
+      ],
+      "summary": "Manual Instagram-led entry added from user-provided booking menu.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition on 2026-05-13.",
+        "Instagram source: https://www.instagram.com/joycekartistry/",
+        "Booking source: https://joycekartistry.as.me/schedule/ff7ebb69",
+        "User-provided location: North.",
+        "User-provided service menu includes sleek ponytails, messy bun/updo, braided ponytail, knot buns, sleek bun, side/middle/flipover quick weave, half up half down quick weave, traditional sew-in, versatile sew-in, flipover sew-in, and half wig installations."
+      ]
+    },
+    {
+      "id": "heautyldn",
+      "name": "Heauty LDN",
+      "areaId": "east",
+      "areaIds": [
+        "east",
+        "essex"
+      ],
+      "areaLabel": "East / Essex",
+      "neighbourhood": "East London / Essex",
+      "postcode": "",
+      "bookingPlatform": ".as.me",
+      "bookingUrl": "https://heautyyldn.as.me/schedule/6f4ea94b",
+      "websiteUrl": "https://heautyyldn.as.me/schedule/6f4ea94b",
+      "instagramUrl": "https://www.instagram.com/heautyldn/",
+      "services": [
+        "Custom wig",
+        "Wig install (frontal / closure)",
+        "Traditional sew-in / leave out",
+        "Closure sew-in",
+        "Flipover / Versatile sew-in",
+        "U-Part wig install",
+        "Frontal ponytail / bun",
+        "Sleek ponytail / bun",
+        "Half up half down"
+      ],
+      "summary": "Manual Instagram-led entry added from user-provided booking menu.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition on 2026-05-13.",
+        "Instagram source: https://www.instagram.com/heautyldn/",
+        "Booking source: https://heautyyldn.as.me/schedule/6f4ea94b",
+        "User-provided location: East / Essex.",
+        "User-provided service menu includes custom handmade frontal/mini frontal/closure wigs, frontal/closure replacements, premade frontal/mini frontal/closure wig installs, leave-out sew-in, closure sew-in, U-part wig sew-in, lace frontal ponytail, sleek ponytail, half up half down, lace reglue, and lace customisation without install."
+      ]
+    },
+    {
+      "id": "thebosslook",
+      "name": "The Boss Look",
+      "areaId": "south-east",
+      "areaLabel": "South East",
+      "neighbourhood": "South East London",
+      "postcode": "",
+      "bookingPlatform": "Direct website",
+      "bookingUrl": "https://www.thebosslook.com/book-online",
+      "websiteUrl": "https://www.thebosslook.com/book-online",
+      "instagramUrl": "https://www.instagram.com/thebosslook/",
+      "services": [
+        "Traditional sew-in / leave out",
+        "Flipover / Versatile sew-in",
+        "Closure sew-in",
+        "Frontal sew-in",
+        "Half braids, half sew-in",
+        "LA weave",
+        "Texture release",
+        "U-Part wig install",
+        "Custom wig",
+        "Wig install (frontal / closure)",
+        "Sleek ponytail / bun",
+        "Half up half down",
+        "Trim / Hair cut",
+        "Moisturising treatment",
+        "Wash & blowdry",
+        "Cornrows / Twists / Underwig cornrows"
+      ],
+      "summary": "Manual Instagram-led entry added from user-provided booking menu.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition on 2026-05-13.",
+        "Instagram source: https://www.instagram.com/thebosslook/",
+        "Booking source: https://www.thebosslook.com/book-online",
+        "User-provided location: SE.",
+        "User-provided service menu includes leave-out, versatile, flipover, closure and frontal sew-ins, bob cuts, full works takeout/reinstall, LA weave, LA weave with texture release, half braid/half weave, U-part wigs, custom closure/frontal wigs, natural ponytails, half up half down, trim, protein treatment, wash/restyle, frontal/closure wig installs, wig reinstalls, closure/frontal replacements, wash fit and style services."
+      ]
+    },
+    {
+      "id": "maisondecheveuxldn",
+      "name": "Maison de Cheveux LDN",
+      "areaId": "south-east",
+      "areaLabel": "South East",
+      "neighbourhood": "South East London",
+      "postcode": "",
+      "bookingPlatform": ".as.me",
+      "bookingUrl": "https://aishhairuk.as.me/schedule/5d016342",
+      "websiteUrl": "https://aishhairuk.as.me/schedule/5d016342",
+      "instagramUrl": "https://www.instagram.com/maisondecheveuxldn/",
+      "services": [
+        "Custom wig",
+        "Wig install (frontal / closure)",
+        "Wig colour",
+        "Frontal ponytail / bun",
+        "Traditional sew-in / leave out",
+        "Flipover / Versatile sew-in",
+        "Closure sew-in",
+        "Cornrows / Twists / Underwig cornrows"
+      ],
+      "summary": "Manual Instagram-led entry added from user-provided booking menu.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition on 2026-05-13.",
+        "Instagram source: https://www.instagram.com/maisondecheveuxldn/",
+        "Booking source: https://aishhairuk.as.me/schedule/5d016342",
+        "User-provided location: SE.",
+        "User-provided service menu includes wig cornrows, contactless custom frontal/closure wig units, wig customisation, frontal/closure replacement, jet black colouring for wigs/bundles with lace, frontal ponytails, traditional sew-in, versatile sew-in, closure sew-in, flipover sew-in, premade frontal/closure installs, frontal/closure reinstall, custom frontal/closure wig units, and frontal/closure replacement with install."
+      ]
+    },
+    {
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "id": "zateesha-hairstylist",
+      "name": "Zateesha Hairstylist",
+      "areaId": "central",
+      "areaIds": [
+        "central",
+        "south-east"
+      ],
+      "areaLabel": "Central",
+      "neighbourhood": "Central and South East London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/zateeshahairstylist/",
+      "websiteUrl": "https://www.instagram.com/zateeshahairstylist/",
+      "instagramUrl": "https://www.instagram.com/zateeshahairstylist/",
+      "services": [
+        "Bridal / Editorial",
+        "Wash & blowdry",
+        "Trim / Hair cut",
+        "Curly cut / Wash & go",
+        "Full head colour",
+        "Traditional sew-in / leave out"
+      ]
+    },
+    {
+      "id": "cg-hair",
+      "name": "CG Hair",
+      "areaId": "north",
+      "areaLabel": "North",
+      "neighbourhood": "North London",
+      "postcode": "",
+      "bookingPlatform": ".as.me",
+      "bookingUrl": "https://cghair.as.me/schedule/1c1751c8",
+      "websiteUrl": "https://cghair.as.me/schedule/1c1751c8",
+      "instagramUrl": "https://www.instagram.com/cghairr/",
+      "services": [
+        "Traditional sew-in / leave out",
+        "Closure sew-in",
+        "Flipover / Versatile sew-in",
+        "Custom wig",
+        "Wig install (frontal / closure)",
+        "Frontal ponytail / bun",
+        "Sleek ponytail / bun"
+      ],
+      "summary": "Manual Instagram-led entry added from user-provided booking menu.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition on 2026-05-14.",
+        "Instagram source: https://www.instagram.com/cghairr/",
+        "Booking source: https://cghair.as.me/schedule/1c1751c8",
+        "User-provided location: North London.",
+        "User-provided service menu includes bundle-and-install closure packages, traditional leave-out sew-ins, closure sew-ins, curly flipover sew-ins, custom frontal and closure wigs, pre-made wig installs, wig reinstalls, and frontal ponytail/bun services."
+      ]
+    },
+    {
+      "id": "bylextee",
+      "name": "Bylextee",
+      "areaId": "north",
+      "areaLabel": "North",
+      "neighbourhood": "North London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/bylextee/",
+      "websiteUrl": "https://www.instagram.com/bylextee/",
+      "instagramUrl": "https://www.instagram.com/bylextee/",
+      "services": [
+        "Traditional sew-in / leave out",
+        "Flipover / Versatile sew-in"
+      ],
+      "summary": "Manual Instagram-led entry added from user-provided service list.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition on 2026-05-14.",
+        "Instagram source: https://www.instagram.com/bylextee/",
+        "User-provided location: North.",
+        "User-provided filters: traditional sew-in, flipover sew-in."
+      ]
+    },
+    {
+      "id": "jb-the-hairstylist",
+      "name": "JB The Hairstylist",
+      "areaId": "east",
+      "areaLabel": "East",
+      "neighbourhood": "East London",
+      "postcode": "",
+      "bookingPlatform": ".as.me",
+      "bookingUrl": "https://jbhairstylist.as.me/schedule/e3272b25",
+      "websiteUrl": "https://jbhairstylist.as.me/schedule/e3272b25",
+      "instagramUrl": "https://www.instagram.com/jb.thehairstylist/",
+      "services": [
+        "Custom wig",
+        "U-Part wig install",
+        "Wig install (frontal / closure)",
+        "Traditional sew-in / leave out",
+        "Closure sew-in",
+        "Frontal sew-in",
+        "Flipover / Versatile sew-in",
+        "Half up half down",
+        "Cornrows / Twists / Underwig cornrows"
+      ],
+      "summary": "Manual Instagram-led entry added from user-provided booking menu.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition on 2026-05-14.",
+        "Instagram source: https://www.instagram.com/jb.thehairstylist/",
+        "Booking source: https://jbhairstylist.as.me/schedule/e3272b25",
+        "User-provided location: East.",
+        "User-provided service menu includes lace customisation, U-part wig construction and install, custom frontal and mini frontal wigs, pre-made wig installs, middle/side leave-out sew-ins, closure sew-ins, frontal sew-ins, flipover sew-ins, half up half down weave, wig re-installs, and lace replacement/install."
+      ]
+    },
+    {
+      "id": "madame-mariee",
+      "name": "Madame Mariee",
+      "areaId": "north",
+      "areaLabel": "North",
+      "neighbourhood": "North London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/madamemariee_/",
+      "websiteUrl": "https://www.instagram.com/madamemariee_/",
+      "instagramUrl": "https://www.instagram.com/madamemariee_/",
+      "services": [
+        "Wig install (frontal / closure)",
+        "Traditional sew-in / leave out"
+      ],
+      "summary": "Manual Instagram-led entry added from user-provided service list.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition on 2026-05-14.",
+        "Instagram source: https://www.instagram.com/madamemariee_/",
+        "User-provided location: North.",
+        "User-provided filters: wig install, traditional sew-in."
+      ]
+    },
+    {
+      "id": "k-luxe-hair",
+      "name": "K Luxe Hair",
+      "areaId": "south-east",
+      "areaLabel": "South East",
+      "neighbourhood": "South East London",
+      "postcode": "",
+      "bookingPlatform": ".as.me",
+      "bookingUrl": "https://kluxehair.as.me/schedule/4271e414",
+      "websiteUrl": "https://kluxehair.as.me/schedule/4271e414",
+      "instagramUrl": "https://www.instagram.com/_kluxehair/",
+      "services": [
+        "Clip ins / Silk press + Clip ins",
+        "Half up half down",
+        "Olaplex treatment",
+        "Wash & blowdry",
+        "Moisturising treatment",
+        "Sew-in take-down",
+        "Quick weave",
+        "Tape ins",
+        "Traditional sew-in / leave out",
+        "Hybrid sew-in",
+        "Flipover / Versatile sew-in",
+        "Sleek ponytail / bun",
+        "Updo"
+      ],
+      "summary": "Manual Instagram-led entry added from user-provided booking menu.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition on 2026-05-14.",
+        "Instagram source: https://www.instagram.com/_kluxehair/",
+        "Booking source: https://kluxehair.as.me/schedule/4271e414",
+        "User-provided location: SE.",
+        "User-provided service menu includes clip-ins, half up half down, Olaplex and moisture/repair treatments, wash and blowdry, style takedown, treatment/wash/install packages, quick weaves, tape-ins, middle/side/flipover sew-ins, hybrid half sew-in/half tape-ins, braided ponytails, ponytails, knot buns, messy buns, twisted buns, and spiked bun styles."
+      ]
+    },
+    {
+      "id": "kapri-sleeks",
+      "name": "Kapri Sleeks",
+      "areaId": "north",
+      "areaLabel": "North",
+      "neighbourhood": "North London",
+      "postcode": "",
+      "bookingPlatform": ".as.me",
+      "bookingUrl": "https://kaprisleeks.as.me/schedule/9c3041e7",
+      "websiteUrl": "https://kaprisleeks.as.me/schedule/9c3041e7",
+      "instagramUrl": "https://www.instagram.com/kaprisleeks/",
+      "services": [
+        "Sew-in take-down",
+        "Cornrows / Twists / Underwig cornrows",
+        "U-Part wig install",
+        "Quick weave",
+        "Half up half down",
+        "Traditional sew-in / leave out",
+        "Flipover / Versatile sew-in"
+      ],
+      "summary": "Manual Instagram-led entry added from user-provided booking menu.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition on 2026-05-14.",
+        "Instagram source: https://www.instagram.com/kaprisleeks/",
+        "Booking source: https://kaprisleeks.as.me/schedule/9c3041e7",
+        "User-provided location: North London.",
+        "User-provided service menu includes sew-in maintenance, under-wig cornrows, recreation hairstyles, U-part/half wigs, side/flipover/half up half down quick weaves, middle/side/flipover sew-ins, half up half down sew-in, versatile flipover, and two-part sew-in."
+      ]
+    },
+    {
+      "id": "branco-hair",
+      "name": "Branco Hair",
+      "areaId": "north",
+      "areaIds": [
+        "north",
+        "east"
+      ],
+      "areaLabel": "North / East",
+      "neighbourhood": "North and East London",
+      "postcode": "",
+      "bookingPlatform": "Direct website",
+      "bookingUrl": "https://www.brancohair.com/pages/services",
+      "websiteUrl": "https://www.brancohair.com/pages/services",
+      "instagramUrl": "https://www.instagram.com/brancohairr/",
+      "services": [
+        "Custom wig",
+        "Wig install (frontal / closure)",
+        "U-Part wig install",
+        "Cornrows / Twists / Underwig cornrows",
+        "Flipover / Versatile sew-in",
+        "Quick weave",
+        "Traditional sew-in / leave out"
+      ],
+      "summary": "Manual Instagram-led entry added from user-provided booking menu.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition on 2026-05-14.",
+        "Instagram source: https://www.instagram.com/brancohairr/",
+        "Booking source: https://www.brancohair.com/pages/services",
+        "User-provided location: North / East.",
+        "User-provided service menu includes custom lace frontal wigs, versatile/deep-side mini frontal wigs, pre-made closure/frontal lace unit customisation, custom U-part wigs, install-free custom wigs, flipover sew-ins, quick weaves, traditional leave-out sew-ins, wig restyle/reinstall, U-part wig reinstall, wig revamp/install, and frontal or mini frontal/closure replacement with or without install."
+      ]
+    },
+    {
+      "id": "dreaway-hair",
+      "name": "Dreaway Hair",
+      "areaId": "south-east",
+      "areaLabel": "South East",
+      "neighbourhood": "South East London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/dreawayhair/",
+      "websiteUrl": "https://www.instagram.com/dreawayhair/",
+      "instagramUrl": "https://www.instagram.com/dreawayhair/",
+      "services": [
+        "French curl",
+        "Boho braids / goddess braids",
+        "Half braids, half sew-in"
+      ],
+      "summary": "Manual Instagram-led entry added from user-provided service list.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition on 2026-05-14.",
+        "Instagram source: https://www.instagram.com/dreawayhair/",
+        "User-provided location: SE.",
+        "User-provided filters: french curl, boho braids, half braid half sew-in."
+      ]
+    },
+    {
+      "id": "c-gaskin-hair",
+      "name": "C Gaskin Hair",
+      "areaId": "kent",
+      "areaLabel": "Kent",
+      "neighbourhood": "Kent",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/cgaskinhair/",
+      "websiteUrl": "https://www.instagram.com/cgaskinhair/",
+      "instagramUrl": "https://www.instagram.com/cgaskinhair/",
+      "services": [
+        "Silk press",
+        "Texture release",
+        "Clip ins / Silk press + Clip ins"
+      ],
+      "summary": "Manual Instagram-led entry added from user-provided service list.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition on 2026-05-14.",
+        "Instagram source: https://www.instagram.com/cgaskinhair/",
+        "User-provided location: Kent.",
+        "User-provided filters: silk press, texture release, clip-ins."
       ]
     }
   ]

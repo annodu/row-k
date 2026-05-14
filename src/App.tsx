@@ -74,7 +74,7 @@ const categoryMap = {
     subcategories: ["all", "Butterfly locs", "Faux locs", "Microlocs / Sisterlocs", "Retwist", "Starter locs"],
   },
   "sew-in-weave": {
-    label: "Sew in / weave",
+    label: "Sew in / Weave",
     subcategories: [
       "all",
       "Closure sew-in",
@@ -89,7 +89,7 @@ const categoryMap = {
     ],
   },
   "styling-services": {
-    label: "Style (Sew-in / Relaxer)",
+    label: "Style (Sew-In / Frontal / Relaxer)",
     subcategories: ["all", "Frontal ponytail / bun", "Half up half down", "Pixie / finger waves", "Sleek ponytail / bun", "Updo"],
   },
   "straightening-treatments": {
@@ -1178,7 +1178,7 @@ export default function App() {
               <p className="mt-2 text-sm leading-7 text-rose-800 dark:text-rose-300">You can:</p>
               <ul className="mt-1 list-disc space-y-1 pl-5 text-sm leading-7 text-rose-800 dark:text-rose-300">
                 <li>
-                  Refresh or
+                  Refresh or 
                   <button
                     type="button"
                     onClick={() => window.location.reload()}
