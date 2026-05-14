@@ -1,8 +1,8 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-05-14T00:00:00.000Z",
-    "count": 570,
+    "updatedAt": "2026-05-15T00:00:00.000Z",
+    "count": 574,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
@@ -15831,6 +15831,138 @@
         "Instagram source: https://www.instagram.com/cgaskinhair/",
         "User-provided location: Kent.",
         "User-provided filters: silk press, texture release, clip-ins."
+      ]
+    },
+    {
+      "id": "hairtology-uk",
+      "name": "Hairtology UK",
+      "areaId": "south-east",
+      "areaLabel": "South East",
+      "neighbourhood": "South East London",
+      "postcode": "",
+      "bookingPlatform": ".as.me",
+      "bookingUrl": "https://hairtologyuk.as.me/schedule/34227bdb",
+      "websiteUrl": "https://hairtologyuk.as.me/schedule/34227bdb",
+      "instagramUrl": "https://www.instagram.com/hairtology_uk/",
+      "services": [
+        "Traditional sew-in / leave out",
+        "Closure sew-in",
+        "Frontal sew-in",
+        "Hybrid sew-in",
+        "Tracks / Silk press + tracks / Invisible sew-in",
+        "Flipover / Versatile sew-in",
+        "U-Part wig install",
+        "Tape ins",
+        "Microlinks",
+        "Custom wig",
+        "Wig install (frontal / closure)"
+      ],
+      "summary": "Manual Instagram-led entry added from user-provided booking menu.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition on 2026-05-14.",
+        "Instagram source: https://www.instagram.com/hairtology_uk/",
+        "Booking source: https://hairtologyuk.as.me/schedule/34227bdb",
+        "User-provided location: SE.",
+        "User-provided service menu includes traditional, closure, frontal, hybrid, invisible weft, versatile/flipover sew-ins, U-part wig, styling, tapes, I-tips, custom frontal/closure units, ready-made frontal/closure units, frontal/closure replacement, frontal/closure reinstallation, and 360/full lace wigs."
+      ]
+    },
+    {
+      "id": "hairology-by-christiana-e",
+      "name": "Hairology by Christiana E",
+      "areaId": "london",
+      "areaLabel": "London",
+      "neighbourhood": "London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/hairologybychristiana.e/",
+      "websiteUrl": "https://www.instagram.com/hairologybychristiana.e/",
+      "instagramUrl": "https://www.instagram.com/hairologybychristiana.e/",
+      "services": [
+        "Feed-in braids",
+        "Fulani / Lemonade braids",
+        "Half braids, half sew-in",
+        "U-Part wig install",
+        "Cornrows / Twists / Underwig cornrows",
+        "Flipover / Versatile sew-in"
+      ],
+      "summary": "Manual Instagram-led entry added from user-provided booking menu.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition on 2026-05-14.",
+        "Instagram source: https://www.instagram.com/hairologybychristiana.e/",
+        "User-provided service menu includes medium Alicia K feed-in braids, Fulani sew-ins, Fulani half-wig services, under-wig cornrows, and curly flipover sew-in."
+      ]
+    },
+    {
+      "id": "ifes-chair",
+      "name": "Ife's Chair",
+      "areaId": "east",
+      "areaLabel": "East",
+      "neighbourhood": "East London",
+      "postcode": "",
+      "bookingPlatform": ".as.me",
+      "bookingUrl": "https://ifeschair.as.me/schedule/4de3f4b2",
+      "websiteUrl": "https://ifeschair.as.me/schedule/4de3f4b2",
+      "instagramUrl": "https://www.instagram.com/ifeschair/",
+      "services": [
+        "Boho braids / goddess braids",
+        "Creative braids (e.g. patewo)",
+        "Fulani / Lemonade braids",
+        "Stitch braids",
+        "Faux locs",
+        "Butterfly locs",
+        "French curl",
+        "Half braids, half sew-in",
+        "Knotless braids",
+        "Retwist",
+        "Starter locs",
+        "Cornrows / Twists / Underwig cornrows",
+        "Sleek ponytail / bun",
+        "Quick weave",
+        "Half up half down",
+        "Flipover / Versatile sew-in",
+        "Traditional sew-in / leave out"
+      ],
+      "summary": "Manual Instagram-led entry added from user-provided booking menu.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition on 2026-05-14.",
+        "Instagram source: https://www.instagram.com/ifeschair/",
+        "Booking source: https://ifeschair.as.me/schedule/4de3f4b2",
+        "User-provided location: East.",
+        "User-provided service menu includes boho braids, Patewo, Fulani Kipeteka/Kipeteka/Shuku/stitch braided styles, butterfly or soft locs, French curl, Fulani braids, braids and sew-in, knotless braids, retwists, starter locs, natural braids/twists and stitch braids, ponytails, quick weaves, flipover sew-ins, middle/side part sew-ins, half up half down sew-ins, and sew-in bundle deals."
+      ]
+    },
+    {
+      "id": "crown-signed",
+      "name": "Crown Signed",
+      "areaId": "south-east",
+      "areaLabel": "South East",
+      "neighbourhood": "South East London",
+      "postcode": "",
+      "bookingPlatform": "Setmore",
+      "bookingUrl": "https://crownsigned.setmore.com/",
+      "websiteUrl": "https://crownsigned.setmore.com/",
+      "instagramUrl": "https://www.instagram.com/crownsigned/",
+      "services": [
+        "Wig install (frontal / closure)",
+        "Traditional sew-in / leave out",
+        "Closure sew-in",
+        "U-Part wig install",
+        "Scalp care",
+        "Braid take-down",
+        "Wash & blowdry",
+        "Cornrows / Twists / Underwig cornrows"
+      ],
+      "summary": "Manual Instagram-led entry added from user-provided booking menu.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition on 2026-05-15.",
+        "Instagram source: https://www.instagram.com/crownsigned/",
+        "Booking source: https://crownsigned.setmore.com/",
+        "User-provided location: SE.",
+        "User-provided service menu includes signature glueless wig install, sew-in leave-out or closure, U-part wig install, hair care subscription, braid takedown and detangling, luxury wash and scalp care, and cornrows protective base."
       ]
     }
   ]
