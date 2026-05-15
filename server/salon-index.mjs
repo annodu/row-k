@@ -147,6 +147,7 @@ const serviceAliases = {
   "Curly cut": "Curly cut / Wash & go",
   "Wash & blowdry / Blowout": "Wash & blowdry",
   Blowout: "Wash & blowdry",
+  "Silk Press / Finish": "Silk press",
   "Hair cut": "Trim / Hair cut",
   "Hair cut / Trim": "Trim / Hair cut",
   Trim: "Trim / Hair cut",
