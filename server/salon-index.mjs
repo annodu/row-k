@@ -6,7 +6,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const manualIndexPath = path.resolve(__dirname, "../data/manual-salons.json");
 
-const categoryMap = {
+export const categoryMap = {
   "sew-in-weave": [
     "Traditional sew-in / leave out",
     "Closure sew-in",
@@ -63,7 +63,7 @@ const categoryMap = {
   "styling-services": ["Sleek ponytail / bun", "Frontal ponytail / bun", "Half up half down", "Pixie / finger waves", "Updo"],
 };
 
-const serviceAliases = {
+export const serviceAliases = {
   "Tracks / Silk press + tracks": "Tracks (+ Silk press) / Partial / Invisible sew-in",
   "Tracks (per row)": "Tracks (+ Silk press) / Partial / Invisible sew-in",
   "Rows of tracks": "Tracks (+ Silk press) / Partial / Invisible sew-in",
@@ -320,6 +320,6 @@ function compareRecentlyAdded(left, right) {
   return (right.addedIndex ?? 0) - (left.addedIndex ?? 0) || compareSalons(left, right);
 }
 
-function normalizeServices(services = []) {
+export function normalizeServices(services = []) {
   return [...new Set(services.map((service) => serviceAliases[service] ?? service))];
 }

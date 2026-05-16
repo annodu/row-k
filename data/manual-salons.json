@@ -1,11 +1,37 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-05-15T00:00:00.000Z",
-    "count": 576,
+    "updatedAt": "2026-05-16T11:53:11.781Z",
+    "count": 577,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "ponytailclinic",
+      "name": "Ponytailclinic",
+      "areaId": "east",
+      "areaLabel": "East London",
+      "neighbourhood": "East London",
+      "postcode": "",
+      "bookingPlatform": "Direct",
+      "bookingUrl": "https://theponytailclinic.jena.site/",
+      "websiteUrl": "https://theponytailclinic.jena.site/",
+      "instagramUrl": "https://www.instagram.com/ponytailclinic/",
+      "services": [
+        "Traditional sew-in / leave out",
+        "Sleek ponytail / bun",
+        "Frontal ponytail / bun",
+        "Frontal sew-in",
+        "Half up half down",
+        "Updo",
+        "Pixie / finger waves"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/ponytailclinic/"
+      ]
+    },
     {
       "id": "3thirty-salon",
       "name": "3thirty Salon",
@@ -14841,8 +14867,8 @@
       "neighbourhood": "London",
       "postcode": "",
       "bookingPlatform": "Direct website",
-      "bookingUrl": "https://www.booklarostudios.as.me",
-      "websiteUrl": "https://www.booklarostudios.as.me",
+      "bookingUrl": "https://booklarostudios.as.me/schedule/3ac2c189",
+      "websiteUrl": "https://booklarostudios.as.me/schedule/3ac2c189",
       "instagramUrl": "https://www.instagram.com/larostudios/",
       "services": [
         "Bridal / Editorial",
@@ -16003,8 +16029,8 @@
       "areaLabel": "North",
       "neighbourhood": "North London",
       "postcode": "",
-      "bookingPlatform": "Direct website",
-      "bookingUrl": "https://www.alternativee.hair/book-now",
+      "bookingPlatform": ".as.me",
+      "bookingUrl": "https://alternativeehair.as.me/schedule/5612eb10",
       "websiteUrl": "https://www.alternativee.hair/book-now",
       "instagramUrl": "https://www.instagram.com/alternativeehair/",
       "services": [
@@ -16013,6 +16039,9 @@
         "Balayage",
         "Curly cut / Wash & go",
         "Starter locs",
+        "Retwist",
+        "Microlocs / Sisterlocs",
+        "Wig cornrows",
         "Twist out / Flexi rod",
         "Trim / Hair cut",
         "Wash & blowdry",
@@ -16026,9 +16055,9 @@
       "evidence": [
         "User-provided manual addition on 2026-05-16.",
         "Instagram source: https://www.instagram.com/alternativeehair/",
-        "Booking source: https://www.alternativee.hair/book-now",
+        "Booking source: https://alternativeehair.as.me/schedule/5612eb10",
         "Public listing source describes Alternativee Hair as London, UK; indexed profile snippet says the stylist is based at OVIEYA in North London.",
-        "User-provided service menu includes permanent dye, bleach and tone, creative colours, balayage, highlights, colour correction, curl definition wash-and-go, locs, natural hairstyles with no extensions, scissors cut, wash and blowdry/treatments, Avlon Texture Release, and silk press."
+        "User-provided service menu includes Avlon Texture Release with cleanse/treatment/trim, balayage, bleach and toner, colour correction, consultations, creative colour, curl definition wash-and-go, highlights, starter locs, microlocs, loc retwist/interlocking/crochet maintenance, wig cornrows, natural twists/plaits and Bantu knots, permanent hair colour, scissor cut, silk press, wash and blowdry, and wash/treatment/blowdry."
       ]
     }
   ]

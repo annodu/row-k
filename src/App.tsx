@@ -2,6 +2,7 @@ import { Fragment, type ReactNode, useEffect, useRef, useState } from "react";
 import { Check, ChevronDown, Globe } from "lucide-react";
 
 import { Checkbox } from "@/components/ui/checkbox";
+import { AdminApp } from "@/AdminApp";
 import { cn } from "@/lib/utils";
 
 declare global {
@@ -585,6 +586,10 @@ function ServicesSummary({ services }: { services: string[] }) {
 }
 
 export default function App() {
+  if (window.location.pathname.startsWith("/admin/stylists")) {
+    return <AdminApp />;
+  }
+
   const [selectedRegions, setSelectedRegions] = useState<RegionId[]>(["all"]);
   const [selectedCategories, setSelectedCategories] = useState<ServiceCategoryId[]>([]);
   const [selectedSubcategories, setSelectedSubcategories] = useState<ServiceSubcategoryId[]>([]);

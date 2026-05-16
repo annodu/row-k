@@ -1,6 +1,7 @@
 import http from "node:http";
 import express from "express";
 import { readSalonIndex, searchSalons, setNoStoreHeaders } from "./salon-index.mjs";
+import { registerAdminStylistRoutes } from "./admin-stylists.mjs";
 
 const app = express();
 const port = Number(process.env.PORT || 3001);
@@ -25,6 +26,8 @@ app.get("/api/index-status", async (_req, res) => {
   const index = await readSalonIndex();
   res.json({ ok: true, meta: index.meta });
 });
+
+registerAdminStylistRoutes(app);
 
 app.post("/api/search", async (req, res) => {
   const categories = Array.isArray(req.body?.categories)
