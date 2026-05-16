@@ -2,7 +2,7 @@
   "meta": {
     "source": "manual",
     "updatedAt": "2026-05-15T00:00:00.000Z",
-    "count": 574,
+    "count": 576,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
@@ -15963,6 +15963,72 @@
         "Booking source: https://crownsigned.setmore.com/",
         "User-provided location: SE.",
         "User-provided service menu includes signature glueless wig install, sew-in leave-out or closure, U-part wig install, hair care subscription, braid takedown and detangling, luxury wash and scalp care, and cornrows protective base."
+      ]
+    },
+    {
+      "id": "blessed-by-sj",
+      "name": "Blessed by SJ",
+      "areaId": "essex",
+      "areaLabel": "Essex",
+      "neighbourhood": "Essex",
+      "postcode": "",
+      "bookingPlatform": ".as.me",
+      "bookingUrl": "https://blessedbysj.as.me/schedule/538e43b6",
+      "websiteUrl": "https://blessedbysj.as.me/schedule/538e43b6",
+      "instagramUrl": "https://www.instagram.com/blessedbysj_/",
+      "services": [
+        "Highlights",
+        "Closure sew-in",
+        "Traditional sew-in / leave out",
+        "Flipover / Versatile sew-in",
+        "Hybrid sew-in",
+        "K-tips / Invisible strands",
+        "Wash & blowdry",
+        "Trim / Hair cut"
+      ],
+      "summary": "Manual Instagram-led entry added from user-provided booking menu.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition on 2026-05-15.",
+        "Instagram source: https://www.instagram.com/blessedbysj_/",
+        "Booking source: https://blessedbysj.as.me/schedule/538e43b6",
+        "User-provided location: Essex.",
+        "User-provided service menu includes blonde custom highlights, 2x6 and 5x5/6x6 closure sew-ins, traditional leave-out sew-in, flipover sew-in, versatile leave-out sew-in, two-part leave-out sew-in, hybrid K-tip sew-in, K-tip consultation/extensions/maintenance/removal, wash and blowdry, and trim."
+      ]
+    },
+    {
+      "id": "alternativee-hair",
+      "name": "Alternativee Hair",
+      "areaId": "north",
+      "areaLabel": "North",
+      "neighbourhood": "North London",
+      "postcode": "",
+      "bookingPlatform": "Direct website",
+      "bookingUrl": "https://www.alternativee.hair/book-now",
+      "websiteUrl": "https://www.alternativee.hair/book-now",
+      "instagramUrl": "https://www.instagram.com/alternativeehair/",
+      "services": [
+        "Full head colour",
+        "Highlights",
+        "Balayage",
+        "Curly cut / Wash & go",
+        "Starter locs",
+        "Twist out / Flexi rod",
+        "Trim / Hair cut",
+        "Wash & blowdry",
+        "Moisturising treatment",
+        "Texture release",
+        "Silk press"
+      ],
+      "summary": "Manual Instagram-led entry added from user-provided booking menu.",
+      "source": "manual",
+      "hijabiFriendly": true,
+      "evidence": [
+        "User-provided manual addition on 2026-05-16.",
+        "Instagram source: https://www.instagram.com/alternativeehair/",
+        "Booking source: https://www.alternativee.hair/book-now",
+        "Public listing source describes Alternativee Hair as London, UK; indexed profile snippet says the stylist is based at OVIEYA in North London.",
+        "User-provided service menu includes permanent dye, bleach and tone, creative colours, balayage, highlights, colour correction, curl definition wash-and-go, locs, natural hairstyles with no extensions, scissors cut, wash and blowdry/treatments, Avlon Texture Release, and silk press."
       ]
     }
   ]
