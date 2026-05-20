@@ -1,11 +1,558 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-05-16T11:53:11.781Z",
-    "count": 577,
+    "updatedAt": "2026-05-20T00:11:43.018Z",
+    "count": 600,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "fejiroboje",
+      "name": "Fejiroboje",
+      "areaId": "east",
+      "areaLabel": "East London",
+      "neighbourhood": "East London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://app.acuityscheduling.com/schedule/67700638?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQPOTM2NjE5NzQzMzkyNDU5AAGn49O9nJliexPKxDgpPRDMXo6oDEGohl3f6N6o5GFcMnq6NhcP3f8W6Xw5wbQ_aem_D-xXNYFgPCFUo7XeMdYLFA&utm_id=97760_v0_s00_e0_tv3",
+      "websiteUrl": "https://app.acuityscheduling.com/schedule/67700638?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQPOTM2NjE5NzQzMzkyNDU5AAGn49O9nJliexPKxDgpPRDMXo6oDEGohl3f6N6o5GFcMnq6NhcP3f8W6Xw5wbQ_aem_D-xXNYFgPCFUo7XeMdYLFA&utm_id=97760_v0_s00_e0_tv3",
+      "instagramUrl": "https://www.instagram.com/fejiroboje/",
+      "services": [
+        "Sew-in take-down",
+        "Traditional sew-in / leave out",
+        "Sleek ponytail / bun",
+        "Quick weave",
+        "Closure sew-in",
+        "Wig install (frontal / closure)",
+        "Highlights",
+        "Flipover / Versatile sew-in",
+        "Custom wig",
+        "Silk press"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/fejiroboje/"
+      ],
+      "tiktokUrl": "",
+      "updatedAt": "2026-05-19T22:53:21.397Z"
+    },
+    {
+      "id": "theehairarchives-2",
+      "name": "Theehairarchives",
+      "areaId": "south-east",
+      "areaLabel": "South East London",
+      "neighbourhood": "South East London London",
+      "postcode": "",
+      "bookingPlatform": "Direct",
+      "bookingUrl": "https://www.instagram.com/theehairarchives/",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/theehairarchives/",
+      "services": [
+        "Quick weave",
+        "Sleek ponytail / bun",
+        "Frontal ponytail / bun"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/theehairarchives/"
+      ]
+    },
+    {
+      "id": "bysandraamika-2",
+      "name": "Bysandraamika",
+      "areaId": "north-west",
+      "areaLabel": "North West London",
+      "neighbourhood": "North West London London",
+      "postcode": "",
+      "bookingPlatform": "Direct",
+      "bookingUrl": "https://www.instagram.com/bysandraamika/",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/bysandraamika/",
+      "services": [
+        "Wig install (frontal / closure)",
+        "Closure sew-in",
+        "Frontal sew-in",
+        "Custom wig"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/bysandraamika/"
+      ]
+    },
+    {
+      "id": "curl-power-by-elaine",
+      "name": "Curl Power By Elaine",
+      "areaId": "south-east",
+      "areaLabel": "South East London",
+      "neighbourhood": "South East London London",
+      "postcode": "",
+      "bookingPlatform": "Fresha",
+      "bookingUrl": "https://www.fresha.com/a/curl-power-by-elaine-london-aston-heights-vza87pve/booking",
+      "websiteUrl": "https://www.fresha.com/a/curl-power-by-elaine-london-aston-heights-vza87pve/booking",
+      "instagramUrl": "https://www.instagram.com/curl_power_by_elaine/",
+      "services": [
+        "Curly cut / Wash & go",
+        "Moisturising treatment",
+        "K-18 treatment"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/curl_power_by_elaine/"
+      ]
+    },
+    {
+      "id": "hairgurulabldn",
+      "name": "Hairgurulabldn",
+      "areaId": "south-east",
+      "areaLabel": "South East London",
+      "neighbourhood": "South East London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://hairgurulabbookings.as.me/schedule/fb211a35/category/X19hbGxfXw%3D%3D",
+      "websiteUrl": "https://hairgurulabbookings.as.me/schedule/fb211a35/category/X19hbGxfXw%3D%3D",
+      "instagramUrl": "https://www.instagram.com/hairgurulabldn/",
+      "services": [
+        "Relaxer / texturiser",
+        "Scalp care",
+        "Custom wig",
+        "Texture release",
+        "Updo",
+        "Sleek ponytail / bun",
+        "Frontal ponytail / bun",
+        "Frontal sew-in",
+        "Half up half down",
+        "Silk press",
+        "Pixie / finger waves",
+        "LA weave",
+        "Tracks (+ Silk press) / Partial / Invisible sew-in",
+        "Microlinks",
+        "Traditional sew-in / leave out",
+        "Hybrid sew-in",
+        "Tape ins",
+        "Closure sew-in",
+        "Pixie wig / weave install",
+        "Quick weave",
+        "Wash & blowdry",
+        "Wig install (frontal / closure)",
+        "Full head colour",
+        "Wig colour"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/hairgurulabldn/"
+      ]
+    },
+    {
+      "id": "tomoyukiandco",
+      "name": "Tomoyukiandco",
+      "areaId": "central",
+      "areaLabel": "Central London",
+      "neighbourhood": "Central London London",
+      "postcode": "",
+      "bookingPlatform": "Direct",
+      "bookingUrl": "https://s-iq.co/BookingPortal/dist/?salonid=ff733868-484d-47b0-a51c-7dc45dcf93af&tab=book",
+      "websiteUrl": "https://s-iq.co/BookingPortal/dist/?salonid=ff733868-484d-47b0-a51c-7dc45dcf93af&tab=book",
+      "instagramUrl": "https://www.instagram.com/tomoyukiandco/",
+      "services": [
+        "Japanese straightening"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/tomoyukiandco/"
+      ]
+    },
+    {
+      "id": "ariela-london",
+      "name": "Ariela London",
+      "areaId": "south-west",
+      "areaLabel": "South West London",
+      "neighbourhood": "South West London London",
+      "postcode": "",
+      "bookingPlatform": "Direct",
+      "bookingUrl": "https://www.instagram.com/ariela_london/",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/ariela_london/",
+      "services": [
+        "Microlinks",
+        "LA weave",
+        "Tracks (+ Silk press) / Partial / Invisible sew-in",
+        "Flipover / Versatile sew-in",
+        "Traditional sew-in / leave out",
+        "Closure sew-in",
+        "Sew-in take-down",
+        "Tape ins",
+        "Wig cornrows",
+        "Keratin treatment",
+        "Relaxer / texturiser",
+        "Silk press",
+        "Moisturising treatment",
+        "Pixie / finger waves",
+        "Trim / Hair cut",
+        "Braid take-down",
+        "Full head colour"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/ariela_london/"
+      ]
+    },
+    {
+      "id": "rinsedpeckham",
+      "name": "Rinsedpeckham",
+      "areaId": "south-east",
+      "areaLabel": "South East London",
+      "neighbourhood": "South East London London",
+      "postcode": "",
+      "bookingPlatform": "Direct",
+      "bookingUrl": "https://www.instagram.com/rinsedpeckham/",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/rinsedpeckham/",
+      "services": [
+        "Bridal / Editorial"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/rinsedpeckham/"
+      ]
+    },
+    {
+      "id": "tresses-bytay",
+      "name": "Tresses Bytay",
+      "areaId": "north-west",
+      "areaLabel": "North West London",
+      "neighbourhood": "North West London London",
+      "postcode": "",
+      "bookingPlatform": "Fresha",
+      "bookingUrl": "https://www.fresha.com/a/tresses-by-tay-london-42-gorst-road-as5wbmyg/booking?menu=true&pId=1094245&utm_content=link_in_bio&utm_medium=social&utm_source=ig&cartId=37c46a03-17f1-4d04-b165-883407a1f370",
+      "websiteUrl": "https://www.fresha.com/a/tresses-by-tay-london-42-gorst-road-as5wbmyg/booking?menu=true&pId=1094245&utm_content=link_in_bio&utm_medium=social&utm_source=ig&cartId=37c46a03-17f1-4d04-b165-883407a1f370",
+      "instagramUrl": "https://www.instagram.com/tresses.bytay/",
+      "services": [
+        "LA weave",
+        "Microlinks",
+        "Tape ins"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/tresses.bytay/",
+        "Submitted link: fresha.com/a/tresses-by-tay-london-42-gorst-road-as5wbmyg/booking?menu=true&pId=1094245&utm_content=link_in_bio&utm_medium=social&utm_source=ig"
+      ]
+    },
+    {
+      "id": "bleuribbonhair",
+      "name": "Bleuribbonhair",
+      "areaId": "south-east",
+      "areaLabel": "South East London",
+      "neighbourhood": "South East London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://app.acuityscheduling.com/schedule/c2ad73fe",
+      "websiteUrl": "https://app.acuityscheduling.com/schedule/c2ad73fe",
+      "instagramUrl": "https://www.instagram.com/bleuribbonhair/?g=5",
+      "services": [
+        "Traditional sew-in / leave out",
+        "Wig cornrows",
+        "Flipover / Versatile sew-in",
+        "Tape ins",
+        "Clip ins (+ Silk press)",
+        "Closure sew-in",
+        "Frontal sew-in",
+        "Wig install (frontal / closure)",
+        "Custom wig"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/bleuribbonhair/?g=5"
+      ]
+    },
+    {
+      "id": "taylor-taylor-london",
+      "name": "Taylor Taylor London",
+      "areaId": "central",
+      "areaIds": [
+        "central",
+        "east",
+        "west"
+      ],
+      "areaLabel": "Central London / East London / West London",
+      "neighbourhood": "Central London and East London and West London London",
+      "postcode": "",
+      "bookingPlatform": "Direct website",
+      "bookingUrl": "https://taylortaylorlondon.com/book-now.html",
+      "websiteUrl": "https://taylortaylorlondon.com/book-now.html",
+      "instagramUrl": "https://www.instagram.com/taylor_taylor_london/",
+      "services": [
+        "Full head colour",
+        "Wash & blowdry",
+        "Trim / Hair cut",
+        "Silk press"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/taylor_taylor_london/",
+        "Submitted link: https://taylortaylorlondon.com/book-now.html",
+        "Raw services provided during admin intake."
+      ]
+    },
+    {
+      "id": "aquahair-ldn",
+      "name": "Aquahair Ldn",
+      "areaId": "south-east",
+      "areaLabel": "South East London",
+      "neighbourhood": "South East London London",
+      "postcode": "",
+      "bookingPlatform": "Direct",
+      "bookingUrl": "https://www.aquahairlondon.co.uk/contact",
+      "websiteUrl": "https://www.aquahairlondon.co.uk/contact",
+      "instagramUrl": "https://www.instagram.com/aquahair.ldn/",
+      "services": [
+        "Trim / Hair cut",
+        "Wash & blowdry",
+        "Highlights",
+        "Full head colour",
+        "Olaplex treatment",
+        "Moisturising treatment",
+        "Silk press"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/aquahair.ldn/",
+        "Submitted link: https://www.aquahairlondon.co.uk/contact"
+      ]
+    },
+    {
+      "id": "mylaanddavis",
+      "name": "Mylaanddavis",
+      "areaId": "south-east",
+      "areaIds": [
+        "south-east",
+        "south-west"
+      ],
+      "areaLabel": "South East London / South West London",
+      "neighbourhood": "South East London and South West London London",
+      "postcode": "",
+      "bookingPlatform": "Direct",
+      "bookingUrl": "https://www.phorest.com/salon/mylaanddavishernehill/locations",
+      "websiteUrl": "https://www.phorest.com/salon/mylaanddavishernehill/locations",
+      "instagramUrl": "https://www.instagram.com/mylaanddavis/",
+      "services": [
+        "Curly cut / Wash & go",
+        "Twist out / Flexi rod",
+        "Trim / Hair cut",
+        "Wash & blowdry"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/mylaanddavis/",
+        "Submitted link: https://www.phorest.com/salon/mylaanddavishernehill/locations"
+      ]
+    },
+    {
+      "id": "sulayhairsalon",
+      "name": "Sulayhairsalon",
+      "areaId": "east",
+      "areaLabel": "East London",
+      "neighbourhood": "East London",
+      "postcode": "",
+      "bookingPlatform": "Direct",
+      "bookingUrl": "https://www.instagram.com/sulayhairsalon/",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/sulayhairsalon/",
+      "services": [
+        "Silk press"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/sulayhairsalon/"
+      ]
+    },
+    {
+      "id": "enasalon",
+      "name": "Enasalon",
+      "areaId": "central",
+      "areaLabel": "Central London",
+      "neighbourhood": "Central London",
+      "postcode": "",
+      "bookingPlatform": "Direct website",
+      "bookingUrl": "https://enasalon.com/?srsltid=AfmBOooT42A90VlBz07F8EpeW3V1PI8M8cah3r-e9noawYwBZFpoSRqL#onlinebookings",
+      "websiteUrl": "https://enasalon.com/?srsltid=AfmBOooT42A90VlBz07F8EpeW3V1PI8M8cah3r-e9noawYwBZFpoSRqL#onlinebookings",
+      "instagramUrl": "https://www.instagram.com/enasalon/",
+      "services": [
+        "K-18 treatment",
+        "Olaplex treatment",
+        "Keratin treatment",
+        "Curly cut / Wash & go",
+        "Silk press",
+        "Trim / Hair cut"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/enasalon/",
+        "Submitted link: https://enasalon.com/?srsltid=AfmBOooT42A90VlBz07F8EpeW3V1PI8M8cah3r-e9noawYwBZFpoSRqL#onlinebookings"
+      ]
+    },
+    {
+      "id": "perfecttouch-hair-studio",
+      "name": "Perfecttouch Hair Studio",
+      "areaId": "croydon",
+      "areaLabel": "Croydon",
+      "neighbourhood": "Croydon",
+      "postcode": "",
+      "bookingPlatform": "Direct",
+      "bookingUrl": "https://www.perfecttouchhairstudio.co.uk/bookyourappointment",
+      "websiteUrl": "https://www.perfecttouchhairstudio.co.uk/bookyourappointment",
+      "instagramUrl": "https://www.instagram.com/perfecttouch_hair_studio/",
+      "services": [
+        "Traditional sew-in / leave out",
+        "Wig cornrows",
+        "Trim / Hair cut",
+        "Half up half down",
+        "Pixie / finger waves",
+        "Relaxer / texturiser",
+        "K-18 treatment",
+        "Pixie wig / weave install"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/perfecttouch_hair_studio/",
+        "Submitted link: https://www.perfecttouchhairstudio.co.uk/bookyourappointment"
+      ]
+    },
+    {
+      "id": "hersilk",
+      "name": "Hersilk",
+      "areaId": "south-west",
+      "areaLabel": "South West London",
+      "neighbourhood": "South West London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://hersilk.as.me/schedule/d25063d2",
+      "websiteUrl": "https://hersilk.as.me/schedule/d25063d2",
+      "instagramUrl": "https://www.instagram.com/hersilk_/",
+      "services": [
+        "Silk press",
+        "Keratin treatment",
+        "Texture release",
+        "Moisturising treatment",
+        "Scalp care",
+        "Trim / Hair cut"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/hersilk_/",
+        "Submitted link: https://hersilk.as.me/schedule/d25063d2",
+        "Raw services provided during admin intake."
+      ]
+    },
+    {
+      "id": "amazonsalonuk",
+      "name": "Amazonsalonuk",
+      "areaId": "central",
+      "areaLabel": "Central London",
+      "neighbourhood": "Central London",
+      "postcode": "",
+      "bookingPlatform": "Direct",
+      "bookingUrl": "https://www.amazon.co.uk/b?ie=UTF8&node=26247109031",
+      "websiteUrl": "https://www.amazon.co.uk/b?ie=UTF8&node=26247109031",
+      "instagramUrl": "https://www.instagram.com/amazonsalonuk/",
+      "services": [
+        "Trim / Hair cut",
+        "Full head colour",
+        "Highlights",
+        "Balayage",
+        "Tracks (+ Silk press) / Partial / Invisible sew-in",
+        "Sew-in take-down",
+        "Box braids",
+        "Wig cornrows",
+        "Keratin treatment",
+        "Relaxer / texturiser",
+        "Texture release",
+        "Silk press",
+        "Wash & blowdry",
+        "Feed-in braids",
+        "Traditional sew-in / leave out"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/amazonsalonuk/"
+      ]
+    },
+    {
+      "id": "justcurlsessex",
+      "name": "Justcurlsessex",
+      "areaId": "essex",
+      "areaLabel": "Essex",
+      "neighbourhood": "Essex",
+      "postcode": "",
+      "bookingPlatform": "Direct website",
+      "bookingUrl": "https://www.justcurlsessex.co.uk/booking.php",
+      "websiteUrl": "https://www.justcurlsessex.co.uk/booking.php",
+      "instagramUrl": "https://www.instagram.com/justcurlsessex/",
+      "services": [
+        "Curly cut / Wash & go"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/justcurlsessex/",
+        "Submitted link: https://www.justcurlsessex.co.uk/booking.php",
+        "Raw services provided during admin intake."
+      ]
+    },
+    {
+      "id": "hairby-mideyy",
+      "name": "Hairby Mideyy",
+      "areaId": "all-london",
+      "areaLabel": "London",
+      "neighbourhood": "London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://hairbymideyy.as.me/schedule/50e2a05d",
+      "websiteUrl": "https://hairbymideyy.as.me/schedule/50e2a05d",
+      "instagramUrl": "https://www.instagram.com/hairby_mideyy/",
+      "services": [
+        "Feed-in braids",
+        "Sleek ponytail / bun",
+        "Fulani / Lemonade braids",
+        "Knotless braids",
+        "Box braids",
+        "Retwist",
+        "Frontal ponytail / bun",
+        "Traditional sew-in / leave out",
+        "Closure sew-in",
+        "Frontal sew-in",
+        "Stitch braids",
+        "Flipover / Versatile sew-in",
+        "U-Part wig install",
+        "Custom wig",
+        "Wig install (frontal / closure)",
+        "Wig colour"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/hairby_mideyy/",
+        "Submitted link: https://hairbymideyy.as.me/schedule/50e2a05d",
+        "Raw services provided during admin intake."
+      ]
+    },
     {
       "id": "ponytailclinic",
       "name": "Ponytailclinic",
@@ -436,7 +983,7 @@
       "neighbourhood": "East London",
       "postcode": "",
       "bookingPlatform": "Direct website",
-      "bookingUrl": "adonaihairldn.jena.site",
+      "bookingUrl": "https://adonaihairldn.jena.site/?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQPOTM2NjE5NzQzMzkyNDU5AAGndBVU03982ZGnGVVtlr8PziIwPyMsoXJEkhk5cn_Mw7zjAyj8k9Jc3bhsj-s_aem_zz4yUvHixQMwHTqfTlvbcw",
       "websiteUrl": "",
       "instagramUrl": "https://www.instagram.com/adonaihairldn/",
       "services": [
@@ -1571,7 +2118,7 @@
       "neighbourhood": "West London",
       "postcode": "",
       "bookingPlatform": "Instagram",
-      "bookingUrl": "",
+      "bookingUrl": "https://www.instagram.com/bella.moore_x/",
       "websiteUrl": "",
       "instagramUrl": "https://www.instagram.com/bella.moore_x/",
       "services": [
@@ -1722,7 +2269,6 @@
       "services": [
         "LA weave",
         "K-tips / Invisible strands",
-        "Microlinks",
         "Texture release",
         "Silk press",
         "Olaplex treatment",
@@ -1962,8 +2508,8 @@
       "areaLabel": "East",
       "neighbourhood": "East London",
       "postcode": "",
-      "bookingPlatform": "Direct website",
-      "bookingUrl": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/braidedbydee/",
       "websiteUrl": "",
       "instagramUrl": "https://www.instagram.com/braidedbydee/",
       "services": [
@@ -4753,8 +5299,8 @@
       "areaLabel": "South East",
       "neighbourhood": "South East London",
       "postcode": "",
-      "bookingPlatform": ".as.me",
-      "bookingUrl": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/goldenntouch.co/",
       "websiteUrl": "",
       "instagramUrl": "https://www.instagram.com/goldenntouch.co/",
       "services": [
@@ -5008,30 +5554,52 @@
       "name": "Hair 305 Ltd",
       "areaId": "south-west",
       "areaLabel": "South West",
-      "neighbourhood": "South West London",
-      "postcode": "",
+      "neighbourhood": "South Kensington",
+      "postcode": "SW7 2HQ",
       "bookingPlatform": "Vagaro",
       "bookingUrl": "https://www.vagaro.com/hair305ltd",
-      "websiteUrl": "https://www.vagaro.com/hair305ltd",
+      "websiteUrl": "https://hair305london.com/",
       "instagramUrl": "https://www.instagram.com/hair305london/",
       "services": [
         "Trim / Hair cut",
+        "Curly cut / Wash & go",
         "Wash & blowdry",
         "Twist out / Flexi rod",
         "K-18 treatment",
+        "Olaplex treatment",
+        "Moisturising treatment",
+        "Hair Botox",
+        "Scalp care",
         "Keratin treatment",
         "Full head colour",
         "Highlights",
         "Balayage",
+        "Wig colour",
         "Relaxer / texturiser",
         "LA weave",
-        "Cornrows / Twists / Underwig cornrows",
-        "Knotless braids"
+        "Wig cornrows",
+        "Feed-in braids",
+        "Knotless braids",
+        "Braid take-down",
+        "Tracks (+ Silk press) / Partial / Invisible sew-in",
+        "Tape ins",
+        "Traditional sew-in / leave out",
+        "Quick weave",
+        "Box braids",
+        "Sleek ponytail / bun",
+        "Pixie / finger waves",
+        "Retwist",
+        "Silk press"
       ],
-      "summary": "Manual entry added from your known South West London keratin treatment list.",
+      "summary": "Manual entry expanded from user-provided full service menu.",
       "source": "manual",
       "evidence": [
-        "User-provided manual addition."
+        "User-provided manual addition.",
+        "User-provided full service menu on 2026-05-17.",
+        "Official website: https://hair305london.com/",
+        "Booking source: https://www.vagaro.com/hair305ltd",
+        "Public directory source lists Hair 305 London at 31 Thurloe Place, South Kensington, London SW7 2HQ.",
+        "User-provided service menu includes afro cuts and styling, ponytail, weave wash/style/finish, natural wash/set/blowdry, barber cuts, fringe trims, loc retwist/interlocking/reattachment, natural twist outs, pixie cuts and styling, bond-building treatments, K18, hydration/protein/scalp/keratin/Botox treatments, highlights, balayage, bleach and toner, colour correction, tint/semi colour/plant-based colour, wig or weave colour, keratin smoothing, curly perms, relaxers/texturisers, LA weave, weave full/half/per row, quick weave, tape-ins, knotless braids, braid take-out, cornrows, cornrows with added hair mapped as feed-ins, cornrow removal, and two-strand twists."
       ]
     },
     {
@@ -5083,9 +5651,6 @@
         "Sleek ponytail / bun",
         "Half up half down",
         "Traditional sew-in / leave out",
-        "K-tips / Invisible strands",
-        "LA weave",
-        "Microlinks",
         "Tape ins",
         "Closure sew-in",
         "Frontal sew-in",
@@ -5628,7 +6193,8 @@
         "Full head colour",
         "Sleek ponytail / bun",
         "Half braids, half sew-in",
-        "Crochet"
+        "Crochet",
+        "Tracks / Silk press + tracks / Invisible sew-in"
       ],
       "summary": "Manual entry added from your East London braids, extensions, sew-ins, and natural hair list.",
       "source": "manual",
@@ -6948,10 +7514,6 @@
         "Silk press",
         "Traditional sew-in / leave out",
         "Wig install",
-        "K-tips / Invisible strands",
-        "LA weave",
-        "Microlinks",
-        "Tape ins",
         "Frontal ponytail / bun",
         "Updo"
       ],
@@ -10283,8 +10845,6 @@
         "Flipover / Versatile sew-in",
         "Traditional sew-in / leave out",
         "K-tips / Invisible strands",
-        "LA weave",
-        "Microlinks",
         "Tape ins",
         "Sleek ponytail / bun",
         "Half up half down",
@@ -10479,8 +11039,8 @@
       "areaLabel": "South East",
       "neighbourhood": "South East London",
       "postcode": "",
-      "bookingPlatform": "Direct website",
-      "bookingUrl": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/rs_hairandbeauty/",
       "websiteUrl": "",
       "instagramUrl": "https://www.instagram.com/rs_hairandbeauty/",
       "services": [
@@ -13055,7 +13615,7 @@
       "neighbourhood": "South East London",
       "postcode": "",
       "bookingPlatform": "Instagram",
-      "bookingUrl": "",
+      "bookingUrl": "https://www.instagram.com/thecurleditbymya/",
       "websiteUrl": "",
       "instagramUrl": "https://www.instagram.com/thecurleditbymya/",
       "services": [
@@ -13610,8 +14170,8 @@
       "neighbourhood": "South East London",
       "postcode": "",
       "bookingPlatform": "That Time",
-      "bookingUrl": "https://that-time.co.uk/vanity-hair-and-beauty-studios",
-      "websiteUrl": "https://that-time.co.uk/vanity-hair-and-beauty-studios",
+      "bookingUrl": "https://that-time.co.uk/vanity-hair-and-beauty-studios?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQPOTM2NjE5NzQzMzkyNDU5AAGnuN887Tt6woAzxeaZ3EK5iimyq3cCiR1TcdpP2eACFA35cHfNc0bwgzP60_U_aem_PvQTlocuUWcHq4gI4fdLdg",
+      "websiteUrl": "https://that-time.co.uk/vanity-hair-and-beauty-studios?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQPOTM2NjE5NzQzMzkyNDU5AAGnuN887Tt6woAzxeaZ3EK5iimyq3cCiR1TcdpP2eACFA35cHfNc0bwgzP60_U_aem_PvQTlocuUWcHq4gI4fdLdg",
       "instagramUrl": "https://www.instagram.com/vanityhairandbeautystudios/",
       "services": [
         "Texture release",
@@ -13628,14 +14188,14 @@
         "Knotless braids",
         "Boho braids / goddess braids",
         "Fulani / Lemonade braids",
-        "Cornrows / Twists / Underwig cornrows",
-        "Wig install",
+        "Wig cornrows",
+        "Wig install (frontal / closure)",
         "Full head colour",
         "Highlights",
         "Starter locs",
         "Sleek ponytail / bun",
         "Wash & blowdry",
-        "Tracks / Silk press + tracks / Invisible sew-in",
+        "Tracks (+ Silk press) / Partial / Invisible sew-in",
         "Microlocs / Sisterlocs",
         "Crochet"
       ],
@@ -14052,8 +14612,8 @@
       "neighbourhood": "South East London",
       "postcode": "",
       "bookingPlatform": "Booksy",
-      "bookingUrl": "https://booksy.com/en-gb/26498_zuri-hair-studio_hair-salon_311817_london",
-      "websiteUrl": "https://booksy.com/en-gb/26498_zuri-hair-studio_hair-salon_311817_london",
+      "bookingUrl": "https://www.fresha.com/a/zurihairstudio-london-102-norwood-high-street-jxdggtjm/booking?menu=true&share=true&pId=2850191&dppub=true&utm_content=link_in_bio&utm_medium=social&utm_source=ig&cartId=87477c0c-0dad-4388-9fb9-ca9f8efd47a2",
+      "websiteUrl": "https://www.fresha.com/a/zurihairstudio-london-102-norwood-high-street-jxdggtjm/booking?menu=true&share=true&pId=2850191&dppub=true&utm_content=link_in_bio&utm_medium=social&utm_source=ig&cartId=87477c0c-0dad-4388-9fb9-ca9f8efd47a2",
       "instagramUrl": "https://www.instagram.com/zurihairstudio/",
       "services": [
         "Boho braids / goddess braids",
@@ -14328,8 +14888,8 @@
       "neighbourhood": "South East London / Kent",
       "postcode": "",
       "bookingPlatform": "Direct website",
-      "bookingUrl": "https://ccsgramhousehair.as.me",
-      "websiteUrl": "https://ccsgramhousehair.as.me",
+      "bookingUrl": "https://ccsglamhousehair.as.me/schedule/47a5c80f",
+      "websiteUrl": "https://ccsglamhousehair.as.me/schedule/47a5c80f",
       "instagramUrl": "https://www.instagram.com/ccs.glamhousehair/",
       "services": [
         "Custom wig",
@@ -15183,7 +15743,10 @@
         "Frontal ponytail / bun",
         "Updo",
         "Half up half down",
-        "Closure sew-in"
+        "Closure sew-in",
+        "Quick weave",
+        "Flipover / Versatile sew-in",
+        "Frontal sew-in"
       ],
       "summary": "Manual Instagram-led entry enriched from spreadsheet import.",
       "source": "manual",
@@ -15207,8 +15770,9 @@
       "services": [
         "Traditional sew-in / leave out",
         "Flipover / Versatile sew-in",
-        "Tracks / Silk press + tracks / Invisible sew-in",
-        "Sew-in take-down"
+        "Tracks (+ Silk press) / Partial / Invisible sew-in",
+        "Sew-in take-down",
+        "Closure sew-in"
       ],
       "summary": "Manual Instagram-led entry enriched from spreadsheet import.",
       "source": "manual",
@@ -15299,7 +15863,7 @@
       "neighbourhood": "North London",
       "postcode": "",
       "bookingPlatform": "Instagram",
-      "bookingUrl": "",
+      "bookingUrl": "https://www.instagram.com/slhairuk/",
       "websiteUrl": "",
       "instagramUrl": "https://www.instagram.com/slhairuk/",
       "services": [
@@ -15358,7 +15922,7 @@
         "Frontal ponytail / bun",
         "Updo",
         "Half up half down",
-        "Moisturising treatment"
+        "Sleek ponytail / bun"
       ],
       "summary": "Manual Instagram-led entry added from user-provided booking menu.",
       "source": "manual",
@@ -15449,10 +16013,10 @@
         "Sleek ponytail / bun",
         "Updo",
         "Quick weave",
-        "Half up half down",
         "Traditional sew-in / leave out",
         "Flipover / Versatile sew-in",
-        "U-Part wig install"
+        "Bridal / Editorial",
+        "Feed-in braids"
       ],
       "summary": "Manual Instagram-led entry added from user-provided booking menu.",
       "source": "manual",
@@ -15484,7 +16048,6 @@
         "Wig install (frontal / closure)",
         "Traditional sew-in / leave out",
         "Closure sew-in",
-        "Flipover / Versatile sew-in",
         "U-Part wig install",
         "Frontal ponytail / bun",
         "Sleek ponytail / bun",
@@ -15525,9 +16088,8 @@
         "Sleek ponytail / bun",
         "Half up half down",
         "Trim / Hair cut",
-        "Moisturising treatment",
         "Wash & blowdry",
-        "Cornrows / Twists / Underwig cornrows"
+        "Wig cornrows"
       ],
       "summary": "Manual Instagram-led entry added from user-provided booking menu.",
       "source": "manual",
@@ -15672,8 +16234,7 @@
         "Closure sew-in",
         "Frontal sew-in",
         "Flipover / Versatile sew-in",
-        "Half up half down",
-        "Cornrows / Twists / Underwig cornrows"
+        "Half up half down"
       ],
       "summary": "Manual Instagram-led entry added from user-provided booking menu.",
       "source": "manual",
@@ -15721,19 +16282,18 @@
       "websiteUrl": "https://kluxehair.as.me/schedule/4271e414",
       "instagramUrl": "https://www.instagram.com/_kluxehair/",
       "services": [
-        "Clip ins / Silk press + Clip ins",
+        "Clip ins (+ Silk press)",
         "Half up half down",
         "Olaplex treatment",
         "Wash & blowdry",
         "Moisturising treatment",
-        "Sew-in take-down",
         "Quick weave",
         "Tape ins",
         "Traditional sew-in / leave out",
         "Hybrid sew-in",
         "Flipover / Versatile sew-in",
         "Sleek ponytail / bun",
-        "Updo"
+        "Silk press"
       ],
       "summary": "Manual Instagram-led entry added from user-provided booking menu.",
       "source": "manual",
@@ -15757,8 +16317,7 @@
       "websiteUrl": "https://kaprisleeks.as.me/schedule/9c3041e7",
       "instagramUrl": "https://www.instagram.com/kaprisleeks/",
       "services": [
-        "Sew-in take-down",
-        "Cornrows / Twists / Underwig cornrows",
+        "Wig cornrows",
         "U-Part wig install",
         "Quick weave",
         "Half up half down",
@@ -15937,13 +16496,11 @@
         "Fulani / Lemonade braids",
         "Stitch braids",
         "Faux locs",
-        "Butterfly locs",
         "French curl",
-        "Half braids, half sew-in",
         "Knotless braids",
         "Retwist",
         "Starter locs",
-        "Cornrows / Twists / Underwig cornrows",
+        "Wig cornrows",
         "Sleek ponytail / bun",
         "Quick weave",
         "Half up half down",
@@ -16042,10 +16599,8 @@
         "Retwist",
         "Microlocs / Sisterlocs",
         "Wig cornrows",
-        "Twist out / Flexi rod",
         "Trim / Hair cut",
         "Wash & blowdry",
-        "Moisturising treatment",
         "Texture release",
         "Silk press"
       ],
@@ -16058,6 +16613,97 @@
         "Booking source: https://alternativeehair.as.me/schedule/5612eb10",
         "Public listing source describes Alternativee Hair as London, UK; indexed profile snippet says the stylist is based at OVIEYA in North London.",
         "User-provided service menu includes Avlon Texture Release with cleanse/treatment/trim, balayage, bleach and toner, colour correction, consultations, creative colour, curl definition wash-and-go, highlights, starter locs, microlocs, loc retwist/interlocking/crochet maintenance, wig cornrows, natural twists/plaits and Bantu knots, permanent hair colour, scissor cut, silk press, wash and blowdry, and wash/treatment/blowdry."
+      ]
+    },
+    {
+      "id": "dkuk-salon",
+      "name": "DKUK Salon",
+      "areaId": "south-east",
+      "areaLabel": "South East",
+      "neighbourhood": "Peckham",
+      "postcode": "SE15 2NG",
+      "bookingPlatform": "Slick",
+      "bookingUrl": "https://book.getslick.com/#/salon/4876/",
+      "websiteUrl": "https://dkuk.biz/contact/dkuk-london/",
+      "instagramUrl": "https://www.instagram.com/dkuksalon/",
+      "services": [
+        "Wash & blowdry",
+        "Trim / Hair cut",
+        "Curly cut / Wash & go",
+        "Wig cornrows",
+        "Feed-in braids",
+        "Traditional sew-in / leave out",
+        "Box braids",
+        "Relaxer / texturiser",
+        "Silk press",
+        "Texture release"
+      ],
+      "summary": "Manual Instagram-led entry added from user-provided afro hair services menu.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition on 2026-05-17.",
+        "Instagram source: https://www.instagram.com/dkuksalon/",
+        "Booking source: https://book.getslick.com/#/salon/4876/",
+        "Official DKUK contact page lists DKUK at 191 Queen's Road, London, SE15 2NG in Peckham.",
+        "User-provided service menu includes wash, cut and blowdry, curly cut, natural cornrows, cornrows with added hair mapped as feed-ins, weave, box braids, shampoo/wrap/finish, shampoo blowdry/finish, relaxer retouch and virgin relaxer with treatment and trim, Design Essentials Silk Press Blowdry, and Design Essentials STS Semi Permanent Blowdry."
+      ]
+    },
+    {
+      "id": "elamin-london",
+      "name": "Elamin London",
+      "areaId": "west",
+      "areaLabel": "West",
+      "neighbourhood": "West London",
+      "postcode": "",
+      "bookingPlatform": ".as.me",
+      "bookingUrl": "https://elaminlondon.as.me/schedule/297eebf6",
+      "websiteUrl": "https://elaminlondon.as.me/schedule/297eebf6",
+      "instagramUrl": "https://www.instagram.com/elaminlondon/",
+      "services": [
+        "LA weave",
+        "Microlinks",
+        "Tape ins",
+        "K-tips / Invisible strands",
+        "Wash & blowdry",
+        "Silk press"
+      ],
+      "summary": "Manual Instagram-led entry added from user-provided booking menu.",
+      "source": "manual",
+      "hijabiFriendly": true,
+      "evidence": [
+        "User-provided manual addition on 2026-05-17.",
+        "Instagram source: https://www.instagram.com/elaminlondon/",
+        "Booking source: https://elaminlondon.as.me/schedule/297eebf6",
+        "User-provided location: West.",
+        "User-confirmed hijabi-friendly.",
+        "User-provided service menu includes braidless sew-in mapped as LA weave, I-tips, tape-ins, tape-in/I-tip/braidless sew-in maintenance, K-tip/tape-in/braidless/I-tip removals or mini maintenance, wash and style, blow out, and silk press."
+      ]
+    },
+    {
+      "id": "azira-hair",
+      "name": "Azira Hair",
+      "areaId": "south-east",
+      "areaIds": [
+        "south-east",
+        "south-west"
+      ],
+      "areaLabel": "South East / South West",
+      "neighbourhood": "South East and South West London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/azirahair/",
+      "websiteUrl": "https://www.instagram.com/azirahair/",
+      "instagramUrl": "https://www.instagram.com/azirahair/",
+      "services": [
+        "Tape ins"
+      ],
+      "summary": "Manual Instagram-led entry added from user-provided service/location note.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition on 2026-05-17.",
+        "Instagram source: https://www.instagram.com/azirahair/",
+        "User-provided locations: SE and SW.",
+        "User-provided service: tape-ins."
       ]
     }
   ]

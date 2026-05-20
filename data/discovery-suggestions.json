@@ -1,8 +1,369 @@
 {
   "meta": {
     "source": "discovery-suggestions",
-    "updatedAt": null,
-    "count": 0
+    "updatedAt": "2026-05-17T23:06:03.442Z",
+    "count": 24
   },
-  "suggestions": []
+  "suggestions": [
+    {
+      "id": "search-traditional-sew-in-leave-out-south-east-london-hair-stylist-booking",
+      "name": "Search lead: Traditional sew-in / leave out in South East London",
+      "status": "suggested",
+      "confidence": "high",
+      "sourceUrl": "https://www.google.com/search?q=Traditional%20sew-in%20%2F%20leave%20out%20South%20East%20London%20hair%20stylist%20booking",
+      "areaId": "south-east",
+      "areaLabel": "South East London",
+      "services": [
+        "Traditional sew-in / leave out"
+      ],
+      "reason": "Generated from common ROW K pattern: Traditional sew-in / leave out listings in South East London.",
+      "createdAt": "2026-05-17T23:05:52.865Z",
+      "updatedAt": "2026-05-17T23:05:52.865Z"
+    },
+    {
+      "id": "search-traditional-sew-in-leave-out-east-london-hair-stylist-booking",
+      "name": "Search lead: Traditional sew-in / leave out in East London",
+      "status": "suggested",
+      "confidence": "high",
+      "sourceUrl": "https://www.google.com/search?q=Traditional%20sew-in%20%2F%20leave%20out%20East%20London%20hair%20stylist%20booking",
+      "areaId": "east",
+      "areaLabel": "East London",
+      "services": [
+        "Traditional sew-in / leave out"
+      ],
+      "reason": "Generated from common ROW K pattern: Traditional sew-in / leave out listings in East London.",
+      "createdAt": "2026-05-17T23:05:52.865Z",
+      "updatedAt": "2026-05-17T23:05:52.865Z"
+    },
+    {
+      "id": "search-traditional-sew-in-leave-out-north-london-hair-stylist-booking",
+      "name": "Search lead: Traditional sew-in / leave out in North London",
+      "status": "suggested",
+      "confidence": "high",
+      "sourceUrl": "https://www.google.com/search?q=Traditional%20sew-in%20%2F%20leave%20out%20North%20London%20hair%20stylist%20booking",
+      "areaId": "north",
+      "areaLabel": "North London",
+      "services": [
+        "Traditional sew-in / leave out"
+      ],
+      "reason": "Generated from common ROW K pattern: Traditional sew-in / leave out listings in North London.",
+      "createdAt": "2026-05-17T23:05:52.865Z",
+      "updatedAt": "2026-05-17T23:05:52.865Z"
+    },
+    {
+      "id": "search-wig-install-frontal-closure-south-east-london-hair-stylist-booking",
+      "name": "Search lead: Wig install (frontal / closure) in South East London",
+      "status": "suggested",
+      "confidence": "high",
+      "sourceUrl": "https://www.google.com/search?q=Wig%20install%20(frontal%20%2F%20closure)%20South%20East%20London%20hair%20stylist%20booking",
+      "areaId": "south-east",
+      "areaLabel": "South East London",
+      "services": [
+        "Wig install (frontal / closure)"
+      ],
+      "reason": "Generated from common ROW K pattern: Wig install (frontal / closure) listings in South East London.",
+      "createdAt": "2026-05-17T23:05:52.865Z",
+      "updatedAt": "2026-05-17T23:05:52.865Z"
+    },
+    {
+      "id": "search-wig-install-frontal-closure-east-london-hair-stylist-booking",
+      "name": "Search lead: Wig install (frontal / closure) in East London",
+      "status": "suggested",
+      "confidence": "high",
+      "sourceUrl": "https://www.google.com/search?q=Wig%20install%20(frontal%20%2F%20closure)%20East%20London%20hair%20stylist%20booking",
+      "areaId": "east",
+      "areaLabel": "East London",
+      "services": [
+        "Wig install (frontal / closure)"
+      ],
+      "reason": "Generated from common ROW K pattern: Wig install (frontal / closure) listings in East London.",
+      "createdAt": "2026-05-17T23:05:52.865Z",
+      "updatedAt": "2026-05-17T23:05:52.865Z"
+    },
+    {
+      "id": "search-wig-install-frontal-closure-north-london-hair-stylist-booking",
+      "name": "Search lead: Wig install (frontal / closure) in North London",
+      "status": "suggested",
+      "confidence": "high",
+      "sourceUrl": "https://www.google.com/search?q=Wig%20install%20(frontal%20%2F%20closure)%20North%20London%20hair%20stylist%20booking",
+      "areaId": "north",
+      "areaLabel": "North London",
+      "services": [
+        "Wig install (frontal / closure)"
+      ],
+      "reason": "Generated from common ROW K pattern: Wig install (frontal / closure) listings in North London.",
+      "createdAt": "2026-05-17T23:05:52.865Z",
+      "updatedAt": "2026-05-17T23:05:52.865Z"
+    },
+    {
+      "id": "search-knotless-braids-south-east-london-hair-stylist-booking",
+      "name": "Search lead: Knotless braids in South East London",
+      "status": "suggested",
+      "confidence": "medium",
+      "sourceUrl": "https://www.google.com/search?q=Knotless%20braids%20South%20East%20London%20hair%20stylist%20booking",
+      "areaId": "south-east",
+      "areaLabel": "South East London",
+      "services": [
+        "Knotless braids"
+      ],
+      "reason": "Generated from common ROW K pattern: Knotless braids listings in South East London.",
+      "createdAt": "2026-05-17T23:05:52.865Z",
+      "updatedAt": "2026-05-17T23:05:52.865Z"
+    },
+    {
+      "id": "search-knotless-braids-east-london-hair-stylist-booking",
+      "name": "Search lead: Knotless braids in East London",
+      "status": "suggested",
+      "confidence": "medium",
+      "sourceUrl": "https://www.google.com/search?q=Knotless%20braids%20East%20London%20hair%20stylist%20booking",
+      "areaId": "east",
+      "areaLabel": "East London",
+      "services": [
+        "Knotless braids"
+      ],
+      "reason": "Generated from common ROW K pattern: Knotless braids listings in East London.",
+      "createdAt": "2026-05-17T23:05:52.865Z",
+      "updatedAt": "2026-05-17T23:05:52.865Z"
+    },
+    {
+      "id": "search-knotless-braids-north-london-hair-stylist-booking",
+      "name": "Search lead: Knotless braids in North London",
+      "status": "suggested",
+      "confidence": "medium",
+      "sourceUrl": "https://www.google.com/search?q=Knotless%20braids%20North%20London%20hair%20stylist%20booking",
+      "areaId": "north",
+      "areaLabel": "North London",
+      "services": [
+        "Knotless braids"
+      ],
+      "reason": "Generated from common ROW K pattern: Knotless braids listings in North London.",
+      "createdAt": "2026-05-17T23:05:52.866Z",
+      "updatedAt": "2026-05-17T23:05:52.866Z"
+    },
+    {
+      "id": "search-sleek-ponytail-bun-south-east-london-hair-stylist-booking",
+      "name": "Search lead: Sleek ponytail / bun in South East London",
+      "status": "suggested",
+      "confidence": "medium",
+      "sourceUrl": "https://www.google.com/search?q=Sleek%20ponytail%20%2F%20bun%20South%20East%20London%20hair%20stylist%20booking",
+      "areaId": "south-east",
+      "areaLabel": "South East London",
+      "services": [
+        "Sleek ponytail / bun"
+      ],
+      "reason": "Generated from common ROW K pattern: Sleek ponytail / bun listings in South East London.",
+      "createdAt": "2026-05-17T23:05:52.866Z",
+      "updatedAt": "2026-05-17T23:05:52.866Z"
+    },
+    {
+      "id": "search-sleek-ponytail-bun-east-london-hair-stylist-booking",
+      "name": "Search lead: Sleek ponytail / bun in East London",
+      "status": "suggested",
+      "confidence": "medium",
+      "sourceUrl": "https://www.google.com/search?q=Sleek%20ponytail%20%2F%20bun%20East%20London%20hair%20stylist%20booking",
+      "areaId": "east",
+      "areaLabel": "East London",
+      "services": [
+        "Sleek ponytail / bun"
+      ],
+      "reason": "Generated from common ROW K pattern: Sleek ponytail / bun listings in East London.",
+      "createdAt": "2026-05-17T23:05:52.866Z",
+      "updatedAt": "2026-05-17T23:05:52.866Z"
+    },
+    {
+      "id": "search-sleek-ponytail-bun-north-london-hair-stylist-booking",
+      "name": "Search lead: Sleek ponytail / bun in North London",
+      "status": "suggested",
+      "confidence": "medium",
+      "sourceUrl": "https://www.google.com/search?q=Sleek%20ponytail%20%2F%20bun%20North%20London%20hair%20stylist%20booking",
+      "areaId": "north",
+      "areaLabel": "North London",
+      "services": [
+        "Sleek ponytail / bun"
+      ],
+      "reason": "Generated from common ROW K pattern: Sleek ponytail / bun listings in North London.",
+      "createdAt": "2026-05-17T23:05:52.866Z",
+      "updatedAt": "2026-05-17T23:05:52.866Z"
+    },
+    {
+      "id": "search-wash-and-blowdry-south-east-london-hair-stylist-booking",
+      "name": "Search lead: Wash & blowdry in South East London",
+      "status": "suggested",
+      "confidence": "medium",
+      "sourceUrl": "https://www.google.com/search?q=Wash%20%26%20blowdry%20South%20East%20London%20hair%20stylist%20booking",
+      "areaId": "south-east",
+      "areaLabel": "South East London",
+      "services": [
+        "Wash & blowdry"
+      ],
+      "reason": "Generated from common ROW K pattern: Wash & blowdry listings in South East London.",
+      "createdAt": "2026-05-17T23:05:52.866Z",
+      "updatedAt": "2026-05-17T23:05:52.866Z"
+    },
+    {
+      "id": "search-wash-and-blowdry-east-london-hair-stylist-booking",
+      "name": "Search lead: Wash & blowdry in East London",
+      "status": "suggested",
+      "confidence": "medium",
+      "sourceUrl": "https://www.google.com/search?q=Wash%20%26%20blowdry%20East%20London%20hair%20stylist%20booking",
+      "areaId": "east",
+      "areaLabel": "East London",
+      "services": [
+        "Wash & blowdry"
+      ],
+      "reason": "Generated from common ROW K pattern: Wash & blowdry listings in East London.",
+      "createdAt": "2026-05-17T23:05:52.866Z",
+      "updatedAt": "2026-05-17T23:05:52.866Z"
+    },
+    {
+      "id": "search-wash-and-blowdry-north-london-hair-stylist-booking",
+      "name": "Search lead: Wash & blowdry in North London",
+      "status": "suggested",
+      "confidence": "medium",
+      "sourceUrl": "https://www.google.com/search?q=Wash%20%26%20blowdry%20North%20London%20hair%20stylist%20booking",
+      "areaId": "north",
+      "areaLabel": "North London",
+      "services": [
+        "Wash & blowdry"
+      ],
+      "reason": "Generated from common ROW K pattern: Wash & blowdry listings in North London.",
+      "createdAt": "2026-05-17T23:05:52.866Z",
+      "updatedAt": "2026-05-17T23:05:52.866Z"
+    },
+    {
+      "id": "search-closure-sew-in-south-east-london-hair-stylist-booking",
+      "name": "Search lead: Closure sew-in in South East London",
+      "status": "suggested",
+      "confidence": "medium",
+      "sourceUrl": "https://www.google.com/search?q=Closure%20sew-in%20South%20East%20London%20hair%20stylist%20booking",
+      "areaId": "south-east",
+      "areaLabel": "South East London",
+      "services": [
+        "Closure sew-in"
+      ],
+      "reason": "Generated from common ROW K pattern: Closure sew-in listings in South East London.",
+      "createdAt": "2026-05-17T23:05:52.866Z",
+      "updatedAt": "2026-05-17T23:05:52.866Z"
+    },
+    {
+      "id": "search-closure-sew-in-east-london-hair-stylist-booking",
+      "name": "Search lead: Closure sew-in in East London",
+      "status": "suggested",
+      "confidence": "medium",
+      "sourceUrl": "https://www.google.com/search?q=Closure%20sew-in%20East%20London%20hair%20stylist%20booking",
+      "areaId": "east",
+      "areaLabel": "East London",
+      "services": [
+        "Closure sew-in"
+      ],
+      "reason": "Generated from common ROW K pattern: Closure sew-in listings in East London.",
+      "createdAt": "2026-05-17T23:05:52.866Z",
+      "updatedAt": "2026-05-17T23:05:52.866Z"
+    },
+    {
+      "id": "search-closure-sew-in-north-london-hair-stylist-booking",
+      "name": "Search lead: Closure sew-in in North London",
+      "status": "suggested",
+      "confidence": "medium",
+      "sourceUrl": "https://www.google.com/search?q=Closure%20sew-in%20North%20London%20hair%20stylist%20booking",
+      "areaId": "north",
+      "areaLabel": "North London",
+      "services": [
+        "Closure sew-in"
+      ],
+      "reason": "Generated from common ROW K pattern: Closure sew-in listings in North London.",
+      "createdAt": "2026-05-17T23:05:52.866Z",
+      "updatedAt": "2026-05-17T23:05:52.866Z"
+    },
+    {
+      "id": "search-wig-cornrows-south-east-london-hair-stylist-booking",
+      "name": "Search lead: Wig cornrows in South East London",
+      "status": "suggested",
+      "confidence": "medium",
+      "sourceUrl": "https://www.google.com/search?q=Wig%20cornrows%20South%20East%20London%20hair%20stylist%20booking",
+      "areaId": "south-east",
+      "areaLabel": "South East London",
+      "services": [
+        "Wig cornrows"
+      ],
+      "reason": "Generated from common ROW K pattern: Wig cornrows listings in South East London.",
+      "createdAt": "2026-05-17T23:05:52.866Z",
+      "updatedAt": "2026-05-17T23:05:52.866Z"
+    },
+    {
+      "id": "search-wig-cornrows-east-london-hair-stylist-booking",
+      "name": "Search lead: Wig cornrows in East London",
+      "status": "suggested",
+      "confidence": "medium",
+      "sourceUrl": "https://www.google.com/search?q=Wig%20cornrows%20East%20London%20hair%20stylist%20booking",
+      "areaId": "east",
+      "areaLabel": "East London",
+      "services": [
+        "Wig cornrows"
+      ],
+      "reason": "Generated from common ROW K pattern: Wig cornrows listings in East London.",
+      "createdAt": "2026-05-17T23:05:52.866Z",
+      "updatedAt": "2026-05-17T23:05:52.866Z"
+    },
+    {
+      "id": "search-wig-cornrows-north-london-hair-stylist-booking",
+      "name": "Search lead: Wig cornrows in North London",
+      "status": "suggested",
+      "confidence": "medium",
+      "sourceUrl": "https://www.google.com/search?q=Wig%20cornrows%20North%20London%20hair%20stylist%20booking",
+      "areaId": "north",
+      "areaLabel": "North London",
+      "services": [
+        "Wig cornrows"
+      ],
+      "reason": "Generated from common ROW K pattern: Wig cornrows listings in North London.",
+      "createdAt": "2026-05-17T23:05:52.866Z",
+      "updatedAt": "2026-05-17T23:05:52.866Z"
+    },
+    {
+      "id": "search-silk-press-south-east-london-hair-stylist-booking",
+      "name": "Search lead: Silk press in South East London",
+      "status": "suggested",
+      "confidence": "medium",
+      "sourceUrl": "https://www.google.com/search?q=Silk%20press%20South%20East%20London%20hair%20stylist%20booking",
+      "areaId": "south-east",
+      "areaLabel": "South East London",
+      "services": [
+        "Silk press"
+      ],
+      "reason": "Generated from common ROW K pattern: Silk press listings in South East London.",
+      "createdAt": "2026-05-17T23:05:52.866Z",
+      "updatedAt": "2026-05-17T23:05:52.866Z"
+    },
+    {
+      "id": "search-silk-press-east-london-hair-stylist-booking",
+      "name": "Search lead: Silk press in East London",
+      "status": "suggested",
+      "confidence": "medium",
+      "sourceUrl": "https://www.google.com/search?q=Silk%20press%20East%20London%20hair%20stylist%20booking",
+      "areaId": "east",
+      "areaLabel": "East London",
+      "services": [
+        "Silk press"
+      ],
+      "reason": "Generated from common ROW K pattern: Silk press listings in East London.",
+      "createdAt": "2026-05-17T23:05:52.866Z",
+      "updatedAt": "2026-05-17T23:05:52.866Z"
+    },
+    {
+      "id": "search-silk-press-north-london-hair-stylist-booking",
+      "name": "Search lead: Silk press in North London",
+      "status": "suggested",
+      "confidence": "medium",
+      "sourceUrl": "https://www.google.com/search?q=Silk%20press%20North%20London%20hair%20stylist%20booking",
+      "areaId": "north",
+      "areaLabel": "North London",
+      "services": [
+        "Silk press"
+      ],
+      "reason": "Generated from common ROW K pattern: Silk press listings in North London.",
+      "createdAt": "2026-05-17T23:05:52.866Z",
+      "updatedAt": "2026-05-17T23:05:52.866Z"
+    }
+  ]
 }

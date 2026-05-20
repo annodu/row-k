@@ -1,5 +1,31 @@
 import { FormEvent, useEffect, useMemo, useState } from "react";
-import { Check, ExternalLink, Loader2, LogOut, Plus, Save, Trash2 } from "lucide-react";
+import {
+  AlertTriangle,
+  ArrowLeft,
+  ArrowUp,
+  ArrowUpDown,
+  AtSign,
+  Check,
+  ChevronDown,
+  ChevronRight,
+  ChevronUp,
+  ClockAlert,
+  ExternalLink,
+  FastForward,
+  FileText,
+  Filter,
+  Globe,
+  Loader2,
+  LogOut,
+  Plus,
+  RefreshCw,
+  Save,
+  SearchCheck,
+  Trash2,
+  Unlink,
+  Undo2,
+  X,
+} from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -17,6 +43,7 @@ type StylistDraft = {
   status: string;
   name: string;
   areaId: string;
+  areaIds?: string[];
   areaLabel: string;
   neighbourhood: string;
   postcode: string;
@@ -68,6 +95,23 @@ type DirectoryCheck = {
   addedServices: string[];
   removedServices: string[];
   checkedAt: string;
+};
+
+type FreshnessUpdate = {
+  addServices?: string[];
+  removeServices?: string[];
+  bookingUrl?: string;
+  instagramUrl?: string;
+  websiteUrl?: string;
+  rejectAddedServices?: string[];
+  rejectRemovedServices?: string[];
+};
+
+type FreshnessUndoState = {
+  check: DirectoryCheck;
+  previousServices: string[];
+  update: FreshnessUpdate;
+  label: string;
 };
 
 type DiscoverySuggestion = {
@@ -205,6 +249,7 @@ export function AdminApp() {
   const [password, setPassword] = useState("");
   const [loginError, setLoginError] = useState("");
   const [drafts, setDrafts] = useState<StylistDraft[]>([]);
+  const [publishedStylists, setPublishedStylists] = useState<StylistDraft[]>([]);
   const [regions, setRegions] = useState<RegionOption[]>([]);
   const [services, setServices] = useState<string[]>([]);
   const [form, setForm] = useState<DraftForm>(emptyForm);
@@ -221,11 +266,35 @@ export function AdminApp() {
   const [dashboard, setDashboard] = useState<DashboardMetrics | null>(null);
   const [suggestions, setSuggestions] = useState<DiscoverySuggestion[]>([]);
   const [isGeneratingSuggestions, setIsGeneratingSuggestions] = useState(false);
+  const [stylistStatusFilter, setStylistStatusFilter] = useState("all");
+  const [isDraftEditorOpen, setIsDraftEditorOpen] = useState(false);
+  const [lastFreshnessUndo, setLastFreshnessUndo] = useState<FreshnessUndoState | null>(null);
 
-  const selectedDraft = useMemo(
-    () => drafts.find((draft) => draft.id === selectedDraftId) ?? drafts[0] ?? null,
-    [drafts, selectedDraftId],
-  );
+	  function updateDraftLocations(draft: StylistDraft, nextAreaIds: string[]) {
+	    const normalizedAreaIds = [...new Set(nextAreaIds.filter(Boolean))];
+	    const primaryAreaId = normalizedAreaIds[0] || "";
+	    const labels = normalizedAreaIds.map((areaId) => regions.find((region) => region.id === areaId)?.label || areaLabelFromId(areaId)).filter(Boolean);
+	    updateStylist(draft.id, {
+	      areaId: primaryAreaId,
+	      areaIds: normalizedAreaIds,
+	      areaLabel: labels.join(" / "),
+	      neighbourhood: labels.length > 1 ? `${labels.join(" and ")} London` : labels[0] ? `${labels[0]} London` : "",
+	    });
+	  }
+
+	  const allStylists = useMemo(() => [...drafts, ...publishedStylists], [drafts, publishedStylists]);
+
+	  const selectedDraft = useMemo(
+	    () => allStylists.find((draft) => draft.id === selectedDraftId) ?? allStylists[0] ?? null,
+	    [allStylists, selectedDraftId],
+	  );
+
+  const filteredStylists = useMemo(() => {
+    return allStylists.filter((draft) => {
+      const matchesStatus = stylistStatusFilter === "all" || draft.status === stylistStatusFilter || getDraftDisplayStatus(draft) === stylistStatusFilter;
+      return matchesStatus;
+    });
+  }, [allStylists, stylistStatusFilter]);
 
   useEffect(() => {
     checkSession();
@@ -270,9 +339,9 @@ export function AdminApp() {
         return;
       }
 
-      updateDraft(selectedDraft.id, {
-        services: mergeServices(selectedDraft.services, matchedServices),
-      });
+	      updateStylist(selectedDraft.id, {
+	        services: mergeServices(selectedDraft.services, matchedServices),
+	      });
     }, 350);
 
     return () => window.clearTimeout(timeout);
@@ -291,25 +360,39 @@ export function AdminApp() {
   async function loadAdminData() {
     setIsBusy(true);
     try {
-      const [draftResponse, optionResponse, dashboardResponse, discoveryResponse] = await Promise.all([
+      const [draftResponse, publishedResponse, optionResponse, dashboardResponse, discoveryResponse, savedChecksResponse] = await Promise.all([
         fetch("/api/admin/stylists/drafts", { credentials: "include" }),
+        fetch("/api/admin/stylists/published", { credentials: "include" }),
         fetch("/api/admin/stylists/options", { credentials: "include" }),
         fetch("/api/admin/dashboard", { credentials: "include" }),
         fetch("/api/admin/discovery", { credentials: "include" }),
+        fetch("/api/admin/stylists/checks/saved", { credentials: "include" }),
       ]);
       if (!draftResponse.ok || !optionResponse.ok) {
         setIsAuthed(false);
         return;
       }
       const draftPayload = await draftResponse.json();
+      const publishedPayload = publishedResponse.ok ? await publishedResponse.json() : null;
       const optionPayload = await optionResponse.json();
       const dashboardPayload = dashboardResponse.ok ? await dashboardResponse.json() : null;
       const discoveryPayload = discoveryResponse.ok ? await discoveryResponse.json() : null;
+      const savedChecksPayload = savedChecksResponse.ok ? await savedChecksResponse.json() : null;
       setDrafts(draftPayload.drafts ?? []);
+      setPublishedStylists(publishedPayload?.stylists ?? []);
       setRegions(optionPayload.regions ?? []);
       setServices(optionPayload.services ?? []);
       setDashboard(dashboardPayload ?? null);
       setSuggestions(discoveryPayload?.suggestions ?? []);
+      setChecks(savedChecksPayload?.checks ?? []);
+      setChecksLoadedAt(savedChecksPayload?.checkedAt ?? "");
+      if (savedChecksPayload) {
+        setCheckProgress({
+          checkedCount: savedChecksPayload.checkedCount ?? 0,
+          total: savedChecksPayload.total ?? 0,
+          nextOffset: savedChecksPayload.nextOffset ?? null,
+        });
+      }
       setSelectedDraftId((current) => current ?? draftPayload.drafts?.[0]?.id ?? null);
     } finally {
       setIsBusy(false);
@@ -364,6 +447,7 @@ export function AdminApp() {
       setForm(emptyForm);
       setDrafts((current) => [payload.draft, ...current]);
       setSelectedDraftId(payload.draft.id);
+      setIsDraftEditorOpen(true);
       setMessage("Draft created.");
     } finally {
       setIsBusy(false);
@@ -391,6 +475,7 @@ export function AdminApp() {
       setDrafts((current) => [...createdDrafts, ...current]);
       setSelectedDraftId(createdDrafts[0]?.id ?? null);
       setActiveView("drafts");
+      setIsDraftEditorOpen(true);
       setMessage(`Created ${createdDrafts.length} draft${createdDrafts.length === 1 ? "" : "s"}.`);
       await loadAdminData();
     } finally {
@@ -402,7 +487,8 @@ export function AdminApp() {
     setMessage("");
     setIsBusy(true);
     try {
-      const response = await fetch(`/api/admin/stylists/drafts/${draft.id}`, {
+      const isPublished = getDraftDisplayStatus(draft) === "published";
+      const response = await fetch(isPublished ? `/api/admin/stylists/published/${draft.id}` : `/api/admin/stylists/drafts/${draft.id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
@@ -410,11 +496,16 @@ export function AdminApp() {
       });
       const payload = await response.json();
       if (!response.ok) {
-        setMessage(payload.message || "Could not save draft.");
+        setMessage(payload.message || `Could not save ${isPublished ? "published stylist" : "draft"}.`);
         return;
       }
-      setDrafts((current) => current.map((item) => (item.id === draft.id ? payload.draft : item)));
-      setMessage("Draft saved.");
+      if (isPublished) {
+        setPublishedStylists((current) => current.map((item) => (item.id === draft.id ? payload.stylist : item)));
+        setMessage("Published stylist saved.");
+      } else {
+        setDrafts((current) => current.map((item) => (item.id === draft.id ? payload.draft : item)));
+        setMessage("Draft saved.");
+      }
     } finally {
       setIsBusy(false);
     }
@@ -520,6 +611,7 @@ export function AdminApp() {
       setDrafts((current) => [payload.draft, ...current]);
       setSelectedDraftId(payload.draft.id);
       setActiveView("drafts");
+      setIsDraftEditorOpen(true);
       setMessage("Draft created from suggestion.");
       await loadAdminData();
     } finally {
@@ -527,18 +619,13 @@ export function AdminApp() {
     }
   }
 
-  async function applyFreshnessUpdate(
-    check: DirectoryCheck,
-    update: {
-      addServices?: string[];
-      removeServices?: string[];
-      bookingUrl?: string;
-      instagramUrl?: string;
-      websiteUrl?: string;
-      rejectAddedServices?: string[];
-      rejectRemovedServices?: string[];
-    },
-  ) {
+  async function applyFreshnessUpdate(check: DirectoryCheck, update: FreshnessUpdate) {
+    const undoState: FreshnessUndoState = {
+      check: cloneDirectoryCheck(check),
+      previousServices: [...check.currentServices],
+      update,
+      label: getFreshnessUndoLabel(update),
+    };
     setIsBusy(true);
     setMessage("");
     try {
@@ -564,11 +651,44 @@ export function AdminApp() {
                 currentServices: payload.salon?.services ?? item.currentServices,
                 addedServices: removeReviewedServices(item.addedServices, [...(update.addServices ?? []), ...(update.rejectAddedServices ?? [])]),
                 removedServices: removeReviewedServices(item.removedServices, [...(update.removeServices ?? []), ...(update.rejectRemovedServices ?? [])]),
+                ...removeReviewedLinkChecks(item, update),
               }
             : item,
         ),
       );
+      setLastFreshnessUndo(undoState);
       setMessage("Directory listing updated.");
+      await loadAdminData();
+    } finally {
+      setIsBusy(false);
+    }
+  }
+
+  async function undoFreshnessUpdate() {
+    if (!lastFreshnessUndo) return;
+    setIsBusy(true);
+    setMessage("");
+    try {
+      const response = await fetch(`/api/admin/stylists/${lastFreshnessUndo.check.id}/freshness/undo`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({
+          check: lastFreshnessUndo.check,
+          previousServices: lastFreshnessUndo.previousServices,
+          rejectAddedServices: lastFreshnessUndo.update.rejectAddedServices,
+          rejectRemovedServices: lastFreshnessUndo.update.rejectRemovedServices,
+        }),
+      });
+      const payload = await response.json();
+      if (!response.ok) {
+        setMessage(payload.message || "Could not undo freshness action.");
+        return;
+      }
+      const restoredCheck = payload.check ?? lastFreshnessUndo.check;
+      setChecks((current) => [restoredCheck, ...current.filter((item) => item.id !== restoredCheck.id)]);
+      setLastFreshnessUndo(null);
+      setMessage("Freshness action undone.");
       await loadAdminData();
     } finally {
       setIsBusy(false);
@@ -591,8 +711,9 @@ export function AdminApp() {
     return Array.isArray(payload.services) ? payload.services : [];
   }
 
-  function updateDraft(draftId: string, update: Partial<StylistDraft>) {
+  function updateStylist(draftId: string, update: Partial<StylistDraft>) {
     setDrafts((current) => current.map((draft) => (draft.id === draftId ? { ...draft, ...update } : draft)));
+    setPublishedStylists((current) => current.map((draft) => (draft.id === draftId ? { ...draft, ...update } : draft)));
   }
 
   if (isCheckingSession) {
@@ -633,187 +754,108 @@ export function AdminApp() {
     );
   }
 
+  const syncLabel = dashboard?.freshness.updatedAt ? `Synced ${formatRelativeTime(dashboard.freshness.updatedAt)}` : "Synced just now";
+
   return (
-    <main className="min-h-screen bg-stone-100 text-stone-950">
-      <header className="border-b border-stone-200 bg-white">
-        <div className="mx-auto flex max-w-7xl flex-col gap-4 px-5 py-5 sm:flex-row sm:items-center sm:justify-between">
+    <main className="min-h-screen bg-[#f8f8f7] text-stone-950">
+      <header className="mx-auto max-w-7xl px-5 pt-10">
+        <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
           <div>
-            <p className="text-xs uppercase tracking-[0.2em] text-stone-500">ROW K admin</p>
-            <h1 className="text-2xl font-semibold">Operations dashboard</h1>
+            <p className="inline-flex rounded-full bg-stone-950 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.24em] text-white">ROW K ADMIN</p>
+            <h1 className="mt-4 text-2xl font-semibold tracking-tight">Stylist directory dashboard</h1>
           </div>
-          <div className="flex items-center gap-3">
-            {message ? <p className="text-sm text-stone-600">{message}</p> : null}
-            <Button type="button" variant="outline" onClick={logout} className="rounded-md">
-              <LogOut className="size-4" />
+          <div className="flex items-center gap-4">
+            {message ? <p className="hidden max-w-xs truncate text-sm text-stone-500 md:block">{message}</p> : null}
+            <span className="inline-flex items-center gap-2 text-xs text-stone-500">
+              <span className="size-2 rounded-full bg-emerald-500" />
+              {syncLabel}
+            </span>
+            <Button type="button" variant="outline" onClick={logout} className="h-9 rounded-md bg-white px-3 text-xs">
+              <LogOut className="size-3.5" />
               Log out
             </Button>
           </div>
         </div>
-      </header>
 
-      <div className="mx-auto max-w-7xl px-5 pt-5">
-        <div className="flex flex-wrap gap-2">
+        <nav className="mt-9 flex gap-7 border-b border-stone-200">
           {(["overview", "drafts", "freshness", "discovery"] as const).map((view) => (
-            <Button
+            <button
               key={view}
               type="button"
-              variant={activeView === view ? "default" : "outline"}
               onClick={() => setActiveView(view)}
-              className="rounded-md capitalize"
+              className={cn(
+                "border-b-2 px-0 pb-3 text-sm capitalize transition",
+                activeView === view ? "border-stone-950 text-stone-950" : "border-transparent text-stone-500 hover:text-stone-900",
+              )}
             >
-              {view}
-            </Button>
+              {view === "drafts" ? "Stylists" : view}
+            </button>
           ))}
-        </div>
-      </div>
+        </nav>
+      </header>
 
       {activeView === "overview" ? (
         <DashboardOverview
           dashboard={dashboard}
           intakeText={intakeText}
           isBusy={isBusy}
+          drafts={drafts}
+          checks={checks}
+          suggestions={suggestions}
           onIntakeChange={setIntakeText}
           onSubmit={createBulkDrafts}
           onOpenView={setActiveView}
         />
       ) : null}
 
-      <div className={cn("mx-auto grid max-w-7xl gap-5 px-5 py-6 lg:grid-cols-[minmax(340px,0.85fr)_minmax(0,1.15fr)]", activeView === "overview" && "hidden")}>
+      {activeView === "drafts" ? (
+        <StylistsPage
+          drafts={filteredStylists}
+          allDrafts={allStylists}
+          editableDrafts={drafts}
+          publishedStylists={publishedStylists}
+          dashboard={dashboard}
+          statusFilter={stylistStatusFilter}
+          isBusy={isBusy}
+          intakeText={intakeText}
+          selectedDraft={isDraftEditorOpen ? selectedDraft : null}
+          regions={regions}
+          services={services}
+          onStatusFilterChange={setStylistStatusFilter}
+          onIntakeChange={setIntakeText}
+          onSubmitIntake={createBulkDrafts}
+          onSelectDraft={(draftId) => {
+            setSelectedDraftId(draftId);
+            setIsDraftEditorOpen(true);
+          }}
+          onCloseEditor={() => setIsDraftEditorOpen(false)}
+          onChangeDraft={(update) => selectedDraft ? updateStylist(selectedDraft.id, update) : undefined}
+          onChangeDraftLocations={(areaIds) => selectedDraft ? updateDraftLocations(selectedDraft, areaIds) : undefined}
+          onSaveDraft={() => selectedDraft ? saveDraft(selectedDraft) : undefined}
+          onApproveDraft={() => selectedDraft ? approveDraft(selectedDraft) : undefined}
+          onDeleteDraft={() => selectedDraft ? deleteDraft(selectedDraft.id) : undefined}
+        />
+      ) : null}
+
+      {activeView === "freshness" ? (
+        <FreshnessPage
+          dashboard={dashboard}
+          checks={checks}
+          checksLoadedAt={checksLoadedAt}
+          checkProgress={checkProgress}
+          activeCheckBatch={activeCheckBatch}
+          isRunningChecks={isRunningChecks}
+          isBusy={isBusy}
+          lastUndo={lastFreshnessUndo}
+          onRunChecks={() => runChecks(0)}
+          onRunNext={() => runChecks(checkProgress.nextOffset ?? 0)}
+          onApply={applyFreshnessUpdate}
+          onUndo={undoFreshnessUpdate}
+        />
+      ) : null}
+
+      <div className={cn("mx-auto grid max-w-7xl gap-5 px-5 py-6 lg:grid-cols-[minmax(340px,0.85fr)_minmax(0,1.15fr)]", (activeView === "overview" || activeView === "drafts" || activeView === "freshness") && "hidden")}>
         <section className="space-y-5">
-          {activeView === "drafts" ? (
-          <Card className="rounded-md">
-            <CardHeader>
-              <CardTitle>New draft</CardTitle>
-              <CardDescription>Paste social, booking, or website links, then add any services you already know.</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <form onSubmit={createDraft} className="space-y-4">
-                <Field label="Links">
-                  <Textarea
-                    value={form.links}
-                    onChange={(value) => setForm((current) => ({ ...current, links: value }))}
-                    placeholder="https://www.instagram.com/..."
-                  />
-                </Field>
-                <div className="grid gap-4 sm:grid-cols-2">
-                  <Field label="Name">
-                    <Input value={form.name} onChange={(event) => setForm((current) => ({ ...current, name: event.target.value }))} />
-                  </Field>
-                  <Field label="Location">
-                    <Select value={form.areaId} onChange={(value) => setForm((current) => ({ ...current, areaId: value }))}>
-                      <option value="">Choose</option>
-                      {regions.map((region) => (
-                        <option key={region.id} value={region.id}>
-                          {region.label}
-                        </option>
-                      ))}
-                    </Select>
-                  </Field>
-                </div>
-                <Field label="Raw services">
-                  <Textarea
-                    value={form.rawServices}
-                    onChange={(value) => setForm((current) => ({ ...current, rawServices: value }))}
-                    placeholder="Silk press&#10;Tape ins&#10;Leave out weave"
-                  />
-                </Field>
-                <ServicePicker
-                  services={services}
-                  selected={form.services}
-                  onChange={(next) => setForm((current) => ({ ...current, services: next }))}
-                />
-                <Button type="submit" disabled={isBusy} className="w-full rounded-md">
-                  <Plus className="size-4" />
-                  Create draft
-                </Button>
-              </form>
-            </CardContent>
-          </Card>
-          ) : null}
-
-          {activeView === "drafts" ? (
-          <div className="space-y-2">
-            <div className="flex items-center justify-between">
-              <h2 className="text-sm font-semibold uppercase tracking-[0.14em] text-stone-500">Drafts</h2>
-              <Badge variant="secondary">{drafts.length}</Badge>
-            </div>
-            {drafts.length === 0 ? (
-              <p className="rounded-md border border-dashed border-stone-300 bg-white p-4 text-sm text-stone-500">No drafts waiting.</p>
-            ) : (
-              drafts.map((draft) => (
-                <button
-                  key={draft.id}
-                  type="button"
-                  onClick={() => setSelectedDraftId(draft.id)}
-                  className={cn(
-                    "block w-full rounded-md border bg-white p-4 text-left transition hover:border-stone-500",
-                    selectedDraft?.id === draft.id ? "border-stone-950" : "border-stone-200",
-                  )}
-                >
-                  <div className="flex items-start justify-between gap-3">
-                    <div>
-                      <p className="font-medium">{draft.name}</p>
-                      <p className="mt-1 text-sm text-stone-500">{draft.areaLabel || "Location needed"}</p>
-                    </div>
-                    <StatusBadge status={draft.status} />
-                  </div>
-                </button>
-              ))
-            )}
-          </div>
-          ) : null}
-
-          {activeView === "freshness" ? (
-          <div className="rounded-md border border-stone-200 bg-white p-4">
-            <div className="flex items-start justify-between gap-4">
-              <div>
-                <h2 className="text-sm font-semibold uppercase tracking-[0.14em] text-stone-500">Freshness checks</h2>
-                <p className="mt-2 text-sm text-stone-500">Check live links and compare booking-page services with the directory.</p>
-              </div>
-              <Button type="button" variant="outline" onClick={() => runChecks(0)} disabled={isRunningChecks} className="rounded-md">
-                {isRunningChecks ? <Loader2 className="size-4 animate-spin" /> : null}
-                {isRunningChecks ? "Checking" : "Run"}
-              </Button>
-            </div>
-            {checksLoadedAt ? (
-              <p className="mt-3 text-xs text-stone-400">
-                Last checked {new Date(checksLoadedAt).toLocaleString()}
-                {checkProgress.total ? ` · ${checkProgress.checkedCount} of ${checkProgress.total} checked` : ""}
-              </p>
-            ) : null}
-            {isRunningChecks ? (
-              <>
-                <div className="mt-4 rounded-md border border-blue-200 bg-blue-50 p-3 text-sm text-blue-900">
-                  Checking listings {activeCheckBatch.from}-{activeCheckBatch.to}. This can take 10-30 seconds while live links respond.
-                </div>
-                <FreshnessSkeleton />
-              </>
-            ) : checks.length ? (
-              <>
-                <div className="mt-4 max-h-72 space-y-2 overflow-auto">
-                  {checks.map((check) => (
-                    <FreshnessResultCard key={check.id} check={check} isBusy={isBusy} onApply={applyFreshnessUpdate} />
-                  ))}
-                </div>
-                {checkProgress.nextOffset !== null ? (
-                  <Button type="button" variant="outline" onClick={() => runChecks(checkProgress.nextOffset ?? 0)} disabled={isRunningChecks} className="mt-3 w-full rounded-md">
-                    Check next 50
-                  </Button>
-                ) : null}
-              </>
-            ) : checksLoadedAt ? (
-              <div className="mt-4 space-y-3">
-                <p className="text-sm text-stone-500">No broken links or service changes found in this batch.</p>
-                {checkProgress.nextOffset !== null ? (
-                  <Button type="button" variant="outline" onClick={() => runChecks(checkProgress.nextOffset ?? 0)} disabled={isRunningChecks} className="w-full rounded-md">
-                    Check next 50
-                  </Button>
-                ) : null}
-              </div>
-            ) : null}
-          </div>
-          ) : null}
-
           {activeView === "discovery" ? (
             <DiscoveryPanel
               suggestions={suggestions}
@@ -832,7 +874,8 @@ export function AdminApp() {
               regions={regions}
               services={services}
               isBusy={isBusy}
-              onChange={(update) => updateDraft(selectedDraft.id, update)}
+              onChange={(update) => updateStylist(selectedDraft.id, update)}
+              onChangeLocations={(areaIds) => updateDraftLocations(selectedDraft, areaIds)}
               onSave={() => saveDraft(selectedDraft)}
               onApprove={() => approveDraft(selectedDraft)}
               onDelete={() => deleteDraft(selectedDraft.id)}
@@ -852,10 +895,435 @@ export function AdminApp() {
   );
 }
 
+function StylistsPage({
+  drafts,
+  allDrafts,
+  editableDrafts,
+  publishedStylists,
+  dashboard,
+  statusFilter,
+  isBusy,
+  intakeText,
+  selectedDraft,
+  regions,
+  services,
+  onStatusFilterChange,
+  onIntakeChange,
+  onSubmitIntake,
+  onSelectDraft,
+  onCloseEditor,
+  onChangeDraft,
+  onChangeDraftLocations,
+  onSaveDraft,
+  onApproveDraft,
+  onDeleteDraft,
+}: {
+  drafts: StylistDraft[];
+  allDrafts: StylistDraft[];
+  editableDrafts: StylistDraft[];
+  publishedStylists: StylistDraft[];
+  dashboard: DashboardMetrics | null;
+  statusFilter: string;
+  isBusy: boolean;
+  intakeText: string;
+  selectedDraft: StylistDraft | null;
+  regions: RegionOption[];
+  services: string[];
+  onStatusFilterChange: (value: string) => void;
+  onIntakeChange: (value: string) => void;
+  onSubmitIntake: (event: FormEvent) => void;
+  onSelectDraft: (draftId: string) => void;
+  onCloseEditor: () => void;
+  onChangeDraft: (update: Partial<StylistDraft>) => void;
+  onChangeDraftLocations: (areaIds: string[]) => void;
+  onSaveDraft: () => void;
+  onApproveDraft: () => void;
+  onDeleteDraft: () => void;
+}) {
+  const draftCount = editableDrafts.filter((draft) => getDraftDisplayStatus(draft) === "draft").length;
+  const ready = dashboard?.drafts.readyToApprove ?? editableDrafts.filter((draft) => draft.status === "ready_to_approve").length;
+  const published = publishedStylists.length || dashboard?.freshness.total || 0;
+  const statusLabel = statusFilter === "all" ? "All statuses" : getStylistStatusLabel(statusFilter);
+
+  return (
+    <div className="mx-auto max-w-7xl space-y-7 px-5 py-9">
+      <form onSubmit={onSubmitIntake} className="relative">
+        <Plus className="pointer-events-none absolute left-6 top-1/2 size-5 -translate-y-1/2 text-stone-400" />
+        <textarea
+          value={intakeText}
+          onChange={(event) => onIntakeChange(event.target.value)}
+          rows={1}
+          placeholder="Paste a link, handle, or notes about a stylist..."
+          className="block h-16 min-h-16 w-full resize-none overflow-hidden rounded-full border border-stone-200 bg-white py-5 pl-16 pr-24 text-base leading-6 shadow-[0_1px_2px_rgba(0,0,0,0.04)] outline-none placeholder:text-stone-400 focus:border-stone-400 focus:ring-4 focus:ring-stone-100"
+        />
+        <button
+          type="submit"
+          disabled={isBusy || !intakeText.trim()}
+          className="absolute right-3 top-1/2 inline-flex size-12 -translate-y-1/2 items-center justify-center rounded-full bg-stone-100 text-stone-600 transition hover:bg-stone-200 hover:text-stone-900 disabled:cursor-not-allowed disabled:opacity-50"
+          aria-label="Create draft"
+        >
+          {isBusy ? <Loader2 className="size-5 animate-spin" /> : <ArrowUp className="size-5" />}
+        </button>
+      </form>
+
+      <div className="grid gap-4 md:grid-cols-3">
+        <StylistMetricCard
+          title="Draft"
+          value={draftCount}
+          icon={<FileText className="size-4" />}
+          valueClassName="text-sky-700"
+          isActive={statusFilter === "draft"}
+          onClick={() => onStatusFilterChange(statusFilter === "draft" ? "all" : "draft")}
+        />
+        <StylistMetricCard
+          title="Ready to Publish"
+          value={ready}
+          icon={<Check className="size-4" />}
+          valueClassName="text-emerald-700"
+          isActive={statusFilter === "ready_to_publish"}
+          onClick={() => onStatusFilterChange(statusFilter === "ready_to_publish" ? "all" : "ready_to_publish")}
+        />
+        <StylistMetricCard
+          title="Published"
+          value={published}
+          icon={<CompassDot />}
+          isActive={statusFilter === "published"}
+          onClick={() => onStatusFilterChange(statusFilter === "published" ? "all" : "published")}
+        />
+      </div>
+
+      <section className="overflow-hidden rounded-[8px] border border-stone-200 bg-white shadow-sm">
+        <div className="flex items-start justify-between gap-4 p-6">
+          <div>
+            <h2 className="text-lg font-semibold tracking-tight">Stylist entries</h2>
+            <p className="mt-1 text-sm text-stone-500">
+              {drafts.length} of {allDrafts.length} stylist{allDrafts.length === 1 ? "" : "s"}
+              {statusFilter !== "all" ? ` · ${statusLabel}` : ""}
+            </p>
+          </div>
+          <button type="button" className="inline-flex items-center gap-1.5 text-sm text-stone-700 hover:text-stone-950">
+            <ArrowUpDown className="size-4" />
+            Sort
+          </button>
+        </div>
+        <div className="overflow-x-auto">
+          <table className="w-full min-w-[900px] text-left text-sm">
+            <thead className="border-b border-stone-100 text-xs font-medium text-stone-500">
+              <tr>
+                <th className="px-4 py-3">Stylist</th>
+                <th className="px-4 py-3">Status</th>
+                <th className="px-4 py-3">Completeness</th>
+                <th className="px-4 py-3">Services</th>
+                <th className="px-4 py-3">Location</th>
+                <th className="px-4 py-3">Last edited</th>
+                <th className="w-10 px-4 py-3" />
+              </tr>
+            </thead>
+            <tbody>
+              {drafts.length ? (
+                drafts.map((draft) => {
+                  const completeness = getDraftCompleteness(draft);
+                  return (
+	                    <tr
+	                      key={draft.id}
+	                      tabIndex={0}
+	                      onClick={() => onSelectDraft(draft.id)}
+	                      onKeyDown={(event) => {
+	                        if (event.key === "Enter" || event.key === " ") {
+	                          event.preventDefault();
+	                          onSelectDraft(draft.id);
+	                        }
+	                      }}
+	                      className="cursor-pointer border-b border-stone-100 transition hover:bg-stone-50 focus:bg-stone-50 focus:outline-none last:border-b-0"
+	                    >
+                      <td className="px-4 py-4 font-medium text-stone-950">{draft.name || "Untitled stylist"}</td>
+                      <td className="px-4 py-4">
+                        <DraftTableStatusBadge draft={draft} />
+                      </td>
+                      <td className="px-4 py-4">
+                        <div className="flex items-center gap-3">
+                          <div className="h-2 w-20 overflow-hidden rounded-full bg-stone-100">
+                            <div className="h-full rounded-full bg-stone-950" style={{ width: `${completeness}%` }} />
+                          </div>
+                          <span className="text-xs text-stone-500">{completeness}%</span>
+                        </div>
+                      </td>
+                      <td className="px-4 py-4 text-stone-700">{draft.services.length}</td>
+                      <td className="px-4 py-4 text-stone-700">{draft.areaLabel || "—"}</td>
+                      <td className="px-4 py-4 text-stone-500">{formatRelativeTime(draft.updatedAt || draft.createdAt)}</td>
+	                      <td className="px-4 py-4">
+	                        <span className="inline-flex size-7 items-center justify-center rounded-full text-stone-500">
+	                          <ChevronRight className="size-4" />
+	                        </span>
+	                      </td>
+                    </tr>
+                  );
+                })
+              ) : (
+                <tr>
+                  <td colSpan={7} className="px-4 py-10 text-center text-sm text-stone-500">
+                    No stylists match those filters.
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      {selectedDraft ? (
+        <DraftEditorDrawer
+          draft={selectedDraft}
+          regions={regions}
+          services={services}
+          isBusy={isBusy}
+          onClose={onCloseEditor}
+          onChange={onChangeDraft}
+          onChangeLocations={onChangeDraftLocations}
+          onSave={onSaveDraft}
+          onApprove={onApproveDraft}
+          onDelete={onDeleteDraft}
+        />
+      ) : null}
+    </div>
+  );
+}
+
+function DraftEditorDrawer({
+  draft,
+  regions,
+  services,
+  isBusy,
+  onClose,
+  onChange,
+  onChangeLocations,
+  onSave,
+  onApprove,
+  onDelete,
+}: {
+  draft: StylistDraft;
+  regions: RegionOption[];
+  services: string[];
+  isBusy: boolean;
+  onClose: () => void;
+  onChange: (update: Partial<StylistDraft>) => void;
+  onChangeLocations: (areaIds: string[]) => void;
+  onSave: () => void;
+  onApprove: () => void;
+  onDelete: () => void;
+}) {
+  const completeness = getDraftCompleteness(draft);
+  const isPublished = getDraftDisplayStatus(draft) === "published";
+
+  return (
+    <div className="fixed inset-0 z-50 bg-stone-950/20 backdrop-blur-[1px]">
+      <button type="button" aria-label="Close editor" className="absolute inset-0 cursor-default" onClick={onClose} />
+      <aside className="absolute inset-y-0 right-0 flex w-full max-w-[560px] flex-col overflow-hidden bg-[#f8f8f7] shadow-2xl">
+        <div className="shrink-0 px-7 pb-5 pt-6">
+          <button type="button" onClick={onClose} className="inline-flex items-center gap-2 text-sm text-stone-500 hover:text-stone-950">
+            <ArrowLeft className="size-4" />
+            Back to stylists
+          </button>
+          <div className="mt-5">
+            <p className="inline-flex rounded-full bg-stone-950 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.22em] text-white">ROW K ADMIN</p>
+            <div className="mt-4 flex flex-wrap items-center gap-2">
+              <h2 className="text-xl font-semibold tracking-tight text-stone-950">{draft.name || "Untitled stylist"}</h2>
+              <DraftTableStatusBadge draft={draft} />
+            </div>
+            <div className="mt-4 flex items-center gap-3">
+              <div className="h-2 flex-1 overflow-hidden rounded-full bg-stone-100">
+                <div className="h-full rounded-full bg-stone-950" style={{ width: `${completeness}%` }} />
+              </div>
+              <span className="w-10 text-right text-xs tabular-nums text-stone-600">{completeness}%</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="min-h-0 flex-1 overflow-y-auto px-7 pb-28">
+          <DraftEditor
+            draft={draft}
+            regions={regions}
+            services={services}
+            isBusy={isBusy}
+            onChange={onChange}
+            onChangeLocations={onChangeLocations}
+            onSave={onSave}
+            onApprove={onApprove}
+            onDelete={onDelete}
+            canDelete={!isPublished}
+            isEmbedded
+          />
+        </div>
+
+        <div className="shrink-0 border-t border-stone-200 bg-white/95 px-7 py-4 shadow-[0_-12px_28px_rgba(15,23,42,0.06)] backdrop-blur">
+          <div className="flex items-center justify-end gap-3">
+            <Button type="button" variant="outline" onClick={onSave} disabled={isBusy} className="rounded-md bg-white">
+              <Save className="size-4" />
+              {isPublished ? "Save changes" : "Save draft"}
+            </Button>
+            {!isPublished ? (
+              <Button type="button" onClick={onApprove} disabled={isBusy} className="rounded-md bg-stone-950">
+                <Check className="size-4" />
+                Submit for review
+              </Button>
+            ) : null}
+          </div>
+        </div>
+      </aside>
+    </div>
+  );
+}
+
+function StylistMetricCard({
+  title,
+  value,
+  icon,
+  valueClassName,
+  isActive,
+  onClick,
+}: {
+  title: string;
+  value: number;
+  icon: React.ReactNode;
+  valueClassName?: string;
+  isActive?: boolean;
+  onClick?: () => void;
+}) {
+  const content = (
+    <>
+      <div className="flex items-center justify-between gap-4">
+        <p className="text-xs font-medium uppercase tracking-[0.14em] text-stone-500">{title}</p>
+        <span className="text-stone-400">{icon}</span>
+      </div>
+      <p className={cn("mt-5 text-4xl font-semibold leading-none tracking-tight", valueClassName)}>{value}</p>
+    </>
+  );
+
+  if (onClick) {
+    return (
+      <button
+        type="button"
+        onClick={onClick}
+        aria-pressed={isActive}
+      className={cn(
+        "rounded-[8px] border bg-white p-6 text-left shadow-sm transition hover:border-stone-400 hover:shadow-md",
+        isActive ? "border-stone-300 bg-stone-100 ring-2 ring-stone-200 hover:bg-stone-200" : "border-stone-200",
+      )}
+      >
+        {content}
+      </button>
+    );
+  }
+
+  return (
+    <div className="rounded-[8px] border border-stone-200 bg-white p-6 shadow-sm">
+      {content}
+    </div>
+  );
+}
+
+function CompassDot() {
+  return <SearchCheck className="size-4" />;
+}
+
+function DraftTableStatusBadge({ draft }: { draft: StylistDraft }) {
+  const status = getDraftDisplayStatus(draft);
+  const label = getStylistStatusLabel(status);
+  const colorClass =
+    status === "ready_to_publish"
+      ? "bg-emerald-100 text-emerald-800"
+      : status === "published"
+        ? "bg-blue-100 text-blue-800"
+        : "bg-sky-100 text-sky-800";
+
+  return <span className={cn("rounded-full px-3 py-1 text-xs", colorClass)}>{label}</span>;
+}
+
+function getDraftDisplayStatus(draft: StylistDraft) {
+  if (draft.status === "approved") {
+    return "published";
+  }
+
+  if (draft.status === "ready_to_approve") {
+    return "ready_to_publish";
+  }
+
+  return "draft";
+}
+
+function getStylistStatusLabel(status: string) {
+  if (status === "ready_to_publish") {
+    return "Ready to Publish";
+  }
+  if (status === "published") {
+    return "Published";
+  }
+  return "Draft";
+}
+
+function getVisibleDraftWarnings(draft: StylistDraft) {
+  return (draft.warnings || []).filter((warning) => {
+    if (warning === "No booking link identified yet.") {
+      return !hasDraftBookingLink(draft);
+    }
+    if (warning === "No services matched yet.") {
+      return draft.services.length === 0;
+    }
+    return true;
+  });
+}
+
+function hasDraftBookingLink(draft: StylistDraft) {
+  return Boolean(draft.bookingUrl.trim() || isBookingLikeUrl(draft.websiteUrl));
+}
+
+function urlsMatch(left = "", right = "") {
+  const normalize = (value: string) => value.trim().replace(/\/+$/, "").toLowerCase();
+  return Boolean(normalize(left) && normalize(left) === normalize(right));
+}
+
+function isBookingLikeUrl(url = "") {
+  try {
+    const parsed = new URL(url);
+    const text = `${parsed.pathname} ${parsed.search} ${parsed.hash}`.toLowerCase();
+    return /\b(book|booking|appointments?|schedule|calendar|reserve|reservation)\b/.test(text);
+  } catch {
+    return false;
+  }
+}
+
+function getStylistStatusCounts(drafts: StylistDraft[]) {
+  return drafts.reduce(
+    (counts, draft) => {
+      const status = getDraftDisplayStatus(draft);
+      counts[status] += 1;
+      return counts;
+    },
+    {
+      draft: 0,
+      published: 0,
+      ready_to_publish: 0,
+    } as Record<"draft" | "published" | "ready_to_publish", number>,
+  );
+}
+
+function getDraftCompleteness(draft: StylistDraft) {
+  const fields = [
+    Boolean(draft.name.trim()),
+    Boolean(draft.instagramUrl),
+    Boolean(draft.bookingUrl),
+    draft.services.length > 0,
+  ];
+  return Math.round((fields.filter(Boolean).length / fields.length) * 100);
+}
+
 function DashboardOverview({
   dashboard,
   intakeText,
   isBusy,
+  drafts,
+  checks,
+  suggestions,
   onIntakeChange,
   onSubmit,
   onOpenView,
@@ -863,84 +1331,893 @@ function DashboardOverview({
   dashboard: DashboardMetrics | null;
   intakeText: string;
   isBusy: boolean;
+  drafts: StylistDraft[];
+  checks: DirectoryCheck[];
+  suggestions: DiscoverySuggestion[];
   onIntakeChange: (value: string) => void;
   onSubmit: (event: FormEvent) => void;
   onOpenView: (view: "overview" | "drafts" | "freshness" | "discovery") => void;
 }) {
+  const [overviewFilter, setOverviewFilter] = useState<"Draft" | "Freshness" | "Discovery" | null>(null);
+  const allActionItems = buildActionItems(drafts, checks, suggestions);
+  const actionItems = overviewFilter ? allActionItems.filter((item) => item.type === overviewFilter) : allActionItems;
+
+  function toggleFilter(type: "Draft" | "Freshness" | "Discovery") {
+    setOverviewFilter((current) => (current === type ? null : type));
+  }
+
   return (
-    <div className="mx-auto max-w-7xl space-y-5 px-5 py-6">
-      <Card className="rounded-md">
-        <CardHeader>
-          <CardTitle>Add stylists</CardTitle>
-          <CardDescription>Paste Instagram, TikTok, booking links, websites, or messy notes. One or many links can become drafts.</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <form onSubmit={onSubmit} className="space-y-3">
-            <Textarea
-              value={intakeText}
-              onChange={onIntakeChange}
-              placeholder={"https://www.instagram.com/example/\nServices: silk press, leave out weave\n\nhttps://example.as.me/schedule/demo"}
-            />
-            <Button type="submit" disabled={isBusy || !intakeText.trim()} className="w-full rounded-md">
-              {isBusy ? <Loader2 className="size-4 animate-spin" /> : <Plus className="size-4" />}
-              Create draft{intakeText.split("http").length > 2 ? "s" : ""}
-            </Button>
-          </form>
-        </CardContent>
-      </Card>
+    <div className="mx-auto max-w-7xl space-y-8 px-5 py-11">
+      <form onSubmit={onSubmit} className="relative">
+        <Plus className="pointer-events-none absolute left-6 top-1/2 size-5 -translate-y-1/2 text-stone-400" />
+        <textarea
+          value={intakeText}
+          onChange={(event) => onIntakeChange(event.target.value)}
+          rows={1}
+          placeholder="Paste a link, handle, or notes about a stylist..."
+          className="block h-16 min-h-16 w-full resize-none overflow-hidden rounded-full border border-stone-200 bg-white py-5 pl-16 pr-24 text-base leading-6 shadow-[0_1px_2px_rgba(0,0,0,0.04)] outline-none placeholder:text-stone-400 focus:border-stone-400 focus:ring-4 focus:ring-stone-100"
+        />
+        <button
+          type="submit"
+          disabled={isBusy || !intakeText.trim()}
+          className="absolute right-3 top-1/2 inline-flex size-12 -translate-y-1/2 items-center justify-center rounded-full bg-stone-100 text-stone-600 transition hover:bg-stone-200 hover:text-stone-900 disabled:cursor-not-allowed disabled:opacity-50"
+          aria-label="Create draft"
+        >
+          {isBusy ? <Loader2 className="size-5 animate-spin" /> : <ArrowUp className="size-5" />}
+        </button>
+      </form>
 
       <div className="grid gap-4 lg:grid-cols-3">
         <DashboardCard
-          title="Drafts"
+          title="Draft entries"
           value={dashboard?.drafts.total ?? 0}
           detail={`${dashboard?.drafts.needsReview ?? 0} needs review · ${dashboard?.drafts.readyToApprove ?? 0} ready`}
-          onClick={() => onOpenView("drafts")}
+          icon={<FileText className="size-4" />}
+          isActive={overviewFilter === "Draft"}
+          onClick={() => toggleFilter("Draft")}
         />
         <DashboardCard
-          title="Freshness"
+          title="Stale entries"
           value={dashboard?.freshness.totalIssues ?? 0}
           detail={`${dashboard?.freshness.brokenLinks ?? 0} link issues · ${dashboard?.freshness.serviceChanges ?? 0} service changes`}
-          onClick={() => onOpenView("freshness")}
+          icon={<ClockAlert className="size-4" />}
+          isActive={overviewFilter === "Freshness"}
+          onClick={() => toggleFilter("Freshness")}
         />
         <DashboardCard
-          title="Discovery"
+          title="Suggested entries"
           value={dashboard?.discovery.total ?? 0}
           detail={`${dashboard?.discovery.highConfidence ?? 0} high confidence · ${dashboard?.discovery.needsReview ?? 0} to review`}
-          onClick={() => onOpenView("discovery")}
+          icon={<SearchCheck className="size-4" />}
+          isActive={overviewFilter === "Discovery"}
+          onClick={() => toggleFilter("Discovery")}
         />
       </div>
 
-      <div className="grid gap-4 lg:grid-cols-2">
-        <Card className="rounded-md">
-          <CardHeader>
-            <CardTitle>Draft focus</CardTitle>
-            <CardDescription>
-              {dashboard?.drafts.missingLocation ?? 0} missing location · {dashboard?.drafts.missingServices ?? 0} missing services
-            </CardDescription>
-          </CardHeader>
-        </Card>
-        <Card className="rounded-md">
-          <CardHeader>
-            <CardTitle>Freshness coverage</CardTitle>
-            <CardDescription>
-              {dashboard?.freshness.checkedCount ?? 0} of {dashboard?.freshness.total ?? 0} checked
-              {dashboard?.freshness.updatedAt ? ` · last run ${new Date(dashboard.freshness.updatedAt).toLocaleDateString()}` : ""}
-            </CardDescription>
-          </CardHeader>
-        </Card>
-      </div>
+      <ActionQueue items={actionItems} onOpenView={onOpenView} />
     </div>
   );
 }
 
-function DashboardCard({ title, value, detail, onClick }: { title: string; value: number; detail: string; onClick: () => void }) {
+function DashboardCard({
+  title,
+  value,
+  detail,
+  icon,
+  isActive,
+  onClick,
+}: {
+  title: string;
+  value: number;
+  detail: string;
+  icon: React.ReactNode;
+  isActive: boolean;
+  onClick: () => void;
+}) {
   return (
-    <button type="button" onClick={onClick} className="rounded-md border border-stone-200 bg-white p-5 text-left shadow-sm transition hover:border-stone-500">
-      <p className="text-xs font-semibold uppercase tracking-[0.14em] text-stone-500">{title}</p>
-      <p className="mt-3 text-4xl font-semibold">{value}</p>
-      <p className="mt-2 text-sm text-stone-500">{detail}</p>
+    <button
+      type="button"
+      onClick={onClick}
+      className={cn(
+        "cursor-pointer rounded-[8px] border p-6 text-left shadow-sm transition",
+        isActive
+          ? "border-stone-300 bg-stone-100 hover:bg-stone-200 active:bg-stone-200"
+          : "border-stone-200 bg-white hover:border-stone-300 hover:bg-stone-50 active:bg-stone-100",
+      )}
+    >
+      <div className="flex items-center justify-between gap-4">
+        <p className={cn("text-xs font-medium uppercase tracking-[0.14em]", isActive ? "text-stone-600" : "text-stone-500")}>{title}</p>
+        <span className={isActive ? "text-stone-500" : "text-stone-400"}>{icon}</span>
+      </div>
+      <p className="mt-5 text-4xl font-semibold leading-none tracking-tight text-stone-950">{value}</p>
+      <p className={cn("mt-4 text-sm", isActive ? "text-stone-600" : "text-stone-500")}>{detail}</p>
     </button>
   );
+}
+
+type ActionItem = {
+  id: string;
+  name: string;
+  type: "Draft" | "Freshness" | "Discovery";
+  issue: string;
+  priority: "High" | "Medium" | "Low";
+  age: string;
+  view: "drafts" | "freshness" | "discovery";
+};
+
+function ActionQueue({
+  items,
+  onOpenView,
+}: {
+  items: ActionItem[];
+  onOpenView: (view: "overview" | "drafts" | "freshness" | "discovery") => void;
+}) {
+  return (
+    <section className="overflow-hidden rounded-[8px] border border-stone-200 bg-white shadow-sm">
+      <div className="flex flex-col gap-4 p-6 sm:flex-row sm:items-start sm:justify-between">
+        <div>
+          <h2 className="text-lg font-semibold tracking-tight">Action queue</h2>
+          <p className="mt-1 text-sm text-stone-500">{items.length} items awaiting your attention</p>
+        </div>
+        <div className="flex items-center gap-5 text-sm text-stone-700">
+          <button type="button" className="inline-flex items-center gap-1.5 hover:text-stone-950">
+            <Filter className="size-4" />
+            Filter
+          </button>
+          <button type="button" className="inline-flex items-center gap-1.5 hover:text-stone-950">
+            <ArrowUpDown className="size-4" />
+            Sort
+          </button>
+        </div>
+      </div>
+      <div className="overflow-x-auto">
+        <table className="w-full min-w-[720px] text-left text-sm">
+          <thead className="border-b border-stone-100 text-xs font-medium text-stone-500">
+            <tr>
+              <th className="px-4 py-3">Stylist</th>
+              <th className="px-4 py-3">Type</th>
+              <th className="px-4 py-3">Issue</th>
+              <th className="px-4 py-3">Priority</th>
+              <th className="px-4 py-3">Age</th>
+              <th className="w-10 px-4 py-3" />
+            </tr>
+          </thead>
+          <tbody>
+            {items.length ? (
+              items.map((item) => (
+                <tr key={item.id} className="border-b border-stone-100 last:border-b-0">
+                  <td className="px-4 py-4 font-medium text-stone-950">{item.name}</td>
+                  <td className="px-4 py-4">
+                    <span className="rounded-full bg-stone-100 px-3 py-1 text-xs text-stone-700">{item.type}</span>
+                  </td>
+                  <td className="px-4 py-4 text-stone-700">{item.issue}</td>
+                  <td className="px-4 py-4">
+                    <PriorityBadge priority={item.priority} />
+                  </td>
+                  <td className="px-4 py-4 text-stone-500">{item.age}</td>
+                  <td className="px-4 py-4">
+                    <button type="button" onClick={() => onOpenView(item.view)} className="inline-flex size-7 items-center justify-center rounded-full hover:bg-stone-100" aria-label={`Open ${item.type}`}>
+                      <ChevronRight className="size-4" />
+                    </button>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan={6} className="px-4 py-10 text-center text-sm text-stone-500">
+                  Nothing needs attention right now.
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  );
+}
+
+function PriorityBadge({ priority }: { priority: ActionItem["priority"] }) {
+  const colorClass =
+    priority === "High"
+      ? "bg-sky-100 text-sky-800"
+      : priority === "Low"
+        ? "bg-emerald-100 text-emerald-800"
+        : "bg-stone-100 text-stone-700";
+
+  return <span className={cn("rounded-full px-3 py-1 text-xs", colorClass)}>{priority}</span>;
+}
+
+type FreshnessPageApplyHandler = (
+  check: DirectoryCheck,
+  update: FreshnessUpdate,
+) => void;
+
+function FreshnessPage({
+  dashboard,
+  checks,
+  checksLoadedAt,
+  checkProgress,
+  isRunningChecks,
+  isBusy,
+  lastUndo,
+  onRunChecks,
+  onRunNext,
+  onApply,
+  onUndo,
+}: {
+  dashboard: DashboardMetrics | null;
+  checks: DirectoryCheck[];
+  checksLoadedAt: string | null;
+  checkProgress: { checkedCount: number; total: number; nextOffset: number | null };
+  activeCheckBatch: { from: number; to: number };
+  isRunningChecks: boolean;
+  isBusy: boolean;
+  lastUndo: FreshnessUndoState | null;
+  onRunChecks: () => void;
+  onRunNext: () => void;
+  onApply: FreshnessPageApplyHandler;
+  onUndo: () => void;
+}) {
+  const total = checkProgress.total || dashboard?.freshness.total || 0;
+  const checkedCount = checkProgress.checkedCount || dashboard?.freshness.checkedCount || 0;
+  const progress = total ? Math.min(100, Math.round((checkedCount / total) * 100)) : 0;
+	  const [freshnessFilter, setFreshnessFilter] = useState<"all" | "service-changes" | "broken-links">("all");
+	  const rows = buildFreshnessRecommendationGroups(checks);
+		  const recommendationCount = rows.length || dashboard?.freshness.totalIssues || 0;
+		  const lastCompletedAt = checksLoadedAt || dashboard?.freshness.updatedAt;
+		  const hasCompletedCheck = Boolean(lastCompletedAt || checkedCount > 0 || rows.length > 0);
+	  const serviceChanges = rows.filter((row) => row.details.some((detail) => detail.kind === "add" || detail.kind === "remove")).length;
+	  const brokenLinks = rows.reduce((count, row) => count + row.details.filter((detail) => detail.kind === "fix").length, 0);
+	  const filteredRows = freshnessFilter === "service-changes"
+	    ? rows.filter((row) => row.details.some((d) => d.kind === "add" || d.kind === "remove"))
+	    : freshnessFilter === "broken-links"
+	      ? rows.filter((row) => row.details.some((d) => d.kind === "fix"))
+	      : rows;
+
+	  return (
+	    <div className="mx-auto max-w-7xl space-y-7 px-5 py-9">
+	      <section className="rounded-[8px] border border-stone-200 bg-white px-6 py-6 shadow-sm">
+	        <div className="flex items-start justify-between gap-5">
+	          <p className="text-sm text-stone-500">
+	            <span className="font-semibold text-stone-950">Freshness check</span>
+	            <span className="px-2 text-stone-300">·</span>
+	            {lastCompletedAt ? `Last run ${formatRelativeTime(lastCompletedAt)}` : "Not run yet"}
+	          </p>
+		          <div className="flex items-center gap-2">
+		            <Button type="button" onClick={onRunChecks} disabled={isRunningChecks} className="h-9 rounded-md bg-stone-950 px-3 text-sm">
+		              {isRunningChecks ? <Loader2 className="size-4 animate-spin" /> : hasCompletedCheck ? <RefreshCw className="size-4" /> : <PlayIcon />}
+		              {hasCompletedCheck ? "Refresh check" : "Run check"}
+		            </Button>
+	            {checkProgress.nextOffset !== null ? (
+	              <button
+	                type="button"
+	                onClick={onRunNext}
+	                disabled={isRunningChecks}
+	                className="inline-flex h-9 items-center gap-2 rounded-md border border-stone-200 bg-white px-3 text-sm text-stone-700 transition hover:border-stone-300 hover:bg-stone-50 disabled:cursor-not-allowed disabled:opacity-40"
+	              >
+	                <FastForward className="size-4" />
+	                Check next batch
+	              </button>
+	            ) : null}
+	            {lastUndo ? (
+	              <button
+	                type="button"
+	                onClick={onUndo}
+	                disabled={isBusy}
+	                title={`Undo ${lastUndo.label}`}
+	                className="inline-flex h-9 items-center gap-2 rounded-md border border-stone-200 bg-white px-3 text-sm text-stone-700 transition hover:border-stone-300 hover:bg-stone-50 hover:text-stone-950 disabled:cursor-not-allowed disabled:opacity-40"
+	              >
+	                <Undo2 className="size-4" />
+	                Undo
+	              </button>
+	            ) : null}
+	          </div>
+	        </div>
+		        <div className="mt-6 space-y-3">
+		          <div className="flex items-center justify-between text-sm">
+		            <span className="font-semibold tabular-nums text-stone-950">{checkedCount}</span>
+		            <span className="font-semibold tabular-nums text-stone-950">{total}</span>
+		          </div>
+	          <div className="h-2.5 overflow-hidden rounded-full bg-stone-100">
+	            <div className="h-full rounded-full bg-stone-950 transition-all" style={{ width: `${progress}%` }} />
+	          </div>
+	        </div>
+	      </section>
+
+	      <div className="grid gap-5 md:grid-cols-3">
+	        <FreshnessMetricCard title="Stale entries" value={recommendationCount} icon={<RefreshCw className="size-4" />} isActive={freshnessFilter === "all"} onClick={() => setFreshnessFilter("all")} />
+	        <FreshnessMetricCard title="Services incorrect" value={serviceChanges} valueClassName="text-sky-700" icon={<AlertTriangle className="size-4 text-sky-600" />} isActive={freshnessFilter === "service-changes"} onClick={() => setFreshnessFilter(freshnessFilter === "service-changes" ? "all" : "service-changes")} />
+	        <FreshnessMetricCard title="Broken links" value={brokenLinks} valueClassName="text-red-700" icon={<Unlink className="size-4 text-red-600" />} isActive={freshnessFilter === "broken-links"} onClick={() => setFreshnessFilter(freshnessFilter === "broken-links" ? "all" : "broken-links")} />
+	      </div>
+
+	      <section className="overflow-hidden rounded-[8px] border border-stone-200 bg-white shadow-sm">
+	        {filteredRows.length ? (
+	          filteredRows.map((row, index) => (
+	            <FreshnessRecommendationCard key={row.id} row={row} defaultOpen={index === 0} isBusy={isBusy} onApply={onApply} />
+	          ))
+	        ) : (
+	          <div className="px-6 py-12 text-sm text-stone-500">No freshness recommendations found in this batch.</div>
+	        )}
+	      </section>
+	    </div>
+	  );
+	}
+
+function PlayIcon() {
+  return <span className="ml-0.5 inline-block size-0 border-y-[5px] border-l-[8px] border-y-transparent border-l-current" />;
+}
+
+function FreshnessMetricCard({ title, value, icon, valueClassName, isActive, onClick }: { title: string; value: number; icon: React.ReactNode; valueClassName?: string; isActive: boolean; onClick: () => void }) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className={cn(
+        "cursor-pointer rounded-[8px] border p-6 text-left shadow-sm transition",
+        isActive
+          ? "border-stone-300 bg-stone-100 hover:bg-stone-200 active:bg-stone-200"
+          : "border-stone-200 bg-white hover:border-stone-300 hover:bg-stone-50 active:bg-stone-100",
+      )}
+    >
+      <div className="flex items-center justify-between gap-4">
+        <p className={cn("text-xs font-semibold uppercase tracking-[0.14em]", isActive ? "text-stone-600" : "text-stone-500")}>{title}</p>
+        <span className={isActive ? "text-stone-500" : "text-stone-400"}>{icon}</span>
+      </div>
+      <p className={cn("mt-5 text-4xl font-semibold leading-none tracking-tight text-stone-950", !isActive && valueClassName)}>{value}</p>
+    </button>
+  );
+}
+
+function FreshnessRecommendationCard({
+  row,
+  defaultOpen,
+  isBusy,
+  onApply,
+}: {
+  row: FreshnessRecommendationGroup;
+  defaultOpen: boolean;
+  isBusy: boolean;
+  onApply: FreshnessPageApplyHandler;
+}) {
+  const [isOpen, setIsOpen] = useState(defaultOpen);
+  const hasBrokenWebsiteLink = row.check.linkChecks.some((linkCheck) => linkCheck.type === "website" && linkCheck.status !== "ok");
+  const primaryLinkLabel = hasBrokenWebsiteLink ? "Website URL" : "Booking URL";
+  const primaryLinkValue = hasBrokenWebsiteLink ? row.websiteUrl || row.bookingUrl || "" : row.bookingUrl || "";
+  const [primaryLinkUrl, setPrimaryLinkUrl] = useState(primaryLinkValue);
+  const [instagramUrl, setInstagramUrl] = useState(row.instagramUrl || "");
+  const [linkSaveState, setLinkSaveState] = useState<"idle" | "saving" | "saved">("idle");
+  const canApply = Boolean(row.acceptUpdate);
+  const canReject = Boolean(row.rejectUpdate);
+  const hasBrokenLinks = row.details.some((d) => d.kind === "fix");
+
+  async function handleSaveLinks() {
+    setLinkSaveState("saving");
+    try {
+      const linkUpdate: FreshnessUpdate = hasBrokenWebsiteLink
+        ? { websiteUrl: primaryLinkUrl }
+        : {
+            bookingUrl: primaryLinkUrl,
+            ...(row.websiteUrl && urlsMatch(row.websiteUrl, row.bookingUrl) ? { websiteUrl: primaryLinkUrl } : {}),
+          };
+      await Promise.resolve(onApply(row.check, { ...linkUpdate, instagramUrl }));
+      setLinkSaveState("saved");
+      setTimeout(() => setLinkSaveState("idle"), 2500);
+    } catch {
+      setLinkSaveState("idle");
+    }
+  }
+
+  return (
+    <div className="border-b border-stone-100 last:border-b-0">
+      <div className="flex items-center justify-between gap-4 px-6 py-5">
+        <button type="button" onClick={() => setIsOpen((current) => !current)} className="min-w-0 flex-1 text-left">
+          <span className="inline-flex min-w-0 flex-wrap items-center gap-3">
+            <span className="font-semibold text-stone-950">{row.stylist}</span>
+            <span className="inline-flex size-6 items-center justify-center rounded-full bg-stone-100 text-xs font-semibold tabular-nums text-stone-600">{row.details.length}</span>
+            <span className="text-sm text-stone-500">changes</span>
+          </span>
+        </button>
+        <div className="flex shrink-0 items-center gap-2 text-stone-700">
+          <FreshnessLinkButtons row={row} />
+          <IconActionDivider />
+          <span className="inline-flex items-center gap-2">
+            <IconActionButton label="Accept all recommendations" disabled={isBusy || !canApply} variant="ghost" tone="accept" onClick={() => row.acceptUpdate ? onApply(row.check, row.acceptUpdate) : undefined}>
+              <Check className="size-4" />
+            </IconActionButton>
+            <IconActionButton label="Reject all recommendations" disabled={isBusy || !canReject} variant="ghost" tone="reject" onClick={() => row.rejectUpdate ? onApply(row.check, row.rejectUpdate) : undefined}>
+              <X className="size-4" />
+            </IconActionButton>
+          </span>
+          <IconActionDivider />
+          <button type="button" onClick={() => setIsOpen((current) => !current)} className="inline-flex size-8 items-center justify-center rounded-md hover:bg-stone-100" aria-label={isOpen ? "Collapse recommendations" : "Expand recommendations"}>
+            {isOpen ? <ChevronUp className="size-4" /> : <ChevronDown className="size-4" />}
+          </button>
+        </div>
+      </div>
+
+      {isOpen ? (
+        <div className="space-y-4 px-6 pb-6">
+          {row.details.map((detail, index) => (
+            <FreshnessRecommendationItem key={`${row.id}-${detail.label}-${index}`} detail={detail} row={row} isBusy={isBusy} onApply={onApply} />
+          ))}
+          {hasBrokenLinks ? (
+            <div className="space-y-3 rounded-[8px] border border-stone-200 bg-stone-50 p-4">
+              <div className="flex items-center justify-between gap-3">
+                <p className="text-xs font-semibold uppercase tracking-[0.12em] text-stone-600">Update broken links</p>
+                <button
+                  type="button"
+                  disabled={isBusy || linkSaveState === "saving"}
+                  onClick={handleSaveLinks}
+                  className={cn(
+                    "inline-flex h-8 items-center justify-center gap-2 rounded-md border px-3 text-xs font-semibold shadow-sm transition disabled:cursor-not-allowed disabled:opacity-40",
+                    linkSaveState === "saved"
+                      ? "border-emerald-200 bg-emerald-50 text-emerald-700"
+                      : "border-stone-950 bg-stone-950 text-white hover:bg-stone-800 active:bg-stone-700",
+                  )}
+                >
+                  {linkSaveState === "saving" ? (
+                    <><Loader2 className="size-3.5 animate-spin" /> Saving</>
+                  ) : linkSaveState === "saved" ? (
+                    <><Check className="size-3.5" /> Saved</>
+                  ) : (
+                    "Save"
+                  )}
+                </button>
+              </div>
+              <div className="h-px bg-stone-200" />
+              <div className="grid gap-3 sm:grid-cols-2">
+                <Field label={primaryLinkLabel}>
+                  <Input value={primaryLinkUrl} onChange={(event) => setPrimaryLinkUrl(event.target.value)} placeholder="https://..." className="h-9 rounded-md" />
+                </Field>
+                <Field label="Instagram URL">
+                  <Input value={instagramUrl} onChange={(event) => setInstagramUrl(event.target.value)} placeholder="https://www.instagram.com/..." className="h-9 rounded-md" />
+                </Field>
+              </div>
+            </div>
+          ) : null}
+        </div>
+      ) : null}
+    </div>
+  );
+}
+
+function FreshnessRecommendationItem({
+  detail,
+  row,
+  isBusy,
+  onApply,
+}: {
+  detail: FreshnessRecommendationDetail;
+  row: FreshnessRecommendationGroup;
+  isBusy: boolean;
+  onApply: FreshnessPageApplyHandler;
+}) {
+  const isAdd = detail.kind === "add";
+  const isRemove = detail.kind === "remove";
+  const toneClass = isAdd
+    ? "border-emerald-200 bg-emerald-50/40 text-emerald-700"
+    : isRemove
+      ? "border-red-200 bg-red-50/40 text-red-700"
+      : detail.kind === "fix"
+        ? "border-red-200 bg-red-50/40 text-red-700"
+        : "border-sky-200 bg-sky-50/40 text-sky-700";
+  const dotClass = isAdd ? "bg-emerald-100 text-emerald-700" : isRemove || detail.kind === "fix" ? "bg-red-100 text-red-700" : "bg-sky-100 text-sky-700";
+  const acceptUpdate =
+    detail.kind === "add" && detail.service
+      ? { addServices: [detail.service] }
+      : detail.kind === "remove" && detail.service
+        ? { removeServices: [detail.service] }
+        : row.acceptUpdate;
+  const rejectUpdate =
+    detail.kind === "add" && detail.service
+      ? { rejectAddedServices: [detail.service] }
+      : detail.kind === "remove" && detail.service
+        ? { rejectRemovedServices: [detail.service] }
+        : row.rejectUpdate;
+
+  return (
+    <div className={cn("flex items-center justify-between gap-4 rounded-[8px] border px-4 py-4", toneClass)}>
+      <div className="flex min-w-0 items-center gap-4">
+        <span className={cn("inline-flex size-8 shrink-0 items-center justify-center rounded-full", dotClass)}>
+          {isAdd ? <span className="text-lg leading-none">+</span> : isRemove ? <span className="text-lg leading-none">−</span> : detail.kind === "fix" ? <Unlink className="size-4" /> : <AlertTriangle className="size-4" />}
+        </span>
+        <div className="min-w-0">
+          <p className="font-semibold text-stone-950">{detail.label}</p>
+          <p className="mt-1 text-sm font-medium">{detail.description}</p>
+          {detail.evidence?.length ? (
+            <div className="mt-3 space-y-1.5">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-stone-500">Evidence</p>
+              <div className="flex flex-wrap gap-1.5">
+                {detail.evidence.map((line) => (
+                  <span key={line} className="rounded-md border border-stone-200 bg-white px-2 py-1 text-xs font-medium text-stone-600">
+                    {line}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ) : null}
+        </div>
+      </div>
+      {detail.kind !== "fix" ? (
+        <div className="flex shrink-0 items-center gap-2 text-stone-700">
+          <IconActionButton label="Accept recommendation" disabled={isBusy || !acceptUpdate} variant="ghost" tone="accept" onClick={() => acceptUpdate ? onApply(row.check, acceptUpdate) : undefined}>
+            <Check className="size-4" />
+          </IconActionButton>
+          <IconActionButton label="Reject recommendation" disabled={isBusy || !rejectUpdate} variant="ghost" tone="reject" onClick={() => rejectUpdate ? onApply(row.check, rejectUpdate) : undefined}>
+            <X className="size-4" />
+          </IconActionButton>
+        </div>
+      ) : null}
+    </div>
+  );
+}
+
+type FreshnessRecommendationGroup = {
+  id: string;
+  check: DirectoryCheck;
+  stylist: string;
+  recommendation: string;
+  typeTone: "critical" | "warning" | "info" | "neutral";
+  details: FreshnessRecommendationDetail[];
+  detected: string;
+  status: "Open" | "Resolved";
+  bookingUrl?: string;
+  instagramUrl?: string;
+  websiteUrl?: string;
+  acceptUpdate?: {
+    addServices?: string[];
+    removeServices?: string[];
+  };
+  rejectUpdate?: {
+    rejectAddedServices?: string[];
+    rejectRemovedServices?: string[];
+  };
+};
+
+type FreshnessRecommendationDetail = {
+  kind: "add" | "remove" | "fix" | "review";
+  label: string;
+  description: string;
+  service?: string;
+  evidence?: string[];
+};
+
+function buildFreshnessRecommendationGroups(checks: DirectoryCheck[]): FreshnessRecommendationGroup[] {
+  return checks.flatMap((check) => {
+    const detected = check.checkedAt ? formatRelativeTime(check.checkedAt) : "Just now";
+    const brokenLinks = check.linkChecks.filter((linkCheck) => linkCheck.status !== "ok");
+    const actionableIssues = check.issues.filter((issue) => isActionableFreshnessIssue(issue, check));
+    const details: FreshnessRecommendationDetail[] = [
+      ...brokenLinks.map((linkCheck) => ({
+        kind: "fix" as const,
+        label: `${titleCase(linkCheck.type)} link`,
+        description: linkCheck.issues[0] || "Link not loading",
+      })),
+      ...check.removedServices.map((service) => ({
+        kind: "remove" as const,
+        label: service,
+        description: "Service no longer listed",
+        service,
+      })),
+      ...check.addedServices.map((service) => ({
+        kind: "add" as const,
+        label: service,
+        description: "New service detected",
+        service,
+        evidence: getServiceEvidence(check.serviceCheck.rawServices, service),
+      })),
+      ...actionableIssues.map((issue) => ({
+        kind: "review" as const,
+        label: "Review listing",
+        description: issue,
+      })),
+    ];
+
+    if (!details.length) {
+      return [];
+    }
+
+    const hasServiceRecommendations = check.addedServices.length > 0 || check.removedServices.length > 0;
+    const acceptUpdate = hasServiceRecommendations
+      ? {
+          ...(check.addedServices.length ? { addServices: check.addedServices } : {}),
+          ...(check.removedServices.length ? { removeServices: check.removedServices } : {}),
+        }
+      : undefined;
+    const rejectUpdate = hasServiceRecommendations
+      ? {
+          ...(check.addedServices.length ? { rejectAddedServices: check.addedServices } : {}),
+          ...(check.removedServices.length ? { rejectRemovedServices: check.removedServices } : {}),
+        }
+      : undefined;
+
+    return [{
+      check,
+      stylist: check.name,
+      detected,
+      status: "Open" as const,
+      bookingUrl: check.bookingUrl,
+      instagramUrl: check.instagramUrl,
+      websiteUrl: check.websiteUrl,
+      id: `${check.id}-recommendations`,
+      recommendation: getFreshnessGroupRecommendation(check, brokenLinks.length),
+      typeTone: brokenLinks.length ? "critical" : check.addedServices.length ? "info" : "neutral",
+      details,
+      acceptUpdate,
+      rejectUpdate,
+    }];
+  });
+}
+
+function getFreshnessGroupRecommendation(check: DirectoryCheck, brokenLinkCount: number) {
+  const hasAddedServices = check.addedServices.length > 0;
+  const hasRemovedServices = check.removedServices.length > 0;
+  const hasServiceRecommendations = hasAddedServices || hasRemovedServices;
+
+  if (brokenLinkCount && hasServiceRecommendations) {
+    return "Review listing";
+  }
+  if (brokenLinkCount) {
+    return brokenLinkCount === 1 ? "Fix broken link" : "Fix broken links";
+  }
+  if (hasAddedServices && hasRemovedServices) {
+    return "Update services";
+  }
+  if (hasAddedServices) {
+    return check.addedServices.length === 1 ? "Add service" : "Add services";
+  }
+  if (hasRemovedServices) {
+    return check.removedServices.length === 1 ? "Remove service" : "Remove services";
+  }
+  return check.issues.some((issue) => issue.toLowerCase().includes("price")) ? "Review price" : "Review service";
+}
+
+function getServiceEvidence(rawServices: string[] = [], service: string) {
+  const keywords = serviceEvidenceKeywords[service] ?? service.toLowerCase().split(/\s+|\/|\(|\)|-/).filter((word) => word.length > 3);
+  const normalizedKeywords = keywords.map(normalizeEvidenceText);
+  const exactMatches = rawServices.filter((line) => {
+    const normalizedLine = normalizeEvidenceText(line);
+    return normalizedKeywords.some((keyword) => keyword && normalizedLine.includes(keyword));
+  });
+
+  if (exactMatches.length) {
+    return exactMatches.slice(0, 4);
+  }
+
+  return rawServices.filter((line) => isColourService(service) && /colou?r|highlight|balayage|tone|tint|bleach|root/i.test(line)).slice(0, 4);
+}
+
+const serviceEvidenceKeywords: Record<string, string[]> = {
+  "Balayage": ["balayage"],
+  "Highlights": ["highlight", "highlights", "lowlights"],
+  "Full head colour": ["colour", "color", "tint", "dye", "rooting"],
+  "Wig colour": ["wig colour", "wig color", "colouring full wig", "custom colour", "colour service"],
+  "Frontal sew-in": ["frontal"],
+  "Custom wig": ["custom wig", "custom lace", "custom unit", "closure wig"],
+};
+
+function isColourService(service: string) {
+  return service === "Balayage" || service === "Highlights" || service === "Full head colour" || service === "Wig colour";
+}
+
+function normalizeEvidenceText(value: string) {
+  return value.toLowerCase().replace(/\s+/g, " ").trim();
+}
+
+function isActionableFreshnessIssue(issue: string, check: DirectoryCheck) {
+  const normalizedIssue = issue.toLowerCase();
+  if (normalizedIssue === "possible new services found" || normalizedIssue === "possible removed services found") {
+    return false;
+  }
+  if (normalizedIssue.includes("booking link") && check.bookingUrl) {
+    return false;
+  }
+  return true;
+}
+
+function FreshnessIssuePill({ tone, children }: { tone: FreshnessRecommendationGroup["typeTone"]; children: React.ReactNode }) {
+  const colorClass =
+    tone === "critical"
+      ? "bg-red-100 text-red-700"
+      : tone === "info"
+        ? "bg-emerald-100 text-emerald-700"
+        : tone === "warning"
+          ? "bg-sky-100 text-sky-700"
+          : "bg-stone-100 text-stone-700";
+
+  return <span className={cn("inline-flex rounded-[7px] px-2.5 py-1 text-xs font-medium", colorClass)}>{children}</span>;
+}
+
+function FreshnessStatusPill({ status }: { status: FreshnessRecommendationGroup["status"] }) {
+  const colorClass = status === "Resolved" ? "bg-emerald-100 text-emerald-700" : "bg-sky-100 text-sky-700";
+
+  return <span className={cn("inline-flex rounded-[7px] px-2.5 py-1 text-xs font-medium", colorClass)}>{status}</span>;
+}
+
+function FreshnessRecommendationDetails({ row }: { row: FreshnessRecommendationGroup }) {
+  if (row.details.length <= 1) {
+    return <span>{row.details[0]?.description}</span>;
+  }
+
+  return (
+    <div className="space-y-1.5">
+      {row.details.map((detail, index) => (
+        <div key={`${detail.label}-${index}`} className="flex items-start gap-2">
+          <span className="mt-2 size-1.5 shrink-0 rounded-full bg-stone-300" />
+          <span>{detail.description}</span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function FreshnessLinkButtons({ row }: { row: FreshnessRecommendationGroup }) {
+  const websiteUrl = row.websiteUrl || row.bookingUrl;
+  const brokenTypes = new Set(row.check.linkChecks.filter((lc) => lc.status !== "ok").map((lc) => lc.type));
+  const instagramBroken = brokenTypes.has("instagram");
+  const bookingBroken = brokenTypes.has("booking") || brokenTypes.has("website");
+
+  return (
+    <span className="inline-flex items-center gap-1">
+      {row.instagramUrl ? (
+        <a
+          href={row.instagramUrl}
+          target="_blank"
+          rel="noreferrer"
+          aria-label={`${row.stylist} Instagram${instagramBroken ? " (broken)" : ""}`}
+          className={cn(
+            "inline-flex size-7 items-center justify-center rounded-md transition hover:bg-stone-100",
+            instagramBroken ? "text-red-500 hover:text-red-700" : "text-stone-500 hover:text-stone-950",
+          )}
+        >
+          <AtSign className="size-4" />
+        </a>
+      ) : null}
+      {websiteUrl ? (
+        <a
+          href={websiteUrl}
+          target="_blank"
+          rel="noreferrer"
+          aria-label={`${row.stylist} website${bookingBroken ? " (broken)" : ""}`}
+          className={cn(
+            "inline-flex size-7 items-center justify-center rounded-md transition hover:bg-stone-100",
+            bookingBroken ? "text-red-500 hover:text-red-700" : "text-stone-500 hover:text-stone-950",
+          )}
+        >
+          <Globe className="size-4" />
+        </a>
+      ) : null}
+    </span>
+  );
+}
+
+function IconActionDivider() {
+  return <span aria-hidden="true" className="mx-1 h-6 w-px bg-stone-200" />;
+}
+
+function IconActionButton({
+  label,
+  disabled,
+  onClick,
+  children,
+  variant = "outline",
+  tone = "neutral",
+}: {
+  label: string;
+  disabled?: boolean;
+  onClick: () => void;
+  children: React.ReactNode;
+  variant?: "outline" | "ghost";
+  tone?: "accept" | "reject" | "neutral";
+}) {
+  const toneClass =
+    tone === "accept"
+      ? "hover:bg-emerald-100 hover:text-emerald-800 focus-visible:bg-emerald-100 focus-visible:text-emerald-800"
+      : tone === "reject"
+        ? "hover:bg-red-100 hover:text-red-800 focus-visible:bg-red-100 focus-visible:text-red-800"
+        : "hover:bg-stone-100 hover:text-stone-950 focus-visible:bg-stone-100 focus-visible:text-stone-950";
+
+  return (
+    <button
+      type="button"
+      aria-label={label}
+      title={label}
+      disabled={disabled}
+      onClick={onClick}
+      className={cn(
+        "inline-flex size-8 items-center justify-center rounded-md text-stone-700 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-200 disabled:cursor-not-allowed disabled:opacity-35 disabled:hover:bg-transparent disabled:hover:text-stone-700",
+        variant === "ghost" ? toneClass : cn("border border-stone-200 bg-white hover:border-stone-300", toneClass),
+      )}
+    >
+      {children}
+    </button>
+  );
+}
+
+function buildActionItems(drafts: StylistDraft[], checks: DirectoryCheck[], suggestions: DiscoverySuggestion[]): ActionItem[] {
+  const draftItems = drafts
+    .filter((draft) => draft.status !== "approved")
+    .map((draft) => {
+      const missingServices = draft.services.length === 0;
+      const missingLocation = !draft.areaId;
+      const issue = draft.warnings[0] || (missingServices ? "Missing services" : missingLocation ? "Missing location" : "Ready to approve");
+      const priority = missingServices || missingLocation || draft.status === "needs_review" ? "High" : draft.status === "ready_to_approve" ? "Low" : "Medium";
+
+      return {
+        id: `draft-${draft.id}`,
+        name: draft.name || "Untitled stylist",
+        type: "Draft" as const,
+        issue,
+        priority: priority as ActionItem["priority"],
+        age: formatAge(draft.updatedAt || draft.createdAt),
+        view: "drafts" as const,
+      };
+    });
+
+  const freshnessItems = checks.map((check) => {
+    const brokenLink = check.linkChecks.find((linkCheck) => linkCheck.status !== "ok");
+    const issue =
+      check.issues[0] ||
+      (brokenLink ? `${titleCase(brokenLink.type)} link issue` : check.addedServices.length ? "New services found" : check.removedServices.length ? "Services removed" : "Service aliases found");
+    const priority = brokenLink ? "High" : check.addedServices.length || check.removedServices.length ? "Medium" : "Low";
+
+    return {
+      id: `freshness-${check.id}`,
+      name: check.name,
+      type: "Freshness" as const,
+      issue,
+      priority: priority as ActionItem["priority"],
+      age: formatAge(check.checkedAt),
+      view: "freshness" as const,
+    };
+  });
+
+  const discoveryItems = suggestions
+    .filter((suggestion) => suggestion.status !== "draft_created")
+    .map((suggestion) => ({
+      id: `discovery-${suggestion.id}`,
+      name: suggestion.name,
+      type: "Discovery" as const,
+      issue: suggestion.confidence === "high" ? "High confidence lead" : "Suggested entry",
+      priority: suggestion.confidence === "high" ? ("Medium" as const) : ("Low" as const),
+      age: "New",
+      view: "discovery" as const,
+    }));
+
+  return [...draftItems, ...freshnessItems, ...discoveryItems].slice(0, 6);
+}
+
+function formatRelativeTime(value: string) {
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) {
+    return "just now";
+  }
+
+  const elapsedSeconds = Math.max(0, Math.round((Date.now() - date.getTime()) / 1000));
+  if (elapsedSeconds < 60) {
+    return "just now";
+  }
+  const elapsedMinutes = Math.round(elapsedSeconds / 60);
+  if (elapsedMinutes < 60) {
+    return `${elapsedMinutes} min ago`;
+  }
+  const elapsedHours = Math.round(elapsedMinutes / 60);
+  if (elapsedHours < 24) {
+    return `${elapsedHours}h ago`;
+  }
+  return `${Math.round(elapsedHours / 24)}d ago`;
+}
+
+function formatAge(value: string) {
+  const relative = formatRelativeTime(value);
+  if (relative === "just now") {
+    return "Now";
+  }
+  return relative.replace(" ago", "");
+}
+
+function titleCase(value: string) {
+  return value.replace(/_/g, " ").replace(/\b\w/g, (letter) => letter.toUpperCase());
 }
 
 function DiscoveryPanel({
@@ -1017,22 +2294,10 @@ function FreshnessResultCard({
 }: {
   check: DirectoryCheck;
   isBusy: boolean;
-  onApply: (
-    check: DirectoryCheck,
-    update: {
-      addServices?: string[];
-      removeServices?: string[];
-      bookingUrl?: string;
-      instagramUrl?: string;
-      websiteUrl?: string;
-      rejectAddedServices?: string[];
-      rejectRemovedServices?: string[];
-    },
-  ) => void;
+  onApply: (check: DirectoryCheck, update: FreshnessUpdate) => void;
 }) {
   const [bookingUrl, setBookingUrl] = useState(check.bookingUrl || "");
   const [instagramUrl, setInstagramUrl] = useState(check.instagramUrl || "");
-  const [websiteUrl, setWebsiteUrl] = useState(check.websiteUrl || "");
   const hasBrokenLinks = check.linkChecks.some((linkCheck) => linkCheck.status !== "ok");
 
   return (
@@ -1093,12 +2358,11 @@ function FreshnessResultCard({
           <p className="text-xs font-semibold uppercase tracking-[0.12em] text-stone-500">Update links</p>
           <Input value={bookingUrl} onChange={(event) => setBookingUrl(event.target.value)} placeholder="Booking URL" className="h-10 rounded-md" />
           <Input value={instagramUrl} onChange={(event) => setInstagramUrl(event.target.value)} placeholder="Instagram URL" className="h-10 rounded-md" />
-          <Input value={websiteUrl} onChange={(event) => setWebsiteUrl(event.target.value)} placeholder="Website URL" className="h-10 rounded-md" />
           <Button
             type="button"
             size="sm"
             variant="outline"
-            onClick={() => onApply(check, { bookingUrl, instagramUrl, websiteUrl })}
+            onClick={() => onApply(check, { bookingUrl, instagramUrl })}
             disabled={isBusy}
             className="w-full rounded-md"
           >
@@ -1108,7 +2372,7 @@ function FreshnessResultCard({
       ) : null}
 
       <div className="flex flex-wrap gap-2">
-        {[check.bookingUrl, check.instagramUrl, check.websiteUrl].filter(Boolean).map((link) => (
+        {[check.bookingUrl, check.instagramUrl].filter(Boolean).map((link) => (
           <a
             key={link}
             href={link}
@@ -1130,19 +2394,117 @@ function DraftEditor({
   services,
   isBusy,
   onChange,
+  onChangeLocations,
   onSave,
   onApprove,
   onDelete,
+  canDelete = true,
+  isEmbedded = false,
 }: {
   draft: StylistDraft;
   regions: RegionOption[];
   services: string[];
   isBusy: boolean;
   onChange: (update: Partial<StylistDraft>) => void;
+  onChangeLocations: (areaIds: string[]) => void;
   onSave: () => void;
   onApprove: () => void;
   onDelete: () => void;
+  canDelete?: boolean;
+  isEmbedded?: boolean;
 }) {
+  const bookingMatchesInstagram = urlsMatch(draft.bookingUrl, draft.instagramUrl);
+
+  function updateInstagramUrl(instagramUrl: string) {
+    onChange({
+      instagramUrl,
+      ...(bookingMatchesInstagram ? { bookingUrl: instagramUrl } : {}),
+    });
+  }
+
+  function toggleBookingSameAsInstagram(checked: boolean) {
+    onChange({
+      bookingUrl: checked ? draft.instagramUrl : bookingMatchesInstagram ? "" : draft.bookingUrl,
+      ...(checked ? { bookingPlatform: "Instagram" } : {}),
+    });
+  }
+
+  const content = (
+    <div className="space-y-5">
+      {getVisibleDraftWarnings(draft).length ? (
+        <div className="rounded-md border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900">
+          {getVisibleDraftWarnings(draft).join(" ")}
+        </div>
+      ) : null}
+
+      <div className="grid gap-4">
+        <Field label="Name">
+          <Input value={draft.name} onChange={(event) => onChange({ name: event.target.value })} />
+        </Field>
+      </div>
+
+      <div className="grid gap-4">
+        <MultiLocationPicker draft={draft} regions={regions} onChange={onChangeLocations} />
+      </div>
+
+      <div className="grid gap-4 sm:grid-cols-2">
+        <Field label="Instagram">
+          <Input value={draft.instagramUrl} onChange={(event) => updateInstagramUrl(event.target.value)} />
+        </Field>
+        <Field label="Booking URL">
+          <div className="space-y-2">
+            <Input value={draft.bookingUrl} onChange={(event) => onChange({ bookingUrl: event.target.value })} />
+            <label className="flex items-center gap-2 text-xs font-medium normal-case tracking-normal text-stone-600">
+              <input
+                type="checkbox"
+                checked={bookingMatchesInstagram}
+                disabled={!draft.instagramUrl}
+                onChange={(event) => toggleBookingSameAsInstagram(event.target.checked)}
+                className="size-3.5 rounded border-stone-300 accent-stone-950"
+              />
+              Same as Instagram
+            </label>
+          </div>
+        </Field>
+      </div>
+
+      <div className="flex flex-wrap gap-2">
+        {[draft.instagramUrl, draft.bookingUrl].filter(Boolean).map((link, index) => (
+          <a
+            key={`${link}-${index}`}
+            href={link}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-2 rounded-full border border-stone-300 px-3 py-1 text-xs text-stone-700 hover:border-stone-900"
+          >
+            <ExternalLink className="size-3" />
+            Open source
+          </a>
+        ))}
+      </div>
+
+      <Field label="Raw services">
+        <Textarea value={(draft.rawServices || []).join("\n")} onChange={(value) => onChange({ rawServices: splitLines(value) })} />
+      </Field>
+
+      <ServicePicker services={services} selected={draft.services} onChange={(next) => onChange({ services: next })} />
+    </div>
+  );
+
+  if (isEmbedded) {
+	    return (
+	      <div className="rounded-[8px] border border-stone-200 bg-white p-6 shadow-sm">
+	        {content}
+	        {canDelete ? (
+	          <button type="button" onClick={onDelete} disabled={isBusy} className="mt-5 inline-flex items-center gap-2 text-xs font-medium text-red-700 disabled:opacity-50">
+	            <Trash2 className="size-4" />
+	            Delete draft
+	          </button>
+	        ) : null}
+	      </div>
+	    );
+	  }
+
   return (
     <Card className="rounded-md">
       <CardHeader>
@@ -1159,83 +2521,73 @@ function DraftEditor({
               <Save className="size-4" />
               Save
             </Button>
-            <Button type="button" onClick={onApprove} disabled={isBusy} className="rounded-md">
-              <Check className="size-4" />
-              Approve
-            </Button>
-            <Button type="button" variant="ghost" onClick={onDelete} disabled={isBusy} className="rounded-md text-red-700">
-              <Trash2 className="size-4" />
-            </Button>
+	            {canDelete ? (
+	              <>
+	                <Button type="button" onClick={onApprove} disabled={isBusy} className="rounded-md">
+	                  <Check className="size-4" />
+	                  Approve
+	                </Button>
+	                <Button type="button" variant="ghost" onClick={onDelete} disabled={isBusy} className="rounded-md text-red-700">
+	                  <Trash2 className="size-4" />
+	                </Button>
+	              </>
+	            ) : null}
           </div>
         </div>
       </CardHeader>
-      <CardContent className="space-y-5">
-        {draft.warnings?.length ? (
-          <div className="rounded-md border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900">
-            {draft.warnings.join(" ")}
-          </div>
-        ) : null}
-
-        <div className="grid gap-4">
-          <Field label="Name">
-            <Input value={draft.name} onChange={(event) => onChange({ name: event.target.value })} />
-          </Field>
-        </div>
-
-        <div className="grid gap-4">
-          <Field label="Location">
-            <Select
-              value={draft.areaId}
-              onChange={(value) =>
-                onChange({
-                  areaId: value,
-                  areaLabel: regions.find((region) => region.id === value)?.label || "",
-                })
-              }
-            >
-              <option value="">Choose</option>
-              {regions.map((region) => (
-                <option key={region.id} value={region.id}>
-                  {region.label}
-                </option>
-              ))}
-            </Select>
-          </Field>
-        </div>
-
-        <div className="grid gap-4 sm:grid-cols-2">
-          <Field label="Instagram">
-            <Input value={draft.instagramUrl} onChange={(event) => onChange({ instagramUrl: event.target.value })} />
-          </Field>
-          <Field label="Booking URL">
-            <Input value={draft.bookingUrl} onChange={(event) => onChange({ bookingUrl: event.target.value })} />
-          </Field>
-        </div>
-
-        <div className="flex flex-wrap gap-2">
-          {[draft.instagramUrl, draft.bookingUrl, draft.websiteUrl].filter(Boolean).map((link) => (
-            <a
-              key={link}
-              href={link}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-stone-300 px-3 py-1 text-xs text-stone-700 hover:border-stone-900"
-            >
-              <ExternalLink className="size-3" />
-              Open source
-            </a>
-          ))}
-        </div>
-
-        <Field label="Raw services">
-          <Textarea value={(draft.rawServices || []).join("\n")} onChange={(value) => onChange({ rawServices: splitLines(value) })} />
-        </Field>
-
-        <ServicePicker services={services} selected={draft.services} onChange={(next) => onChange({ services: next })} />
-
-      </CardContent>
+      <CardContent>{content}</CardContent>
     </Card>
   );
+}
+
+function MultiLocationPicker({
+  draft,
+  regions,
+  onChange,
+}: {
+  draft: StylistDraft;
+  regions: RegionOption[];
+  onChange: (areaIds: string[]) => void;
+}) {
+  const selectedAreaIds = getDraftAreaIds(draft);
+
+  function toggle(areaId: string) {
+    onChange(selectedAreaIds.includes(areaId) ? selectedAreaIds.filter((id) => id !== areaId) : [...selectedAreaIds, areaId]);
+  }
+
+  return (
+    <Field label="Locations">
+      <div className="rounded-md border border-stone-200 bg-white p-3">
+        <div className="grid gap-2 sm:grid-cols-2">
+          {regions.map((region) => (
+            <label
+              key={region.id}
+              className={cn(
+                "flex cursor-pointer items-center gap-2 rounded-md px-3 py-2 text-sm transition",
+                selectedAreaIds.includes(region.id) ? "bg-stone-950 text-white" : "bg-stone-50 text-stone-700 hover:bg-stone-100",
+              )}
+            >
+              <input
+                type="checkbox"
+                checked={selectedAreaIds.includes(region.id)}
+                onChange={() => toggle(region.id)}
+                className="size-3.5 accent-stone-950"
+              />
+              {region.label}
+            </label>
+          ))}
+        </div>
+      </div>
+    </Field>
+  );
+}
+
+function getDraftAreaIds(draft: StylistDraft) {
+  return draft.areaIds?.length ? draft.areaIds : draft.areaId ? [draft.areaId] : [];
+}
+
+function areaLabelFromId(areaId: string) {
+  return areaId.split("-").map((part) => part.charAt(0).toUpperCase() + part.slice(1)).join(" ");
 }
 
 function ServicePicker({
@@ -1463,4 +2815,49 @@ function mergeServices(current: string[], matched: string[]) {
 
 function removeReviewedServices(current: string[], reviewed: string[]) {
   return current.filter((service) => !reviewed.includes(service));
+}
+
+function removeReviewedLinkChecks(check: DirectoryCheck, update: FreshnessUpdate) {
+  const reviewedLinkTypes = new Set<string>();
+  if (update.bookingUrl !== undefined) {
+    reviewedLinkTypes.add("booking");
+  }
+  if (update.websiteUrl !== undefined) {
+    reviewedLinkTypes.add("website");
+  }
+  if (update.instagramUrl !== undefined) {
+    reviewedLinkTypes.add("instagram");
+  }
+  const reviewedIssues = new Set(
+    check.linkChecks
+      .filter((linkCheck) => reviewedLinkTypes.has(linkCheck.type))
+      .flatMap((linkCheck) => linkCheck.issues),
+  );
+
+  return {
+    linkChecks: check.linkChecks.filter((linkCheck) => !reviewedLinkTypes.has(linkCheck.type)),
+    issues: check.issues.filter((issue) => !reviewedIssues.has(issue)),
+  };
+}
+
+function cloneDirectoryCheck(check: DirectoryCheck) {
+  return JSON.parse(JSON.stringify(check)) as DirectoryCheck;
+}
+
+function getFreshnessUndoLabel(update: FreshnessUpdate) {
+  if (update.addServices?.length) {
+    return `added ${formatServiceList(update.addServices)}`;
+  }
+  if (update.removeServices?.length) {
+    return `removed ${formatServiceList(update.removeServices)}`;
+  }
+  if (update.rejectAddedServices?.length || update.rejectRemovedServices?.length) {
+    return "rejected recommendation";
+  }
+  return "freshness update";
+}
+
+function formatServiceList(services: string[]) {
+  if (services.length === 1) return services[0];
+  return `${services.length} services`;
 }

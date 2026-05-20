@@ -66,20 +66,20 @@ const serviceRuleMatchers = [
   ["Frontal ponytail / bun", [/\bfrontal\b.*\b(pony|ponytail|bun)\b/, /\b(pony|ponytail|bun)\b.*\bfrontal\b/]],
   ["Half braids, half sew-in", [/\bhalf\b.*\b(braid|braids)\b.*\b(weave|sew\s*in|sewin)\b/, /\bhalf\s+braid\b/, /\bhalf\s+weave\b/]],
   ["Wig install (frontal / closure)", [/\bwig\b.*\b(install|instal|application|fit|fitting)\b/, /\b(glueless|lace)\s+wig\b/, /\bfrontal\s+wig\b/, /\bclosure\s+wig\b/]],
-  ["U-Part wig install", [/\bu\s*part\b/, /\bu-part\b/]],
-  ["Custom wig", [/\bcustom\b.*\bwig\b/, /\bwig\b.*\b(custom|made|making|construction|unit)\b/]],
+  ["U-Part wig install", [/\bu\s*part\b/, /\bu-part\b/, /\bv\s*part\b/, /\bv-part\b/, /\bu\s*v\s*part\b/, /\bu\s+vpart\b/, /\buvpart\b/, /\bhalf\s+wig\b/]],
+  ["Custom wig", [/\bcustom\b.*\bwig\b/, /\bcustom\s+handmade\s+wigs?\b/, /\bwig\b.*\b(custom|handmade|made|making|construction|unit)\b/, /\bcustom(?:\s+made)?\b.*\b(frontal|closure)\s+unit\b/, /\bcustom\b.*\bfrontal\s+closure\s+units?\b/, /\bwig\s+construction\b/]],
   ["Pixie wig / weave install", [/\bpixie\b.*\b(wig|weave|install)\b/, /\b(wig|weave)\b.*\bpixie\b/]],
   ["Closure sew-in", [/\bclosure\b.*\b(sew\s*in|sewin|weave|install)\b/, /\b(sew\s*in|sewin|weave|install)\b.*\bclosure\b/]],
   ["Frontal sew-in", [/\bfrontal\b.*\b(sew\s*in|sewin|weave|install)\b/, /\b(sew\s*in|sewin|weave|install)\b.*\bfrontal\b/]],
-  ["Flipover / Versatile sew-in", [/\bflip\s*over\b/, /\bflipover\b/, /\bversatile\b.*\b(sew\s*in|sewin|weave)\b/]],
+  ["Flipover / Versatile sew-in", [/\bflip\s*over\b/, /\bflipover\b/, /\bversatile\b.*\b(sew\s*in|sewin|weave)\b/, /\bversatile\s+sew\s+in\b/]],
   ["Quick weave", [/\bquick\b.*\bweave\b/, /\bquickweave\b/]],
   ["Hybrid sew-in", [/\bhybrid\b.*\b(sew\s*in|sewin|weave)\b/]],
   ["Sew-in take-down", [/\b(sew\s*in|sewin|weave|tracks?)\b.*\b(take\s*down|takedown|removal|remove)\b/, /\b(take\s*down|takedown|removal|remove)\b.*\b(sew\s*in|sewin|weave|tracks?)\b/]],
-  ["Tracks (+ Silk press) / Partial / Invisible sew-in", [/\btracks?\b/, /\bpartial\b.*\b(sew\s*in|sewin|weave)\b/, /\binvisible\b.*\b(sew\s*in|sewin|weave)\b/]],
+  ["Tracks (+ Silk press) / Partial / Invisible sew-in", [/\btracks?\b/, /\bpartial\b.*\b(sew\s*in|sewin|weave)\b/, /\binvisible\b.*\b(sew\s*in|sewin|weave|wefts?)\b/, /\b(row|rows|line)\s+(?:of\s+)?(sew\s*in|sewin|weave)\b/, /\b(sew\s*in|sewin|weave)\s+(row|rows|line)\b/, /\bweave\s+on\s+per\s+row\b/, /\bper\s+(track|row|line)\b/, /\btrack\s+per\s+row\b/, /\btracks?\s+per\s+(track|row|line|double\s+row)\b/, /\btraditional\s+weave\s+rows?\b/, /^\d+\s+row$/]],
   ["Traditional sew-in / leave out", [/\bleave\s*out\b/, /\b(middle|side)\s+part\b.*\b(sew\s*in|sewin|weave)\b/, /\btraditional\b.*\b(sew\s*in|sewin|weave)\b/, /\b(sew\s*in|sewin)\b/]],
   ["K-tips / Invisible strands", [/\bk\s*tips?\b/, /\bk-tips?\b/, /\binvisible\s+strands?\b/, /\bkeratin\s+(tips?|bonds?|extensions?)\b/]],
   ["LA weave", [/\bla\s+weave\b/]],
-  ["Tape ins", [/\btape\s*ins?\b/, /\btape-in\b/, /\btape\s+extensions?\b/]],
+  ["Tape ins", [/\btape\s*ins?\b/, /\btape-in\b/, /\btapes?\b/, /\btape\s+extensions?\b/]],
   ["Microlinks", [/\bmicro\s*links?\b/, /\bmicrolinks?\b/, /\bi\s*tips?\b/, /\bitips?\b/]],
   ["Clip ins (+ Silk press)", [/\bclip\s*ins?\b/, /\bclip-in\b/]],
   ["Boho braids / goddess braids", [/\bboho\b/, /\bgoddess\b/]],
@@ -87,7 +87,7 @@ const serviceRuleMatchers = [
   ["Box braids", [/\bbox\b.*\bbraids?\b/]],
   ["Crochet", [/\bcrochet\b/]],
   ["Creative braids (e.g. patewo)", [/\bpatewo\b/, /\bcreative\b.*\bbraids?\b/]],
-  ["Feed-in braids", [/\bfeed\s*in\b/, /\bfeed-in\b/, /\ball\s+back\b/]],
+  ["Feed-in braids", [/\bfeed\s*in\b/, /\bfeed-in\b/, /\ball\s+back\b.*\b(braids?|cornrows?|feed\s*ins?)\b/, /\b(braids?|cornrows?|feed\s*ins?)\b.*\ball\s+back\b/]],
   ["French curl", [/\bfrench\s+curl\b/]],
   ["Fulani / Lemonade braids", [/\bfulani\b/, /\blemonade\b/]],
   ["Miracle knots", [/\bmiracle\s+knots?\b/]],
@@ -122,10 +122,76 @@ const serviceRuleMatchers = [
   ["Wig cornrows", [/\bunder\s*wig\b/, /\bwig\s+cornrows?\b/, /\bcornrows?\b/]],
   ["Natural hair education", [/\beducation\b/, /\bconsultation\b.*\bnatural\b/, /\bnatural\s+hair\b.*\bclass\b/]],
   ["Sleek ponytail / bun", [/\bsleek\b.*\b(pony|ponytail|bun)\b/, /\bpony\s*tail\b/, /\bponytail\b/, /\bbun\b/]],
-  ["Half up half down", [/\bhalf\s+up\b.*\bhalf\s+down\b/, /\bhalf\s+up\s+half\s+down\b/]],
+  ["Half up half down", [/\bhalf\s+up\b.*\bhalf\s+down\b/, /\bhalf\s+up\s+half\s+down\b/, /\bhalf\s+up\s+half\s+down\b.*\b(quick\s+weave|sew\s+in|sewin|weave)\b/]],
   ["Pixie / finger waves", [/\bfinger\s+waves?\b/, /\bpixie\b/, /\bwrap\b/]],
   ["Updo", [/\bup\s*do\b/, /\bupdo\b/, /\bpin\s*up\b/]],
 ];
+
+const serviceNegationHints = {
+  "Balayage": ["balayage"],
+  "Boho braids / goddess braids": ["boho", "goddess"],
+  "Box braids": ["box braids"],
+  "Braid take-down": ["braid take down", "braid takedown", "braid removal", "remove braids"],
+  "Bridal / Editorial": ["bridal", "wedding", "editorial", "photoshoot"],
+  "Butterfly locs": ["butterfly locs"],
+  "Clip ins (+ Silk press)": ["clip ins", "clip in"],
+  "Closure sew-in": ["closure sew in", "closure sewin", "closure weave", "closure install"],
+  "Creative braids (e.g. patewo)": ["creative braids", "patewo"],
+  "Crochet": ["crochet"],
+  "Curly cut / Wash & go": ["curly cut", "wash go", "wash and go"],
+  "Custom wig": ["custom wig", "custom handmade wig", "custom handmade wigs", "custom made frontal unit", "custom made closure unit", "frontal unit", "closure unit", "wig making", "wig construction"],
+  "Faux locs": ["faux locs"],
+  "Feed-in braids": ["feed in", "feed in braids", "all back"],
+  "Flipover / Versatile sew-in": ["flipover", "flip over", "versatile sew in", "versatile sewin", "versatile weave"],
+  "French curl": ["french curl"],
+  "Frontal ponytail / bun": ["frontal ponytail", "frontal pony", "frontal bun"],
+  "Frontal sew-in": ["frontal sew in", "frontal sewin", "frontal weave", "frontal install"],
+  "Fulani / Lemonade braids": ["fulani", "lemonade"],
+  "Full head colour": ["full head colour", "full head color", "colour", "color", "dye", "tint"],
+  "Hair Botox": ["hair botox", "botox"],
+  "Half braids, half sew-in": ["half braids half sew in", "half braid half weave", "half weave"],
+  "Half up half down": ["half up half down"],
+  "Highlights": ["highlights", "high lights"],
+  "Hybrid sew-in": ["hybrid sew in", "hybrid sewin", "hybrid weave"],
+  "Japanese straightening": ["japanese straightening"],
+  "K-18 treatment": ["k 18", "k18"],
+  "K-tips / Invisible strands": ["k tips", "invisible strands", "keratin tips", "keratin bonds"],
+  "Keratin treatment": ["keratin"],
+  "Knotless braids": ["knotless"],
+  "LA weave": ["la weave"],
+  "Microbraids / x-small braids": ["micro braids", "microbraids", "x small braids", "xs braids"],
+  "Microlinks": ["micro links", "microlinks", "i tips", "itips"],
+  "Microlocs / Sisterlocs": ["micro locs", "microlocs", "sister locs", "sisterlocs"],
+  "Miracle knots": ["miracle knots"],
+  "Moisturising treatment": ["moisturising", "moisturizing", "deep condition", "steam treatment", "natural hair care"],
+  "Natural hair education": ["natural hair education", "natural hair class", "natural hair consultation"],
+  "Olaplex treatment": ["olaplex"],
+  "Pixie / finger waves": ["pixie", "finger waves"],
+  "Pixie wig / weave install": ["pixie wig", "pixie weave", "pixie install"],
+  "Pre-parting": ["pre parting", "pre part"],
+  "Quick weave": ["quick weave", "quickweave"],
+  "Relaxer / texturiser": ["relaxer", "texturiser", "texturizer", "texturising", "texturizing"],
+  "Retwist": ["retwist", "re twist"],
+  "Scalp care": ["scalp"],
+  "Sew-in take-down": ["sew in take down", "sew in takedown", "sew in removal", "weave removal", "remove sew in"],
+  "Silk press": ["silk press", "silkpress", "press and curl"],
+  "Sleek ponytail / bun": ["sleek ponytail", "sleek pony", "sleek bun", "ponytail", "pony tail"],
+  "Starter locs": ["starter locs", "loc start"],
+  "Stitch braids": ["stitch"],
+  "Tape ins": ["tape ins", "tape in", "tapes", "tape extensions"],
+  "Texture release": ["texture release"],
+  "Tracks (+ Silk press) / Partial / Invisible sew-in": ["tracks", "track per row", "per track", "per row", "row sew in", "rows of sew in", "weave tracks", "weave on per row", "traditional weave rows", "partial sew in", "partial sewin", "invisible sew in", "invisible weave", "invisible weft", "invisible wefts"],
+  "Traditional sew-in / leave out": ["leave out", "traditional sew in", "traditional sewin", "traditional weave", "sew in", "sewin"],
+  "Trim / Hair cut": ["trim", "hair cut", "haircut", "cut and finish"],
+  "Twist out / Flexi rod": ["twist out", "flexi rod", "perm rod"],
+  "Twists (with extensions)": ["twists", "passion twists", "senegalese twists"],
+  "U-Part wig install": ["u part", "u part wig", "v part", "v part wig", "u vpart", "uvpart", "half wig"],
+  "Updo": ["updo", "up do", "pin up"],
+  "Wash & blowdry": ["wash blowdry", "wash blow dry", "wash and blowdry", "wash and blow dry", "blowout"],
+  "Wig colour": ["wig colour", "wig color", "wig dye", "colour wig", "color wig"],
+  "Wig cornrows": ["under wig", "wig cornrows", "cornrows"],
+  "Wig install (frontal / closure)": ["wig install", "wig installs", "wig instal", "wig application", "wig fitting", "glueless wig", "lace wig", "frontal wig", "closure wig"],
+};
 
 export function registerAdminStylistRoutes(app) {
   app.post("/api/admin/login", async (req, res) => {
@@ -171,10 +237,86 @@ export function registerAdminStylistRoutes(app) {
     res.json({ ok: true, drafts: store.drafts, meta: store.meta });
   });
 
+  app.get("/api/admin/stylists/published", requireAdmin, async (_req, res) => {
+    const manualIndex = await readJson(manualIndexPath, { meta: { source: "manual", updatedAt: null }, salons: [] });
+    const updatedAt = manualIndex.meta?.updatedAt || new Date().toISOString();
+    const stylists = (manualIndex.salons || []).map((salon) => ({
+      id: salon.id,
+      status: "approved",
+      name: salon.name || "",
+      areaId: salon.areaId || "",
+      areaIds: Array.isArray(salon.areaIds) ? salon.areaIds : salon.areaId ? [salon.areaId] : [],
+      areaLabel: salon.areaLabel || "",
+      neighbourhood: salon.neighbourhood || "",
+      postcode: salon.postcode || "",
+      bookingPlatform: salon.bookingPlatform || "",
+      bookingUrl: salon.bookingUrl || "",
+      websiteUrl: salon.websiteUrl || "",
+      instagramUrl: salon.instagramUrl || "",
+      tiktokUrl: salon.tiktokUrl || "",
+      services: Array.isArray(salon.services) ? salon.services : [],
+      rawServices: [],
+      summary: salon.summary || "",
+      warnings: [],
+      evidence: Array.isArray(salon.evidence) ? salon.evidence : [],
+      createdAt: salon.createdAt || updatedAt,
+      updatedAt: salon.updatedAt || updatedAt,
+    }));
+
+    res.json({ ok: true, stylists, meta: manualIndex.meta || null });
+  });
+
+  app.patch("/api/admin/stylists/published/:id", requireAdmin, async (req, res) => {
+    const manualIndex = await readJson(manualIndexPath, { meta: { source: "manual" }, salons: [] });
+    const salonIndex = manualIndex.salons.findIndex((salon) => salon.id === req.params.id);
+    if (salonIndex === -1) {
+      return res.status(404).json({ ok: false, message: "Published stylist not found." });
+    }
+
+    const currentSalon = manualIndex.salons[salonIndex];
+    const update = sanitizeDraftUpdate(req.body || {});
+    const now = new Date().toISOString();
+    const areaIds = normalizeAreaIds(update.areaIds?.length ? update.areaIds : update.areaId ? [update.areaId] : []);
+    const areaLabel = update.areaLabel || areaLabelForIds(areaIds);
+    const nextSalon = {
+      ...currentSalon,
+      name: update.name || currentSalon.name || "",
+      areaId: areaIds[0] || update.areaId || currentSalon.areaId || "",
+      ...(areaIds.length > 1 ? { areaIds } : { areaIds: undefined }),
+      areaLabel: areaLabel || currentSalon.areaLabel || "",
+      neighbourhood: update.neighbourhood || areaLabel || currentSalon.neighbourhood || "",
+      postcode: update.postcode || "",
+      bookingPlatform: update.bookingPlatform || platformFromUrl(update.bookingUrl) || currentSalon.bookingPlatform || "Direct",
+      bookingUrl: update.bookingUrl || "",
+      websiteUrl: update.websiteUrl || "",
+      instagramUrl: update.instagramUrl || "",
+      tiktokUrl: update.tiktokUrl || "",
+      services: normalizeServices(update.services || []),
+      summary: update.summary || currentSalon.summary || "",
+      evidence: update.evidence?.length ? update.evidence : currentSalon.evidence || [],
+      updatedAt: now,
+    };
+
+    if (!nextSalon.areaIds) {
+      delete nextSalon.areaIds;
+    }
+
+    manualIndex.salons[salonIndex] = nextSalon;
+    manualIndex.meta = {
+      ...manualIndex.meta,
+      updatedAt: now,
+      count: manualIndex.salons.length,
+    };
+    await writeJson(manualIndexPath, manualIndex);
+
+    res.json({ ok: true, stylist: publishedSalonToDraft(nextSalon, manualIndex.meta.updatedAt) });
+  });
+
   app.get("/api/admin/dashboard", requireAdmin, async (_req, res) => {
     const draftStore = await readDraftStore();
     const freshnessStore = await readJson(freshnessChecksPath, { meta: { updatedAt: null, checkedCount: 0, total: 0 }, checks: [] });
     const discoveryStore = await readDiscoveryStore();
+    const manualIndex = await readJson(manualIndexPath, { meta: { source: "manual", count: 0 }, salons: [] });
     const drafts = draftStore.drafts;
     const freshnessChecks = freshnessStore.checks || [];
     const suggestions = discoveryStore.suggestions;
@@ -191,7 +333,7 @@ export function registerAdminStylistRoutes(app) {
       freshness: {
         totalIssues: freshnessChecks.length,
         checkedCount: freshnessStore.meta?.checkedCount ?? 0,
-        total: freshnessStore.meta?.total ?? 0,
+        total: manualIndex.salons?.length ?? freshnessStore.meta?.total ?? 0,
         brokenLinks: freshnessChecks.filter((check) => check.linkChecks?.some((link) => link.status !== "ok")).length,
         serviceChanges: freshnessChecks.filter((check) => check.addedServices?.length || check.removedServices?.length).length,
         updatedAt: freshnessStore.meta?.updatedAt ?? null,
@@ -204,21 +346,32 @@ export function registerAdminStylistRoutes(app) {
     });
   });
 
+  app.get("/api/admin/stylists/checks/saved", requireAdmin, async (_req, res) => {
+    const store = await readJson(freshnessChecksPath, { meta: { source: "freshness-checks", updatedAt: null, count: 0, checkedCount: 0, total: 0 }, checks: [] });
+    res.json({
+      ok: true,
+      checks: store.checks || [],
+      checkedAt: store.meta?.updatedAt ?? null,
+      checkedCount: store.meta?.checkedCount ?? 0,
+      total: store.meta?.total ?? 0,
+      nextOffset: typeof store.meta?.checkedCount === "number" && typeof store.meta?.total === "number" && store.meta.checkedCount < store.meta.total ? store.meta.checkedCount : null,
+      meta: store.meta || null,
+    });
+  });
+
   app.get("/api/admin/stylists/checks", requireAdmin, async (req, res) => {
     const index = await readSalonIndex();
     const checkedAt = new Date().toISOString();
     const limit = Math.min(Math.max(Number(req.query.limit || 50), 1), 50);
     const offset = Math.max(Number(req.query.offset || 0), 0);
     const batchSalons = index.salons.slice(offset, offset + limit);
-    const checks = await mapWithConcurrency(batchSalons, 6, checkSalonFreshness);
+    const existingStore = await readJson(freshnessChecksPath, { meta: { source: "freshness-checks", updatedAt: null, count: 0 }, checks: [], dismissedRecommendations: {} });
+    const dismissedRecommendations = existingStore.dismissedRecommendations || {};
+    const checks = await mapWithConcurrency(batchSalons, 6, (salon) => checkSalonFreshness(salon, dismissedRecommendations[salon.id]));
     const reviewChecks = checks.filter(
       (check) => check.issues.length > 0 || check.addedServices.length > 0 || check.removedServices.length > 0,
     );
-    const existingStore =
-      offset > 0
-        ? await readJson(freshnessChecksPath, { meta: { source: "freshness-checks", updatedAt: null, count: 0 }, checks: [] })
-        : { checks: [] };
-    const mergedChecks = [...(existingStore.checks || []), ...reviewChecks];
+    const mergedChecks = offset > 0 ? [...(existingStore.checks || []), ...reviewChecks] : reviewChecks;
 
     await writeJson(freshnessChecksPath, {
       meta: {
@@ -228,6 +381,7 @@ export function registerAdminStylistRoutes(app) {
         checkedCount: Math.min(offset + batchSalons.length, index.salons.length),
         total: index.salons.length,
       },
+      dismissedRecommendations,
       checks: mergedChecks,
     });
 
@@ -296,13 +450,46 @@ export function registerAdminStylistRoutes(app) {
       removeServices,
       rejectAddedServices,
       rejectRemovedServices,
+      bookingUrl: typeof req.body?.bookingUrl === "string" ? cleanString(req.body.bookingUrl) : undefined,
+      instagramUrl: typeof req.body?.instagramUrl === "string" ? cleanString(req.body.instagramUrl) : undefined,
+      websiteUrl: typeof req.body?.websiteUrl === "string" ? cleanString(req.body.websiteUrl) : undefined,
     });
 
     res.json({ ok: true, salon: manualIndex.salons[salonIndex] });
   });
 
+  app.patch("/api/admin/stylists/:id/freshness/undo", requireAdmin, async (req, res) => {
+    const manualIndex = await readJson(manualIndexPath, { meta: { source: "manual" }, salons: [] });
+    const salonIndex = manualIndex.salons.findIndex((salon) => salon.id === req.params.id);
+    if (salonIndex === -1) {
+      return res.status(404).json({ ok: false, message: "Salon not found." });
+    }
+
+    const previousServices = normalizeServices(toArray(req.body?.previousServices));
+    if (previousServices.length) {
+      manualIndex.salons[salonIndex] = {
+        ...manualIndex.salons[salonIndex],
+        services: previousServices,
+      };
+      manualIndex.meta = {
+        ...manualIndex.meta,
+        updatedAt: new Date().toISOString(),
+        count: manualIndex.salons.length,
+      };
+      await writeJson(manualIndexPath, manualIndex);
+    }
+
+    const restoredCheck = await undoFreshnessReview(req.params.id, {
+      check: req.body?.check,
+      rejectAddedServices: toArray(req.body?.rejectAddedServices),
+      rejectRemovedServices: toArray(req.body?.rejectRemovedServices),
+    });
+
+    res.json({ ok: true, salon: manualIndex.salons[salonIndex], check: restoredCheck });
+  });
+
   app.post("/api/admin/stylists/intake", requireAdmin, async (req, res) => {
-    const draft = buildDraft(req.body || {});
+    const draft = await buildDraft(req.body || {});
     const store = await readDraftStore();
     store.drafts.unshift(draft);
     await writeDraftStore(store);
@@ -315,7 +502,7 @@ export function registerAdminStylistRoutes(app) {
       return res.status(400).json({ ok: false, message: "Paste at least one social, booking, or website link." });
     }
 
-    const drafts = candidates.map((candidate) => buildDraft(candidate));
+    const drafts = await Promise.all(candidates.map((candidate) => buildDraft(candidate)));
     const store = await readDraftStore();
     store.drafts.unshift(...drafts);
     await writeDraftStore(store);
@@ -343,7 +530,7 @@ export function registerAdminStylistRoutes(app) {
       return res.status(404).json({ ok: false, message: "Suggestion not found." });
     }
 
-    const draft = buildDraft({
+    const draft = await buildDraft({
       links: suggestion.sourceUrl,
       name: suggestion.name,
       areaId: suggestion.areaId,
@@ -517,24 +704,41 @@ async function writeJson(filePath, payload) {
   await fs.writeFile(filePath, `${JSON.stringify(payload, null, 2)}\n`);
 }
 
-async function updateFreshnessReview(salonId, { addServices = [], removeServices = [], rejectAddedServices = [], rejectRemovedServices = [] }) {
-  const store = await readJson(freshnessChecksPath, { meta: { source: "freshness-checks", updatedAt: null, count: 0 }, checks: [] });
+async function updateFreshnessReview(salonId, { addServices = [], removeServices = [], rejectAddedServices = [], rejectRemovedServices = [], bookingUrl, instagramUrl, websiteUrl }) {
+  const store = await readJson(freshnessChecksPath, { meta: { source: "freshness-checks", updatedAt: null, count: 0 }, checks: [], dismissedRecommendations: {} });
   const reviewedAdds = normalizeServices([...addServices, ...rejectAddedServices]);
   const reviewedRemoves = normalizeServices([...removeServices, ...rejectRemovedServices]);
+  const currentCheck = (store.checks || []).find((check) => check.id === salonId);
+  const dismissedRecommendations = updateDismissedRecommendations(store.dismissedRecommendations || {}, salonId, {
+    rejectAddedServices,
+    rejectRemovedServices,
+    rawServices: currentCheck?.serviceCheck?.rawServices || [],
+  });
   const checks = (store.checks || [])
     .map((check) => {
       if (check.id !== salonId) {
         return check;
       }
+      const reviewedLinkTypes = getReviewedLinkTypes({ bookingUrl, instagramUrl, websiteUrl });
+      const reviewedLinkIssues = new Set(
+        (check.linkChecks || [])
+          .filter((linkCheck) => reviewedLinkTypes.has(linkCheck.type))
+          .flatMap((linkCheck) => linkCheck.issues || []),
+      );
 
       return {
         ...check,
+        ...(bookingUrl !== undefined ? { bookingUrl } : {}),
+        ...(instagramUrl !== undefined ? { instagramUrl } : {}),
+        ...(websiteUrl !== undefined ? { websiteUrl } : {}),
         addedServices: (check.addedServices || []).filter((service) => !reviewedAdds.includes(service)),
         removedServices: (check.removedServices || []).filter((service) => !reviewedRemoves.includes(service)),
+        linkChecks: (check.linkChecks || []).filter((linkCheck) => !reviewedLinkTypes.has(linkCheck.type)),
+        issues: (check.issues || []).filter((issue) => !reviewedLinkIssues.has(issue)),
         reviewedAt: new Date().toISOString(),
       };
     })
-    .filter((check) => check.issues?.length || check.addedServices?.length || check.removedServices?.length);
+    .filter(hasActionableFreshnessCheck);
 
   await writeJson(freshnessChecksPath, {
     meta: {
@@ -543,11 +747,138 @@ async function updateFreshnessReview(salonId, { addServices = [], removeServices
       updatedAt: new Date().toISOString(),
       count: checks.length,
     },
+    dismissedRecommendations,
     checks,
   });
 }
 
-async function checkSalonFreshness(salon) {
+function getReviewedLinkTypes({ bookingUrl, instagramUrl, websiteUrl }) {
+  const reviewedLinkTypes = new Set();
+  if (bookingUrl !== undefined) {
+    reviewedLinkTypes.add("booking");
+  }
+  if (websiteUrl !== undefined) {
+    reviewedLinkTypes.add("website");
+  }
+  if (instagramUrl !== undefined) {
+    reviewedLinkTypes.add("instagram");
+  }
+  return reviewedLinkTypes;
+}
+
+async function undoFreshnessReview(salonId, { check, rejectAddedServices = [], rejectRemovedServices = [] }) {
+  const store = await readJson(freshnessChecksPath, { meta: { source: "freshness-checks", updatedAt: null, count: 0 }, checks: [], dismissedRecommendations: {} });
+  const dismissedRecommendations = removeDismissedRecommendations(store.dismissedRecommendations || {}, salonId, {
+    rejectAddedServices,
+    rejectRemovedServices,
+  });
+  const sanitizedCheck = sanitizeFreshnessCheck(check, salonId);
+  const checks = sanitizedCheck
+    ? [sanitizedCheck, ...(store.checks || []).filter((item) => item.id !== salonId)]
+    : store.checks || [];
+
+  await writeJson(freshnessChecksPath, {
+    meta: {
+      ...(store.meta || {}),
+      source: "freshness-checks",
+      updatedAt: new Date().toISOString(),
+      count: checks.length,
+    },
+    dismissedRecommendations,
+    checks,
+  });
+
+  return sanitizedCheck;
+}
+
+function updateDismissedRecommendations(dismissedRecommendations, salonId, { rejectAddedServices = [], rejectRemovedServices = [], rawServices = [] }) {
+  const rejectedAdds = normalizeServices(rejectAddedServices);
+  const rejectedRemoves = normalizeServices(rejectRemovedServices);
+  if (!rejectedAdds.length && !rejectedRemoves.length) {
+    return dismissedRecommendations;
+  }
+
+  const current = dismissedRecommendations[salonId] || {};
+  const addedServiceEvidence = { ...(current.addedServiceEvidence || {}) };
+  rejectedAdds.forEach((service) => {
+    const evidence = getServiceEvidence(rawServices, service);
+    if (evidence.length) {
+      addedServiceEvidence[service] = [...new Set([...(addedServiceEvidence[service] || []), ...evidence])];
+    }
+  });
+  return {
+    ...dismissedRecommendations,
+    [salonId]: {
+      addedServices: [...new Set([...(current.addedServices || []), ...rejectedAdds])],
+      removedServices: [...new Set([...(current.removedServices || []), ...rejectedRemoves])],
+      addedServiceFamilies: [...new Set([...(current.addedServiceFamilies || []), ...rejectedAdds.map(serviceFamilyFor).filter(Boolean)])],
+      addedServiceEvidence,
+    },
+  };
+}
+
+function removeDismissedRecommendations(dismissedRecommendations, salonId, { rejectAddedServices = [], rejectRemovedServices = [] }) {
+  const rejectedAdds = normalizeServices(rejectAddedServices);
+  const rejectedRemoves = normalizeServices(rejectRemovedServices);
+  if (!rejectedAdds.length && !rejectedRemoves.length) {
+    return dismissedRecommendations;
+  }
+
+  const current = dismissedRecommendations[salonId] || {};
+  const next = {
+    addedServices: (current.addedServices || []).filter((service) => !rejectedAdds.includes(service)),
+    removedServices: (current.removedServices || []).filter((service) => !rejectedRemoves.includes(service)),
+    addedServiceFamilies: (current.addedServiceFamilies || []).filter((family) => !rejectedAdds.map(serviceFamilyFor).includes(family)),
+    addedServiceEvidence: Object.fromEntries(Object.entries(current.addedServiceEvidence || {}).filter(([service]) => !rejectedAdds.includes(service))),
+  };
+  const updated = { ...dismissedRecommendations };
+  if (next.addedServices.length || next.removedServices.length) {
+    updated[salonId] = next;
+  } else {
+    delete updated[salonId];
+  }
+  return updated;
+}
+
+function sanitizeFreshnessCheck(check, salonId) {
+  if (!check || check.id !== salonId) {
+    return null;
+  }
+
+  return {
+    id: salonId,
+    name: cleanString(check.name),
+    areaLabel: cleanString(check.areaLabel),
+    bookingUrl: cleanString(check.bookingUrl),
+    instagramUrl: cleanString(check.instagramUrl),
+    websiteUrl: cleanString(check.websiteUrl),
+    issues: toArray(check.issues),
+    linkChecks: Array.isArray(check.linkChecks) ? check.linkChecks : [],
+    serviceCheck: check.serviceCheck || emptyServiceCheck(),
+    currentServices: normalizeServices(toArray(check.currentServices)),
+    detectedServices: normalizeServices(toArray(check.detectedServices)),
+    addedServices: normalizeServices(toArray(check.addedServices)),
+    removedServices: normalizeServices(toArray(check.removedServices)),
+    checkedAt: check.checkedAt || new Date().toISOString(),
+  };
+}
+
+function hasActionableFreshnessCheck(check) {
+  if (check.addedServices?.length || check.removedServices?.length) {
+    return true;
+  }
+
+  if (check.linkChecks?.some((linkCheck) => linkCheck.status !== "ok")) {
+    return true;
+  }
+
+  return (check.issues || []).some((issue) => {
+    const normalizedIssue = String(issue).toLowerCase();
+    return normalizedIssue !== "possible new services found" && normalizedIssue !== "possible removed services found";
+  });
+}
+
+async function checkSalonFreshness(salon, dismissedRecommendation = {}) {
   const linkChecks = await Promise.all([
     checkUrl("booking", salon.bookingUrl),
     checkUrl("instagram", salon.instagramUrl),
@@ -558,11 +889,25 @@ async function checkSalonFreshness(salon) {
   const bookingCheck = activeLinkChecks.find((check) => check.type === "booking");
   const serviceCheck = bookingCheck?.status === "ok" ? await extractBookingServices(salon.bookingUrl) : emptyServiceCheck();
   const currentServices = normalizeServices(salon.services || []);
-  const detectedServices = normalizeServices(serviceCheck.matchedServices);
-  const addedServices = detectedServices.filter((service) => !currentServices.includes(service));
+  const detectedServices = adjustDetectedServicesForCurrentContext(normalizeServices(serviceCheck.matchedServices), currentServices, serviceCheck.rawServices);
+  const dismissedAddedServices = normalizeServices(dismissedRecommendation.addedServices || []);
+  const dismissedRemovedServices = normalizeServices(dismissedRecommendation.removedServices || []);
+  const dismissedAddedFamilies = new Set(dismissedRecommendation.addedServiceFamilies || []);
+  const addedServices = detectedServices.filter((service) => {
+    if (currentServices.includes(service) || dismissedAddedServices.includes(service)) {
+      return false;
+    }
+
+    const family = serviceFamilyFor(service);
+    if (!family || !dismissedAddedFamilies.has(family)) {
+      return true;
+    }
+
+    return !hasDismissedFamilyContext(serviceCheck.rawServices, service);
+  });
   const removedServices =
     serviceCheck.confidence === "medium" || serviceCheck.confidence === "high"
-      ? currentServices.filter((service) => !detectedServices.includes(service))
+      ? currentServices.filter((service) => !detectedServices.includes(service) && !dismissedRemovedServices.includes(service))
       : [];
 
   if (addedServices.length > 0) {
@@ -588,6 +933,71 @@ async function checkSalonFreshness(salon) {
     removedServices,
     checkedAt: new Date().toISOString(),
   };
+}
+
+function adjustDetectedServicesForCurrentContext(detectedServices, currentServices, rawServices) {
+  const naturalColourServices = ["Full head colour", "Balayage", "Highlights"];
+  const hasNaturalColourDetection = detectedServices.some((service) => naturalColourServices.includes(service));
+  const hasExistingWigColour = currentServices.includes("Wig colour");
+  const rawText = normalizeServiceText(rawServices.join(" "));
+  const hasWigOrBundleContext = /\b(wig|wigs|unit|units|lace|closure|frontal|bundle|bundles|weft|wefts)\b/.test(rawText);
+
+  if (!hasExistingWigColour || !hasNaturalColourDetection || !hasWigOrBundleContext) {
+    return detectedServices;
+  }
+
+  return normalizeServices([
+    ...detectedServices.filter((service) => !naturalColourServices.includes(service)),
+    "Wig colour",
+  ]);
+}
+
+function hasDismissedFamilyContext(rawServices = [], service) {
+  const family = serviceFamilyFor(service);
+  const normalizedRaw = normalizeServiceText(rawServices.join(" "));
+
+  if (family === "colour") {
+    return /\b(colou?r|highlight|balayage|tone|tint|bleach|root)\b/.test(normalizedRaw);
+  }
+
+  if (family === "wig") {
+    return /\b(wig|unit|lace|closure|frontal)\b/.test(normalizedRaw);
+  }
+
+  return false;
+}
+
+function getServiceEvidence(rawServices = [], service) {
+  const keywords = serviceEvidenceKeywords[service] || service.toLowerCase().split(/\s+|\/|\(|\)|-/).filter((word) => word.length > 3);
+  const normalizedKeywords = keywords.map(normalizeServiceText);
+  const matches = rawServices.filter((line) => {
+    const normalizedLine = normalizeServiceText(line);
+    return normalizedKeywords.some((keyword) => keyword && normalizedLine.includes(keyword));
+  });
+
+  if (matches.length) {
+    return matches.slice(0, 4);
+  }
+
+  return rawServices.filter((line) => serviceFamilyFor(service) === "colour" && /colou?r|highlight|balayage|tone|tint|bleach|root/i.test(line)).slice(0, 4);
+}
+
+const serviceEvidenceKeywords = {
+  "Balayage": ["balayage"],
+  "Highlights": ["highlight", "highlights", "lowlights"],
+  "Full head colour": ["colour", "color", "tint", "dye", "rooting"],
+  "Wig colour": ["wig colour", "wig color", "colouring full wig", "custom colour", "colour service"],
+  "Custom wig": ["custom wig", "custom lace", "custom unit", "closure wig"],
+};
+
+function serviceFamilyFor(service) {
+  if (["Full head colour", "Balayage", "Highlights", "Wig colour"].includes(service)) {
+    return "colour";
+  }
+  if (["Custom wig", "Wig install (frontal / closure)", "U-Part wig install", "Pixie wig / weave install"].includes(service)) {
+    return "wig";
+  }
+  return "";
 }
 
 async function checkUrl(type, url) {
@@ -643,16 +1053,104 @@ async function extractBookingServices(url) {
     }
 
     const html = await response.text();
-    const rawServices = extractServiceCandidates(html);
+    const structured = extractStructuredBookingData(html);
+    const rawServices = structured.rawServices.length ? structured.rawServices : extractServiceCandidates(html);
     const matchedServices = matchServices(rawServices);
     return {
-      confidence: rawServices.length >= 5 && matchedServices.length > 0 ? "medium" : matchedServices.length > 0 ? "low" : "unknown",
+      confidence: structured.rawServices.length >= 3 && matchedServices.length > 0 ? "high" : rawServices.length >= 5 && matchedServices.length > 0 ? "medium" : matchedServices.length > 0 ? "low" : "unknown",
       rawServices: rawServices.slice(0, 80),
       matchedServices,
+      areaId: structured.areaId,
+      areaLabel: areaLabelFor(structured.areaId),
     };
   } catch {
     return emptyServiceCheck();
   }
+}
+
+function extractStructuredBookingData(html) {
+  const business = extractAcuityBusiness(html);
+  if (!business) {
+    return { rawServices: [], areaId: "" };
+  }
+
+  const appointmentTypes = business.appointmentTypes && typeof business.appointmentTypes === "object" ? business.appointmentTypes : {};
+  const rawServices = [];
+  Object.entries(appointmentTypes).forEach(([category, appointments]) => {
+    rawServices.push(category);
+    if (Array.isArray(appointments)) {
+      appointments.forEach((appointment) => {
+        rawServices.push(appointment.name);
+      });
+    }
+  });
+
+  const calendarLocations = Object.values(business.calendars || {})
+    .flat()
+    .map((calendar) => calendar?.location)
+    .filter(Boolean);
+  const calendarTimezones = Object.values(business.calendars || {})
+    .flat()
+    .map((calendar) => calendar?.timezone)
+    .filter(Boolean);
+  const areaId =
+    inferAreaIdFromText([business.name, business.description, ...calendarLocations].join(" ")) ||
+    (calendarTimezones.includes("Europe/London") ? "all-london" : "");
+
+  return {
+    rawServices: rawServices.filter(Boolean).map((service) => String(service).replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim()),
+    areaId,
+  };
+}
+
+function extractAcuityBusiness(html) {
+  const marker = "var BUSINESS = ";
+  const markerIndex = html.indexOf(marker);
+  if (markerIndex === -1) {
+    return null;
+  }
+
+  const objectStart = html.indexOf("{", markerIndex);
+  if (objectStart === -1) {
+    return null;
+  }
+
+  let depth = 0;
+  let inString = false;
+  let escaped = false;
+  for (let index = objectStart; index < html.length; index += 1) {
+    const char = html[index];
+    if (inString) {
+      escaped = !escaped && char === "\\";
+      if (char === "\"" && !escaped) {
+        inString = false;
+      }
+      if (char !== "\\") {
+        escaped = false;
+      }
+      continue;
+    }
+
+    if (char === "\"") {
+      inString = true;
+      continue;
+    }
+    if (char === "{") {
+      depth += 1;
+    }
+    if (char === "}") {
+      depth -= 1;
+      if (depth === 0) {
+        try {
+          return JSON.parse(html.slice(objectStart, index + 1));
+        } catch {
+          return null;
+        }
+      }
+    }
+  }
+
+  return null;
 }
 
 function extractServiceCandidates(html) {
@@ -682,6 +1180,8 @@ function emptyServiceCheck() {
     confidence: "unknown",
     rawServices: [],
     matchedServices: [],
+    areaId: "",
+    areaLabel: "",
   };
 }
 
@@ -733,22 +1233,28 @@ function isExpectedRedirect(originalHost, finalHost) {
   return originalHost === finalHost || finalHost.endsWith(`.${originalHost}`) || originalHost.endsWith(`.${finalHost}`);
 }
 
-function buildDraft(input) {
+async function buildDraft(input) {
   const links = normalizeLines(input.links);
   const rawServices = normalizeLines(input.rawServices);
   const explicitServices = toArray(input.services);
   const inferred = inferFromLinks(links);
-  const matchedServices = matchServices([...rawServices, ...explicitServices]);
+  const bookingServiceCheck = inferred.bookingUrl ? await extractBookingServices(inferred.bookingUrl) : emptyServiceCheck();
+  const enrichedRawServices = [...rawServices, ...bookingServiceCheck.rawServices];
+  const matchedServices = matchServices([...enrichedRawServices, ...bookingServiceCheck.matchedServices, ...explicitServices]);
   const now = new Date().toISOString();
   const name = cleanString(input.name) || inferNameFromUrl(links[0]) || "New stylist";
+  const inferredAreaId = cleanString(input.areaId) || bookingServiceCheck.areaId || inferAreaIdFromText([...links, name, ...enrichedRawServices].join(" "));
+  const areaIds = normalizeAreaIds(input.areaIds?.length ? input.areaIds : inferredAreaId ? [inferredAreaId] : []);
+  const areaLabel = areaLabelForIds(areaIds);
 
   return normalizeDraftState({
     id: makeUniqueDraftId(name),
     status: "needs_review",
     name,
-    areaId: cleanString(input.areaId),
-    areaLabel: areaLabelFor(input.areaId),
-    neighbourhood: areaLabelFor(input.areaId),
+    areaId: areaIds[0] || "",
+    areaIds,
+    areaLabel,
+    neighbourhood: areaLabel ? `${areaLabel.replace(" / ", " and ")} London` : "",
     postcode: "",
     bookingPlatform: cleanString(input.bookingPlatform) || inferred.bookingPlatform,
     bookingUrl: cleanString(input.bookingUrl) || inferred.bookingUrl,
@@ -756,11 +1262,11 @@ function buildDraft(input) {
     instagramUrl: cleanString(input.instagramUrl) || inferred.instagramUrl,
     tiktokUrl: cleanString(input.tiktokUrl) || inferred.tiktokUrl,
     services: matchedServices,
-    rawServices,
+    rawServices: [...new Set(enrichedRawServices)],
     summary: cleanString(input.summary) || "Admin draft created from stylist intake.",
-    confidence: matchedServices.length > 0 ? 0.72 : 0.35,
+    confidence: bookingServiceCheck.confidence === "medium" ? 0.82 : matchedServices.length > 0 ? 0.72 : 0.35,
     warnings: [],
-    evidence: buildEvidence(links, rawServices),
+    evidence: buildEvidence(links, enrichedRawServices),
     source: "admin-draft",
     createdAt: now,
     updatedAt: now,
@@ -875,13 +1381,16 @@ function sanitizeDraftUpdate(input) {
   const rawServices = normalizeLines(input.rawServices);
   const services = matchServices(toArray(input.services));
   const inferred = inferFromLinks(links);
+  const areaIds = normalizeAreaIds(input.areaIds?.length ? input.areaIds : input.areaId ? [input.areaId] : []);
+  const areaLabel = cleanString(input.areaLabel) || areaLabelForIds(areaIds);
 
   return {
     ...(input.status ? { status: cleanString(input.status) } : {}),
     name: cleanString(input.name),
-    areaId: cleanString(input.areaId),
-    areaLabel: cleanString(input.areaLabel) || areaLabelFor(input.areaId),
-    neighbourhood: cleanString(input.neighbourhood) || cleanString(input.areaLabel) || areaLabelFor(input.areaId),
+    areaId: areaIds[0] || "",
+    areaIds,
+    areaLabel,
+    neighbourhood: cleanString(input.neighbourhood) || areaLabel,
     postcode: cleanString(input.postcode),
     bookingPlatform: cleanString(input.bookingPlatform) || inferred.bookingPlatform,
     bookingUrl: cleanString(input.bookingUrl) || inferred.bookingUrl,
@@ -896,11 +1405,36 @@ function sanitizeDraftUpdate(input) {
   };
 }
 
+function publishedSalonToDraft(salon, fallbackDate = new Date().toISOString()) {
+  return {
+    id: salon.id,
+    status: "approved",
+    name: salon.name || "",
+    areaId: salon.areaId || "",
+    areaIds: Array.isArray(salon.areaIds) ? salon.areaIds : salon.areaId ? [salon.areaId] : [],
+    areaLabel: salon.areaLabel || "",
+    neighbourhood: salon.neighbourhood || "",
+    postcode: salon.postcode || "",
+    bookingPlatform: salon.bookingPlatform || "",
+    bookingUrl: salon.bookingUrl || "",
+    websiteUrl: salon.websiteUrl || "",
+    instagramUrl: salon.instagramUrl || "",
+    tiktokUrl: salon.tiktokUrl || "",
+    services: Array.isArray(salon.services) ? salon.services : [],
+    rawServices: [],
+    summary: salon.summary || "",
+    warnings: [],
+    evidence: Array.isArray(salon.evidence) ? salon.evidence : [],
+    createdAt: salon.createdAt || fallbackDate,
+    updatedAt: salon.updatedAt || fallbackDate,
+  };
+}
+
 function validateApprovableDraft(draft) {
   if (!draft.name?.trim()) {
     return "Add a stylist or salon name before approving.";
   }
-  if (!draft.areaId?.trim()) {
+  if (!normalizeAreaIds(draft.areaIds?.length ? draft.areaIds : draft.areaId ? [draft.areaId] : []).length) {
     return "Choose a location before approving.";
   }
   if (!draft.bookingUrl?.trim() && !draft.instagramUrl?.trim() && !draft.websiteUrl?.trim()) {
@@ -914,28 +1448,42 @@ function validateApprovableDraft(draft) {
 
 function normalizeDraftState(draft) {
   const warnings = [];
-  if (!draft.bookingUrl?.trim()) {
+  if (!hasDraftBookingLink(draft)) {
     warnings.push("No booking link identified yet.");
   }
   if (!Array.isArray(draft.services) || draft.services.length === 0) {
     warnings.push("No services matched yet.");
   }
 
+  const areaIds = normalizeAreaIds(draft.areaIds?.length ? draft.areaIds : draft.areaId ? [draft.areaId] : []);
+  const areaLabel = draft.areaLabel || areaLabelForIds(areaIds);
+
   return {
     ...draft,
+    areaId: areaIds[0] || "",
+    areaIds,
+    areaLabel,
     status: warnings.length ? "needs_review" : "ready_to_approve",
     warnings,
   };
 }
 
+function hasDraftBookingLink(draft) {
+  return Boolean(draft.bookingUrl?.trim() || isBookingLikeUrl(draft.websiteUrl || ""));
+}
+
 function draftToSalon(draft, existingIds) {
   const id = uniqueSlug(draft.name, existingIds);
+  const areaIds = normalizeAreaIds(draft.areaIds?.length ? draft.areaIds : draft.areaId ? [draft.areaId] : []);
+  const primaryAreaId = areaIds[0] || draft.areaId;
+  const areaLabel = draft.areaLabel || areaLabelForIds(areaIds) || areaLabelFor(primaryAreaId);
   return {
     id,
     name: draft.name.trim(),
-    areaId: draft.areaId,
-    areaLabel: draft.areaLabel || areaLabelFor(draft.areaId),
-    neighbourhood: draft.neighbourhood || draft.areaLabel || "",
+    areaId: primaryAreaId,
+    ...(areaIds.length > 1 ? { areaIds } : {}),
+    areaLabel,
+    neighbourhood: draft.neighbourhood || areaLabel || "",
     postcode: draft.postcode || "",
     bookingPlatform: draft.bookingPlatform || platformFromUrl(draft.bookingUrl) || "Direct",
     bookingUrl: draft.bookingUrl || draft.websiteUrl || draft.instagramUrl,
@@ -969,9 +1517,9 @@ function inferFromLinks(links) {
     }
 
     const platform = platformFromUrl(link);
-    if (platform && !result.bookingUrl) {
+    if ((platform || isBookingLikeUrl(link)) && !result.bookingUrl) {
       result.bookingUrl = link;
-      result.bookingPlatform = platform;
+      result.bookingPlatform = platform || "Direct website";
       continue;
     }
 
@@ -986,7 +1534,17 @@ function platformFromUrl(url = "") {
   return bookingPlatformMatchers.find(([needle]) => lower.includes(needle))?.[1] || "";
 }
 
-function matchServices(values) {
+function isBookingLikeUrl(url = "") {
+  try {
+    const parsed = new URL(url);
+    const text = `${parsed.pathname} ${parsed.search} ${parsed.hash}`.toLowerCase();
+    return /\b(book|booking|appointments?|schedule|calendar|reserve|reservation)\b/.test(text);
+  } catch {
+    return false;
+  }
+}
+
+export function matchServices(values) {
   const allKnown = new Set(canonicalServices);
   const knownByLowercase = new Map(canonicalServices.map((service) => [service.toLowerCase(), service]));
   const aliasesByLowercase = new Map([
@@ -1002,22 +1560,109 @@ function matchServices(values) {
 
   return normalizeServices(
     normalized
-      .flatMap((service) => {
+      .flatMap((service, index) => {
         const lower = service.toLowerCase();
+        const context = buildServiceLineContext(normalized, index);
+        if (hasColourSignal(context.line) && hasWigPieceColourContext(context)) {
+          return ["Wig colour"];
+        }
         const exact = serviceAliases[service] ?? knownByLowercase.get(lower) ?? aliasesByLowercase.get(lower);
         if (exact && allKnown.has(exact)) {
-          return [exact];
+          return shouldSuppressNaturalColourForWigContext(exact, context) || isServiceNegatedInText(lower, exact) ? [] : [exact];
         }
 
         const ruleMatches = matchServicesByRule(lower);
         if (ruleMatches.length) {
-          return ruleMatches;
+          const filteredMatches = ruleMatches.filter((match) => !shouldSuppressServiceForSpecificContext(match, context) && !isServiceNegatedInText(lower, match));
+          if (filteredMatches.length === 0 && ruleMatches.some((match) => isNaturalHairColourService(match)) && hasWigPieceColourContext(context)) {
+            return ["Wig colour"];
+          }
+          return filteredMatches;
         }
 
-        return canonicalServices.find((candidate) => isStrongServiceMatch(lower, candidate.toLowerCase())) || [];
+        const strongMatch = canonicalServices.find((candidate) => isStrongServiceMatch(lower, candidate.toLowerCase()));
+        return strongMatch && !shouldSuppressNaturalColourForWigContext(strongMatch, context) && !isServiceNegatedInText(lower, strongMatch) ? strongMatch : [];
       })
       .filter(Boolean),
   );
+}
+
+function buildServiceLineContext(lines, index) {
+  const line = lines[index] || "";
+  const previous = lines[index - 1] || "";
+  const next = lines[index + 1] || "";
+  const nextTwo = lines[index + 2] || "";
+  const nearby = [previous, line, next, nextTwo].join(" ");
+
+  return {
+    line: normalizeServiceText(line),
+    nearby: normalizeServiceText(nearby),
+  };
+}
+
+function shouldSuppressNaturalColourForWigContext(service, context) {
+  return isNaturalHairColourService(service) && hasWigPieceColourContext(context);
+}
+
+function shouldSuppressServiceForSpecificContext(service, context) {
+  return shouldSuppressNaturalColourForWigContext(service, context) || shouldSuppressGenericWigInstall(service, context) || shouldSuppressSewInForWigContext(service, context) || shouldSuppressTraditionalSewInForTrackContext(service, context) || shouldSuppressCustomWigForFactoryMadeContext(service, context);
+}
+
+function shouldSuppressGenericWigInstall(service, context) {
+  if (service !== "Wig install (frontal / closure)") {
+    return false;
+  }
+
+  const hasSpecificUPartContext = /\bu\s*part\b|\bu-part\b|\bv\s*part\b|\bv-part\b|\bu\s*v\s*part\b|\bu\s+vpart\b|\buvpart\b|\bhalf\s+wig\b/.test(context.line);
+  const hasFrontalClosureContext = /\b(frontal|closure|lace|glueless)\b/.test(context.line);
+  const hasConstructionContext = /\b(construction|construct|making|handmade)\b/.test(context.line);
+  const hasInstallContext = /\b(install|installation|instal|fit|fitting|application|glueless)\b/.test(context.line);
+  return (hasSpecificUPartContext && !hasFrontalClosureContext) || (hasConstructionContext && !hasInstallContext);
+}
+
+function shouldSuppressSewInForWigContext(service, context) {
+  if (service !== "Frontal sew-in" && service !== "Closure sew-in") {
+    return false;
+  }
+
+  const hasWigInstallContext = /\bwig\b/.test(context.line) && /\b(install|installation|instal|fit|fitting|application)\b/.test(context.line);
+  const hasConstructionContext = /\b(construction|construct|making|handmade|custom)\b/.test(context.line);
+  const hasSewInContext = /\b(sew\s*in|sewin|weave)\b/.test(context.line);
+  return (hasWigInstallContext || hasConstructionContext) && !hasSewInContext;
+}
+
+function shouldSuppressTraditionalSewInForTrackContext(service, context) {
+  if (service !== "Traditional sew-in / leave out") {
+    return false;
+  }
+
+  return /\b(row|rows|line|track|tracks)\b/.test(context.line) && /\b(sew\s*in|sewin|weave|install|installation)\b/.test(context.line);
+}
+
+function shouldSuppressCustomWigForFactoryMadeContext(service, context) {
+  if (service !== "Custom wig") {
+    return false;
+  }
+
+  return /\b(factory\s+made|pre\s*made|premade|ready\s*made|raw\s+pre\s*made)\b/.test(context.line);
+}
+
+function isNaturalHairColourService(service) {
+  return service === "Full head colour" || service === "Balayage" || service === "Highlights";
+}
+
+function hasWigPieceColourContext(context) {
+  const wigPiecePattern = /\b(wig|wigs|unit|units|bundle|bundles|frontal|closure|lace|weft|wefts)\b/;
+
+  return (hasColourSignal(context.line) && wigPiecePattern.test(context.line)) || (hasColourSignal(context.nearby) && wigPiecePattern.test(context.nearby) && hasColourSectionCue(context.nearby));
+}
+
+function hasColourSignal(text) {
+  return /\b(colou?r|colou?ring|highlight|highlights|lowlight|lowlights|balayage|tone|toning|tint|dye|bleach|rooting|root)\b/.test(text);
+}
+
+function hasColourSectionCue(text) {
+  return /\b(colour services|color services|custom colour|custom color|colouring service|coloring service)\b/.test(text);
 }
 
 function matchServicesByRule(input) {
@@ -1039,8 +1684,88 @@ function isStrongServiceMatch(input, candidate) {
   return normalizedInput.includes(normalizedCandidate) || normalizedCandidate.includes(normalizedInput);
 }
 
+function isServiceNegatedInText(input, service) {
+  const normalizedInput = normalizeServiceText(input);
+  const hints = serviceHintsForNegation(service);
+
+  return hints.some((hint) => {
+    const normalizedHint = normalizeServiceText(hint);
+    if (!normalizedHint || !normalizedInput.includes(normalizedHint)) {
+      return false;
+    }
+
+    return isNegatedPhrase(normalizedInput, normalizedHint);
+  });
+}
+
+function serviceHintsForNegation(service) {
+  const aliases = [
+    ...Object.entries(serviceAliases)
+      .filter(([, value]) => value === service)
+      .map(([alias]) => alias),
+    ...Object.entries(intakeServiceAliases)
+      .filter(([, value]) => value === service)
+      .map(([alias]) => alias),
+  ];
+
+  return [...new Set([service, ...(serviceNegationHints[service] || []), ...aliases])];
+}
+
+function isNegatedPhrase(text, phrase) {
+  const escapedPhrase = escapeRegExp(phrase).replace(/\\ /g, "\\s+");
+  const beforeNegation = new RegExp(
+    `\\b(?:no|not|without|never|don\\s*t|dont|doesn\\s*t|doesnt|do\\s+not|does\\s+not|not\\s+currently|no\\s+longer|don\\s*t\\s+currently|do\\s+not\\s+currently)\\b(?:\\s+\\w+){0,6}\\s+${escapedPhrase}\\b`,
+    "i",
+  );
+  const afterNegation = new RegExp(
+    `\\b${escapedPhrase}\\b(?:\\s+\\w+){0,6}\\s+\\b(?:not\\s+included|isn\\s*t\\s+included|isnt\\s+included|not\\s+offered|not\\s+available|unavailable|not\\s+provided)\\b`,
+    "i",
+  );
+
+  return (beforeNegation.test(text) && !hasPositiveQualifierBetweenNegationAndPhrase(text, phrase)) || (afterNegation.test(text) && !hasIncludedHairQualifier(text));
+}
+
+function hasPositiveQualifierBetweenNegationAndPhrase(text, phrase) {
+  const wordsBetween = `(?:\\s+\\w+){0,6}\\s+`;
+  const escapedPhrase = escapeRegExp(phrase).replace(/\\ /g, "\\s+");
+  const pattern = new RegExp(
+    `\\b(?:no|not|without|never|don\\s*t|dont|doesn\\s*t|doesnt|do\\s+not|does\\s+not|not\\s+currently|no\\s+longer|don\\s*t\\s+currently|do\\s+not\\s+currently)\\b(${wordsBetween})${escapedPhrase}\\b`,
+    "i",
+  );
+  const between = text.match(pattern)?.[1] || "";
+
+  return /\b(only|except|but)\b/i.test(between);
+}
+
+function hasIncludedHairQualifier(text) {
+  return /\b(hair|extensions?|bundles?|wig|lace|closure|frontal)\s+(?:is\s+|isn\s*t\s+|isnt\s+)?not\s+included\b/i.test(text);
+}
+
+function escapeRegExp(value) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
 function normalizeServiceText(value) {
-  return value.replace(/[^a-z0-9]+/g, " ").replace(/\s+/g, " ").trim();
+  return String(value).toLowerCase().replace(/[^a-z0-9]+/g, " ").replace(/\s+/g, " ").trim();
+}
+
+function inferAreaIdFromText(value = "") {
+  const text = normalizeServiceText(String(value).toLowerCase());
+  const areaPatterns = [
+    ["essex", /\b(essex|southend|westcliff|romford|ilford|dagenham|barking|grays|basildon|chelmsford)\b/],
+    ["kent", /\b(kent|chatham|dartford|gravesend|gillingham|maidstone|bromley)\b/],
+    ["croydon", /\bcroydon\b/],
+    ["south-east", /\b(south\s*east|se\s*london|peckham|lewisham|greenwich|woolwich|deptford|catford|brixton)\b/],
+    ["south-west", /\b(south\s*west|sw\s*london|tooting|wandsworth|clapham|putney|mitcham|streatham)\b/],
+    ["north-west", /\b(north\s*west|nw\s*london|harlesden|wembley|kilburn|camden|brent)\b/],
+    ["north", /\b(north\s*london|enfield|tottenham|finsbury|wood\s*green|islington)\b/],
+    ["east", /\b(east\s*london|hackney|stratford|leyton|bow|newham|tower\s*hamlets)\b/],
+    ["west", /\b(west\s*london|ealing|acton|hammersmith|hayes|uxbridge|shepherds\s*bush)\b/],
+    ["central", /\b(central\s*london|soho|westminster|marylebone|fitzrovia|mayfair)\b/],
+    ["all-london", /\blondon\b/],
+  ];
+
+  return areaPatterns.find(([, pattern]) => pattern.test(text))?.[0] || "";
 }
 
 function buildEvidence(links, rawServices) {
@@ -1081,6 +1806,15 @@ function inferNameFromUrl(url = "") {
 
 function areaLabelFor(areaId = "") {
   return regionOptions.find((region) => region.id === areaId)?.label || "";
+}
+
+function normalizeAreaIds(areaIds = []) {
+  const validAreaIds = new Set(regionOptions.map((region) => region.id));
+  return [...new Set(toArray(areaIds).map(cleanString).filter((areaId) => areaId && validAreaIds.has(areaId)))];
+}
+
+function areaLabelForIds(areaIds = []) {
+  return normalizeAreaIds(areaIds).map(areaLabelFor).filter(Boolean).join(" / ");
 }
 
 function makeUniqueDraftId(name) {
