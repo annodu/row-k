@@ -62,18 +62,18 @@ const intakeServiceAliases = {
 };
 
 const serviceRuleMatchers = [
-  ["Wig colour", [/\bwig\b.*\b(colou?r|dye|ton(e|ing)|bleach|highlight|custom colou?r)\b/, /\b(colou?r|dye|ton(e|ing)|bleach|highlight)\b.*\bwig\b/]],
+  ["Wig colour", [/\b(wig|extensions?|bundle|bundles|lace\s+system)\b.*\b(colou?r|dye|ton(e|ing)|bleach|highlight|custom colou?r)\b/, /\b(colou?r|dye|ton(e|ing)|bleach|highlight|custom colou?r)\b.*\b(wig|extensions?|bundle|bundles|lace\s+system)\b/, /\b613\b.*\b(colou?r|dye|ton(e|ing)|bleach|highlight|bright)\b/, /\b(colou?r|dye|ton(e|ing)|bleach|highlight|bright)\b.*\b613\b/, /\bnon[\s-]*contact\b.*\b(colou?r|colou?ring|dye|ton(e|ing)|bleach|highlight)\b/]],
   ["Frontal ponytail / bun", [/\bfrontal\b.*\b(pony|ponytail|bun)\b/, /\b(pony|ponytail|bun)\b.*\bfrontal\b/]],
-  ["Half braids, half sew-in", [/\bhalf\b.*\b(braid|braids)\b.*\b(weave|sew\s*in|sewin)\b/, /\bhalf\s+braid\b/, /\bhalf\s+weave\b/]],
-  ["Wig install (frontal / closure)", [/\bwig\b.*\b(install|instal|application|fit|fitting)\b/, /\b(glueless|lace)\s+wig\b/, /\bfrontal\s+wig\b/, /\bclosure\s+wig\b/]],
-  ["U-Part wig install", [/\bu\s*part\b/, /\bu-part\b/, /\bv\s*part\b/, /\bv-part\b/, /\bu\s*v\s*part\b/, /\bu\s+vpart\b/, /\buvpart\b/, /\bhalf\s+wig\b/]],
-  ["Custom wig", [/\bcustom\b.*\bwig\b/, /\bcustom\s+handmade\s+wigs?\b/, /\bwig\b.*\b(custom|handmade|made|making|construction|unit)\b/, /\bcustom(?:\s+made)?\b.*\b(frontal|closure)\s+unit\b/, /\bcustom\b.*\bfrontal\s+closure\s+units?\b/, /\bwig\s+construction\b/]],
-  ["Pixie wig / weave install", [/\bpixie\b.*\b(wig|weave|install)\b/, /\b(wig|weave)\b.*\bpixie\b/]],
-  ["Closure sew-in", [/\bclosure\b.*\b(sew\s*in|sewin|weave|install)\b/, /\b(sew\s*in|sewin|weave|install)\b.*\bclosure\b/]],
-  ["Frontal sew-in", [/\bfrontal\b.*\b(sew\s*in|sewin|weave|install)\b/, /\b(sew\s*in|sewin|weave|install)\b.*\bfrontal\b/]],
+  ["Half braids, half sew-in", [/\bhalf\b.*\b(braid|braids|feed\s*in|feed-in|cornrows?)\b.*\b(weave|sew[\s-]*in|sewin)\b/, /\bhalf\b.*\b(weave|sew[\s-]*in|sewin)\b.*\b(braid|braids|feed\s*in|feed-in|cornrows?)\b/, /\bhalf\s+braid\b/, /\bhalf\s+weave\b/]],
+  ["Wig install (frontal / closure)", [/\bwig\b.*\b(install|instal|installation|application|fit|fitting)\b/, /\b(glueless|lace)\s+wig\b/, /\bfrontal\s+wig\b/, /\bclosure\s+wig\b/, /\b(frontal|closure|ready[\s-]*made)\s+unit\b/, /\bunit\b.*\b(install|instal|installation|application|fit|fitting)\b/]],
+  ["U-Part wig install", [/\b(u[\s-]*part|v[\s-]*part|u[\s/-]*v[\s-]*part|uvpart)\b.*\b(wig|install|installation)\b/, /\b(wig|install|installation)\b.*\b(u[\s-]*part|v[\s-]*part|u[\s/-]*v[\s-]*part|uvpart)\b/]],
+  ["Custom wig", [/\bcustom\b.*\bwig\b/, /\bbespoke\b.*\bwig\b/, /\bcustom\s+handmade\s+wigs?\b/, /\bwig\b.*\b(custom|bespoke|handmade|made|making|construction|unit)\b/, /\bunit\b.*\bcustomi[sz](ing|ation)\b/, /\bcustomi[sz](ing|ation)\b.*\bunit\b/, /\bcustom(?:\s+made)?\b.*\b(frontal|closure)\s+unit\b/, /\bcustom\b.*\bfrontal\s+closure\s+units?\b/, /\bwig\s+(making|construction|customi[sz](ing|ation))\b/, /\bconstruction\b.*\bcustomi[sz](ing|ation)\b/, /\bcustomi[sz](ing|ation)\b.*\bconstruction\b/, /\b(frontal|closure)\b.*\bcustomi[sz](ing|ation)\b/]],
+  ["Pixie wig / weave install", [/\bpixie\b.*\b(wig|weave|sew\s*in|sewin|install)\b/, /\b(wig|weave|sew\s*in|sewin)\b.*\bpixie\b/]],
+  ["Closure sew-in", [/\bclosure\b.*\b(sew\s*in|sewin|weave)\b/, /\b(sew\s*in|sewin|weave)\b.*\bclosure\b/, /\bclosure\b.*\bbehind\s+the\s+hairline\b/]],
+  ["Frontal sew-in", [/\bfrontal\b.*\b(sew\s*in|sewin|weave)\b/, /\b(sew\s*in|sewin|weave)\b.*\bfrontal\b/]],
   ["Flipover / Versatile sew-in", [/\bflip\s*over\b/, /\bflipover\b/, /\bversatile\b.*\b(sew\s*in|sewin|weave)\b/, /\bversatile\s+sew\s+in\b/]],
   ["Quick weave", [/\bquick\b.*\bweave\b/, /\bquickweave\b/]],
-  ["Hybrid sew-in", [/\bhybrid\b.*\b(sew\s*in|sewin|weave)\b/]],
+  ["Hybrid sew-in", [/\bhybrid\b.*\b(sew\s*in|sewin|weave)\b/, /\btracks?\b.*\btapes?\b.*\bhybrid\b/, /\bhybrid\b.*\btracks?\b.*\btapes?\b/]],
   ["Sew-in take-down", [/\b(sew\s*in|sewin|weave|tracks?)\b.*\b(take\s*down|takedown|removal|remove)\b/, /\b(take\s*down|takedown|removal|remove)\b.*\b(sew\s*in|sewin|weave|tracks?)\b/]],
   ["Tracks (+ Silk press) / Partial / Invisible sew-in", [/\btracks?\b/, /\bpartial\b.*\b(sew\s*in|sewin|weave)\b/, /\binvisible\b.*\b(sew\s*in|sewin|weave|wefts?)\b/, /\b(row|rows|line)\s+(?:of\s+)?(sew\s*in|sewin|weave)\b/, /\b(sew\s*in|sewin|weave)\s+(row|rows|line)\b/, /\bweave\s+on\s+per\s+row\b/, /\bper\s+(track|row|line)\b/, /\btrack\s+per\s+row\b/, /\btracks?\s+per\s+(track|row|line|double\s+row)\b/, /\btraditional\s+weave\s+rows?\b/, /^\d+\s+row$/]],
   ["Traditional sew-in / leave out", [/\bleave\s*out\b/, /\b(middle|side)\s+part\b.*\b(sew\s*in|sewin|weave)\b/, /\btraditional\b.*\b(sew\s*in|sewin|weave)\b/, /\b(sew\s*in|sewin)\b/]],
@@ -87,18 +87,18 @@ const serviceRuleMatchers = [
   ["Box braids", [/\bbox\b.*\bbraids?\b/]],
   ["Crochet", [/\bcrochet\b/]],
   ["Creative braids (e.g. patewo)", [/\bpatewo\b/, /\bcreative\b.*\bbraids?\b/]],
-  ["Feed-in braids", [/\bfeed\s*in\b/, /\bfeed-in\b/, /\ball\s+back\b.*\b(braids?|cornrows?|feed\s*ins?)\b/, /\b(braids?|cornrows?|feed\s*ins?)\b.*\ball\s+back\b/]],
+  ["Feed-in braids", [/\bfeed\s*in\b/, /\bfeed-in\b/, /\ball\s+back\b.*\b(braids?|cornrows?|feed\s*ins?)\b/, /\b(braids?|cornrows?|feed\s*ins?)\b.*\ball\s+back\b/, /\bbraids?\b.*\bgoing\s+back\b/, /\bgoing\s+back\b.*\bbraids?\b/]],
   ["French curl", [/\bfrench\s+curl\b/]],
   ["Fulani / Lemonade braids", [/\bfulani\b/, /\blemonade\b/]],
   ["Miracle knots", [/\bmiracle\s+knots?\b/]],
   ["Microbraids / x-small braids", [/\bmicro\s*braids?\b/, /\bmicrobraids?\b/, /\bx\s*small\b.*\bbraids?\b/, /\bxs\b.*\bbraids?\b/]],
   ["Pre-parting", [/\bpre\s*part(ing)?\b/, /\bpre-part(ing)?\b/]],
   ["Stitch braids", [/\bstitch\b/]],
-  ["Twists (with extensions)", [/\btwists?\b.*\b(extension|extensions|hair added)\b/, /\bpassion\s+twists?\b/, /\bsenegalese\s+twists?\b/]],
+  ["Twists (with extensions)", [/\btwists?\b.*\b(extension|extensions|hair added)\b/, /\b(extension|extensions|hair added)\b.*\btwists?\b/, /\b(passion|marley|senegalese|island|kinky|rope)\s+twists?\b/]],
   ["Braid take-down", [/\bbraids?\b.*\b(take\s*down|takedown|removal|remove)\b/, /\b(take\s*down|takedown|removal|remove)\b.*\bbraids?\b/]],
   ["Starter locs", [/\bstarter\s+locs?\b/, /\bloc\s+start\b/]],
   ["Retwist", [/\bretwist\b/, /\bre\s*twist\b/]],
-  ["Faux locs", [/\bfaux\s+locs?\b/, /\binvisible\s+locs?\b/]],
+  ["Faux locs", [/\bfaux\s+locs?\b/, /\binvisible\s+locs?\b/, /\bsoft\s+locs?\b/]],
   ["Butterfly locs", [/\bbutterfly\s+locs?\b/]],
   ["Microlocs / Sisterlocs", [/\bmicro\s*locs?\b/, /\bmicrolocs?\b/, /\bsister\s*locs?\b/, /\bsisterlocs?\b/]],
   ["Balayage", [/\bbalayage\b/]],
@@ -110,9 +110,9 @@ const serviceRuleMatchers = [
   ["Texture release", [/\btexture\s+release\b/]],
   ["Japanese straightening", [/\bjapanese\b.*\bstraight(en|ening)\b/]],
   ["Hair Botox", [/\bbotox\b/]],
-  ["Olaplex treatment", [/\bolaplex\b/]],
+  ["Olaplex treatment", [/\bolaplex\b/, /\b(repair|bond)\b.*\b(bond|repair|treatment)\b/]],
   ["K-18 treatment", [/\bk\s*18\b/, /\bk-18\b/]],
-  ["Moisturising treatment", [/\bmoisturi[sz](ing|e)\b/, /\bdeep\s+condition(ing)?\b/, /\bsteam\s+treat(ment)?\b/, /\bnatural\s+hair\s+care\b/]],
+  ["Moisturising treatment", [/\bmoisturi[sz](ing|e)\b/, /\bmoisture\b/, /\bhydrat(e|ing|ion)\b/, /\bprotein\s*&?\s+moisture\b/, /\bdeep\s+condition(ing)?\b/, /\bsteam\s+treat(ment)?\b/, /\bnatural\s+hair\s+care\b/]],
   ["Scalp care", [/\bscalp\b/]],
   ["Curly cut / Wash & go", [/\bcurly\s+cut\b/, /\bwash\s*(and|&)?\s*go\b/]],
   ["Wash & blowdry", [/\bwash\b.*\b(blow\s*dry|blowdry|blowout)\b/, /\bblow\s*out\b/, /\bblowout\b/]],
@@ -120,7 +120,7 @@ const serviceRuleMatchers = [
   ["Silk press", [/\bsilk\s+press\b/, /\bsilkpress\b/, /\bpress\s+and\s+curl\b/]],
   ["Twist out / Flexi rod", [/\btwist\s*out\b/, /\bflexi\s*rod\b/, /\bflexi-rod\b/, /\bperm\s+rod\b/]],
   ["Wig cornrows", [/\bunder\s*wig\b/, /\bwig\s+cornrows?\b/, /\bcornrows?\b/]],
-  ["Natural hair education", [/\beducation\b/, /\bconsultation\b.*\bnatural\b/, /\bnatural\s+hair\b.*\bclass\b/]],
+  ["Natural hair education", [/\beducation\b/, /\btutorial\b/, /\btrichology\b/, /\bhair\s+health\b.*\b(assessment|plan|growth|consultation)\b/, /\bgrowth\s+plan\b/, /\bconsultation\b.*\bnatural\b/, /\bnatural\s+hair\b.*\b(class|education|consultation)\b/, /\bcurl\s+makeover\b.*\b(hands?\s*on|tutorial|styling)\b/]],
   ["Sleek ponytail / bun", [/\bsleek\b.*\b(pony|ponytail|bun)\b/, /\bpony\s*tail\b/, /\bponytail\b/, /\bbun\b/]],
   ["Half up half down", [/\bhalf\s+up\b.*\bhalf\s+down\b/, /\bhalf\s+up\s+half\s+down\b/, /\bhalf\s+up\s+half\s+down\b.*\b(quick\s+weave|sew\s+in|sewin|weave)\b/]],
   ["Pixie / finger waves", [/\bfinger\s+waves?\b/, /\bpixie\b/, /\bwrap\b/]],
@@ -135,17 +135,17 @@ const serviceNegationHints = {
   "Bridal / Editorial": ["bridal", "wedding", "editorial", "photoshoot"],
   "Butterfly locs": ["butterfly locs"],
   "Clip ins (+ Silk press)": ["clip ins", "clip in"],
-  "Closure sew-in": ["closure sew in", "closure sewin", "closure weave", "closure install"],
+  "Closure sew-in": ["closure sew in", "closure sew-in", "closure sewin", "closure weave", "closure behind the hairline"],
   "Creative braids (e.g. patewo)": ["creative braids", "patewo"],
   "Crochet": ["crochet"],
   "Curly cut / Wash & go": ["curly cut", "wash go", "wash and go"],
-  "Custom wig": ["custom wig", "custom handmade wig", "custom handmade wigs", "custom made frontal unit", "custom made closure unit", "frontal unit", "closure unit", "wig making", "wig construction"],
-  "Faux locs": ["faux locs"],
-  "Feed-in braids": ["feed in", "feed in braids", "all back"],
+  "Custom wig": ["custom wig", "bespoke wig", "custom handmade wig", "custom handmade wigs", "custom made frontal unit", "custom made closure unit", "customised closure unit", "customized closure unit", "custom mini frontal unit", "unit customisation", "unit customization", "wig making", "wig construction", "wig customising", "wig customisation", "wig customization", "construction and customisation", "construction and customization"],
+  "Faux locs": ["faux locs", "soft locs"],
+  "Feed-in braids": ["feed in", "feed in braids", "all back", "braids going back"],
   "Flipover / Versatile sew-in": ["flipover", "flip over", "versatile sew in", "versatile sewin", "versatile weave"],
   "French curl": ["french curl"],
   "Frontal ponytail / bun": ["frontal ponytail", "frontal pony", "frontal bun"],
-  "Frontal sew-in": ["frontal sew in", "frontal sewin", "frontal weave", "frontal install"],
+  "Frontal sew-in": ["frontal sew in", "frontal sewin", "frontal weave"],
   "Fulani / Lemonade braids": ["fulani", "lemonade"],
   "Full head colour": ["full head colour", "full head color", "colour", "color", "dye", "tint"],
   "Hair Botox": ["hair botox", "botox"],
@@ -155,7 +155,7 @@ const serviceNegationHints = {
   "Hybrid sew-in": ["hybrid sew in", "hybrid sewin", "hybrid weave"],
   "Japanese straightening": ["japanese straightening"],
   "K-18 treatment": ["k 18", "k18"],
-  "K-tips / Invisible strands": ["k tips", "invisible strands", "keratin tips", "keratin bonds"],
+  "K-tips / Invisible strands": ["k tips", "invisible strands", "keratin tip", "keratin tips", "keratin bonds"],
   "Keratin treatment": ["keratin"],
   "Knotless braids": ["knotless"],
   "LA weave": ["la weave"],
@@ -180,17 +180,17 @@ const serviceNegationHints = {
   "Stitch braids": ["stitch"],
   "Tape ins": ["tape ins", "tape in", "tapes", "tape extensions"],
   "Texture release": ["texture release"],
-  "Tracks (+ Silk press) / Partial / Invisible sew-in": ["tracks", "track per row", "per track", "per row", "row sew in", "rows of sew in", "weave tracks", "weave on per row", "traditional weave rows", "partial sew in", "partial sewin", "invisible sew in", "invisible weave", "invisible weft", "invisible wefts"],
+  "Tracks (+ Silk press) / Partial / Invisible sew-in": ["tracks", "track per row", "per track", "per row", "tracks add on", "tracks add-on", "silk press add on tracks", "silk press add-on tracks", "row sew in", "rows of sew in", "weave tracks", "weave on per row", "traditional weave rows", "partial sew in", "partial sewin", "invisible sew in", "invisible weave", "invisible weft", "invisible wefts"],
   "Traditional sew-in / leave out": ["leave out", "traditional sew in", "traditional sewin", "traditional weave", "sew in", "sewin"],
   "Trim / Hair cut": ["trim", "hair cut", "haircut", "cut and finish"],
   "Twist out / Flexi rod": ["twist out", "flexi rod", "perm rod"],
-  "Twists (with extensions)": ["twists", "passion twists", "senegalese twists"],
-  "U-Part wig install": ["u part", "u part wig", "v part", "v part wig", "u vpart", "uvpart", "half wig"],
+  "Twists (with extensions)": ["twists with extensions", "passion twists", "marley twists", "senegalese twists", "kinky twists", "rope twists", "island twists", "island twist"],
+  "U-Part wig install": ["u part", "upart", "u part wig", "upart wig", "v part", "vpart", "v part wig", "vpart wig", "u vpart", "uvpart", "half wig"],
   "Updo": ["updo", "up do", "pin up"],
   "Wash & blowdry": ["wash blowdry", "wash blow dry", "wash and blowdry", "wash and blow dry", "blowout"],
   "Wig colour": ["wig colour", "wig color", "wig dye", "colour wig", "color wig"],
   "Wig cornrows": ["under wig", "wig cornrows", "cornrows"],
-  "Wig install (frontal / closure)": ["wig install", "wig installs", "wig instal", "wig application", "wig fitting", "glueless wig", "lace wig", "frontal wig", "closure wig"],
+  "Wig install (frontal / closure)": ["wig install", "wig installs", "wig instal", "wig installation", "wig application", "wig fitting", "glueless wig", "lace wig", "frontal wig", "closure wig", "frontal unit", "closure unit", "ready-made unit", "ready made unit", "unit install", "frontal unit install", "closure unit install"],
 };
 
 export function registerAdminStylistRoutes(app) {
@@ -334,7 +334,8 @@ export function registerAdminStylistRoutes(app) {
         totalIssues: freshnessChecks.length,
         checkedCount: freshnessStore.meta?.checkedCount ?? 0,
         total: manualIndex.salons?.length ?? freshnessStore.meta?.total ?? 0,
-        brokenLinks: freshnessChecks.filter((check) => check.linkChecks?.some((link) => link.status !== "ok")).length,
+        brokenLinks: freshnessChecks.filter((check) => check.linkChecks?.some(isActionableBrokenLink)).length,
+        manualLinks: freshnessChecks.filter((check) => check.linkChecks?.some(isManualCheckLink)).length,
         serviceChanges: freshnessChecks.filter((check) => check.addedServices?.length || check.removedServices?.length).length,
         updatedAt: freshnessStore.meta?.updatedAt ?? null,
       },
@@ -369,7 +370,7 @@ export function registerAdminStylistRoutes(app) {
     const dismissedRecommendations = existingStore.dismissedRecommendations || {};
     const checks = await mapWithConcurrency(batchSalons, 6, (salon) => checkSalonFreshness(salon, dismissedRecommendations[salon.id]));
     const reviewChecks = checks.filter(
-      (check) => check.issues.length > 0 || check.addedServices.length > 0 || check.removedServices.length > 0,
+      (check) => check.issues.length > 0 || check.addedServices.length > 0 || check.removedServices.length > 0 || check.linkChecks?.some(isManualCheckLink),
     );
     const mergedChecks = offset > 0 ? [...(existingStore.checks || []), ...reviewChecks] : reviewChecks;
 
@@ -868,7 +869,7 @@ function hasActionableFreshnessCheck(check) {
     return true;
   }
 
-  if (check.linkChecks?.some((linkCheck) => linkCheck.status !== "ok")) {
+  if (check.linkChecks?.some(isActionableBrokenLink)) {
     return true;
   }
 
@@ -940,14 +941,21 @@ function adjustDetectedServicesForCurrentContext(detectedServices, currentServic
   const hasNaturalColourDetection = detectedServices.some((service) => naturalColourServices.includes(service));
   const hasExistingWigColour = currentServices.includes("Wig colour");
   const rawText = normalizeServiceText(rawServices.join(" "));
-  const hasWigOrBundleContext = /\b(wig|wigs|unit|units|lace|closure|frontal|bundle|bundles|weft|wefts)\b/.test(rawText);
+  const hasWigOrBundleContext = /\b(wig|wigs|unit|units|lace|lace\s+system|closure|frontal|bundle|bundles|extensions?|weft|wefts|613|non[\s-]*contact)\b/.test(rawText);
+  const hasPixieInstallContext = /\bpixie\b/.test(rawText) && /\b(wig|weave|sew\s*in|sewin|install|installation)\b/.test(rawText);
+  const adjustedServices = hasPixieInstallContext
+    ? normalizeServices([
+        ...detectedServices.filter((service) => service !== "Pixie / finger waves"),
+        "Pixie wig / weave install",
+      ])
+    : detectedServices;
 
   if (!hasExistingWigColour || !hasNaturalColourDetection || !hasWigOrBundleContext) {
-    return detectedServices;
+    return adjustedServices;
   }
 
   return normalizeServices([
-    ...detectedServices.filter((service) => !naturalColourServices.includes(service)),
+    ...adjustedServices.filter((service) => !naturalColourServices.includes(service)),
     "Wig colour",
   ]);
 }
@@ -986,8 +994,11 @@ const serviceEvidenceKeywords = {
   "Balayage": ["balayage"],
   "Highlights": ["highlight", "highlights", "lowlights"],
   "Full head colour": ["colour", "color", "tint", "dye", "rooting"],
-  "Wig colour": ["wig colour", "wig color", "colouring full wig", "custom colour", "colour service"],
-  "Custom wig": ["custom wig", "custom lace", "custom unit", "closure wig"],
+  "Wig colour": ["wig colour", "wig color", "colouring full wig", "custom colour", "colour service", "613", "non-contact", "non contact"],
+  "Custom wig": ["custom wig", "bespoke wig", "custom lace", "custom unit", "customised closure unit", "customized closure unit", "custom mini frontal unit", "unit customisation", "unit customization", "wig making", "wig construction", "wig customising", "wig customisation", "wig customization", "construction and customisation", "construction and customization"],
+  "Feed-in braids": ["feed in", "feed-in", "all back", "braids going back"],
+  "K-tips / Invisible strands": ["k tips", "k-tips", "keratin tip", "keratin tips", "keratin bonds", "invisible strands"],
+  "Wig install (frontal / closure)": ["wig install", "wig installation", "wig application", "wig fitting", "glueless wig", "lace wig", "frontal wig", "closure wig", "frontal unit", "closure unit", "ready-made unit", "ready made unit", "unit install", "frontal unit install", "closure unit install"],
 };
 
 function serviceFamilyFor(service) {
@@ -1025,11 +1036,9 @@ async function checkUrl(type, url) {
       result.status = "broken";
       result.issues.push(`${linkLabel(type)} appears to be gone`);
     } else if (response.status === 401 || response.status === 403 || response.status === 429) {
-      result.status = type === "instagram" ? "possibly_blocked" : "blocked";
-      result.issues.push(`${linkLabel(type)} could not be verified`);
+      result.status = "unverified";
     } else {
-      result.status = "broken";
-      result.issues.push(`${linkLabel(type)} returned HTTP ${response.status}`);
+      result.status = "unverified";
     }
 
     const originalHost = safeHost(url);
@@ -1038,11 +1047,18 @@ async function checkUrl(type, url) {
       result.issues.push(`${linkLabel(type)} redirects to ${finalHost}`);
     }
   } catch (error) {
-    result.status = "broken";
-    result.issues.push(`${linkLabel(type)} did not load`);
+    result.status = "unverified";
   }
 
   return result;
+}
+
+function isActionableBrokenLink(linkCheck) {
+  return linkCheck?.status === "broken" && (linkCheck.httpStatus === 404 || linkCheck.httpStatus === 410);
+}
+
+function isManualCheckLink(linkCheck) {
+  return Boolean(linkCheck) && linkCheck.status !== "ok" && !isActionableBrokenLink(linkCheck);
 }
 
 async function extractBookingServices(url) {
@@ -1566,9 +1582,13 @@ export function matchServices(values) {
         if (hasColourSignal(context.line) && hasWigPieceColourContext(context)) {
           return ["Wig colour"];
         }
+        const unitContextServices = getUnitContextServices(context);
+        if (unitContextServices.length) {
+          return unitContextServices;
+        }
         const exact = serviceAliases[service] ?? knownByLowercase.get(lower) ?? aliasesByLowercase.get(lower);
         if (exact && allKnown.has(exact)) {
-          return shouldSuppressNaturalColourForWigContext(exact, context) || isServiceNegatedInText(lower, exact) ? [] : [exact];
+          return shouldSuppressServiceForSpecificContext(exact, context) || isServiceNegatedInText(lower, exact) ? [] : [exact];
         }
 
         const ruleMatches = matchServicesByRule(lower);
@@ -1581,7 +1601,7 @@ export function matchServices(values) {
         }
 
         const strongMatch = canonicalServices.find((candidate) => isStrongServiceMatch(lower, candidate.toLowerCase()));
-        return strongMatch && !shouldSuppressNaturalColourForWigContext(strongMatch, context) && !isServiceNegatedInText(lower, strongMatch) ? strongMatch : [];
+        return strongMatch && !shouldSuppressServiceForSpecificContext(strongMatch, context) && !isServiceNegatedInText(lower, strongMatch) ? strongMatch : [];
       })
       .filter(Boolean),
   );
@@ -1589,10 +1609,11 @@ export function matchServices(values) {
 
 function buildServiceLineContext(lines, index) {
   const line = lines[index] || "";
+  const previousTwo = lines[index - 2] || "";
   const previous = lines[index - 1] || "";
   const next = lines[index + 1] || "";
   const nextTwo = lines[index + 2] || "";
-  const nearby = [previous, line, next, nextTwo].join(" ");
+  const nearby = [previousTwo, previous, line, next, nextTwo].join(" ");
 
   return {
     line: normalizeServiceText(line),
@@ -1604,8 +1625,25 @@ function shouldSuppressNaturalColourForWigContext(service, context) {
   return isNaturalHairColourService(service) && hasWigPieceColourContext(context);
 }
 
+function getUnitContextServices(context) {
+  const hasUnitTitle = /\b(frontal|closure|ready[\s-]*made|customi[sz]ed|custom\s+mini\s+frontal)\s+unit\b/.test(context.line);
+  if (!hasUnitTitle) {
+    return [];
+  }
+
+  const services = ["Wig install (frontal / closure)"];
+  if (/\binstallation\s+of\s+the\s+wig\b|\bwig\b.*\b(install|installation|instal|application|fit|fitting)\b/.test(context.nearby)) {
+    services.push("Wig install (frontal / closure)");
+  }
+  if (/\bconstruction\s+of\s+the\s+wig\b|\bconstruction\b|\bcustomi[sz]ed\b|\bcustom\b.*\bunit\b|\bcustom\s+mini\s+frontal\b/.test(context.nearby)) {
+    services.push("Custom wig");
+  }
+
+  return services;
+}
+
 function shouldSuppressServiceForSpecificContext(service, context) {
-  return shouldSuppressNaturalColourForWigContext(service, context) || shouldSuppressGenericWigInstall(service, context) || shouldSuppressSewInForWigContext(service, context) || shouldSuppressTraditionalSewInForTrackContext(service, context) || shouldSuppressCustomWigForFactoryMadeContext(service, context);
+  return shouldSuppressNaturalColourForWigContext(service, context) || shouldSuppressGenericWigInstall(service, context) || shouldSuppressSewInForWigContext(service, context) || shouldSuppressTraditionalSewInForTrackContext(service, context) || shouldSuppressFeedInForHalfSewInContext(service, context) || shouldSuppressSleekPonytailForFrontalContext(service, context) || shouldSuppressPixieStylingForInstallContext(service, context) || shouldSuppressNaturalHairEducationForVagueContext(service, context) || shouldSuppressCustomWigForFactoryMadeContext(service, context) || shouldSuppressTracksForTapeHybridContext(service, context) || shouldSuppressTapeInsForTrackHybridContext(service, context) || shouldSuppressWashBlowdryForPrepInstructions(service, context) || shouldSuppressStitchBraidsForBohoKnotlessContext(service, context) || shouldSuppressLocSubtypeForStarterContext(service, context) || shouldSuppressTwistsForGenericExtensionsContext(service, context) || shouldSuppressKeratinTreatmentForTipContext(service, context);
 }
 
 function shouldSuppressGenericWigInstall(service, context) {
@@ -1613,7 +1651,7 @@ function shouldSuppressGenericWigInstall(service, context) {
     return false;
   }
 
-  const hasSpecificUPartContext = /\bu\s*part\b|\bu-part\b|\bv\s*part\b|\bv-part\b|\bu\s*v\s*part\b|\bu\s+vpart\b|\buvpart\b|\bhalf\s+wig\b/.test(context.line);
+  const hasSpecificUPartContext = /\b(u[\s-]*part|v[\s-]*part|u[\s/-]*v[\s-]*part|uvpart)\b.*\b(wig|install|installation)\b|\b(wig|install|installation)\b.*\b(u[\s-]*part|v[\s-]*part|u[\s/-]*v[\s-]*part|uvpart)\b/.test(context.line);
   const hasFrontalClosureContext = /\b(frontal|closure|lace|glueless)\b/.test(context.line);
   const hasConstructionContext = /\b(construction|construct|making|handmade)\b/.test(context.line);
   const hasInstallContext = /\b(install|installation|instal|fit|fitting|application|glueless)\b/.test(context.line);
@@ -1636,7 +1674,39 @@ function shouldSuppressTraditionalSewInForTrackContext(service, context) {
     return false;
   }
 
-  return /\b(row|rows|line|track|tracks)\b/.test(context.line) && /\b(sew\s*in|sewin|weave|install|installation)\b/.test(context.line);
+  return (/\b(row|rows|line|track|tracks)\b/.test(context.line) && /\b(sew\s*in|sewin|weave|install|installation)\b/.test(context.line)) || hasHalfBraidsHalfSewInContext(context.line);
+}
+
+function shouldSuppressPixieStylingForInstallContext(service, context) {
+  if (service !== "Pixie / finger waves") {
+    return false;
+  }
+
+  return /\bpixie\b/.test(context.line) && /\b(wig|weave|sew\s*in|sewin|install|installation)\b/.test(context.line);
+}
+
+function shouldSuppressFeedInForHalfSewInContext(service, context) {
+  if (service !== "Feed-in braids") {
+    return false;
+  }
+
+  return hasHalfBraidsHalfSewInContext(context.line);
+}
+
+function shouldSuppressSleekPonytailForFrontalContext(service, context) {
+  if (service !== "Sleek ponytail / bun") {
+    return false;
+  }
+
+  return hasFrontalPonytailContext(context.line);
+}
+
+function shouldSuppressNaturalHairEducationForVagueContext(service, context) {
+  if (service !== "Natural hair education") {
+    return false;
+  }
+
+  return !hasNaturalHairEducationContext(context.line);
 }
 
 function shouldSuppressCustomWigForFactoryMadeContext(service, context) {
@@ -1647,14 +1717,74 @@ function shouldSuppressCustomWigForFactoryMadeContext(service, context) {
   return /\b(factory\s+made|pre\s*made|premade|ready\s*made|raw\s+pre\s*made)\b/.test(context.line);
 }
 
+function shouldSuppressTracksForTapeHybridContext(service, context) {
+  if (service !== "Tracks (+ Silk press) / Partial / Invisible sew-in") {
+    return false;
+  }
+
+  return /\btracks?\b.*\btapes?\b.*\bhybrid\b|\bhybrid\b.*\btracks?\b.*\btapes?\b/.test(context.line);
+}
+
+function shouldSuppressTapeInsForTrackHybridContext(service, context) {
+  if (service !== "Tape ins") {
+    return false;
+  }
+
+  return /\btracks?\b.*\btapes?\b.*\bhybrid\b|\bhybrid\b.*\btracks?\b.*\btapes?\b/.test(context.line);
+}
+
+function shouldSuppressWashBlowdryForPrepInstructions(service, context) {
+  if (service !== "Wash & blowdry") {
+    return false;
+  }
+
+  return /\b(arrive|come|please|note|recommended)\b.*\b(freshly\s+washed|clean|product\s+free|product-free)\b/.test(context.line) && !/\bblow\s*dry|blowdry|blowout\b/.test(context.line);
+}
+
+function shouldSuppressStitchBraidsForBohoKnotlessContext(service, context) {
+  if (service !== "Stitch braids") {
+    return false;
+  }
+
+  return /\b(knotless|boho|goddess)\b/.test(context.line) && !/\bstitch\b/.test(context.line);
+}
+
+function shouldSuppressLocSubtypeForStarterContext(service, context) {
+  if (service !== "Butterfly locs" && service !== "Faux locs") {
+    return false;
+  }
+
+  return /\bstarter\s+locs?\b|\bloc\s+start\b/.test(context.line);
+}
+
+function shouldSuppressTwistsForGenericExtensionsContext(service, context) {
+  if (service !== "Twists (with extensions)") {
+    return false;
+  }
+
+  return /\bextensions?\b/.test(context.line) && !/\btwists?\b|\b(passion|marley|senegalese|island|kinky|rope)\b/.test(context.line);
+}
+
+function shouldSuppressKeratinTreatmentForTipContext(service, context) {
+  if (service !== "Keratin treatment") {
+    return false;
+  }
+
+  return /\bkeratin\s+(tips?|bonds?|extensions?)\b/.test(context.line);
+}
+
 function isNaturalHairColourService(service) {
   return service === "Full head colour" || service === "Balayage" || service === "Highlights";
 }
 
 function hasWigPieceColourContext(context) {
-  const wigPiecePattern = /\b(wig|wigs|unit|units|bundle|bundles|frontal|closure|lace|weft|wefts)\b/;
+  const wigPiecePattern = /\b(wig|wigs|unit|units|bundle|bundles|extensions?|frontal|closure|lace|lace\s+system|weft|wefts)\b/;
+  const wigOnlyColourPattern = /\b613\b|\bnon[\s-]*contact\b/;
 
-  return (hasColourSignal(context.line) && wigPiecePattern.test(context.line)) || (hasColourSignal(context.nearby) && wigPiecePattern.test(context.nearby) && hasColourSectionCue(context.nearby));
+  return (
+    (hasColourSignal(context.line) && (wigPiecePattern.test(context.line) || wigOnlyColourPattern.test(context.line))) ||
+    (hasColourSignal(context.nearby) && (wigPiecePattern.test(context.nearby) || wigOnlyColourPattern.test(context.nearby)) && (hasColourSectionCue(context.nearby) || wigOnlyColourPattern.test(context.nearby)))
+  );
 }
 
 function hasColourSignal(text) {
@@ -1663,6 +1793,18 @@ function hasColourSignal(text) {
 
 function hasColourSectionCue(text) {
   return /\b(colour services|color services|custom colour|custom color|colouring service|coloring service)\b/.test(text);
+}
+
+function hasHalfBraidsHalfSewInContext(text) {
+  return /\bhalf\b.*\b(feed\s*in|feed-in|braids?|cornrows?)\b.*\b(weave|sew[\s-]*in|sewin)\b/.test(text) || /\bhalf\b.*\b(weave|sew[\s-]*in|sewin)\b.*\b(feed\s*in|feed-in|braids?|cornrows?)\b/.test(text);
+}
+
+function hasFrontalPonytailContext(text) {
+  return /\bfrontal\b.*\b(pony|ponytail|bun|updo|up\s*do)\b/.test(text) || /\b(pony|ponytail|bun|updo|up\s*do)\b.*\bfrontal\b/.test(text);
+}
+
+function hasNaturalHairEducationContext(text) {
+  return /\beducation\b|\btutorial\b|\btrichology\b|\bhair\s+health\b.*\b(assessment|plan|growth|consultation)\b|\bgrowth\s+plan\b|\bconsultation\b.*\bnatural\b|\bnatural\s+hair\b.*\b(class|education|consultation)\b|\bcurl\s+makeover\b.*\b(hands?\s*on|tutorial|styling)\b/.test(text);
 }
 
 function matchServicesByRule(input) {

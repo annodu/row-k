@@ -11,7 +11,6 @@ import {
   ChevronUp,
   ClockAlert,
   ExternalLink,
-  FastForward,
   FileText,
   Filter,
   Globe,
@@ -138,6 +137,7 @@ type DashboardMetrics = {
     checkedCount: number;
     total: number;
     brokenLinks: number;
+    manualLinks?: number;
     serviceChanges: number;
     updatedAt: string | null;
   };
@@ -268,7 +268,7 @@ export function AdminApp() {
   const [isGeneratingSuggestions, setIsGeneratingSuggestions] = useState(false);
   const [stylistStatusFilter, setStylistStatusFilter] = useState("all");
   const [isDraftEditorOpen, setIsDraftEditorOpen] = useState(false);
-  const [lastFreshnessUndo, setLastFreshnessUndo] = useState<FreshnessUndoState | null>(null);
+  const [freshnessUndoStack, setFreshnessUndoStack] = useState<FreshnessUndoState[]>([]);
 
 	  function updateDraftLocations(draft: StylistDraft, nextAreaIds: string[]) {
 	    const normalizedAreaIds = [...new Set(nextAreaIds.filter(Boolean))];
@@ -557,23 +557,47 @@ export function AdminApp() {
 
   async function runChecks(offset = 0) {
     setMessage("");
-    setActiveCheckBatch({ from: offset + 1, to: offset + 50 });
+    const isFullRun = offset === 0;
+    if (isFullRun) {
+      setChecks([]);
+      setChecksLoadedAt("");
+      setCheckProgress({
+        checkedCount: 0,
+        total: dashboard?.freshness.total || checkProgress.total || 0,
+        nextOffset: null,
+      });
+    }
     setIsRunningChecks(true);
     try {
-      const response = await fetch(`/api/admin/stylists/checks?offset=${offset}&limit=50`, { credentials: "include" });
-      const payload = await response.json();
-      if (!response.ok) {
-        setMessage(payload.message || "Could not run checks.");
-        return;
+      let nextOffset: number | null = offset;
+      let totalUpdates = 0;
+      let lastCheckedAt = "";
+
+      while (nextOffset !== null) {
+        const batchOffset = nextOffset;
+        setActiveCheckBatch({ from: batchOffset + 1, to: batchOffset + 50 });
+        const response = await fetch(`/api/admin/stylists/checks?offset=${batchOffset}&limit=50`, { credentials: "include" });
+        const payload = await response.json();
+        if (!response.ok) {
+          setMessage(payload.message || "Could not run checks.");
+          return;
+        }
+
+        const batchChecks = payload.checks ?? [];
+        totalUpdates += batchChecks.length;
+        lastCheckedAt = payload.checkedAt || lastCheckedAt || new Date().toISOString();
+        setChecks((current) => (batchOffset === 0 ? batchChecks : [...current, ...batchChecks]));
+        setChecksLoadedAt(lastCheckedAt);
+        setCheckProgress({
+          checkedCount: payload.checkedCount ?? 0,
+          total: payload.total ?? 0,
+          nextOffset: payload.nextOffset ?? null,
+        });
+        setMessage(`Checked ${payload.checkedCount ?? 0} of ${payload.total ?? 0}. Found ${totalUpdates} update${totalUpdates === 1 ? "" : "s"} so far.`);
+        nextOffset = payload.nextOffset ?? null;
       }
-      setChecks((current) => (offset === 0 ? (payload.checks ?? []) : [...current, ...(payload.checks ?? [])]));
-      setChecksLoadedAt(payload.checkedAt || new Date().toISOString());
-      setCheckProgress({
-        checkedCount: payload.checkedCount ?? 0,
-        total: payload.total ?? 0,
-        nextOffset: payload.nextOffset ?? null,
-      });
-      setMessage(`Checked ${payload.checkedCount ?? 0} of ${payload.total ?? 0}. Found ${(payload.checks ?? []).length} updates in this batch.`);
+
+      setMessage(`Freshness check complete. Found ${totalUpdates} update${totalUpdates === 1 ? "" : "s"}.`);
       await loadAdminData();
     } finally {
       setIsRunningChecks(false);
@@ -656,7 +680,7 @@ export function AdminApp() {
             : item,
         ),
       );
-      setLastFreshnessUndo(undoState);
+      setFreshnessUndoStack((current) => [...current, undoState]);
       setMessage("Directory listing updated.");
       await loadAdminData();
     } finally {
@@ -665,6 +689,7 @@ export function AdminApp() {
   }
 
   async function undoFreshnessUpdate() {
+    const lastFreshnessUndo = freshnessUndoStack[freshnessUndoStack.length - 1];
     if (!lastFreshnessUndo) return;
     setIsBusy(true);
     setMessage("");
@@ -687,7 +712,7 @@ export function AdminApp() {
       }
       const restoredCheck = payload.check ?? lastFreshnessUndo.check;
       setChecks((current) => [restoredCheck, ...current.filter((item) => item.id !== restoredCheck.id)]);
-      setLastFreshnessUndo(null);
+      setFreshnessUndoStack((current) => current.slice(0, -1));
       setMessage("Freshness action undone.");
       await loadAdminData();
     } finally {
@@ -762,7 +787,6 @@ export function AdminApp() {
         <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
           <div>
             <p className="inline-flex rounded-full bg-stone-950 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.24em] text-white">ROW K ADMIN</p>
-            <h1 className="mt-4 text-2xl font-semibold tracking-tight">Stylist directory dashboard</h1>
           </div>
           <div className="flex items-center gap-4">
             {message ? <p className="hidden max-w-xs truncate text-sm text-stone-500 md:block">{message}</p> : null}
@@ -846,51 +870,22 @@ export function AdminApp() {
           activeCheckBatch={activeCheckBatch}
           isRunningChecks={isRunningChecks}
           isBusy={isBusy}
-          lastUndo={lastFreshnessUndo}
+          lastUndo={freshnessUndoStack[freshnessUndoStack.length - 1] ?? null}
           onRunChecks={() => runChecks(0)}
-          onRunNext={() => runChecks(checkProgress.nextOffset ?? 0)}
           onApply={applyFreshnessUpdate}
           onUndo={undoFreshnessUpdate}
         />
       ) : null}
 
-      <div className={cn("mx-auto grid max-w-7xl gap-5 px-5 py-6 lg:grid-cols-[minmax(340px,0.85fr)_minmax(0,1.15fr)]", (activeView === "overview" || activeView === "drafts" || activeView === "freshness") && "hidden")}>
-        <section className="space-y-5">
-          {activeView === "discovery" ? (
-            <DiscoveryPanel
-              suggestions={suggestions}
-              isGenerating={isGeneratingSuggestions}
-              isBusy={isBusy}
-              onGenerate={generateDiscoverySuggestions}
-              onCreateDraft={createDraftFromSuggestion}
-            />
-          ) : null}
-        </section>
-
-        <section>
-          {activeView === "drafts" && selectedDraft ? (
-            <DraftEditor
-              draft={selectedDraft}
-              regions={regions}
-              services={services}
-              isBusy={isBusy}
-              onChange={(update) => updateStylist(selectedDraft.id, update)}
-              onChangeLocations={(areaIds) => updateDraftLocations(selectedDraft, areaIds)}
-              onSave={() => saveDraft(selectedDraft)}
-              onApprove={() => approveDraft(selectedDraft)}
-              onDelete={() => deleteDraft(selectedDraft.id)}
-            />
-          ) : activeView === "drafts" ? (
-            <div className="flex min-h-96 items-center justify-center rounded-md border border-dashed border-stone-300 bg-white text-sm text-stone-500">
-              Select or create a draft.
-            </div>
-          ) : (
-            <div className="rounded-md border border-dashed border-stone-300 bg-white p-6 text-sm text-stone-500">
-              Use the panel on the left to review this section.
-            </div>
-          )}
-        </section>
-      </div>
+      {activeView === "discovery" ? (
+        <DiscoveryPage
+          suggestions={suggestions}
+          isGenerating={isGeneratingSuggestions}
+          isBusy={isBusy}
+          onGenerate={generateDiscoverySuggestions}
+          onCreateDraft={createDraftFromSuggestion}
+        />
+      ) : null}
     </main>
   );
 }
@@ -947,6 +942,13 @@ function StylistsPage({
 
   return (
     <div className="mx-auto max-w-7xl space-y-7 px-5 py-9">
+      <section>
+        <h1 className="text-3xl font-semibold tracking-tight text-stone-950">Stylists</h1>
+        <p className="mt-2 text-sm text-stone-500">
+          {allDrafts.length} directory entr{allDrafts.length === 1 ? "y" : "ies"} across drafts and published stylists.
+        </p>
+      </section>
+
       <form onSubmit={onSubmitIntake} className="relative">
         <Plus className="pointer-events-none absolute left-6 top-1/2 size-5 -translate-y-1/2 text-stone-400" />
         <textarea
@@ -1348,6 +1350,11 @@ function DashboardOverview({
 
   return (
     <div className="mx-auto max-w-7xl space-y-8 px-5 py-11">
+      <section>
+        <h1 className="text-3xl font-semibold tracking-tight text-stone-950">Overview</h1>
+        <p className="mt-2 text-sm text-stone-500">Review drafts, stale entries, and discovery leads awaiting attention.</p>
+      </section>
+
       <form onSubmit={onSubmit} className="relative">
         <Plus className="pointer-events-none absolute left-6 top-1/2 size-5 -translate-y-1/2 text-stone-400" />
         <textarea
@@ -1537,11 +1544,11 @@ function FreshnessPage({
   checks,
   checksLoadedAt,
   checkProgress,
+  activeCheckBatch,
   isRunningChecks,
   isBusy,
   lastUndo,
   onRunChecks,
-  onRunNext,
   onApply,
   onUndo,
 }: {
@@ -1554,89 +1561,83 @@ function FreshnessPage({
   isBusy: boolean;
   lastUndo: FreshnessUndoState | null;
   onRunChecks: () => void;
-  onRunNext: () => void;
   onApply: FreshnessPageApplyHandler;
   onUndo: () => void;
 }) {
   const total = checkProgress.total || dashboard?.freshness.total || 0;
   const checkedCount = checkProgress.checkedCount || dashboard?.freshness.checkedCount || 0;
-  const progress = total ? Math.min(100, Math.round((checkedCount / total) * 100)) : 0;
-	  const [freshnessFilter, setFreshnessFilter] = useState<"all" | "service-changes" | "broken-links">("all");
+	  const [freshnessFilter, setFreshnessFilter] = useState<"all" | "service-changes" | "broken-links" | "manual-check">("all");
 	  const rows = buildFreshnessRecommendationGroups(checks);
 		  const recommendationCount = rows.length || dashboard?.freshness.totalIssues || 0;
 		  const lastCompletedAt = checksLoadedAt || dashboard?.freshness.updatedAt;
 		  const hasCompletedCheck = Boolean(lastCompletedAt || checkedCount > 0 || rows.length > 0);
+  const isWaitingForResults = isRunningChecks && rows.length === 0;
+  const activeBatchTo = total ? Math.min(activeCheckBatch.to, total) : activeCheckBatch.to;
+  const runButtonLabel = isRunningChecks
+    ? `Checking ${activeCheckBatch.from} - ${activeBatchTo}`
+    : hasCompletedCheck
+      ? "Refresh check"
+      : "Run check";
 	  const serviceChanges = rows.filter((row) => row.details.some((detail) => detail.kind === "add" || detail.kind === "remove")).length;
 	  const brokenLinks = rows.reduce((count, row) => count + row.details.filter((detail) => detail.kind === "fix").length, 0);
+  const manualChecks = rows.reduce((count, row) => count + row.details.filter((detail) => detail.kind === "manual").length, 0);
 	  const filteredRows = freshnessFilter === "service-changes"
 	    ? rows.filter((row) => row.details.some((d) => d.kind === "add" || d.kind === "remove"))
 	    : freshnessFilter === "broken-links"
 	      ? rows.filter((row) => row.details.some((d) => d.kind === "fix"))
+        : freshnessFilter === "manual-check"
+          ? rows.filter((row) => row.details.some((d) => d.kind === "manual"))
 	      : rows;
 
 	  return (
 	    <div className="mx-auto max-w-7xl space-y-7 px-5 py-9">
-	      <section className="rounded-[8px] border border-stone-200 bg-white px-6 py-6 shadow-sm">
-	        <div className="flex items-start justify-between gap-5">
-	          <p className="text-sm text-stone-500">
-	            <span className="font-semibold text-stone-950">Freshness check</span>
-	            <span className="px-2 text-stone-300">·</span>
-	            {lastCompletedAt ? `Last run ${formatRelativeTime(lastCompletedAt)}` : "Not run yet"}
+	      <section className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+	        <div>
+	          <h1 className="text-3xl font-semibold tracking-tight text-stone-950">Freshness checks</h1>
+	          <p className="mt-2 text-sm text-stone-500">
+	            {lastCompletedAt ? `Last updated ${formatRelativeTime(lastCompletedAt)}` : "Not run yet"}
 	          </p>
-		          <div className="flex items-center gap-2">
-		            <Button type="button" onClick={onRunChecks} disabled={isRunningChecks} className="h-9 rounded-md bg-stone-950 px-3 text-sm">
-		              {isRunningChecks ? <Loader2 className="size-4 animate-spin" /> : hasCompletedCheck ? <RefreshCw className="size-4" /> : <PlayIcon />}
-		              {hasCompletedCheck ? "Refresh check" : "Run check"}
-		            </Button>
-	            {checkProgress.nextOffset !== null ? (
-	              <button
-	                type="button"
-	                onClick={onRunNext}
-	                disabled={isRunningChecks}
-	                className="inline-flex h-9 items-center gap-2 rounded-md border border-stone-200 bg-white px-3 text-sm text-stone-700 transition hover:border-stone-300 hover:bg-stone-50 disabled:cursor-not-allowed disabled:opacity-40"
-	              >
-	                <FastForward className="size-4" />
-	                Check next batch
-	              </button>
-	            ) : null}
-	            {lastUndo ? (
-	              <button
-	                type="button"
-	                onClick={onUndo}
-	                disabled={isBusy}
-	                title={`Undo ${lastUndo.label}`}
-	                className="inline-flex h-9 items-center gap-2 rounded-md border border-stone-200 bg-white px-3 text-sm text-stone-700 transition hover:border-stone-300 hover:bg-stone-50 hover:text-stone-950 disabled:cursor-not-allowed disabled:opacity-40"
-	              >
-	                <Undo2 className="size-4" />
-	                Undo
-	              </button>
-	            ) : null}
-	          </div>
 	        </div>
-		        <div className="mt-6 space-y-3">
-		          <div className="flex items-center justify-between text-sm">
-		            <span className="font-semibold tabular-nums text-stone-950">{checkedCount}</span>
-		            <span className="font-semibold tabular-nums text-stone-950">{total}</span>
-		          </div>
-	          <div className="h-2.5 overflow-hidden rounded-full bg-stone-100">
-	            <div className="h-full rounded-full bg-stone-950 transition-all" style={{ width: `${progress}%` }} />
-	          </div>
+	        <div className="flex items-center gap-2">
+	          {lastUndo ? (
+	            <button
+	              type="button"
+	              onClick={onUndo}
+	              disabled={isBusy}
+	              title={`Undo ${lastUndo.label}`}
+	              className="inline-flex h-10 items-center gap-2 rounded-md border border-stone-200 bg-white px-3 text-sm text-stone-700 transition hover:border-stone-300 hover:bg-stone-50 hover:text-stone-950 disabled:cursor-not-allowed disabled:opacity-40"
+	            >
+	              <Undo2 className="size-4" />
+	              Undo
+	            </button>
+	          ) : null}
+	          <Button type="button" onClick={onRunChecks} disabled={isRunningChecks} className="h-10 min-w-36 rounded-md bg-stone-950 px-4 text-sm">
+	            {isRunningChecks ? <Loader2 className="size-4 animate-spin" /> : hasCompletedCheck ? <RefreshCw className="size-4" /> : <PlayIcon />}
+	            {runButtonLabel}
+	          </Button>
 	        </div>
 	      </section>
 
-	      <div className="grid gap-5 md:grid-cols-3">
-	        <FreshnessMetricCard title="Stale entries" value={recommendationCount} icon={<RefreshCw className="size-4" />} isActive={freshnessFilter === "all"} onClick={() => setFreshnessFilter("all")} />
-	        <FreshnessMetricCard title="Services incorrect" value={serviceChanges} valueClassName="text-sky-700" icon={<AlertTriangle className="size-4 text-sky-600" />} isActive={freshnessFilter === "service-changes"} onClick={() => setFreshnessFilter(freshnessFilter === "service-changes" ? "all" : "service-changes")} />
-	        <FreshnessMetricCard title="Broken links" value={brokenLinks} valueClassName="text-red-700" icon={<Unlink className="size-4 text-red-600" />} isActive={freshnessFilter === "broken-links"} onClick={() => setFreshnessFilter(freshnessFilter === "broken-links" ? "all" : "broken-links")} />
-	      </div>
+	      {isWaitingForResults ? (
+          <FreshnessMetricSkeleton />
+        ) : (
+          <div className="grid gap-5 md:grid-cols-4">
+            <FreshnessMetricCard title="Stale entries" value={recommendationCount} icon={<RefreshCw className="size-4" />} isActive={freshnessFilter === "all"} onClick={() => setFreshnessFilter("all")} />
+            <FreshnessMetricCard title="Services incorrect" value={serviceChanges} valueClassName="text-sky-700" icon={<AlertTriangle className="size-4 text-sky-600" />} isActive={freshnessFilter === "service-changes"} onClick={() => setFreshnessFilter(freshnessFilter === "service-changes" ? "all" : "service-changes")} />
+            <FreshnessMetricCard title="Broken links" value={brokenLinks} valueClassName="text-red-700" icon={<Unlink className="size-4 text-red-600" />} isActive={freshnessFilter === "broken-links"} onClick={() => setFreshnessFilter(freshnessFilter === "broken-links" ? "all" : "broken-links")} />
+            <FreshnessMetricCard title="Could not verify" value={manualChecks} valueClassName="text-amber-700" icon={<AlertTriangle className="size-4 text-amber-600" />} isActive={freshnessFilter === "manual-check"} onClick={() => setFreshnessFilter(freshnessFilter === "manual-check" ? "all" : "manual-check")} />
+          </div>
+        )}
 
 	      <section className="overflow-hidden rounded-[8px] border border-stone-200 bg-white shadow-sm">
-	        {filteredRows.length ? (
+	        {isWaitingForResults ? (
+            <FreshnessSkeleton />
+          ) : filteredRows.length ? (
 	          filteredRows.map((row, index) => (
 	            <FreshnessRecommendationCard key={row.id} row={row} defaultOpen={index === 0} isBusy={isBusy} onApply={onApply} />
 	          ))
 	        ) : (
-	          <div className="px-6 py-12 text-sm text-stone-500">No freshness recommendations found in this batch.</div>
+	          <div className="px-6 py-12 text-sm text-stone-500">No freshness recommendations found.</div>
 	        )}
 	      </section>
 	    </div>
@@ -1680,20 +1681,20 @@ function FreshnessRecommendationCard({
   onApply: FreshnessPageApplyHandler;
 }) {
   const [isOpen, setIsOpen] = useState(defaultOpen);
-  const hasBrokenWebsiteLink = row.check.linkChecks.some((linkCheck) => linkCheck.type === "website" && linkCheck.status !== "ok");
-  const primaryLinkLabel = hasBrokenWebsiteLink ? "Website URL" : "Booking URL";
-  const primaryLinkValue = hasBrokenWebsiteLink ? row.websiteUrl || row.bookingUrl || "" : row.bookingUrl || "";
+  const hasWebsiteLinkIssue = row.check.linkChecks.some((linkCheck) => linkCheck.type === "website" && linkCheck.status !== "ok");
+  const primaryLinkLabel = hasWebsiteLinkIssue ? "Website URL" : "Booking URL";
+  const primaryLinkValue = hasWebsiteLinkIssue ? row.websiteUrl || row.bookingUrl || "" : row.bookingUrl || "";
   const [primaryLinkUrl, setPrimaryLinkUrl] = useState(primaryLinkValue);
   const [instagramUrl, setInstagramUrl] = useState(row.instagramUrl || "");
   const [linkSaveState, setLinkSaveState] = useState<"idle" | "saving" | "saved">("idle");
   const canApply = Boolean(row.acceptUpdate);
   const canReject = Boolean(row.rejectUpdate);
-  const hasBrokenLinks = row.details.some((d) => d.kind === "fix");
+  const hasLinkIssues = row.details.some((d) => d.kind === "fix" || d.kind === "manual");
 
   async function handleSaveLinks() {
     setLinkSaveState("saving");
     try {
-      const linkUpdate: FreshnessUpdate = hasBrokenWebsiteLink
+      const linkUpdate: FreshnessUpdate = hasWebsiteLinkIssue
         ? { websiteUrl: primaryLinkUrl }
         : {
             bookingUrl: primaryLinkUrl,
@@ -1713,8 +1714,7 @@ function FreshnessRecommendationCard({
         <button type="button" onClick={() => setIsOpen((current) => !current)} className="min-w-0 flex-1 text-left">
           <span className="inline-flex min-w-0 flex-wrap items-center gap-3">
             <span className="font-semibold text-stone-950">{row.stylist}</span>
-            <span className="inline-flex size-6 items-center justify-center rounded-full bg-stone-100 text-xs font-semibold tabular-nums text-stone-600">{row.details.length}</span>
-            <span className="text-sm text-stone-500">changes</span>
+            <FreshnessDetailSummary details={row.details} />
           </span>
         </button>
         <div className="flex shrink-0 items-center gap-2 text-stone-700">
@@ -1740,10 +1740,10 @@ function FreshnessRecommendationCard({
           {row.details.map((detail, index) => (
             <FreshnessRecommendationItem key={`${row.id}-${detail.label}-${index}`} detail={detail} row={row} isBusy={isBusy} onApply={onApply} />
           ))}
-          {hasBrokenLinks ? (
+          {hasLinkIssues ? (
             <div className="space-y-3 rounded-[8px] border border-stone-200 bg-stone-50 p-4">
               <div className="flex items-center justify-between gap-3">
-                <p className="text-xs font-semibold uppercase tracking-[0.12em] text-stone-600">Update broken links</p>
+                <p className="text-xs font-semibold uppercase tracking-[0.12em] text-stone-600">Update links</p>
                 <button
                   type="button"
                   disabled={isBusy || linkSaveState === "saving"}
@@ -1800,8 +1800,16 @@ function FreshnessRecommendationItem({
       ? "border-red-200 bg-red-50/40 text-red-700"
       : detail.kind === "fix"
         ? "border-red-200 bg-red-50/40 text-red-700"
-        : "border-sky-200 bg-sky-50/40 text-sky-700";
-  const dotClass = isAdd ? "bg-emerald-100 text-emerald-700" : isRemove || detail.kind === "fix" ? "bg-red-100 text-red-700" : "bg-sky-100 text-sky-700";
+        : detail.kind === "manual"
+          ? "border-amber-200 bg-amber-50/40 text-amber-700"
+          : "border-sky-200 bg-sky-50/40 text-sky-700";
+  const dotClass = isAdd
+    ? "bg-emerald-100 text-emerald-700"
+    : isRemove || detail.kind === "fix"
+      ? "bg-red-100 text-red-700"
+      : detail.kind === "manual"
+        ? "bg-amber-100 text-amber-700"
+        : "bg-sky-100 text-sky-700";
   const acceptUpdate =
     detail.kind === "add" && detail.service
       ? { addServices: [detail.service] }
@@ -1838,7 +1846,7 @@ function FreshnessRecommendationItem({
           ) : null}
         </div>
       </div>
-      {detail.kind !== "fix" ? (
+      {detail.kind !== "fix" && detail.kind !== "manual" ? (
         <div className="flex shrink-0 items-center gap-2 text-stone-700">
           <IconActionButton label="Accept recommendation" disabled={isBusy || !acceptUpdate} variant="ghost" tone="accept" onClick={() => acceptUpdate ? onApply(row.check, acceptUpdate) : undefined}>
             <Check className="size-4" />
@@ -1868,24 +1876,54 @@ type FreshnessRecommendationGroup = {
     addServices?: string[];
     removeServices?: string[];
   };
-  rejectUpdate?: {
-    rejectAddedServices?: string[];
-    rejectRemovedServices?: string[];
-  };
+  rejectUpdate?: FreshnessUpdate;
 };
 
 type FreshnessRecommendationDetail = {
-  kind: "add" | "remove" | "fix" | "review";
+  kind: "add" | "remove" | "fix" | "manual" | "review";
   label: string;
   description: string;
   service?: string;
   evidence?: string[];
 };
 
+function FreshnessDetailSummary({ details }: { details: FreshnessRecommendationDetail[] }) {
+  const counts = details.reduce(
+    (summary, detail) => ({
+      ...summary,
+      [detail.kind]: summary[detail.kind] + 1,
+    }),
+    { add: 0, remove: 0, fix: 0, manual: 0, review: 0 } as Record<FreshnessRecommendationDetail["kind"], number>,
+  );
+  const parts = [
+    { count: counts.add, label: "add", className: "bg-emerald-100 text-emerald-700" },
+    { count: counts.remove, label: "remove", className: "bg-red-100 text-red-700" },
+    { count: counts.fix, label: "link fix", className: "bg-red-100 text-red-700" },
+    { count: counts.manual, label: "verify", className: "bg-amber-100 text-amber-700" },
+    { count: counts.review, label: "review", className: "bg-stone-100 text-stone-600" },
+  ].filter((part) => part.count);
+
+  return (
+    <span className="inline-flex min-w-0 flex-wrap items-center gap-2 text-sm text-stone-500">
+      {parts.length
+        ? parts.map((part) => (
+            <span key={part.label} className="inline-flex items-center gap-1.5">
+              <span className={`inline-flex size-5 items-center justify-center rounded-full text-[11px] font-semibold tabular-nums ${part.className}`}>{part.count}</span>
+              <span>{part.label}</span>
+            </span>
+          ))
+        : null}
+    </span>
+  );
+}
+
 function buildFreshnessRecommendationGroups(checks: DirectoryCheck[]): FreshnessRecommendationGroup[] {
   return checks.flatMap((check) => {
     const detected = check.checkedAt ? formatRelativeTime(check.checkedAt) : "Just now";
-    const brokenLinks = check.linkChecks.filter((linkCheck) => linkCheck.status !== "ok");
+    const brokenLinks = check.linkChecks.filter(isActionableBrokenLink);
+    const manualLinks = check.linkChecks.filter(isManualCheckLink);
+    const addedServices = getActionableAddedServices(check);
+    const removedServices = getActionableRemovedServices(check);
     const actionableIssues = check.issues.filter((issue) => isActionableFreshnessIssue(issue, check));
     const details: FreshnessRecommendationDetail[] = [
       ...brokenLinks.map((linkCheck) => ({
@@ -1893,13 +1931,18 @@ function buildFreshnessRecommendationGroups(checks: DirectoryCheck[]): Freshness
         label: `${titleCase(linkCheck.type)} link`,
         description: linkCheck.issues[0] || "Link not loading",
       })),
-      ...check.removedServices.map((service) => ({
+      ...manualLinks.map((linkCheck) => ({
+        kind: "manual" as const,
+        label: `${titleCase(linkCheck.type)} link`,
+        description: getManualCheckDescription(linkCheck),
+      })),
+      ...removedServices.map((service) => ({
         kind: "remove" as const,
         label: service,
         description: "Service no longer listed",
         service,
       })),
-      ...check.addedServices.map((service) => ({
+      ...addedServices.map((service) => ({
         kind: "add" as const,
         label: service,
         description: "New service detected",
@@ -1917,17 +1960,19 @@ function buildFreshnessRecommendationGroups(checks: DirectoryCheck[]): Freshness
       return [];
     }
 
-    const hasServiceRecommendations = check.addedServices.length > 0 || check.removedServices.length > 0;
+    const hasServiceRecommendations = addedServices.length > 0 || removedServices.length > 0;
+    const linkDismissUpdate = getLinkDismissUpdate(check);
     const acceptUpdate = hasServiceRecommendations
       ? {
-          ...(check.addedServices.length ? { addServices: check.addedServices } : {}),
-          ...(check.removedServices.length ? { removeServices: check.removedServices } : {}),
+          ...(addedServices.length ? { addServices: addedServices } : {}),
+          ...(removedServices.length ? { removeServices: removedServices } : {}),
         }
       : undefined;
-    const rejectUpdate = hasServiceRecommendations
+    const rejectUpdate = hasServiceRecommendations || linkDismissUpdate
       ? {
-          ...(check.addedServices.length ? { rejectAddedServices: check.addedServices } : {}),
-          ...(check.removedServices.length ? { rejectRemovedServices: check.removedServices } : {}),
+          ...(addedServices.length ? { rejectAddedServices: addedServices } : {}),
+          ...(removedServices.length ? { rejectRemovedServices: removedServices } : {}),
+          ...linkDismissUpdate,
         }
       : undefined;
 
@@ -1940,8 +1985,8 @@ function buildFreshnessRecommendationGroups(checks: DirectoryCheck[]): Freshness
       instagramUrl: check.instagramUrl,
       websiteUrl: check.websiteUrl,
       id: `${check.id}-recommendations`,
-      recommendation: getFreshnessGroupRecommendation(check, brokenLinks.length),
-      typeTone: brokenLinks.length ? "critical" : check.addedServices.length ? "info" : "neutral",
+      recommendation: getFreshnessGroupRecommendation(check, brokenLinks.length, manualLinks.length, addedServices, removedServices),
+      typeTone: brokenLinks.length ? "critical" : manualLinks.length ? "warning" : addedServices.length ? "info" : "neutral",
       details,
       acceptUpdate,
       rejectUpdate,
@@ -1949,9 +1994,228 @@ function buildFreshnessRecommendationGroups(checks: DirectoryCheck[]): Freshness
   });
 }
 
-function getFreshnessGroupRecommendation(check: DirectoryCheck, brokenLinkCount: number) {
-  const hasAddedServices = check.addedServices.length > 0;
-  const hasRemovedServices = check.removedServices.length > 0;
+function isActionableBrokenLink(linkCheck: DirectoryCheck["linkChecks"][number]) {
+  return linkCheck.status === "broken" && (linkCheck.httpStatus === 404 || linkCheck.httpStatus === 410);
+}
+
+function getActionableAddedServices(check: DirectoryCheck) {
+  return check.addedServices.filter((service) => hasSupportedFreshnessEvidence(check, service) && getServiceEvidence(check.serviceCheck.rawServices, service).length > 0);
+}
+
+function getActionableRemovedServices(check: DirectoryCheck) {
+  return check.removedServices.filter((service) => !hasSupportedFreshnessEvidence(check, service));
+}
+
+function hasSupportedFreshnessEvidence(check: DirectoryCheck, service: string) {
+  if (service === "U-Part wig install") {
+    return check.serviceCheck.rawServices.some((line) => hasExplicitUPartWigEvidence(line));
+  }
+  if (service === "Closure sew-in") {
+    return check.serviceCheck.rawServices.some((line) => hasClosureSewInEvidence(line));
+  }
+  if (service === "Pixie wig / weave install") {
+    return check.serviceCheck.rawServices.some((line) => hasPixieInstallEvidence(line));
+  }
+  if (service === "Wig install (frontal / closure)") {
+    return hasWigInstallEvidence(check.serviceCheck.rawServices);
+  }
+  if (service === "Custom wig") {
+    return hasCustomWigEvidence(check.serviceCheck.rawServices);
+  }
+  if (service === "Pixie / finger waves") {
+    return hasRawEvidenceForService(check.serviceCheck.rawServices, service);
+  }
+  if (service === "Feed-in braids") {
+    return !check.serviceCheck.rawServices.some((line) => hasHalfBraidsHalfSewInEvidence(line));
+  }
+  if (service === "Sleek ponytail / bun") {
+    return !check.serviceCheck.rawServices.some((line) => hasFrontalPonytailEvidence(line));
+  }
+  if (service === "Natural hair education") {
+    return check.serviceCheck.rawServices.some((line) => hasNaturalHairEducationEvidence(line));
+  }
+  if (service === "Keratin treatment") {
+    return !check.serviceCheck.rawServices.some((line) => hasKeratinTipEvidence(line));
+  }
+  if (service === "Starter locs") {
+    return check.serviceCheck.rawServices.some((line) => hasStarterLocsEvidence(line));
+  }
+  if (service === "Twists (with extensions)") {
+    return check.serviceCheck.rawServices.some((line) => hasTwistsWithExtensionsEvidence(line));
+  }
+  if (service === "Tracks (+ Silk press) / Partial / Invisible sew-in") {
+    return check.serviceCheck.rawServices.some((line) => hasTracksEvidence(line));
+  }
+  if (service === "Wash & blowdry") {
+    return check.serviceCheck.rawServices.some((line) => hasWashBlowdryEvidence(line));
+  }
+  if (service === "Stitch braids") {
+    return check.serviceCheck.rawServices.some((line) => hasStitchBraidsEvidence(line));
+  }
+  if (service === "Butterfly locs" || service === "Faux locs") {
+    return check.serviceCheck.rawServices.some((line) => hasSpecificLocSubtypeEvidence(line, service));
+  }
+  if (service === "Full head colour" || service === "Balayage" || service === "Highlights") {
+    return !hasWigColourEvidence(check.serviceCheck.rawServices);
+  }
+
+  return true;
+}
+
+function hasRawEvidenceForService(rawServices: string[], service: string) {
+  const normalizedRaw = normalizeEvidenceText(rawServices.join(" "));
+
+  if (service === "Pixie wig / weave install") {
+    return rawServices.some((line) => hasPixieInstallEvidence(line));
+  }
+  if (service === "Pixie / finger waves") {
+    return /\b(finger\s+waves?|pixie\s+cut|short\s+pixie|wrap)\b/.test(normalizedRaw) && !hasRawEvidenceForService(rawServices, "Pixie wig / weave install");
+  }
+  if (service === "Wig colour") {
+    return hasWigColourEvidence(rawServices);
+  }
+  if (service === "Olaplex treatment") {
+    return /\bolaplex\b|\b(repair|bond)\b.*\b(bond|repair|treatment)\b/.test(normalizedRaw);
+  }
+  if (service === "Moisturising treatment") {
+    return /\bmoisturi[sz](ing|e)\b|\bmoisture\b|\bhydrat(e|ing|ion)\b|\bprotein\s*&?\s+moisture\b|\bdeep\s+condition(ing)?\b|\bsteam\s+treat(ment)?\b/.test(normalizedRaw);
+  }
+  if (service === "Half up half down") {
+    return /\bhalf\s+up\b.*\bhalf\s+down\b|\bhalf\s+up\s*,?\s*half\s+down\b/.test(normalizedRaw);
+  }
+
+  return false;
+}
+
+function hasExplicitUPartWigEvidence(value: string) {
+  const normalized = normalizeEvidenceText(value);
+  return /\b(u[\s-]*part|v[\s-]*part|u[\s/-]*v[\s-]*part|uvpart)\b.*\b(wig|install|installation)\b|\b(wig|install|installation)\b.*\b(u[\s-]*part|v[\s-]*part|u[\s/-]*v[\s-]*part|uvpart)\b/.test(normalized);
+}
+
+function hasClosureSewInEvidence(value: string) {
+  const normalized = normalizeEvidenceText(value);
+  return /\bclosure\b.*\b(sew\s*in|sewin|weave)\b|\b(sew\s*in|sewin|weave)\b.*\bclosure\b|\bclosure\b.*\bbehind\s+the\s+hairline\b/.test(normalized);
+}
+
+function hasPixieInstallEvidence(value: string) {
+  const normalized = normalizeEvidenceText(value);
+  return /\bpixie\b/.test(normalized) && /\b(wig|weave|sew\s*in|sewin|install|installation)\b/.test(normalized);
+}
+
+function hasWigInstallEvidence(value: string | string[]) {
+  const normalized = normalizeEvidenceText(Array.isArray(value) ? value.join(" ") : value);
+  return /\bwig\b.*\b(install|installation|instal|application|fit|fitting)\b|\b(glueless|lace|frontal|closure)\s+wig\b|\b(frontal|closure|ready[\s-]*made)\s+unit\b|\bunit\b.*\b(install|installation|instal|application|fit|fitting)\b/.test(normalized);
+}
+
+function hasCustomWigEvidence(value: string | string[]) {
+  const normalized = normalizeEvidenceText(Array.isArray(value) ? value.join(" ") : value);
+  return /\bcustom\b.*\bwig\b|\bbespoke\b.*\bwig\b|\bcustom\s+handmade\s+wigs?\b|\bwig\b.*\b(custom|bespoke|handmade|made|making|construction|unit)\b|\bunit\b.*\bcustomi[sz](ing|ation)\b|\bcustomi[sz](ing|ation)\b.*\bunit\b|\bcustomi[sz]ed\s+closure\s+unit\b|\bcustom\s+mini\s+frontal\s+unit\b|\bcustom(?:\s+made)?\b.*\b(frontal|closure)\s+unit\b|\bcustom\b.*\bfrontal\s+closure\s+units?\b|\bwig\s+(making|construction|customi[sz](ing|ation))\b|\bconstruction\s+of\s+the\s+wig\b|\bconstruction\b.*\bcustomi[sz](ing|ation)\b|\bcustomi[sz](ing|ation)\b.*\bconstruction\b|\b(frontal|closure)\b.*\bcustomi[sz](ing|ation)\b/.test(normalized) && !/\b(factory\s+made|pre\s*made|premade|ready\s*made|raw\s+pre\s*made)\b/.test(normalized);
+}
+
+function hasHalfBraidsHalfSewInEvidence(value: string) {
+  const normalized = normalizeEvidenceText(value);
+  return /\bhalf\b.*\b(feed\s*in|feed-in|braids?|cornrows?)\b.*\b(weave|sew[\s-]*in|sewin)\b/.test(normalized) || /\bhalf\b.*\b(weave|sew[\s-]*in|sewin)\b.*\b(feed\s*in|feed-in|braids?|cornrows?)\b/.test(normalized);
+}
+
+function hasFrontalPonytailEvidence(value: string) {
+  const normalized = normalizeEvidenceText(value);
+  return /\bfrontal\b.*\b(pony|ponytail|bun|updo|up\s*do)\b/.test(normalized) || /\b(pony|ponytail|bun|updo|up\s*do)\b.*\bfrontal\b/.test(normalized);
+}
+
+function hasNaturalHairEducationEvidence(value: string) {
+  const normalized = normalizeEvidenceText(value);
+  return /\beducation\b|\btutorial\b|\btrichology\b|\bhair\s+health\b.*\b(assessment|plan|growth|consultation)\b|\bgrowth\s+plan\b|\bconsultation\b.*\bnatural\b|\bnatural\s+hair\b.*\b(class|education|consultation)\b|\bcurl\s+makeover\b.*\b(hands?\s*on|tutorial|styling)\b/.test(normalized);
+}
+
+function hasTwistsWithExtensionsEvidence(value: string) {
+  const normalized = normalizeEvidenceText(value);
+  return /\btwists?\b.*\b(extension|extensions|hair added)\b|\b(extension|extensions|hair added)\b.*\btwists?\b|\b(passion|marley|senegalese|island|kinky|rope)\s+twists?\b/.test(normalized);
+}
+
+function hasTracksEvidence(value: string) {
+  const normalized = normalizeEvidenceText(value);
+  if (/\btracks?\b.*\btapes?\b.*\bhybrid\b|\bhybrid\b.*\btracks?\b.*\btapes?\b/.test(normalized)) {
+    return false;
+  }
+  return /\btracks?\b|\bpartial\b.*\b(sew\s*in|sewin|weave)\b|\binvisible\b.*\b(sew\s*in|sewin|weave|wefts?)\b|\b(row|rows|line)\s+(?:of\s+)?(sew\s*in|sewin|weave)\b|\b(sew\s*in|sewin|weave)\s+(row|rows|line)\b|\bweave\s+on\s+per\s+row\b|\bper\s+(track|row|line)\b|\btrack\s+per\s+row\b|\btracks?\s+per\s+(track|row|line|double\s+row)\b|\btraditional\s+weave\s+rows?\b/.test(normalized);
+}
+
+function hasKeratinTipEvidence(value: string) {
+  const normalized = normalizeEvidenceText(value);
+  return /\bkeratin\s+(tips?|bonds?|extensions?)\b/.test(normalized);
+}
+
+function hasWashBlowdryEvidence(value: string) {
+  const normalized = normalizeEvidenceText(value);
+  if (/\b(arrive|come|please|note|recommended)\b.*\b(freshly\s+washed|clean|product\s+free|product-free)\b/.test(normalized) && !/\bblow\s*dry|blowdry|blowout\b/.test(normalized)) {
+    return false;
+  }
+  return /\bwash\b.*\b(blow\s*dry|blowdry|blowout)\b|\bblow\s*out\b|\bblowout\b/.test(normalized);
+}
+
+function hasStitchBraidsEvidence(value: string) {
+  const normalized = normalizeEvidenceText(value);
+  return /\bstitch\b/.test(normalized);
+}
+
+function hasSpecificLocSubtypeEvidence(value: string, service: string) {
+  const normalized = normalizeEvidenceText(value);
+  if (service === "Butterfly locs") {
+    return /\bbutterfly\s+locs?\b/.test(normalized);
+  }
+  if (service === "Faux locs") {
+    return /\bfaux\s+locs?\b|\binvisible\s+locs?\b|\bsoft\s+locs?\b/.test(normalized);
+  }
+  return false;
+}
+
+function hasStarterLocsEvidence(value: string) {
+  const normalized = normalizeEvidenceText(value);
+  return /\bstarter\s+locs?\b|\bloc\s+start\b/.test(normalized);
+}
+
+function hasWigColourEvidence(rawServices: string[]) {
+  const normalizedRaw = normalizeEvidenceText(rawServices.join(" "));
+  const hasColourSignal = /\b(colou?r|colou?ring|dye|custom colour|custom color|highlight|tone|toning|tint|bleach|bright)\b/.test(normalizedRaw);
+  const hasWigColourContext = /\b(wig|extensions?|bundle|bundles|lace\s+system|closure|frontal|wefts?|613|non[\s-]*contact)\b/.test(normalizedRaw);
+
+  return hasColourSignal && hasWigColourContext;
+}
+
+function isManualCheckLink(linkCheck: DirectoryCheck["linkChecks"][number]) {
+  return linkCheck.status !== "ok" && !isActionableBrokenLink(linkCheck);
+}
+
+function getLinkDismissUpdate(check: DirectoryCheck): FreshnessUpdate | undefined {
+  const linkTypes = new Set(check.linkChecks.filter((linkCheck) => linkCheck.status !== "ok").map((linkCheck) => linkCheck.type));
+  const update: FreshnessUpdate = {};
+
+  if (linkTypes.has("booking") && check.bookingUrl !== undefined) {
+    update.bookingUrl = check.bookingUrl;
+  }
+  if (linkTypes.has("website") && check.websiteUrl !== undefined) {
+    update.websiteUrl = check.websiteUrl;
+  }
+  if (linkTypes.has("instagram") && check.instagramUrl !== undefined) {
+    update.instagramUrl = check.instagramUrl;
+  }
+
+  return Object.keys(update).length ? update : undefined;
+}
+
+function getManualCheckDescription(linkCheck: DirectoryCheck["linkChecks"][number]) {
+  if (linkCheck.httpStatus === 401 || linkCheck.httpStatus === 403 || linkCheck.httpStatus === 429) {
+    return `Could not verify automatically: HTTP ${linkCheck.httpStatus}`;
+  }
+  if (linkCheck.httpStatus) {
+    return `Could not verify automatically: HTTP ${linkCheck.httpStatus}`;
+  }
+  return "Could not verify automatically";
+}
+
+function getFreshnessGroupRecommendation(check: DirectoryCheck, brokenLinkCount: number, manualLinkCount: number, addedServices = check.addedServices, removedServices = check.removedServices) {
+  const hasAddedServices = addedServices.length > 0;
+  const hasRemovedServices = removedServices.length > 0;
   const hasServiceRecommendations = hasAddedServices || hasRemovedServices;
 
   if (brokenLinkCount && hasServiceRecommendations) {
@@ -1960,14 +2224,17 @@ function getFreshnessGroupRecommendation(check: DirectoryCheck, brokenLinkCount:
   if (brokenLinkCount) {
     return brokenLinkCount === 1 ? "Fix broken link" : "Fix broken links";
   }
+  if (manualLinkCount) {
+    return manualLinkCount === 1 ? "Manual check" : "Manual checks";
+  }
   if (hasAddedServices && hasRemovedServices) {
     return "Update services";
   }
   if (hasAddedServices) {
-    return check.addedServices.length === 1 ? "Add service" : "Add services";
+    return addedServices.length === 1 ? "Add service" : "Add services";
   }
   if (hasRemovedServices) {
-    return check.removedServices.length === 1 ? "Remove service" : "Remove services";
+    return removedServices.length === 1 ? "Remove service" : "Remove services";
   }
   return check.issues.some((issue) => issue.toLowerCase().includes("price")) ? "Review price" : "Review service";
 }
@@ -1991,9 +2258,24 @@ const serviceEvidenceKeywords: Record<string, string[]> = {
   "Balayage": ["balayage"],
   "Highlights": ["highlight", "highlights", "lowlights"],
   "Full head colour": ["colour", "color", "tint", "dye", "rooting"],
-  "Wig colour": ["wig colour", "wig color", "colouring full wig", "custom colour", "colour service"],
-  "Frontal sew-in": ["frontal"],
-  "Custom wig": ["custom wig", "custom lace", "custom unit", "closure wig"],
+  "Wig colour": ["wig colour", "wig color", "colouring full wig", "custom colour", "colour service", "613", "non-contact", "non contact"],
+  "Frontal sew-in": ["frontal sew in", "frontal sew-in", "frontal sewin", "frontal weave"],
+  "Closure sew-in": ["closure sew in", "closure sew-in", "closure sewin", "closure weave", "closure behind the hairline"],
+  "Feed-in braids": ["feed in", "feed-in", "all back", "braids going back"],
+  "K-tips / Invisible strands": ["k tips", "k-tips", "keratin tip", "keratin tips", "keratin bonds", "invisible strands"],
+  "Frontal ponytail / bun": ["frontal ponytail", "frontal pony", "frontal bun", "frontal updo"],
+  "U-Part wig install": ["u part", "upart", "u-part", "v part", "vpart", "v-part", "u/vpart", "uvpart"],
+  "Custom wig": ["custom wig", "bespoke wig", "custom lace", "custom unit", "customised closure unit", "customized closure unit", "custom mini frontal unit", "unit customisation", "unit customization", "construction of the wig", "wig making", "wig construction", "wig customising", "wig customisation", "wig customization", "construction and customisation", "construction and customization"],
+  "Wig install (frontal / closure)": ["wig install", "wig installation", "installation of the wig", "wig application", "wig fitting", "glueless wig", "lace wig", "frontal wig", "closure wig", "frontal unit", "closure unit", "ready-made unit", "ready made unit", "unit install", "frontal unit install", "closure unit install"],
+  "Pixie wig / weave install": ["pixie wig", "pixie weave", "pixie install", "pixie sew in", "pixie sew-in", "pixie sewin"],
+  "Twists (with extensions)": ["twists with extensions", "passion twists", "marley twists", "senegalese twists", "kinky twists", "rope twists", "island twists", "island twist"],
+  "Hybrid sew-in": ["hybrid sew in", "hybrid sew-in", "hybrid weave", "tracks + tapes hybrid", "tracks and tapes hybrid"],
+  "Tracks (+ Silk press) / Partial / Invisible sew-in": ["tracks", "track per row", "per track", "per row", "tracks add on", "tracks add-on", "silk press add on tracks", "silk press add-on tracks", "row sew in", "rows of sew in", "weave tracks", "weave on per row", "traditional weave rows", "partial sew in", "partial sewin", "invisible sew in", "invisible weave", "invisible weft", "invisible wefts"],
+  "Wash & blowdry": ["wash blowdry", "wash blow dry", "wash and blowdry", "wash and blow dry", "blowout"],
+  "Butterfly locs": ["butterfly locs"],
+  "Faux locs": ["faux locs", "invisible locs", "soft locs"],
+  "Starter locs": ["starter locs", "loc start"],
+  "Stitch braids": ["stitch braids", "stitch"],
 };
 
 function isColourService(service: string) {
@@ -2220,7 +2502,7 @@ function titleCase(value: string) {
   return value.replace(/_/g, " ").replace(/\b\w/g, (letter) => letter.toUpperCase());
 }
 
-function DiscoveryPanel({
+function DiscoveryPage({
   suggestions,
   isGenerating,
   isBusy,
@@ -2234,19 +2516,36 @@ function DiscoveryPanel({
   onCreateDraft: (suggestionId: string) => void;
 }) {
   return (
-    <div className="rounded-md border border-stone-200 bg-white p-4">
-      <div className="flex items-start justify-between gap-4">
+    <div className="mx-auto max-w-7xl space-y-7 px-5 py-9">
+      <section className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
         <div>
-          <h2 className="text-sm font-semibold uppercase tracking-[0.14em] text-stone-500">Discovery</h2>
-          <p className="mt-2 text-sm text-stone-500">Generate research leads from patterns in the existing directory, then turn promising leads into drafts.</p>
+          <h1 className="text-3xl font-semibold tracking-tight text-stone-950">Discovery</h1>
+          <p className="mt-2 text-sm text-stone-500">Generate research leads from directory patterns, then turn promising leads into drafts.</p>
         </div>
-        <Button type="button" variant="outline" onClick={onGenerate} disabled={isGenerating} className="rounded-md">
+        <Button type="button" variant="outline" onClick={onGenerate} disabled={isGenerating} className="h-10 rounded-md bg-white px-4">
           {isGenerating ? <Loader2 className="size-4 animate-spin" /> : null}
           Generate
         </Button>
-      </div>
+      </section>
+
+      <DiscoveryPanel suggestions={suggestions} isBusy={isBusy} onCreateDraft={onCreateDraft} />
+    </div>
+  );
+}
+
+function DiscoveryPanel({
+  suggestions,
+  isBusy,
+  onCreateDraft,
+}: {
+  suggestions: DiscoverySuggestion[];
+  isBusy: boolean;
+  onCreateDraft: (suggestionId: string) => void;
+}) {
+  return (
+    <div className="rounded-md border border-stone-200 bg-white p-4 shadow-sm">
       {suggestions.length ? (
-        <div className="mt-4 max-h-[34rem] space-y-2 overflow-auto">
+        <div className="max-h-[34rem] space-y-2 overflow-auto">
           {suggestions.map((suggestion) => (
             <div key={suggestion.id} className="space-y-3 rounded-md bg-stone-100 p-3">
               <div className="flex items-start justify-between gap-3">
@@ -2754,16 +3053,38 @@ function ServiceSuggestionList({
 
 function FreshnessSkeleton() {
   return (
-    <div className="mt-4 space-y-2">
+    <div className="space-y-3 p-4">
       {[0, 1, 2].map((item) => (
-        <div key={item} className="space-y-3 rounded-md bg-stone-100 p-3">
-          <div className="h-4 w-2/5 animate-pulse rounded bg-stone-200" />
-          <div className="h-3 w-1/4 animate-pulse rounded bg-stone-200" />
-          <div className="flex gap-2">
-            <div className="h-6 w-24 animate-pulse rounded-full bg-stone-200" />
-            <div className="h-6 w-28 animate-pulse rounded-full bg-stone-200" />
+        <div key={item} className="space-y-4 rounded-[8px] border border-stone-100 bg-white p-4">
+          <div className="flex items-center justify-between gap-4">
+            <div className="h-4 w-2/5 animate-pulse rounded bg-stone-200" />
+            <div className="flex gap-2">
+              <div className="size-8 animate-pulse rounded-md bg-stone-100" />
+              <div className="size-8 animate-pulse rounded-md bg-stone-100" />
+              <div className="size-8 animate-pulse rounded-md bg-stone-100" />
+            </div>
           </div>
-          <div className="h-3 w-4/5 animate-pulse rounded bg-stone-200" />
+          <div className="h-3 w-1/4 animate-pulse rounded bg-stone-100" />
+          <div className="rounded-[8px] border border-stone-100 bg-stone-50 p-4">
+            <div className="h-4 w-1/3 animate-pulse rounded bg-stone-200" />
+            <div className="mt-3 h-3 w-4/5 animate-pulse rounded bg-stone-200" />
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function FreshnessMetricSkeleton() {
+  return (
+    <div className="grid gap-5 md:grid-cols-4">
+      {[0, 1, 2, 3].map((item) => (
+        <div key={item} className="rounded-[8px] border border-stone-200 bg-white p-6 shadow-sm">
+          <div className="flex items-center justify-between gap-4">
+            <div className="h-3 w-28 animate-pulse rounded bg-stone-200" />
+            <div className="size-4 animate-pulse rounded bg-stone-100" />
+          </div>
+          <div className="mt-5 h-10 w-16 animate-pulse rounded bg-stone-200" />
         </div>
       ))}
     </div>
