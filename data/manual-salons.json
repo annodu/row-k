@@ -1,11 +1,153 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-05-21T17:33:26.471Z",
-    "count": 600,
+    "updatedAt": "2026-05-21T23:31:04.468Z",
+    "count": 606,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "beyondthebrushldn",
+      "name": "Beyondthebrushldn",
+      "areaId": "south-west",
+      "areaLabel": "South West London",
+      "neighbourhood": "South West London London",
+      "postcode": "",
+      "bookingPlatform": "Treatwell",
+      "bookingUrl": "https://widget.treatwell.co.uk/place/beyond-the-brush-by-monique/?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQPOTM2NjE5NzQzMzkyNDU5AAGn7-1RWanZ7iCIvmjzYbwVBOe_6H-b733Aml0YFe6Bia-9uUf-31hIMJ_YuPU_aem_jng9FQG0BP7XY4VjnWlZRg",
+      "websiteUrl": "https://widget.treatwell.co.uk/place/beyond-the-brush-by-monique/?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQPOTM2NjE5NzQzMzkyNDU5AAGn7-1RWanZ7iCIvmjzYbwVBOe_6H-b733Aml0YFe6Bia-9uUf-31hIMJ_YuPU_aem_jng9FQG0BP7XY4VjnWlZRg",
+      "instagramUrl": "https://www.instagram.com/beyondthebrushldn/",
+      "services": [
+        "K-18 treatment",
+        "Olaplex treatment",
+        "Keratin treatment",
+        "Scalp care",
+        "Highlights",
+        "Balayage",
+        "Texture release",
+        "Silk press",
+        "Wash & blowdry"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/beyondthebrushldn/"
+      ]
+    },
+    {
+      "id": "naturallyimmaculate",
+      "name": "Naturallyimmaculate",
+      "areaId": "south-east",
+      "areaLabel": "South East London",
+      "neighbourhood": "South East London London",
+      "postcode": "",
+      "bookingPlatform": "Direct",
+      "bookingUrl": "https://naturallyimmaculate.co.uk/book/",
+      "websiteUrl": "https://naturallyimmaculate.co.uk/book/",
+      "instagramUrl": "https://www.instagram.com/naturallyimmaculate/",
+      "services": [
+        "Traditional sew-in / leave out",
+        "Silk press",
+        "Pixie / finger waves",
+        "Texture release",
+        "Microlinks",
+        "LA weave",
+        "Bridal / Editorial",
+        "Sleek ponytail / bun"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/naturallyimmaculate/"
+      ]
+    },
+    {
+      "id": "colouredbyella",
+      "name": "Colouredbyella",
+      "areaId": "all-london",
+      "areaLabel": "London",
+      "neighbourhood": "London London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/colouredbyella/",
+      "websiteUrl": "https://www.instagram.com/colouredbyella/",
+      "instagramUrl": "https://www.instagram.com/colouredbyella/",
+      "services": [
+        "Balayage",
+        "Highlights",
+        "Trim / Hair cut"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/colouredbyella/"
+      ]
+    },
+    {
+      "id": "hausofshee",
+      "name": "Hausofshee",
+      "areaId": "all-london",
+      "areaLabel": "London",
+      "neighbourhood": "London London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/hausofshee/",
+      "websiteUrl": "https://www.instagram.com/hausofshee/",
+      "instagramUrl": "https://www.instagram.com/hausofshee/",
+      "services": [
+        "Bridal / Editorial"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/hausofshee/"
+      ]
+    },
+    {
+      "id": "carterhairco-2",
+      "name": "Carterhairco",
+      "areaId": "east",
+      "areaLabel": "East London",
+      "neighbourhood": "East London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://carterhairco.as.me/schedule/e46122d8",
+      "websiteUrl": "https://carterhairco.as.me/schedule/e46122d8",
+      "instagramUrl": "https://www.instagram.com/carterhairco_/",
+      "services": [
+        "Texture release",
+        "Trim / Hair cut",
+        "Silk press",
+        "Tape ins",
+        "Wash & blowdry"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/carterhairco_/"
+      ]
+    },
+    {
+      "id": "monarchiehair",
+      "name": "Monarchiehair",
+      "areaId": "east",
+      "areaLabel": "East London",
+      "neighbourhood": "East London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://monarchiehair.as.me/schedule/0bd4a458",
+      "websiteUrl": "https://monarchiehair.as.me/schedule/0bd4a458",
+      "instagramUrl": "https://www.instagram.com/monarchiehair/",
+      "services": [
+        "Wig install (frontal / closure)",
+        "Custom wig"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/monarchiehair/"
+      ]
+    },
     {
       "id": "fejiroboje",
       "name": "Fejiroboje",
