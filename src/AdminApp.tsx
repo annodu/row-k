@@ -23,7 +23,6 @@ import {
   Trash2,
   Unlink,
   Undo2,
-  X,
 } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
@@ -1623,9 +1622,9 @@ function FreshnessPage({
         ) : (
           <div className="grid gap-5 md:grid-cols-4">
             <FreshnessMetricCard title="Stale entries" value={recommendationCount} icon={<RefreshCw className="size-4" />} isActive={freshnessFilter === "all"} onClick={() => setFreshnessFilter("all")} />
-            <FreshnessMetricCard title="Services incorrect" value={serviceChanges} valueClassName="text-sky-700" icon={<AlertTriangle className="size-4 text-sky-600" />} isActive={freshnessFilter === "service-changes"} onClick={() => setFreshnessFilter(freshnessFilter === "service-changes" ? "all" : "service-changes")} />
-            <FreshnessMetricCard title="Broken links" value={brokenLinks} valueClassName="text-red-700" icon={<Unlink className="size-4 text-red-600" />} isActive={freshnessFilter === "broken-links"} onClick={() => setFreshnessFilter(freshnessFilter === "broken-links" ? "all" : "broken-links")} />
-            <FreshnessMetricCard title="Could not verify" value={manualChecks} valueClassName="text-amber-700" icon={<AlertTriangle className="size-4 text-amber-600" />} isActive={freshnessFilter === "manual-check"} onClick={() => setFreshnessFilter(freshnessFilter === "manual-check" ? "all" : "manual-check")} />
+            <FreshnessMetricCard title="Services incorrect" value={serviceChanges} icon={<AlertTriangle className="size-4" />} isActive={freshnessFilter === "service-changes"} onClick={() => setFreshnessFilter(freshnessFilter === "service-changes" ? "all" : "service-changes")} />
+            <FreshnessMetricCard title="Broken links" value={brokenLinks} icon={<Unlink className="size-4" />} isActive={freshnessFilter === "broken-links"} onClick={() => setFreshnessFilter(freshnessFilter === "broken-links" ? "all" : "broken-links")} />
+            <FreshnessMetricCard title="Could not verify" value={manualChecks} icon={<AlertTriangle className="size-4" />} isActive={freshnessFilter === "manual-check"} onClick={() => setFreshnessFilter(freshnessFilter === "manual-check" ? "all" : "manual-check")} />
           </div>
         )}
 
@@ -1648,23 +1647,23 @@ function PlayIcon() {
   return <span className="ml-0.5 inline-block size-0 border-y-[5px] border-l-[8px] border-y-transparent border-l-current" />;
 }
 
-function FreshnessMetricCard({ title, value, icon, valueClassName, isActive, onClick }: { title: string; value: number; icon: React.ReactNode; valueClassName?: string; isActive: boolean; onClick: () => void }) {
+function FreshnessMetricCard({ title, value, icon, isActive, onClick }: { title: string; value: number; icon: React.ReactNode; isActive: boolean; onClick: () => void }) {
   return (
     <button
       type="button"
       onClick={onClick}
       className={cn(
-        "cursor-pointer rounded-[8px] border p-6 text-left shadow-sm transition",
+        "cursor-pointer rounded-[8px] border border-stone-200 bg-white p-7 text-left shadow-sm transition hover:border-stone-300 hover:shadow-md active:bg-stone-50",
         isActive
-          ? "border-stone-300 bg-stone-100 hover:bg-stone-200 active:bg-stone-200"
-          : "border-stone-200 bg-white hover:border-stone-300 hover:bg-stone-50 active:bg-stone-100",
+          ? "ring-2 ring-stone-100"
+          : "",
       )}
     >
       <div className="flex items-center justify-between gap-4">
-        <p className={cn("text-xs font-semibold uppercase tracking-[0.14em]", isActive ? "text-stone-600" : "text-stone-500")}>{title}</p>
-        <span className={isActive ? "text-stone-500" : "text-stone-400"}>{icon}</span>
+        <p className="text-xs font-semibold uppercase tracking-[0.14em] text-stone-500">{title}</p>
+        <span className="text-stone-400">{icon}</span>
       </div>
-      <p className={cn("mt-5 text-4xl font-semibold leading-none tracking-tight text-stone-950", !isActive && valueClassName)}>{value}</p>
+      <p className="mt-6 text-4xl font-semibold leading-none tracking-tight text-stone-950">{value}</p>
     </button>
   );
 }
@@ -1687,8 +1686,6 @@ function FreshnessRecommendationCard({
   const [primaryLinkUrl, setPrimaryLinkUrl] = useState(primaryLinkValue);
   const [instagramUrl, setInstagramUrl] = useState(row.instagramUrl || "");
   const [linkSaveState, setLinkSaveState] = useState<"idle" | "saving" | "saved">("idle");
-  const canApply = Boolean(row.acceptUpdate);
-  const canReject = Boolean(row.rejectUpdate);
   const hasLinkIssues = row.details.some((d) => d.kind === "fix" || d.kind === "manual");
 
   async function handleSaveLinks() {
@@ -1710,24 +1707,15 @@ function FreshnessRecommendationCard({
 
   return (
     <div className="border-b border-stone-100 last:border-b-0">
-      <div className="flex items-center justify-between gap-4 px-6 py-5">
+      <div className="flex items-center justify-between gap-4 px-7 py-5">
         <button type="button" onClick={() => setIsOpen((current) => !current)} className="min-w-0 flex-1 text-left">
           <span className="inline-flex min-w-0 flex-wrap items-center gap-3">
-            <span className="font-semibold text-stone-950">{row.stylist}</span>
+            <span className="text-lg font-semibold text-stone-950">{row.stylist}</span>
             <FreshnessDetailSummary details={row.details} />
           </span>
         </button>
         <div className="flex shrink-0 items-center gap-2 text-stone-700">
           <FreshnessLinkButtons row={row} />
-          <IconActionDivider />
-          <span className="inline-flex items-center gap-2">
-            <IconActionButton label="Accept all recommendations" disabled={isBusy || !canApply} variant="ghost" tone="accept" onClick={() => row.acceptUpdate ? onApply(row.check, row.acceptUpdate) : undefined}>
-              <Check className="size-4" />
-            </IconActionButton>
-            <IconActionButton label="Reject all recommendations" disabled={isBusy || !canReject} variant="ghost" tone="reject" onClick={() => row.rejectUpdate ? onApply(row.check, row.rejectUpdate) : undefined}>
-              <X className="size-4" />
-            </IconActionButton>
-          </span>
           <IconActionDivider />
           <button type="button" onClick={() => setIsOpen((current) => !current)} className="inline-flex size-8 items-center justify-center rounded-md hover:bg-stone-100" aria-label={isOpen ? "Collapse recommendations" : "Expand recommendations"}>
             {isOpen ? <ChevronUp className="size-4" /> : <ChevronDown className="size-4" />}
@@ -1736,7 +1724,7 @@ function FreshnessRecommendationCard({
       </div>
 
       {isOpen ? (
-        <div className="space-y-4 px-6 pb-6">
+        <div className="space-y-3 px-7 pb-6">
           {row.details.map((detail, index) => (
             <FreshnessRecommendationItem key={`${row.id}-${detail.label}-${index}`} detail={detail} row={row} isBusy={isBusy} onApply={onApply} />
           ))}
@@ -1794,22 +1782,7 @@ function FreshnessRecommendationItem({
 }) {
   const isAdd = detail.kind === "add";
   const isRemove = detail.kind === "remove";
-  const toneClass = isAdd
-    ? "border-emerald-200 bg-emerald-50/40 text-emerald-700"
-    : isRemove
-      ? "border-red-200 bg-red-50/40 text-red-700"
-      : detail.kind === "fix"
-        ? "border-red-200 bg-red-50/40 text-red-700"
-        : detail.kind === "manual"
-          ? "border-amber-200 bg-amber-50/40 text-amber-700"
-          : "border-sky-200 bg-sky-50/40 text-sky-700";
-  const dotClass = isAdd
-    ? "bg-emerald-100 text-emerald-700"
-    : isRemove || detail.kind === "fix"
-      ? "bg-red-100 text-red-700"
-      : detail.kind === "manual"
-        ? "bg-amber-100 text-amber-700"
-        : "bg-sky-100 text-sky-700";
+  const visual = getFreshnessDetailVisual(detail);
   const acceptUpdate =
     detail.kind === "add" && detail.service
       ? { addServices: [detail.service] }
@@ -1822,38 +1795,57 @@ function FreshnessRecommendationItem({
       : detail.kind === "remove" && detail.service
         ? { rejectRemovedServices: [detail.service] }
         : row.rejectUpdate;
+  const primaryActionLabel = isAdd ? "Add service" : isRemove ? "Remove" : detail.kind === "fix" ? "Save" : "Resolve";
+  const secondaryActionLabel = isAdd ? "Ignore" : isRemove ? "Keep" : "Ignore";
 
   return (
-    <div className={cn("flex items-center justify-between gap-4 rounded-[8px] border px-4 py-4", toneClass)}>
-      <div className="flex min-w-0 items-center gap-4">
-        <span className={cn("inline-flex size-8 shrink-0 items-center justify-center rounded-full", dotClass)}>
-          {isAdd ? <span className="text-lg leading-none">+</span> : isRemove ? <span className="text-lg leading-none">−</span> : detail.kind === "fix" ? <Unlink className="size-4" /> : <AlertTriangle className="size-4" />}
-        </span>
+    <div className="flex items-start justify-between gap-4 rounded-[8px] border border-stone-200 bg-stone-50 px-6 py-4">
+      <div className="grid min-w-0 flex-1 gap-4 sm:grid-cols-[5.5rem_minmax(0,1fr)] sm:items-start">
+        <div className={cn("mt-1 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.08em]", visual.textClass)}>
+          <span className={cn("size-3 rounded-full", visual.dotClass)} />
+          {visual.label}
+        </div>
         <div className="min-w-0">
-          <p className="font-semibold text-stone-950">{detail.label}</p>
-          <p className="mt-1 text-sm font-medium">{detail.description}</p>
+          <div className="flex min-w-0 flex-wrap items-center gap-x-3 gap-y-1">
+            <p className="font-semibold text-stone-950">{detail.label}</p>
+            {detail.kind === "fix" || detail.kind === "manual" || detail.kind === "review" ? (
+              <p className="text-sm font-medium text-stone-500">{detail.description}</p>
+            ) : null}
+          </div>
           {detail.evidence?.length ? (
-            <div className="mt-3 space-y-1.5">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-stone-500">Evidence</p>
-              <div className="flex flex-wrap gap-1.5">
-                {detail.evidence.map((line) => (
-                  <span key={line} className="rounded-md border border-stone-200 bg-white px-2 py-1 text-xs font-medium text-stone-600">
-                    {line}
-                  </span>
-                ))}
-              </div>
+            <div className="mt-2 flex flex-wrap gap-1.5">
+              {detail.evidence.map((line) => (
+                <span key={line} className="rounded-md border border-stone-200 bg-white px-2 py-1 text-xs font-medium text-stone-500">
+                  {line}
+                </span>
+              ))}
             </div>
           ) : null}
         </div>
       </div>
       {detail.kind !== "fix" && detail.kind !== "manual" ? (
-        <div className="flex shrink-0 items-center gap-2 text-stone-700">
-          <IconActionButton label="Accept recommendation" disabled={isBusy || !acceptUpdate} variant="ghost" tone="accept" onClick={() => acceptUpdate ? onApply(row.check, acceptUpdate) : undefined}>
-            <Check className="size-4" />
-          </IconActionButton>
-          <IconActionButton label="Reject recommendation" disabled={isBusy || !rejectUpdate} variant="ghost" tone="reject" onClick={() => rejectUpdate ? onApply(row.check, rejectUpdate) : undefined}>
-            <X className="size-4" />
-          </IconActionButton>
+        <div className="flex shrink-0 items-center gap-2 self-start text-sm font-semibold">
+          <button
+            type="button"
+            disabled={isBusy || !rejectUpdate}
+            onClick={() => rejectUpdate ? onApply(row.check, rejectUpdate) : undefined}
+            className="rounded-md border border-stone-200 bg-white px-3 py-2 text-stone-700 shadow-sm transition hover:border-stone-300 hover:text-stone-950 disabled:cursor-not-allowed disabled:opacity-35"
+          >
+            {secondaryActionLabel}
+          </button>
+          <button
+            type="button"
+            disabled={isBusy || !acceptUpdate}
+            onClick={() => acceptUpdate ? onApply(row.check, acceptUpdate) : undefined}
+            className={cn(
+              "rounded-md px-3 py-2 transition disabled:cursor-not-allowed disabled:opacity-35",
+              isAdd
+                ? "border border-emerald-200 bg-emerald-50 text-emerald-700 hover:bg-emerald-100"
+                : "border border-red-200 bg-red-50 text-red-700 hover:bg-red-100",
+            )}
+          >
+            {primaryActionLabel}
+          </button>
         </div>
       ) : null}
     </div>
@@ -1885,13 +1877,34 @@ type FreshnessRecommendationDetail = {
   description: string;
   service?: string;
   evidence?: string[];
+  evidenceLabel?: string;
+  reviewTone?: "danger" | "caution";
 };
+
+function getFreshnessDetailVisual(detail: FreshnessRecommendationDetail) {
+  if (detail.kind === "add") {
+    return { label: "Add", dotClass: "bg-emerald-500", textClass: "text-emerald-700" };
+  }
+  if (detail.kind === "remove" && detail.reviewTone === "caution") {
+    return { label: "Review", dotClass: "bg-sky-500", textClass: "text-sky-700" };
+  }
+  if (detail.kind === "fix") {
+    return { label: "Fix", dotClass: "bg-red-500", textClass: "text-red-700" };
+  }
+  if (detail.kind === "remove") {
+    return { label: "Remove", dotClass: "bg-red-500", textClass: "text-red-700" };
+  }
+  if (detail.kind === "manual") {
+    return { label: "Verify", dotClass: "bg-amber-500", textClass: "text-amber-700" };
+  }
+  return { label: "Review", dotClass: "bg-sky-500", textClass: "text-sky-700" };
+}
 
 function FreshnessDetailSummary({ details }: { details: FreshnessRecommendationDetail[] }) {
   const counts = details.reduce(
     (summary, detail) => ({
       ...summary,
-      [detail.kind]: summary[detail.kind] + 1,
+      [detail.kind === "remove" && detail.reviewTone === "caution" ? "review" : detail.kind]: summary[detail.kind === "remove" && detail.reviewTone === "caution" ? "review" : detail.kind] + 1,
     }),
     { add: 0, remove: 0, fix: 0, manual: 0, review: 0 } as Record<FreshnessRecommendationDetail["kind"], number>,
   );
@@ -1936,12 +1949,18 @@ function buildFreshnessRecommendationGroups(checks: DirectoryCheck[]): Freshness
         label: `${titleCase(linkCheck.type)} link`,
         description: getManualCheckDescription(linkCheck),
       })),
-      ...removedServices.map((service) => ({
-        kind: "remove" as const,
-        label: service,
-        description: "Service no longer listed",
-        service,
-      })),
+      ...removedServices.map((service) => {
+        const possibleEvidence = getRemovalReviewEvidence(check.serviceCheck.rawServices, service);
+        return {
+          kind: "remove" as const,
+          label: service,
+          description: possibleEvidence.length ? "Possible evidence it still exists" : "Service no longer listed",
+          service,
+          evidence: possibleEvidence,
+          evidenceLabel: possibleEvidence.length ? "Evidence it still exists" : undefined,
+          reviewTone: possibleEvidence.length ? "caution" as const : "danger" as const,
+        };
+      }),
       ...addedServices.map((service) => ({
         kind: "add" as const,
         label: service,
@@ -2049,6 +2068,9 @@ function hasSupportedFreshnessEvidence(check: DirectoryCheck, service: string) {
   if (service === "Wash & blowdry") {
     return check.serviceCheck.rawServices.some((line) => hasWashBlowdryEvidence(line));
   }
+  if (service === "Wig cornrows") {
+    return check.serviceCheck.rawServices.some((line, index, lines) => hasWigCornrowsEvidence(line, lines, index));
+  }
   if (service === "Stitch braids") {
     return check.serviceCheck.rawServices.some((line) => hasStitchBraidsEvidence(line));
   }
@@ -2094,7 +2116,7 @@ function hasExplicitUPartWigEvidence(value: string) {
 
 function hasClosureSewInEvidence(value: string) {
   const normalized = normalizeEvidenceText(value);
-  return /\bclosure\b.*\b(sew\s*in|sewin|weave)\b|\b(sew\s*in|sewin|weave)\b.*\bclosure\b|\bclosure\b.*\bbehind\s+the\s+hairline\b/.test(normalized);
+  return /\bclosure\b.*\b(sew\s*in|sewin|weave)\b|\b(sew\s*in|sewin|weave)\b.*\bclosure\b|\bweave\b.*\b(lace\s+)?closure\b|\bclosure\b.*\bbehind\s+the\s+hairline\b/.test(normalized);
 }
 
 function hasPixieInstallEvidence(value: string) {
@@ -2104,12 +2126,12 @@ function hasPixieInstallEvidence(value: string) {
 
 function hasWigInstallEvidence(value: string | string[]) {
   const normalized = normalizeEvidenceText(Array.isArray(value) ? value.join(" ") : value);
-  return /\bwig\b.*\b(install|installation|instal|application|fit|fitting)\b|\b(glueless|lace|frontal|closure)\s+wig\b|\b(frontal|closure|ready[\s-]*made)\s+unit\b|\bunit\b.*\b(install|installation|instal|application|fit|fitting)\b/.test(normalized);
+  return /\bwig\b.*\b(install|installation|instal|application|fit|fitting)\b|\b(glueless|lace|frontal|closure)\s+wig\b|\b(lace\s+)?frontal\s+installation\b|\b(lace\s+)?closure\s+installation\b|\b(frontal|closure|ready[\s-]*made)\s+unit\b|\bunit\b.*\b(install|installation|instal|application|fit|fitting)\b/.test(normalized);
 }
 
 function hasCustomWigEvidence(value: string | string[]) {
   const normalized = normalizeEvidenceText(Array.isArray(value) ? value.join(" ") : value);
-  return /\bcustom\b.*\bwig\b|\bbespoke\b.*\bwig\b|\bcustom\s+handmade\s+wigs?\b|\bwig\b.*\b(custom|bespoke|handmade|made|making|construction|unit)\b|\bunit\b.*\bcustomi[sz](ing|ation)\b|\bcustomi[sz](ing|ation)\b.*\bunit\b|\bcustomi[sz]ed\s+closure\s+unit\b|\bcustom\s+mini\s+frontal\s+unit\b|\bcustom(?:\s+made)?\b.*\b(frontal|closure)\s+unit\b|\bcustom\b.*\bfrontal\s+closure\s+units?\b|\bwig\s+(making|construction|customi[sz](ing|ation))\b|\bconstruction\s+of\s+the\s+wig\b|\bconstruction\b.*\bcustomi[sz](ing|ation)\b|\bcustomi[sz](ing|ation)\b.*\bconstruction\b|\b(frontal|closure)\b.*\bcustomi[sz](ing|ation)\b/.test(normalized) && !/\b(factory\s+made|pre\s*made|premade|ready\s*made|raw\s+pre\s*made)\b/.test(normalized);
+  return /\bcustom\b.*\bwig\b|\bbespoke\b.*\bwig\b|\bcustom\s+handmade\s+wigs?\b|\bwig\b.*\b(custom|bespoke|handmade|made|making|construction|unit)\b|\bunit\b.*\bcustomi[sz](ing|ation)\b|\bcustomi[sz](ing|ation)\b.*\bunit\b|\bcustomi[sz]ed\s+closure\s+unit\b|\bcustom\s+mini\s+frontal\s+unit\b|\bcustom(?:\s+made)?\b.*\b(frontal|closure)\s+unit\b|\bcustom\b.*\bfrontal\s+closure\s+units?\b|\bwig\s+(making|construction|customi[sz](ing|ation))\b|\bconstruction\s+of\s+(the\s+)?wig\b|\bconstruction\b.*\bcustomi[sz](ing|ation)\b|\bcustomi[sz](ing|ation)\b.*\bconstruction\b|\b(frontal|closure)\b.*\bcustomi[sz](ing|ation)\b/.test(normalized) && !/\b(factory\s+made|pre\s*made|premade|ready\s*made|raw\s+pre\s*made)\b/.test(normalized);
 }
 
 function hasHalfBraidsHalfSewInEvidence(value: string) {
@@ -2142,7 +2164,7 @@ function hasTracksEvidence(value: string) {
   if (/\btracks?\b.*\btapes?\b.*\bhybrid\b|\bhybrid\b.*\btracks?\b.*\btapes?\b/.test(normalized)) {
     return false;
   }
-  return /\btracks?\b|\bpartial\b.*\b(sew\s*in|sewin|weave)\b|\binvisible\b.*\b(sew\s*in|sewin|weave|wefts?)\b|\b(row|rows|line)\s+(?:of\s+)?(sew\s*in|sewin|weave)\b|\b(sew\s*in|sewin|weave)\s+(row|rows|line)\b|\bweave\s+on\s+per\s+row\b|\bper\s+(track|row|line)\b|\btrack\s+per\s+row\b|\btracks?\s+per\s+(track|row|line|double\s+row)\b|\btraditional\s+weave\s+rows?\b/.test(normalized);
+  return /\btracks?\b|\bindividual\s+sewn\s+on\s+tracks?\b|\bpartial\b.*\b(sew\s*in|sewin|weave)\b|\binvisible\b.*\b(sew\s*in|sewin|weave|wefts?)\b|\b(row|rows|line)\s+(?:of\s+)?(sew\s*in|sewin|weave)\b|\b(sew\s*in|sewin|weave)\s+(row|rows|line)\b|\bweave\s+on\s+per\s+row\b|\bweave\s+tracks?\s*\(?per\s+track\)?\b|\bper\s+(track|row|line)\b|\btrack\s+per\s+row\b|\btracks?\s+per\s+(track|row|line|double\s+row)\b|\btraditional\s+weave\s+rows?\b|\bone\s+row\b/.test(normalized);
 }
 
 function hasKeratinTipEvidence(value: string) {
@@ -2155,7 +2177,20 @@ function hasWashBlowdryEvidence(value: string) {
   if (/\b(arrive|come|please|note|recommended)\b.*\b(freshly\s+washed|clean|product\s+free|product-free)\b/.test(normalized) && !/\bblow\s*dry|blowdry|blowout\b/.test(normalized)) {
     return false;
   }
-  return /\bwash\b.*\b(blow\s*dry|blowdry|blowout)\b|\bblow\s*out\b|\bblowout\b/.test(normalized);
+  return /\bwash\b.*\b(blow\s*dry|blowdry|blowout)\b|\bshampoo\b.*\b(blow\s*dry|blowdry|blowout)\b|\bblow\s*out\b|\bblowout\b/.test(normalized);
+}
+
+function hasWigCornrowsEvidence(value: string, lines: string[] = [value], index = 0) {
+  const normalized = normalizeEvidenceText(value);
+  const nearby = normalizeEvidenceText([lines[index - 1], value, lines[index + 1]].filter(Boolean).join(" "));
+  if (hasStyleRemovalInstructionEvidence(nearby)) {
+    return false;
+  }
+  return /\bunder\s*wig\b|\bwig\s+cornrows?\b|\bcornrows?\s+for\s+wig\s+installation\b|\bcornrows?\b/.test(normalized);
+}
+
+function hasStyleRemovalInstructionEvidence(value: string) {
+  return /\b(please\s+)?ensure\b.*\b(hair|styles?)\b.*\b(free|removed?|without|not\s+in)\b.*\b(braids?|cornrows?|sew[\s-]*ins?|weaves?)\b/.test(value) || /\b(hair|styles?)\b.*\b(free|removed?|without|not\s+in)\b.*\b(braids?|cornrows?|sew[\s-]*ins?|weaves?)\b/.test(value);
 }
 
 function hasStitchBraidsEvidence(value: string) {
@@ -2176,7 +2211,7 @@ function hasSpecificLocSubtypeEvidence(value: string, service: string) {
 
 function hasStarterLocsEvidence(value: string) {
   const normalized = normalizeEvidenceText(value);
-  return /\bstarter\s+locs?\b|\bloc\s+start\b/.test(normalized);
+  return /\bstarter\s+locs?\b|\bstart\s+locs?\b|\bloc\s+start\b/.test(normalized);
 }
 
 function hasWigColourEvidence(rawServices: string[]) {
@@ -2259,32 +2294,82 @@ function getServiceEvidence(rawServices: string[] = [], service: string) {
   return rawServices.filter((line) => isColourService(service) && /colou?r|highlight|balayage|tone|tint|bleach|root/i.test(line)).slice(0, 4);
 }
 
+function getRemovalReviewEvidence(rawServices: string[] = [], service: string) {
+  const exactEvidence = getServiceEvidence(rawServices, service).filter((line) => !hasStyleRemovalInstructionEvidence(normalizeEvidenceText(line)));
+  if (exactEvidence.length) {
+    return exactEvidence;
+  }
+
+  const family = getServiceGroupLabel(service);
+  const siblingKeywords = family
+    ? serviceGroups
+        .find((group) => group.label === family)
+        ?.services.flatMap((relatedService) => serviceEvidenceKeywords[relatedService] ?? [])
+    : [];
+  const serviceWords = service
+    .toLowerCase()
+    .split(/\s+|\/|\(|\)|-|\+/)
+    .map((word) => word.trim())
+    .filter((word) => word.length > 4 && !genericRemovalEvidenceWords.has(word));
+  const keywords = [...new Set([...(removalReviewKeywords[service] ?? []), ...(siblingKeywords ?? []), ...serviceWords].map(normalizeEvidenceText).filter(Boolean))];
+
+  return rawServices
+    .map((line) => {
+      const normalizedLine = normalizeEvidenceText(line);
+      const score = keywords.reduce((total, keyword) => total + (normalizedLine.includes(keyword) ? getRemovalEvidenceKeywordWeight(keyword) : 0), 0);
+      return { line, score };
+    })
+    .filter((match) => match.score > 0)
+    .sort((left, right) => right.score - left.score)
+    .map((match) => match.line)
+    .filter((line, index, lines) => lines.indexOf(line) === index)
+    .slice(0, 5);
+}
+
+function getRemovalEvidenceKeywordWeight(keyword: string) {
+  return keyword.length > 10 ? 2 : 1;
+}
+
+function getServiceGroupLabel(service: string) {
+  return serviceGroups.find((group) => group.services.includes(service))?.label ?? "";
+}
+
 const serviceEvidenceKeywords: Record<string, string[]> = {
   "Balayage": ["balayage"],
   "Highlights": ["highlight", "highlights", "lowlights"],
   "Full head colour": ["colour", "color", "tint", "dye", "rooting"],
   "Wig colour": ["wig colour", "wig color", "colouring full wig", "custom colour", "colour service", "613", "non-contact", "non contact"],
   "Frontal sew-in": ["frontal sew in", "frontal sew-in", "frontal sewin", "frontal weave"],
-  "Closure sew-in": ["closure sew in", "closure sew-in", "closure sewin", "closure weave", "closure behind the hairline"],
+  "Closure sew-in": ["closure sew in", "closure sew-in", "closure sewin", "closure weave", "weave with lace closure", "closure behind the hairline"],
   "Creative braids (e.g. patewo)": ["creative braids", "patewo", "dolly braids", "shuku", "koroba braids"],
   "Feed-in braids": ["feed in", "feed-in", "all back", "braids going back"],
   "Fulani / Lemonade braids": ["fulani", "lemonade", "alicia keys braids"],
   "K-tips / Invisible strands": ["k tips", "k-tips", "keratin tip", "keratin tips", "keratin bonds", "invisible strands"],
   "Frontal ponytail / bun": ["frontal ponytail", "frontal pony", "frontal bun", "frontal updo"],
-  "U-Part wig install": ["u part", "upart", "u-part", "v part", "vpart", "v-part", "u/vpart", "uvpart"],
-  "Custom wig": ["custom wig", "bespoke wig", "custom lace", "custom unit", "customised closure unit", "customized closure unit", "custom mini frontal unit", "unit customisation", "unit customization", "construction of the wig", "wig making", "wig construction", "wig customising", "wig customisation", "wig customization", "construction and customisation", "construction and customization"],
-  "Wig install (frontal / closure)": ["wig install", "wig installation", "installation of the wig", "wig application", "wig fitting", "glueless wig", "lace wig", "frontal wig", "closure wig", "frontal unit", "closure unit", "ready-made unit", "ready made unit", "unit install", "frontal unit install", "closure unit install"],
+  "U-Part wig install": ["u part", "upart", "u-part", "u part wig", "u-part wig", "upart wig", "v part", "vpart", "v-part", "u/vpart", "uvpart"],
+  "Custom wig": ["custom wig", "bespoke wig", "custom lace", "custom unit", "customised closure unit", "customized closure unit", "custom mini frontal unit", "unit customisation", "unit customization", "construction of wig", "construction of the wig", "wig making", "wig construction", "wig customising", "wig customisation", "wig customization", "construction and customisation", "construction and customization"],
+  "Wig install (frontal / closure)": ["wig install", "wig installation", "installation of the wig", "wig application", "wig fitting", "glueless wig", "lace wig", "frontal wig", "closure wig", "lace frontal installation", "lace closure installation", "frontal unit", "closure unit", "ready-made unit", "ready made unit", "unit install", "frontal unit install", "closure unit install"],
   "Pixie wig / weave install": ["pixie wig", "pixie weave", "pixie install", "pixie sew in", "pixie sew-in", "pixie sewin"],
   "Twists (with extensions)": ["twists with extensions", "passion twists", "marley twists", "senegalese twists", "kinky twists", "rope twists", "island twists", "island twist"],
   "Hybrid sew-in": ["hybrid sew in", "hybrid sew-in", "hybrid weave", "tracks + tapes hybrid", "tracks and tapes hybrid"],
-  "Tracks (+ Silk press) / Partial / Invisible sew-in": ["tracks", "track per row", "per track", "per row", "tracks add on", "tracks add-on", "silk press add on tracks", "silk press add-on tracks", "row sew in", "rows of sew in", "weave tracks", "weave on per row", "traditional weave rows", "partial sew in", "partial sewin", "invisible sew in", "invisible weave", "invisible weft", "invisible wefts"],
-  "Wash & blowdry": ["wash blowdry", "wash blow dry", "wash and blowdry", "wash and blow dry", "blowout"],
+  "Tracks (+ Silk press) / Partial / Invisible sew-in": ["tracks", "track per row", "per track", "per row", "one row", "individual sewn on track", "individual sewn on tracks", "tracks add on", "tracks add-on", "silk press add on tracks", "silk press add-on tracks", "row sew in", "rows of sew in", "weave tracks", "weave tracks per track", "weave on per row", "traditional weave rows", "partial sew in", "partial sewin", "invisible sew in", "invisible weave", "invisible weft", "invisible wefts"],
+  "Wash & blowdry": ["wash blowdry", "wash blow dry", "wash and blowdry", "wash and blow dry", "shampoo blowdry", "shampoo blow dry", "shampoo and blowdry", "shampoo and blow dry", "blowout"],
   "Updo": ["updo", "up do", "pin up", "french roll up", "french roll"],
+  "Wig cornrows": ["under wig", "wig cornrows", "cornrows for wig installation", "cornrows"],
   "Butterfly locs": ["butterfly locs"],
   "Faux locs": ["faux locs", "invisible locs", "soft locs"],
-  "Starter locs": ["starter locs", "loc start"],
+  "Starter locs": ["starter locs", "start locs", "loc start"],
   "Stitch braids": ["stitch braids", "stitch"],
 };
+
+const removalReviewKeywords: Record<string, string[]> = {
+  "Custom wig": ["unit customisation", "unit customization", "wig customisation", "wig customization", "wig customising", "construction of wig", "construction of the wig", "wig making", "wig construction", "bespoke wig", "custom unit"],
+  "Wig install (frontal / closure)": ["wig installation", "installation of the wig", "lace frontal installation", "lace closure installation", "frontal unit", "closure unit", "ready-made unit", "ready made unit", "unit install"],
+  "Tracks (+ Silk press) / Partial / Invisible sew-in": ["tracks add on", "tracks add-on", "silk press add on tracks", "silk press add-on tracks", "partial sew", "row sew", "one row", "individual sewn on track", "weave tracks", "weave tracks per track", "per track"],
+  "Natural hair education": ["hair education", "natural hair education", "hair health", "growth plan", "trichology", "tutorial"],
+};
+
+const genericRemovalEvidenceWords = new Set(["service", "services", "install", "installation", "treatment", "braids", "style", "styling", "with", "hair"]);
 
 function isColourService(service: string) {
   return service === "Balayage" || service === "Highlights" || service === "Full head colour" || service === "Wig colour";
@@ -2383,45 +2468,6 @@ function FreshnessLinkButtons({ row }: { row: FreshnessRecommendationGroup }) {
 
 function IconActionDivider() {
   return <span aria-hidden="true" className="mx-1 h-6 w-px bg-stone-200" />;
-}
-
-function IconActionButton({
-  label,
-  disabled,
-  onClick,
-  children,
-  variant = "outline",
-  tone = "neutral",
-}: {
-  label: string;
-  disabled?: boolean;
-  onClick: () => void;
-  children: React.ReactNode;
-  variant?: "outline" | "ghost";
-  tone?: "accept" | "reject" | "neutral";
-}) {
-  const toneClass =
-    tone === "accept"
-      ? "hover:bg-emerald-100 hover:text-emerald-800 focus-visible:bg-emerald-100 focus-visible:text-emerald-800"
-      : tone === "reject"
-        ? "hover:bg-red-100 hover:text-red-800 focus-visible:bg-red-100 focus-visible:text-red-800"
-        : "hover:bg-stone-100 hover:text-stone-950 focus-visible:bg-stone-100 focus-visible:text-stone-950";
-
-  return (
-    <button
-      type="button"
-      aria-label={label}
-      title={label}
-      disabled={disabled}
-      onClick={onClick}
-      className={cn(
-        "inline-flex size-8 items-center justify-center rounded-md text-stone-700 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-200 disabled:cursor-not-allowed disabled:opacity-35 disabled:hover:bg-transparent disabled:hover:text-stone-700",
-        variant === "ghost" ? toneClass : cn("border border-stone-200 bg-white hover:border-stone-300", toneClass),
-      )}
-    >
-      {children}
-    </button>
-  );
 }
 
 function buildActionItems(drafts: StylistDraft[], checks: DirectoryCheck[], suggestions: DiscoverySuggestion[]): ActionItem[] {
