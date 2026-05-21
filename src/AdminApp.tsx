@@ -9,11 +9,13 @@ import {
   ChevronDown,
   ChevronRight,
   ChevronUp,
+  ChevronsRight,
   ClockAlert,
   ExternalLink,
   FileText,
   Filter,
   Globe,
+  Link2,
   Loader2,
   LogOut,
   Plus,
@@ -66,6 +68,8 @@ type DraftForm = {
   rawServices: string;
   services: string[];
 };
+
+type DraftEditorStep = "details" | "services" | "review";
 
 type DirectoryCheck = {
   id: string;
@@ -934,8 +938,9 @@ function StylistsPage({
   onApproveDraft: () => void;
   onDeleteDraft: () => void;
 }) {
+  const readyDraftCount = editableDrafts.filter((draft) => getDraftDisplayStatus(draft) === "ready_to_publish").length;
   const draftCount = editableDrafts.filter((draft) => getDraftDisplayStatus(draft) === "draft").length;
-  const ready = dashboard?.drafts.readyToApprove ?? editableDrafts.filter((draft) => draft.status === "ready_to_approve").length;
+  const ready = readyDraftCount || dashboard?.drafts.readyToApprove || 0;
   const published = publishedStylists.length || dashboard?.freshness.total || 0;
   const statusLabel = statusFilter === "all" ? "All statuses" : getStylistStatusLabel(statusFilter);
 
@@ -1113,34 +1118,52 @@ function DraftEditorDrawer({
   onApprove: () => void;
   onDelete: () => void;
 }) {
-  const completeness = getDraftCompleteness(draft);
   const isPublished = getDraftDisplayStatus(draft) === "published";
+  const displayStatus = getDraftDisplayStatus(draft);
+  const [activeStep, setActiveStep] = useState<DraftEditorStep>("details");
+  const stepOrder: DraftEditorStep[] = ["details", "services", "review"];
+  const activeStepIndex = stepOrder.indexOf(activeStep);
+  const canGoBack = activeStepIndex > 0;
+  const canGoNext = activeStepIndex < stepOrder.length - 1;
+
+  useEffect(() => {
+    setActiveStep("details");
+  }, [draft.id]);
+
+  function goToPreviousStep() {
+    if (canGoBack) {
+      setActiveStep(stepOrder[activeStepIndex - 1]);
+    }
+  }
+
+  function goToNextStep() {
+    if (canGoNext) {
+      setActiveStep(stepOrder[activeStepIndex + 1]);
+    }
+  }
 
   return (
     <div className="fixed inset-0 z-50 bg-stone-950/20 backdrop-blur-[1px]">
       <button type="button" aria-label="Close editor" className="absolute inset-0 cursor-default" onClick={onClose} />
-      <aside className="absolute inset-y-0 right-0 flex w-full max-w-[560px] flex-col overflow-hidden bg-[#f8f8f7] shadow-2xl">
-        <div className="shrink-0 px-7 pb-5 pt-6">
-          <button type="button" onClick={onClose} className="inline-flex items-center gap-2 text-sm text-stone-500 hover:text-stone-950">
-            <ArrowLeft className="size-4" />
-            Back to stylists
-          </button>
-          <div className="mt-5">
-            <p className="inline-flex rounded-full bg-stone-950 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.22em] text-white">ROW K ADMIN</p>
-            <div className="mt-4 flex flex-wrap items-center gap-2">
-              <h2 className="text-xl font-semibold tracking-tight text-stone-950">{draft.name || "Untitled stylist"}</h2>
-              <DraftTableStatusBadge draft={draft} />
+      <aside className="absolute inset-y-0 right-0 flex w-full max-w-[628px] flex-col overflow-hidden border-l border-stone-200 bg-white shadow-2xl">
+        <div className="shrink-0 border-b border-stone-200 px-7 pb-7 pt-7">
+          <div className="flex items-center justify-between gap-3">
+            <div className="flex items-center gap-2 text-stone-700">
+              <button type="button" onClick={onClose} className="inline-flex size-8 items-center justify-center rounded-md hover:bg-stone-100" aria-label="Close editor">
+                <ChevronsRight className="size-4" />
+              </button>
             </div>
-            <div className="mt-4 flex items-center gap-3">
-              <div className="h-2 flex-1 overflow-hidden rounded-full bg-stone-100">
-                <div className="h-full rounded-full bg-stone-950" style={{ width: `${completeness}%` }} />
-              </div>
-              <span className="w-10 text-right text-xs tabular-nums text-stone-600">{completeness}%</span>
-            </div>
+            <DraftStatusPill status={displayStatus} />
           </div>
+
+          <div className="mt-6 flex flex-wrap items-center justify-between gap-3">
+            <h2 className="text-2xl font-semibold tracking-tight text-stone-950">{draft.name || "Untitled stylist"}</h2>
+          </div>
+
+          <DraftEditorStepper activeStep={activeStep} onStepChange={setActiveStep} />
         </div>
 
-        <div className="min-h-0 flex-1 overflow-y-auto px-7 pb-28">
+        <div className="min-h-0 flex-1 overflow-y-auto px-7 py-7 pb-32">
           <DraftEditor
             draft={draft}
             regions={regions}
@@ -1152,25 +1175,94 @@ function DraftEditorDrawer({
             onApprove={onApprove}
             onDelete={onDelete}
             canDelete={!isPublished}
+            activeStep={activeStep}
             isEmbedded
           />
         </div>
 
         <div className="shrink-0 border-t border-stone-200 bg-white/95 px-7 py-4 shadow-[0_-12px_28px_rgba(15,23,42,0.06)] backdrop-blur">
-          <div className="flex items-center justify-end gap-3">
-            <Button type="button" variant="outline" onClick={onSave} disabled={isBusy} className="rounded-md bg-white">
-              <Save className="size-4" />
-              {isPublished ? "Save changes" : "Save draft"}
+          <div className="grid grid-cols-2 gap-4">
+            <Button type="button" variant="outline" onClick={canGoBack ? goToPreviousStep : onSave} disabled={isBusy} className="h-11 rounded-md bg-white">
+              {canGoBack ? <ArrowLeft className="size-4" /> : <Save className="size-4" />}
+              {canGoBack ? "Back" : isPublished ? "Save changes" : "Save draft"}
             </Button>
-            {!isPublished ? (
-              <Button type="button" onClick={onApprove} disabled={isBusy} className="rounded-md bg-stone-950">
-                <Check className="size-4" />
-                Submit for review
+            {canGoNext ? (
+              <Button type="button" onClick={goToNextStep} disabled={isBusy} className="h-11 rounded-md bg-stone-950">
+                {activeStep === "details" ? "Next: Services" : "Next: Review"}
               </Button>
-            ) : null}
+            ) : !isPublished ? (
+              <Button type="button" onClick={onApprove} disabled={isBusy} className="h-11 rounded-md bg-stone-950">
+                Publish
+              </Button>
+            ) : (
+              <Button type="button" onClick={onSave} disabled={isBusy} className="h-11 rounded-md bg-stone-950">
+                Save
+              </Button>
+            )}
           </div>
         </div>
       </aside>
+    </div>
+  );
+}
+
+function DraftStatusPill({ status }: { status: string }) {
+  const label = getStylistStatusLabel(status);
+  const colorClass =
+    status === "ready_to_publish"
+      ? "bg-emerald-100 text-emerald-800"
+      : status === "published"
+        ? "bg-blue-100 text-blue-800"
+        : "bg-stone-100 text-stone-700";
+
+  return (
+    <span className={cn("inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm font-medium", colorClass)}>
+      {status === "ready_to_publish" ? <Check className="size-3.5" /> : null}
+      {label}
+    </span>
+  );
+}
+
+function DraftEditorStepper({
+  activeStep,
+  onStepChange,
+}: {
+  activeStep: DraftEditorStep;
+  onStepChange: (step: DraftEditorStep) => void;
+}) {
+  const steps = [
+    { id: "details" as const, number: 1, label: "Details" },
+    { id: "services" as const, number: 2, label: "Services" },
+    { id: "review" as const, number: 3, label: "Review" },
+  ];
+
+  return (
+    <div className="mt-5 border-t border-stone-200 pt-5">
+      <div className="mx-auto grid max-w-[440px] grid-cols-[1fr_1fr_1fr] items-start">
+        {steps.map((step, index) => (
+          <div key={step.id} className="relative flex flex-col items-center gap-2 text-center">
+            {index > 0 ? <span className="absolute right-1/2 top-4 h-px w-full bg-stone-200" /> : null}
+            <button
+              type="button"
+              onClick={() => onStepChange(step.id)}
+              aria-current={step.id === activeStep ? "step" : undefined}
+              className="group relative z-10 flex flex-col items-center gap-2 rounded-md px-3 text-center outline-none focus-visible:ring-2 focus-visible:ring-stone-950 focus-visible:ring-offset-2"
+            >
+              <span
+                className={cn(
+                  "inline-flex size-8 items-center justify-center rounded-full border text-sm font-semibold transition",
+                  step.id === activeStep
+                    ? "border-stone-200 bg-stone-100 text-stone-950 group-hover:border-stone-300 group-hover:bg-stone-200"
+                    : "border-transparent bg-stone-100 text-stone-500 group-hover:border-stone-300 group-hover:bg-stone-200 group-hover:text-stone-900",
+                )}
+              >
+                {step.number}
+              </span>
+              <span className={cn("text-sm transition", step.id === activeStep ? "font-medium text-stone-950" : "text-stone-500 group-hover:text-stone-900")}>{step.label}</span>
+            </button>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
@@ -2752,6 +2844,7 @@ function DraftEditor({
   onApprove,
   onDelete,
   canDelete = true,
+  activeStep = "details",
   isEmbedded = false,
 }: {
   draft: StylistDraft;
@@ -2764,9 +2857,15 @@ function DraftEditor({
   onApprove: () => void;
   onDelete: () => void;
   canDelete?: boolean;
+  activeStep?: DraftEditorStep;
   isEmbedded?: boolean;
 }) {
   const bookingMatchesInstagram = urlsMatch(draft.bookingUrl, draft.instagramUrl);
+  const visibleWarnings = getVisibleDraftWarnings(draft);
+  const selectedAreaIds = getDraftAreaIds(draft);
+  const selectedLocationLabels = selectedAreaIds
+    .map((areaId) => regions.find((region) => region.id === areaId)?.label || areaLabelFromId(areaId))
+    .filter(Boolean);
 
   function updateInstagramUrl(instagramUrl: string) {
     onChange({
@@ -2782,81 +2881,110 @@ function DraftEditor({
     });
   }
 
-  const content = (
-    <div className="space-y-5">
-      {getVisibleDraftWarnings(draft).length ? (
-        <div className="rounded-md border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900">
-          {getVisibleDraftWarnings(draft).join(" ")}
-        </div>
-      ) : null}
+  const warningsContent = visibleWarnings.length ? (
+    <div className="rounded-md border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900">{visibleWarnings.join(" ")}</div>
+  ) : null;
 
-      <div className="grid gap-4">
-        <Field label="Name">
-          <Input value={draft.name} onChange={(event) => onChange({ name: event.target.value })} />
-        </Field>
+  const detailsContent = (
+    <section className="space-y-6">
+      <Field label="Name">
+        <Input value={draft.name} onChange={(event) => onChange({ name: event.target.value })} placeholder="Stylist name" className="h-11 rounded-md" />
+      </Field>
+
+      <div className="space-y-3">
+        <p className="text-xs font-semibold uppercase tracking-[0.12em] text-stone-500">Links</p>
+        <DraftLinkField
+          label="Instagram"
+          icon={<AtSign className="size-4" />}
+          value={draft.instagramUrl}
+          onChange={updateInstagramUrl}
+          placeholder="@handle or URL"
+          href={draft.instagramUrl}
+        />
+        <DraftLinkField
+          label="Booking URL"
+          icon={<Link2 className="size-4" />}
+          value={draft.bookingUrl}
+          onChange={(bookingUrl) => onChange({ bookingUrl })}
+          placeholder="https://..."
+          href={draft.bookingUrl}
+        >
+          <label className="flex items-center gap-2 text-sm font-medium text-stone-700">
+            <input
+              type="checkbox"
+              checked={bookingMatchesInstagram}
+              disabled={!draft.instagramUrl}
+              onChange={(event) => toggleBookingSameAsInstagram(event.target.checked)}
+              className="size-4 rounded border-stone-300 accent-stone-950 disabled:opacity-40"
+            />
+            Same as Instagram
+          </label>
+        </DraftLinkField>
       </div>
 
-      <div className="grid gap-4">
-        <MultiLocationPicker draft={draft} regions={regions} onChange={onChangeLocations} />
-      </div>
+      <DraftLocationSelector draft={draft} regions={regions} onChange={onChangeLocations} />
+    </section>
+  );
 
-      <div className="grid gap-4 sm:grid-cols-2">
-        <Field label="Instagram">
-          <Input value={draft.instagramUrl} onChange={(event) => updateInstagramUrl(event.target.value)} />
-        </Field>
-        <Field label="Booking URL">
-          <div className="space-y-2">
-            <Input value={draft.bookingUrl} onChange={(event) => onChange({ bookingUrl: event.target.value })} />
-            <label className="flex items-center gap-2 text-xs font-medium normal-case tracking-normal text-stone-600">
-              <input
-                type="checkbox"
-                checked={bookingMatchesInstagram}
-                disabled={!draft.instagramUrl}
-                onChange={(event) => toggleBookingSameAsInstagram(event.target.checked)}
-                className="size-3.5 rounded border-stone-300 accent-stone-950"
-              />
-              Same as Instagram
-            </label>
-          </div>
-        </Field>
+  const servicesContent = (
+    <section className="space-y-5">
+      <div>
+        <h3 className="text-lg font-semibold tracking-tight text-stone-950">Services</h3>
+        <p className="mt-1 text-sm text-stone-500">Raw booking copy and matched services.</p>
       </div>
-
-      <div className="flex flex-wrap gap-2">
-        {[draft.instagramUrl, draft.bookingUrl].filter(Boolean).map((link, index) => (
-          <a
-            key={`${link}-${index}`}
-            href={link}
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center gap-2 rounded-full border border-stone-300 px-3 py-1 text-xs text-stone-700 hover:border-stone-900"
-          >
-            <ExternalLink className="size-3" />
-            Open source
-          </a>
-        ))}
-      </div>
-
       <Field label="Raw services">
         <Textarea value={(draft.rawServices || []).join("\n")} onChange={(value) => onChange({ rawServices: splitLines(value) })} />
       </Field>
-
       <ServicePicker services={services} selected={draft.services} onChange={(next) => onChange({ services: next })} />
+    </section>
+  );
+
+  const reviewContent = (
+    <section className="space-y-5">
+      <div>
+        <h3 className="text-lg font-semibold tracking-tight text-stone-950">Review</h3>
+        <p className="mt-1 text-sm text-stone-500">Check the final details before publishing.</p>
+      </div>
+      <div className="divide-y divide-stone-100 rounded-[8px] border border-stone-200 bg-white">
+        <DraftReviewRow label="Name" value={draft.name || "Untitled stylist"} />
+        <DraftReviewRow label="Instagram" value={draft.instagramUrl || "Not added"} />
+        <DraftReviewRow label="Booking URL" value={draft.bookingUrl || "Not added"} />
+        <DraftReviewRow label="Locations" value={selectedLocationLabels.length ? selectedLocationLabels.join(", ") : draft.areaLabel || "No location selected"} />
+        <DraftReviewRow label="Services" value={`${draft.services.length} selected`} />
+      </div>
+      {draft.services.length ? (
+        <div className="flex flex-wrap gap-2">
+          {draft.services.map((service) => (
+            <span key={service} className="rounded-md border border-stone-200 bg-stone-50 px-2.5 py-1 text-sm font-medium text-stone-700">
+              {service}
+            </span>
+          ))}
+        </div>
+      ) : null}
+    </section>
+  );
+
+  const stepContent = activeStep === "details" ? detailsContent : activeStep === "services" ? servicesContent : reviewContent;
+  const content = (
+    <div className="space-y-7">
+      {warningsContent}
+      {stepContent}
     </div>
   );
 
   if (isEmbedded) {
-	    return (
-	      <div className="rounded-[8px] border border-stone-200 bg-white p-6 shadow-sm">
-	        {content}
-	        {canDelete ? (
-	          <button type="button" onClick={onDelete} disabled={isBusy} className="mt-5 inline-flex items-center gap-2 text-xs font-medium text-red-700 disabled:opacity-50">
-	            <Trash2 className="size-4" />
-	            Delete draft
-	          </button>
-	        ) : null}
-	      </div>
-	    );
-	  }
+    return (
+      <div>
+        {content}
+        {canDelete && activeStep === "details" ? (
+          <button type="button" onClick={onDelete} disabled={isBusy} className="mt-7 inline-flex items-center gap-2 text-xs font-medium text-red-700 disabled:opacity-50">
+            <Trash2 className="size-4" />
+            Delete draft
+          </button>
+        ) : null}
+      </div>
+    );
+  }
 
   return (
     <Card className="rounded-md">
@@ -2890,6 +3018,105 @@ function DraftEditor({
       </CardHeader>
       <CardContent>{content}</CardContent>
     </Card>
+  );
+}
+
+function DraftReviewRow({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="grid gap-1 px-4 py-3 sm:grid-cols-[128px_1fr] sm:gap-4">
+      <span className="text-xs font-semibold uppercase tracking-[0.12em] text-stone-500">{label}</span>
+      <span className="min-w-0 break-words text-sm font-medium text-stone-900">{value}</span>
+    </div>
+  );
+}
+
+function DraftLinkField({
+  label,
+  icon,
+  value,
+  onChange,
+  placeholder,
+  href,
+  children,
+}: {
+  label: string;
+  icon: React.ReactNode;
+  value: string;
+  onChange: (value: string) => void;
+  placeholder: string;
+  href?: string;
+  children?: React.ReactNode;
+}) {
+  return (
+    <div className="rounded-[8px] border border-stone-200 bg-stone-50 px-4 py-4">
+      <div className="mb-3 flex items-center gap-2 text-sm font-semibold text-stone-900">
+        <span className="text-stone-500">{icon}</span>
+        {label}
+      </div>
+      <div className="flex items-center gap-3">
+        <Input value={value} onChange={(event) => onChange(event.target.value)} placeholder={placeholder} className="h-10 rounded-md bg-white" />
+        {href ? (
+          <a
+            href={href}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex size-9 shrink-0 items-center justify-center rounded-md text-stone-500 transition hover:bg-stone-100 hover:text-stone-950"
+            aria-label={`Open ${label}`}
+          >
+            <ExternalLink className="size-4" />
+          </a>
+        ) : (
+          <span className="size-9 shrink-0" />
+        )}
+      </div>
+      {children ? <div className="mt-3">{children}</div> : null}
+    </div>
+  );
+}
+
+function DraftLocationSelector({
+  draft,
+  regions,
+  onChange,
+}: {
+  draft: StylistDraft;
+  regions: RegionOption[];
+  onChange: (areaIds: string[]) => void;
+}) {
+  const selectedAreaIds = getDraftAreaIds(draft);
+  const london = regions.find((region) => region.id === "all-london");
+  const regionRows = regions.filter((region) => region.id !== "all-london");
+
+  function toggle(areaId: string) {
+    onChange(selectedAreaIds.includes(areaId) ? selectedAreaIds.filter((id) => id !== areaId) : [...selectedAreaIds, areaId]);
+  }
+
+  return (
+    <div className="space-y-3">
+      <p className="text-xs font-semibold uppercase tracking-[0.12em] text-stone-500">Locations</p>
+      {london ? (
+        <DraftLocationOption region={london} checked={selectedAreaIds.includes(london.id)} onToggle={() => toggle(london.id)} />
+      ) : null}
+      <div className="grid gap-2 pl-6 sm:grid-cols-2">
+        {regionRows.map((region) => (
+          <DraftLocationOption key={region.id} region={region} checked={selectedAreaIds.includes(region.id)} onToggle={() => toggle(region.id)} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function DraftLocationOption({ region, checked, onToggle }: { region: RegionOption; checked: boolean; onToggle: () => void }) {
+  return (
+    <label
+      className={cn(
+        "flex cursor-pointer items-center gap-3 rounded-[8px] border border-stone-200 bg-white px-4 py-3 text-sm font-medium text-stone-900 transition hover:border-stone-300",
+        checked ? "border-stone-400 bg-stone-50" : "",
+      )}
+    >
+      <input type="checkbox" checked={checked} onChange={onToggle} className="size-4 rounded border-stone-300 accent-stone-950" />
+      {region.label}
+    </label>
   );
 }
 
