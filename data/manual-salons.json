@@ -1,7 +1,7 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-05-20T23:57:55.938Z",
+    "updatedAt": "2026-05-21T00:07:27.937Z",
     "count": 600,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
@@ -4372,7 +4372,15 @@
         "LA weave",
         "Flipover / Versatile sew-in",
         "Hybrid sew-in",
-        "Tracks (+ Silk press) / Partial / Invisible sew-in"
+        "Tracks (+ Silk press) / Partial / Invisible sew-in",
+        "Tape ins",
+        "Custom wig",
+        "Half braids, half sew-in",
+        "Closure sew-in",
+        "Frontal ponytail / bun",
+        "Wig install (frontal / closure)",
+        "Relaxer / texturiser",
+        "Silk press"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -7778,7 +7786,8 @@
         "Balayage",
         "Wash & blowdry",
         "Silk press",
-        "Keratin treatment"
+        "Keratin treatment",
+        "Relaxer / texturiser"
       ],
       "hijabiFriendly": true
     },
@@ -8328,7 +8337,9 @@
         "Fulani / Lemonade braids",
         "Knotless braids",
         "Boho braids / goddess braids",
-        "Sleek ponytail / bun"
+        "Sleek ponytail / bun",
+        "Stitch braids",
+        "Half up half down"
       ]
     },
     {
@@ -8437,7 +8448,7 @@
       "websiteUrl": "",
       "instagramUrl": "https://www.instagram.com/lael.london/",
       "services": [
-        "Wig install",
+        "Wig install (frontal / closure)",
         "Traditional sew-in / leave out",
         "Closure sew-in",
         "Frontal sew-in",
@@ -8447,7 +8458,8 @@
         "Texture release",
         "Relaxer / texturiser",
         "Wash & blowdry",
-        "Sew-in take-down"
+        "Sew-in take-down",
+        "Microlinks"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -8758,7 +8770,7 @@
         "Traditional sew-in / leave out",
         "Closure sew-in",
         "Frontal sew-in",
-        "Tracks / Silk press + tracks / Invisible sew-in",
+        "Tracks (+ Silk press) / Partial / Invisible sew-in",
         "Half up half down",
         "Sew-in take-down",
         "Full head colour",
@@ -8771,11 +8783,16 @@
         "Texture release",
         "Silk press",
         "Pixie / finger waves",
-        "Wig install",
+        "Wig install (frontal / closure)",
         "Sleek ponytail / bun",
         "Trim / Hair cut",
         "Retwist",
-        "Twist out / Flexi rod"
+        "Twist out / Flexi rod",
+        "Scalp care",
+        "Flipover / Versatile sew-in",
+        "Crochet",
+        "Butterfly locs",
+        "Frontal ponytail / bun"
       ]
     },
     {
@@ -8841,7 +8858,7 @@
       "instagramUrl": "https://www.instagram.com/madousshairstudio/",
       "services": [
         "Traditional sew-in / leave out",
-        "Wig install",
+        "Wig install (frontal / closure)",
         "Keratin treatment",
         "Knotless braids",
         "Boho braids / goddess braids",
@@ -8849,7 +8866,8 @@
         "Moisturising treatment",
         "K-18 treatment",
         "Olaplex treatment",
-        "Scalp care"
+        "Scalp care",
+        "Wig cornrows"
       ],
       "summary": "Manual entry added from your known South West London keratin treatment list.",
       "source": "manual",
@@ -8899,11 +8917,12 @@
       "websiteUrl": "https://maisonoceaneltd.as.me/schedule/2d295ea5",
       "instagramUrl": "https://www.instagram.com/maisonoceaneltd/",
       "services": [
-        "Wig install",
+        "Wig install (frontal / closure)",
         "Closure sew-in",
         "Frontal sew-in",
         "Traditional sew-in / leave out",
-        "Custom wig"
+        "Custom wig",
+        "Frontal ponytail / bun"
       ],
       "summary": "Manual entry added from your known South London sew-in list. Region mapped to South East for now because the current app does not yet have a separate South London filter.",
       "source": "manual",
@@ -8923,7 +8942,7 @@
       "websiteUrl": "",
       "instagramUrl": "https://www.instagram.com/maisonstylehair/",
       "services": [
-        "Wig install",
+        "Wig install (frontal / closure)",
         "Texture release",
         "Silk press",
         "Full head colour",
@@ -8932,12 +8951,13 @@
         "K-18 treatment",
         "Olaplex treatment",
         "Traditional sew-in / leave out",
-        "Tracks / Silk press + tracks / Invisible sew-in",
+        "Tracks (+ Silk press) / Partial / Invisible sew-in",
         "LA weave",
         "Sew-in take-down",
-        "Cornrows / Twists / Underwig cornrows",
+        "Wig cornrows",
         "Custom wig",
-        "Twist out / Flexi rod"
+        "Twist out / Flexi rod",
+        "Bridal / Editorial"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -9475,7 +9495,9 @@
         "Feed-in braids",
         "Wig cornrows",
         "Twists (with extensions)",
-        "Crochet"
+        "Crochet",
+        "Knotless braids",
+        "Fulani / Lemonade braids"
       ]
     },
     {
@@ -10752,7 +10774,8 @@
         "Olaplex treatment",
         "Crochet",
         "Bridal / Editorial",
-        "Twists (with extensions)"
+        "Twists (with extensions)",
+        "Updo"
       ]
     },
     {
@@ -15042,7 +15065,8 @@
         "Wig install (frontal / closure)",
         "Frontal ponytail / bun",
         "Custom wig",
-        "Sleek ponytail / bun"
+        "Sleek ponytail / bun",
+        "Updo"
       ],
       "summary": "Manual Instagram-led entry enriched from spreadsheet import.",
       "source": "manual",

@@ -86,10 +86,10 @@ const serviceRuleMatchers = [
   ["Knotless braids", [/\bknotless\b/]],
   ["Box braids", [/\bbox\b.*\bbraids?\b/]],
   ["Crochet", [/\bcrochet\b/]],
-  ["Creative braids (e.g. patewo)", [/\bpatewo\b/, /\bcreative\b.*\bbraids?\b/]],
+  ["Creative braids (e.g. patewo)", [/\bpatewo\b/, /\bdolly\s+braids?\b/, /\bshuku\b/, /\bkoroba\s+braids?\b/, /\bcreative\b.*\bbraids?\b/]],
   ["Feed-in braids", [/\bfeed\s*in\b/, /\bfeed-in\b/, /\ball\s+back\b.*\b(braids?|cornrows?|feed\s*ins?)\b/, /\b(braids?|cornrows?|feed\s*ins?)\b.*\ball\s+back\b/, /\bbraids?\b.*\bgoing\s+back\b/, /\bgoing\s+back\b.*\bbraids?\b/]],
   ["French curl", [/\bfrench\s+curl\b/]],
-  ["Fulani / Lemonade braids", [/\bfulani\b/, /\blemonade\b/]],
+  ["Fulani / Lemonade braids", [/\bfulani\b/, /\blemonade\b/, /\balicia\s+keys?\s+braids?\b/]],
   ["Miracle knots", [/\bmiracle\s+knots?\b/]],
   ["Microbraids / x-small braids", [/\bmicro\s*braids?\b/, /\bmicrobraids?\b/, /\bx\s*small\b.*\bbraids?\b/, /\bxs\b.*\bbraids?\b/]],
   ["Pre-parting", [/\bpre\s*part(ing)?\b/, /\bpre-part(ing)?\b/]],
@@ -120,11 +120,11 @@ const serviceRuleMatchers = [
   ["Silk press", [/\bsilk\s+press\b/, /\bsilkpress\b/, /\bpress\s+and\s+curl\b/]],
   ["Twist out / Flexi rod", [/\btwist\s*out\b/, /\bflexi\s*rod\b/, /\bflexi-rod\b/, /\bperm\s+rod\b/]],
   ["Wig cornrows", [/\bunder\s*wig\b/, /\bwig\s+cornrows?\b/, /\bcornrows?\b/]],
-  ["Natural hair education", [/\beducation\b/, /\btutorial\b/, /\btrichology\b/, /\bhair\s+health\b.*\b(assessment|plan|growth|consultation)\b/, /\bgrowth\s+plan\b/, /\bconsultation\b.*\bnatural\b/, /\bnatural\s+hair\b.*\b(class|education|consultation)\b/, /\bcurl\s+makeover\b.*\b(hands?\s*on|tutorial|styling)\b/]],
+  ["Natural hair education", [/\b(afro|natural|curly|curl|hair)\b.*\beducation\b/, /\beducation\b.*\b(afro|natural|curly|curl|hair)\b/, /\b(hair|curl|styling)\b.*\btutorial\b/, /\btutorial\b.*\b(hair|curl|styling)\b/, /\btrichology\b/, /\bhair\s+health\b.*\b(assessment|plan|growth|consultation)\b/, /\bgrowth\s+plan\b/, /\bconsultation\b.*\bnatural\b/, /\bnatural\s+hair\b.*\b(class|education|consultation)\b/, /\bcurl\s+makeover\b.*\b(hands?\s*on|tutorial|styling)\b/]],
   ["Sleek ponytail / bun", [/\bsleek\b.*\b(pony|ponytail|bun)\b/, /\bpony\s*tail\b/, /\bponytail\b/, /\bbun\b/]],
   ["Half up half down", [/\bhalf\s+up\b.*\bhalf\s+down\b/, /\bhalf\s+up\s+half\s+down\b/, /\bhalf\s+up\s+half\s+down\b.*\b(quick\s+weave|sew\s+in|sewin|weave)\b/]],
   ["Pixie / finger waves", [/\bfinger\s+waves?\b/, /\bpixie\b/, /\bwrap\b/]],
-  ["Updo", [/\bup\s*do\b/, /\bupdo\b/, /\bpin\s*up\b/]],
+  ["Updo", [/\bup\s*do\b/, /\bupdo\b/, /\bpin\s*up\b/, /\bfrench\s+roll\s+up\b/, /\bfrench\s+roll\b/]],
 ];
 
 const serviceNegationHints = {
@@ -136,7 +136,7 @@ const serviceNegationHints = {
   "Butterfly locs": ["butterfly locs"],
   "Clip ins (+ Silk press)": ["clip ins", "clip in"],
   "Closure sew-in": ["closure sew in", "closure sew-in", "closure sewin", "closure weave", "closure behind the hairline"],
-  "Creative braids (e.g. patewo)": ["creative braids", "patewo"],
+  "Creative braids (e.g. patewo)": ["creative braids", "patewo", "dolly braids", "shuku", "koroba braids"],
   "Crochet": ["crochet"],
   "Curly cut / Wash & go": ["curly cut", "wash go", "wash and go"],
   "Custom wig": ["custom wig", "bespoke wig", "custom handmade wig", "custom handmade wigs", "custom made frontal unit", "custom made closure unit", "customised closure unit", "customized closure unit", "custom mini frontal unit", "unit customisation", "unit customization", "wig making", "wig construction", "wig customising", "wig customisation", "wig customization", "construction and customisation", "construction and customization"],
@@ -146,7 +146,7 @@ const serviceNegationHints = {
   "French curl": ["french curl"],
   "Frontal ponytail / bun": ["frontal ponytail", "frontal pony", "frontal bun"],
   "Frontal sew-in": ["frontal sew in", "frontal sewin", "frontal weave"],
-  "Fulani / Lemonade braids": ["fulani", "lemonade"],
+  "Fulani / Lemonade braids": ["fulani", "lemonade", "alicia keys braids"],
   "Full head colour": ["full head colour", "full head color", "colour", "color", "dye", "tint"],
   "Hair Botox": ["hair botox", "botox"],
   "Half braids, half sew-in": ["half braids half sew in", "half braid half weave", "half weave"],
@@ -186,7 +186,7 @@ const serviceNegationHints = {
   "Twist out / Flexi rod": ["twist out", "flexi rod", "perm rod"],
   "Twists (with extensions)": ["twists with extensions", "passion twists", "marley twists", "senegalese twists", "kinky twists", "rope twists", "island twists", "island twist"],
   "U-Part wig install": ["u part", "upart", "u part wig", "upart wig", "v part", "vpart", "v part wig", "vpart wig", "u vpart", "uvpart", "half wig"],
-  "Updo": ["updo", "up do", "pin up"],
+  "Updo": ["updo", "up do", "pin up", "french roll up", "french roll"],
   "Wash & blowdry": ["wash blowdry", "wash blow dry", "wash and blowdry", "wash and blow dry", "blowout"],
   "Wig colour": ["wig colour", "wig color", "wig dye", "colour wig", "color wig"],
   "Wig cornrows": ["under wig", "wig cornrows", "cornrows"],
@@ -1698,7 +1698,7 @@ function shouldSuppressSleekPonytailForFrontalContext(service, context) {
     return false;
   }
 
-  return hasFrontalPonytailContext(context.line);
+  return hasFrontalPonytailContext(context.line) || hasBraidedPonytailContext(context.line);
 }
 
 function shouldSuppressNaturalHairEducationForVagueContext(service, context) {
@@ -1804,7 +1804,11 @@ function hasFrontalPonytailContext(text) {
 }
 
 function hasNaturalHairEducationContext(text) {
-  return /\beducation\b|\btutorial\b|\btrichology\b|\bhair\s+health\b.*\b(assessment|plan|growth|consultation)\b|\bgrowth\s+plan\b|\bconsultation\b.*\bnatural\b|\bnatural\s+hair\b.*\b(class|education|consultation)\b|\bcurl\s+makeover\b.*\b(hands?\s*on|tutorial|styling)\b/.test(text);
+  return /\b(afro|natural|curly|curl|hair)\b.*\beducation\b|\beducation\b.*\b(afro|natural|curly|curl|hair)\b|\b(hair|curl|styling)\b.*\btutorial\b|\btutorial\b.*\b(hair|curl|styling)\b|\btrichology\b|\bhair\s+health\b.*\b(assessment|plan|growth|consultation)\b|\bgrowth\s+plan\b|\bconsultation\b.*\bnatural\b|\bnatural\s+hair\b.*\b(class|education|consultation)\b|\bcurl\s+makeover\b.*\b(hands?\s*on|tutorial|styling)\b/.test(text);
+}
+
+function hasBraidedPonytailContext(text) {
+  return /\b(braided?|braids?|feed\s*in|feed-in|cornrows?)\b.*\b(pony|ponytail)\b/.test(text) || /\b(pony|ponytail)\b.*\b(braided?|braids?|feed\s*in|feed-in|cornrows?)\b/.test(text);
 }
 
 function matchServicesByRule(input) {

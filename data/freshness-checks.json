@@ -1,7 +1,7 @@
 {
   "meta": {
     "source": "freshness-checks",
-    "updatedAt": "2026-05-20T23:57:55.950Z",
+    "updatedAt": "2026-05-21T00:07:27.950Z",
     "count": 273,
     "checkedCount": 600,
     "total": 600
@@ -1838,348 +1838,63 @@
           "Bob braids full"
         ]
       }
+    },
+    "momos-hair": {
+      "addedServices": [
+        "Box braids"
+      ],
+      "removedServices": [],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {
+        "Box braids": [
+          "Chunky French Braids",
+          "Boho Vibe Braids",
+          "MOMO’s BOHO BRAIDS 👸🏾",
+          "Small Knotless Box Braids using (Human Hair )"
+        ]
+      }
+    },
+    "loving-hair-care": {
+      "addedServices": [
+        "Olaplex treatment",
+        "Wig colour"
+      ],
+      "removedServices": [
+        "Pixie / finger waves"
+      ],
+      "addedServiceFamilies": [
+        "colour"
+      ],
+      "addedServiceEvidence": {
+        "Olaplex treatment": [
+          "Facial treatment",
+          "Treatments",
+          "Hot oil treatment",
+          "Protein treatments"
+        ],
+        "Wig colour": [
+          "Colour service"
+        ]
+      }
+    },
+    "lael-london": {
+      "addedServices": [
+        "Wig cornrows"
+      ],
+      "removedServices": [
+        "Wig install (frontal / closure)",
+        "Closure sew-in",
+        "Wash & blowdry"
+      ],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {
+        "Wig cornrows": [
+          ": Please ensure your hair is free of any styles such as braids, cornrows, or sew-ins etc."
+        ]
+      }
     }
   },
   "checks": [
-    {
-      "id": "momos-hair",
-      "name": "Momos Hair",
-      "areaLabel": "North West",
-      "bookingUrl": "https://app.acuityscheduling.com/schedule/c88c31be",
-      "instagramUrl": "https://www.instagram.com/momoshair/",
-      "websiteUrl": "https://app.acuityscheduling.com/schedule/c88c31be",
-      "issues": [
-        "Possible new services found",
-        "Possible removed services found"
-      ],
-      "linkChecks": [
-        {
-          "type": "booking",
-          "url": "https://app.acuityscheduling.com/schedule/c88c31be",
-          "finalUrl": "https://app.acuityscheduling.com/schedule/c88c31be",
-          "status": "ok",
-          "httpStatus": 200,
-          "issues": []
-        },
-        {
-          "type": "instagram",
-          "url": "https://www.instagram.com/momoshair/",
-          "finalUrl": "https://www.instagram.com/accounts/login/?next=https%3A%2F%2Fwww.instagram.com%2Fmomoshair%2F&is_from_rle",
-          "status": "ok",
-          "httpStatus": 200,
-          "issues": []
-        }
-      ],
-      "serviceCheck": {
-        "confidence": "high",
-        "rawServices": [
-          "Chunky French Braids",
-          "Boho Vibe Braids",
-          "Pick n Drop",
-          "MOMO’s BOHO BRAIDS 👸🏾",
-          "Small Knotless Box Braids using (Human Hair )",
-          "Boho Fulani Braids",
-          "Hybrid Boho Braids",
-          "Box Braids",
-          "Re touch of Box Braids",
-          "Mixing hair for your custom color",
-          "Crochet",
-          "Curls (short)",
-          "Curls (long)",
-          "Feedin in cornrows at front and crochet curls at back",
-          "Human Hair Crochet",
-          "Crochet Locs",
-          "Crochet Locs",
-          "Individual Crochet Locs",
-          "Crochet Twist , passion twist and or Braids",
-          "CROCHET (Twist , Boxbraids ,Passion Twist )",
-          "Feed - Ins (Cornrows)",
-          "Feed - Ins (2)",
-          "Classic Slick back (6 braids )",
-          "6 Feeding in Braids with Curly Ends",
-          "Small Feed -ins Mid Back",
-          "Small Boho Feed - ins",
-          "Goddess Braids",
-          "Goddess Box Braids (Bob Length)",
-          "Goddess Fulani Braids",
-          "Goddess Box Braids with ends curled with Rods .",
-          "Knotless Box Braids",
-          "Knotless Box Braids (Mid Back)",
-          "Knotless jumbo parting Box Braids (Mid Back )",
-          "French Box Braids (Knotless )",
-          "Locs",
-          "Boho Locs (Distressed )",
-          "Mo's Light Weight Box Braids",
-          "Mo’s light weight box braids (Mid Back )",
-          "Protective Hairstyles",
-          "Under wig Braided Cornrows",
-          "Slick Hairstyles",
-          "Slick Back Pony",
-          "Twist",
-          "Human Hair Afro Kinky Twist",
-          "Passion twist (Mid Back )",
-          "Afro Kinky Twist"
-        ],
-        "matchedServices": [
-          "Boho braids / goddess braids",
-          "Knotless braids",
-          "Box braids",
-          "Fulani / Lemonade braids",
-          "Full head colour",
-          "Crochet",
-          "Feed-in braids",
-          "Wig cornrows",
-          "Twists (with extensions)",
-          "Starter locs"
-        ],
-        "areaId": "all-london",
-        "areaLabel": "London"
-      },
-      "currentServices": [
-        "Bridal / Editorial",
-        "Boho braids / goddess braids",
-        "Half braids, half sew-in",
-        "Microbraids / x-small braids",
-        "Faux locs",
-        "Feed-in braids",
-        "Wig cornrows",
-        "Twists (with extensions)",
-        "Crochet"
-      ],
-      "detectedServices": [
-        "Boho braids / goddess braids",
-        "Knotless braids",
-        "Box braids",
-        "Fulani / Lemonade braids",
-        "Full head colour",
-        "Crochet",
-        "Feed-in braids",
-        "Wig cornrows",
-        "Twists (with extensions)",
-        "Starter locs"
-      ],
-      "addedServices": [
-        "Box braids",
-        "Fulani / Lemonade braids",
-        "Full head colour",
-        "Starter locs"
-      ],
-      "removedServices": [
-        "Bridal / Editorial",
-        "Half braids, half sew-in",
-        "Microbraids / x-small braids",
-        "Faux locs"
-      ],
-      "checkedAt": "2026-05-20T23:25:03.084Z"
-    },
-    {
-      "id": "dvh-salon",
-      "name": "Dvh Salon",
-      "areaLabel": "East",
-      "bookingUrl": "https://www.dvhsalon.com/book-online",
-      "instagramUrl": "https://www.instagram.com/dvh_salon/",
-      "websiteUrl": "https://www.dvhsalon.com/book-online",
-      "issues": [
-        "Possible new services found",
-        "Possible removed services found"
-      ],
-      "linkChecks": [
-        {
-          "type": "booking",
-          "url": "https://www.dvhsalon.com/book-online",
-          "finalUrl": "https://www.dvhsalon.com/book-online",
-          "status": "ok",
-          "httpStatus": 200,
-          "issues": []
-        },
-        {
-          "type": "instagram",
-          "url": "https://www.instagram.com/dvh_salon/",
-          "finalUrl": "https://www.instagram.com/accounts/login/?next=https%3A%2F%2Fwww.instagram.com%2Fdvh_salon%2F&is_from_rle",
-          "status": "ok",
-          "httpStatus": 200,
-          "issues": []
-        }
-      ],
-      "serviceCheck": {
-        "confidence": "medium",
-        "rawServices": [
-          "Book Hair Extension Installations & Wigs",
-          "TAPE IN EXTENSIONS",
-          "WIGS",
-          "DESIGN YOUR OWN WIG",
-          "CLIP INS",
-          "CLIP IN PONYTAIL",
-          "CLOSURES/FRONTALS",
-          "Clip in's",
-          "U-part wigs",
-          "Tapes",
-          "Ponytail",
-          "Frontals",
-          "Wig making/installs",
-          "Hair extension colouring",
-          "Braids",
-          "Natural hair colouring",
-          "Sew In with Leaveout",
-          "Ponytail Extension",
-          "Tracks Install",
-          "Half Braids Half Sew In",
-          "Closure Sew In",
-          "360 Frontal Sew In",
-          "Clip in install",
-          "Frontal Half Up Half Down",
-          "LA Weave",
-          "Frontal Sew In",
-          "Frontal Ponytail Install",
-          "Half Up Half Down Sew In",
-          "Versatile Sew In",
-          "Half Tapes Half Sew In",
-          "Tape Instalment",
-          "Micro rings install",
-          "Flip over sew In Leaveout",
-          "Frontal ponytail install",
-          "Tracks install",
-          "Half up half down sew in",
-          "Closure sew in",
-          "Ponytail Extensions",
-          "Frontal sew in",
-          "Half tapes Half sew in",
-          "360 frontal sew in",
-          "Half braids half sew in",
-          "Tape instalment",
-          "La weave(microlinks)",
-          "Flip over sew in",
-          "Custom wig making using a closure",
-          "Lace closure wig install",
-          "Custom wig using our wig + install",
-          "Custom wig making using a 360 frontal",
-          "Custom wig making using 13x4/6 frontal",
-          "Lace frontal wig install",
-          "Full lace wig install",
-          "Full lace wig install using our wig",
-          "ReTaping of old tapes",
-          "Frontal/closure sew in refreshment",
-          "Wig reGlue & restyle",
-          "Full package wig refreshment",
-          "£15 extra to have your hair cornrowed.",
-          "Frontal/Closure sew in Removal",
-          "This service doesn&#x27;t include a wash.",
-          "Half Tapes Half Sew in Removal",
-          "This service includes a wash.",
-          "Half up half down sew in refreshment",
-          "Tapes Refreshment",
-          "Half Braids Half Sew In Removal",
-          "This service does not include a wash.",
-          "Sew in with leave out refreshment",
-          "La weave Refreshment",
-          "Half Braids Half Sew In Refreshment",
-          "LA Weave Removal",
-          "Wash & blow dry not included.",
-          "Tapes removal",
-          "Sew in with leaveout removal",
-          "Half tapes Half sew in Refreshment",
-          "Frontal sew in refreshment",
-          "Bleaching from colour 1b to (up to) #613",
-          "Frontals/closures colouring",
-          "Bleaching from colour 1b to colour #27",
-          "Hair relaxer",
-          "Slik press only"
-        ],
-        "matchedServices": [
-          "Tape ins",
-          "Clip ins (+ Silk press)",
-          "Sleek ponytail / bun",
-          "U-Part wig install",
-          "Custom wig",
-          "Traditional sew-in / leave out",
-          "Tracks (+ Silk press) / Partial / Invisible sew-in",
-          "Half braids, half sew-in",
-          "Closure sew-in",
-          "Frontal sew-in",
-          "Half up half down",
-          "LA weave",
-          "Frontal ponytail / bun",
-          "Flipover / Versatile sew-in",
-          "Microlinks",
-          "Wig install (frontal / closure)",
-          "Sew-in take-down",
-          "Braid take-down",
-          "Full head colour",
-          "Relaxer / texturiser",
-          "Wash & blowdry",
-          "Silk press",
-          "Trim / Hair cut",
-          "Stitch braids",
-          "Box braids",
-          "Boho braids / goddess braids",
-          "Wig cornrows",
-          "Knotless braids",
-          "Fulani / Lemonade braids",
-          "K-tips / Invisible strands",
-          "Keratin treatment"
-        ],
-        "areaId": "",
-        "areaLabel": ""
-      },
-      "currentServices": [
-        "Traditional sew-in / leave out",
-        "Sleek ponytail / bun",
-        "Half up half down",
-        "Frontal sew-in",
-        "Clip ins (+ Silk press)",
-        "LA weave",
-        "Flipover / Versatile sew-in",
-        "Hybrid sew-in",
-        "Tracks (+ Silk press) / Partial / Invisible sew-in"
-      ],
-      "detectedServices": [
-        "Tape ins",
-        "Clip ins (+ Silk press)",
-        "Sleek ponytail / bun",
-        "U-Part wig install",
-        "Custom wig",
-        "Traditional sew-in / leave out",
-        "Tracks (+ Silk press) / Partial / Invisible sew-in",
-        "Half braids, half sew-in",
-        "Closure sew-in",
-        "Frontal sew-in",
-        "Half up half down",
-        "LA weave",
-        "Frontal ponytail / bun",
-        "Flipover / Versatile sew-in",
-        "Microlinks",
-        "Wig install (frontal / closure)",
-        "Sew-in take-down",
-        "Braid take-down",
-        "Full head colour",
-        "Relaxer / texturiser",
-        "Wash & blowdry",
-        "Silk press",
-        "Trim / Hair cut",
-        "Stitch braids",
-        "Box braids",
-        "Boho braids / goddess braids",
-        "Wig cornrows",
-        "Knotless braids",
-        "Fulani / Lemonade braids",
-        "K-tips / Invisible strands",
-        "Keratin treatment"
-      ],
-      "addedServices": [
-        "U-Part wig install",
-        "Full head colour",
-        "Wash & blowdry",
-        "Stitch braids",
-        "Wig cornrows",
-        "K-tips / Invisible strands",
-        "Keratin treatment"
-      ],
-      "removedServices": [
-        "Hybrid sew-in"
-      ],
-      "checkedAt": "2026-05-20T23:25:57.238Z",
-      "reviewedAt": "2026-05-20T23:47:07.745Z"
-    },
     {
       "id": "joycekartistry",
       "name": "Joyce Kartistry",
@@ -2268,7 +1983,7 @@
         "U-Part wig install"
       ],
       "removedServices": [],
-      "checkedAt": "2026-05-20T23:23:38.138Z"
+      "checkedAt": "2026-05-21T00:00:50.617Z"
     },
     {
       "id": "moniquecharleshair",
@@ -2385,7 +2100,7 @@
         "Olaplex treatment",
         "Moisturising treatment"
       ],
-      "checkedAt": "2026-05-20T23:23:40.073Z"
+      "checkedAt": "2026-05-21T00:00:52.385Z"
     },
     {
       "id": "aluxeuk",
@@ -2488,7 +2203,7 @@
         "U-Part wig install"
       ],
       "removedServices": [],
-      "checkedAt": "2026-05-20T23:23:41.641Z"
+      "checkedAt": "2026-05-21T00:00:54.683Z"
     },
     {
       "id": "remolabeauty",
@@ -2573,7 +2288,7 @@
       "removedServices": [
         "Half braids, half sew-in"
       ],
-      "checkedAt": "2026-05-20T23:23:41.802Z"
+      "checkedAt": "2026-05-21T00:00:54.458Z"
     },
     {
       "id": "bysandraamika",
@@ -2641,7 +2356,7 @@
       "removedServices": [
         "Custom wig"
       ],
-      "checkedAt": "2026-05-20T23:23:41.808Z"
+      "checkedAt": "2026-05-21T00:00:54.274Z"
     },
     {
       "id": "hairbycarollassey",
@@ -2731,7 +2446,7 @@
       "removedServices": [
         "Moisturising treatment"
       ],
-      "checkedAt": "2026-05-20T23:23:42.712Z"
+      "checkedAt": "2026-05-21T00:00:55.669Z"
     },
     {
       "id": "theesparlour",
@@ -2818,7 +2533,7 @@
       "removedServices": [
         "Half up half down"
       ],
-      "checkedAt": "2026-05-20T23:23:44.000Z"
+      "checkedAt": "2026-05-21T00:00:56.937Z"
     },
     {
       "id": "larostudios",
@@ -2969,7 +2684,7 @@
         "Sleek ponytail / bun"
       ],
       "removedServices": [],
-      "checkedAt": "2026-05-20T23:23:44.601Z"
+      "checkedAt": "2026-05-21T00:00:57.654Z"
     },
     {
       "id": "isongbeautyuk",
@@ -3061,7 +2776,7 @@
         "Wig install (frontal / closure)",
         "Wig cornrows"
       ],
-      "checkedAt": "2026-05-20T23:23:46.625Z"
+      "checkedAt": "2026-05-21T00:00:59.400Z"
     },
     {
       "id": "oraellounge",
@@ -3187,7 +2902,7 @@
       "removedServices": [
         "Wig cornrows"
       ],
-      "checkedAt": "2026-05-20T23:23:46.038Z"
+      "checkedAt": "2026-05-21T00:00:59.263Z"
     },
     {
       "id": "theetianashantel",
@@ -3287,7 +3002,7 @@
         "Sleek ponytail / bun"
       ],
       "removedServices": [],
-      "checkedAt": "2026-05-20T23:23:46.879Z"
+      "checkedAt": "2026-05-21T00:00:59.746Z"
     },
     {
       "id": "bbhair-lounge",
@@ -3417,7 +3132,7 @@
       "removedServices": [
         "Twists (with extensions)"
       ],
-      "checkedAt": "2026-05-20T23:23:47.057Z"
+      "checkedAt": "2026-05-21T00:01:00.580Z"
     },
     {
       "id": "atanouk",
@@ -3509,7 +3224,7 @@
       "removedServices": [
         "Half up half down"
       ],
-      "checkedAt": "2026-05-20T23:23:46.253Z"
+      "checkedAt": "2026-05-21T00:00:59.211Z"
     },
     {
       "id": "beverleyfrimpong",
@@ -3614,7 +3329,7 @@
         "Wig cornrows",
         "Bridal / Editorial"
       ],
-      "checkedAt": "2026-05-20T23:23:50.802Z"
+      "checkedAt": "2026-05-21T00:01:04.338Z"
     },
     {
       "id": "fhairapy",
@@ -3703,87 +3418,7 @@
       "removedServices": [
         "Bridal / Editorial"
       ],
-      "checkedAt": "2026-05-20T23:23:50.868Z"
-    },
-    {
-      "id": "thehairgalore",
-      "name": "The Hair Galore",
-      "areaLabel": "North",
-      "bookingUrl": "https://thehairgalore.as.me",
-      "instagramUrl": "https://www.instagram.com/thehairgalore/",
-      "websiteUrl": "https://thehairgalore.as.me",
-      "issues": [
-        "Possible removed services found"
-      ],
-      "linkChecks": [
-        {
-          "type": "booking",
-          "url": "https://thehairgalore.as.me",
-          "finalUrl": "https://thehairgalore.as.me/schedule/cceaa6b6",
-          "status": "ok",
-          "httpStatus": 200,
-          "issues": []
-        },
-        {
-          "type": "instagram",
-          "url": "https://www.instagram.com/thehairgalore/",
-          "finalUrl": "https://www.instagram.com/accounts/login/?next=https%3A%2F%2Fwww.instagram.com%2Fthehairgalore%2F&is_from_rle",
-          "status": "ok",
-          "httpStatus": 200,
-          "issues": []
-        }
-      ],
-      "serviceCheck": {
-        "confidence": "high",
-        "rawServices": [
-          "1:1s",
-          "1:1 LEARN HOW TO LAY A FRONTAL WIG",
-          "1:1 LEARN HOW TO LAY A FRONTAL WIG (NO CONSTRUCTION OF WIG)",
-          "Installations",
-          "Pre-Made Lace Frontal Unit",
-          "Pre-made Lace Frontal/closure Unit Reinstall",
-          "Pre-Made Closure Unit",
-          "Pre made lace frontal/closure reinstall",
-          "Replacements",
-          "Frontal replacement",
-          "Closure wig/Mini frontal Replacement",
-          "Sew ins",
-          "Leave Out Sew In",
-          "Closure Sew In",
-          "Wigs",
-          "Custom Made Lace Frontal Unit",
-          "Custom Made Closure Unit",
-          "Custom Made Mini Frontal"
-        ],
-        "matchedServices": [
-          "Wig install (frontal / closure)",
-          "Custom wig",
-          "Traditional sew-in / leave out",
-          "Closure sew-in"
-        ],
-        "areaId": "all-london",
-        "areaLabel": "London"
-      },
-      "currentServices": [
-        "Wig install (frontal / closure)",
-        "Traditional sew-in / leave out",
-        "Flipover / Versatile sew-in",
-        "Closure sew-in",
-        "Custom wig",
-        "Bridal / Editorial"
-      ],
-      "detectedServices": [
-        "Wig install (frontal / closure)",
-        "Custom wig",
-        "Traditional sew-in / leave out",
-        "Closure sew-in"
-      ],
-      "addedServices": [],
-      "removedServices": [
-        "Flipover / Versatile sew-in",
-        "Bridal / Editorial"
-      ],
-      "checkedAt": "2026-05-20T23:23:51.235Z"
+      "checkedAt": "2026-05-21T00:01:04.328Z"
     },
     {
       "id": "andrellastouch",
@@ -3916,7 +3551,7 @@
         "Traditional sew-in / leave out"
       ],
       "removedServices": [],
-      "checkedAt": "2026-05-20T23:23:52.645Z"
+      "checkedAt": "2026-05-21T00:01:06.750Z"
     },
     {
       "id": "miswigs",
@@ -4000,7 +3635,7 @@
         "Frontal sew-in"
       ],
       "removedServices": [],
-      "checkedAt": "2026-05-20T23:23:52.536Z"
+      "checkedAt": "2026-05-21T00:01:06.166Z"
     },
     {
       "id": "riestylez",
@@ -4075,7 +3710,7 @@
         "Half up half down",
         "Flipover / Versatile sew-in"
       ],
-      "checkedAt": "2026-05-20T23:23:51.624Z"
+      "checkedAt": "2026-05-21T00:01:05.142Z"
     },
     {
       "id": "ccs-glamhousehair",
@@ -4159,7 +3794,7 @@
       "removedServices": [
         "Quick weave"
       ],
-      "checkedAt": "2026-05-20T23:23:52.958Z"
+      "checkedAt": "2026-05-21T00:01:06.375Z"
     },
     {
       "id": "scalpish-uk",
@@ -4262,94 +3897,87 @@
       "removedServices": [
         "Tape ins"
       ],
-      "checkedAt": "2026-05-20T23:23:54.127Z"
+      "checkedAt": "2026-05-21T00:01:07.915Z"
     },
     {
-      "id": "allseezn",
-      "name": "Allseezn",
-      "areaLabel": "Central",
-      "bookingUrl": "https://allseezn.setmore.com",
-      "instagramUrl": "https://www.instagram.com/allseezn/",
-      "websiteUrl": "https://allseezn.setmore.com",
+      "id": "magictouchstudioss",
+      "name": "Magictouchstudioss",
+      "areaLabel": "North West",
+      "bookingUrl": "https://magictouchstudios.as.me",
+      "instagramUrl": "https://www.instagram.com/magictouchstudioss/",
+      "websiteUrl": "https://magictouchstudios.as.me",
       "issues": [
-        "Possible new services found"
+        "Possible new services found",
+        "Possible removed services found"
       ],
       "linkChecks": [
         {
           "type": "booking",
-          "url": "https://allseezn.setmore.com",
-          "finalUrl": "https://allseezn.setmore.com/",
+          "url": "https://magictouchstudios.as.me",
+          "finalUrl": "https://magictouchstudios.as.me/schedule/3b028955",
           "status": "ok",
           "httpStatus": 200,
           "issues": []
         },
         {
           "type": "instagram",
-          "url": "https://www.instagram.com/allseezn/",
-          "finalUrl": "https://www.instagram.com/accounts/login/?next=https%3A%2F%2Fwww.instagram.com%2Fallseezn%2F&is_from_rle",
+          "url": "https://www.instagram.com/magictouchstudioss/",
+          "finalUrl": "https://www.instagram.com/accounts/login/?next=https%3A%2F%2Fwww.instagram.com%2Fmagictouchstudioss%2F&is_from_rle",
           "status": "ok",
           "httpStatus": 200,
           "issues": []
         }
       ],
       "serviceCheck": {
-        "confidence": "medium",
+        "confidence": "high",
         "rawServices": [
-          "Nail trimming, cuticle removal, buff & shine with a hand massage.",
-          "Nail trimming, cuticle and callus removal, buff & shine with a foot massage.",
-          "Two colours of Acrylic over short length nail extensions.",
-          "Two colours of Acrylic over medium length nail extensions.",
-          "Two colours of Acrylic over long length nail extensions.",
-          "Two colours of Acrylic over extra long length nail extensions.",
-          "Paraffin Wax Treatment (Hands)",
-          "Hot wax treatment that improves moisture.",
-          "Paraffin Wax Treatment (Feet)",
-          "French Tips (Coloured)",
-          "Wig Customising",
-          "For 6x6, 7x7, 9x6 Closures and Frontals 13x4 & 13x6",
-          "For Closures: 4x4 & 5x5 ~ £35",
-          "Ponytail with 2 or more Pony/Bun",
-          "Slick up Pontail/Bun With Bangs or Side Swoop",
-          "Natural Hair up do, With or Without Added Extensions/Weave.",
-          "With Frontal extra £25",
-          "Frontal Ponytail (13x6 Only!)",
-          "Frontal must be dropped off at least 5 days prior to appointment.",
-          "Slick up/back Pontail/Bun (No bangs)",
-          "Ready Made Wig Install",
-          "Wig Re-Install (Straighten/Curl)",
-          "*WIGS I HAVE DONE PREVIOUSLY*",
-          "Straighten or Curl ONLY",
-          "Wig Revamp - Wash, Straighten/curl. Cut extra £10",
-          "Frontal Ponytail (13x6 ONLY)",
-          "Only 13x6 Frontals. Frontals from Allseezn are £95",
-          "Bundles: Raw & Virgin hair, Message for prices."
+          "Frontal Ponytail",
+          "Frontal Ponytail",
+          "Sew-ins",
+          "Middle part Sew-in",
+          "Side part Sew-in",
+          "Closure Sew-in",
+          "Wig Installation",
+          "Pre- made frontal wig",
+          "Pre-made closure/mini frontal",
+          "Re-installation (wigs installed by me)",
+          "Re-installation (wigs not installed by me)",
+          "Frontal Replacement",
+          "Closure replacement",
+          "Wigs without installation",
+          "Frontal/ closure replacement Without customisation",
+          "Frontal/ closure replacement With customisation"
         ],
         "matchedServices": [
-          "Sleek ponytail / bun",
-          "Updo",
           "Frontal ponytail / bun",
+          "Traditional sew-in / leave out",
+          "Closure sew-in",
           "Wig install (frontal / closure)"
         ],
-        "areaId": "",
-        "areaLabel": ""
+        "areaId": "north-west",
+        "areaLabel": "North West London"
       },
       "currentServices": [
-        "Wig install (frontal / closure)",
+        "Bridal / Editorial",
         "Frontal ponytail / bun",
-        "Custom wig",
-        "Sleek ponytail / bun"
+        "Flipover / Versatile sew-in",
+        "Closure sew-in",
+        "Wig install (frontal / closure)"
       ],
       "detectedServices": [
-        "Sleek ponytail / bun",
-        "Updo",
         "Frontal ponytail / bun",
+        "Traditional sew-in / leave out",
+        "Closure sew-in",
         "Wig install (frontal / closure)"
       ],
       "addedServices": [
-        "Updo"
+        "Traditional sew-in / leave out"
       ],
-      "removedServices": [],
-      "checkedAt": "2026-05-20T23:23:52.658Z"
+      "removedServices": [
+        "Bridal / Editorial",
+        "Flipover / Versatile sew-in"
+      ],
+      "checkedAt": "2026-05-21T00:01:08.513Z"
     },
     {
       "id": "tamedbyjai",
@@ -4441,7 +4069,91 @@
       "removedServices": [
         "Wig install (frontal / closure)"
       ],
-      "checkedAt": "2026-05-20T23:23:54.063Z"
+      "checkedAt": "2026-05-21T00:01:08.004Z"
+    },
+    {
+      "id": "lacegurulondon",
+      "name": "Lacegurulondon",
+      "areaLabel": "Croydon",
+      "bookingUrl": "https://lacegurulondon.as.me",
+      "instagramUrl": "https://www.instagram.com/lacegurulondon/",
+      "websiteUrl": "https://lacegurulondon.as.me",
+      "issues": [
+        "Possible new services found",
+        "Possible removed services found"
+      ],
+      "linkChecks": [
+        {
+          "type": "booking",
+          "url": "https://lacegurulondon.as.me",
+          "finalUrl": "https://lacegurulondon.as.me/schedule/0c07c067",
+          "status": "ok",
+          "httpStatus": 200,
+          "issues": []
+        },
+        {
+          "type": "instagram",
+          "url": "https://www.instagram.com/lacegurulondon/",
+          "finalUrl": "https://www.instagram.com/accounts/login/?next=https%3A%2F%2Fwww.instagram.com%2Flacegurulondon%2F&is_from_rle",
+          "status": "ok",
+          "httpStatus": 200,
+          "issues": []
+        }
+      ],
+      "serviceCheck": {
+        "confidence": "high",
+        "rawServices": [
+          "Factory-made Unit Install",
+          "Reinstall ( Originally installed by someone else)",
+          "Frontal replacement ( no install )",
+          "Revamp",
+          "Frontal ponytail",
+          "Frontal replacement and install",
+          "Customisation ONLY",
+          "Reinstall service ( by me )",
+          "@laceguru 1:1 lesson",
+          "wash and condition + silk press ( natural hair)",
+          "Revamp and reinstall",
+          "Custom Frontal Unit * Construction of wig*",
+          "Custom frontal unit *made on head*",
+          "Frontal sew in",
+          "Touch up service",
+          "Frontal ponytail deal (200£) + HD frontal"
+        ],
+        "matchedServices": [
+          "Frontal sew-in",
+          "Frontal ponytail / bun",
+          "Silk press",
+          "Custom wig",
+          "Traditional sew-in / leave out",
+          "Sleek ponytail / bun"
+        ],
+        "areaId": "all-london",
+        "areaLabel": "London"
+      },
+      "currentServices": [
+        "Wig install (frontal / closure)",
+        "Frontal ponytail / bun",
+        "Silk press",
+        "Custom wig",
+        "Frontal sew-in"
+      ],
+      "detectedServices": [
+        "Frontal sew-in",
+        "Frontal ponytail / bun",
+        "Silk press",
+        "Custom wig",
+        "Traditional sew-in / leave out",
+        "Sleek ponytail / bun"
+      ],
+      "addedServices": [
+        "Traditional sew-in / leave out",
+        "Sleek ponytail / bun"
+      ],
+      "removedServices": [
+        "Wig install (frontal / closure)"
+      ],
+      "checkedAt": "2026-05-21T00:01:08.782Z"
     },
     {
       "id": "deethebeautician",
@@ -4522,7 +4234,7 @@
         "Traditional sew-in / leave out"
       ],
       "removedServices": [],
-      "checkedAt": "2026-05-20T23:23:55.333Z"
+      "checkedAt": "2026-05-21T00:01:10.359Z"
     },
     {
       "id": "thelacelabldn",
@@ -4618,7 +4330,7 @@
         "Frontal sew-in"
       ],
       "removedServices": [],
-      "checkedAt": "2026-05-20T23:23:55.964Z"
+      "checkedAt": "2026-05-21T00:01:09.668Z"
     },
     {
       "id": "zks-touch",
@@ -4709,7 +4421,7 @@
         "Twists (with extensions)",
         "Half braids, half sew-in"
       ],
-      "checkedAt": "2026-05-20T23:23:55.803Z"
+      "checkedAt": "2026-05-21T00:01:10.532Z"
     },
     {
       "id": "zantibloom",
@@ -4758,7 +4470,7 @@
       "detectedServices": [],
       "addedServices": [],
       "removedServices": [],
-      "checkedAt": "2026-05-20T23:23:55.779Z"
+      "checkedAt": "2026-05-21T00:01:10.574Z"
     },
     {
       "id": "Yairoby Hair & Beauty",
@@ -4856,7 +4568,7 @@
         "Full head colour"
       ],
       "removedServices": [],
-      "checkedAt": "2026-05-20T23:23:56.509Z"
+      "checkedAt": "2026-05-21T00:01:11.197Z"
     },
     {
       "id": "xtra-beauty",
@@ -4933,7 +4645,7 @@
       "removedServices": [
         "Frontal sew-in"
       ],
-      "checkedAt": "2026-05-20T23:23:57.825Z"
+      "checkedAt": "2026-05-21T00:01:12.101Z"
     },
     {
       "id": "walvan-hair",
@@ -5061,7 +4773,7 @@
         "Full head colour"
       ],
       "removedServices": [],
-      "checkedAt": "2026-05-20T23:23:58.608Z"
+      "checkedAt": "2026-05-21T00:01:13.260Z"
     },
     {
       "id": "vstylsz",
@@ -5196,7 +4908,7 @@
       "removedServices": [
         "Half braids, half sew-in"
       ],
-      "checkedAt": "2026-05-20T23:23:59.979Z"
+      "checkedAt": "2026-05-21T00:01:14.405Z"
     },
     {
       "id": "updo-london",
@@ -5264,7 +4976,7 @@
         "Frontal ponytail / bun",
         "Updo"
       ],
-      "checkedAt": "2026-05-20T23:24:00.729Z"
+      "checkedAt": "2026-05-21T00:01:15.094Z"
     },
     {
       "id": "tribalbraidsandbeautysalon",
@@ -5459,7 +5171,7 @@
         "Braid take-down",
         "Sew-in take-down"
       ],
-      "checkedAt": "2026-05-20T23:24:01.546Z"
+      "checkedAt": "2026-05-21T00:01:16.881Z"
     },
     {
       "id": "tressly-studios",
@@ -5561,7 +5273,7 @@
         "Scalp care",
         "Texture release"
       ],
-      "checkedAt": "2026-05-20T23:24:01.386Z"
+      "checkedAt": "2026-05-21T00:01:15.770Z"
     },
     {
       "id": "tress-studios",
@@ -5620,7 +5332,7 @@
       "removedServices": [
         "Flipover / Versatile sew-in"
       ],
-      "checkedAt": "2026-05-20T23:24:01.290Z"
+      "checkedAt": "2026-05-21T00:01:16.447Z"
     },
     {
       "id": "theorchidroom-co",
@@ -5696,7 +5408,7 @@
       "removedServices": [
         "Wig install (frontal / closure)"
       ],
-      "checkedAt": "2026-05-20T23:24:03.661Z"
+      "checkedAt": "2026-05-21T00:01:19.829Z"
     },
     {
       "id": "theesbnuk",
@@ -5883,7 +5595,7 @@
         "Frontal ponytail / bun"
       ],
       "removedServices": [],
-      "checkedAt": "2026-05-20T23:24:06.478Z"
+      "checkedAt": "2026-05-21T00:01:23.358Z"
     },
     {
       "id": "thebraidingvault-uk",
@@ -5992,7 +5704,7 @@
         "Boho braids / goddess braids",
         "Crochet"
       ],
-      "checkedAt": "2026-05-20T23:24:04.132Z"
+      "checkedAt": "2026-05-21T00:01:20.528Z"
     },
     {
       "id": "the-studdio",
@@ -6066,7 +5778,7 @@
       "removedServices": [
         "Updo"
       ],
-      "checkedAt": "2026-05-20T23:24:05.510Z"
+      "checkedAt": "2026-05-21T00:01:22.069Z"
     },
     {
       "id": "the-standard-studio",
@@ -6152,7 +5864,7 @@
       "removedServices": [
         "Highlights"
       ],
-      "checkedAt": "2026-05-20T23:24:04.890Z"
+      "checkedAt": "2026-05-21T00:01:21.224Z"
     },
     {
       "id": "the-sewn-muse",
@@ -6215,7 +5927,7 @@
         "Traditional sew-in / leave out",
         "Flipover / Versatile sew-in"
       ],
-      "checkedAt": "2026-05-20T23:24:04.980Z"
+      "checkedAt": "2026-05-21T00:01:21.426Z"
     },
     {
       "id": "the-original-ts",
@@ -6342,7 +6054,7 @@
       "removedServices": [
         "Half braids, half sew-in"
       ],
-      "checkedAt": "2026-05-20T23:24:06.714Z"
+      "checkedAt": "2026-05-21T00:01:23.259Z"
     },
     {
       "id": "the-mab-ldn",
@@ -6520,7 +6232,7 @@
         "Wig cornrows"
       ],
       "removedServices": [],
-      "checkedAt": "2026-05-20T23:24:08.824Z"
+      "checkedAt": "2026-05-21T00:01:23.985Z"
     },
     {
       "id": "the-lace-cassanova",
@@ -6600,7 +6312,7 @@
       "removedServices": [
         "Wig install (frontal / closure)"
       ],
-      "checkedAt": "2026-05-20T23:24:08.398Z"
+      "checkedAt": "2026-05-21T00:01:24.959Z"
     },
     {
       "id": "the-lace-bandit",
@@ -6681,7 +6393,7 @@
       "removedServices": [
         "Bridal / Editorial"
       ],
-      "checkedAt": "2026-05-20T23:24:09.070Z"
+      "checkedAt": "2026-05-21T00:01:25.087Z"
     },
     {
       "id": "the-hct-studio",
@@ -6803,7 +6515,7 @@
       "removedServices": [
         "Twists (with extensions)"
       ],
-      "checkedAt": "2026-05-20T23:24:09.654Z"
+      "checkedAt": "2026-05-21T00:01:25.601Z"
     },
     {
       "id": "the-hairplus",
@@ -6887,7 +6599,7 @@
         "Twists (with extensions)",
         "Sleek ponytail / bun"
       ],
-      "checkedAt": "2026-05-20T23:24:14.639Z"
+      "checkedAt": "2026-05-21T00:01:25.822Z"
     },
     {
       "id": "the-haircode",
@@ -7013,7 +6725,7 @@
         "Half braids, half sew-in",
         "Custom wig"
       ],
-      "checkedAt": "2026-05-20T23:24:10.218Z"
+      "checkedAt": "2026-05-21T00:01:25.740Z"
     },
     {
       "id": "the-hair-lounge-uk",
@@ -7129,7 +6841,7 @@
         "Half up half down",
         "Updo"
       ],
-      "checkedAt": "2026-05-20T23:24:11.869Z"
+      "checkedAt": "2026-05-21T00:01:27.325Z"
     },
     {
       "id": "the-curl-coach",
@@ -7222,7 +6934,7 @@
         "Full head colour",
         "Highlights"
       ],
-      "checkedAt": "2026-05-20T23:24:14.193Z"
+      "checkedAt": "2026-05-21T00:01:27.318Z"
     },
     {
       "id": "the-beauty-parlour-by-kimberly-graham",
@@ -7311,7 +7023,7 @@
         "Braid take-down",
         "Silk press"
       ],
-      "checkedAt": "2026-05-20T23:24:12.763Z"
+      "checkedAt": "2026-05-21T00:01:28.237Z"
     },
     {
       "id": "teesh-hair",
@@ -7462,7 +7174,7 @@
       "removedServices": [
         "Half braids, half sew-in"
       ],
-      "checkedAt": "2026-05-20T23:24:14.387Z"
+      "checkedAt": "2026-05-21T00:01:29.472Z"
     },
     {
       "id": "tapes-n-co-ldn",
@@ -7661,7 +7373,7 @@
       "removedServices": [
         "Moisturising treatment"
       ],
-      "checkedAt": "2026-05-20T23:24:15.279Z"
+      "checkedAt": "2026-05-21T00:01:30.114Z"
     },
     {
       "id": "swish-london",
@@ -7875,7 +7587,7 @@
         "LA weave",
         "Wig cornrows"
       ],
-      "checkedAt": "2026-05-20T23:24:16.715Z"
+      "checkedAt": "2026-05-21T00:01:30.675Z"
     },
     {
       "id": "stylesbyfola",
@@ -8124,7 +7836,7 @@
         "Balayage",
         "Miracle knots"
       ],
-      "checkedAt": "2026-05-20T23:24:17.018Z"
+      "checkedAt": "2026-05-21T00:01:32.754Z"
     },
     {
       "id": "styled-by-kb",
@@ -8272,7 +7984,7 @@
         "Half braids, half sew-in",
         "Braid take-down"
       ],
-      "checkedAt": "2026-05-20T23:24:20.785Z"
+      "checkedAt": "2026-05-21T00:01:36.568Z"
     },
     {
       "id": "styled-by-kadie",
@@ -8379,7 +8091,7 @@
         "Half braids, half sew-in",
         "Twists (with extensions)"
       ],
-      "checkedAt": "2026-05-20T23:24:20.195Z"
+      "checkedAt": "2026-05-21T00:01:36.277Z"
     },
     {
       "id": "styled-by-ariii",
@@ -8489,7 +8201,7 @@
         "Half braids, half sew-in",
         "Wig install (frontal / closure)"
       ],
-      "checkedAt": "2026-05-20T23:24:20.377Z"
+      "checkedAt": "2026-05-21T00:01:36.394Z"
     },
     {
       "id": "steaze-glam",
@@ -8620,7 +8332,7 @@
         "Boho braids / goddess braids",
         "Curly cut / Wash & go"
       ],
-      "checkedAt": "2026-05-20T23:24:21.660Z"
+      "checkedAt": "2026-05-21T00:01:38.092Z"
     },
     {
       "id": "so-pressed-london",
@@ -8731,7 +8443,7 @@
       "removedServices": [
         "LA weave"
       ],
-      "checkedAt": "2026-05-20T23:24:22.590Z"
+      "checkedAt": "2026-05-21T00:01:39.903Z"
     },
     {
       "id": "sn-chair",
@@ -8829,7 +8541,7 @@
       "removedServices": [
         "Faux locs"
       ],
-      "checkedAt": "2026-05-20T23:24:23.407Z"
+      "checkedAt": "2026-05-21T00:01:40.596Z"
     },
     {
       "id": "slayedbyl",
@@ -8951,7 +8663,7 @@
         "Half braids, half sew-in",
         "Wig install (frontal / closure)"
       ],
-      "checkedAt": "2026-05-20T23:24:24.840Z"
+      "checkedAt": "2026-05-21T00:01:42.264Z"
     },
     {
       "id": "slayed-by-mayla",
@@ -9108,7 +8820,7 @@
       "removedServices": [
         "Bridal / Editorial"
       ],
-      "checkedAt": "2026-05-20T23:24:25.028Z"
+      "checkedAt": "2026-05-21T00:01:43.571Z"
     },
     {
       "id": "sk-beauty-ldn",
@@ -9264,7 +8976,7 @@
         "Wash & blowdry"
       ],
       "removedServices": [],
-      "checkedAt": "2026-05-20T23:24:24.929Z"
+      "checkedAt": "2026-05-21T00:01:42.623Z"
     },
     {
       "id": "simply-g-hair",
@@ -9337,7 +9049,7 @@
         "Knotless braids",
         "Traditional sew-in / leave out"
       ],
-      "checkedAt": "2026-05-20T23:24:27.218Z"
+      "checkedAt": "2026-05-21T00:01:46.730Z"
     },
     {
       "id": "silkrose-ldn",
@@ -9407,7 +9119,7 @@
         "Traditional sew-in / leave out",
         "Updo"
       ],
-      "checkedAt": "2026-05-20T23:24:26.902Z"
+      "checkedAt": "2026-05-21T00:01:45.134Z"
     },
     {
       "id": "si-hair-uk",
@@ -9516,7 +9228,7 @@
       "removedServices": [
         "Half braids, half sew-in"
       ],
-      "checkedAt": "2026-05-20T23:24:28.152Z"
+      "checkedAt": "2026-05-21T00:01:46.181Z"
     },
     {
       "id": "shyann-shanece-hair",
@@ -9615,7 +9327,7 @@
       "removedServices": [
         "Wig install (frontal / closure)"
       ],
-      "checkedAt": "2026-05-20T23:24:28.297Z"
+      "checkedAt": "2026-05-21T00:01:46.715Z"
     },
     {
       "id": "shiannes-touch",
@@ -9755,7 +9467,7 @@
       "removedServices": [
         "Half braids, half sew-in"
       ],
-      "checkedAt": "2026-05-20T23:24:29.106Z"
+      "checkedAt": "2026-05-21T00:01:47.418Z"
     },
     {
       "id": "shanslaysss",
@@ -9924,7 +9636,7 @@
       "removedServices": [
         "Moisturising treatment"
       ],
-      "checkedAt": "2026-05-20T23:24:29.001Z"
+      "checkedAt": "2026-05-21T00:01:47.867Z"
     },
     {
       "id": "sf-laid-it",
@@ -10007,7 +9719,7 @@
         "Feed-in braids",
         "Hybrid sew-in"
       ],
-      "checkedAt": "2026-05-20T23:24:29.643Z"
+      "checkedAt": "2026-05-21T00:01:47.997Z"
     },
     {
       "id": "sbeks-hair",
@@ -10134,7 +9846,7 @@
         "Half braids, half sew-in",
         "Knotless braids"
       ],
-      "checkedAt": "2026-05-20T23:24:32.249Z"
+      "checkedAt": "2026-05-21T00:01:50.661Z"
     },
     {
       "id": "sb-hair-company",
@@ -10251,7 +9963,9 @@
         "Relaxer / texturiser",
         "Wig install (frontal / closure)",
         "Custom wig",
-        "Tracks (+ Silk press) / Partial / Invisible sew-in"
+        "Tracks (+ Silk press) / Partial / Invisible sew-in",
+        "Olaplex treatment",
+        "Half up half down"
       ],
       "detectedServices": [
         "Full head colour",
@@ -10280,8 +9994,7 @@
         "Hybrid sew-in",
         "Silk press"
       ],
-      "checkedAt": "2026-05-20T23:24:32.385Z",
-      "reviewedAt": "2026-05-20T23:27:51.640Z"
+      "checkedAt": "2026-05-21T00:01:51.316Z"
     },
     {
       "id": "savsstyles",
@@ -10402,7 +10115,8 @@
       "currentServices": [
         "Feed-in braids",
         "Fulani / Lemonade braids",
-        "Knotless braids"
+        "Knotless braids",
+        "Stitch braids"
       ],
       "detectedServices": [
         "Feed-in braids",
@@ -10420,8 +10134,7 @@
         "Flipover / Versatile sew-in"
       ],
       "removedServices": [],
-      "checkedAt": "2026-05-20T23:24:31.521Z",
-      "reviewedAt": "2026-05-20T23:28:12.439Z"
+      "checkedAt": "2026-05-21T00:01:49.983Z"
     },
     {
       "id": "salon-abv",
@@ -10431,7 +10144,6 @@
       "instagramUrl": "https://www.instagram.com/salonabv/",
       "websiteUrl": "https://www.salonabv.com/services",
       "issues": [
-        "Possible new services found",
         "Possible removed services found"
       ],
       "linkChecks": [
@@ -10498,7 +10210,9 @@
         "Microlinks",
         "Full head colour",
         "Highlights",
-        "Tracks (+ Silk press) / Partial / Invisible sew-in"
+        "Tracks (+ Silk press) / Partial / Invisible sew-in",
+        "Custom wig",
+        "Bridal / Editorial"
       ],
       "detectedServices": [
         "Custom wig",
@@ -10527,8 +10241,7 @@
         "Highlights",
         "Tracks (+ Silk press) / Partial / Invisible sew-in"
       ],
-      "checkedAt": "2026-05-20T23:24:35.499Z",
-      "reviewedAt": "2026-05-20T23:53:36.330Z"
+      "checkedAt": "2026-05-21T00:01:55.368Z"
     },
     {
       "id": "sade-prisca-hair",
@@ -10622,7 +10335,7 @@
       "removedServices": [
         "Moisturising treatment"
       ],
-      "checkedAt": "2026-05-20T23:24:37.001Z"
+      "checkedAt": "2026-05-21T00:01:56.386Z"
     },
     {
       "id": "rochelle-london",
@@ -10710,7 +10423,7 @@
       "removedServices": [
         "Wig cornrows"
       ],
-      "checkedAt": "2026-05-20T23:24:37.043Z"
+      "checkedAt": "2026-05-21T00:01:57.486Z"
     },
     {
       "id": "rias-beauty-studio",
@@ -10792,7 +10505,7 @@
         "Hybrid sew-in",
         "Flipover / Versatile sew-in"
       ],
-      "checkedAt": "2026-05-20T23:24:37.558Z"
+      "checkedAt": "2026-05-21T00:01:57.594Z"
     },
     {
       "id": "rg-wigs",
@@ -10881,7 +10594,7 @@
         "Flipover / Versatile sew-in"
       ],
       "removedServices": [],
-      "checkedAt": "2026-05-20T23:24:38.437Z"
+      "checkedAt": "2026-05-21T00:01:58.343Z"
     },
     {
       "id": "rens-touch",
@@ -10945,7 +10658,8 @@
         "Sleek ponytail / bun",
         "Half up half down",
         "Sew-in take-down",
-        "Updo"
+        "Updo",
+        "Bridal / Editorial"
       ],
       "detectedServices": [
         "Bridal / Editorial",
@@ -10964,8 +10678,7 @@
         "Sew-in take-down",
         "Updo"
       ],
-      "checkedAt": "2026-05-20T23:24:37.478Z",
-      "reviewedAt": "2026-05-20T23:31:59.842Z"
+      "checkedAt": "2026-05-21T00:01:58.562Z"
     },
     {
       "id": "remi-laide-hair",
@@ -11040,7 +10753,7 @@
         "Custom wig",
         "Bridal / Editorial"
       ],
-      "checkedAt": "2026-05-20T23:24:39.084Z"
+      "checkedAt": "2026-05-21T00:01:59.493Z"
     },
     {
       "id": "regal-roots",
@@ -11050,7 +10763,6 @@
       "instagramUrl": "https://www.instagram.com/regal_roots/",
       "websiteUrl": "https://www.regalroot.com/book-online",
       "issues": [
-        "Possible new services found",
         "Possible removed services found"
       ],
       "linkChecks": [
@@ -11154,8 +10866,7 @@
         "Bridal / Editorial",
         "Crochet"
       ],
-      "checkedAt": "2026-05-20T23:24:40.118Z",
-      "reviewedAt": "2026-05-20T23:53:42.491Z"
+      "checkedAt": "2026-05-21T00:01:59.001Z"
     },
     {
       "id": "rb-styles-uk",
@@ -11239,7 +10950,7 @@
         "Traditional sew-in / leave out"
       ],
       "removedServices": [],
-      "checkedAt": "2026-05-20T23:24:40.359Z"
+      "checkedAt": "2026-05-21T00:02:00.336Z"
     },
     {
       "id": "rachel-braids",
@@ -11388,7 +11099,9 @@
         "Twists (with extensions)",
         "Crochet",
         "Box braids",
-        "Miracle knots"
+        "Miracle knots",
+        "Knotless braids",
+        "Stitch braids"
       ],
       "detectedServices": [
         "Boho braids / goddess braids",
@@ -11424,8 +11137,7 @@
         "Scalp care"
       ],
       "removedServices": [],
-      "checkedAt": "2026-05-20T23:24:42.999Z",
-      "reviewedAt": "2026-05-20T23:33:23.671Z"
+      "checkedAt": "2026-05-21T00:02:03.132Z"
     },
     {
       "id": "purely-natural-salon",
@@ -11607,13 +11319,13 @@
         "Bridal / Editorial"
       ],
       "addedServices": [
-        "Updo",
         "Japanese straightening"
       ],
       "removedServices": [
         "Moisturising treatment"
       ],
-      "checkedAt": "2026-05-20T23:24:43.155Z"
+      "checkedAt": "2026-05-21T00:02:03.187Z",
+      "reviewedAt": "2026-05-21T00:04:20.165Z"
     },
     {
       "id": "pressed-linkss",
@@ -11708,7 +11420,7 @@
         "Frontal sew-in",
         "Bridal / Editorial"
       ],
-      "checkedAt": "2026-05-20T23:24:41.756Z"
+      "checkedAt": "2026-05-21T00:02:02.283Z"
     },
     {
       "id": "platinum-tresses-bridal",
@@ -11775,7 +11487,7 @@
         "Custom wig"
       ],
       "removedServices": [],
-      "checkedAt": "2026-05-20T23:24:44.221Z"
+      "checkedAt": "2026-05-21T00:02:04.017Z"
     },
     {
       "id": "phenomenal-hair",
@@ -11891,7 +11603,8 @@
         "Flipover / Versatile sew-in",
         "Frontal sew-in",
         "Twists (with extensions)",
-        "Wig install (frontal / closure)"
+        "Wig install (frontal / closure)",
+        "Stitch braids"
       ],
       "detectedServices": [
         "Faux locs",
@@ -11917,8 +11630,7 @@
       "removedServices": [
         "Wig install (frontal / closure)"
       ],
-      "checkedAt": "2026-05-20T23:24:45.791Z",
-      "reviewedAt": "2026-05-20T23:53:46.794Z"
+      "checkedAt": "2026-05-21T00:02:05.780Z"
     },
     {
       "id": "phedelia-rose",
@@ -11928,7 +11640,6 @@
       "instagramUrl": "https://www.instagram.com/phedeliarose/",
       "websiteUrl": "https://www.fresha.com/a/phedeliarose-london-20-22-union-court-agwyxiew",
       "issues": [
-        "Possible new services found",
         "Possible removed services found"
       ],
       "linkChecks": [
@@ -11999,7 +11710,8 @@
         "Highlights",
         "Balayage",
         "Moisturising treatment",
-        "Olaplex treatment"
+        "Olaplex treatment",
+        "Silk press"
       ],
       "detectedServices": [
         "Relaxer / texturiser",
@@ -12018,8 +11730,7 @@
         "Moisturising treatment",
         "Olaplex treatment"
       ],
-      "checkedAt": "2026-05-20T23:24:43.704Z",
-      "reviewedAt": "2026-05-20T23:53:50.310Z"
+      "checkedAt": "2026-05-21T00:02:04.436Z"
     },
     {
       "id": "paule-baptiste",
@@ -12131,7 +11842,7 @@
       "removedServices": [
         "Creative braids (e.g. patewo)"
       ],
-      "checkedAt": "2026-05-20T23:24:46.033Z"
+      "checkedAt": "2026-05-21T00:02:06.437Z"
     },
     {
       "id": "parisimo-beauty",
@@ -12141,7 +11852,6 @@
       "instagramUrl": "https://www.instagram.com/parisimo_beauty/",
       "websiteUrl": "https://parisimobeauty.as.me/schedule/f106c9b3",
       "issues": [
-        "Possible new services found",
         "Possible removed services found"
       ],
       "linkChecks": [
@@ -12227,8 +11937,7 @@
       "removedServices": [
         "Natural hair education"
       ],
-      "checkedAt": "2026-05-20T23:24:47.347Z",
-      "reviewedAt": "2026-05-20T23:33:33.583Z"
+      "checkedAt": "2026-05-21T00:02:07.228Z"
     },
     {
       "id": "papachichi-style",
@@ -12308,7 +12017,7 @@
         "U-Part wig install",
         "Frontal ponytail / bun"
       ],
-      "checkedAt": "2026-05-20T23:24:46.214Z"
+      "checkedAt": "2026-05-21T00:02:06.981Z"
     },
     {
       "id": "ovieya-london-ltd",
@@ -12404,7 +12113,8 @@
         "Trim / Hair cut",
         "Wig cornrows",
         "Sleek ponytail / bun",
-        "Half braids, half sew-in"
+        "Half braids, half sew-in",
+        "Keratin treatment"
       ],
       "detectedServices": [
         "Knotless braids",
@@ -12431,8 +12141,7 @@
         "Sleek ponytail / bun",
         "Half braids, half sew-in"
       ],
-      "checkedAt": "2026-05-20T23:24:46.711Z",
-      "reviewedAt": "2026-05-20T23:53:56.515Z"
+      "checkedAt": "2026-05-21T00:02:07.957Z"
     },
     {
       "id": "ourahhairsalon",
@@ -12503,7 +12212,7 @@
         "Tracks (+ Silk press) / Partial / Invisible sew-in",
         "U-Part wig install"
       ],
-      "checkedAt": "2026-05-20T23:24:46.821Z"
+      "checkedAt": "2026-05-21T00:02:07.903Z"
     },
     {
       "id": "os-hair",
@@ -12592,7 +12301,8 @@
         "Wig install (frontal / closure)",
         "Custom wig",
         "Sleek ponytail / bun",
-        "U-Part wig install"
+        "U-Part wig install",
+        "Half up half down"
       ],
       "detectedServices": [
         "Traditional sew-in / leave out",
@@ -12609,8 +12319,7 @@
         "Frontal sew-in"
       ],
       "removedServices": [],
-      "checkedAt": "2026-05-20T23:24:48.167Z",
-      "reviewedAt": "2026-05-20T23:33:43.255Z"
+      "checkedAt": "2026-05-21T00:02:09.425Z"
     },
     {
       "id": "onlylux-hair",
@@ -12620,7 +12329,6 @@
       "instagramUrl": "https://www.instagram.com/onlyluxhair/",
       "websiteUrl": "https://onlyluxhair.as.me/schedule/da6ac561",
       "issues": [
-        "Possible new services found",
         "Possible removed services found"
       ],
       "linkChecks": [
@@ -12687,7 +12395,8 @@
         "Sleek ponytail / bun",
         "Sew-in take-down",
         "Tracks (+ Silk press) / Partial / Invisible sew-in",
-        "Updo"
+        "Updo",
+        "Bridal / Editorial"
       ],
       "detectedServices": [
         "Bridal / Editorial",
@@ -12705,8 +12414,7 @@
         "Sew-in take-down",
         "Tracks (+ Silk press) / Partial / Invisible sew-in"
       ],
-      "checkedAt": "2026-05-20T23:24:48.477Z",
-      "reviewedAt": "2026-05-20T23:54:01.669Z"
+      "checkedAt": "2026-05-21T00:02:09.398Z"
     },
     {
       "id": "ola-hair",
@@ -12780,7 +12488,7 @@
         "Twists (with extensions)",
         "Butterfly locs"
       ],
-      "checkedAt": "2026-05-20T23:24:49.464Z"
+      "checkedAt": "2026-05-21T00:02:09.916Z"
     },
     {
       "id": "oceanes-hair",
@@ -12851,7 +12559,7 @@
         "Traditional sew-in / leave out"
       ],
       "removedServices": [],
-      "checkedAt": "2026-05-20T23:24:49.760Z"
+      "checkedAt": "2026-05-21T00:02:10.910Z"
     },
     {
       "id": "oasis-beauty-space",
@@ -12861,7 +12569,6 @@
       "instagramUrl": "https://www.instagram.com/oasishb/",
       "websiteUrl": "https://www.treatwell.co.uk/place/oasis-beauty-space-1/",
       "issues": [
-        "Possible new services found",
         "Possible removed services found"
       ],
       "linkChecks": [
@@ -12977,8 +12684,7 @@
         "Tracks (+ Silk press) / Partial / Invisible sew-in",
         "Moisturising treatment"
       ],
-      "checkedAt": "2026-05-20T23:24:49.458Z",
-      "reviewedAt": "2026-05-20T23:54:06.026Z"
+      "checkedAt": "2026-05-21T00:02:10.124Z"
     },
     {
       "id": "o-so-snatched",
@@ -13077,7 +12783,10 @@
         "Frontal sew-in",
         "Half braids, half sew-in",
         "Wig install (frontal / closure)",
-        "Frontal ponytail / bun"
+        "Frontal ponytail / bun",
+        "Boho braids / goddess braids",
+        "Quick weave",
+        "Custom wig"
       ],
       "detectedServices": [
         "Wig cornrows",
@@ -13101,8 +12810,7 @@
       "removedServices": [
         "Half braids, half sew-in"
       ],
-      "checkedAt": "2026-05-20T23:24:59.161Z",
-      "reviewedAt": "2026-05-20T23:34:01.956Z"
+      "checkedAt": "2026-05-21T00:02:12.936Z"
     },
     {
       "id": "novatress-uk",
@@ -13194,7 +12902,10 @@
         "Traditional sew-in / leave out",
         "Trim / Hair cut",
         "Half up half down",
-        "Tracks (+ Silk press) / Partial / Invisible sew-in"
+        "Tracks (+ Silk press) / Partial / Invisible sew-in",
+        "Bridal / Editorial",
+        "Scalp care",
+        "Sew-in take-down"
       ],
       "detectedServices": [
         "Bridal / Editorial",
@@ -13219,8 +12930,7 @@
         "Quick weave",
         "Tracks (+ Silk press) / Partial / Invisible sew-in"
       ],
-      "checkedAt": "2026-05-20T23:24:58.934Z",
-      "reviewedAt": "2026-05-20T23:54:20.193Z"
+      "checkedAt": "2026-05-21T00:02:12.942Z"
     },
     {
       "id": "noque-salon",
@@ -13325,7 +13035,8 @@
         "Stitch braids",
         "Half braids, half sew-in",
         "Retwist",
-        "Wig cornrows"
+        "Wig cornrows",
+        "Sleek ponytail / bun"
       ],
       "detectedServices": [
         "Knotless braids",
@@ -13347,8 +13058,7 @@
         "Creative braids (e.g. patewo)",
         "Half braids, half sew-in"
       ],
-      "checkedAt": "2026-05-20T23:24:59.105Z",
-      "reviewedAt": "2026-05-20T23:34:12.558Z"
+      "checkedAt": "2026-05-21T00:02:13.096Z"
     },
     {
       "id": "noble-tiaras",
@@ -13465,7 +13175,14 @@
         "Knotless braids",
         "Twists (with extensions)",
         "Moisturising treatment",
-        "Scalp care"
+        "Scalp care",
+        "Half braids, half sew-in",
+        "Stitch braids",
+        "Half up half down",
+        "Pixie / finger waves",
+        "Olaplex treatment",
+        "Silk press",
+        "Feed-in braids"
       ],
       "detectedServices": [
         "Traditional sew-in / leave out",
@@ -13495,8 +13212,7 @@
         "Twists (with extensions)",
         "Moisturising treatment"
       ],
-      "checkedAt": "2026-05-20T23:24:59.534Z",
-      "reviewedAt": "2026-05-20T23:55:01.757Z"
+      "checkedAt": "2026-05-21T00:02:13.471Z"
     },
     {
       "id": "nialees-hair-salon",
@@ -13562,7 +13278,9 @@
         "Half up half down",
         "Sleek ponytail / bun",
         "Retwist",
-        "Wash & blowdry"
+        "Wash & blowdry",
+        "Moisturising treatment",
+        "Trim / Hair cut"
       ],
       "detectedServices": [
         "Wig install (frontal / closure)",
@@ -13581,8 +13299,7 @@
         "Custom wig",
         "Half up half down"
       ],
-      "checkedAt": "2026-05-20T23:25:00.088Z",
-      "reviewedAt": "2026-05-20T23:55:08.886Z"
+      "checkedAt": "2026-05-21T00:02:13.602Z"
     },
     {
       "id": "ney-hairs",
@@ -13592,7 +13309,6 @@
       "instagramUrl": "https://www.instagram.com/neyhairs_/",
       "websiteUrl": "https://neyhairs.as.me/schedule/f19b2286",
       "issues": [
-        "Possible new services found",
         "Possible removed services found"
       ],
       "linkChecks": [
@@ -13720,8 +13436,7 @@
         "Moisturising treatment",
         "Creative braids (e.g. patewo)"
       ],
-      "checkedAt": "2026-05-20T23:25:00.809Z",
-      "reviewedAt": "2026-05-20T23:34:26.717Z"
+      "checkedAt": "2026-05-21T00:02:15.352Z"
     },
     {
       "id": "natural-gloe",
@@ -13798,7 +13513,8 @@
         "Wig cornrows",
         "Full head colour",
         "Highlights",
-        "Bridal / Editorial"
+        "Bridal / Editorial",
+        "Box braids"
       ],
       "detectedServices": [
         "Starter locs",
@@ -13818,8 +13534,7 @@
         "Wash & blowdry",
         "Highlights"
       ],
-      "checkedAt": "2026-05-20T23:25:00.268Z",
-      "reviewedAt": "2026-05-20T23:55:14.286Z"
+      "checkedAt": "2026-05-21T00:02:17.132Z"
     },
     {
       "id": "mz-parlour",
@@ -13909,7 +13624,7 @@
         "Wig install (frontal / closure)",
         "Wig colour"
       ],
-      "checkedAt": "2026-05-20T23:25:01.884Z"
+      "checkedAt": "2026-05-21T00:02:16.420Z"
     },
     {
       "id": "mulaaxhair",
@@ -14031,10 +13746,12 @@
         "Clip ins (+ Silk press)",
         "Tape ins",
         "LA weave",
-        "Wig cornrows"
+        "Wig cornrows",
+        "Wig colour",
+        "Pixie / finger waves",
+        "Tracks (+ Silk press) / Partial / Invisible sew-in"
       ],
       "detectedServices": [
-        "Full head colour",
         "Wig colour",
         "Keratin treatment",
         "Hair Botox",
@@ -14053,12 +13770,142 @@
         "Sew-in take-down"
       ],
       "removedServices": [
+        "Full head colour",
         "Highlights",
         "Curly cut / Wash & go",
         "Wig cornrows"
       ],
-      "checkedAt": "2026-05-20T23:25:02.564Z",
-      "reviewedAt": "2026-05-20T23:55:53.037Z"
+      "checkedAt": "2026-05-21T00:02:16.731Z"
+    },
+    {
+      "id": "momos-hair",
+      "name": "Momos Hair",
+      "areaLabel": "North West",
+      "bookingUrl": "https://app.acuityscheduling.com/schedule/c88c31be",
+      "instagramUrl": "https://www.instagram.com/momoshair/",
+      "websiteUrl": "https://app.acuityscheduling.com/schedule/c88c31be",
+      "issues": [
+        "Possible new services found",
+        "Possible removed services found"
+      ],
+      "linkChecks": [
+        {
+          "type": "booking",
+          "url": "https://app.acuityscheduling.com/schedule/c88c31be",
+          "finalUrl": "https://app.acuityscheduling.com/schedule/c88c31be",
+          "status": "ok",
+          "httpStatus": 200,
+          "issues": []
+        },
+        {
+          "type": "instagram",
+          "url": "https://www.instagram.com/momoshair/",
+          "finalUrl": "https://www.instagram.com/accounts/login/?next=https%3A%2F%2Fwww.instagram.com%2Fmomoshair%2F&is_from_rle",
+          "status": "ok",
+          "httpStatus": 200,
+          "issues": []
+        }
+      ],
+      "serviceCheck": {
+        "confidence": "high",
+        "rawServices": [
+          "Chunky French Braids",
+          "Boho Vibe Braids",
+          "Pick n Drop",
+          "MOMO’s BOHO BRAIDS 👸🏾",
+          "Small Knotless Box Braids using (Human Hair )",
+          "Boho Fulani Braids",
+          "Hybrid Boho Braids",
+          "Box Braids",
+          "Re touch of Box Braids",
+          "Mixing hair for your custom color",
+          "Crochet",
+          "Curls (short)",
+          "Curls (long)",
+          "Feedin in cornrows at front and crochet curls at back",
+          "Human Hair Crochet",
+          "Crochet Locs",
+          "Crochet Locs",
+          "Individual Crochet Locs",
+          "Crochet Twist , passion twist and or Braids",
+          "CROCHET (Twist , Boxbraids ,Passion Twist )",
+          "Feed - Ins (Cornrows)",
+          "Feed - Ins (2)",
+          "Classic Slick back (6 braids )",
+          "6 Feeding in Braids with Curly Ends",
+          "Small Feed -ins Mid Back",
+          "Small Boho Feed - ins",
+          "Goddess Braids",
+          "Goddess Box Braids (Bob Length)",
+          "Goddess Fulani Braids",
+          "Goddess Box Braids with ends curled with Rods .",
+          "Knotless Box Braids",
+          "Knotless Box Braids (Mid Back)",
+          "Knotless jumbo parting Box Braids (Mid Back )",
+          "French Box Braids (Knotless )",
+          "Locs",
+          "Boho Locs (Distressed )",
+          "Mo's Light Weight Box Braids",
+          "Mo’s light weight box braids (Mid Back )",
+          "Protective Hairstyles",
+          "Under wig Braided Cornrows",
+          "Slick Hairstyles",
+          "Slick Back Pony",
+          "Twist",
+          "Human Hair Afro Kinky Twist",
+          "Passion twist (Mid Back )",
+          "Afro Kinky Twist"
+        ],
+        "matchedServices": [
+          "Boho braids / goddess braids",
+          "Knotless braids",
+          "Box braids",
+          "Fulani / Lemonade braids",
+          "Full head colour",
+          "Crochet",
+          "Feed-in braids",
+          "Wig cornrows",
+          "Twists (with extensions)",
+          "Starter locs"
+        ],
+        "areaId": "all-london",
+        "areaLabel": "London"
+      },
+      "currentServices": [
+        "Bridal / Editorial",
+        "Boho braids / goddess braids",
+        "Half braids, half sew-in",
+        "Microbraids / x-small braids",
+        "Faux locs",
+        "Feed-in braids",
+        "Wig cornrows",
+        "Twists (with extensions)",
+        "Crochet"
+      ],
+      "detectedServices": [
+        "Boho braids / goddess braids",
+        "Knotless braids",
+        "Box braids",
+        "Fulani / Lemonade braids",
+        "Full head colour",
+        "Crochet",
+        "Feed-in braids",
+        "Wig cornrows",
+        "Twists (with extensions)",
+        "Starter locs"
+      ],
+      "addedServices": [
+        "Full head colour",
+        "Starter locs"
+      ],
+      "removedServices": [
+        "Bridal / Editorial",
+        "Half braids, half sew-in",
+        "Microbraids / x-small braids",
+        "Faux locs"
+      ],
+      "checkedAt": "2026-05-21T00:02:18.302Z",
+      "reviewedAt": "2026-05-21T00:05:12.968Z"
     },
     {
       "id": "mk-suite",
@@ -14133,7 +13980,7 @@
       "removedServices": [
         "Wig install (frontal / closure)"
       ],
-      "checkedAt": "2026-05-20T23:25:02.917Z"
+      "checkedAt": "2026-05-21T00:02:18.160Z"
     },
     {
       "id": "mk-laced-it",
@@ -14217,8 +14064,7 @@
         "Custom wig"
       ],
       "removedServices": [],
-      "checkedAt": "2026-05-20T23:25:03.604Z",
-      "reviewedAt": "2026-05-20T23:34:58.645Z"
+      "checkedAt": "2026-05-21T00:02:18.699Z"
     },
     {
       "id": "microlocs-with-mimi",
@@ -14297,7 +14143,7 @@
         "Starter locs"
       ],
       "removedServices": [],
-      "checkedAt": "2026-05-20T23:25:08.580Z"
+      "checkedAt": "2026-05-21T00:02:21.505Z"
     },
     {
       "id": "michelle-amal-ldn",
@@ -14307,7 +14153,6 @@
       "instagramUrl": "https://www.instagram.com/michelleamaldn/",
       "websiteUrl": "https://michelleamaldn.as.me/schedule/f562b45a",
       "issues": [
-        "Possible new services found",
         "Possible removed services found"
       ],
       "linkChecks": [
@@ -14383,7 +14228,8 @@
         "Wig colour",
         "Custom wig",
         "Frontal ponytail / bun",
-        "Updo"
+        "Updo",
+        "Wig cornrows"
       ],
       "detectedServices": [
         "Custom wig",
@@ -14399,8 +14245,7 @@
       "removedServices": [
         "Half up half down"
       ],
-      "checkedAt": "2026-05-20T23:25:05.354Z",
-      "reviewedAt": "2026-05-20T23:35:02.406Z"
+      "checkedAt": "2026-05-21T00:02:20.268Z"
     },
     {
       "id": "melsxbeautyhair",
@@ -14542,7 +14387,9 @@
         "Twists (with extensions)",
         "Faux locs",
         "Wig cornrows",
-        "Sleek ponytail / bun"
+        "Sleek ponytail / bun",
+        "Starter locs",
+        "Retwist"
       ],
       "detectedServices": [
         "Box braids",
@@ -14566,8 +14413,7 @@
       "removedServices": [
         "Traditional sew-in / leave out"
       ],
-      "checkedAt": "2026-05-20T23:25:07.395Z",
-      "reviewedAt": "2026-05-20T23:57:55.950Z"
+      "checkedAt": "2026-05-21T00:02:23.596Z"
     },
     {
       "id": "mb-hair",
@@ -14661,7 +14507,7 @@
       "removedServices": [
         "Updo"
       ],
-      "checkedAt": "2026-05-20T23:25:06.088Z"
+      "checkedAt": "2026-05-21T00:02:21.913Z"
     },
     {
       "id": "marnis-touch",
@@ -14792,7 +14638,8 @@
         "Half braids, half sew-in",
         "Wash & blowdry",
         "Creative braids (e.g. patewo)",
-        "Crochet"
+        "Crochet",
+        "Stitch braids"
       ],
       "detectedServices": [
         "Feed-in braids",
@@ -14814,8 +14661,7 @@
         "Wash & blowdry",
         "Creative braids (e.g. patewo)"
       ],
-      "checkedAt": "2026-05-20T23:25:07.813Z",
-      "reviewedAt": "2026-05-20T23:35:06.805Z"
+      "checkedAt": "2026-05-21T00:02:24.112Z"
     },
     {
       "id": "marievhair",
@@ -14825,7 +14671,6 @@
       "instagramUrl": "https://www.instagram.com/marievhair/",
       "websiteUrl": "https://marievhair.as.me/schedule/a811c81c",
       "issues": [
-        "Possible new services found",
         "Possible removed services found"
       ],
       "linkChecks": [
@@ -14921,8 +14766,7 @@
         "Half braids, half sew-in",
         "Sew-in take-down"
       ],
-      "checkedAt": "2026-05-20T23:25:07.677Z",
-      "reviewedAt": "2026-05-20T23:35:13.839Z"
+      "checkedAt": "2026-05-21T00:02:23.940Z"
     },
     {
       "id": "maisonstylehair",
@@ -14994,9 +14838,7 @@
         "Texture release",
         "Full head colour"
       ],
-      "addedServices": [
-        "Bridal / Editorial"
-      ],
+      "addedServices": [],
       "removedServices": [
         "Wig install (frontal / closure)",
         "Silk press",
@@ -15011,7 +14853,8 @@
         "Custom wig",
         "Twist out / Flexi rod"
       ],
-      "checkedAt": "2026-05-20T23:25:07.998Z"
+      "checkedAt": "2026-05-21T00:02:25.035Z",
+      "reviewedAt": "2026-05-21T00:05:17.190Z"
     },
     {
       "id": "maison-oceane-ltd",
@@ -15101,13 +14944,12 @@
         "Frontal sew-in",
         "Closure sew-in"
       ],
-      "addedServices": [
-        "Frontal ponytail / bun"
-      ],
+      "addedServices": [],
       "removedServices": [
         "Custom wig"
       ],
-      "checkedAt": "2026-05-20T23:25:09.641Z"
+      "checkedAt": "2026-05-21T00:02:25.807Z",
+      "reviewedAt": "2026-05-21T00:05:20.545Z"
     },
     {
       "id": "maggies-hair",
@@ -15208,7 +15050,7 @@
         "Wash & blowdry",
         "Hair Botox"
       ],
-      "checkedAt": "2026-05-20T23:25:09.899Z"
+      "checkedAt": "2026-05-21T00:02:25.893Z"
     },
     {
       "id": "madouss-hair-studio",
@@ -15302,8 +15144,7 @@
         "Wig cornrows"
       ],
       "addedServices": [
-        "Custom wig",
-        "Wig cornrows"
+        "Custom wig"
       ],
       "removedServices": [
         "Wig install (frontal / closure)",
@@ -15313,7 +15154,8 @@
         "Moisturising treatment",
         "Scalp care"
       ],
-      "checkedAt": "2026-05-20T23:25:09.602Z"
+      "checkedAt": "2026-05-21T00:02:25.817Z",
+      "reviewedAt": "2026-05-21T00:05:24.047Z"
     },
     {
       "id": "loving-hair-care",
@@ -15510,13 +15352,6 @@
         "Updo"
       ],
       "addedServices": [
-        "Scalp care",
-        "Flipover / Versatile sew-in",
-        "Crochet",
-        "Butterfly locs",
-        "Olaplex treatment",
-        "Frontal ponytail / bun",
-        "Wig colour",
         "Custom wig",
         "Bridal / Editorial",
         "Updo"
@@ -15526,11 +15361,11 @@
         "Feed-in braids",
         "Moisturising treatment",
         "Texture release",
-        "Pixie / finger waves",
         "Retwist",
         "Twist out / Flexi rod"
       ],
-      "checkedAt": "2026-05-20T23:25:09.986Z"
+      "checkedAt": "2026-05-21T00:02:26.063Z",
+      "reviewedAt": "2026-05-21T00:06:30.760Z"
     },
     {
       "id": "les-braid-it",
@@ -15540,7 +15375,6 @@
       "instagramUrl": "https://www.instagram.com/lesbraidit/",
       "websiteUrl": "https://www.lesbraidit.co.uk/",
       "issues": [
-        "Possible new services found",
         "Possible removed services found"
       ],
       "linkChecks": [
@@ -15608,7 +15442,8 @@
         "French curl",
         "Half braids, half sew-in",
         "Wig cornrows",
-        "Crochet"
+        "Crochet",
+        "Stitch braids"
       ],
       "detectedServices": [
         "French curl",
@@ -15627,8 +15462,7 @@
         "Wig cornrows",
         "Crochet"
       ],
-      "checkedAt": "2026-05-20T23:25:12.200Z",
-      "reviewedAt": "2026-05-20T23:35:38.486Z"
+      "checkedAt": "2026-05-21T00:02:27.707Z"
     },
     {
       "id": "laidbycc",
@@ -15638,7 +15472,6 @@
       "instagramUrl": "https://www.instagram.com/laidbycc/",
       "websiteUrl": "https://laidbycc.as.me",
       "issues": [
-        "Possible new services found",
         "Possible removed services found"
       ],
       "linkChecks": [
@@ -15717,7 +15550,10 @@
         "Half up half down",
         "Sleek ponytail / bun",
         "Half braids, half sew-in",
-        "Updo"
+        "Updo",
+        "Frontal ponytail / bun",
+        "U-Part wig install",
+        "Closure sew-in"
       ],
       "detectedServices": [
         "Wig cornrows",
@@ -15736,8 +15572,7 @@
         "Half braids, half sew-in",
         "Updo"
       ],
-      "checkedAt": "2026-05-20T23:25:15.830Z",
-      "reviewedAt": "2026-05-20T23:35:48.754Z"
+      "checkedAt": "2026-05-21T00:02:31.077Z"
     },
     {
       "id": "laid-by-sophh",
@@ -15811,7 +15646,8 @@
         "Quick weave",
         "Traditional sew-in / leave out",
         "Flipover / Versatile sew-in",
-        "Frontal ponytail / bun"
+        "Frontal ponytail / bun",
+        "Half up half down"
       ],
       "detectedServices": [
         "Sleek ponytail / bun",
@@ -15826,8 +15662,7 @@
         "Closure sew-in"
       ],
       "removedServices": [],
-      "checkedAt": "2026-05-20T23:25:14.871Z",
-      "reviewedAt": "2026-05-20T23:35:54.139Z"
+      "checkedAt": "2026-05-21T00:02:30.224Z"
     },
     {
       "id": "laid-by-j-hair",
@@ -15922,7 +15757,7 @@
         "Sleek ponytail / bun",
         "Updo"
       ],
-      "checkedAt": "2026-05-20T23:25:14.844Z"
+      "checkedAt": "2026-05-21T00:02:30.299Z"
     },
     {
       "id": "lael-london",
@@ -15994,21 +15829,16 @@
         "Texture release",
         "Traditional sew-in / leave out"
       ],
-      "addedServices": [
-        "Wig cornrows",
-        "Microlinks"
-      ],
+      "addedServices": [],
       "removedServices": [
-        "Wig install (frontal / closure)",
-        "Closure sew-in",
         "Frontal sew-in",
         "Hybrid sew-in",
         "Silk press",
         "Relaxer / texturiser",
-        "Wash & blowdry",
         "Sew-in take-down"
       ],
-      "checkedAt": "2026-05-20T23:25:13.694Z"
+      "checkedAt": "2026-05-21T00:02:29.178Z",
+      "reviewedAt": "2026-05-21T00:07:19.851Z"
     },
     {
       "id": "lamin-label",
@@ -16018,7 +15848,6 @@
       "instagramUrl": "https://www.instagram.com/laminlabel/",
       "websiteUrl": "https://laminlabel.as.me/schedule/902c5edf",
       "issues": [
-        "Possible new services found",
         "Possible removed services found"
       ],
       "linkChecks": [
@@ -16103,7 +15932,8 @@
         "Custom wig",
         "Retwist",
         "Starter locs",
-        "Twists (with extensions)"
+        "Twists (with extensions)",
+        "Wig colour"
       ],
       "detectedServices": [
         "Retwist",
@@ -16118,8 +15948,7 @@
       "removedServices": [
         "Custom wig"
       ],
-      "checkedAt": "2026-05-20T23:25:15.138Z",
-      "reviewedAt": "2026-05-20T23:35:58.322Z"
+      "checkedAt": "2026-05-21T00:02:30.467Z"
     },
     {
       "id": "kulture-hair",
@@ -16188,7 +16017,7 @@
         "Frontal sew-in"
       ],
       "removedServices": [],
-      "checkedAt": "2026-05-20T23:25:15.303Z"
+      "checkedAt": "2026-05-21T00:02:30.747Z"
     },
     {
       "id": "kty-studios",
@@ -16262,7 +16091,7 @@
         "Custom wig"
       ],
       "removedServices": [],
-      "checkedAt": "2026-05-20T23:25:16.189Z"
+      "checkedAt": "2026-05-21T00:02:31.954Z"
     },
     {
       "id": "ksanya-hair",
@@ -16365,15 +16194,14 @@
         "Fulani / Lemonade braids"
       ],
       "addedServices": [
-        "Stitch braids",
-        "Traditional sew-in / leave out",
-        "Half up half down"
+        "Traditional sew-in / leave out"
       ],
       "removedServices": [
         "Feed-in braids",
         "Sleek ponytail / bun"
       ],
-      "checkedAt": "2026-05-20T23:25:16.919Z"
+      "checkedAt": "2026-05-21T00:02:32.432Z",
+      "reviewedAt": "2026-05-21T00:07:24.846Z"
     },
     {
       "id": "krownbykrys",
@@ -16471,7 +16299,12 @@
       },
       "currentServices": [
         "Knotless braids",
-        "Wig cornrows"
+        "Wig cornrows",
+        "Feed-in braids",
+        "Butterfly locs",
+        "Quick weave",
+        "Sleek ponytail / bun",
+        "Wig install (frontal / closure)"
       ],
       "detectedServices": [
         "Feed-in braids",
@@ -16494,8 +16327,7 @@
         "Flipover / Versatile sew-in"
       ],
       "removedServices": [],
-      "checkedAt": "2026-05-20T23:25:17.593Z",
-      "reviewedAt": "2026-05-20T23:36:27.603Z"
+      "checkedAt": "2026-05-21T00:02:33.370Z"
     },
     {
       "id": "kitokohairlounge",
@@ -16612,7 +16444,9 @@
         "Twists (with extensions)",
         "Boho braids / goddess braids",
         "Sleek ponytail / bun",
-        "Stitch braids"
+        "Stitch braids",
+        "Fulani / Lemonade braids",
+        "Half braids, half sew-in"
       ],
       "detectedServices": [
         "Fulani / Lemonade braids",
@@ -16631,8 +16465,7 @@
         "Feed-in braids"
       ],
       "removedServices": [],
-      "checkedAt": "2026-05-20T23:25:18.286Z",
-      "reviewedAt": "2026-05-20T23:37:05.893Z"
+      "checkedAt": "2026-05-21T00:02:33.901Z"
     },
     {
       "id": "kintsubeauty",
@@ -16739,7 +16572,11 @@
         "Tracks (+ Silk press) / Partial / Invisible sew-in",
         "Flipover / Versatile sew-in",
         "Custom wig",
-        "Frontal ponytail / bun"
+        "Frontal ponytail / bun",
+        "Relaxer / texturiser",
+        "Scalp care",
+        "Frontal sew-in",
+        "Wig cornrows"
       ],
       "detectedServices": [
         "Wash & blowdry",
@@ -16764,8 +16601,7 @@
         "Pixie / finger waves"
       ],
       "removedServices": [],
-      "checkedAt": "2026-05-20T23:25:18.807Z",
-      "reviewedAt": "2026-05-20T23:57:44.932Z"
+      "checkedAt": "2026-05-21T00:02:34.783Z"
     },
     {
       "id": "kayy-the-braider",
@@ -16775,7 +16611,6 @@
       "instagramUrl": "https://www.instagram.com/kayythebraider/",
       "websiteUrl": "https://kayythebraider-ktb.as.me/schedule/34b7fea6",
       "issues": [
-        "Possible new services found",
         "Possible removed services found"
       ],
       "linkChecks": [
@@ -16876,7 +16711,10 @@
         "Knotless braids",
         "Wig cornrows",
         "Box braids",
-        "Twists (with extensions)"
+        "Twists (with extensions)",
+        "Faux locs",
+        "Crochet",
+        "Trim / Hair cut"
       ],
       "detectedServices": [
         "Boho braids / goddess braids",
@@ -16898,8 +16736,7 @@
         "Creative braids (e.g. patewo)",
         "Twists (with extensions)"
       ],
-      "checkedAt": "2026-05-20T23:25:19.495Z",
-      "reviewedAt": "2026-05-20T23:37:32.743Z"
+      "checkedAt": "2026-05-21T00:02:36.082Z"
     },
     {
       "id": "jo-johnson-ltd",
@@ -16977,15 +16814,14 @@
         "Silk press",
         "Keratin treatment"
       ],
-      "addedServices": [
-        "Relaxer / texturiser"
-      ],
+      "addedServices": [],
       "removedServices": [
         "Highlights",
         "Balayage",
         "Wash & blowdry"
       ],
-      "checkedAt": "2026-05-20T23:25:20.716Z"
+      "checkedAt": "2026-05-21T00:02:37.745Z",
+      "reviewedAt": "2026-05-21T00:07:27.950Z"
     },
     {
       "id": "jo-did-it",
@@ -17088,7 +16924,8 @@
         "French curl",
         "Faux locs",
         "Butterfly locs",
-        "Wig cornrows"
+        "Wig cornrows",
+        "Pre-parting"
       ],
       "detectedServices": [
         "Boho braids / goddess braids",
@@ -17105,8 +16942,7 @@
         "Starter locs"
       ],
       "removedServices": [],
-      "checkedAt": "2026-05-20T23:25:21.535Z",
-      "reviewedAt": "2026-05-20T23:37:37.087Z"
+      "checkedAt": "2026-05-21T00:02:39.140Z"
     },
     {
       "id": "jluxe-hair",
@@ -17230,7 +17066,10 @@
         "Silk press",
         "Texture release",
         "Wig install (frontal / closure)",
-        "Sew-in take-down"
+        "Sew-in take-down",
+        "Quick weave",
+        "Hybrid sew-in",
+        "Relaxer / texturiser"
       ],
       "detectedServices": [
         "Sleek ponytail / bun",
@@ -17259,8 +17098,7 @@
         "Wig install (frontal / closure)",
         "Sew-in take-down"
       ],
-      "checkedAt": "2026-05-20T23:25:21.445Z",
-      "reviewedAt": "2026-05-20T23:37:58.420Z"
+      "checkedAt": "2026-05-21T00:02:39.442Z"
     },
     {
       "id": "jennifer-cynthia-the-hairstylist",
@@ -17356,7 +17194,7 @@
         "Flipover / Versatile sew-in",
         "Clip ins (+ Silk press)"
       ],
-      "checkedAt": "2026-05-20T23:25:22.205Z"
+      "checkedAt": "2026-05-21T00:02:38.394Z"
     },
     {
       "id": "jbs-hairr",
@@ -17468,7 +17306,7 @@
         "Wig install (frontal / closure)",
         "Updo"
       ],
-      "checkedAt": "2026-05-20T23:25:22.350Z"
+      "checkedAt": "2026-05-21T00:02:39.685Z"
     },
     {
       "id": "jans-touch",
@@ -17557,7 +17395,8 @@
         "Boho braids / goddess braids",
         "Feed-in braids",
         "Fulani / Lemonade braids",
-        "Wig cornrows"
+        "Wig cornrows",
+        "Stitch braids"
       ],
       "detectedServices": [
         "Boho braids / goddess braids",
@@ -17576,8 +17415,7 @@
         "U-Part wig install"
       ],
       "removedServices": [],
-      "checkedAt": "2026-05-20T23:25:23.407Z",
-      "reviewedAt": "2026-05-20T23:38:06.436Z"
+      "checkedAt": "2026-05-21T00:02:40.975Z"
     },
     {
       "id": "jadeslaysldn",
@@ -17703,7 +17541,8 @@
         "Fulani / Lemonade braids",
         "Wig cornrows",
         "Custom wig",
-        "Wig install (frontal / closure)"
+        "Wig install (frontal / closure)",
+        "Stitch braids"
       ],
       "detectedServices": [
         "Boho braids / goddess braids",
@@ -17730,8 +17569,7 @@
         "Traditional sew-in / leave out"
       ],
       "removedServices": [],
-      "checkedAt": "2026-05-20T23:25:24.608Z",
-      "reviewedAt": "2026-05-20T23:38:10.055Z"
+      "checkedAt": "2026-05-21T00:02:42.437Z"
     },
     {
       "id": "ivys-beauty-world",
@@ -17741,7 +17579,6 @@
       "instagramUrl": "https://www.instagram.com/ivysbeautyy/",
       "websiteUrl": "https://ivysbeautyworld.as.me/schedule/0ac78891",
       "issues": [
-        "Possible new services found",
         "Possible removed services found"
       ],
       "linkChecks": [
@@ -17839,8 +17676,7 @@
         "Traditional sew-in / leave out",
         "Moisturising treatment"
       ],
-      "checkedAt": "2026-05-20T23:25:24.130Z",
-      "reviewedAt": "2026-05-20T23:38:15.828Z"
+      "checkedAt": "2026-05-21T00:02:41.779Z"
     },
     {
       "id": "innovative-salon-hair-beauty",
@@ -17940,7 +17776,7 @@
         "Crochet",
         "Tracks (+ Silk press) / Partial / Invisible sew-in"
       ],
-      "checkedAt": "2026-05-20T23:25:23.550Z"
+      "checkedAt": "2026-05-21T00:02:41.387Z"
     },
     {
       "id": "ines-does-my-hair",
@@ -18016,7 +17852,8 @@
         "Flipover / Versatile sew-in",
         "Quick weave",
         "Wig cornrows",
-        "U-Part wig install"
+        "U-Part wig install",
+        "Custom wig"
       ],
       "detectedServices": [
         "Traditional sew-in / leave out",
@@ -18034,8 +17871,7 @@
       "removedServices": [
         "Wig install (frontal / closure)"
       ],
-      "checkedAt": "2026-05-20T23:25:25.310Z",
-      "reviewedAt": "2026-05-20T23:38:22.729Z"
+      "checkedAt": "2026-05-21T00:02:43.378Z"
     },
     {
       "id": "in-faithful-hands",
@@ -18123,7 +17959,8 @@
         "Stitch braids",
         "Flipover / Versatile sew-in",
         "Wig cornrows",
-        "Knotless braids"
+        "Knotless braids",
+        "Feed-in braids"
       ],
       "detectedServices": [
         "Knotless braids",
@@ -18142,8 +17979,7 @@
       "removedServices": [
         "Half braids, half sew-in"
       ],
-      "checkedAt": "2026-05-20T23:25:25.259Z",
-      "reviewedAt": "2026-05-20T23:38:29.938Z"
+      "checkedAt": "2026-05-21T00:02:43.174Z"
     },
     {
       "id": "iislay-hair",
@@ -18291,7 +18127,7 @@
       "removedServices": [
         "Butterfly locs"
       ],
-      "checkedAt": "2026-05-20T23:25:26.231Z"
+      "checkedAt": "2026-05-21T00:02:44.379Z"
     },
     {
       "id": "iam-ola-eletu",
@@ -18411,7 +18247,7 @@
         "Tracks (+ Silk press) / Partial / Invisible sew-in",
         "Updo"
       ],
-      "checkedAt": "2026-05-20T23:25:26.154Z"
+      "checkedAt": "2026-05-21T00:02:43.613Z"
     },
     {
       "id": "hurthe-stylist",
@@ -18498,7 +18334,7 @@
         "Pixie / finger waves",
         "Custom wig"
       ],
-      "checkedAt": "2026-05-20T23:25:26.494Z"
+      "checkedAt": "2026-05-21T00:02:44.558Z"
     },
     {
       "id": "houseofiye",
@@ -18622,7 +18458,12 @@
         "Twists (with extensions)",
         "Knotless braids",
         "Feed-in braids",
-        "Faux locs"
+        "Faux locs",
+        "Box braids",
+        "Half braids, half sew-in",
+        "Wig cornrows",
+        "Sleek ponytail / bun",
+        "Crochet"
       ],
       "detectedServices": [
         "Box braids",
@@ -18643,8 +18484,7 @@
       "removedServices": [
         "Twists (with extensions)"
       ],
-      "checkedAt": "2026-05-20T23:25:28.055Z",
-      "reviewedAt": "2026-05-20T23:38:58.137Z"
+      "checkedAt": "2026-05-21T00:02:46.917Z"
     },
     {
       "id": "house-of-sisters",
@@ -18654,7 +18494,6 @@
       "instagramUrl": "https://www.instagram.com/_houseofsisters_/",
       "websiteUrl": "https://houseofsisterss.as.me/schedule/6c3b5708",
       "issues": [
-        "Possible new services found",
         "Possible removed services found"
       ],
       "linkChecks": [
@@ -18743,8 +18582,7 @@
       "removedServices": [
         "Clip ins (+ Silk press)"
       ],
-      "checkedAt": "2026-05-20T23:25:29.079Z",
-      "reviewedAt": "2026-05-20T23:39:04.140Z"
+      "checkedAt": "2026-05-21T00:02:47.369Z"
     },
     {
       "id": "house-of-e",
@@ -18815,7 +18653,7 @@
         "Twists (with extensions)",
         "Microbraids / x-small braids"
       ],
-      "checkedAt": "2026-05-20T23:25:29.087Z"
+      "checkedAt": "2026-05-21T00:02:46.998Z"
     },
     {
       "id": "honey-hand",
@@ -18878,7 +18716,7 @@
       "removedServices": [
         "Pixie wig / weave install"
       ],
-      "checkedAt": "2026-05-20T23:25:27.858Z"
+      "checkedAt": "2026-05-21T00:02:46.639Z"
     },
     {
       "id": "hm-hair",
@@ -18952,7 +18790,7 @@
         "Wig install (frontal / closure)",
         "Updo"
       ],
-      "checkedAt": "2026-05-20T23:25:28.237Z"
+      "checkedAt": "2026-05-21T00:02:47.406Z"
     },
     {
       "id": "helens-london",
@@ -19087,7 +18925,7 @@
         "Wig cornrows",
         "Twist out / Flexi rod"
       ],
-      "checkedAt": "2026-05-20T23:25:31.729Z"
+      "checkedAt": "2026-05-21T00:02:49.920Z"
     },
     {
       "id": "helena-macris-salon",
@@ -19264,7 +19102,7 @@
         "Highlights",
         "Texture release"
       ],
-      "checkedAt": "2026-05-20T23:25:33.400Z"
+      "checkedAt": "2026-05-21T00:02:50.894Z"
     },
     {
       "id": "haute-glam-hair",
@@ -19339,7 +19177,7 @@
       "removedServices": [
         "Hybrid sew-in"
       ],
-      "checkedAt": "2026-05-20T23:25:32.617Z"
+      "checkedAt": "2026-05-21T00:02:49.629Z"
     },
     {
       "id": "haus-of-amani",
@@ -19349,7 +19187,6 @@
       "instagramUrl": "https://www.instagram.com/hausofamani/",
       "websiteUrl": "https://haus-of-amani.as.me/schedule/3ef63367",
       "issues": [
-        "Possible new services found",
         "Possible removed services found"
       ],
       "linkChecks": [
@@ -19397,7 +19234,9 @@
         "Flipover / Versatile sew-in",
         "Closure sew-in",
         "Frontal sew-in",
-        "Traditional sew-in / leave out"
+        "Traditional sew-in / leave out",
+        "Quick weave",
+        "U-Part wig install"
       ],
       "detectedServices": [
         "Traditional sew-in / leave out",
@@ -19410,8 +19249,7 @@
       "removedServices": [
         "Frontal sew-in"
       ],
-      "checkedAt": "2026-05-20T23:25:31.458Z",
-      "reviewedAt": "2026-05-20T23:39:30.277Z"
+      "checkedAt": "2026-05-21T00:02:49.760Z"
     },
     {
       "id": "hairspace-ldn",
@@ -19547,7 +19385,7 @@
         "Twists (with extensions)",
         "Half up half down"
       ],
-      "checkedAt": "2026-05-20T23:25:34.113Z"
+      "checkedAt": "2026-05-21T00:02:51.029Z"
     },
     {
       "id": "hairbyzhb",
@@ -19654,8 +19492,7 @@
         "Sleek ponytail / bun",
         "Updo"
       ],
-      "checkedAt": "2026-05-20T23:25:34.355Z",
-      "reviewedAt": "2026-05-20T23:40:01.376Z"
+      "checkedAt": "2026-05-21T00:02:52.384Z"
     },
     {
       "id": "hairbyoceanne",
@@ -19729,7 +19566,7 @@
         "Half braids, half sew-in",
         "Closure sew-in"
       ],
-      "checkedAt": "2026-05-20T23:25:34.333Z"
+      "checkedAt": "2026-05-21T00:02:52.089Z"
     },
     {
       "id": "hairbymf",
@@ -19812,7 +19649,7 @@
         "Frontal sew-in"
       ],
       "removedServices": [],
-      "checkedAt": "2026-05-20T23:25:35.160Z"
+      "checkedAt": "2026-05-21T00:02:52.648Z"
     },
     {
       "id": "hairbydiorx",
@@ -19929,7 +19766,9 @@
         "Traditional sew-in / leave out",
         "Closure sew-in",
         "Bridal / Editorial",
-        "Frontal ponytail / bun"
+        "Frontal ponytail / bun",
+        "Half up half down",
+        "Feed-in braids"
       ],
       "detectedServices": [
         "Boho braids / goddess braids",
@@ -19951,8 +19790,7 @@
       "removedServices": [
         "Bridal / Editorial"
       ],
-      "checkedAt": "2026-05-20T23:25:36.404Z",
-      "reviewedAt": "2026-05-20T23:40:06.770Z"
+      "checkedAt": "2026-05-21T00:02:53.683Z"
     },
     {
       "id": "hairbyamandaniceandneat",
@@ -19962,7 +19800,6 @@
       "instagramUrl": "https://www.instagram.com/hairbyamandaniceandneat/",
       "websiteUrl": "https://app.squarespacescheduling.com/schedule.php?owner=26894206",
       "issues": [
-        "Possible new services found",
         "Possible removed services found"
       ],
       "linkChecks": [
@@ -20091,7 +19928,8 @@
         "Wig cornrows",
         "Fulani / Lemonade braids",
         "Twists (with extensions)",
-        "Crochet"
+        "Crochet",
+        "Stitch braids"
       ],
       "detectedServices": [
         "Boho braids / goddess braids",
@@ -20109,8 +19947,7 @@
       "removedServices": [
         "Half braids, half sew-in"
       ],
-      "checkedAt": "2026-05-20T23:25:37.741Z",
-      "reviewedAt": "2026-05-20T23:57:31.334Z"
+      "checkedAt": "2026-05-21T00:02:55.768Z"
     },
     {
       "id": "hairboyldn",
@@ -20252,7 +20089,10 @@
         "Highlights",
         "LA weave",
         "Wig cornrows",
-        "Tracks (+ Silk press) / Partial / Invisible sew-in"
+        "Tracks (+ Silk press) / Partial / Invisible sew-in",
+        "Trim / Hair cut",
+        "Relaxer / texturiser",
+        "Texture release"
       ],
       "detectedServices": [
         "Moisturising treatment",
@@ -20276,8 +20116,7 @@
         "Wash & blowdry"
       ],
       "removedServices": [],
-      "checkedAt": "2026-05-20T23:25:36.006Z",
-      "reviewedAt": "2026-05-20T23:40:44.451Z"
+      "checkedAt": "2026-05-21T00:02:54.895Z"
     },
     {
       "id": "hair-zones-uk",
@@ -20498,7 +20337,7 @@
         "Microbraids / x-small braids",
         "Twists (with extensions)"
       ],
-      "checkedAt": "2026-05-20T23:25:37.712Z"
+      "checkedAt": "2026-05-21T00:02:59.157Z"
     },
     {
       "id": "hair-priscription",
@@ -20579,7 +20418,8 @@
         "Traditional sew-in / leave out",
         "Wig install (frontal / closure)",
         "Custom wig",
-        "U-Part wig install"
+        "U-Part wig install",
+        "Closure sew-in"
       ],
       "detectedServices": [
         "Half up half down",
@@ -20598,8 +20438,7 @@
         "Natural hair education"
       ],
       "removedServices": [],
-      "checkedAt": "2026-05-20T23:25:37.759Z",
-      "reviewedAt": "2026-05-20T23:40:50.866Z"
+      "checkedAt": "2026-05-21T00:02:55.605Z"
     },
     {
       "id": "hair-cupid-london",
@@ -20684,7 +20523,7 @@
       "removedServices": [
         "Sew-in take-down"
       ],
-      "checkedAt": "2026-05-20T23:25:38.251Z"
+      "checkedAt": "2026-05-21T00:02:56.666Z"
     },
     {
       "id": "hair-by-wynn",
@@ -20844,8 +20683,7 @@
       "removedServices": [
         "Half braids, half sew-in"
       ],
-      "checkedAt": "2026-05-20T23:25:39.809Z",
-      "reviewedAt": "2026-05-20T23:41:38.230Z"
+      "checkedAt": "2026-05-21T00:02:58.024Z"
     },
     {
       "id": "hair-by-temiii",
@@ -20926,7 +20764,7 @@
         "Frontal sew-in",
         "Sleek ponytail / bun"
       ],
-      "checkedAt": "2026-05-20T23:25:38.803Z"
+      "checkedAt": "2026-05-21T00:02:57.119Z"
     },
     {
       "id": "hair-by-ssb",
@@ -21032,7 +20870,7 @@
         "Flipover / Versatile sew-in"
       ],
       "removedServices": [],
-      "checkedAt": "2026-05-20T23:25:39.569Z"
+      "checkedAt": "2026-05-21T00:02:57.489Z"
     },
     {
       "id": "hair-by-resa",
@@ -21189,7 +21027,7 @@
         "Relaxer / texturiser",
         "Twists (with extensions)"
       ],
-      "checkedAt": "2026-05-20T23:25:40.482Z"
+      "checkedAt": "2026-05-21T00:03:00.001Z"
     },
     {
       "id": "hair-by-rachael-b",
@@ -21347,7 +21185,7 @@
         "Feed-in braids",
         "Bridal / Editorial"
       ],
-      "checkedAt": "2026-05-20T23:25:39.118Z"
+      "checkedAt": "2026-05-21T00:02:58.197Z"
     },
     {
       "id": "hair-by-opee",
@@ -21506,8 +21344,7 @@
         "Fulani / Lemonade braids",
         "Wig install (frontal / closure)"
       ],
-      "checkedAt": "2026-05-20T23:25:41.263Z",
-      "reviewedAt": "2026-05-20T23:41:43.400Z"
+      "checkedAt": "2026-05-21T00:03:00.227Z"
     },
     {
       "id": "hair-by-kuks",
@@ -21628,7 +21465,11 @@
         "Faux locs",
         "Stitch braids",
         "Fulani / Lemonade braids",
-        "Half braids, half sew-in"
+        "Half braids, half sew-in",
+        "Twists (with extensions)",
+        "Half up half down",
+        "Miracle knots",
+        "Sleek ponytail / bun"
       ],
       "detectedServices": [
         "Knotless braids",
@@ -21650,8 +21491,7 @@
         "Faux locs",
         "Half braids, half sew-in"
       ],
-      "checkedAt": "2026-05-20T23:25:41.877Z",
-      "reviewedAt": "2026-05-20T23:41:54.167Z"
+      "checkedAt": "2026-05-21T00:03:01.167Z"
     },
     {
       "id": "hair-by-geneve",
@@ -21800,7 +21640,7 @@
         "Sew-in take-down",
         "Tracks (+ Silk press) / Partial / Invisible sew-in"
       ],
-      "checkedAt": "2026-05-20T23:25:41.781Z"
+      "checkedAt": "2026-05-21T00:03:01.427Z"
     },
     {
       "id": "hair-by-ebony-b",
@@ -21810,7 +21650,6 @@
       "instagramUrl": "https://www.instagram.com/hairbyebonyb/",
       "websiteUrl": "https://app.acuityscheduling.com/schedule.php?owner=33257859",
       "issues": [
-        "Possible new services found",
         "Possible removed services found"
       ],
       "linkChecks": [
@@ -21930,7 +21769,8 @@
         "Closure sew-in",
         "Flipover / Versatile sew-in",
         "Knotless braids",
-        "Box braids"
+        "Box braids",
+        "Pixie / finger waves"
       ],
       "detectedServices": [
         "Wash & blowdry",
@@ -21954,8 +21794,7 @@
         "Moisturising treatment",
         "Traditional sew-in / leave out"
       ],
-      "checkedAt": "2026-05-20T23:25:43.152Z",
-      "reviewedAt": "2026-05-20T23:42:38.593Z"
+      "checkedAt": "2026-05-21T00:03:02.517Z"
     },
     {
       "id": "hair-by-anais",
@@ -22118,7 +21957,7 @@
         "Highlights",
         "Updo"
       ],
-      "checkedAt": "2026-05-20T23:25:45.849Z"
+      "checkedAt": "2026-05-21T00:03:05.351Z"
     },
     {
       "id": "h-lounge-uk",
@@ -22252,7 +22091,7 @@
         "Wig install (frontal / closure)",
         "Half braids, half sew-in"
       ],
-      "checkedAt": "2026-05-20T23:25:45.227Z"
+      "checkedAt": "2026-05-21T00:03:04.469Z"
     },
     {
       "id": "gxtouched",
@@ -22346,7 +22185,7 @@
       "removedServices": [
         "Wig install (frontal / closure)"
       ],
-      "checkedAt": "2026-05-20T23:25:45.213Z"
+      "checkedAt": "2026-05-21T00:03:04.827Z"
     },
     {
       "id": "gslaysuk",
@@ -22443,7 +22282,10 @@
         "Butterfly locs",
         "Half braids, half sew-in",
         "Half up half down",
-        "Sleek ponytail / bun"
+        "Sleek ponytail / bun",
+        "Wig cornrows",
+        "Crochet",
+        "Quick weave"
       ],
       "detectedServices": [
         "Knotless braids",
@@ -22467,8 +22309,7 @@
       "removedServices": [
         "Half braids, half sew-in"
       ],
-      "checkedAt": "2026-05-20T23:25:47.030Z",
-      "reviewedAt": "2026-05-20T23:42:51.242Z"
+      "checkedAt": "2026-05-21T00:03:06.929Z"
     },
     {
       "id": "groath-hair",
@@ -22569,7 +22410,7 @@
         "Half braids, half sew-in",
         "Crochet"
       ],
-      "checkedAt": "2026-05-20T23:25:45.851Z"
+      "checkedAt": "2026-05-21T00:03:06.015Z"
     },
     {
       "id": "gripped-it",
@@ -22579,7 +22420,6 @@
       "instagramUrl": "https://www.instagram.com/gripped_it/",
       "websiteUrl": "https://thegrip.as.me/schedule/0d67ca98",
       "issues": [
-        "Possible new services found",
         "Possible removed services found"
       ],
       "linkChecks": [
@@ -22657,7 +22497,8 @@
         "Half braids, half sew-in",
         "French curl",
         "Knotless braids",
-        "Boho braids / goddess braids"
+        "Boho braids / goddess braids",
+        "Microbraids / x-small braids"
       ],
       "detectedServices": [
         "Boho braids / goddess braids",
@@ -22672,8 +22513,7 @@
       "removedServices": [
         "Half braids, half sew-in"
       ],
-      "checkedAt": "2026-05-20T23:25:47.306Z",
-      "reviewedAt": "2026-05-20T23:43:24.868Z"
+      "checkedAt": "2026-05-21T00:03:06.835Z"
     },
     {
       "id": "goldenn-touch",
@@ -22753,7 +22593,7 @@
       "removedServices": [
         "Wig install (frontal / closure)"
       ],
-      "checkedAt": "2026-05-20T23:25:47.641Z"
+      "checkedAt": "2026-05-21T00:03:07.453Z"
     },
     {
       "id": "glo-lounge-london",
@@ -22845,7 +22685,9 @@
         "Sleek ponytail / bun",
         "Half up half down",
         "Custom wig",
-        "Sew-in take-down"
+        "Sew-in take-down",
+        "Frontal sew-in",
+        "Olaplex treatment"
       ],
       "detectedServices": [
         "Custom wig",
@@ -22868,8 +22710,7 @@
         "Wig colour",
         "Sew-in take-down"
       ],
-      "checkedAt": "2026-05-20T23:25:49.218Z",
-      "reviewedAt": "2026-05-20T23:43:34.115Z"
+      "checkedAt": "2026-05-21T00:03:08.773Z"
     },
     {
       "id": "glaysson-carvalho-hair-studio",
@@ -22954,7 +22795,7 @@
         "Olaplex treatment",
         "Trim / Hair cut"
       ],
-      "checkedAt": "2026-05-20T23:25:47.894Z"
+      "checkedAt": "2026-05-21T00:03:07.597Z"
     },
     {
       "id": "gias-hair-salon",
@@ -23055,8 +22896,7 @@
       "removedServices": [
         "Sleek ponytail / bun"
       ],
-      "checkedAt": "2026-05-20T23:25:49.040Z",
-      "reviewedAt": "2026-05-20T23:43:41.976Z"
+      "checkedAt": "2026-05-21T00:03:08.739Z"
     },
     {
       "id": "get-inkzpired",
@@ -23209,8 +23049,7 @@
         "Half braids, half sew-in",
         "Feed-in braids"
       ],
-      "checkedAt": "2026-05-20T23:25:50.180Z",
-      "reviewedAt": "2026-05-20T23:44:09.063Z"
+      "checkedAt": "2026-05-21T00:03:09.953Z"
     },
     {
       "id": "gbraidedit",
@@ -23299,7 +23138,7 @@
       "removedServices": [
         "Feed-in braids"
       ],
-      "checkedAt": "2026-05-20T23:25:50.405Z"
+      "checkedAt": "2026-05-21T00:03:10.601Z"
     },
     {
       "id": "fs-hairr-uk",
@@ -23384,7 +23223,7 @@
         "Faux locs",
         "Wig cornrows"
       ],
-      "checkedAt": "2026-05-20T23:25:50.687Z"
+      "checkedAt": "2026-05-21T00:03:10.432Z"
     },
     {
       "id": "fola-fash",
@@ -23394,7 +23233,6 @@
       "instagramUrl": "https://www.instagram.com/fola.fash/",
       "websiteUrl": "https://www.folafash.com/book-online",
       "issues": [
-        "Possible new services found",
         "Possible removed services found"
       ],
       "linkChecks": [
@@ -23456,7 +23294,9 @@
         "Traditional sew-in / leave out",
         "K-tips / Invisible strands",
         "Hybrid sew-in",
-        "Sew-in take-down"
+        "Sew-in take-down",
+        "Wash & blowdry",
+        "Trim / Hair cut"
       ],
       "detectedServices": [
         "Keratin treatment",
@@ -23474,8 +23314,7 @@
         "K-tips / Invisible strands",
         "Sew-in take-down"
       ],
-      "checkedAt": "2026-05-20T23:25:55.094Z",
-      "reviewedAt": "2026-05-20T23:44:25.091Z"
+      "checkedAt": "2026-05-21T00:03:11.352Z"
     },
     {
       "id": "ferxcebeauty",
@@ -23617,7 +23456,11 @@
         "Wash & blowdry",
         "Traditional sew-in / leave out",
         "U-Part wig install",
-        "Frontal ponytail / bun"
+        "Frontal ponytail / bun",
+        "Wig cornrows",
+        "Quick weave",
+        "Frontal sew-in",
+        "Fulani / Lemonade braids"
       ],
       "detectedServices": [
         "Wig cornrows",
@@ -23640,8 +23483,7 @@
       "removedServices": [
         "Wig colour"
       ],
-      "checkedAt": "2026-05-20T23:25:52.493Z",
-      "reviewedAt": "2026-05-20T23:44:41.851Z"
+      "checkedAt": "2026-05-21T00:03:13.242Z"
     },
     {
       "id": "fbnhairuk",
@@ -23762,7 +23604,7 @@
         "Wig install (frontal / closure)",
         "Custom wig"
       ],
-      "checkedAt": "2026-05-20T23:25:53.031Z"
+      "checkedAt": "2026-05-21T00:03:13.260Z"
     },
     {
       "id": "fd-hair-and-beauty",
@@ -23874,7 +23716,7 @@
         "Relaxer / texturiser",
         "Wash & blowdry"
       ],
-      "checkedAt": "2026-05-20T23:25:52.891Z"
+      "checkedAt": "2026-05-21T00:03:12.844Z"
     },
     {
       "id": "eugenze",
@@ -23975,7 +23817,9 @@
         "Custom wig",
         "Sleek ponytail / bun",
         "U-Part wig install",
-        "Frontal ponytail / bun"
+        "Frontal ponytail / bun",
+        "Wig cornrows",
+        "Half braids, half sew-in"
       ],
       "detectedServices": [
         "Traditional sew-in / leave out",
@@ -23996,8 +23840,7 @@
       "removedServices": [
         "Bridal / Editorial"
       ],
-      "checkedAt": "2026-05-20T23:25:52.141Z",
-      "reviewedAt": "2026-05-20T23:45:01.581Z"
+      "checkedAt": "2026-05-21T00:03:11.964Z"
     },
     {
       "id": "estylish",
@@ -24106,7 +23949,7 @@
         "Half braids, half sew-in",
         "Updo"
       ],
-      "checkedAt": "2026-05-20T23:25:53.928Z"
+      "checkedAt": "2026-05-21T00:03:13.212Z"
     },
     {
       "id": "ess-belle-tresses",
@@ -24209,7 +24052,8 @@
         "Knotless braids",
         "Feed-in braids",
         "Fulani / Lemonade braids",
-        "Boho braids / goddess braids"
+        "Boho braids / goddess braids",
+        "Faux locs"
       ],
       "detectedServices": [
         "Boho braids / goddess braids",
@@ -24225,8 +24069,7 @@
         "Twists (with extensions)"
       ],
       "removedServices": [],
-      "checkedAt": "2026-05-20T23:25:55.325Z",
-      "reviewedAt": "2026-05-20T23:45:07.483Z"
+      "checkedAt": "2026-05-21T00:03:15.191Z"
     },
     {
       "id": "errold-douglas-ldn",
@@ -24296,7 +24139,7 @@
         "Relaxer / texturiser",
         "Curly cut / Wash & go"
       ],
-      "checkedAt": "2026-05-20T23:25:55.663Z"
+      "checkedAt": "2026-05-21T00:03:15.394Z"
     },
     {
       "id": "ellise-tresses",
@@ -24409,7 +24252,7 @@
         "Starter locs",
         "Half braids, half sew-in"
       ],
-      "checkedAt": "2026-05-20T23:25:56.577Z"
+      "checkedAt": "2026-05-21T00:03:15.910Z"
     },
     {
       "id": "ella-iman-hair",
@@ -24578,7 +24421,7 @@
         "Balayage",
         "Highlights"
       ],
-      "checkedAt": "2026-05-20T23:25:57.387Z"
+      "checkedAt": "2026-05-21T00:03:16.602Z"
     },
     {
       "id": "elegant-hair-uk",
@@ -24641,7 +24484,10 @@
       "currentServices": [
         "Quick weave",
         "Traditional sew-in / leave out",
-        "Flipover / Versatile sew-in"
+        "Flipover / Versatile sew-in",
+        "Braid take-down",
+        "Half up half down",
+        "Sleek ponytail / bun"
       ],
       "detectedServices": [
         "Wig cornrows",
@@ -24656,8 +24502,215 @@
         "Wig cornrows"
       ],
       "removedServices": [],
-      "checkedAt": "2026-05-20T23:25:57.074Z",
-      "reviewedAt": "2026-05-20T23:45:49.677Z"
+      "checkedAt": "2026-05-21T00:03:16.883Z"
+    },
+    {
+      "id": "dvh-salon",
+      "name": "Dvh Salon",
+      "areaLabel": "East",
+      "bookingUrl": "https://www.dvhsalon.com/book-online",
+      "instagramUrl": "https://www.instagram.com/dvh_salon/",
+      "websiteUrl": "https://www.dvhsalon.com/book-online",
+      "issues": [
+        "Possible new services found",
+        "Possible removed services found"
+      ],
+      "linkChecks": [
+        {
+          "type": "booking",
+          "url": "https://www.dvhsalon.com/book-online",
+          "finalUrl": "https://www.dvhsalon.com/book-online",
+          "status": "ok",
+          "httpStatus": 200,
+          "issues": []
+        },
+        {
+          "type": "instagram",
+          "url": "https://www.instagram.com/dvh_salon/",
+          "finalUrl": "https://www.instagram.com/accounts/login/?next=https%3A%2F%2Fwww.instagram.com%2Fdvh_salon%2F&is_from_rle",
+          "status": "ok",
+          "httpStatus": 200,
+          "issues": []
+        }
+      ],
+      "serviceCheck": {
+        "confidence": "medium",
+        "rawServices": [
+          "Book Hair Extension Installations & Wigs",
+          "TAPE IN EXTENSIONS",
+          "WIGS",
+          "DESIGN YOUR OWN WIG",
+          "CLIP INS",
+          "CLIP IN PONYTAIL",
+          "CLOSURES/FRONTALS",
+          "Clip in's",
+          "U-part wigs",
+          "Tapes",
+          "Ponytail",
+          "Frontals",
+          "Wig making/installs",
+          "Hair extension colouring",
+          "Braids",
+          "Natural hair colouring",
+          "Sew In with Leaveout",
+          "Ponytail Extension",
+          "Tracks Install",
+          "Half Braids Half Sew In",
+          "Closure Sew In",
+          "360 Frontal Sew In",
+          "Clip in install",
+          "Frontal Half Up Half Down",
+          "LA Weave",
+          "Frontal Sew In",
+          "Frontal Ponytail Install",
+          "Half Up Half Down Sew In",
+          "Versatile Sew In",
+          "Half Tapes Half Sew In",
+          "Tape Instalment",
+          "Micro rings install",
+          "Flip over sew In Leaveout",
+          "Frontal ponytail install",
+          "Tracks install",
+          "Half up half down sew in",
+          "Closure sew in",
+          "Ponytail Extensions",
+          "Frontal sew in",
+          "Half tapes Half sew in",
+          "360 frontal sew in",
+          "Half braids half sew in",
+          "Tape instalment",
+          "La weave(microlinks)",
+          "Flip over sew in",
+          "Custom wig making using a closure",
+          "Lace closure wig install",
+          "Custom wig using our wig + install",
+          "Custom wig making using a 360 frontal",
+          "Custom wig making using 13x4/6 frontal",
+          "Lace frontal wig install",
+          "Full lace wig install",
+          "Full lace wig install using our wig",
+          "ReTaping of old tapes",
+          "Frontal/closure sew in refreshment",
+          "Wig reGlue & restyle",
+          "Full package wig refreshment",
+          "£15 extra to have your hair cornrowed.",
+          "Frontal/Closure sew in Removal",
+          "This service doesn&#x27;t include a wash.",
+          "Half Tapes Half Sew in Removal",
+          "This service includes a wash.",
+          "Half up half down sew in refreshment",
+          "Tapes Refreshment",
+          "Half Braids Half Sew In Removal",
+          "This service does not include a wash.",
+          "Sew in with leave out refreshment",
+          "La weave Refreshment",
+          "Half Braids Half Sew In Refreshment",
+          "LA Weave Removal",
+          "Wash & blow dry not included.",
+          "Tapes removal",
+          "Sew in with leaveout removal",
+          "Half tapes Half sew in Refreshment",
+          "Frontal sew in refreshment",
+          "Bleaching from colour 1b to (up to) #613",
+          "Frontals/closures colouring",
+          "Bleaching from colour 1b to colour #27",
+          "Hair relaxer",
+          "Slik press only"
+        ],
+        "matchedServices": [
+          "Tape ins",
+          "Clip ins (+ Silk press)",
+          "Sleek ponytail / bun",
+          "U-Part wig install",
+          "Custom wig",
+          "Traditional sew-in / leave out",
+          "Tracks (+ Silk press) / Partial / Invisible sew-in",
+          "Half braids, half sew-in",
+          "Closure sew-in",
+          "Frontal sew-in",
+          "Half up half down",
+          "LA weave",
+          "Frontal ponytail / bun",
+          "Flipover / Versatile sew-in",
+          "Microlinks",
+          "Wig install (frontal / closure)",
+          "Sew-in take-down",
+          "Braid take-down",
+          "Full head colour",
+          "Relaxer / texturiser",
+          "Wash & blowdry",
+          "Silk press",
+          "Trim / Hair cut",
+          "Stitch braids",
+          "Box braids",
+          "Boho braids / goddess braids",
+          "Wig cornrows",
+          "Knotless braids",
+          "Fulani / Lemonade braids",
+          "K-tips / Invisible strands",
+          "Keratin treatment"
+        ],
+        "areaId": "",
+        "areaLabel": ""
+      },
+      "currentServices": [
+        "Traditional sew-in / leave out",
+        "Sleek ponytail / bun",
+        "Half up half down",
+        "Frontal sew-in",
+        "Clip ins (+ Silk press)",
+        "LA weave",
+        "Flipover / Versatile sew-in",
+        "Hybrid sew-in",
+        "Tracks (+ Silk press) / Partial / Invisible sew-in"
+      ],
+      "detectedServices": [
+        "Tape ins",
+        "Clip ins (+ Silk press)",
+        "Sleek ponytail / bun",
+        "U-Part wig install",
+        "Custom wig",
+        "Traditional sew-in / leave out",
+        "Tracks (+ Silk press) / Partial / Invisible sew-in",
+        "Half braids, half sew-in",
+        "Closure sew-in",
+        "Frontal sew-in",
+        "Half up half down",
+        "LA weave",
+        "Frontal ponytail / bun",
+        "Flipover / Versatile sew-in",
+        "Microlinks",
+        "Wig install (frontal / closure)",
+        "Sew-in take-down",
+        "Braid take-down",
+        "Full head colour",
+        "Relaxer / texturiser",
+        "Wash & blowdry",
+        "Silk press",
+        "Trim / Hair cut",
+        "Stitch braids",
+        "Box braids",
+        "Boho braids / goddess braids",
+        "Wig cornrows",
+        "Knotless braids",
+        "Fulani / Lemonade braids",
+        "K-tips / Invisible strands",
+        "Keratin treatment"
+      ],
+      "addedServices": [
+        "U-Part wig install",
+        "Full head colour",
+        "Wash & blowdry",
+        "Stitch braids",
+        "Wig cornrows",
+        "K-tips / Invisible strands",
+        "Keratin treatment"
+      ],
+      "removedServices": [
+        "Hybrid sew-in"
+      ],
+      "checkedAt": "2026-05-21T00:03:18.695Z",
+      "reviewedAt": "2026-05-21T00:04:49.655Z"
     },
     {
       "id": "dsrhair",
@@ -24771,7 +24824,7 @@
         "Twists (with extensions)",
         "Creative braids (e.g. patewo)"
       ],
-      "checkedAt": "2026-05-20T23:25:57.447Z"
+      "checkedAt": "2026-05-21T00:03:17.608Z"
     },
     {
       "id": "drippin-styles-hair-studio",
@@ -24940,7 +24993,11 @@
         "Sleek ponytail / bun",
         "Starter locs",
         "Retwist",
-        "Frontal ponytail / bun"
+        "Frontal ponytail / bun",
+        "Flipover / Versatile sew-in",
+        "Half up half down",
+        "Sew-in take-down",
+        "Moisturising treatment"
       ],
       "detectedServices": [
         "Wig colour",
@@ -24977,8 +25034,7 @@
         "Frontal sew-in"
       ],
       "removedServices": [],
-      "checkedAt": "2026-05-20T23:26:00.428Z",
-      "reviewedAt": "2026-05-20T23:57:12.969Z"
+      "checkedAt": "2026-05-21T00:03:21.758Z"
     },
     {
       "id": "divas-by-claudia",
@@ -25181,7 +25237,7 @@
         "Twists (with extensions)",
         "Sew-in take-down"
       ],
-      "checkedAt": "2026-05-20T23:25:58.470Z"
+      "checkedAt": "2026-05-21T00:03:20.300Z"
     },
     {
       "id": "di-locsmith",
@@ -25191,7 +25247,6 @@
       "instagramUrl": "https://www.instagram.com/di.locsmith/",
       "websiteUrl": "https://dilocsmith.as.me",
       "issues": [
-        "Possible new services found",
         "Possible removed services found"
       ],
       "linkChecks": [
@@ -25256,7 +25311,9 @@
       },
       "currentServices": [
         "Faux locs",
-        "Butterfly locs"
+        "Butterfly locs",
+        "Miracle knots",
+        "Retwist"
       ],
       "detectedServices": [
         "Butterfly locs",
@@ -25267,8 +25324,7 @@
       "removedServices": [
         "Faux locs"
       ],
-      "checkedAt": "2026-05-20T23:26:00.093Z",
-      "reviewedAt": "2026-05-20T23:56:58.714Z"
+      "checkedAt": "2026-05-21T00:03:21.458Z"
     },
     {
       "id": "dhairlux",
@@ -25500,7 +25556,7 @@
         "Sew-in take-down",
         "Tracks (+ Silk press) / Partial / Invisible sew-in"
       ],
-      "checkedAt": "2026-05-20T23:26:00.235Z"
+      "checkedAt": "2026-05-21T00:03:21.197Z"
     },
     {
       "id": "devine-rootz",
@@ -25581,7 +25637,7 @@
         "Tracks (+ Silk press) / Partial / Invisible sew-in",
         "Wig cornrows"
       ],
-      "checkedAt": "2026-05-20T23:25:58.669Z"
+      "checkedAt": "2026-05-21T00:03:20.314Z"
     },
     {
       "id": "deity-mane",
@@ -25668,7 +25724,7 @@
         "Balayage",
         "Moisturising treatment"
       ],
-      "checkedAt": "2026-05-20T23:25:58.933Z"
+      "checkedAt": "2026-05-21T00:03:20.765Z"
     },
     {
       "id": "dee-sleek",
@@ -25748,7 +25804,9 @@
       "currentServices": [
         "Sleek ponytail / bun",
         "Half up half down",
-        "Wig cornrows"
+        "Wig cornrows",
+        "U-Part wig install",
+        "Quick weave"
       ],
       "detectedServices": [
         "Sleek ponytail / bun",
@@ -25766,8 +25824,7 @@
       "removedServices": [
         "Wig cornrows"
       ],
-      "checkedAt": "2026-05-20T23:26:00.437Z",
-      "reviewedAt": "2026-05-20T23:56:27.890Z"
+      "checkedAt": "2026-05-21T00:03:22.142Z"
     },
     {
       "id": "ddhairofficial",
@@ -25888,7 +25945,7 @@
       "removedServices": [
         "Pre-parting"
       ],
-      "checkedAt": "2026-05-20T23:26:02.594Z"
+      "checkedAt": "2026-05-21T00:03:24.331Z"
     },
     {
       "id": "dbp-hair",
@@ -25965,7 +26022,7 @@
         "Custom wig",
         "Frontal ponytail / bun"
       ],
-      "checkedAt": "2026-05-20T23:26:01.633Z"
+      "checkedAt": "2026-05-21T00:03:22.732Z"
     },
     {
       "id": "dbd-hair-studio",
@@ -26085,7 +26142,10 @@
         "Half up half down",
         "Wig install (frontal / closure)",
         "Miracle knots",
-        "Frontal ponytail / bun"
+        "Frontal ponytail / bun",
+        "Wig cornrows",
+        "Closure sew-in",
+        "Custom wig"
       ],
       "detectedServices": [
         "Knotless braids",
@@ -26110,8 +26170,7 @@
       "removedServices": [
         "Half braids, half sew-in"
       ],
-      "checkedAt": "2026-05-20T23:26:02.572Z",
-      "reviewedAt": "2026-05-20T23:47:30.464Z"
+      "checkedAt": "2026-05-21T00:03:23.866Z"
     },
     {
       "id": "danis-dolls",
@@ -26217,7 +26276,7 @@
       "removedServices": [
         "Custom wig"
       ],
-      "checkedAt": "2026-05-20T23:26:02.460Z"
+      "checkedAt": "2026-05-21T00:03:23.939Z"
     },
     {
       "id": "damian-gray-creative",
@@ -26278,7 +26337,7 @@
         "Highlights",
         "Balayage"
       ],
-      "checkedAt": "2026-05-20T23:26:01.129Z"
+      "checkedAt": "2026-05-21T00:03:23.716Z"
     },
     {
       "id": "czee-studios",
@@ -26344,7 +26403,8 @@
       "currentServices": [
         "Wig install (frontal / closure)",
         "Sleek ponytail / bun",
-        "Frontal ponytail / bun"
+        "Frontal ponytail / bun",
+        "Custom wig"
       ],
       "detectedServices": [
         "Wig install (frontal / closure)",
@@ -26357,8 +26417,7 @@
         "Closure sew-in"
       ],
       "removedServices": [],
-      "checkedAt": "2026-05-20T23:26:03.097Z",
-      "reviewedAt": "2026-05-20T23:47:34.630Z"
+      "checkedAt": "2026-05-21T00:03:25.430Z"
     },
     {
       "id": "curls-eccentric",
@@ -26425,7 +26484,7 @@
         "Highlights",
         "Curly cut / Wash & go"
       ],
-      "checkedAt": "2026-05-20T23:26:02.364Z"
+      "checkedAt": "2026-05-21T00:03:24.855Z"
     },
     {
       "id": "crystal-simone-hair",
@@ -26507,7 +26566,7 @@
         "Wig install (frontal / closure)",
         "Closure sew-in"
       ],
-      "checkedAt": "2026-05-20T23:26:03.980Z"
+      "checkedAt": "2026-05-21T00:03:25.986Z"
     },
     {
       "id": "cotresshairlounge",
@@ -26557,7 +26616,7 @@
       "detectedServices": [],
       "addedServices": [],
       "removedServices": [],
-      "checkedAt": "2026-05-20T23:26:04.258Z"
+      "checkedAt": "2026-05-21T00:03:26.319Z"
     },
     {
       "id": "coiffedbywonita",
@@ -26637,7 +26696,8 @@
         "Trim / Hair cut",
         "Texture release",
         "Wash & blowdry",
-        "Clip ins (+ Silk press)"
+        "Clip ins (+ Silk press)",
+        "Quick weave"
       ],
       "detectedServices": [
         "Quick weave",
@@ -26656,8 +26716,7 @@
         "Moisturising treatment",
         "Clip ins (+ Silk press)"
       ],
-      "checkedAt": "2026-05-20T23:26:06.047Z",
-      "reviewedAt": "2026-05-20T23:47:48.049Z"
+      "checkedAt": "2026-05-21T00:03:27.799Z"
     },
     {
       "id": "cm-hair-uk",
@@ -26726,7 +26785,7 @@
         "Traditional sew-in / leave out",
         "Flipover / Versatile sew-in"
       ],
-      "checkedAt": "2026-05-20T23:26:05.609Z"
+      "checkedAt": "2026-05-21T00:03:27.485Z"
     },
     {
       "id": "charlotte-mensah-hair-lounge",
@@ -26837,7 +26896,7 @@
         "Moisturising treatment",
         "Wash and go"
       ],
-      "checkedAt": "2026-05-20T23:26:06.708Z"
+      "checkedAt": "2026-05-21T00:03:28.691Z"
     },
     {
       "id": "ceo-hair-london",
@@ -26967,7 +27026,10 @@
         "Frontal sew-in",
         "Flipover / Versatile sew-in",
         "Frontal ponytail / bun",
-        "Updo"
+        "Updo",
+        "Wig colour",
+        "Pixie wig / weave install",
+        "U-Part wig install"
       ],
       "detectedServices": [
         "Custom wig",
@@ -26989,8 +27051,7 @@
         "Custom wig"
       ],
       "removedServices": [],
-      "checkedAt": "2026-05-20T23:26:08.642Z",
-      "reviewedAt": "2026-05-20T23:47:57.879Z"
+      "checkedAt": "2026-05-21T00:03:30.821Z"
     },
     {
       "id": "celine-styles",
@@ -27068,7 +27129,8 @@
         "Knotless braids",
         "Boho braids / goddess braids",
         "Fulani / Lemonade braids",
-        "Wig cornrows"
+        "Wig cornrows",
+        "Half braids, half sew-in"
       ],
       "detectedServices": [
         "Boho braids / goddess braids",
@@ -27083,8 +27145,7 @@
       "removedServices": [
         "Wig cornrows"
       ],
-      "checkedAt": "2026-05-20T23:26:08.163Z",
-      "reviewedAt": "2026-05-20T23:48:03.750Z"
+      "checkedAt": "2026-05-21T00:03:30.711Z"
     },
     {
       "id": "catkalihair",
@@ -27094,7 +27155,6 @@
       "instagramUrl": "https://www.instagram.com/catkalihair/",
       "websiteUrl": "https://catkalihair.as.me",
       "issues": [
-        "Possible new services found",
         "Possible removed services found"
       ],
       "linkChecks": [
@@ -27171,7 +27231,10 @@
         "Flipover / Versatile sew-in",
         "Silk press",
         "Wash & blowdry",
-        "Tracks (+ Silk press) / Partial / Invisible sew-in"
+        "Tracks (+ Silk press) / Partial / Invisible sew-in",
+        "Updo",
+        "U-Part wig install",
+        "Custom wig"
       ],
       "detectedServices": [
         "Updo",
@@ -27188,8 +27251,7 @@
       "removedServices": [
         "Silk press"
       ],
-      "checkedAt": "2026-05-20T23:26:09.210Z",
-      "reviewedAt": "2026-05-20T23:48:23.249Z"
+      "checkedAt": "2026-05-21T00:03:31.674Z"
     },
     {
       "id": "caeslique",
@@ -27271,7 +27333,7 @@
         "Keratin treatment"
       ],
       "removedServices": [],
-      "checkedAt": "2026-05-20T23:26:09.695Z"
+      "checkedAt": "2026-05-21T00:03:32.188Z"
     },
     {
       "id": "cabelobeau",
@@ -27400,7 +27462,7 @@
       "removedServices": [
         "U-Part wig install"
       ],
-      "checkedAt": "2026-05-20T23:26:08.984Z"
+      "checkedAt": "2026-05-21T00:03:32.506Z"
     },
     {
       "id": "byrhii-studios",
@@ -27494,7 +27556,7 @@
         "Stitch braids",
         "Half braids, half sew-in"
       ],
-      "checkedAt": "2026-05-20T23:26:09.887Z"
+      "checkedAt": "2026-05-21T00:03:32.487Z"
     },
     {
       "id": "bykhalildavies",
@@ -27587,7 +27649,7 @@
       "removedServices": [
         "Feed-in braids"
       ],
-      "checkedAt": "2026-05-20T23:26:11.018Z"
+      "checkedAt": "2026-05-21T00:03:33.662Z"
     },
     {
       "id": "by-zainab-ola",
@@ -27664,7 +27726,9 @@
         "Flipover / Versatile sew-in",
         "Closure sew-in",
         "Custom wig",
-        "Wig install (frontal / closure)"
+        "Wig install (frontal / closure)",
+        "Quick weave",
+        "Sleek ponytail / bun"
       ],
       "detectedServices": [
         "Traditional sew-in / leave out",
@@ -27682,8 +27746,7 @@
       "removedServices": [
         "Wig install (frontal / closure)"
       ],
-      "checkedAt": "2026-05-20T23:26:13.025Z",
-      "reviewedAt": "2026-05-20T23:48:46.567Z"
+      "checkedAt": "2026-05-21T00:03:35.763Z"
     },
     {
       "id": "by-mil-made",
@@ -27842,7 +27905,7 @@
         "Highlights",
         "Updo"
       ],
-      "checkedAt": "2026-05-20T23:26:13.344Z"
+      "checkedAt": "2026-05-21T00:03:35.980Z"
     },
     {
       "id": "by-danniiej",
@@ -27902,7 +27965,8 @@
       "currentServices": [
         "Wig install (frontal / closure)",
         "Traditional sew-in / leave out",
-        "Flipover / Versatile sew-in"
+        "Flipover / Versatile sew-in",
+        "Tape ins"
       ],
       "detectedServices": [
         "Closure sew-in",
@@ -27917,8 +27981,7 @@
         "Frontal sew-in"
       ],
       "removedServices": [],
-      "checkedAt": "2026-05-20T23:26:12.801Z",
-      "reviewedAt": "2026-05-20T23:48:50.187Z"
+      "checkedAt": "2026-05-21T00:03:35.383Z"
     },
     {
       "id": "bundles-dealer",
@@ -28008,7 +28071,7 @@
       "removedServices": [
         "Wig install (frontal / closure)"
       ],
-      "checkedAt": "2026-05-20T23:26:12.970Z"
+      "checkedAt": "2026-05-21T00:03:35.599Z"
     },
     {
       "id": "bromley-uk-braider",
@@ -28095,7 +28158,7 @@
         "Twists (with extensions)",
         "Half braids, half sew-in"
       ],
-      "checkedAt": "2026-05-20T23:26:14.454Z"
+      "checkedAt": "2026-05-21T00:03:37.196Z"
     },
     {
       "id": "braidsbyfels",
@@ -28244,7 +28307,8 @@
         "Traditional sew-in / leave out",
         "Twists (with extensions)",
         "Crochet",
-        "Miracle knots"
+        "Miracle knots",
+        "Fulani / Lemonade braids"
       ],
       "detectedServices": [
         "Knotless braids",
@@ -28279,8 +28343,7 @@
         "Half up half down"
       ],
       "removedServices": [],
-      "checkedAt": "2026-05-20T23:26:18.820Z",
-      "reviewedAt": "2026-05-20T23:49:05.016Z"
+      "checkedAt": "2026-05-21T00:03:41.368Z"
     },
     {
       "id": "braided-by-tayla",
@@ -28290,7 +28353,6 @@
       "instagramUrl": "https://www.instagram.com/braidedbytayla/",
       "websiteUrl": "https://braidedbytayla.as.me/schedule/33b23481",
       "issues": [
-        "Possible new services found",
         "Possible removed services found"
       ],
       "linkChecks": [
@@ -28377,7 +28439,9 @@
         "Boho braids / goddess braids",
         "Feed-in braids",
         "Fulani / Lemonade braids",
-        "Creative braids (e.g. patewo)"
+        "Creative braids (e.g. patewo)",
+        "Wig cornrows",
+        "Stitch braids"
       ],
       "detectedServices": [
         "Knotless braids",
@@ -28391,8 +28455,7 @@
       "removedServices": [
         "Creative braids (e.g. patewo)"
       ],
-      "checkedAt": "2026-05-20T23:26:17.592Z",
-      "reviewedAt": "2026-05-20T23:56:34.979Z"
+      "checkedAt": "2026-05-21T00:03:39.761Z"
     },
     {
       "id": "braidbarldn",
@@ -28402,7 +28465,6 @@
       "instagramUrl": "https://www.instagram.com/braidbarldn/",
       "websiteUrl": "https://www.braidbarldn.com/book",
       "issues": [
-        "Possible new services found",
         "Possible removed services found"
       ],
       "linkChecks": [
@@ -28462,8 +28524,7 @@
         "Traditional sew-in / leave out",
         "Half up half down"
       ],
-      "checkedAt": "2026-05-20T23:26:16.183Z",
-      "reviewedAt": "2026-05-20T23:49:32.103Z"
+      "checkedAt": "2026-05-21T00:03:40.827Z"
     },
     {
       "id": "bns-hair-suite",
@@ -28626,7 +28687,7 @@
         "Stitch braids",
         "Twists (with extensions)"
       ],
-      "checkedAt": "2026-05-20T23:26:18.683Z"
+      "checkedAt": "2026-05-21T00:03:43.114Z"
     },
     {
       "id": "bimmytouch",
@@ -28745,7 +28806,9 @@
         "Traditional sew-in / leave out",
         "Closure sew-in",
         "Half up half down",
-        "Crochet"
+        "Crochet",
+        "Boho braids / goddess braids",
+        "Stitch braids"
       ],
       "detectedServices": [
         "Twists (with extensions)",
@@ -28768,8 +28831,7 @@
         "Wig cornrows",
         "Half up half down"
       ],
-      "checkedAt": "2026-05-20T23:26:20.148Z",
-      "reviewedAt": "2026-05-20T23:49:38.850Z"
+      "checkedAt": "2026-05-21T00:03:43.880Z"
     },
     {
       "id": "beyond-glam",
@@ -28933,7 +28995,18 @@
         "Sleek ponytail / bun",
         "Knotless braids",
         "Box braids",
-        "Tracks (+ Silk press) / Partial / Invisible sew-in"
+        "Tracks (+ Silk press) / Partial / Invisible sew-in",
+        "Microlinks",
+        "Crochet",
+        "Traditional sew-in / leave out",
+        "Closure sew-in",
+        "Wig colour",
+        "Wig install (frontal / closure)",
+        "Tape ins",
+        "Flipover / Versatile sew-in",
+        "Clip ins (+ Silk press)",
+        "Pixie wig / weave install",
+        "Scalp care"
       ],
       "detectedServices": [
         "LA weave",
@@ -28957,9 +29030,6 @@
         "Scalp care",
         "Silk press",
         "Olaplex treatment",
-        "Full head colour",
-        "Balayage",
-        "Highlights",
         "Relaxer / texturiser",
         "Trim / Hair cut",
         "Wash & blowdry",
@@ -28973,17 +29043,15 @@
         "Keratin treatment",
         "Frontal sew-in",
         "Pixie / finger waves",
-        "Full head colour",
-        "Balayage",
         "Wash & blowdry",
         "Frontal ponytail / bun",
         "Updo"
       ],
       "removedServices": [
-        "Texture release"
+        "Texture release",
+        "Highlights"
       ],
-      "checkedAt": "2026-05-20T23:26:17.983Z",
-      "reviewedAt": "2026-05-20T23:50:12.761Z"
+      "checkedAt": "2026-05-21T00:03:42.642Z"
     },
     {
       "id": "belewa-hair",
@@ -29061,7 +29129,7 @@
         "Custom wig",
         "Wig install (frontal / closure)"
       ],
-      "checkedAt": "2026-05-20T23:26:20.298Z"
+      "checkedAt": "2026-05-21T00:03:45.064Z"
     },
     {
       "id": "beautycreationsinsta",
@@ -29289,7 +29357,7 @@
         "Half up half down",
         "Tracks (+ Silk press) / Partial / Invisible sew-in"
       ],
-      "checkedAt": "2026-05-20T23:26:23.662Z"
+      "checkedAt": "2026-05-21T00:03:48.621Z"
     },
     {
       "id": "beauty-by-solange",
@@ -29404,8 +29472,7 @@
       "removedServices": [
         "Updo"
       ],
-      "checkedAt": "2026-05-20T23:26:21.038Z",
-      "reviewedAt": "2026-05-20T23:50:54.271Z"
+      "checkedAt": "2026-05-21T00:03:45.436Z"
     },
     {
       "id": "beaute-brenda",
@@ -29514,8 +29581,7 @@
       "removedServices": [
         "Microbraids / x-small braids"
       ],
-      "checkedAt": "2026-05-20T23:26:22.251Z",
-      "reviewedAt": "2026-05-20T23:51:04.769Z"
+      "checkedAt": "2026-05-21T00:03:46.836Z"
     },
     {
       "id": "be-styled-by-chen",
@@ -29607,7 +29673,7 @@
         "Keratin treatment",
         "Full head colour"
       ],
-      "checkedAt": "2026-05-20T23:26:21.088Z"
+      "checkedAt": "2026-05-21T00:03:46.267Z"
     },
     {
       "id": "baambi-beauty",
@@ -29808,7 +29874,7 @@
       "removedServices": [
         "Butterfly locs"
       ],
-      "checkedAt": "2026-05-20T23:26:23.433Z"
+      "checkedAt": "2026-05-21T00:03:48.401Z"
     },
     {
       "id": "b-versatile",
@@ -30016,7 +30082,7 @@
         "Flipover / Versatile sew-in",
         "Wig cornrows"
       ],
-      "checkedAt": "2026-05-20T23:26:24.254Z"
+      "checkedAt": "2026-05-21T00:03:49.657Z"
     },
     {
       "id": "awralla-london",
@@ -30026,7 +30092,6 @@
       "instagramUrl": "https://www.instagram.com/awrallalondon/",
       "websiteUrl": "https://awralla.as.me/schedule/241cab73",
       "issues": [
-        "Possible new services found",
         "Possible removed services found"
       ],
       "linkChecks": [
@@ -30095,7 +30160,8 @@
         "Trim / Hair cut",
         "Olaplex treatment",
         "Hair Botox",
-        "Keratin treatment"
+        "Keratin treatment",
+        "Bridal / Editorial"
       ],
       "detectedServices": [
         "Bridal / Editorial",
@@ -30113,8 +30179,7 @@
         "Wash & blowdry",
         "Trim / Hair cut"
       ],
-      "checkedAt": "2026-05-20T23:26:23.370Z",
-      "reviewedAt": "2026-05-20T23:51:15.042Z"
+      "checkedAt": "2026-05-21T00:03:48.520Z"
     },
     {
       "id": "artistrybyserena",
@@ -30230,8 +30295,7 @@
       "removedServices": [
         "Half braids, half sew-in"
       ],
-      "checkedAt": "2026-05-20T23:26:25.471Z",
-      "reviewedAt": "2026-05-20T23:51:22.687Z"
+      "checkedAt": "2026-05-21T00:03:50.967Z"
     },
     {
       "id": "ariyo-hair",
@@ -30350,7 +30414,7 @@
         "Boho braids / goddess braids",
         "Bridal / Editorial"
       ],
-      "checkedAt": "2026-05-20T23:26:25.955Z"
+      "checkedAt": "2026-05-21T00:03:51.094Z"
     },
     {
       "id": "amj-hair",
@@ -30458,7 +30522,7 @@
       "removedServices": [
         "Custom wig"
       ],
-      "checkedAt": "2026-05-20T23:26:29.064Z"
+      "checkedAt": "2026-05-21T00:03:54.011Z"
     },
     {
       "id": "amas-hair-salon",
@@ -30574,7 +30638,7 @@
         "Crochet",
         "U-Part wig install"
       ],
-      "checkedAt": "2026-05-20T23:26:29.150Z"
+      "checkedAt": "2026-05-21T00:03:54.407Z"
     },
     {
       "id": "aluxebeauty-uk",
@@ -30695,7 +30759,7 @@
       "removedServices": [
         "Twists (with extensions)"
       ],
-      "checkedAt": "2026-05-20T23:26:29.213Z"
+      "checkedAt": "2026-05-21T00:03:54.396Z"
     },
     {
       "id": "alevenn-hair",
@@ -30790,7 +30854,7 @@
         "Clip ins (+ Silk press)",
         "Tracks (+ Silk press) / Partial / Invisible sew-in"
       ],
-      "checkedAt": "2026-05-20T23:26:29.393Z"
+      "checkedAt": "2026-05-21T00:03:55.688Z"
     },
     {
       "id": "akuabeauxhair",
@@ -30800,7 +30864,6 @@
       "instagramUrl": "https://www.instagram.com/akuabeauxhair/",
       "websiteUrl": "https://app.acuityscheduling.com/schedule.php?owner=20648576",
       "issues": [
-        "Possible new services found",
         "Possible removed services found"
       ],
       "linkChecks": [
@@ -30869,7 +30932,9 @@
         "Wig cornrows",
         "Sleek ponytail / bun",
         "Feed-in braids",
-        "Half braids, half sew-in"
+        "Half braids, half sew-in",
+        "Fulani / Lemonade braids",
+        "Twists (with extensions)"
       ],
       "detectedServices": [
         "Feed-in braids",
@@ -30884,8 +30949,7 @@
         "Wig cornrows",
         "Half braids, half sew-in"
       ],
-      "checkedAt": "2026-05-20T23:26:30.215Z",
-      "reviewedAt": "2026-05-20T23:51:35.396Z"
+      "checkedAt": "2026-05-21T00:03:56.612Z"
     },
     {
       "id": "akela-jasmin-hair",
@@ -30970,7 +31034,8 @@
         "LA weave",
         "Microlinks",
         "Tape ins",
-        "Wash & blowdry"
+        "Wash & blowdry",
+        "Hybrid sew-in"
       ],
       "detectedServices": [
         "Tape ins",
@@ -30989,8 +31054,7 @@
       "removedServices": [
         "K-tips / Invisible strands"
       ],
-      "checkedAt": "2026-05-20T23:26:30.642Z",
-      "reviewedAt": "2026-05-20T23:52:11.410Z"
+      "checkedAt": "2026-05-21T00:03:56.265Z"
     },
     {
       "id": "agn-salon",
@@ -31094,7 +31158,7 @@
         "Twists (with extensions)",
         "French curl"
       ],
-      "checkedAt": "2026-05-20T23:26:31.157Z"
+      "checkedAt": "2026-05-21T00:03:57.255Z"
     },
     {
       "id": "adysa-studio",
@@ -31220,7 +31284,7 @@
       "removedServices": [
         "Retwist"
       ],
-      "checkedAt": "2026-05-20T23:26:32.236Z"
+      "checkedAt": "2026-05-21T00:03:58.550Z"
     },
     {
       "id": "adonai-hair-ldn",
@@ -31358,8 +31422,7 @@
         "Wash & blowdry"
       ],
       "removedServices": [],
-      "checkedAt": "2026-05-20T23:26:30.725Z",
-      "reviewedAt": "2026-05-20T23:52:07.494Z"
+      "checkedAt": "2026-05-21T00:03:57.292Z"
     },
     {
       "id": "adeline-tresses",
@@ -31499,7 +31562,9 @@
         "Stitch braids",
         "Fulani / Lemonade braids",
         "Twists (with extensions)",
-        "Wig install (frontal / closure)"
+        "Wig install (frontal / closure)",
+        "Boho braids / goddess braids",
+        "French curl"
       ],
       "detectedServices": [
         "Boho braids / goddess braids",
@@ -31526,8 +31591,7 @@
         "Natural hair education"
       ],
       "removedServices": [],
-      "checkedAt": "2026-05-20T23:26:32.956Z",
-      "reviewedAt": "2026-05-20T23:52:19.179Z"
+      "checkedAt": "2026-05-21T00:03:59.211Z"
     },
     {
       "id": "signed-by-mai",
@@ -31594,7 +31658,7 @@
       "removedServices": [
         "Custom wig"
       ],
-      "checkedAt": "2026-05-20T23:26:33.781Z"
+      "checkedAt": "2026-05-21T00:04:00.760Z"
     },
     {
       "id": "by-tayjah-lei",
@@ -31690,7 +31754,7 @@
       "removedServices": [
         "Custom wig"
       ],
-      "checkedAt": "2026-05-20T23:26:34.033Z"
+      "checkedAt": "2026-05-21T00:04:00.929Z"
     },
     {
       "id": "marla-mae-hair",
@@ -31774,7 +31838,7 @@
         "Bridal / Editorial",
         "Creative braids (e.g. patewo)"
       ],
-      "checkedAt": "2026-05-20T23:26:34.002Z"
+      "checkedAt": "2026-05-21T00:04:01.455Z"
     },
     {
       "id": "cutzgalore",
@@ -31885,7 +31949,7 @@
         "Half up half down",
         "Wig install (frontal / closure)"
       ],
-      "checkedAt": "2026-05-20T23:26:34.546Z"
+      "checkedAt": "2026-05-21T00:04:02.654Z"
     },
     {
       "id": "kayy-didd-thatt",
@@ -32009,8 +32073,7 @@
         "Feed-in braids",
         "Twists (with extensions)"
       ],
-      "checkedAt": "2026-05-20T23:26:35.499Z",
-      "reviewedAt": "2026-05-20T23:52:24.708Z"
+      "checkedAt": "2026-05-21T00:04:03.056Z"
     },
     {
       "id": "3thirty-salon",
@@ -32020,7 +32083,6 @@
       "instagramUrl": "https://www.instagram.com/3thirtysalon/",
       "websiteUrl": "https://www.3thirty.co.uk/hairandbeauty.html",
       "issues": [
-        "Possible new services found",
         "Possible removed services found"
       ],
       "linkChecks": [
@@ -32109,7 +32171,8 @@
         "Wig cornrows",
         "Scalp care",
         "Full head colour",
-        "Trim / Hair cut"
+        "Trim / Hair cut",
+        "Wash & blowdry"
       ],
       "detectedServices": [
         "Full head colour",
@@ -32129,8 +32192,7 @@
         "Scalp care",
         "Trim / Hair cut"
       ],
-      "checkedAt": "2026-05-20T23:26:34.324Z",
-      "reviewedAt": "2026-05-20T23:52:30.578Z"
+      "checkedAt": "2026-05-21T00:04:02.579Z"
     },
     {
       "id": "hairby-mideyy",
@@ -32297,7 +32359,7 @@
         "Stitch braids",
         "Wig colour"
       ],
-      "checkedAt": "2026-05-20T23:26:36.414Z"
+      "checkedAt": "2026-05-21T00:04:04.870Z"
     },
     {
       "id": "amazonsalonuk",
@@ -32433,7 +32495,7 @@
         "Feed-in braids",
         "Traditional sew-in / leave out"
       ],
-      "checkedAt": "2026-05-20T23:26:35.404Z"
+      "checkedAt": "2026-05-21T00:04:03.568Z"
     },
     {
       "id": "hersilk",
@@ -32504,7 +32566,7 @@
         "Scalp care",
         "Trim / Hair cut"
       ],
-      "checkedAt": "2026-05-20T23:26:36.162Z"
+      "checkedAt": "2026-05-21T00:04:04.131Z"
     },
     {
       "id": "enasalon",
@@ -32514,7 +32576,6 @@
       "instagramUrl": "https://www.instagram.com/enasalon/",
       "websiteUrl": "https://enasalon.com/?srsltid=AfmBOooT42A90VlBz07F8EpeW3V1PI8M8cah3r-e9noawYwBZFpoSRqL#onlinebookings",
       "issues": [
-        "Possible new services found",
         "Possible removed services found"
       ],
       "linkChecks": [
@@ -32572,7 +32633,8 @@
         "Keratin treatment",
         "Curly cut / Wash & go",
         "Silk press",
-        "Trim / Hair cut"
+        "Trim / Hair cut",
+        "Full head colour"
       ],
       "detectedServices": [
         "Full head colour",
@@ -32586,8 +32648,7 @@
         "Silk press",
         "Trim / Hair cut"
       ],
-      "checkedAt": "2026-05-20T23:26:35.882Z",
-      "reviewedAt": "2026-05-20T23:52:39.095Z"
+      "checkedAt": "2026-05-21T00:04:03.646Z"
     },
     {
       "id": "taylor-taylor-london",
@@ -32650,7 +32711,7 @@
         "Trim / Hair cut",
         "Silk press"
       ],
-      "checkedAt": "2026-05-20T23:26:36.432Z"
+      "checkedAt": "2026-05-21T00:04:04.874Z"
     },
     {
       "id": "hairgurulabldn",
@@ -32806,7 +32867,7 @@
         "Tape ins",
         "Full head colour"
       ],
-      "checkedAt": "2026-05-20T23:26:38.770Z"
+      "checkedAt": "2026-05-21T00:04:06.916Z"
     },
     {
       "id": "fejiroboje",
@@ -32909,7 +32970,8 @@
         "Highlights",
         "Flipover / Versatile sew-in",
         "Custom wig",
-        "Silk press"
+        "Silk press",
+        "Wash & blowdry"
       ],
       "detectedServices": [
         "Natural hair education",
@@ -32933,8 +32995,7 @@
         "Highlights",
         "Silk press"
       ],
-      "checkedAt": "2026-05-20T23:26:38.785Z",
-      "reviewedAt": "2026-05-20T23:52:58.905Z"
+      "checkedAt": "2026-05-21T00:04:06.754Z"
     }
   ]
 }

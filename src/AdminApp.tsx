@@ -2029,7 +2029,7 @@ function hasSupportedFreshnessEvidence(check: DirectoryCheck, service: string) {
     return !check.serviceCheck.rawServices.some((line) => hasHalfBraidsHalfSewInEvidence(line));
   }
   if (service === "Sleek ponytail / bun") {
-    return !check.serviceCheck.rawServices.some((line) => hasFrontalPonytailEvidence(line));
+    return !check.serviceCheck.rawServices.some((line) => hasFrontalPonytailEvidence(line) || hasBraidedPonytailEvidence(line));
   }
   if (service === "Natural hair education") {
     return check.serviceCheck.rawServices.some((line) => hasNaturalHairEducationEvidence(line));
@@ -2124,7 +2124,12 @@ function hasFrontalPonytailEvidence(value: string) {
 
 function hasNaturalHairEducationEvidence(value: string) {
   const normalized = normalizeEvidenceText(value);
-  return /\beducation\b|\btutorial\b|\btrichology\b|\bhair\s+health\b.*\b(assessment|plan|growth|consultation)\b|\bgrowth\s+plan\b|\bconsultation\b.*\bnatural\b|\bnatural\s+hair\b.*\b(class|education|consultation)\b|\bcurl\s+makeover\b.*\b(hands?\s*on|tutorial|styling)\b/.test(normalized);
+  return /\b(afro|natural|curly|curl|hair)\b.*\beducation\b|\beducation\b.*\b(afro|natural|curly|curl|hair)\b|\b(hair|curl|styling)\b.*\btutorial\b|\btutorial\b.*\b(hair|curl|styling)\b|\btrichology\b|\bhair\s+health\b.*\b(assessment|plan|growth|consultation)\b|\bgrowth\s+plan\b|\bconsultation\b.*\bnatural\b|\bnatural\s+hair\b.*\b(class|education|consultation)\b|\bcurl\s+makeover\b.*\b(hands?\s*on|tutorial|styling)\b/.test(normalized);
+}
+
+function hasBraidedPonytailEvidence(value: string) {
+  const normalized = normalizeEvidenceText(value);
+  return /\b(braided?|braids?|feed\s*in|feed-in|cornrows?)\b.*\b(pony|ponytail)\b/.test(normalized) || /\b(pony|ponytail)\b.*\b(braided?|braids?|feed\s*in|feed-in|cornrows?)\b/.test(normalized);
 }
 
 function hasTwistsWithExtensionsEvidence(value: string) {
@@ -2261,7 +2266,9 @@ const serviceEvidenceKeywords: Record<string, string[]> = {
   "Wig colour": ["wig colour", "wig color", "colouring full wig", "custom colour", "colour service", "613", "non-contact", "non contact"],
   "Frontal sew-in": ["frontal sew in", "frontal sew-in", "frontal sewin", "frontal weave"],
   "Closure sew-in": ["closure sew in", "closure sew-in", "closure sewin", "closure weave", "closure behind the hairline"],
+  "Creative braids (e.g. patewo)": ["creative braids", "patewo", "dolly braids", "shuku", "koroba braids"],
   "Feed-in braids": ["feed in", "feed-in", "all back", "braids going back"],
+  "Fulani / Lemonade braids": ["fulani", "lemonade", "alicia keys braids"],
   "K-tips / Invisible strands": ["k tips", "k-tips", "keratin tip", "keratin tips", "keratin bonds", "invisible strands"],
   "Frontal ponytail / bun": ["frontal ponytail", "frontal pony", "frontal bun", "frontal updo"],
   "U-Part wig install": ["u part", "upart", "u-part", "v part", "vpart", "v-part", "u/vpart", "uvpart"],
@@ -2272,6 +2279,7 @@ const serviceEvidenceKeywords: Record<string, string[]> = {
   "Hybrid sew-in": ["hybrid sew in", "hybrid sew-in", "hybrid weave", "tracks + tapes hybrid", "tracks and tapes hybrid"],
   "Tracks (+ Silk press) / Partial / Invisible sew-in": ["tracks", "track per row", "per track", "per row", "tracks add on", "tracks add-on", "silk press add on tracks", "silk press add-on tracks", "row sew in", "rows of sew in", "weave tracks", "weave on per row", "traditional weave rows", "partial sew in", "partial sewin", "invisible sew in", "invisible weave", "invisible weft", "invisible wefts"],
   "Wash & blowdry": ["wash blowdry", "wash blow dry", "wash and blowdry", "wash and blow dry", "blowout"],
+  "Updo": ["updo", "up do", "pin up", "french roll up", "french roll"],
   "Butterfly locs": ["butterfly locs"],
   "Faux locs": ["faux locs", "invisible locs", "soft locs"],
   "Starter locs": ["starter locs", "loc start"],
