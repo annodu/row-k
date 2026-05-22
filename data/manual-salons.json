@@ -1,7 +1,7 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-05-22T17:27:34.035Z",
+    "updatedAt": "2026-05-22T17:49:33.101Z",
     "count": 606,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
@@ -2842,7 +2842,11 @@
         "Twists (with extensions)",
         "Crochet",
         "Miracle knots",
-        "Fulani / Lemonade braids"
+        "Fulani / Lemonade braids",
+        "Stitch braids",
+        "Half braids, half sew-in",
+        "Wash & blowdry",
+        "Wig cornrows"
       ],
       "canBraidWithoutGel": true,
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
@@ -4342,7 +4346,9 @@
         "U-Part wig install",
         "Frontal ponytail / bun",
         "Updo",
-        "Half up half down"
+        "Half up half down",
+        "Traditional sew-in / leave out",
+        "Wash & blowdry"
       ]
     },
     {
@@ -8598,7 +8604,8 @@
         "Retwist",
         "Starter locs",
         "Twists (with extensions)",
-        "Wig colour"
+        "Wig colour",
+        "U-Part wig install"
       ],
       "summary": "Manual entry added from your East London wig install, sew-in, custom wig, locs, and twists list.",
       "source": "manual",
@@ -10646,7 +10653,8 @@
         "Half braids, half sew-in",
         "Wash & blowdry",
         "Trim / Hair cut",
-        "Braid take-down"
+        "Braid take-down",
+        "Boho braids / goddess braids"
       ],
       "canBraidWithoutGel": true
     },
@@ -11791,9 +11799,11 @@
         "Traditional sew-in / leave out",
         "Flipover / Versatile sew-in",
         "Hybrid sew-in",
-        "Cornrows / Twists / Underwig cornrows",
+        "Wig cornrows",
         "Sleek ponytail / bun",
-        "Half up half down"
+        "Half up half down",
+        "Closure sew-in",
+        "K-tips / Invisible strands"
       ]
     },
     {
@@ -12410,7 +12420,8 @@
       "services": [
         "Sleek ponytail / bun",
         "Half up half down",
-        "Updo"
+        "Updo",
+        "Quick weave"
       ],
       "summary": "Manual Instagram-led entry added from your South East London styling list.",
       "source": "manual",
@@ -14369,7 +14380,6 @@
         "Wig colour",
         "Pixie / finger waves",
         "Relaxer / texturiser",
-        "Cornrows / Twists / Underwig cornrows",
         "Curly cut / Wash & go",
         "Silk press",
         "Trim / Hair cut",
@@ -14377,7 +14387,7 @@
         "Boho braids / goddess braids",
         "Knotless braids",
         "Custom wig",
-        "Wig install",
+        "Wig install (frontal / closure)",
         "Traditional sew-in / leave out",
         "Japanese straightening",
         "K-18 treatment",
@@ -15659,7 +15669,6 @@
         "Frontal sew-in",
         "Pixie wig / weave install",
         "Half up half down",
-        "Cornrows / Twists / Underwig cornrows",
         "Wig install (frontal / closure)",
         "Custom wig",
         "Bridal / Editorial"
