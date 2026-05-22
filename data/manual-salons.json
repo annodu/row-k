@@ -1,7 +1,7 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-05-21T23:31:04.468Z",
+    "updatedAt": "2026-05-22T17:27:34.035Z",
     "count": 606,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
@@ -270,7 +270,6 @@
         "Half up half down",
         "Silk press",
         "LA weave",
-        "Tracks (+ Silk press) / Partial / Invisible sew-in",
         "Microlinks",
         "Traditional sew-in / leave out",
         "Hybrid sew-in",
@@ -888,7 +887,6 @@
       "websiteUrl": "https://marlamaehair.com/",
       "instagramUrl": "https://www.instagram.com/marlamaehair/",
       "services": [
-        "Twists (with extensions)",
         "Boho braids / goddess braids",
         "Fulani / Lemonade braids",
         "Faux locs",
@@ -1328,7 +1326,6 @@
       "services": [
         "Traditional sew-in / leave out",
         "Knotless braids",
-        "Wig cornrows",
         "Sleek ponytail / bun",
         "Feed-in braids",
         "Half braids, half sew-in",
@@ -1487,7 +1484,6 @@
         "Wig install (frontal / closure)",
         "Trim / Hair cut",
         "Microlocs / Sisterlocs",
-        "Faux locs",
         "Tracks (+ Silk press) / Partial / Invisible sew-in",
         "Twist out / Flexi rod",
         "Crochet",
@@ -1731,8 +1727,7 @@
         "Sleek ponytail / bun",
         "Half up half down",
         "Flipover / Versatile sew-in",
-        "Closure sew-in",
-        "Wig install",
+        "Wig install (frontal / closure)",
         "Half braids, half sew-in",
         "Fulani / Lemonade braids",
         "Traditional sew-in / leave out",
@@ -2230,7 +2225,6 @@
         "Closure sew-in",
         "Flipover / Versatile sew-in",
         "Pixie wig / weave install",
-        "Tracks (+ Silk press) / Partial / Invisible sew-in",
         "Sew-in take-down",
         "Moisturising treatment",
         "Texture release",
@@ -2473,7 +2467,6 @@
       "services": [
         "Fulani / Lemonade braids",
         "Twists (with extensions)",
-        "Wig cornrows",
         "Butterfly locs",
         "Feed-in braids",
         "Knotless braids",
@@ -3026,7 +3019,6 @@
         "K-tips / Invisible strands",
         "Trim / Hair cut",
         "Silk press",
-        "Highlights",
         "Custom wig",
         "Frontal ponytail / bun",
         "Updo",
@@ -3133,9 +3125,7 @@
       "instagramUrl": "https://www.instagram.com/byrhii.studios/",
       "services": [
         "Silk press",
-        "Wash & blowdry",
         "Feed-in braids",
-        "Stitch braids",
         "Traditional sew-in / leave out",
         "Half braids, half sew-in",
         "Half up half down",
@@ -3417,7 +3407,7 @@
         "Silk press",
         "Highlights",
         "Relaxer / texturiser",
-        "Clip ins / Silk press + Clip ins",
+        "Clip ins (+ Silk press)",
         "Scalp care",
         "Full head colour",
         "Knotless braids",
@@ -3426,7 +3416,6 @@
         "Feed-in braids",
         "Twists (with extensions)",
         "Traditional sew-in / leave out",
-        "Tracks / Silk press + tracks / Invisible sew-in",
         "Moisturising treatment",
         "Wash and go"
       ],
@@ -3985,11 +3974,14 @@
       "websiteUrl": "https://danisdolls.as.me/schedule/04c3de61",
       "instagramUrl": "https://www.instagram.com/danisdolls_/",
       "services": [
-        "Wig install",
+        "Wig install (frontal / closure)",
         "Custom wig",
         "Traditional sew-in / leave out",
         "Flipover / Versatile sew-in",
-        "Closure sew-in"
+        "Closure sew-in",
+        "Quick weave",
+        "Half up half down",
+        "Tape ins"
       ]
     },
     {
@@ -4041,7 +4033,8 @@
       "services": [
         "Wig install (frontal / closure)",
         "Custom wig",
-        "Frontal ponytail / bun"
+        "Frontal ponytail / bun",
+        "Wig colour"
       ],
       "summary": "Ilford wig specialist added from the supplied DBP Hair contact and Instagram links.",
       "source": "manual",
@@ -4208,8 +4201,7 @@
         "Boho braids / goddess braids",
         "Trim / Hair cut",
         "Traditional sew-in / leave out",
-        "Tracks / Silk press + tracks / Invisible sew-in",
-        "Cornrows / Twists / Underwig cornrows"
+        "Wig cornrows"
       ]
     },
     {
@@ -4258,7 +4250,6 @@
       "services": [
         "Boho braids / goddess braids",
         "Knotless braids",
-        "Feed-in braids",
         "Fulani / Lemonade braids",
         "Relaxer / texturiser",
         "Keratin treatment",
@@ -4269,21 +4260,24 @@
         "Butterfly locs",
         "Starter locs",
         "Retwist",
-        "Cornrows / Twists / Underwig cornrows",
+        "Wig cornrows",
         "Braid take-down",
         "Sew-in take-down",
         "Pixie / finger waves",
         "Scalp care",
         "Wash & blowdry",
         "Custom wig",
-        "Wig install",
+        "Wig install (frontal / closure)",
         "Half up half down",
         "Traditional sew-in / leave out",
         "Closure sew-in",
         "Frontal sew-in",
         "Quick weave",
         "Crochet",
-        "Tracks / Silk press + tracks / Invisible sew-in"
+        "Half braids, half sew-in",
+        "Miracle knots",
+        "Moisturising treatment",
+        "Sleek ponytail / bun"
       ],
       "canBraidWithoutGel": true
     },
@@ -4329,27 +4323,26 @@
       "websiteUrl": "https://www.divasbyclaudia.com/book-appointment",
       "instagramUrl": "https://www.instagram.com/divasbyclaudia/",
       "services": [
-        "Wig install",
+        "Wig install (frontal / closure)",
         "Custom wig",
         "Wig colour",
         "Sleek ponytail / bun",
         "Relaxer / texturiser",
-        "Full head colour",
-        "Cornrows / Twists / Underwig cornrows",
+        "Wig cornrows",
         "Feed-in braids",
         "Twists (with extensions)",
         "Faux locs",
         "Closure sew-in",
         "Frontal sew-in",
         "Sew-in take-down",
-        "Tracks / Silk press + tracks / Invisible sew-in",
+        "Tracks (+ Silk press) / Partial / Invisible sew-in",
         "Flipover / Versatile sew-in",
         "Silk press",
-        "Pixie / finger waves",
         "Moisturising treatment",
         "U-Part wig install",
         "Frontal ponytail / bun",
-        "Updo"
+        "Updo",
+        "Half up half down"
       ]
     },
     {
@@ -4465,11 +4458,16 @@
       "instagramUrl": "https://www.instagram.com/dsrhair/",
       "services": [
         "Feed-in braids",
-        "Stitch braids",
-        "Cornrows / Twists / Underwig cornrows",
+        "Wig cornrows",
         "Fulani / Lemonade braids",
         "Twists (with extensions)",
-        "Creative braids (e.g. patewo)"
+        "Creative braids (e.g. patewo)",
+        "Retwist",
+        "Box braids",
+        "Knotless braids",
+        "French curl",
+        "Boho braids / goddess braids",
+        "Hybrid sew-in"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -4532,7 +4530,8 @@
         "Frontal ponytail / bun",
         "Wig install (frontal / closure)",
         "Relaxer / texturiser",
-        "Silk press"
+        "Silk press",
+        "Wig colour"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -4610,7 +4609,8 @@
         "Flipover / Versatile sew-in",
         "Braid take-down",
         "Half up half down",
-        "Sleek ponytail / bun"
+        "Sleek ponytail / bun",
+        "Wig cornrows"
       ]
     },
     {
@@ -5405,7 +5405,6 @@
       "instagramUrl": "https://www.instagram.com/glaysson.rc/",
       "services": [
         "Keratin treatment",
-        "Wash & blowdry",
         "Olaplex treatment",
         "Balayage",
         "Highlights",
@@ -5520,7 +5519,6 @@
       "websiteUrl": "https://goldenntouchh.as.me/schedule/5b847e30",
       "instagramUrl": "https://www.instagram.com/golden_tuchhhh/",
       "services": [
-        "Wig install",
         "Pixie / finger waves",
         "Traditional sew-in / leave out",
         "Closure sew-in",
@@ -5728,7 +5726,8 @@
         "Traditional sew-in / leave out",
         "Flipover / Versatile sew-in",
         "Closure sew-in",
-        "Wig install"
+        "Wig install (frontal / closure)",
+        "Updo"
       ]
     },
     {
@@ -5785,12 +5784,12 @@
         "Fulani / Lemonade braids",
         "Quick weave",
         "Retwist",
-        "Twists (with extensions)",
-        "Wig install",
+        "Wig install (frontal / closure)",
         "Traditional sew-in / leave out",
         "Half braids, half sew-in",
         "Flipover / Versatile sew-in",
-        "Closure sew-in"
+        "Closure sew-in",
+        "Half up half down"
       ]
     },
     {
@@ -5889,7 +5888,7 @@
       "websiteUrl": "https://hairbyanais.as.me/schedule/8b59527b",
       "instagramUrl": "https://www.instagram.com/hairbyanaiss/",
       "services": [
-        "Wig install",
+        "Wig install (frontal / closure)",
         "Moisturising treatment",
         "Silk press",
         "Sleek ponytail / bun",
@@ -5901,8 +5900,7 @@
         "Flipover / Versatile sew-in",
         "Quick weave",
         "Trim / Hair cut",
-        "Cornrows / Twists / Underwig cornrows",
-        "Highlights",
+        "Wig cornrows",
         "Custom wig",
         "Wig colour",
         "U-Part wig install",
@@ -6018,7 +6016,7 @@
         "Texture release",
         "Tape ins",
         "Wash & blowdry",
-        "Cornrows / Twists / Underwig cornrows",
+        "Wig cornrows",
         "Pixie / finger waves",
         "Sleek ponytail / bun",
         "Scalp care",
@@ -6027,7 +6025,8 @@
         "Closure sew-in",
         "Crochet",
         "Sew-in take-down",
-        "Tracks / Silk press + tracks / Invisible sew-in"
+        "Tracks (+ Silk press) / Partial / Invisible sew-in",
+        "Relaxer / texturiser"
       ]
     },
     {
@@ -6165,13 +6164,12 @@
       "services": [
         "Fulani / Lemonade braids",
         "Boho braids / goddess braids",
-        "Wig install",
-        "Custom wig",
+        "Wig install (frontal / closure)",
         "Feed-in braids",
         "Half braids, half sew-in",
         "Knotless braids",
         "Traditional sew-in / leave out",
-        "Cornrows / Twists / Underwig cornrows",
+        "Wig cornrows",
         "Twists (with extensions)"
       ]
     },
@@ -6202,7 +6200,9 @@
         "Traditional sew-in / leave out",
         "Half up half down",
         "Sleek ponytail / bun",
-        "Bridal / Editorial"
+        "Bridal / Editorial",
+        "Updo",
+        "Faux locs"
       ]
     },
     {
@@ -6219,7 +6219,6 @@
       "services": [
         "Knotless braids",
         "Box braids",
-        "Faux locs",
         "Stitch braids",
         "Fulani / Lemonade braids",
         "Half braids, half sew-in",
@@ -6227,9 +6226,10 @@
         "Relaxer / texturiser",
         "Sleek ponytail / bun",
         "Twists (with extensions)",
-        "Cornrows / Twists / Underwig cornrows",
+        "Wig cornrows",
         "Wash & blowdry",
-        "Traditional sew-in / leave out"
+        "Traditional sew-in / leave out",
+        "Boho braids / goddess braids"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -6428,7 +6428,7 @@
         "LA weave",
         "Microlinks",
         "Tape ins",
-        "Wig install",
+        "Wig install (frontal / closure)",
         "Relaxer / texturiser",
         "Texture release",
         "Microbraids / x-small braids",
@@ -6438,12 +6438,13 @@
         "Stitch braids",
         "Wash & blowdry",
         "Trim / Hair cut",
-        "Cornrows / Twists / Underwig cornrows",
+        "Wig cornrows",
         "Full head colour",
         "Sleek ponytail / bun",
         "Half braids, half sew-in",
         "Crochet",
-        "Tracks / Silk press + tracks / Invisible sew-in"
+        "Tracks (+ Silk press) / Partial / Invisible sew-in",
+        "Miracle knots"
       ],
       "summary": "Manual entry added from your East London braids, extensions, sew-ins, and natural hair list.",
       "source": "manual",
@@ -6980,7 +6981,10 @@
         "Scalp care",
         "Texture release",
         "Relaxer / texturiser",
-        "Tracks / Silk press + tracks / Invisible sew-in"
+        "Tracks (+ Silk press) / Partial / Invisible sew-in",
+        "Flipover / Versatile sew-in",
+        "Wig cornrows",
+        "Moisturising treatment"
       ],
       "summary": "Manual entry added from your latest salon update batch.",
       "source": "manual",
@@ -7424,7 +7428,7 @@
       "websiteUrl": "https://iamolaeletu.as.me/schedule/d8cbe21f",
       "instagramUrl": "https://www.instagram.com/iamolaeletu_/",
       "services": [
-        "Clip ins / Silk press + Clip ins",
+        "Clip ins (+ Silk press)",
         "Silk press",
         "Wash & blowdry",
         "Pixie / finger waves",
@@ -7434,8 +7438,11 @@
         "Trim / Hair cut",
         "Sleek ponytail / bun",
         "Half up half down",
-        "Tracks / Silk press + tracks / Invisible sew-in",
-        "Updo"
+        "Tracks (+ Silk press) / Partial / Invisible sew-in",
+        "Updo",
+        "Traditional sew-in / leave out",
+        "Flipover / Versatile sew-in",
+        "U-Part wig install"
       ],
       "summary": "Manual entry added from your South East London list. Notes mention pixie cut, sew-in, relaxer, keratin, and texture release.",
       "source": "manual",
@@ -7479,10 +7486,11 @@
       "services": [
         "Boho braids / goddess braids",
         "Knotless braids",
-        "Butterfly locs",
-        "Cornrows / Twists / Underwig cornrows",
+        "Wig cornrows",
         "Feed-in braids",
-        "Half braids, half sew-in"
+        "Half braids, half sew-in",
+        "Fulani / Lemonade braids",
+        "Stitch braids"
       ],
       "canBraidWithoutGel": true,
       "summary": "Manual entry added from your South West London braids list.",
