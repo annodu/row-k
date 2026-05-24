@@ -1,23 +1,20 @@
 import { FormEvent, useEffect, useMemo, useState } from "react";
 import {
   AlertTriangle,
-  ArrowLeft,
   ArrowUp,
   ArrowUpDown,
-  AtSign,
   Check,
   ChevronDown,
+  ChevronLeft,
   ChevronRight,
   ChevronUp,
   ChevronsRight,
   ClockAlert,
   ExternalLink,
   FileText,
-  Filter,
   Globe,
   Link2,
   Loader2,
-  LogOut,
   Plus,
   RefreshCw,
   Save,
@@ -54,6 +51,8 @@ type StylistDraft = {
   tiktokUrl?: string;
   services: string[];
   rawServices: string[];
+  hijabiFriendly?: boolean;
+  canBraidWithoutGel?: boolean;
   summary: string;
   warnings: string[];
   evidence: string[];
@@ -67,6 +66,8 @@ type DraftForm = {
   areaId: string;
   rawServices: string;
   services: string[];
+  hijabiFriendly: boolean;
+  canBraidWithoutGel: boolean;
 };
 
 type DraftEditorStep = "details" | "services" | "review";
@@ -116,6 +117,12 @@ type FreshnessUndoState = {
   label: string;
 };
 
+type AdminToast = {
+  id: number;
+  message: string;
+  tone: "success" | "error";
+};
+
 type DiscoverySuggestion = {
   id: string;
   name: string;
@@ -157,6 +164,8 @@ const emptyForm: DraftForm = {
   areaId: "",
   rawServices: "",
   services: [],
+  hijabiFriendly: false,
+  canBraidWithoutGel: false,
 };
 
 const serviceGroups = [
@@ -258,6 +267,7 @@ export function AdminApp() {
   const [form, setForm] = useState<DraftForm>(emptyForm);
   const [selectedDraftId, setSelectedDraftId] = useState<string | null>(null);
   const [message, setMessage] = useState("");
+  const [toast, setToast] = useState<AdminToast | null>(null);
   const [isBusy, setIsBusy] = useState(false);
   const [checks, setChecks] = useState<DirectoryCheck[]>([]);
   const [checksLoadedAt, setChecksLoadedAt] = useState("");
@@ -308,6 +318,15 @@ export function AdminApp() {
       loadAdminData();
     }
   }, [isAuthed]);
+
+  useEffect(() => {
+    if (!toast) {
+      return;
+    }
+
+    const timeout = window.setTimeout(() => setToast(null), 3600);
+    return () => window.clearTimeout(timeout);
+  }, [toast]);
 
   useEffect(() => {
     if (!isAuthed || !form.rawServices.trim()) {
@@ -431,6 +450,11 @@ export function AdminApp() {
     setDrafts([]);
   }
 
+  function notify(messageText: string, tone: AdminToast["tone"] = "success") {
+    setMessage(messageText);
+    setToast({ id: Date.now(), message: messageText, tone });
+  }
+
   async function createDraft(event: FormEvent) {
     event.preventDefault();
     setMessage("");
@@ -444,14 +468,14 @@ export function AdminApp() {
       });
       const payload = await response.json();
       if (!response.ok) {
-        setMessage(payload.message || "Could not create draft.");
+        notify(payload.message || "Could not create draft.", "error");
         return;
       }
       setForm(emptyForm);
       setDrafts((current) => [payload.draft, ...current]);
       setSelectedDraftId(payload.draft.id);
       setIsDraftEditorOpen(true);
-      setMessage("Draft created.");
+      notify("Draft created.");
     } finally {
       setIsBusy(false);
     }
@@ -470,7 +494,7 @@ export function AdminApp() {
       });
       const payload = await response.json();
       if (!response.ok) {
-        setMessage(payload.message || "Could not create drafts.");
+        notify(payload.message || "Could not create drafts.", "error");
         return;
       }
       const createdDrafts = payload.drafts ?? [];
@@ -479,7 +503,7 @@ export function AdminApp() {
       setSelectedDraftId(createdDrafts[0]?.id ?? null);
       setActiveView("drafts");
       setIsDraftEditorOpen(true);
-      setMessage(`Created ${createdDrafts.length} draft${createdDrafts.length === 1 ? "" : "s"}.`);
+      notify(`Created ${createdDrafts.length} draft${createdDrafts.length === 1 ? "" : "s"}.`);
       await loadAdminData();
     } finally {
       setIsBusy(false);
@@ -499,15 +523,15 @@ export function AdminApp() {
       });
       const payload = await response.json();
       if (!response.ok) {
-        setMessage(payload.message || `Could not save ${isPublished ? "published stylist" : "draft"}.`);
+        notify(payload.message || `Could not save ${isPublished ? "published stylist" : "draft"}.`, "error");
         return;
       }
       if (isPublished) {
         setPublishedStylists((current) => current.map((item) => (item.id === draft.id ? payload.stylist : item)));
-        setMessage("Published stylist saved.");
+        notify("Published stylist saved.");
       } else {
         setDrafts((current) => current.map((item) => (item.id === draft.id ? payload.draft : item)));
-        setMessage("Draft saved.");
+        notify("Draft saved.");
       }
     } finally {
       setIsBusy(false);
@@ -526,12 +550,13 @@ export function AdminApp() {
       });
       const payload = await response.json();
       if (!response.ok) {
-        setMessage(payload.message || "Could not approve draft.");
+        notify(payload.message || "Could not approve draft.", "error");
         return;
       }
       setDrafts((current) => current.filter((item) => item.id !== draft.id));
       setSelectedDraftId(null);
-      setMessage(`${payload.salon.name} was added to the directory.`);
+      setIsDraftEditorOpen(false);
+      notify(`${payload.salon.name} was added to the directory.`);
     } finally {
       setIsBusy(false);
     }
@@ -547,12 +572,13 @@ export function AdminApp() {
       });
       if (!response.ok) {
         const payload = await response.json().catch(() => ({}));
-        setMessage(payload.message || "Could not delete draft.");
+        notify(payload.message || "Could not delete draft.", "error");
         return;
       }
       setDrafts((current) => current.filter((draft) => draft.id !== draftId));
       setSelectedDraftId(null);
-      setMessage("Draft deleted.");
+      setIsDraftEditorOpen(false);
+      notify("Draft deleted.");
     } finally {
       setIsBusy(false);
     }
@@ -600,7 +626,7 @@ export function AdminApp() {
         nextOffset = payload.nextOffset ?? null;
       }
 
-      setMessage(`Freshness check complete. Found ${totalUpdates} update${totalUpdates === 1 ? "" : "s"}.`);
+      setMessage(`Health check complete. Found ${totalUpdates} update${totalUpdates === 1 ? "" : "s"}.`);
       await loadAdminData();
     } finally {
       setIsRunningChecks(false);
@@ -710,13 +736,13 @@ export function AdminApp() {
       });
       const payload = await response.json();
       if (!response.ok) {
-        setMessage(payload.message || "Could not undo freshness action.");
+        setMessage(payload.message || "Could not undo health check action.");
         return;
       }
       const restoredCheck = payload.check ?? lastFreshnessUndo.check;
       setChecks((current) => [restoredCheck, ...current.filter((item) => item.id !== restoredCheck.id)]);
       setFreshnessUndoStack((current) => current.slice(0, -1));
-      setMessage("Freshness action undone.");
+      setMessage("Health check action undone.");
       await loadAdminData();
     } finally {
       setIsBusy(false);
@@ -768,10 +794,10 @@ export function AdminApp() {
               value={password}
               onChange={(event) => setPassword(event.target.value)}
               placeholder="Admin password"
-              className="rounded-md border-stone-700 bg-stone-900 text-stone-50 placeholder:text-stone-500"
+              className="rounded-none border-stone-700 bg-stone-900 text-stone-50 placeholder:text-stone-500"
             />
             {loginError ? <p className="text-sm text-red-300">{loginError}</p> : null}
-            <Button type="submit" disabled={isBusy} className="w-full rounded-md">
+            <Button type="submit" disabled={isBusy} className="w-full rounded-none">
               {isBusy ? <Loader2 className="size-4 animate-spin" /> : null}
               Unlock admin
             </Button>
@@ -789,23 +815,21 @@ export function AdminApp() {
       <header className="mx-auto max-w-7xl px-5 pt-10">
         <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
           <div>
-            <p className="inline-flex rounded-full bg-stone-950 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.24em] text-white">ROW K ADMIN</p>
+            <p className="inline-flex rounded-none bg-stone-950 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.24em] text-white">ROW K ADMIN</p>
           </div>
           <div className="flex items-center gap-4">
-            {message ? <p className="hidden max-w-xs truncate text-sm text-stone-500 md:block">{message}</p> : null}
             <span className="inline-flex items-center gap-2 text-xs text-stone-500">
-              <span className="size-2 rounded-full bg-emerald-500" />
+              <span className="size-2 rounded-none bg-emerald-500" />
               {syncLabel}
             </span>
-            <Button type="button" variant="outline" onClick={logout} className="h-9 rounded-md bg-white px-3 text-xs">
-              <LogOut className="size-3.5" />
+            <Button type="button" variant="outline" onClick={logout} className="h-9 rounded-none bg-white px-3 text-xs">
               Log out
             </Button>
           </div>
         </div>
 
         <nav className="mt-9 flex gap-7 border-b border-stone-200">
-          {(["overview", "drafts", "freshness", "discovery"] as const).map((view) => (
+          {(["overview", "drafts", "freshness"] as const).map((view) => (
             <button
               key={view}
               type="button"
@@ -815,7 +839,7 @@ export function AdminApp() {
                 activeView === view ? "border-stone-950 text-stone-950" : "border-transparent text-stone-500 hover:text-stone-900",
               )}
             >
-              {view === "drafts" ? "Stylists" : view}
+              {view === "drafts" ? "Stylists" : view === "freshness" ? "Health" : view}
             </button>
           ))}
         </nav>
@@ -824,13 +848,8 @@ export function AdminApp() {
       {activeView === "overview" ? (
         <DashboardOverview
           dashboard={dashboard}
-          intakeText={intakeText}
-          isBusy={isBusy}
-          drafts={drafts}
           checks={checks}
-          suggestions={suggestions}
-          onIntakeChange={setIntakeText}
-          onSubmit={createBulkDrafts}
+          publishedCount={publishedStylists.length}
           onOpenView={setActiveView}
         />
       ) : null}
@@ -889,7 +908,31 @@ export function AdminApp() {
           onCreateDraft={createDraftFromSuggestion}
         />
       ) : null}
+
+      <AdminToastMessage toast={toast} onClose={() => setToast(null)} />
     </main>
+  );
+}
+
+function AdminToastMessage({ toast, onClose }: { toast: AdminToast | null; onClose: () => void }) {
+  if (!toast) {
+    return null;
+  }
+
+  const isError = toast.tone === "error";
+
+  return (
+    <div className="fixed bottom-5 right-5 z-[60] w-[calc(100vw-2.5rem)] max-w-sm" role="status" aria-live="polite">
+      <div className={cn("flex items-start gap-3 border bg-white p-4 shadow-lg", isError ? "border-red-200" : "border-stone-200")}>
+        <span className={cn("mt-0.5 inline-flex size-5 shrink-0 items-center justify-center", isError ? "text-red-700" : "text-emerald-700")}>
+          {isError ? <AlertTriangle className="size-4" /> : <Check className="size-4" />}
+        </span>
+        <p className="min-w-0 flex-1 text-sm font-medium text-stone-900">{toast.message}</p>
+        <button type="button" onClick={onClose} className="shrink-0 text-xs font-semibold uppercase tracking-[0.12em] text-stone-500 hover:text-stone-950">
+          Close
+        </button>
+      </div>
+    </div>
   );
 }
 
@@ -948,9 +991,6 @@ function StylistsPage({
     <div className="mx-auto max-w-7xl space-y-7 px-5 py-9">
       <section>
         <h1 className="text-3xl font-semibold tracking-tight text-stone-950">Stylists</h1>
-        <p className="mt-2 text-sm text-stone-500">
-          {allDrafts.length} directory entr{allDrafts.length === 1 ? "y" : "ies"} across drafts and published stylists.
-        </p>
       </section>
 
       <form onSubmit={onSubmitIntake} className="relative">
@@ -959,13 +999,14 @@ function StylistsPage({
           value={intakeText}
           onChange={(event) => onIntakeChange(event.target.value)}
           rows={1}
+          aria-label="Create draft from link, handle, or notes"
           placeholder="Paste a link, handle, or notes about a stylist..."
-          className="block h-16 min-h-16 w-full resize-none overflow-hidden rounded-full border border-stone-200 bg-white py-5 pl-16 pr-24 text-base leading-6 shadow-[0_1px_2px_rgba(0,0,0,0.04)] outline-none placeholder:text-stone-400 focus:border-stone-400 focus:ring-4 focus:ring-stone-100"
+          className="block h-16 min-h-16 w-full resize-none overflow-hidden whitespace-nowrap rounded-none border border-stone-200 bg-white py-5 pl-16 pr-24 text-base leading-6 outline-none placeholder:text-stone-400 focus:border-stone-400"
         />
         <button
           type="submit"
           disabled={isBusy || !intakeText.trim()}
-          className="absolute right-3 top-1/2 inline-flex size-12 -translate-y-1/2 items-center justify-center rounded-full bg-stone-100 text-stone-600 transition hover:bg-stone-200 hover:text-stone-900 disabled:cursor-not-allowed disabled:opacity-50"
+          className="absolute right-3 top-1/2 inline-flex size-12 -translate-y-1/2 items-center justify-center rounded-none bg-stone-100 text-stone-600 transition hover:bg-stone-200 hover:text-stone-900 disabled:cursor-not-allowed disabled:opacity-50"
           aria-label="Create draft"
         >
           {isBusy ? <Loader2 className="size-5 animate-spin" /> : <ArrowUp className="size-5" />}
@@ -998,7 +1039,7 @@ function StylistsPage({
         />
       </div>
 
-      <section className="overflow-hidden rounded-[8px] border border-stone-200 bg-white shadow-sm">
+      <section className="overflow-hidden rounded-none border border-stone-200 bg-white">
         <div className="flex items-start justify-between gap-4 p-6">
           <div>
             <h2 className="text-lg font-semibold tracking-tight">Stylist entries</h2>
@@ -1013,16 +1054,18 @@ function StylistsPage({
           </button>
         </div>
         <div className="overflow-x-auto">
-          <table className="w-full min-w-[900px] text-left text-sm">
+          <table className="w-full text-left text-sm md:min-w-[900px]">
             <thead className="border-b border-stone-100 text-xs font-medium text-stone-500">
               <tr>
                 <th className="px-4 py-3">Stylist</th>
                 <th className="px-4 py-3">Status</th>
-                <th className="px-4 py-3">Completeness</th>
-                <th className="px-4 py-3">Services</th>
-                <th className="px-4 py-3">Location</th>
-                <th className="px-4 py-3">Last edited</th>
-                <th className="w-10 px-4 py-3" />
+                <th className="hidden px-4 py-3 md:table-cell">Completeness</th>
+                <th className="hidden px-4 py-3 md:table-cell">Services</th>
+                <th className="hidden px-4 py-3 md:table-cell">Location</th>
+                <th className="hidden px-4 py-3 md:table-cell">Last edited</th>
+                <th className="w-10 px-4 py-3">
+                  <span className="sr-only">Open stylist</span>
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -1042,23 +1085,23 @@ function StylistsPage({
 	                      }}
 	                      className="cursor-pointer border-b border-stone-100 transition hover:bg-stone-50 focus:bg-stone-50 focus:outline-none last:border-b-0"
 	                    >
-                      <td className="px-4 py-4 font-medium text-stone-950">{draft.name || "Untitled stylist"}</td>
+                      <td className="max-w-[12rem] truncate px-4 py-4 font-medium text-stone-950 sm:max-w-none">{draft.name || "Untitled stylist"}</td>
                       <td className="px-4 py-4">
                         <DraftTableStatusBadge draft={draft} />
                       </td>
-                      <td className="px-4 py-4">
+                      <td className="hidden px-4 py-4 md:table-cell">
                         <div className="flex items-center gap-3">
-                          <div className="h-2 w-20 overflow-hidden rounded-full bg-stone-100">
-                            <div className="h-full rounded-full bg-stone-950" style={{ width: `${completeness}%` }} />
+                          <div className="h-2 w-20 overflow-hidden rounded-none bg-stone-100">
+                            <div className="h-full rounded-none bg-stone-950" style={{ width: `${completeness}%` }} />
                           </div>
                           <span className="text-xs text-stone-500">{completeness}%</span>
                         </div>
                       </td>
-                      <td className="px-4 py-4 text-stone-700">{draft.services.length}</td>
-                      <td className="px-4 py-4 text-stone-700">{draft.areaLabel || "—"}</td>
-                      <td className="px-4 py-4 text-stone-500">{formatRelativeTime(draft.updatedAt || draft.createdAt)}</td>
+                      <td className="hidden px-4 py-4 text-stone-700 md:table-cell">{draft.services.length}</td>
+                      <td className="hidden px-4 py-4 text-stone-700 md:table-cell">{draft.areaLabel || "—"}</td>
+                      <td className="hidden px-4 py-4 text-stone-500 md:table-cell">{formatRelativeTime(draft.updatedAt || draft.createdAt)}</td>
 	                      <td className="px-4 py-4">
-	                        <span className="inline-flex size-7 items-center justify-center rounded-full text-stone-500">
+	                        <span className="inline-flex size-7 items-center justify-center rounded-none text-stone-500">
 	                          <ChevronRight className="size-4" />
 	                        </span>
 	                      </td>
@@ -1119,6 +1162,7 @@ function DraftEditorDrawer({
   onDelete: () => void;
 }) {
   const isPublished = getDraftDisplayStatus(draft) === "published";
+  const canDelete = !isPublished;
   const displayStatus = getDraftDisplayStatus(draft);
   const [activeStep, setActiveStep] = useState<DraftEditorStep>("details");
   const stepOrder: DraftEditorStep[] = ["details", "services", "review"];
@@ -1145,19 +1189,31 @@ function DraftEditorDrawer({
   return (
     <div className="fixed inset-0 z-50 bg-stone-950/20 backdrop-blur-[1px]">
       <button type="button" aria-label="Close editor" className="absolute inset-0 cursor-default" onClick={onClose} />
-      <aside className="absolute inset-y-0 right-0 flex w-full max-w-[628px] flex-col overflow-hidden border-l border-stone-200 bg-white shadow-2xl">
+      <aside className="absolute inset-y-0 right-0 flex w-full max-w-[628px] flex-col overflow-hidden border-l border-stone-200 bg-white">
         <div className="shrink-0 border-b border-stone-200 px-7 pb-7 pt-7">
           <div className="flex items-center justify-between gap-3">
             <div className="flex items-center gap-2 text-stone-700">
-              <button type="button" onClick={onClose} className="inline-flex size-8 items-center justify-center rounded-md hover:bg-stone-100" aria-label="Close editor">
+              <button type="button" onClick={onClose} className="inline-flex size-8 items-center justify-center rounded-none hover:bg-stone-100" aria-label="Close editor">
                 <ChevronsRight className="size-4" />
               </button>
             </div>
-            <DraftStatusPill status={displayStatus} />
+            {canDelete ? (
+              <button
+                type="button"
+                onClick={onDelete}
+                disabled={isBusy}
+                className="inline-flex size-8 items-center justify-center rounded-none text-red-700 transition hover:bg-red-50 disabled:cursor-not-allowed disabled:opacity-40"
+                aria-label="Delete draft"
+                title="Delete draft"
+              >
+                <Trash2 className="size-4" />
+              </button>
+            ) : null}
           </div>
 
           <div className="mt-6 flex flex-wrap items-center justify-between gap-3">
             <h2 className="text-2xl font-semibold tracking-tight text-stone-950">{draft.name || "Untitled stylist"}</h2>
+            <DraftStatusPill status={displayStatus} />
           </div>
 
           <DraftEditorStepper activeStep={activeStep} onStepChange={setActiveStep} />
@@ -1180,22 +1236,31 @@ function DraftEditorDrawer({
           />
         </div>
 
-        <div className="shrink-0 border-t border-stone-200 bg-white/95 px-7 py-4 shadow-[0_-12px_28px_rgba(15,23,42,0.06)] backdrop-blur">
+        <div className="shrink-0 border-t border-stone-200 bg-white/95 px-7 py-4 backdrop-blur">
           <div className="grid grid-cols-2 gap-4">
-            <Button type="button" variant="outline" onClick={canGoBack ? goToPreviousStep : onSave} disabled={isBusy} className="h-11 rounded-md bg-white">
-              {canGoBack ? <ArrowLeft className="size-4" /> : <Save className="size-4" />}
-              {canGoBack ? "Back" : isPublished ? "Save changes" : "Save draft"}
-            </Button>
+            {canGoBack || isPublished ? (
+              <Button
+                type="button"
+                variant="outline"
+                onClick={canGoBack ? goToPreviousStep : onSave}
+                disabled={isBusy}
+                className="h-11 rounded-none bg-white"
+              >
+                {canGoBack ? <ChevronLeft className="size-4" /> : null}
+                {canGoBack ? "Back" : "Save changes"}
+              </Button>
+            ) : null}
             {canGoNext ? (
-              <Button type="button" onClick={goToNextStep} disabled={isBusy} className="h-11 rounded-md bg-stone-950">
-                {activeStep === "details" ? "Next: Services" : "Next: Review"}
+              <Button type="button" onClick={goToNextStep} disabled={isBusy} className="h-11 rounded-none bg-stone-950">
+                {activeStep === "details" ? "Services" : "Review"}
+                <ChevronRight className="size-4" />
               </Button>
             ) : !isPublished ? (
-              <Button type="button" onClick={onApprove} disabled={isBusy} className="h-11 rounded-md bg-stone-950">
+              <Button type="button" onClick={onApprove} disabled={isBusy} className="h-11 rounded-none bg-stone-950">
                 Publish
               </Button>
             ) : (
-              <Button type="button" onClick={onSave} disabled={isBusy} className="h-11 rounded-md bg-stone-950">
+              <Button type="button" onClick={onSave} disabled={isBusy} className="h-11 rounded-none bg-stone-950">
                 Save
               </Button>
             )}
@@ -1216,7 +1281,7 @@ function DraftStatusPill({ status }: { status: string }) {
         : "bg-stone-100 text-stone-700";
 
   return (
-    <span className={cn("inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm font-medium", colorClass)}>
+    <span className={cn("inline-flex items-center gap-1.5 rounded-none px-3 py-1.5 text-sm font-medium", colorClass)}>
       {status === "ready_to_publish" ? <Check className="size-3.5" /> : null}
       {label}
     </span>
@@ -1246,11 +1311,12 @@ function DraftEditorStepper({
               type="button"
               onClick={() => onStepChange(step.id)}
               aria-current={step.id === activeStep ? "step" : undefined}
-              className="group relative z-10 flex flex-col items-center gap-2 rounded-md px-3 text-center outline-none focus-visible:ring-2 focus-visible:ring-stone-950 focus-visible:ring-offset-2"
+              aria-label={`Go to ${step.label} step`}
+              className="group relative z-10 flex flex-col items-center gap-2 rounded-none px-3 text-center outline-none"
             >
               <span
                 className={cn(
-                  "inline-flex size-8 items-center justify-center rounded-full border text-sm font-semibold transition",
+                  "inline-flex size-8 items-center justify-center rounded-none border text-sm font-semibold transition",
                   step.id === activeStep
                     ? "border-stone-200 bg-stone-100 text-stone-950 group-hover:border-stone-300 group-hover:bg-stone-200"
                     : "border-transparent bg-stone-100 text-stone-500 group-hover:border-stone-300 group-hover:bg-stone-200 group-hover:text-stone-900",
@@ -1298,9 +1364,10 @@ function StylistMetricCard({
         type="button"
         onClick={onClick}
         aria-pressed={isActive}
+        aria-label={`Show ${title} stylists`}
       className={cn(
-        "rounded-[8px] border bg-white p-6 text-left shadow-sm transition hover:border-stone-400 hover:shadow-md",
-        isActive ? "border-stone-300 bg-stone-100 ring-2 ring-stone-200 hover:bg-stone-200" : "border-stone-200",
+        "rounded-none border bg-white p-6 text-left transition hover:border-stone-400",
+        isActive ? "border-stone-300 bg-stone-100 hover:bg-stone-200" : "border-stone-200",
       )}
       >
         {content}
@@ -1309,7 +1376,7 @@ function StylistMetricCard({
   }
 
   return (
-    <div className="rounded-[8px] border border-stone-200 bg-white p-6 shadow-sm">
+    <div className="rounded-none border border-stone-200 bg-white p-6">
       {content}
     </div>
   );
@@ -1317,6 +1384,16 @@ function StylistMetricCard({
 
 function CompassDot() {
   return <SearchCheck className="size-4" />;
+}
+
+function InstagramIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={className} aria-hidden="true">
+      <rect x="3" y="3" width="18" height="18" rx="5" />
+      <circle cx="12" cy="12" r="4" />
+      <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+    </svg>
+  );
 }
 
 function DraftTableStatusBadge({ draft }: { draft: StylistDraft }) {
@@ -1329,7 +1406,7 @@ function DraftTableStatusBadge({ draft }: { draft: StylistDraft }) {
         ? "bg-blue-100 text-blue-800"
         : "bg-sky-100 text-sky-800";
 
-  return <span className={cn("rounded-full px-3 py-1 text-xs", colorClass)}>{label}</span>;
+  return <span className={cn("rounded-none px-3 py-1 text-xs", colorClass)}>{label}</span>;
 }
 
 function getDraftDisplayStatus(draft: StylistDraft) {
@@ -1412,87 +1489,43 @@ function getDraftCompleteness(draft: StylistDraft) {
 
 function DashboardOverview({
   dashboard,
-  intakeText,
-  isBusy,
-  drafts,
   checks,
-  suggestions,
-  onIntakeChange,
-  onSubmit,
+  publishedCount,
   onOpenView,
 }: {
   dashboard: DashboardMetrics | null;
-  intakeText: string;
-  isBusy: boolean;
-  drafts: StylistDraft[];
   checks: DirectoryCheck[];
-  suggestions: DiscoverySuggestion[];
-  onIntakeChange: (value: string) => void;
-  onSubmit: (event: FormEvent) => void;
-  onOpenView: (view: "overview" | "drafts" | "freshness" | "discovery") => void;
+  publishedCount: number;
+  onOpenView: (view: "overview" | "drafts" | "freshness") => void;
 }) {
-  const [overviewFilter, setOverviewFilter] = useState<"Draft" | "Freshness" | "Discovery" | null>(null);
-  const allActionItems = buildActionItems(drafts, checks, suggestions);
-  const actionItems = overviewFilter ? allActionItems.filter((item) => item.type === overviewFilter) : allActionItems;
-
-  function toggleFilter(type: "Draft" | "Freshness" | "Discovery") {
-    setOverviewFilter((current) => (current === type ? null : type));
-  }
+  const healthRows = buildFreshnessRecommendationGroups(checks);
+  const visibleStaleEntries = checks.length ? healthRows.length : dashboard?.freshness.totalIssues || 0;
+  const visibleWrongServices = healthRows.filter((row) => row.details.some((detail) => detail.kind === "add" || detail.kind === "remove")).length;
+  const visibleBrokenLinks = healthRows.reduce((count, row) => count + row.details.filter((detail) => detail.kind === "fix").length, 0);
+  const visibleManualChecks = healthRows.reduce((count, row) => count + row.details.filter((detail) => detail.kind === "manual").length, 0);
 
   return (
     <div className="mx-auto max-w-7xl space-y-8 px-5 py-11">
       <section>
         <h1 className="text-3xl font-semibold tracking-tight text-stone-950">Overview</h1>
-        <p className="mt-2 text-sm text-stone-500">Review drafts, stale entries, and discovery leads awaiting attention.</p>
       </section>
 
-      <form onSubmit={onSubmit} className="relative">
-        <Plus className="pointer-events-none absolute left-6 top-1/2 size-5 -translate-y-1/2 text-stone-400" />
-        <textarea
-          value={intakeText}
-          onChange={(event) => onIntakeChange(event.target.value)}
-          rows={1}
-          placeholder="Paste a link, handle, or notes about a stylist..."
-          className="block h-16 min-h-16 w-full resize-none overflow-hidden rounded-full border border-stone-200 bg-white py-5 pl-16 pr-24 text-base leading-6 shadow-[0_1px_2px_rgba(0,0,0,0.04)] outline-none placeholder:text-stone-400 focus:border-stone-400 focus:ring-4 focus:ring-stone-100"
-        />
-        <button
-          type="submit"
-          disabled={isBusy || !intakeText.trim()}
-          className="absolute right-3 top-1/2 inline-flex size-12 -translate-y-1/2 items-center justify-center rounded-full bg-stone-100 text-stone-600 transition hover:bg-stone-200 hover:text-stone-900 disabled:cursor-not-allowed disabled:opacity-50"
-          aria-label="Create draft"
-        >
-          {isBusy ? <Loader2 className="size-5 animate-spin" /> : <ArrowUp className="size-5" />}
-        </button>
-      </form>
-
-      <div className="grid gap-4 lg:grid-cols-3">
+      <div className="grid gap-4 lg:grid-cols-2">
         <DashboardCard
-          title="Draft entries"
-          value={dashboard?.drafts.total ?? 0}
-          detail={`${dashboard?.drafts.needsReview ?? 0} needs review · ${dashboard?.drafts.readyToApprove ?? 0} ready`}
+          title="Stylists"
+          value={publishedCount}
+          detail={`${dashboard?.drafts.total ?? 0} draft${(dashboard?.drafts.total ?? 0) === 1 ? "" : "s"} · ${dashboard?.drafts.readyToApprove ?? 0} ready · ${publishedCount} published`}
           icon={<FileText className="size-4" />}
-          isActive={overviewFilter === "Draft"}
-          onClick={() => toggleFilter("Draft")}
+          onClick={() => onOpenView("drafts")}
         />
         <DashboardCard
           title="Stale entries"
-          value={dashboard?.freshness.totalIssues ?? 0}
-          detail={`${dashboard?.freshness.brokenLinks ?? 0} link issues · ${dashboard?.freshness.serviceChanges ?? 0} service changes`}
+          value={visibleStaleEntries}
+          detail={`${visibleWrongServices} wrong service${visibleWrongServices === 1 ? "" : "s"} · ${visibleBrokenLinks} broken link${visibleBrokenLinks === 1 ? "" : "s"} · ${visibleManualChecks} couldn't verify`}
           icon={<ClockAlert className="size-4" />}
-          isActive={overviewFilter === "Freshness"}
-          onClick={() => toggleFilter("Freshness")}
-        />
-        <DashboardCard
-          title="Suggested entries"
-          value={dashboard?.discovery.total ?? 0}
-          detail={`${dashboard?.discovery.highConfidence ?? 0} high confidence · ${dashboard?.discovery.needsReview ?? 0} to review`}
-          icon={<SearchCheck className="size-4" />}
-          isActive={overviewFilter === "Discovery"}
-          onClick={() => toggleFilter("Discovery")}
+          onClick={() => onOpenView("freshness")}
         />
       </div>
-
-      <ActionQueue items={actionItems} onOpenView={onOpenView} />
     </div>
   );
 }
@@ -1502,127 +1535,32 @@ function DashboardCard({
   value,
   detail,
   icon,
-  isActive,
   onClick,
 }: {
   title: string;
   value: number;
   detail: string;
   icon: React.ReactNode;
-  isActive: boolean;
   onClick: () => void;
 }) {
   return (
     <button
       type="button"
       onClick={onClick}
+      aria-label={`Open ${title}`}
       className={cn(
-        "cursor-pointer rounded-[8px] border p-6 text-left shadow-sm transition",
-        isActive
-          ? "border-stone-300 bg-stone-100 hover:bg-stone-200 active:bg-stone-200"
-          : "border-stone-200 bg-white hover:border-stone-300 hover:bg-stone-50 active:bg-stone-100",
+        "cursor-pointer rounded-none border p-6 text-left transition",
+        "border-stone-200 bg-white hover:border-stone-300 hover:bg-stone-50 active:bg-stone-100",
       )}
     >
       <div className="flex items-center justify-between gap-4">
-        <p className={cn("text-xs font-medium uppercase tracking-[0.14em]", isActive ? "text-stone-600" : "text-stone-500")}>{title}</p>
-        <span className={isActive ? "text-stone-500" : "text-stone-400"}>{icon}</span>
+        <p className="text-xs font-medium uppercase tracking-[0.14em] text-stone-500">{title}</p>
+        <span className="text-stone-400">{icon}</span>
       </div>
       <p className="mt-5 text-4xl font-semibold leading-none tracking-tight text-stone-950">{value}</p>
-      <p className={cn("mt-4 text-sm", isActive ? "text-stone-600" : "text-stone-500")}>{detail}</p>
+      <p className="mt-4 text-sm text-stone-500">{detail}</p>
     </button>
   );
-}
-
-type ActionItem = {
-  id: string;
-  name: string;
-  type: "Draft" | "Freshness" | "Discovery";
-  issue: string;
-  priority: "High" | "Medium" | "Low";
-  age: string;
-  view: "drafts" | "freshness" | "discovery";
-};
-
-function ActionQueue({
-  items,
-  onOpenView,
-}: {
-  items: ActionItem[];
-  onOpenView: (view: "overview" | "drafts" | "freshness" | "discovery") => void;
-}) {
-  return (
-    <section className="overflow-hidden rounded-[8px] border border-stone-200 bg-white shadow-sm">
-      <div className="flex flex-col gap-4 p-6 sm:flex-row sm:items-start sm:justify-between">
-        <div>
-          <h2 className="text-lg font-semibold tracking-tight">Action queue</h2>
-          <p className="mt-1 text-sm text-stone-500">{items.length} items awaiting your attention</p>
-        </div>
-        <div className="flex items-center gap-5 text-sm text-stone-700">
-          <button type="button" className="inline-flex items-center gap-1.5 hover:text-stone-950">
-            <Filter className="size-4" />
-            Filter
-          </button>
-          <button type="button" className="inline-flex items-center gap-1.5 hover:text-stone-950">
-            <ArrowUpDown className="size-4" />
-            Sort
-          </button>
-        </div>
-      </div>
-      <div className="overflow-x-auto">
-        <table className="w-full min-w-[720px] text-left text-sm">
-          <thead className="border-b border-stone-100 text-xs font-medium text-stone-500">
-            <tr>
-              <th className="px-4 py-3">Stylist</th>
-              <th className="px-4 py-3">Type</th>
-              <th className="px-4 py-3">Issue</th>
-              <th className="px-4 py-3">Priority</th>
-              <th className="px-4 py-3">Age</th>
-              <th className="w-10 px-4 py-3" />
-            </tr>
-          </thead>
-          <tbody>
-            {items.length ? (
-              items.map((item) => (
-                <tr key={item.id} className="border-b border-stone-100 last:border-b-0">
-                  <td className="px-4 py-4 font-medium text-stone-950">{item.name}</td>
-                  <td className="px-4 py-4">
-                    <span className="rounded-full bg-stone-100 px-3 py-1 text-xs text-stone-700">{item.type}</span>
-                  </td>
-                  <td className="px-4 py-4 text-stone-700">{item.issue}</td>
-                  <td className="px-4 py-4">
-                    <PriorityBadge priority={item.priority} />
-                  </td>
-                  <td className="px-4 py-4 text-stone-500">{item.age}</td>
-                  <td className="px-4 py-4">
-                    <button type="button" onClick={() => onOpenView(item.view)} className="inline-flex size-7 items-center justify-center rounded-full hover:bg-stone-100" aria-label={`Open ${item.type}`}>
-                      <ChevronRight className="size-4" />
-                    </button>
-                  </td>
-                </tr>
-              ))
-            ) : (
-              <tr>
-                <td colSpan={6} className="px-4 py-10 text-center text-sm text-stone-500">
-                  Nothing needs attention right now.
-                </td>
-              </tr>
-            )}
-          </tbody>
-        </table>
-      </div>
-    </section>
-  );
-}
-
-function PriorityBadge({ priority }: { priority: ActionItem["priority"] }) {
-  const colorClass =
-    priority === "High"
-      ? "bg-sky-100 text-sky-800"
-      : priority === "Low"
-        ? "bg-emerald-100 text-emerald-800"
-        : "bg-stone-100 text-stone-700";
-
-  return <span className={cn("rounded-full px-3 py-1 text-xs", colorClass)}>{priority}</span>;
 }
 
 type FreshnessPageApplyHandler = (
@@ -1659,7 +1597,7 @@ function FreshnessPage({
   const checkedCount = checkProgress.checkedCount || dashboard?.freshness.checkedCount || 0;
 	  const [freshnessFilter, setFreshnessFilter] = useState<"all" | "service-changes" | "broken-links" | "manual-check">("all");
 	  const rows = buildFreshnessRecommendationGroups(checks);
-		  const recommendationCount = rows.length || dashboard?.freshness.totalIssues || 0;
+		  const recommendationCount = checks.length ? rows.length : dashboard?.freshness.totalIssues || 0;
 		  const lastCompletedAt = checksLoadedAt || dashboard?.freshness.updatedAt;
 		  const hasCompletedCheck = Boolean(lastCompletedAt || checkedCount > 0 || rows.length > 0);
   const isWaitingForResults = isRunningChecks && rows.length === 0;
@@ -1667,8 +1605,8 @@ function FreshnessPage({
   const runButtonLabel = isRunningChecks
     ? `Checking ${activeCheckBatch.from} - ${activeBatchTo}`
     : hasCompletedCheck
-      ? "Refresh check"
-      : "Run check";
+      ? "Refresh"
+      : "Run";
 	  const serviceChanges = rows.filter((row) => row.details.some((detail) => detail.kind === "add" || detail.kind === "remove")).length;
 	  const brokenLinks = rows.reduce((count, row) => count + row.details.filter((detail) => detail.kind === "fix").length, 0);
   const manualChecks = rows.reduce((count, row) => count + row.details.filter((detail) => detail.kind === "manual").length, 0);
@@ -1684,7 +1622,7 @@ function FreshnessPage({
 	    <div className="mx-auto max-w-7xl space-y-7 px-5 py-9">
 	      <section className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
 	        <div>
-	          <h1 className="text-3xl font-semibold tracking-tight text-stone-950">Freshness checks</h1>
+	          <h1 className="text-3xl font-semibold tracking-tight text-stone-950">Health check</h1>
 	          <p className="mt-2 text-sm text-stone-500">
 	            {lastCompletedAt ? `Last updated ${formatRelativeTime(lastCompletedAt)}` : "Not run yet"}
 	          </p>
@@ -1696,13 +1634,13 @@ function FreshnessPage({
 	              onClick={onUndo}
 	              disabled={isBusy}
 	              title={`Undo ${lastUndo.label}`}
-	              className="inline-flex h-10 items-center gap-2 rounded-md border border-stone-200 bg-white px-3 text-sm text-stone-700 transition hover:border-stone-300 hover:bg-stone-50 hover:text-stone-950 disabled:cursor-not-allowed disabled:opacity-40"
+	              className="inline-flex h-10 items-center gap-2 rounded-none border border-stone-200 bg-white px-3 text-sm text-stone-700 transition hover:border-stone-300 hover:bg-stone-50 hover:text-stone-950 disabled:cursor-not-allowed disabled:opacity-40"
 	            >
 	              <Undo2 className="size-4" />
 	              Undo
 	            </button>
 	          ) : null}
-	          <Button type="button" onClick={onRunChecks} disabled={isRunningChecks} className="h-10 min-w-36 rounded-md bg-stone-950 px-4 text-sm">
+	          <Button type="button" onClick={onRunChecks} disabled={isRunningChecks} className="h-10 rounded-none bg-stone-950 px-4 text-sm">
 	            {isRunningChecks ? <Loader2 className="size-4 animate-spin" /> : hasCompletedCheck ? <RefreshCw className="size-4" /> : <PlayIcon />}
 	            {runButtonLabel}
 	          </Button>
@@ -1720,7 +1658,7 @@ function FreshnessPage({
           </div>
         )}
 
-	      <section className="overflow-hidden rounded-[8px] border border-stone-200 bg-white shadow-sm">
+	      <section className="overflow-hidden rounded-none border border-stone-200 bg-white">
 	        {isWaitingForResults ? (
             <FreshnessSkeleton />
           ) : filteredRows.length ? (
@@ -1728,7 +1666,14 @@ function FreshnessPage({
 	            <FreshnessRecommendationCard key={row.id} row={row} defaultOpen={index === 0} isBusy={isBusy} onApply={onApply} />
 	          ))
 	        ) : (
-	          <div className="px-6 py-12 text-sm text-stone-500">No freshness recommendations found.</div>
+	          <div className="flex min-h-64 flex-col items-center justify-center px-6 py-16 text-center">
+              <h2 className="text-lg font-semibold tracking-tight text-stone-950">All clear</h2>
+              <p className="mt-3 max-w-xl text-base text-stone-500">No health issues found. Everything is running smoothly.</p>
+              <Button type="button" variant="outline" onClick={onRunChecks} disabled={isRunningChecks} className="mt-8 h-11 rounded-none bg-white px-4 text-sm">
+                <RefreshCw className="size-4" />
+                Run check again
+              </Button>
+            </div>
 	        )}
 	      </section>
 	    </div>
@@ -1744,10 +1689,11 @@ function FreshnessMetricCard({ title, value, icon, isActive, onClick }: { title:
     <button
       type="button"
       onClick={onClick}
+      aria-label={`Show ${title}`}
       className={cn(
-        "cursor-pointer rounded-[8px] border border-stone-200 bg-white p-7 text-left shadow-sm transition hover:border-stone-300 hover:shadow-md active:bg-stone-50",
+        "cursor-pointer rounded-none border border-stone-200 bg-white p-7 text-left transition hover:border-stone-300 active:bg-stone-50",
         isActive
-          ? "ring-2 ring-stone-100"
+          ? ""
           : "",
       )}
     >
@@ -1809,7 +1755,7 @@ function FreshnessRecommendationCard({
         <div className="flex shrink-0 items-center gap-2 text-stone-700">
           <FreshnessLinkButtons row={row} />
           <IconActionDivider />
-          <button type="button" onClick={() => setIsOpen((current) => !current)} className="inline-flex size-8 items-center justify-center rounded-md hover:bg-stone-100" aria-label={isOpen ? "Collapse recommendations" : "Expand recommendations"}>
+          <button type="button" onClick={() => setIsOpen((current) => !current)} className="inline-flex size-8 items-center justify-center rounded-none hover:bg-stone-100" aria-label={isOpen ? "Collapse recommendations" : "Expand recommendations"}>
             {isOpen ? <ChevronUp className="size-4" /> : <ChevronDown className="size-4" />}
           </button>
         </div>
@@ -1818,39 +1764,28 @@ function FreshnessRecommendationCard({
       {isOpen ? (
         <div className="space-y-3 px-7 pb-6">
           {row.details.map((detail, index) => (
-            <FreshnessRecommendationItem key={`${row.id}-${detail.label}-${index}`} detail={detail} row={row} isBusy={isBusy} onApply={onApply} />
+            <FreshnessRecommendationItem
+              key={`${row.id}-${detail.label}-${index}`}
+              detail={detail}
+              row={row}
+              isBusy={isBusy}
+              onApply={onApply}
+              onSaveLinks={handleSaveLinks}
+              linkSaveState={linkSaveState}
+            />
           ))}
           {hasLinkIssues ? (
-            <div className="space-y-3 rounded-[8px] border border-stone-200 bg-stone-50 p-4">
+            <div className="space-y-3 rounded-none border border-stone-200 bg-stone-50 p-4">
               <div className="flex items-center justify-between gap-3">
-                <p className="text-xs font-semibold uppercase tracking-[0.12em] text-stone-600">Update links</p>
-                <button
-                  type="button"
-                  disabled={isBusy || linkSaveState === "saving"}
-                  onClick={handleSaveLinks}
-                  className={cn(
-                    "inline-flex h-8 items-center justify-center gap-2 rounded-md border px-3 text-xs font-semibold shadow-sm transition disabled:cursor-not-allowed disabled:opacity-40",
-                    linkSaveState === "saved"
-                      ? "border-emerald-200 bg-emerald-50 text-emerald-700"
-                      : "border-stone-950 bg-stone-950 text-white hover:bg-stone-800 active:bg-stone-700",
-                  )}
-                >
-                  {linkSaveState === "saving" ? (
-                    <><Loader2 className="size-3.5 animate-spin" /> Saving</>
-                  ) : linkSaveState === "saved" ? (
-                    <><Check className="size-3.5" /> Saved</>
-                  ) : (
-                    "Save"
-                  )}
-                </button>
+                <p className="text-xs font-semibold uppercase tracking-[0.12em] text-stone-600">Links</p>
               </div>
               <div className="h-px bg-stone-200" />
               <div className="grid gap-3 sm:grid-cols-2">
                 <Field label={primaryLinkLabel}>
-                  <Input value={primaryLinkUrl} onChange={(event) => setPrimaryLinkUrl(event.target.value)} placeholder="https://..." className="h-9 rounded-md" />
+                  <Input value={primaryLinkUrl} onChange={(event) => setPrimaryLinkUrl(event.target.value)} placeholder="https://..." className="h-9 rounded-none" />
                 </Field>
                 <Field label="Instagram URL">
-                  <Input value={instagramUrl} onChange={(event) => setInstagramUrl(event.target.value)} placeholder="https://www.instagram.com/..." className="h-9 rounded-md" />
+                  <Input value={instagramUrl} onChange={(event) => setInstagramUrl(event.target.value)} placeholder="https://www.instagram.com/..." className="h-9 rounded-none" />
                 </Field>
               </div>
             </div>
@@ -1866,14 +1801,19 @@ function FreshnessRecommendationItem({
   row,
   isBusy,
   onApply,
+  onSaveLinks,
+  linkSaveState,
 }: {
   detail: FreshnessRecommendationDetail;
   row: FreshnessRecommendationGroup;
   isBusy: boolean;
   onApply: FreshnessPageApplyHandler;
+  onSaveLinks: () => void;
+  linkSaveState: "idle" | "saving" | "saved";
 }) {
   const isAdd = detail.kind === "add";
   const isRemove = detail.kind === "remove";
+  const isManual = detail.kind === "manual";
   const visual = getFreshnessDetailVisual(detail);
   const acceptUpdate =
     detail.kind === "add" && detail.service
@@ -1891,14 +1831,19 @@ function FreshnessRecommendationItem({
   const secondaryActionLabel = isAdd ? "Ignore" : isRemove ? "Keep" : "Ignore";
 
   return (
-    <div className="flex items-start justify-between gap-4 rounded-[8px] border border-stone-200 bg-stone-50 px-6 py-4">
-      <div className="grid min-w-0 flex-1 gap-4 sm:grid-cols-[5.5rem_minmax(0,1fr)] sm:items-start">
+    <div
+      className={cn(
+        "grid gap-4 rounded-none border border-stone-200 bg-stone-50 px-4 sm:grid-cols-[minmax(0,1fr)_auto]",
+        isManual ? "py-3 sm:items-center" : "py-4 sm:items-start",
+      )}
+    >
+      <div className={cn("grid min-w-0 flex-1 gap-4", isManual ? "sm:grid-cols-[7rem_minmax(0,1fr)] sm:items-center" : "sm:grid-cols-[5.5rem_minmax(0,1fr)] sm:items-start")}>
         <div className={cn("mt-1 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.08em]", visual.textClass)}>
-          <span className={cn("size-3 rounded-full", visual.dotClass)} />
+          <span className={cn("size-3 rounded-none", visual.dotClass)} />
           {visual.label}
         </div>
         <div className="min-w-0">
-          <div className="flex min-w-0 flex-wrap items-center gap-x-3 gap-y-1">
+          <div className={cn("flex min-w-0 flex-wrap items-center", isManual ? "gap-x-5 gap-y-1" : "gap-x-3 gap-y-1")}>
             <p className="font-semibold text-stone-950">{detail.label}</p>
             {detail.kind === "fix" || detail.kind === "manual" || detail.kind === "review" ? (
               <p className="text-sm font-medium text-stone-500">{detail.description}</p>
@@ -1907,7 +1852,7 @@ function FreshnessRecommendationItem({
           {detail.evidence?.length ? (
             <div className="mt-2 flex flex-wrap gap-1.5">
               {detail.evidence.map((line) => (
-                <span key={line} className="rounded-md border border-stone-200 bg-white px-2 py-1 text-xs font-medium text-stone-500">
+                <span key={line} className="rounded-none border border-stone-200 bg-white px-2 py-1 text-xs font-medium text-stone-500">
                   {line}
                 </span>
               ))}
@@ -1915,29 +1860,52 @@ function FreshnessRecommendationItem({
           ) : null}
         </div>
       </div>
-      {detail.kind !== "fix" && detail.kind !== "manual" ? (
-        <div className="flex shrink-0 items-center gap-2 self-start text-sm font-semibold">
+      {detail.kind !== "fix" ? (
+        <div className="flex items-center justify-end gap-2 text-sm font-semibold">
+          {isManual ? (
+            <button
+              type="button"
+              disabled={isBusy || linkSaveState === "saving"}
+              onClick={onSaveLinks}
+              className={cn(
+                "inline-flex items-center gap-2 rounded-none border px-3 py-2 transition disabled:cursor-not-allowed disabled:opacity-35",
+                linkSaveState === "saved"
+                  ? "border-emerald-200 bg-emerald-50 text-emerald-700"
+                  : "border-stone-950 bg-stone-950 text-white hover:bg-stone-800 active:bg-stone-700",
+              )}
+            >
+              {linkSaveState === "saving" ? (
+                <><Loader2 className="size-3.5 animate-spin" /> Updating</>
+              ) : linkSaveState === "saved" ? (
+                <><Check className="size-3.5" /> Updated</>
+              ) : (
+                "Update"
+              )}
+            </button>
+          ) : null}
           <button
             type="button"
             disabled={isBusy || !rejectUpdate}
             onClick={() => rejectUpdate ? onApply(row.check, rejectUpdate) : undefined}
-            className="rounded-md border border-stone-200 bg-white px-3 py-2 text-stone-700 shadow-sm transition hover:border-stone-300 hover:text-stone-950 disabled:cursor-not-allowed disabled:opacity-35"
+            className="rounded-none border border-stone-200 bg-white px-3 py-2 text-stone-700 transition hover:border-stone-300 hover:text-stone-950 disabled:cursor-not-allowed disabled:opacity-35"
           >
             {secondaryActionLabel}
           </button>
-          <button
-            type="button"
-            disabled={isBusy || !acceptUpdate}
-            onClick={() => acceptUpdate ? onApply(row.check, acceptUpdate) : undefined}
-            className={cn(
-              "rounded-md px-3 py-2 transition disabled:cursor-not-allowed disabled:opacity-35",
-              isAdd
-                ? "border border-emerald-200 bg-emerald-50 text-emerald-700 hover:bg-emerald-100"
-                : "border border-red-200 bg-red-50 text-red-700 hover:bg-red-100",
-            )}
-          >
-            {primaryActionLabel}
-          </button>
+          {!isManual ? (
+            <button
+              type="button"
+              disabled={isBusy || !acceptUpdate}
+              onClick={() => acceptUpdate ? onApply(row.check, acceptUpdate) : undefined}
+              className={cn(
+                "rounded-none px-3 py-2 transition disabled:cursor-not-allowed disabled:opacity-35",
+                isAdd
+                  ? "border border-emerald-200 bg-emerald-50 text-emerald-700 hover:bg-emerald-100"
+                  : "border border-red-200 bg-red-50 text-red-700 hover:bg-red-100",
+              )}
+            >
+              {primaryActionLabel}
+            </button>
+          ) : null}
         </div>
       ) : null}
     </div>
@@ -2013,7 +1981,7 @@ function FreshnessDetailSummary({ details }: { details: FreshnessRecommendationD
       {parts.length
         ? parts.map((part) => (
             <span key={part.label} className="inline-flex items-center gap-1.5">
-              <span className={`inline-flex size-5 items-center justify-center rounded-full text-[11px] font-semibold tabular-nums ${part.className}`}>{part.count}</span>
+              <span className={`inline-flex size-5 items-center justify-center rounded-none text-[11px] font-semibold tabular-nums ${part.className}`}>{part.count}</span>
               <span>{part.label}</span>
             </span>
           ))
@@ -2492,13 +2460,13 @@ function FreshnessIssuePill({ tone, children }: { tone: FreshnessRecommendationG
           ? "bg-sky-100 text-sky-700"
           : "bg-stone-100 text-stone-700";
 
-  return <span className={cn("inline-flex rounded-[7px] px-2.5 py-1 text-xs font-medium", colorClass)}>{children}</span>;
+  return <span className={cn("inline-flex rounded-none px-2.5 py-1 text-xs font-medium", colorClass)}>{children}</span>;
 }
 
 function FreshnessStatusPill({ status }: { status: FreshnessRecommendationGroup["status"] }) {
   const colorClass = status === "Resolved" ? "bg-emerald-100 text-emerald-700" : "bg-sky-100 text-sky-700";
 
-  return <span className={cn("inline-flex rounded-[7px] px-2.5 py-1 text-xs font-medium", colorClass)}>{status}</span>;
+  return <span className={cn("inline-flex rounded-none px-2.5 py-1 text-xs font-medium", colorClass)}>{status}</span>;
 }
 
 function FreshnessRecommendationDetails({ row }: { row: FreshnessRecommendationGroup }) {
@@ -2510,7 +2478,7 @@ function FreshnessRecommendationDetails({ row }: { row: FreshnessRecommendationG
     <div className="space-y-1.5">
       {row.details.map((detail, index) => (
         <div key={`${detail.label}-${index}`} className="flex items-start gap-2">
-          <span className="mt-2 size-1.5 shrink-0 rounded-full bg-stone-300" />
+          <span className="mt-2 size-1.5 shrink-0 rounded-none bg-stone-300" />
           <span>{detail.description}</span>
         </div>
       ))}
@@ -2533,11 +2501,11 @@ function FreshnessLinkButtons({ row }: { row: FreshnessRecommendationGroup }) {
           rel="noreferrer"
           aria-label={`${row.stylist} Instagram${instagramBroken ? " (broken)" : ""}`}
           className={cn(
-            "inline-flex size-7 items-center justify-center rounded-md transition hover:bg-stone-100",
+            "inline-flex size-7 items-center justify-center rounded-none transition hover:bg-stone-100",
             instagramBroken ? "text-red-500 hover:text-red-700" : "text-stone-500 hover:text-stone-950",
           )}
         >
-          <AtSign className="size-4" />
+          <InstagramIcon className="size-4" />
         </a>
       ) : null}
       {websiteUrl ? (
@@ -2547,7 +2515,7 @@ function FreshnessLinkButtons({ row }: { row: FreshnessRecommendationGroup }) {
           rel="noreferrer"
           aria-label={`${row.stylist} website${bookingBroken ? " (broken)" : ""}`}
           className={cn(
-            "inline-flex size-7 items-center justify-center rounded-md transition hover:bg-stone-100",
+            "inline-flex size-7 items-center justify-center rounded-none transition hover:bg-stone-100",
             bookingBroken ? "text-red-500 hover:text-red-700" : "text-stone-500 hover:text-stone-950",
           )}
         >
@@ -2560,59 +2528,6 @@ function FreshnessLinkButtons({ row }: { row: FreshnessRecommendationGroup }) {
 
 function IconActionDivider() {
   return <span aria-hidden="true" className="mx-1 h-6 w-px bg-stone-200" />;
-}
-
-function buildActionItems(drafts: StylistDraft[], checks: DirectoryCheck[], suggestions: DiscoverySuggestion[]): ActionItem[] {
-  const draftItems = drafts
-    .filter((draft) => draft.status !== "approved")
-    .map((draft) => {
-      const missingServices = draft.services.length === 0;
-      const missingLocation = !draft.areaId;
-      const issue = draft.warnings[0] || (missingServices ? "Missing services" : missingLocation ? "Missing location" : "Ready to approve");
-      const priority = missingServices || missingLocation || draft.status === "needs_review" ? "High" : draft.status === "ready_to_approve" ? "Low" : "Medium";
-
-      return {
-        id: `draft-${draft.id}`,
-        name: draft.name || "Untitled stylist",
-        type: "Draft" as const,
-        issue,
-        priority: priority as ActionItem["priority"],
-        age: formatAge(draft.updatedAt || draft.createdAt),
-        view: "drafts" as const,
-      };
-    });
-
-  const freshnessItems = checks.map((check) => {
-    const brokenLink = check.linkChecks.find((linkCheck) => linkCheck.status !== "ok");
-    const issue =
-      check.issues[0] ||
-      (brokenLink ? `${titleCase(brokenLink.type)} link issue` : check.addedServices.length ? "New services found" : check.removedServices.length ? "Services removed" : "Service aliases found");
-    const priority = brokenLink ? "High" : check.addedServices.length || check.removedServices.length ? "Medium" : "Low";
-
-    return {
-      id: `freshness-${check.id}`,
-      name: check.name,
-      type: "Freshness" as const,
-      issue,
-      priority: priority as ActionItem["priority"],
-      age: formatAge(check.checkedAt),
-      view: "freshness" as const,
-    };
-  });
-
-  const discoveryItems = suggestions
-    .filter((suggestion) => suggestion.status !== "draft_created")
-    .map((suggestion) => ({
-      id: `discovery-${suggestion.id}`,
-      name: suggestion.name,
-      type: "Discovery" as const,
-      issue: suggestion.confidence === "high" ? "High confidence lead" : "Suggested entry",
-      priority: suggestion.confidence === "high" ? ("Medium" as const) : ("Low" as const),
-      age: "New",
-      view: "discovery" as const,
-    }));
-
-  return [...draftItems, ...freshnessItems, ...discoveryItems].slice(0, 6);
 }
 
 function formatRelativeTime(value: string) {
@@ -2634,14 +2549,6 @@ function formatRelativeTime(value: string) {
     return `${elapsedHours}h ago`;
   }
   return `${Math.round(elapsedHours / 24)}d ago`;
-}
-
-function formatAge(value: string) {
-  const relative = formatRelativeTime(value);
-  if (relative === "just now") {
-    return "Now";
-  }
-  return relative.replace(" ago", "");
 }
 
 function titleCase(value: string) {
@@ -2668,7 +2575,7 @@ function DiscoveryPage({
           <h1 className="text-3xl font-semibold tracking-tight text-stone-950">Discovery</h1>
           <p className="mt-2 text-sm text-stone-500">Generate research leads from directory patterns, then turn promising leads into drafts.</p>
         </div>
-        <Button type="button" variant="outline" onClick={onGenerate} disabled={isGenerating} className="h-10 rounded-md bg-white px-4">
+        <Button type="button" variant="outline" onClick={onGenerate} disabled={isGenerating} className="h-10 rounded-none bg-white px-4">
           {isGenerating ? <Loader2 className="size-4 animate-spin" /> : null}
           Generate
         </Button>
@@ -2689,11 +2596,11 @@ function DiscoveryPanel({
   onCreateDraft: (suggestionId: string) => void;
 }) {
   return (
-    <div className="rounded-md border border-stone-200 bg-white p-4 shadow-sm">
+    <div className="rounded-none border border-stone-200 bg-white p-4">
       {suggestions.length ? (
         <div className="max-h-[34rem] space-y-2 overflow-auto">
           {suggestions.map((suggestion) => (
-            <div key={suggestion.id} className="space-y-3 rounded-md bg-stone-100 p-3">
+            <div key={suggestion.id} className="space-y-3 rounded-none bg-stone-100 p-3">
               <div className="flex items-start justify-between gap-3">
                 <div>
                   <p className="text-sm font-medium">{suggestion.name}</p>
@@ -2726,7 +2633,7 @@ function DiscoveryPanel({
           ))}
         </div>
       ) : (
-        <p className="mt-4 rounded-md border border-dashed border-stone-300 p-4 text-sm text-stone-500">No discovery leads yet.</p>
+        <p className="mt-4 rounded-none border border-dashed border-stone-300 p-4 text-sm text-stone-500">No discovery leads yet.</p>
       )}
     </div>
   );
@@ -2746,7 +2653,7 @@ function FreshnessResultCard({
   const hasBrokenLinks = check.linkChecks.some((linkCheck) => linkCheck.status !== "ok");
 
   return (
-    <div className="space-y-3 rounded-md bg-stone-100 p-3">
+    <div className="space-y-3 rounded-none bg-stone-100 p-3">
       <p className="text-sm font-medium">{check.name}</p>
       <p className="mt-1 text-xs text-stone-500">{check.areaLabel || "Location unknown"}</p>
       <div className="flex flex-wrap gap-1">
@@ -2799,17 +2706,17 @@ function FreshnessResultCard({
       ) : null}
 
       {hasBrokenLinks ? (
-        <div className="space-y-2 rounded-md border border-stone-200 bg-white p-3">
+        <div className="space-y-2 rounded-none border border-stone-200 bg-white p-3">
           <p className="text-xs font-semibold uppercase tracking-[0.12em] text-stone-500">Update links</p>
-          <Input value={bookingUrl} onChange={(event) => setBookingUrl(event.target.value)} placeholder="Booking URL" className="h-10 rounded-md" />
-          <Input value={instagramUrl} onChange={(event) => setInstagramUrl(event.target.value)} placeholder="Instagram URL" className="h-10 rounded-md" />
+          <Input value={bookingUrl} onChange={(event) => setBookingUrl(event.target.value)} placeholder="Booking URL" className="h-10 rounded-none" />
+          <Input value={instagramUrl} onChange={(event) => setInstagramUrl(event.target.value)} placeholder="Instagram URL" className="h-10 rounded-none" />
           <Button
             type="button"
             size="sm"
             variant="outline"
             onClick={() => onApply(check, { bookingUrl, instagramUrl })}
             disabled={isBusy}
-            className="w-full rounded-md"
+            className="w-full rounded-none"
           >
             Save updated links
           </Button>
@@ -2882,20 +2789,20 @@ function DraftEditor({
   }
 
   const warningsContent = visibleWarnings.length ? (
-    <div className="rounded-md border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900">{visibleWarnings.join(" ")}</div>
+    <div className="rounded-none border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900">{visibleWarnings.join(" ")}</div>
   ) : null;
 
   const detailsContent = (
     <section className="space-y-6">
       <Field label="Name">
-        <Input value={draft.name} onChange={(event) => onChange({ name: event.target.value })} placeholder="Stylist name" className="h-11 rounded-md" />
+        <Input value={draft.name} onChange={(event) => onChange({ name: event.target.value })} placeholder="Stylist name" className="h-11 rounded-none" />
       </Field>
 
       <div className="space-y-3">
         <p className="text-xs font-semibold uppercase tracking-[0.12em] text-stone-500">Links</p>
         <DraftLinkField
           label="Instagram"
-          icon={<AtSign className="size-4" />}
+          icon={<InstagramIcon className="size-4" />}
           value={draft.instagramUrl}
           onChange={updateInstagramUrl}
           placeholder="@handle or URL"
@@ -2915,7 +2822,7 @@ function DraftEditor({
               checked={bookingMatchesInstagram}
               disabled={!draft.instagramUrl}
               onChange={(event) => toggleBookingSameAsInstagram(event.target.checked)}
-              className="size-4 rounded border-stone-300 accent-stone-950 disabled:opacity-40"
+              className="size-4 rounded-none border-stone-300 accent-stone-950 disabled:opacity-40"
             />
             Same as Instagram
           </label>
@@ -2923,6 +2830,22 @@ function DraftEditor({
       </div>
 
       <DraftLocationSelector draft={draft} regions={regions} onChange={onChangeLocations} />
+
+      <div className="space-y-3">
+        <p className="text-xs font-semibold uppercase tracking-[0.12em] text-stone-500">Preferences</p>
+        <div className="grid gap-2">
+          <DraftBooleanOption
+            label="Hijabi friendly"
+            checked={draft.hijabiFriendly === true}
+            onToggle={(checked) => onChange({ hijabiFriendly: checked })}
+          />
+          <DraftBooleanOption
+            label="Can braid without gel"
+            checked={draft.canBraidWithoutGel === true}
+            onToggle={(checked) => onChange({ canBraidWithoutGel: checked })}
+          />
+        </div>
+      </div>
     </section>
   );
 
@@ -2945,22 +2868,33 @@ function DraftEditor({
         <h3 className="text-lg font-semibold tracking-tight text-stone-950">Review</h3>
         <p className="mt-1 text-sm text-stone-500">Check the final details before publishing.</p>
       </div>
-      <div className="divide-y divide-stone-100 rounded-[8px] border border-stone-200 bg-white">
+      <div className="divide-y divide-stone-100 rounded-none border border-stone-200 bg-white">
         <DraftReviewRow label="Name" value={draft.name || "Untitled stylist"} />
         <DraftReviewRow label="Instagram" value={draft.instagramUrl || "Not added"} />
         <DraftReviewRow label="Booking URL" value={draft.bookingUrl || "Not added"} />
         <DraftReviewRow label="Locations" value={selectedLocationLabels.length ? selectedLocationLabels.join(", ") : draft.areaLabel || "No location selected"} />
-        <DraftReviewRow label="Services" value={`${draft.services.length} selected`} />
+        <DraftReviewRow
+          label="Preferences"
+          value={[
+            draft.hijabiFriendly ? "Hijabi friendly" : "",
+            draft.canBraidWithoutGel ? "Can braid without gel" : "",
+          ].filter(Boolean).join(", ") || "None selected"}
+        />
+        <DraftReviewRow label="Services">
+          <div className="space-y-3">
+            <p className="text-sm font-medium text-stone-900">{draft.services.length} selected</p>
+            {draft.services.length ? (
+              <div className="flex flex-wrap gap-2">
+                {draft.services.map((service) => (
+                  <span key={service} className="rounded-none border border-stone-200 bg-stone-50 px-2.5 py-1 text-sm font-medium text-stone-700">
+                    {service}
+                  </span>
+                ))}
+              </div>
+            ) : null}
+          </div>
+        </DraftReviewRow>
       </div>
-      {draft.services.length ? (
-        <div className="flex flex-wrap gap-2">
-          {draft.services.map((service) => (
-            <span key={service} className="rounded-md border border-stone-200 bg-stone-50 px-2.5 py-1 text-sm font-medium text-stone-700">
-              {service}
-            </span>
-          ))}
-        </div>
-      ) : null}
     </section>
   );
 
@@ -2974,20 +2908,12 @@ function DraftEditor({
 
   if (isEmbedded) {
     return (
-      <div>
-        {content}
-        {canDelete && activeStep === "details" ? (
-          <button type="button" onClick={onDelete} disabled={isBusy} className="mt-7 inline-flex items-center gap-2 text-xs font-medium text-red-700 disabled:opacity-50">
-            <Trash2 className="size-4" />
-            Delete draft
-          </button>
-        ) : null}
-      </div>
+      <div>{content}</div>
     );
   }
 
   return (
-    <Card className="rounded-md">
+    <Card className="rounded-none">
       <CardHeader>
         <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
           <div>
@@ -2998,18 +2924,19 @@ function DraftEditor({
             <CardDescription>Clean up the research result before it joins the public directory.</CardDescription>
           </div>
           <div className="flex flex-wrap gap-2">
-            <Button type="button" variant="outline" onClick={onSave} disabled={isBusy} className="rounded-md">
+            <Button type="button" variant="outline" onClick={onSave} disabled={isBusy} className="rounded-none">
               <Save className="size-4" />
               Save
             </Button>
 	            {canDelete ? (
 	              <>
-	                <Button type="button" onClick={onApprove} disabled={isBusy} className="rounded-md">
+	                <Button type="button" onClick={onApprove} disabled={isBusy} className="rounded-none">
 	                  <Check className="size-4" />
 	                  Approve
 	                </Button>
-	                <Button type="button" variant="ghost" onClick={onDelete} disabled={isBusy} className="rounded-md text-red-700">
+                <Button type="button" variant="ghost" onClick={onDelete} disabled={isBusy} className="rounded-none text-red-700">
 	                  <Trash2 className="size-4" />
+                    <span className="sr-only">Delete draft</span>
 	                </Button>
 	              </>
 	            ) : null}
@@ -3021,11 +2948,11 @@ function DraftEditor({
   );
 }
 
-function DraftReviewRow({ label, value }: { label: string; value: string }) {
+function DraftReviewRow({ label, value, children }: { label: string; value?: string; children?: React.ReactNode }) {
   return (
     <div className="grid gap-1 px-4 py-3 sm:grid-cols-[128px_1fr] sm:gap-4">
       <span className="text-xs font-semibold uppercase tracking-[0.12em] text-stone-500">{label}</span>
-      <span className="min-w-0 break-words text-sm font-medium text-stone-900">{value}</span>
+      {children ?? <span className="min-w-0 break-words text-sm font-medium text-stone-900">{value}</span>}
     </div>
   );
 }
@@ -3048,19 +2975,19 @@ function DraftLinkField({
   children?: React.ReactNode;
 }) {
   return (
-    <div className="rounded-[8px] border border-stone-200 bg-stone-50 px-4 py-4">
+    <div className="rounded-none border border-stone-200 bg-stone-50 px-4 py-4">
       <div className="mb-3 flex items-center gap-2 text-sm font-semibold text-stone-900">
         <span className="text-stone-500">{icon}</span>
         {label}
       </div>
       <div className="flex items-center gap-3">
-        <Input value={value} onChange={(event) => onChange(event.target.value)} placeholder={placeholder} className="h-10 rounded-md bg-white" />
+        <Input value={value} onChange={(event) => onChange(event.target.value)} placeholder={placeholder} className="h-10 rounded-none bg-white" />
         {href ? (
           <a
             href={href}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex size-9 shrink-0 items-center justify-center rounded-md text-stone-500 transition hover:bg-stone-100 hover:text-stone-950"
+            className="inline-flex size-9 shrink-0 items-center justify-center rounded-none text-stone-500 transition hover:bg-stone-100 hover:text-stone-950"
             aria-label={`Open ${label}`}
           >
             <ExternalLink className="size-4" />
@@ -3085,7 +3012,9 @@ function DraftLocationSelector({
 }) {
   const selectedAreaIds = getDraftAreaIds(draft);
   const london = regions.find((region) => region.id === "all-london");
-  const regionRows = regions.filter((region) => region.id !== "all-london");
+  const londonAreaIds = new Set(["central", "north", "north-west", "east", "south-east", "south-west", "west", "croydon"]);
+  const londonRows = regions.filter((region) => londonAreaIds.has(region.id));
+  const standaloneRows = regions.filter((region) => region.id !== "all-london" && !londonAreaIds.has(region.id));
 
   function toggle(areaId: string) {
     onChange(selectedAreaIds.includes(areaId) ? selectedAreaIds.filter((id) => id !== areaId) : [...selectedAreaIds, areaId]);
@@ -3098,7 +3027,12 @@ function DraftLocationSelector({
         <DraftLocationOption region={london} checked={selectedAreaIds.includes(london.id)} onToggle={() => toggle(london.id)} />
       ) : null}
       <div className="grid gap-2 pl-6 sm:grid-cols-2">
-        {regionRows.map((region) => (
+        {londonRows.map((region) => (
+          <DraftLocationOption key={region.id} region={region} checked={selectedAreaIds.includes(region.id)} onToggle={() => toggle(region.id)} />
+        ))}
+      </div>
+      <div className="grid gap-2 sm:grid-cols-2">
+        {standaloneRows.map((region) => (
           <DraftLocationOption key={region.id} region={region} checked={selectedAreaIds.includes(region.id)} onToggle={() => toggle(region.id)} />
         ))}
       </div>
@@ -3110,12 +3044,26 @@ function DraftLocationOption({ region, checked, onToggle }: { region: RegionOpti
   return (
     <label
       className={cn(
-        "flex cursor-pointer items-center gap-3 rounded-[8px] border border-stone-200 bg-white px-4 py-3 text-sm font-medium text-stone-900 transition hover:border-stone-300",
+        "flex cursor-pointer items-center gap-3 rounded-none border border-stone-200 bg-white px-4 py-3 text-sm font-medium text-stone-900 transition hover:border-stone-300",
         checked ? "border-stone-400 bg-stone-50" : "",
       )}
     >
-      <input type="checkbox" checked={checked} onChange={onToggle} className="size-4 rounded border-stone-300 accent-stone-950" />
+      <input type="checkbox" checked={checked} onChange={onToggle} className="size-4 rounded-none border-stone-300 accent-stone-950" />
       {region.label}
+    </label>
+  );
+}
+
+function DraftBooleanOption({ label, checked, onToggle }: { label: string; checked: boolean; onToggle: (checked: boolean) => void }) {
+  return (
+    <label
+      className={cn(
+        "flex cursor-pointer items-center gap-3 rounded-none border border-stone-200 bg-white px-4 py-3 text-sm font-medium text-stone-900 transition hover:border-stone-300",
+        checked ? "border-stone-400 bg-stone-50" : "",
+      )}
+    >
+      <input type="checkbox" checked={checked} onChange={(event) => onToggle(event.target.checked)} className="size-4 rounded-none border-stone-300 accent-stone-950" />
+      {label}
     </label>
   );
 }
@@ -3137,13 +3085,13 @@ function MultiLocationPicker({
 
   return (
     <Field label="Locations">
-      <div className="rounded-md border border-stone-200 bg-white p-3">
+      <div className="rounded-none border border-stone-200 bg-white p-3">
         <div className="grid gap-2 sm:grid-cols-2">
           {regions.map((region) => (
             <label
               key={region.id}
               className={cn(
-                "flex cursor-pointer items-center gap-2 rounded-md px-3 py-2 text-sm transition",
+                "flex cursor-pointer items-center gap-2 rounded-none px-3 py-2 text-sm transition",
                 selectedAreaIds.includes(region.id) ? "bg-stone-950 text-white" : "bg-stone-50 text-stone-700 hover:bg-stone-100",
               )}
             >
@@ -3209,13 +3157,14 @@ function ServicePicker({
             key={service}
             type="button"
             onClick={() => toggle(service)}
-            className="rounded-full bg-stone-950 px-3 py-1 text-xs text-white"
+            aria-label={`Remove ${service}`}
+            className="rounded-none bg-stone-950 px-3 py-1 text-xs text-white"
           >
             {service}
           </button>
         ))}
       </div>
-      <div className="max-h-80 overflow-auto rounded-md border border-stone-200 bg-white p-3">
+      <div className="max-h-80 overflow-auto rounded-none border border-stone-200 bg-white p-3">
         {groupedServices.length ? (
           <div className="space-y-4">
             {groupedServices.map((group) => (
@@ -3227,8 +3176,9 @@ function ServicePicker({
                       key={`${group.label}-${service}`}
                       type="button"
                       onClick={() => toggle(service)}
+                      aria-label={`${selected.includes(service) ? "Remove" : "Add"} ${service}`}
                       className={cn(
-                        "rounded-md px-3 py-2 text-left text-xs transition",
+                        "rounded-none px-3 py-2 text-left text-xs transition",
                         selected.includes(service) ? "bg-stone-900 text-white" : "bg-stone-100 text-stone-700 hover:bg-stone-200",
                       )}
                     >
@@ -3259,7 +3209,7 @@ function StatusBadge({ status }: { status: string }) {
           : "border-stone-200 bg-stone-100 text-stone-700";
 
   return (
-    <span className={cn("inline-flex items-center rounded-full border px-2.5 py-1 text-xs font-medium capitalize", colorClass)}>
+    <span className={cn("inline-flex items-center rounded-none border px-2.5 py-1 text-xs font-medium capitalize", colorClass)}>
       {label}
     </span>
   );
@@ -3275,7 +3225,7 @@ function FreshnessBadge({ status, label }: { status: string; label: string }) {
           ? "border-amber-200 bg-amber-50 text-amber-800"
           : "border-red-200 bg-red-50 text-red-800";
 
-  return <span className={cn("rounded-full border px-2 py-0.5 text-xs font-medium capitalize", colorClass)}>{label.replace(/_/g, " ")}</span>;
+  return <span className={cn("rounded-none border px-2 py-0.5 text-xs font-medium capitalize", colorClass)}>{label.replace(/_/g, " ")}</span>;
 }
 
 function ServiceSuggestionList({
@@ -3302,7 +3252,7 @@ function ServiceSuggestionList({
       <p className={cn("text-xs font-semibold uppercase tracking-[0.12em]", tone === "add" ? "text-emerald-700" : "text-red-700")}>{label}</p>
       <div className="mt-2 space-y-2">
         {services.map((service) => (
-          <div key={service} className="flex flex-col gap-2 rounded-md border border-stone-200 bg-white p-2 sm:flex-row sm:items-center sm:justify-between">
+          <div key={service} className="flex flex-col gap-2 rounded-none border border-stone-200 bg-white p-2 sm:flex-row sm:items-center sm:justify-between">
             <span className={cn("text-sm", tone === "add" ? "text-emerald-800" : "text-red-800")}>
               {tone === "add" ? "+ " : "- "}
               {service}
@@ -3312,7 +3262,7 @@ function ServiceSuggestionList({
                 type="button"
                 onClick={() => onAccept(service)}
                 disabled={isBusy}
-                className="rounded-md bg-stone-950 px-3 py-1 text-xs font-medium text-white disabled:opacity-50"
+                className="rounded-none bg-stone-950 px-3 py-1 text-xs font-medium text-white disabled:opacity-50"
               >
                 {acceptLabel}
               </button>
@@ -3320,7 +3270,7 @@ function ServiceSuggestionList({
                 type="button"
                 onClick={() => onReject(service)}
                 disabled={isBusy}
-                className="rounded-md border border-stone-300 px-3 py-1 text-xs font-medium text-stone-700 disabled:opacity-50"
+                className="rounded-none border border-stone-300 px-3 py-1 text-xs font-medium text-stone-700 disabled:opacity-50"
               >
                 {rejectLabel}
               </button>
@@ -3336,19 +3286,19 @@ function FreshnessSkeleton() {
   return (
     <div className="space-y-3 p-4">
       {[0, 1, 2].map((item) => (
-        <div key={item} className="space-y-4 rounded-[8px] border border-stone-100 bg-white p-4">
+        <div key={item} className="space-y-4 rounded-none border border-stone-100 bg-white p-4">
           <div className="flex items-center justify-between gap-4">
-            <div className="h-4 w-2/5 animate-pulse rounded bg-stone-200" />
+            <div className="h-4 w-2/5 animate-pulse rounded-none bg-stone-200" />
             <div className="flex gap-2">
-              <div className="size-8 animate-pulse rounded-md bg-stone-100" />
-              <div className="size-8 animate-pulse rounded-md bg-stone-100" />
-              <div className="size-8 animate-pulse rounded-md bg-stone-100" />
+              <div className="size-8 animate-pulse rounded-none bg-stone-100" />
+              <div className="size-8 animate-pulse rounded-none bg-stone-100" />
+              <div className="size-8 animate-pulse rounded-none bg-stone-100" />
             </div>
           </div>
-          <div className="h-3 w-1/4 animate-pulse rounded bg-stone-100" />
-          <div className="rounded-[8px] border border-stone-100 bg-stone-50 p-4">
-            <div className="h-4 w-1/3 animate-pulse rounded bg-stone-200" />
-            <div className="mt-3 h-3 w-4/5 animate-pulse rounded bg-stone-200" />
+          <div className="h-3 w-1/4 animate-pulse rounded-none bg-stone-100" />
+          <div className="rounded-none border border-stone-100 bg-stone-50 p-4">
+            <div className="h-4 w-1/3 animate-pulse rounded-none bg-stone-200" />
+            <div className="mt-3 h-3 w-4/5 animate-pulse rounded-none bg-stone-200" />
           </div>
         </div>
       ))}
@@ -3360,12 +3310,12 @@ function FreshnessMetricSkeleton() {
   return (
     <div className="grid gap-5 md:grid-cols-4">
       {[0, 1, 2, 3].map((item) => (
-        <div key={item} className="rounded-[8px] border border-stone-200 bg-white p-6 shadow-sm">
+        <div key={item} className="rounded-none border border-stone-200 bg-white p-6">
           <div className="flex items-center justify-between gap-4">
-            <div className="h-3 w-28 animate-pulse rounded bg-stone-200" />
-            <div className="size-4 animate-pulse rounded bg-stone-100" />
+            <div className="h-3 w-28 animate-pulse rounded-none bg-stone-200" />
+            <div className="size-4 animate-pulse rounded-none bg-stone-100" />
           </div>
-          <div className="mt-5 h-10 w-16 animate-pulse rounded bg-stone-200" />
+          <div className="mt-5 h-10 w-16 animate-pulse rounded-none bg-stone-200" />
         </div>
       ))}
     </div>
@@ -3387,7 +3337,7 @@ function Textarea({ value, onChange, placeholder }: { value: string; onChange: (
       value={value}
       onChange={(event) => onChange(event.target.value)}
       placeholder={placeholder}
-      className="min-h-28 w-full rounded-md border border-stone-200 bg-white px-4 py-3 text-sm shadow-sm outline-none placeholder:text-stone-400 focus:border-stone-400 focus:ring-4 focus:ring-stone-100"
+      className="min-h-28 w-full rounded-none border border-stone-200 bg-white px-4 py-3 text-sm outline-none placeholder:text-stone-400 focus:border-stone-400"
     />
   );
 }
@@ -3397,7 +3347,7 @@ function Select({ value, onChange, children }: { value: string; onChange: (value
     <select
       value={value}
       onChange={(event) => onChange(event.target.value)}
-      className="h-12 w-full rounded-md border border-stone-200 bg-white px-4 text-sm shadow-sm outline-none focus:border-stone-400 focus:ring-4 focus:ring-stone-100"
+      className="h-12 w-full rounded-none border border-stone-200 bg-white px-4 text-sm outline-none focus:border-stone-400"
     >
       {children}
     </select>
@@ -3456,7 +3406,7 @@ function getFreshnessUndoLabel(update: FreshnessUpdate) {
   if (update.rejectAddedServices?.length || update.rejectRemovedServices?.length) {
     return "rejected recommendation";
   }
-  return "freshness update";
+  return "health check update";
 }
 
 function formatServiceList(services: string[]) {

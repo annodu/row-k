@@ -240,28 +240,7 @@ export function registerAdminStylistRoutes(app) {
   app.get("/api/admin/stylists/published", requireAdmin, async (_req, res) => {
     const manualIndex = await readJson(manualIndexPath, { meta: { source: "manual", updatedAt: null }, salons: [] });
     const updatedAt = manualIndex.meta?.updatedAt || new Date().toISOString();
-    const stylists = (manualIndex.salons || []).map((salon) => ({
-      id: salon.id,
-      status: "approved",
-      name: salon.name || "",
-      areaId: salon.areaId || "",
-      areaIds: Array.isArray(salon.areaIds) ? salon.areaIds : salon.areaId ? [salon.areaId] : [],
-      areaLabel: salon.areaLabel || "",
-      neighbourhood: salon.neighbourhood || "",
-      postcode: salon.postcode || "",
-      bookingPlatform: salon.bookingPlatform || "",
-      bookingUrl: salon.bookingUrl || "",
-      websiteUrl: salon.websiteUrl || "",
-      instagramUrl: salon.instagramUrl || "",
-      tiktokUrl: salon.tiktokUrl || "",
-      services: Array.isArray(salon.services) ? salon.services : [],
-      rawServices: [],
-      summary: salon.summary || "",
-      warnings: [],
-      evidence: Array.isArray(salon.evidence) ? salon.evidence : [],
-      createdAt: salon.createdAt || updatedAt,
-      updatedAt: salon.updatedAt || updatedAt,
-    }));
+    const stylists = (manualIndex.salons || []).map((salon) => publishedSalonToDraft(salon, updatedAt));
 
     res.json({ ok: true, stylists, meta: manualIndex.meta || null });
   });
@@ -292,6 +271,8 @@ export function registerAdminStylistRoutes(app) {
       instagramUrl: update.instagramUrl || "",
       tiktokUrl: update.tiktokUrl || "",
       services: normalizeServices(update.services || []),
+      hijabiFriendly: update.hijabiFriendly === true,
+      canBraidWithoutGel: update.canBraidWithoutGel === true,
       summary: update.summary || currentSalon.summary || "",
       evidence: update.evidence?.length ? update.evidence : currentSalon.evidence || [],
       updatedAt: now,
@@ -1420,6 +1401,8 @@ function sanitizeDraftUpdate(input) {
     tiktokUrl: cleanString(input.tiktokUrl) || inferred.tiktokUrl,
     services,
     rawServices,
+    hijabiFriendly: input.hijabiFriendly === true,
+    canBraidWithoutGel: input.canBraidWithoutGel === true,
     summary: cleanString(input.summary),
     warnings: toArray(input.warnings),
     evidence: toArray(input.evidence),
@@ -1443,6 +1426,8 @@ function publishedSalonToDraft(salon, fallbackDate = new Date().toISOString()) {
     tiktokUrl: salon.tiktokUrl || "",
     services: Array.isArray(salon.services) ? salon.services : [],
     rawServices: [],
+    hijabiFriendly: salon.hijabiFriendly === true,
+    canBraidWithoutGel: salon.canBraidWithoutGel === true,
     summary: salon.summary || "",
     warnings: [],
     evidence: Array.isArray(salon.evidence) ? salon.evidence : [],
@@ -1511,6 +1496,8 @@ function draftToSalon(draft, existingIds) {
     websiteUrl: draft.websiteUrl || draft.bookingUrl || "",
     instagramUrl: draft.instagramUrl || "",
     services: normalizeServices(draft.services),
+    ...(draft.hijabiFriendly === true ? { hijabiFriendly: true } : {}),
+    ...(draft.canBraidWithoutGel === true ? { canBraidWithoutGel: true } : {}),
     summary: draft.summary || "Admin-approved stylist entry.",
     source: "manual",
     evidence: draft.evidence?.length ? draft.evidence : ["Approved through ROW K admin intake."],

@@ -1,8 +1,39 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-05-21T23:31:04.471Z",
-    "count": 0
+    "updatedAt": "2026-05-23T10:10:55.538Z",
+    "count": 1
   },
-  "drafts": []
+  "drafts": [
+    {
+      "id": "microsbylaura-mpi6stjg",
+      "status": "needs_review",
+      "name": "Microsbylaura",
+      "areaId": "",
+      "areaIds": [],
+      "areaLabel": "",
+      "neighbourhood": "",
+      "postcode": "",
+      "bookingPlatform": "",
+      "bookingUrl": "",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/microsbylaura/",
+      "tiktokUrl": "",
+      "services": [],
+      "rawServices": [],
+      "summary": "Admin draft created from stylist intake.",
+      "confidence": 0.35,
+      "warnings": [
+        "No booking link identified yet.",
+        "No services matched yet."
+      ],
+      "evidence": [
+        "Submitted link: https://www.instagram.com/microsbylaura/"
+      ],
+      "source": "admin-draft",
+      "createdAt": "2026-05-23T10:09:42.028Z",
+      "updatedAt": "2026-05-23T10:09:42.028Z",
+      "lastCheckedAt": "2026-05-23T10:09:42.028Z"
+    }
+  ]
 }
