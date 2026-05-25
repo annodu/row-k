@@ -1,40 +1,10 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-05-25T01:18:44.314Z",
-    "count": 4
+    "updatedAt": "2026-05-25T01:19:25.330Z",
+    "count": 3
   },
   "drafts": [
-    {
-      "id": "rathestylist-mpkippas",
-      "status": "needs_review",
-      "name": "Rathestylist",
-      "areaId": "",
-      "areaIds": [],
-      "areaLabel": "",
-      "neighbourhood": "",
-      "postcode": "",
-      "bookingPlatform": "",
-      "bookingUrl": "",
-      "websiteUrl": "",
-      "instagramUrl": "https://www.instagram.com/rathestylist/",
-      "tiktokUrl": "",
-      "services": [],
-      "rawServices": [],
-      "summary": "Admin draft created from stylist intake.",
-      "confidence": 0.35,
-      "warnings": [
-        "No booking link identified yet.",
-        "No services matched yet."
-      ],
-      "evidence": [
-        "Submitted link: https://www.instagram.com/rathestylist/"
-      ],
-      "source": "admin-draft",
-      "createdAt": "2026-05-25T01:18:44.304Z",
-      "updatedAt": "2026-05-25T01:18:44.304Z",
-      "lastCheckedAt": "2026-05-25T01:18:44.304Z"
-    },
     {
       "id": "jhykesignaturee-mpkio8b1",
       "status": "needs_review",
