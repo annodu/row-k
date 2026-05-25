@@ -1,10 +1,70 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-05-25T01:22:02.003Z",
-    "count": 5
+    "updatedAt": "2026-05-25T01:22:21.909Z",
+    "count": 7
   },
   "drafts": [
+    {
+      "id": "her-ego-mpkiud73",
+      "status": "needs_review",
+      "name": "Her Ego",
+      "areaId": "",
+      "areaIds": [],
+      "areaLabel": "",
+      "neighbourhood": "",
+      "postcode": "",
+      "bookingPlatform": "",
+      "bookingUrl": "",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/her.ego/",
+      "tiktokUrl": "",
+      "services": [],
+      "rawServices": [],
+      "summary": "Admin draft created from stylist intake.",
+      "confidence": 0.35,
+      "warnings": [
+        "No booking link identified yet.",
+        "No services matched yet."
+      ],
+      "evidence": [
+        "Submitted link: https://www.instagram.com/her.ego/"
+      ],
+      "source": "admin-draft",
+      "createdAt": "2026-05-25T01:22:21.899Z",
+      "updatedAt": "2026-05-25T01:22:21.899Z",
+      "lastCheckedAt": "2026-05-25T01:22:21.899Z"
+    },
+    {
+      "id": "luxelacetech-mpkise3l",
+      "status": "needs_review",
+      "name": "Luxelacetech",
+      "areaId": "",
+      "areaIds": [],
+      "areaLabel": "",
+      "neighbourhood": "",
+      "postcode": "",
+      "bookingPlatform": "",
+      "bookingUrl": "",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/luxelacetech/",
+      "tiktokUrl": "",
+      "services": [],
+      "rawServices": [],
+      "summary": "Admin draft created from stylist intake.",
+      "confidence": 0.35,
+      "warnings": [
+        "No booking link identified yet.",
+        "No services matched yet."
+      ],
+      "evidence": [
+        "Submitted link: https://www.instagram.com/luxelacetech/"
+      ],
+      "source": "admin-draft",
+      "createdAt": "2026-05-25T01:20:49.757Z",
+      "updatedAt": "2026-05-25T01:20:49.757Z",
+      "lastCheckedAt": "2026-05-25T01:20:49.757Z"
+    },
     {
       "id": "hairbabelondon-mpkiqth0",
       "status": "needs_review",
