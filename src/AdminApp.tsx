@@ -608,12 +608,15 @@ export function AdminApp() {
       let nextOffset: number | null = offset;
       let totalUpdates = 0;
       let lastCheckedAt = "";
+      let completedChecks: DirectoryCheck[] = [];
+      let completedCount = 0;
+      let totalCount = 0;
 
       while (nextOffset !== null) {
         const batchOffset = nextOffset;
         setActiveCheckBatch({ from: batchOffset + 1, to: batchOffset + 50 });
         const response = await fetch(`/api/admin/stylists/checks?offset=${batchOffset}&limit=50`, { credentials: "include" });
-        const payload = await response.json();
+        const payload = await response.json().catch(() => ({ message: "Could not run checks." }));
         if (!response.ok) {
           setMessage(payload.message || "Could not run checks.");
           return;
@@ -622,19 +625,38 @@ export function AdminApp() {
         const batchChecks = payload.checks ?? [];
         totalUpdates += batchChecks.length;
         lastCheckedAt = payload.checkedAt || lastCheckedAt || new Date().toISOString();
-        setChecks((current) => (batchOffset === 0 ? batchChecks : [...current, ...batchChecks]));
+        completedChecks = batchOffset === 0 ? batchChecks : [...completedChecks, ...batchChecks];
+        setChecks(completedChecks);
         setChecksLoadedAt(lastCheckedAt);
         setCheckProgress({
           checkedCount: payload.checkedCount ?? 0,
           total: payload.total ?? 0,
           nextOffset: payload.nextOffset ?? null,
         });
+        completedCount = payload.checkedCount ?? completedCount;
+        totalCount = payload.total ?? totalCount;
         setMessage(`Checked ${payload.checkedCount ?? 0} of ${payload.total ?? 0}. Found ${totalUpdates} update${totalUpdates === 1 ? "" : "s"} so far.`);
         nextOffset = payload.nextOffset ?? null;
       }
 
       setMessage(`Health check complete. Found ${totalUpdates} update${totalUpdates === 1 ? "" : "s"}.`);
-      await loadAdminData();
+      setDashboard((current) =>
+        current
+          ? {
+              ...current,
+              freshness: {
+                ...current.freshness,
+                totalIssues: completedChecks.length,
+                checkedCount: completedCount || current.freshness.checkedCount,
+                total: totalCount || current.freshness.total,
+                updatedAt: lastCheckedAt || current.freshness.updatedAt,
+                brokenLinks: completedChecks.filter((check) => check.linkChecks?.some(isActionableBrokenLink)).length,
+                manualLinks: completedChecks.filter((check) => check.linkChecks?.some(isManualCheckLink)).length,
+                serviceChanges: completedChecks.filter((check) => check.addedServices?.length || check.removedServices?.length).length,
+              },
+            }
+          : current,
+      );
     } finally {
       setIsRunningChecks(false);
     }

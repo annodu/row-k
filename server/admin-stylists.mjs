@@ -355,12 +355,13 @@ export function registerAdminStylistRoutes(app) {
     );
     const mergedChecks = offset > 0 ? [...(existingStore.checks || []), ...reviewChecks] : reviewChecks;
 
-    await writeJson(freshnessChecksPath, {
+    const checkedCount = Math.min(offset + batchSalons.length, index.salons.length);
+    const persisted = await tryWriteJson(freshnessChecksPath, {
       meta: {
         source: "freshness-checks",
         updatedAt: checkedAt,
         count: mergedChecks.length,
-        checkedCount: Math.min(offset + batchSalons.length, index.salons.length),
+        checkedCount,
         total: index.salons.length,
       },
       dismissedRecommendations,
@@ -374,9 +375,10 @@ export function registerAdminStylistRoutes(app) {
       offset,
       limit,
       batchCount: batchSalons.length,
-      checkedCount: Math.min(offset + batchSalons.length, index.salons.length),
+      checkedCount,
       total: index.salons.length,
       nextOffset: offset + batchSalons.length < index.salons.length ? offset + batchSalons.length : null,
+      persisted,
     });
   });
 
@@ -689,6 +691,16 @@ async function readJson(filePath, fallback) {
 
 async function writeJson(filePath, payload) {
   await fs.writeFile(filePath, `${JSON.stringify(payload, null, 2)}\n`);
+}
+
+async function tryWriteJson(filePath, payload) {
+  try {
+    await writeJson(filePath, payload);
+    return true;
+  } catch (error) {
+    console.warn(`Could not persist ${path.basename(filePath)}. Returning in-memory results only.`, error);
+    return false;
+  }
 }
 
 async function updateFreshnessReview(salonId, { addServices = [], removeServices = [], rejectAddedServices = [], rejectRemovedServices = [], bookingUrl, instagramUrl, websiteUrl }) {

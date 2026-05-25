@@ -2,6 +2,10 @@ import express from "express";
 import { registerAdminStylistRoutes } from "../server/admin-stylists.mjs";
 import { setNoStoreHeaders } from "../server/salon-index.mjs";
 
+export const config = {
+  maxDuration: 60,
+};
+
 const app = express();
 
 app.use(express.json({ limit: "1mb" }));
