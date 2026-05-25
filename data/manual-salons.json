@@ -1,11 +1,36 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-05-25T01:20:29.287Z",
-    "count": 610,
+    "updatedAt": "2026-05-25T01:22:00.874Z",
+    "count": 611,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "luxelacetech",
+      "name": "Luxelacetech",
+      "areaId": "north-west",
+      "areaLabel": "North West London",
+      "neighbourhood": "North West London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://luxelacetech.as.me/schedule/5b7a0314",
+      "websiteUrl": "https://luxelacetech.as.me/schedule/5b7a0314",
+      "instagramUrl": "https://www.instagram.com/luxelacetech/",
+      "services": [
+        "Wig install (frontal / closure)",
+        "Frontal ponytail / bun",
+        "Custom wig",
+        "Closure sew-in",
+        "Japanese straightening",
+        "Traditional sew-in / leave out"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/luxelacetech/"
+      ]
+    },
     {
       "id": "hairbabelondon",
       "name": "Hairbabelondon",
