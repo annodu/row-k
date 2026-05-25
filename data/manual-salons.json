@@ -1,11 +1,34 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-05-25T01:19:24.224Z",
-    "count": 609,
+    "updatedAt": "2026-05-25T01:20:29.287Z",
+    "count": 610,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "hairbabelondon",
+      "name": "Hairbabelondon",
+      "areaId": "north-west",
+      "areaLabel": "North West London",
+      "neighbourhood": "North West London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://hairbabelondon.as.me/schedule/acc86c75",
+      "websiteUrl": "https://hairbabelondon.as.me/schedule/acc86c75",
+      "instagramUrl": "https://www.instagram.com/hairbabelondon/",
+      "services": [
+        "Wig install (frontal / closure)",
+        "Custom wig",
+        "K-18 treatment",
+        "Moisturising treatment"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/hairbabelondon/"
+      ]
+    },
     {
       "id": "rathestylist",
       "name": "Rathestylist",
