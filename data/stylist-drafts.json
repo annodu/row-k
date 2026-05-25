@@ -1,10 +1,40 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-05-25T01:16:13.864Z",
-    "count": 2
+    "updatedAt": "2026-05-25T01:17:35.634Z",
+    "count": 3
   },
   "drafts": [
+    {
+      "id": "jhykesignaturee-mpkio8b1",
+      "status": "needs_review",
+      "name": "Jhykesignaturee",
+      "areaId": "",
+      "areaIds": [],
+      "areaLabel": "",
+      "neighbourhood": "",
+      "postcode": "",
+      "bookingPlatform": "",
+      "bookingUrl": "",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/jhykesignaturee/",
+      "tiktokUrl": "",
+      "services": [],
+      "rawServices": [],
+      "summary": "Admin draft created from stylist intake.",
+      "confidence": 0.35,
+      "warnings": [
+        "No booking link identified yet.",
+        "No services matched yet."
+      ],
+      "evidence": [
+        "Submitted link: https://www.instagram.com/jhykesignaturee/"
+      ],
+      "source": "admin-draft",
+      "createdAt": "2026-05-25T01:17:35.625Z",
+      "updatedAt": "2026-05-25T01:17:35.625Z",
+      "lastCheckedAt": "2026-05-25T01:17:35.625Z"
+    },
     {
       "id": "slayedbyp-mpkiise2",
       "status": "needs_review",
