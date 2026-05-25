@@ -1,40 +1,10 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-05-25T01:23:21.608Z",
-    "count": 6
+    "updatedAt": "2026-05-25T01:28:21.688Z",
+    "count": 5
   },
   "drafts": [
-    {
-      "id": "luxelacetech-mpkise3l",
-      "status": "needs_review",
-      "name": "Luxelacetech",
-      "areaId": "",
-      "areaIds": [],
-      "areaLabel": "",
-      "neighbourhood": "",
-      "postcode": "",
-      "bookingPlatform": "",
-      "bookingUrl": "",
-      "websiteUrl": "",
-      "instagramUrl": "https://www.instagram.com/luxelacetech/",
-      "tiktokUrl": "",
-      "services": [],
-      "rawServices": [],
-      "summary": "Admin draft created from stylist intake.",
-      "confidence": 0.35,
-      "warnings": [
-        "No booking link identified yet.",
-        "No services matched yet."
-      ],
-      "evidence": [
-        "Submitted link: https://www.instagram.com/luxelacetech/"
-      ],
-      "source": "admin-draft",
-      "createdAt": "2026-05-25T01:20:49.757Z",
-      "updatedAt": "2026-05-25T01:20:49.757Z",
-      "lastCheckedAt": "2026-05-25T01:20:49.757Z"
-    },
     {
       "id": "hairbabelondon-mpkiqth0",
       "status": "needs_review",
