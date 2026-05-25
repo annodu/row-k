@@ -16,6 +16,11 @@ app.use((_, res, next) => {
 
 registerAdminStylistRoutes(app);
 
+app.use((error, _req, res, _next) => {
+  console.error("Admin API failed", error);
+  res.status(500).json({ ok: false, message: error?.message || "Admin API failed." });
+});
+
 export default function handler(req, res) {
   const { path, ...query } = req.query || {};
   const adminPath = Array.isArray(path) ? path.join("/") : String(path || "");

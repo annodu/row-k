@@ -13,6 +13,8 @@ const discoverySuggestionsPath = path.resolve(__dirname, "../data/discovery-sugg
 const manualIndexPath = path.resolve(__dirname, "../data/manual-salons.json");
 const sessionCookieName = "rowk_admin_session";
 const sessionMaxAgeSeconds = 60 * 60 * 12;
+const repositoryRoot = path.resolve(__dirname, "..");
+const githubBackedJsonPaths = new Set(["data/manual-salons.json", "data/stylist-drafts.json", "data/discovery-suggestions.json"]);
 
 const regionOptions = [
   { id: "all-london", label: "London" },
@@ -719,7 +721,103 @@ async function readJson(filePath, fallback) {
 }
 
 async function writeJson(filePath, payload) {
+  const githubPath = getGitHubBackedJsonPath(filePath);
+  if (githubPath) {
+    await writeJsonToGitHub(githubPath, payload);
+    return;
+  }
+
   await fs.writeFile(filePath, `${JSON.stringify(payload, null, 2)}\n`);
+}
+
+function getGitHubBackedJsonPath(filePath) {
+  const relativePath = path.relative(repositoryRoot, filePath).split(path.sep).join("/");
+  if (!githubBackedJsonPaths.has(relativePath)) {
+    return "";
+  }
+
+  if (!isHostedRuntime()) {
+    return "";
+  }
+
+  if (!getGitHubToken()) {
+    throw new Error("Set GITHUB_TOKEN in Vercel before saving admin changes.");
+  }
+
+  return relativePath;
+}
+
+async function writeJsonToGitHub(filePath, payload) {
+  const repo = getGitHubRepository();
+  const branch = getGitHubBranch();
+  const token = getGitHubToken();
+  const content = `${JSON.stringify(payload, null, 2)}\n`;
+  const apiPath = filePath.split("/").map(encodeURIComponent).join("/");
+  const url = `https://api.github.com/repos/${repo}/contents/${apiPath}`;
+  const currentResponse = await githubFetch(`${url}?ref=${encodeURIComponent(branch)}`);
+  const currentFile = currentResponse.status === 404 ? null : await parseGitHubResponse(currentResponse);
+  const updateResponse = await githubFetch(url, {
+    method: "PUT",
+    body: JSON.stringify({
+      message: commitMessageForJsonPath(filePath),
+      content: Buffer.from(content).toString("base64"),
+      branch,
+      ...(currentFile?.sha ? { sha: currentFile.sha } : {}),
+    }),
+  });
+
+  if (!updateResponse.ok) {
+    const errorText = await updateResponse.text().catch(() => "");
+    throw new Error(`GitHub save failed for ${filePath}: ${updateResponse.status} ${errorText}`);
+  }
+}
+
+async function githubFetch(url, options = {}) {
+  return fetch(url, {
+    ...options,
+    headers: {
+      Accept: "application/vnd.github+json",
+      Authorization: `Bearer ${getGitHubToken()}`,
+      "Content-Type": "application/json",
+      "X-GitHub-Api-Version": "2022-11-28",
+      ...options.headers,
+    },
+  });
+}
+
+async function parseGitHubResponse(response) {
+  if (!response.ok) {
+    const errorText = await response.text().catch(() => "");
+    throw new Error(`GitHub read failed: ${response.status} ${errorText}`);
+  }
+
+  return response.json();
+}
+
+function commitMessageForJsonPath(filePath) {
+  if (filePath === "data/manual-salons.json") {
+    return "Update stylist directory data";
+  }
+  if (filePath === "data/stylist-drafts.json") {
+    return "Update admin stylist drafts";
+  }
+  return "Update admin discovery data";
+}
+
+function isHostedRuntime() {
+  return process.env.NODE_ENV === "production" || process.env.VERCEL === "1";
+}
+
+function getGitHubToken() {
+  return (process.env.GITHUB_TOKEN || process.env.ROWK_GITHUB_TOKEN || "").trim();
+}
+
+function getGitHubRepository() {
+  return (process.env.GITHUB_REPOSITORY || process.env.ROWK_GITHUB_REPOSITORY || "annodu/row-k").trim();
+}
+
+function getGitHubBranch() {
+  return (process.env.GITHUB_BRANCH || process.env.ROWK_GITHUB_BRANCH || "main").trim();
 }
 
 async function tryWriteJson(filePath, payload) {
