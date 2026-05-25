@@ -739,7 +739,6 @@ export function AdminApp() {
       );
       setFreshnessUndoStack((current) => [...current, undoState]);
       setMessage("Directory listing updated.");
-      await loadAdminData();
     } finally {
       setIsBusy(false);
     }

@@ -947,7 +947,7 @@ async function updateFreshnessReview(salonId, { addServices = [], removeServices
     })
     .filter(hasActionableFreshnessCheck);
 
-  await writeJson(freshnessChecksPath, {
+  await tryWriteJson(freshnessChecksPath, {
     meta: {
       ...(store.meta || {}),
       source: "freshness-checks",
@@ -984,7 +984,7 @@ async function undoFreshnessReview(salonId, { check, rejectAddedServices = [], r
     ? [sanitizedCheck, ...(store.checks || []).filter((item) => item.id !== salonId)]
     : store.checks || [];
 
-  await writeJson(freshnessChecksPath, {
+  await tryWriteJson(freshnessChecksPath, {
     meta: {
       ...(store.meta || {}),
       source: "freshness-checks",
