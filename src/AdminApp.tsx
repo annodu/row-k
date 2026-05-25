@@ -639,6 +639,23 @@ export function AdminApp() {
         nextOffset = payload.nextOffset ?? null;
       }
 
+      const saveResponse = await fetch("/api/admin/stylists/checks/saved", {
+        method: "POST",
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          checks: completedChecks,
+          checkedAt: lastCheckedAt || new Date().toISOString(),
+          checkedCount: completedCount,
+          total: totalCount,
+        }),
+      });
+      const savedPayload = await saveResponse.json().catch(() => null);
+      if (saveResponse.ok && savedPayload?.checkedAt) {
+        lastCheckedAt = savedPayload.checkedAt;
+        setChecksLoadedAt(lastCheckedAt);
+      }
+
       setMessage(`Health check complete. Found ${totalUpdates} update${totalUpdates === 1 ? "" : "s"}.`);
       setDashboard((current) =>
         current

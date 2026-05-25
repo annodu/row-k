@@ -291,7 +291,7 @@ export function registerAdminStylistRoutes(app) {
 
   app.get("/api/admin/dashboard", requireAdmin, async (_req, res) => {
     const draftStore = await readDraftStore();
-    const freshnessStore = await readJson(freshnessChecksPath, { meta: { updatedAt: null, checkedCount: 0, total: 0 }, checks: [] });
+    const freshnessStore = await readFreshnessStore({ meta: { updatedAt: null, checkedCount: 0, total: 0 }, checks: [] });
     const discoveryStore = await readDiscoveryStore();
     const manualIndex = await readJson(manualIndexPath, { meta: { source: "manual", count: 0 }, salons: [] });
     const drafts = draftStore.drafts;
@@ -325,7 +325,7 @@ export function registerAdminStylistRoutes(app) {
   });
 
   app.get("/api/admin/stylists/checks/saved", requireAdmin, async (_req, res) => {
-    const store = await readJson(freshnessChecksPath, { meta: { source: "freshness-checks", updatedAt: null, count: 0, checkedCount: 0, total: 0 }, checks: [] });
+    const store = await readFreshnessStore({ meta: { source: "freshness-checks", updatedAt: null, count: 0, checkedCount: 0, total: 0 }, checks: [] });
     res.json({
       ok: true,
       checks: store.checks || [],
@@ -337,13 +337,34 @@ export function registerAdminStylistRoutes(app) {
     });
   });
 
+  app.post("/api/admin/stylists/checks/saved", requireAdmin, async (req, res) => {
+    const existingStore = await readFreshnessStore({ meta: { source: "freshness-checks", updatedAt: null, count: 0 }, checks: [], dismissedRecommendations: {} });
+    const checkedAt = cleanString(req.body?.checkedAt) || new Date().toISOString();
+    const checks = (Array.isArray(req.body?.checks) ? req.body.checks : [])
+      .map((check) => sanitizeFreshnessCheck(check, check?.id))
+      .filter(Boolean);
+    const payload = {
+      meta: {
+        source: "freshness-checks",
+        updatedAt: checkedAt,
+        count: checks.length,
+        checkedCount: Number(req.body?.checkedCount) || 0,
+        total: Number(req.body?.total) || 0,
+      },
+      dismissedRecommendations: existingStore.dismissedRecommendations || {},
+      checks,
+    };
+    await writeFreshnessStore(payload);
+    res.json({ ok: true, ...payload.meta, checkedAt, checks });
+  });
+
   app.get("/api/admin/stylists/checks", requireAdmin, async (req, res) => {
     const index = await readAdminSalonIndex();
     const checkedAt = new Date().toISOString();
     const limit = Math.min(Math.max(Number(req.query.limit || 50), 1), 50);
     const offset = Math.max(Number(req.query.offset || 0), 0);
     const batchSalons = index.salons.slice(offset, offset + limit);
-    const existingStore = await readJson(freshnessChecksPath, { meta: { source: "freshness-checks", updatedAt: null, count: 0 }, checks: [], dismissedRecommendations: {} });
+    const existingStore = await readFreshnessStore({ meta: { source: "freshness-checks", updatedAt: null, count: 0 }, checks: [], dismissedRecommendations: {} });
     const dismissedRecommendations = existingStore.dismissedRecommendations || {};
     const checks = await mapWithConcurrency(batchSalons, isHostedRuntime() ? 2 : 6, (salon) => checkSalonFreshness(salon, dismissedRecommendations[salon.id]), {
       delayMs: isHostedRuntime() ? 350 : 0,
@@ -728,6 +749,27 @@ async function writeDiscoveryStore(suggestions) {
   });
 }
 
+async function readFreshnessStore(fallback) {
+  if (isGitHubJsonBacked()) {
+    try {
+      return await readJsonFromGitHub("data/freshness-checks.json");
+    } catch (error) {
+      console.warn("Could not read latest freshness checks from GitHub. Falling back to deployed file.", error);
+    }
+  }
+
+  return readJson(freshnessChecksPath, fallback);
+}
+
+async function writeFreshnessStore(payload) {
+  if (isGitHubJsonBacked()) {
+    await writeJsonToGitHub("data/freshness-checks.json", payload);
+    return;
+  }
+
+  await writeJson(freshnessChecksPath, payload);
+}
+
 async function readJson(filePath, fallback) {
   const githubPath = getGitHubBackedJsonPath(filePath, { requireToken: false });
   if (githubPath && getGitHubToken()) {
@@ -884,6 +926,9 @@ function commitMessageForJsonPath(filePath) {
   if (filePath === "data/stylist-drafts.json") {
     return "Update admin stylist drafts";
   }
+  if (filePath === "data/freshness-checks.json") {
+    return "Update health check results";
+  }
   return "Update admin discovery data";
 }
 
@@ -914,7 +959,7 @@ async function tryWriteJson(filePath, payload) {
 }
 
 async function updateFreshnessReview(salonId, { addServices = [], removeServices = [], rejectAddedServices = [], rejectRemovedServices = [], bookingUrl, instagramUrl, websiteUrl }) {
-  const store = await readJson(freshnessChecksPath, { meta: { source: "freshness-checks", updatedAt: null, count: 0 }, checks: [], dismissedRecommendations: {} });
+  const store = await readFreshnessStore({ meta: { source: "freshness-checks", updatedAt: null, count: 0 }, checks: [], dismissedRecommendations: {} });
   const reviewedAdds = normalizeServices([...addServices, ...rejectAddedServices]);
   const reviewedRemoves = normalizeServices([...removeServices, ...rejectRemovedServices]);
   const currentCheck = (store.checks || []).find((check) => check.id === salonId);
@@ -949,7 +994,7 @@ async function updateFreshnessReview(salonId, { addServices = [], removeServices
     })
     .filter(hasActionableFreshnessCheck);
 
-  await tryWriteJson(freshnessChecksPath, {
+  await writeFreshnessStore({
     meta: {
       ...(store.meta || {}),
       source: "freshness-checks",
@@ -976,7 +1021,7 @@ function getReviewedLinkTypes({ bookingUrl, instagramUrl, websiteUrl }) {
 }
 
 async function undoFreshnessReview(salonId, { check, rejectAddedServices = [], rejectRemovedServices = [] }) {
-  const store = await readJson(freshnessChecksPath, { meta: { source: "freshness-checks", updatedAt: null, count: 0 }, checks: [], dismissedRecommendations: {} });
+  const store = await readFreshnessStore({ meta: { source: "freshness-checks", updatedAt: null, count: 0 }, checks: [], dismissedRecommendations: {} });
   const dismissedRecommendations = removeDismissedRecommendations(store.dismissedRecommendations || {}, salonId, {
     rejectAddedServices,
     rejectRemovedServices,
@@ -986,7 +1031,7 @@ async function undoFreshnessReview(salonId, { check, rejectAddedServices = [], r
     ? [sanitizedCheck, ...(store.checks || []).filter((item) => item.id !== salonId)]
     : store.checks || [];
 
-  await tryWriteJson(freshnessChecksPath, {
+  await writeFreshnessStore({
     meta: {
       ...(store.meta || {}),
       source: "freshness-checks",
