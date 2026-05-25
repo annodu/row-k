@@ -1,11 +1,38 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-05-25T01:16:12.649Z",
-    "count": 607,
+    "updatedAt": "2026-05-25T01:18:18.899Z",
+    "count": 608,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "jhykesignaturee",
+      "name": "Jhykesignaturee",
+      "areaId": "essex",
+      "areaLabel": "Essex",
+      "neighbourhood": "Essex London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://styledbyjhyke.as.me/schedule/dd5f6d89",
+      "websiteUrl": "https://styledbyjhyke.as.me/schedule/dd5f6d89",
+      "instagramUrl": "https://www.instagram.com/jhykesignaturee/",
+      "services": [
+        "Boho braids / goddess braids",
+        "French curl",
+        "Fulani / Lemonade braids",
+        "Stitch braids",
+        "Full head colour",
+        "Flipover / Versatile sew-in",
+        "Traditional sew-in / leave out",
+        "Knotless braids"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/jhykesignaturee/"
+      ]
+    },
     {
       "id": "slayedbyp",
       "name": "Slayedbyp",
