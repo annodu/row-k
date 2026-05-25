@@ -1,11 +1,32 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-05-25T01:18:18.899Z",
-    "count": 608,
+    "updatedAt": "2026-05-25T01:19:24.224Z",
+    "count": 609,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "rathestylist",
+      "name": "Rathestylist",
+      "areaId": "west",
+      "areaLabel": "West London",
+      "neighbourhood": "West London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://rathestylist.as.me/schedule/43a0cc4e",
+      "websiteUrl": "https://rathestylist.as.me/schedule/43a0cc4e",
+      "instagramUrl": "https://www.instagram.com/rathestylist/",
+      "services": [
+        "Wig install (frontal / closure)",
+        "Custom wig"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/rathestylist/"
+      ]
+    },
     {
       "id": "jhykesignaturee",
       "name": "Jhykesignaturee",
