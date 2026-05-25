@@ -200,7 +200,7 @@ export function registerAdminStylistRoutes(app) {
       return res.status(503).json({ ok: false, message: "Set ADMIN_PASSWORD before using the admin tool." });
     }
 
-    if (String(req.body?.password || "") !== configuredPassword) {
+    if (String(req.body?.password || "").trim() !== configuredPassword) {
       return res.status(401).json({ ok: false, message: "That password was not accepted." });
     }
 
@@ -611,7 +611,7 @@ function requireAdmin(req, res, next) {
 }
 
 function getAdminPassword() {
-  return process.env.ADMIN_PASSWORD || process.env.ROWK_ADMIN_PASSWORD || "";
+  return (process.env.ADMIN_PASSWORD || process.env.ROWK_ADMIN_PASSWORD || "").trim();
 }
 
 function makeCookie(token) {
