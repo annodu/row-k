@@ -591,6 +591,10 @@ export function registerAdminStylistRoutes(app) {
 }
 
 function requireAdmin(req, res, next) {
+  if (!getAdminPassword()) {
+    return res.status(503).json({ ok: false, message: "Set ADMIN_PASSWORD before using the admin tool." });
+  }
+
   const token = getCookieValue(req.headers.cookie, sessionCookieName);
   if (!token || !sessions.has(token)) {
     return res.status(401).json({ ok: false, message: "Admin login required." });
@@ -607,16 +611,17 @@ function requireAdmin(req, res, next) {
 }
 
 function getAdminPassword() {
-  const isHostedRuntime = process.env.NODE_ENV === "production" || process.env.VERCEL === "1";
-  return process.env.ADMIN_PASSWORD || process.env.ROWK_ADMIN_PASSWORD || (isHostedRuntime ? "" : "rowk-admin");
+  return process.env.ADMIN_PASSWORD || process.env.ROWK_ADMIN_PASSWORD || "";
 }
 
 function makeCookie(token) {
-  return `${sessionCookieName}=${token}; HttpOnly; SameSite=Lax; Path=/; Max-Age=43200`;
+  const secure = process.env.NODE_ENV === "production" || process.env.VERCEL === "1" ? "; Secure" : "";
+  return `${sessionCookieName}=${token}; HttpOnly; SameSite=Lax; Path=/; Max-Age=43200${secure}`;
 }
 
 function expireCookie() {
-  return `${sessionCookieName}=; HttpOnly; SameSite=Lax; Path=/; Max-Age=0`;
+  const secure = process.env.NODE_ENV === "production" || process.env.VERCEL === "1" ? "; Secure" : "";
+  return `${sessionCookieName}=; HttpOnly; SameSite=Lax; Path=/; Max-Age=0${secure}`;
 }
 
 function getCookieValue(cookieHeader = "", name) {

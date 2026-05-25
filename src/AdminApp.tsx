@@ -372,8 +372,15 @@ export function AdminApp() {
   async function checkSession() {
     setIsCheckingSession(true);
     try {
-      const response = await fetch("/api/admin/session", { credentials: "include" });
-      setIsAuthed(response.ok);
+      const response = await fetch("/api/admin/session", {
+        credentials: "include",
+        headers: { Accept: "application/json" },
+      });
+      const contentType = response.headers.get("content-type") || "";
+      const payload = contentType.includes("application/json") ? await response.json().catch(() => null) : null;
+      setIsAuthed(response.ok && payload?.ok === true);
+    } catch {
+      setIsAuthed(false);
     } finally {
       setIsCheckingSession(false);
     }
@@ -433,7 +440,7 @@ export function AdminApp() {
         body: JSON.stringify({ password }),
       });
       const payload = await response.json().catch(() => ({}));
-      if (!response.ok) {
+      if (!response.ok || payload?.ok !== true) {
         setLoginError(payload.message || "Login failed.");
         return;
       }
@@ -801,7 +808,6 @@ export function AdminApp() {
               {isBusy ? <Loader2 className="size-4 animate-spin" /> : null}
               Unlock admin
             </Button>
-            <p className="text-xs leading-5 text-stone-500">Local default password is rowk-admin unless ADMIN_PASSWORD is set.</p>
           </form>
         </div>
       </main>
