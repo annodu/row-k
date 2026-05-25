@@ -3,7 +3,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-import { categoryMap, normalizeServices, readSalonIndex, serviceAliases } from "./salon-index.mjs";
+import { categoryMap, normalizeServices, serviceAliases } from "./salon-index.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -338,7 +338,7 @@ export function registerAdminStylistRoutes(app) {
   });
 
   app.get("/api/admin/stylists/checks", requireAdmin, async (req, res) => {
-    const index = await readSalonIndex();
+    const index = await readAdminSalonIndex();
     const checkedAt = new Date().toISOString();
     const limit = Math.min(Math.max(Number(req.query.limit || 50), 1), 50);
     const offset = Math.max(Number(req.query.offset || 0), 0);
@@ -1584,7 +1584,7 @@ function extractUrls(value) {
 }
 
 async function generateDiscoverySuggestions() {
-  const index = await readSalonIndex();
+  const index = await readAdminSalonIndex();
   const existingKeys = new Set(
     index.salons.flatMap((salon) => [salon.instagramUrl, salon.bookingUrl, salon.websiteUrl, salon.name].filter(Boolean).map(normalizeDiscoveryKey)),
   );
@@ -1626,6 +1626,43 @@ function countTopValues(values) {
     counts.set(value, (counts.get(value) || 0) + 1);
   });
   return [...counts.entries()].sort((left, right) => right[1] - left[1]).map(([value]) => value);
+}
+
+async function readAdminSalonIndex() {
+  const manualIndex = await readJson(manualIndexPath, { meta: { source: "manual", updatedAt: null, count: 0 }, salons: [] });
+  const salons = (manualIndex.salons || [])
+    .map((salon, addedIndex) => ({
+      ...salon,
+      addedIndex,
+      services: normalizeServices(salon.services || []),
+    }))
+    .sort(compareRecentlyAdded);
+
+  return {
+    meta: {
+      source: "manual",
+      updatedAt: manualIndex.meta?.updatedAt ?? null,
+      count: salons.length,
+    },
+    salons,
+  };
+}
+
+function compareRecentlyAdded(left, right) {
+  return (right.addedIndex ?? 0) - (left.addedIndex ?? 0) || compareSalons(left, right);
+}
+
+function compareSalons(left, right) {
+  const leftName = String(left.name || "");
+  const rightName = String(right.name || "");
+  const leftStartsWithDigit = /^\d/.test(leftName);
+  const rightStartsWithDigit = /^\d/.test(rightName);
+
+  if (leftStartsWithDigit !== rightStartsWithDigit) {
+    return leftStartsWithDigit ? 1 : -1;
+  }
+
+  return leftName.localeCompare(rightName);
 }
 
 function normalizeDiscoveryKey(value) {
