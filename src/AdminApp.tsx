@@ -1623,7 +1623,7 @@ function FreshnessPage({
   const checkedCount = checkProgress.checkedCount || dashboard?.freshness.checkedCount || 0;
 	  const [freshnessFilter, setFreshnessFilter] = useState<"all" | "service-changes" | "broken-links" | "manual-check">("all");
 	  const rows = buildFreshnessRecommendationGroups(checks);
-		  const recommendationCount = checks.length ? rows.length : dashboard?.freshness.totalIssues || 0;
+	  const recommendationCount = rows.length;
 		  const lastCompletedAt = checksLoadedAt || dashboard?.freshness.updatedAt;
 		  const hasCompletedCheck = Boolean(lastCompletedAt || checkedCount > 0 || rows.length > 0);
   const isWaitingForResults = isRunningChecks && rows.length === 0;
