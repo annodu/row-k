@@ -1,11 +1,128 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-05-25T01:16:12.649Z",
-    "count": 607,
+    "updatedAt": "2026-05-25T01:23:20.286Z",
+    "count": 612,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "her-ego",
+      "name": "Her Ego",
+      "areaId": "west",
+      "areaLabel": "West London",
+      "neighbourhood": "West London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://app.acuityscheduling.com/schedule/35a45b5f",
+      "websiteUrl": "https://app.acuityscheduling.com/schedule/35a45b5f",
+      "instagramUrl": "https://www.instagram.com/her.ego/",
+      "services": [
+        "Wig install (frontal / closure)",
+        "Custom wig"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/her.ego/"
+      ]
+    },
+    {
+      "id": "luxelacetech",
+      "name": "Luxelacetech",
+      "areaId": "north-west",
+      "areaLabel": "North West London",
+      "neighbourhood": "North West London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://luxelacetech.as.me/schedule/5b7a0314",
+      "websiteUrl": "https://luxelacetech.as.me/schedule/5b7a0314",
+      "instagramUrl": "https://www.instagram.com/luxelacetech/",
+      "services": [
+        "Wig install (frontal / closure)",
+        "Frontal ponytail / bun",
+        "Custom wig",
+        "Closure sew-in",
+        "Japanese straightening",
+        "Traditional sew-in / leave out"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/luxelacetech/"
+      ]
+    },
+    {
+      "id": "hairbabelondon",
+      "name": "Hairbabelondon",
+      "areaId": "north-west",
+      "areaLabel": "North West London",
+      "neighbourhood": "North West London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://hairbabelondon.as.me/schedule/acc86c75",
+      "websiteUrl": "https://hairbabelondon.as.me/schedule/acc86c75",
+      "instagramUrl": "https://www.instagram.com/hairbabelondon/",
+      "services": [
+        "Wig install (frontal / closure)",
+        "Custom wig",
+        "K-18 treatment",
+        "Moisturising treatment"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/hairbabelondon/"
+      ]
+    },
+    {
+      "id": "rathestylist",
+      "name": "Rathestylist",
+      "areaId": "west",
+      "areaLabel": "West London",
+      "neighbourhood": "West London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://rathestylist.as.me/schedule/43a0cc4e",
+      "websiteUrl": "https://rathestylist.as.me/schedule/43a0cc4e",
+      "instagramUrl": "https://www.instagram.com/rathestylist/",
+      "services": [
+        "Wig install (frontal / closure)",
+        "Custom wig"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/rathestylist/"
+      ]
+    },
+    {
+      "id": "jhykesignaturee",
+      "name": "Jhykesignaturee",
+      "areaId": "essex",
+      "areaLabel": "Essex",
+      "neighbourhood": "Essex London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://styledbyjhyke.as.me/schedule/dd5f6d89",
+      "websiteUrl": "https://styledbyjhyke.as.me/schedule/dd5f6d89",
+      "instagramUrl": "https://www.instagram.com/jhykesignaturee/",
+      "services": [
+        "Boho braids / goddess braids",
+        "French curl",
+        "Fulani / Lemonade braids",
+        "Stitch braids",
+        "Full head colour",
+        "Flipover / Versatile sew-in",
+        "Traditional sew-in / leave out",
+        "Knotless braids"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/jhykesignaturee/"
+      ]
+    },
     {
       "id": "slayedbyp",
       "name": "Slayedbyp",
