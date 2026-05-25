@@ -813,8 +813,8 @@ export function AdminApp() {
         <div className="mx-auto flex min-h-screen max-w-md items-center px-6">
           <form onSubmit={login} className="w-full space-y-5">
             <div>
-              <p className="text-sm uppercase tracking-[0.2em] text-stone-400">ROW K admin</p>
-              <h1 className="mt-3 text-3xl font-semibold">Stylist intake</h1>
+              <p className="text-sm uppercase tracking-[0.2em] text-stone-400">ROW K</p>
+              <h1 className="mt-3 text-3xl font-semibold">Admin portal</h1>
             </div>
             <Input
               type="password"
