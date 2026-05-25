@@ -568,10 +568,21 @@ export function registerAdminStylistRoutes(app) {
       updatedAt: new Date().toISOString(),
       count: manualIndex.salons.length,
     };
-    await writeJson(manualIndexPath, manualIndex);
 
     store.drafts.splice(draftIndex, 1);
-    await writeDraftStore(store);
+    if (isGitHubJsonBacked()) {
+      await writeJsonFilesToGitHub(
+        [
+          { path: "data/manual-salons.json", payload: manualIndex },
+          { path: "data/stylist-drafts.json", payload: buildDraftStorePayload(store) },
+        ],
+        `Publish ${salon.name}`,
+      );
+    } else {
+      await writeJson(manualIndexPath, manualIndex);
+      await writeDraftStore(store);
+    }
+
     res.json({ ok: true, salon });
   });
 
@@ -678,7 +689,11 @@ async function readDraftStore() {
 }
 
 async function writeDraftStore(store) {
-  const payload = {
+  await writeJson(draftsPath, buildDraftStorePayload(store));
+}
+
+function buildDraftStorePayload(store) {
+  return {
     meta: {
       source: "admin-drafts",
       updatedAt: new Date().toISOString(),
@@ -686,7 +701,6 @@ async function writeDraftStore(store) {
     },
     drafts: store.drafts,
   };
-  await writeJson(draftsPath, payload);
 }
 
 async function readDiscoveryStore() {
@@ -713,6 +727,15 @@ async function writeDiscoveryStore(suggestions) {
 }
 
 async function readJson(filePath, fallback) {
+  const githubPath = getGitHubBackedJsonPath(filePath, { requireToken: false });
+  if (githubPath && getGitHubToken()) {
+    try {
+      return await readJsonFromGitHub(githubPath);
+    } catch (error) {
+      console.warn(`Could not read latest ${githubPath} from GitHub. Falling back to deployed file.`, error);
+    }
+  }
+
   try {
     return JSON.parse(await fs.readFile(filePath, "utf8"));
   } catch {
@@ -730,7 +753,7 @@ async function writeJson(filePath, payload) {
   await fs.writeFile(filePath, `${JSON.stringify(payload, null, 2)}\n`);
 }
 
-function getGitHubBackedJsonPath(filePath) {
+function getGitHubBackedJsonPath(filePath, { requireToken = true } = {}) {
   const relativePath = path.relative(repositoryRoot, filePath).split(path.sep).join("/");
   if (!githubBackedJsonPaths.has(relativePath)) {
     return "";
@@ -740,11 +763,24 @@ function getGitHubBackedJsonPath(filePath) {
     return "";
   }
 
-  if (!getGitHubToken()) {
+  if (requireToken && !getGitHubToken()) {
     throw new Error("Set GITHUB_TOKEN in Vercel before saving admin changes.");
   }
 
   return relativePath;
+}
+
+function isGitHubJsonBacked() {
+  return isHostedRuntime() && Boolean(getGitHubToken());
+}
+
+async function readJsonFromGitHub(filePath) {
+  const repo = getGitHubRepository();
+  const branch = getGitHubBranch();
+  const apiPath = filePath.split("/").map(encodeURIComponent).join("/");
+  const response = await githubFetch(`https://api.github.com/repos/${repo}/contents/${apiPath}?ref=${encodeURIComponent(branch)}`);
+  const file = await parseGitHubResponse(response);
+  return JSON.parse(Buffer.from(file.content || "", "base64").toString("utf8"));
 }
 
 async function writeJsonToGitHub(filePath, payload) {
@@ -769,6 +805,51 @@ async function writeJsonToGitHub(filePath, payload) {
   if (!updateResponse.ok) {
     const errorText = await updateResponse.text().catch(() => "");
     throw new Error(`GitHub save failed for ${filePath}: ${updateResponse.status} ${errorText}`);
+  }
+}
+
+async function writeJsonFilesToGitHub(files, message) {
+  const repo = getGitHubRepository();
+  const branch = getGitHubBranch();
+  const branchRef = await parseGitHubResponse(await githubFetch(`https://api.github.com/repos/${repo}/git/ref/heads/${encodeURIComponent(branch)}`));
+  const parentSha = branchRef.object?.sha;
+  if (!parentSha) {
+    throw new Error(`Could not resolve GitHub branch ${branch}.`);
+  }
+
+  const parentCommit = await parseGitHubResponse(await githubFetch(`https://api.github.com/repos/${repo}/git/commits/${parentSha}`));
+  const tree = await parseGitHubResponse(
+    await githubFetch(`https://api.github.com/repos/${repo}/git/trees`, {
+      method: "POST",
+      body: JSON.stringify({
+        base_tree: parentCommit.tree?.sha,
+        tree: files.map((file) => ({
+          path: file.path,
+          mode: "100644",
+          type: "blob",
+          content: `${JSON.stringify(file.payload, null, 2)}\n`,
+        })),
+      }),
+    }),
+  );
+  const commit = await parseGitHubResponse(
+    await githubFetch(`https://api.github.com/repos/${repo}/git/commits`, {
+      method: "POST",
+      body: JSON.stringify({
+        message,
+        tree: tree.sha,
+        parents: [parentSha],
+      }),
+    }),
+  );
+  const updateResponse = await githubFetch(`https://api.github.com/repos/${repo}/git/refs/heads/${encodeURIComponent(branch)}`, {
+    method: "PATCH",
+    body: JSON.stringify({ sha: commit.sha }),
+  });
+
+  if (!updateResponse.ok) {
+    const errorText = await updateResponse.text().catch(() => "");
+    throw new Error(`GitHub commit failed: ${updateResponse.status} ${errorText}`);
   }
 }
 
