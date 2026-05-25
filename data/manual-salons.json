@@ -1,11 +1,34 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-05-23T10:10:41.685Z",
-    "count": 606,
+    "updatedAt": "2026-05-25T01:16:12.649Z",
+    "count": 607,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "slayedbyp",
+      "name": "Slayedbyp",
+      "areaId": "east",
+      "areaLabel": "East London",
+      "neighbourhood": "East London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://slayedbyphairstyles.as.me/schedule/50c6de07",
+      "websiteUrl": "https://slayedbyphairstyles.as.me/schedule/50c6de07",
+      "instagramUrl": "https://www.instagram.com/slayedbyp/",
+      "services": [
+        "Boho braids / goddess braids",
+        "French curl",
+        "Knotless braids",
+        "Braid take-down"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/slayedbyp/"
+      ]
+    },
     {
       "id": "beyondthebrushldn",
       "name": "Beyondthebrushldn",
