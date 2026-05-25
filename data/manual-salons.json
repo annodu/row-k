@@ -1,7 +1,7 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-05-25T01:30:38.394Z",
+    "updatedAt": "2026-05-25T01:30:49.890Z",
     "count": 612,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
@@ -15844,7 +15844,8 @@
         "Sleek ponytail / bun",
         "Half up half down",
         "Feed-in braids",
-        "Frontal sew-in"
+        "Frontal sew-in",
+        "Updo"
       ],
       "summary": "Manual Instagram-led entry enriched from spreadsheet import.",
       "source": "manual",
