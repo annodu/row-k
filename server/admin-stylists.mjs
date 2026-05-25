@@ -12,7 +12,7 @@ const freshnessChecksPath = path.resolve(__dirname, "../data/freshness-checks.js
 const discoverySuggestionsPath = path.resolve(__dirname, "../data/discovery-suggestions.json");
 const manualIndexPath = path.resolve(__dirname, "../data/manual-salons.json");
 const sessionCookieName = "rowk_admin_session";
-const sessions = new Map();
+const sessionMaxAgeSeconds = 60 * 60 * 12;
 
 const regionOptions = [
   { id: "all-london", label: "London" },
@@ -204,17 +204,11 @@ export function registerAdminStylistRoutes(app) {
       return res.status(401).json({ ok: false, message: "That password was not accepted." });
     }
 
-    const token = crypto.randomBytes(32).toString("hex");
-    sessions.set(token, { createdAt: Date.now() });
-    res.setHeader("Set-Cookie", makeCookie(token));
+    res.setHeader("Set-Cookie", makeCookie(createSessionToken()));
     res.json({ ok: true });
   });
 
   app.post("/api/admin/logout", requireAdmin, async (_req, res) => {
-    const token = getCookieValue(_req.headers.cookie, sessionCookieName);
-    if (token) {
-      sessions.delete(token);
-    }
     res.setHeader("Set-Cookie", expireCookie());
     res.json({ ok: true });
   });
@@ -593,18 +587,19 @@ export function registerAdminStylistRoutes(app) {
 }
 
 function requireAdmin(req, res, next) {
-  if (!getAdminPassword()) {
+  const configuredPassword = getAdminPassword();
+  if (!configuredPassword) {
     return res.status(503).json({ ok: false, message: "Set ADMIN_PASSWORD before using the admin tool." });
   }
 
   const token = getCookieValue(req.headers.cookie, sessionCookieName);
-  if (!token || !sessions.has(token)) {
+  const session = token ? verifySessionToken(token, configuredPassword) : null;
+  if (!session) {
+    res.setHeader("Set-Cookie", expireCookie());
     return res.status(401).json({ ok: false, message: "Admin login required." });
   }
 
-  const session = sessions.get(token);
-  if (Date.now() - session.createdAt > 1000 * 60 * 60 * 12) {
-    sessions.delete(token);
+  if (Date.now() - session.createdAt > sessionMaxAgeSeconds * 1000) {
     res.setHeader("Set-Cookie", expireCookie());
     return res.status(401).json({ ok: false, message: "Admin session expired." });
   }
@@ -616,9 +611,43 @@ function getAdminPassword() {
   return (process.env.ADMIN_PASSWORD || process.env.ROWK_ADMIN_PASSWORD || "").trim();
 }
 
+function createSessionToken() {
+  const createdAt = Date.now();
+  const nonce = crypto.randomBytes(16).toString("hex");
+  const payload = `${createdAt}.${nonce}`;
+  return `${payload}.${signSessionPayload(payload, getAdminPassword())}`;
+}
+
+function verifySessionToken(token, password) {
+  const parts = String(token || "").split(".");
+  if (parts.length !== 3) {
+    return null;
+  }
+
+  const [createdAt, nonce, signature] = parts;
+  const payload = `${createdAt}.${nonce}`;
+  const expectedSignature = signSessionPayload(payload, password);
+  if (!timingSafeEqual(signature, expectedSignature)) {
+    return null;
+  }
+
+  const createdAtNumber = Number(createdAt);
+  return Number.isFinite(createdAtNumber) ? { createdAt: createdAtNumber } : null;
+}
+
+function signSessionPayload(payload, password) {
+  return crypto.createHmac("sha256", password).update(payload).digest("base64url");
+}
+
+function timingSafeEqual(left, right) {
+  const leftBuffer = Buffer.from(String(left));
+  const rightBuffer = Buffer.from(String(right));
+  return leftBuffer.length === rightBuffer.length && crypto.timingSafeEqual(leftBuffer, rightBuffer);
+}
+
 function makeCookie(token) {
   const secure = process.env.NODE_ENV === "production" || process.env.VERCEL === "1" ? "; Secure" : "";
-  return `${sessionCookieName}=${token}; HttpOnly; SameSite=Lax; Path=/; Max-Age=43200${secure}`;
+  return `${sessionCookieName}=${token}; HttpOnly; SameSite=Lax; Path=/; Max-Age=${sessionMaxAgeSeconds}${secure}`;
 }
 
 function expireCookie() {
