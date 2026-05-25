@@ -295,10 +295,10 @@ export function AdminApp() {
 	    });
 	  }
 
-	  const allStylists = useMemo(() => [...drafts, ...publishedStylists], [drafts, publishedStylists]);
+  const allStylists = useMemo(() => [...drafts, ...publishedStylists], [drafts, publishedStylists]);
 
 	  const selectedDraft = useMemo(
-	    () => allStylists.find((draft) => draft.id === selectedDraftId) ?? allStylists[0] ?? null,
+	    () => (selectedDraftId ? allStylists.find((draft) => draft.id === selectedDraftId) ?? null : allStylists[0] ?? null),
 	    [allStylists, selectedDraftId],
 	  );
 
@@ -481,6 +481,7 @@ export function AdminApp() {
       setForm(emptyForm);
       setDrafts((current) => [payload.draft, ...current]);
       setSelectedDraftId(payload.draft.id);
+      setActiveView("drafts");
       setIsDraftEditorOpen(true);
       notify("Draft created.");
     } finally {
@@ -511,7 +512,6 @@ export function AdminApp() {
       setActiveView("drafts");
       setIsDraftEditorOpen(true);
       notify(`Created ${createdDrafts.length} draft${createdDrafts.length === 1 ? "" : "s"}.`);
-      await loadAdminData();
     } finally {
       setIsBusy(false);
     }
@@ -695,7 +695,6 @@ export function AdminApp() {
       setActiveView("drafts");
       setIsDraftEditorOpen(true);
       setMessage("Draft created from suggestion.");
-      await loadAdminData();
     } finally {
       setIsBusy(false);
     }
