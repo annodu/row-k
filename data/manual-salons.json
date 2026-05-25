@@ -1,11 +1,32 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-05-25T01:22:00.874Z",
-    "count": 611,
+    "updatedAt": "2026-05-25T01:23:20.286Z",
+    "count": 612,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "her-ego",
+      "name": "Her Ego",
+      "areaId": "west",
+      "areaLabel": "West London",
+      "neighbourhood": "West London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://app.acuityscheduling.com/schedule/35a45b5f",
+      "websiteUrl": "https://app.acuityscheduling.com/schedule/35a45b5f",
+      "instagramUrl": "https://www.instagram.com/her.ego/",
+      "services": [
+        "Wig install (frontal / closure)",
+        "Custom wig"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/her.ego/"
+      ]
+    },
     {
       "id": "luxelacetech",
       "name": "Luxelacetech",
