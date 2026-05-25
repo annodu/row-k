@@ -1,10 +1,70 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-05-25T01:20:30.446Z",
-    "count": 4
+    "updatedAt": "2026-05-25T01:20:49.766Z",
+    "count": 6
   },
   "drafts": [
+    {
+      "id": "luxelacetech-mpkise3l",
+      "status": "needs_review",
+      "name": "Luxelacetech",
+      "areaId": "",
+      "areaIds": [],
+      "areaLabel": "",
+      "neighbourhood": "",
+      "postcode": "",
+      "bookingPlatform": "",
+      "bookingUrl": "",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/luxelacetech/",
+      "tiktokUrl": "",
+      "services": [],
+      "rawServices": [],
+      "summary": "Admin draft created from stylist intake.",
+      "confidence": 0.35,
+      "warnings": [
+        "No booking link identified yet.",
+        "No services matched yet."
+      ],
+      "evidence": [
+        "Submitted link: https://www.instagram.com/luxelacetech/"
+      ],
+      "source": "admin-draft",
+      "createdAt": "2026-05-25T01:20:49.757Z",
+      "updatedAt": "2026-05-25T01:20:49.757Z",
+      "lastCheckedAt": "2026-05-25T01:20:49.757Z"
+    },
+    {
+      "id": "hairbabelondon-mpkiqth0",
+      "status": "needs_review",
+      "name": "Hairbabelondon",
+      "areaId": "",
+      "areaIds": [],
+      "areaLabel": "",
+      "neighbourhood": "",
+      "postcode": "",
+      "bookingPlatform": "",
+      "bookingUrl": "",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/hairbabelondon/",
+      "tiktokUrl": "",
+      "services": [],
+      "rawServices": [],
+      "summary": "Admin draft created from stylist intake.",
+      "confidence": 0.35,
+      "warnings": [
+        "No booking link identified yet.",
+        "No services matched yet."
+      ],
+      "evidence": [
+        "Submitted link: https://www.instagram.com/hairbabelondon/"
+      ],
+      "source": "admin-draft",
+      "createdAt": "2026-05-25T01:19:36.369Z",
+      "updatedAt": "2026-05-25T01:19:36.369Z",
+      "lastCheckedAt": "2026-05-25T01:19:36.369Z"
+    },
     {
       "id": "rathestylist-mpkippas",
       "status": "needs_review",
