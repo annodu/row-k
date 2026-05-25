@@ -1,40 +1,10 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-05-25T20:27:47.022Z",
-    "count": 2
+    "updatedAt": "2026-05-25T20:29:48.693Z",
+    "count": 1
   },
   "drafts": [
-    {
-      "id": "blubanhair-mplnrdrp",
-      "status": "needs_review",
-      "name": "Blubanhair",
-      "areaId": "",
-      "areaIds": [],
-      "areaLabel": "",
-      "neighbourhood": "",
-      "postcode": "",
-      "bookingPlatform": "",
-      "bookingUrl": "",
-      "websiteUrl": "",
-      "instagramUrl": "https://www.instagram.com/blubanhair_/",
-      "tiktokUrl": "",
-      "services": [],
-      "rawServices": [],
-      "summary": "Admin draft created from stylist intake.",
-      "confidence": 0.35,
-      "warnings": [
-        "No booking link identified yet.",
-        "No services matched yet."
-      ],
-      "evidence": [
-        "Submitted link: https://www.instagram.com/blubanhair_/"
-      ],
-      "source": "admin-draft",
-      "createdAt": "2026-05-25T20:27:46.932Z",
-      "updatedAt": "2026-05-25T20:27:46.932Z",
-      "lastCheckedAt": "2026-05-25T20:27:46.932Z"
-    },
     {
       "id": "microsbylaura-mpi6stjg",
       "status": "needs_review",
