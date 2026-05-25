@@ -345,7 +345,9 @@ export function registerAdminStylistRoutes(app) {
     const batchSalons = index.salons.slice(offset, offset + limit);
     const existingStore = await readJson(freshnessChecksPath, { meta: { source: "freshness-checks", updatedAt: null, count: 0 }, checks: [], dismissedRecommendations: {} });
     const dismissedRecommendations = existingStore.dismissedRecommendations || {};
-    const checks = await mapWithConcurrency(batchSalons, 6, (salon) => checkSalonFreshness(salon, dismissedRecommendations[salon.id]));
+    const checks = await mapWithConcurrency(batchSalons, isHostedRuntime() ? 2 : 6, (salon) => checkSalonFreshness(salon, dismissedRecommendations[salon.id]), {
+      delayMs: isHostedRuntime() ? 350 : 0,
+    });
     const reviewChecks = checks.filter(
       (check) => check.issues.length > 0 || check.addedServices.length > 0 || check.removedServices.length > 0 || check.linkChecks?.some(isManualCheckLink),
     );
@@ -1086,15 +1088,16 @@ function hasActionableFreshnessCheck(check) {
 }
 
 async function checkSalonFreshness(salon, dismissedRecommendation = {}) {
-  const linkChecks = await Promise.all([
-    checkUrl("booking", salon.bookingUrl),
+  const [bookingLinkCheck, ...otherLinkChecks] = await Promise.all([
+    checkUrl("booking", salon.bookingUrl, { includeText: true }),
     checkUrl("instagram", salon.instagramUrl),
     checkUrl("website", salon.websiteUrl && salon.websiteUrl !== salon.bookingUrl ? salon.websiteUrl : ""),
   ]);
+  const linkChecks = [stripLinkCheckResponseText(bookingLinkCheck), ...otherLinkChecks];
   const activeLinkChecks = linkChecks.filter(Boolean);
   const issues = activeLinkChecks.flatMap((check) => check.issues);
   const bookingCheck = activeLinkChecks.find((check) => check.type === "booking");
-  const serviceCheck = bookingCheck?.status === "ok" ? await extractBookingServices(salon.bookingUrl) : emptyServiceCheck();
+  const serviceCheck = bookingCheck?.status === "ok" ? extractBookingServicesFromHtml(bookingLinkCheck?.responseText || "") : emptyServiceCheck();
   const currentServices = normalizeServices(salon.services || []);
   const detectedServices = adjustDetectedServicesForCurrentContext(normalizeServices(serviceCheck.matchedServices), currentServices, serviceCheck.rawServices);
   const dismissedAddedServices = normalizeServices(dismissedRecommendation.addedServices || []);
@@ -1222,7 +1225,7 @@ function serviceFamilyFor(service) {
   return "";
 }
 
-async function checkUrl(type, url) {
+async function checkUrl(type, url, { includeText = false } = {}) {
   if (!url) {
     return null;
   }
@@ -1243,6 +1246,9 @@ async function checkUrl(type, url) {
 
     if (response.ok) {
       result.status = "ok";
+      if (includeText) {
+        result.responseText = await response.text();
+      }
     } else if (response.status === 404 || response.status === 410) {
       result.status = "broken";
       result.issues.push(`${linkLabel(type)} appears to be gone`);
@@ -1264,6 +1270,15 @@ async function checkUrl(type, url) {
   return result;
 }
 
+function stripLinkCheckResponseText(linkCheck) {
+  if (!linkCheck) {
+    return null;
+  }
+
+  const { responseText, ...rest } = linkCheck;
+  return rest;
+}
+
 function isActionableBrokenLink(linkCheck) {
   return linkCheck?.status === "broken" && (linkCheck.httpStatus === 404 || linkCheck.httpStatus === 410);
 }
@@ -1279,20 +1294,27 @@ async function extractBookingServices(url) {
       return emptyServiceCheck();
     }
 
-    const html = await response.text();
-    const structured = extractStructuredBookingData(html);
-    const rawServices = structured.rawServices.length ? structured.rawServices : extractServiceCandidates(html);
-    const matchedServices = matchServices(rawServices);
-    return {
-      confidence: structured.rawServices.length >= 3 && matchedServices.length > 0 ? "high" : rawServices.length >= 5 && matchedServices.length > 0 ? "medium" : matchedServices.length > 0 ? "low" : "unknown",
-      rawServices: rawServices.slice(0, 80),
-      matchedServices,
-      areaId: structured.areaId,
-      areaLabel: areaLabelFor(structured.areaId),
-    };
+    return extractBookingServicesFromHtml(await response.text());
   } catch {
     return emptyServiceCheck();
   }
+}
+
+function extractBookingServicesFromHtml(html) {
+  if (!html) {
+    return emptyServiceCheck();
+  }
+
+  const structured = extractStructuredBookingData(html);
+  const rawServices = structured.rawServices.length ? structured.rawServices : extractServiceCandidates(html);
+  const matchedServices = matchServices(rawServices);
+  return {
+    confidence: structured.rawServices.length >= 3 && matchedServices.length > 0 ? "high" : rawServices.length >= 5 && matchedServices.length > 0 ? "medium" : matchedServices.length > 0 ? "low" : "unknown",
+    rawServices: rawServices.slice(0, 80),
+    matchedServices,
+    areaId: structured.areaId,
+    areaLabel: areaLabelFor(structured.areaId),
+  };
 }
 
 function extractStructuredBookingData(html) {
@@ -1430,18 +1452,25 @@ async function fetchWithTimeout(url, options = {}) {
   }
 }
 
-async function mapWithConcurrency(items, concurrency, mapper) {
+async function mapWithConcurrency(items, concurrency, mapper, { delayMs = 0 } = {}) {
   const results = [];
   let nextIndex = 0;
   const workers = Array.from({ length: Math.min(concurrency, items.length) }, async () => {
     while (nextIndex < items.length) {
       const currentIndex = nextIndex;
       nextIndex += 1;
+      if (delayMs && currentIndex > 0) {
+        await wait(delayMs * currentIndex);
+      }
       results[currentIndex] = await mapper(items[currentIndex]);
     }
   });
   await Promise.all(workers);
   return results;
+}
+
+function wait(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 function linkLabel(type) {
