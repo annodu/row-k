@@ -1,11 +1,48 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-05-26T16:45:23.751Z",
+    "updatedAt": "2026-05-25T01:30:49.890Z",
     "count": 612,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "blubanhair",
+      "name": "Blubanhair",
+      "areaId": "essex",
+      "areaLabel": "Essex",
+      "neighbourhood": "Essex London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://blubanhair.as.me/schedule/4c572026",
+      "websiteUrl": "https://blubanhair.as.me/schedule/4c572026",
+      "instagramUrl": "https://www.instagram.com/blubanhair_/",
+      "services": [
+        "Boho braids / goddess braids",
+        "Knotless braids",
+        "Full head colour",
+        "Feed-in braids",
+        "Wash & blowdry",
+        "Traditional sew-in / leave out",
+        "Twists (with extensions)",
+        "Fulani / Lemonade braids",
+        "Silk press",
+        "Trim / Hair cut",
+        "Box braids",
+        "Sleek ponytail / bun",
+        "Half up half down",
+        "Scalp care",
+        "Moisturising treatment",
+        "U-Part wig install",
+        "Japanese straightening",
+        "Flipover / Versatile sew-in"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/blubanhair_/"
+      ]
+    },
     {
       "id": "her-ego",
       "name": "Her Ego",
