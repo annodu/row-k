@@ -1821,6 +1821,25 @@ function FreshnessRecommendationCard({
             <div className="space-y-3 rounded-none border border-stone-200 bg-stone-50 p-4">
               <div className="flex items-center justify-between gap-3">
                 <p className="text-xs font-semibold uppercase tracking-[0.12em] text-stone-600">Links</p>
+                <button
+                  type="button"
+                  disabled={isBusy || linkSaveState === "saving"}
+                  onClick={handleSaveLinks}
+                  className={cn(
+                    "inline-flex items-center gap-2 rounded-none border px-3 py-2 text-sm font-semibold transition disabled:cursor-not-allowed disabled:opacity-35",
+                    linkSaveState === "saved"
+                      ? "border-emerald-200 bg-emerald-50 text-emerald-700"
+                      : "border-stone-950 bg-stone-950 text-white hover:bg-stone-800 active:bg-stone-700",
+                  )}
+                >
+                  {linkSaveState === "saving" ? (
+                    <><Loader2 className="size-3.5 animate-spin" /> Updating</>
+                  ) : linkSaveState === "saved" ? (
+                    <><Check className="size-3.5" /> Updated</>
+                  ) : (
+                    "Update"
+                  )}
+                </button>
               </div>
               <div className="h-px bg-stone-200" />
               <div className="grid gap-3 sm:grid-cols-2">
@@ -2113,7 +2132,24 @@ function buildFreshnessRecommendationGroups(checks: DirectoryCheck[]): Freshness
       acceptUpdate,
       rejectUpdate,
     }];
-  });
+  }).sort(compareFreshnessRecommendationGroups);
+}
+
+function compareFreshnessRecommendationGroups(left: FreshnessRecommendationGroup, right: FreshnessRecommendationGroup) {
+  return freshnessGroupSeverity(right) - freshnessGroupSeverity(left) || left.stylist.localeCompare(right.stylist);
+}
+
+function freshnessGroupSeverity(row: FreshnessRecommendationGroup) {
+  if (row.details.some((detail) => detail.kind === "fix")) {
+    return 4;
+  }
+  if (row.details.some((detail) => detail.kind === "manual")) {
+    return 3;
+  }
+  if (row.details.some((detail) => detail.kind === "remove" || detail.kind === "add")) {
+    return 2;
+  }
+  return 1;
 }
 
 function isActionableBrokenLink(linkCheck: DirectoryCheck["linkChecks"][number]) {
@@ -2485,6 +2521,9 @@ function normalizeEvidenceText(value: string) {
 function isActionableFreshnessIssue(issue: string, check: DirectoryCheck) {
   const normalizedIssue = issue.toLowerCase();
   if (normalizedIssue === "possible new services found" || normalizedIssue === "possible removed services found") {
+    return false;
+  }
+  if (normalizedIssue.includes("instagram") && check.linkChecks.some((linkCheck) => linkCheck.type === "instagram" && linkCheck.status !== "ok")) {
     return false;
   }
   if (normalizedIssue.includes("booking link") && check.bookingUrl) {

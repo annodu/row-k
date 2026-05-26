@@ -1,7 +1,7 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-05-25T01:30:49.890Z",
+    "updatedAt": "2026-05-26T16:45:23.751Z",
     "count": 612,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
@@ -1957,7 +1957,7 @@
       "services": [
         "Knotless braids",
         "Boho braids / goddess braids",
-        "Wig install",
+        "Wig install (frontal / closure)",
         "Stitch braids",
         "French curl"
       ],
@@ -1996,9 +1996,9 @@
         "Traditional sew-in / leave out",
         "Closure sew-in",
         "Frontal sew-in",
-        "Tracks / Silk press + tracks / Invisible sew-in",
+        "Tracks (+ Silk press) / Partial / Invisible sew-in",
         "Microlinks",
-        "Cornrows / Twists / Underwig cornrows"
+        "Wig cornrows"
       ]
     },
     {
@@ -2219,12 +2219,12 @@
         "Silk press",
         "Wash & blowdry",
         "Trim / Hair cut",
-        "Cornrows / Twists / Underwig cornrows",
+        "Wig cornrows",
         "Knotless braids",
-        "Wig install",
+        "Wig install (frontal / closure)",
         "Traditional sew-in / leave out",
         "Moisturising treatment",
-        "Tracks / Silk press + tracks / Invisible sew-in"
+        "Tracks (+ Silk press) / Partial / Invisible sew-in"
       ]
     },
     {
@@ -3345,9 +3345,9 @@
         "Flipover / Versatile sew-in",
         "Closure sew-in",
         "Frontal sew-in",
-        "Wig install",
+        "Wig install (frontal / closure)",
         "Custom wig",
-        "Tracks / Silk press + tracks / Invisible sew-in",
+        "Tracks (+ Silk press) / Partial / Invisible sew-in",
         "U-Part wig install",
         "Frontal ponytail / bun",
         "Updo"
@@ -12001,7 +12001,7 @@
       "bookingPlatform": ".as.me",
       "bookingUrl": "https://sflaidit.as.me/schedule/630e2fa3",
       "websiteUrl": "https://sflaidit.as.me/schedule/630e2fa3",
-      "instagramUrl": "https://www.instagram.com/sflaidit/",
+      "instagramUrl": "https://www.instagram.com/ssensehairr/",
       "services": [
         "Closure sew-in",
         "Quick weave",
@@ -12657,7 +12657,8 @@
         "LA weave",
         "Silk press",
         "Highlights",
-        "Texture release"
+        "Texture release",
+        "Wig install (frontal / closure)"
       ]
     },
     {
@@ -16750,9 +16751,9 @@
       "neighbourhood": "Central and South East London",
       "postcode": "",
       "bookingPlatform": "Instagram",
-      "bookingUrl": "https://www.instagram.com/zateeshahairstylist/",
-      "websiteUrl": "https://www.instagram.com/zateeshahairstylist/",
-      "instagramUrl": "https://www.instagram.com/zateeshahairstylist/",
+      "bookingUrl": "https://www.instagram.com/zateeshabarbour/",
+      "websiteUrl": "https://www.instagram.com/zateeshabarbour/",
+      "instagramUrl": "https://www.instagram.com/zateeshabarbour/",
       "services": [
         "Bridal / Editorial",
         "Wash & blowdry",

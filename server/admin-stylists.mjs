@@ -45,6 +45,8 @@ const bookingPlatformMatchers = [
   ["calendly.com", "Calendly"],
 ];
 
+const browserUserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36";
+let nextInstagramProfileProbeAt = 0;
 const canonicalServices = [...new Set(Object.values(categoryMap).flat().filter(Boolean))].sort((left, right) => left.localeCompare(right));
 
 const intakeServiceAliases = {
@@ -366,13 +368,14 @@ export function registerAdminStylistRoutes(app) {
     const batchSalons = index.salons.slice(offset, offset + limit);
     const existingStore = await readFreshnessStore({ meta: { source: "freshness-checks", updatedAt: null, count: 0 }, checks: [], dismissedRecommendations: {} });
     const dismissedRecommendations = existingStore.dismissedRecommendations || {};
-    const checks = await mapWithConcurrency(batchSalons, isHostedRuntime() ? 2 : 6, (salon) => checkSalonFreshness(salon, dismissedRecommendations[salon.id]), {
+    const existingChecksById = new Map((existingStore.checks || []).map((check) => [check.id, check]));
+    const checks = await mapWithConcurrency(batchSalons, isHostedRuntime() ? 2 : 6, (salon) => checkSalonFreshness(salon, dismissedRecommendations[salon.id], existingChecksById.get(salon.id)), {
       delayMs: isHostedRuntime() ? 350 : 0,
     });
     const reviewChecks = checks.filter(
       (check) => check.issues.length > 0 || check.addedServices.length > 0 || check.removedServices.length > 0 || check.linkChecks?.some(isManualCheckLink),
     );
-    const mergedChecks = offset > 0 ? [...(existingStore.checks || []), ...reviewChecks] : reviewChecks;
+    const mergedChecks = offset > 0 ? mergeFreshnessChecks(existingStore.checks || [], reviewChecks) : reviewChecks;
 
     const checkedCount = Math.min(offset + batchSalons.length, index.salons.length);
     const persisted = await tryWriteJson(freshnessChecksPath, {
@@ -644,7 +647,12 @@ function requireAdmin(req, res, next) {
 }
 
 function getAdminPassword() {
-  return (process.env.ADMIN_PASSWORD || process.env.ROWK_ADMIN_PASSWORD || "").trim();
+  const configuredPassword = (process.env.ADMIN_PASSWORD || process.env.ROWK_ADMIN_PASSWORD || "").trim();
+  if (configuredPassword) {
+    return configuredPassword;
+  }
+
+  return isHostedRuntime() ? "" : "rowk-admin";
 }
 
 function createSessionToken() {
@@ -1132,13 +1140,50 @@ function hasActionableFreshnessCheck(check) {
   });
 }
 
-async function checkSalonFreshness(salon, dismissedRecommendation = {}) {
+function mergeFreshnessChecks(existingChecks, nextChecks) {
+  const merged = [...existingChecks];
+  const indexesById = new Map(merged.map((check, index) => [check.id, index]));
+
+  nextChecks.forEach((check) => {
+    const existingIndex = indexesById.get(check.id);
+    if (existingIndex === undefined) {
+      indexesById.set(check.id, merged.length);
+      merged.push(check);
+      return;
+    }
+
+    merged[existingIndex] = check;
+  });
+
+  return merged;
+}
+
+function preserveKnownBrokenInstagramLink(linkChecks, previousCheck) {
+  const previousInstagramCheck = previousCheck?.linkChecks?.find((linkCheck) => linkCheck.type === "instagram");
+  if (!isActionableBrokenLink(previousInstagramCheck)) {
+    return linkChecks;
+  }
+
+  return linkChecks.map((linkCheck) => {
+    if (linkCheck?.type !== "instagram") {
+      return linkCheck;
+    }
+
+    return isWeakInstagramOk(linkCheck) ? previousInstagramCheck : linkCheck;
+  });
+}
+
+function isWeakInstagramOk(linkCheck) {
+  return linkCheck?.type === "instagram" && linkCheck.status === "ok" && isInstagramLoginUrl(linkCheck.finalUrl);
+}
+
+async function checkSalonFreshness(salon, dismissedRecommendation = {}, previousCheck = null) {
   const [bookingLinkCheck, ...otherLinkChecks] = await Promise.all([
     checkUrl("booking", salon.bookingUrl, { includeText: true }),
     checkUrl("instagram", salon.instagramUrl),
     checkUrl("website", salon.websiteUrl && salon.websiteUrl !== salon.bookingUrl ? salon.websiteUrl : ""),
   ]);
-  const linkChecks = [stripLinkCheckResponseText(bookingLinkCheck), ...otherLinkChecks];
+  const linkChecks = preserveKnownBrokenInstagramLink([stripLinkCheckResponseText(bookingLinkCheck), ...otherLinkChecks], previousCheck);
   const activeLinkChecks = linkChecks.filter(Boolean);
   const issues = activeLinkChecks.flatMap((check) => check.issues);
   const bookingCheck = activeLinkChecks.find((check) => check.type === "booking");
@@ -1285,13 +1330,25 @@ async function checkUrl(type, url, { includeText = false } = {}) {
   };
 
   try {
+    if (type === "instagram") {
+      const instagramProfileCheck = await checkInstagramProfileUrl(result);
+      if (instagramProfileCheck) {
+        return instagramProfileCheck;
+      }
+    }
+
     const response = await fetchWithTimeout(url, { method: "GET", redirect: "follow" });
     result.finalUrl = response.url || url;
     result.httpStatus = response.status;
+    const instagramIssue = type === "instagram" ? getInstagramProfileIssue(url, result.finalUrl) : "";
+    const isWeakInstagramLoginShell = type === "instagram" && isInstagramLoginUrl(result.finalUrl);
 
     if (response.ok) {
-      result.status = "ok";
-      if (includeText) {
+      result.status = instagramIssue || isWeakInstagramLoginShell ? "unverified" : "ok";
+      if (instagramIssue) {
+        result.issues.push(instagramIssue);
+      }
+      if (includeText && result.status === "ok") {
         result.responseText = await response.text();
       }
     } else if (response.status === 404 || response.status === 410) {
@@ -1313,6 +1370,73 @@ async function checkUrl(type, url, { includeText = false } = {}) {
   }
 
   return result;
+}
+
+async function checkInstagramProfileUrl(result) {
+  const profile = getInstagramProfilePath(result.url);
+  if (!profile) {
+    return null;
+  }
+
+  const apiUrl = new URL("https://www.instagram.com/api/v1/users/web_profile_info/");
+  apiUrl.searchParams.set("username", profile);
+
+  try {
+    const response = await fetchInstagramProfileWithThrottle(apiUrl.toString(), {
+      method: "GET",
+      redirect: "follow",
+      headers: {
+        Accept: "application/json,text/plain,*/*",
+        "User-Agent": browserUserAgent,
+        Referer: "https://www.instagram.com/",
+        "Sec-Fetch-Dest": "empty",
+        "Sec-Fetch-Mode": "cors",
+        "Sec-Fetch-Site": "same-origin",
+        "X-IG-App-ID": "936619743392459",
+        "X-Requested-With": "XMLHttpRequest",
+      },
+    });
+
+    result.httpStatus = response.status;
+
+    if (response.ok) {
+      const profileData = await response.json();
+      const resolvedUsername = String(profileData?.data?.user?.username || "").toLowerCase();
+      if (resolvedUsername === profile) {
+        result.status = "ok";
+      } else {
+        result.status = "unverified";
+        result.issues.push(resolvedUsername ? `Instagram profile resolved as /${resolvedUsername}/ instead of /${profile}/` : "Instagram profile response did not include a username");
+      }
+      return result;
+    }
+
+    if (response.status === 404 || response.status === 410) {
+      result.status = "broken";
+      result.issues.push("Instagram profile appears to be gone");
+      return result;
+    }
+
+    if (response.status === 401 || response.status === 403 || response.status === 429) {
+      return null;
+    }
+  } catch {
+    return null;
+  }
+
+  return null;
+}
+
+async function fetchInstagramProfileWithThrottle(url, options) {
+  const now = Date.now();
+  const waitMs = Math.max(0, nextInstagramProfileProbeAt - now);
+  nextInstagramProfileProbeAt = Math.max(now, nextInstagramProfileProbeAt) + 900;
+
+  if (waitMs) {
+    await wait(waitMs);
+  }
+
+  return fetchWithTimeout(url, options);
 }
 
 function stripLinkCheckResponseText(linkCheck) {
@@ -1533,6 +1657,61 @@ function safeHost(url) {
 function isExpectedRedirect(originalHost, finalHost) {
   return originalHost === finalHost || finalHost.endsWith(`.${originalHost}`) || originalHost.endsWith(`.${finalHost}`);
 }
+
+function getInstagramProfileIssue(originalUrl, finalUrl) {
+  const originalProfile = getInstagramProfilePath(originalUrl);
+  const finalProfile = getInstagramProfilePath(finalUrl);
+
+  if (!originalProfile) {
+    return "";
+  }
+
+  if (isInstagramLoginUrl(finalUrl)) {
+    return "";
+  }
+
+  if (!finalProfile) {
+    return "Instagram no longer resolves to the saved profile";
+  }
+
+  if (originalProfile !== finalProfile) {
+    return `Instagram redirects from /${originalProfile}/ to /${finalProfile}/`;
+  }
+
+  return "";
+}
+
+function getInstagramProfilePath(url) {
+  let parsed;
+  try {
+    parsed = new URL(url);
+  } catch {
+    return "";
+  }
+
+  const host = parsed.hostname.replace(/^www\./, "");
+  if (host !== "instagram.com") {
+    return "";
+  }
+
+  const [profilePath = ""] = parsed.pathname.split("/").filter(Boolean);
+  if (!profilePath || reservedInstagramPaths.has(profilePath.toLowerCase())) {
+    return "";
+  }
+
+  return profilePath.toLowerCase();
+}
+
+function isInstagramLoginUrl(url) {
+  try {
+    const parsed = new URL(url);
+    return parsed.hostname.replace(/^www\./, "") === "instagram.com" && parsed.pathname.startsWith("/accounts/login");
+  } catch {
+    return false;
+  }
+}
+
+const reservedInstagramPaths = new Set(["accounts", "about", "api", "developer", "direct", "explore", "legal", "oauth", "p", "reel", "stories"]);
 
 async function buildDraft(input) {
   const links = normalizeLines(input.links);
