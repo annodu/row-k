@@ -1,8 +1,8 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-05-25T01:30:49.890Z",
-    "count": 612,
+    "updatedAt": "2026-05-26T16:50:01.629Z",
+    "count": 613,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
@@ -12030,7 +12030,7 @@
     },
     {
       "id": "sf-laid-it",
-      "name": "SF Laid It",
+      "name": "ssensehairr",
       "areaId": "south-east",
       "areaLabel": "South East",
       "neighbourhood": "South East London",
@@ -12052,7 +12052,11 @@
       "source": "manual",
       "evidence": [
         "User-provided manual addition."
-      ]
+      ],
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "updatedAt": "2026-05-26T16:50:01.629Z"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
