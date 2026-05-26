@@ -1,7 +1,7 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-05-26T16:50:01.629Z",
+    "updatedAt": "2026-05-26T16:50:37.950Z",
     "count": 613,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
@@ -16793,16 +16793,17 @@
       "postcode": "",
       "bookingPlatform": "Instagram",
       "bookingUrl": "https://www.instagram.com/zateeshabarbour/",
-      "websiteUrl": "https://www.instagram.com/zateeshabarbour/",
+      "websiteUrl": "https://www.instagram.com/zateeshahairstylist/",
       "instagramUrl": "https://www.instagram.com/zateeshabarbour/",
       "services": [
-        "Bridal / Editorial",
         "Wash & blowdry",
-        "Trim / Hair cut",
-        "Curly cut / Wash & go",
         "Full head colour",
         "Traditional sew-in / leave out"
-      ]
+      ],
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "updatedAt": "2026-05-26T16:50:37.950Z"
     },
     {
       "id": "cg-hair",
