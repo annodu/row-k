@@ -1,8 +1,8 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-05-27T23:22:53.146Z",
-    "count": 18
+    "updatedAt": "2026-05-27T23:24:42.113Z",
+    "count": 17
   },
   "drafts": [
     {
@@ -484,36 +484,6 @@
       "createdAt": "2026-05-27T22:59:48.333Z",
       "updatedAt": "2026-05-27T22:59:48.333Z",
       "lastCheckedAt": "2026-05-27T22:59:48.333Z"
-    },
-    {
-      "id": "aureahairnco-mpoo295u",
-      "status": "needs_review",
-      "name": "Aureahairnco",
-      "areaId": "",
-      "areaIds": [],
-      "areaLabel": "",
-      "neighbourhood": "",
-      "postcode": "",
-      "bookingPlatform": "",
-      "bookingUrl": "",
-      "websiteUrl": "",
-      "instagramUrl": "https://www.instagram.com/aureahairnco/",
-      "tiktokUrl": "",
-      "services": [],
-      "rawServices": [],
-      "summary": "Admin draft created from stylist intake.",
-      "confidence": 0.35,
-      "warnings": [
-        "No booking link identified yet.",
-        "No services matched yet."
-      ],
-      "evidence": [
-        "Submitted link: https://www.instagram.com/aureahairnco/"
-      ],
-      "source": "admin-draft",
-      "createdAt": "2026-05-27T22:59:32.702Z",
-      "updatedAt": "2026-05-27T22:59:32.702Z",
-      "lastCheckedAt": "2026-05-27T22:59:32.702Z"
     },
     {
       "id": "microsbylaura-mpi6stjg",

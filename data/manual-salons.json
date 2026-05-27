@@ -1,11 +1,36 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-05-27T23:22:53.146Z",
-    "count": 623,
+    "updatedAt": "2026-05-27T23:24:42.112Z",
+    "count": 624,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "aureahairnco",
+      "name": "Aureahairnco",
+      "areaId": "essex",
+      "areaLabel": "Essex",
+      "neighbourhood": "Essex London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://aureahairnco.as.me/schedule/02b35fce?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0DMTAwAHNydGMGYXBwX2lkDzkzNjYxOTc0MzM5MjQ1OQABp0vmmEc1W_2wCtUEdkaLc1Jd5YWNbEJ5_1FRaBKOq09Nr5QYeqeCbbuDWGXP_aem_q4Tl0UsN8rLzsXugBP4u0A",
+      "websiteUrl": "https://aureahairnco.as.me/schedule/02b35fce?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0DMTAwAHNydGMGYXBwX2lkDzkzNjYxOTc0MzM5MjQ1OQABp0vmmEc1W_2wCtUEdkaLc1Jd5YWNbEJ5_1FRaBKOq09Nr5QYeqeCbbuDWGXP_aem_q4Tl0UsN8rLzsXugBP4u0A",
+      "instagramUrl": "https://www.instagram.com/aureahairnco/",
+      "services": [
+        "Custom wig",
+        "Wig install (frontal / closure)",
+        "Frontal ponytail / bun",
+        "Traditional sew-in / leave out",
+        "Half up half down",
+        "Updo"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/aureahairnco/"
+      ]
+    },
     {
       "id": "laidbyjhair",
       "name": "Laidbyjhair",
