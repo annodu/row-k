@@ -1,10 +1,40 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-05-27T22:59:48.508Z",
-    "count": 11
+    "updatedAt": "2026-05-27T23:00:25.453Z",
+    "count": 12
   },
   "drafts": [
+    {
+      "id": "murisalondon-mpoo3dpe",
+      "status": "needs_review",
+      "name": "Murisalondon",
+      "areaId": "",
+      "areaIds": [],
+      "areaLabel": "",
+      "neighbourhood": "",
+      "postcode": "",
+      "bookingPlatform": "",
+      "bookingUrl": "",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/murisalondon/",
+      "tiktokUrl": "",
+      "services": [],
+      "rawServices": [],
+      "summary": "Admin draft created from stylist intake.",
+      "confidence": 0.35,
+      "warnings": [
+        "No booking link identified yet.",
+        "No services matched yet."
+      ],
+      "evidence": [
+        "Submitted link: https://www.instagram.com/murisalondon/"
+      ],
+      "source": "admin-draft",
+      "createdAt": "2026-05-27T23:00:25.245Z",
+      "updatedAt": "2026-05-27T23:00:25.245Z",
+      "lastCheckedAt": "2026-05-27T23:00:25.245Z"
+    },
     {
       "id": "rrhair-1-mpoo2l81",
       "status": "needs_review",
