@@ -1,11 +1,37 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-05-27T23:21:29.148Z",
-    "count": 622,
+    "updatedAt": "2026-05-27T23:22:53.146Z",
+    "count": 623,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "laidbyjhair",
+      "name": "Laidbyjhair",
+      "areaId": "south-west",
+      "areaIds": [
+        "south-west",
+        "croydon"
+      ],
+      "areaLabel": "South West London / Croydon",
+      "neighbourhood": "South West London and Croydon London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://laidbyjhair.as.me/schedule/2c94793b",
+      "websiteUrl": "https://laidbyjhair.as.me/schedule/2c94793b",
+      "instagramUrl": "https://www.instagram.com/laidbyjhair/",
+      "services": [
+        "Custom wig",
+        "Wig install (frontal / closure)",
+        "Quick weave"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/laidbyjhair/"
+      ]
+    },
     {
       "id": "shaistylesuk",
       "name": "Shaistylesuk",

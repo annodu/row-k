@@ -1,8 +1,8 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-05-27T23:21:29.149Z",
-    "count": 19
+    "updatedAt": "2026-05-27T23:22:53.146Z",
+    "count": 18
   },
   "drafts": [
     {
@@ -514,36 +514,6 @@
       "createdAt": "2026-05-27T22:59:32.702Z",
       "updatedAt": "2026-05-27T22:59:32.702Z",
       "lastCheckedAt": "2026-05-27T22:59:32.702Z"
-    },
-    {
-      "id": "laidbyjhair-mpoo1dfu",
-      "status": "needs_review",
-      "name": "Laidbyjhair",
-      "areaId": "",
-      "areaIds": [],
-      "areaLabel": "",
-      "neighbourhood": "",
-      "postcode": "",
-      "bookingPlatform": "",
-      "bookingUrl": "",
-      "websiteUrl": "",
-      "instagramUrl": "https://www.instagram.com/laidbyjhair/",
-      "tiktokUrl": "",
-      "services": [],
-      "rawServices": [],
-      "summary": "Admin draft created from stylist intake.",
-      "confidence": 0.35,
-      "warnings": [
-        "No booking link identified yet.",
-        "No services matched yet."
-      ],
-      "evidence": [
-        "Submitted link: https://www.instagram.com/laidbyjhair/"
-      ],
-      "source": "admin-draft",
-      "createdAt": "2026-05-27T22:58:51.589Z",
-      "updatedAt": "2026-05-27T22:58:51.589Z",
-      "lastCheckedAt": "2026-05-27T22:58:51.589Z"
     },
     {
       "id": "microsbylaura-mpi6stjg",
