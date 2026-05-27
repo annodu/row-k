@@ -1,10 +1,40 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-05-27T22:59:32.883Z",
-    "count": 10
+    "updatedAt": "2026-05-27T22:59:48.508Z",
+    "count": 11
   },
   "drafts": [
+    {
+      "id": "rrhair-1-mpoo2l81",
+      "status": "needs_review",
+      "name": "Rrhair 1",
+      "areaId": "",
+      "areaIds": [],
+      "areaLabel": "",
+      "neighbourhood": "",
+      "postcode": "",
+      "bookingPlatform": "",
+      "bookingUrl": "",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/rrhair_.1/",
+      "tiktokUrl": "",
+      "services": [],
+      "rawServices": [],
+      "summary": "Admin draft created from stylist intake.",
+      "confidence": 0.35,
+      "warnings": [
+        "No booking link identified yet.",
+        "No services matched yet."
+      ],
+      "evidence": [
+        "Submitted link: https://www.instagram.com/rrhair_.1/"
+      ],
+      "source": "admin-draft",
+      "createdAt": "2026-05-27T22:59:48.333Z",
+      "updatedAt": "2026-05-27T22:59:48.333Z",
+      "lastCheckedAt": "2026-05-27T22:59:48.333Z"
+    },
     {
       "id": "aureahairnco-mpoo295u",
       "status": "needs_review",
