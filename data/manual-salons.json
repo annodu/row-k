@@ -1,11 +1,36 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-05-27T23:35:48.679Z",
-    "count": 631,
+    "updatedAt": "2026-05-27T23:39:28.038Z",
+    "count": 632,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "penggirlshair",
+      "name": "Penggirlshair",
+      "areaId": "east",
+      "areaLabel": "East London",
+      "neighbourhood": "East London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://penggirlshair.as.me/schedule/070ec520",
+      "websiteUrl": "https://penggirlshair.as.me/schedule/070ec520",
+      "instagramUrl": "https://www.instagram.com/penggirlshair/",
+      "services": [
+        "Traditional sew-in / leave out",
+        "Wig install (frontal / closure)",
+        "Custom wig",
+        "Frontal ponytail / bun",
+        "Closure sew-in",
+        "Flipover / Versatile sew-in"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/penggirlshair/"
+      ]
+    },
     {
       "id": "renew-meee",
       "name": "Renew Meee",
