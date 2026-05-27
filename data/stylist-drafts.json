@@ -1,10 +1,40 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-05-27T23:04:39.865Z",
-    "count": 25
+    "updatedAt": "2026-05-27T23:04:53.239Z",
+    "count": 26
   },
   "drafts": [
+    {
+      "id": "brushandbundles-mpoo94c9",
+      "status": "needs_review",
+      "name": "Brushandbundles",
+      "areaId": "",
+      "areaIds": [],
+      "areaLabel": "",
+      "neighbourhood": "",
+      "postcode": "",
+      "bookingPlatform": "",
+      "bookingUrl": "",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/brushandbundles/",
+      "tiktokUrl": "",
+      "services": [],
+      "rawServices": [],
+      "summary": "Admin draft created from stylist intake.",
+      "confidence": 0.35,
+      "warnings": [
+        "No booking link identified yet.",
+        "No services matched yet."
+      ],
+      "evidence": [
+        "Submitted link: https://www.instagram.com/brushandbundles/"
+      ],
+      "source": "admin-draft",
+      "createdAt": "2026-05-27T23:04:53.045Z",
+      "updatedAt": "2026-05-27T23:04:53.045Z",
+      "lastCheckedAt": "2026-05-27T23:04:53.045Z"
+    },
     {
       "id": "thehairklub-mpoo8u1z",
       "status": "needs_review",
