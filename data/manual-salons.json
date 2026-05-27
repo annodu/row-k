@@ -1,11 +1,43 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-05-27T23:26:42.851Z",
-    "count": 625,
+    "updatedAt": "2026-05-27T23:28:46.064Z",
+    "count": 626,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "murisalondon",
+      "name": "Murisalondon",
+      "areaId": "essex",
+      "areaIds": [
+        "essex",
+        "east"
+      ],
+      "areaLabel": "Essex / East London",
+      "neighbourhood": "Essex and East London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://murisalondon.as.me/schedule/17455dc3",
+      "websiteUrl": "https://murisalondon.as.me/schedule/17455dc3",
+      "instagramUrl": "https://www.instagram.com/murisalondon/",
+      "services": [
+        "Moisturising treatment",
+        "Scalp care",
+        "Wash & blowdry",
+        "Sew-in take-down",
+        "Closure sew-in",
+        "Flipover / Versatile sew-in",
+        "Frontal sew-in",
+        "Wig install (frontal / closure)",
+        "U-Part wig install"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/murisalondon/"
+      ]
+    },
     {
       "id": "rrhair-1",
       "name": "Rrhair 1",

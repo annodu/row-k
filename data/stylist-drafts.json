@@ -1,8 +1,8 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-05-27T23:26:42.851Z",
-    "count": 16
+    "updatedAt": "2026-05-27T23:28:46.064Z",
+    "count": 15
   },
   "drafts": [
     {
@@ -424,36 +424,6 @@
       "createdAt": "2026-05-27T23:00:46.812Z",
       "updatedAt": "2026-05-27T23:00:46.812Z",
       "lastCheckedAt": "2026-05-27T23:00:46.812Z"
-    },
-    {
-      "id": "murisalondon-mpoo3dpe",
-      "status": "needs_review",
-      "name": "Murisalondon",
-      "areaId": "",
-      "areaIds": [],
-      "areaLabel": "",
-      "neighbourhood": "",
-      "postcode": "",
-      "bookingPlatform": "",
-      "bookingUrl": "",
-      "websiteUrl": "",
-      "instagramUrl": "https://www.instagram.com/murisalondon/",
-      "tiktokUrl": "",
-      "services": [],
-      "rawServices": [],
-      "summary": "Admin draft created from stylist intake.",
-      "confidence": 0.35,
-      "warnings": [
-        "No booking link identified yet.",
-        "No services matched yet."
-      ],
-      "evidence": [
-        "Submitted link: https://www.instagram.com/murisalondon/"
-      ],
-      "source": "admin-draft",
-      "createdAt": "2026-05-27T23:00:25.245Z",
-      "updatedAt": "2026-05-27T23:00:25.245Z",
-      "lastCheckedAt": "2026-05-27T23:00:25.245Z"
     },
     {
       "id": "microsbylaura-mpi6stjg",
