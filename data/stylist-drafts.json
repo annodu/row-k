@@ -1,8 +1,8 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-05-27T23:32:01.106Z",
-    "count": 13
+    "updatedAt": "2026-05-27T23:32:53.553Z",
+    "count": 12
   },
   "drafts": [
     {
@@ -334,36 +334,6 @@
       "createdAt": "2026-05-27T23:02:20.662Z",
       "updatedAt": "2026-05-27T23:02:20.662Z",
       "lastCheckedAt": "2026-05-27T23:02:20.662Z"
-    },
-    {
-      "id": "lianedidit-mpoo5ipn",
-      "status": "needs_review",
-      "name": "Lianedidit",
-      "areaId": "",
-      "areaIds": [],
-      "areaLabel": "",
-      "neighbourhood": "",
-      "postcode": "",
-      "bookingPlatform": "",
-      "bookingUrl": "",
-      "websiteUrl": "",
-      "instagramUrl": "https://www.instagram.com/lianedidit/",
-      "tiktokUrl": "",
-      "services": [],
-      "rawServices": [],
-      "summary": "Admin draft created from stylist intake.",
-      "confidence": 0.35,
-      "warnings": [
-        "No booking link identified yet.",
-        "No services matched yet."
-      ],
-      "evidence": [
-        "Submitted link: https://www.instagram.com/lianedidit/"
-      ],
-      "source": "admin-draft",
-      "createdAt": "2026-05-27T23:02:05.045Z",
-      "updatedAt": "2026-05-27T23:02:05.045Z",
-      "lastCheckedAt": "2026-05-27T23:02:05.045Z"
     },
     {
       "id": "microsbylaura-mpi6stjg",

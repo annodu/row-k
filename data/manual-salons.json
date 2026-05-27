@@ -1,11 +1,36 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-05-27T23:32:01.106Z",
-    "count": 628,
+    "updatedAt": "2026-05-27T23:32:53.553Z",
+    "count": 629,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "lianedidit",
+      "name": "Lianedidit",
+      "areaId": "essex",
+      "areaLabel": "Essex",
+      "neighbourhood": "Essex London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://lianediditt.as.me/schedule/bbefa5ed",
+      "websiteUrl": "https://lianediditt.as.me/schedule/bbefa5ed",
+      "instagramUrl": "https://www.instagram.com/lianedidit/",
+      "services": [
+        "Custom wig",
+        "Frontal ponytail / bun",
+        "Closure sew-in",
+        "Traditional sew-in / leave out",
+        "Quick weave",
+        "Wig install (frontal / closure)"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/lianedidit/"
+      ]
+    },
     {
       "id": "hairconnoisseuruk",
       "name": "Hairconnoisseuruk",
