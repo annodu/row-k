@@ -1,10 +1,40 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-05-27T23:01:03.517Z",
-    "count": 14
+    "updatedAt": "2026-05-27T23:01:41.440Z",
+    "count": 15
   },
   "drafts": [
+    {
+      "id": "laidby-j-mpoo50da",
+      "status": "needs_review",
+      "name": "Laidby J",
+      "areaId": "",
+      "areaIds": [],
+      "areaLabel": "",
+      "neighbourhood": "",
+      "postcode": "",
+      "bookingPlatform": "",
+      "bookingUrl": "",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/laidby_j/",
+      "tiktokUrl": "",
+      "services": [],
+      "rawServices": [],
+      "summary": "Admin draft created from stylist intake.",
+      "confidence": 0.35,
+      "warnings": [
+        "No booking link identified yet.",
+        "No services matched yet."
+      ],
+      "evidence": [
+        "Submitted link: https://www.instagram.com/laidby_j/"
+      ],
+      "source": "admin-draft",
+      "createdAt": "2026-05-27T23:01:41.274Z",
+      "updatedAt": "2026-05-27T23:01:41.274Z",
+      "lastCheckedAt": "2026-05-27T23:01:41.274Z"
+    },
     {
       "id": "hairconnoisseuruk-mpoo473t",
       "status": "needs_review",
