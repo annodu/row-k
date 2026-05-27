@@ -1,11 +1,38 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-05-27T23:18:13.571Z",
-    "count": 620,
+    "updatedAt": "2026-05-27T23:20:13.411Z",
+    "count": 621,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "izstylz",
+      "name": "Izstylz",
+      "areaId": "essex",
+      "areaLabel": "Essex",
+      "neighbourhood": "Essex London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/_izstylz/",
+      "websiteUrl": "https://www.instagram.com/_izstylz/",
+      "instagramUrl": "https://www.instagram.com/_izstylz/",
+      "services": [
+        "Boho braids / goddess braids",
+        "Knotless braids",
+        "Fulani / Lemonade braids",
+        "Wig cornrows",
+        "Wig colour",
+        "Traditional sew-in / leave out",
+        "Retwist",
+        "Starter locs"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/_izstylz/"
+      ]
+    },
     {
       "id": "hairbyivs",
       "name": "Hairbyivs",
