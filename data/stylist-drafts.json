@@ -1,8 +1,8 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-05-27T23:42:23.690Z",
-    "count": 7
+    "updatedAt": "2026-05-27T23:43:31.243Z",
+    "count": 6
   },
   "drafts": [
     {
@@ -124,36 +124,6 @@
       "createdAt": "2026-05-27T23:04:21.271Z",
       "updatedAt": "2026-05-27T23:04:21.271Z",
       "lastCheckedAt": "2026-05-27T23:04:21.271Z"
-    },
-    {
-      "id": "pastyles-mpoo85cj",
-      "status": "needs_review",
-      "name": "Pastyles",
-      "areaId": "",
-      "areaIds": [],
-      "areaLabel": "",
-      "neighbourhood": "",
-      "postcode": "",
-      "bookingPlatform": "",
-      "bookingUrl": "",
-      "websiteUrl": "",
-      "instagramUrl": "https://www.instagram.com/pastyles_/",
-      "tiktokUrl": "",
-      "services": [],
-      "rawServices": [],
-      "summary": "Admin draft created from stylist intake.",
-      "confidence": 0.35,
-      "warnings": [
-        "No booking link identified yet.",
-        "No services matched yet."
-      ],
-      "evidence": [
-        "Submitted link: https://www.instagram.com/pastyles_/"
-      ],
-      "source": "admin-draft",
-      "createdAt": "2026-05-27T23:04:07.695Z",
-      "updatedAt": "2026-05-27T23:04:07.695Z",
-      "lastCheckedAt": "2026-05-27T23:04:07.695Z"
     },
     {
       "id": "hairbylishan-mpoo6pwu",

@@ -1,11 +1,37 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-05-27T23:42:23.689Z",
-    "count": 634,
+    "updatedAt": "2026-05-27T23:43:31.243Z",
+    "count": 635,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "pastyles",
+      "name": "Pastyles",
+      "areaId": "kent",
+      "areaLabel": "Kent",
+      "neighbourhood": "Kent London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://pastyles.as.me/schedule/6ae45f1f",
+      "websiteUrl": "https://pastyles.as.me/schedule/6ae45f1f",
+      "instagramUrl": "https://www.instagram.com/pastyles_/",
+      "services": [
+        "Updo",
+        "Sleek ponytail / bun",
+        "Wig cornrows",
+        "Traditional sew-in / leave out",
+        "Silk press",
+        "Flipover / Versatile sew-in",
+        "Half up half down"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/pastyles_/"
+      ]
+    },
     {
       "id": "hairkemistry",
       "name": "Hairkemistry",
