@@ -1,8 +1,8 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-05-27T23:28:46.064Z",
-    "count": 15
+    "updatedAt": "2026-05-27T23:30:28.253Z",
+    "count": 14
   },
   "drafts": [
     {
@@ -394,36 +394,6 @@
       "createdAt": "2026-05-27T23:01:03.349Z",
       "updatedAt": "2026-05-27T23:01:03.349Z",
       "lastCheckedAt": "2026-05-27T23:01:03.349Z"
-    },
-    {
-      "id": "hairbyhml-mpoo3ucg",
-      "status": "needs_review",
-      "name": "Hairbyhml",
-      "areaId": "",
-      "areaIds": [],
-      "areaLabel": "",
-      "neighbourhood": "",
-      "postcode": "",
-      "bookingPlatform": "",
-      "bookingUrl": "",
-      "websiteUrl": "",
-      "instagramUrl": "https://www.instagram.com/hairbyhml/",
-      "tiktokUrl": "",
-      "services": [],
-      "rawServices": [],
-      "summary": "Admin draft created from stylist intake.",
-      "confidence": 0.35,
-      "warnings": [
-        "No booking link identified yet.",
-        "No services matched yet."
-      ],
-      "evidence": [
-        "Submitted link: https://www.instagram.com/hairbyhml/"
-      ],
-      "source": "admin-draft",
-      "createdAt": "2026-05-27T23:00:46.812Z",
-      "updatedAt": "2026-05-27T23:00:46.812Z",
-      "lastCheckedAt": "2026-05-27T23:00:46.812Z"
     },
     {
       "id": "microsbylaura-mpi6stjg",

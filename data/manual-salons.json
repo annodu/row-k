@@ -1,11 +1,40 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-05-27T23:28:46.064Z",
-    "count": 626,
+    "updatedAt": "2026-05-27T23:30:28.253Z",
+    "count": 627,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "hairbyhml",
+      "name": "Hairbyhml",
+      "areaId": "east",
+      "areaLabel": "East London",
+      "neighbourhood": "East London London",
+      "postcode": "",
+      "bookingPlatform": "Direct",
+      "bookingUrl": "https://www.instagram.com/hairbyhml/",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/hairbyhml/",
+      "services": [
+        "Faux locs",
+        "Knotless braids",
+        "Wig cornrows",
+        "Retwist",
+        "Starter locs",
+        "Flipover / Versatile sew-in",
+        "Traditional sew-in / leave out",
+        "Closure sew-in",
+        "Wig install (frontal / closure)",
+        "Frontal ponytail / bun"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/hairbyhml/"
+      ]
+    },
     {
       "id": "murisalondon",
       "name": "Murisalondon",
