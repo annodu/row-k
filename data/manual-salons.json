@@ -1,11 +1,50 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-05-27T23:15:33.362Z",
-    "count": 618,
+    "updatedAt": "2026-05-27T23:16:54.655Z",
+    "count": 619,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "laidby-j",
+      "name": "Laidby J",
+      "areaId": "essex",
+      "areaLabel": "Essex",
+      "neighbourhood": "Essex London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://laidbyjbooking.as.me/schedule/90beb11d",
+      "websiteUrl": "https://laidbyjbooking.as.me/schedule/90beb11d",
+      "instagramUrl": "https://www.instagram.com/laidby_j/",
+      "services": [
+        "Fulani / Lemonade braids",
+        "Boho braids / goddess braids",
+        "Knotless braids",
+        "Sleek ponytail / bun",
+        "Butterfly locs",
+        "Feed-in braids",
+        "French curl",
+        "Full head colour",
+        "Wig cornrows",
+        "Stitch braids",
+        "Wig install (frontal / closure)",
+        "Updo",
+        "Half up half down",
+        "Frontal ponytail / bun",
+        "Twists (with extensions)",
+        "Traditional sew-in / leave out",
+        "Flipover / Versatile sew-in",
+        "Closure sew-in",
+        "Frontal sew-in",
+        "Custom wig"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/laidby_j/"
+      ]
+    },
     {
       "id": "klacebar",
       "name": "Klacebar",
