@@ -1,11 +1,35 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-05-27T23:39:28.038Z",
-    "count": 632,
+    "updatedAt": "2026-05-27T23:40:25.909Z",
+    "count": 633,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "bynickellecarey",
+      "name": "Bynickellecarey",
+      "areaId": "east",
+      "areaLabel": "East London",
+      "neighbourhood": "East London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://bynickellecarey.as.me/schedule/1f94d1b3",
+      "websiteUrl": "https://bynickellecarey.as.me/schedule/1f94d1b3",
+      "instagramUrl": "https://www.instagram.com/bynickellecarey/",
+      "services": [
+        "Wig install (frontal / closure)",
+        "Custom wig",
+        "Traditional sew-in / leave out",
+        "Closure sew-in",
+        "Flipover / Versatile sew-in"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/bynickellecarey/"
+      ]
+    },
     {
       "id": "penggirlshair",
       "name": "Penggirlshair",

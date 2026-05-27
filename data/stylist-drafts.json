@@ -1,8 +1,8 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-05-27T23:39:28.038Z",
-    "count": 9
+    "updatedAt": "2026-05-27T23:40:25.909Z",
+    "count": 8
   },
   "drafts": [
     {
@@ -184,36 +184,6 @@
       "createdAt": "2026-05-27T23:03:50.158Z",
       "updatedAt": "2026-05-27T23:03:50.158Z",
       "lastCheckedAt": "2026-05-27T23:03:50.158Z"
-    },
-    {
-      "id": "bynickellecarey-mpoo7f2a",
-      "status": "needs_review",
-      "name": "Bynickellecarey",
-      "areaId": "",
-      "areaIds": [],
-      "areaLabel": "",
-      "neighbourhood": "",
-      "postcode": "",
-      "bookingPlatform": "",
-      "bookingUrl": "",
-      "websiteUrl": "",
-      "instagramUrl": "https://www.instagram.com/bynickellecarey/",
-      "tiktokUrl": "",
-      "services": [],
-      "rawServices": [],
-      "summary": "Admin draft created from stylist intake.",
-      "confidence": 0.35,
-      "warnings": [
-        "No booking link identified yet.",
-        "No services matched yet."
-      ],
-      "evidence": [
-        "Submitted link: https://www.instagram.com/bynickellecarey/"
-      ],
-      "source": "admin-draft",
-      "createdAt": "2026-05-27T23:03:33.630Z",
-      "updatedAt": "2026-05-27T23:03:33.630Z",
-      "lastCheckedAt": "2026-05-27T23:03:33.630Z"
     },
     {
       "id": "hairbylishan-mpoo6pwu",
