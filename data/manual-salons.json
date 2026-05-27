@@ -1,11 +1,40 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-05-27T23:44:29.729Z",
-    "count": 636,
+    "updatedAt": "2026-05-27T23:45:08.635Z",
+    "count": 637,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "thehairklub",
+      "name": "Thehairklub",
+      "areaId": "kent",
+      "areaLabel": "Kent",
+      "neighbourhood": "Kent London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://thehairklub.as.me/schedule/2a2e2658",
+      "websiteUrl": "https://thehairklub.as.me/schedule/2a2e2658",
+      "instagramUrl": "https://www.instagram.com/thehairklub_/",
+      "services": [
+        "Traditional sew-in / leave out",
+        "Quick weave",
+        "Flipover / Versatile sew-in",
+        "Closure sew-in",
+        "Custom wig",
+        "Tape ins",
+        "Natural hair education",
+        "Wig install (frontal / closure)",
+        "Feed-in braids",
+        "Wig cornrows"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/thehairklub_/"
+      ]
+    },
     {
       "id": "thelacespaceuk",
       "name": "Thelacespaceuk",
