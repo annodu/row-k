@@ -1,11 +1,34 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-05-27T23:30:28.253Z",
-    "count": 627,
+    "updatedAt": "2026-05-27T23:32:01.106Z",
+    "count": 628,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "hairconnoisseuruk",
+      "name": "Hairconnoisseuruk",
+      "areaId": "east",
+      "areaLabel": "East London",
+      "neighbourhood": "East London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://hairconnoisseuruk.as.me/schedule/06fa34d7",
+      "websiteUrl": "https://hairconnoisseuruk.as.me/schedule/06fa34d7",
+      "instagramUrl": "https://www.instagram.com/hairconnoisseuruk/",
+      "services": [
+        "Sleek ponytail / bun",
+        "Traditional sew-in / leave out",
+        "Half up half down",
+        "Flipover / Versatile sew-in"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/hairconnoisseuruk/"
+      ]
+    },
     {
       "id": "hairbyhml",
       "name": "Hairbyhml",
