@@ -1,10 +1,40 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-05-27T22:57:31.152Z",
-    "count": 6
+    "updatedAt": "2026-05-27T22:58:29.059Z",
+    "count": 7
   },
   "drafts": [
+    {
+      "id": "slaybynay-mpoo0vx2",
+      "status": "needs_review",
+      "name": "Slaybynay",
+      "areaId": "",
+      "areaIds": [],
+      "areaLabel": "",
+      "neighbourhood": "",
+      "postcode": "",
+      "bookingPlatform": "",
+      "bookingUrl": "",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/slaybynay_/",
+      "tiktokUrl": "",
+      "services": [],
+      "rawServices": [],
+      "summary": "Admin draft created from stylist intake.",
+      "confidence": 0.35,
+      "warnings": [
+        "No booking link identified yet.",
+        "No services matched yet."
+      ],
+      "evidence": [
+        "Submitted link: https://www.instagram.com/slaybynay_/"
+      ],
+      "source": "admin-draft",
+      "createdAt": "2026-05-27T22:58:28.883Z",
+      "updatedAt": "2026-05-27T22:58:28.883Z",
+      "lastCheckedAt": "2026-05-27T22:58:28.883Z"
+    },
     {
       "id": "shaistylesuk-mponzn88",
       "status": "needs_review",
