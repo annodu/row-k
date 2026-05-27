@@ -1,10 +1,40 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-05-27T23:03:50.321Z",
-    "count": 22
+    "updatedAt": "2026-05-27T23:04:07.889Z",
+    "count": 23
   },
   "drafts": [
+    {
+      "id": "pastyles-mpoo85cj",
+      "status": "needs_review",
+      "name": "Pastyles",
+      "areaId": "",
+      "areaIds": [],
+      "areaLabel": "",
+      "neighbourhood": "",
+      "postcode": "",
+      "bookingPlatform": "",
+      "bookingUrl": "",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/pastyles_/",
+      "tiktokUrl": "",
+      "services": [],
+      "rawServices": [],
+      "summary": "Admin draft created from stylist intake.",
+      "confidence": 0.35,
+      "warnings": [
+        "No booking link identified yet.",
+        "No services matched yet."
+      ],
+      "evidence": [
+        "Submitted link: https://www.instagram.com/pastyles_/"
+      ],
+      "source": "admin-draft",
+      "createdAt": "2026-05-27T23:04:07.695Z",
+      "updatedAt": "2026-05-27T23:04:07.695Z",
+      "lastCheckedAt": "2026-05-27T23:04:07.695Z"
+    },
     {
       "id": "hairkemistry-mpoo7rte",
       "status": "needs_review",
