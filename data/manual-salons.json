@@ -1,7 +1,7 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-05-27T06:18:22.512Z",
+    "updatedAt": "2026-05-27T06:28:30.463Z",
     "count": 614,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
@@ -296,13 +296,20 @@
       "websiteUrl": "https://www.instagram.com/hausofshee/",
       "instagramUrl": "https://www.instagram.com/hausofshee/",
       "services": [
-        "Bridal / Editorial"
+        "Bridal / Editorial",
+        "Sleek ponytail / bun",
+        "Wig install (frontal / closure)",
+        "Updo"
       ],
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
       "evidence": [
         "Submitted link: https://www.instagram.com/hausofshee/"
-      ]
+      ],
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "updatedAt": "2026-05-27T06:28:30.463Z"
     },
     {
       "id": "carterhairco-2",
