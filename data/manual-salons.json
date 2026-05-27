@@ -1,11 +1,33 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-05-27T23:32:53.553Z",
-    "count": 629,
+    "updatedAt": "2026-05-27T23:34:29.097Z",
+    "count": 630,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "a10hair",
+      "name": "A10hair",
+      "areaId": "east",
+      "areaLabel": "East London",
+      "neighbourhood": "East London London",
+      "postcode": "",
+      "bookingPlatform": "Direct",
+      "bookingUrl": "https://www.instagram.com/a10hair_/",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/a10hair_/",
+      "services": [
+        "Wig install (frontal / closure)",
+        "Traditional sew-in / leave out",
+        "Half up half down"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/a10hair_/"
+      ]
+    },
     {
       "id": "lianedidit",
       "name": "Lianedidit",
