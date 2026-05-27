@@ -1,8 +1,8 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-05-27T23:20:13.412Z",
-    "count": 20
+    "updatedAt": "2026-05-27T23:21:29.149Z",
+    "count": 19
   },
   "drafts": [
     {
@@ -544,36 +544,6 @@
       "createdAt": "2026-05-27T22:58:51.589Z",
       "updatedAt": "2026-05-27T22:58:51.589Z",
       "lastCheckedAt": "2026-05-27T22:58:51.589Z"
-    },
-    {
-      "id": "shaistylesuk-mponzn88",
-      "status": "needs_review",
-      "name": "Shaistylesuk",
-      "areaId": "",
-      "areaIds": [],
-      "areaLabel": "",
-      "neighbourhood": "",
-      "postcode": "",
-      "bookingPlatform": "",
-      "bookingUrl": "",
-      "websiteUrl": "",
-      "instagramUrl": "https://www.instagram.com/shaistylesuk/",
-      "tiktokUrl": "",
-      "services": [],
-      "rawServices": [],
-      "summary": "Admin draft created from stylist intake.",
-      "confidence": 0.35,
-      "warnings": [
-        "No booking link identified yet.",
-        "No services matched yet."
-      ],
-      "evidence": [
-        "Submitted link: https://www.instagram.com/shaistylesuk/"
-      ],
-      "source": "admin-draft",
-      "createdAt": "2026-05-27T22:57:30.956Z",
-      "updatedAt": "2026-05-27T22:57:30.956Z",
-      "lastCheckedAt": "2026-05-27T22:57:30.956Z"
     },
     {
       "id": "microsbylaura-mpi6stjg",

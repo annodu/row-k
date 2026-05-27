@@ -1,11 +1,37 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-05-27T23:20:13.411Z",
-    "count": 621,
+    "updatedAt": "2026-05-27T23:21:29.148Z",
+    "count": 622,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "shaistylesuk",
+      "name": "Shaistylesuk",
+      "areaId": "essex",
+      "areaLabel": "Essex",
+      "neighbourhood": "Essex London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://shaistylesuk.as.me/schedule/c41d7d44",
+      "websiteUrl": "https://shaistylesuk.as.me/schedule/c41d7d44",
+      "instagramUrl": "https://www.instagram.com/shaistylesuk/",
+      "services": [
+        "Frontal ponytail / bun",
+        "Updo",
+        "Sleek ponytail / bun",
+        "Half up half down",
+        "Traditional sew-in / leave out",
+        "Flipover / Versatile sew-in",
+        "Wig install (frontal / closure)"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/shaistylesuk/"
+      ]
+    },
     {
       "id": "izstylz",
       "name": "Izstylz",
