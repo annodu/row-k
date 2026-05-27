@@ -1,11 +1,44 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-05-27T23:50:34.161Z",
-    "count": 639,
+    "updatedAt": "2026-05-27T23:52:19.942Z",
+    "count": 640,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "hairbylishan",
+      "name": "Hairbylishan",
+      "areaId": "east",
+      "areaLabel": "East London",
+      "neighbourhood": "East London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://hairbylishan.as.me/schedule/b35ccbac?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0DMTAwAHNydGMGYXBwX2lkDzkzNjYxOTc0MzM5MjQ1OQABpzFabkWIegpm6y36C-Oq1ESIQmQoorYCoADmkzO5DZY4LrMzAoRV_AhALmqA_aem_q4Tl0UsN8rLzsXugBP4u0A",
+      "websiteUrl": "https://hairbylishan.as.me/schedule/b35ccbac?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0DMTAwAHNydGMGYXBwX2lkDzkzNjYxOTc0MzM5MjQ1OQABpzFabkWIegpm6y36C-Oq1ESIQmQoorYCoADmkzO5DZY4LrMzAoRV_AhALmqA_aem_q4Tl0UsN8rLzsXugBP4u0A",
+      "instagramUrl": "https://www.instagram.com/hairbylishan_/",
+      "services": [
+        "Feed-in braids",
+        "Stitch braids",
+        "Scalp care",
+        "Boho braids / goddess braids",
+        "Keratin treatment",
+        "Moisturising treatment",
+        "Custom wig",
+        "Wig install (frontal / closure)",
+        "Wash & blowdry",
+        "Relaxer / texturiser",
+        "Sleek ponytail / bun",
+        "Traditional sew-in / leave out",
+        "Silk press",
+        "Knotless braids"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/hairbylishan_/"
+      ]
+    },
     {
       "id": "styledbytemi",
       "name": "Styledbytemi",
