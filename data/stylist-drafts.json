@@ -1,10 +1,40 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-05-27T23:01:41.440Z",
-    "count": 15
+    "updatedAt": "2026-05-27T23:02:05.224Z",
+    "count": 16
   },
   "drafts": [
+    {
+      "id": "lianedidit-mpoo5ipn",
+      "status": "needs_review",
+      "name": "Lianedidit",
+      "areaId": "",
+      "areaIds": [],
+      "areaLabel": "",
+      "neighbourhood": "",
+      "postcode": "",
+      "bookingPlatform": "",
+      "bookingUrl": "",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/lianedidit/",
+      "tiktokUrl": "",
+      "services": [],
+      "rawServices": [],
+      "summary": "Admin draft created from stylist intake.",
+      "confidence": 0.35,
+      "warnings": [
+        "No booking link identified yet.",
+        "No services matched yet."
+      ],
+      "evidence": [
+        "Submitted link: https://www.instagram.com/lianedidit/"
+      ],
+      "source": "admin-draft",
+      "createdAt": "2026-05-27T23:02:05.045Z",
+      "updatedAt": "2026-05-27T23:02:05.045Z",
+      "lastCheckedAt": "2026-05-27T23:02:05.045Z"
+    },
     {
       "id": "laidby-j-mpoo50da",
       "status": "needs_review",
