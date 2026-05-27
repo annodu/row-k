@@ -1,8 +1,8 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-05-27T23:12:27.669Z",
-    "count": 25
+    "updatedAt": "2026-05-27T23:15:23.960Z",
+    "count": 24
   },
   "drafts": [
     {
@@ -694,36 +694,6 @@
       "createdAt": "2026-05-27T22:55:50.045Z",
       "updatedAt": "2026-05-27T22:55:50.045Z",
       "lastCheckedAt": "2026-05-27T22:55:50.045Z"
-    },
-    {
-      "id": "riahbeauty-mponx4kp",
-      "status": "needs_review",
-      "name": "Riahbeauty",
-      "areaId": "",
-      "areaIds": [],
-      "areaLabel": "",
-      "neighbourhood": "",
-      "postcode": "",
-      "bookingPlatform": "",
-      "bookingUrl": "",
-      "websiteUrl": "",
-      "instagramUrl": "https://www.instagram.com/riahbeauty._/",
-      "tiktokUrl": "",
-      "services": [],
-      "rawServices": [],
-      "summary": "Admin draft created from stylist intake.",
-      "confidence": 0.35,
-      "warnings": [
-        "No booking link identified yet.",
-        "No services matched yet."
-      ],
-      "evidence": [
-        "Submitted link: https://www.instagram.com/riahbeauty._/"
-      ],
-      "source": "admin-draft",
-      "createdAt": "2026-05-27T22:55:33.479Z",
-      "updatedAt": "2026-05-27T22:55:33.479Z",
-      "lastCheckedAt": "2026-05-27T22:55:33.479Z"
     },
     {
       "id": "microsbylaura-mpi6stjg",

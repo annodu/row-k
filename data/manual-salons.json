@@ -1,11 +1,33 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-05-27T19:24:23.631Z",
-    "count": 616,
+    "updatedAt": "2026-05-27T23:15:23.960Z",
+    "count": 617,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "riahbeauty",
+      "name": "Riahbeauty",
+      "areaId": "essex",
+      "areaLabel": "Essex",
+      "neighbourhood": "Essex London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/riahbeauty._/",
+      "websiteUrl": "https://www.instagram.com/riahbeauty._/",
+      "instagramUrl": "https://www.instagram.com/riahbeauty._/",
+      "services": [
+        "Flipover / Versatile sew-in",
+        "Traditional sew-in / leave out",
+        "Sew-in take-down"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/riahbeauty._/"
+      ]
+    },
     {
       "id": "nzphair",
       "name": "Nzphair",
