@@ -1,10 +1,40 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-05-27T23:00:47.005Z",
-    "count": 13
+    "updatedAt": "2026-05-27T23:01:03.517Z",
+    "count": 14
   },
   "drafts": [
+    {
+      "id": "hairconnoisseuruk-mpoo473t",
+      "status": "needs_review",
+      "name": "Hairconnoisseuruk",
+      "areaId": "",
+      "areaIds": [],
+      "areaLabel": "",
+      "neighbourhood": "",
+      "postcode": "",
+      "bookingPlatform": "",
+      "bookingUrl": "",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/hairconnoisseuruk/",
+      "tiktokUrl": "",
+      "services": [],
+      "rawServices": [],
+      "summary": "Admin draft created from stylist intake.",
+      "confidence": 0.35,
+      "warnings": [
+        "No booking link identified yet.",
+        "No services matched yet."
+      ],
+      "evidence": [
+        "Submitted link: https://www.instagram.com/hairconnoisseuruk/"
+      ],
+      "source": "admin-draft",
+      "createdAt": "2026-05-27T23:01:03.349Z",
+      "updatedAt": "2026-05-27T23:01:03.349Z",
+      "lastCheckedAt": "2026-05-27T23:01:03.349Z"
+    },
     {
       "id": "hairbyhml-mpoo3ucg",
       "status": "needs_review",
