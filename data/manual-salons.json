@@ -1,7 +1,7 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-05-27T23:47:15.970Z",
+    "updatedAt": "2026-05-27T23:48:54.169Z",
     "count": 638,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
@@ -18,15 +18,18 @@
       "websiteUrl": "https://brushbundless.as.me/schedule/ac9bfecd",
       "instagramUrl": "https://www.instagram.com/brushandbundles/",
       "services": [
-        "Quick weave",
         "Wash & blowdry",
-        "Tracks (+ Silk press) / Partial / Invisible sew-in"
+        "Sew-in take-down"
       ],
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
       "evidence": [
         "Submitted link: https://www.instagram.com/brushandbundles/"
-      ]
+      ],
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "updatedAt": "2026-05-27T23:48:54.169Z"
     },
     {
       "id": "thehairklub",
