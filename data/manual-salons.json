@@ -1,11 +1,34 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-05-27T23:16:54.655Z",
-    "count": 619,
+    "updatedAt": "2026-05-27T23:18:13.571Z",
+    "count": 620,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "hairbyivs",
+      "name": "Hairbyivs",
+      "areaId": "essex",
+      "areaLabel": "Essex",
+      "neighbourhood": "Essex London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/hairbyivs/",
+      "websiteUrl": "https://www.instagram.com/hairbyivs/",
+      "instagramUrl": "https://www.instagram.com/hairbyivs/",
+      "services": [
+        "Half up half down",
+        "Sleek ponytail / bun",
+        "Traditional sew-in / leave out",
+        "Flipover / Versatile sew-in"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/hairbyivs/"
+      ]
+    },
     {
       "id": "laidby-j",
       "name": "Laidby J",
