@@ -1,10 +1,40 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-05-27T22:56:36.466Z",
-    "count": 4
+    "updatedAt": "2026-05-27T22:57:08.108Z",
+    "count": 5
   },
   "drafts": [
+    {
+      "id": "izstylz-mponz5gh",
+      "status": "needs_review",
+      "name": "Izstylz",
+      "areaId": "",
+      "areaIds": [],
+      "areaLabel": "",
+      "neighbourhood": "",
+      "postcode": "",
+      "bookingPlatform": "",
+      "bookingUrl": "",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/_izstylz/",
+      "tiktokUrl": "",
+      "services": [],
+      "rawServices": [],
+      "summary": "Admin draft created from stylist intake.",
+      "confidence": 0.35,
+      "warnings": [
+        "No booking link identified yet.",
+        "No services matched yet."
+      ],
+      "evidence": [
+        "Submitted link: https://www.instagram.com/_izstylz/"
+      ],
+      "source": "admin-draft",
+      "createdAt": "2026-05-27T22:57:07.929Z",
+      "updatedAt": "2026-05-27T22:57:07.929Z",
+      "lastCheckedAt": "2026-05-27T22:57:07.929Z"
+    },
     {
       "id": "hairbyivs-mponyh1n",
       "status": "needs_review",
