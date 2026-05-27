@@ -1,11 +1,33 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-05-27T19:15:14.806Z",
-    "count": 615,
+    "updatedAt": "2026-05-27T19:24:23.631Z",
+    "count": 616,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "nzphair",
+      "name": "Nzphair",
+      "areaId": "north",
+      "areaLabel": "North London",
+      "neighbourhood": "North London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://booknzp.as.me/schedule/70c36c48",
+      "websiteUrl": "https://booknzp.as.me/schedule/70c36c48",
+      "instagramUrl": "https://www.instagram.com/nzphair/",
+      "services": [
+        "Quick weave",
+        "Half up half down",
+        "Sleek ponytail / bun"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/nzphair/"
+      ]
+    },
     {
       "id": "ajahsbeautybase",
       "name": "Ajahsbeautybase",

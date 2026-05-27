@@ -1,40 +1,10 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-05-27T19:22:41.021Z",
-    "count": 2
+    "updatedAt": "2026-05-27T19:24:23.631Z",
+    "count": 1
   },
   "drafts": [
-    {
-      "id": "nzphair-mpogbd50",
-      "status": "needs_review",
-      "name": "Nzphair",
-      "areaId": "",
-      "areaIds": [],
-      "areaLabel": "",
-      "neighbourhood": "",
-      "postcode": "",
-      "bookingPlatform": "",
-      "bookingUrl": "",
-      "websiteUrl": "",
-      "instagramUrl": "https://www.instagram.com/nzphair/",
-      "tiktokUrl": "",
-      "services": [],
-      "rawServices": [],
-      "summary": "Admin draft created from stylist intake.",
-      "confidence": 0.35,
-      "warnings": [
-        "No booking link identified yet.",
-        "No services matched yet."
-      ],
-      "evidence": [
-        "Submitted link: https://www.instagram.com/nzphair/"
-      ],
-      "source": "admin-draft",
-      "createdAt": "2026-05-27T19:22:40.832Z",
-      "updatedAt": "2026-05-27T19:22:40.832Z",
-      "lastCheckedAt": "2026-05-27T19:22:40.832Z"
-    },
     {
       "id": "microsbylaura-mpi6stjg",
       "status": "needs_review",
