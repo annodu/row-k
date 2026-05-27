@@ -1,11 +1,36 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-05-27T23:48:54.169Z",
-    "count": 638,
+    "updatedAt": "2026-05-27T23:50:34.161Z",
+    "count": 639,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "styledbytemi",
+      "name": "Styledbytemi",
+      "areaId": "essex",
+      "areaLabel": "Essex",
+      "neighbourhood": "Essex London",
+      "postcode": "",
+      "bookingPlatform": "Direct",
+      "bookingUrl": "https://styledbytemi.com/?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQPOTM2NjE5NzQzMzkyNDU5AAGnLVxcCg2Kpi-i_7KwMRGGAaYdz3N5MEJTxXHcTYA_mq6ZkYqSQvnvJDD8iQg_aem_4yHi3kwboQVptQs16GOQtw",
+      "websiteUrl": "https://styledbytemi.com/?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQPOTM2NjE5NzQzMzkyNDU5AAGnLVxcCg2Kpi-i_7KwMRGGAaYdz3N5MEJTxXHcTYA_mq6ZkYqSQvnvJDD8iQg_aem_4yHi3kwboQVptQs16GOQtw",
+      "instagramUrl": "https://www.instagram.com/styledbytemi/",
+      "services": [
+        "Custom wig",
+        "Wig install (frontal / closure)",
+        "Frontal ponytail / bun",
+        "Closure sew-in",
+        "Flipover / Versatile sew-in",
+        "Traditional sew-in / leave out"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/styledbytemi/"
+      ]
+    },
     {
       "id": "brushandbundles",
       "name": "Brushandbundles",
