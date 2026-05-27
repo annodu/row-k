@@ -1,8 +1,8 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-05-27T23:34:29.098Z",
-    "count": 11
+    "updatedAt": "2026-05-27T23:35:48.679Z",
+    "count": 10
   },
   "drafts": [
     {
@@ -274,36 +274,6 @@
       "createdAt": "2026-05-27T23:03:01.032Z",
       "updatedAt": "2026-05-27T23:03:01.032Z",
       "lastCheckedAt": "2026-05-27T23:03:01.032Z"
-    },
-    {
-      "id": "renew-meee-mpoo6amw",
-      "status": "needs_review",
-      "name": "Renew Meee",
-      "areaId": "",
-      "areaIds": [],
-      "areaLabel": "",
-      "neighbourhood": "",
-      "postcode": "",
-      "bookingPlatform": "",
-      "bookingUrl": "",
-      "websiteUrl": "",
-      "instagramUrl": "https://www.instagram.com/renew_meee/",
-      "tiktokUrl": "",
-      "services": [],
-      "rawServices": [],
-      "summary": "Admin draft created from stylist intake.",
-      "confidence": 0.35,
-      "warnings": [
-        "No booking link identified yet.",
-        "No services matched yet."
-      ],
-      "evidence": [
-        "Submitted link: https://www.instagram.com/renew_meee/"
-      ],
-      "source": "admin-draft",
-      "createdAt": "2026-05-27T23:02:41.236Z",
-      "updatedAt": "2026-05-27T23:02:41.236Z",
-      "lastCheckedAt": "2026-05-27T23:02:41.236Z"
     },
     {
       "id": "microsbylaura-mpi6stjg",

@@ -1,11 +1,35 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-05-27T23:34:29.097Z",
-    "count": 630,
+    "updatedAt": "2026-05-27T23:35:48.679Z",
+    "count": 631,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "renew-meee",
+      "name": "Renew Meee",
+      "areaId": "east",
+      "areaLabel": "East London",
+      "neighbourhood": "East London London",
+      "postcode": "",
+      "bookingPlatform": "Direct",
+      "bookingUrl": "https://www.instagram.com/renew_meee/",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/renew_meee/",
+      "services": [
+        "Traditional sew-in / leave out",
+        "Half up half down",
+        "Sleek ponytail / bun",
+        "Updo",
+        "Quick weave"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/renew_meee/"
+      ]
+    },
     {
       "id": "a10hair",
       "name": "A10hair",
