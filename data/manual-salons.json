@@ -1,11 +1,33 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-05-27T23:45:08.635Z",
-    "count": 637,
+    "updatedAt": "2026-05-27T23:47:15.970Z",
+    "count": 638,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "brushandbundles",
+      "name": "Brushandbundles",
+      "areaId": "east",
+      "areaLabel": "East London",
+      "neighbourhood": "East London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://brushbundless.as.me/schedule/ac9bfecd",
+      "websiteUrl": "https://brushbundless.as.me/schedule/ac9bfecd",
+      "instagramUrl": "https://www.instagram.com/brushandbundles/",
+      "services": [
+        "Quick weave",
+        "Wash & blowdry",
+        "Tracks (+ Silk press) / Partial / Invisible sew-in"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/brushandbundles/"
+      ]
+    },
     {
       "id": "thehairklub",
       "name": "Thehairklub",

@@ -1,8 +1,8 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-05-27T23:45:08.635Z",
-    "count": 4
+    "updatedAt": "2026-05-27T23:47:15.970Z",
+    "count": 3
   },
   "drafts": [
     {
@@ -34,36 +34,6 @@
       "createdAt": "2026-05-27T23:05:31.785Z",
       "updatedAt": "2026-05-27T23:05:31.785Z",
       "lastCheckedAt": "2026-05-27T23:05:31.785Z"
-    },
-    {
-      "id": "brushandbundles-mpoo94c9",
-      "status": "needs_review",
-      "name": "Brushandbundles",
-      "areaId": "",
-      "areaIds": [],
-      "areaLabel": "",
-      "neighbourhood": "",
-      "postcode": "",
-      "bookingPlatform": "",
-      "bookingUrl": "",
-      "websiteUrl": "",
-      "instagramUrl": "https://www.instagram.com/brushandbundles/",
-      "tiktokUrl": "",
-      "services": [],
-      "rawServices": [],
-      "summary": "Admin draft created from stylist intake.",
-      "confidence": 0.35,
-      "warnings": [
-        "No booking link identified yet.",
-        "No services matched yet."
-      ],
-      "evidence": [
-        "Submitted link: https://www.instagram.com/brushandbundles/"
-      ],
-      "source": "admin-draft",
-      "createdAt": "2026-05-27T23:04:53.045Z",
-      "updatedAt": "2026-05-27T23:04:53.045Z",
-      "lastCheckedAt": "2026-05-27T23:04:53.045Z"
     },
     {
       "id": "hairbylishan-mpoo6pwu",
