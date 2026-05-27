@@ -1,11 +1,33 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-05-27T23:24:42.112Z",
-    "count": 624,
+    "updatedAt": "2026-05-27T23:26:42.851Z",
+    "count": 625,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "rrhair-1",
+      "name": "Rrhair 1",
+      "areaId": "essex",
+      "areaLabel": "Essex",
+      "neighbourhood": "Essex London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://rrhair1.as.me/schedule/43ce1377",
+      "websiteUrl": "https://rrhair1.as.me/schedule/43ce1377",
+      "instagramUrl": "https://www.instagram.com/rrhair_.1/",
+      "services": [
+        "Wig install (frontal / closure)",
+        "Custom wig",
+        "Closure sew-in"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/rrhair_.1/"
+      ]
+    },
     {
       "id": "aureahairnco",
       "name": "Aureahairnco",

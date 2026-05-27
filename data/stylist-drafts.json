@@ -1,8 +1,8 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-05-27T23:24:42.113Z",
-    "count": 17
+    "updatedAt": "2026-05-27T23:26:42.851Z",
+    "count": 16
   },
   "drafts": [
     {
@@ -454,36 +454,6 @@
       "createdAt": "2026-05-27T23:00:25.245Z",
       "updatedAt": "2026-05-27T23:00:25.245Z",
       "lastCheckedAt": "2026-05-27T23:00:25.245Z"
-    },
-    {
-      "id": "rrhair-1-mpoo2l81",
-      "status": "needs_review",
-      "name": "Rrhair 1",
-      "areaId": "",
-      "areaIds": [],
-      "areaLabel": "",
-      "neighbourhood": "",
-      "postcode": "",
-      "bookingPlatform": "",
-      "bookingUrl": "",
-      "websiteUrl": "",
-      "instagramUrl": "https://www.instagram.com/rrhair_.1/",
-      "tiktokUrl": "",
-      "services": [],
-      "rawServices": [],
-      "summary": "Admin draft created from stylist intake.",
-      "confidence": 0.35,
-      "warnings": [
-        "No booking link identified yet.",
-        "No services matched yet."
-      ],
-      "evidence": [
-        "Submitted link: https://www.instagram.com/rrhair_.1/"
-      ],
-      "source": "admin-draft",
-      "createdAt": "2026-05-27T22:59:48.333Z",
-      "updatedAt": "2026-05-27T22:59:48.333Z",
-      "lastCheckedAt": "2026-05-27T22:59:48.333Z"
     },
     {
       "id": "microsbylaura-mpi6stjg",
