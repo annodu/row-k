@@ -1,10 +1,40 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-05-27T23:02:41.446Z",
-    "count": 18
+    "updatedAt": "2026-05-27T23:03:01.215Z",
+    "count": 19
   },
   "drafts": [
+    {
+      "id": "hairbylishan-mpoo6pwu",
+      "status": "needs_review",
+      "name": "Hairbylishan",
+      "areaId": "",
+      "areaIds": [],
+      "areaLabel": "",
+      "neighbourhood": "",
+      "postcode": "",
+      "bookingPlatform": "",
+      "bookingUrl": "",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/hairbylishan_/",
+      "tiktokUrl": "",
+      "services": [],
+      "rawServices": [],
+      "summary": "Admin draft created from stylist intake.",
+      "confidence": 0.35,
+      "warnings": [
+        "No booking link identified yet.",
+        "No services matched yet."
+      ],
+      "evidence": [
+        "Submitted link: https://www.instagram.com/hairbylishan_/"
+      ],
+      "source": "admin-draft",
+      "createdAt": "2026-05-27T23:03:01.032Z",
+      "updatedAt": "2026-05-27T23:03:01.032Z",
+      "lastCheckedAt": "2026-05-27T23:03:01.032Z"
+    },
     {
       "id": "renew-meee-mpoo6amw",
       "status": "needs_review",
