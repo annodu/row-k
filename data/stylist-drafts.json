@@ -1,10 +1,40 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-05-27T23:02:05.224Z",
-    "count": 16
+    "updatedAt": "2026-05-27T23:02:20.845Z",
+    "count": 17
   },
   "drafts": [
+    {
+      "id": "a10hair-mpoo5ure",
+      "status": "needs_review",
+      "name": "A10hair",
+      "areaId": "",
+      "areaIds": [],
+      "areaLabel": "",
+      "neighbourhood": "",
+      "postcode": "",
+      "bookingPlatform": "",
+      "bookingUrl": "",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/a10hair_/",
+      "tiktokUrl": "",
+      "services": [],
+      "rawServices": [],
+      "summary": "Admin draft created from stylist intake.",
+      "confidence": 0.35,
+      "warnings": [
+        "No booking link identified yet.",
+        "No services matched yet."
+      ],
+      "evidence": [
+        "Submitted link: https://www.instagram.com/a10hair_/"
+      ],
+      "source": "admin-draft",
+      "createdAt": "2026-05-27T23:02:20.662Z",
+      "updatedAt": "2026-05-27T23:02:20.662Z",
+      "lastCheckedAt": "2026-05-27T23:02:20.662Z"
+    },
     {
       "id": "lianedidit-mpoo5ipn",
       "status": "needs_review",
