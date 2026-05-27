@@ -1,11 +1,40 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-05-27T23:43:31.243Z",
-    "count": 635,
+    "updatedAt": "2026-05-27T23:44:29.729Z",
+    "count": 636,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "thelacespaceuk",
+      "name": "Thelacespaceuk",
+      "areaId": "kent",
+      "areaLabel": "Kent",
+      "neighbourhood": "Kent London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://thelacespaceuk.as.me/schedule/d14b0f89",
+      "websiteUrl": "https://thelacespaceuk.as.me/schedule/d14b0f89",
+      "instagramUrl": "https://www.instagram.com/thelacespaceuk/",
+      "services": [
+        "Bridal / Editorial",
+        "Wig cornrows",
+        "Scalp care",
+        "Wig colour",
+        "Full head colour",
+        "Wig install (frontal / closure)",
+        "Custom wig",
+        "Traditional sew-in / leave out",
+        "Flipover / Versatile sew-in",
+        "Wash & blowdry"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/thelacespaceuk/"
+      ]
+    },
     {
       "id": "pastyles",
       "name": "Pastyles",

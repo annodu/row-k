@@ -1,8 +1,8 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-05-27T23:43:31.243Z",
-    "count": 6
+    "updatedAt": "2026-05-27T23:44:29.729Z",
+    "count": 5
   },
   "drafts": [
     {
@@ -94,36 +94,6 @@
       "createdAt": "2026-05-27T23:04:39.715Z",
       "updatedAt": "2026-05-27T23:04:39.715Z",
       "lastCheckedAt": "2026-05-27T23:04:39.715Z"
-    },
-    {
-      "id": "thelacespaceuk-mpoo8ftq",
-      "status": "needs_review",
-      "name": "Thelacespaceuk",
-      "areaId": "",
-      "areaIds": [],
-      "areaLabel": "",
-      "neighbourhood": "",
-      "postcode": "",
-      "bookingPlatform": "",
-      "bookingUrl": "",
-      "websiteUrl": "",
-      "instagramUrl": "https://www.instagram.com/thelacespaceuk/",
-      "tiktokUrl": "",
-      "services": [],
-      "rawServices": [],
-      "summary": "Admin draft created from stylist intake.",
-      "confidence": 0.35,
-      "warnings": [
-        "No booking link identified yet.",
-        "No services matched yet."
-      ],
-      "evidence": [
-        "Submitted link: https://www.instagram.com/thelacespaceuk/"
-      ],
-      "source": "admin-draft",
-      "createdAt": "2026-05-27T23:04:21.271Z",
-      "updatedAt": "2026-05-27T23:04:21.271Z",
-      "lastCheckedAt": "2026-05-27T23:04:21.271Z"
     },
     {
       "id": "hairbylishan-mpoo6pwu",
