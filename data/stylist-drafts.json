@@ -1,10 +1,40 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-05-27T23:03:01.215Z",
-    "count": 19
+    "updatedAt": "2026-05-27T23:03:19.099Z",
+    "count": 20
   },
   "drafts": [
+    {
+      "id": "penggirlshair-mpoo73q0",
+      "status": "needs_review",
+      "name": "Penggirlshair",
+      "areaId": "",
+      "areaIds": [],
+      "areaLabel": "",
+      "neighbourhood": "",
+      "postcode": "",
+      "bookingPlatform": "",
+      "bookingUrl": "",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/penggirlshair/",
+      "tiktokUrl": "",
+      "services": [],
+      "rawServices": [],
+      "summary": "Admin draft created from stylist intake.",
+      "confidence": 0.35,
+      "warnings": [
+        "No booking link identified yet.",
+        "No services matched yet."
+      ],
+      "evidence": [
+        "Submitted link: https://www.instagram.com/penggirlshair/"
+      ],
+      "source": "admin-draft",
+      "createdAt": "2026-05-27T23:03:18.932Z",
+      "updatedAt": "2026-05-27T23:03:18.932Z",
+      "lastCheckedAt": "2026-05-27T23:03:18.932Z"
+    },
     {
       "id": "hairbylishan-mpoo6pwu",
       "status": "needs_review",
