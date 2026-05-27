@@ -1,11 +1,42 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-05-27T23:40:25.909Z",
-    "count": 633,
+    "updatedAt": "2026-05-27T23:42:23.689Z",
+    "count": 634,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "hairkemistry",
+      "name": "Hairkemistry",
+      "areaId": "essex",
+      "areaLabel": "Essex",
+      "neighbourhood": "Essex London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://yourhairkemistry.as.me/schedule/49b0bc04",
+      "websiteUrl": "https://yourhairkemistry.as.me/schedule/49b0bc04",
+      "instagramUrl": "https://www.instagram.com/_hairkemistry/",
+      "services": [
+        "Full head colour",
+        "Highlights",
+        "Balayage",
+        "Natural hair education",
+        "Custom wig",
+        "Sew-in take-down",
+        "Tape ins",
+        "Wash & blowdry",
+        "Trim / Hair cut",
+        "Traditional sew-in / leave out",
+        "Scalp care",
+        "Tracks (+ Silk press) / Partial / Invisible sew-in"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/_hairkemistry/"
+      ]
+    },
     {
       "id": "bynickellecarey",
       "name": "Bynickellecarey",

@@ -1,8 +1,8 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-05-27T23:40:25.909Z",
-    "count": 8
+    "updatedAt": "2026-05-27T23:42:23.690Z",
+    "count": 7
   },
   "drafts": [
     {
@@ -154,36 +154,6 @@
       "createdAt": "2026-05-27T23:04:07.695Z",
       "updatedAt": "2026-05-27T23:04:07.695Z",
       "lastCheckedAt": "2026-05-27T23:04:07.695Z"
-    },
-    {
-      "id": "hairkemistry-mpoo7rte",
-      "status": "needs_review",
-      "name": "Hairkemistry",
-      "areaId": "",
-      "areaIds": [],
-      "areaLabel": "",
-      "neighbourhood": "",
-      "postcode": "",
-      "bookingPlatform": "",
-      "bookingUrl": "",
-      "websiteUrl": "",
-      "instagramUrl": "https://www.instagram.com/_hairkemistry/",
-      "tiktokUrl": "",
-      "services": [],
-      "rawServices": [],
-      "summary": "Admin draft created from stylist intake.",
-      "confidence": 0.35,
-      "warnings": [
-        "No booking link identified yet.",
-        "No services matched yet."
-      ],
-      "evidence": [
-        "Submitted link: https://www.instagram.com/_hairkemistry/"
-      ],
-      "source": "admin-draft",
-      "createdAt": "2026-05-27T23:03:50.158Z",
-      "updatedAt": "2026-05-27T23:03:50.158Z",
-      "lastCheckedAt": "2026-05-27T23:03:50.158Z"
     },
     {
       "id": "hairbylishan-mpoo6pwu",
