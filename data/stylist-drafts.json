@@ -1,8 +1,8 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-05-27T23:15:23.960Z",
-    "count": 24
+    "updatedAt": "2026-05-27T23:15:33.362Z",
+    "count": 23
   },
   "drafts": [
     {
@@ -664,36 +664,6 @@
       "createdAt": "2026-05-27T22:56:36.295Z",
       "updatedAt": "2026-05-27T22:56:36.295Z",
       "lastCheckedAt": "2026-05-27T22:56:36.295Z"
-    },
-    {
-      "id": "klacebar-mponxhcu",
-      "status": "needs_review",
-      "name": "Klacebar",
-      "areaId": "",
-      "areaIds": [],
-      "areaLabel": "",
-      "neighbourhood": "",
-      "postcode": "",
-      "bookingPlatform": "",
-      "bookingUrl": "",
-      "websiteUrl": "",
-      "instagramUrl": "https://www.instagram.com/klacebar/",
-      "tiktokUrl": "",
-      "services": [],
-      "rawServices": [],
-      "summary": "Admin draft created from stylist intake.",
-      "confidence": 0.35,
-      "warnings": [
-        "No booking link identified yet.",
-        "No services matched yet."
-      ],
-      "evidence": [
-        "Submitted link: https://www.instagram.com/klacebar/"
-      ],
-      "source": "admin-draft",
-      "createdAt": "2026-05-27T22:55:50.045Z",
-      "updatedAt": "2026-05-27T22:55:50.045Z",
-      "lastCheckedAt": "2026-05-27T22:55:50.045Z"
     },
     {
       "id": "microsbylaura-mpi6stjg",

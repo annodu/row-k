@@ -1,11 +1,36 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-05-27T23:15:23.960Z",
-    "count": 617,
+    "updatedAt": "2026-05-27T23:15:33.362Z",
+    "count": 618,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "klacebar",
+      "name": "Klacebar",
+      "areaId": "essex",
+      "areaLabel": "Essex",
+      "neighbourhood": "Essex London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://klacebar.as.me/schedule/1bd1cdb8",
+      "websiteUrl": "https://klacebar.as.me/schedule/1bd1cdb8",
+      "instagramUrl": "https://www.instagram.com/klacebar/",
+      "services": [
+        "Traditional sew-in / leave out",
+        "Flipover / Versatile sew-in",
+        "Closure sew-in",
+        "Wig install (frontal / closure)",
+        "Custom wig",
+        "Wig cornrows"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/klacebar/"
+      ]
+    },
     {
       "id": "riahbeauty",
       "name": "Riahbeauty",
