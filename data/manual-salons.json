@@ -1,11 +1,33 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-05-27T06:28:45.690Z",
-    "count": 614,
+    "updatedAt": "2026-05-27T19:15:14.806Z",
+    "count": 615,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "ajahsbeautybase",
+      "name": "Ajahsbeautybase",
+      "areaId": "south-west",
+      "areaLabel": "South West London",
+      "neighbourhood": "South West London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://ajahsbeautybasebookings.as.me/schedule/0ef2ec18/category/X19hbGxfXw%3D%3D",
+      "websiteUrl": "https://ajahsbeautybasebookings.as.me/schedule/0ef2ec18/category/X19hbGxfXw%3D%3D",
+      "instagramUrl": "https://www.instagram.com/ajahsbeautybase/",
+      "services": [
+        "Boho braids / goddess braids",
+        "Wash & blowdry",
+        "Braid take-down"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/ajahsbeautybase/"
+      ]
+    },
     {
       "id": "hott-uk",
       "name": "Hott Uk",
