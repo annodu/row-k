@@ -1,10 +1,40 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-05-27T22:57:08.108Z",
-    "count": 5
+    "updatedAt": "2026-05-27T22:57:31.152Z",
+    "count": 6
   },
   "drafts": [
+    {
+      "id": "shaistylesuk-mponzn88",
+      "status": "needs_review",
+      "name": "Shaistylesuk",
+      "areaId": "",
+      "areaIds": [],
+      "areaLabel": "",
+      "neighbourhood": "",
+      "postcode": "",
+      "bookingPlatform": "",
+      "bookingUrl": "",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/shaistylesuk/",
+      "tiktokUrl": "",
+      "services": [],
+      "rawServices": [],
+      "summary": "Admin draft created from stylist intake.",
+      "confidence": 0.35,
+      "warnings": [
+        "No booking link identified yet.",
+        "No services matched yet."
+      ],
+      "evidence": [
+        "Submitted link: https://www.instagram.com/shaistylesuk/"
+      ],
+      "source": "admin-draft",
+      "createdAt": "2026-05-27T22:57:30.956Z",
+      "updatedAt": "2026-05-27T22:57:30.956Z",
+      "lastCheckedAt": "2026-05-27T22:57:30.956Z"
+    },
     {
       "id": "izstylz-mponz5gh",
       "status": "needs_review",
