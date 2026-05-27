@@ -1,11 +1,37 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-05-26T23:12:15.324Z",
-    "count": 613,
+    "updatedAt": "2026-05-27T06:18:22.512Z",
+    "count": 614,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "hott-uk",
+      "name": "Hott Uk",
+      "areaId": "east",
+      "areaLabel": "East London",
+      "neighbourhood": "East London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://hotoffthetress.as.me/schedule/f9556bc5",
+      "websiteUrl": "https://hotoffthetress.as.me/schedule/f9556bc5",
+      "instagramUrl": "https://www.instagram.com/hott.uk_/",
+      "services": [
+        "Feed-in braids",
+        "Fulani / Lemonade braids",
+        "Knotless braids",
+        "Butterfly locs",
+        "Faux locs",
+        "Retwist",
+        "French curl"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/hott.uk_/"
+      ]
+    },
     {
       "id": "blubanhair",
       "name": "Blubanhair",
