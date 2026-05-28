@@ -191,7 +191,7 @@ const serviceGroups = [
       "Creative braids (e.g. patewo)",
       "Feed-in braids",
       "French curl",
-      "Fulani / Lemonade braids",
+      "Fulani / lemonade braids",
       "Half braids, half sew-in",
       "Knotless braids",
       "Miracle knots",
@@ -203,7 +203,7 @@ const serviceGroups = [
   },
   {
     label: "Colour",
-    services: ["Balayage", "Full head colour", "Highlights", "Wig colouring / Bundle colouring"],
+    services: ["Balayage", "Full head colour", "Highlights", "Wig colouring / bundle colouring"],
   },
   {
     label: "Bridal",
@@ -215,14 +215,14 @@ const serviceGroups = [
   },
   {
     label: "Extensions",
-    services: ["Clip ins (+ Silk press)", "K-tips / Invisible strands", "LA weave", "Microlinks", "Tape ins"],
+    services: ["Clip ins (+ silk press)", "K-tips / invisible strands", "LA weave", "Microlinks", "Tape ins"],
   },
   {
     label: "Locs",
-    services: ["Butterfly locs", "Faux locs", "Microlocs / Sisterlocs", "Retwist", "Starter locs"],
+    services: ["Butterfly locs", "Faux locs", "Microlocs / sisterlocs", "Retwist", "Starter locs"],
   },
   {
-    label: "Sew in / Weave",
+    label: "Sew in / weave",
     services: [
       "Closure sew-in",
       "Flipover / Versatile sew-in",
@@ -231,43 +231,46 @@ const serviceGroups = [
       "Pixie wig / weave install",
       "Quick weave",
       "Sew-in take-down",
-      "Tracks (+ Silk press) / Partial / Invisible sew-in",
+      "Tracks (+ silk press) / partial / invisible sew-in",
       "Traditional sew-in / leave out",
     ],
   },
   {
-    label: "Style (Sew-In / Frontal / Relaxer)",
+    label: "Styling (sew in / frontal / relaxer)",
     services: ["Frontal ponytail / bun", "Half up half down", "Pixie / finger waves", "Sleek ponytail / bun", "Updo"],
   },
   {
     label: "Treatments",
     services: [
-      "Hair Botox",
+      "Hair botox",
       "Japanese straightening",
       "K-18 treatment",
       "Keratin treatment",
       "Moisturising treatment",
       "Olaplex treatment",
       "Relaxer / texturiser",
-      "Scalp care",
       "Texture release",
     ],
   },
   {
-    label: "Wash / Style (Natural hair)",
+    label: "Natural hair washing & styling",
     services: [
       "Wig cornrows",
-      "Curly cut / Wash & go",
-      "Natural hair education",
+      "Curly cut / wash & go",
       "Silk press",
-      "Trim / Hair cut",
-      "Twist out / Flexi rod",
+      "Trim / hair cut",
+      "Twist out / flexi rod",
       "Wash & blowdry",
+      "Scalp detox / treatments",
     ],
   },
   {
+    label: "Natural hair health & trichology",
+    services: ["Healthy hair plans & consultations", "Natural hair coaches / educators", "Trichology / scalp analysis"],
+  },
+  {
     label: "Wigs",
-    services: ["Custom wig", "Pixie wig / weave install", "U-Part wig install", "Wig colouring / Bundle colouring", "Wig install (frontal / closure)"],
+    services: ["Custom wig", "Pixie wig / weave install", "U-part wig install", "Wig colouring / bundle colouring", "Wig install (frontal / closure)"],
   },
 ];
 
@@ -2201,7 +2204,7 @@ function getActionableRemovedServices(check: DirectoryCheck) {
 }
 
 function hasSupportedFreshnessEvidence(check: DirectoryCheck, service: string) {
-  if (service === "U-Part wig install") {
+  if (service === "U-part wig install") {
     return check.serviceCheck.rawServices.some((line) => hasExplicitUPartWigEvidence(line));
   }
   if (service === "Closure sew-in") {
@@ -2225,7 +2228,7 @@ function hasSupportedFreshnessEvidence(check: DirectoryCheck, service: string) {
   if (service === "Sleek ponytail / bun") {
     return !check.serviceCheck.rawServices.some((line) => hasFrontalPonytailEvidence(line) || hasBraidedPonytailEvidence(line));
   }
-  if (service === "Natural hair education") {
+  if (service === "Natural hair coaches / educators") {
     return check.serviceCheck.rawServices.some((line) => hasNaturalHairEducationEvidence(line));
   }
   if (service === "Keratin treatment") {
@@ -2237,7 +2240,7 @@ function hasSupportedFreshnessEvidence(check: DirectoryCheck, service: string) {
   if (service === "Twists (with extensions)") {
     return check.serviceCheck.rawServices.some((line) => hasTwistsWithExtensionsEvidence(line));
   }
-  if (service === "Tracks (+ Silk press) / Partial / Invisible sew-in") {
+  if (service === "Tracks (+ silk press) / partial / invisible sew-in") {
     return check.serviceCheck.rawServices.some((line) => hasTracksEvidence(line));
   }
   if (service === "Wash & blowdry") {
@@ -2268,7 +2271,7 @@ function hasRawEvidenceForService(rawServices: string[], service: string) {
   if (service === "Pixie / finger waves") {
     return /\b(finger\s+waves?|pixie\s+cut|short\s+pixie|wrap)\b/.test(normalizedRaw) && !hasRawEvidenceForService(rawServices, "Pixie wig / weave install");
   }
-  if (service === "Wig colouring / Bundle colouring") {
+  if (service === "Wig colouring / bundle colouring") {
     return hasWigColourEvidence(rawServices);
   }
   if (service === "Olaplex treatment") {
@@ -2321,7 +2324,7 @@ function hasFrontalPonytailEvidence(value: string) {
 
 function hasNaturalHairEducationEvidence(value: string) {
   const normalized = normalizeEvidenceText(value);
-  return /\b(afro|natural|curly|curl|hair)\b.*\beducation\b|\beducation\b.*\b(afro|natural|curly|curl|hair)\b|\b(hair|curl|styling)\b.*\btutorial\b|\btutorial\b.*\b(hair|curl|styling)\b|\btrichology\b|\bhair\s+health\b.*\b(assessment|plan|growth|consultation)\b|\bgrowth\s+plan\b|\bconsultation\b.*\bnatural\b|\bnatural\s+hair\b.*\b(class|education|consultation)\b|\bcurl\s+makeover\b.*\b(hands?\s*on|tutorial|styling)\b/.test(normalized);
+  return /\b(afro|natural|curly|curl|hair)\b.*\beducation\b|\beducation\b.*\b(afro|natural|curly|curl|hair)\b|\b(hair|curl|styling)\b.*\btutorial\b|\btutorial\b.*\b(hair|curl|styling)\b|\bhair\s+health\b.*\b(assessment|plan|growth|consultation)\b|\bgrowth\s+plan\b|\bconsultation\b.*\bnatural\b|\bnatural\s+hair\b.*\b(class|education|consultation)\b|\bcurl\s+makeover\b.*\b(hands?\s*on|tutorial|styling)\b/.test(normalized);
 }
 
 function hasBraidedPonytailEvidence(value: string) {
@@ -2513,21 +2516,21 @@ const serviceEvidenceKeywords: Record<string, string[]> = {
   "Balayage": ["balayage"],
   "Highlights": ["highlight", "highlights", "lowlights"],
   "Full head colour": ["colour", "color", "tint", "dye", "rooting"],
-  "Wig colouring / Bundle colouring": ["wig colour", "wig color", "colouring full wig", "custom colour", "colour service", "613", "non-contact", "non contact"],
+  "Wig colouring / bundle colouring": ["wig colour", "wig color", "colouring full wig", "custom colour", "colour service", "613", "non-contact", "non contact"],
   "Frontal sew-in": ["frontal sew in", "frontal sew-in", "frontal sewin", "frontal weave"],
   "Closure sew-in": ["closure sew in", "closure sew-in", "closure sewin", "closure weave", "weave with lace closure", "closure behind the hairline"],
   "Creative braids (e.g. patewo)": ["creative braids", "patewo", "dolly braids", "shuku", "koroba braids"],
   "Feed-in braids": ["feed in", "feed-in", "all back", "braids going back"],
-  "Fulani / Lemonade braids": ["fulani", "lemonade", "alicia keys braids"],
-  "K-tips / Invisible strands": ["k tips", "k-tips", "keratin tip", "keratin tips", "keratin bonds", "invisible strands"],
+  "Fulani / lemonade braids": ["fulani", "lemonade", "alicia keys braids"],
+  "K-tips / invisible strands": ["k tips", "k-tips", "keratin tip", "keratin tips", "keratin bonds", "invisible strands"],
   "Frontal ponytail / bun": ["frontal ponytail", "frontal pony", "frontal bun", "frontal updo"],
-  "U-Part wig install": ["u part", "upart", "u-part", "u part wig", "u-part wig", "upart wig", "v part", "vpart", "v-part", "u/vpart", "uvpart"],
+  "U-part wig install": ["u part", "upart", "u-part", "u part wig", "u-part wig", "upart wig", "v part", "vpart", "v-part", "u/vpart", "uvpart"],
   "Custom wig": ["custom wig", "bespoke wig", "custom lace", "custom unit", "customised closure unit", "customized closure unit", "custom mini frontal unit", "unit customisation", "unit customization", "construction of wig", "construction of the wig", "wig making", "wig construction", "wig customising", "wig customisation", "wig customization", "construction and customisation", "construction and customization"],
   "Wig install (frontal / closure)": ["wig install", "wig installation", "installation of the wig", "wig application", "wig fitting", "glueless wig", "lace wig", "frontal wig", "closure wig", "lace frontal installation", "lace closure installation", "frontal unit", "closure unit", "ready-made unit", "ready made unit", "unit install", "frontal unit install", "closure unit install"],
   "Pixie wig / weave install": ["pixie wig", "pixie weave", "pixie install", "pixie sew in", "pixie sew-in", "pixie sewin"],
   "Twists (with extensions)": ["twists with extensions", "passion twists", "marley twists", "senegalese twists", "kinky twists", "rope twists", "island twists", "island twist"],
   "Hybrid sew-in": ["hybrid sew in", "hybrid sew-in", "hybrid weave", "tracks + tapes hybrid", "tracks and tapes hybrid"],
-  "Tracks (+ Silk press) / Partial / Invisible sew-in": ["tracks", "track per row", "per track", "per row", "one row", "individual sewn on track", "individual sewn on tracks", "tracks add on", "tracks add-on", "silk press add on tracks", "silk press add-on tracks", "row sew in", "rows of sew in", "weave tracks", "weave tracks per track", "weave on per row", "traditional weave rows", "partial sew in", "partial sewin", "invisible sew in", "invisible weave", "invisible weft", "invisible wefts"],
+  "Tracks (+ silk press) / partial / invisible sew-in": ["tracks", "track per row", "per track", "per row", "one row", "individual sewn on track", "individual sewn on tracks", "tracks add on", "tracks add-on", "silk press add on tracks", "silk press add-on tracks", "row sew in", "rows of sew in", "weave tracks", "weave tracks per track", "weave on per row", "traditional weave rows", "partial sew in", "partial sewin", "invisible sew in", "invisible weave", "invisible weft", "invisible wefts"],
   "Wash & blowdry": ["wash blowdry", "wash blow dry", "wash and blowdry", "wash and blow dry", "shampoo blowdry", "shampoo blow dry", "shampoo and blowdry", "shampoo and blow dry", "blowout"],
   "Updo": ["updo", "up do", "pin up", "french roll up", "french roll"],
   "Wig cornrows": ["under wig", "wig cornrows", "cornrows for wig installation", "cornrows"],
@@ -2539,15 +2542,16 @@ const serviceEvidenceKeywords: Record<string, string[]> = {
 
 const removalReviewKeywords: Record<string, string[]> = {
   "Custom wig": ["unit customisation", "unit customization", "wig customisation", "wig customization", "wig customising", "construction of wig", "construction of the wig", "wig making", "wig construction", "bespoke wig", "custom unit"],
+  "Healthy hair plans & consultations": ["healthy hair", "healthy hair plan", "healthy hair plans", "healthy hair consultation", "healthy hair consultations", "healthy hair regime", "healthy hair regimes", "healthy hair regimen", "healthy hair journey", "hair consultation", "hair consultations", "hair regime", "hair regimen", "hair journey", "hair growth plan", "hair health plan"],
   "Wig install (frontal / closure)": ["wig installation", "installation of the wig", "lace frontal installation", "lace closure installation", "frontal unit", "closure unit", "ready-made unit", "ready made unit", "unit install"],
-  "Tracks (+ Silk press) / Partial / Invisible sew-in": ["tracks add on", "tracks add-on", "silk press add on tracks", "silk press add-on tracks", "partial sew", "row sew", "one row", "individual sewn on track", "weave tracks", "weave tracks per track", "per track"],
-  "Natural hair education": ["hair education", "natural hair education", "hair health", "growth plan", "trichology", "tutorial"],
+  "Tracks (+ silk press) / partial / invisible sew-in": ["tracks add on", "tracks add-on", "silk press add on tracks", "silk press add-on tracks", "partial sew", "row sew", "one row", "individual sewn on track", "weave tracks", "weave tracks per track", "per track"],
+  "Natural hair coaches / educators": ["hair education", "natural hair education", "natural hair coach", "natural hair coaches", "hair health", "growth plan", "tutorial"],
 };
 
 const genericRemovalEvidenceWords = new Set(["service", "services", "install", "installation", "treatment", "braids", "style", "styling", "with", "hair"]);
 
 function isColourService(service: string) {
-  return service === "Balayage" || service === "Highlights" || service === "Full head colour" || service === "Wig colouring / Bundle colouring";
+  return service === "Balayage" || service === "Highlights" || service === "Full head colour" || service === "Wig colouring / bundle colouring";
 }
 
 function normalizeEvidenceText(value: string) {
