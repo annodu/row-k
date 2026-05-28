@@ -112,7 +112,7 @@ const serviceRuleMatchers = [
   ["Keratin treatment", [/\bkeratin\b/]],
   ["Relaxer / texturiser", [/\brelaxer\b/, /\btexturi[sz]er\b/, /\btexturi[sz]ing\b/]],
   ["Texture release", [/\btexture\s+release\b/]],
-  ["Japanese straightening", [/\bjapanese\b.*\bstraight(en|ening)\b/]],
+  ["Japanese straightening", [/\bjapanese\b.*\bstraight(en|ening)\b/, /\bmomoko\b(?:.*\bstraight(en|ening)\b)?/]],
   ["Hair Botox", [/\bbotox\b/]],
   ["Olaplex treatment", [/\bolaplex\b/, /\b(repair|bond)\b.*\b(bond|repair|treatment)\b/]],
   ["K-18 treatment", [/\bk\s*18\b/, /\bk-18\b/]],
@@ -497,6 +497,12 @@ export function registerAdminStylistRoutes(app) {
   app.post("/api/admin/stylists/intake", requireAdmin, async (req, res) => {
     const draft = await buildDraft(req.body || {});
     const store = await readDraftStore();
+    const manualIndex = await readJson(manualIndexPath, { meta: { source: "manual" }, salons: [] });
+    const duplicates = findDraftDuplicates(draft, { drafts: store.drafts, salons: manualIndex.salons });
+    if (duplicates.length) {
+      return res.status(409).json({ ok: false, message: formatDuplicateMessage(duplicates), duplicates });
+    }
+
     store.drafts.unshift(draft);
     await writeDraftStore(store);
     res.status(201).json({ ok: true, draft });
@@ -508,11 +514,32 @@ export function registerAdminStylistRoutes(app) {
       return res.status(400).json({ ok: false, message: "Paste at least one social, booking, or website link." });
     }
 
-    const drafts = await Promise.all(candidates.map((candidate) => buildDraft(candidate)));
     const store = await readDraftStore();
+    const manualIndex = await readJson(manualIndexPath, { meta: { source: "manual" }, salons: [] });
+    const drafts = [];
+    const duplicateResults = [];
+
+    for (const candidate of candidates) {
+      const draft = await buildDraft(candidate);
+      const duplicates = findDraftDuplicates(draft, { drafts: [...drafts, ...store.drafts], salons: manualIndex.salons });
+      if (duplicates.length) {
+        duplicateResults.push({ candidate: draft, duplicates });
+        continue;
+      }
+      drafts.push(draft);
+    }
+
+    if (!drafts.length) {
+      return res.status(409).json({
+        ok: false,
+        message: formatBulkDuplicateMessage(duplicateResults),
+        duplicates: duplicateResults,
+      });
+    }
+
     store.drafts.unshift(...drafts);
     await writeDraftStore(store);
-    res.status(201).json({ ok: true, drafts });
+    res.status(201).json({ ok: true, drafts, duplicates: duplicateResults });
   });
 
   app.get("/api/admin/discovery", requireAdmin, async (_req, res) => {
@@ -545,6 +572,12 @@ export function registerAdminStylistRoutes(app) {
       summary: suggestion.reason,
     });
     const draftStore = await readDraftStore();
+    const manualIndex = await readJson(manualIndexPath, { meta: { source: "manual" }, salons: [] });
+    const duplicates = findDraftDuplicates(draft, { drafts: draftStore.drafts, salons: manualIndex.salons });
+    if (duplicates.length) {
+      return res.status(409).json({ ok: false, message: formatDuplicateMessage(duplicates), duplicates });
+    }
+
     draftStore.drafts.unshift(draft);
     await writeDraftStore(draftStore);
     await writeDiscoveryStore(
@@ -1872,6 +1905,116 @@ async function readAdminSalonIndex() {
   };
 }
 
+function findDraftDuplicates(candidate, { drafts = [], salons = [] } = {}) {
+  const candidateKeys = getDuplicateKeys(candidate);
+  if (!candidateKeys.hasAny) {
+    return [];
+  }
+
+  return [
+    ...drafts.map((draft) => ({ item: draft, source: "draft" })),
+    ...salons.map((salon) => ({ item: salon, source: "published" })),
+  ]
+    .map(({ item, source }) => {
+      const reasons = getDuplicateReasons(candidateKeys, getDuplicateKeys(item));
+      return reasons.length ? { id: item.id || "", name: item.name || "Untitled stylist", source, reasons } : null;
+    })
+    .filter(Boolean)
+    .slice(0, 5);
+}
+
+function getDuplicateKeys(item) {
+  const name = normalizeDuplicateName(item?.name);
+  const links = [
+    ["booking link", item?.bookingUrl],
+    ["Instagram link", item?.instagramUrl],
+    ["website link", item?.websiteUrl],
+    ["TikTok link", item?.tiktokUrl],
+  ]
+    .map(([label, value]) => ({ label, value: normalizeDuplicateUrl(value) }))
+    .filter((link) => link.value);
+
+  return {
+    name,
+    links,
+    hasAny: Boolean(name || links.length),
+  };
+}
+
+function getDuplicateReasons(candidate, existing) {
+  const reasons = [];
+  if (candidate.name && existing.name && candidate.name === existing.name) {
+    reasons.push("same name");
+  }
+
+  for (const candidateLink of candidate.links) {
+    const existingLink = existing.links.find((link) => link.value === candidateLink.value);
+    if (existingLink) {
+      reasons.push(candidateLink.label === existingLink.label ? candidateLink.label : `${candidateLink.label} matches ${existingLink.label}`);
+    }
+  }
+
+  return [...new Set(reasons)];
+}
+
+function normalizeDuplicateName(value) {
+  const name = slugify(value);
+  if (!name || name === "stylist" || name === "new-stylist") {
+    return "";
+  }
+  return name;
+}
+
+function normalizeDuplicateUrl(value) {
+  const raw = cleanString(value);
+  if (!raw) {
+    return "";
+  }
+
+  try {
+    const parsed = new URL(raw);
+    const host = parsed.hostname.replace(/^www\./, "").toLowerCase();
+    const pathParts = parsed.pathname.split("/").filter(Boolean);
+
+    if (host === "instagram.com") {
+      const profile = getInstagramProfilePath(raw);
+      return profile ? `instagram.com/${profile}` : "";
+    }
+
+    if (host === "tiktok.com" && pathParts[0]?.startsWith("@")) {
+      return `tiktok.com/${pathParts[0].toLowerCase()}`;
+    }
+
+    const searchParams = new URLSearchParams(parsed.search);
+    for (const key of [...searchParams.keys()]) {
+      if (/^(utm_|fbclid$|gclid$|mc_)/i.test(key)) {
+        searchParams.delete(key);
+      }
+    }
+
+    const pathname = parsed.pathname.replace(/\/+$/, "").toLowerCase();
+    const search = searchParams.toString();
+    return `${host}${pathname || "/"}${search ? `?${search}` : ""}`;
+  } catch {
+    return raw.toLowerCase().replace(/^https?:\/\/(www\.)?/, "").replace(/\/+$/, "");
+  }
+}
+
+function formatDuplicateMessage(duplicates) {
+  const first = duplicates[0];
+  const reason = first?.reasons?.length ? ` (${first.reasons.join(", ")})` : "";
+  return first ? `Possible duplicate: ${first.name}${reason}. Open the existing ${first.source === "published" ? "published stylist" : "draft"} instead.` : "Possible duplicate found.";
+}
+
+function formatBulkDuplicateMessage(duplicateResults) {
+  const count = duplicateResults.length;
+  const first = duplicateResults[0]?.duplicates?.[0];
+  if (!first) {
+    return "No new drafts created because every intake item looked like a duplicate.";
+  }
+  return `No new drafts created. ${count} intake item${count === 1 ? "" : "s"} looked duplicate; first match: ${first.name}.`;
+}
+
 function compareRecentlyAdded(left, right) {
   return (right.addedIndex ?? 0) - (left.addedIndex ?? 0) || compareSalons(left, right);
 }
@@ -2372,6 +2515,10 @@ function isStrongServiceMatch(input, candidate) {
   const normalizedCandidate = normalizeServiceText(candidate);
 
   if (normalizedInput.length < 8) {
+    return false;
+  }
+
+  if (normalizedCandidate === "japanese straightening" && !/\bjapanese\b/.test(normalizedInput)) {
     return false;
   }
 

@@ -123,6 +123,18 @@ type AdminToast = {
   tone: "success" | "error";
 };
 
+type DuplicateMatch = {
+  id: string;
+  name: string;
+  source: "draft" | "published";
+  reasons: string[];
+};
+
+type DuplicateResult = {
+  candidate?: StylistDraft;
+  duplicates: DuplicateMatch[];
+};
+
 type DiscoverySuggestion = {
   id: string;
   name: string;
@@ -475,7 +487,7 @@ export function AdminApp() {
       });
       const payload = await response.json();
       if (!response.ok) {
-        notify(payload.message || "Could not create draft.", "error");
+        notify(formatDuplicateResponse(payload) || payload.message || "Could not create draft.", "error");
         return;
       }
       setForm(emptyForm);
@@ -502,16 +514,21 @@ export function AdminApp() {
       });
       const payload = await response.json();
       if (!response.ok) {
-        notify(payload.message || "Could not create drafts.", "error");
+        notify(formatDuplicateResponse(payload) || payload.message || "Could not create drafts.", "error");
         return;
       }
       const createdDrafts = payload.drafts ?? [];
+      const duplicateCount = Array.isArray(payload.duplicates) ? payload.duplicates.length : 0;
       setIntakeText("");
       setDrafts((current) => [...createdDrafts, ...current]);
       setSelectedDraftId(createdDrafts[0]?.id ?? null);
       setActiveView("drafts");
       setIsDraftEditorOpen(true);
-      notify(`Created ${createdDrafts.length} draft${createdDrafts.length === 1 ? "" : "s"}.`);
+      notify(
+        duplicateCount
+          ? `Created ${createdDrafts.length} draft${createdDrafts.length === 1 ? "" : "s"}; skipped ${duplicateCount} duplicate${duplicateCount === 1 ? "" : "s"}.`
+          : `Created ${createdDrafts.length} draft${createdDrafts.length === 1 ? "" : "s"}.`,
+      );
     } finally {
       setIsBusy(false);
     }
@@ -704,7 +721,7 @@ export function AdminApp() {
       const response = await fetch(`/api/admin/discovery/${suggestionId}/create-draft`, { method: "POST", credentials: "include" });
       const payload = await response.json();
       if (!response.ok) {
-        setMessage(payload.message || "Could not create draft from suggestion.");
+        notify(formatDuplicateResponse(payload) || payload.message || "Could not create draft from suggestion.", "error");
         return;
       }
       setDrafts((current) => [payload.draft, ...current]);
@@ -1292,7 +1309,9 @@ function DraftEditorDrawer({
                 {canGoBack ? <ChevronLeft className="size-4" /> : null}
                 {canGoBack ? "Back" : "Save changes"}
               </Button>
-            ) : null}
+            ) : (
+              <div aria-hidden="true" />
+            )}
             {canGoNext ? (
               <Button type="button" onClick={goToNextStep} disabled={isBusy} className="h-11 rounded-none bg-stone-950">
                 {activeStep === "details" ? "Services" : "Review"}
@@ -1457,7 +1476,7 @@ function getDraftDisplayStatus(draft: StylistDraft) {
     return "published";
   }
 
-  if (draft.status === "ready_to_approve") {
+  if (draft.status === "ready_to_approve" || getDraftCompleteness(draft) === 100) {
     return "ready_to_publish";
   }
 
@@ -1472,6 +1491,19 @@ function getStylistStatusLabel(status: string) {
     return "Published";
   }
   return "Draft";
+}
+
+function formatDuplicateResponse(payload: { duplicates?: DuplicateMatch[] | DuplicateResult[]; message?: string }) {
+  const duplicates = Array.isArray(payload.duplicates) ? payload.duplicates : [];
+  const firstResult = duplicates[0];
+  const first = firstResult && "duplicates" in firstResult ? firstResult.duplicates[0] : firstResult;
+  if (!first) {
+    return "";
+  }
+
+  const reason = first.reasons?.length ? ` (${first.reasons.join(", ")})` : "";
+  const sourceLabel = first.source === "published" ? "published stylist" : "draft";
+  return `Possible duplicate: ${first.name}${reason}. Open the existing ${sourceLabel} instead.`;
 }
 
 function getVisibleDraftWarnings(draft: StylistDraft) {
