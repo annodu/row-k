@@ -878,24 +878,24 @@ export function AdminApp() {
   const syncLabel = dashboard?.freshness.updatedAt ? `Synced ${formatRelativeTime(dashboard.freshness.updatedAt)}` : "Synced just now";
 
   return (
-    <main className="min-h-screen bg-[#f8f8f7] text-stone-950">
+    <main className="admin-ui min-h-screen bg-[#f8f8f7] text-stone-950 dark:bg-stone-950 dark:text-stone-50">
       <header className="mx-auto max-w-7xl px-5 pt-10">
         <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
           <div>
-            <p className="inline-flex rounded-none bg-stone-950 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.24em] text-white">ROW K ADMIN</p>
+            <p className="inline-flex rounded-none bg-stone-950 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.24em] text-white dark:bg-stone-100 dark:text-stone-950">ROW K ADMIN</p>
           </div>
           <div className="flex items-center gap-4">
             <span className="inline-flex items-center gap-2 text-xs text-stone-500">
               <span className="size-2 rounded-none bg-emerald-500" />
               {syncLabel}
             </span>
-            <Button type="button" variant="outline" onClick={logout} className="h-9 rounded-none bg-white px-3 text-xs">
+            <Button type="button" variant="outline" onClick={logout} className="h-9 rounded-none bg-white px-3 text-xs dark:bg-transparent">
               Log out
             </Button>
           </div>
         </div>
 
-        <nav className="mt-9 flex gap-7 border-b border-stone-200">
+        <nav className="mt-9 flex gap-7 border-b border-stone-200 dark:border-stone-800">
           {(["overview", "drafts", "freshness"] as const).map((view) => (
             <button
               key={view}
@@ -903,7 +903,7 @@ export function AdminApp() {
               onClick={() => setActiveView(view)}
               className={cn(
                 "border-b-2 px-0 pb-3 text-sm capitalize transition",
-                activeView === view ? "border-stone-950 text-stone-950" : "border-transparent text-stone-500 hover:text-stone-900",
+                activeView === view ? "border-stone-950 text-stone-950 dark:border-stone-100 dark:text-stone-50" : "border-transparent text-stone-500 hover:text-stone-900 dark:text-stone-400 dark:hover:text-stone-100",
               )}
             >
               {view === "drafts" ? "Stylists" : view === "freshness" ? "Health" : view}
@@ -2538,11 +2538,12 @@ const serviceEvidenceKeywords: Record<string, string[]> = {
   "Faux locs": ["faux locs", "invisible locs", "soft locs"],
   "Starter locs": ["starter locs", "start locs", "loc start"],
   "Stitch braids": ["stitch braids", "stitch"],
+  "Scalp detox / treatments": ["scalp", "scalp care", "scalp therapy", "scalp treatment", "scalp treatments", "scalp scrub", "scalp detox", "scalp rejuvenation", "scalp renewal", "exfoliating scalp salt scrub"],
 };
 
 const removalReviewKeywords: Record<string, string[]> = {
   "Custom wig": ["unit customisation", "unit customization", "wig customisation", "wig customization", "wig customising", "construction of wig", "construction of the wig", "wig making", "wig construction", "bespoke wig", "custom unit"],
-  "Healthy hair plans & consultations": ["healthy hair", "healthy hair plan", "healthy hair plans", "healthy hair consultation", "healthy hair consultations", "healthy hair regime", "healthy hair regimes", "healthy hair regimen", "healthy hair journey", "hair consultation", "hair consultations", "hair regime", "hair regimen", "hair journey", "hair growth plan", "hair health plan"],
+  "Healthy hair plans & consultations": ["healthy hair", "healthy hair plan", "healthy hair plans", "healthy hair consultation", "healthy hair consultations", "healthy hair regime", "healthy hair regimes", "healthy hair regimen", "healthy hair journey", "hair growth plan", "hair health plan"],
   "Wig install (frontal / closure)": ["wig installation", "installation of the wig", "lace frontal installation", "lace closure installation", "frontal unit", "closure unit", "ready-made unit", "ready made unit", "unit install"],
   "Tracks (+ silk press) / partial / invisible sew-in": ["tracks add on", "tracks add-on", "silk press add on tracks", "silk press add-on tracks", "partial sew", "row sew", "one row", "individual sewn on track", "weave tracks", "weave tracks per track", "per track"],
   "Natural hair coaches / educators": ["hair education", "natural hair education", "natural hair coach", "natural hair coaches", "hair health", "growth plan", "tutorial"],

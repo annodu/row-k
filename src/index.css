@@ -109,3 +109,97 @@ html.dark {
     font-family: var(--font-sans);
   }
 }
+
+@layer utilities {
+  html.dark .admin-ui .bg-white {
+    background-color: rgb(28 25 23);
+  }
+
+  html.dark .admin-ui .bg-white\/95 {
+    background-color: rgb(28 25 23 / 0.95);
+  }
+
+  html.dark .admin-ui .bg-\[\#f8f8f7\],
+  html.dark .admin-ui .bg-stone-50,
+  html.dark .admin-ui .bg-stone-100 {
+    background-color: rgb(28 25 23);
+  }
+
+  html.dark .admin-ui .bg-stone-200 {
+    background-color: rgb(41 37 36);
+  }
+
+  html.dark .admin-ui .bg-stone-950,
+  html.dark .admin-ui .bg-stone-900 {
+    background-color: rgb(245 245 244);
+  }
+
+  html.dark .admin-ui .hover\:bg-stone-50:hover,
+  html.dark .admin-ui .hover\:bg-stone-100:hover,
+  html.dark .admin-ui .hover\:bg-stone-200:hover,
+  html.dark .admin-ui .focus\:bg-stone-50:focus,
+  html.dark .admin-ui .active\:bg-stone-50:active,
+  html.dark .admin-ui .active\:bg-stone-100:active {
+    background-color: rgb(41 37 36);
+  }
+
+  html.dark .admin-ui .hover\:bg-stone-800:hover,
+  html.dark .admin-ui .active\:bg-stone-700:active {
+    background-color: rgb(214 211 209);
+  }
+
+  html.dark .admin-ui .border-stone-100,
+  html.dark .admin-ui .border-stone-200,
+  html.dark .admin-ui .border-stone-300 {
+    border-color: rgb(41 37 36);
+  }
+
+  html.dark .admin-ui .hover\:border-stone-300:hover,
+  html.dark .admin-ui .hover\:border-stone-400:hover,
+  html.dark .admin-ui .focus\:border-stone-400:focus {
+    border-color: rgb(87 83 78);
+  }
+
+  html.dark .admin-ui .text-stone-950,
+  html.dark .admin-ui .text-stone-900,
+  html.dark .admin-ui .text-stone-800,
+  html.dark .admin-ui .text-stone-700 {
+    color: rgb(245 245 244);
+  }
+
+  html.dark .admin-ui .text-stone-600,
+  html.dark .admin-ui .text-stone-500,
+  html.dark .admin-ui .text-stone-400 {
+    color: rgb(168 162 158);
+  }
+
+  html.dark .admin-ui .hover\:text-stone-950:hover,
+  html.dark .admin-ui .hover\:text-stone-900:hover,
+  html.dark .admin-ui .hover\:text-stone-800:hover {
+    color: rgb(245 245 244);
+  }
+
+  html.dark .admin-ui .text-white {
+    color: rgb(28 25 23);
+  }
+
+  html.dark .admin-ui .placeholder\:text-stone-400::placeholder {
+    color: rgb(120 113 108);
+  }
+
+  html.dark .admin-ui input,
+  html.dark .admin-ui textarea,
+  html.dark .admin-ui select {
+    color: rgb(245 245 244);
+    background-color: rgb(28 25 23);
+    border-color: rgb(68 64 60);
+  }
+
+  html.dark .admin-ui input[type="checkbox"] {
+    accent-color: rgb(245 245 244);
+  }
+
+  html.dark .admin-ui .divide-stone-100 > :not([hidden]) ~ :not([hidden]) {
+    border-color: rgb(41 37 36);
+  }
+}

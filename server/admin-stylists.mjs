@@ -14,7 +14,7 @@ const manualIndexPath = path.resolve(__dirname, "../data/manual-salons.json");
 const sessionCookieName = "rowk_admin_session";
 const sessionMaxAgeSeconds = 60 * 60 * 12;
 const repositoryRoot = path.resolve(__dirname, "..");
-const githubBackedJsonPaths = new Set(["data/manual-salons.json", "data/stylist-drafts.json", "data/discovery-suggestions.json"]);
+const githubBackedJsonPaths = new Set(["data/manual-salons.json", "data/stylist-drafts.json", "data/discovery-suggestions.json", "data/freshness-checks.json"]);
 
 const regionOptions = [
   { id: "all-london", label: "London" },
@@ -125,7 +125,7 @@ const serviceRuleMatchers = [
   ["Silk press", [/\bsilk\s+press\b/, /\bsilkpress\b/, /\bpress\s+and\s+curl\b/]],
   ["Twist out / flexi rod", [/\btwist\s*out\b/, /\bflexi\s*rod\b/, /\bflexi-rod\b/, /\bperm\s+rod\b/]],
   ["Wig cornrows", [/\bunder\s*wig\b/, /\bwig\s+(cornrows?|cainrows?)\b/, /\b(cornrows?|cainrows?)\s+for\s+wig\s+installation\b/, /\b(cornrows?|cainrows?)\s+without\s+extensions?\b/, /\bwig\s+cainrows?\b/, /\bcainrows?\b/, /\bcornrows?\b/]],
-  ["Healthy hair plans & consultations", [/\bhealthy\s+hair\s+(regimes?|regimens?|plans?|journey|consultations?)\b/, /\bhair\s+(regimes?|regimens?|plans?|journey|consultations?)\b/, /\bhair\s+growth\s+plans?\b/, /\bhair\s+health\s+plans?\b/]],
+  ["Healthy hair plans & consultations", [/\bhealthy\s+hair\s+(regimes?|regimens?|plans?|journey|consultations?)\b/, /\bhair\s+growth\s+plans?\b/, /\bhair\s+health\s+plans?\b/]],
   ["Trichology / scalp analysis", [/\btricholog(?:y|ist|ists)\b/, /\bscalp\s+analysis\b/]],
   ["Natural hair coaches / educators", [/\b(afro|natural|curly|curl|hair)\b.*\beducation\b/, /\beducation\b.*\b(afro|natural|curly|curl|hair)\b/, /\b(hair|curl|styling)\b.*\btutorial\b/, /\btutorial\b.*\b(hair|curl|styling)\b/, /\bhair\s+health\b.*\b(assessment|plan|growth|consultation)\b/, /\bgrowth\s+plan\b/, /\bconsultation\b.*\bnatural\b/, /\bnatural\s+hair\b.*\b(class|education|consultation)\b/, /\bcurl\s+makeover\b.*\b(hands?\s*on|tutorial|styling)\b/]],
   ["Sleek ponytail / bun", [/\bsleek\b.*\b(pony|ponytail|bun)\b/, /\bpony\s*tail\b/, /\bponytail\b/, /\bbun\b/]],
@@ -157,7 +157,7 @@ const serviceNegationHints = {
   "Fulani / lemonade braids": ["fulani", "lemonade", "alicia keys braids"],
   "Full head colour": ["full head colour", "full head color", "colour", "color", "dye", "tint"],
   "Hair botox": ["hair botox", "botox"],
-  "Healthy hair plans & consultations": ["healthy hair", "healthy hair plan", "healthy hair plans", "healthy hair consultation", "healthy hair consultations", "healthy hair regime", "healthy hair regimes", "healthy hair regimen", "healthy hair journey", "hair consultation", "hair consultations", "hair regime", "hair regimen", "hair growth plan", "hair health plan"],
+  "Healthy hair plans & consultations": ["healthy hair", "healthy hair plan", "healthy hair plans", "healthy hair consultation", "healthy hair consultations", "healthy hair regime", "healthy hair regimes", "healthy hair regimen", "healthy hair journey", "hair growth plan", "hair health plan"],
   "Half braids, half sew-in": ["half braids half sew in", "half braid half weave", "half weave"],
   "Half up half down": ["half up half down"],
   "Highlights": ["highlights", "high lights"],
@@ -351,13 +351,28 @@ export function registerAdminStylistRoutes(app) {
     const checks = (Array.isArray(req.body?.checks) ? req.body.checks : [])
       .map((check) => sanitizeFreshnessCheck(check, check?.id))
       .filter(Boolean);
+    const checkedCount = Number(req.body?.checkedCount) || 0;
+    const total = Number(req.body?.total) || 0;
+    const existingChecks = Array.isArray(existingStore.checks) ? existingStore.checks : [];
+
+    if (checks.length === 0 && existingChecks.length > 0 && checkedCount < total) {
+      return res.json({
+        ok: true,
+        ...(existingStore.meta || {}),
+        checkedAt: existingStore.meta?.updatedAt ?? null,
+        checks: existingChecks,
+        preserved: true,
+        message: "Preserved previous health check results because the submitted run was incomplete and empty.",
+      });
+    }
+
     const payload = {
       meta: {
         source: "freshness-checks",
         updatedAt: checkedAt,
         count: checks.length,
-        checkedCount: Number(req.body?.checkedCount) || 0,
-        total: Number(req.body?.total) || 0,
+        checkedCount,
+        total,
       },
       dismissedRecommendations: existingStore.dismissedRecommendations || {},
       checks,
@@ -1342,6 +1357,7 @@ const serviceEvidenceKeywords = {
   "Twists (with extensions)": ["twists with extensions", "passion twists", "marley twists", "senegalese twists", "kinky twists", "rope twists", "island twists", "island twist", "large twist", "large twists"],
   "Wash & blowdry": ["wash blowdry", "wash blow dry", "wash and blowdry", "wash and blow dry", "washing blow drying", "washing and blow drying", "shampoo blowdry", "shampoo blow dry", "shampoo and blowdry", "shampoo and blow dry", "blowout"],
   "Wig cornrows": ["under wig", "wig cornrows", "wig cainrows", "cornrows for wig installation", "cornrows without extensions", "cainrows"],
+  "Scalp detox / treatments": ["scalp", "scalp care", "scalp therapy", "scalp treatment", "scalp treatments", "scalp scrub", "scalp detox", "scalp rejuvenation", "scalp renewal", "exfoliating scalp salt scrub"],
 };
 
 function serviceFamilyFor(service) {

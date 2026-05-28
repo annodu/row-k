@@ -1,7 +1,7 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-05-28T14:59:42.000Z",
+    "updatedAt": "2026-05-28T20:05:19.516Z",
     "count": 644,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
@@ -75,8 +75,10 @@
       "websiteUrl": "https://brushbundless.as.me/schedule/ac9bfecd",
       "instagramUrl": "https://www.instagram.com/brushandbundles/",
       "services": [
-        "Wash & blowdry",
-        "Sew-in take-down"
+        "Sew-in take-down",
+        "Quick weave",
+        "Flipover / Versatile sew-in",
+        "Traditional sew-in / leave out"
       ],
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
@@ -133,7 +135,9 @@
         "Wig install (frontal / closure)",
         "Custom wig",
         "Traditional sew-in / leave out",
-        "Flipover / Versatile sew-in"
+        "Flipover / Versatile sew-in",
+        "Wig cornrows",
+        "Sew-in take-down"
       ],
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
@@ -184,8 +188,7 @@
         "Tape ins",
         "Wash & blowdry",
         "Trim / hair cut",
-        "Traditional sew-in / leave out",
-        "Tracks (+ silk press) / partial / invisible sew-in"
+        "Traditional sew-in / leave out"
       ],
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
@@ -389,7 +392,12 @@
         "Flipover / Versatile sew-in",
         "Frontal sew-in",
         "Wig install (frontal / closure)",
-        "U-part wig install"
+        "U-part wig install",
+        "Stitch braids",
+        "Wig cornrows",
+        "Trim / hair cut",
+        "Silk press",
+        "Traditional sew-in / leave out"
       ],
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
@@ -431,7 +439,6 @@
       "websiteUrl": "https://aureahairnco.as.me/schedule/02b35fce?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0DMTAwAHNydGMGYXBwX2lkDzkzNjYxOTc0MzM5MjQ1OQABp0vmmEc1W_2wCtUEdkaLc1Jd5YWNbEJ5_1FRaBKOq09Nr5QYeqeCbbuDWGXP_aem_q4Tl0UsN8rLzsXugBP4u0A",
       "instagramUrl": "https://www.instagram.com/aureahairnco/",
       "services": [
-        "Custom wig",
         "Wig install (frontal / closure)",
         "Frontal ponytail / bun",
         "Traditional sew-in / leave out",
@@ -549,8 +556,7 @@
         "Traditional sew-in / leave out",
         "Flipover / Versatile sew-in",
         "Closure sew-in",
-        "Frontal sew-in",
-        "Custom wig"
+        "Frontal sew-in"
       ],
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
@@ -641,7 +647,9 @@
       "services": [
         "Boho braids / goddess braids",
         "Wash & blowdry",
-        "Braid take-down"
+        "Braid take-down",
+        "Knotless braids",
+        "Olaplex treatment"
       ],
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
@@ -697,7 +705,12 @@
         "Half up half down",
         "Moisturising treatment",
         "U-part wig install",
-        "Flipover / Versatile sew-in"
+        "Flipover / Versatile sew-in",
+        "Stitch braids",
+        "French curl",
+        "Half braids, half sew-in",
+        "Twists (with extensions)",
+        "Wig cornrows"
       ],
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
@@ -3777,7 +3790,6 @@
       "bookingUrl": "https://cabelobeau.setmore.com/",
       "instagramUrl": "https://www.instagram.com/cabelobeau/",
       "services": [
-        "Wig install (frontal / closure)",
         "Closure sew-in",
         "Tape ins",
         "Flipover / Versatile sew-in",
@@ -4555,7 +4567,8 @@
         "Traditional sew-in / leave out",
         "Flipover / Versatile sew-in",
         "Healthy hair plans & consultations",
-        "Trichology / scalp analysis"
+        "Trichology / scalp analysis",
+        "Healthy hair consultations & regimes"
       ]
     },
     {
@@ -5238,8 +5251,7 @@
       "areaId": "south-west",
       "areaIds": [
         "south-west",
-        "south-east",
-        "north"
+        "south-east"
       ],
       "areaLabel": "South West",
       "neighbourhood": "South West London",
@@ -6517,7 +6529,8 @@
         "Knotless braids",
         "Box braids",
         "Pixie / finger waves",
-        "Healthy hair plans & consultations"
+        "Healthy hair plans & consultations",
+        "Healthy hair consultations & regimes"
       ]
     },
     {
@@ -10885,7 +10898,7 @@
       "bookingUrl": "https://www.papachichistyle.com/pages/appointment",
       "instagramUrl": "https://www.instagram.com/papachichistyle/",
       "services": [
-        "Wig install",
+        "Wig install (frontal / closure)",
         "Olaplex treatment",
         "Tape ins",
         "Relaxer / texturiser",
@@ -10894,7 +10907,9 @@
         "Frontal sew-in",
         "U-part wig install",
         "Frontal ponytail / bun",
-        "Editorial / Session styling"
+        "Editorial / Session styling",
+        "Wig colouring / bundle colouring",
+        "Bridal"
       ]
     },
     {
@@ -10921,7 +10936,8 @@
         "Keratin treatment",
         "K-18 treatment",
         "Relaxer / texturiser",
-        "Healthy hair plans & consultations"
+        "Healthy hair plans & consultations",
+        "Healthy hair consultations & regimes"
       ]
     },
     {
@@ -11342,7 +11358,8 @@
         "Bridal",
         "Twists (with extensions)",
         "Updo",
-        "Healthy hair plans & consultations"
+        "Healthy hair plans & consultations",
+        "Healthy hair consultations & regimes"
       ]
     },
     {
@@ -11689,7 +11706,8 @@
         "Hybrid sew-in",
         "Sew-in take-down",
         "Flipover / Versatile sew-in",
-        "Tape ins"
+        "Tape ins",
+        "Healthy hair consultations & regimes"
       ]
     },
     {
@@ -13675,7 +13693,8 @@
         "Feed-in braids",
         "Braid take-down",
         "Wash & blowdry",
-        "Silk press"
+        "Silk press",
+        "Scalp detox / treatments"
       ]
     },
     {
@@ -16350,7 +16369,6 @@
       "services": [
         "Custom wig",
         "Wig install (frontal / closure)",
-        "Closure sew-in",
         "Frontal sew-in"
       ],
       "summary": "Manual entry amalgamated from duplicate Bysandraamika and By Sandra Amika records.",
