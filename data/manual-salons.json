@@ -1,7 +1,7 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-05-27T23:52:19.942Z",
+    "updatedAt": "2026-05-28T00:31:37.850Z",
     "count": 640,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
@@ -15699,14 +15699,37 @@
       "instagramUrl": "https://www.instagram.com/moshhairlondon/",
       "services": [
         "Flipover / Versatile sew-in",
-        "Bridal / Editorial"
+        "Tape ins",
+        "Wash & blowdry",
+        "Moisturising treatment",
+        "Trim / Hair cut",
+        "Texture release",
+        "Half up half down",
+        "Half braids, half sew-in",
+        "Traditional sew-in / leave out",
+        "Sleek ponytail / bun",
+        "Frontal ponytail / bun",
+        "Sew-in take-down",
+        "Scalp care",
+        "Olaplex treatment",
+        "Quick weave",
+        "Frontal sew-in",
+        "Custom wig",
+        "Wig cornrows",
+        "Closure sew-in",
+        "Wig install (frontal / closure)"
       ],
       "summary": "Manual Instagram-led entry enriched from spreadsheet import.",
       "source": "manual",
       "evidence": [
         "Spreadsheet import: Stylists_Database.xlsx.",
         "Instagram source: https://www.instagram.com/moshhairlondon/"
-      ]
+      ],
+      "websiteUrl": "https://www.moshhairlondon.co.uk",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "updatedAt": "2026-05-28T00:31:37.850Z"
     },
     {
       "id": "ccs-glamhousehair",
