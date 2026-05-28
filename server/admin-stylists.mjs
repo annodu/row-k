@@ -1994,7 +1994,8 @@ function normalizeDuplicateUrl(value) {
 
     const pathname = parsed.pathname.replace(/\/+$/, "").toLowerCase();
     const search = searchParams.toString();
-    return `${host}${pathname || "/"}${search ? `?${search}` : ""}`;
+    const hash = parsed.hash.toLowerCase();
+    return `${host}${pathname || "/"}${search ? `?${search}` : ""}${hash}`;
   } catch {
     return raw.toLowerCase().replace(/^https?:\/\/(www\.)?/, "").replace(/\/+$/, "");
   }

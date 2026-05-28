@@ -1,8 +1,8 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-05-27T23:52:19.942Z",
-    "count": 640,
+    "updatedAt": "2026-05-28T00:27:39.946Z",
+    "count": 634,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
@@ -456,32 +456,6 @@
       ]
     },
     {
-      "id": "laidbyjhair",
-      "name": "Laidbyjhair",
-      "areaId": "south-west",
-      "areaIds": [
-        "south-west",
-        "croydon"
-      ],
-      "areaLabel": "South West London / Croydon",
-      "neighbourhood": "South West London and Croydon London",
-      "postcode": "",
-      "bookingPlatform": "Acuity",
-      "bookingUrl": "https://laidbyjhair.as.me/schedule/2c94793b",
-      "websiteUrl": "https://laidbyjhair.as.me/schedule/2c94793b",
-      "instagramUrl": "https://www.instagram.com/laidbyjhair/",
-      "services": [
-        "Custom wig",
-        "Wig install (frontal / closure)",
-        "Quick weave"
-      ],
-      "summary": "Admin draft created from stylist intake.",
-      "source": "manual",
-      "evidence": [
-        "Submitted link: https://www.instagram.com/laidbyjhair/"
-      ]
-    },
-    {
       "id": "shaistylesuk",
       "name": "Shaistylesuk",
       "areaId": "essex",
@@ -860,28 +834,6 @@
       ]
     },
     {
-      "id": "slayedbyp",
-      "name": "Slayedbyp",
-      "areaId": "east",
-      "areaLabel": "East London",
-      "neighbourhood": "East London London",
-      "postcode": "",
-      "bookingPlatform": "Acuity",
-      "bookingUrl": "https://slayedbyphairstyles.as.me/schedule/50c6de07",
-      "instagramUrl": "https://www.instagram.com/slayedbyp/",
-      "services": [
-        "Boho braids / goddess braids",
-        "French curl",
-        "Knotless braids",
-        "Braid take-down"
-      ],
-      "summary": "Admin draft created from stylist intake.",
-      "source": "manual",
-      "evidence": [
-        "Submitted link: https://www.instagram.com/slayedbyp/"
-      ]
-    },
-    {
       "id": "beyondthebrushldn",
       "name": "Beyondthebrushldn",
       "areaId": "south-west",
@@ -956,56 +908,6 @@
       ]
     },
     {
-      "id": "hausofshee",
-      "name": "Hausofshee",
-      "areaId": "all-london",
-      "areaLabel": "London",
-      "neighbourhood": "London London",
-      "postcode": "",
-      "bookingPlatform": "Instagram",
-      "bookingUrl": "https://www.instagram.com/hausofshee/",
-      "instagramUrl": "https://www.instagram.com/hausofshee/",
-      "services": [
-        "Bridal / Editorial",
-        "Sleek ponytail / bun",
-        "Wig install (frontal / closure)",
-        "Updo",
-        "Frontal ponytail / bun"
-      ],
-      "summary": "Admin draft created from stylist intake.",
-      "source": "manual",
-      "evidence": [
-        "Submitted link: https://www.instagram.com/hausofshee/"
-      ],
-      "tiktokUrl": "",
-      "hijabiFriendly": false,
-      "canBraidWithoutGel": false,
-      "updatedAt": "2026-05-27T06:28:45.690Z"
-    },
-    {
-      "id": "carterhairco-2",
-      "name": "Carterhairco",
-      "areaId": "east",
-      "areaLabel": "East London",
-      "neighbourhood": "East London London",
-      "postcode": "",
-      "bookingPlatform": "Acuity",
-      "bookingUrl": "https://carterhairco.as.me/schedule/e46122d8",
-      "instagramUrl": "https://www.instagram.com/carterhairco_/",
-      "services": [
-        "Texture release",
-        "Trim / Hair cut",
-        "Silk press",
-        "Tape ins",
-        "Wash & blowdry"
-      ],
-      "summary": "Admin draft created from stylist intake.",
-      "source": "manual",
-      "evidence": [
-        "Submitted link: https://www.instagram.com/carterhairco_/"
-      ]
-    },
-    {
       "id": "monarchiehair",
       "name": "Monarchiehair",
       "areaId": "east",
@@ -1055,49 +957,6 @@
       ],
       "tiktokUrl": "",
       "updatedAt": "2026-05-19T22:53:21.397Z"
-    },
-    {
-      "id": "theehairarchives-2",
-      "name": "Theehairarchives",
-      "areaId": "south-east",
-      "areaLabel": "South East London",
-      "neighbourhood": "South East London London",
-      "postcode": "",
-      "bookingPlatform": "Direct",
-      "bookingUrl": "https://www.instagram.com/theehairarchives/",
-      "instagramUrl": "https://www.instagram.com/theehairarchives/",
-      "services": [
-        "Quick weave",
-        "Sleek ponytail / bun",
-        "Frontal ponytail / bun"
-      ],
-      "summary": "Admin draft created from stylist intake.",
-      "source": "manual",
-      "evidence": [
-        "Submitted link: https://www.instagram.com/theehairarchives/"
-      ]
-    },
-    {
-      "id": "bysandraamika-2",
-      "name": "Bysandraamika",
-      "areaId": "north-west",
-      "areaLabel": "North West London",
-      "neighbourhood": "North West London London",
-      "postcode": "",
-      "bookingPlatform": "Direct",
-      "bookingUrl": "https://www.instagram.com/bysandraamika/",
-      "instagramUrl": "https://www.instagram.com/bysandraamika/",
-      "services": [
-        "Wig install (frontal / closure)",
-        "Closure sew-in",
-        "Frontal sew-in",
-        "Custom wig"
-      ],
-      "summary": "Admin draft created from stylist intake.",
-      "source": "manual",
-      "evidence": [
-        "Submitted link: https://www.instagram.com/bysandraamika/"
-      ]
     },
     {
       "id": "curl-power-by-elaine",
@@ -7546,10 +7405,11 @@
       ]
     },
     {
-      "summary": "Manual entry added from your latest salon update batch.",
+      "summary": "Manual entry amalgamated from duplicate Hausofshee and Haus of Shee records.",
       "source": "manual",
       "evidence": [
-        "User-provided manual addition."
+        "User-provided manual addition.",
+        "Submitted link: https://www.instagram.com/hausofshee/"
       ],
       "id": "haus-of-shee",
       "name": "Haus of Shee",
@@ -7565,8 +7425,14 @@
       "bookingUrl": "https://www.instagram.com/hausofshee/",
       "instagramUrl": "https://www.instagram.com/hausofshee/",
       "services": [
-        "Bridal / Editorial"
-      ]
+        "Bridal / Editorial",
+        "Sleek ponytail / bun",
+        "Wig install (frontal / closure)",
+        "Updo",
+        "Frontal ponytail / bun"
+      ],
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false
     },
     {
       "id": "haute-glam-hair",
@@ -9241,26 +9107,31 @@
     {
       "id": "laid-by-j-hair",
       "name": "Laid by J Hair",
-      "areaId": "croydon",
-      "areaLabel": "Croydon",
-      "neighbourhood": "Croydon",
+      "areaId": "south-west",
+      "areaLabel": "South West London / Croydon",
+      "neighbourhood": "South West London and Croydon London",
       "postcode": "",
-      "bookingPlatform": ".as.me",
+      "bookingPlatform": "Acuity",
       "bookingUrl": "https://laidbyjhair.as.me/schedule/2c94793b",
       "instagramUrl": "https://www.instagram.com/laidbyjhair/",
       "services": [
-        "Wig install",
+        "Wig install (frontal / closure)",
         "Sleek ponytail / bun",
         "Half up half down",
         "Quick weave",
         "Custom wig",
         "Updo"
       ],
-      "summary": "Manual entry added from your Croydon wigs and styling list.",
+      "summary": "Manual entry amalgamated from duplicate Laidbyjhair and Laid by J Hair records.",
       "source": "manual",
       "evidence": [
         "User-provided manual addition.",
-        "Restored Updo service from historical standalone-updo commit de619f9."
+        "Restored Updo service from historical standalone-updo commit de619f9.",
+        "Submitted link: https://www.instagram.com/laidbyjhair/"
+      ],
+      "areaIds": [
+        "south-west",
+        "croydon"
       ]
     },
     {
@@ -12813,10 +12684,10 @@
       "id": "slayed-by-phairstyles",
       "name": "Slayed by P Hairstyles",
       "areaId": "east",
-      "areaLabel": "East",
+      "areaLabel": "East London",
       "neighbourhood": "East London",
       "postcode": "",
-      "bookingPlatform": ".as.me",
+      "bookingPlatform": "Acuity",
       "bookingUrl": "https://slayedbyphairstyles.as.me/schedule/50c6de07",
       "instagramUrl": "https://www.instagram.com/slayedbyp/",
       "services": [
@@ -12825,10 +12696,11 @@
         "French curl",
         "Braid take-down"
       ],
-      "summary": "Manual entry added from your East London braids list.",
+      "summary": "Manual entry amalgamated from duplicate Slayedbyp and Slayed by P Hairstyles records.",
       "source": "manual",
       "evidence": [
-        "User-provided manual addition."
+        "User-provided manual addition.",
+        "Submitted link: https://www.instagram.com/slayedbyp/"
       ]
     },
     {
@@ -15832,15 +15704,17 @@
         "Traditional sew-in / leave out",
         "Sleek ponytail / bun",
         "Frontal ponytail / bun",
-        "Bridal / Editorial"
+        "Bridal / Editorial",
+        "Quick weave"
       ],
-      "summary": "Manual Instagram-led entry enriched from spreadsheet import.",
+      "summary": "Manual entry amalgamated from duplicate Theehairarchives records.",
       "source": "manual",
       "evidence": [
         "Spreadsheet import: Stylists_Database.xlsx.",
         "Instagram source: https://www.instagram.com/theehairarchives/",
         "Booking/contact note: Instagram DM, WhatsApp +44 77482 65990",
-        "User-provided correction: updated booking/services from follow-up message."
+        "User-provided correction: updated booking/services from follow-up message.",
+        "Submitted link: https://www.instagram.com/theehairarchives/"
       ]
     },
     {
@@ -16443,22 +16317,25 @@
       "id": "bysandraamika",
       "name": "By Sandra Amika",
       "areaId": "north-west",
-      "areaLabel": "North West",
+      "areaLabel": "North West London",
       "neighbourhood": "North West London",
       "postcode": "",
-      "bookingPlatform": ".as.me",
+      "bookingPlatform": "Acuity",
       "bookingUrl": "https://bysandraamika.as.me/schedule/6f44aa66",
       "instagramUrl": "https://www.instagram.com/bysandraamika/",
       "services": [
         "Custom wig",
-        "Wig install (frontal / closure)"
+        "Wig install (frontal / closure)",
+        "Closure sew-in",
+        "Frontal sew-in"
       ],
-      "summary": "Manual Instagram-led entry added from user-provided booking menu.",
+      "summary": "Manual entry amalgamated from duplicate Bysandraamika and By Sandra Amika records.",
       "source": "manual",
       "evidence": [
         "User-provided Instagram profile: https://www.instagram.com/bysandraamika/",
         "User-provided booking page: https://bysandraamika.as.me/schedule/6f44aa66",
-        "User-provided service menu includes handmade wigs, lace replacement/reinstall, styling, and ready-made wig services."
+        "User-provided service menu includes handmade wigs, lace replacement/reinstall, styling, and ready-made wig services.",
+        "Submitted link: https://www.instagram.com/bysandraamika/"
       ]
     },
     {
@@ -16490,22 +16367,26 @@
       "id": "carterhairco",
       "name": "Carter Hair Co",
       "areaId": "east",
-      "areaLabel": "East",
+      "areaLabel": "East London",
       "neighbourhood": "East London",
       "postcode": "",
-      "bookingPlatform": ".as.me",
-      "bookingUrl": "https://carterhairco.as.me",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://carterhairco.as.me/schedule/e46122d8",
       "instagramUrl": "https://www.instagram.com/carterhairco_/",
       "services": [
         "Tape ins",
-        "Texture release"
+        "Texture release",
+        "Trim / Hair cut",
+        "Silk press",
+        "Wash & blowdry"
       ],
-      "summary": "Manual Instagram-led entry enriched from spreadsheet import.",
+      "summary": "Manual entry amalgamated from duplicate Carterhairco and Carter Hair Co records.",
       "source": "manual",
       "evidence": [
         "Spreadsheet import: Stylists_Database.xlsx.",
         "Instagram source: https://www.instagram.com/carterhairco_/",
-        "Original spreadsheet filters: Tape-Ins & Installs"
+        "Original spreadsheet filters: Tape-Ins & Installs",
+        "Submitted link: https://www.instagram.com/carterhairco_/"
       ]
     },
     {
