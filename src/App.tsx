@@ -60,10 +60,14 @@ const categoryMap = {
   },
   "colour-services": {
     label: "Colour",
-    subcategories: ["all", "Balayage", "Full head colour", "Highlights", "Wig colour"],
+    subcategories: ["all", "Balayage", "Full head colour", "Highlights", "Wig colouring / Bundle colouring"],
   },
-  "bridal-session-services": {
-    label: "Bridal / Editorial",
+  "bridal-services": {
+    label: "Bridal",
+    subcategories: ["all"],
+  },
+  "editorial-services": {
+    label: "Editorial / Session styling",
     subcategories: ["all"],
   },
   "extension-services": {
@@ -130,7 +134,7 @@ const categoryMap = {
   },
   "wig-services": {
     label: "Wigs",
-    subcategories: ["all", "Custom wig", "Pixie wig / weave install", "U-Part wig install", "Wig colour", "Wig install (frontal / closure)"],
+    subcategories: ["all", "Custom wig", "Pixie wig / weave install", "U-Part wig install", "Wig colouring / Bundle colouring", "Wig install (frontal / closure)"],
   },
 } as const;
 
@@ -152,8 +156,9 @@ const categoryServiceMap = {
     "Stitch braids",
     "Twists (with extensions)",
   ],
-  "colour-services": ["Balayage", "Full head colour", "Highlights", "Wig colour"],
-  "bridal-session-services": ["Bridal / Editorial"],
+  "colour-services": ["Balayage", "Full head colour", "Highlights", "Wig colouring / Bundle colouring"],
+  "bridal-services": ["Bridal"],
+  "editorial-services": ["Editorial / Session styling"],
   "extension-services": [
     "Clip ins (+ Silk press)",
     "K-tips / Invisible strands",
@@ -194,7 +199,7 @@ const categoryServiceMap = {
     "Twist out / Flexi rod",
     "Wash & blowdry",
   ],
-  "wig-services": ["Custom wig", "Pixie wig / weave install", "U-Part wig install", "Wig colour", "Wig install (frontal / closure)"],
+  "wig-services": ["Custom wig", "Pixie wig / weave install", "U-Part wig install", "Wig colouring / Bundle colouring", "Wig install (frontal / closure)"],
 } as const satisfies Record<ServiceCategoryId, readonly string[]>;
 
 type RegionId = (typeof regions)[number]["id"];

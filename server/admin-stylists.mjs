@@ -66,7 +66,7 @@ const intakeServiceAliases = {
 };
 
 const serviceRuleMatchers = [
-  ["Wig colour", [/\b(wig|extensions?|bundle|bundles|frontal|closure|lace\s+system)\b.*\b(colou?r|dye|ton(e|ing)|bleach|highlight|custom colou?r)\b/, /\b(colou?r|dye|ton(e|ing)|bleach|highlight|custom colou?r)\b.*\b(wig|extensions?|bundle|bundles|frontal|closure|lace\s+system)\b/, /\b613\b.*\b(colou?r|dye|ton(e|ing)|bleach|highlight|bright)\b/, /\b(colou?r|dye|ton(e|ing)|bleach|highlight|bright)\b.*\b613\b/, /\bnon[\s-]*contact\b.*\b(colou?r|colou?ring|dye|ton(e|ing)|bleach|highlight)\b/]],
+  ["Wig colouring / Bundle colouring", [/\b(wig|extensions?|bundle|bundles|frontal|closure|lace\s+system)\b.*\b(colou?r|dye|ton(e|ing)|bleach|highlight|custom colou?r)\b/, /\b(colou?r|dye|ton(e|ing)|bleach|highlight|custom colou?r)\b.*\b(wig|extensions?|bundle|bundles|frontal|closure|lace\s+system)\b/, /\b613\b.*\b(colou?r|dye|ton(e|ing)|bleach|highlight|bright)\b/, /\b(colou?r|dye|ton(e|ing)|bleach|highlight|bright)\b.*\b613\b/, /\bnon[\s-]*contact\b.*\b(colou?r|colou?ring|dye|ton(e|ing)|bleach|highlight)\b/]],
   ["Frontal ponytail / bun", [/\bfrontal\b.*\b(pony|ponytail|bun)\b/, /\b(pony|ponytail|bun)\b.*\bfrontal\b/]],
   ["Half braids, half sew-in", [/\bhalf\b.*\b(braid|braids|feed\s*in|feed-in|cornrows?)\b.*\b(weave|sew[\s-]*in|sewin)\b/, /\bhalf\b.*\b(weave|sew[\s-]*in|sewin)\b.*\b(braid|braids|feed\s*in|feed-in|cornrows?)\b/, /\bhalf\s+braid\b/, /\bhalf\s+weave\b/]],
   ["Wig install (frontal / closure)", [/\bwig\b.*\b(install|instal|installation|application|fit|fitting)\b/, /\b(glueless|lace)\s+wig\b/, /\bfrontal\s+wig\b/, /\bclosure\s+wig\b/, /\b(frontal|closure|ready[\s-]*made)\s+unit\b/, /\bunit\b.*\b(install|instal|installation|application|fit|fitting)\b/, /\b(lace\s+)?frontal\s+installation\b/, /\b(lace\s+)?closure\s+installation\b/]],
@@ -108,7 +108,8 @@ const serviceRuleMatchers = [
   ["Balayage", [/\bbalayage\b/]],
   ["Highlights", [/\bhigh\s*lights?\b/, /\bhighlights?\b/]],
   ["Full head colour", [/\bfull\s+head\b.*\bcolou?r\b/, /\bpermanent\s+(colou?r|tint)\b/, /\b(colou?r|dye|tint)\b/]],
-  ["Bridal / Editorial", [/\bbridal\b/, /\bwedding\b/, /\beditorial\b/, /\bsession\s+styling\b/, /\bphotoshoot\b/]],
+  ["Bridal", [/\bbridal\b/, /\bwedding\b/]],
+  ["Editorial / Session styling", [/\beditorial\b/, /\bsession\s+styling\b/, /\bphotoshoot\b/]],
   ["Keratin treatment", [/\bkeratin\b/]],
   ["Relaxer / texturiser", [/\brelaxer\b/, /\btexturi[sz]er\b/, /\btexturi[sz]ing\b/]],
   ["Texture release", [/\btexture\s+release\b/]],
@@ -136,7 +137,8 @@ const serviceNegationHints = {
   "Boho braids / goddess braids": ["boho", "goddess"],
   "Box braids": ["box braids"],
   "Braid take-down": ["braid take down", "braid takedown", "braid removal", "remove braids"],
-  "Bridal / Editorial": ["bridal", "wedding", "editorial", "photoshoot"],
+  "Bridal": ["bridal", "wedding"],
+  "Editorial / Session styling": ["editorial", "session styling", "photoshoot"],
   "Butterfly locs": ["butterfly locs"],
   "Clip ins (+ Silk press)": ["clip ins", "clip in"],
   "Closure sew-in": ["closure sew in", "closure sew-in", "closure sewin", "closure weave", "weave with lace closure", "closure behind the hairline"],
@@ -192,7 +194,7 @@ const serviceNegationHints = {
   "U-Part wig install": ["u part", "u-part", "upart", "u part wig", "u-part wig", "upart wig", "v part", "v-part", "vpart", "v part wig", "v-part wig", "vpart wig", "u vpart", "uvpart", "half wig"],
   "Updo": ["updo", "up do", "pin up", "french roll up", "french roll"],
   "Wash & blowdry": ["wash blowdry", "wash blow dry", "wash and blowdry", "wash and blow dry", "washing blow drying", "washing and blow drying", "shampoo blowdry", "shampoo blow dry", "shampoo and blowdry", "shampoo and blow dry", "blowout"],
-  "Wig colour": ["wig colour", "wig color", "wig dye", "colour wig", "color wig", "wig colouring service", "hair bundle colouring service", "lace closure colouring", "lace frontal colouring", "highlights frontal bundles", "highlights bundles closure"],
+  "Wig colouring / Bundle colouring": ["wig colour", "wig color", "wig dye", "colour wig", "color wig", "wig colouring service", "hair bundle colouring service", "lace closure colouring", "lace frontal colouring", "highlights frontal bundles", "highlights bundles closure"],
   "Wig cornrows": ["under wig", "wig cornrows", "wig cainrows", "cainrows for wig installation", "cornrows for wig installation", "cornrows without extensions", "cainrows"],
   "Wig install (frontal / closure)": ["wig install", "wig installs", "wig instal", "wig installation", "wig application", "wig fitting", "glueless wig", "lace wig", "frontal wig", "closure wig", "wig frontal install", "wig closure install", "lace frontal installation", "lace closure installation", "frontal unit", "closure unit", "ready-made unit", "ready made unit", "unit install", "frontal unit install", "closure unit install"],
 };
@@ -1271,7 +1273,7 @@ async function checkSalonFreshness(salon, dismissedRecommendation = {}, previous
 function adjustDetectedServicesForCurrentContext(detectedServices, currentServices, rawServices) {
   const naturalColourServices = ["Full head colour", "Balayage", "Highlights"];
   const hasNaturalColourDetection = detectedServices.some((service) => naturalColourServices.includes(service));
-  const hasExistingWigColour = currentServices.includes("Wig colour");
+  const hasExistingWigColour = currentServices.includes("Wig colouring / Bundle colouring");
   const rawText = normalizeServiceText(rawServices.join(" "));
   const hasWigOrBundleContext = /\b(wig|wigs|unit|units|lace|lace\s+system|closure|frontal|bundle|bundles|extensions?|weft|wefts|613|non[\s-]*contact)\b/.test(rawText);
   const hasPixieInstallContext = /\bpixie\b/.test(rawText) && /\b(wig|weave|sew\s*in|sewin|install|installation)\b/.test(rawText);
@@ -1288,7 +1290,7 @@ function adjustDetectedServicesForCurrentContext(detectedServices, currentServic
 
   return normalizeServices([
     ...adjustedServices.filter((service) => !naturalColourServices.includes(service)),
-    "Wig colour",
+    "Wig colouring / Bundle colouring",
   ]);
 }
 
@@ -1326,7 +1328,7 @@ const serviceEvidenceKeywords = {
   "Balayage": ["balayage"],
   "Highlights": ["highlight", "highlights", "lowlights"],
   "Full head colour": ["colour", "color", "tint", "dye", "rooting"],
-  "Wig colour": ["wig colour", "wig color", "wig colouring service", "hair bundle colouring service", "lace closure colouring", "lace frontal colouring", "colouring full wig", "custom colour", "colour service", "613", "non-contact", "non contact", "bundle", "bundles", "frontal", "closure"],
+  "Wig colouring / Bundle colouring": ["wig colour", "wig color", "wig colouring service", "hair bundle colouring service", "lace closure colouring", "lace frontal colouring", "colouring full wig", "custom colour", "colour service", "613", "non-contact", "non contact", "bundle", "bundles", "frontal", "closure"],
   "Custom wig": ["custom wig", "bespoke wig", "custom lace", "custom unit", "customised closure unit", "customized closure unit", "custom mini frontal unit", "unit customisation", "unit customization", "wig making", "wig construction", "construction of wig", "construction of the wig", "wig customising", "wig customisation", "wig customization", "construction and customisation", "construction and customization"],
   "Feed-in braids": ["feed in", "feed-in", "all back", "braids going back", "cornrows incl extensions", "cornrows including extensions", "cornrows with extensions", "pre pulled packets", "pre-pulled packets"],
   "K-tips / Invisible strands": ["k tips", "k-tips", "keratin tip", "keratin tips", "keratin bonds", "invisible strands"],
@@ -1339,7 +1341,7 @@ const serviceEvidenceKeywords = {
 };
 
 function serviceFamilyFor(service) {
-  if (["Full head colour", "Balayage", "Highlights", "Wig colour"].includes(service)) {
+  if (["Full head colour", "Balayage", "Highlights", "Wig colouring / Bundle colouring"].includes(service)) {
     return "colour";
   }
   if (["Custom wig", "Wig install (frontal / closure)", "U-Part wig install", "Pixie wig / weave install"].includes(service)) {
@@ -2234,7 +2236,7 @@ export function matchServices(values) {
           return [];
         }
         if (hasColourSignal(context.line) && hasWigPieceColourContext(context)) {
-          return ["Wig colour"];
+          return ["Wig colouring / Bundle colouring"];
         }
         if (hasShampooBlowdryContext(context.nearby)) {
           return ["Wash & blowdry"];
@@ -2255,7 +2257,7 @@ export function matchServices(values) {
         if (ruleMatches.length) {
           const filteredMatches = ruleMatches.filter((match) => !shouldSuppressServiceForSpecificContext(match, context) && !isServiceNegatedInText(lower, match));
           if (filteredMatches.length === 0 && ruleMatches.some((match) => isNaturalHairColourService(match)) && hasWigPieceColourContext(context)) {
-            return ["Wig colour"];
+            return ["Wig colouring / Bundle colouring"];
           }
           return filteredMatches;
         }

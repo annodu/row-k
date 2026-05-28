@@ -203,11 +203,15 @@ const serviceGroups = [
   },
   {
     label: "Colour",
-    services: ["Balayage", "Full head colour", "Highlights", "Wig colour"],
+    services: ["Balayage", "Full head colour", "Highlights", "Wig colouring / Bundle colouring"],
   },
   {
-    label: "Bridal / Editorial",
-    services: ["Bridal / Editorial"],
+    label: "Bridal",
+    services: ["Bridal"],
+  },
+  {
+    label: "Editorial / Session styling",
+    services: ["Editorial / Session styling"],
   },
   {
     label: "Extensions",
@@ -263,7 +267,7 @@ const serviceGroups = [
   },
   {
     label: "Wigs",
-    services: ["Custom wig", "Pixie wig / weave install", "U-Part wig install", "Wig colour", "Wig install (frontal / closure)"],
+    services: ["Custom wig", "Pixie wig / weave install", "U-Part wig install", "Wig colouring / Bundle colouring", "Wig install (frontal / closure)"],
   },
 ];
 
@@ -2264,7 +2268,7 @@ function hasRawEvidenceForService(rawServices: string[], service: string) {
   if (service === "Pixie / finger waves") {
     return /\b(finger\s+waves?|pixie\s+cut|short\s+pixie|wrap)\b/.test(normalizedRaw) && !hasRawEvidenceForService(rawServices, "Pixie wig / weave install");
   }
-  if (service === "Wig colour") {
+  if (service === "Wig colouring / Bundle colouring") {
     return hasWigColourEvidence(rawServices);
   }
   if (service === "Olaplex treatment") {
@@ -2509,7 +2513,7 @@ const serviceEvidenceKeywords: Record<string, string[]> = {
   "Balayage": ["balayage"],
   "Highlights": ["highlight", "highlights", "lowlights"],
   "Full head colour": ["colour", "color", "tint", "dye", "rooting"],
-  "Wig colour": ["wig colour", "wig color", "colouring full wig", "custom colour", "colour service", "613", "non-contact", "non contact"],
+  "Wig colouring / Bundle colouring": ["wig colour", "wig color", "colouring full wig", "custom colour", "colour service", "613", "non-contact", "non contact"],
   "Frontal sew-in": ["frontal sew in", "frontal sew-in", "frontal sewin", "frontal weave"],
   "Closure sew-in": ["closure sew in", "closure sew-in", "closure sewin", "closure weave", "weave with lace closure", "closure behind the hairline"],
   "Creative braids (e.g. patewo)": ["creative braids", "patewo", "dolly braids", "shuku", "koroba braids"],
@@ -2543,7 +2547,7 @@ const removalReviewKeywords: Record<string, string[]> = {
 const genericRemovalEvidenceWords = new Set(["service", "services", "install", "installation", "treatment", "braids", "style", "styling", "with", "hair"]);
 
 function isColourService(service: string) {
-  return service === "Balayage" || service === "Highlights" || service === "Full head colour" || service === "Wig colour";
+  return service === "Balayage" || service === "Highlights" || service === "Full head colour" || service === "Wig colouring / Bundle colouring";
 }
 
 function normalizeEvidenceText(value: string) {
