@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useMemo, useState } from "react";
+import { FormEvent, KeyboardEvent, useEffect, useMemo, useRef, useState } from "react";
 import {
   AlertTriangle,
   ArrowUp,
@@ -71,6 +71,9 @@ type DraftForm = {
 };
 
 type DraftEditorStep = "details" | "services" | "review";
+
+const londonParentAreaId = "all-london";
+const londonChildAreaIds = new Set(["central", "north", "north-west", "east", "south-east", "south-west", "west", "croydon"]);
 
 type DirectoryCheck = {
   id: string;
@@ -305,7 +308,7 @@ export function AdminApp() {
 	  function updateDraftLocations(draft: StylistDraft, nextAreaIds: string[]) {
 	    const normalizedAreaIds = [...new Set(nextAreaIds.filter(Boolean))];
 	    const primaryAreaId = normalizedAreaIds[0] || "";
-	    const labels = normalizedAreaIds.map((areaId) => regions.find((region) => region.id === areaId)?.label || areaLabelFromId(areaId)).filter(Boolean);
+	    const labels = getAreaIdsForLabels(normalizedAreaIds).map((areaId) => regions.find((region) => region.id === areaId)?.label || areaLabelFromId(areaId)).filter(Boolean);
 	    updateStylist(draft.id, {
 	      areaId: primaryAreaId,
 	      areaIds: normalizedAreaIds,
@@ -593,23 +596,28 @@ export function AdminApp() {
     }
   }
 
-  async function deleteDraft(draftId: string) {
+  async function deleteStylist(draft: StylistDraft) {
     setMessage("");
     setIsBusy(true);
     try {
-      const response = await fetch(`/api/admin/stylists/drafts/${draftId}`, {
+      const isPublished = getDraftDisplayStatus(draft) === "published";
+      const response = await fetch(isPublished ? `/api/admin/stylists/published/${draft.id}` : `/api/admin/stylists/drafts/${draft.id}`, {
         method: "DELETE",
         credentials: "include",
       });
       if (!response.ok) {
         const payload = await response.json().catch(() => ({}));
-        notify(payload.message || "Could not delete draft.", "error");
+        notify(payload.message || `Could not delete ${isPublished ? "published stylist" : "draft"}.`, "error");
         return;
       }
-      setDrafts((current) => current.filter((draft) => draft.id !== draftId));
+      if (isPublished) {
+        setPublishedStylists((current) => current.filter((item) => item.id !== draft.id));
+      } else {
+        setDrafts((current) => current.filter((item) => item.id !== draft.id));
+      }
       setSelectedDraftId(null);
       setIsDraftEditorOpen(false);
-      notify("Draft deleted.");
+      notify(isPublished ? "Published stylist deleted." : "Draft deleted.");
     } finally {
       setIsBusy(false);
     }
@@ -946,7 +954,7 @@ export function AdminApp() {
           onChangeDraftLocations={(areaIds) => selectedDraft ? updateDraftLocations(selectedDraft, areaIds) : undefined}
           onSaveDraft={() => selectedDraft ? saveDraft(selectedDraft) : undefined}
           onApproveDraft={() => selectedDraft ? approveDraft(selectedDraft) : undefined}
-          onDeleteDraft={() => selectedDraft ? deleteDraft(selectedDraft.id) : undefined}
+          onDeleteDraft={() => selectedDraft ? deleteStylist(selectedDraft) : undefined}
         />
       ) : null}
 
@@ -1054,6 +1062,17 @@ function StylistsPage({
   const published = publishedStylists.length || dashboard?.freshness.total || 0;
   const statusLabel = statusFilter === "all" ? "All statuses" : getStylistStatusLabel(statusFilter);
 
+  function submitIntakeOnEnter(event: KeyboardEvent<HTMLTextAreaElement>) {
+    if (event.key !== "Enter" || event.shiftKey) {
+      return;
+    }
+
+    event.preventDefault();
+    if (!isBusy && intakeText.trim()) {
+      event.currentTarget.form?.requestSubmit();
+    }
+  }
+
   return (
     <div className="mx-auto max-w-7xl space-y-7 px-5 py-9">
       <section>
@@ -1065,9 +1084,10 @@ function StylistsPage({
         <textarea
           value={intakeText}
           onChange={(event) => onIntakeChange(event.target.value)}
+          onKeyDown={submitIntakeOnEnter}
           rows={1}
           aria-label="Create draft from link, handle, or notes"
-          placeholder="Paste a link, handle, or notes about a stylist..."
+          placeholder="Paste an Instagram link..."
           className="block h-16 min-h-16 w-full resize-none overflow-hidden whitespace-nowrap rounded-none border border-stone-200 bg-white py-5 pl-16 pr-24 text-base leading-6 outline-none placeholder:text-stone-400 focus:border-stone-400"
         />
         <button
@@ -1129,7 +1149,7 @@ function StylistsPage({
                 <th className="hidden px-4 py-3 md:table-cell">Completeness</th>
                 <th className="hidden px-4 py-3 md:table-cell">Services</th>
                 <th className="hidden px-4 py-3 md:table-cell">Location</th>
-                <th className="hidden px-4 py-3 md:table-cell">Last edited</th>
+                <th className="hidden w-28 whitespace-nowrap px-4 py-3 md:table-cell">Last edited</th>
                 <th className="w-10 px-4 py-3">
                   <span className="sr-only">Open stylist</span>
                 </th>
@@ -1165,8 +1185,8 @@ function StylistsPage({
                         </div>
                       </td>
                       <td className="hidden px-4 py-4 text-stone-700 md:table-cell">{draft.services.length}</td>
-                      <td className="hidden px-4 py-4 text-stone-700 md:table-cell">{draft.areaLabel || "—"}</td>
-                      <td className="hidden px-4 py-4 text-stone-500 md:table-cell">{formatRelativeTime(draft.updatedAt || draft.createdAt)}</td>
+                      <td className="hidden px-4 py-4 text-stone-700 md:table-cell">{getDraftLocationLabel(draft, regions) || "—"}</td>
+                      <td className="hidden w-28 whitespace-nowrap px-4 py-4 text-stone-500 md:table-cell">{formatRelativeTime(draft.updatedAt || draft.createdAt)}</td>
 	                      <td className="px-4 py-4">
 	                        <span className="inline-flex size-7 items-center justify-center rounded-none text-stone-500">
 	                          <ChevronRight className="size-4" />
@@ -1229,9 +1249,11 @@ function DraftEditorDrawer({
   onDelete: () => void;
 }) {
   const isPublished = getDraftDisplayStatus(draft) === "published";
-  const canDelete = !isPublished;
+  const deleteLabel = isPublished ? "Delete published stylist" : "Delete draft";
   const displayStatus = getDraftDisplayStatus(draft);
   const [activeStep, setActiveStep] = useState<DraftEditorStep>("details");
+  const [hasAttemptedPublish, setHasAttemptedPublish] = useState(false);
+  const contentRef = useRef<HTMLDivElement | null>(null);
   const stepOrder: DraftEditorStep[] = ["details", "services", "review"];
   const activeStepIndex = stepOrder.indexOf(activeStep);
   const canGoBack = activeStepIndex > 0;
@@ -1239,7 +1261,12 @@ function DraftEditorDrawer({
 
   useEffect(() => {
     setActiveStep("details");
+    setHasAttemptedPublish(false);
   }, [draft.id]);
+
+  useEffect(() => {
+    contentRef.current?.scrollTo({ top: 0, left: 0 });
+  }, [activeStep, draft.id]);
 
   function goToPreviousStep() {
     if (canGoBack) {
@@ -1253,6 +1280,11 @@ function DraftEditorDrawer({
     }
   }
 
+  function publishDraft() {
+    setHasAttemptedPublish(true);
+    onApprove();
+  }
+
   return (
     <div className="fixed inset-0 z-50 bg-stone-950/20 backdrop-blur-[1px]">
       <button type="button" aria-label="Close editor" className="absolute inset-0 cursor-default" onClick={onClose} />
@@ -1264,18 +1296,16 @@ function DraftEditorDrawer({
                 <ChevronsRight className="size-4" />
               </button>
             </div>
-            {canDelete ? (
-              <button
-                type="button"
-                onClick={onDelete}
-                disabled={isBusy}
-                className="inline-flex size-8 items-center justify-center rounded-none text-red-700 transition hover:bg-red-50 disabled:cursor-not-allowed disabled:opacity-40"
-                aria-label="Delete draft"
-                title="Delete draft"
-              >
-                <Trash2 className="size-4" />
-              </button>
-            ) : null}
+            <button
+              type="button"
+              onClick={onDelete}
+              disabled={isBusy}
+              className="inline-flex size-8 items-center justify-center rounded-none text-red-700 transition hover:bg-red-50 disabled:cursor-not-allowed disabled:opacity-40"
+              aria-label={deleteLabel}
+              title={deleteLabel}
+            >
+              <Trash2 className="size-4" />
+            </button>
           </div>
 
           <div className="mt-6 flex flex-wrap items-center justify-between gap-3">
@@ -1286,7 +1316,7 @@ function DraftEditorDrawer({
           <DraftEditorStepper activeStep={activeStep} onStepChange={setActiveStep} />
         </div>
 
-        <div className="min-h-0 flex-1 overflow-y-auto px-7 py-7 pb-32">
+        <div ref={contentRef} className="min-h-0 flex-1 overflow-y-auto px-7 py-7">
           <DraftEditor
             draft={draft}
             regions={regions}
@@ -1299,6 +1329,7 @@ function DraftEditorDrawer({
             onDelete={onDelete}
             canDelete={!isPublished}
             activeStep={activeStep}
+            showWarnings={hasAttemptedPublish}
             isEmbedded
           />
         </div>
@@ -1325,7 +1356,7 @@ function DraftEditorDrawer({
                 <ChevronRight className="size-4" />
               </Button>
             ) : !isPublished ? (
-              <Button type="button" onClick={onApprove} disabled={isBusy} className="h-11 rounded-none bg-stone-950">
+              <Button type="button" onClick={publishDraft} disabled={isBusy} className="h-11 rounded-none bg-stone-950">
                 Publish
               </Button>
             ) : (
@@ -1583,8 +1614,8 @@ function DashboardOverview({
   const healthRows = buildFreshnessRecommendationGroups(checks);
   const visibleStaleEntries = checks.length ? healthRows.length : dashboard?.freshness.totalIssues || 0;
   const visibleWrongServices = healthRows.filter((row) => row.details.some((detail) => detail.kind === "add" || detail.kind === "remove")).length;
-  const visibleBrokenLinks = healthRows.reduce((count, row) => count + row.details.filter((detail) => detail.kind === "fix").length, 0);
-  const visibleManualChecks = healthRows.reduce((count, row) => count + row.details.filter((detail) => detail.kind === "manual").length, 0);
+  const visibleBrokenLinks = healthRows.filter((row) => row.details.some((detail) => detail.kind === "fix")).length;
+  const visibleManualChecks = healthRows.filter((row) => row.details.some((detail) => detail.kind === "manual")).length;
 
   return (
     <div className="mx-auto max-w-7xl space-y-8 px-5 py-11">
@@ -1686,12 +1717,10 @@ function FreshnessPage({
   const activeBatchTo = total ? Math.min(activeCheckBatch.to, total) : activeCheckBatch.to;
   const runButtonLabel = isRunningChecks
     ? `Checking ${activeCheckBatch.from} - ${activeBatchTo}`
-    : hasCompletedCheck
-      ? "Refresh"
-      : "Run";
+    : "Run";
 	  const serviceChanges = rows.filter((row) => row.details.some((detail) => detail.kind === "add" || detail.kind === "remove")).length;
-	  const brokenLinks = rows.reduce((count, row) => count + row.details.filter((detail) => detail.kind === "fix").length, 0);
-  const manualChecks = rows.reduce((count, row) => count + row.details.filter((detail) => detail.kind === "manual").length, 0);
+	  const brokenLinks = rows.filter((row) => row.details.some((detail) => detail.kind === "fix")).length;
+  const manualChecks = rows.filter((row) => row.details.some((detail) => detail.kind === "manual")).length;
 	  const filteredRows = freshnessFilter === "service-changes"
 	    ? rows.filter((row) => row.details.some((d) => d.kind === "add" || d.kind === "remove"))
 	    : freshnessFilter === "broken-links"
@@ -1723,7 +1752,7 @@ function FreshnessPage({
 	            </button>
 	          ) : null}
 	          <Button type="button" onClick={onRunChecks} disabled={isRunningChecks} className="h-10 rounded-none bg-stone-950 px-4 text-sm">
-	            {isRunningChecks ? <Loader2 className="size-4 animate-spin" /> : hasCompletedCheck ? <RefreshCw className="size-4" /> : <PlayIcon />}
+	            {isRunningChecks ? <Loader2 className="size-4 animate-spin" /> : <PlayIcon />}
 	            {runButtonLabel}
 	          </Button>
 	        </div>
@@ -2401,7 +2430,15 @@ function hasWigColourEvidence(rawServices: string[]) {
 }
 
 function isManualCheckLink(linkCheck: DirectoryCheck["linkChecks"][number]) {
-  return linkCheck.status !== "ok" && !isActionableBrokenLink(linkCheck);
+  if (linkCheck.status === "ok" || isActionableBrokenLink(linkCheck)) {
+    return false;
+  }
+
+  if (linkCheck.type === "instagram" && linkCheck.status === "unverified" && !linkCheck.issues.length) {
+    return false;
+  }
+
+  return true;
 }
 
 function getLinkDismissUpdate(check: DirectoryCheck): FreshnessUpdate | undefined {
@@ -2875,6 +2912,7 @@ function DraftEditor({
   onDelete,
   canDelete = true,
   activeStep = "details",
+  showWarnings = true,
   isEmbedded = false,
 }: {
   draft: StylistDraft;
@@ -2888,12 +2926,13 @@ function DraftEditor({
   onDelete: () => void;
   canDelete?: boolean;
   activeStep?: DraftEditorStep;
+  showWarnings?: boolean;
   isEmbedded?: boolean;
 }) {
   const bookingMatchesInstagram = urlsMatch(draft.bookingUrl, draft.instagramUrl);
-  const visibleWarnings = getVisibleDraftWarnings(draft);
+  const visibleWarnings = showWarnings ? getVisibleDraftWarnings(draft) : [];
   const selectedAreaIds = getDraftAreaIds(draft);
-  const selectedLocationLabels = selectedAreaIds
+  const selectedLocationLabels = getAreaIdsForLabels(selectedAreaIds)
     .map((areaId) => regions.find((region) => region.id === areaId)?.label || areaLabelFromId(areaId))
     .filter(Boolean);
 
@@ -2995,7 +3034,7 @@ function DraftEditor({
         <DraftReviewRow label="Name" value={draft.name || "Untitled stylist"} />
         <DraftReviewRow label="Instagram" value={draft.instagramUrl || "Not added"} />
         <DraftReviewRow label="Booking URL" value={draft.bookingUrl || "Not added"} />
-        <DraftReviewRow label="Locations" value={selectedLocationLabels.length ? selectedLocationLabels.join(", ") : draft.areaLabel || "No location selected"} />
+        <DraftReviewRow label="Locations" value={selectedLocationLabels.length ? selectedLocationLabels.join(", ") : getDraftLocationLabel(draft, regions) || "No location selected"} />
         <DraftReviewRow
           label="Preferences"
           value={[
@@ -3134,10 +3173,12 @@ function DraftLocationSelector({
   onChange: (areaIds: string[]) => void;
 }) {
   const selectedAreaIds = getDraftAreaIds(draft);
-  const london = regions.find((region) => region.id === "all-london");
-  const londonAreaIds = new Set(["central", "north", "north-west", "east", "south-east", "south-west", "west", "croydon"]);
-  const londonRows = regions.filter((region) => londonAreaIds.has(region.id));
-  const standaloneRows = regions.filter((region) => region.id !== "all-london" && !londonAreaIds.has(region.id));
+  const london = regions.find((region) => region.id === londonParentAreaId);
+  const londonRows = regions.filter((region) => londonChildAreaIds.has(region.id));
+  const topLevelRows = [londonParentAreaId, "essex", "kent", "mobile"]
+    .map((regionId) => regions.find((region) => region.id === regionId))
+    .filter((region): region is RegionOption => Boolean(region));
+  const showLondonAreas = selectedAreaIds.includes(londonParentAreaId) || selectedAreaIds.some((areaId) => londonChildAreaIds.has(areaId));
 
   function toggle(areaId: string) {
     onChange(selectedAreaIds.includes(areaId) ? selectedAreaIds.filter((id) => id !== areaId) : [...selectedAreaIds, areaId]);
@@ -3146,29 +3187,46 @@ function DraftLocationSelector({
   return (
     <div className="space-y-3">
       <p className="text-xs font-semibold uppercase tracking-[0.12em] text-stone-500">Locations</p>
-      {london ? (
-        <DraftLocationOption region={london} checked={selectedAreaIds.includes(london.id)} onToggle={() => toggle(london.id)} />
-      ) : null}
-      <div className="grid gap-2 pl-6 sm:grid-cols-2">
-        {londonRows.map((region) => (
-          <DraftLocationOption key={region.id} region={region} checked={selectedAreaIds.includes(region.id)} onToggle={() => toggle(region.id)} />
-        ))}
-      </div>
-      <div className="grid gap-2 sm:grid-cols-2">
-        {standaloneRows.map((region) => (
-          <DraftLocationOption key={region.id} region={region} checked={selectedAreaIds.includes(region.id)} onToggle={() => toggle(region.id)} />
+      <div className="grid gap-2">
+        {topLevelRows.map((region) => (
+          <div key={region.id} className="space-y-2">
+            <DraftLocationOption region={region} checked={selectedAreaIds.includes(region.id)} onToggle={() => toggle(region.id)} />
+            {region.id === london?.id && showLondonAreas ? (
+              <div className="grid gap-2 pl-6 sm:grid-cols-2">
+                {londonRows.map((londonRegion) => (
+                  <DraftLocationOption
+                    key={londonRegion.id}
+                    region={londonRegion}
+                    checked={selectedAreaIds.includes(londonRegion.id)}
+                    onToggle={() => toggle(londonRegion.id)}
+                  />
+                ))}
+              </div>
+            ) : null}
+          </div>
         ))}
       </div>
     </div>
   );
 }
 
-function DraftLocationOption({ region, checked, onToggle }: { region: RegionOption; checked: boolean; onToggle: () => void }) {
+function DraftLocationOption({
+  region,
+  checked,
+  onToggle,
+  className,
+}: {
+  region: RegionOption;
+  checked: boolean;
+  onToggle: () => void;
+  className?: string;
+}) {
   return (
     <label
       className={cn(
         "flex cursor-pointer items-center gap-3 rounded-none border border-stone-200 bg-white px-4 py-3 text-sm font-medium text-stone-900 transition hover:border-stone-300",
         checked ? "border-stone-400 bg-stone-50" : "",
+        className,
       )}
     >
       <input type="checkbox" checked={checked} onChange={onToggle} className="size-4 rounded-none border-stone-300 accent-stone-950" />
@@ -3235,6 +3293,17 @@ function MultiLocationPicker({
 
 function getDraftAreaIds(draft: StylistDraft) {
   return draft.areaIds?.length ? draft.areaIds : draft.areaId ? [draft.areaId] : [];
+}
+
+function getAreaIdsForLabels(areaIds: string[]) {
+  const hasSpecificLondonArea = areaIds.some((areaId) => londonChildAreaIds.has(areaId));
+  return hasSpecificLondonArea ? areaIds.filter((areaId) => areaId !== londonParentAreaId) : areaIds;
+}
+
+function getDraftLocationLabel(draft: StylistDraft, regions: RegionOption[]) {
+  const labelAreaIds = getAreaIdsForLabels(getDraftAreaIds(draft));
+  const labels = labelAreaIds.map((areaId) => regions.find((region) => region.id === areaId)?.label || areaLabelFromId(areaId)).filter(Boolean);
+  return labels.length ? labels.join(" / ") : draft.areaLabel;
 }
 
 function areaLabelFromId(areaId: string) {

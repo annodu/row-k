@@ -202,4 +202,26 @@ html.dark {
   html.dark .admin-ui .divide-stone-100 > :not([hidden]) ~ :not([hidden]) {
     border-color: rgb(41 37 36);
   }
+
+  html.dark .admin-ui .text-red-500,
+  html.dark .admin-ui .text-red-700,
+  html.dark .admin-ui .text-red-800,
+  html.dark .admin-ui .hover\:text-red-700:hover {
+    color: rgb(252 165 165);
+  }
+
+  html.dark .admin-ui .bg-red-50,
+  html.dark .admin-ui .bg-red-100,
+  html.dark .admin-ui .hover\:bg-red-50:hover,
+  html.dark .admin-ui .hover\:bg-red-100:hover {
+    background-color: rgb(127 29 29 / 0.28);
+  }
+
+  html.dark .admin-ui .border-red-200 {
+    border-color: rgb(248 113 113 / 0.5);
+  }
+
+  html.dark .admin-ui .bg-red-500 {
+    background-color: rgb(252 165 165);
+  }
 }

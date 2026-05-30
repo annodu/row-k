@@ -1,11 +1,181 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-05-28T20:05:19.516Z",
-    "count": 644,
+    "updatedAt": "2026-05-30T10:28:51.276Z",
+    "count": 648,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "rchairandbeautyparlour",
+      "name": "Rchairandbeautyparlour",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london",
+        "south-east"
+      ],
+      "areaLabel": "London / South east London",
+      "neighbourhood": "London and South east London London",
+      "postcode": "",
+      "bookingPlatform": "Direct",
+      "bookingUrl": "https://book.rchairsolution.com/booking/l8UUh4Ytj81RkNCgsQDI",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/rchairandbeautyparlour/",
+      "services": [
+        "Traditional sew-in / leave out",
+        "Wig cornrows",
+        "Boho braids / goddess braids",
+        "Crochet",
+        "Fulani / lemonade braids",
+        "Wash & blowdry",
+        "Box braids",
+        "Stitch braids",
+        "Updo",
+        "Silk press",
+        "Sleek ponytail / bun",
+        "Pixie / finger waves",
+        "Wig install (frontal / closure)",
+        "Relaxer / texturiser",
+        "Full head colour",
+        "Moisturising treatment",
+        "Scalp detox / treatments",
+        "Trim / hair cut"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/rchairandbeautyparlour/"
+      ],
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "updatedAt": "2026-05-30T10:28:51.276Z"
+    },
+    {
+      "id": "fashionsfaithstudio",
+      "name": "Fashionsfaithstudio",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london",
+        "east"
+      ],
+      "areaLabel": "London / East London",
+      "neighbourhood": "London and East London London",
+      "postcode": "",
+      "bookingPlatform": "Treatwell",
+      "bookingUrl": "https://widget.treatwell.co.uk/place/fashion-sfaith/?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQPOTM2NjE5NzQzMzkyNDU5AAGn3pI9jZ-TKCk__CwEUYDrY4RYa0VaDA8eZtVDPqFOpcVAorskhTwr0_nHmk8_aem_WHY-3aoh27VUpdzv5BcZvQ",
+      "websiteUrl": "https://widget.treatwell.co.uk/place/fashion-sfaith/?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQPOTM2NjE5NzQzMzkyNDU5AAGn3pI9jZ-TKCk__CwEUYDrY4RYa0VaDA8eZtVDPqFOpcVAorskhTwr0_nHmk8_aem_WHY-3aoh27VUpdzv5BcZvQ",
+      "instagramUrl": "https://www.instagram.com/fashionsfaithstudio/",
+      "services": [
+        "Wash & blowdry",
+        "Full head colour",
+        "Bridal",
+        "Stitch braids",
+        "Fulani / lemonade braids",
+        "Box braids",
+        "Twists (with extensions)",
+        "Feed-in braids",
+        "Frontal sew-in",
+        "Closure sew-in",
+        "Tracks (+ silk press) / partial / invisible sew-in",
+        "Tape ins",
+        "Microlinks",
+        "K-tips / invisible strands",
+        "Balayage",
+        "Olaplex treatment",
+        "Keratin treatment",
+        "Silk press"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/fashionsfaithstudio/"
+      ]
+    },
+    {
+      "id": "fashionsfaithboutique",
+      "name": "Fashionsfaithboutique",
+      "areaId": "all-london",
+      "areaLabel": "London",
+      "neighbourhood": "London London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/fashionsfaithboutique/",
+      "websiteUrl": "https://www.instagram.com/fashionsfaithboutique/",
+      "instagramUrl": "https://www.instagram.com/fashionsfaithboutique/",
+      "services": [
+        "Editorial / Session styling"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/fashionsfaithboutique/"
+      ]
+    },
+    {
+      "id": "rrhair-1",
+      "name": "Rrhair 1",
+      "areaId": "essex",
+      "areaLabel": "Essex",
+      "neighbourhood": "Essex London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://rrhair1.as.me/schedule/43ce1377",
+      "websiteUrl": "https://rrhair1.as.me/schedule/43ce1377",
+      "instagramUrl": "https://www.instagram.com/rrhair_.1/",
+      "services": [
+        "Wig install (frontal / closure)",
+        "Custom wig",
+        "Closure sew-in"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/rrhair_.1/"
+      ]
+    },
+    {
+      "id": "signedbymai",
+      "name": "Signedbymai",
+      "areaId": "north",
+      "areaLabel": "North London",
+      "neighbourhood": "North London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://signedbymai.as.me/schedule/2e312881",
+      "websiteUrl": "https://signedbymai.as.me/schedule/2e312881",
+      "instagramUrl": "https://www.instagram.com/signedbymai/",
+      "services": [
+        "Wig install (frontal / closure)"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/signedbymai/"
+      ]
+    },
+    {
+      "id": "kashstylesuk",
+      "name": "Kashstylesuk",
+      "areaId": "south-east",
+      "areaLabel": "South east London",
+      "neighbourhood": "South east London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://bookkashstylesuk.as.me/schedule/de06c854",
+      "websiteUrl": "https://bookkashstylesuk.as.me/schedule/de06c854",
+      "instagramUrl": "https://www.instagram.com/kashstylesuk/",
+      "services": [
+        "Wig install (frontal / closure)",
+        "Custom wig",
+        "Flipover / Versatile sew-in"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/kashstylesuk/"
+      ]
+    },
     {
       "id": "hairbylishan",
       "name": "Hairbylishan",
@@ -106,11 +276,9 @@
         "Quick weave",
         "Flipover / Versatile sew-in",
         "Closure sew-in",
-        "Custom wig",
         "Tape ins",
         "Wig install (frontal / closure)",
-        "Feed-in braids",
-        "Wig cornrows"
+        "Feed-in braids"
       ],
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
@@ -188,7 +356,10 @@
         "Tape ins",
         "Wash & blowdry",
         "Trim / hair cut",
-        "Traditional sew-in / leave out"
+        "Traditional sew-in / leave out",
+        "LA weave",
+        "Wig cornrows",
+        "Moisturising treatment"
       ],
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
@@ -397,34 +568,13 @@
         "Wig cornrows",
         "Trim / hair cut",
         "Silk press",
-        "Traditional sew-in / leave out"
+        "Traditional sew-in / leave out",
+        "Quick weave"
       ],
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
       "evidence": [
         "Submitted link: https://www.instagram.com/murisalondon/"
-      ]
-    },
-    {
-      "id": "rrhair-1",
-      "name": "Rrhair 1",
-      "areaId": "essex",
-      "areaLabel": "Essex",
-      "neighbourhood": "Essex London",
-      "postcode": "",
-      "bookingPlatform": "Acuity",
-      "bookingUrl": "https://rrhair1.as.me/schedule/43ce1377",
-      "websiteUrl": "https://rrhair1.as.me/schedule/43ce1377",
-      "instagramUrl": "https://www.instagram.com/rrhair_.1/",
-      "services": [
-        "Wig install (frontal / closure)",
-        "Custom wig",
-        "Closure sew-in"
-      ],
-      "summary": "Admin draft created from stylist intake.",
-      "source": "manual",
-      "evidence": [
-        "Submitted link: https://www.instagram.com/rrhair_.1/"
       ]
     },
     {
@@ -580,8 +730,7 @@
         "Flipover / Versatile sew-in",
         "Closure sew-in",
         "Wig install (frontal / closure)",
-        "Custom wig",
-        "Wig cornrows"
+        "Custom wig"
       ],
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
@@ -675,7 +824,8 @@
         "Butterfly locs",
         "Faux locs",
         "Retwist",
-        "French curl"
+        "French curl",
+        "Stitch braids"
       ],
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
@@ -1631,26 +1781,6 @@
         "Frontal ponytail / bun"
       ],
       "summary": "Manual entry added from your East London wig install, custom wig, sew-in, and half up half down list.",
-      "source": "manual",
-      "evidence": [
-        "User-provided manual addition."
-      ]
-    },
-    {
-      "id": "signed-by-mai",
-      "name": "Signed by Mai",
-      "areaId": "north",
-      "areaLabel": "North",
-      "neighbourhood": "North London",
-      "postcode": "",
-      "bookingPlatform": ".as.me",
-      "bookingUrl": "https://signedbymai.as.me/schedule/2e312881",
-      "instagramUrl": "https://www.instagram.com/signedbymai/",
-      "services": [
-        "Wig install (frontal / closure)",
-        "Wig colouring / bundle colouring"
-      ],
-      "summary": "Manual entry added from your North London wig install, custom wig, and wig colour list.",
       "source": "manual",
       "evidence": [
         "User-provided manual addition."

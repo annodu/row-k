@@ -30,6 +30,8 @@ const regionOptions = [
   { id: "essex", label: "Essex" },
   { id: "mobile", label: "Mobile / home service" },
 ];
+const londonParentAreaId = "all-london";
+const londonChildAreaIds = new Set(["central", "north", "north-west", "east", "south-east", "south-west", "west", "croydon"]);
 
 const bookingPlatformMatchers = [
   ["fresha.com", "Fresha"],
@@ -295,6 +297,24 @@ export function registerAdminStylistRoutes(app) {
     await writeJson(manualIndexPath, manualIndex);
 
     res.json({ ok: true, stylist: publishedSalonToDraft(nextSalon, manualIndex.meta.updatedAt) });
+  });
+
+  app.delete("/api/admin/stylists/published/:id", requireAdmin, async (req, res) => {
+    const manualIndex = await readJson(manualIndexPath, { meta: { source: "manual" }, salons: [] });
+    const salonIndex = manualIndex.salons.findIndex((salon) => salon.id === req.params.id);
+    if (salonIndex === -1) {
+      return res.status(404).json({ ok: false, message: "Published stylist not found." });
+    }
+
+    manualIndex.salons.splice(salonIndex, 1);
+    manualIndex.meta = {
+      ...manualIndex.meta,
+      updatedAt: new Date().toISOString(),
+      count: manualIndex.salons.length,
+    };
+    await writeJson(manualIndexPath, manualIndex);
+
+    res.json({ ok: true, id: req.params.id });
   });
 
   app.get("/api/admin/dashboard", requireAdmin, async (_req, res) => {
@@ -1508,7 +1528,15 @@ function isActionableBrokenLink(linkCheck) {
 }
 
 function isManualCheckLink(linkCheck) {
-  return Boolean(linkCheck) && linkCheck.status !== "ok" && !isActionableBrokenLink(linkCheck);
+  if (!linkCheck || linkCheck.status === "ok" || isActionableBrokenLink(linkCheck)) {
+    return false;
+  }
+
+  if (linkCheck.type === "instagram" && linkCheck.status === "unverified" && !(linkCheck.issues || []).length) {
+    return false;
+  }
+
+  return true;
 }
 
 async function extractBookingServices(url) {
@@ -2678,7 +2706,11 @@ function normalizeAreaIds(areaIds = []) {
 }
 
 function areaLabelForIds(areaIds = []) {
-  return normalizeAreaIds(areaIds).map(areaLabelFor).filter(Boolean).join(" / ");
+  const normalizedAreaIds = normalizeAreaIds(areaIds);
+  const labelAreaIds = normalizedAreaIds.some((areaId) => londonChildAreaIds.has(areaId))
+    ? normalizedAreaIds.filter((areaId) => areaId !== londonParentAreaId)
+    : normalizedAreaIds;
+  return labelAreaIds.map(areaLabelFor).filter(Boolean).join(" / ");
 }
 
 function makeUniqueDraftId(name) {
