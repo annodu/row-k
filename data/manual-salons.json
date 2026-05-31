@@ -1,11 +1,40 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-05-30T10:28:51.276Z",
-    "count": 648,
+    "updatedAt": "2026-05-31T01:19:43.416Z",
+    "count": 649,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "schedule",
+      "name": "Schedule",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london",
+        "south-east"
+      ],
+      "areaLabel": "South east London",
+      "neighbourhood": "South east London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://theokoistudios.as.me/schedule/5db496ff?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAdGRleASIaxhleHRuA2FlbQExAHNydGMGYXBwX2lkDzEyNDAyNDU3NDI4NzQxNAABp3FgoCxI1R3MqRqSmVPXW-24v3wQQLcu-i95CGlYa7JgmHDgN_oI-ZBMyF5H_aem_q4Tl0UsN8rLzsXugBP4u0A",
+      "websiteUrl": "https://theokoistudios.as.me/schedule/5db496ff?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAdGRleASIaxhleHRuA2FlbQExAHNydGMGYXBwX2lkDzEyNDAyNDU3NDI4NzQxNAABp3FgoCxI1R3MqRqSmVPXW-24v3wQQLcu-i95CGlYa7JgmHDgN_oI-ZBMyF5H_aem_q4Tl0UsN8rLzsXugBP4u0A",
+      "instagramUrl": "https://www.instagram.com/theokoistudio",
+      "services": [
+        "Custom wig",
+        "Wig install (frontal / closure)",
+        "Frontal ponytail / bun",
+        "Traditional sew-in / leave out",
+        "Wash & blowdry"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://theokoistudios.as.me/schedule/5db496ff?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAdGRleASIaxhleHRuA2FlbQExAHNydGMGYXBwX2lkDzEyNDAyNDU3NDI4NzQxNAABp3FgoCxI1R3MqRqSmVPXW-24v3wQQLcu-i95CGlYa7JgmHDgN_oI-ZBMyF5H_aem_q4Tl0UsN8rLzsXugBP4u0A",
+        "Raw services provided during admin intake."
+      ]
+    },
     {
       "id": "rchairandbeautyparlour",
       "name": "Rchairandbeautyparlour",
