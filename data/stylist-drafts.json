@@ -1,10 +1,71 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-05-30T10:28:16.683Z",
-    "count": 1
+    "updatedAt": "2026-05-31T01:16:12.642Z",
+    "count": 2
   },
   "drafts": [
+    {
+      "id": "schedule-mpt39k9g",
+      "status": "ready_to_approve",
+      "name": "Schedule",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london"
+      ],
+      "areaLabel": "London",
+      "neighbourhood": "London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://theokoistudios.as.me/schedule/5db496ff?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAdGRleASIaxhleHRuA2FlbQExAHNydGMGYXBwX2lkDzEyNDAyNDU3NDI4NzQxNAABp3FgoCxI1R3MqRqSmVPXW-24v3wQQLcu-i95CGlYa7JgmHDgN_oI-ZBMyF5H_aem_q4Tl0UsN8rLzsXugBP4u0A",
+      "websiteUrl": "",
+      "instagramUrl": "",
+      "tiktokUrl": "",
+      "services": [
+        "Custom wig",
+        "Wig install (frontal / closure)",
+        "Frontal ponytail / bun",
+        "Pixie wig / weave install",
+        "Traditional sew-in / leave out",
+        "Closure sew-in"
+      ],
+      "rawServices": [
+        "NATURAL HAIR SERVICES",
+        "Custom Wash + Mask + Base Braids",
+        "CUSTOM WIG SERVICES",
+        "CUSTOM LACE FRONTAL UNIT",
+        "CUSTOM LACE CLOSURE UNIT",
+        "GIRL MATHS",
+        "GIRL MATHS - DEPOSIT PAID",
+        "LACE REPLACEMENT",
+        "CLOSURE REPLACEMENT",
+        "FRONTAL REPLACEMENT",
+        "PONYTAILS",
+        "FRONTAL PONYTAIL",
+        "STYLING ONLY",
+        "STYLING ONLY SERVICE",
+        "UNIT INSTALLATION",
+        "FRONTAL UNIT REINSTALLATION",
+        "FRONTAL WIG NON-CUSTOMISED",
+        "CLOSURE UNIT NON-CUSTOMISED",
+        "CLOSURE UNIT REINSTALLATION",
+        "WEAVE INS",
+        "TRADITIONAL LEAVE OUT SEW IN",
+        "CLOSURE SEW IN",
+        "SEW IN MAINTENANCE"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "confidence": 0.72,
+      "warnings": [],
+      "evidence": [
+        "Submitted link: https://theokoistudios.as.me/schedule/5db496ff?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAdGRleASIaxhleHRuA2FlbQExAHNydGMGYXBwX2lkDzEyNDAyNDU3NDI4NzQxNAABp3FgoCxI1R3MqRqSmVPXW-24v3wQQLcu-i95CGlYa7JgmHDgN_oI-ZBMyF5H_aem_q4Tl0UsN8rLzsXugBP4u0A",
+        "Raw services provided during admin intake."
+      ],
+      "source": "admin-draft",
+      "createdAt": "2026-05-31T01:16:12.628Z",
+      "updatedAt": "2026-05-31T01:16:12.628Z",
+      "lastCheckedAt": "2026-05-31T01:16:12.628Z"
+    },
     {
       "id": "microsbylaura-mpi6stjg",
       "status": "needs_review",
