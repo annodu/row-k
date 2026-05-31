@@ -1,11 +1,115 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-05-30T10:28:51.276Z",
-    "count": 648,
+    "updatedAt": "2026-05-31T22:45:19.749Z",
+    "count": 651,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "bychiluxe",
+      "name": "Bychiluxe",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london",
+        "south-east"
+      ],
+      "areaLabel": "South east London",
+      "neighbourhood": "South east London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://bychiluxe.as.me/schedule/0c1204d2",
+      "websiteUrl": "https://bychiluxe.as.me/schedule/0c1204d2",
+      "instagramUrl": "https://www.instagram.com/bychiluxe/",
+      "services": [
+        "Custom wig",
+        "Sew-in take-down",
+        "Traditional sew-in / leave out",
+        "Hybrid sew in (tapes + sew in)",
+        "Flipover / Versatile sew-in",
+        "Frontal sew-in",
+        "Closure sew-in",
+        "Wig install (frontal / closure)"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/bychiluxe/"
+      ]
+    },
+    {
+      "id": "ynd-hair-studio",
+      "name": "Ynd Hair Studio",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london",
+        "east"
+      ],
+      "areaLabel": "East London",
+      "neighbourhood": "East London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://yndhair.as.me/schedule/b0b7453a?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQPOTM2NjE5NzQzMzkyNDU5AAGn4F3mNOTVBEfguHubS1qM-lDFTiGgci3-KaoysYQ6qKS9_BHnszswL5rZy6o_aem_MvlHiTleQZsbxiQ-zEf8eQ",
+      "websiteUrl": "https://yndhair.as.me/schedule/b0b7453a?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQPOTM2NjE5NzQzMzkyNDU5AAGn4F3mNOTVBEfguHubS1qM-lDFTiGgci3-KaoysYQ6qKS9_BHnszswL5rZy6o_aem_MvlHiTleQZsbxiQ-zEf8eQ",
+      "instagramUrl": "https://www.instagram.com/ynd.hair_studio/",
+      "services": [
+        "Boho braids / goddess braids",
+        "Knotless braids",
+        "Half braids, half sew-in",
+        "Traditional sew-in / leave out",
+        "Flipover / Versatile sew-in",
+        "Fulani / lemonade braids",
+        "Feed-in braids",
+        "Miracle knots",
+        "Closure sew-in",
+        "Microlinks",
+        "U-part wig install"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/ynd.hair_studio/"
+      ]
+    },
+    {
+      "id": "hair-evolve-by-de",
+      "name": "Hair Evolve By De",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london",
+        "south-west"
+      ],
+      "areaLabel": "South west London",
+      "neighbourhood": "South west London London",
+      "postcode": "",
+      "bookingPlatform": "Fresha",
+      "bookingUrl": "https://www.fresha.com/en-GB/a/hair-evolve-london-brixton-d0ry8a6k/booking?menu=true&share=true&pId=2797297&utm_content=link_in_bio&utm_medium=social&utm_source=ig&cartId=21fe889a-c81e-45e1-9420-90e441f1c12e",
+      "websiteUrl": "https://www.fresha.com/en-GB/a/hair-evolve-london-brixton-d0ry8a6k/booking?menu=true&share=true&pId=2797297&utm_content=link_in_bio&utm_medium=social&utm_source=ig&cartId=21fe889a-c81e-45e1-9420-90e441f1c12e",
+      "instagramUrl": "https://www.instagram.com/hair_evolve_by_de/",
+      "services": [
+        "Wash & blowdry",
+        "Silk press",
+        "Tracks (+ silk press) / partial / invisible sew-in",
+        "Moisturising treatment",
+        "Bridal",
+        "Wig cornrows",
+        "Flipover / Versatile sew-in",
+        "Full head colour",
+        "Highlights",
+        "Sew-in take-down",
+        "Pixie wig / weave install",
+        "Texture release",
+        "Keratin treatment",
+        "Closure sew-in",
+        "Microlinks",
+        "Hybrid sew in (tapes + sew in)"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/hair_evolve_by_de/"
+      ]
+    },
     {
       "id": "rchairandbeautyparlour",
       "name": "Rchairandbeautyparlour",
@@ -1030,7 +1134,8 @@
         "Microlinks",
         "LA weave",
         "Bridal",
-        "Sleek ponytail / bun"
+        "Sleek ponytail / bun",
+        "Tracks (+ silk press) / partial / invisible sew-in"
       ],
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
@@ -1155,7 +1260,7 @@
         "LA weave",
         "Microlinks",
         "Traditional sew-in / leave out",
-        "Hybrid sew-in",
+        "Hybrid sew in (tapes + sew in)",
         "Tape ins",
         "Closure sew-in",
         "Pixie wig / weave install",
@@ -1992,7 +2097,7 @@
         "Traditional sew-in / leave out",
         "LA weave",
         "Flipover / Versatile sew-in",
-        "Hybrid sew-in",
+        "Hybrid sew in (tapes + sew in)",
         "Tracks / Silk press + tracks / Invisible sew-in",
         "Frontal ponytail / bun"
       ],
@@ -2127,7 +2232,7 @@
         "Microlinks",
         "Tape ins",
         "Wash & blowdry",
-        "Hybrid sew-in"
+        "Hybrid sew in (tapes + sew in)"
       ],
       "summary": "Manual entry added from your South East London extensions, sew-ins, and treatments list.",
       "source": "manual",
@@ -3715,7 +3820,7 @@
       "bookingUrl": "https://bookbundlesdealer.as.me/schedule/422f57bb",
       "instagramUrl": "https://www.instagram.com/bundlesdealer/",
       "services": [
-        "Hybrid sew-in",
+        "Hybrid sew in (tapes + sew in)",
         "Closure sew-in",
         "Traditional sew-in / leave out",
         "Tape ins",
@@ -4007,7 +4112,7 @@
         "Tape ins",
         "Closure sew-in",
         "Flipover / Versatile sew-in",
-        "Hybrid sew-in",
+        "Hybrid sew in (tapes + sew in)",
         "Frontal sew-in",
         "Frontal ponytail / bun"
       ],
@@ -5198,7 +5303,7 @@
         "Knotless braids",
         "French curl",
         "Boho braids / goddess braids",
-        "Hybrid sew-in"
+        "Hybrid sew in (tapes + sew in)"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -5250,7 +5355,7 @@
         "Clip ins (+ silk press)",
         "LA weave",
         "Flipover / Versatile sew-in",
-        "Hybrid sew-in",
+        "Hybrid sew in (tapes + sew in)",
         "Tracks (+ silk press) / partial / invisible sew-in",
         "Tape ins",
         "Custom wig",
@@ -5886,7 +5991,7 @@
         "LA weave",
         "Traditional sew-in / leave out",
         "K-tips / invisible strands",
-        "Hybrid sew-in",
+        "Hybrid sew in (tapes + sew in)",
         "Sew-in take-down",
         "Wash & blowdry",
         "Trim / hair cut"
@@ -7397,7 +7502,7 @@
         "Quick weave",
         "Tape ins",
         "Traditional sew-in / leave out",
-        "Hybrid sew-in"
+        "Hybrid sew in (tapes + sew in)"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -7588,7 +7693,7 @@
         "Keratin treatment",
         "Traditional sew-in / leave out",
         "Flipover / Versatile sew-in",
-        "Hybrid sew-in",
+        "Hybrid sew in (tapes + sew in)",
         "Tape ins"
       ],
       "summary": "Manual entry added from your latest salon update batch.",
@@ -8521,7 +8626,7 @@
         "Wig install (frontal / closure)",
         "Sew-in take-down",
         "Quick weave",
-        "Hybrid sew-in",
+        "Hybrid sew in (tapes + sew in)",
         "Relaxer / texturiser"
       ],
       "summary": "Manual entry added from your latest salon update batch.",
@@ -9232,7 +9337,7 @@
         "Traditional sew-in / leave out",
         "Closure sew-in",
         "Frontal sew-in",
-        "Hybrid sew-in",
+        "Hybrid sew in (tapes + sew in)",
         "K-tips / invisible strands",
         "Silk press",
         "Texture release",
@@ -9378,7 +9483,7 @@
         "Custom wig",
         "U-part wig install",
         "Traditional sew-in / leave out",
-        "Hybrid sew-in",
+        "Hybrid sew in (tapes + sew in)",
         "Closure sew-in",
         "Flipover / Versatile sew-in"
       ],
@@ -10616,7 +10721,7 @@
       "services": [
         "Flipover / Versatile sew-in",
         "Frontal sew-in",
-        "Hybrid sew-in",
+        "Hybrid sew in (tapes + sew in)",
         "Sleek ponytail / bun",
         "Quick weave",
         "Silk press",
@@ -10847,7 +10952,7 @@
         "Wash & blowdry",
         "Traditional sew-in / leave out",
         "Flipover / Versatile sew-in",
-        "Hybrid sew-in",
+        "Hybrid sew in (tapes + sew in)",
         "Sleek ponytail / bun",
         "Sew-in take-down",
         "Tracks (+ silk press) / partial / invisible sew-in",
@@ -11116,7 +11221,7 @@
         "Traditional sew-in / leave out",
         "Flipover / Versatile sew-in",
         "Closure sew-in",
-        "Hybrid sew-in"
+        "Hybrid sew in (tapes + sew in)"
       ]
     },
     {
@@ -11445,7 +11550,7 @@
         "Traditional sew-in / leave out",
         "Quick weave",
         "Tape ins",
-        "Hybrid sew-in",
+        "Hybrid sew in (tapes + sew in)",
         "Bridal"
       ],
       "summary": "Manual entry added from your South East London sew-in and wig install list.",
@@ -11833,7 +11938,7 @@
       "instagramUrl": "https://www.instagram.com/riasbeautystudio/",
       "services": [
         "Traditional sew-in / leave out",
-        "Hybrid sew-in",
+        "Hybrid sew in (tapes + sew in)",
         "Sew-in take-down",
         "Flipover / Versatile sew-in",
         "Tape ins",
@@ -12160,7 +12265,7 @@
         "Balayage",
         "LA weave",
         "Tape ins",
-        "Hybrid sew-in",
+        "Hybrid sew in (tapes + sew in)",
         "Traditional sew-in / leave out",
         "Wash & blowdry",
         "Trim / hair cut",
@@ -12312,7 +12417,7 @@
         "Wash & blowdry",
         "Traditional sew-in / leave out",
         "Flipover / Versatile sew-in",
-        "Hybrid sew-in",
+        "Hybrid sew in (tapes + sew in)",
         "Wig cornrows",
         "Sleek ponytail / bun",
         "Half up half down",
@@ -12377,7 +12482,7 @@
         "Tape ins",
         "Traditional sew-in / leave out",
         "Feed-in braids",
-        "Hybrid sew-in",
+        "Hybrid sew in (tapes + sew in)",
         "Flipover / Versatile sew-in"
       ],
       "summary": "Manual entry added from your South East London sew-in and wig install list.",
@@ -12436,7 +12541,7 @@
         "Sleek ponytail / bun",
         "Half up half down",
         "Flipover / Versatile sew-in",
-        "Hybrid sew-in",
+        "Hybrid sew in (tapes + sew in)",
         "U-part wig install",
         "Tracks (+ silk press) / partial / invisible sew-in",
         "Updo",
@@ -13659,7 +13764,7 @@
         "Quick weave",
         "Traditional sew-in / leave out",
         "Closure sew-in",
-        "Hybrid sew-in",
+        "Hybrid sew in (tapes + sew in)",
         "LA weave",
         "K-tips / invisible strands",
         "Pixie / finger waves",
@@ -13728,7 +13833,7 @@
         "Flipover / Versatile sew-in",
         "Closure sew-in",
         "Half up half down",
-        "Hybrid sew-in",
+        "Hybrid sew in (tapes + sew in)",
         "Microlinks",
         "LA weave",
         "Quick weave",
@@ -14596,7 +14701,7 @@
         "Silk press",
         "Wig install (frontal / closure)",
         "Traditional sew-in / leave out",
-        "Hybrid sew-in",
+        "Hybrid sew in (tapes + sew in)",
         "U-part wig install"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
@@ -15152,7 +15257,7 @@
         "Updo",
         "U-part wig install",
         "Wig cornrows",
-        "Hybrid sew-in",
+        "Hybrid sew in (tapes + sew in)",
         "Wig colouring / bundle colouring"
       ]
     },
@@ -15224,7 +15329,7 @@
         "Traditional sew-in / leave out",
         "Flipover / Versatile sew-in",
         "Quick weave",
-        "Hybrid sew-in",
+        "Hybrid sew in (tapes + sew in)",
         "Sew-in take-down",
         "Tape ins",
         "Clip ins / Silk press + Clip ins",
@@ -16802,7 +16907,7 @@
         "Flipover / Versatile sew-in",
         "Quick weave",
         "Half up half down",
-        "Hybrid sew-in",
+        "Hybrid sew in (tapes + sew in)",
         "U-part wig install"
       ],
       "summary": "Manual Instagram-led entry added from user-provided booking menu.",
@@ -17130,7 +17235,7 @@
         "Quick weave",
         "Tape ins",
         "Traditional sew-in / leave out",
-        "Hybrid sew-in",
+        "Hybrid sew in (tapes + sew in)",
         "Flipover / Versatile sew-in",
         "Sleek ponytail / bun",
         "Silk press"
@@ -17268,7 +17373,7 @@
         "Traditional sew-in / leave out",
         "Closure sew-in",
         "Frontal sew-in",
-        "Hybrid sew-in",
+        "Hybrid sew in (tapes + sew in)",
         "Tracks (+ silk press) / partial / invisible sew-in",
         "Flipover / Versatile sew-in",
         "U-part wig install",
@@ -17394,7 +17499,7 @@
         "Closure sew-in",
         "Traditional sew-in / leave out",
         "Flipover / Versatile sew-in",
-        "Hybrid sew-in",
+        "Hybrid sew in (tapes + sew in)",
         "K-tips / invisible strands",
         "Wash & blowdry",
         "Trim / hair cut"

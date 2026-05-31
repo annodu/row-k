@@ -13,7 +13,7 @@ export const categoryMap = {
     "Frontal sew-in",
     "Flipover / Versatile sew-in",
     "Quick weave",
-    "Hybrid sew-in",
+    "Hybrid sew in (tapes + sew in)",
     "Pixie wig / weave install",
     "Sew-in take-down",
     "Tracks (+ silk press) / partial / invisible sew-in",
