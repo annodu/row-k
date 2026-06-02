@@ -1,8 +1,8 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-06-02T12:10:13.604Z",
-    "count": 30
+    "updatedAt": "2026-06-02T12:12:05.135Z",
+    "count": 29
   },
   "drafts": [
     {
@@ -844,36 +844,6 @@
       "createdAt": "2026-06-02T11:48:50.850Z",
       "updatedAt": "2026-06-02T11:48:50.850Z",
       "lastCheckedAt": "2026-06-02T11:48:50.850Z"
-    },
-    {
-      "id": "wearmodule-mpwkqexd",
-      "status": "needs_review",
-      "name": "Wearmodule",
-      "areaId": "",
-      "areaIds": [],
-      "areaLabel": "",
-      "neighbourhood": "",
-      "postcode": "",
-      "bookingPlatform": "",
-      "bookingUrl": "",
-      "websiteUrl": "",
-      "instagramUrl": "https://www.instagram.com/wearmodule/",
-      "tiktokUrl": "",
-      "services": [],
-      "rawServices": [],
-      "summary": "Admin draft created from stylist intake.",
-      "confidence": 0.35,
-      "warnings": [
-        "No booking link identified yet.",
-        "No services matched yet."
-      ],
-      "evidence": [
-        "Submitted link: https://www.instagram.com/wearmodule/"
-      ],
-      "source": "admin-draft",
-      "createdAt": "2026-06-02T11:48:30.864Z",
-      "updatedAt": "2026-06-02T11:48:30.864Z",
-      "lastCheckedAt": "2026-06-02T11:48:30.864Z"
     },
     {
       "id": "microsbylaura-mpi6stjg",

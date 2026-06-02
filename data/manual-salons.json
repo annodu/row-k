@@ -1,11 +1,40 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-06-02T12:10:13.603Z",
-    "count": 654,
+    "updatedAt": "2026-06-02T12:12:05.135Z",
+    "count": 655,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "wearmodule",
+      "name": "Wearmodule",
+      "areaId": "essex",
+      "areaLabel": "Essex",
+      "neighbourhood": "Essex London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/wearmodule/",
+      "websiteUrl": "https://www.instagram.com/wearmodule/",
+      "instagramUrl": "https://www.instagram.com/wearmodule/",
+      "services": [
+        "Creative braids (e.g. patewo)",
+        "Knotless braids",
+        "Boho braids / goddess braids",
+        "Traditional sew-in / leave out",
+        "Fulani / lemonade braids",
+        "Sleek ponytail / bun",
+        "Wig install (frontal / closure)",
+        "Butterfly locs",
+        "Pixie / finger waves",
+        "Bridal"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/wearmodule/"
+      ]
+    },
     {
       "id": "infinitehairuk",
       "name": "Infinitehairuk",
