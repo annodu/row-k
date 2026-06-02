@@ -1,10 +1,40 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-06-02T11:52:31.064Z",
-    "count": 23
+    "updatedAt": "2026-06-02T11:52:48.770Z",
+    "count": 24
   },
   "drafts": [
+    {
+      "id": "andrewjosesalon-mpwkvxx0",
+      "status": "needs_review",
+      "name": "Andrewjosesalon",
+      "areaId": "",
+      "areaIds": [],
+      "areaLabel": "",
+      "neighbourhood": "",
+      "postcode": "",
+      "bookingPlatform": "",
+      "bookingUrl": "",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/andrewjosesalon/",
+      "tiktokUrl": "",
+      "services": [],
+      "rawServices": [],
+      "summary": "Admin draft created from stylist intake.",
+      "confidence": 0.35,
+      "warnings": [
+        "No booking link identified yet.",
+        "No services matched yet."
+      ],
+      "evidence": [
+        "Submitted link: https://www.instagram.com/andrewjosesalon/"
+      ],
+      "source": "admin-draft",
+      "createdAt": "2026-06-02T11:52:48.754Z",
+      "updatedAt": "2026-06-02T11:52:48.754Z",
+      "lastCheckedAt": "2026-06-02T11:52:48.754Z"
+    },
     {
       "id": "phebehair-mpwkvk90",
       "status": "needs_review",
