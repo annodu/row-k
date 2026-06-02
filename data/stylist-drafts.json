@@ -1,10 +1,40 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-06-02T11:52:12.039Z",
-    "count": 21
+    "updatedAt": "2026-06-02T11:52:21.452Z",
+    "count": 22
   },
   "drafts": [
+    {
+      "id": "fbl-bridal-mpwkvcu3",
+      "status": "needs_review",
+      "name": "Fbl Bridal",
+      "areaId": "",
+      "areaIds": [],
+      "areaLabel": "",
+      "neighbourhood": "",
+      "postcode": "",
+      "bookingPlatform": "",
+      "bookingUrl": "",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/fbl.bridal/",
+      "tiktokUrl": "",
+      "services": [],
+      "rawServices": [],
+      "summary": "Admin draft created from stylist intake.",
+      "confidence": 0.35,
+      "warnings": [
+        "No booking link identified yet.",
+        "No services matched yet."
+      ],
+      "evidence": [
+        "Submitted link: https://www.instagram.com/fbl.bridal/"
+      ],
+      "source": "admin-draft",
+      "createdAt": "2026-06-02T11:52:21.434Z",
+      "updatedAt": "2026-06-02T11:52:21.434Z",
+      "lastCheckedAt": "2026-06-02T11:52:21.434Z"
+    },
     {
       "id": "jhd-uk-mpwkv5ki",
       "status": "needs_review",
