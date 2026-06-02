@@ -1,10 +1,40 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-06-02T11:49:01.529Z",
-    "count": 9
+    "updatedAt": "2026-06-02T11:49:24.584Z",
+    "count": 10
   },
   "drafts": [
+    {
+      "id": "lmabeauty-mpwkrkd1",
+      "status": "needs_review",
+      "name": "Lmabeauty",
+      "areaId": "",
+      "areaIds": [],
+      "areaLabel": "",
+      "neighbourhood": "",
+      "postcode": "",
+      "bookingPlatform": "",
+      "bookingUrl": "",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/_lmabeauty/",
+      "tiktokUrl": "",
+      "services": [],
+      "rawServices": [],
+      "summary": "Admin draft created from stylist intake.",
+      "confidence": 0.35,
+      "warnings": [
+        "No booking link identified yet.",
+        "No services matched yet."
+      ],
+      "evidence": [
+        "Submitted link: https://www.instagram.com/_lmabeauty/"
+      ],
+      "source": "admin-draft",
+      "createdAt": "2026-06-02T11:49:24.564Z",
+      "updatedAt": "2026-06-02T11:49:24.564Z",
+      "lastCheckedAt": "2026-06-02T11:49:24.564Z"
+    },
     {
       "id": "hairbyadiam-mpwkr2kf",
       "status": "needs_review",
