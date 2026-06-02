@@ -1,8 +1,8 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-06-02T12:18:48.429Z",
-    "count": 27
+    "updatedAt": "2026-06-02T12:19:53.927Z",
+    "count": 26
   },
   "drafts": [
     {
@@ -754,36 +754,6 @@
       "createdAt": "2026-06-02T11:49:36.811Z",
       "updatedAt": "2026-06-02T11:49:36.811Z",
       "lastCheckedAt": "2026-06-02T11:49:36.811Z"
-    },
-    {
-      "id": "lmabeauty-mpwkrkd1",
-      "status": "needs_review",
-      "name": "Lmabeauty",
-      "areaId": "",
-      "areaIds": [],
-      "areaLabel": "",
-      "neighbourhood": "",
-      "postcode": "",
-      "bookingPlatform": "",
-      "bookingUrl": "",
-      "websiteUrl": "",
-      "instagramUrl": "https://www.instagram.com/_lmabeauty/",
-      "tiktokUrl": "",
-      "services": [],
-      "rawServices": [],
-      "summary": "Admin draft created from stylist intake.",
-      "confidence": 0.35,
-      "warnings": [
-        "No booking link identified yet.",
-        "No services matched yet."
-      ],
-      "evidence": [
-        "Submitted link: https://www.instagram.com/_lmabeauty/"
-      ],
-      "source": "admin-draft",
-      "createdAt": "2026-06-02T11:49:24.564Z",
-      "updatedAt": "2026-06-02T11:49:24.564Z",
-      "lastCheckedAt": "2026-06-02T11:49:24.564Z"
     },
     {
       "id": "microsbylaura-mpi6stjg",

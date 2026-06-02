@@ -1,11 +1,35 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-06-02T12:18:48.429Z",
-    "count": 657,
+    "updatedAt": "2026-06-02T12:19:53.927Z",
+    "count": 658,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "lmabeauty",
+      "name": "Lmabeauty",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london",
+        "north-west"
+      ],
+      "areaLabel": "North west London",
+      "neighbourhood": "North west London London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/_lmabeauty/",
+      "websiteUrl": "https://www.instagram.com/_lmabeauty/",
+      "instagramUrl": "https://www.instagram.com/_lmabeauty/",
+      "services": [
+        "Boho braids / goddess braids"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/_lmabeauty/"
+      ]
+    },
     {
       "id": "hairbyadiam",
       "name": "Hairbyadiam",
