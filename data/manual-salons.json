@@ -1,11 +1,38 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-06-02T12:02:08.841Z",
-    "count": 652,
+    "updatedAt": "2026-06-02T12:07:27.694Z",
+    "count": 653,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "esu-hairandbeauty",
+      "name": "Esu Hairandbeauty",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london",
+        "south-west"
+      ],
+      "areaLabel": "South west London",
+      "neighbourhood": "South west London London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/esu_hairandbeauty/",
+      "websiteUrl": "https://www.instagram.com/esu_hairandbeauty/",
+      "instagramUrl": "https://www.instagram.com/esu_hairandbeauty/",
+      "services": [
+        "Wash & blowdry",
+        "Highlights",
+        "Tape ins",
+        "Trim / hair cut"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/esu_hairandbeauty/"
+      ]
+    },
     {
       "id": "mmluxe-hair",
       "name": "Mmluxe Hair",

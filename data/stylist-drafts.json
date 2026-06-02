@@ -1,8 +1,8 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-06-02T12:02:42.631Z",
-    "count": 32
+    "updatedAt": "2026-06-02T12:07:27.694Z",
+    "count": 31
   },
   "drafts": [
     {
@@ -904,36 +904,6 @@
       "createdAt": "2026-06-02T11:48:01.518Z",
       "updatedAt": "2026-06-02T11:48:01.518Z",
       "lastCheckedAt": "2026-06-02T11:48:01.518Z"
-    },
-    {
-      "id": "esu-hairandbeauty-mpwkonua",
-      "status": "needs_review",
-      "name": "Esu Hairandbeauty",
-      "areaId": "",
-      "areaIds": [],
-      "areaLabel": "",
-      "neighbourhood": "",
-      "postcode": "",
-      "bookingPlatform": "",
-      "bookingUrl": "",
-      "websiteUrl": "",
-      "instagramUrl": "https://www.instagram.com/esu_hairandbeauty/",
-      "tiktokUrl": "",
-      "services": [],
-      "rawServices": [],
-      "summary": "Admin draft created from stylist intake.",
-      "confidence": 0.35,
-      "warnings": [
-        "No booking link identified yet.",
-        "No services matched yet."
-      ],
-      "evidence": [
-        "Submitted link: https://www.instagram.com/esu_hairandbeauty/"
-      ],
-      "source": "admin-draft",
-      "createdAt": "2026-06-02T11:47:09.105Z",
-      "updatedAt": "2026-06-02T11:47:09.105Z",
-      "lastCheckedAt": "2026-06-02T11:47:09.105Z"
     },
     {
       "id": "microsbylaura-mpi6stjg",
