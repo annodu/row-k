@@ -1,10 +1,40 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-06-02T11:51:31.505Z",
-    "count": 18
+    "updatedAt": "2026-06-02T11:51:48.686Z",
+    "count": 19
   },
   "drafts": [
+    {
+      "id": "marshahairsalon-mpwkunju",
+      "status": "needs_review",
+      "name": "Marshahairsalon",
+      "areaId": "",
+      "areaIds": [],
+      "areaLabel": "",
+      "neighbourhood": "",
+      "postcode": "",
+      "bookingPlatform": "",
+      "bookingUrl": "",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/marshahairsalon/",
+      "tiktokUrl": "",
+      "services": [],
+      "rawServices": [],
+      "summary": "Admin draft created from stylist intake.",
+      "confidence": 0.35,
+      "warnings": [
+        "No booking link identified yet.",
+        "No services matched yet."
+      ],
+      "evidence": [
+        "Submitted link: https://www.instagram.com/marshahairsalon/"
+      ],
+      "source": "admin-draft",
+      "createdAt": "2026-06-02T11:51:48.652Z",
+      "updatedAt": "2026-06-02T11:51:48.652Z",
+      "lastCheckedAt": "2026-06-02T11:51:48.652Z"
+    },
     {
       "id": "firstglancehair-mpwkuaab",
       "status": "needs_review",
