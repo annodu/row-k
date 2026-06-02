@@ -1,8 +1,8 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-06-02T12:02:08.841Z",
-    "count": 33
+    "updatedAt": "2026-06-02T12:02:42.631Z",
+    "count": 32
   },
   "drafts": [
     {
@@ -934,36 +934,6 @@
       "createdAt": "2026-06-02T11:47:09.105Z",
       "updatedAt": "2026-06-02T11:47:09.105Z",
       "lastCheckedAt": "2026-06-02T11:47:09.105Z"
-    },
-    {
-      "id": "winta-hair-beauty-mpwknrz8",
-      "status": "needs_review",
-      "name": "Winta Hair Beauty",
-      "areaId": "",
-      "areaIds": [],
-      "areaLabel": "",
-      "neighbourhood": "",
-      "postcode": "",
-      "bookingPlatform": "",
-      "bookingUrl": "",
-      "websiteUrl": "",
-      "instagramUrl": "https://www.instagram.com/winta_hair_beauty/",
-      "tiktokUrl": "",
-      "services": [],
-      "rawServices": [],
-      "summary": "Admin draft created from stylist intake.",
-      "confidence": 0.35,
-      "warnings": [
-        "No booking link identified yet.",
-        "No services matched yet."
-      ],
-      "evidence": [
-        "Submitted link: https://www.instagram.com/winta_hair_beauty/"
-      ],
-      "source": "admin-draft",
-      "createdAt": "2026-06-02T11:46:27.810Z",
-      "updatedAt": "2026-06-02T11:46:27.810Z",
-      "lastCheckedAt": "2026-06-02T11:46:27.810Z"
     },
     {
       "id": "microsbylaura-mpi6stjg",
