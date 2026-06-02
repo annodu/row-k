@@ -1,10 +1,40 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-06-02T11:52:21.452Z",
-    "count": 22
+    "updatedAt": "2026-06-02T11:52:31.064Z",
+    "count": 23
   },
   "drafts": [
+    {
+      "id": "phebehair-mpwkvk90",
+      "status": "needs_review",
+      "name": "Phebehair",
+      "areaId": "",
+      "areaIds": [],
+      "areaLabel": "",
+      "neighbourhood": "",
+      "postcode": "",
+      "bookingPlatform": "",
+      "bookingUrl": "",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/phebehair/",
+      "tiktokUrl": "",
+      "services": [],
+      "rawServices": [],
+      "summary": "Admin draft created from stylist intake.",
+      "confidence": 0.35,
+      "warnings": [
+        "No booking link identified yet.",
+        "No services matched yet."
+      ],
+      "evidence": [
+        "Submitted link: https://www.instagram.com/phebehair/"
+      ],
+      "source": "admin-draft",
+      "createdAt": "2026-06-02T11:52:31.042Z",
+      "updatedAt": "2026-06-02T11:52:31.042Z",
+      "lastCheckedAt": "2026-06-02T11:52:31.042Z"
+    },
     {
       "id": "fbl-bridal-mpwkvcu3",
       "status": "needs_review",
