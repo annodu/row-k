@@ -1,7 +1,7 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-06-02T23:03:19.406Z",
+    "updatedAt": "2026-06-02T23:07:52.489Z",
     "count": 681,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
@@ -5773,10 +5773,13 @@
         "Traditional sew-in / leave out",
         "Flipover / Versatile sew-in",
         "Healthy hair plans & consultations",
-        "Trichology / scalp analysis",
-        "Healthy hair consultations & regimes",
-        "Japanese head spa"
-      ]
+        "Trichology / scalp analysis"
+      ],
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "updatedAt": "2026-06-02T23:07:52.489Z"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
