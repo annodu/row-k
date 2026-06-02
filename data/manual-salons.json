@@ -1,11 +1,39 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-06-02T12:19:53.927Z",
-    "count": 658,
+    "updatedAt": "2026-06-02T12:22:39.890Z",
+    "count": 659,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "qhbeautys",
+      "name": "Qhbeautys",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london",
+        "south-east"
+      ],
+      "areaLabel": "South east London",
+      "neighbourhood": "South east London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://qhbeautys.as.me/schedule/38bb034a",
+      "websiteUrl": "https://qhbeautys.as.me/schedule/38bb034a",
+      "instagramUrl": "https://www.instagram.com/qhbeautys/",
+      "services": [
+        "Silk press",
+        "Wig install (frontal / closure)",
+        "Texture release",
+        "Full head colour",
+        "Highlights"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/qhbeautys/"
+      ]
+    },
     {
       "id": "lmabeauty",
       "name": "Lmabeauty",

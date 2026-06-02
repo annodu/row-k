@@ -1,8 +1,8 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-06-02T12:19:53.927Z",
-    "count": 26
+    "updatedAt": "2026-06-02T12:22:39.891Z",
+    "count": 25
   },
   "drafts": [
     {
@@ -724,36 +724,6 @@
       "createdAt": "2026-06-02T11:49:48.846Z",
       "updatedAt": "2026-06-02T11:49:48.846Z",
       "lastCheckedAt": "2026-06-02T11:49:48.846Z"
-    },
-    {
-      "id": "qhbeautys-mpwkrtt8",
-      "status": "needs_review",
-      "name": "Qhbeautys",
-      "areaId": "",
-      "areaIds": [],
-      "areaLabel": "",
-      "neighbourhood": "",
-      "postcode": "",
-      "bookingPlatform": "",
-      "bookingUrl": "",
-      "websiteUrl": "",
-      "instagramUrl": "https://www.instagram.com/qhbeautys/",
-      "tiktokUrl": "",
-      "services": [],
-      "rawServices": [],
-      "summary": "Admin draft created from stylist intake.",
-      "confidence": 0.35,
-      "warnings": [
-        "No booking link identified yet.",
-        "No services matched yet."
-      ],
-      "evidence": [
-        "Submitted link: https://www.instagram.com/qhbeautys/"
-      ],
-      "source": "admin-draft",
-      "createdAt": "2026-06-02T11:49:36.811Z",
-      "updatedAt": "2026-06-02T11:49:36.811Z",
-      "lastCheckedAt": "2026-06-02T11:49:36.811Z"
     },
     {
       "id": "microsbylaura-mpi6stjg",
