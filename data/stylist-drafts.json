@@ -1,10 +1,40 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-06-02T11:49:24.584Z",
-    "count": 10
+    "updatedAt": "2026-06-02T11:49:36.833Z",
+    "count": 11
   },
   "drafts": [
+    {
+      "id": "qhbeautys-mpwkrtt8",
+      "status": "needs_review",
+      "name": "Qhbeautys",
+      "areaId": "",
+      "areaIds": [],
+      "areaLabel": "",
+      "neighbourhood": "",
+      "postcode": "",
+      "bookingPlatform": "",
+      "bookingUrl": "",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/qhbeautys/",
+      "tiktokUrl": "",
+      "services": [],
+      "rawServices": [],
+      "summary": "Admin draft created from stylist intake.",
+      "confidence": 0.35,
+      "warnings": [
+        "No booking link identified yet.",
+        "No services matched yet."
+      ],
+      "evidence": [
+        "Submitted link: https://www.instagram.com/qhbeautys/"
+      ],
+      "source": "admin-draft",
+      "createdAt": "2026-06-02T11:49:36.811Z",
+      "updatedAt": "2026-06-02T11:49:36.811Z",
+      "lastCheckedAt": "2026-06-02T11:49:36.811Z"
+    },
     {
       "id": "lmabeauty-mpwkrkd1",
       "status": "needs_review",
