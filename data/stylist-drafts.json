@@ -1,10 +1,40 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-06-02T11:48:30.902Z",
-    "count": 7
+    "updatedAt": "2026-06-02T11:48:50.875Z",
+    "count": 8
   },
   "drafts": [
+    {
+      "id": "houseoffbl-mpwkquck",
+      "status": "needs_review",
+      "name": "Houseoffbl",
+      "areaId": "",
+      "areaIds": [],
+      "areaLabel": "",
+      "neighbourhood": "",
+      "postcode": "",
+      "bookingPlatform": "",
+      "bookingUrl": "",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/houseoffbl/",
+      "tiktokUrl": "",
+      "services": [],
+      "rawServices": [],
+      "summary": "Admin draft created from stylist intake.",
+      "confidence": 0.35,
+      "warnings": [
+        "No booking link identified yet.",
+        "No services matched yet."
+      ],
+      "evidence": [
+        "Submitted link: https://www.instagram.com/houseoffbl/"
+      ],
+      "source": "admin-draft",
+      "createdAt": "2026-06-02T11:48:50.850Z",
+      "updatedAt": "2026-06-02T11:48:50.850Z",
+      "lastCheckedAt": "2026-06-02T11:48:50.850Z"
+    },
     {
       "id": "wearmodule-mpwkqexd",
       "status": "needs_review",
