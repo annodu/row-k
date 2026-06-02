@@ -1,10 +1,40 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-06-02T11:51:15.156Z",
-    "count": 17
+    "updatedAt": "2026-06-02T11:51:31.505Z",
+    "count": 18
   },
   "drafts": [
+    {
+      "id": "firstglancehair-mpwkuaab",
+      "status": "needs_review",
+      "name": "Firstglancehair",
+      "areaId": "",
+      "areaIds": [],
+      "areaLabel": "",
+      "neighbourhood": "",
+      "postcode": "",
+      "bookingPlatform": "",
+      "bookingUrl": "",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/firstglancehair/",
+      "tiktokUrl": "",
+      "services": [],
+      "rawServices": [],
+      "summary": "Admin draft created from stylist intake.",
+      "confidence": 0.35,
+      "warnings": [
+        "No booking link identified yet.",
+        "No services matched yet."
+      ],
+      "evidence": [
+        "Submitted link: https://www.instagram.com/firstglancehair/"
+      ],
+      "source": "admin-draft",
+      "createdAt": "2026-06-02T11:51:31.473Z",
+      "updatedAt": "2026-06-02T11:51:31.473Z",
+      "lastCheckedAt": "2026-06-02T11:51:31.473Z"
+    },
     {
       "id": "zoliesthetikbeauty-mpwktxoh",
       "status": "needs_review",
