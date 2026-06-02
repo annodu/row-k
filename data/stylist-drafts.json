@@ -1,10 +1,40 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-06-02T11:54:18.212Z",
-    "count": 32
+    "updatedAt": "2026-06-02T11:54:25.905Z",
+    "count": 33
   },
   "drafts": [
+    {
+      "id": "silkhoneyandscissors-mpwky0v2",
+      "status": "needs_review",
+      "name": "Silkhoneyandscissors",
+      "areaId": "",
+      "areaIds": [],
+      "areaLabel": "",
+      "neighbourhood": "",
+      "postcode": "",
+      "bookingPlatform": "",
+      "bookingUrl": "",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/silkhoneyandscissors/",
+      "tiktokUrl": "",
+      "services": [],
+      "rawServices": [],
+      "summary": "Admin draft created from stylist intake.",
+      "confidence": 0.35,
+      "warnings": [
+        "No booking link identified yet.",
+        "No services matched yet."
+      ],
+      "evidence": [
+        "Submitted link: https://www.instagram.com/silkhoneyandscissors/"
+      ],
+      "source": "admin-draft",
+      "createdAt": "2026-06-02T11:54:25.884Z",
+      "updatedAt": "2026-06-02T11:54:25.884Z",
+      "lastCheckedAt": "2026-06-02T11:54:25.884Z"
+    },
     {
       "id": "vanessaandar-mpwkxuwx",
       "status": "needs_review",
