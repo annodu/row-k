@@ -416,7 +416,7 @@ export function registerAdminStylistRoutes(app) {
       delayMs: isHostedRuntime() ? 350 : 0,
     });
     const reviewChecks = checks.filter(
-      (check) => check.issues.length > 0 || check.addedServices.length > 0 || check.removedServices.length > 0 || check.linkChecks?.some(isManualCheckLink),
+      (check) => check.issues.length > 0 || check.addedServices.length > 0 || check.removedServices.length > 0 || check.attributeSuggestions?.length > 0 || check.linkChecks?.some(isManualCheckLink),
     );
     const mergedChecks = offset > 0 ? mergeFreshnessChecks(existingStore.checks || [], reviewChecks) : reviewChecks;
 
@@ -464,6 +464,7 @@ export function registerAdminStylistRoutes(app) {
     const removeServices = normalizeServices(toArray(req.body?.removeServices));
     const rejectAddedServices = normalizeServices(toArray(req.body?.rejectAddedServices));
     const rejectRemovedServices = normalizeServices(toArray(req.body?.rejectRemovedServices));
+    const rejectHijabiFriendly = req.body?.rejectHijabiFriendly === true;
     const currentServices = normalizeServices(salon.services || []);
     const nextServices = currentServices.filter((service) => !removeServices.includes(service));
     addServices.forEach((service) => {
@@ -477,6 +478,7 @@ export function registerAdminStylistRoutes(app) {
       ...(typeof req.body?.bookingUrl === "string" ? { bookingUrl: cleanString(req.body.bookingUrl) } : {}),
       ...(typeof req.body?.instagramUrl === "string" ? { instagramUrl: cleanString(req.body.instagramUrl) } : {}),
       ...(typeof req.body?.websiteUrl === "string" ? { websiteUrl: cleanString(req.body.websiteUrl) } : {}),
+      ...(req.body?.hijabiFriendly === true ? { hijabiFriendly: true } : {}),
       services: nextServices,
     };
     manualIndex.meta = {
@@ -487,6 +489,7 @@ export function registerAdminStylistRoutes(app) {
     if (
       addServices.length ||
       removeServices.length ||
+      req.body?.hijabiFriendly === true ||
       typeof req.body?.bookingUrl === "string" ||
       typeof req.body?.instagramUrl === "string" ||
       typeof req.body?.websiteUrl === "string"
@@ -499,9 +502,11 @@ export function registerAdminStylistRoutes(app) {
       removeServices,
       rejectAddedServices,
       rejectRemovedServices,
+      rejectHijabiFriendly,
       bookingUrl: typeof req.body?.bookingUrl === "string" ? cleanString(req.body.bookingUrl) : undefined,
       instagramUrl: typeof req.body?.instagramUrl === "string" ? cleanString(req.body.instagramUrl) : undefined,
       websiteUrl: typeof req.body?.websiteUrl === "string" ? cleanString(req.body.websiteUrl) : undefined,
+      hijabiFriendly: req.body?.hijabiFriendly === true ? true : undefined,
     });
 
     res.json({ ok: true, salon: manualIndex.salons[salonIndex] });
@@ -515,10 +520,12 @@ export function registerAdminStylistRoutes(app) {
     }
 
     const previousServices = normalizeServices(toArray(req.body?.previousServices));
-    if (previousServices.length) {
+    const hasPreviousHijabiFriendly = typeof req.body?.previousHijabiFriendly === "boolean";
+    if (previousServices.length || hasPreviousHijabiFriendly) {
       manualIndex.salons[salonIndex] = {
         ...manualIndex.salons[salonIndex],
-        services: previousServices,
+        ...(previousServices.length ? { services: previousServices } : {}),
+        ...(hasPreviousHijabiFriendly ? { hijabiFriendly: req.body.previousHijabiFriendly } : {}),
       };
       manualIndex.meta = {
         ...manualIndex.meta,
@@ -532,6 +539,7 @@ export function registerAdminStylistRoutes(app) {
       check: req.body?.check,
       rejectAddedServices: toArray(req.body?.rejectAddedServices),
       rejectRemovedServices: toArray(req.body?.rejectRemovedServices),
+      rejectHijabiFriendly: req.body?.rejectHijabiFriendly === true,
     });
 
     res.json({ ok: true, salon: manualIndex.salons[salonIndex], check: restoredCheck });
@@ -1042,7 +1050,17 @@ async function tryWriteJson(filePath, payload) {
   }
 }
 
-async function updateFreshnessReview(salonId, { addServices = [], removeServices = [], rejectAddedServices = [], rejectRemovedServices = [], bookingUrl, instagramUrl, websiteUrl }) {
+async function updateFreshnessReview(salonId, {
+  addServices = [],
+  removeServices = [],
+  rejectAddedServices = [],
+  rejectRemovedServices = [],
+  rejectHijabiFriendly = false,
+  bookingUrl,
+  instagramUrl,
+  websiteUrl,
+  hijabiFriendly,
+}) {
   const store = await readFreshnessStore({ meta: { source: "freshness-checks", updatedAt: null, count: 0 }, checks: [], dismissedRecommendations: {} });
   const reviewedAdds = normalizeServices([...addServices, ...rejectAddedServices]);
   const reviewedRemoves = normalizeServices([...removeServices, ...rejectRemovedServices]);
@@ -1050,6 +1068,7 @@ async function updateFreshnessReview(salonId, { addServices = [], removeServices
   const dismissedRecommendations = updateDismissedRecommendations(store.dismissedRecommendations || {}, salonId, {
     rejectAddedServices,
     rejectRemovedServices,
+    rejectHijabiFriendly,
     rawServices: currentCheck?.serviceCheck?.rawServices || [],
   });
   const checks = (store.checks || [])
@@ -1069,10 +1088,22 @@ async function updateFreshnessReview(salonId, { addServices = [], removeServices
         ...(bookingUrl !== undefined ? { bookingUrl } : {}),
         ...(instagramUrl !== undefined ? { instagramUrl } : {}),
         ...(websiteUrl !== undefined ? { websiteUrl } : {}),
+        ...(hijabiFriendly === true ? { hijabiFriendly: true } : {}),
         addedServices: (check.addedServices || []).filter((service) => !reviewedAdds.includes(service)),
         removedServices: (check.removedServices || []).filter((service) => !reviewedRemoves.includes(service)),
+        attributeSuggestions: (check.attributeSuggestions || []).filter((suggestion) => {
+          if (suggestion?.field !== "hijabiFriendly") {
+            return true;
+          }
+          return hijabiFriendly !== true && rejectHijabiFriendly !== true;
+        }),
         linkChecks: (check.linkChecks || []).filter((linkCheck) => !reviewedLinkTypes.has(linkCheck.type)),
-        issues: (check.issues || []).filter((issue) => !reviewedLinkIssues.has(issue)),
+        issues: (check.issues || []).filter((issue) => {
+          if (reviewedLinkIssues.has(issue)) {
+            return false;
+          }
+          return !(String(issue).toLowerCase() === "possible hijabi-friendly wording found" && (hijabiFriendly === true || rejectHijabiFriendly === true));
+        }),
         reviewedAt: new Date().toISOString(),
       };
     })
@@ -1104,11 +1135,12 @@ function getReviewedLinkTypes({ bookingUrl, instagramUrl, websiteUrl }) {
   return reviewedLinkTypes;
 }
 
-async function undoFreshnessReview(salonId, { check, rejectAddedServices = [], rejectRemovedServices = [] }) {
+async function undoFreshnessReview(salonId, { check, rejectAddedServices = [], rejectRemovedServices = [], rejectHijabiFriendly = false }) {
   const store = await readFreshnessStore({ meta: { source: "freshness-checks", updatedAt: null, count: 0 }, checks: [], dismissedRecommendations: {} });
   const dismissedRecommendations = removeDismissedRecommendations(store.dismissedRecommendations || {}, salonId, {
     rejectAddedServices,
     rejectRemovedServices,
+    rejectHijabiFriendly,
   });
   const sanitizedCheck = sanitizeFreshnessCheck(check, salonId);
   const checks = sanitizedCheck
@@ -1129,10 +1161,10 @@ async function undoFreshnessReview(salonId, { check, rejectAddedServices = [], r
   return sanitizedCheck;
 }
 
-function updateDismissedRecommendations(dismissedRecommendations, salonId, { rejectAddedServices = [], rejectRemovedServices = [], rawServices = [] }) {
+function updateDismissedRecommendations(dismissedRecommendations, salonId, { rejectAddedServices = [], rejectRemovedServices = [], rejectHijabiFriendly = false, rawServices = [] }) {
   const rejectedAdds = normalizeServices(rejectAddedServices);
   const rejectedRemoves = normalizeServices(rejectRemovedServices);
-  if (!rejectedAdds.length && !rejectedRemoves.length) {
+  if (!rejectedAdds.length && !rejectedRemoves.length && rejectHijabiFriendly !== true) {
     return dismissedRecommendations;
   }
 
@@ -1151,14 +1183,15 @@ function updateDismissedRecommendations(dismissedRecommendations, salonId, { rej
       removedServices: [...new Set([...(current.removedServices || []), ...rejectedRemoves])],
       addedServiceFamilies: [...new Set([...(current.addedServiceFamilies || []), ...rejectedAdds.map(serviceFamilyFor).filter(Boolean)])],
       addedServiceEvidence,
+      ...(rejectHijabiFriendly === true ? { hijabiFriendly: true } : current.hijabiFriendly === true ? { hijabiFriendly: true } : {}),
     },
   };
 }
 
-function removeDismissedRecommendations(dismissedRecommendations, salonId, { rejectAddedServices = [], rejectRemovedServices = [] }) {
+function removeDismissedRecommendations(dismissedRecommendations, salonId, { rejectAddedServices = [], rejectRemovedServices = [], rejectHijabiFriendly = false }) {
   const rejectedAdds = normalizeServices(rejectAddedServices);
   const rejectedRemoves = normalizeServices(rejectRemovedServices);
-  if (!rejectedAdds.length && !rejectedRemoves.length) {
+  if (!rejectedAdds.length && !rejectedRemoves.length && rejectHijabiFriendly !== true) {
     return dismissedRecommendations;
   }
 
@@ -1168,9 +1201,10 @@ function removeDismissedRecommendations(dismissedRecommendations, salonId, { rej
     removedServices: (current.removedServices || []).filter((service) => !rejectedRemoves.includes(service)),
     addedServiceFamilies: (current.addedServiceFamilies || []).filter((family) => !rejectedAdds.map(serviceFamilyFor).includes(family)),
     addedServiceEvidence: Object.fromEntries(Object.entries(current.addedServiceEvidence || {}).filter(([service]) => !rejectedAdds.includes(service))),
+    ...(rejectHijabiFriendly === true ? {} : current.hijabiFriendly === true ? { hijabiFriendly: true } : {}),
   };
   const updated = { ...dismissedRecommendations };
-  if (next.addedServices.length || next.removedServices.length) {
+  if (next.addedServices.length || next.removedServices.length || next.hijabiFriendly === true) {
     updated[salonId] = next;
   } else {
     delete updated[salonId];
@@ -1193,6 +1227,7 @@ function sanitizeFreshnessCheck(check, salonId) {
     issues: toArray(check.issues),
     linkChecks: Array.isArray(check.linkChecks) ? check.linkChecks : [],
     serviceCheck: check.serviceCheck || emptyServiceCheck(),
+    attributeSuggestions: sanitizeAttributeSuggestions(check.attributeSuggestions),
     currentServices: normalizeServices(toArray(check.currentServices)),
     detectedServices: normalizeServices(toArray(check.detectedServices)),
     addedServices: normalizeServices(toArray(check.addedServices)),
@@ -1206,14 +1241,46 @@ function hasActionableFreshnessCheck(check) {
     return true;
   }
 
+  if (check.attributeSuggestions?.length) {
+    return true;
+  }
+
   if (check.linkChecks?.some(isActionableBrokenLink)) {
     return true;
   }
 
   return (check.issues || []).some((issue) => {
     const normalizedIssue = String(issue).toLowerCase();
-    return normalizedIssue !== "possible new services found" && normalizedIssue !== "possible removed services found";
+    return normalizedIssue !== "possible new services found" && normalizedIssue !== "possible removed services found" && normalizedIssue !== "possible hijabi-friendly wording found";
   });
+}
+
+function sanitizeAttributeSuggestions(suggestions) {
+  return (Array.isArray(suggestions) ? suggestions : [])
+    .map((suggestion) => {
+      if (suggestion?.field !== "hijabiFriendly" || suggestion.value !== true) {
+        return null;
+      }
+
+      const evidence = (Array.isArray(suggestion.evidence) ? suggestion.evidence : [])
+        .map((item) => ({
+          source: cleanString(item?.source),
+          text: cleanString(item?.text),
+        }))
+        .filter((item) => item.source && item.text);
+
+      if (!evidence.length) {
+        return null;
+      }
+
+      return {
+        field: "hijabiFriendly",
+        value: true,
+        label: "Hijabi friendly",
+        evidence,
+      };
+    })
+    .filter(Boolean);
 }
 
 function mergeFreshnessChecks(existingChecks, nextChecks) {
@@ -1254,16 +1321,21 @@ function isWeakInstagramOk(linkCheck) {
 }
 
 async function checkSalonFreshness(salon, dismissedRecommendation = {}, previousCheck = null) {
-  const [bookingLinkCheck, ...otherLinkChecks] = await Promise.all([
+  const [bookingLinkCheck, instagramLinkCheck, websiteLinkCheck] = await Promise.all([
     checkUrl("booking", salon.bookingUrl, { includeText: true }),
     checkUrl("instagram", salon.instagramUrl),
-    checkUrl("website", salon.websiteUrl && salon.websiteUrl !== salon.bookingUrl ? salon.websiteUrl : ""),
+    checkUrl("website", salon.websiteUrl && salon.websiteUrl !== salon.bookingUrl ? salon.websiteUrl : "", { includeText: true }),
   ]);
-  const linkChecks = preserveKnownBrokenInstagramLink([stripLinkCheckResponseText(bookingLinkCheck), ...otherLinkChecks], previousCheck);
+  const linkChecks = preserveKnownBrokenInstagramLink([bookingLinkCheck, instagramLinkCheck, websiteLinkCheck].map(stripLinkCheckResponseText), previousCheck);
   const activeLinkChecks = linkChecks.filter(Boolean);
   const issues = activeLinkChecks.flatMap((check) => check.issues);
   const bookingCheck = activeLinkChecks.find((check) => check.type === "booking");
   const serviceCheck = bookingCheck?.status === "ok" ? extractBookingServicesFromHtml(bookingLinkCheck?.responseText || "") : emptyServiceCheck();
+  const attributeSuggestions = buildAttributeSuggestions(salon, {
+    booking: bookingLinkCheck?.responseText || "",
+    website: websiteLinkCheck?.responseText || "",
+    instagram: instagramLinkCheck?.profileText || "",
+  }, dismissedRecommendation);
   const currentServices = normalizeServices(salon.services || []);
   const detectedServices = adjustDetectedServicesForCurrentContext(normalizeServices(serviceCheck.matchedServices), currentServices, serviceCheck.rawServices);
   const dismissedAddedServices = normalizeServices(dismissedRecommendation.addedServices || []);
@@ -1292,6 +1364,9 @@ async function checkSalonFreshness(salon, dismissedRecommendation = {}, previous
   if (removedServices.length > 0) {
     issues.push("Possible removed services found");
   }
+  if (attributeSuggestions.length > 0) {
+    issues.push("Possible hijabi-friendly wording found");
+  }
 
   return {
     id: salon.id,
@@ -1300,15 +1375,51 @@ async function checkSalonFreshness(salon, dismissedRecommendation = {}, previous
     bookingUrl: salon.bookingUrl || "",
     instagramUrl: salon.instagramUrl || "",
     websiteUrl: salon.websiteUrl || "",
+    hijabiFriendly: salon.hijabiFriendly === true,
     issues: [...new Set(issues)],
     linkChecks: activeLinkChecks,
     serviceCheck,
+    attributeSuggestions,
     currentServices,
     detectedServices,
     addedServices,
     removedServices,
     checkedAt: new Date().toISOString(),
   };
+}
+
+function buildAttributeSuggestions(salon, sources, dismissedRecommendation = {}) {
+  if (salon.hijabiFriendly === true || dismissedRecommendation.hijabiFriendly === true) {
+    return [];
+  }
+
+  const evidence = Object.entries(sources)
+    .flatMap(([source, text]) => findHijabiFriendlyEvidence(text).map((line) => ({ source, text: line })))
+    .slice(0, 6);
+
+  return evidence.length
+    ? [{
+        field: "hijabiFriendly",
+        value: true,
+        label: "Hijabi friendly",
+        evidence,
+      }]
+    : [];
+}
+
+function findHijabiFriendlyEvidence(value = "") {
+  const text = htmlToReadableText(value);
+  if (!text) {
+    return [];
+  }
+
+  return [...new Set(
+    text
+      .split(/\n|\.|•|·|\|/)
+      .map((line) => line.replace(/\s+/g, " ").trim())
+      .filter((line) => /\bhijab(?:i)?[\s-]+friendly\b/i.test(line))
+      .filter((line) => line.length >= 4 && line.length <= 180),
+  )].slice(0, 4);
 }
 
 function adjustDetectedServicesForCurrentContext(detectedServices, currentServices, rawServices) {
@@ -1480,6 +1591,11 @@ async function checkInstagramProfileUrl(result) {
     if (response.ok) {
       const profileData = await response.json();
       const resolvedUsername = String(profileData?.data?.user?.username || "").toLowerCase();
+      result.profileText = [
+        profileData?.data?.user?.full_name,
+        profileData?.data?.user?.biography,
+        profileData?.data?.user?.bio_links?.map((link) => link?.title).filter(Boolean).join(" "),
+      ].filter(Boolean).join("\n");
       if (resolvedUsername === profile) {
         result.status = "ok";
       } else {
@@ -1522,7 +1638,7 @@ function stripLinkCheckResponseText(linkCheck) {
     return null;
   }
 
-  const { responseText, ...rest } = linkCheck;
+  const { responseText, profileText, ...rest } = linkCheck;
   return rest;
 }
 
@@ -1658,14 +1774,7 @@ function extractAcuityBusiness(html) {
 }
 
 function extractServiceCandidates(html) {
-  const text = html
-    .replace(/<script[\s\S]*?<\/script>/gi, " ")
-    .replace(/<style[\s\S]*?<\/style>/gi, " ")
-    .replace(/<[^>]+>/g, "\n")
-    .replace(/&amp;/g, "&")
-    .replace(/&nbsp;/g, " ")
-    .replace(/&#39;/g, "'")
-    .replace(/&quot;/g, '"');
+  const text = htmlToReadableText(html);
 
   return [
     ...new Set(
@@ -1677,6 +1786,21 @@ function extractServiceCandidates(html) {
         .filter((line) => !/cookie|privacy|terms|login|sign in|copyright|javascript|instagram|facebook/i.test(line)),
     ),
   ];
+}
+
+function htmlToReadableText(value = "") {
+  return String(value)
+    .replace(/<script[\s\S]*?<\/script>/gi, " ")
+    .replace(/<style[\s\S]*?<\/style>/gi, " ")
+    .replace(/<[^>]+>/g, "\n")
+    .replace(/&amp;/g, "&")
+    .replace(/&nbsp;/g, " ")
+    .replace(/&#39;/g, "'")
+    .replace(/&quot;/g, '"')
+    .replace(/[ \t\r\f\v]+/g, " ")
+    .replace(/\n\s+/g, "\n")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
 }
 
 function emptyServiceCheck() {

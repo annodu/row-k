@@ -82,6 +82,7 @@ type DirectoryCheck = {
   bookingUrl?: string;
   instagramUrl?: string;
   websiteUrl?: string;
+  hijabiFriendly?: boolean;
   issues: string[];
   linkChecks: {
     type: string;
@@ -100,7 +101,18 @@ type DirectoryCheck = {
   detectedServices: string[];
   addedServices: string[];
   removedServices: string[];
+  attributeSuggestions?: AttributeSuggestion[];
   checkedAt: string;
+};
+
+type AttributeSuggestion = {
+  field: "hijabiFriendly";
+  value: true;
+  label: string;
+  evidence: {
+    source: string;
+    text: string;
+  }[];
 };
 
 type FreshnessUpdate = {
@@ -109,13 +121,16 @@ type FreshnessUpdate = {
   bookingUrl?: string;
   instagramUrl?: string;
   websiteUrl?: string;
+  hijabiFriendly?: boolean;
   rejectAddedServices?: string[];
   rejectRemovedServices?: string[];
+  rejectHijabiFriendly?: boolean;
 };
 
 type FreshnessUndoState = {
   check: DirectoryCheck;
   previousServices: string[];
+  previousHijabiFriendly?: boolean;
   update: FreshnessUpdate;
   label: string;
 };
@@ -758,6 +773,7 @@ export function AdminApp() {
     const undoState: FreshnessUndoState = {
       check: cloneDirectoryCheck(check),
       previousServices: [...check.currentServices],
+      previousHijabiFriendly: check.hijabiFriendly === true,
       update,
       label: getFreshnessUndoLabel(update),
     };
@@ -783,14 +799,19 @@ export function AdminApp() {
                 bookingUrl: update.bookingUrl ?? item.bookingUrl,
                 instagramUrl: update.instagramUrl ?? item.instagramUrl,
                 websiteUrl: update.websiteUrl ?? item.websiteUrl,
+                hijabiFriendly: update.hijabiFriendly === true ? true : item.hijabiFriendly,
                 currentServices: payload.salon?.services ?? item.currentServices,
                 addedServices: removeReviewedServices(item.addedServices, [...(update.addServices ?? []), ...(update.rejectAddedServices ?? [])]),
                 removedServices: removeReviewedServices(item.removedServices, [...(update.removeServices ?? []), ...(update.rejectRemovedServices ?? [])]),
+                attributeSuggestions: removeReviewedAttributeSuggestions(item.attributeSuggestions, update),
                 ...removeReviewedLinkChecks(item, update),
               }
             : item,
         ),
       );
+      if (update.hijabiFriendly === true) {
+        setPublishedStylists((current) => current.map((item) => (item.id === check.id ? { ...item, hijabiFriendly: true } : item)));
+      }
       setFreshnessUndoStack((current) => [...current, undoState]);
       setMessage("Directory listing updated.");
     } finally {
@@ -811,8 +832,10 @@ export function AdminApp() {
         body: JSON.stringify({
           check: lastFreshnessUndo.check,
           previousServices: lastFreshnessUndo.previousServices,
+          previousHijabiFriendly: lastFreshnessUndo.previousHijabiFriendly,
           rejectAddedServices: lastFreshnessUndo.update.rejectAddedServices,
           rejectRemovedServices: lastFreshnessUndo.update.rejectRemovedServices,
+          rejectHijabiFriendly: lastFreshnessUndo.update.rejectHijabiFriendly,
         }),
       });
       const payload = await response.json();
@@ -1949,20 +1972,25 @@ function FreshnessRecommendationItem({
   const isAdd = detail.kind === "add";
   const isRemove = detail.kind === "remove";
   const isManual = detail.kind === "manual";
+  const isAttribute = detail.kind === "attribute";
   const visual = getFreshnessDetailVisual(detail);
   const acceptUpdate =
     detail.kind === "add" && detail.service
       ? { addServices: [detail.service] }
       : detail.kind === "remove" && detail.service
         ? { removeServices: [detail.service] }
+        : detail.kind === "attribute" && detail.attributeField === "hijabiFriendly"
+          ? { hijabiFriendly: true }
         : row.acceptUpdate;
   const rejectUpdate =
     detail.kind === "add" && detail.service
       ? { rejectAddedServices: [detail.service] }
       : detail.kind === "remove" && detail.service
         ? { rejectRemovedServices: [detail.service] }
+        : detail.kind === "attribute" && detail.attributeField === "hijabiFriendly"
+          ? { rejectHijabiFriendly: true }
         : row.rejectUpdate;
-  const primaryActionLabel = isAdd ? "Add service" : isRemove ? "Remove" : detail.kind === "fix" ? "Save" : "Resolve";
+  const primaryActionLabel = isAdd ? "Add service" : isRemove ? "Remove" : isAttribute ? "Mark hijabi-friendly" : detail.kind === "fix" ? "Save" : "Resolve";
   const secondaryActionLabel = isAdd ? "Ignore" : isRemove ? "Keep" : "Ignore";
 
   return (
@@ -2033,7 +2061,7 @@ function FreshnessRecommendationItem({
               onClick={() => acceptUpdate ? onApply(row.check, acceptUpdate) : undefined}
               className={cn(
                 "rounded-none px-3 py-2 transition disabled:cursor-not-allowed disabled:opacity-35",
-                isAdd
+                isAdd || isAttribute
                   ? "border border-emerald-200 bg-emerald-50 text-emerald-700 hover:bg-emerald-100"
                   : "border border-red-200 bg-red-50 text-red-700 hover:bg-red-100",
               )}
@@ -2062,15 +2090,17 @@ type FreshnessRecommendationGroup = {
   acceptUpdate?: {
     addServices?: string[];
     removeServices?: string[];
+    hijabiFriendly?: boolean;
   };
   rejectUpdate?: FreshnessUpdate;
 };
 
 type FreshnessRecommendationDetail = {
-  kind: "add" | "remove" | "fix" | "manual" | "review";
+  kind: "add" | "remove" | "fix" | "manual" | "attribute" | "review";
   label: string;
   description: string;
   service?: string;
+  attributeField?: "hijabiFriendly";
   evidence?: string[];
   evidenceLabel?: string;
   reviewTone?: "danger" | "caution";
@@ -2092,6 +2122,9 @@ function getFreshnessDetailVisual(detail: FreshnessRecommendationDetail) {
   if (detail.kind === "manual") {
     return { label: "Verify", dotClass: "bg-amber-500", textClass: "text-amber-700" };
   }
+  if (detail.kind === "attribute") {
+    return { label: "Mark", dotClass: "bg-emerald-500", textClass: "text-emerald-700" };
+  }
   return { label: "Review", dotClass: "bg-sky-500", textClass: "text-sky-700" };
 }
 
@@ -2101,13 +2134,14 @@ function FreshnessDetailSummary({ details }: { details: FreshnessRecommendationD
       ...summary,
       [detail.kind === "remove" && detail.reviewTone === "caution" ? "review" : detail.kind]: summary[detail.kind === "remove" && detail.reviewTone === "caution" ? "review" : detail.kind] + 1,
     }),
-    { add: 0, remove: 0, fix: 0, manual: 0, review: 0 } as Record<FreshnessRecommendationDetail["kind"], number>,
+    { add: 0, remove: 0, fix: 0, manual: 0, attribute: 0, review: 0 } as Record<FreshnessRecommendationDetail["kind"], number>,
   );
   const parts = [
     { count: counts.add, label: "add", className: "bg-emerald-100 text-emerald-700" },
     { count: counts.remove, label: "remove", className: "bg-red-100 text-red-700" },
     { count: counts.fix, label: "link fix", className: "bg-red-100 text-red-700" },
     { count: counts.manual, label: "verify", className: "bg-amber-100 text-amber-700" },
+    { count: counts.attribute, label: "profile", className: "bg-emerald-100 text-emerald-700" },
     { count: counts.review, label: "review", className: "bg-stone-100 text-stone-600" },
   ].filter((part) => part.count);
 
@@ -2132,6 +2166,7 @@ function buildFreshnessRecommendationGroups(checks: DirectoryCheck[]): Freshness
     const manualLinks = check.linkChecks.filter(isManualCheckLink);
     const addedServices = getActionableAddedServices(check);
     const removedServices = getActionableRemovedServices(check);
+    const attributeSuggestions = check.attributeSuggestions || [];
     const actionableIssues = check.issues.filter((issue) => isActionableFreshnessIssue(issue, check));
     const details: FreshnessRecommendationDetail[] = [
       ...brokenLinks.map((linkCheck) => ({
@@ -2163,6 +2198,13 @@ function buildFreshnessRecommendationGroups(checks: DirectoryCheck[]): Freshness
         service,
         evidence: getServiceEvidence(check.serviceCheck.rawServices, service),
       })),
+      ...attributeSuggestions.map((suggestion) => ({
+        kind: "attribute" as const,
+        label: "Mark hijabi-friendly",
+        description: "Explicit hijabi-friendly wording found",
+        attributeField: suggestion.field,
+        evidence: suggestion.evidence.map((item) => `${titleCase(item.source)}: ${item.text}`),
+      })),
       ...actionableIssues.map((issue) => ({
         kind: "review" as const,
         label: "Review listing",
@@ -2175,17 +2217,20 @@ function buildFreshnessRecommendationGroups(checks: DirectoryCheck[]): Freshness
     }
 
     const hasServiceRecommendations = addedServices.length > 0 || removedServices.length > 0;
+    const hasHijabiFriendlyRecommendation = attributeSuggestions.some((suggestion) => suggestion.field === "hijabiFriendly");
     const linkDismissUpdate = getLinkDismissUpdate(check);
-    const acceptUpdate = hasServiceRecommendations
+    const acceptUpdate = hasServiceRecommendations || hasHijabiFriendlyRecommendation
       ? {
           ...(addedServices.length ? { addServices: addedServices } : {}),
           ...(removedServices.length ? { removeServices: removedServices } : {}),
+          ...(hasHijabiFriendlyRecommendation ? { hijabiFriendly: true } : {}),
         }
       : undefined;
-    const rejectUpdate = hasServiceRecommendations || linkDismissUpdate
+    const rejectUpdate = hasServiceRecommendations || hasHijabiFriendlyRecommendation || linkDismissUpdate
       ? {
           ...(addedServices.length ? { rejectAddedServices: addedServices } : {}),
           ...(removedServices.length ? { rejectRemovedServices: removedServices } : {}),
+          ...(hasHijabiFriendlyRecommendation ? { rejectHijabiFriendly: true } : {}),
           ...linkDismissUpdate,
         }
       : undefined;
@@ -2199,7 +2244,7 @@ function buildFreshnessRecommendationGroups(checks: DirectoryCheck[]): Freshness
       instagramUrl: check.instagramUrl,
       websiteUrl: check.websiteUrl,
       id: `${check.id}-recommendations`,
-      recommendation: getFreshnessGroupRecommendation(check, brokenLinks.length, manualLinks.length, addedServices, removedServices),
+      recommendation: getFreshnessGroupRecommendation(check, brokenLinks.length, manualLinks.length, addedServices, removedServices, attributeSuggestions),
       typeTone: brokenLinks.length ? "critical" : manualLinks.length ? "warning" : addedServices.length ? "info" : "neutral",
       details,
       acceptUpdate,
@@ -2220,6 +2265,9 @@ function freshnessGroupSeverity(row: FreshnessRecommendationGroup) {
     return 3;
   }
   if (row.details.some((detail) => detail.kind === "remove" || detail.kind === "add")) {
+    return 2;
+  }
+  if (row.details.some((detail) => detail.kind === "attribute")) {
     return 2;
   }
   return 1;
@@ -2473,10 +2521,18 @@ function getManualCheckDescription(linkCheck: DirectoryCheck["linkChecks"][numbe
   return "Could not verify automatically";
 }
 
-function getFreshnessGroupRecommendation(check: DirectoryCheck, brokenLinkCount: number, manualLinkCount: number, addedServices = check.addedServices, removedServices = check.removedServices) {
+function getFreshnessGroupRecommendation(
+  check: DirectoryCheck,
+  brokenLinkCount: number,
+  manualLinkCount: number,
+  addedServices = check.addedServices,
+  removedServices = check.removedServices,
+  attributeSuggestions = check.attributeSuggestions || [],
+) {
   const hasAddedServices = addedServices.length > 0;
   const hasRemovedServices = removedServices.length > 0;
   const hasServiceRecommendations = hasAddedServices || hasRemovedServices;
+  const hasAttributeRecommendations = attributeSuggestions.length > 0;
 
   if (brokenLinkCount && hasServiceRecommendations) {
     return "Review listing";
@@ -2495,6 +2551,9 @@ function getFreshnessGroupRecommendation(check: DirectoryCheck, brokenLinkCount:
   }
   if (hasRemovedServices) {
     return removedServices.length === 1 ? "Remove service" : "Remove services";
+  }
+  if (hasAttributeRecommendations) {
+    return "Update profile";
   }
   return check.issues.some((issue) => issue.toLowerCase().includes("price")) ? "Review price" : "Review service";
 }
@@ -2604,7 +2663,7 @@ function normalizeEvidenceText(value: string) {
 
 function isActionableFreshnessIssue(issue: string, check: DirectoryCheck) {
   const normalizedIssue = issue.toLowerCase();
-  if (normalizedIssue === "possible new services found" || normalizedIssue === "possible removed services found") {
+  if (normalizedIssue === "possible new services found" || normalizedIssue === "possible removed services found" || normalizedIssue === "possible hijabi-friendly wording found") {
     return false;
   }
   if (normalizedIssue.includes("instagram") && check.linkChecks.some((linkCheck) => linkCheck.type === "instagram" && linkCheck.status !== "ok")) {
@@ -3595,6 +3654,14 @@ function removeReviewedServices(current: string[], reviewed: string[]) {
   return current.filter((service) => !reviewed.includes(service));
 }
 
+function removeReviewedAttributeSuggestions(current: AttributeSuggestion[] = [], update: FreshnessUpdate) {
+  if (update.hijabiFriendly !== true && update.rejectHijabiFriendly !== true) {
+    return current;
+  }
+
+  return current.filter((suggestion) => suggestion.field !== "hijabiFriendly");
+}
+
 function removeReviewedLinkChecks(check: DirectoryCheck, update: FreshnessUpdate) {
   const reviewedLinkTypes = new Set<string>();
   if (update.bookingUrl !== undefined) {
@@ -3631,6 +3698,12 @@ function getFreshnessUndoLabel(update: FreshnessUpdate) {
   }
   if (update.rejectAddedServices?.length || update.rejectRemovedServices?.length) {
     return "rejected recommendation";
+  }
+  if (update.hijabiFriendly === true) {
+    return "marked hijabi-friendly";
+  }
+  if (update.rejectHijabiFriendly === true) {
+    return "ignored hijabi-friendly recommendation";
   }
   return "health check update";
 }
