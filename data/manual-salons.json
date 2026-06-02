@@ -1,11 +1,57 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-06-02T12:07:27.694Z",
-    "count": 653,
+    "updatedAt": "2026-06-02T12:10:13.603Z",
+    "count": 654,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "infinitehairuk",
+      "name": "Infinitehairuk",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london",
+        "east"
+      ],
+      "areaLabel": "East London",
+      "neighbourhood": "East London London",
+      "postcode": "",
+      "bookingPlatform": "Fresha",
+      "bookingUrl": "https://www.fresha.com/a/infinite-hair-london-lower-clapton-road-j7r7p9jp/booking?allOffer=true&menu=true&pId=761975&cartId=21395bd0-9074-4b93-899a-ecc3face7578",
+      "websiteUrl": "https://www.fresha.com/a/infinite-hair-london-lower-clapton-road-j7r7p9jp/booking?allOffer=true&menu=true&pId=761975&cartId=21395bd0-9074-4b93-899a-ecc3face7578",
+      "instagramUrl": "https://www.instagram.com/infinitehairuk/",
+      "services": [
+        "Wig cornrows",
+        "Wig install (frontal / closure)",
+        "Relaxer / texturiser",
+        "Trim / hair cut",
+        "Box braids",
+        "Twists (with extensions)",
+        "Boho braids / goddess braids",
+        "Fulani / lemonade braids",
+        "Feed-in braids",
+        "Retwist",
+        "Crochet",
+        "Starter locs",
+        "Knotless braids",
+        "Microlocs / sisterlocs",
+        "Stitch braids",
+        "K-18 treatment",
+        "Moisturising treatment",
+        "Faux locs",
+        "Sleek ponytail / bun",
+        "Traditional sew-in / leave out",
+        "Frontal sew-in",
+        "Closure sew-in",
+        "Tracks (+ silk press) / partial / invisible sew-in"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/infinitehairuk/"
+      ]
+    },
     {
       "id": "esu-hairandbeauty",
       "name": "Esu Hairandbeauty",

@@ -1,8 +1,8 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-06-02T12:07:27.694Z",
-    "count": 31
+    "updatedAt": "2026-06-02T12:10:13.604Z",
+    "count": 30
   },
   "drafts": [
     {
@@ -874,36 +874,6 @@
       "createdAt": "2026-06-02T11:48:30.864Z",
       "updatedAt": "2026-06-02T11:48:30.864Z",
       "lastCheckedAt": "2026-06-02T11:48:30.864Z"
-    },
-    {
-      "id": "infinitehairuk-mpwkpsa8",
-      "status": "needs_review",
-      "name": "Infinitehairuk",
-      "areaId": "",
-      "areaIds": [],
-      "areaLabel": "",
-      "neighbourhood": "",
-      "postcode": "",
-      "bookingPlatform": "",
-      "bookingUrl": "",
-      "websiteUrl": "",
-      "instagramUrl": "https://www.instagram.com/infinitehairuk/",
-      "tiktokUrl": "",
-      "services": [],
-      "rawServices": [],
-      "summary": "Admin draft created from stylist intake.",
-      "confidence": 0.35,
-      "warnings": [
-        "No booking link identified yet.",
-        "No services matched yet."
-      ],
-      "evidence": [
-        "Submitted link: https://www.instagram.com/infinitehairuk/"
-      ],
-      "source": "admin-draft",
-      "createdAt": "2026-06-02T11:48:01.518Z",
-      "updatedAt": "2026-06-02T11:48:01.518Z",
-      "lastCheckedAt": "2026-06-02T11:48:01.518Z"
     },
     {
       "id": "microsbylaura-mpi6stjg",
