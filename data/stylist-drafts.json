@@ -1,10 +1,40 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-06-02T11:49:36.833Z",
-    "count": 11
+    "updatedAt": "2026-06-02T11:49:48.873Z",
+    "count": 12
   },
   "drafts": [
+    {
+      "id": "m-braidsstylist-mpwks33k",
+      "status": "needs_review",
+      "name": "M Braidsstylist",
+      "areaId": "",
+      "areaIds": [],
+      "areaLabel": "",
+      "neighbourhood": "",
+      "postcode": "",
+      "bookingPlatform": "",
+      "bookingUrl": "",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/m_braidsstylist/",
+      "tiktokUrl": "",
+      "services": [],
+      "rawServices": [],
+      "summary": "Admin draft created from stylist intake.",
+      "confidence": 0.35,
+      "warnings": [
+        "No booking link identified yet.",
+        "No services matched yet."
+      ],
+      "evidence": [
+        "Submitted link: https://www.instagram.com/m_braidsstylist/"
+      ],
+      "source": "admin-draft",
+      "createdAt": "2026-06-02T11:49:48.846Z",
+      "updatedAt": "2026-06-02T11:49:48.846Z",
+      "lastCheckedAt": "2026-06-02T11:49:48.846Z"
+    },
     {
       "id": "qhbeautys-mpwkrtt8",
       "status": "needs_review",
