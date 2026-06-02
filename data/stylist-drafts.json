@@ -1,10 +1,40 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-06-02T11:55:26.462Z",
-    "count": 34
+    "updatedAt": "2026-06-02T11:55:41.405Z",
+    "count": 35
   },
   "drafts": [
+    {
+      "id": "abdu-aks-mpwkzn4a",
+      "status": "needs_review",
+      "name": "Abdu Aks",
+      "areaId": "",
+      "areaIds": [],
+      "areaLabel": "",
+      "neighbourhood": "",
+      "postcode": "",
+      "bookingPlatform": "",
+      "bookingUrl": "",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/abdu_aks/",
+      "tiktokUrl": "",
+      "services": [],
+      "rawServices": [],
+      "summary": "Admin draft created from stylist intake.",
+      "confidence": 0.35,
+      "warnings": [
+        "No booking link identified yet.",
+        "No services matched yet."
+      ],
+      "evidence": [
+        "Submitted link: https://www.instagram.com/abdu_aks/"
+      ],
+      "source": "admin-draft",
+      "createdAt": "2026-06-02T11:55:41.378Z",
+      "updatedAt": "2026-06-02T11:55:41.378Z",
+      "lastCheckedAt": "2026-06-02T11:55:41.378Z"
+    },
     {
       "id": "hairbyjerusalem-mpwkzbkz",
       "status": "needs_review",
