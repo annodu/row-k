@@ -1,10 +1,40 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-06-02T11:54:25.905Z",
-    "count": 33
+    "updatedAt": "2026-06-02T11:55:26.462Z",
+    "count": 34
   },
   "drafts": [
+    {
+      "id": "hairbyjerusalem-mpwkzbkz",
+      "status": "needs_review",
+      "name": "Hairbyjerusalem",
+      "areaId": "",
+      "areaIds": [],
+      "areaLabel": "",
+      "neighbourhood": "",
+      "postcode": "",
+      "bookingPlatform": "",
+      "bookingUrl": "",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/hairbyjerusalem/",
+      "tiktokUrl": "",
+      "services": [],
+      "rawServices": [],
+      "summary": "Admin draft created from stylist intake.",
+      "confidence": 0.35,
+      "warnings": [
+        "No booking link identified yet.",
+        "No services matched yet."
+      ],
+      "evidence": [
+        "Submitted link: https://www.instagram.com/hairbyjerusalem/"
+      ],
+      "source": "admin-draft",
+      "createdAt": "2026-06-02T11:55:26.434Z",
+      "updatedAt": "2026-06-02T11:55:26.434Z",
+      "lastCheckedAt": "2026-06-02T11:55:26.434Z"
+    },
     {
       "id": "silkhoneyandscissors-mpwky0v2",
       "status": "needs_review",
