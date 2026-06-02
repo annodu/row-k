@@ -1,7 +1,7 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-05-31T22:45:19.749Z",
+    "updatedAt": "2026-06-02T10:29:45.250Z",
     "count": 651,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
@@ -13968,7 +13968,7 @@
         "Closure sew-in",
         "Frontal sew-in",
         "Traditional sew-in / leave out",
-        "Wig install",
+        "Wig install (frontal / closure)",
         "Tape ins",
         "Knotless braids",
         "Keratin treatment",
@@ -13987,13 +13987,19 @@
         "U-part wig install",
         "Custom wig",
         "Microbraids / x-small braids",
-        "Healthy hair plans & consultations"
+        "Healthy hair plans & consultations",
+        "Tracks (+ silk press) / partial / invisible sew-in"
       ],
       "summary": "Manual entry added from your South East London sew-in and wig install list.",
       "source": "manual",
       "evidence": [
         "User-provided manual addition."
-      ]
+      ],
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "updatedAt": "2026-06-02T10:29:45.250Z"
     },
     {
       "id": "the-curl-coach",
