@@ -1,11 +1,246 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-05-31T23:18:59.995Z",
-    "count": 651,
+    "updatedAt": "2026-06-02T15:02:22.183Z",
+    "count": 670,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "silkhoneyandscissors",
+      "name": "Silkhoneyandscissors",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london",
+        "kent"
+      ],
+      "areaLabel": "London / Kent",
+      "neighbourhood": "London and Kent London",
+      "postcode": "",
+      "bookingPlatform": "Direct",
+      "bookingUrl": "https://booksolo.co/silkhoneyandscissors/book/treatments",
+      "websiteUrl": "https://booksolo.co/silkhoneyandscissors/book/treatments",
+      "instagramUrl": "https://www.instagram.com/silkhoneyandscissors/",
+      "services": [
+        "Healthy hair plans & consultations",
+        "Scalp detox / treatments",
+        "Silk press",
+        "Pixie / finger waves",
+        "Relaxer / texturiser",
+        "Texture release",
+        "Traditional sew-in / leave out",
+        "Sew-in take-down"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/silkhoneyandscissors/"
+      ]
+    },
+    {
+      "id": "karenwrightsalon",
+      "name": "Karenwrightsalon",
+      "areaId": "croydon",
+      "areaLabel": "Croydon",
+      "neighbourhood": "Croydon London",
+      "postcode": "",
+      "bookingPlatform": "Direct",
+      "bookingUrl": "https://s-iq.co/BookingPortal/dist/?salonid=cc493757-f825-4b7c-9bc9-6aa78acf2636&tab=contact",
+      "websiteUrl": "https://s-iq.co/BookingPortal/dist/?salonid=cc493757-f825-4b7c-9bc9-6aa78acf2636&tab=contact",
+      "instagramUrl": "https://www.instagram.com/karenwrightsalon/",
+      "services": [
+        "Scalp detox / treatments",
+        "Highlights",
+        "Full head colour",
+        "Balayage",
+        "Traditional sew-in / leave out",
+        "Closure sew-in",
+        "Tracks (+ silk press) / partial / invisible sew-in",
+        "LA weave",
+        "Tape ins",
+        "Custom wig",
+        "Keratin treatment",
+        "Relaxer / texturiser",
+        "Wash & blowdry"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/karenwrightsalon/"
+      ]
+    },
+    {
+      "id": "dalandahair",
+      "name": "Dalandahair",
+      "areaId": "south-west",
+      "areaLabel": "South west London",
+      "neighbourhood": "South west London London",
+      "postcode": "",
+      "bookingPlatform": "Direct",
+      "bookingUrl": "https://s-iq.co/BookingPortal/dist/?salonid=3e004606-ebc8-41d8-9bfe-2857c276f147&tab=book",
+      "websiteUrl": "https://s-iq.co/BookingPortal/dist/?salonid=3e004606-ebc8-41d8-9bfe-2857c276f147&tab=book",
+      "instagramUrl": "https://www.instagram.com/dalandahair/",
+      "services": [
+        "Full head colour",
+        "Relaxer / texturiser",
+        "Feed-in braids",
+        "Olaplex treatment",
+        "Highlights",
+        "Traditional sew-in / leave out",
+        "Wig install (frontal / closure)",
+        "Knotless braids",
+        "Moisturising treatment",
+        "Trim / hair cut",
+        "Twists (with extensions)",
+        "Wash & blowdry"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/dalandahair/"
+      ]
+    },
+    {
+      "id": "h-a-i-r-by-ebonygarwood",
+      "name": "H A I R By Ebonygarwood",
+      "areaId": "kent",
+      "areaIds": [
+        "kent",
+        "all-london",
+        "south-east"
+      ],
+      "areaLabel": "Kent / South east London",
+      "neighbourhood": "Kent and South east London London",
+      "postcode": "",
+      "bookingPlatform": "Direct",
+      "bookingUrl": "https://www.instagram.com/h.a.i.r_by_ebonygarwood/",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/h.a.i.r_by_ebonygarwood/",
+      "services": [
+        "Wash & blowdry",
+        "Silk press",
+        "Keratin treatment",
+        "Full head colour",
+        "Highlights"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/h.a.i.r_by_ebonygarwood/"
+      ]
+    },
+    {
+      "id": "andrewjosesalon",
+      "name": "Andrewjosesalon",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london",
+        "central"
+      ],
+      "areaLabel": "Central London",
+      "neighbourhood": "Central London London",
+      "postcode": "",
+      "bookingPlatform": "Direct",
+      "bookingUrl": "https://www.instagram.com/andrewjosesalon/",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/andrewjosesalon/",
+      "services": [
+        "Silk press",
+        "Moisturising treatment",
+        "Scalp detox / treatments",
+        "Relaxer / texturiser",
+        "Curly cut / wash & go"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/andrewjosesalon/"
+      ]
+    },
+    {
+      "id": "phebehair",
+      "name": "Phebehair",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london",
+        "east"
+      ],
+      "areaLabel": "East London",
+      "neighbourhood": "East London London",
+      "postcode": "",
+      "bookingPlatform": "Direct",
+      "bookingUrl": "https://s-iq.co/BookingPortal/dist/?salonid=c510cf58-6dcb-41d9-9b54-89ed0e71b4e0&tab=book&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQPOTM2NjE5NzQzMzkyNDU5AAGng2izcKL6rUa9VWWuCd0XE59ZbF2fLZeGhMZ4_K8TBwSnbi62AY7V7YKf-Cc_aem_C-lHpBeLmrIojDKQKisXsQ&utm_source=ig&utm_medium=social&utm_content=link_in_bio",
+      "websiteUrl": "https://s-iq.co/BookingPortal/dist/?salonid=c510cf58-6dcb-41d9-9b54-89ed0e71b4e0&tab=book&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQPOTM2NjE5NzQzMzkyNDU5AAGng2izcKL6rUa9VWWuCd0XE59ZbF2fLZeGhMZ4_K8TBwSnbi62AY7V7YKf-Cc_aem_C-lHpBeLmrIojDKQKisXsQ&utm_source=ig&utm_medium=social&utm_content=link_in_bio",
+      "instagramUrl": "https://www.instagram.com/phebehair/",
+      "services": [
+        "Texture release",
+        "Full head colour",
+        "Trim / hair cut",
+        "Healthy hair plans & consultations",
+        "Moisturising treatment",
+        "Wash & blowdry",
+        "Keratin treatment",
+        "Scalp detox / treatments"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/phebehair/"
+      ]
+    },
+    {
+      "id": "zoliesthetikbeauty",
+      "name": "Zoliesthetikbeauty",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london",
+        "south-west"
+      ],
+      "areaLabel": "South west London",
+      "neighbourhood": "South west London London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/zoliesthetikbeauty/",
+      "websiteUrl": "https://www.instagram.com/zoliesthetikbeauty/",
+      "instagramUrl": "https://www.instagram.com/zoliesthetikbeauty/",
+      "services": [
+        "Trichology / scalp analysis"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/zoliesthetikbeauty/"
+      ]
+    },
+    {
+      "id": "aaliyahnaomihair",
+      "name": "Aaliyahnaomihair",
+      "areaId": "east",
+      "areaLabel": "East London",
+      "neighbourhood": "East London London",
+      "postcode": "",
+      "bookingPlatform": "Fresha",
+      "bookingUrl": "https://www.fresha.com/a/aaliyah-naomi-hair-london-415-wick-lane-c3tv67z2/booking?menu=true&share=true&offerItems=sv%3A22188647&pId=2493557&dppub=true&employeeId=4528947&cartId=2db6ebe7-a1ab-4676-844e-f1a1b5b442d9",
+      "websiteUrl": "https://www.fresha.com/a/aaliyah-naomi-hair-london-415-wick-lane-c3tv67z2/booking?menu=true&share=true&offerItems=sv%3A22188647&pId=2493557&dppub=true&employeeId=4528947&cartId=2db6ebe7-a1ab-4676-844e-f1a1b5b442d9",
+      "instagramUrl": "https://www.instagram.com/aaliyahnaomihair/",
+      "services": [
+        "K-tips / invisible strands",
+        "Hair botox",
+        "Keratin treatment",
+        "Traditional sew-in / leave out",
+        "Quick weave",
+        "Moisturising treatment",
+        "Wash & blowdry",
+        "U-part wig install",
+        "Wig install (frontal / closure)",
+        "Custom wig"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/aaliyahnaomihair/"
+      ]
+    },
     {
       "id": "houseofsoraiafurtado",
       "name": "Houseofsoraiafurtado",
@@ -237,11 +472,7 @@
       "websiteUrl": "https://www.vagaro.com/houseoffbl/services",
       "instagramUrl": "https://www.instagram.com/houseoffbl/",
       "services": [
-        "Pixie / finger waves",
-        "Silk press",
         "Wash & blowdry",
-        "K-tips / invisible strands",
-        "Tape ins",
         "Microlinks",
         "Clip ins (+ silk press)",
         "Wig colouring / bundle colouring",
@@ -266,13 +497,18 @@
         "U-part wig install",
         "Full head colour",
         "Starter locs",
-        "Retwist"
+        "Retwist",
+        "Bridal"
       ],
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
       "evidence": [
         "Submitted link: https://www.instagram.com/houseoffbl/"
-      ]
+      ],
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "updatedAt": "2026-06-02T14:45:01.426Z"
     },
     {
       "id": "wearmodule",
@@ -352,11 +588,7 @@
     {
       "id": "esu-hairandbeauty",
       "name": "Esu Hairandbeauty",
-      "areaId": "all-london",
-      "areaIds": [
-        "all-london",
-        "south-west"
-      ],
+      "areaId": "south-west",
       "areaLabel": "South west London",
       "neighbourhood": "South west London London",
       "postcode": "",
@@ -366,15 +598,18 @@
       "instagramUrl": "https://www.instagram.com/esu_hairandbeauty/",
       "services": [
         "Wash & blowdry",
-        "Highlights",
-        "Tape ins",
-        "Trim / hair cut"
+        "Silk press",
+        "Tape ins"
       ],
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
       "evidence": [
         "Submitted link: https://www.instagram.com/esu_hairandbeauty/"
-      ]
+      ],
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "updatedAt": "2026-06-02T14:26:50.279Z"
     },
     {
       "id": "mmluxe-hair",
