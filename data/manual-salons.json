@@ -1,11 +1,46 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-06-02T10:31:15.691Z",
-    "count": 651,
+    "updatedAt": "2026-06-02T12:02:08.841Z",
+    "count": 652,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "mmluxe-hair",
+      "name": "Mmluxe Hair",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london",
+        "croydon"
+      ],
+      "areaLabel": "Croydon",
+      "neighbourhood": "Croydon London",
+      "postcode": "",
+      "bookingPlatform": "Direct",
+      "bookingUrl": "https://app.tressly.co/mmluxehair?",
+      "websiteUrl": "https://app.tressly.co/mmluxehair?",
+      "instagramUrl": "https://www.instagram.com/mmluxe.hair/",
+      "services": [
+        "Knotless braids",
+        "Wig cornrows",
+        "Retwist",
+        "Starter locs",
+        "Half up half down",
+        "Faux locs",
+        "Fulani / lemonade braids",
+        "Boho braids / goddess braids",
+        "Stitch braids",
+        "Traditional sew-in / leave out",
+        "Quick weave",
+        "Half braids, half sew-in"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/mmluxe.hair/"
+      ]
+    },
     {
       "id": "bychiluxe",
       "name": "Bychiluxe",
