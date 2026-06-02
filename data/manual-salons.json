@@ -1,7 +1,7 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-06-02T10:29:45.250Z",
+    "updatedAt": "2026-06-02T10:31:15.691Z",
     "count": 651,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
@@ -13988,7 +13988,20 @@
         "Custom wig",
         "Microbraids / x-small braids",
         "Healthy hair plans & consultations",
-        "Tracks (+ silk press) / partial / invisible sew-in"
+        "Wash & blowdry",
+        "Frontal ponytail / bun",
+        "Full head colour",
+        "Scalp detox / treatments",
+        "Olaplex treatment",
+        "Moisturising treatment",
+        "Wig cornrows",
+        "Silk press",
+        "Braid take-down",
+        "Retwist",
+        "Microlocs / sisterlocs",
+        "Starter locs",
+        "Half up half down",
+        "LA weave"
       ],
       "summary": "Manual entry added from your South East London sew-in and wig install list.",
       "source": "manual",
@@ -13999,7 +14012,7 @@
       "tiktokUrl": "",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
-      "updatedAt": "2026-06-02T10:29:45.250Z"
+      "updatedAt": "2026-06-02T10:31:15.691Z"
     },
     {
       "id": "the-curl-coach",
