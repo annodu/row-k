@@ -1,10 +1,40 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-06-02T11:53:15.600Z",
-    "count": 26
+    "updatedAt": "2026-06-02T11:53:24.573Z",
+    "count": 27
   },
   "drafts": [
+    {
+      "id": "heideschair-mpwkwpjc",
+      "status": "needs_review",
+      "name": "Heideschair",
+      "areaId": "",
+      "areaIds": [],
+      "areaLabel": "",
+      "neighbourhood": "",
+      "postcode": "",
+      "bookingPlatform": "",
+      "bookingUrl": "",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/heideschair/",
+      "tiktokUrl": "",
+      "services": [],
+      "rawServices": [],
+      "summary": "Admin draft created from stylist intake.",
+      "confidence": 0.35,
+      "warnings": [
+        "No booking link identified yet.",
+        "No services matched yet."
+      ],
+      "evidence": [
+        "Submitted link: https://www.instagram.com/heideschair/"
+      ],
+      "source": "admin-draft",
+      "createdAt": "2026-06-02T11:53:24.550Z",
+      "updatedAt": "2026-06-02T11:53:24.550Z",
+      "lastCheckedAt": "2026-06-02T11:53:24.550Z"
+    },
     {
       "id": "dalandahair-mpwkwim2",
       "status": "needs_review",
