@@ -1,10 +1,40 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-06-02T11:53:59.895Z",
-    "count": 30
+    "updatedAt": "2026-06-02T11:54:09.941Z",
+    "count": 31
   },
   "drafts": [
+    {
+      "id": "cleocostahair-mpwkxojk",
+      "status": "needs_review",
+      "name": "Cleocostahair",
+      "areaId": "",
+      "areaIds": [],
+      "areaLabel": "",
+      "neighbourhood": "",
+      "postcode": "",
+      "bookingPlatform": "",
+      "bookingUrl": "",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/cleocostahair/",
+      "tiktokUrl": "",
+      "services": [],
+      "rawServices": [],
+      "summary": "Admin draft created from stylist intake.",
+      "confidence": 0.35,
+      "warnings": [
+        "No booking link identified yet.",
+        "No services matched yet."
+      ],
+      "evidence": [
+        "Submitted link: https://www.instagram.com/cleocostahair/"
+      ],
+      "source": "admin-draft",
+      "createdAt": "2026-06-02T11:54:09.917Z",
+      "updatedAt": "2026-06-02T11:54:09.917Z",
+      "lastCheckedAt": "2026-06-02T11:54:09.917Z"
+    },
     {
       "id": "karenwrightsalon-mpwkxgsg",
       "status": "needs_review",
