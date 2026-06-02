@@ -1,40 +1,10 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-06-02T15:40:09.002Z",
-    "count": 2
+    "updatedAt": "2026-06-02T21:49:40.430Z",
+    "count": 1
   },
   "drafts": [
-    {
-      "id": "covemedical-mpwt0arj",
-      "status": "needs_review",
-      "name": "Covemedical",
-      "areaId": "",
-      "areaIds": [],
-      "areaLabel": "",
-      "neighbourhood": "",
-      "postcode": "",
-      "bookingPlatform": "",
-      "bookingUrl": "",
-      "websiteUrl": "",
-      "instagramUrl": "https://www.instagram.com/covemedical/",
-      "tiktokUrl": "",
-      "services": [],
-      "rawServices": [],
-      "summary": "Admin draft created from stylist intake.",
-      "confidence": 0.35,
-      "warnings": [
-        "No booking link identified yet.",
-        "No services matched yet."
-      ],
-      "evidence": [
-        "Submitted link: https://www.instagram.com/covemedical/"
-      ],
-      "source": "admin-draft",
-      "createdAt": "2026-06-02T15:40:08.952Z",
-      "updatedAt": "2026-06-02T15:40:08.952Z",
-      "lastCheckedAt": "2026-06-02T15:40:08.952Z"
-    },
     {
       "id": "microsbylaura-mpi6stjg",
       "status": "needs_review",

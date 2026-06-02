@@ -1,11 +1,31 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-06-02T15:02:22.183Z",
-    "count": 670,
+    "updatedAt": "2026-06-02T21:49:40.413Z",
+    "count": 671,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "covemedical",
+      "name": "Covemedical",
+      "areaId": "essex",
+      "areaLabel": "Essex",
+      "neighbourhood": "Essex London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://covemedical.as.me/schedule/4c35439e",
+      "websiteUrl": "https://covemedical.as.me/schedule/4c35439e",
+      "instagramUrl": "https://www.instagram.com/covemedical/",
+      "services": [
+        "Trichology / scalp analysis"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/covemedical/"
+      ]
+    },
     {
       "id": "silkhoneyandscissors",
       "name": "Silkhoneyandscissors",
