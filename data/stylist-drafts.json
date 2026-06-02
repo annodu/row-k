@@ -1,10 +1,40 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-06-02T11:53:40.085Z",
-    "count": 28
+    "updatedAt": "2026-06-02T11:53:50.234Z",
+    "count": 29
   },
   "drafts": [
+    {
+      "id": "marieme-d-hair-mpwkx9c6",
+      "status": "needs_review",
+      "name": "Marieme D Hair",
+      "areaId": "",
+      "areaIds": [],
+      "areaLabel": "",
+      "neighbourhood": "",
+      "postcode": "",
+      "bookingPlatform": "",
+      "bookingUrl": "",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/marieme_d_hair/",
+      "tiktokUrl": "",
+      "services": [],
+      "rawServices": [],
+      "summary": "Admin draft created from stylist intake.",
+      "confidence": 0.35,
+      "warnings": [
+        "No booking link identified yet.",
+        "No services matched yet."
+      ],
+      "evidence": [
+        "Submitted link: https://www.instagram.com/marieme_d_hair/"
+      ],
+      "source": "admin-draft",
+      "createdAt": "2026-06-02T11:53:50.212Z",
+      "updatedAt": "2026-06-02T11:53:50.212Z",
+      "lastCheckedAt": "2026-06-02T11:53:50.212Z"
+    },
     {
       "id": "tabsthestylist-mpwkx1hx",
       "status": "needs_review",
