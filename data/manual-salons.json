@@ -1,11 +1,43 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-06-02T12:22:39.890Z",
-    "count": 659,
+    "updatedAt": "2026-06-02T12:24:12.642Z",
+    "count": 660,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "m-braidsstylist",
+      "name": "M Braidsstylist",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london",
+        "south-east"
+      ],
+      "areaLabel": "South east London",
+      "neighbourhood": "South east London London",
+      "postcode": "",
+      "bookingPlatform": "Setmore",
+      "bookingUrl": "https://mbraidsstylist.setmore.com/",
+      "websiteUrl": "https://mbraidsstylist.setmore.com/",
+      "instagramUrl": "https://www.instagram.com/m_braidsstylist/",
+      "services": [
+        "Feed-in braids",
+        "Twists (with extensions)",
+        "Knotless braids",
+        "Crochet",
+        "Stitch braids",
+        "Faux locs",
+        "Butterfly locs",
+        "Boho braids / goddess braids",
+        "Fulani / lemonade braids"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/m_braidsstylist/"
+      ]
+    },
     {
       "id": "qhbeautys",
       "name": "Qhbeautys",
