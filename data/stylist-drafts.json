@@ -1,10 +1,40 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-06-02T11:51:48.686Z",
-    "count": 19
+    "updatedAt": "2026-06-02T11:51:58.799Z",
+    "count": 20
   },
   "drafts": [
+    {
+      "id": "ebonysuite-mpwkuvcp",
+      "status": "needs_review",
+      "name": "Ebonysuite",
+      "areaId": "",
+      "areaIds": [],
+      "areaLabel": "",
+      "neighbourhood": "",
+      "postcode": "",
+      "bookingPlatform": "",
+      "bookingUrl": "",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/ebonysuite_/",
+      "tiktokUrl": "",
+      "services": [],
+      "rawServices": [],
+      "summary": "Admin draft created from stylist intake.",
+      "confidence": 0.35,
+      "warnings": [
+        "No booking link identified yet.",
+        "No services matched yet."
+      ],
+      "evidence": [
+        "Submitted link: https://www.instagram.com/ebonysuite_/"
+      ],
+      "source": "admin-draft",
+      "createdAt": "2026-06-02T11:51:58.775Z",
+      "updatedAt": "2026-06-02T11:51:58.775Z",
+      "lastCheckedAt": "2026-06-02T11:51:58.775Z"
+    },
     {
       "id": "marshahairsalon-mpwkunju",
       "status": "needs_review",
