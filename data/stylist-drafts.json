@@ -1,10 +1,40 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-06-02T11:53:24.573Z",
-    "count": 27
+    "updatedAt": "2026-06-02T11:53:40.085Z",
+    "count": 28
   },
   "drafts": [
+    {
+      "id": "tabsthestylist-mpwkx1hx",
+      "status": "needs_review",
+      "name": "Tabsthestylist",
+      "areaId": "",
+      "areaIds": [],
+      "areaLabel": "",
+      "neighbourhood": "",
+      "postcode": "",
+      "bookingPlatform": "",
+      "bookingUrl": "",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/tabsthestylist/",
+      "tiktokUrl": "",
+      "services": [],
+      "rawServices": [],
+      "summary": "Admin draft created from stylist intake.",
+      "confidence": 0.35,
+      "warnings": [
+        "No booking link identified yet.",
+        "No services matched yet."
+      ],
+      "evidence": [
+        "Submitted link: https://www.instagram.com/tabsthestylist/"
+      ],
+      "source": "admin-draft",
+      "createdAt": "2026-06-02T11:53:40.052Z",
+      "updatedAt": "2026-06-02T11:53:40.052Z",
+      "lastCheckedAt": "2026-06-02T11:53:40.052Z"
+    },
     {
       "id": "heideschair-mpwkwpjc",
       "status": "needs_review",
