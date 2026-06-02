@@ -1,10 +1,40 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-06-02T11:50:01.263Z",
-    "count": 13
+    "updatedAt": "2026-06-02T11:50:20.153Z",
+    "count": 14
   },
   "drafts": [
+    {
+      "id": "kosithair-mpwksr8l",
+      "status": "needs_review",
+      "name": "Kosithair",
+      "areaId": "",
+      "areaIds": [],
+      "areaLabel": "",
+      "neighbourhood": "",
+      "postcode": "",
+      "bookingPlatform": "",
+      "bookingUrl": "",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/kosithair/",
+      "tiktokUrl": "",
+      "services": [],
+      "rawServices": [],
+      "summary": "Admin draft created from stylist intake.",
+      "confidence": 0.35,
+      "warnings": [
+        "No booking link identified yet.",
+        "No services matched yet."
+      ],
+      "evidence": [
+        "Submitted link: https://www.instagram.com/kosithair/"
+      ],
+      "source": "admin-draft",
+      "createdAt": "2026-06-02T11:50:20.131Z",
+      "updatedAt": "2026-06-02T11:50:20.131Z",
+      "lastCheckedAt": "2026-06-02T11:50:20.131Z"
+    },
     {
       "id": "hairbyblessings-mpwkscny",
       "status": "needs_review",
