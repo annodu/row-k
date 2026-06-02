@@ -1,10 +1,40 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-05-31T22:45:19.759Z",
-    "count": 1
+    "updatedAt": "2026-06-02T11:45:53.177Z",
+    "count": 2
   },
   "drafts": [
+    {
+      "id": "pmstouch-mpwkn18u",
+      "status": "needs_review",
+      "name": "Pmstouch",
+      "areaId": "",
+      "areaIds": [],
+      "areaLabel": "",
+      "neighbourhood": "",
+      "postcode": "",
+      "bookingPlatform": "",
+      "bookingUrl": "",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/pmstouch/",
+      "tiktokUrl": "",
+      "services": [],
+      "rawServices": [],
+      "summary": "Admin draft created from stylist intake.",
+      "confidence": 0.35,
+      "warnings": [
+        "No booking link identified yet.",
+        "No services matched yet."
+      ],
+      "evidence": [
+        "Submitted link: https://www.instagram.com/pmstouch/"
+      ],
+      "source": "admin-draft",
+      "createdAt": "2026-06-02T11:45:53.165Z",
+      "updatedAt": "2026-06-02T11:45:53.165Z",
+      "lastCheckedAt": "2026-06-02T11:45:53.165Z"
+    },
     {
       "id": "microsbylaura-mpi6stjg",
       "status": "needs_review",
