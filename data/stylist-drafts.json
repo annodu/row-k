@@ -1,10 +1,40 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-06-02T11:52:58.009Z",
-    "count": 25
+    "updatedAt": "2026-06-02T11:53:15.600Z",
+    "count": 26
   },
   "drafts": [
+    {
+      "id": "dalandahair-mpwkwim2",
+      "status": "needs_review",
+      "name": "Dalandahair",
+      "areaId": "",
+      "areaIds": [],
+      "areaLabel": "",
+      "neighbourhood": "",
+      "postcode": "",
+      "bookingPlatform": "",
+      "bookingUrl": "",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/dalandahair/",
+      "tiktokUrl": "",
+      "services": [],
+      "rawServices": [],
+      "summary": "Admin draft created from stylist intake.",
+      "confidence": 0.35,
+      "warnings": [
+        "No booking link identified yet.",
+        "No services matched yet."
+      ],
+      "evidence": [
+        "Submitted link: https://www.instagram.com/dalandahair/"
+      ],
+      "source": "admin-draft",
+      "createdAt": "2026-06-02T11:53:15.576Z",
+      "updatedAt": "2026-06-02T11:53:15.576Z",
+      "lastCheckedAt": "2026-06-02T11:53:15.576Z"
+    },
     {
       "id": "h-a-i-r-by-ebonygarwood-mpwkw51i",
       "status": "needs_review",
