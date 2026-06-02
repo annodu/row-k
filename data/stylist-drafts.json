@@ -1,10 +1,40 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-06-02T11:49:48.873Z",
-    "count": 12
+    "updatedAt": "2026-06-02T11:50:01.263Z",
+    "count": 13
   },
   "drafts": [
+    {
+      "id": "hairbyblessings-mpwkscny",
+      "status": "needs_review",
+      "name": "Hairbyblessings",
+      "areaId": "",
+      "areaIds": [],
+      "areaLabel": "",
+      "neighbourhood": "",
+      "postcode": "",
+      "bookingPlatform": "",
+      "bookingUrl": "",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/hairbyblessings/",
+      "tiktokUrl": "",
+      "services": [],
+      "rawServices": [],
+      "summary": "Admin draft created from stylist intake.",
+      "confidence": 0.35,
+      "warnings": [
+        "No booking link identified yet.",
+        "No services matched yet."
+      ],
+      "evidence": [
+        "Submitted link: https://www.instagram.com/hairbyblessings/"
+      ],
+      "source": "admin-draft",
+      "createdAt": "2026-06-02T11:50:01.244Z",
+      "updatedAt": "2026-06-02T11:50:01.244Z",
+      "lastCheckedAt": "2026-06-02T11:50:01.244Z"
+    },
     {
       "id": "m-braidsstylist-mpwks33k",
       "status": "needs_review",
