@@ -1,11 +1,43 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-06-02T12:17:03.027Z",
-    "count": 656,
+    "updatedAt": "2026-06-02T12:18:48.429Z",
+    "count": 657,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "hairbyadiam",
+      "name": "Hairbyadiam",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london",
+        "north-west"
+      ],
+      "areaLabel": "North west London",
+      "neighbourhood": "North west London London",
+      "postcode": "",
+      "bookingPlatform": "Direct",
+      "bookingUrl": "https://www.instagram.com/hairbyadiam/",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/hairbyadiam/",
+      "services": [
+        "Traditional sew-in / leave out",
+        "Tape ins",
+        "Microlinks",
+        "K-tips / invisible strands",
+        "Closure sew-in",
+        "U-part wig install",
+        "Wig cornrows",
+        "Sew-in take-down",
+        "LA weave"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/hairbyadiam/"
+      ]
+    },
     {
       "id": "houseoffbl",
       "name": "Houseoffbl",
