@@ -1,11 +1,48 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-06-02T12:27:11.002Z",
-    "count": 661,
+    "updatedAt": "2026-06-02T12:28:31.296Z",
+    "count": 662,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "houseofsoraiafurtado",
+      "name": "Houseofsoraiafurtado",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london",
+        "east"
+      ],
+      "areaLabel": "East London",
+      "neighbourhood": "East London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://houseofsoraiafurtado1.as.me/schedule/1ece2ec4",
+      "websiteUrl": "https://houseofsoraiafurtado1.as.me/schedule/1ece2ec4",
+      "instagramUrl": "https://www.instagram.com/houseofsoraiafurtado/",
+      "services": [
+        "Boho braids / goddess braids",
+        "Traditional sew-in / leave out",
+        "Knotless braids",
+        "Box braids",
+        "Retwist",
+        "Moisturising treatment",
+        "Scalp detox / treatments",
+        "Wash & blowdry",
+        "Sew-in take-down",
+        "Half braids, half sew-in",
+        "Half up half down",
+        "Flipover / Versatile sew-in",
+        "Stitch braids",
+        "Creative braids (e.g. patewo)"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/houseofsoraiafurtado/"
+      ]
+    },
     {
       "id": "hairbyblessings",
       "name": "Hairbyblessings",
