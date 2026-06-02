@@ -1,10 +1,40 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-06-02T11:48:50.875Z",
-    "count": 8
+    "updatedAt": "2026-06-02T11:49:01.529Z",
+    "count": 9
   },
   "drafts": [
+    {
+      "id": "hairbyadiam-mpwkr2kf",
+      "status": "needs_review",
+      "name": "Hairbyadiam",
+      "areaId": "",
+      "areaIds": [],
+      "areaLabel": "",
+      "neighbourhood": "",
+      "postcode": "",
+      "bookingPlatform": "",
+      "bookingUrl": "",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/hairbyadiam/",
+      "tiktokUrl": "",
+      "services": [],
+      "rawServices": [],
+      "summary": "Admin draft created from stylist intake.",
+      "confidence": 0.35,
+      "warnings": [
+        "No booking link identified yet.",
+        "No services matched yet."
+      ],
+      "evidence": [
+        "Submitted link: https://www.instagram.com/hairbyadiam/"
+      ],
+      "source": "admin-draft",
+      "createdAt": "2026-06-02T11:49:01.501Z",
+      "updatedAt": "2026-06-02T11:49:01.501Z",
+      "lastCheckedAt": "2026-06-02T11:49:01.501Z"
+    },
     {
       "id": "houseoffbl-mpwkquck",
       "status": "needs_review",
