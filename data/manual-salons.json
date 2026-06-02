@@ -1,7 +1,7 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-05-31T22:45:19.749Z",
+    "updatedAt": "2026-05-31T23:18:59.995Z",
     "count": 651,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
@@ -6594,18 +6594,14 @@
       "id": "hair-305-ltd",
       "name": "Hair 305 Ltd",
       "areaId": "south-west",
-      "areaLabel": "South West",
-      "neighbourhood": "South Kensington",
+      "areaLabel": "South west London / West London",
+      "neighbourhood": "South west London and West London London",
       "postcode": "SW7 2HQ",
       "bookingPlatform": "Vagaro",
       "bookingUrl": "https://www.vagaro.com/hair305ltd",
       "instagramUrl": "https://www.instagram.com/hair305london/",
       "services": [
-        "Trim / hair cut",
-        "Curly cut / wash & go",
         "Wash & blowdry",
-        "Twist out / flexi rod",
-        "K-18 treatment",
         "Olaplex treatment",
         "Moisturising treatment",
         "Hair botox",
@@ -6640,7 +6636,16 @@
         "Booking source: https://www.vagaro.com/hair305ltd",
         "Public directory source lists Hair 305 London at 31 Thurloe Place, South Kensington, London SW7 2HQ.",
         "User-provided service menu includes afro cuts and styling, ponytail, weave wash/style/finish, natural wash/set/blowdry, barber cuts, fringe trims, loc retwist/interlocking/reattachment, natural twist outs, pixie cuts and styling, bond-building treatments, K18, hydration/protein/scalp/keratin/Botox treatments, highlights, balayage, bleach and toner, colour correction, tint/semi colour/plant-based colour, wig or weave colour, keratin smoothing, curly perms, relaxers/texturisers, LA weave, weave full/half/per row, quick weave, tape-ins, knotless braids, braid take-out, cornrows, cornrows with added hair mapped as feed-ins, cornrow removal, and two-strand twists."
-      ]
+      ],
+      "areaIds": [
+        "south-west",
+        "west"
+      ],
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "updatedAt": "2026-05-31T23:04:22.108Z"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -12513,8 +12518,16 @@
       "services": [
         "Boho braids / goddess braids",
         "Twists (with extensions)",
-        "Knotless braids"
-      ]
+        "Knotless braids",
+        "Fulani / lemonade braids",
+        "Traditional sew-in / leave out",
+        "Wash & blowdry"
+      ],
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "updatedAt": "2026-05-31T23:18:59.995Z"
     },
     {
       "id": "shanslaysss",
@@ -17373,14 +17386,14 @@
         "Traditional sew-in / leave out",
         "Closure sew-in",
         "Frontal sew-in",
-        "Hybrid sew in (tapes + sew in)",
-        "Tracks (+ silk press) / partial / invisible sew-in",
+        "Hybrid sew-in",
+        "Tape ins",
         "Flipover / Versatile sew-in",
         "U-part wig install",
-        "Tape ins",
         "Microlinks",
         "Custom wig",
-        "Wig install (frontal / closure)"
+        "Wig install (frontal / closure)",
+        "LA weave"
       ],
       "summary": "Manual Instagram-led entry added from user-provided booking menu.",
       "source": "manual",
@@ -17390,7 +17403,12 @@
         "Booking source: https://hairtologyuk.as.me/schedule/34227bdb",
         "User-provided location: SE.",
         "User-provided service menu includes traditional, closure, frontal, hybrid, invisible weft, versatile/flipover sew-ins, U-part wig, styling, tapes, I-tips, custom frontal/closure units, ready-made frontal/closure units, frontal/closure replacement, frontal/closure reinstallation, and 360/full lace wigs."
-      ]
+      ],
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "updatedAt": "2026-05-31T22:58:16.424Z"
     },
     {
       "id": "hairology-by-christiana-e",
