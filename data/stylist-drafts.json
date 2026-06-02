@@ -1,10 +1,40 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-06-02T11:50:32.757Z",
-    "count": 15
+    "updatedAt": "2026-06-02T11:51:02.804Z",
+    "count": 16
   },
   "drafts": [
+    {
+      "id": "aaliyahnaomihair-mpwkto5b",
+      "status": "needs_review",
+      "name": "Aaliyahnaomihair",
+      "areaId": "",
+      "areaIds": [],
+      "areaLabel": "",
+      "neighbourhood": "",
+      "postcode": "",
+      "bookingPlatform": "",
+      "bookingUrl": "",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/aaliyahnaomihair/",
+      "tiktokUrl": "",
+      "services": [],
+      "rawServices": [],
+      "summary": "Admin draft created from stylist intake.",
+      "confidence": 0.35,
+      "warnings": [
+        "No booking link identified yet.",
+        "No services matched yet."
+      ],
+      "evidence": [
+        "Submitted link: https://www.instagram.com/aaliyahnaomihair/"
+      ],
+      "source": "admin-draft",
+      "createdAt": "2026-06-02T11:51:02.781Z",
+      "updatedAt": "2026-06-02T11:51:02.781Z",
+      "lastCheckedAt": "2026-06-02T11:51:02.781Z"
+    },
     {
       "id": "houseofsoraiafurtado-mpwkt0yr",
       "status": "needs_review",
