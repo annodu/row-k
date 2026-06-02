@@ -1,10 +1,40 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-06-02T11:45:53.177Z",
-    "count": 2
+    "updatedAt": "2026-06-02T11:46:04.205Z",
+    "count": 3
   },
   "drafts": [
+    {
+      "id": "mmluxe-hair-mpwkn9r4",
+      "status": "needs_review",
+      "name": "Mmluxe Hair",
+      "areaId": "",
+      "areaIds": [],
+      "areaLabel": "",
+      "neighbourhood": "",
+      "postcode": "",
+      "bookingPlatform": "",
+      "bookingUrl": "",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/mmluxe.hair/",
+      "tiktokUrl": "",
+      "services": [],
+      "rawServices": [],
+      "summary": "Admin draft created from stylist intake.",
+      "confidence": 0.35,
+      "warnings": [
+        "No booking link identified yet.",
+        "No services matched yet."
+      ],
+      "evidence": [
+        "Submitted link: https://www.instagram.com/mmluxe.hair/"
+      ],
+      "source": "admin-draft",
+      "createdAt": "2026-06-02T11:46:04.191Z",
+      "updatedAt": "2026-06-02T11:46:04.191Z",
+      "lastCheckedAt": "2026-06-02T11:46:04.191Z"
+    },
     {
       "id": "pmstouch-mpwkn18u",
       "status": "needs_review",
