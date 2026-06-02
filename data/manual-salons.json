@@ -1,11 +1,65 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-06-02T12:12:05.135Z",
-    "count": 655,
+    "updatedAt": "2026-06-02T12:17:03.027Z",
+    "count": 656,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "houseoffbl",
+      "name": "Houseoffbl",
+      "areaId": "essex",
+      "areaIds": [
+        "essex",
+        "all-london",
+        "east"
+      ],
+      "areaLabel": "Essex / East London",
+      "neighbourhood": "Essex and East London London",
+      "postcode": "",
+      "bookingPlatform": "Direct",
+      "bookingUrl": "https://www.vagaro.com/houseoffbl/services",
+      "websiteUrl": "https://www.vagaro.com/houseoffbl/services",
+      "instagramUrl": "https://www.instagram.com/houseoffbl/",
+      "services": [
+        "Pixie / finger waves",
+        "Silk press",
+        "Wash & blowdry",
+        "K-tips / invisible strands",
+        "Tape ins",
+        "Microlinks",
+        "Clip ins (+ silk press)",
+        "Wig colouring / bundle colouring",
+        "Stitch braids",
+        "Knotless braids",
+        "French curl",
+        "Fulani / lemonade braids",
+        "Crochet",
+        "Wig cornrows",
+        "Trim / hair cut",
+        "Moisturising treatment",
+        "Olaplex treatment",
+        "Sew-in take-down",
+        "Tracks (+ silk press) / partial / invisible sew-in",
+        "Traditional sew-in / leave out",
+        "Flipover / Versatile sew-in",
+        "LA weave",
+        "Quick weave",
+        "Closure sew-in",
+        "Frontal sew-in",
+        "Custom wig",
+        "U-part wig install",
+        "Full head colour",
+        "Starter locs",
+        "Retwist"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/houseoffbl/"
+      ]
+    },
     {
       "id": "wearmodule",
       "name": "Wearmodule",
