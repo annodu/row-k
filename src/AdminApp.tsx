@@ -264,6 +264,7 @@ const serviceGroups = [
       "Trim / hair cut",
       "Twist out / flexi rod",
       "Wash & blowdry",
+      "Japanese head spa",
       "Scalp detox / treatments",
     ],
   },
@@ -588,6 +589,10 @@ export function AdminApp() {
         return;
       }
       setDrafts((current) => current.filter((item) => item.id !== draft.id));
+      if (payload.salon) {
+        const publishedStylist = publishedSalonToDraft(payload.salon);
+        setPublishedStylists((current) => [publishedStylist, ...current.filter((item) => item.id !== publishedStylist.id)]);
+      }
       setSelectedDraftId(null);
       setIsDraftEditorOpen(false);
       notify(`${payload.salon.name} was added to the directory.`);
@@ -2569,6 +2574,7 @@ const serviceEvidenceKeywords: Record<string, string[]> = {
   "Hybrid sew in (tapes + sew in)": ["hybrid sew in", "hybrid sew-in", "hybrid weave", "tracks + tapes hybrid", "tracks and tapes hybrid"],
   "Tracks (+ silk press) / partial / invisible sew-in": ["tracks", "track per row", "per track", "per row", "one row", "individual sewn on track", "individual sewn on tracks", "tracks add on", "tracks add-on", "silk press add on tracks", "silk press add-on tracks", "row sew in", "rows of sew in", "weave tracks", "weave tracks per track", "weave on per row", "traditional weave rows", "partial sew in", "partial sewin", "invisible sew in", "invisible weave", "invisible weft", "invisible wefts"],
   "Wash & blowdry": ["wash blowdry", "wash blow dry", "wash and blowdry", "wash and blow dry", "shampoo blowdry", "shampoo blow dry", "shampoo and blowdry", "shampoo and blow dry", "blowout"],
+  "Japanese head spa": ["japanese head spa", "head spa", "headspa"],
   "Updo": ["updo", "up do", "pin up", "french roll up", "french roll"],
   "Wig cornrows": ["under wig", "wig cornrows", "cornrows for wig installation", "cornrows"],
   "Butterfly locs": ["butterfly locs"],
@@ -3293,6 +3299,34 @@ function MultiLocationPicker({
 
 function getDraftAreaIds(draft: StylistDraft) {
   return draft.areaIds?.length ? draft.areaIds : draft.areaId ? [draft.areaId] : [];
+}
+
+function publishedSalonToDraft(salon: Partial<StylistDraft>): StylistDraft {
+  const fallbackDate = new Date().toISOString();
+  return {
+    id: salon.id || "",
+    status: "approved",
+    name: salon.name || "",
+    areaId: salon.areaId || "",
+    areaIds: Array.isArray(salon.areaIds) ? salon.areaIds : salon.areaId ? [salon.areaId] : [],
+    areaLabel: salon.areaLabel || "",
+    neighbourhood: salon.neighbourhood || "",
+    postcode: salon.postcode || "",
+    bookingPlatform: salon.bookingPlatform || "",
+    bookingUrl: salon.bookingUrl || "",
+    websiteUrl: salon.websiteUrl || "",
+    instagramUrl: salon.instagramUrl || "",
+    tiktokUrl: salon.tiktokUrl || "",
+    services: Array.isArray(salon.services) ? salon.services : [],
+    rawServices: [],
+    hijabiFriendly: salon.hijabiFriendly === true,
+    canBraidWithoutGel: salon.canBraidWithoutGel === true,
+    summary: salon.summary || "",
+    warnings: [],
+    evidence: Array.isArray(salon.evidence) ? salon.evidence : [],
+    createdAt: salon.createdAt || fallbackDate,
+    updatedAt: salon.updatedAt || fallbackDate,
+  };
 }
 
 function getAreaIdsForLabels(areaIds: string[]) {

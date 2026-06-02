@@ -53,6 +53,7 @@ export const categoryMap = {
   "natural-hair-services": [
     "Curly cut / wash & go",
     "Wash & blowdry",
+    "Japanese head spa",
     "Trim / hair cut",
     "Silk press",
     "Twist out / flexi rod",
@@ -322,6 +323,8 @@ export const serviceAliases = {
   "Wash & blowdry / Blowout": "Wash & blowdry",
   "Washing / blow drying of hair": "Wash & blowdry",
   Blowout: "Wash & blowdry",
+  "Head spa": "Japanese head spa",
+  "Japanese head spa treatment": "Japanese head spa",
   "Silk press / Bouncy blowout": "Silk press",
   "Silk press / bouncy blowout": "Silk press",
   "Silk press / Finish": "Silk press",

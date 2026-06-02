@@ -1,11 +1,321 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-06-02T21:49:40.413Z",
-    "count": 671,
+    "updatedAt": "2026-06-02T23:03:19.406Z",
+    "count": 681,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "knotsandstrands",
+      "name": "Knotsandstrands",
+      "areaId": "kent",
+      "areaLabel": "Kent",
+      "neighbourhood": "Kent London",
+      "postcode": "",
+      "bookingPlatform": "Setmore",
+      "bookingUrl": "https://knotsandstrands.setmore.com/?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQPOTM2NjE5NzQzMzkyNDU5AAGnJnMFwJhY1JmnMUZFpJqlrbvv1oAeXVOpqI3s7uj4bkBtAXdZyvfZ116BXJw_aem_ZXKmnTctucWh0hhmqVoHXA&utm_id=97760_v0_s00_e0_tv3",
+      "websiteUrl": "https://knotsandstrands.setmore.com/?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQPOTM2NjE5NzQzMzkyNDU5AAGnJnMFwJhY1JmnMUZFpJqlrbvv1oAeXVOpqI3s7uj4bkBtAXdZyvfZ116BXJw_aem_ZXKmnTctucWh0hhmqVoHXA&utm_id=97760_v0_s00_e0_tv3",
+      "instagramUrl": "https://www.instagram.com/knotsandstrands/",
+      "services": [
+        "Moisturising treatment",
+        "Wig cornrows",
+        "Braid take-down",
+        "Trim / hair cut",
+        "Crochet",
+        "Traditional sew-in / leave out",
+        "Japanese head spa"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/knotsandstrands/"
+      ]
+    },
+    {
+      "id": "pearlhaircareuk",
+      "name": "Pearlhaircareuk",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london",
+        "essex",
+        "east"
+      ],
+      "areaLabel": "Essex / East London",
+      "neighbourhood": "Essex and East London London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/pearlhaircareuk/",
+      "websiteUrl": "https://www.instagram.com/pearlhaircareuk/",
+      "instagramUrl": "https://www.instagram.com/pearlhaircareuk/",
+      "services": [
+        "Trichology / scalp analysis",
+        "Japanese head spa",
+        "Scalp detox / treatments"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/pearlhaircareuk/"
+      ]
+    },
+    {
+      "id": "thecurlsanctuaryheadspa",
+      "name": "Thecurlsanctuaryheadspa",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london",
+        "east"
+      ],
+      "areaLabel": "East London",
+      "neighbourhood": "East London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://thecurlsanctuaryheadspa.as.me/schedule/80a82172",
+      "websiteUrl": "https://thecurlsanctuaryheadspa.as.me/schedule/80a82172",
+      "instagramUrl": "https://www.instagram.com/thecurlsanctuaryheadspa/",
+      "services": [
+        "Wash & blowdry"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/thecurlsanctuaryheadspa/"
+      ]
+    },
+    {
+      "id": "theheadspaedit",
+      "name": "Theheadspaedit",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london",
+        "north-west"
+      ],
+      "areaLabel": "North west London",
+      "neighbourhood": "North west London London",
+      "postcode": "",
+      "bookingPlatform": "Direct",
+      "bookingUrl": "https://www.theheadspaeditt.com/appointments",
+      "websiteUrl": "https://www.theheadspaeditt.com/appointments",
+      "instagramUrl": "https://www.instagram.com/theheadspaedit/",
+      "services": [
+        "Trichology / scalp analysis",
+        "Japanese head spa",
+        "Scalp detox / treatments"
+      ],
+      "hijabiFriendly": true,
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/theheadspaedit/"
+      ]
+    },
+    {
+      "id": "sheastylesuk",
+      "name": "Sheastylesuk",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london",
+        "south-east"
+      ],
+      "areaLabel": "South east London",
+      "neighbourhood": "South east London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://thebeautyspabyshea.as.me/schedule/2c9659f9",
+      "websiteUrl": "https://thebeautyspabyshea.as.me/schedule/2c9659f9",
+      "instagramUrl": "https://www.instagram.com/sheastylesuk/",
+      "services": [
+        "Wash & blowdry",
+        "Sew-in take-down",
+        "Traditional sew-in / leave out",
+        "Knotless braids",
+        "Retwist",
+        "Twists (with extensions)",
+        "Fulani / lemonade braids",
+        "Trim / hair cut",
+        "Keratin treatment",
+        "Texture release",
+        "Relaxer / texturiser",
+        "Clip ins (+ silk press)",
+        "Closure sew-in",
+        "Flipover / Versatile sew-in",
+        "U-part wig install",
+        "Tracks (+ silk press) / partial / invisible sew-in",
+        "Frontal sew-in",
+        "LA weave",
+        "Wig install (frontal / closure)",
+        "Healthy hair plans & consultations",
+        "Japanese head spa"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/sheastylesuk/"
+      ],
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "updatedAt": "2026-06-02T22:53:49.975Z"
+    },
+    {
+      "id": "sebastianpierre-salon",
+      "name": "Sebastianpierre Salon",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london",
+        "south-east"
+      ],
+      "areaLabel": "South east London",
+      "neighbourhood": "South east London London",
+      "postcode": "",
+      "bookingPlatform": "Direct",
+      "bookingUrl": "https://www.instagram.com/sebastianpierre_salon/",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/sebastianpierre_salon/",
+      "services": [
+        "Wash & blowdry",
+        "Silk press",
+        "Keratin treatment",
+        "Hair botox"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/sebastianpierre_salon/"
+      ]
+    },
+    {
+      "id": "14beautylondon",
+      "name": "14beautylondon",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london",
+        "south-east"
+      ],
+      "areaLabel": "South east London",
+      "neighbourhood": "South east London London",
+      "postcode": "",
+      "bookingPlatform": "Direct",
+      "bookingUrl": "https://www.instagram.com/14beautylondon/",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/14beautylondon/",
+      "services": [
+        "Wash & blowdry"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/14beautylondon/"
+      ]
+    },
+    {
+      "id": "mystictouch",
+      "name": "Mystictouch",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london",
+        "croydon"
+      ],
+      "areaLabel": "Croydon",
+      "neighbourhood": "Croydon London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://mystictouch.as.me/schedule/868ddfc9",
+      "websiteUrl": "https://mystictouch.as.me/schedule/868ddfc9",
+      "instagramUrl": "https://www.instagram.com/mystictouch/",
+      "services": [
+        "Twists (with extensions)",
+        "Feed-in braids",
+        "Fulani / lemonade braids",
+        "Boho braids / goddess braids",
+        "Retwist",
+        "Faux locs",
+        "Butterfly locs",
+        "Knotless braids",
+        "Wig cornrows",
+        "Stitch braids",
+        "Starter locs",
+        "Microlocs / sisterlocs",
+        "Flipover / Versatile sew-in",
+        "Silk press",
+        "Relaxer / texturiser",
+        "Traditional sew-in / leave out",
+        "Wash & blowdry"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/mystictouch/"
+      ]
+    },
+    {
+      "id": "sevynpressed",
+      "name": "Sevynpressed",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london",
+        "south-east"
+      ],
+      "areaLabel": "South east London",
+      "neighbourhood": "South east London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://sevynpressedd.as.me/schedule/e7df0691",
+      "websiteUrl": "https://sevynpressedd.as.me/schedule/e7df0691",
+      "instagramUrl": "https://www.instagram.com/sevynpressed/",
+      "services": [
+        "Sew-in take-down",
+        "Traditional sew-in / leave out",
+        "Tape ins",
+        "Hybrid sew-in",
+        "Flipover / Versatile sew-in",
+        "U-part wig install",
+        "Wig install (frontal / closure)"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/sevynpressed/"
+      ]
+    },
+    {
+      "id": "princessxlace",
+      "name": "Princessxlace",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london",
+        "east"
+      ],
+      "areaLabel": "East London",
+      "neighbourhood": "East London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://princessxlace.as.me/schedule/ef91dc9a",
+      "websiteUrl": "https://princessxlace.as.me/schedule/ef91dc9a",
+      "instagramUrl": "https://www.instagram.com/princessxlace/",
+      "services": [
+        "Wig install (frontal / closure)",
+        "Closure sew-in",
+        "Traditional sew-in / leave out",
+        "Feed-in braids",
+        "Custom wig",
+        "Frontal sew-in",
+        "Frontal ponytail / bun",
+        "Sleek ponytail / bun",
+        "Flipover / Versatile sew-in",
+        "Wig cornrows"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/princessxlace/"
+      ],
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "updatedAt": "2026-06-02T22:40:38.847Z"
+    },
     {
       "id": "covemedical",
       "name": "Covemedical",
@@ -4774,7 +5084,8 @@
         "Flipover / Versatile sew-in",
         "Hybrid sew in (tapes + sew in)",
         "Frontal sew-in",
-        "Frontal ponytail / bun"
+        "Frontal ponytail / bun",
+        "Japanese head spa"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -5463,7 +5774,8 @@
         "Flipover / Versatile sew-in",
         "Healthy hair plans & consultations",
         "Trichology / scalp analysis",
-        "Healthy hair consultations & regimes"
+        "Healthy hair consultations & regimes",
+        "Japanese head spa"
       ]
     },
     {
@@ -8456,7 +8768,8 @@
         "Box braids",
         "Twist out / flexi rod",
         "Trim / hair cut",
-        "LA weave"
+        "LA weave",
+        "Japanese head spa"
       ]
     },
     {
@@ -9353,7 +9666,8 @@
         "Wash & blowdry",
         "Silk press",
         "Keratin treatment",
-        "Relaxer / texturiser"
+        "Relaxer / texturiser",
+        "Japanese head spa"
       ],
       "hijabiFriendly": true
     },
@@ -12811,7 +13125,8 @@
         "Highlights",
         "Tracks (+ silk press) / partial / invisible sew-in",
         "Custom wig",
-        "Bridal"
+        "Bridal",
+        "Japanese head spa"
       ]
     },
     {
@@ -14796,7 +15111,8 @@
         "Silk press",
         "Relaxer / texturiser",
         "Tracks / Silk press + tracks / Invisible sew-in",
-        "Healthy hair plans & consultations"
+        "Healthy hair plans & consultations",
+        "Japanese head spa"
       ]
     },
     {
