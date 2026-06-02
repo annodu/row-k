@@ -1,8 +1,8 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-06-02T23:03:19.406Z",
-    "count": 681,
+    "updatedAt": "2026-06-02T23:13:40.525Z",
+    "count": 680,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
@@ -109,54 +109,6 @@
       "evidence": [
         "Submitted link: https://www.instagram.com/theheadspaedit/"
       ]
-    },
-    {
-      "id": "sheastylesuk",
-      "name": "Sheastylesuk",
-      "areaId": "all-london",
-      "areaIds": [
-        "all-london",
-        "south-east"
-      ],
-      "areaLabel": "South east London",
-      "neighbourhood": "South east London London",
-      "postcode": "",
-      "bookingPlatform": "Acuity",
-      "bookingUrl": "https://thebeautyspabyshea.as.me/schedule/2c9659f9",
-      "websiteUrl": "https://thebeautyspabyshea.as.me/schedule/2c9659f9",
-      "instagramUrl": "https://www.instagram.com/sheastylesuk/",
-      "services": [
-        "Wash & blowdry",
-        "Sew-in take-down",
-        "Traditional sew-in / leave out",
-        "Knotless braids",
-        "Retwist",
-        "Twists (with extensions)",
-        "Fulani / lemonade braids",
-        "Trim / hair cut",
-        "Keratin treatment",
-        "Texture release",
-        "Relaxer / texturiser",
-        "Clip ins (+ silk press)",
-        "Closure sew-in",
-        "Flipover / Versatile sew-in",
-        "U-part wig install",
-        "Tracks (+ silk press) / partial / invisible sew-in",
-        "Frontal sew-in",
-        "LA weave",
-        "Wig install (frontal / closure)",
-        "Healthy hair plans & consultations",
-        "Japanese head spa"
-      ],
-      "summary": "Admin draft created from stylist intake.",
-      "source": "manual",
-      "evidence": [
-        "Submitted link: https://www.instagram.com/sheastylesuk/"
-      ],
-      "tiktokUrl": "",
-      "hijabiFriendly": false,
-      "canBraidWithoutGel": false,
-      "updatedAt": "2026-06-02T22:53:49.975Z"
     },
     {
       "id": "sebastianpierre-salon",
@@ -5773,10 +5725,13 @@
         "Traditional sew-in / leave out",
         "Flipover / Versatile sew-in",
         "Healthy hair plans & consultations",
-        "Trichology / scalp analysis",
-        "Healthy hair consultations & regimes",
-        "Japanese head spa"
-      ]
+        "Trichology / scalp analysis"
+      ],
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "updatedAt": "2026-06-02T23:07:52.489Z"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
