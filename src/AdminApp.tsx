@@ -393,7 +393,7 @@ const serviceGroups = [
     services: [
       "Wig cornrows",
       "Curly cut / wash & go",
-      "Silk press",
+      "Silk press / bouncy blowout",
       "Trim / hair cut",
       "Twist out / flexi rod",
       "Wash & blowdry",

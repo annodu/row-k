@@ -1,5 +1,5 @@
 import { Fragment, type ReactNode, useEffect, useRef, useState } from "react";
-import { Check, ChevronDown, Globe } from "lucide-react";
+import { Check, ChevronDown, Globe, Search, X } from "lucide-react";
 
 import { Checkbox } from "@/components/ui/checkbox";
 import { AdminApp } from "@/AdminApp";
@@ -45,7 +45,7 @@ const categoryMap = {
       "Braid take-down",
       "Box braids",
       "Crochet",
-      "Creative braids (e.g. patewo)",
+      "Creative braids",
       "Feed-in braids",
       "French curl",
       "Fulani / lemonade braids",
@@ -148,7 +148,7 @@ const categoryServiceMap = {
     "Braid take-down",
     "Box braids",
     "Crochet",
-    "Creative braids (e.g. patewo)",
+    "Creative braids",
     "Feed-in braids",
     "French curl",
     "Fulani / lemonade braids",
@@ -271,6 +271,53 @@ const resultLocationLabelMap: Record<string, string> = {
   "south-west": "South west London",
   west: "West London",
   south: "South London",
+};
+
+const serviceDisplayNames: Record<string, string> = {
+  "Silk press": "Silk press / bouncy blowout",
+  "Wig cornrows": "Cornrows / Twists / Wig cornrows",
+};
+
+function getServiceDisplayName(service: string) {
+  return serviceDisplayNames[service] ?? service;
+}
+
+function normalizeServiceSearch(s: string) {
+  return s.toLowerCase().replace(/[-–—]/g, " ").replace(/\s+/g, " ").trim();
+}
+
+const serviceSearchAliases: Record<string, string[]> = {
+  "Balayage": ["balayage"],
+  "Highlights": ["highlight", "highlights", "lowlights"],
+  "Full head colour": ["colour", "color", "tint", "dye", "rooting"],
+  "Wig colouring / bundle colouring": ["wig colour", "wig color", "colouring full wig", "custom colour", "colour service", "613"],
+  "Frontal sew-in": ["frontal sew in", "frontal sew-in", "frontal sewin", "frontal weave"],
+  "Closure sew-in": ["closure sew in", "closure sew-in", "closure sewin", "closure weave", "weave with lace closure"],
+  "Creative braids": ["creative braids", "patewo", "dolly braids", "shuku", "koroba braids", "koroba", "tyla braids", "tyla"],
+  "Feed-in braids": ["feed in", "feed-in", "all back", "braids going back", "all back cornrows", "all back braids", "cornrows with extensions", "cornrows with hair"],
+  "Fulani / lemonade braids": ["fulani", "lemonade", "alicia keys braids"],
+  "K-tips / invisible strands": ["k tips", "k-tips", "keratin tip", "keratin tips", "keratin bonds", "invisible strands"],
+  "Frontal ponytail / bun": ["frontal ponytail", "frontal pony", "frontal bun", "frontal updo"],
+  "U-part wig install": ["u part", "upart", "u-part", "u part wig", "u-part wig", "v part", "vpart", "v-part"],
+  "Custom wig": ["custom wig", "bespoke wig", "custom lace", "custom unit", "wig making", "wig construction"],
+  "Wig install (frontal / closure)": ["wig install", "wig installation", "wig application", "wig fitting", "glueless wig", "lace wig", "frontal wig", "closure wig", "frontal unit install", "closure unit install"],
+  "Pixie wig / weave install": ["pixie wig", "pixie weave", "pixie install", "pixie sew in", "pixie sew-in"],
+  "Twists (with extensions)": ["twists with extensions", "passion twists", "marley twists", "senegalese twists", "kinky twists", "rope twists", "island twists", "island twist"],
+  "Hybrid sew in (tapes + sew in)": ["hybrid sew in", "hybrid sew-in", "hybrid weave", "tracks + tapes hybrid", "tracks and tapes hybrid"],
+  "Tracks (+ silk press) / partial / invisible sew-in": ["rows", "tracks", "track per row", "per row", "one row", "weave tracks", "partial sew in", "partial sew-in", "invisible sew in", "invisible weave", "invisible weft"],
+  "Silk press / bouncy blowout": ["straightening", "straighten", "silk press"],
+  "Wash & blowdry": ["wash blowdry", "wash blow dry", "wash and blowdry", "wash and blow dry", "shampoo blowdry", "blowout"],
+  "Japanese head spa": ["japanese head spa", "head spa", "headspa"],
+  "Updo": ["updo", "up do", "pin up", "french roll"],
+  "Wig cornrows": ["under wig", "wig cornrows", "cornrows for wig", "cornrows"],
+  "Butterfly locs": ["butterfly locs"],
+  "Faux locs": ["faux locs", "invisible locs", "soft locs"],
+  "Starter locs": ["starter locs", "start locs", "loc start"],
+  "Half braids, half sew-in": ["boho braids sew in", "boho braid sew in", "boho sew in", "fulani braids sew in", "fulani braid sew in", "fulani sew in"],
+  "Braid take-down": ["braids removal", "braid removal", "braids takedown", "braid takedown"],
+  "Sew-in take-down": ["sew in removal", "sewin removal", "sew-in removal", "weave removal", "weave takedown", "sew in takedown", "sewin takedown"],
+  "Stitch braids": ["stitch braids", "stitch"],
+  "Scalp detox / treatments": ["scalp", "scalp care", "scalp therapy", "scalp treatment", "scalp scrub", "scalp detox"],
 };
 
 const sortedCategoryEntries = [
@@ -594,7 +641,7 @@ function ServicesSummary({ services }: { services: string[] }) {
       {services.slice(0, visibleCount).map((service, index) => (
         <Fragment key={`${service}-${index}`}>
           {index > 0 ? <span className="text-stone-500/70 dark:text-stone-500/80"> · </span> : null}
-          <span>{service}</span>
+          <span>{getServiceDisplayName(service)}</span>
         </Fragment>
       ))}
       {hiddenCount > 0 ? (
@@ -651,7 +698,7 @@ function ServicesSummary({ services }: { services: string[] }) {
             }}
             className="inline-block text-[12px] font-normal lowercase leading-[18px] tracking-[0.02em]"
           >
-            {service}
+            {getServiceDisplayName(service)}
           </span>
         ))}
         {services.map((_, hiddenCountIndex) => {
@@ -682,6 +729,7 @@ export default function App() {
   const [selectedRegions, setSelectedRegions] = useState<RegionId[]>(["all"]);
   const [selectedCategories, setSelectedCategories] = useState<ServiceCategoryId[]>([]);
   const [selectedSubcategories, setSelectedSubcategories] = useState<ServiceSubcategoryId[]>([]);
+  const [serviceSearch, setServiceSearch] = useState("");
   const [results, setResults] = useState<SalonResult[]>([]);
   const [sortOption, setSortOption] = useState<SortOption>("alphabetical-asc");
   const [draftSelectedRegions, setDraftSelectedRegions] = useState<RegionId[]>(["all"]);
@@ -1646,18 +1694,49 @@ export default function App() {
 
                 <AnimatedCollapsible open={servicesOpen}>
                   <div className="space-y-2 pt-3">
-                    {sortedCategoryEntries.map(([id, item]) => {
+                    <div className="relative mb-1">
+                      <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-stone-400" />
+                      <input
+                        type="text"
+                        aria-label="Search services"
+                        placeholder="Search services"
+                        value={serviceSearch}
+                        onChange={(e) => setServiceSearch(e.target.value)}
+                        className="h-10 w-full border border-stone-300 bg-white pl-9 pr-9 text-[13px] text-stone-800 placeholder-stone-400 outline-none focus:border-stone-500 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-200 dark:placeholder-stone-500 dark:focus:border-stone-400"
+                      />
+                      {serviceSearch ? (
+                        <button
+                          type="button"
+                          onClick={() => setServiceSearch("")}
+                          className="absolute right-2 top-1/2 inline-flex size-7 -translate-y-1/2 items-center justify-center text-stone-400 transition hover:text-stone-900 dark:hover:text-stone-100"
+                          aria-label="Clear service search"
+                        >
+                          <X className="size-4" />
+                        </button>
+                      ) : null}
+                    </div>
+                    {sortedCategoryEntries.filter(([id, item]) => {
+                      if (!serviceSearch.trim()) return true;
+                      const q = normalizeServiceSearch(serviceSearch);
+                      if (normalizeServiceSearch(item.label).includes(q)) return true;
+                      if (item.subcategories.some((s) => s !== "all" && normalizeServiceSearch(s).includes(q))) return true;
+                      const aliases = serviceSearchAliases[item.label] ?? [];
+                      if (aliases.some((alias) => normalizeServiceSearch(alias).includes(q))) return true;
+                      return item.subcategories.some((s) => s !== "all" && (serviceSearchAliases[s] ?? []).some((alias) => normalizeServiceSearch(alias).includes(q)));
+                    }).map(([id, item]) => {
                       const isAllServices = id === "all";
                       const isActive = isAllServices
                         ? currentSelectedCategories.length === 0 && currentSelectedSubcategories.length === 0
                         : isCategorySelected(id as ServiceCategoryId);
                       const categoryLabelId = makeFilterLabelId("service-category", id);
+                      const searchQ = normalizeServiceSearch(serviceSearch);
                       const visibleSubcategories = item.subcategories
                         .filter((subItem) => subItem !== "all")
+                        .filter((subItem) => !searchQ || normalizeServiceSearch(subItem).includes(searchQ) || (serviceSearchAliases[subItem] ?? []).some((alias) => normalizeServiceSearch(alias).includes(searchQ)))
                         .sort((left, right) => left.localeCompare(right));
                       const showSubcategories =
                         !isAllServices &&
-                        (isCategorySelected(id as ServiceCategoryId) || categoryHasSelectedSubcategories(id as ServiceCategoryId));
+                        (isCategorySelected(id as ServiceCategoryId) || categoryHasSelectedSubcategories(id as ServiceCategoryId) || (!!searchQ && visibleSubcategories.length > 0));
 
                       return (
                         <div key={id} className="space-y-2">
@@ -1712,7 +1791,7 @@ export default function App() {
                                       {isSubcategoryActive ? <Check className="size-3.5" /> : null}
                                     </span>
                                     <span id={subcategoryLabelId} className="translate-y-[1.5px] text-[15px] text-stone-800 dark:text-stone-200">
-                                      {itemSubcategory}
+                                      {getServiceDisplayName(itemSubcategory)}
                                     </span>
                                   </button>
                                 );
