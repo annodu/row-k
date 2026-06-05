@@ -1916,7 +1916,7 @@ export default function App() {
                 <AnimatedCollapsible open={priceRangesOpen}>
                   <div className="space-y-2 pt-3">
                     <p className="px-2 text-[12px] leading-4 text-stone-500 dark:text-stone-500">
-                      Comparable service-only prices where available. Hair-included packages may cost more, and some providers do not list prices online.
+                      The median price for all services on their booking site. Some services may be more or less than this price range. Some providers do not list their prices online.
                     </p>
                     {priceRangeOptions.map((option) => {
                       const isActive = currentSelectedPriceBands.includes(option.id);
