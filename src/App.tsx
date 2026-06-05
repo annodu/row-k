@@ -318,6 +318,7 @@ const serviceSearchAliases: Record<string, string[]> = {
   "Sew-in take-down": ["sew in removal", "sewin removal", "sew-in removal", "weave removal", "weave takedown", "sew in takedown", "sewin takedown"],
   "Stitch braids": ["stitch braids", "stitch"],
   "Scalp detox / treatments": ["scalp", "scalp care", "scalp therapy", "scalp treatment", "scalp scrub", "scalp detox"],
+  "Trichology / scalp analysis": ["scalp", "scalp analysis", "scalp health", "trichology"],
 };
 
 const sortedCategoryEntries = [
