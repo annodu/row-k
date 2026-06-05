@@ -39,8 +39,16 @@ const bookingPlatformMatchers = [
   ["setmore.com", "Setmore"],
   ["as.me", "Acuity"],
   ["acuityscheduling.com", "Acuity"],
+  ["phorest.com", "Phorest"],
+  ["vagaro.com", "Vagaro"],
+  ["gettimely.com", "Timely"],
   ["square.site", "Square"],
   ["squareup.com", "Square"],
+  ["zenoti.com", "Zenoti"],
+  ["getslick.com", "GetSlick"],
+  ["slick.fyi", "GetSlick"],
+  ["tressly.com", "Tressly"],
+  ["jena", "Jena"],
   ["treatwell.co.uk", "Treatwell"],
   ["glossgenius.com", "GlossGenius"],
   ["styleseat.com", "StyleSeat"],
@@ -49,7 +57,10 @@ const bookingPlatformMatchers = [
 
 const browserUserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36";
 let nextInstagramProfileProbeAt = 0;
+let priceCheckBrowserPromise = null;
 const canonicalServices = [...new Set(Object.values(categoryMap).flat().filter(Boolean))].sort((left, right) => left.localeCompare(right));
+const priceBands = new Set(["£", "££", "£££", "££££"]);
+const priceConfidences = new Set(["high", "medium", "low", "manual", "unknown"]);
 
 const intakeServiceAliases = {
   "leave out weave": "Traditional sew-in / leave out",
@@ -265,6 +276,7 @@ export function registerAdminStylistRoutes(app) {
     const now = new Date().toISOString();
     const areaIds = normalizeAreaIds(update.areaIds?.length ? update.areaIds : update.areaId ? [update.areaId] : []);
     const areaLabel = update.areaLabel || areaLabelForIds(areaIds);
+    const pricingUpdate = buildPricingUpdate(update, currentSalon, now);
     const nextSalon = {
       ...currentSalon,
       name: update.name || currentSalon.name || "",
@@ -283,6 +295,7 @@ export function registerAdminStylistRoutes(app) {
       canBraidWithoutGel: update.canBraidWithoutGel === true,
       summary: update.summary || currentSalon.summary || "",
       evidence: update.evidence?.length ? update.evidence : currentSalon.evidence || [],
+      ...pricingUpdate,
       updatedAt: now,
     };
 
@@ -356,9 +369,16 @@ export function registerAdminStylistRoutes(app) {
 
   app.get("/api/admin/stylists/checks/saved", requireAdmin, async (_req, res) => {
     const store = await readFreshnessStore({ meta: { source: "freshness-checks", updatedAt: null, count: 0, checkedCount: 0, total: 0 }, checks: [] });
+    const manualIndex = await readJson(manualIndexPath, { meta: { source: "manual", count: 0 }, salons: [] });
+    const salonsById = new Map((manualIndex.salons || []).map((salon) => [salon.id, salon]));
+    const dismissedRecommendations = store.dismissedRecommendations || {};
+    const checks = (store.checks || [])
+      .map((check) => hydrateFreshnessCheckFromSalon(check, salonsById.get(check.id)))
+      .map((check) => applyDismissedRecommendationToCheck(check, dismissedRecommendations[check.id]))
+      .filter(hasActionableFreshnessCheck);
     res.json({
       ok: true,
-      checks: store.checks || [],
+      checks,
       checkedAt: store.meta?.updatedAt ?? null,
       checkedCount: store.meta?.checkedCount ?? 0,
       total: store.meta?.total ?? 0,
@@ -369,13 +389,21 @@ export function registerAdminStylistRoutes(app) {
 
   app.post("/api/admin/stylists/checks/saved", requireAdmin, async (req, res) => {
     const existingStore = await readFreshnessStore({ meta: { source: "freshness-checks", updatedAt: null, count: 0 }, checks: [], dismissedRecommendations: {} });
+    const manualIndex = await readJson(manualIndexPath, { meta: { source: "manual", count: 0 }, salons: [] });
+    const salonsById = new Map((manualIndex.salons || []).map((salon) => [salon.id, salon]));
     const checkedAt = cleanString(req.body?.checkedAt) || new Date().toISOString();
+    const dismissedRecommendations = existingStore.dismissedRecommendations || {};
     const checks = (Array.isArray(req.body?.checks) ? req.body.checks : [])
       .map((check) => sanitizeFreshnessCheck(check, check?.id))
-      .filter(Boolean);
+      .map((check) => hydrateFreshnessCheckFromSalon(check, salonsById.get(check?.id)))
+      .map((check) => applyDismissedRecommendationToCheck(check, dismissedRecommendations[check?.id]))
+      .filter(hasActionableFreshnessCheck);
     const checkedCount = Number(req.body?.checkedCount) || 0;
     const total = Number(req.body?.total) || 0;
-    const existingChecks = Array.isArray(existingStore.checks) ? existingStore.checks : [];
+    const existingChecks = (Array.isArray(existingStore.checks) ? existingStore.checks : [])
+      .map((check) => hydrateFreshnessCheckFromSalon(check, salonsById.get(check.id)))
+      .map((check) => applyDismissedRecommendationToCheck(check, dismissedRecommendations[check.id]))
+      .filter(hasActionableFreshnessCheck);
 
     if (checks.length === 0 && existingChecks.length > 0 && checkedCount < total) {
       return res.json({
@@ -396,7 +424,7 @@ export function registerAdminStylistRoutes(app) {
         checkedCount,
         total,
       },
-      dismissedRecommendations: existingStore.dismissedRecommendations || {},
+      dismissedRecommendations,
       checks,
     };
     await writeFreshnessStore(payload);
@@ -405,44 +433,113 @@ export function registerAdminStylistRoutes(app) {
 
   app.get("/api/admin/stylists/checks", requireAdmin, async (req, res) => {
     const index = await readAdminSalonIndex();
+    const manualIndex = await readJson(manualIndexPath, { meta: { source: "manual", updatedAt: null, count: 0 }, salons: [] });
     const checkedAt = new Date().toISOString();
     const limit = Math.min(Math.max(Number(req.query.limit || 50), 1), 50);
     const offset = Math.max(Number(req.query.offset || 0), 0);
-    const batchSalons = index.salons.slice(offset, offset + limit);
+    const requestedMode = cleanString(req.query.mode);
+    const mode = requestedMode === "pricing" || requestedMode === "missing-prices" ? "pricing" : "freshness";
+    const candidateSalons = mode === "pricing" ? index.salons : index.salons;
+    const batchSalons = candidateSalons.slice(offset, offset + limit);
     const existingStore = await readFreshnessStore({ meta: { source: "freshness-checks", updatedAt: null, count: 0 }, checks: [], dismissedRecommendations: {} });
     const dismissedRecommendations = existingStore.dismissedRecommendations || {};
+    const salonsById = new Map((manualIndex.salons || []).map((salon) => [salon.id, salon]));
+    const existingReviewChecks = (existingStore.checks || [])
+      .map((check) => hydrateFreshnessCheckFromSalon(check, salonsById.get(check.id)))
+      .map((check) => applyDismissedRecommendationToCheck(check, dismissedRecommendations[check.id]))
+      .filter(hasActionableFreshnessCheck);
     const existingChecksById = new Map((existingStore.checks || []).map((check) => [check.id, check]));
-    const checks = await mapWithConcurrency(batchSalons, isHostedRuntime() ? 2 : 6, (salon) => checkSalonFreshness(salon, dismissedRecommendations[salon.id], existingChecksById.get(salon.id)), {
+    const checks = await mapWithConcurrency(batchSalons, isHostedRuntime() ? 2 : 6, (salon) => mode === "pricing"
+      ? checkPricingFreshness(salon, dismissedRecommendations[salon.id])
+      : checkSalonFreshness(salon, dismissedRecommendations[salon.id], existingChecksById.get(salon.id)), {
       delayMs: isHostedRuntime() ? 350 : 0,
     });
-    const reviewChecks = checks.filter(
-      (check) => check.issues.length > 0 || check.addedServices.length > 0 || check.removedServices.length > 0 || check.attributeSuggestions?.length > 0 || check.linkChecks?.some(isManualCheckLink),
-    );
-    const mergedChecks = offset > 0 ? mergeFreshnessChecks(existingStore.checks || [], reviewChecks) : reviewChecks;
+    const actionableChecks = checks
+      .map((check) => applyDismissedRecommendationToCheck(check, dismissedRecommendations[check.id]))
+      .filter(hasActionableFreshnessCheck);
+    const autoPricingChanges = checks
+      .map((check) => ({ check, update: getAutoPricingUpdate(check.priceCheck) }))
+      .filter(({ check, update }) => {
+        if (update) {
+          return true;
+        }
+        const salon = manualIndex.salons.find((item) => item.id === check.id);
+        if (!salonHasAutoPricing(salon)) {
+          return false;
+        }
+        return mode !== "pricing" || check.backfillStatus === "no-price";
+      });
+    if (autoPricingChanges.length) {
+      const salonsById = new Map(manualIndex.salons.map((salon, index) => [salon.id, { salon, index }]));
+      let changedPricing = false;
+      const now = new Date().toISOString();
+      autoPricingChanges.forEach(({ check, update }) => {
+        const match = salonsById.get(check.id);
+        if (!match) {
+          return;
+        }
+        if (!update && salonHasAutoPricing(match.salon)) {
+          manualIndex.salons[match.index] = clearSalonPricing(match.salon);
+          changedPricing = true;
+          return;
+        }
+        const nextPricing = { ...update, priceUpdatedAt: now };
+        if (pricingFieldsEqual(match.salon, nextPricing)) {
+          return;
+        }
+        manualIndex.salons[match.index] = {
+          ...match.salon,
+          ...nextPricing,
+        };
+        changedPricing = true;
+      });
+      if (changedPricing) {
+        manualIndex.meta = {
+          ...manualIndex.meta,
+          updatedAt: now,
+          count: manualIndex.salons.length,
+        };
+        if (isGitHubJsonBacked()) {
+          await writeJsonFilesToGitHub([{ path: "data/manual-salons.json", payload: manualIndex }], "Update automated pricing bands");
+        } else {
+          await tryWriteJson(manualIndexPath, manualIndex);
+        }
+      }
+    }
+    const reviewChecks = mode === "pricing"
+      ? checks.map((check) => applyDismissedRecommendationToCheck(check, dismissedRecommendations[check.id])).filter(hasVisibleMissingPriceBackfillResult)
+      : actionableChecks.map(stripAutoAppliedPriceCheck).filter(hasActionableFreshnessCheck);
+    const mergedChecks = offset > 0 ? mergeFreshnessChecks(existingReviewChecks, reviewChecks) : reviewChecks;
 
-    const checkedCount = Math.min(offset + batchSalons.length, index.salons.length);
+    const checkedCount = Math.min(offset + batchSalons.length, candidateSalons.length);
+    const persistedChecks = mode === "pricing"
+      ? mergedChecks.filter(hasActionableFreshnessCheck)
+      : mergedChecks;
     const persisted = await tryWriteJson(freshnessChecksPath, {
       meta: {
         source: "freshness-checks",
         updatedAt: checkedAt,
-        count: mergedChecks.length,
+        count: persistedChecks.length,
         checkedCount,
-        total: index.salons.length,
+        total: candidateSalons.length,
+        mode,
       },
       dismissedRecommendations,
-      checks: mergedChecks,
+      checks: persistedChecks,
     });
 
     res.json({
       ok: true,
       checks: reviewChecks,
       checkedAt,
+      mode,
+      summary: mode === "pricing" ? summarizeMissingPriceBackfillResults(checks) : null,
       offset,
       limit,
       batchCount: batchSalons.length,
       checkedCount,
-      total: index.salons.length,
-      nextOffset: offset + batchSalons.length < index.salons.length ? offset + batchSalons.length : null,
+      total: candidateSalons.length,
+      nextOffset: offset + batchSalons.length < candidateSalons.length ? offset + batchSalons.length : null,
       persisted,
     });
   });
@@ -450,6 +547,69 @@ export function registerAdminStylistRoutes(app) {
   app.post("/api/admin/stylists/match-services", requireAdmin, async (req, res) => {
     const rawServices = toArray(req.body?.rawServices);
     res.json({ ok: true, services: matchServices(rawServices) });
+  });
+
+  app.post("/api/admin/stylists/parse-prices", requireAdmin, async (req, res) => {
+    const rawText = cleanString(req.body?.text);
+    const priceCheck = parseManualPriceText(rawText);
+    res.json({
+      ok: true,
+      ...priceCheck,
+    });
+  });
+
+  app.post("/api/admin/stylists/booking-preview", requireAdmin, async (req, res) => {
+    const bookingUrl = cleanString(req.body?.bookingUrl);
+    const websiteUrl = cleanString(req.body?.websiteUrl);
+    const urls = {
+      bookingUrl: bookingUrl && !isSocialOnlyUrl(bookingUrl) ? bookingUrl : "",
+      websiteUrl: websiteUrl && !isSocialOnlyUrl(websiteUrl) ? websiteUrl : "",
+    };
+
+    if (!urls.bookingUrl && !urls.websiteUrl) {
+      return res.status(400).json({ ok: false, message: "Add a machine-readable booking or website link first." });
+    }
+
+    const [bookingLinkCheck, websiteLinkCheck] = await Promise.all([
+      urls.bookingUrl ? checkUrl("booking", urls.bookingUrl, { includeText: true }) : null,
+      urls.websiteUrl && urls.websiteUrl !== urls.bookingUrl ? checkUrl("website", urls.websiteUrl, { includeText: true }) : null,
+    ]);
+    const bookingHtml = bookingLinkCheck?.status === "ok" ? bookingLinkCheck.responseText || "" : "";
+    const websiteHtml = websiteLinkCheck?.status === "ok" ? websiteLinkCheck.responseText || "" : "";
+    const embeddedBookingSources = await fetchEmbeddedBookingSources([
+      { html: bookingHtml, url: urls.bookingUrl },
+      { html: websiteHtml, url: urls.websiteUrl },
+    ]);
+    const enrichedBookingHtml = combineBookingHtml(bookingHtml, embeddedBookingSources);
+    const serviceCheck = enrichedBookingHtml ? extractBookingServicesFromHtml(enrichedBookingHtml) : emptyServiceCheck();
+    let priceCheck = await extractBestPriceCheck({
+      booking: enrichedBookingHtml,
+      website: websiteHtml,
+      bookingUrl: embeddedBookingSources[0]?.url || urls.bookingUrl,
+      websiteUrl: urls.websiteUrl,
+      allowAiFallback: true,
+    });
+
+    if (priceCheck.confidence === "unknown") {
+      priceCheck = await extractDirectSiteFallbackPriceCheck({
+        bookingHtml: enrichedBookingHtml,
+        websiteHtml,
+        bookingUrl: urls.bookingUrl,
+        websiteUrl: urls.websiteUrl,
+        allowAiFallback: true,
+      });
+    }
+
+    res.json({
+      ok: true,
+      linkChecks: [
+        bookingLinkCheck,
+        websiteLinkCheck,
+        ...embeddedBookingSources.map((source) => source.linkCheck),
+      ].filter(Boolean).map(stripLinkCheckResponseText),
+      serviceCheck,
+      priceCheck,
+    });
   });
 
   app.patch("/api/admin/stylists/:id/freshness", requireAdmin, async (req, res) => {
@@ -465,6 +625,8 @@ export function registerAdminStylistRoutes(app) {
     const rejectAddedServices = normalizeServices(toArray(req.body?.rejectAddedServices));
     const rejectRemovedServices = normalizeServices(toArray(req.body?.rejectRemovedServices));
     const rejectHijabiFriendly = req.body?.rejectHijabiFriendly === true;
+    const locationAreaIds = normalizeAreaIds(Array.isArray(req.body?.areaIds) && req.body.areaIds.length ? req.body.areaIds : req.body?.areaId ? [req.body.areaId] : []);
+    const locationAreaLabel = cleanString(req.body?.areaLabel) || areaLabelForIds(locationAreaIds);
     const currentServices = normalizeServices(salon.services || []);
     const nextServices = currentServices.filter((service) => !removeServices.includes(service));
     addServices.forEach((service) => {
@@ -478,9 +640,21 @@ export function registerAdminStylistRoutes(app) {
       ...(typeof req.body?.bookingUrl === "string" ? { bookingUrl: cleanString(req.body.bookingUrl) } : {}),
       ...(typeof req.body?.instagramUrl === "string" ? { instagramUrl: cleanString(req.body.instagramUrl) } : {}),
       ...(typeof req.body?.websiteUrl === "string" ? { websiteUrl: cleanString(req.body.websiteUrl) } : {}),
+      ...(locationAreaIds.length
+        ? {
+            areaId: locationAreaIds[0],
+            ...(locationAreaIds.length > 1 ? { areaIds: locationAreaIds } : { areaIds: undefined }),
+            areaLabel: locationAreaLabel,
+            neighbourhood: locationAreaLabel || salon.neighbourhood || "",
+          }
+        : {}),
       ...(req.body?.hijabiFriendly === true ? { hijabiFriendly: true } : {}),
+      ...sanitizeFreshnessPricingUpdate(req.body || {}, salon),
       services: nextServices,
     };
+    if (!manualIndex.salons[salonIndex].areaIds) {
+      delete manualIndex.salons[salonIndex].areaIds;
+    }
     manualIndex.meta = {
       ...manualIndex.meta,
       updatedAt: new Date().toISOString(),
@@ -490,6 +664,8 @@ export function registerAdminStylistRoutes(app) {
       addServices.length ||
       removeServices.length ||
       req.body?.hijabiFriendly === true ||
+      hasFreshnessPricingUpdate(req.body || {}) ||
+      locationAreaIds.length ||
       typeof req.body?.bookingUrl === "string" ||
       typeof req.body?.instagramUrl === "string" ||
       typeof req.body?.websiteUrl === "string"
@@ -497,19 +673,26 @@ export function registerAdminStylistRoutes(app) {
       await writeJson(manualIndexPath, manualIndex);
     }
 
-    await updateFreshnessReview(req.params.id, {
+    const freshnessCheck = await updateFreshnessReview(req.params.id, {
       addServices,
       removeServices,
       rejectAddedServices,
       rejectRemovedServices,
       rejectHijabiFriendly,
+      rejectPriceBand: req.body?.rejectPriceBand === true,
+      rejectLocation: req.body?.rejectLocation === true,
       bookingUrl: typeof req.body?.bookingUrl === "string" ? cleanString(req.body.bookingUrl) : undefined,
       instagramUrl: typeof req.body?.instagramUrl === "string" ? cleanString(req.body.instagramUrl) : undefined,
       websiteUrl: typeof req.body?.websiteUrl === "string" ? cleanString(req.body.websiteUrl) : undefined,
       hijabiFriendly: req.body?.hijabiFriendly === true ? true : undefined,
+      priceBand: sanitizePriceBand(req.body?.priceBand),
+      areaId: locationAreaIds[0] || "",
+      areaIds: locationAreaIds,
+      areaLabel: locationAreaLabel,
+      requestCheck: req.body?.check || null,
     });
 
-    res.json({ ok: true, salon: manualIndex.salons[salonIndex] });
+    res.json({ ok: true, salon: manualIndex.salons[salonIndex], check: freshnessCheck });
   });
 
   app.patch("/api/admin/stylists/:id/freshness/undo", requireAdmin, async (req, res) => {
@@ -537,9 +720,12 @@ export function registerAdminStylistRoutes(app) {
 
     const restoredCheck = await undoFreshnessReview(req.params.id, {
       check: req.body?.check,
+      update: req.body?.update || {},
       rejectAddedServices: toArray(req.body?.rejectAddedServices),
       rejectRemovedServices: toArray(req.body?.rejectRemovedServices),
       rejectHijabiFriendly: req.body?.rejectHijabiFriendly === true,
+      rejectPriceBand: req.body?.rejectPriceBand === true,
+      rejectLocation: req.body?.rejectLocation === true,
     });
 
     res.json({ ok: true, salon: manualIndex.salons[salonIndex], check: restoredCheck });
@@ -564,6 +750,17 @@ export function registerAdminStylistRoutes(app) {
     if (!candidates.length) {
       return res.status(400).json({ ok: false, message: "Paste at least one social, booking, or website link." });
     }
+    const priceBand = sanitizePriceBand(req.body?.priceBand);
+    const pricingInput = priceBand
+      ? {
+          priceBand,
+          priceSource: sanitizePriceSource(req.body?.priceSource) || "manual",
+          priceEvidence: toArray(req.body?.priceEvidence),
+          priceCheckedAt: cleanString(req.body?.priceCheckedAt),
+          priceUpdatedAt: cleanString(req.body?.priceUpdatedAt),
+          priceConfidence: sanitizePriceConfidence(req.body?.priceConfidence) || "manual",
+        }
+      : {};
 
     const store = await readDraftStore();
     const manualIndex = await readJson(manualIndexPath, { meta: { source: "manual" }, salons: [] });
@@ -571,7 +768,7 @@ export function registerAdminStylistRoutes(app) {
     const duplicateResults = [];
 
     for (const candidate of candidates) {
-      const draft = await buildDraft(candidate);
+      const draft = await buildDraft({ ...candidate, ...pricingInput });
       const duplicates = findDraftDuplicates(draft, { drafts: [...drafts, ...store.drafts], salons: manualIndex.salons });
       if (duplicates.length) {
         duplicateResults.push({ candidate: draft, duplicates });
@@ -1056,20 +1253,43 @@ async function updateFreshnessReview(salonId, {
   rejectAddedServices = [],
   rejectRemovedServices = [],
   rejectHijabiFriendly = false,
+  rejectPriceBand = false,
+  rejectLocation = false,
   bookingUrl,
   instagramUrl,
   websiteUrl,
   hijabiFriendly,
+  priceBand,
+  areaId = "",
+  areaIds = [],
+  areaLabel = "",
+  requestCheck = null,
 }) {
   const store = await readFreshnessStore({ meta: { source: "freshness-checks", updatedAt: null, count: 0 }, checks: [], dismissedRecommendations: {} });
   const reviewedAdds = normalizeServices([...addServices, ...rejectAddedServices]);
   const reviewedRemoves = normalizeServices([...removeServices, ...rejectRemovedServices]);
   const currentCheck = (store.checks || []).find((check) => check.id === salonId);
+  const actionCheck = currentCheck || sanitizeFreshnessCheck(requestCheck, salonId);
   const dismissedRecommendations = updateDismissedRecommendations(store.dismissedRecommendations || {}, salonId, {
+    addServices,
+    removeServices,
     rejectAddedServices,
     rejectRemovedServices,
+    hijabiFriendly,
     rejectHijabiFriendly,
-    rawServices: currentCheck?.serviceCheck?.rawServices || [],
+    bookingUrl,
+    instagramUrl,
+    websiteUrl,
+    currentCheck: actionCheck,
+    rejectPriceBand,
+    dismissedPriceBand: rejectPriceBand ? sanitizePriceBand(actionCheck?.priceCheck?.priceBand) || "" : priceBand || "",
+    priceBand,
+    rejectLocation,
+    dismissedLocationLabel: rejectLocation ? actionCheck?.serviceCheck?.areaLabel || "" : "",
+    areaId,
+    areaIds,
+    areaLabel,
+    rawServices: actionCheck?.serviceCheck?.rawServices || [],
   });
   const checks = (store.checks || [])
     .map((check) => {
@@ -1082,6 +1302,10 @@ async function updateFreshnessReview(salonId, {
           .filter((linkCheck) => reviewedLinkTypes.has(linkCheck.type))
           .flatMap((linkCheck) => linkCheck.issues || []),
       );
+      const reviewedPrice = Boolean(priceBand || rejectPriceBand);
+      const reviewedLocation = Boolean(rejectLocation || areaId || areaIds.length || areaLabel);
+      const nextAreaIds = normalizeAreaIds(areaIds.length ? areaIds : areaId ? [areaId] : []);
+      const nextAreaLabel = cleanString(areaLabel) || areaLabelForIds(nextAreaIds);
 
       return {
         ...check,
@@ -1089,6 +1313,16 @@ async function updateFreshnessReview(salonId, {
         ...(instagramUrl !== undefined ? { instagramUrl } : {}),
         ...(websiteUrl !== undefined ? { websiteUrl } : {}),
         ...(hijabiFriendly === true ? { hijabiFriendly: true } : {}),
+        ...(priceBand ? { priceBand } : {}),
+        ...(nextAreaIds.length
+          ? {
+              areaId: nextAreaIds[0],
+              areaIds: nextAreaIds,
+              areaLabel: nextAreaLabel,
+              locationReviewIgnored: false,
+            }
+          : {}),
+        ...(rejectLocation ? { locationReviewIgnored: true } : {}),
         addedServices: (check.addedServices || []).filter((service) => !reviewedAdds.includes(service)),
         removedServices: (check.removedServices || []).filter((service) => !reviewedRemoves.includes(service)),
         attributeSuggestions: (check.attributeSuggestions || []).filter((suggestion) => {
@@ -1103,7 +1337,11 @@ async function updateFreshnessReview(salonId, {
             return false;
           }
           return !(String(issue).toLowerCase() === "possible hijabi-friendly wording found" && (hijabiFriendly === true || rejectHijabiFriendly === true));
-        }),
+        }).filter((issue) => !((String(issue).toLowerCase() === "possible pricing band found" || String(issue).toLowerCase() === "manual price check required") && reviewedPrice)),
+        serviceCheck: reviewedLocation && !nextAreaIds.length
+          ? { ...(check.serviceCheck || emptyServiceCheck()), areaId: "", areaLabel: "" }
+          : check.serviceCheck,
+        ...(reviewedPrice ? { priceCheck: emptyPriceCheck(check.priceCheck?.source || "") } : {}),
         reviewedAt: new Date().toISOString(),
       };
     })
@@ -1119,6 +1357,8 @@ async function updateFreshnessReview(salonId, {
     dismissedRecommendations,
     checks,
   });
+
+  return checks.find((check) => check.id === salonId) || null;
 }
 
 function getReviewedLinkTypes({ bookingUrl, instagramUrl, websiteUrl }) {
@@ -1135,12 +1375,16 @@ function getReviewedLinkTypes({ bookingUrl, instagramUrl, websiteUrl }) {
   return reviewedLinkTypes;
 }
 
-async function undoFreshnessReview(salonId, { check, rejectAddedServices = [], rejectRemovedServices = [], rejectHijabiFriendly = false }) {
+async function undoFreshnessReview(salonId, { check, update = {}, rejectAddedServices = [], rejectRemovedServices = [], rejectHijabiFriendly = false, rejectPriceBand = false, rejectLocation = false }) {
   const store = await readFreshnessStore({ meta: { source: "freshness-checks", updatedAt: null, count: 0 }, checks: [], dismissedRecommendations: {} });
   const dismissedRecommendations = removeDismissedRecommendations(store.dismissedRecommendations || {}, salonId, {
+    update,
+    check,
     rejectAddedServices,
     rejectRemovedServices,
     rejectHijabiFriendly,
+    rejectPriceBand,
+    rejectLocation,
   });
   const sanitizedCheck = sanitizeFreshnessCheck(check, salonId);
   const checks = sanitizedCheck
@@ -1161,16 +1405,53 @@ async function undoFreshnessReview(salonId, { check, rejectAddedServices = [], r
   return sanitizedCheck;
 }
 
-function updateDismissedRecommendations(dismissedRecommendations, salonId, { rejectAddedServices = [], rejectRemovedServices = [], rejectHijabiFriendly = false, rawServices = [] }) {
-  const rejectedAdds = normalizeServices(rejectAddedServices);
-  const rejectedRemoves = normalizeServices(rejectRemovedServices);
-  if (!rejectedAdds.length && !rejectedRemoves.length && rejectHijabiFriendly !== true) {
+function updateDismissedRecommendations(dismissedRecommendations, salonId, {
+  addServices = [],
+  removeServices = [],
+  rejectAddedServices = [],
+  rejectRemovedServices = [],
+  hijabiFriendly = false,
+  rejectHijabiFriendly = false,
+  bookingUrl,
+  instagramUrl,
+  websiteUrl,
+  currentCheck = null,
+  rejectPriceBand = false,
+  dismissedPriceBand = "",
+  priceBand = "",
+  rejectLocation = false,
+  dismissedLocationLabel = "",
+  areaId = "",
+  areaIds = [],
+  areaLabel = "",
+  rawServices = [],
+}) {
+  const reviewedAdds = normalizeServices([...addServices, ...rejectAddedServices]);
+  const reviewedRemoves = normalizeServices([...removeServices, ...rejectRemovedServices]);
+  const handledFingerprints = buildHandledFingerprintsForUpdate(currentCheck, {
+    addServices,
+    removeServices,
+    rejectAddedServices,
+    rejectRemovedServices,
+    hijabiFriendly,
+    rejectHijabiFriendly,
+    bookingUrl,
+    instagramUrl,
+    websiteUrl,
+    priceBand,
+    rejectPriceBand,
+    rejectLocation,
+    areaId,
+    areaIds,
+    areaLabel,
+  });
+  if (!reviewedAdds.length && !reviewedRemoves.length && rejectHijabiFriendly !== true && hijabiFriendly !== true && rejectPriceBand !== true && !dismissedPriceBand && !priceBand && rejectLocation !== true && !dismissedLocationLabel && !areaId && !areaIds.length && !areaLabel && !handledFingerprints.length) {
     return dismissedRecommendations;
   }
 
   const current = dismissedRecommendations[salonId] || {};
   const addedServiceEvidence = { ...(current.addedServiceEvidence || {}) };
-  rejectedAdds.forEach((service) => {
+  reviewedAdds.forEach((service) => {
     const evidence = getServiceEvidence(rawServices, service);
     if (evidence.length) {
       addedServiceEvidence[service] = [...new Set([...(addedServiceEvidence[service] || []), ...evidence])];
@@ -1179,37 +1460,240 @@ function updateDismissedRecommendations(dismissedRecommendations, salonId, { rej
   return {
     ...dismissedRecommendations,
     [salonId]: {
-      addedServices: [...new Set([...(current.addedServices || []), ...rejectedAdds])],
-      removedServices: [...new Set([...(current.removedServices || []), ...rejectedRemoves])],
-      addedServiceFamilies: [...new Set([...(current.addedServiceFamilies || []), ...rejectedAdds.map(serviceFamilyFor).filter(Boolean)])],
+      addedServices: [...new Set([...(current.addedServices || []), ...reviewedAdds])],
+      removedServices: [...new Set([...(current.removedServices || []), ...reviewedRemoves])],
+      addedServiceFamilies: [...new Set([...(current.addedServiceFamilies || []), ...reviewedAdds.map(serviceFamilyFor).filter(Boolean)])],
       addedServiceEvidence,
-      ...(rejectHijabiFriendly === true ? { hijabiFriendly: true } : current.hijabiFriendly === true ? { hijabiFriendly: true } : {}),
+      handledFingerprints: [...new Set([...(current.handledFingerprints || []), ...handledFingerprints])],
+      ...(rejectHijabiFriendly === true || hijabiFriendly === true ? { hijabiFriendly: true } : current.hijabiFriendly === true ? { hijabiFriendly: true } : {}),
+      ...(dismissedPriceBand || priceBand ? { priceBand: dismissedPriceBand || priceBand } : current.priceBand ? { priceBand: current.priceBand } : {}),
+      ...(dismissedLocationLabel || areaLabel ? { locationLabel: dismissedLocationLabel || areaLabel } : current.locationLabel ? { locationLabel: current.locationLabel } : {}),
     },
   };
 }
 
-function removeDismissedRecommendations(dismissedRecommendations, salonId, { rejectAddedServices = [], rejectRemovedServices = [], rejectHijabiFriendly = false }) {
-  const rejectedAdds = normalizeServices(rejectAddedServices);
-  const rejectedRemoves = normalizeServices(rejectRemovedServices);
-  if (!rejectedAdds.length && !rejectedRemoves.length && rejectHijabiFriendly !== true) {
+function removeDismissedRecommendations(dismissedRecommendations, salonId, { update = {}, check = null, rejectAddedServices = [], rejectRemovedServices = [], rejectHijabiFriendly = false, rejectPriceBand = false, rejectLocation = false }) {
+  const undoUpdate = {
+    ...update,
+    rejectAddedServices: update.rejectAddedServices || rejectAddedServices,
+    rejectRemovedServices: update.rejectRemovedServices || rejectRemovedServices,
+    rejectHijabiFriendly: update.rejectHijabiFriendly === true || rejectHijabiFriendly === true,
+    rejectPriceBand: update.rejectPriceBand === true || rejectPriceBand === true,
+    rejectLocation: update.rejectLocation === true || rejectLocation === true,
+  };
+  const reviewedAdds = normalizeServices([...(undoUpdate.addServices || []), ...(undoUpdate.rejectAddedServices || [])]);
+  const reviewedRemoves = normalizeServices([...(undoUpdate.removeServices || []), ...(undoUpdate.rejectRemovedServices || [])]);
+  const handledFingerprints = buildHandledFingerprintsForUpdate(check, undoUpdate);
+  if (!reviewedAdds.length && !reviewedRemoves.length && undoUpdate.rejectHijabiFriendly !== true && undoUpdate.hijabiFriendly !== true && undoUpdate.rejectPriceBand !== true && !undoUpdate.priceBand && undoUpdate.rejectLocation !== true && !undoUpdate.areaId && !toArray(undoUpdate.areaIds).length && !undoUpdate.areaLabel && !handledFingerprints.length) {
     return dismissedRecommendations;
   }
 
   const current = dismissedRecommendations[salonId] || {};
   const next = {
-    addedServices: (current.addedServices || []).filter((service) => !rejectedAdds.includes(service)),
-    removedServices: (current.removedServices || []).filter((service) => !rejectedRemoves.includes(service)),
-    addedServiceFamilies: (current.addedServiceFamilies || []).filter((family) => !rejectedAdds.map(serviceFamilyFor).includes(family)),
-    addedServiceEvidence: Object.fromEntries(Object.entries(current.addedServiceEvidence || {}).filter(([service]) => !rejectedAdds.includes(service))),
-    ...(rejectHijabiFriendly === true ? {} : current.hijabiFriendly === true ? { hijabiFriendly: true } : {}),
+    addedServices: (current.addedServices || []).filter((service) => !reviewedAdds.includes(service)),
+    removedServices: (current.removedServices || []).filter((service) => !reviewedRemoves.includes(service)),
+    addedServiceFamilies: (current.addedServiceFamilies || []).filter((family) => !reviewedAdds.map(serviceFamilyFor).includes(family)),
+    addedServiceEvidence: Object.fromEntries(Object.entries(current.addedServiceEvidence || {}).filter(([service]) => !reviewedAdds.includes(service))),
+    handledFingerprints: (current.handledFingerprints || []).filter((fingerprint) => !handledFingerprints.includes(fingerprint)),
+    ...(undoUpdate.rejectHijabiFriendly === true || undoUpdate.hijabiFriendly === true ? {} : current.hijabiFriendly === true ? { hijabiFriendly: true } : {}),
+    ...(undoUpdate.rejectPriceBand === true || undoUpdate.priceBand ? {} : current.priceBand ? { priceBand: current.priceBand } : {}),
+    ...(undoUpdate.rejectLocation === true || undoUpdate.areaId || toArray(undoUpdate.areaIds).length || undoUpdate.areaLabel ? {} : current.locationLabel ? { locationLabel: current.locationLabel } : {}),
   };
   const updated = { ...dismissedRecommendations };
-  if (next.addedServices.length || next.removedServices.length || next.hijabiFriendly === true) {
+  if (next.addedServices.length || next.removedServices.length || next.handledFingerprints.length || next.hijabiFriendly === true || next.priceBand || next.locationLabel) {
     updated[salonId] = next;
   } else {
     delete updated[salonId];
   }
   return updated;
+}
+
+function buildHandledFingerprintsForUpdate(check, update = {}) {
+  if (!check) {
+    return [];
+  }
+
+  const fingerprints = [];
+  normalizeServices([...(update.addServices || []), ...(update.rejectAddedServices || [])]).forEach((service) => {
+    fingerprints.push(serviceRecommendationFingerprint("add", service, getServiceEvidence(check.serviceCheck?.rawServices || [], service)));
+  });
+  normalizeServices([...(update.removeServices || []), ...(update.rejectRemovedServices || [])]).forEach((service) => {
+    fingerprints.push(serviceRecommendationFingerprint("remove", service));
+  });
+
+  if (update.hijabiFriendly === true || update.rejectHijabiFriendly === true) {
+    fingerprints.push(...(check.attributeSuggestions || []).map(attributeRecommendationFingerprint));
+  }
+
+  const reviewedLinkTypes = getReviewedLinkTypes(update);
+  (check.linkChecks || [])
+    .filter((linkCheck) => reviewedLinkTypes.has(linkCheck.type))
+    .forEach((linkCheck) => {
+      fingerprints.push(linkRecommendationFingerprint(linkCheck));
+      fingerprints.push(linkRecommendationSummaryFingerprint(linkCheck));
+    });
+
+  if (update.priceBand || update.rejectPriceBand === true) {
+    fingerprints.push(priceRecommendationFingerprint(check.priceCheck));
+    fingerprints.push(priceRecommendationSummaryFingerprint(check.priceCheck));
+  }
+
+  if (update.rejectLocation === true || update.areaId || toArray(update.areaIds).length || update.areaLabel) {
+    fingerprints.push(locationRecommendationFingerprint(check));
+    fingerprints.push(locationRecommendationSummaryFingerprint(check));
+  }
+
+  if (!fingerprints.length) {
+    fingerprints.push(...toArray(check.issues).map(genericIssueFingerprint));
+  }
+
+  return [...new Set(fingerprints.filter(Boolean))];
+}
+
+function getDismissedFingerprintSet(dismissedRecommendation = {}) {
+  return new Set(toArray(dismissedRecommendation.handledFingerprints));
+}
+
+function hasDismissedFingerprintKind(fingerprints, kindPrefix) {
+  return [...fingerprints].some((fingerprint) => String(fingerprint).startsWith(`${kindPrefix}:`) || String(fingerprint).startsWith(kindPrefix));
+}
+
+function serviceRecommendationFingerprint(kind, service, evidence = []) {
+  return healthRecommendationFingerprint(`service-${kind}`, [service, ...toArray(evidence).slice(0, 6)]);
+}
+
+function linkRecommendationFingerprint(linkCheck = {}) {
+  return healthRecommendationFingerprint("link", [
+    linkCheck.type,
+    linkCheck.url,
+    linkCheck.finalUrl,
+    linkCheck.status,
+    linkCheck.httpStatus,
+    ...(linkCheck.issues || []),
+  ]);
+}
+
+function linkRecommendationSummaryFingerprint(linkCheck = {}) {
+  return healthRecommendationFingerprint("link", [
+    linkCheck.type,
+    linkCheck.url,
+    linkCheck.status,
+    linkCheck.httpStatus,
+  ]);
+}
+
+function priceRecommendationFingerprint(priceCheck = {}) {
+  return healthRecommendationFingerprint("price", [
+    priceCheck.priceBand,
+    priceCheck.confidence,
+    ...(priceCheck.prices || []),
+    ...(priceCheck.evidence || []),
+  ]);
+}
+
+function priceRecommendationSummaryFingerprint(priceCheck = {}) {
+  return healthRecommendationFingerprint("price", [
+    priceCheck.priceBand,
+    priceCheck.confidence,
+  ]);
+}
+
+function locationRecommendationFingerprint(check = {}) {
+  return healthRecommendationFingerprint("location", [
+    check.areaLabel,
+    check.serviceCheck?.areaId,
+    check.serviceCheck?.areaLabel,
+  ]);
+}
+
+function locationRecommendationSummaryFingerprint(check = {}) {
+  return healthRecommendationFingerprint("location", [
+    check.serviceCheck?.areaId,
+    check.serviceCheck?.areaLabel,
+  ]);
+}
+
+function attributeRecommendationFingerprint(suggestion = {}) {
+  return healthRecommendationFingerprint("attribute", [
+    suggestion.field,
+    suggestion.value === true ? "true" : "",
+    ...(suggestion.evidence || []).map((item) => `${item.source || ""}:${item.text || ""}`),
+  ]);
+}
+
+function genericIssueFingerprint(issue) {
+  return healthRecommendationFingerprint("issue", [issue]);
+}
+
+function healthRecommendationFingerprint(kind, parts = []) {
+  const normalizedParts = toArray(parts)
+    .map((part) => normalizeFingerprintText(part))
+    .filter(Boolean);
+  return `${kind}:${normalizedParts.join("|")}`;
+}
+
+function normalizeFingerprintText(value) {
+  return String(value ?? "")
+    .toLowerCase()
+    .replace(/https?:\/\//g, "")
+    .replace(/\/+$/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function hasDismissedLinkRecommendation(fingerprints, linkCheck = {}) {
+  if (fingerprints.has(linkRecommendationFingerprint(linkCheck)) || fingerprints.has(linkRecommendationSummaryFingerprint(linkCheck))) {
+    return true;
+  }
+
+  const type = normalizeFingerprintText(linkCheck.type);
+  const url = normalizeFingerprintText(linkCheck.url).replace(/^www\./, "");
+  const status = normalizeFingerprintText(linkCheck.status);
+  return [...fingerprints].some((fingerprint) => {
+    const normalized = normalizeFingerprintText(fingerprint).replace(/^link:www\./, "link:");
+    return normalized.startsWith(`link:${type}|${url}|`) && (!status || normalized.includes(`|${status}`));
+  });
+}
+
+function hasDismissedPriceRecommendation(fingerprints, priceCheck = {}, dismissedPriceBand = "") {
+  if (fingerprints.has(priceRecommendationFingerprint(priceCheck)) || fingerprints.has(priceRecommendationSummaryFingerprint(priceCheck))) {
+    return true;
+  }
+
+  const band = normalizeFingerprintText(priceCheck.priceBand);
+  if (!band) {
+    return false;
+  }
+
+  if (normalizeFingerprintText(dismissedPriceBand) === band) {
+    return true;
+  }
+
+  const confidence = normalizeFingerprintText(priceCheck.confidence);
+  return [...fingerprints].some((fingerprint) => {
+    const normalized = normalizeFingerprintText(fingerprint);
+    return normalized === `price:${band}` || normalized.startsWith(`price:${band}|${confidence}|`) || normalized.startsWith(`price:${band}|`);
+  });
+}
+
+function hasDismissedLocationRecommendation(fingerprints, check = {}, dismissedLocationLabel = "") {
+  if (fingerprints.has(locationRecommendationFingerprint(check)) || fingerprints.has(locationRecommendationSummaryFingerprint(check))) {
+    return true;
+  }
+
+  const detectedLabel = normalizeFingerprintText(check.serviceCheck?.areaLabel);
+  const detectedId = normalizeFingerprintText(check.serviceCheck?.areaId);
+  if (detectedLabel && normalizeFingerprintText(dismissedLocationLabel) === detectedLabel) {
+    return true;
+  }
+
+  return [...fingerprints].some((fingerprint) => {
+    const normalized = normalizeFingerprintText(fingerprint);
+    if (!normalized.startsWith("location:")) {
+      return false;
+    }
+    return (detectedId && normalized.includes(`|${detectedId}|`)) || (detectedLabel && normalized.endsWith(`|${detectedLabel}`));
+  });
 }
 
 function sanitizeFreshnessCheck(check, salonId) {
@@ -1220,13 +1704,22 @@ function sanitizeFreshnessCheck(check, salonId) {
   return {
     id: salonId,
     name: cleanString(check.name),
+    areaId: cleanString(check.areaId),
+    areaIds: normalizeAreaIds(check.areaIds),
     areaLabel: cleanString(check.areaLabel),
+    locationReviewIgnored: check.locationReviewIgnored === true,
     bookingUrl: cleanString(check.bookingUrl),
     instagramUrl: cleanString(check.instagramUrl),
     websiteUrl: cleanString(check.websiteUrl),
+    priceBand: sanitizePriceBand(check.priceBand),
+    priceSource: sanitizePriceSource(check.priceSource),
+    priceConfidence: sanitizePriceConfidence(check.priceConfidence),
+    backfillStatus: sanitizeBackfillStatus(check.backfillStatus),
+    backfillReason: cleanString(check.backfillReason),
     issues: toArray(check.issues),
     linkChecks: Array.isArray(check.linkChecks) ? check.linkChecks : [],
     serviceCheck: check.serviceCheck || emptyServiceCheck(),
+    priceCheck: sanitizePriceCheck(check.priceCheck),
     attributeSuggestions: sanitizeAttributeSuggestions(check.attributeSuggestions),
     currentServices: normalizeServices(toArray(check.currentServices)),
     detectedServices: normalizeServices(toArray(check.detectedServices)),
@@ -1234,6 +1727,109 @@ function sanitizeFreshnessCheck(check, salonId) {
     removedServices: normalizeServices(toArray(check.removedServices)),
     checkedAt: check.checkedAt || new Date().toISOString(),
   };
+}
+
+function hydrateFreshnessCheckFromSalon(check, salon = {}) {
+  if (!check) {
+    return null;
+  }
+
+  const savedPriceBand = sanitizePriceBand(salon.priceBand || check.priceBand);
+  const next = {
+    ...check,
+    priceBand: savedPriceBand,
+    priceSource: sanitizePriceSource(salon.priceSource || check.priceSource),
+    priceConfidence: sanitizePriceConfidence(salon.priceConfidence || check.priceConfidence),
+  };
+
+  if (savedPriceBand && (next.backfillStatus === "no-price" || next.backfillStatus === "skipped-social")) {
+    return {
+      ...next,
+      backfillStatus: "verified",
+      backfillReason: "Saved price band exists.",
+      issues: toArray(next.issues).filter((issue) => String(issue).toLowerCase() !== "manual price check required"),
+    };
+  }
+
+  return next;
+}
+
+function sanitizeBackfillStatus(value) {
+  const cleaned = cleanString(value);
+  return ["auto-applied", "needs-review", "no-price", "skipped-social", "verified"].includes(cleaned) ? cleaned : "";
+}
+
+function applyDismissedRecommendationToCheck(check, dismissedRecommendation = {}) {
+  if (!check) {
+    return null;
+  }
+
+  const dismissedFingerprints = getDismissedFingerprintSet(dismissedRecommendation);
+  const hasServiceDismissals = hasDismissedFingerprintKind(dismissedFingerprints, "service-");
+  const hasAttributeDismissals = hasDismissedFingerprintKind(dismissedFingerprints, "attribute");
+  const hasPriceDismissals = hasDismissedFingerprintKind(dismissedFingerprints, "price");
+  const hasLocationDismissals = hasDismissedFingerprintKind(dismissedFingerprints, "location");
+  const dismissedAddedServices = normalizeServices(dismissedRecommendation.addedServices || []);
+  const dismissedRemovedServices = normalizeServices(dismissedRecommendation.removedServices || []);
+  const dismissedPriceBand = dismissedRecommendation.priceBand || "";
+  const dismissedLocationLabel = dismissedRecommendation.locationLabel || "";
+
+  const next = {
+    ...check,
+    issues: toArray(check.issues),
+    linkChecks: Array.isArray(check.linkChecks) ? check.linkChecks : [],
+    attributeSuggestions: Array.isArray(check.attributeSuggestions) ? check.attributeSuggestions : [],
+    addedServices: normalizeServices(toArray(check.addedServices)),
+    removedServices: normalizeServices(toArray(check.removedServices)),
+    priceCheck: sanitizePriceCheck(check.priceCheck),
+  };
+
+  next.addedServices = next.addedServices.filter((service) => {
+    if (!hasServiceDismissals && dismissedAddedServices.includes(service)) {
+      return false;
+    }
+    return !dismissedFingerprints.has(serviceRecommendationFingerprint("add", service, getServiceEvidence(next.serviceCheck?.rawServices || [], service)));
+  });
+  next.removedServices = next.removedServices.filter((service) => {
+    if (!hasServiceDismissals && dismissedRemovedServices.includes(service)) {
+      return false;
+    }
+    return !dismissedFingerprints.has(serviceRecommendationFingerprint("remove", service));
+  });
+
+  next.attributeSuggestions = next.attributeSuggestions.filter((suggestion) => {
+    if (!hasAttributeDismissals && dismissedRecommendation.hijabiFriendly === true && suggestion?.field === "hijabiFriendly") {
+      return false;
+    }
+    return !dismissedFingerprints.has(attributeRecommendationFingerprint(suggestion));
+  });
+
+  next.linkChecks = next.linkChecks.filter((linkCheck) => {
+    if (linkCheck?.status === "ok") {
+      return true;
+    }
+    return !hasDismissedLinkRecommendation(dismissedFingerprints, linkCheck);
+  });
+
+  const priceFingerprintDismissed = hasDismissedPriceRecommendation(dismissedFingerprints, next.priceCheck, hasPriceDismissals ? "" : dismissedPriceBand);
+  if (priceFingerprintDismissed) {
+    if (next.priceCheck?.priceBand && next.priceCheck.confidence !== "high") {
+      next.priceCheck = emptyPriceCheck(next.priceCheck.source || "");
+    }
+    next.issues = next.issues.filter((issue) => {
+      const lower = String(issue).toLowerCase();
+      return lower !== "possible pricing band found" && lower !== "manual price check required";
+    });
+  }
+
+  const locationFingerprintDismissed = hasDismissedLocationRecommendation(dismissedFingerprints, next, hasLocationDismissals ? "" : dismissedLocationLabel);
+  if (locationFingerprintDismissed) {
+    next.locationReviewIgnored = true;
+  }
+
+  next.issues = next.issues.filter((issue) => !dismissedFingerprints.has(genericIssueFingerprint(issue)));
+
+  return next;
 }
 
 function hasActionableFreshnessCheck(check) {
@@ -1245,14 +1841,63 @@ function hasActionableFreshnessCheck(check) {
     return true;
   }
 
-  if (check.linkChecks?.some(isActionableBrokenLink)) {
+  if (check.priceCheck?.priceBand && check.priceCheck.confidence !== "high") {
+    return true;
+  }
+
+  if (check.linkChecks?.some((linkCheck) => isActionableBrokenLink(linkCheck) || isManualCheckLink(linkCheck))) {
+    return true;
+  }
+
+  if (hasDetectedLocationFreshnessUpdate(check)) {
     return true;
   }
 
   return (check.issues || []).some((issue) => {
     const normalizedIssue = String(issue).toLowerCase();
-    return normalizedIssue !== "possible new services found" && normalizedIssue !== "possible removed services found" && normalizedIssue !== "possible hijabi-friendly wording found";
+    return normalizedIssue !== "possible new services found" && normalizedIssue !== "possible removed services found" && normalizedIssue !== "possible hijabi-friendly wording found" && normalizedIssue !== "possible pricing band found";
   });
+}
+
+function hasDetectedLocationFreshnessUpdate(check) {
+  const detectedLocation = normalizeFreshnessLocationLabel(check.serviceCheck?.areaLabel);
+  const savedLocation = normalizeFreshnessLocationLabel(check.areaLabel);
+  return Boolean(!check.locationReviewIgnored && detectedLocation && savedLocation && detectedLocation !== savedLocation);
+}
+
+function normalizeFreshnessLocationLabel(value = "") {
+  return String(value || "")
+    .toLowerCase()
+    .replace(/\blondon\b/g, "")
+    .replace(/\s*\/\s*/g, " ")
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim();
+}
+
+function sanitizePriceCheck(priceCheck) {
+  if (!priceCheck) {
+    return emptyPriceCheck();
+  }
+  const priceBand = sanitizePriceBand(priceCheck.priceBand);
+  return {
+    source: cleanString(priceCheck.source),
+    confidence: sanitizePriceConfidence(priceCheck.confidence) || "unknown",
+    priceBand,
+    medianPrice: Number.isFinite(Number(priceCheck.medianPrice)) ? Number(priceCheck.medianPrice) : null,
+    prices: Array.isArray(priceCheck.prices)
+      ? priceCheck.prices.map((price) => Number(price)).filter((price) => Number.isFinite(price) && price >= 10 && price <= 5000).sort((left, right) => left - right)
+      : [],
+    priceCount: Number(priceCheck.priceCount) || 0,
+    evidence: toArray(priceCheck.evidence),
+  };
+}
+
+function stripAutoAppliedPriceCheck(check) {
+  if (check?.priceCheck?.priceBand && check.priceCheck.confidence === "high") {
+    const { priceCheck, ...rest } = check;
+    return rest;
+  }
+  return check;
 }
 
 function sanitizeAttributeSuggestions(suggestions) {
@@ -1321,28 +1966,54 @@ function isWeakInstagramOk(linkCheck) {
 }
 
 async function checkSalonFreshness(salon, dismissedRecommendation = {}, previousCheck = null) {
+  const dismissedFingerprints = getDismissedFingerprintSet(dismissedRecommendation);
+  const hasServiceDismissals = hasDismissedFingerprintKind(dismissedFingerprints, "service-");
+  const hasAttributeDismissals = hasDismissedFingerprintKind(dismissedFingerprints, "attribute");
+  const hasPriceDismissals = hasDismissedFingerprintKind(dismissedFingerprints, "price");
+  const hasLocationDismissals = hasDismissedFingerprintKind(dismissedFingerprints, "location");
   const [bookingLinkCheck, instagramLinkCheck, websiteLinkCheck] = await Promise.all([
     checkUrl("booking", salon.bookingUrl, { includeText: true }),
     checkUrl("instagram", salon.instagramUrl),
     checkUrl("website", salon.websiteUrl && salon.websiteUrl !== salon.bookingUrl ? salon.websiteUrl : "", { includeText: true }),
   ]);
   const linkChecks = preserveKnownBrokenInstagramLink([bookingLinkCheck, instagramLinkCheck, websiteLinkCheck].map(stripLinkCheckResponseText), previousCheck);
-  const activeLinkChecks = linkChecks.filter(Boolean);
+  const activeLinkChecks = linkChecks.filter(Boolean).filter((linkCheck) => {
+    if (linkCheck.status === "ok") {
+      return true;
+    }
+    return !hasDismissedLinkRecommendation(dismissedFingerprints, linkCheck);
+  });
   const issues = activeLinkChecks.flatMap((check) => check.issues);
   const bookingCheck = activeLinkChecks.find((check) => check.type === "booking");
-  const serviceCheck = bookingCheck?.status === "ok" ? extractBookingServicesFromHtml(bookingLinkCheck?.responseText || "") : emptyServiceCheck();
+  const websiteCheck = activeLinkChecks.find((check) => check.type === "website");
+  const embeddedBookingSources = await fetchEmbeddedBookingSources([
+    { html: bookingLinkCheck?.responseText || "", url: salon.bookingUrl || "" },
+    { html: websiteLinkCheck?.responseText || "", url: salon.websiteUrl || "" },
+  ]);
+  const enrichedBookingHtml = combineBookingHtml(bookingLinkCheck?.responseText || "", embeddedBookingSources);
+  const serviceCheck = enrichedBookingHtml ? extractBookingServicesFromHtml(enrichedBookingHtml) : emptyServiceCheck();
+  const priceCheck = await extractBestPriceCheck({
+    booking: enrichedBookingHtml,
+    website: websiteCheck?.status === "ok" ? websiteLinkCheck?.responseText || "" : "",
+    bookingUrl: embeddedBookingSources[0]?.url || salon.bookingUrl || "",
+    websiteUrl: salon.websiteUrl || "",
+  });
   const attributeSuggestions = buildAttributeSuggestions(salon, {
     booking: bookingLinkCheck?.responseText || "",
     website: websiteLinkCheck?.responseText || "",
     instagram: instagramLinkCheck?.profileText || "",
-  }, dismissedRecommendation);
+  }, hasAttributeDismissals ? { ...dismissedRecommendation, hijabiFriendly: false } : dismissedRecommendation).filter((suggestion) => !dismissedFingerprints.has(attributeRecommendationFingerprint(suggestion)));
   const currentServices = normalizeServices(salon.services || []);
   const detectedServices = adjustDetectedServicesForCurrentContext(normalizeServices(serviceCheck.matchedServices), currentServices, serviceCheck.rawServices);
   const dismissedAddedServices = normalizeServices(dismissedRecommendation.addedServices || []);
   const dismissedRemovedServices = normalizeServices(dismissedRecommendation.removedServices || []);
   const dismissedAddedFamilies = new Set(dismissedRecommendation.addedServiceFamilies || []);
   const addedServices = detectedServices.filter((service) => {
-    if (currentServices.includes(service) || dismissedAddedServices.includes(service)) {
+    if (currentServices.includes(service) || (!hasServiceDismissals && dismissedAddedServices.includes(service))) {
+      return false;
+    }
+
+    if (dismissedFingerprints.has(serviceRecommendationFingerprint("add", service, getServiceEvidence(serviceCheck.rawServices, service)))) {
       return false;
     }
 
@@ -1355,7 +2026,7 @@ async function checkSalonFreshness(salon, dismissedRecommendation = {}, previous
   });
   const removedServices =
     serviceCheck.confidence === "medium" || serviceCheck.confidence === "high"
-      ? currentServices.filter((service) => !detectedServices.includes(service) && !dismissedRemovedServices.includes(service))
+      ? currentServices.filter((service) => !detectedServices.includes(service) && (!hasServiceDismissals ? !dismissedRemovedServices.includes(service) : true) && !dismissedFingerprints.has(serviceRecommendationFingerprint("remove", service)))
       : [];
 
   if (addedServices.length > 0) {
@@ -1367,6 +2038,28 @@ async function checkSalonFreshness(salon, dismissedRecommendation = {}, previous
   if (attributeSuggestions.length > 0) {
     issues.push("Possible hijabi-friendly wording found");
   }
+  const autoPricingUpdate = getAutoPricingUpdate(priceCheck);
+  const detectedPriceBand = priceCheck.priceBand || "";
+  const salonHasPrice = Boolean(salon.priceBand);
+  const dismissedPriceBand = dismissedRecommendation.priceBand || "";
+  const priceIsKnown = salonHasPrice && (detectedPriceBand === salon.priceBand || !detectedPriceBand);
+  const priceIsDismissed = !hasPriceDismissals && dismissedPriceBand && detectedPriceBand === dismissedPriceBand;
+  const priceFingerprintDismissed = hasDismissedPriceRecommendation(dismissedFingerprints, priceCheck, hasPriceDismissals ? "" : dismissedPriceBand);
+  const hasPriceRecommendation = Boolean(priceCheck.priceBand && !autoPricingUpdate && !priceIsKnown && !priceIsDismissed && !priceFingerprintDismissed);
+  if (hasPriceRecommendation) {
+    issues.push("Possible pricing band found");
+  }
+  const reviewPriceCheck = hasPriceRecommendation || autoPricingUpdate ? priceCheck : emptyPriceCheck(priceCheck.source || "");
+
+  const detectedLocationLabel = serviceCheck.areaLabel || "";
+  const dismissedLocationLabel = dismissedRecommendation.locationLabel || "";
+  const provisionalLocationCheck = { areaLabel: salon.areaLabel, serviceCheck };
+  const locationFingerprintDismissed = hasDismissedLocationRecommendation(dismissedFingerprints, provisionalLocationCheck, hasLocationDismissals ? "" : dismissedLocationLabel);
+  const locationReviewIgnored = locationFingerprintDismissed
+    || (previousCheck?.locationReviewIgnored === true && detectedLocationLabel === (previousCheck?.serviceCheck?.areaLabel || ""))
+    || (!hasLocationDismissals && dismissedLocationLabel && detectedLocationLabel === dismissedLocationLabel);
+
+  const actionableIssues = [...new Set(issues)].filter((issue) => !dismissedFingerprints.has(genericIssueFingerprint(issue)));
 
   return {
     id: salon.id,
@@ -1376,16 +2069,223 @@ async function checkSalonFreshness(salon, dismissedRecommendation = {}, previous
     instagramUrl: salon.instagramUrl || "",
     websiteUrl: salon.websiteUrl || "",
     hijabiFriendly: salon.hijabiFriendly === true,
-    issues: [...new Set(issues)],
+    issues: actionableIssues,
     linkChecks: activeLinkChecks,
     serviceCheck,
+    priceCheck: reviewPriceCheck,
     attributeSuggestions,
     currentServices,
     detectedServices,
     addedServices,
     removedServices,
+    locationReviewIgnored: locationReviewIgnored || false,
     checkedAt: new Date().toISOString(),
   };
+}
+
+async function checkPricingFreshness(salon, dismissedRecommendation = {}) {
+  const baseCheck = emptyFreshnessCheckForSalon(salon);
+  const hasSavedPrice = Boolean(salon.priceBand);
+  const dismissedFingerprints = getDismissedFingerprintSet(dismissedRecommendation);
+  if (!isPricingCheckCandidate(salon)) {
+    if (hasSavedPrice) {
+      return {
+        ...baseCheck,
+        backfillStatus: "verified",
+        backfillReason: "Saved price band exists, but there is no machine-readable booking or website URL to refresh it.",
+      };
+    }
+    if (hasDismissedPriceRecommendation(dismissedFingerprints, emptyPriceCheck("booking"), dismissedRecommendation.priceBand || "")) {
+      return baseCheck;
+    }
+    return {
+      ...baseCheck,
+      backfillStatus: "skipped-social",
+      backfillReason: "Skipped because this listing is Instagram/social-only and has no saved price band.",
+      issues: ["Manual price check required"],
+    };
+  }
+
+  const urls = getMissingPriceBackfillUrls(salon);
+  if (!urls.bookingUrl && !urls.websiteUrl) {
+    if (hasSavedPrice) {
+      return {
+        ...baseCheck,
+        backfillStatus: "verified",
+        backfillReason: "Saved price band exists, but there is no machine-readable booking or website URL to refresh it.",
+      };
+    }
+    if (hasDismissedPriceRecommendation(dismissedFingerprints, emptyPriceCheck("booking"), dismissedRecommendation.priceBand || "")) {
+      return baseCheck;
+    }
+    return {
+      ...baseCheck,
+      backfillStatus: "skipped-social",
+      backfillReason: "Skipped because there is no machine-readable booking or website URL.",
+      issues: ["Manual price check required"],
+    };
+  }
+
+  const [bookingLinkCheck, websiteLinkCheck] = await Promise.all([
+    urls.bookingUrl ? checkUrl("booking", urls.bookingUrl, { includeText: true }) : null,
+    urls.websiteUrl && urls.websiteUrl !== urls.bookingUrl ? checkUrl("website", urls.websiteUrl, { includeText: true }) : null,
+  ]);
+  const bookingHtml = bookingLinkCheck?.status === "ok" ? bookingLinkCheck.responseText || "" : "";
+  const websiteHtml = websiteLinkCheck?.status === "ok" ? websiteLinkCheck.responseText || "" : "";
+  const embeddedBookingSources = await fetchEmbeddedBookingSources([
+    { html: bookingHtml, url: urls.bookingUrl },
+    { html: websiteHtml, url: urls.websiteUrl },
+  ]);
+  const enrichedBookingHtml = combineBookingHtml(bookingHtml, embeddedBookingSources);
+  let priceCheck = await extractBestPriceCheck({
+    booking: enrichedBookingHtml,
+    website: websiteHtml,
+    bookingUrl: embeddedBookingSources[0]?.url || urls.bookingUrl,
+    websiteUrl: urls.websiteUrl,
+    allowAiFallback: true,
+  });
+
+  if (priceCheck.confidence === "unknown") {
+    priceCheck = await extractDirectSiteFallbackPriceCheck({
+      bookingHtml: enrichedBookingHtml,
+      websiteHtml,
+      bookingUrl: urls.bookingUrl,
+      websiteUrl: urls.websiteUrl,
+      allowAiFallback: true,
+    });
+  }
+
+  if (!priceCheck.priceBand) {
+    if (hasSavedPrice) {
+      return {
+        ...baseCheck,
+        backfillStatus: "verified",
+        backfillReason: "Saved price band exists but no machine-readable pricing was found to verify it.",
+        linkChecks: [bookingLinkCheck, websiteLinkCheck].filter(Boolean).map(stripLinkCheckResponseText),
+      };
+    }
+    if (hasDismissedPriceRecommendation(dismissedFingerprints, priceCheck, dismissedRecommendation.priceBand || "")) {
+      return baseCheck;
+    }
+    return {
+      ...baseCheck,
+      backfillStatus: "no-price",
+      backfillReason: "No machine-readable service pricing found.",
+      issues: ["Manual price check required"],
+      linkChecks: [bookingLinkCheck, websiteLinkCheck].filter(Boolean).map(stripLinkCheckResponseText),
+      priceCheck,
+    };
+  }
+
+  if (hasSavedPrice && priceCheck.priceBand === salon.priceBand) {
+    return {
+      ...baseCheck,
+      backfillStatus: "verified",
+      backfillReason: "Detected pricing matches the saved price band.",
+      linkChecks: [bookingLinkCheck, websiteLinkCheck].filter(Boolean).map(stripLinkCheckResponseText),
+      priceCheck: emptyPriceCheck(priceCheck.source || "booking"),
+    };
+  }
+
+  const priceDismissed = hasDismissedPriceRecommendation(
+    getDismissedFingerprintSet(dismissedRecommendation),
+    priceCheck,
+    dismissedRecommendation.priceBand || "",
+  );
+  if (priceDismissed) {
+    return {
+      ...baseCheck,
+      priceCheck: emptyPriceCheck(priceCheck.source || "booking"),
+    };
+  }
+
+  const autoUpdate = getAutoPricingUpdate(priceCheck);
+  return {
+    ...baseCheck,
+    backfillStatus: autoUpdate ? "auto-applied" : "needs-review",
+    backfillReason: autoUpdate
+      ? hasSavedPrice ? "High-confidence structured booking prices updated the saved band." : "High-confidence structured booking prices were auto-applied."
+      : hasSavedPrice ? `Detected ${priceCheck.priceBand}, saved ${salon.priceBand}. Review before changing.` : "Pricing found, but needs admin review before publishing.",
+    issues: autoUpdate ? [] : ["Possible pricing band found"],
+    linkChecks: [bookingLinkCheck, websiteLinkCheck].filter(Boolean).map(stripLinkCheckResponseText),
+    priceCheck,
+  };
+}
+
+const checkMissingPriceBackfill = checkPricingFreshness;
+
+function emptyFreshnessCheckForSalon(salon) {
+  return {
+    id: salon.id,
+    name: salon.name,
+    areaLabel: salon.areaLabel,
+    bookingUrl: salon.bookingUrl || "",
+    instagramUrl: salon.instagramUrl || "",
+    websiteUrl: salon.websiteUrl || "",
+    hijabiFriendly: salon.hijabiFriendly === true,
+    priceBand: sanitizePriceBand(salon.priceBand),
+    priceSource: sanitizePriceSource(salon.priceSource),
+    priceConfidence: sanitizePriceConfidence(salon.priceConfidence),
+    issues: [],
+    linkChecks: [],
+    serviceCheck: emptyServiceCheck(),
+    priceCheck: emptyPriceCheck("booking"),
+    attributeSuggestions: [],
+    currentServices: normalizeServices(salon.services || []),
+    detectedServices: [],
+    addedServices: [],
+    removedServices: [],
+    locationReviewIgnored: false,
+    checkedAt: new Date().toISOString(),
+  };
+}
+
+function isMissingPriceBackfillCandidate(salon = {}) {
+  const urls = getMissingPriceBackfillUrls(salon);
+  return Boolean((urls.bookingUrl && !isSocialOnlyUrl(urls.bookingUrl)) || (urls.websiteUrl && !isSocialOnlyUrl(urls.websiteUrl)));
+}
+
+function isPricingCheckCandidate(salon = {}) {
+  return isMissingPriceBackfillCandidate(salon);
+}
+
+function getMissingPriceBackfillUrls(salon = {}) {
+  const bookingUrl = cleanString(salon.bookingUrl);
+  const websiteUrl = cleanString(salon.websiteUrl);
+  return {
+    bookingUrl: bookingUrl && !isSocialOnlyUrl(bookingUrl) ? bookingUrl : "",
+    websiteUrl: websiteUrl && !isSocialOnlyUrl(websiteUrl) ? websiteUrl : "",
+  };
+}
+
+function isSocialOnlyUrl(url = "") {
+  const host = safeHost(url);
+  return !host || /(^|\.)instagram\.com$|(^|\.)tiktok\.com$|(^|\.)facebook\.com$|(^|\.)linktr\.ee$|(^|\.)linktree\.com$|(^|\.)beacons\.ai$|(^|\.)bio\.site$|(^|\.)campsite\.bio$|(^|\.)solo\.to$/i.test(host);
+}
+
+function hasVisibleMissingPriceBackfillResult(check) {
+  if (!check?.backfillStatus) {
+    return hasActionableFreshnessCheck(check);
+  }
+  if (sanitizePriceBand(check.priceBand) && (check.backfillStatus === "no-price" || check.backfillStatus === "skipped-social")) {
+    return false;
+  }
+  return check.backfillStatus === "needs-review" || check.backfillStatus === "no-price" || check.backfillStatus === "skipped-social";
+}
+
+function summarizeMissingPriceBackfillResults(checks = []) {
+  return checks.reduce((summary, check) => {
+    const status = check?.backfillStatus || "unknown";
+    if (sanitizePriceBand(check?.priceBand) && (status === "no-price" || status === "skipped-social")) {
+      return summary;
+    }
+    if (status === "auto-applied") summary.autoApplied += 1;
+    else if (status === "needs-review") summary.needsReview += 1;
+    else if (status === "no-price") summary.noPrice += 1;
+    else if (status === "skipped-social") summary.skippedSocial += 1;
+    else summary.unknown += 1;
+    return summary;
+  }, { autoApplied: 0, needsReview: 0, noPrice: 0, skippedSocial: 0, unknown: 0 });
 }
 
 function buildAttributeSuggestions(salon, sources, dismissedRecommendation = {}) {
@@ -1688,21 +2588,1911 @@ function extractBookingServicesFromHtml(html) {
   };
 }
 
+async function extractBestPriceCheck({ booking = "", website = "", bookingUrl = "", websiteUrl = "", allowAiFallback = false } = {}) {
+  const freshaCheck = await extractFreshaPriceCheck(booking, bookingUrl);
+  if (freshaCheck.confidence !== "unknown") {
+    return freshaCheck;
+  }
+
+  const booksyCheck = extractBooksyPriceCheck(booking, bookingUrl);
+  if (booksyCheck.confidence !== "unknown") {
+    return booksyCheck;
+  }
+
+  const setmoreCheck = extractSetmorePriceCheck(booking, bookingUrl);
+  if (setmoreCheck.confidence !== "unknown") {
+    return setmoreCheck;
+  }
+
+  const treatwellCheck = extractTreatwellPriceCheck(booking, bookingUrl);
+  if (treatwellCheck.confidence !== "unknown") {
+    return treatwellCheck;
+  }
+
+  const squareCheck = extractSquarePriceCheck(booking, bookingUrl);
+  if (squareCheck.confidence !== "unknown") {
+    return squareCheck;
+  }
+
+  const salonIqCheck = await extractSalonIqPriceCheck(bookingUrl);
+  if (salonIqCheck.confidence !== "unknown") {
+    return salonIqCheck;
+  }
+
+  const phorestCheck = await extractPhorestPriceCheck(bookingUrl);
+  if (phorestCheck.confidence !== "unknown") {
+    return phorestCheck;
+  }
+
+  const acuityEmbedCheck = await extractAcuityEmbedPriceCheck(booking || website, bookingUrl || websiteUrl);
+  if (acuityEmbedCheck.confidence !== "unknown") {
+    return acuityEmbedCheck;
+  }
+
+  const embeddedPlatformCheck = extractEmbeddedBookingPlatformPriceCheck(booking, bookingUrl);
+  if (embeddedPlatformCheck.confidence !== "unknown") {
+    return embeddedPlatformCheck;
+  }
+
+  const bookingCheck = extractPriceCheckFromHtml(booking, "booking", bookingUrl);
+  if (bookingCheck.confidence !== "unknown") {
+    return bookingCheck;
+  }
+
+  const websiteCheck = extractPriceCheckFromHtml(website, "website", websiteUrl);
+  if (websiteCheck.confidence !== "unknown") {
+    return websiteCheck;
+  }
+
+  const browserCheck = await extractBrowserBackedPriceCheck({ bookingUrl, websiteUrl, allowAiFallback });
+  if (browserCheck.confidence !== "unknown") {
+    return browserCheck;
+  }
+
+  if (allowAiFallback) {
+    const investigativeCheck = await extractInvestigativeAiPriceCheck({ bookingUrl, websiteUrl });
+    if (investigativeCheck.confidence !== "unknown") {
+      return investigativeCheck;
+    }
+    return extractAiPriceFallbackCheck({
+      text: buildAiPriceFallbackText({ booking, website, bookingUrl, websiteUrl }),
+      sourceUrl: bookingUrl || websiteUrl,
+    });
+  }
+
+  return browserCheck;
+}
+
+async function fetchEmbeddedBookingSources(sources = []) {
+  const urls = [];
+  const sourceUrls = new Set(sources.map((source) => normalizeUrlForComparison(source.url)).filter(Boolean));
+  sources.forEach((source) => {
+    extractEmbeddedBookingUrls(source.html, source.url).forEach((url) => {
+      const normalized = normalizeUrlForComparison(url);
+      if (normalized && !sourceUrls.has(normalized)) {
+        urls.push(url);
+      }
+    });
+  });
+
+  const uniqueUrls = [...new Set(urls.map((url) => normalizeBookingUrl(url)).filter(Boolean))].slice(0, 4);
+  const embeddedSources = [];
+  for (const url of uniqueUrls) {
+    try {
+      const linkCheck = await checkUrl("booking", url, { includeText: true });
+      if (linkCheck.status === "ok" && linkCheck.responseText) {
+        embeddedSources.push({ url: linkCheck.finalUrl || url, html: linkCheck.responseText, linkCheck });
+      }
+    } catch {
+      // Embedded booking widgets are best-effort; keep the parent page result if they fail.
+    }
+  }
+  return embeddedSources;
+}
+
+async function extractBrowserBackedPriceCheck({ bookingUrl = "", websiteUrl = "", allowAiFallback = false } = {}) {
+  const candidateUrls = [...new Set([bookingUrl, websiteUrl].filter(Boolean).flatMap(expandBrowserPriceCheckUrls))]
+    .filter((url) => isBrowserBackedPriceCheckUrl(url))
+    .slice(0, 3);
+
+  for (const url of candidateUrls) {
+    try {
+      const check = await extractBrowserRenderedPriceCheck(url, { allowAiFallback });
+      if (check.confidence !== "unknown") {
+        return check;
+      }
+    } catch {
+      // Browser fallback is intentionally best-effort; keep pricing checks moving.
+    }
+  }
+
+  return emptyPriceCheck("browser");
+}
+
+function expandBrowserPriceCheckUrls(url = "") {
+  const urls = [url];
+  const parsed = safeUrl(url);
+  if (!parsed) {
+    return urls;
+  }
+
+  const phorestMatch = parsed.pathname.match(/\/salon\/([^/?#]+)/i);
+  if (safeHost(url).endsWith("phorest.com") && phorestMatch) {
+    urls.push(`https://www.phorest.com/salon/${phorestMatch[1]}/book/service-selection?showSpecialOffers=false`);
+  }
+  const phorestBookMatch = parsed.pathname.match(/\/book\/salons\/([^/?#]+)/i);
+  if (safeHost(url).endsWith("phorest.com") && phorestBookMatch) {
+    urls.push(`https://www.phorest.com/salon/${phorestBookMatch[1]}/book/service-selection?showSpecialOffers=false`);
+  }
+  const phorestLocationMatch = parsed.pathname.match(/\/salon\/([^/?#]+)\/locations/i);
+  if (safeHost(url).endsWith("phorest.com") && phorestLocationMatch) {
+    urls.push(`https://www.phorest.com/salon/${phorestLocationMatch[1]}/book/service-selection?showSpecialOffers=false`);
+  }
+  if (safeHost(url).endsWith("vagaro.com") && !/\/services(?:\/|$)/i.test(parsed.pathname)) {
+    urls.push(`${parsed.origin}${parsed.pathname.replace(/\/+$/, "")}/services`);
+  }
+
+  return urls;
+}
+
+function isBrowserBackedPriceCheckUrl(url = "") {
+  const host = safeHost(url);
+  return host.endsWith("vagaro.com")
+    || host.endsWith("phorest.com")
+    || host.endsWith("gettimely.com")
+    || host.endsWith("zenoti.com")
+    || host.endsWith("getslick.com")
+    || host.endsWith("slick.fyi")
+    || host.endsWith("square.site")
+    || host.endsWith("squareup.com")
+    || host.endsWith("s-iq.co");
+}
+
+async function extractBrowserRenderedPriceCheck(url = "", { allowAiFallback = false } = {}) {
+  const browser = await getPriceCheckBrowser();
+  const page = await browser.newPage({
+    userAgent: browserUserAgent,
+    viewport: { width: 1365, height: 900 },
+  });
+  const responseEntries = [];
+
+  page.on("response", async (response) => {
+    try {
+      const responseUrl = response.url();
+      if (!/vagaro|phorest|service|booking|api/i.test(responseUrl)) {
+        return;
+      }
+      const contentType = response.headers()["content-type"] || "";
+      if (!/json|html|text/i.test(contentType)) {
+        return;
+      }
+      const body = await response.text();
+      if (!/£|&pound;|price|service|fromPrice|totalPrice|Price|ServiceTitle|service_categories/i.test(body)) {
+        return;
+      }
+      responseEntries.push(...extractBrowserPayloadPriceEntries(body));
+    } catch {
+      // Some responses cannot be read by Playwright; ignore them.
+    }
+  });
+
+  try {
+    await page.goto(url, { waitUntil: "domcontentloaded", timeout: 18_000 });
+    await page.waitForLoadState("networkidle", { timeout: 8_000 }).catch(() => {});
+    await clickLikelyBookingControls(page, url);
+    await page.waitForTimeout(2_000);
+
+    const renderedText = await page.locator("body").innerText({ timeout: 5_000 }).catch(() => "");
+    const renderedHtml = await page.content().catch(() => "");
+    const renderedEntries = [
+      ...extractBrowserPayloadPriceEntries(renderedHtml),
+      ...extractPriceEntries(renderedText, { consultationFocused: isConsultationFocusedPricePage(renderedText, url) }),
+    ];
+    const safeResponseEntries = safeHost(url).endsWith("vagaro.com") ? [] : responseEntries;
+    const uniqueEntries = uniquePriceEntries([...safeResponseEntries, ...renderedEntries]);
+    if (uniqueEntries.length) {
+      return {
+        ...buildPriceCheckFromEntries(uniqueEntries.slice(0, 80), "browser", { structured: uniqueEntries.some((entry) => entry.structured) }),
+        source: "browser",
+      };
+    }
+    if (allowAiFallback) {
+      return await extractAiPriceFallbackCheck({
+        text: buildAiPriceFallbackText({ renderedText, renderedHtml, bookingUrl: url }),
+        sourceUrl: url,
+      });
+    }
+  } finally {
+    await page.close().catch(() => {});
+  }
+
+  return emptyPriceCheck("browser");
+}
+
+async function clickLikelyBookingControls(page, url = "") {
+  if (safeHost(url).endsWith("phorest.com")) {
+    await page.getByText(/Continue without Accepting|Accept All Cookies/i).click({ timeout: 2_000 }).catch(() => {});
+    await clickMatchingBrowserElements(page, /\b(colou?r|hair|extension|natural|relax|treatment|wash|style|service|braid|loc|wig|weave|cut)\b/i, 30);
+    return;
+  }
+
+  if (safeHost(url).endsWith("vagaro.com")) {
+    const selectors = [
+      "text=/services/i",
+      "text=/book now/i",
+      "text=/book/i",
+    ];
+    for (const selector of selectors) {
+      const locator = page.locator(selector).first();
+      if (await locator.count().catch(() => 0)) {
+        await locator.click({ timeout: 2_000 }).catch(() => {});
+        await page.waitForLoadState("networkidle", { timeout: 4_000 }).catch(() => {});
+      }
+    }
+    await clickMatchingBrowserElements(page, /\b(braid|braids|loc|locs|wig|weave|sew|silk|press|colour|color|cut|barber|hair|extension|treatment|relax|style)\b/i, 40);
+  }
+}
+
+async function clickMatchingBrowserElements(page, pattern, limit = 25, options = {}) {
+  const {
+    allowBookNow = false,
+    collectSnapshots = null,
+    snapshotLabel = "after click",
+  } = options;
+  const locator = page.locator('[role="button"], button, a');
+  const count = Math.min(await locator.count().catch(() => 0), limit);
+  for (let index = 0; index < count; index += 1) {
+    const item = locator.nth(index);
+    const label = (await item.innerText({ timeout: 500 }).catch(() => "")).replace(/\s+/g, " ").trim();
+    if (!label || !pattern.test(label) || (!allowBookNow && /^book now$/i.test(label)) || isUnsafeBrowserClickLabel(label)) {
+      continue;
+    }
+    await item.click({ timeout: 1_500 }).catch(() => {});
+    await page.waitForLoadState("networkidle", { timeout: 2_000 }).catch(() => {});
+    await page.waitForTimeout(350);
+    if (collectSnapshots) {
+      await collectBrowserPriceSnapshot(page, collectSnapshots, `${snapshotLabel}: ${label}`);
+    }
+  }
+  await page.waitForLoadState("networkidle", { timeout: 4_000 }).catch(() => {});
+}
+
+function isUnsafeBrowserClickLabel(label = "") {
+  return /\b(pay|checkout|confirm|place order|complete booking|buy now|add to cart|basket|subscribe|log ?in|sign ?in|register|create account)\b/i.test(label);
+}
+
+function extractBrowserPayloadPriceEntries(value = "") {
+  const raw = decodeHtmlEntities(String(value || ""))
+    .replace(/\\u0026/g, "&")
+    .replace(/\\u003c/gi, "<")
+    .replace(/\\u003e/gi, ">")
+    .replace(/\\u0022/g, "\"")
+    .replace(/\\\//g, "/");
+  const entries = [
+    ...extractRawPayloadPriceEntries(raw),
+    ...extractEmbeddedJsonObjects(raw).flatMap((data) => extractPriceEntriesFromArbitraryData(data)),
+    ...extractPriceEntries(htmlToReadableText(raw), { consultationFocused: false }),
+  ];
+  return uniquePriceEntries(entries);
+}
+
+function uniquePriceEntries(entries = []) {
+  const unique = [];
+  const seen = new Set();
+  entries.forEach((entry) => {
+    if (!entry || !Number.isFinite(entry.value)) {
+      return;
+    }
+    const key = `${entry.value}:${entry.evidence}`;
+    if (!seen.has(key)) {
+      seen.add(key);
+      unique.push(entry);
+    }
+  });
+  return unique;
+}
+
+async function extractInvestigativeAiPriceCheck({ bookingUrl = "", websiteUrl = "" } = {}) {
+  if (!isAiPriceFallbackEnabled()) {
+    return emptyPriceCheck("ai-browser");
+  }
+  const urls = [...new Set([bookingUrl, websiteUrl].filter((url) => url && !isSocialOnlyUrl(url)).flatMap(expandBrowserPriceCheckUrls))]
+    .filter((url) => safeUrl(url))
+    .slice(0, 3);
+  if (!urls.length) {
+    return emptyPriceCheck("ai-browser");
+  }
+
+  for (const url of urls) {
+    try {
+      const investigation = await investigatePricePageWithBrowser(url);
+      const directEntries = uniquePriceEntries(investigation.priceEntries);
+      if (directEntries.length) {
+        return {
+          ...buildPriceCheckFromEntries(directEntries.slice(0, 80), "browser", { structured: directEntries.some((entry) => entry.structured) }),
+          source: "browser",
+        };
+      }
+      const check = await extractAiPriceFallbackCheck({
+        text: investigation.text,
+        sourceUrl: url,
+      });
+      if (check.confidence !== "unknown") {
+        return {
+          ...check,
+          source: "ai-browser",
+        };
+      }
+    } catch (error) {
+      console.warn(`Investigative price crawl failed for ${url}: ${error.message}`);
+    }
+  }
+
+  return emptyPriceCheck("ai-browser");
+}
+
+async function investigatePricePageWithBrowser(url = "") {
+  const browser = await getPriceCheckBrowser();
+  const page = await browser.newPage({
+    userAgent: browserUserAgent,
+    viewport: { width: 1365, height: 900 },
+  });
+  const snapshots = [];
+  const responseEntries = [];
+
+  page.on("response", async (response) => {
+    try {
+      const responseUrl = response.url();
+      if (!/service|price|booking|appointment|treatment|api|schedule|phorest|vagaro|timely|square|acuity|as\.me|zenoti|slick|tress|jena/i.test(responseUrl)) {
+        return;
+      }
+      const contentType = response.headers()["content-type"] || "";
+      if (!/json|html|text/i.test(contentType)) {
+        return;
+      }
+      const body = await response.text();
+      if (!/£|&pound;|gbp|price|service|treatment|booking/i.test(body)) {
+        return;
+      }
+      responseEntries.push(...extractBrowserPayloadPriceEntries(body));
+    } catch {
+      // Ignore unreadable browser responses.
+    }
+  });
+
+  try {
+    await page.goto(url, { waitUntil: "domcontentloaded", timeout: 18_000 });
+    await page.waitForLoadState("networkidle", { timeout: 8_000 }).catch(() => {});
+    await collectBrowserPriceSnapshot(page, snapshots, "initial page");
+    await clickCookieControls(page);
+
+    const likelyLinks = await extractLikelyBrowserPriceLinks(page, url);
+    for (const link of likelyLinks.slice(0, 5)) {
+      if (isNonPageAssetUrl(link)) {
+        continue;
+      }
+      await page.goto(link, { waitUntil: "domcontentloaded", timeout: 14_000 }).catch(() => null);
+      await page.waitForLoadState("networkidle", { timeout: 5_000 }).catch(() => {});
+      await collectBrowserPriceSnapshot(page, snapshots, `visited ${link}`);
+      await clickInvestigativeBrowserControls(page, snapshots, link);
+    }
+
+    await page.goto(url, { waitUntil: "domcontentloaded", timeout: 14_000 }).catch(() => null);
+    await page.waitForLoadState("networkidle", { timeout: 5_000 }).catch(() => {});
+    await clickInvestigativeBrowserControls(page, snapshots, url);
+
+    const snapshotText = snapshots.join("\n\n---\n\n");
+    const snapshotEntries = extractPriceEntries(snapshotText, { consultationFocused: isConsultationFocusedPricePage(snapshotText, url) });
+    return {
+      text: buildAiPriceFallbackText({ renderedText: snapshotText, bookingUrl: url }),
+      priceEntries: uniquePriceEntries([...responseEntries, ...snapshotEntries]),
+    };
+  } finally {
+    await page.close().catch(() => {});
+  }
+}
+
+async function collectBrowserPriceSnapshot(page, snapshots, label = "") {
+  const url = page.url();
+  const text = await page.locator("body").innerText({ timeout: 4_000 }).catch(() => "");
+  const cleaned = text.replace(/\s+\n/g, "\n").replace(/\n{3,}/g, "\n\n").trim();
+  if (!cleaned || !/(£|gbp|price|service|treatment|book|appointment|braid|loc|wig|weave|hair)/i.test(cleaned)) {
+    return;
+  }
+  snapshots.push(`SNAPSHOT: ${label}\nURL: ${url}\n${cleaned.slice(0, 6000)}`);
+}
+
+async function clickCookieControls(page) {
+  const labels = /accept all|accept cookies|continue without accepting|reject all|allow all/i;
+  await clickMatchingBrowserElements(page, labels, 8, { allowBookNow: true, collectSnapshots: null, snapshotLabel: "" });
+}
+
+async function clickInvestigativeBrowserControls(page, snapshots, url = "") {
+  await clickLikelyBookingControls(page, url);
+  await collectBrowserPriceSnapshot(page, snapshots, "after platform controls");
+  await clickMatchingBrowserElements(
+    page,
+    /\b(book now|book|services?|treatments?|prices?|pricing|menu|appointments?|schedule|select|continue|next|hair|braid|braids|loc|locs|wig|weave|sew|silk|press|colour|color|cut|extension|treatment|relax|style)\b/i,
+    45,
+    { allowBookNow: true, collectSnapshots: snapshots, snapshotLabel: "after click" },
+  );
+}
+
+async function extractLikelyBrowserPriceLinks(page, baseUrl = "") {
+  const links = await page.locator("a[href]").evaluateAll((anchors) => anchors.map((anchor) => ({
+    href: anchor.href,
+    label: anchor.textContent || "",
+  }))).catch(() => []);
+  const baseHost = safeHost(baseUrl);
+  const scored = links
+    .map((link) => {
+      const href = cleanString(link.href);
+      const label = cleanPriceEvidenceText(link.label || "");
+      if (!href || isSocialOnlyUrl(href) || isNonPageAssetUrl(href)) {
+        return null;
+      }
+      const host = safeHost(href);
+      const sameSite = host === baseHost || host.endsWith(`.${baseHost}`);
+      const knownBooking = isKnownStructuredBookingUrl(href);
+      if (!sameSite && !knownBooking) {
+        return null;
+      }
+      const haystack = `${href} ${label}`;
+      const score = [
+        /price|pricing|prices/i,
+        /service|services|treatment|treatments/i,
+        /book|booking|appointment|schedule/i,
+        /hair|braid|loc|wig|weave|silk|colour|color/i,
+      ].reduce((total, pattern) => total + (pattern.test(haystack) ? 1 : 0), 0);
+      return score ? { href, score } : null;
+    })
+    .filter(Boolean)
+    .sort((left, right) => right.score - left.score);
+  return [...new Set(scored.map((link) => normalizeBookingUrl(link.href)).filter(Boolean))].slice(0, 8);
+}
+
+function isNonPageAssetUrl(url = "") {
+  try {
+    const parsed = new URL(url);
+    return /\.(?:png|jpe?g|gif|webp|svg|ico|pdf|zip|css|js|woff2?|ttf|eot)(?:$|\?)/i.test(parsed.pathname);
+  } catch {
+    return true;
+  }
+}
+
+function buildAiPriceFallbackText({ booking = "", website = "", renderedText = "", renderedHtml = "", bookingUrl = "", websiteUrl = "" } = {}) {
+  const parts = [
+    bookingUrl ? `BOOKING URL: ${bookingUrl}` : "",
+    websiteUrl ? `WEBSITE URL: ${websiteUrl}` : "",
+    renderedText ? `RENDERED PAGE TEXT:\n${renderedText}` : "",
+    booking ? `BOOKING PAGE TEXT:\n${htmlToReadableText(booking)}` : "",
+    website ? `WEBSITE PAGE TEXT:\n${htmlToReadableText(website)}` : "",
+    renderedHtml && !renderedText ? `RENDERED HTML TEXT:\n${htmlToReadableText(renderedHtml)}` : "",
+  ].filter(Boolean);
+
+  return parts.join("\n\n").replace(/\s+\n/g, "\n").slice(0, 20_000);
+}
+
+async function extractAiPriceFallbackCheck({ text = "", sourceUrl = "" } = {}) {
+  const inputText = cleanString(text);
+  if (!isAiPriceFallbackEnabled() || !/(£|gbp|british pounds?|pounds?|\bprice\b)/i.test(inputText)) {
+    return emptyPriceCheck("ai");
+  }
+
+  try {
+    const response = await fetchOpenAiPriceExtraction(inputText, sourceUrl);
+    const entries = sanitizeAiPriceEntries(response?.servicePrices || []);
+    if (!entries.length) {
+      return emptyPriceCheck("ai");
+    }
+
+    const modelConfidence = sanitizePriceConfidence(response?.confidence) || "low";
+    const priceCheck = buildPriceCheckFromEntries(entries, "ai", { structured: true });
+    const confidence = modelConfidence === "high" && entries.length >= 6
+      ? "high"
+      : entries.length >= 3
+        ? "medium"
+        : "low";
+    return {
+      ...priceCheck,
+      source: "ai",
+      confidence,
+      evidence: entries.slice(0, 8).map((entry) => entry.evidence),
+    };
+  } catch (error) {
+    console.warn(`AI price fallback failed${sourceUrl ? ` for ${sourceUrl}` : ""}: ${error.message}`);
+    return emptyPriceCheck("ai");
+  }
+}
+
+function isAiPriceFallbackEnabled() {
+  return Boolean(getOpenAiApiKey());
+}
+
+function getOpenAiApiKey() {
+  return cleanString(process.env.OPENAI_API_KEY || process.env.ROWK_OPENAI_API_KEY);
+}
+
+function getOpenAiPriceModel() {
+  return cleanString(process.env.OPENAI_PRICE_MODEL || process.env.OPENAI_MODEL) || "gpt-4.1-mini";
+}
+
+async function fetchOpenAiPriceExtraction(text, sourceUrl = "") {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 45_000);
+  try {
+    const response = await fetch("https://api.openai.com/v1/responses", {
+      method: "POST",
+      signal: controller.signal,
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${getOpenAiApiKey()}`,
+      },
+      body: JSON.stringify({
+        model: getOpenAiPriceModel(),
+        instructions: [
+          "Extract GBP hair-service prices from booking-page text for an admin pricing check.",
+          "Return only real bookable service prices.",
+          "Exclude consultations, deposits, discounts, vouchers, add-ons, extra charges, Sunday charges, cancellation/late/no-show fees, gift cards, courses/classes, products, and per-bundle/per-track/per-row component prices.",
+          "If a range is shown, use the midpoint. If a price says From £X for a real service, use X.",
+          "Do not infer prices that are not in the text.",
+          "Return at most 80 servicePrices, prioritising distinct real services.",
+        ].join(" "),
+        input: [{
+          role: "user",
+          content: [{
+            type: "input_text",
+            text: `Source URL: ${sourceUrl || "unknown"}\n\nPage text:\n${text.slice(0, 20_000)}`,
+          }],
+        }],
+        text: {
+          format: {
+            type: "json_schema",
+            name: "hair_service_price_extraction",
+            strict: true,
+            schema: {
+              type: "object",
+              additionalProperties: false,
+              properties: {
+                confidence: { type: "string", enum: ["high", "medium", "low"] },
+                servicePrices: {
+                  type: "array",
+                  items: {
+                    type: "object",
+                    additionalProperties: false,
+                    properties: {
+                      serviceName: { type: "string" },
+                      price: { type: "number" },
+                      evidence: { type: "string" },
+                    },
+                    required: ["serviceName", "price", "evidence"],
+                  },
+                },
+                notes: { type: "string" },
+              },
+              required: ["confidence", "servicePrices", "notes"],
+            },
+          },
+        },
+        max_output_tokens: 8000,
+      }),
+    });
+
+    const body = await response.json().catch(() => ({}));
+    if (!response.ok) {
+      throw new Error(body?.error?.message || `OpenAI API returned ${response.status}`);
+    }
+    const outputText = getOpenAiResponseText(body);
+    return JSON.parse(outputText);
+  } finally {
+    clearTimeout(timeout);
+  }
+}
+
+function getOpenAiResponseText(response = {}) {
+  if (typeof response.output_text === "string" && response.output_text.trim()) {
+    return response.output_text;
+  }
+  const chunks = [];
+  (response.output || []).forEach((item) => {
+    (item.content || []).forEach((content) => {
+      if (typeof content.text === "string") {
+        chunks.push(content.text);
+      }
+    });
+  });
+  return chunks.join("\n").trim();
+}
+
+function sanitizeAiPriceEntries(entries = []) {
+  return (Array.isArray(entries) ? entries : [])
+    .map((entry) => {
+      const serviceName = cleanPriceEvidenceText(entry?.serviceName || "");
+      const evidence = cleanPriceEvidenceText(entry?.evidence || serviceName);
+      const value = Number(entry?.price);
+      const evidenceText = evidence || serviceName;
+      if (!Number.isFinite(value) || value < 10 || value > 5000) {
+        return null;
+      }
+      if (!isLikelyServicePriceContext(serviceName || evidenceText) || isNonServicePriceLine(`${serviceName} ${evidenceText}`)) {
+        return null;
+      }
+      return {
+        value,
+        evidence: `${serviceName} - ${evidenceText}`.slice(0, 180),
+        hasServiceContext: true,
+        structured: true,
+      };
+    })
+    .filter(Boolean)
+    .slice(0, 80);
+}
+
+async function getPriceCheckBrowser() {
+  if (!priceCheckBrowserPromise) {
+    priceCheckBrowserPromise = import("playwright")
+      .then(({ chromium }) => chromium.launch({ headless: true }))
+      .catch((error) => {
+        priceCheckBrowserPromise = null;
+        throw error;
+      });
+  }
+  return priceCheckBrowserPromise;
+}
+
+function combineBookingHtml(primaryHtml = "", embeddedSources = []) {
+  return [primaryHtml, ...embeddedSources.map((source) => source.html)].filter(Boolean).join("\n");
+}
+
+function extractEmbeddedBookingUrls(html = "", baseUrl = "") {
+  if (!html) {
+    return [];
+  }
+  const decodedHtml = decodeHtmlEntities(String(html));
+  const urls = [];
+  const attributeRegex = /\b(?:src|href|data-acuity-url|data-url|data-src|data-booking-url|data-scheduling-url)=["']([^"']+)["']/gi;
+  let match;
+  while ((match = attributeRegex.exec(decodedHtml)) !== null) {
+    urls.push(resolveEmbeddedBookingUrl(match[1], baseUrl));
+  }
+
+  const rawUrlRegex = /https?:\/\/[^\s"'<>\\]+/gi;
+  while ((match = rawUrlRegex.exec(decodedHtml)) !== null) {
+    urls.push(resolveEmbeddedBookingUrl(match[0], baseUrl));
+  }
+
+  const acuityUserMatch = decodedHtml.match(/data-user-id=["'](\d+)["']/i);
+  const acuityUrlMatch = decodedHtml.match(/data-acuity-url=["']([^"']+)["']/i);
+  if (acuityUrlMatch) {
+    const acuityUrl = resolveEmbeddedBookingUrl(acuityUrlMatch[1], baseUrl);
+    if (!/squarespace-example\.as\.me/i.test(acuityUrl)) {
+      urls.push(acuityUrl);
+    }
+  }
+  if (acuityUserMatch) {
+    urls.push(`https://app.acuityscheduling.com/schedule.php?owner=${acuityUserMatch[1]}`);
+  }
+
+  const timelyButtonRegex = /new\s+timelyButton\(["']([^"']+)["'](?:\s*,\s*(\{[\s\S]{0,500}?\}))?\)/gi;
+  while ((match = timelyButtonRegex.exec(decodedHtml)) !== null) {
+    const slug = cleanString(match[1]);
+    if (slug) {
+      urls.push(`https://bookings.gettimely.com/${encodeURIComponent(slug)}/book`);
+    }
+  }
+
+  return [...new Set(urls.filter((url) => url && isKnownStructuredBookingUrl(url) && !isSocialOnlyUrl(url)))];
+}
+
+function resolveEmbeddedBookingUrl(value = "", baseUrl = "") {
+  const cleaned = cleanString(value).replace(/\\\//g, "/");
+  if (!cleaned || /^javascript:|^mailto:|^tel:/i.test(cleaned)) {
+    return "";
+  }
+  try {
+    return new URL(cleaned, baseUrl || undefined).toString();
+  } catch {
+    return "";
+  }
+}
+
+function normalizeBookingUrl(url = "") {
+  try {
+    const parsed = new URL(url);
+    parsed.hash = "";
+    return parsed.toString();
+  } catch {
+    return "";
+  }
+}
+
+function normalizeUrlForComparison(url = "") {
+  return normalizeBookingUrl(url).replace(/\/+$/, "").toLowerCase();
+}
+
+function decodeHtmlEntities(value = "") {
+  return String(value || "")
+    .replace(/&amp;/gi, "&")
+    .replace(/&quot;/gi, "\"")
+    .replace(/&#34;/g, "\"")
+    .replace(/&#39;/g, "'")
+    .replace(/&apos;/gi, "'")
+    .replace(/&lt;/gi, "<")
+    .replace(/&gt;/gi, ">");
+}
+
+function cookieHeaderFromSetCookie(setCookie = "") {
+  return String(setCookie || "")
+    .split(/,\s*(?=[^;,]+=)/)
+    .map((cookie) => cookie.trim().split(";")[0])
+    .filter(Boolean)
+    .join("; ");
+}
+
+async function extractDirectSiteFallbackPriceCheck({ bookingHtml = "", websiteHtml = "", bookingUrl = "", websiteUrl = "", allowAiFallback = false } = {}) {
+  const directSources = [
+    { html: bookingHtml, url: bookingUrl },
+    { html: websiteHtml, url: websiteUrl },
+  ].filter((source) => source.html && source.url && !isKnownStructuredBookingUrl(source.url));
+
+  const candidateUrls = [];
+  directSources.forEach((source) => {
+    candidateUrls.push(...extractLikelyPricingPageUrls(source.html, source.url));
+  });
+
+  const uniqueUrls = [...new Set(candidateUrls)].slice(0, 4);
+  for (const url of uniqueUrls) {
+    try {
+      const response = await fetchWithTimeout(url);
+      if (!response.ok) {
+        continue;
+      }
+      const html = await response.text();
+      if (!hasStrongPricingPageContext(html, url)) {
+        continue;
+      }
+      const check = extractPriceCheckFromHtml(html, "website", url);
+      if (check.confidence !== "unknown") {
+        return {
+          ...check,
+          confidence: check.confidence === "high" ? "medium" : check.confidence,
+        };
+      }
+    } catch {
+      // Keep the fallback best-effort; direct sites vary heavily.
+    }
+  }
+
+  if (allowAiFallback) {
+    return extractAiPriceFallbackCheck({
+      text: buildAiPriceFallbackText({ booking: bookingHtml, website: websiteHtml, bookingUrl, websiteUrl }),
+      sourceUrl: bookingUrl || websiteUrl,
+    });
+  }
+
+  return emptyPriceCheck("website");
+}
+
+function extractLikelyPricingPageUrls(html, baseUrl = "") {
+  const base = safeUrl(baseUrl);
+  if (!base) {
+    return [];
+  }
+  const urls = [];
+  const linkRegex = /<a\b[^>]*href=["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi;
+  let match;
+  while ((match = linkRegex.exec(String(html || ""))) !== null) {
+    const href = cleanString(match[1]);
+    const label = cleanPriceEvidenceText(match[2]);
+    if (!/(price|pricing|prices|service|services|menu|book|booking|treatment|treatments)/i.test(`${href} ${label}`)) {
+      continue;
+    }
+    try {
+      const url = new URL(href, base).toString();
+      if (safeHost(url) === base.hostname.replace(/^www\./, "") || safeHost(url).endsWith(`.${base.hostname.replace(/^www\./, "")}`)) {
+        urls.push(url);
+      }
+    } catch {
+      // skip invalid links
+    }
+  }
+  return urls;
+}
+
+function hasStrongPricingPageContext(html, url = "") {
+  const text = htmlToReadableText(html).slice(0, 5000);
+  const priceCount = (text.match(/£|&pound;|gbp|british pounds?/gi) || []).length;
+  const serviceCount = (text.match(/\b(braid|braids|loc|locs|wig|weave|sew|silk|press|colour|color|cut|trim|wash|blow|treat|keratin|relax|pony|cornrow|closure|frontal|install|twist|texture)\b/gi) || []).length;
+  return priceCount >= 3 && serviceCount >= 3 && !isConsultationFocusedPricePage(text, url);
+}
+
+function isKnownStructuredBookingUrl(url = "") {
+  const host = safeHost(url);
+  return /fresha\.com|booksy\.com|setmore\.com|as\.me|acuityscheduling\.com|treatwell\.|s-iq\.co|phorest\.com|phorest\.me|vagaro\.com|gettimely\.com|square|zenoti\.com|getslick\.com|slick\.fyi|tressly\.com|jena/i.test(host);
+}
+
+function extractPriceCheckFromHtml(html, source, url = "") {
+  if (!html) {
+    return emptyPriceCheck(source);
+  }
+
+  const text = htmlToReadableText(html);
+  const consultationFocused = isConsultationFocusedPricePage(text, url);
+  const structuredPriceEntries = extractStructuredPriceEntries(html);
+  if (structuredPriceEntries.length) {
+    return buildPriceCheckFromEntries(structuredPriceEntries, source);
+  }
+
+  const rawPayloadPriceEntries = extractRawPayloadPriceEntries(html);
+  if (rawPayloadPriceEntries.length >= 3) {
+    return buildPriceCheckFromEntries(rawPayloadPriceEntries, source, { structured: true });
+  }
+
+  const priceEntries = extractPriceEntries(text, { consultationFocused });
+  if (!priceEntries.length) {
+    return emptyPriceCheck(source);
+  }
+
+  return buildPriceCheckFromEntries(priceEntries, source);
+}
+
+function parseManualPriceText(text = "") {
+  const normalizedText = String(text || "").replace(/&pound;/gi, "£").replace(/\bGBP\b/gi, "£");
+  const consultationFocused = isConsultationFocusedPricePage(normalizedText, "");
+  const entries = extractPriceEntries(normalizedText, { consultationFocused });
+  const priceCheck = entries.length ? buildPriceCheckFromEntries(entries, "manual") : emptyPriceCheck("manual");
+  return {
+    ...priceCheck,
+    confidence: entries.length ? "manual" : "unknown",
+    ignoredPrices: extractIgnoredManualPriceLines(normalizedText),
+  };
+}
+
+function buildPriceCheckFromEntries(priceEntries, source, { structured = false } = {}) {
+  const values = priceEntries.map((entry) => entry.value).sort((left, right) => left - right);
+  const medianPrice = values[Math.floor(values.length / 2)];
+  const priceBand = priceBandForValue(medianPrice);
+  const structuredEntries = structured || priceEntries.some((entry) => entry.structured);
+  const contextualEntries = priceEntries.filter((entry) => entry.hasServiceContext || entry.structured).length;
+  return {
+    source,
+    confidence: structuredEntries && priceEntries.length >= 6 ? "high" : structuredEntries && priceEntries.length >= 2 ? "medium" : contextualEntries >= 3 ? "medium" : priceEntries.length >= 3 ? "low" : "unknown",
+    priceBand,
+    medianPrice,
+    prices: values,
+    priceCount: priceEntries.length,
+    evidence: priceEntries.slice(0, 8).map((entry) => entry.evidence),
+  };
+}
+
+function extractRawPayloadPriceEntries(html = "") {
+  const raw = decodeHtmlEntities(String(html || ""))
+    .replace(/\\u0026/g, "&")
+    .replace(/\\u003c/gi, "<")
+    .replace(/\\u003e/gi, ">")
+    .replace(/\\u0022/g, "\"")
+    .replace(/\\\//g, "/");
+  const entries = [];
+
+  const objectPriceRegex = /"(?<nameKey>name|title|serviceName|service_name|displayName|display_name|ServiceTitle|ServiceName)"\s*:\s*"(?<name>[^"]{3,160})"(?<middle>[\s\S]{0,2500}?)"(?<priceKey>price_cents|priceCents|price|Price|amount|Amount|cost|Cost|salePrice|price_description|priceDescription)"\s*:\s*"?(?<price>[^",}\]]+)"?/gi;
+  let match;
+  while ((match = objectPriceRegex.exec(raw)) !== null) {
+    const name = cleanPriceEvidenceText(match.groups?.name || "");
+    const priceKey = match.groups?.priceKey || "";
+    const price = parsePayloadPrice(match.groups?.price, priceKey, match.groups?.middle || "");
+    addRawPayloadPriceEntry(entries, name, price);
+  }
+
+  const reactPriceRegex = /"children"\s*:\s*"(?<name>[^"]{3,120})"(?<middle>[\s\S]{0,900}?)"children"\s*:\s*\[\s*"£"\s*,\s*(?<price>[0-9]{1,4}(?:\.[0-9]{1,2})?)\s*\]/gi;
+  while ((match = reactPriceRegex.exec(raw)) !== null) {
+    addRawPayloadPriceEntry(entries, cleanPriceEvidenceText(match.groups?.name || ""), parsePayloadPrice(match.groups?.price, "price"));
+  }
+
+  const visibleCardRegex = /<h[1-6][^>]*>(?<name>[\s\S]{3,180}?)<\/h[1-6]>(?<middle>[\s\S]{0,1200}?)(?:Price\s*:?\s*)?(?:From\s*)?£\s*(?<price>[0-9]{1,4}(?:[,.][0-9]{1,2})?)/gi;
+  while ((match = visibleCardRegex.exec(raw)) !== null) {
+    addRawPayloadPriceEntry(entries, cleanPriceEvidenceText(match.groups?.name || ""), parsePayloadPrice(match.groups?.price, "price"));
+  }
+
+  const unique = new Map();
+  entries.forEach((entry) => {
+    unique.set(`${entry.value}:${entry.evidence}`, entry);
+  });
+  return [...unique.values()].slice(0, 80);
+}
+
+function addRawPayloadPriceEntry(entries, label, price) {
+  const cleanedLabel = cleanPriceEvidenceText(label);
+  const evidenceText = cleanedLabel;
+  if (!Number.isFinite(price) || !isLikelyServicePriceContext(cleanedLabel) || isNonServicePriceLine(evidenceText)) {
+    return;
+  }
+  entries.push({
+    value: price,
+    evidence: `${cleanedLabel} - ${formatPriceEvidence(price)}`,
+    structured: true,
+    hasServiceContext: true,
+  });
+}
+
+function parsePayloadPrice(value, key = "", context = "") {
+  const rawValue = String(value || "").replace(/,/g, "");
+  const poundMatch = rawValue.match(/£\s*([0-9]{1,4}(?:\.[0-9]{1,2})?)/);
+  const numberMatch = rawValue.match(/[0-9]{1,6}(?:\.[0-9]{1,2})?/);
+  let price = poundMatch ? Number(poundMatch[1]) : numberMatch ? Number(numberMatch[0]) : Number.NaN;
+  if (/cents/i.test(key) && Number.isFinite(price)) {
+    price /= 100;
+  }
+  if (
+    Number.isFinite(price) &&
+    !/cents/i.test(key) &&
+    !poundMatch &&
+    Number.isInteger(price) &&
+    price >= 1000 &&
+    price <= 500000 &&
+    /"currency"\s*:\s*"GBP"|"currency_code"\s*:\s*"GBP"|"currencyCode"\s*:\s*"GBP"/i.test(String(context || ""))
+  ) {
+    price /= 100;
+  }
+  return Number.isFinite(price) && price >= 10 && price <= 5000 ? price : Number.NaN;
+}
+
+async function extractFreshaPriceCheck(html, url = "") {
+  if (!isFreshaUrl(url) && !String(html || "").includes("FRESHA_VARS")) {
+    return emptyPriceCheck("booking");
+  }
+
+  const context = extractFreshaBookingContext(html, url);
+  if (!context.locationSlug) {
+    return emptyPriceCheck("booking");
+  }
+
+  try {
+    const response = await fetchWithTimeout("https://www.fresha.com/graphql", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "accept-language": "en-GB",
+        "x-graphql-operation-name": "mutation BookingFlow_Initialize_Mutation",
+      },
+      body: JSON.stringify({
+        operationName: "BookingFlow_Initialize_Mutation",
+        variables: {
+          input: {
+            locationSlug: context.locationSlug,
+            referer: "https://www.fresha.com/",
+            options: {
+              marketingToken: context.searchParams.get("marketingToken"),
+              cnToken: context.searchParams.get("cnToken"),
+              via: context.searchParams.get("via"),
+              isGroupBooking: context.searchParams.get("groupBooking") === "true",
+              isRebook: context.searchParams.get("rebook") === "true",
+              rwgToken: null,
+              geiToken: null,
+              employeeId: normalizeNullableFreshaParam(context.searchParams.get("employeeId")),
+              professionalProfileSlug: normalizeNullableFreshaParam(context.searchParams.get("professionalSlug")),
+              shouldShowAllEmployees: context.searchParams.get("employeeId") === "all",
+              isFromLinkBuilder: context.searchParams.has("menu") || context.searchParams.has("share"),
+              waitlistEntryToken: context.searchParams.get("waitlistEntryToken"),
+              firstTouchAt: null,
+              clientChannelType: "DIRECT",
+              appointmentId: context.searchParams.get("appointmentId"),
+              giftCardCode: context.searchParams.get("claim-gift") || context.searchParams.get("claim_gift"),
+              offerItemId: context.searchParams.get("offerItemId"),
+              offerItems: context.searchParams.get("offerItems")?.split(",").filter(Boolean) || null,
+              cartId: context.searchParams.get("cartId"),
+              rewardIds: null,
+              providerReferences: null,
+              referralCode: null,
+              preferredDate: context.searchParams.get("preferredDate"),
+              preferredTimeslot: context.searchParams.get("preferredTimeslot"),
+              landingPageUrl: null,
+              externalReferrerUrl: null,
+            },
+            shouldAutoContinue: false,
+            capabilities: ["SERVICE_ADDONS", "CONFIRMATION", "MARKETPLACE_REFRESH"],
+          },
+          fullUpfrontPaymentEnabled: false,
+          discountsAndBenefitsEnabled: false,
+        },
+        extensions: {
+          persistedQuery: {
+            version: 1,
+            sha256Hash: "ddd7483bf26f2f06ae68a8ec83140a2501aa313bd1e7f3845b9f2f91ebce85f5",
+          },
+        },
+      }),
+    });
+
+    if (!response.ok) {
+      return emptyPriceCheck("booking");
+    }
+
+    const data = await response.json();
+    const entries = extractFreshaPriceEntries(data);
+    return entries.length ? buildPriceCheckFromEntries(entries, "booking", { structured: true }) : emptyPriceCheck("booking");
+  } catch {
+    return emptyPriceCheck("booking");
+  }
+}
+
+function extractFreshaBookingContext(html, url = "") {
+  const parsedUrl = safeUrl(url);
+  const context = {
+    locationSlug: "",
+    searchParams: parsedUrl?.searchParams ? new URLSearchParams(parsedUrl.searchParams) : new URLSearchParams(),
+  };
+
+  if (parsedUrl?.pathname) {
+    const slugMatch = parsedUrl.pathname.match(/\/a\/([^/]+)\/booking\b/);
+    if (slugMatch) {
+      context.locationSlug = decodeURIComponent(slugMatch[1]);
+    }
+  }
+
+  const nextData = extractNextData(html);
+  const pageProps = nextData?.props?.pageProps || {};
+  if (!context.locationSlug && typeof pageProps.locationSlug === "string") {
+    context.locationSlug = pageProps.locationSlug;
+  }
+  if (pageProps.searchParams && typeof pageProps.searchParams === "object") {
+    Object.entries(pageProps.searchParams).forEach(([key, value]) => {
+      if (!context.searchParams.has(key) && value != null) {
+        context.searchParams.set(key, Array.isArray(value) ? value.join(",") : String(value));
+      }
+    });
+  }
+
+  return context;
+}
+
+function extractNextData(html) {
+  const match = String(html || "").match(/<script[^>]+id=["']__NEXT_DATA__["'][^>]*>([\s\S]*?)<\/script>/i);
+  if (!match) {
+    return null;
+  }
+  try {
+    return JSON.parse(match[1]);
+  } catch {
+    return null;
+  }
+}
+
+function extractFreshaPriceEntries(data) {
+  const categories = data?.data?.bookingFlowInitialize?.screenServices?.categories;
+  if (!Array.isArray(categories)) {
+    return [];
+  }
+
+  return categories
+    .flatMap((category) => {
+      const categoryName = cleanPriceEvidenceText(category?.name);
+      return Array.isArray(category?.items)
+        ? category.items.map((item) => {
+            const price = parseAppointmentPrice(item?.price?.formatted);
+            if (!Number.isFinite(price)) {
+              return null;
+            }
+            const name = cleanPriceEvidenceText(item?.name || categoryName || "Service");
+            const evidenceText = [categoryName, name, item?.caption, item?.description].filter(Boolean).join(" ");
+            if (isNonServicePriceLine(evidenceText)) {
+              return null;
+            }
+            return {
+              value: price,
+              evidence: `${name} - ${cleanPriceEvidenceText(item.price.formatted)}`,
+              structured: true,
+            };
+          })
+        : [];
+    })
+    .filter(Boolean)
+    .slice(0, 80);
+}
+
+function normalizeNullableFreshaParam(value) {
+  return value && value !== "all" ? value : null;
+}
+
+function isFreshaUrl(url) {
+  return safeHost(url).endsWith("fresha.com");
+}
+
+function extractBooksyPriceCheck(html, url = "") {
+  const host = safeHost(url);
+  if (!host.endsWith("booksy.com")) {
+    return emptyPriceCheck("booking");
+  }
+
+  const scripts = extractAllJsonLd(html);
+  for (const data of scripts) {
+    const items = [data, ...(data?.["@graph"] ?? [])];
+    for (const item of items) {
+      const offers = item?.makesOffer;
+      if (!Array.isArray(offers) || offers.length === 0) {
+        continue;
+      }
+      const entries = offers
+        .map((offer) => {
+          const price = parseAppointmentPrice(offer?.price);
+          if (!Number.isFinite(price)) {
+            return null;
+          }
+          const name = cleanPriceEvidenceText(offer?.name || "Service");
+          if (isNonServicePriceLine(name)) {
+            return null;
+          }
+          return { value: price, evidence: `${name} - ${formatPriceEvidence(price)}`, structured: true };
+        })
+        .filter(Boolean)
+        .slice(0, 80);
+      if (entries.length) {
+        return buildPriceCheckFromEntries(entries, "booking", { structured: true });
+      }
+    }
+  }
+  return emptyPriceCheck("booking");
+}
+
+function extractSetmorePriceCheck(html, url = "") {
+  const host = safeHost(url);
+  if (!host.endsWith("setmore.com")) {
+    return emptyPriceCheck("booking");
+  }
+
+  const nextData = extractNextData(html);
+  const services = nextData?.props?.pageProps?.company?.services;
+  if (!Array.isArray(services) || services.length === 0) {
+    return emptyPriceCheck("booking");
+  }
+
+  const entries = services
+    .map((service) => {
+      const price = parseAppointmentPrice(service?.price);
+      if (!Number.isFinite(price)) {
+        return null;
+      }
+      const name = cleanPriceEvidenceText(service?.title || service?.name || "Service");
+      const evidenceText = [name, service?.description].filter(Boolean).join(" ");
+      if (isNonServicePriceLine(evidenceText)) {
+        return null;
+      }
+      return { value: price, evidence: `${name} - ${formatPriceEvidence(price)}`, structured: true };
+    })
+    .filter(Boolean)
+    .slice(0, 80);
+
+  return entries.length ? buildPriceCheckFromEntries(entries, "booking", { structured: true }) : emptyPriceCheck("booking");
+}
+
+function extractTreatwellPriceCheck(html, url = "") {
+  const host = safeHost(url);
+  if (!host.endsWith("treatwell.co.uk") && !host.endsWith("treatwell.com")) {
+    return emptyPriceCheck("booking");
+  }
+
+  const scripts = extractAllJsonLd(html);
+  const entries = [];
+  for (const data of scripts) {
+    const items = [data, ...(data?.["@graph"] ?? [])];
+    for (const item of items) {
+      const catalogs = item?.hasOfferCatalog?.itemListElement;
+      if (!Array.isArray(catalogs)) {
+        continue;
+      }
+      for (const catalog of catalogs) {
+        const offers = catalog?.itemListElement ?? [];
+        for (const offer of offers) {
+          // AggregateOffer uses lowPrice; plain Offer uses price
+          const rawPrice = offer?.lowPrice ?? offer?.price;
+          const price = parseAppointmentPrice(rawPrice);
+          if (!Number.isFinite(price)) {
+            continue;
+          }
+          const name = cleanPriceEvidenceText(offer?.itemOffered?.name || catalog?.name || "Service");
+          if (isNonServicePriceLine(name)) {
+            continue;
+          }
+          entries.push({ value: price, evidence: `${name} - ${formatPriceEvidence(price)}`, structured: true });
+        }
+      }
+    }
+  }
+
+  // Also pick up top-level Offer items (not nested in a catalog)
+  for (const data of scripts) {
+    const items = [data, ...(data?.["@graph"] ?? [])];
+    for (const item of items) {
+      if (item?.["@type"] === "Offer" || item?.["@type"] === "AggregateOffer") {
+        const rawPrice = item?.lowPrice ?? item?.price;
+        const price = parseAppointmentPrice(rawPrice);
+        if (!Number.isFinite(price)) {
+          continue;
+        }
+        const name = cleanPriceEvidenceText(item?.itemOffered?.name || "Service");
+        if (!isNonServicePriceLine(name)) {
+          entries.push({ value: price, evidence: `${name} - ${formatPriceEvidence(price)}`, structured: true });
+        }
+      }
+    }
+  }
+
+  const unique = entries.slice(0, 80);
+  return unique.length ? buildPriceCheckFromEntries(unique, "booking", { structured: true }) : emptyPriceCheck("booking");
+}
+
+function extractSquarePriceCheck(html, url = "") {
+  const host = safeHost(url);
+  if (!/square(?:up)?\.com|square\.site/.test(host)) {
+    return emptyPriceCheck("booking");
+  }
+
+  const decoded = decodeHtmlEntities(String(html || ""))
+    .replace(/\\u0026/g, "&")
+    .replace(/\\u003c/gi, "<")
+    .replace(/\\u003e/gi, ">")
+    .replace(/\\u0022/g, "\"")
+    .replace(/\\\//g, "/");
+  const services = extractJsonArrayAfterKey(decoded, "services");
+  const entries = services.map((service) => {
+    const name = cleanPriceEvidenceText(service?.name || "");
+    const price = parsePayloadPrice(service?.price_cents ?? service?.priceCents, "price_cents");
+    const evidenceText = [name, service?.description, service?.description_html].filter(Boolean).join(" ");
+    if (!Number.isFinite(price) || isNonServicePriceLine(evidenceText)) {
+      return null;
+    }
+    return {
+      value: price,
+      evidence: `${name} - ${formatPriceEvidence(price)}`,
+      structured: true,
+      hasServiceContext: true,
+    };
+  }).filter(Boolean);
+
+  const unique = [];
+  const seen = new Set();
+  entries.forEach((entry) => {
+    const key = `${entry.value}:${entry.evidence}`;
+    if (!seen.has(key)) {
+      seen.add(key);
+      unique.push(entry);
+    }
+  });
+
+  return unique.length ? buildPriceCheckFromEntries(unique.slice(0, 80), "booking", { structured: true }) : emptyPriceCheck("booking");
+}
+
+function extractJsonArrayAfterKey(text = "", key = "") {
+  const marker = `"${key}"`;
+  const markerIndex = String(text || "").indexOf(marker);
+  if (markerIndex === -1) {
+    return [];
+  }
+  const arrayStart = text.indexOf("[", markerIndex + marker.length);
+  if (arrayStart === -1) {
+    return [];
+  }
+
+  let depth = 0;
+  let inString = false;
+  let escaped = false;
+  for (let index = arrayStart; index < text.length; index += 1) {
+    const char = text[index];
+    if (inString) {
+      if (escaped) {
+        escaped = false;
+        continue;
+      }
+      if (char === "\\") {
+        escaped = true;
+        continue;
+      }
+      if (char === "\"") {
+        inString = false;
+      }
+      continue;
+    }
+    if (char === "\"") {
+      inString = true;
+      continue;
+    }
+    if (char === "[") {
+      depth += 1;
+    }
+    if (char === "]") {
+      depth -= 1;
+      if (depth === 0) {
+        try {
+          const parsed = JSON.parse(text.slice(arrayStart, index + 1));
+          return Array.isArray(parsed) ? parsed : [];
+        } catch {
+          return [];
+        }
+      }
+    }
+  }
+
+  return [];
+}
+
+async function extractSalonIqPriceCheck(url = "") {
+  const parsedUrl = safeUrl(url);
+  if (!parsedUrl || !safeHost(url).endsWith("s-iq.co")) {
+    return emptyPriceCheck("booking");
+  }
+
+  const salonId = parsedUrl.searchParams.get("salonid");
+  if (!salonId) {
+    return emptyPriceCheck("booking");
+  }
+
+  try {
+    const baseUrl = "https://s-iq.co";
+    const requestHeaders = {
+      "Content-Type": "application/json",
+      Origin: baseUrl,
+      Referer: `${baseUrl}/BookingPortal/dist/?salonid=${salonId}`,
+      "X-Requested-With": "XMLHttpRequest",
+    };
+
+    // Step 1: Establish session (sets ASP.NET_SessionId cookie)
+    const sessionResponse = await fetchWithTimeout(`${baseUrl}/shoponline/GetParameters`, {
+      method: "POST",
+      headers: requestHeaders,
+      body: JSON.stringify({ salonid: salonId, source: "bp" }),
+    });
+    if (!sessionResponse.ok) {
+      return emptyPriceCheck("booking");
+    }
+    const sessionCookie = cookieHeaderFromSetCookie(sessionResponse.headers.get("set-cookie") || "");
+
+    // Step 2: Fetch services with session cookie
+    const servicesResponse = await fetchWithTimeout(`${baseUrl}/shoponline/getServices`, {
+      method: "POST",
+      headers: { ...requestHeaders, Cookie: sessionCookie },
+      body: JSON.stringify({ salonid: salonId, source: "bp" }),
+    });
+    if (!servicesResponse.ok) {
+      return emptyPriceCheck("booking");
+    }
+
+    const data = await servicesResponse.json();
+    if (data?.Status !== "Success") {
+      return emptyPriceCheck("booking");
+    }
+
+    const services = data?.Data?.Services;
+    if (!Array.isArray(services) || services.length === 0) {
+      return emptyPriceCheck("booking");
+    }
+
+    const entries = services
+      .map((service) => {
+        const price = parseAppointmentPrice(service?.DefaultPrice);
+        if (!Number.isFinite(price)) {
+          return null;
+        }
+        const name = cleanPriceEvidenceText(service?.Service || "Service");
+        const evidenceText = [name, service?.SubCategory, service?.ServiceInfo].filter(Boolean).join(" ");
+        if (isNonServicePriceLine(evidenceText)) {
+          return null;
+        }
+        return { value: price, evidence: `${name} - ${formatPriceEvidence(price)}`, structured: true };
+      })
+      .filter(Boolean)
+      .slice(0, 80);
+
+    return entries.length ? buildPriceCheckFromEntries(entries, "booking", { structured: true }) : emptyPriceCheck("booking");
+  } catch {
+    return emptyPriceCheck("booking");
+  }
+}
+
+async function extractPhorestPriceCheck(url = "") {
+  const slug = extractPhorestSlug(url);
+  if (!slug) {
+    return emptyPriceCheck("booking");
+  }
+
+  try {
+    const bootstrapResponse = await fetchWithTimeout(`https://phorest.me/bootstrap/salons/${slug}`, {
+      headers: { Accept: "application/json" },
+    });
+    if (!bootstrapResponse.ok) {
+      return emptyPriceCheck("booking");
+    }
+    const bootstrapData = await bootstrapResponse.json();
+    const domainName = bootstrapData?.data?.attributes?.domain_name;
+    if (!domainName) {
+      return emptyPriceCheck("booking");
+    }
+
+    const servicesResponse = await fetchWithTimeout(`https://${domainName}.phorest.me/api/services`, {
+      headers: {
+        Accept: "application/vnd.phorest.me+json;version=1",
+        Authorization: 'Token token="0a380c7d22d718646e7d316c6a5c5d2e"',
+      },
+    });
+    if (!servicesResponse.ok) {
+      return emptyPriceCheck("booking");
+    }
+
+    const servicesData = await servicesResponse.json();
+    const services = servicesData?.services;
+    if (!Array.isArray(services) || services.length === 0) {
+      return emptyPriceCheck("booking");
+    }
+
+    const entries = services
+      .map((service) => {
+        const price = parseAppointmentPrice(service?.price);
+        if (!Number.isFinite(price)) {
+          return null;
+        }
+        const name = cleanPriceEvidenceText(service?.name || "Service");
+        if (isNonServicePriceLine(name)) {
+          return null;
+        }
+        return { value: price, evidence: `${name} - ${formatPriceEvidence(price)}`, structured: true };
+      })
+      .filter(Boolean)
+      .slice(0, 80);
+
+    return entries.length ? buildPriceCheckFromEntries(entries, "booking", { structured: true }) : emptyPriceCheck("booking");
+  } catch {
+    return emptyPriceCheck("booking");
+  }
+}
+
+function extractPhorestSlug(url = "") {
+  const parsedUrl = safeUrl(url);
+  if (!parsedUrl) {
+    return null;
+  }
+  const host = parsedUrl.hostname.toLowerCase();
+  // {slug}.phorest.me
+  if (host.endsWith(".phorest.me")) {
+    return host.replace(/\.phorest\.me$/, "");
+  }
+  // phorest.com/salon/{slug} or phorest.com/book/salons/{slug}
+  if (host === "phorest.com" || host === "www.phorest.com") {
+    const match = parsedUrl.pathname.match(/\/(?:salon|book\/salons?)\/([a-z0-9_-]+)/i);
+    return match ? match[1].toLowerCase() : null;
+  }
+  return null;
+}
+
+async function extractAcuityEmbedPriceCheck(html = "", url = "") {
+  // Already handled when the booking URL is a direct Acuity page
+  if (safeHost(url).includes("acuityscheduling.com") || safeHost(url).endsWith(".as.me")) {
+    return emptyPriceCheck("booking");
+  }
+
+  // Extract owner ID from Squarespace / other embed wrappers
+  const ownerIdMatch = String(html || "").match(/data-user-id="(\d+)"/);
+  if (!ownerIdMatch) {
+    return emptyPriceCheck("booking");
+  }
+  const ownerId = ownerIdMatch[1];
+
+  try {
+    const response = await fetchWithTimeout(`https://app.acuityscheduling.com/schedule.php?owner=${ownerId}`, {
+      headers: { Accept: "text/html" },
+    });
+    if (!response.ok) {
+      return emptyPriceCheck("booking");
+    }
+    const scheduleHtml = await response.text();
+    const entries = extractStructuredPriceEntries(scheduleHtml);
+    return entries.length ? buildPriceCheckFromEntries(entries, "booking", { structured: true }) : emptyPriceCheck("booking");
+  } catch {
+    return emptyPriceCheck("booking");
+  }
+}
+
+function extractEmbeddedBookingPlatformPriceCheck(html, url = "") {
+  if (!isKnownStructuredBookingUrl(url) || !html) {
+    return emptyPriceCheck("booking");
+  }
+
+  const entries = extractEmbeddedJsonObjects(html)
+    .flatMap((data) => extractPriceEntriesFromArbitraryData(data))
+    .slice(0, 120);
+  const uniqueEntries = [];
+  const seen = new Set();
+  entries.forEach((entry) => {
+    const key = `${entry.value}:${entry.evidence}`;
+    if (!seen.has(key)) {
+      seen.add(key);
+      uniqueEntries.push(entry);
+    }
+  });
+
+  return uniqueEntries.length >= 3 ? buildPriceCheckFromEntries(uniqueEntries.slice(0, 80), "booking", { structured: true }) : emptyPriceCheck("booking");
+}
+
+function extractEmbeddedJsonObjects(html = "") {
+  const objects = [];
+  const nextData = extractNextData(html);
+  if (nextData) {
+    objects.push(nextData);
+  }
+
+  const scriptRegex = /<script\b[^>]*>([\s\S]*?)<\/script>/gi;
+  let match;
+  while ((match = scriptRegex.exec(String(html || ""))) !== null) {
+    const content = match[1]?.trim();
+    if (!content || content.length > 2_000_000) {
+      continue;
+    }
+    if (content.startsWith("{") || content.startsWith("[")) {
+      try {
+        objects.push(JSON.parse(content));
+      } catch {
+        // skip malformed script JSON
+      }
+    }
+  }
+
+  objects.push(...extractAllJsonLd(html));
+  return objects;
+}
+
+function extractPriceEntriesFromArbitraryData(data, context = {}, depth = 0) {
+  if (!data || depth > 7) {
+    return [];
+  }
+  if (Array.isArray(data)) {
+    return data.flatMap((item) => extractPriceEntriesFromArbitraryData(item, context, depth + 1));
+  }
+  if (typeof data !== "object") {
+    return [];
+  }
+
+  const localContext = {
+    name: cleanPriceEvidenceText(data.name || data.title || data.serviceName || data.service_name || data.displayName || data.display_name || data.itemName || data.item_name || data.label || context.name || ""),
+    category: cleanPriceEvidenceText(data.categoryName || data.category_name || data.category || data.groupName || data.group_name || data.serviceCategory || data.service_category || context.category || ""),
+    description: cleanPriceEvidenceText(data.description || data.caption || data.summary || data.shortDescription || data.short_description || context.description || ""),
+  };
+  const rawPrice =
+    data.price ??
+    data.Price ??
+    data.amount ??
+    data.Amount ??
+    data.value ??
+    data.Value ??
+    data.cost ??
+    data.Cost ??
+    data.salePrice ??
+    data.sale_price ??
+    data.finalPrice ??
+    data.final_price ??
+    data.lowPrice ??
+    data.low_price ??
+    data.minPrice ??
+    data.min_price ??
+    data.fromPrice ??
+    data.from_price ??
+    data.priceInfo ??
+    data.price_info ??
+    data.priceText ??
+    data.price_text ??
+    data.DefaultPrice;
+  const price = parseStructuredObjectPrice(rawPrice, data);
+  const label = cleanPriceEvidenceText([localContext.category, localContext.name].filter(Boolean).join(" - ") || "Service");
+  const evidenceText = [localContext.category, localContext.name, localContext.description].filter(Boolean).join(" ");
+  const ownEntries = Number.isFinite(price) && isLikelyServicePriceContext(label) && !isNonServicePriceLine(evidenceText)
+    ? [{ value: price, evidence: `${label} - ${formatPriceEvidence(price)}`, structured: true, hasServiceContext: true }]
+    : [];
+
+  const childEntries = Object.entries(data)
+    .filter(([key]) => !/image|photo|avatar|icon|url|href|slug|id|uuid|token|colour|colorCode/i.test(key))
+    .flatMap(([, value]) => extractPriceEntriesFromArbitraryData(value, localContext, depth + 1));
+  return [...ownEntries, ...childEntries];
+}
+
+function parseStructuredObjectPrice(rawPrice, data = {}) {
+  if (typeof rawPrice === "object" && rawPrice !== null) {
+    return parseAppointmentPrice(rawPrice.formatted ?? rawPrice.display ?? rawPrice.amount ?? rawPrice.value);
+  }
+
+  if (typeof rawPrice === "number") {
+    const currency = String(data.currency || data.currency_code || data.currencyCode || "").toUpperCase();
+    if (currency === "GBP" && Number.isInteger(rawPrice) && rawPrice >= 1000 && rawPrice <= 500000) {
+      const pounds = rawPrice / 100;
+      return pounds >= 10 && pounds <= 5000 ? pounds : Number.NaN;
+    }
+  }
+
+  return parseAppointmentPrice(rawPrice);
+}
+
+function extractAllJsonLd(html) {
+  if (!html) {
+    return [];
+  }
+  const results = [];
+  const regex = /<script[^>]+type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi;
+  let match;
+  while ((match = regex.exec(html)) !== null) {
+    try {
+      results.push(JSON.parse(match[1]));
+    } catch {
+      // skip malformed
+    }
+  }
+  return results;
+}
+
+function extractStructuredPriceEntries(html) {
+  const business = extractAcuityBusiness(html);
+  if (!business) {
+    return [];
+  }
+
+  return extractAcuityAppointments(business)
+    .map((appointment) => {
+      const price = parseAppointmentPrice(appointment.price);
+      if (!Number.isFinite(price)) {
+        return null;
+      }
+      const evidenceText = [appointment.category, appointment.name, appointment.description].filter(Boolean).join(" ");
+      if (isNonServicePriceLine(evidenceText)) {
+        return null;
+      }
+      return {
+        value: price,
+        evidence: `${cleanPriceEvidenceText(appointment.name || appointment.category || "Service")} - ${formatPriceEvidence(price)}`,
+        structured: true,
+      };
+    })
+    .filter(Boolean)
+    .slice(0, 60);
+}
+
+function extractAcuityAppointments(business) {
+  const appointmentTypes = business?.appointmentTypes && typeof business.appointmentTypes === "object" ? business.appointmentTypes : {};
+  return Object.values(appointmentTypes)
+    .flat()
+    .filter((appointment) => appointment && typeof appointment === "object")
+    .filter((appointment) => appointment.active !== false && appointment.private !== true && (!appointment.type || appointment.type === "service"));
+}
+
+function parseAppointmentPrice(value) {
+  if (typeof value === "number") {
+    return value >= 10 && value <= 5000 ? value : Number.NaN;
+  }
+  const match = String(value || "").replace(",", "").match(/[0-9]{1,4}(?:\.[0-9]{1,2})?/);
+  const price = match ? Number(match[0]) : Number.NaN;
+  return Number.isFinite(price) && price >= 10 && price <= 5000 ? price : Number.NaN;
+}
+
+function formatPriceEvidence(value) {
+  return Number.isInteger(value) ? `£${value}` : `£${value.toFixed(2)}`;
+}
+
+function cleanPriceEvidenceText(value) {
+  return String(value || "").replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
+}
+
+function extractPriceEntries(text, { consultationFocused = false } = {}) {
+  const lines = String(text || "")
+    .split(/\n|•|·|\|/)
+    .map((line) => line.replace(/\s+/g, " ").trim())
+    .flatMap((line) => {
+      // Pre-split long condensed lines so they don't get dropped by the length filter
+      if (line.length > 180 && /£/.test(line)) {
+        return splitCondensedPriceLine(line).map((s) => s.replace(/\s+/g, " ").trim());
+      }
+      return [line];
+    })
+    .filter((line) => line.length >= 2 && line.length <= 180)
+    .filter((line) => !/cookie|privacy|terms|login|sign in|copyright|javascript/i.test(line));
+
+  const entries = [];
+  for (let index = 0; index < lines.length; index += 1) {
+    const line = lines[index];
+    if (!/£|&pound;|gbp|british pounds?/i.test(line)) {
+      continue;
+    }
+
+    const normalizedLine = line.replace(/&pound;/gi, "£").replace(/\bGBP\b/gi, "£");
+    if (consultationFocused && isStandalonePriceLine(normalizedLine)) {
+      continue;
+    }
+    if (isNonServicePriceLine(normalizedLine)) {
+      continue;
+    }
+
+    const prices = extractPriceValuesFromLine(normalizedLine);
+
+    if (!prices.length) {
+      continue;
+    }
+
+    // When a line has more than 2 prices it's a condensed multi-service line —
+    // split each price into its own entry rather than averaging.
+    if (prices.length > 2) {
+      const segments = splitCondensedPriceLine(normalizedLine);
+      for (const segment of segments) {
+        const segPrices = extractPriceValuesFromLine(segment);
+        if (!segPrices.length) {
+          continue;
+        }
+        const segValue = segPrices.length === 2 ? Math.round((segPrices[0] + segPrices[1]) / 2) : segPrices[0];
+        const segContext = getInlinePriceServiceContext(segment) || getPriceServiceContext(lines, index);
+        if (!segContext && isStandalonePriceLine(segment)) {
+          continue;
+        }
+        const segText = segment.length > 120 ? `${segment.slice(0, 117)}...` : segment;
+        entries.push({
+          value: segValue,
+          evidence: segContext ? `${segContext} - ${segText}` : segText,
+          hasServiceContext: Boolean(segContext),
+        });
+      }
+      continue;
+    }
+
+    const value = prices.length === 2 ? Math.round((prices[0] + prices[1]) / 2) : prices[0];
+    const context = getInlinePriceServiceContext(normalizedLine) || getPriceServiceContext(lines, index);
+    if (!context && isStandalonePriceLine(normalizedLine)) {
+      continue;
+    }
+    const priceText = normalizedLine.length > 120 ? `${normalizedLine.slice(0, 117)}...` : normalizedLine;
+    entries.push({
+      value,
+      evidence: context ? `${context} - ${priceText}` : priceText,
+      hasServiceContext: Boolean(context),
+    });
+  }
+
+  const unique = new Map();
+  entries.forEach((entry) => {
+    unique.set(`${entry.value}-${entry.evidence}`, entry);
+  });
+  return [...unique.values()].slice(0, 60);
+}
+
+function extractPriceValuesFromLine(line = "") {
+  const normalizedLine = String(line || "").replace(/&pound;/gi, "£").replace(/\bGBP\b/gi, "£");
+  return [
+    ...[...normalizedLine.matchAll(/£\s*([0-9]{1,4}(?:[,.][0-9]{1,2})?)/g)].map((match) => match[1]),
+    ...[...normalizedLine.matchAll(/\b([0-9]{1,4}(?:[,.][0-9]{1,2})?)\s*(?:british\s+pounds?|pounds?)\b/gi)].map((match) => match[1]),
+  ]
+    .map((value) => Number(String(value).replace(",", "")))
+    .filter((value) => Number.isFinite(value) && value >= 10 && value <= 5000);
+}
+
+// Splits a condensed line like "Wash £55 Cut £75 Men's £45" into individual segments per price.
+function splitCondensedPriceLine(line = "") {
+  const segments = [];
+  const regex = /((?:[^£]|£(?!\s*[0-9]))*£\s*[0-9]{1,4}(?:[,.][0-9]{1,2})?(?:\s*[-–]\s*£\s*[0-9]{1,4}(?:[,.][0-9]{1,2})?)?)/g;
+  let match;
+  while ((match = regex.exec(line)) !== null) {
+    const segment = match[1].trim();
+    if (segment) {
+      segments.push(segment);
+    }
+  }
+  return segments.length > 1 ? segments : [line];
+}
+
+function extractIgnoredManualPriceLines(text = "") {
+  return String(text || "")
+    .split(/\n|•|·|\|/)
+    .map((line) => line.replace(/\s+/g, " ").trim())
+    .filter((line) => /£|&pound;|gbp|british pounds?|pounds?/i.test(line))
+    .filter((line) => isNonServicePriceLine(line) || !extractPriceValuesFromLine(line).length)
+    .slice(0, 20);
+}
+
+function getPriceServiceContext(lines, priceLineIndex) {
+  const candidates = [];
+  for (let offset = 1; offset <= 4; offset += 1) {
+    candidates.push(lines[priceLineIndex - offset], lines[priceLineIndex + offset]);
+  }
+
+  return candidates
+    .map((line) => cleanPriceEvidenceText(line))
+    .filter(Boolean)
+    .filter((line) => !/£|&pound;|gbp|british pounds?/i.test(line))
+    .filter((line) => !/^\d+\s*(minutes?|mins?|hours?|hrs?|hr|min)\b/i.test(line))
+    .filter((line) => !/^(book|select|show all|read more|more info|price|from)$/i.test(line))
+    .find((line) => isLikelyServicePriceContext(line)) || "";
+}
+
+function getInlinePriceServiceContext(line) {
+  const withoutPrice = cleanPriceEvidenceText(
+    String(line || "")
+      .replace(/(?:from\s*)?£\s*[0-9]{1,4}(?:[,.][0-9]{1,2})?/gi, " ")
+      .replace(/\b[0-9]+\s*(?:minutes?|mins?|hours?|hrs?|hr|min)\b/gi, " ")
+      .replace(/\s*@\s*/g, " "),
+  );
+  return isLikelyServicePriceContext(withoutPrice) ? withoutPrice : "";
+}
+
+function isLikelyServicePriceContext(line) {
+  const normalized = normalizeServiceText(line);
+  return (
+    normalized.length >= 4 &&
+    normalized.length <= 120 &&
+    !isNonServicePriceLine(normalized) &&
+    /\b(braid|braids|loc|locs|wig|weave|sew|sewin|sew-in|silk|press|tape|micro|clip|colour|color|cut|trim|wash|blow|treat|treatment|keratin|relax|pony|ponytail|bun|updo|bridal|curl|cornrow|closure|frontal|track|install|installation|maintenance|reinstall|revamp|twist|twists|texture|release|head spa|spa ritual|quick weave|knotless|box braids)\b/.test(normalized)
+  );
+}
+
+function isConsultationFocusedPricePage(text, url = "") {
+  const normalizedUrl = String(url || "").toLowerCase();
+  const normalizedText = normalizeServiceText(String(text || "").slice(0, 1200));
+  return (
+    /consultation|consult\b/.test(normalizedUrl) ||
+    /\b(wig|bridal|colour|color|hair|curl|loc|extension|extensions|trichology|scalp)?\s*consultation\b/.test(normalizedText) ||
+    /\bconsultation\s*(only|booking|appointment|service)\b/.test(normalizedText)
+  );
+}
+
+function isStandalonePriceLine(line) {
+  return /^£\s*[0-9]{1,4}(?:[,.][0-9]{1,2})?$/.test(String(line || "").trim());
+}
+
+function isNonServicePriceLine(line) {
+  const normalized = String(line || "").replace(/&pound;/gi, "£").toLowerCase();
+  return (
+    /vagaro united kingdom pricing|deposit|patch test|cancellation|late fee|no show|booking fee|gift card|voucher|shipping|delivery|add[\s-]?on only|add on only|extra charge|surcharge|additional charge|service charge/.test(normalized) ||
+    /(?:|\b\d+\s*mi\b).{0,80}£/.test(normalized) ||
+    /\bper\s+(?:bundle|track|row|line|pack|packet|weft)\b/.test(normalized) ||
+    /£\s*\d+(?:[,.]\d{1,2})?\s*(?:per|\/)\s*(?:bundle|track|row|line|pack|packet|weft)\b/.test(normalized) ||
+    /\b(?:wig|bridal|colour|color|hair|curl|loc|extension|extensions|trichology|scalp)?\s*consultation\b/.test(normalized) ||
+    /\bconsultation\s*(?:only|booking|appointment|service)?\b/.test(normalized) ||
+    /£\s*\d+(?:[,.]\d{1,2})?\s*(?:off|discount|saving|credit|voucher)/.test(normalized) ||
+    /(?:save|get|take)\s+£\s*\d+(?:[,.]\d{1,2})?\s*(?:off|discount)?/.test(normalized) ||
+    /(?:off|discount)\s+(?:when|with|on|for)\b/.test(normalized)
+  );
+}
+
+function priceBandForValue(value) {
+  if (!Number.isFinite(value)) {
+    return "";
+  }
+  if (value < 100) {
+    return "£";
+  }
+  if (value <= 200) {
+    return "££";
+  }
+  if (value <= 300) {
+    return "£££";
+  }
+  return "££££";
+}
+
+function emptyPriceCheck(source = "") {
+  return {
+    source,
+    confidence: "unknown",
+    priceBand: "",
+    medianPrice: null,
+    prices: [],
+    priceCount: 0,
+    evidence: [],
+  };
+}
+
 function extractStructuredBookingData(html) {
   const business = extractAcuityBusiness(html);
   if (!business) {
     return { rawServices: [], areaId: "" };
   }
 
-  const appointmentTypes = business.appointmentTypes && typeof business.appointmentTypes === "object" ? business.appointmentTypes : {};
   const rawServices = [];
-  Object.entries(appointmentTypes).forEach(([category, appointments]) => {
-    rawServices.push(category);
-    if (Array.isArray(appointments)) {
-      appointments.forEach((appointment) => {
-        rawServices.push(appointment.name);
-      });
+  const seenCategories = new Set();
+  extractAcuityAppointments(business).forEach((appointment) => {
+    const category = cleanPriceEvidenceText(appointment.category);
+    if (category && !seenCategories.has(category)) {
+      seenCategories.add(category);
+      rawServices.push(category);
     }
+    rawServices.push(appointment.name);
   });
 
   const calendarLocations = Object.values(business.calendars || {})
@@ -1724,15 +4514,24 @@ function extractStructuredBookingData(html) {
 }
 
 function extractAcuityBusiness(html) {
-  const marker = "var BUSINESS = ";
-  const markerIndex = html.indexOf(marker);
-  if (markerIndex === -1) {
+  const markerMatch = String(html || "").match(/\b(?:var\s+)?BUSINESS\s*=\s*\{/);
+  if (!markerMatch || markerMatch.index === undefined) {
     return null;
   }
 
-  const objectStart = html.indexOf("{", markerIndex);
+  const objectStart = html.indexOf("{", markerMatch.index);
   if (objectStart === -1) {
     return null;
+  }
+
+  const nextVariableIndex = html.indexOf("var FEATURE_FLAGS", objectStart);
+  if (nextVariableIndex !== -1) {
+    const candidate = html.slice(objectStart, nextVariableIndex).replace(/;\s*$/, "").trim();
+    try {
+      return JSON.parse(candidate);
+    } catch {
+      // Fall through to brace-balanced extraction below.
+    }
   }
 
   let depth = 0;
@@ -1741,12 +4540,16 @@ function extractAcuityBusiness(html) {
   for (let index = objectStart; index < html.length; index += 1) {
     const char = html[index];
     if (inString) {
-      escaped = !escaped && char === "\\";
-      if (char === "\"" && !escaped) {
-        inString = false;
-      }
-      if (char !== "\\") {
+      if (escaped) {
         escaped = false;
+        continue;
+      }
+      if (char === "\\") {
+        escaped = true;
+        continue;
+      }
+      if (char === "\"") {
+        inString = false;
       }
       continue;
     }
@@ -1821,7 +4624,7 @@ async function fetchWithTimeout(url, options = {}) {
       ...options,
       signal: controller.signal,
       headers: {
-        "User-Agent": "ROW K freshness checker",
+        "User-Agent": browserUserAgent,
         Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
         ...options.headers,
       },
@@ -1861,6 +4664,14 @@ function safeHost(url) {
     return new URL(url).hostname.replace(/^www\./, "");
   } catch {
     return "";
+  }
+}
+
+function safeUrl(url) {
+  try {
+    return new URL(url);
+  } catch {
+    return null;
   }
 }
 
@@ -2221,6 +5032,7 @@ function sanitizeDraftUpdate(input) {
   const inferred = inferFromLinks(links);
   const areaIds = normalizeAreaIds(input.areaIds?.length ? input.areaIds : input.areaId ? [input.areaId] : []);
   const areaLabel = cleanString(input.areaLabel) || areaLabelForIds(areaIds);
+  const priceBand = sanitizePriceBand(input.priceBand);
 
   return {
     ...(input.status ? { status: cleanString(input.status) } : {}),
@@ -2239,10 +5051,122 @@ function sanitizeDraftUpdate(input) {
     rawServices,
     hijabiFriendly: input.hijabiFriendly === true,
     canBraidWithoutGel: input.canBraidWithoutGel === true,
+    priceBand,
+    priceSource: priceBand ? sanitizePriceSource(input.priceSource) || "manual" : "",
+    priceEvidence: toArray(input.priceEvidence),
+    priceCheckedAt: cleanString(input.priceCheckedAt),
+    priceUpdatedAt: cleanString(input.priceUpdatedAt),
+    priceConfidence: priceBand ? sanitizePriceConfidence(input.priceConfidence) || "manual" : "",
     summary: cleanString(input.summary),
     warnings: toArray(input.warnings),
     evidence: toArray(input.evidence),
   };
+}
+
+function buildPricingUpdate(update, current = {}, now = new Date().toISOString()) {
+  if (!update.priceBand) {
+    return {
+      priceBand: "",
+      priceSource: "",
+      priceEvidence: [],
+      priceCheckedAt: "",
+      priceUpdatedAt: "",
+      priceConfidence: "",
+    };
+  }
+
+  const priceSource = sanitizePriceSource(update.priceSource) || "manual";
+  const priceConfidence = sanitizePriceConfidence(update.priceConfidence) || (priceSource === "manual" ? "manual" : "medium");
+  const changed =
+    update.priceBand !== current.priceBand ||
+    priceSource !== current.priceSource ||
+    priceConfidence !== current.priceConfidence ||
+    JSON.stringify(toArray(update.priceEvidence)) !== JSON.stringify(toArray(current.priceEvidence));
+
+  return {
+    priceBand: update.priceBand,
+    priceSource,
+    priceEvidence: toArray(update.priceEvidence),
+    priceCheckedAt: cleanString(update.priceCheckedAt) || current.priceCheckedAt || "",
+    priceUpdatedAt: cleanString(update.priceUpdatedAt) || (changed ? now : current.priceUpdatedAt || ""),
+    priceConfidence,
+  };
+}
+
+function sanitizeFreshnessPricingUpdate(input, current = {}) {
+  const priceBand = sanitizePriceBand(input.priceBand);
+  if (!priceBand) {
+    return {};
+  }
+  const now = new Date().toISOString();
+  return {
+    priceBand,
+    priceSource: sanitizePriceSource(input.priceSource) || "auto",
+    priceEvidence: toArray(input.priceEvidence).length ? toArray(input.priceEvidence) : toArray(current.priceEvidence),
+    priceCheckedAt: cleanString(input.priceCheckedAt) || now,
+    priceUpdatedAt: now,
+    priceConfidence: sanitizePriceConfidence(input.priceConfidence) || "medium",
+  };
+}
+
+function hasFreshnessPricingUpdate(input) {
+  return Boolean(sanitizePriceBand(input.priceBand));
+}
+
+function getAutoPricingUpdate(priceCheck) {
+  if (!priceCheck?.priceBand || priceCheck.confidence !== "high") {
+    return null;
+  }
+  const now = new Date().toISOString();
+  return {
+    priceBand: priceCheck.priceBand,
+    priceSource: "auto",
+    priceEvidence: toArray(priceCheck.evidence),
+    priceCheckedAt: now,
+    priceConfidence: "high",
+  };
+}
+
+function salonHasAutoPricing(salon = {}) {
+  return salon.priceSource === "auto" && Boolean(salon.priceBand);
+}
+
+function clearSalonPricing(salon = {}) {
+  const {
+    priceBand,
+    priceSource,
+    priceEvidence,
+    priceCheckedAt,
+    priceUpdatedAt,
+    priceConfidence,
+    ...rest
+  } = salon;
+  return rest;
+}
+
+function pricingFieldsEqual(current = {}, next = {}) {
+  return (
+    current.priceBand === next.priceBand &&
+    current.priceSource === next.priceSource &&
+    current.priceCheckedAt === next.priceCheckedAt &&
+    current.priceConfidence === next.priceConfidence &&
+    JSON.stringify(toArray(current.priceEvidence)) === JSON.stringify(toArray(next.priceEvidence))
+  );
+}
+
+function sanitizePriceBand(value) {
+  const cleaned = cleanString(value);
+  return priceBands.has(cleaned) ? cleaned : "";
+}
+
+function sanitizePriceSource(value) {
+  const cleaned = cleanString(value);
+  return cleaned === "auto" || cleaned === "manual" ? cleaned : "";
+}
+
+function sanitizePriceConfidence(value) {
+  const cleaned = cleanString(value);
+  return priceConfidences.has(cleaned) ? cleaned : "";
 }
 
 function publishedSalonToDraft(salon, fallbackDate = new Date().toISOString()) {
@@ -2264,6 +5188,12 @@ function publishedSalonToDraft(salon, fallbackDate = new Date().toISOString()) {
     rawServices: [],
     hijabiFriendly: salon.hijabiFriendly === true,
     canBraidWithoutGel: salon.canBraidWithoutGel === true,
+    priceBand: sanitizePriceBand(salon.priceBand),
+    priceSource: sanitizePriceSource(salon.priceSource),
+    priceEvidence: toArray(salon.priceEvidence),
+    priceCheckedAt: cleanString(salon.priceCheckedAt),
+    priceUpdatedAt: cleanString(salon.priceUpdatedAt),
+    priceConfidence: sanitizePriceConfidence(salon.priceConfidence),
     summary: salon.summary || "",
     warnings: [],
     evidence: Array.isArray(salon.evidence) ? salon.evidence : [],
@@ -2334,6 +5264,16 @@ function draftToSalon(draft, existingIds) {
     services: normalizeServices(draft.services),
     ...(draft.hijabiFriendly === true ? { hijabiFriendly: true } : {}),
     ...(draft.canBraidWithoutGel === true ? { canBraidWithoutGel: true } : {}),
+    ...(sanitizePriceBand(draft.priceBand)
+      ? {
+          priceBand: sanitizePriceBand(draft.priceBand),
+          priceSource: sanitizePriceSource(draft.priceSource) || "manual",
+          priceEvidence: toArray(draft.priceEvidence),
+          priceCheckedAt: cleanString(draft.priceCheckedAt),
+          priceUpdatedAt: cleanString(draft.priceUpdatedAt) || new Date().toISOString(),
+          priceConfidence: sanitizePriceConfidence(draft.priceConfidence) || "manual",
+        }
+      : {}),
     summary: draft.summary || "Admin-approved stylist entry.",
     source: "manual",
     evidence: draft.evidence?.length ? draft.evidence : ["Approved through ROW K admin intake."],
@@ -2770,12 +5710,15 @@ function normalizeServiceText(value) {
 
 function inferAreaIdFromText(value = "") {
   const text = normalizeServiceText(String(value).toLowerCase());
+  if (/\bold\s+kent\s+road\b/.test(text)) {
+    return "south-east";
+  }
   const areaPatterns = [
     ["essex", /\b(essex|southend|westcliff|romford|ilford|dagenham|barking|grays|basildon|chelmsford)\b/],
     ["kent", /\b(kent|chatham|dartford|gravesend|gillingham|maidstone|bromley)\b/],
     ["croydon", /\bcroydon\b/],
-    ["south-east", /\b(south\s*east|se\s*london|peckham|lewisham|greenwich|woolwich|deptford|catford|brixton)\b/],
-    ["south-west", /\b(south\s*west|sw\s*london|tooting|wandsworth|clapham|putney|mitcham|streatham)\b/],
+    ["south-east", /\b(south\s*east|se\s*london|peckham|lewisham|greenwich|woolwich|deptford|catford)\b/],
+    ["south-west", /\b(south\s*west|sw\s*london|brixton|tooting|wandsworth|clapham|putney|mitcham|streatham)\b/],
     ["north-west", /\b(north\s*west|nw\s*london|harlesden|wembley|kilburn|camden|brent)\b/],
     ["north", /\b(north\s*london|enfield|tottenham|finsbury|wood\s*green|islington)\b/],
     ["east", /\b(east\s*london|hackney|stratford|leyton|bow|newham|tower\s*hamlets)\b/],

@@ -2,7 +2,6 @@ import { FormEvent, KeyboardEvent, useEffect, useMemo, useRef, useState } from "
 import {
   AlertTriangle,
   ArrowUp,
-  ArrowUpDown,
   Check,
   ChevronDown,
   ChevronLeft,
@@ -15,13 +14,17 @@ import {
   Globe,
   Link2,
   Loader2,
+  MapPin,
   Plus,
+  PoundSterling,
   RefreshCw,
   Save,
+  Search,
   SearchCheck,
   Trash2,
   Unlink,
   Undo2,
+  X,
 } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
@@ -53,12 +56,20 @@ type StylistDraft = {
   rawServices: string[];
   hijabiFriendly?: boolean;
   canBraidWithoutGel?: boolean;
+  priceBand?: PriceBand;
+  priceSource?: "auto" | "manual" | "";
+  priceEvidence?: string[];
+  priceCheckedAt?: string;
+  priceUpdatedAt?: string;
+  priceConfidence?: "high" | "medium" | "low" | "manual" | "";
   summary: string;
   warnings: string[];
   evidence: string[];
   createdAt: string;
   updatedAt: string;
 };
+
+type PriceBand = "£" | "££" | "£££" | "££££";
 
 type DraftForm = {
   links: string;
@@ -68,21 +79,40 @@ type DraftForm = {
   services: string[];
   hijabiFriendly: boolean;
   canBraidWithoutGel: boolean;
+  priceBand: PriceBand | "";
+  priceEvidence: string[];
+  priceCheckedAt: string;
+  priceUpdatedAt: string;
+  priceConfidence: "manual" | "";
+  priceSource: "manual" | "";
 };
 
 type DraftEditorStep = "details" | "services" | "review";
 
 const londonParentAreaId = "all-london";
 const londonChildAreaIds = new Set(["central", "north", "north-west", "east", "south-east", "south-west", "west", "croydon"]);
+const priceBandOptions: { value: "" | PriceBand; label: string }[] = [
+  { value: "", label: "Not set" },
+  { value: "£", label: "£ under £100" },
+  { value: "££", label: "££ £100-£200" },
+  { value: "£££", label: "£££ £200-£300" },
+  { value: "££££", label: "££££ over £300" },
+];
 
 type DirectoryCheck = {
   id: string;
   name: string;
+  areaId?: string;
+  areaIds?: string[];
   areaLabel?: string;
+  locationReviewIgnored?: boolean;
   bookingUrl?: string;
   instagramUrl?: string;
   websiteUrl?: string;
   hijabiFriendly?: boolean;
+  priceBand?: PriceBand;
+  priceSource?: "auto" | "manual" | "";
+  priceConfidence?: "high" | "medium" | "low" | "manual" | "";
   issues: string[];
   linkChecks: {
     type: string;
@@ -96,13 +126,35 @@ type DirectoryCheck = {
     confidence: string;
     rawServices: string[];
     matchedServices: string[];
+    areaId?: string;
+    areaLabel?: string;
+  };
+  priceCheck?: {
+    source: string;
+    confidence: "high" | "medium" | "low" | "manual" | "unknown";
+    priceBand: PriceBand | "";
+    medianPrice: number | null;
+    prices?: number[];
+    priceCount: number;
+    evidence: string[];
   };
   currentServices: string[];
   detectedServices: string[];
   addedServices: string[];
   removedServices: string[];
   attributeSuggestions?: AttributeSuggestion[];
+  backfillStatus?: "auto-applied" | "needs-review" | "no-price" | "skipped-social";
+  backfillReason?: string;
   checkedAt: string;
+};
+
+type AdminPriceCheck = NonNullable<DirectoryCheck["priceCheck"]> & {
+  ignoredPrices?: { price: number; line: string; reason: string }[];
+};
+
+type BookingPreview = {
+  serviceCheck?: DirectoryCheck["serviceCheck"];
+  priceCheck?: AdminPriceCheck;
 };
 
 type AttributeSuggestion = {
@@ -122,9 +174,28 @@ type FreshnessUpdate = {
   instagramUrl?: string;
   websiteUrl?: string;
   hijabiFriendly?: boolean;
+  priceBand?: PriceBand;
+  priceSource?: "auto" | "manual";
+  priceEvidence?: string[];
+  priceCheckedAt?: string;
+  priceConfidence?: "high" | "medium" | "low" | "manual";
   rejectAddedServices?: string[];
   rejectRemovedServices?: string[];
   rejectHijabiFriendly?: boolean;
+  rejectPriceBand?: boolean;
+  rejectLocation?: boolean;
+  areaId?: string;
+  areaIds?: string[];
+  areaLabel?: string;
+};
+
+type ManualPriceParseResult = {
+  priceBand: PriceBand | "";
+  medianPrice: number | null;
+  prices: number[];
+  priceCount: number;
+  evidence: string[];
+  ignoredPrices: string[];
 };
 
 type FreshnessUndoState = {
@@ -196,6 +267,12 @@ const emptyForm: DraftForm = {
   services: [],
   hijabiFriendly: false,
   canBraidWithoutGel: false,
+  priceBand: "",
+  priceEvidence: [],
+  priceCheckedAt: "",
+  priceUpdatedAt: "",
+  priceConfidence: "",
+  priceSource: "",
 };
 
 const serviceGroups = [
@@ -312,14 +389,16 @@ export function AdminApp() {
   const [isRunningChecks, setIsRunningChecks] = useState(false);
   const [checkProgress, setCheckProgress] = useState({ checkedCount: 0, total: 0, nextOffset: null as number | null });
   const [activeCheckBatch, setActiveCheckBatch] = useState({ from: 0, to: 50 });
-  const [activeView, setActiveView] = useState<"overview" | "drafts" | "freshness" | "discovery">("overview");
+  const [activeView, setActiveView] = useState<"overview" | "drafts" | "freshness" | "pricing" | "discovery">("overview");
   const [intakeText, setIntakeText] = useState("");
   const [dashboard, setDashboard] = useState<DashboardMetrics | null>(null);
   const [suggestions, setSuggestions] = useState<DiscoverySuggestion[]>([]);
   const [isGeneratingSuggestions, setIsGeneratingSuggestions] = useState(false);
   const [stylistStatusFilter, setStylistStatusFilter] = useState("all");
+  const [stylistSearchTerm, setStylistSearchTerm] = useState("");
   const [isDraftEditorOpen, setIsDraftEditorOpen] = useState(false);
   const [freshnessUndoStack, setFreshnessUndoStack] = useState<FreshnessUndoState[]>([]);
+  const lastBookingPreviewKeyRef = useRef("");
 
 	  function updateDraftLocations(draft: StylistDraft, nextAreaIds: string[]) {
 	    const normalizedAreaIds = [...new Set(nextAreaIds.filter(Boolean))];
@@ -341,11 +420,12 @@ export function AdminApp() {
 	  );
 
   const filteredStylists = useMemo(() => {
+    const searchTerm = stylistSearchTerm.trim();
     return allStylists.filter((draft) => {
       const matchesStatus = stylistStatusFilter === "all" || draft.status === stylistStatusFilter || getDraftDisplayStatus(draft) === stylistStatusFilter;
-      return matchesStatus;
+      return matchesStatus && stylistMatchesSearch(draft, searchTerm);
     });
-  }, [allStylists, stylistStatusFilter]);
+  }, [allStylists, stylistSearchTerm, stylistStatusFilter]);
 
   useEffect(() => {
     checkSession();
@@ -394,18 +474,70 @@ export function AdminApp() {
     }
 
     const timeout = window.setTimeout(async () => {
-      const matchedServices = await matchRawServices(selectedDraftRawServices);
-      if (!matchedServices.length) {
-        return;
+      const [matchedServices, priceCheck] = await Promise.all([
+        matchRawServices(selectedDraftRawServices),
+        parsePriceListText(selectedDraftRawServices),
+      ]);
+      const update: Partial<StylistDraft> = {};
+      if (matchedServices.length) {
+        update.services = mergeServices(selectedDraft.services, matchedServices);
       }
 
-	      updateStylist(selectedDraft.id, {
-	        services: mergeServices(selectedDraft.services, matchedServices),
-	      });
+      const pricingUpdate = buildDraftPricingUpdate(priceCheck, selectedDraft, "manual", { allowOverwriteManual: false });
+      Object.assign(update, pricingUpdate);
+
+      if (Object.keys(update).length) {
+        updateStylist(selectedDraft.id, update);
+      }
     }, 350);
 
     return () => window.clearTimeout(timeout);
   }, [selectedDraft?.id, selectedDraftRawServices, isAuthed]);
+
+  useEffect(() => {
+    if (!isAuthed || !selectedDraft) {
+      return;
+    }
+
+    const bookingUrl = selectedDraft.bookingUrl?.trim() || "";
+    const websiteUrl = selectedDraft.websiteUrl?.trim() || "";
+    const previewUrl = bookingUrl || websiteUrl;
+    if (!looksLikeHttpUrl(previewUrl) || isLikelySocialUrl(previewUrl)) {
+      return;
+    }
+
+    const previewKey = `${selectedDraft.id}|${bookingUrl}|${websiteUrl}`;
+    if (lastBookingPreviewKeyRef.current === previewKey) {
+      return;
+    }
+
+    const timeout = window.setTimeout(async () => {
+      lastBookingPreviewKeyRef.current = previewKey;
+      const preview = await fetchBookingPreview(bookingUrl, websiteUrl);
+      if (!preview) {
+        return;
+      }
+
+      const update: Partial<StylistDraft> = {};
+      const rawServices = preview.serviceCheck?.rawServices || [];
+      const matchedServices = preview.serviceCheck?.matchedServices || [];
+      if (rawServices.length) {
+        update.rawServices = mergeLines(selectedDraft.rawServices || [], rawServices);
+      }
+      if (matchedServices.length) {
+        update.services = mergeServices(selectedDraft.services, matchedServices);
+      }
+
+      const pricingUpdate = buildDraftPricingUpdate(preview.priceCheck, selectedDraft, "auto", { allowOverwriteManual: false });
+      Object.assign(update, pricingUpdate);
+
+      if (Object.keys(update).length) {
+        updateStylist(selectedDraft.id, update);
+      }
+    }, 800);
+
+    return () => window.clearTimeout(timeout);
+  }, [selectedDraft?.id, selectedDraft?.bookingUrl, selectedDraft?.websiteUrl, isAuthed]);
 
   async function checkSession() {
     setIsCheckingSession(true);
@@ -536,7 +668,15 @@ export function AdminApp() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
-        body: JSON.stringify({ text: intakeText }),
+        body: JSON.stringify({
+          text: intakeText,
+          priceBand: form.priceBand,
+          priceSource: form.priceSource,
+          priceEvidence: form.priceEvidence,
+          priceCheckedAt: form.priceCheckedAt,
+          priceUpdatedAt: form.priceUpdatedAt,
+          priceConfidence: form.priceConfidence,
+        }),
       });
       const payload = await response.json();
       if (!response.ok) {
@@ -546,6 +686,7 @@ export function AdminApp() {
       const createdDrafts = payload.drafts ?? [];
       const duplicateCount = Array.isArray(payload.duplicates) ? payload.duplicates.length : 0;
       setIntakeText("");
+      setForm(emptyForm);
       setDrafts((current) => [...createdDrafts, ...current]);
       setSelectedDraftId(createdDrafts[0]?.id ?? null);
       setActiveView("drafts");
@@ -643,12 +784,10 @@ export function AdminApp() {
     }
   }
 
-  async function runChecks(offset = 0) {
+  async function runChecks(offset = 0, mode: "freshness" | "pricing" = "freshness") {
     setMessage("");
     const isFullRun = offset === 0;
     if (isFullRun) {
-      setChecks([]);
-      setChecksLoadedAt("");
       setCheckProgress({
         checkedCount: 0,
         total: dashboard?.freshness.total || checkProgress.total || 0,
@@ -667,7 +806,11 @@ export function AdminApp() {
       while (nextOffset !== null) {
         const batchOffset = nextOffset;
         setActiveCheckBatch({ from: batchOffset + 1, to: batchOffset + 50 });
-        const response = await fetch(`/api/admin/stylists/checks?offset=${batchOffset}&limit=50`, { credentials: "include" });
+        const params = new URLSearchParams({ offset: String(batchOffset), limit: "50" });
+        if (mode === "pricing") {
+          params.set("mode", "pricing");
+        }
+        const response = await fetch(`/api/admin/stylists/checks?${params.toString()}`, { credentials: "include" });
         const payload = await response.json().catch(() => ({ message: "Could not run checks." }));
         if (!response.ok) {
           setMessage(payload.message || "Could not run checks.");
@@ -687,45 +830,59 @@ export function AdminApp() {
         });
         completedCount = payload.checkedCount ?? completedCount;
         totalCount = payload.total ?? totalCount;
-        setMessage(`Checked ${payload.checkedCount ?? 0} of ${payload.total ?? 0}. Found ${totalUpdates} update${totalUpdates === 1 ? "" : "s"} so far.`);
+        if (mode === "pricing") {
+          const summary = summarizeBackfillChecks(completedChecks);
+          setMessage(`Checked ${payload.checkedCount ?? 0} of ${payload.total ?? 0} stylists for pricing. Auto-applied ${summary.autoApplied}, review ${summary.needsReview}, none found ${summary.noPrice}, Instagram only ${summary.skippedSocial}.`);
+        } else {
+          setMessage(`Checked ${payload.checkedCount ?? 0} of ${payload.total ?? 0}. Found ${totalUpdates} update${totalUpdates === 1 ? "" : "s"} so far.`);
+        }
         nextOffset = payload.nextOffset ?? null;
       }
 
-      const saveResponse = await fetch("/api/admin/stylists/checks/saved", {
-        method: "POST",
-        credentials: "include",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          checks: completedChecks,
-          checkedAt: lastCheckedAt || new Date().toISOString(),
-          checkedCount: completedCount,
-          total: totalCount,
-        }),
-      });
-      const savedPayload = await saveResponse.json().catch(() => null);
-      if (saveResponse.ok && savedPayload?.checkedAt) {
-        lastCheckedAt = savedPayload.checkedAt;
-        setChecksLoadedAt(lastCheckedAt);
+      if (mode === "freshness") {
+        const saveResponse = await fetch("/api/admin/stylists/checks/saved", {
+          method: "POST",
+          credentials: "include",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            checks: completedChecks,
+            checkedAt: lastCheckedAt || new Date().toISOString(),
+            checkedCount: completedCount,
+            total: totalCount,
+          }),
+        });
+        const savedPayload = await saveResponse.json().catch(() => null);
+        if (saveResponse.ok && savedPayload?.checkedAt) {
+          lastCheckedAt = savedPayload.checkedAt;
+          setChecksLoadedAt(lastCheckedAt);
+        }
       }
 
-      setMessage(`Health check complete. Found ${totalUpdates} update${totalUpdates === 1 ? "" : "s"}.`);
-      setDashboard((current) =>
-        current
-          ? {
-              ...current,
-              freshness: {
-                ...current.freshness,
-                totalIssues: completedChecks.length,
-                checkedCount: completedCount || current.freshness.checkedCount,
-                total: totalCount || current.freshness.total,
-                updatedAt: lastCheckedAt || current.freshness.updatedAt,
-                brokenLinks: completedChecks.filter((check) => check.linkChecks?.some(isActionableBrokenLink)).length,
-                manualLinks: completedChecks.filter((check) => check.linkChecks?.some(isManualCheckLink)).length,
-                serviceChanges: completedChecks.filter((check) => check.addedServices?.length || check.removedServices?.length).length,
-              },
-            }
-          : current,
-      );
+      if (mode === "pricing") {
+        const summary = summarizeBackfillChecks(completedChecks);
+        setMessage(`Pricing check complete. Auto-applied ${summary.autoApplied}, review ${summary.needsReview}, none found ${summary.noPrice}, Instagram only ${summary.skippedSocial}.`);
+      } else {
+        setMessage(`Health check complete. Found ${totalUpdates} update${totalUpdates === 1 ? "" : "s"}.`);
+      }
+      if (mode === "freshness") {
+        setDashboard((current) =>
+          current
+            ? {
+                ...current,
+                freshness: {
+                  ...current.freshness,
+                  totalIssues: completedChecks.length,
+                  checkedCount: completedCount || current.freshness.checkedCount,
+                  total: totalCount || current.freshness.total,
+                  updatedAt: lastCheckedAt || current.freshness.updatedAt,
+                  brokenLinks: completedChecks.filter((check) => check.linkChecks?.some(isActionableBrokenLink)).length,
+                  manualLinks: completedChecks.filter((check) => check.linkChecks?.some(isManualCheckLink)).length,
+                  serviceChanges: completedChecks.filter((check) => check.addedServices?.length || check.removedServices?.length).length,
+                },
+              }
+            : current,
+        );
+      }
     } finally {
       setIsRunningChecks(false);
     }
@@ -784,7 +941,7 @@ export function AdminApp() {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
-        body: JSON.stringify(update),
+        body: JSON.stringify({ ...update, check: cloneDirectoryCheck(check) }),
       });
       const payload = await response.json();
       if (!response.ok) {
@@ -792,25 +949,27 @@ export function AdminApp() {
         return;
       }
       setChecks((current) =>
-        current.map((item) =>
-          item.id === check.id
-            ? {
-                ...item,
-                bookingUrl: update.bookingUrl ?? item.bookingUrl,
-                instagramUrl: update.instagramUrl ?? item.instagramUrl,
-                websiteUrl: update.websiteUrl ?? item.websiteUrl,
-                hijabiFriendly: update.hijabiFriendly === true ? true : item.hijabiFriendly,
-                currentServices: payload.salon?.services ?? item.currentServices,
-                addedServices: removeReviewedServices(item.addedServices, [...(update.addServices ?? []), ...(update.rejectAddedServices ?? [])]),
-                removedServices: removeReviewedServices(item.removedServices, [...(update.removeServices ?? []), ...(update.rejectRemovedServices ?? [])]),
-                attributeSuggestions: removeReviewedAttributeSuggestions(item.attributeSuggestions, update),
-                ...removeReviewedLinkChecks(item, update),
-              }
-            : item,
-        ),
+        updateChecksAfterFreshnessAction(current, check, update, payload.check, payload.salon),
       );
       if (update.hijabiFriendly === true) {
         setPublishedStylists((current) => current.map((item) => (item.id === check.id ? { ...item, hijabiFriendly: true } : item)));
+      }
+      if (update.priceBand) {
+        setPublishedStylists((current) =>
+          current.map((item) =>
+            item.id === check.id
+              ? {
+                  ...item,
+                  priceBand: update.priceBand,
+                  priceSource: update.priceSource || "auto",
+                  priceEvidence: update.priceEvidence || [],
+                  priceCheckedAt: update.priceCheckedAt || new Date().toISOString(),
+                  priceUpdatedAt: new Date().toISOString(),
+                  priceConfidence: update.priceConfidence || "medium",
+                }
+              : item,
+          ),
+        );
       }
       setFreshnessUndoStack((current) => [...current, undoState]);
       setMessage("Directory listing updated.");
@@ -831,11 +990,14 @@ export function AdminApp() {
         credentials: "include",
         body: JSON.stringify({
           check: lastFreshnessUndo.check,
+          update: lastFreshnessUndo.update,
           previousServices: lastFreshnessUndo.previousServices,
           previousHijabiFriendly: lastFreshnessUndo.previousHijabiFriendly,
           rejectAddedServices: lastFreshnessUndo.update.rejectAddedServices,
           rejectRemovedServices: lastFreshnessUndo.update.rejectRemovedServices,
           rejectHijabiFriendly: lastFreshnessUndo.update.rejectHijabiFriendly,
+          rejectPriceBand: lastFreshnessUndo.update.rejectPriceBand,
+          rejectLocation: lastFreshnessUndo.update.rejectLocation,
         }),
       });
       const payload = await response.json();
@@ -867,6 +1029,42 @@ export function AdminApp() {
 
     const payload = await response.json();
     return Array.isArray(payload.services) ? payload.services : [];
+  }
+
+  async function parsePriceListText(text: string): Promise<AdminPriceCheck | null> {
+    if (!/[£]|(?:\bGBP\b)|(?:British pounds?)/i.test(text)) {
+      return null;
+    }
+
+    const response = await fetch("/api/admin/stylists/parse-prices", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+      body: JSON.stringify({ text }),
+    });
+
+    if (!response.ok) {
+      return null;
+    }
+
+    const payload = await response.json();
+    return payload?.ok ? payload : null;
+  }
+
+  async function fetchBookingPreview(bookingUrl: string, websiteUrl: string): Promise<BookingPreview | null> {
+    const response = await fetch("/api/admin/stylists/booking-preview", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+      body: JSON.stringify({ bookingUrl, websiteUrl }),
+    });
+
+    if (!response.ok) {
+      return null;
+    }
+
+    const payload = await response.json();
+    return payload?.ok ? payload : null;
   }
 
   function updateStylist(draftId: string, update: Partial<StylistDraft>) {
@@ -932,7 +1130,7 @@ export function AdminApp() {
         </div>
 
         <nav className="mt-9 flex gap-7 border-b border-stone-200 dark:border-stone-800">
-          {(["overview", "drafts", "freshness"] as const).map((view) => (
+          {(["overview", "drafts", "freshness", "pricing"] as const).map((view) => (
             <button
               key={view}
               type="button"
@@ -942,7 +1140,7 @@ export function AdminApp() {
                 activeView === view ? "border-stone-950 text-stone-950 dark:border-stone-100 dark:text-stone-50" : "border-transparent text-stone-500 hover:text-stone-900 dark:text-stone-400 dark:hover:text-stone-100",
               )}
             >
-              {view === "drafts" ? "Stylists" : view === "freshness" ? "Health" : view}
+              {view === "drafts" ? "Stylists" : view === "freshness" ? "Health" : view === "pricing" ? "Pricing" : view}
             </button>
           ))}
         </nav>
@@ -965,12 +1163,14 @@ export function AdminApp() {
           publishedStylists={publishedStylists}
           dashboard={dashboard}
           statusFilter={stylistStatusFilter}
+          searchTerm={stylistSearchTerm}
           isBusy={isBusy}
           intakeText={intakeText}
           selectedDraft={isDraftEditorOpen ? selectedDraft : null}
           regions={regions}
           services={services}
           onStatusFilterChange={setStylistStatusFilter}
+          onSearchTermChange={setStylistSearchTerm}
           onIntakeChange={setIntakeText}
           onSubmitIntake={createBulkDrafts}
           onSelectDraft={(draftId) => {
@@ -999,6 +1199,20 @@ export function AdminApp() {
           onRunChecks={() => runChecks(0)}
           onApply={applyFreshnessUpdate}
           onUndo={undoFreshnessUpdate}
+        />
+      ) : null}
+
+      {activeView === "pricing" ? (
+        <PricingPage
+          dashboard={dashboard}
+          checks={checks}
+          checksLoadedAt={checksLoadedAt}
+          checkProgress={checkProgress}
+          activeCheckBatch={activeCheckBatch}
+          isRunningChecks={isRunningChecks}
+          isBusy={isBusy}
+          onRunMissingPrices={() => runChecks(0, "pricing")}
+          onApply={applyFreshnessUpdate}
         />
       ) : null}
 
@@ -1046,12 +1260,14 @@ function StylistsPage({
   publishedStylists,
   dashboard,
   statusFilter,
+  searchTerm,
   isBusy,
   intakeText,
   selectedDraft,
   regions,
   services,
   onStatusFilterChange,
+  onSearchTermChange,
   onIntakeChange,
   onSubmitIntake,
   onSelectDraft,
@@ -1068,12 +1284,14 @@ function StylistsPage({
   publishedStylists: StylistDraft[];
   dashboard: DashboardMetrics | null;
   statusFilter: string;
+  searchTerm: string;
   isBusy: boolean;
   intakeText: string;
   selectedDraft: StylistDraft | null;
   regions: RegionOption[];
   services: string[];
   onStatusFilterChange: (value: string) => void;
+  onSearchTermChange: (value: string) => void;
   onIntakeChange: (value: string) => void;
   onSubmitIntake: (event: FormEvent) => void;
   onSelectDraft: (draftId: string) => void;
@@ -1161,12 +1379,29 @@ function StylistsPage({
             <p className="mt-1 text-sm text-stone-500">
               {drafts.length} of {allDrafts.length} stylist{allDrafts.length === 1 ? "" : "s"}
               {statusFilter !== "all" ? ` · ${statusLabel}` : ""}
+              {searchTerm.trim() ? ` · search: ${searchTerm.trim()}` : ""}
             </p>
           </div>
-          <button type="button" className="inline-flex items-center gap-1.5 text-sm text-stone-700 hover:text-stone-950">
-            <ArrowUpDown className="size-4" />
-            Sort
-          </button>
+          <div className="relative w-full max-w-xs">
+            <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-stone-400" />
+            <Input
+              value={searchTerm}
+              onChange={(event) => onSearchTermChange(event.target.value)}
+              placeholder="Search stylists"
+              aria-label="Search stylist entries"
+              className="h-10 rounded-none pl-9 pr-10"
+            />
+            {searchTerm ? (
+              <button
+                type="button"
+                onClick={() => onSearchTermChange("")}
+                className="absolute right-2 top-1/2 inline-flex size-7 -translate-y-1/2 items-center justify-center rounded-none text-stone-400 transition hover:bg-stone-100 hover:text-stone-900"
+                aria-label="Clear stylist search"
+              >
+                <X className="size-4" />
+              </button>
+            ) : null}
+          </div>
         </div>
         <div className="overflow-x-auto">
           <table className="w-full text-left text-sm md:min-w-[900px]">
@@ -1559,6 +1794,35 @@ function getStylistStatusLabel(status: string) {
   return "Draft";
 }
 
+function stylistMatchesSearch(draft: StylistDraft, searchTerm: string) {
+  if (!searchTerm) {
+    return true;
+  }
+
+  const haystack = [
+    draft.name,
+    draft.areaLabel,
+    draft.neighbourhood,
+    draft.postcode,
+    draft.bookingPlatform,
+    draft.bookingUrl,
+    draft.websiteUrl,
+    draft.instagramUrl,
+    draft.tiktokUrl,
+    getStylistStatusLabel(getDraftDisplayStatus(draft)),
+    ...draft.services,
+  ]
+    .filter(Boolean)
+    .join(" ")
+    .toLowerCase();
+
+  return searchTerm
+    .toLowerCase()
+    .split(/\s+/)
+    .filter(Boolean)
+    .every((term) => haystack.includes(term));
+}
+
 function formatDuplicateResponse(payload: { duplicates?: DuplicateMatch[] | DuplicateResult[]; message?: string }) {
   const duplicates = Array.isArray(payload.duplicates) ? payload.duplicates : [];
   const firstResult = duplicates[0];
@@ -1637,13 +1901,16 @@ function DashboardOverview({
   dashboard: DashboardMetrics | null;
   checks: DirectoryCheck[];
   publishedCount: number;
-  onOpenView: (view: "overview" | "drafts" | "freshness") => void;
+  onOpenView: (view: "overview" | "drafts" | "freshness" | "pricing") => void;
 }) {
-  const healthRows = buildFreshnessRecommendationGroups(checks);
+  const rows = buildFreshnessRecommendationGroups(checks);
+  const healthRows = filterFreshnessRowsByDetail(rows, (detail) => detail.kind !== "price" && detail.kind !== "price-info" && detail.kind !== "manual-price");
+  const pricingRows = filterFreshnessRowsByDetail(rows, (detail) => detail.kind === "price" || detail.kind === "manual-price");
   const visibleStaleEntries = checks.length ? healthRows.length : dashboard?.freshness.totalIssues || 0;
   const visibleWrongServices = healthRows.filter((row) => row.details.some((detail) => detail.kind === "add" || detail.kind === "remove")).length;
   const visibleBrokenLinks = healthRows.filter((row) => row.details.some((detail) => detail.kind === "fix")).length;
   const visibleManualChecks = healthRows.filter((row) => row.details.some((detail) => detail.kind === "manual")).length;
+  const pricingActions = pricingRows.length;
 
   return (
     <div className="mx-auto max-w-7xl space-y-8 px-5 py-11">
@@ -1651,7 +1918,7 @@ function DashboardOverview({
         <h1 className="text-3xl font-semibold tracking-tight text-stone-950">Overview</h1>
       </section>
 
-      <div className="grid gap-4 lg:grid-cols-2">
+      <div className="grid gap-4 lg:grid-cols-3">
         <DashboardCard
           title="Stylists"
           value={publishedCount}
@@ -1665,6 +1932,13 @@ function DashboardOverview({
           detail={`${visibleWrongServices} wrong service${visibleWrongServices === 1 ? "" : "s"} · ${visibleBrokenLinks} broken link${visibleBrokenLinks === 1 ? "" : "s"} · ${visibleManualChecks} couldn't verify`}
           icon={<ClockAlert className="size-4" />}
           onClick={() => onOpenView("freshness")}
+        />
+        <DashboardCard
+          title="Pricing"
+          value={pricingActions}
+          detail="Manual price suggestions and Instagram-only pricing checks"
+          icon={<PoundSterling className="size-4" />}
+          onClick={() => onOpenView("pricing")}
         />
       </div>
     </div>
@@ -1736,9 +2010,10 @@ function FreshnessPage({
 }) {
   const total = checkProgress.total || dashboard?.freshness.total || 0;
   const checkedCount = checkProgress.checkedCount || dashboard?.freshness.checkedCount || 0;
-	  const [freshnessFilter, setFreshnessFilter] = useState<"all" | "service-changes" | "broken-links" | "manual-check">("all");
+  const [freshnessFilter, setFreshnessFilter] = useState<"all" | "service-changes" | "link-issues" | "location-updates">("all");
 	  const rows = buildFreshnessRecommendationGroups(checks);
-	  const recommendationCount = rows.length;
+  const healthRows = filterFreshnessRowsByDetail(rows, (detail) => detail.kind !== "price" && detail.kind !== "price-info" && detail.kind !== "manual-price");
+	  const recommendationCount = healthRows.length;
 		  const lastCompletedAt = checksLoadedAt || dashboard?.freshness.updatedAt;
 		  const hasCompletedCheck = Boolean(lastCompletedAt || checkedCount > 0 || rows.length > 0);
   const isWaitingForResults = isRunningChecks && rows.length === 0;
@@ -1746,16 +2021,17 @@ function FreshnessPage({
   const runButtonLabel = isRunningChecks
     ? `Checking ${activeCheckBatch.from} - ${activeBatchTo}`
     : "Run";
-	  const serviceChanges = rows.filter((row) => row.details.some((detail) => detail.kind === "add" || detail.kind === "remove")).length;
-	  const brokenLinks = rows.filter((row) => row.details.some((detail) => detail.kind === "fix")).length;
-  const manualChecks = rows.filter((row) => row.details.some((detail) => detail.kind === "manual")).length;
-	  const filteredRows = freshnessFilter === "service-changes"
-	    ? rows.filter((row) => row.details.some((d) => d.kind === "add" || d.kind === "remove"))
-	    : freshnessFilter === "broken-links"
-	      ? rows.filter((row) => row.details.some((d) => d.kind === "fix"))
-        : freshnessFilter === "manual-check"
-          ? rows.filter((row) => row.details.some((d) => d.kind === "manual"))
-	      : rows;
+  const serviceChanges = healthRows.filter((row) => row.details.some((detail) => detail.kind === "add" || detail.kind === "remove")).length;
+  const linkIssues = healthRows.filter((row) => row.details.some((detail) => detail.kind === "fix" || detail.kind === "manual")).length;
+  const locationUpdates = healthRows.filter((row) => row.details.some((detail) => detail.kind === "location")).length;
+  const filteredRows = freshnessFilter === "service-changes"
+    ? healthRows.filter((row) => row.details.some((d) => d.kind === "add" || d.kind === "remove"))
+    : freshnessFilter === "link-issues"
+      ? healthRows.filter((row) => row.details.some((d) => d.kind === "fix" || d.kind === "manual"))
+      : freshnessFilter === "location-updates"
+          ? healthRows.filter((row) => row.details.some((d) => d.kind === "location"))
+          : healthRows;
+  const visibleRows = filteredRows;
 
 	  return (
 	    <div className="mx-auto max-w-7xl space-y-7 px-5 py-9">
@@ -1792,20 +2068,20 @@ function FreshnessPage({
           <div className="grid gap-5 md:grid-cols-4">
             <FreshnessMetricCard title="Stale entries" value={recommendationCount} icon={<RefreshCw className="size-4" />} isActive={freshnessFilter === "all"} onClick={() => setFreshnessFilter("all")} />
             <FreshnessMetricCard title="Services incorrect" value={serviceChanges} icon={<AlertTriangle className="size-4" />} isActive={freshnessFilter === "service-changes"} onClick={() => setFreshnessFilter(freshnessFilter === "service-changes" ? "all" : "service-changes")} />
-            <FreshnessMetricCard title="Broken links" value={brokenLinks} icon={<Unlink className="size-4" />} isActive={freshnessFilter === "broken-links"} onClick={() => setFreshnessFilter(freshnessFilter === "broken-links" ? "all" : "broken-links")} />
-            <FreshnessMetricCard title="Could not verify" value={manualChecks} icon={<AlertTriangle className="size-4" />} isActive={freshnessFilter === "manual-check"} onClick={() => setFreshnessFilter(freshnessFilter === "manual-check" ? "all" : "manual-check")} />
+            <FreshnessMetricCard title="Link issues" value={linkIssues} icon={<Unlink className="size-4" />} isActive={freshnessFilter === "link-issues"} onClick={() => setFreshnessFilter(freshnessFilter === "link-issues" ? "all" : "link-issues")} />
+            <FreshnessMetricCard title="Location updates" value={locationUpdates} icon={<MapPin className="size-4" />} isActive={freshnessFilter === "location-updates"} onClick={() => setFreshnessFilter(freshnessFilter === "location-updates" ? "all" : "location-updates")} />
           </div>
         )}
 
-	      <section className="overflow-hidden rounded-none border border-stone-200 bg-white">
-	        {isWaitingForResults ? (
+      <section className="overflow-hidden rounded-none border border-stone-200 bg-white">
+          {isWaitingForResults ? (
             <FreshnessSkeleton />
-          ) : filteredRows.length ? (
-	          filteredRows.map((row, index) => (
-	            <FreshnessRecommendationCard key={row.id} row={row} defaultOpen={index === 0} isBusy={isBusy} onApply={onApply} />
-	          ))
-	        ) : (
-	          <div className="flex min-h-64 flex-col items-center justify-center px-6 py-16 text-center">
+          ) : visibleRows.length ? (
+            visibleRows.map((row, index) => (
+              <FreshnessRecommendationCard key={row.id} row={row} defaultOpen={index === 0} isBusy={isBusy} onApply={onApply} />
+            ))
+          ) : (
+            <div className="flex min-h-64 flex-col items-center justify-center px-6 py-16 text-center">
               <h2 className="text-lg font-semibold tracking-tight text-stone-950">All clear</h2>
               <p className="mt-3 max-w-xl text-base text-stone-500">No health issues found. Everything is running smoothly.</p>
               <Button type="button" variant="outline" onClick={onRunChecks} disabled={isRunningChecks} className="mt-8 h-11 rounded-none bg-white px-4 text-sm">
@@ -1813,14 +2089,88 @@ function FreshnessPage({
                 Run check again
               </Button>
             </div>
-	        )}
-	      </section>
+          )}
+        </section>
 	    </div>
 	  );
 	}
 
 function PlayIcon() {
   return <span className="ml-0.5 inline-block size-0 border-y-[5px] border-l-[8px] border-y-transparent border-l-current" />;
+}
+
+function PricingPage({
+  dashboard,
+  checks,
+  checksLoadedAt,
+  checkProgress,
+  activeCheckBatch,
+  isRunningChecks,
+  isBusy,
+  onRunMissingPrices,
+  onApply,
+}: {
+  dashboard: DashboardMetrics | null;
+  checks: DirectoryCheck[];
+  checksLoadedAt: string | null;
+  checkProgress: { checkedCount: number; total: number; nextOffset: number | null };
+  activeCheckBatch: { from: number; to: number };
+  isRunningChecks: boolean;
+  isBusy: boolean;
+  onRunMissingPrices: () => void;
+  onApply: FreshnessPageApplyHandler;
+}) {
+  const total = checkProgress.total || dashboard?.freshness.total || 0;
+  const activeBatchTo = total ? Math.min(activeCheckBatch.to, total) : activeCheckBatch.to;
+  const [pricingView, setPricingView] = useState<"suggestions" | "instagram" | "missing">("suggestions");
+  const rows = buildFreshnessRecommendationGroups(checks);
+  const suggestionRows = filterFreshnessRowsByDetail(rows, (detail) => detail.kind === "price" && detail.priceAutoApplied !== true);
+  const instagramRows = filterFreshnessRowsByDetail(rows, (detail, row) => detail.kind === "manual-price" && detail.manualPriceReason === "social-only" && !hasSavedPriceBand(row.check));
+  const missingRows = filterFreshnessRowsByDetail(rows, (detail, row) => detail.kind === "manual-price" && detail.manualPriceReason === "no-price" && !hasSavedPriceBand(row.check));
+  const visibleRows = pricingView === "instagram" ? instagramRows : pricingView === "missing" ? missingRows : suggestionRows;
+  const lastCompletedAt = checksLoadedAt || dashboard?.freshness.updatedAt;
+
+  return (
+    <div className="mx-auto max-w-7xl space-y-7 px-5 py-9">
+      <section className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+        <div>
+          <h1 className="text-3xl font-semibold tracking-tight text-stone-950">Pricing</h1>
+          <p className="mt-2 text-sm text-stone-500">
+            {lastCompletedAt ? `Last checked ${formatRelativeTime(lastCompletedAt)}` : "Run a pricing check to begin"}
+          </p>
+        </div>
+        <Button type="button" onClick={onRunMissingPrices} disabled={isRunningChecks} className="h-10 rounded-none bg-stone-950 px-4 text-sm">
+          {isRunningChecks ? <Loader2 className="size-4 animate-spin" /> : <PoundSterling className="size-4" />}
+          {isRunningChecks ? `Checking ${activeCheckBatch.from} - ${activeBatchTo}` : "Run pricing check"}
+        </Button>
+      </section>
+
+      <div className="grid gap-5 md:grid-cols-3">
+        <FreshnessMetricCard title="Suggestions" value={suggestionRows.length} icon={<PoundSterling className="size-4" />} isActive={pricingView === "suggestions"} onClick={() => setPricingView("suggestions")} />
+        <FreshnessMetricCard title="Instagram only" value={instagramRows.length} icon={<Globe className="size-4" />} isActive={pricingView === "instagram"} onClick={() => setPricingView("instagram")} />
+        <FreshnessMetricCard title="No pricing found" value={missingRows.length} icon={<FileText className="size-4" />} isActive={pricingView === "missing"} onClick={() => setPricingView("missing")} />
+      </div>
+
+      <section className="overflow-hidden rounded-none border border-stone-200 bg-white">
+        {isRunningChecks && !visibleRows.length ? (
+          <FreshnessSkeleton />
+        ) : visibleRows.length ? (
+          visibleRows.map((row, index) => (
+            <FreshnessRecommendationCard key={row.id} row={row} defaultOpen={index === 0} isBusy={isBusy} onApply={onApply} />
+          ))
+        ) : (
+          <div className="flex min-h-64 flex-col items-center justify-center px-6 py-16 text-center">
+            <h2 className="text-lg font-semibold tracking-tight text-stone-950">
+              {pricingView === "instagram" ? "No Instagram-only checks" : pricingView === "missing" ? "No missing price checks" : "No price suggestions"}
+            </h2>
+            <p className="mt-3 max-w-xl text-base text-stone-500">
+              {pricingView === "instagram" ? "No Instagram-only stylists need manual price checking." : pricingView === "missing" ? "No checked booking pages are missing machine-readable prices." : "No price suggestions need review."}
+            </p>
+          </div>
+        )}
+      </section>
+    </div>
+  );
 }
 
 function FreshnessMetricCard({ title, value, icon, isActive, onClick }: { title: string; value: number; icon: React.ReactNode; isActive: boolean; onClick: () => void }) {
@@ -1973,15 +2323,14 @@ function FreshnessRecommendationItem({
   const isRemove = detail.kind === "remove";
   const isManual = detail.kind === "manual";
   const isAttribute = detail.kind === "attribute";
+  const isPrice = detail.kind === "price";
+  const isManualPrice = detail.kind === "manual-price";
+  const isInformational = detail.kind === "price-info";
+  const isAutoAppliedPrice = isPrice && detail.priceAutoApplied === true;
+  const [selectedPriceBand, setSelectedPriceBand] = useState<PriceBand | "">(detail.priceBand || "");
+  const [manualPriceResult, setManualPriceResult] = useState<ManualPriceParseResult | null>(null);
   const visual = getFreshnessDetailVisual(detail);
-  const acceptUpdate =
-    detail.kind === "add" && detail.service
-      ? { addServices: [detail.service] }
-      : detail.kind === "remove" && detail.service
-        ? { removeServices: [detail.service] }
-        : detail.kind === "attribute" && detail.attributeField === "hijabiFriendly"
-          ? { hijabiFriendly: true }
-        : row.acceptUpdate;
+  const acceptUpdate = getFreshnessDetailAcceptUpdate(detail, row, selectedPriceBand, manualPriceResult);
   const rejectUpdate =
     detail.kind === "add" && detail.service
       ? { rejectAddedServices: [detail.service] }
@@ -1989,9 +2338,14 @@ function FreshnessRecommendationItem({
         ? { rejectRemovedServices: [detail.service] }
         : detail.kind === "attribute" && detail.attributeField === "hijabiFriendly"
           ? { rejectHijabiFriendly: true }
+          : detail.kind === "price" || detail.kind === "manual-price"
+            ? { rejectPriceBand: true }
+            : detail.kind === "location"
+              ? { rejectLocation: true }
         : row.rejectUpdate;
-  const primaryActionLabel = isAdd ? "Add service" : isRemove ? "Remove" : isAttribute ? "Mark hijabi-friendly" : detail.kind === "fix" ? "Save" : "Resolve";
+  const primaryActionLabel = isAdd ? "Add service" : isRemove ? "Remove" : isAttribute ? "Mark hijabi-friendly" : isPrice || isManualPrice ? "Set band" : detail.kind === "location" ? "Update location" : detail.kind === "fix" ? "Save" : "Resolve";
   const secondaryActionLabel = isAdd ? "Ignore" : isRemove ? "Keep" : "Ignore";
+  const sortedPriceValues = [...(detail.priceValues || [])].sort((left, right) => left - right);
 
   return (
     <div
@@ -2008,10 +2362,23 @@ function FreshnessRecommendationItem({
         <div className="min-w-0">
           <div className={cn("flex min-w-0 flex-wrap items-center", isManual ? "gap-x-5 gap-y-1" : "gap-x-3 gap-y-1")}>
             <p className="font-semibold text-stone-950">{detail.label}</p>
-            {detail.kind === "fix" || detail.kind === "manual" || detail.kind === "review" ? (
+            {detail.kind === "fix" || detail.kind === "manual" || detail.kind === "price" || detail.kind === "price-info" || detail.kind === "review" || detail.kind === "manual-price" ? (
               <p className="text-sm font-medium text-stone-500">{detail.description}</p>
             ) : null}
           </div>
+          {sortedPriceValues.length ? (
+            <p className="mt-2 text-sm font-semibold text-stone-700">
+              {sortedPriceValues.map(formatDetectedPrice).join(", ")}
+            </p>
+          ) : null}
+          {(isPrice && !isAutoAppliedPrice) || isManualPrice ? (
+            <ManualPriceCalculator
+              detail={detail}
+              selectedPriceBand={selectedPriceBand}
+              onSelectedPriceBandChange={setSelectedPriceBand}
+              onManualPriceResult={setManualPriceResult}
+            />
+          ) : null}
           {detail.evidence?.length ? (
             <div className="mt-2 flex flex-wrap gap-1.5">
               {detail.evidence.map((line) => (
@@ -2023,8 +2390,23 @@ function FreshnessRecommendationItem({
           ) : null}
         </div>
       </div>
-      {detail.kind !== "fix" ? (
+      {detail.kind !== "fix" && !isAutoAppliedPrice && !isInformational ? (
         <div className="flex items-center justify-end gap-2 text-sm font-semibold">
+          {isManualPrice ? (() => {
+            const linkUrl = detail.manualPriceReason === "social-only"
+              ? (row.check.instagramUrl || row.check.bookingUrl || row.check.websiteUrl)
+              : (row.check.bookingUrl || row.check.websiteUrl || row.check.instagramUrl);
+            return linkUrl ? (
+              <a
+                href={linkUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-none border border-stone-200 bg-white px-3 py-2 text-stone-700 transition hover:border-stone-300 hover:text-stone-950"
+              >
+                Open link
+              </a>
+            ) : null;
+          })() : null}
           {isManual ? (
             <button
               type="button"
@@ -2057,11 +2439,11 @@ function FreshnessRecommendationItem({
           {!isManual ? (
             <button
               type="button"
-              disabled={isBusy || !acceptUpdate}
+              disabled={isBusy || !acceptUpdate || ((isPrice || isManualPrice) && !selectedPriceBand)}
               onClick={() => acceptUpdate ? onApply(row.check, acceptUpdate) : undefined}
               className={cn(
                 "rounded-none px-3 py-2 transition disabled:cursor-not-allowed disabled:opacity-35",
-                isAdd || isAttribute
+                isAdd || isAttribute || isPrice || isManualPrice
                   ? "border border-emerald-200 bg-emerald-50 text-emerald-700 hover:bg-emerald-100"
                   : "border border-red-200 bg-red-50 text-red-700 hover:bg-red-100",
               )}
@@ -2073,6 +2455,199 @@ function FreshnessRecommendationItem({
       ) : null}
     </div>
   );
+}
+
+function ManualPriceCalculator({
+  detail,
+  initialText = "",
+  selectedPriceBand,
+  onSelectedPriceBandChange,
+  onManualPriceResult,
+}: {
+  detail?: FreshnessRecommendationDetail;
+  initialText?: string;
+  selectedPriceBand: PriceBand | "";
+  onSelectedPriceBandChange: (value: PriceBand | "") => void;
+  onManualPriceResult: (result: ManualPriceParseResult | null) => void;
+}) {
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const [priceText, setPriceText] = useState(initialText || (detail?.priceEvidence || detail?.evidence || []).join("\n"));
+  const [parseResult, setParseResult] = useState<ManualPriceParseResult | null>(null);
+  const [isParsing, setIsParsing] = useState(false);
+  const [isOcrRunning, setIsOcrRunning] = useState(false);
+  const [parseMessage, setParseMessage] = useState("");
+  const sortedPriceValues = parseResult?.prices?.length ? parseResult.prices : detail?.priceValues || [];
+
+  async function parseText(nextText = priceText) {
+    setIsParsing(true);
+    setParseMessage("");
+    try {
+      const response = await fetch("/api/admin/stylists/parse-prices", {
+        method: "POST",
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text: nextText }),
+      });
+      const payload = await response.json().catch(() => ({ message: "Could not calculate prices." }));
+      if (!response.ok) {
+        setParseMessage(payload.message || "Could not calculate prices.");
+        return;
+      }
+      const result: ManualPriceParseResult = {
+        priceBand: payload.priceBand || "",
+        medianPrice: typeof payload.medianPrice === "number" ? payload.medianPrice : null,
+        prices: Array.isArray(payload.prices) ? payload.prices : [],
+        priceCount: Number(payload.priceCount) || 0,
+        evidence: Array.isArray(payload.evidence) ? payload.evidence : [],
+        ignoredPrices: Array.isArray(payload.ignoredPrices) ? payload.ignoredPrices : [],
+      };
+      setParseResult(result);
+      onManualPriceResult(result);
+      if (result.priceBand) {
+        onSelectedPriceBandChange(result.priceBand);
+      }
+      setParseMessage(result.priceBand ? `Suggested ${result.priceBand} from median ${formatDetectedPrice(result.medianPrice || 0)}.` : "No usable service prices found.");
+    } finally {
+      setIsParsing(false);
+    }
+  }
+
+  async function runOcr(file: File) {
+    if (!file.type.startsWith("image/")) {
+      setParseMessage("Upload an image file.");
+      return;
+    }
+    setIsOcrRunning(true);
+    setParseMessage("");
+    try {
+      const tesseract = await import("tesseract.js");
+      const result = await tesseract.recognize(file, "eng");
+      const extractedText = result.data.text.trim();
+      setPriceText(extractedText);
+      await parseText(extractedText);
+      setParseMessage(extractedText ? "OCR text extracted. Review it before saving." : "OCR did not find readable text.");
+    } catch {
+      setParseMessage("Could not read that image. Try pasting the price list text instead.");
+    } finally {
+      setIsOcrRunning(false);
+      if (fileInputRef.current) {
+        fileInputRef.current.value = "";
+      }
+    }
+  }
+
+  function handlePaste(event: React.ClipboardEvent<HTMLDivElement>) {
+    const imageFile = Array.from(event.clipboardData.files).find((file) => file.type.startsWith("image/"));
+    if (imageFile) {
+      event.preventDefault();
+      void runOcr(imageFile);
+    }
+  }
+
+  return (
+    <div className="mt-4 grid gap-3 rounded-none border border-stone-200 bg-white p-3" onPaste={handlePaste}>
+      <Field label="Paste price list">
+        <Textarea
+          value={priceText}
+          onChange={(value) => {
+            setPriceText(value);
+            setParseResult(null);
+            onManualPriceResult(null);
+          }}
+          placeholder="Paste services and prices, or paste/upload a price-list image."
+        />
+      </Field>
+      <div className="flex flex-wrap items-center gap-2">
+        <Button type="button" variant="outline" disabled={isParsing || isOcrRunning || !priceText.trim()} onClick={() => parseText()} className="h-9 rounded-none bg-white px-3 text-sm">
+          {isParsing ? <Loader2 className="size-4 animate-spin" /> : <SearchCheck className="size-4" />}
+          Calculate median
+        </Button>
+        <Button type="button" variant="outline" disabled={isOcrRunning} onClick={() => fileInputRef.current?.click()} className="h-9 rounded-none bg-white px-3 text-sm">
+          {isOcrRunning ? <Loader2 className="size-4 animate-spin" /> : <FileText className="size-4" />}
+          Upload image
+        </Button>
+        <input
+          ref={fileInputRef}
+          type="file"
+          accept="image/*"
+          className="hidden"
+          onChange={(event) => {
+            const file = event.target.files?.[0];
+            if (file) {
+              void runOcr(file);
+            }
+          }}
+        />
+        <div className="min-w-48">
+          <Select value={selectedPriceBand} onChange={(value) => onSelectedPriceBandChange(value as PriceBand | "")}>
+            {priceBandOptions.filter((option) => option.value).map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </Select>
+        </div>
+      </div>
+      {sortedPriceValues.length ? (
+        <p className="text-sm font-semibold text-stone-700">
+          {sortedPriceValues.slice().sort((left, right) => left - right).map(formatDetectedPrice).join(", ")}
+        </p>
+      ) : null}
+      {parseResult?.medianPrice != null ? (
+        <p className="text-sm text-stone-500">Median: <span className="font-semibold text-stone-950">{formatDetectedPrice(parseResult.medianPrice)}</span></p>
+      ) : null}
+      {parseMessage ? <p className="text-sm text-stone-500">{parseMessage}</p> : null}
+    </div>
+  );
+}
+
+function getFreshnessDetailAcceptUpdate(detail: FreshnessRecommendationDetail, row: FreshnessRecommendationGroup, selectedPriceBand?: PriceBand | "", manualPriceResult?: ManualPriceParseResult | null): FreshnessUpdate | FreshnessRecommendationGroup["acceptUpdate"] {
+  if (detail.kind === "add" && detail.service) {
+    return { addServices: [detail.service] };
+  }
+  if (detail.kind === "remove" && detail.service) {
+    return { removeServices: [detail.service] };
+  }
+  if (detail.kind === "attribute" && detail.attributeField === "hijabiFriendly") {
+    return { hijabiFriendly: true };
+  }
+  if ((detail.kind === "price" || detail.kind === "manual-price") && (selectedPriceBand || detail.priceBand)) {
+    return {
+      priceBand: selectedPriceBand || detail.priceBand,
+      priceSource: "manual" as const,
+      priceEvidence: manualPriceResult?.evidence?.length ? manualPriceResult.evidence : detail.priceEvidence || detail.evidence || [],
+      priceCheckedAt: row.check.checkedAt,
+      priceConfidence: manualPriceResult ? "manual" : detail.priceConfidence || "manual",
+    };
+  }
+  if (detail.kind === "location" && row.check.serviceCheck.areaId) {
+    return {
+      areaId: row.check.serviceCheck.areaId,
+      areaIds: [row.check.serviceCheck.areaId],
+      areaLabel: row.check.serviceCheck.areaLabel || areaLabelFromId(row.check.serviceCheck.areaId),
+    };
+  }
+  return row.acceptUpdate;
+}
+
+function formatDetectedPrice(value: number) {
+  return Number.isInteger(value) ? `£${value}` : `£${value.toFixed(2)}`;
+}
+
+function summarizeBackfillChecks(checks: DirectoryCheck[]) {
+  return checks.reduce(
+    (summary, check) => ({
+      autoApplied: summary.autoApplied + (check.backfillStatus === "auto-applied" ? 1 : 0),
+      needsReview: summary.needsReview + (check.backfillStatus === "needs-review" ? 1 : 0),
+      noPrice: summary.noPrice + (check.backfillStatus === "no-price" && !hasSavedPriceBand(check) ? 1 : 0),
+      skippedSocial: summary.skippedSocial + (check.backfillStatus === "skipped-social" && !hasSavedPriceBand(check) ? 1 : 0),
+    }),
+    { autoApplied: 0, needsReview: 0, noPrice: 0, skippedSocial: 0 },
+  );
+}
+
+function hasSavedPriceBand(check?: Pick<DirectoryCheck, "priceBand"> | null) {
+  return Boolean(check?.priceBand);
 }
 
 type FreshnessRecommendationGroup = {
@@ -2091,19 +2666,30 @@ type FreshnessRecommendationGroup = {
     addServices?: string[];
     removeServices?: string[];
     hijabiFriendly?: boolean;
+    priceBand?: PriceBand;
+    priceSource?: "auto" | "manual";
+    priceEvidence?: string[];
+    priceCheckedAt?: string;
+    priceConfidence?: "high" | "medium" | "low" | "manual";
   };
   rejectUpdate?: FreshnessUpdate;
 };
 
 type FreshnessRecommendationDetail = {
-  kind: "add" | "remove" | "fix" | "manual" | "attribute" | "review";
+  kind: "add" | "remove" | "fix" | "manual" | "attribute" | "price" | "price-info" | "location" | "review" | "manual-price";
   label: string;
   description: string;
   service?: string;
   attributeField?: "hijabiFriendly";
+  priceBand?: PriceBand;
+  priceEvidence?: string[];
+  priceValues?: number[];
+  priceConfidence?: "high" | "medium" | "low" | "manual";
+  priceAutoApplied?: boolean;
   evidence?: string[];
   evidenceLabel?: string;
   reviewTone?: "danger" | "caution";
+  manualPriceReason?: "social-only" | "no-price";
 };
 
 function getFreshnessDetailVisual(detail: FreshnessRecommendationDetail) {
@@ -2125,6 +2711,18 @@ function getFreshnessDetailVisual(detail: FreshnessRecommendationDetail) {
   if (detail.kind === "attribute") {
     return { label: "Mark", dotClass: "bg-emerald-500", textClass: "text-emerald-700" };
   }
+  if (detail.kind === "price") {
+    return { label: "Price", dotClass: "bg-sky-500", textClass: "text-sky-700" };
+  }
+  if (detail.kind === "price-info") {
+    return { label: "Price", dotClass: "bg-stone-400", textClass: "text-stone-600" };
+  }
+  if (detail.kind === "location") {
+    return { label: "Location", dotClass: "bg-violet-500", textClass: "text-violet-700" };
+  }
+  if (detail.kind === "manual-price") {
+    return { label: "Price", dotClass: "bg-amber-500", textClass: "text-amber-700" };
+  }
   return { label: "Review", dotClass: "bg-sky-500", textClass: "text-sky-700" };
 }
 
@@ -2134,7 +2732,7 @@ function FreshnessDetailSummary({ details }: { details: FreshnessRecommendationD
       ...summary,
       [detail.kind === "remove" && detail.reviewTone === "caution" ? "review" : detail.kind]: summary[detail.kind === "remove" && detail.reviewTone === "caution" ? "review" : detail.kind] + 1,
     }),
-    { add: 0, remove: 0, fix: 0, manual: 0, attribute: 0, review: 0 } as Record<FreshnessRecommendationDetail["kind"], number>,
+    { add: 0, remove: 0, fix: 0, manual: 0, attribute: 0, price: 0, "price-info": 0, location: 0, review: 0, "manual-price": 0 } as Record<FreshnessRecommendationDetail["kind"], number>,
   );
   const parts = [
     { count: counts.add, label: "add", className: "bg-emerald-100 text-emerald-700" },
@@ -2142,7 +2740,11 @@ function FreshnessDetailSummary({ details }: { details: FreshnessRecommendationD
     { count: counts.fix, label: "link fix", className: "bg-red-100 text-red-700" },
     { count: counts.manual, label: "verify", className: "bg-amber-100 text-amber-700" },
     { count: counts.attribute, label: "profile", className: "bg-emerald-100 text-emerald-700" },
+    { count: counts.price, label: "price", className: "bg-sky-100 text-sky-700" },
+    { count: counts["price-info"], label: "price check", className: "bg-stone-100 text-stone-600" },
+    { count: counts.location, label: "location", className: "bg-violet-100 text-violet-700" },
     { count: counts.review, label: "review", className: "bg-stone-100 text-stone-600" },
+    { count: counts["manual-price"], label: "price", className: "bg-amber-100 text-amber-700" },
   ].filter((part) => part.count);
 
   return (
@@ -2167,6 +2769,9 @@ function buildFreshnessRecommendationGroups(checks: DirectoryCheck[]): Freshness
     const addedServices = getActionableAddedServices(check);
     const removedServices = getActionableRemovedServices(check);
     const attributeSuggestions = check.attributeSuggestions || [];
+    const priceCheck = check.priceCheck;
+    const hasLocationRecommendation = hasDetectedLocationUpdate(check);
+    const hasPriceRecommendation = Boolean(priceCheck?.priceBand && priceCheck.confidence !== "high" && check.issues.some((issue) => issue.toLowerCase() === "possible pricing band found"));
     const actionableIssues = check.issues.filter((issue) => isActionableFreshnessIssue(issue, check));
     const details: FreshnessRecommendationDetail[] = [
       ...brokenLinks.map((linkCheck) => ({
@@ -2205,6 +2810,33 @@ function buildFreshnessRecommendationGroups(checks: DirectoryCheck[]): Freshness
         attributeField: suggestion.field,
         evidence: suggestion.evidence.map((item) => `${titleCase(item.source)}: ${item.text}`),
       })),
+      ...(hasPriceRecommendation && priceCheck?.priceBand ? [{
+        kind: "price" as const,
+        label: `Set ${priceCheck.priceBand}`,
+        description: `${titleCase(priceCheck.confidence)} confidence from ${priceCheck.priceCount} price${priceCheck.priceCount === 1 ? "" : "s"}`,
+        priceBand: priceCheck.priceBand,
+        priceEvidence: priceCheck.evidence || [],
+        priceValues: priceCheck.prices || [],
+        priceConfidence: priceCheck.confidence === "unknown" ? "low" as const : priceCheck.confidence,
+        evidence: priceCheck.evidence || [],
+      }] : []),
+      ...(hasLocationRecommendation ? [{
+        kind: "location" as const,
+        label: "Review location",
+        description: `Booking data suggests ${check.serviceCheck.areaLabel}`,
+        evidence: [
+          `Saved: ${check.areaLabel || "Location unknown"}`,
+          `Detected: ${check.serviceCheck.areaLabel}`,
+        ],
+      }] : []),
+      ...(!hasSavedPriceBand(check) && (check.backfillStatus === "no-price" || check.backfillStatus === "skipped-social") ? [{
+        kind: "manual-price" as const,
+        label: "Set price manually",
+        description: check.backfillStatus === "skipped-social"
+          ? "Instagram / social-only — no booking page to scan"
+          : "Booking page found but no pricing detected",
+        manualPriceReason: (check.backfillStatus === "skipped-social" ? "social-only" : "no-price") as "social-only" | "no-price",
+      }] : []),
       ...actionableIssues.map((issue) => ({
         kind: "review" as const,
         label: "Review listing",
@@ -2219,18 +2851,26 @@ function buildFreshnessRecommendationGroups(checks: DirectoryCheck[]): Freshness
     const hasServiceRecommendations = addedServices.length > 0 || removedServices.length > 0;
     const hasHijabiFriendlyRecommendation = attributeSuggestions.some((suggestion) => suggestion.field === "hijabiFriendly");
     const linkDismissUpdate = getLinkDismissUpdate(check);
-    const acceptUpdate = hasServiceRecommendations || hasHijabiFriendlyRecommendation
+    const acceptUpdate = hasServiceRecommendations || hasHijabiFriendlyRecommendation || hasPriceRecommendation
       ? {
           ...(addedServices.length ? { addServices: addedServices } : {}),
           ...(removedServices.length ? { removeServices: removedServices } : {}),
           ...(hasHijabiFriendlyRecommendation ? { hijabiFriendly: true } : {}),
+          ...(hasPriceRecommendation && priceCheck?.priceBand ? {
+            priceBand: priceCheck.priceBand,
+            priceSource: "auto" as const,
+            priceEvidence: priceCheck.evidence || [],
+            priceCheckedAt: check.checkedAt,
+            priceConfidence: priceCheck.confidence === "unknown" ? "low" as const : priceCheck.confidence,
+          } : {}),
         }
       : undefined;
-    const rejectUpdate = hasServiceRecommendations || hasHijabiFriendlyRecommendation || linkDismissUpdate
+    const rejectUpdate = hasServiceRecommendations || hasHijabiFriendlyRecommendation || linkDismissUpdate || hasPriceRecommendation
       ? {
           ...(addedServices.length ? { rejectAddedServices: addedServices } : {}),
           ...(removedServices.length ? { rejectRemovedServices: removedServices } : {}),
           ...(hasHijabiFriendlyRecommendation ? { rejectHijabiFriendly: true } : {}),
+          ...(hasPriceRecommendation ? { rejectPriceBand: true } : {}),
           ...linkDismissUpdate,
         }
       : undefined;
@@ -2244,7 +2884,7 @@ function buildFreshnessRecommendationGroups(checks: DirectoryCheck[]): Freshness
       instagramUrl: check.instagramUrl,
       websiteUrl: check.websiteUrl,
       id: `${check.id}-recommendations`,
-      recommendation: getFreshnessGroupRecommendation(check, brokenLinks.length, manualLinks.length, addedServices, removedServices, attributeSuggestions),
+      recommendation: getFreshnessGroupRecommendation(check, brokenLinks.length, manualLinks.length, addedServices, removedServices, attributeSuggestions, hasLocationRecommendation),
       typeTone: brokenLinks.length ? "critical" : manualLinks.length ? "warning" : addedServices.length ? "info" : "neutral",
       details,
       acceptUpdate,
@@ -2255,6 +2895,15 @@ function buildFreshnessRecommendationGroups(checks: DirectoryCheck[]): Freshness
 
 function compareFreshnessRecommendationGroups(left: FreshnessRecommendationGroup, right: FreshnessRecommendationGroup) {
   return freshnessGroupSeverity(right) - freshnessGroupSeverity(left) || left.stylist.localeCompare(right.stylist);
+}
+
+function filterFreshnessRowsByDetail(rows: FreshnessRecommendationGroup[], predicate: (detail: FreshnessRecommendationDetail, row: FreshnessRecommendationGroup) => boolean) {
+  return rows
+    .map((row) => ({
+      ...row,
+      details: row.details.filter((detail) => predicate(detail, row)),
+    }))
+    .filter((row) => row.details.length > 0);
 }
 
 function freshnessGroupSeverity(row: FreshnessRecommendationGroup) {
@@ -2494,6 +3143,22 @@ function isManualCheckLink(linkCheck: DirectoryCheck["linkChecks"][number]) {
   return true;
 }
 
+function hasDetectedLocationUpdate(check: DirectoryCheck) {
+  const detectedLocation = normalizeLocationLabel(check.serviceCheck?.areaLabel);
+  const savedLocation = normalizeLocationLabel(check.areaLabel);
+
+  return Boolean(!check.locationReviewIgnored && detectedLocation && savedLocation && detectedLocation !== savedLocation);
+}
+
+function normalizeLocationLabel(value?: string) {
+  return String(value || "")
+    .toLowerCase()
+    .replace(/\blondon\b/g, "")
+    .replace(/\s*\/\s*/g, " ")
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim();
+}
+
 function getLinkDismissUpdate(check: DirectoryCheck): FreshnessUpdate | undefined {
   const linkTypes = new Set(check.linkChecks.filter((linkCheck) => linkCheck.status !== "ok").map((linkCheck) => linkCheck.type));
   const update: FreshnessUpdate = {};
@@ -2528,6 +3193,7 @@ function getFreshnessGroupRecommendation(
   addedServices = check.addedServices,
   removedServices = check.removedServices,
   attributeSuggestions = check.attributeSuggestions || [],
+  hasLocationRecommendation = false,
 ) {
   const hasAddedServices = addedServices.length > 0;
   const hasRemovedServices = removedServices.length > 0;
@@ -2554,6 +3220,18 @@ function getFreshnessGroupRecommendation(
   }
   if (hasAttributeRecommendations) {
     return "Update profile";
+  }
+  if (hasLocationRecommendation) {
+    return "Review location";
+  }
+  if (check.backfillStatus === "auto-applied") {
+    return "Price auto-applied";
+  }
+  if (check.backfillStatus === "no-price") {
+    return "No pricing found";
+  }
+  if (check.backfillStatus === "skipped-social") {
+    return "Skipped";
   }
   return check.issues.some((issue) => issue.toLowerCase().includes("price")) ? "Review price" : "Review service";
 }
@@ -2663,7 +3341,7 @@ function normalizeEvidenceText(value: string) {
 
 function isActionableFreshnessIssue(issue: string, check: DirectoryCheck) {
   const normalizedIssue = issue.toLowerCase();
-  if (normalizedIssue === "possible new services found" || normalizedIssue === "possible removed services found" || normalizedIssue === "possible hijabi-friendly wording found") {
+  if (normalizedIssue === "possible new services found" || normalizedIssue === "possible removed services found" || normalizedIssue === "possible hijabi-friendly wording found" || normalizedIssue === "possible pricing band found" || normalizedIssue === "manual price check required") {
     return false;
   }
   if (normalizedIssue.includes("instagram") && check.linkChecks.some((linkCheck) => linkCheck.type === "instagram" && linkCheck.status !== "ok")) {
@@ -3073,6 +3751,60 @@ function DraftEditor({
           />
         </div>
       </div>
+
+      <div className="space-y-3">
+        <p className="text-xs font-semibold uppercase tracking-[0.12em] text-stone-500">Pricing</p>
+        <Field label="Price band">
+          <Select
+            value={draft.priceBand || ""}
+            onChange={(value) =>
+              onChange({
+                priceBand: (value as "" | PriceBand) || undefined,
+                priceSource: value ? "manual" : "",
+                priceConfidence: value ? "manual" : "",
+                priceUpdatedAt: value ? new Date().toISOString() : "",
+                ...(!value ? { priceEvidence: [], priceCheckedAt: "" } : {}),
+              })
+            }
+          >
+            {priceBandOptions.map((option) => (
+              <option key={option.value || "unset"} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </Select>
+        </Field>
+        <ManualPriceCalculator
+          key={`${draft.id}-manual-price-calculator`}
+          initialText={(draft.priceEvidence || []).join("\n")}
+          selectedPriceBand={draft.priceBand || ""}
+          onSelectedPriceBandChange={(priceBand) => {
+            const now = new Date().toISOString();
+            onChange({
+              priceBand: priceBand || undefined,
+              priceSource: priceBand ? "manual" : "",
+              priceConfidence: priceBand ? "manual" : "",
+              priceCheckedAt: priceBand ? draft.priceCheckedAt || now : "",
+              priceUpdatedAt: priceBand ? now : "",
+              ...(!priceBand ? { priceEvidence: [] } : {}),
+            });
+          }}
+          onManualPriceResult={(result) => {
+            if (!result?.priceBand) {
+              return;
+            }
+            const now = new Date().toISOString();
+            onChange({
+              priceBand: result.priceBand,
+              priceSource: "manual",
+              priceEvidence: result.evidence?.length ? result.evidence : draft.priceEvidence || [],
+              priceConfidence: "manual",
+              priceCheckedAt: now,
+              priceUpdatedAt: now,
+            });
+          }}
+        />
+      </div>
     </section>
   );
 
@@ -3107,6 +3839,7 @@ function DraftEditor({
             draft.canBraidWithoutGel ? "Can braid without gel" : "",
           ].filter(Boolean).join(", ") || "None selected"}
         />
+        <DraftReviewRow label="Pricing" value={draft.priceBand ? `${draft.priceBand} (${draft.priceSource || "manual"})` : "Not set"} />
         <DraftReviewRow label="Services">
           <div className="space-y-3">
             <p className="text-sm font-medium text-stone-900">{draft.services.length} selected</p>
@@ -3380,6 +4113,12 @@ function publishedSalonToDraft(salon: Partial<StylistDraft>): StylistDraft {
     rawServices: [],
     hijabiFriendly: salon.hijabiFriendly === true,
     canBraidWithoutGel: salon.canBraidWithoutGel === true,
+    priceBand: salon.priceBand,
+    priceSource: salon.priceSource || "",
+    priceEvidence: Array.isArray(salon.priceEvidence) ? salon.priceEvidence : [],
+    priceCheckedAt: salon.priceCheckedAt || "",
+    priceUpdatedAt: salon.priceUpdatedAt || "",
+    priceConfidence: salon.priceConfidence || "",
     summary: salon.summary || "",
     warnings: [],
     evidence: Array.isArray(salon.evidence) ? salon.evidence : [],
@@ -3646,8 +4385,65 @@ function splitLines(value: string) {
     .filter(Boolean);
 }
 
+function mergeLines(current: string[] = [], next: string[] = []) {
+  const seen = new Set<string>();
+  return [...current, ...next].filter((line) => {
+    const normalized = line.trim().replace(/\s+/g, " ").toLowerCase();
+    if (!normalized || seen.has(normalized)) {
+      return false;
+    }
+    seen.add(normalized);
+    return true;
+  });
+}
+
 function mergeServices(current: string[], matched: string[]) {
   return [...new Set([...current, ...matched])];
+}
+
+function looksLikeHttpUrl(value = "") {
+  try {
+    const parsed = new URL(value);
+    return parsed.protocol === "http:" || parsed.protocol === "https:";
+  } catch {
+    return false;
+  }
+}
+
+function isLikelySocialUrl(value = "") {
+  try {
+    const host = new URL(value).hostname.replace(/^www\./, "").toLowerCase();
+    return /(^|\.)instagram\.com$|(^|\.)tiktok\.com$|(^|\.)facebook\.com$|(^|\.)linktr\.ee$|(^|\.)linktree\.com$|(^|\.)beacons\.ai$|(^|\.)bio\.site$|(^|\.)campsite\.bio$|(^|\.)solo\.to$/.test(host);
+  } catch {
+    return true;
+  }
+}
+
+function buildDraftPricingUpdate(
+  priceCheck: AdminPriceCheck | null | undefined,
+  draft: StylistDraft,
+  source: "auto" | "manual",
+  options: { allowOverwriteManual: boolean },
+): Partial<StylistDraft> {
+  if (!priceCheck?.priceBand) {
+    return {};
+  }
+  if (!options.allowOverwriteManual && draft.priceSource === "manual" && draft.priceBand) {
+    return {};
+  }
+  if (draft.priceBand === priceCheck.priceBand && draft.priceSource === source) {
+    return {};
+  }
+
+  const checkedAt = new Date().toISOString();
+  return {
+    priceBand: priceCheck.priceBand,
+    priceSource: source,
+    priceEvidence: (priceCheck.evidence || []).slice(0, 8),
+    priceCheckedAt: checkedAt,
+    priceUpdatedAt: checkedAt,
+    priceConfidence: source === "manual" ? "manual" : priceCheck.confidence === "manual" ? "manual" : priceCheck.confidence || "low",
+  };
 }
 
 function removeReviewedServices(current: string[], reviewed: string[]) {
@@ -3685,6 +4481,44 @@ function removeReviewedLinkChecks(check: DirectoryCheck, update: FreshnessUpdate
   };
 }
 
+function updateChecksAfterFreshnessAction(
+  current: DirectoryCheck[],
+  check: DirectoryCheck,
+  update: FreshnessUpdate,
+  serverCheck?: DirectoryCheck | null,
+  salon?: Partial<StylistDraft>,
+) {
+  if (serverCheck) {
+    const found = current.some((item) => item.id === check.id);
+    return found ? current.map((item) => (item.id === check.id ? serverCheck : item)) : [serverCheck, ...current];
+  }
+  if (serverCheck === null) {
+    return current.filter((item) => item.id !== check.id);
+  }
+
+  return current.map((item) =>
+    item.id === check.id
+      ? {
+          ...item,
+          bookingUrl: update.bookingUrl ?? item.bookingUrl,
+          instagramUrl: update.instagramUrl ?? item.instagramUrl,
+          websiteUrl: update.websiteUrl ?? item.websiteUrl,
+          areaId: update.areaId ?? item.areaId,
+          areaIds: update.areaIds ?? item.areaIds,
+          areaLabel: update.areaLabel ?? item.areaLabel,
+          locationReviewIgnored: update.rejectLocation === true ? true : item.locationReviewIgnored,
+          hijabiFriendly: update.hijabiFriendly === true ? true : item.hijabiFriendly,
+          priceCheck: update.priceBand || update.rejectPriceBand ? undefined : item.priceCheck,
+          currentServices: salon?.services ?? item.currentServices,
+          addedServices: removeReviewedServices(item.addedServices, [...(update.addServices ?? []), ...(update.rejectAddedServices ?? [])]),
+          removedServices: removeReviewedServices(item.removedServices, [...(update.removeServices ?? []), ...(update.rejectRemovedServices ?? [])]),
+          attributeSuggestions: removeReviewedAttributeSuggestions(item.attributeSuggestions, update),
+          ...removeReviewedLinkChecks(item, update),
+        }
+      : item,
+  );
+}
+
 function cloneDirectoryCheck(check: DirectoryCheck) {
   return JSON.parse(JSON.stringify(check)) as DirectoryCheck;
 }
@@ -3704,6 +4538,15 @@ function getFreshnessUndoLabel(update: FreshnessUpdate) {
   }
   if (update.rejectHijabiFriendly === true) {
     return "ignored hijabi-friendly recommendation";
+  }
+  if (update.rejectPriceBand === true) {
+    return "ignored price recommendation";
+  }
+  if (update.areaId || update.areaIds?.length) {
+    return "updated location";
+  }
+  if (update.rejectLocation === true) {
+    return "ignored location recommendation";
   }
   return "health check update";
 }

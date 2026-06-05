@@ -1,7 +1,13 @@
 import http from "node:http";
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 import express from "express";
 import { readSalonIndex, searchSalons, setNoStoreHeaders } from "./salon-index.mjs";
 import { registerAdminStylistRoutes } from "./admin-stylists.mjs";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+loadLocalEnv(path.resolve(__dirname, "../.env"));
 
 const app = express();
 const port = Number(process.env.PORT || 3001);
@@ -62,6 +68,30 @@ server.on("error", (error) => {
 
 server.listen(port, () => {
   console.log(`ROW K API listening on http://localhost:${port}`);
+  console.log(`AI pricing fallback ${process.env.OPENAI_API_KEY || process.env.ROWK_OPENAI_API_KEY ? "enabled" : "disabled"}`);
 });
 
 await new Promise(() => {});
+
+function loadLocalEnv(filePath) {
+  if (!fs.existsSync(filePath)) {
+    return;
+  }
+  const contents = fs.readFileSync(filePath, "utf8");
+  contents.split(/\r?\n/).forEach((line) => {
+    const trimmed = line.trim();
+    if (!trimmed || trimmed.startsWith("#")) {
+      return;
+    }
+    const separatorIndex = trimmed.indexOf("=");
+    if (separatorIndex === -1) {
+      return;
+    }
+    const key = trimmed.slice(0, separatorIndex).trim();
+    const rawValue = trimmed.slice(separatorIndex + 1).trim();
+    if (!key || process.env[key]) {
+      return;
+    }
+    process.env[key] = rawValue.replace(/^["']|["']$/g, "");
+  });
+}

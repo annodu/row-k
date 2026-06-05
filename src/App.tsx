@@ -212,7 +212,16 @@ type CategoryId = keyof typeof categoryMap;
 type SubcategoryId = (typeof categoryMap)[CategoryId]["subcategories"][number];
 type ServiceCategoryId = Exclude<CategoryId, "all">;
 type ServiceSubcategoryId = Exclude<SubcategoryId, "all">;
-type SortOption = "default" | "alphabetical-asc" | "alphabetical-desc" | "most-specialised" | "most-services";
+type SortOption =
+  | "default"
+  | "alphabetical-asc"
+  | "alphabetical-desc"
+  | "most-specialised"
+  | "most-services"
+  | "price-asc"
+  | "price-desc";
+type PriceBand = "£" | "££" | "£££" | "££££";
+type PriceRangeFilterId = PriceBand | "not-listed";
 
 type SalonResult = {
   id: string;
@@ -230,6 +239,7 @@ type SalonResult = {
   services: string[];
   hijabiFriendly?: boolean;
   canBraidWithoutGel?: boolean;
+  priceBand?: PriceBand;
   summary: string;
   source: string;
 };
@@ -271,8 +281,17 @@ const RESULTS_SKELETON_COUNT = 6;
 const sortOptions: { id: SortOption; label: string }[] = [
   { id: "alphabetical-asc", label: "A → Z" },
   { id: "alphabetical-desc", label: "Z → A" },
+  { id: "price-asc", label: "Price: Low to high" },
+  { id: "price-desc", label: "Price: High to low" },
   { id: "most-specialised", label: "Most specialised" },
   { id: "most-services", label: "Most services" },
+];
+const priceRangeOptions: { id: PriceRangeFilterId; label: string }[] = [
+  { id: "£", label: "£: under £100" },
+  { id: "££", label: "££: £100-£200" },
+  { id: "£££", label: "£££: £200-£300" },
+  { id: "££££", label: "££££: over £300" },
+  { id: "not-listed", label: "Price not listed" },
 ];
 
 function compareSalonNames(left: SalonResult, right: SalonResult) {
@@ -290,6 +309,40 @@ function compareSalonNamesDesc(left: SalonResult, right: SalonResult) {
   return compareSalonNames(right, left);
 }
 
+const priceBandSortRank: Record<PriceBand, number> = {
+  "£": 1,
+  "££": 2,
+  "£££": 3,
+  "££££": 4,
+};
+
+function priceBandRank(result: SalonResult) {
+  return result.priceBand ? priceBandSortRank[result.priceBand] : Number.POSITIVE_INFINITY;
+}
+
+function compareSalonPriceBandsAsc(left: SalonResult, right: SalonResult) {
+  return priceBandRank(left) - priceBandRank(right) || compareSalonNames(left, right);
+}
+
+function compareSalonPriceBandsDesc(left: SalonResult, right: SalonResult) {
+  const leftRank = priceBandRank(left);
+  const rightRank = priceBandRank(right);
+
+  if (!Number.isFinite(leftRank) && !Number.isFinite(rightRank)) {
+    return compareSalonNames(left, right);
+  }
+
+  if (!Number.isFinite(leftRank)) {
+    return 1;
+  }
+
+  if (!Number.isFinite(rightRank)) {
+    return -1;
+  }
+
+  return rightRank - leftRank || compareSalonNames(left, right);
+}
+
 function sortResults(
   results: SalonResult[],
   sortOption: SortOption,
@@ -302,6 +355,10 @@ function sortResults(
       return [...results].sort(compareSalonNames);
     case "alphabetical-desc":
       return [...results].sort(compareSalonNamesDesc);
+    case "price-asc":
+      return [...results].sort(compareSalonPriceBandsAsc);
+    case "price-desc":
+      return [...results].sort(compareSalonPriceBandsDesc);
     case "most-services":
       return [...results].sort((left, right) => right.services.length - left.services.length || compareSalonNames(left, right));
     case "most-specialised":
@@ -621,6 +678,7 @@ export default function App() {
   const [draftSelectedRegions, setDraftSelectedRegions] = useState<RegionId[]>(["all"]);
   const [draftSelectedCategories, setDraftSelectedCategories] = useState<ServiceCategoryId[]>([]);
   const [draftSelectedSubcategories, setDraftSelectedSubcategories] = useState<ServiceSubcategoryId[]>([]);
+  const [draftSelectedPriceBands, setDraftSelectedPriceBands] = useState<PriceRangeFilterId[]>([]);
   const [draftSelectedHijabiFriendly, setDraftSelectedHijabiFriendly] = useState(false);
   const [draftSelectedCanBraidWithoutGel, setDraftSelectedCanBraidWithoutGel] = useState(false);
   const [draftSortOption, setDraftSortOption] = useState<SortOption>("alphabetical-asc");
@@ -631,15 +689,18 @@ export default function App() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   const [selectedHijabiFriendly, setSelectedHijabiFriendly] = useState(false);
   const [selectedCanBraidWithoutGel, setSelectedCanBraidWithoutGel] = useState(false);
+  const [selectedPriceBands, setSelectedPriceBands] = useState<PriceRangeFilterId[]>([]);
   const [isDesktopViewport, setIsDesktopViewport] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const [locationsOpen, setLocationsOpen] = useState(false);
+  const [priceRangesOpen, setPriceRangesOpen] = useState(false);
   const [additionalNeedsOpen, setAdditionalNeedsOpen] = useState(false);
   const loadMoreRef = useRef<HTMLDivElement | null>(null);
   const isMobileModalEditing = mobileFiltersOpen && !isDesktopViewport;
   const currentSelectedRegions = isMobileModalEditing ? draftSelectedRegions : selectedRegions;
   const currentSelectedCategories = isMobileModalEditing ? draftSelectedCategories : selectedCategories;
   const currentSelectedSubcategories = isMobileModalEditing ? draftSelectedSubcategories : selectedSubcategories;
+  const currentSelectedPriceBands = isMobileModalEditing ? draftSelectedPriceBands : selectedPriceBands;
   const currentSelectedHijabiFriendly = isMobileModalEditing ? draftSelectedHijabiFriendly : selectedHijabiFriendly;
   const currentSelectedCanBraidWithoutGel = isMobileModalEditing ? draftSelectedCanBraidWithoutGel : selectedCanBraidWithoutGel;
   const currentSortOption = isMobileModalEditing ? draftSortOption : sortOption;
@@ -648,6 +709,7 @@ export default function App() {
     setDraftSelectedRegions(selectedRegions);
     setDraftSelectedCategories(selectedCategories);
     setDraftSelectedSubcategories(selectedSubcategories);
+    setDraftSelectedPriceBands(selectedPriceBands);
     setDraftSelectedHijabiFriendly(selectedHijabiFriendly);
     setDraftSelectedCanBraidWithoutGel(selectedCanBraidWithoutGel);
     setDraftSortOption(sortOption);
@@ -668,6 +730,7 @@ export default function App() {
     setSelectedRegions(draftSelectedRegions);
     setSelectedCategories(draftSelectedCategories);
     setSelectedSubcategories(draftSelectedSubcategories);
+    setSelectedPriceBands(draftSelectedPriceBands);
     setSelectedHijabiFriendly(draftSelectedHijabiFriendly);
     setSelectedCanBraidWithoutGel(draftSelectedCanBraidWithoutGel);
     setSortOption(draftSortOption);
@@ -706,6 +769,15 @@ export default function App() {
     setSelectedSubcategories(updater);
   }
 
+  function updatePriceBands(updater: PriceRangeFilterId[] | ((current: PriceRangeFilterId[]) => PriceRangeFilterId[])) {
+    if (isMobileModalEditing) {
+      setDraftSelectedPriceBands(updater);
+      return;
+    }
+
+    setSelectedPriceBands(updater);
+  }
+
   function updateHijabiFriendly(updater: boolean | ((current: boolean) => boolean)) {
     if (isMobileModalEditing) {
       setDraftSelectedHijabiFriendly(updater);
@@ -739,6 +811,7 @@ export default function App() {
       const nextIsOpen = !current;
       if (nextIsOpen) {
         setLocationsOpen(false);
+        setPriceRangesOpen(false);
         setAdditionalNeedsOpen(false);
       }
       trackUmamiEvent("filter_section_toggled", {
@@ -754,10 +827,27 @@ export default function App() {
       const nextIsOpen = !current;
       if (nextIsOpen) {
         setServicesOpen(false);
+        setPriceRangesOpen(false);
         setAdditionalNeedsOpen(false);
       }
       trackUmamiEvent("filter_section_toggled", {
         section: "locations",
+        expanded: nextIsOpen,
+      });
+      return nextIsOpen;
+    });
+  }
+
+  function togglePriceRangesOpen() {
+    setPriceRangesOpen((current) => {
+      const nextIsOpen = !current;
+      if (nextIsOpen) {
+        setServicesOpen(false);
+        setLocationsOpen(false);
+        setAdditionalNeedsOpen(false);
+      }
+      trackUmamiEvent("filter_section_toggled", {
+        section: "price_ranges",
         expanded: nextIsOpen,
       });
       return nextIsOpen;
@@ -770,6 +860,7 @@ export default function App() {
       if (nextIsOpen) {
         setServicesOpen(false);
         setLocationsOpen(false);
+        setPriceRangesOpen(false);
       }
       trackUmamiEvent("filter_section_toggled", {
         section: "additional_needs",
@@ -783,6 +874,7 @@ export default function App() {
     trackUmamiEvent("filter_reset", {
       selected_services: currentSelectedCategories.length + currentSelectedSubcategories.length,
       selected_locations: currentSelectedRegions.filter((region) => region !== "all").length,
+      selected_price_ranges: currentSelectedPriceBands.length,
       selected_additional_needs: (currentSelectedHijabiFriendly ? 1 : 0) + (currentSelectedCanBraidWithoutGel ? 1 : 0),
       hijabi_friendly: currentSelectedHijabiFriendly,
       can_braid_without_gel: currentSelectedCanBraidWithoutGel,
@@ -790,6 +882,7 @@ export default function App() {
     updateCategories([]);
     updateSubcategories([]);
     updateRegions(["all"]);
+    updatePriceBands([]);
     updateHijabiFriendly(false);
     updateCanBraidWithoutGel(false);
     updateSortOption("alphabetical-asc");
@@ -909,6 +1002,21 @@ export default function App() {
       enabled: !currentSelectedHijabiFriendly,
     });
     updateHijabiFriendly((current) => !current);
+  }
+
+  function togglePriceBand(nextPriceBand: PriceRangeFilterId) {
+    const nextSelected = !currentSelectedPriceBands.includes(nextPriceBand);
+    trackUmamiEvent("price_filter_selected", {
+      selection: nextPriceBand,
+      selected: nextSelected,
+    });
+
+    updatePriceBands((currentPriceBands) =>
+      currentPriceBands.includes(nextPriceBand)
+        ? currentPriceBands.filter((priceBand) => priceBand !== nextPriceBand)
+        : [...currentPriceBands, nextPriceBand],
+    );
+    setVisibleResultCount(RESULTS_BATCH_SIZE);
   }
 
   function isRegionSelected(regionId: RegionId) {
@@ -1087,11 +1195,19 @@ export default function App() {
   const hasActiveFilters =
     selectedCategories.length > 0 ||
     selectedSubcategories.length > 0 ||
+    selectedPriceBands.length > 0 ||
     selectedHijabiFriendly ||
     selectedCanBraidWithoutGel ||
     selectedRegions.length !== 1 ||
     selectedRegions[0] !== "all";
-  const sortedResults = sortResults(results, sortOption, hasActiveFilters, selectedCategories, selectedSubcategories);
+  const priceFilteredResults = selectedPriceBands.length
+    ? results.filter((result) =>
+        result.priceBand
+          ? selectedPriceBands.includes(result.priceBand)
+          : selectedPriceBands.includes("not-listed"),
+      )
+    : results;
+  const sortedResults = sortResults(priceFilteredResults, sortOption, hasActiveFilters, selectedCategories, selectedSubcategories);
 
   useEffect(() => {
     const node = loadMoreRef.current;
@@ -1149,6 +1265,7 @@ export default function App() {
     return isCategorySelected(categoryId) || categoryHasSelectedSubcategories(categoryId) ? count + 1 : count;
   }, 0);
   const selectedLocationCount = currentSelectedRegions.filter((regionId) => regionId !== "all").length;
+  const selectedPriceRangeCount = currentSelectedPriceBands.length;
   const selectedAdditionalNeedsCount =
     (currentSelectedHijabiFriendly ? 1 : 0) + (currentSelectedCanBraidWithoutGel ? 1 : 0);
 
@@ -1264,8 +1381,13 @@ export default function App() {
                             <div className="min-w-0">
                               <div className="flex flex-col items-start gap-1.5 sm:flex-row sm:flex-wrap sm:items-end sm:gap-2">
                                 <h3 className="text-[17px] font-semibold text-stone-950 dark:text-stone-50">{result.name}</h3>
-                                {result.hijabiFriendly || result.canBraidWithoutGel ? (
+                                {result.hijabiFriendly || result.canBraidWithoutGel || result.priceBand ? (
                                   <div className="flex max-w-full flex-wrap items-center gap-2 sm:mb-[3.5px]">
+                                    {result.priceBand ? (
+                                      <span className="inline-flex items-center rounded-none bg-stone-200 p-1 text-[11px] font-semibold lowercase leading-none text-stone-800 dark:bg-stone-800 dark:text-stone-200">
+                                        {result.priceBand}
+                                      </span>
+                                    ) : null}
                                     {result.hijabiFriendly ? (
                                       <span className="inline-flex items-center rounded-none bg-emerald-100 p-1 text-[11px] font-medium lowercase leading-none text-emerald-800 dark:bg-emerald-950/50 dark:text-emerald-300">
                                         hijabi-friendly
@@ -1746,6 +1868,71 @@ export default function App() {
                             {item.label}
                           </span>
                         </div>
+                      );
+                    })}
+                  </div>
+                </AnimatedCollapsible>
+              </div>
+
+              <div>
+                <div
+                  className={cn(
+                    "bg-stone-100 pb-2 dark:bg-stone-950 lg:sticky lg:top-0 lg:z-20",
+                    priceRangesOpen && "border-b border-stone-300 dark:border-stone-800",
+                  )}
+                >
+                  <button
+                    type="button"
+                    aria-expanded={priceRangesOpen}
+                    onClick={togglePriceRangesOpen}
+                    className="group flex min-h-11 w-full items-center justify-between rounded-none bg-transparent px-0 py-2 text-left"
+                  >
+                    <span className="text-[15px] font-medium text-stone-950 transition-colors group-hover:text-stone-500 group-active:text-stone-500 dark:text-stone-100 dark:group-hover:text-stone-500 dark:group-active:text-stone-500">
+                      Average price
+                    </span>
+                    <span className="flex items-center gap-2">
+                      {selectedPriceRangeCount > 0 ? (
+                        <span className="inline-flex min-h-5 min-w-5 items-center justify-center rounded-full bg-stone-950 px-2 text-[11px] font-bold leading-none text-stone-100 transition-colors group-hover:bg-stone-500 dark:bg-stone-100 dark:text-stone-950 dark:group-hover:bg-stone-500">
+                          {selectedPriceRangeCount}
+                        </span>
+                      ) : null}
+                      <ChevronDown
+                        className={cn("size-4 text-stone-700 transition-colors transition-transform group-hover:text-stone-500 group-active:text-stone-500 dark:text-stone-200 dark:group-hover:text-stone-400 dark:group-active:text-stone-400", priceRangesOpen && "rotate-180")}
+                        aria-hidden="true"
+                      />
+                    </span>
+                  </button>
+                </div>
+
+                <AnimatedCollapsible open={priceRangesOpen}>
+                  <div className="space-y-2 pt-3">
+                    <p className="px-2 text-[12px] leading-4 text-stone-500 dark:text-stone-500">
+                      The median price for all services on their booking site. Some services may be more or less than this price range. Some providers do not list their prices online.
+                    </p>
+                    {priceRangeOptions.map((option) => {
+                      const isActive = currentSelectedPriceBands.includes(option.id);
+
+                      return (
+                        <button
+                          type="button"
+                          aria-pressed={isActive}
+                          key={option.id}
+                          onClick={() => togglePriceBand(option.id)}
+                          className="flex w-full cursor-pointer items-start gap-3 rounded-none px-2 py-2 text-left transition-colors hover:bg-stone-200 active:bg-stone-200 dark:hover:bg-stone-900 dark:active:bg-stone-900"
+                        >
+                          <span
+                            aria-hidden="true"
+                            className={cn(
+                              "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-none border border-stone-500 bg-white text-white transition dark:border-stone-500 dark:bg-stone-900",
+                              isActive && "border-stone-950 bg-stone-950 dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950",
+                            )}
+                          >
+                            {isActive ? <Check className="size-3.5" /> : null}
+                          </span>
+                          <span className="translate-y-[1.5px] text-[15px] text-stone-800 dark:text-stone-200">
+                            {option.label}
+                          </span>
+                        </button>
                       );
                     })}
                   </div>
