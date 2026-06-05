@@ -240,6 +240,10 @@ type SalonResult = {
   hijabiFriendly?: boolean;
   canBraidWithoutGel?: boolean;
   priceBand?: PriceBand;
+  servicePriceBand?: PriceBand;
+  packagePriceBand?: PriceBand;
+  priceIncludesHair?: boolean;
+  priceComparisonMode?: "service-only" | "mixed" | "package-only";
   summary: string;
   source: string;
 };
@@ -316,8 +320,13 @@ const priceBandSortRank: Record<PriceBand, number> = {
   "££££": 4,
 };
 
+function comparablePriceBand(result: SalonResult) {
+  return result.servicePriceBand || result.priceBand;
+}
+
 function priceBandRank(result: SalonResult) {
-  return result.priceBand ? priceBandSortRank[result.priceBand] : Number.POSITIVE_INFINITY;
+  const priceBand = comparablePriceBand(result);
+  return priceBand ? priceBandSortRank[priceBand] : Number.POSITIVE_INFINITY;
 }
 
 function compareSalonPriceBandsAsc(left: SalonResult, right: SalonResult) {
@@ -1202,8 +1211,8 @@ export default function App() {
     selectedRegions[0] !== "all";
   const priceFilteredResults = selectedPriceBands.length
     ? results.filter((result) =>
-        result.priceBand
-          ? selectedPriceBands.includes(result.priceBand)
+        comparablePriceBand(result)
+          ? selectedPriceBands.includes(comparablePriceBand(result) as PriceBand)
           : selectedPriceBands.includes("not-listed"),
       )
     : results;
@@ -1381,11 +1390,11 @@ export default function App() {
                             <div className="min-w-0">
                               <div className="flex flex-col items-start gap-1.5 sm:flex-row sm:flex-wrap sm:items-end sm:gap-2">
                                 <h3 className="text-[17px] font-semibold text-stone-950 dark:text-stone-50">{result.name}</h3>
-                                {result.hijabiFriendly || result.canBraidWithoutGel || result.priceBand ? (
+                                {result.hijabiFriendly || result.canBraidWithoutGel || comparablePriceBand(result) ? (
                                   <div className="flex max-w-full flex-wrap items-center gap-2 sm:mb-[3.5px]">
-                                    {result.priceBand ? (
+                                    {comparablePriceBand(result) ? (
                                       <span className="inline-flex items-center rounded-none bg-stone-200 p-1 text-[11px] font-semibold lowercase leading-none text-stone-800 dark:bg-stone-800 dark:text-stone-200">
-                                        {result.priceBand}
+                                        {comparablePriceBand(result)}
                                       </span>
                                     ) : null}
                                     {result.hijabiFriendly ? (
@@ -1907,7 +1916,7 @@ export default function App() {
                 <AnimatedCollapsible open={priceRangesOpen}>
                   <div className="space-y-2 pt-3">
                     <p className="px-2 text-[12px] leading-4 text-stone-500 dark:text-stone-500">
-                      The median price for all services on their booking site. Some services may be more or less than this price range. Some providers do not list their prices online.
+                      Comparable service-only prices where available. Hair-included packages may cost more, and some providers do not list prices online.
                     </p>
                     {priceRangeOptions.map((option) => {
                       const isActive = currentSelectedPriceBands.includes(option.id);

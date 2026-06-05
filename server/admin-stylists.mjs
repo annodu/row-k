@@ -457,18 +457,20 @@ export function registerAdminStylistRoutes(app) {
     const actionableChecks = checks
       .map((check) => applyDismissedRecommendationToCheck(check, dismissedRecommendations[check.id]))
       .filter(hasActionableFreshnessCheck);
-    const autoPricingChanges = checks
-      .map((check) => ({ check, update: getAutoPricingUpdate(check.priceCheck) }))
-      .filter(({ check, update }) => {
-        if (update) {
-          return true;
-        }
-        const salon = manualIndex.salons.find((item) => item.id === check.id);
-        if (!salonHasAutoPricing(salon)) {
-          return false;
-        }
-        return mode !== "pricing" || check.backfillStatus === "no-price";
-      });
+    const autoPricingChanges = mode === "pricing"
+      ? checks
+        .map((check) => ({ check, update: getAutoPricingUpdate(check.priceCheck) }))
+        .filter(({ check, update }) => {
+          if (update) {
+            return true;
+          }
+          const salon = manualIndex.salons.find((item) => item.id === check.id);
+          if (!salonHasAutoPricing(salon)) {
+            return false;
+          }
+          return check.backfillStatus === "no-price";
+        })
+      : [];
     if (autoPricingChanges.length) {
       const salonsById = new Map(manualIndex.salons.map((salon, index) => [salon.id, { salon, index }]));
       let changedPricing = false;
@@ -1879,6 +1881,8 @@ function sanitizePriceCheck(priceCheck) {
     return emptyPriceCheck();
   }
   const priceBand = sanitizePriceBand(priceCheck.priceBand);
+  const servicePriceBand = sanitizePriceBand(priceCheck.servicePriceBand);
+  const packagePriceBand = sanitizePriceBand(priceCheck.packagePriceBand);
   return {
     source: cleanString(priceCheck.source),
     confidence: sanitizePriceConfidence(priceCheck.confidence) || "unknown",
@@ -1889,6 +1893,20 @@ function sanitizePriceCheck(priceCheck) {
       : [],
     priceCount: Number(priceCheck.priceCount) || 0,
     evidence: toArray(priceCheck.evidence),
+    servicePriceBand,
+    serviceMedianPrice: Number.isFinite(Number(priceCheck.serviceMedianPrice)) ? Number(priceCheck.serviceMedianPrice) : null,
+    servicePrices: Array.isArray(priceCheck.servicePrices)
+      ? priceCheck.servicePrices.map((price) => Number(price)).filter((price) => Number.isFinite(price) && price >= 10 && price <= 5000).sort((left, right) => left - right)
+      : [],
+    servicePriceCount: Number(priceCheck.servicePriceCount) || 0,
+    packagePriceBand,
+    packageMedianPrice: Number.isFinite(Number(priceCheck.packageMedianPrice)) ? Number(priceCheck.packageMedianPrice) : null,
+    packagePrices: Array.isArray(priceCheck.packagePrices)
+      ? priceCheck.packagePrices.map((price) => Number(price)).filter((price) => Number.isFinite(price) && price >= 10 && price <= 5000).sort((left, right) => left - right)
+      : [],
+    packagePriceCount: Number(priceCheck.packagePriceCount) || 0,
+    priceIncludesHair: priceCheck.priceIncludesHair === true,
+    priceComparisonMode: sanitizePriceComparisonMode(priceCheck.priceComparisonMode),
   };
 }
 
@@ -1969,7 +1987,6 @@ async function checkSalonFreshness(salon, dismissedRecommendation = {}, previous
   const dismissedFingerprints = getDismissedFingerprintSet(dismissedRecommendation);
   const hasServiceDismissals = hasDismissedFingerprintKind(dismissedFingerprints, "service-");
   const hasAttributeDismissals = hasDismissedFingerprintKind(dismissedFingerprints, "attribute");
-  const hasPriceDismissals = hasDismissedFingerprintKind(dismissedFingerprints, "price");
   const hasLocationDismissals = hasDismissedFingerprintKind(dismissedFingerprints, "location");
   const [bookingLinkCheck, instagramLinkCheck, websiteLinkCheck] = await Promise.all([
     checkUrl("booking", salon.bookingUrl, { includeText: true }),
@@ -1991,12 +2008,12 @@ async function checkSalonFreshness(salon, dismissedRecommendation = {}, previous
     { html: websiteLinkCheck?.responseText || "", url: salon.websiteUrl || "" },
   ]);
   const enrichedBookingHtml = combineBookingHtml(bookingLinkCheck?.responseText || "", embeddedBookingSources);
-  const serviceCheck = enrichedBookingHtml ? extractBookingServicesFromHtml(enrichedBookingHtml) : emptyServiceCheck();
-  const priceCheck = await extractBestPriceCheck({
+  const serviceCheck = await extractBestServiceCheck({
     booking: enrichedBookingHtml,
     website: websiteCheck?.status === "ok" ? websiteLinkCheck?.responseText || "" : "",
     bookingUrl: embeddedBookingSources[0]?.url || salon.bookingUrl || "",
     websiteUrl: salon.websiteUrl || "",
+    allowAiFallback: true,
   });
   const attributeSuggestions = buildAttributeSuggestions(salon, {
     booking: bookingLinkCheck?.responseText || "",
@@ -2038,18 +2055,6 @@ async function checkSalonFreshness(salon, dismissedRecommendation = {}, previous
   if (attributeSuggestions.length > 0) {
     issues.push("Possible hijabi-friendly wording found");
   }
-  const autoPricingUpdate = getAutoPricingUpdate(priceCheck);
-  const detectedPriceBand = priceCheck.priceBand || "";
-  const salonHasPrice = Boolean(salon.priceBand);
-  const dismissedPriceBand = dismissedRecommendation.priceBand || "";
-  const priceIsKnown = salonHasPrice && (detectedPriceBand === salon.priceBand || !detectedPriceBand);
-  const priceIsDismissed = !hasPriceDismissals && dismissedPriceBand && detectedPriceBand === dismissedPriceBand;
-  const priceFingerprintDismissed = hasDismissedPriceRecommendation(dismissedFingerprints, priceCheck, hasPriceDismissals ? "" : dismissedPriceBand);
-  const hasPriceRecommendation = Boolean(priceCheck.priceBand && !autoPricingUpdate && !priceIsKnown && !priceIsDismissed && !priceFingerprintDismissed);
-  if (hasPriceRecommendation) {
-    issues.push("Possible pricing band found");
-  }
-  const reviewPriceCheck = hasPriceRecommendation || autoPricingUpdate ? priceCheck : emptyPriceCheck(priceCheck.source || "");
 
   const detectedLocationLabel = serviceCheck.areaLabel || "";
   const dismissedLocationLabel = dismissedRecommendation.locationLabel || "";
@@ -2072,7 +2077,7 @@ async function checkSalonFreshness(salon, dismissedRecommendation = {}, previous
     issues: actionableIssues,
     linkChecks: activeLinkChecks,
     serviceCheck,
-    priceCheck: reviewPriceCheck,
+    priceCheck: emptyPriceCheck("health"),
     attributeSuggestions,
     currentServices,
     detectedServices,
@@ -2588,6 +2593,49 @@ function extractBookingServicesFromHtml(html) {
   };
 }
 
+async function extractBestServiceCheck({ booking = "", website = "", bookingUrl = "", websiteUrl = "", allowAiFallback = false } = {}) {
+  const primaryCheck = booking ? extractBookingServicesFromHtml(booking) : emptyServiceCheck();
+  if (!allowAiFallback || primaryCheck.confidence === "medium" || primaryCheck.confidence === "high") {
+    return primaryCheck;
+  }
+
+  const aiCheck = await extractAiServiceFallbackCheck({
+    text: buildAiServiceFallbackText({ booking, website, bookingUrl, websiteUrl }),
+    sourceUrl: bookingUrl || websiteUrl,
+  });
+  if (aiCheck.confidence === "unknown") {
+    return primaryCheck;
+  }
+
+  return mergeServiceChecks(primaryCheck, aiCheck);
+}
+
+function mergeServiceChecks(primaryCheck = emptyServiceCheck(), fallbackCheck = emptyServiceCheck()) {
+  const rawServices = [...new Set([
+    ...toArray(primaryCheck.rawServices),
+    ...toArray(fallbackCheck.rawServices),
+  ])].slice(0, 80);
+  const matchedServices = normalizeServices([
+    ...toArray(primaryCheck.matchedServices),
+    ...toArray(fallbackCheck.matchedServices),
+    ...matchServices(rawServices),
+  ]);
+  const confidenceRank = { unknown: 0, low: 1, medium: 2, high: 3 };
+  const fallbackConfidence = fallbackCheck.confidence === "high" && matchedServices.length < 3 ? "medium" : fallbackCheck.confidence;
+  const confidence = confidenceRank[primaryCheck.confidence] >= confidenceRank[fallbackConfidence]
+    ? primaryCheck.confidence
+    : fallbackConfidence;
+
+  return {
+    confidence: confidence || "unknown",
+    rawServices,
+    matchedServices,
+    areaId: primaryCheck.areaId || fallbackCheck.areaId || "",
+    areaLabel: primaryCheck.areaLabel || fallbackCheck.areaLabel || "",
+    source: fallbackCheck.source || primaryCheck.source || "",
+  };
+}
+
 async function extractBestPriceCheck({ booking = "", website = "", bookingUrl = "", websiteUrl = "", allowAiFallback = false } = {}) {
   const freshaCheck = await extractFreshaPriceCheck(booking, bookingUrl);
   if (freshaCheck.confidence !== "unknown") {
@@ -3073,6 +3121,51 @@ function buildAiPriceFallbackText({ booking = "", website = "", renderedText = "
   return parts.join("\n\n").replace(/\s+\n/g, "\n").slice(0, 20_000);
 }
 
+function buildAiServiceFallbackText({ booking = "", website = "", renderedText = "", bookingUrl = "", websiteUrl = "" } = {}) {
+  const parts = [
+    bookingUrl ? `BOOKING URL: ${bookingUrl}` : "",
+    websiteUrl ? `WEBSITE URL: ${websiteUrl}` : "",
+    renderedText ? `RENDERED PAGE TEXT:\n${renderedText}` : "",
+    booking ? `BOOKING PAGE TEXT:\n${htmlToReadableText(booking)}` : "",
+    website ? `WEBSITE PAGE TEXT:\n${htmlToReadableText(website)}` : "",
+  ].filter(Boolean);
+
+  return parts.join("\n\n").replace(/\s+\n/g, "\n").slice(0, 20_000);
+}
+
+async function extractAiServiceFallbackCheck({ text = "", sourceUrl = "" } = {}) {
+  const inputText = cleanString(text);
+  if (!isAiServiceFallbackEnabled() || !/(service|appointment|book|treatment|braid|loc|wig|weave|hair|install|silk|press|extension)/i.test(inputText)) {
+    return emptyServiceCheck();
+  }
+
+  try {
+    const response = await fetchOpenAiServiceExtraction(inputText, sourceUrl);
+    const rawServices = sanitizeAiServiceNames(response?.services || []);
+    const matchedServices = matchServices(rawServices);
+    if (!rawServices.length || !matchedServices.length) {
+      return emptyServiceCheck();
+    }
+
+    const modelConfidence = sanitizeAiServiceConfidence(response?.confidence) || "low";
+    return {
+      confidence: modelConfidence === "high" && rawServices.length >= 5 && matchedServices.length >= 2
+        ? "high"
+        : rawServices.length >= 3
+          ? "medium"
+          : "low",
+      rawServices: rawServices.slice(0, 80),
+      matchedServices,
+      areaId: "",
+      areaLabel: "",
+      source: "ai",
+    };
+  } catch (error) {
+    console.warn(`AI service fallback failed${sourceUrl ? ` for ${sourceUrl}` : ""}: ${error.message}`);
+    return emptyServiceCheck();
+  }
+}
+
 async function extractAiPriceFallbackCheck({ text = "", sourceUrl = "" } = {}) {
   const inputText = cleanString(text);
   if (!isAiPriceFallbackEnabled() || !/(£|gbp|british pounds?|pounds?|\bprice\b)/i.test(inputText)) {
@@ -3106,6 +3199,10 @@ async function extractAiPriceFallbackCheck({ text = "", sourceUrl = "" } = {}) {
 }
 
 function isAiPriceFallbackEnabled() {
+  return Boolean(getOpenAiApiKey());
+}
+
+function isAiServiceFallbackEnabled() {
   return Boolean(getOpenAiApiKey());
 }
 
@@ -3189,6 +3286,69 @@ async function fetchOpenAiPriceExtraction(text, sourceUrl = "") {
   }
 }
 
+async function fetchOpenAiServiceExtraction(text, sourceUrl = "") {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 45_000);
+  try {
+    const response = await fetch("https://api.openai.com/v1/responses", {
+      method: "POST",
+      signal: controller.signal,
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${getOpenAiApiKey()}`,
+      },
+      body: JSON.stringify({
+        model: getOpenAiPriceModel(),
+        instructions: [
+          "Extract bookable hair-service names from booking-page or salon website text for a Row K health check.",
+          "Return only real client services, treatments, installs, maintenance, classes, or consultations that appear in the text.",
+          "Do not extract prices, price bands, package classification, fees, deposits, add-ons, products, policies, durations, staff names, or marketing claims.",
+          "Do not infer services that are not present in the text.",
+          "Keep service names concise and close to the wording on the page.",
+          "Return at most 80 services, prioritising distinct real services.",
+        ].join(" "),
+        input: [{
+          role: "user",
+          content: [{
+            type: "input_text",
+            text: `Source URL: ${sourceUrl || "unknown"}\n\nPage text:\n${text.slice(0, 20_000)}`,
+          }],
+        }],
+        text: {
+          format: {
+            type: "json_schema",
+            name: "hair_service_name_extraction",
+            strict: true,
+            schema: {
+              type: "object",
+              additionalProperties: false,
+              properties: {
+                confidence: { type: "string", enum: ["high", "medium", "low"] },
+                services: {
+                  type: "array",
+                  items: { type: "string" },
+                },
+                notes: { type: "string" },
+              },
+              required: ["confidence", "services", "notes"],
+            },
+          },
+        },
+        max_output_tokens: 4000,
+      }),
+    });
+
+    const body = await response.json().catch(() => ({}));
+    if (!response.ok) {
+      throw new Error(body?.error?.message || `OpenAI API returned ${response.status}`);
+    }
+    const outputText = getOpenAiResponseText(body);
+    return JSON.parse(outputText);
+  } finally {
+    clearTimeout(timeout);
+  }
+}
+
 function getOpenAiResponseText(response = {}) {
   if (typeof response.output_text === "string" && response.output_text.trim()) {
     return response.output_text;
@@ -3226,6 +3386,19 @@ function sanitizeAiPriceEntries(entries = []) {
     })
     .filter(Boolean)
     .slice(0, 80);
+}
+
+function sanitizeAiServiceNames(services = []) {
+  return [...new Set((Array.isArray(services) ? services : [])
+    .map((service) => cleanPriceEvidenceText(service))
+    .filter((service) => service && service.length >= 3 && service.length <= 120)
+    .filter((service) => !/(^|\b)(price|prices|pricing|deposit|fee|policy|duration|book now|select|show all|add-ons?|discount|voucher|gift card)(\b|$)/i.test(service))
+  )];
+}
+
+function sanitizeAiServiceConfidence(value = "") {
+  const cleaned = cleanString(value).toLowerCase();
+  return ["high", "medium", "low"].includes(cleaned) ? cleaned : "";
 }
 
 async function getPriceCheckBrowser() {
@@ -3449,20 +3622,94 @@ function parseManualPriceText(text = "") {
 }
 
 function buildPriceCheckFromEntries(priceEntries, source, { structured = false } = {}) {
-  const values = priceEntries.map((entry) => entry.value).sort((left, right) => left - right);
-  const medianPrice = values[Math.floor(values.length / 2)];
-  const priceBand = priceBandForValue(medianPrice);
+  const normalizedEntries = priceEntries.map((entry) => ({
+    ...entry,
+    priceKind: entry.priceKind || classifyPriceEntryKind(entry),
+  }));
+  const serviceEntries = normalizedEntries.filter((entry) => entry.priceKind !== "package");
+  const packageEntries = normalizedEntries.filter((entry) => entry.priceKind === "package");
+  const values = normalizedEntries.map((entry) => entry.value).sort((left, right) => left - right);
+  const servicePrices = serviceEntries.map((entry) => entry.value).sort((left, right) => left - right);
+  const packagePrices = packageEntries.map((entry) => entry.value).sort((left, right) => left - right);
+  const medianPrice = medianPriceForValues(values);
+  const serviceMedianPrice = medianPriceForValues(servicePrices);
+  const packageMedianPrice = medianPriceForValues(packagePrices);
+  const servicePriceBand = priceBandForValue(serviceMedianPrice);
+  const packagePriceBand = priceBandForValue(packageMedianPrice);
+  const priceIncludesHair = packageEntries.length > 0;
+  const priceComparisonMode = serviceEntries.length && packageEntries.length
+    ? "mixed"
+    : packageEntries.length
+      ? "package-only"
+      : serviceEntries.length
+        ? "service-only"
+        : "";
+  const priceBand = servicePriceBand || packagePriceBand || priceBandForValue(medianPrice);
   const structuredEntries = structured || priceEntries.some((entry) => entry.structured);
-  const contextualEntries = priceEntries.filter((entry) => entry.hasServiceContext || entry.structured).length;
+  const contextualEntries = normalizedEntries.filter((entry) => entry.hasServiceContext || entry.structured).length;
   return {
     source,
-    confidence: structuredEntries && priceEntries.length >= 6 ? "high" : structuredEntries && priceEntries.length >= 2 ? "medium" : contextualEntries >= 3 ? "medium" : priceEntries.length >= 3 ? "low" : "unknown",
+    confidence: structuredEntries && normalizedEntries.length >= 6 ? "high" : structuredEntries && normalizedEntries.length >= 2 ? "medium" : contextualEntries >= 3 ? "medium" : normalizedEntries.length >= 3 ? "low" : "unknown",
     priceBand,
     medianPrice,
     prices: values,
-    priceCount: priceEntries.length,
-    evidence: priceEntries.slice(0, 8).map((entry) => entry.evidence),
+    priceCount: normalizedEntries.length,
+    evidence: normalizedEntries.slice(0, 8).map((entry) => entry.evidence),
+    servicePriceBand,
+    serviceMedianPrice,
+    servicePrices,
+    servicePriceCount: serviceEntries.length,
+    packagePriceBand,
+    packageMedianPrice,
+    packagePrices,
+    packagePriceCount: packageEntries.length,
+    priceIncludesHair,
+    priceComparisonMode,
   };
+}
+
+function medianPriceForValues(values = []) {
+  return values.length ? values[Math.floor(values.length / 2)] : null;
+}
+
+function classifyPriceEntryKind(entry = {}) {
+  const normalized = normalizeServiceText([
+    entry.evidence,
+    entry.priceContext,
+    entry.context,
+  ].filter(Boolean).join(" "));
+
+  if (hasServiceOnlyPricingSignal(normalized)) {
+    return "service";
+  }
+
+  if (hasIncludedHairPricingSignal(normalized)) {
+    return "package";
+  }
+
+  return "service";
+}
+
+function hasServiceOnlyPricingSignal(value = "") {
+  return /\b(no|without|not)\s+(?:hair|extensions?|bundles?)\s+included\b/.test(value) ||
+    /\b(?:hair|extensions?|bundles?)\s+(?:not\s+included|not\s+provided)\b/.test(value) ||
+    /\b(?:kindly\s+)?provide\s+\d?[\s-]*(?:to|-)?\s*\d?\s*(?:bundles?|packs?|packets?|extensions?|braiding\s+hair)\b/.test(value) ||
+    /\bmust\s+bring\b/.test(value) ||
+    /\bbring\s+(?:your\s+own\s+)?(?:hair|extensions?|bundles?|packs?)\b/.test(value) ||
+    /\brefresh\b/.test(value) ||
+    /\btraditional\s+sew[\s-]*in\b/.test(value) ||
+    /\bflip[\s-]*over\s+sew[\s-]*in\b/.test(value);
+}
+
+function hasIncludedHairPricingSignal(value = "") {
+  return /\b(?:hair|extensions?|bundles?|human\s+hair)\s+(?:is\s+|are\s+)?(?:included|provided)\b/.test(value) ||
+    /\b(?:included|provided)\s+(?:hair|extensions?|bundles?|human\s+hair)\b/.test(value) ||
+    /\bbundles?\s+included\b/.test(value) ||
+    /\bhair\s+included\b/.test(value) ||
+    /\bextensions?\s+included\b/.test(value) ||
+    /\bextensions?\s+provided\b/.test(value) ||
+    /\bprovided\s+will\s+be\b/.test(value) ||
+    /\b(?:\d+\s*[x*]?\s*)?(?:\d{2}\s*inch\s+)?(?:human\s+hair\s+)?bundles?\s+(?:will\s+be\s+)?(?:used|included|provided)\b/.test(value);
 }
 
 function extractRawPayloadPriceEntries(html = "") {
@@ -4324,10 +4571,12 @@ function extractPriceEntries(text, { consultationFocused = false } = {}) {
           continue;
         }
         const segText = segment.length > 120 ? `${segment.slice(0, 117)}...` : segment;
+        const segPriceContext = getPriceClassificationContext(lines, index, segment, segContext);
         entries.push({
           value: segValue,
           evidence: segContext ? `${segContext} - ${segText}` : segText,
           hasServiceContext: Boolean(segContext),
+          priceContext: segPriceContext,
         });
       }
       continue;
@@ -4339,10 +4588,12 @@ function extractPriceEntries(text, { consultationFocused = false } = {}) {
       continue;
     }
     const priceText = normalizedLine.length > 120 ? `${normalizedLine.slice(0, 117)}...` : normalizedLine;
+    const priceContext = getPriceClassificationContext(lines, index, normalizedLine, context);
     entries.push({
       value,
       evidence: context ? `${context} - ${priceText}` : priceText,
       hasServiceContext: Boolean(context),
+      priceContext,
     });
   }
 
@@ -4351,6 +4602,32 @@ function extractPriceEntries(text, { consultationFocused = false } = {}) {
     unique.set(`${entry.value}-${entry.evidence}`, entry);
   });
   return [...unique.values()].slice(0, 60);
+}
+
+function getPriceClassificationContext(lines, priceLineIndex, priceLine = "", serviceContext = "") {
+  const contextLines = [
+    serviceContext,
+    priceLine,
+  ];
+
+  for (let index = priceLineIndex + 1; index < Math.min(lines.length, priceLineIndex + 6); index += 1) {
+    const line = cleanPriceEvidenceText(lines[index]);
+    if (!line || /£|&pound;|gbp|british pounds?/i.test(line)) {
+      break;
+    }
+    if (/^(book|select|show all|read more|more info|price|from)$/i.test(line)) {
+      break;
+    }
+    if (isLikelyServicePriceContext(line)) {
+      break;
+    }
+    contextLines.push(line);
+  }
+
+  return contextLines
+    .map((line) => cleanPriceEvidenceText(line))
+    .filter(Boolean)
+    .join(" ");
 }
 
 function extractPriceValuesFromLine(line = "") {
@@ -4475,6 +4752,16 @@ function emptyPriceCheck(source = "") {
     prices: [],
     priceCount: 0,
     evidence: [],
+    servicePriceBand: "",
+    serviceMedianPrice: null,
+    servicePrices: [],
+    servicePriceCount: 0,
+    packagePriceBand: "",
+    packageMedianPrice: null,
+    packagePrices: [],
+    packagePriceCount: 0,
+    priceIncludesHair: false,
+    priceComparisonMode: "",
   };
 }
 
@@ -5033,6 +5320,8 @@ function sanitizeDraftUpdate(input) {
   const areaIds = normalizeAreaIds(input.areaIds?.length ? input.areaIds : input.areaId ? [input.areaId] : []);
   const areaLabel = cleanString(input.areaLabel) || areaLabelForIds(areaIds);
   const priceBand = sanitizePriceBand(input.priceBand);
+  const servicePriceBand = sanitizePriceBand(input.servicePriceBand);
+  const packagePriceBand = sanitizePriceBand(input.packagePriceBand);
 
   return {
     ...(input.status ? { status: cleanString(input.status) } : {}),
@@ -5051,12 +5340,16 @@ function sanitizeDraftUpdate(input) {
     rawServices,
     hijabiFriendly: input.hijabiFriendly === true,
     canBraidWithoutGel: input.canBraidWithoutGel === true,
-    priceBand,
-    priceSource: priceBand ? sanitizePriceSource(input.priceSource) || "manual" : "",
+    priceBand: priceBand || servicePriceBand,
+    servicePriceBand,
+    packagePriceBand,
+    priceIncludesHair: input.priceIncludesHair === true,
+    priceComparisonMode: sanitizePriceComparisonMode(input.priceComparisonMode),
+    priceSource: priceBand || servicePriceBand || packagePriceBand ? sanitizePriceSource(input.priceSource) || "manual" : "",
     priceEvidence: toArray(input.priceEvidence),
     priceCheckedAt: cleanString(input.priceCheckedAt),
     priceUpdatedAt: cleanString(input.priceUpdatedAt),
-    priceConfidence: priceBand ? sanitizePriceConfidence(input.priceConfidence) || "manual" : "",
+    priceConfidence: priceBand || servicePriceBand || packagePriceBand ? sanitizePriceConfidence(input.priceConfidence) || "manual" : "",
     summary: cleanString(input.summary),
     warnings: toArray(input.warnings),
     evidence: toArray(input.evidence),
@@ -5064,9 +5357,16 @@ function sanitizeDraftUpdate(input) {
 }
 
 function buildPricingUpdate(update, current = {}, now = new Date().toISOString()) {
-  if (!update.priceBand) {
+  const servicePriceBand = sanitizePriceBand(update.servicePriceBand);
+  const packagePriceBand = sanitizePriceBand(update.packagePriceBand);
+  const priceBand = sanitizePriceBand(update.priceBand) || servicePriceBand || packagePriceBand;
+  if (!priceBand) {
     return {
       priceBand: "",
+      servicePriceBand: "",
+      packagePriceBand: "",
+      priceIncludesHair: false,
+      priceComparisonMode: "",
       priceSource: "",
       priceEvidence: [],
       priceCheckedAt: "",
@@ -5077,14 +5377,24 @@ function buildPricingUpdate(update, current = {}, now = new Date().toISOString()
 
   const priceSource = sanitizePriceSource(update.priceSource) || "manual";
   const priceConfidence = sanitizePriceConfidence(update.priceConfidence) || (priceSource === "manual" ? "manual" : "medium");
+  const priceIncludesHair = update.priceIncludesHair === true || Boolean(packagePriceBand);
+  const priceComparisonMode = sanitizePriceComparisonMode(update.priceComparisonMode) || defaultPriceComparisonMode(servicePriceBand, packagePriceBand, priceIncludesHair);
   const changed =
-    update.priceBand !== current.priceBand ||
+    priceBand !== current.priceBand ||
+    servicePriceBand !== sanitizePriceBand(current.servicePriceBand) ||
+    packagePriceBand !== sanitizePriceBand(current.packagePriceBand) ||
+    priceIncludesHair !== (current.priceIncludesHair === true) ||
+    priceComparisonMode !== cleanString(current.priceComparisonMode) ||
     priceSource !== current.priceSource ||
     priceConfidence !== current.priceConfidence ||
     JSON.stringify(toArray(update.priceEvidence)) !== JSON.stringify(toArray(current.priceEvidence));
 
   return {
-    priceBand: update.priceBand,
+    priceBand,
+    servicePriceBand,
+    packagePriceBand,
+    priceIncludesHair,
+    priceComparisonMode,
     priceSource,
     priceEvidence: toArray(update.priceEvidence),
     priceCheckedAt: cleanString(update.priceCheckedAt) || current.priceCheckedAt || "",
@@ -5094,13 +5404,20 @@ function buildPricingUpdate(update, current = {}, now = new Date().toISOString()
 }
 
 function sanitizeFreshnessPricingUpdate(input, current = {}) {
-  const priceBand = sanitizePriceBand(input.priceBand);
+  const servicePriceBand = sanitizePriceBand(input.servicePriceBand);
+  const packagePriceBand = sanitizePriceBand(input.packagePriceBand);
+  const priceBand = sanitizePriceBand(input.priceBand) || servicePriceBand || packagePriceBand;
   if (!priceBand) {
     return {};
   }
   const now = new Date().toISOString();
+  const priceIncludesHair = input.priceIncludesHair === true || Boolean(packagePriceBand);
   return {
     priceBand,
+    servicePriceBand,
+    packagePriceBand,
+    priceIncludesHair,
+    priceComparisonMode: sanitizePriceComparisonMode(input.priceComparisonMode) || defaultPriceComparisonMode(servicePriceBand, packagePriceBand, priceIncludesHair),
     priceSource: sanitizePriceSource(input.priceSource) || "auto",
     priceEvidence: toArray(input.priceEvidence).length ? toArray(input.priceEvidence) : toArray(current.priceEvidence),
     priceCheckedAt: cleanString(input.priceCheckedAt) || now,
@@ -5110,7 +5427,7 @@ function sanitizeFreshnessPricingUpdate(input, current = {}) {
 }
 
 function hasFreshnessPricingUpdate(input) {
-  return Boolean(sanitizePriceBand(input.priceBand));
+  return Boolean(sanitizePriceBand(input.priceBand) || sanitizePriceBand(input.servicePriceBand) || sanitizePriceBand(input.packagePriceBand));
 }
 
 function getAutoPricingUpdate(priceCheck) {
@@ -5120,6 +5437,10 @@ function getAutoPricingUpdate(priceCheck) {
   const now = new Date().toISOString();
   return {
     priceBand: priceCheck.priceBand,
+    servicePriceBand: sanitizePriceBand(priceCheck.servicePriceBand),
+    packagePriceBand: sanitizePriceBand(priceCheck.packagePriceBand),
+    priceIncludesHair: priceCheck.priceIncludesHair === true,
+    priceComparisonMode: sanitizePriceComparisonMode(priceCheck.priceComparisonMode),
     priceSource: "auto",
     priceEvidence: toArray(priceCheck.evidence),
     priceCheckedAt: now,
@@ -5134,6 +5455,10 @@ function salonHasAutoPricing(salon = {}) {
 function clearSalonPricing(salon = {}) {
   const {
     priceBand,
+    servicePriceBand,
+    packagePriceBand,
+    priceIncludesHair,
+    priceComparisonMode,
     priceSource,
     priceEvidence,
     priceCheckedAt,
@@ -5147,6 +5472,10 @@ function clearSalonPricing(salon = {}) {
 function pricingFieldsEqual(current = {}, next = {}) {
   return (
     current.priceBand === next.priceBand &&
+    sanitizePriceBand(current.servicePriceBand) === sanitizePriceBand(next.servicePriceBand) &&
+    sanitizePriceBand(current.packagePriceBand) === sanitizePriceBand(next.packagePriceBand) &&
+    (current.priceIncludesHair === true) === (next.priceIncludesHair === true) &&
+    cleanString(current.priceComparisonMode) === cleanString(next.priceComparisonMode) &&
     current.priceSource === next.priceSource &&
     current.priceCheckedAt === next.priceCheckedAt &&
     current.priceConfidence === next.priceConfidence &&
@@ -5157,6 +5486,24 @@ function pricingFieldsEqual(current = {}, next = {}) {
 function sanitizePriceBand(value) {
   const cleaned = cleanString(value);
   return priceBands.has(cleaned) ? cleaned : "";
+}
+
+function sanitizePriceComparisonMode(value) {
+  const cleaned = cleanString(value);
+  return ["service-only", "mixed", "package-only"].includes(cleaned) ? cleaned : "";
+}
+
+function defaultPriceComparisonMode(servicePriceBand, packagePriceBand, priceIncludesHair = false) {
+  if (servicePriceBand && packagePriceBand) {
+    return "mixed";
+  }
+  if (packagePriceBand && !servicePriceBand) {
+    return "package-only";
+  }
+  if (servicePriceBand || !priceIncludesHair) {
+    return "service-only";
+  }
+  return "";
 }
 
 function sanitizePriceSource(value) {
@@ -5267,6 +5614,10 @@ function draftToSalon(draft, existingIds) {
     ...(sanitizePriceBand(draft.priceBand)
       ? {
           priceBand: sanitizePriceBand(draft.priceBand),
+          servicePriceBand: sanitizePriceBand(draft.servicePriceBand),
+          packagePriceBand: sanitizePriceBand(draft.packagePriceBand),
+          priceIncludesHair: draft.priceIncludesHair === true,
+          priceComparisonMode: sanitizePriceComparisonMode(draft.priceComparisonMode) || defaultPriceComparisonMode(sanitizePriceBand(draft.servicePriceBand), sanitizePriceBand(draft.packagePriceBand), draft.priceIncludesHair === true),
           priceSource: sanitizePriceSource(draft.priceSource) || "manual",
           priceEvidence: toArray(draft.priceEvidence),
           priceCheckedAt: cleanString(draft.priceCheckedAt),

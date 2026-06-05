@@ -57,6 +57,10 @@ type StylistDraft = {
   hijabiFriendly?: boolean;
   canBraidWithoutGel?: boolean;
   priceBand?: PriceBand;
+  servicePriceBand?: PriceBand;
+  packagePriceBand?: PriceBand;
+  priceIncludesHair?: boolean;
+  priceComparisonMode?: PriceComparisonMode | "";
   priceSource?: "auto" | "manual" | "";
   priceEvidence?: string[];
   priceCheckedAt?: string;
@@ -70,6 +74,7 @@ type StylistDraft = {
 };
 
 type PriceBand = "£" | "££" | "£££" | "££££";
+type PriceComparisonMode = "service-only" | "mixed" | "package-only";
 
 type DraftForm = {
   links: string;
@@ -80,6 +85,10 @@ type DraftForm = {
   hijabiFriendly: boolean;
   canBraidWithoutGel: boolean;
   priceBand: PriceBand | "";
+  servicePriceBand: PriceBand | "";
+  packagePriceBand: PriceBand | "";
+  priceIncludesHair: boolean;
+  priceComparisonMode: PriceComparisonMode | "";
   priceEvidence: string[];
   priceCheckedAt: string;
   priceUpdatedAt: string;
@@ -111,6 +120,10 @@ type DirectoryCheck = {
   websiteUrl?: string;
   hijabiFriendly?: boolean;
   priceBand?: PriceBand;
+  servicePriceBand?: PriceBand;
+  packagePriceBand?: PriceBand;
+  priceIncludesHair?: boolean;
+  priceComparisonMode?: PriceComparisonMode | "";
   priceSource?: "auto" | "manual" | "";
   priceConfidence?: "high" | "medium" | "low" | "manual" | "";
   issues: string[];
@@ -137,6 +150,16 @@ type DirectoryCheck = {
     prices?: number[];
     priceCount: number;
     evidence: string[];
+    servicePriceBand?: PriceBand | "";
+    serviceMedianPrice?: number | null;
+    servicePrices?: number[];
+    servicePriceCount?: number;
+    packagePriceBand?: PriceBand | "";
+    packageMedianPrice?: number | null;
+    packagePrices?: number[];
+    packagePriceCount?: number;
+    priceIncludesHair?: boolean;
+    priceComparisonMode?: PriceComparisonMode | "";
   };
   currentServices: string[];
   detectedServices: string[];
@@ -175,6 +198,10 @@ type FreshnessUpdate = {
   websiteUrl?: string;
   hijabiFriendly?: boolean;
   priceBand?: PriceBand;
+  servicePriceBand?: PriceBand;
+  packagePriceBand?: PriceBand;
+  priceIncludesHair?: boolean;
+  priceComparisonMode?: PriceComparisonMode | "";
   priceSource?: "auto" | "manual";
   priceEvidence?: string[];
   priceCheckedAt?: string;
@@ -195,6 +222,16 @@ type ManualPriceParseResult = {
   prices: number[];
   priceCount: number;
   evidence: string[];
+  servicePriceBand: PriceBand | "";
+  serviceMedianPrice: number | null;
+  servicePrices: number[];
+  servicePriceCount: number;
+  packagePriceBand: PriceBand | "";
+  packageMedianPrice: number | null;
+  packagePrices: number[];
+  packagePriceCount: number;
+  priceIncludesHair: boolean;
+  priceComparisonMode: PriceComparisonMode | "";
   ignoredPrices: string[];
 };
 
@@ -268,6 +305,10 @@ const emptyForm: DraftForm = {
   hijabiFriendly: false,
   canBraidWithoutGel: false,
   priceBand: "",
+  servicePriceBand: "",
+  packagePriceBand: "",
+  priceIncludesHair: false,
+  priceComparisonMode: "",
   priceEvidence: [],
   priceCheckedAt: "",
   priceUpdatedAt: "",
@@ -671,6 +712,10 @@ export function AdminApp() {
         body: JSON.stringify({
           text: intakeText,
           priceBand: form.priceBand,
+          servicePriceBand: form.servicePriceBand,
+          packagePriceBand: form.packagePriceBand,
+          priceIncludesHair: form.priceIncludesHair,
+          priceComparisonMode: form.priceComparisonMode,
           priceSource: form.priceSource,
           priceEvidence: form.priceEvidence,
           priceCheckedAt: form.priceCheckedAt,
@@ -2499,6 +2544,16 @@ function ManualPriceCalculator({
         prices: Array.isArray(payload.prices) ? payload.prices : [],
         priceCount: Number(payload.priceCount) || 0,
         evidence: Array.isArray(payload.evidence) ? payload.evidence : [],
+        servicePriceBand: payload.servicePriceBand || "",
+        serviceMedianPrice: typeof payload.serviceMedianPrice === "number" ? payload.serviceMedianPrice : null,
+        servicePrices: Array.isArray(payload.servicePrices) ? payload.servicePrices : [],
+        servicePriceCount: Number(payload.servicePriceCount) || 0,
+        packagePriceBand: payload.packagePriceBand || "",
+        packageMedianPrice: typeof payload.packageMedianPrice === "number" ? payload.packageMedianPrice : null,
+        packagePrices: Array.isArray(payload.packagePrices) ? payload.packagePrices : [],
+        packagePriceCount: Number(payload.packagePriceCount) || 0,
+        priceIncludesHair: payload.priceIncludesHair === true,
+        priceComparisonMode: payload.priceComparisonMode || "",
         ignoredPrices: Array.isArray(payload.ignoredPrices) ? payload.ignoredPrices : [],
       };
       setParseResult(result);
@@ -2506,7 +2561,7 @@ function ManualPriceCalculator({
       if (result.priceBand) {
         onSelectedPriceBandChange(result.priceBand);
       }
-      setParseMessage(result.priceBand ? `Suggested ${result.priceBand} from median ${formatDetectedPrice(result.medianPrice || 0)}.` : "No usable service prices found.");
+      setParseMessage(result.priceBand ? `Suggested ${result.priceBand} from comparable median ${formatDetectedPrice(result.serviceMedianPrice ?? result.medianPrice ?? 0)}.` : "No usable service prices found.");
     } finally {
       setIsParsing(false);
     }
@@ -2596,6 +2651,16 @@ function ManualPriceCalculator({
       {parseResult?.medianPrice != null ? (
         <p className="text-sm text-stone-500">Median: <span className="font-semibold text-stone-950">{formatDetectedPrice(parseResult.medianPrice)}</span></p>
       ) : null}
+      {parseResult?.serviceMedianPrice != null || parseResult?.packageMedianPrice != null ? (
+        <div className="grid gap-1 text-sm text-stone-500">
+          {parseResult.serviceMedianPrice != null ? (
+            <p>Service-only median: <span className="font-semibold text-stone-950">{formatDetectedPrice(parseResult.serviceMedianPrice)}</span>{parseResult.servicePriceBand ? ` (${parseResult.servicePriceBand})` : ""}</p>
+          ) : null}
+          {parseResult.packageMedianPrice != null ? (
+            <p>Hair-included package median: <span className="font-semibold text-stone-950">{formatDetectedPrice(parseResult.packageMedianPrice)}</span>{parseResult.packagePriceBand ? ` (${parseResult.packagePriceBand})` : ""}</p>
+          ) : null}
+        </div>
+      ) : null}
       {parseMessage ? <p className="text-sm text-stone-500">{parseMessage}</p> : null}
     </div>
   );
@@ -2614,6 +2679,10 @@ function getFreshnessDetailAcceptUpdate(detail: FreshnessRecommendationDetail, r
   if ((detail.kind === "price" || detail.kind === "manual-price") && (selectedPriceBand || detail.priceBand)) {
     return {
       priceBand: selectedPriceBand || detail.priceBand,
+      servicePriceBand: manualPriceResult?.servicePriceBand || detail.servicePriceBand || selectedPriceBand || detail.priceBand,
+      packagePriceBand: manualPriceResult?.packagePriceBand || detail.packagePriceBand || "",
+      priceIncludesHair: manualPriceResult?.priceIncludesHair === true || detail.priceIncludesHair === true,
+      priceComparisonMode: manualPriceResult?.priceComparisonMode || detail.priceComparisonMode || (manualPriceResult?.packagePriceBand || detail.packagePriceBand ? "mixed" : "service-only"),
       priceSource: "manual" as const,
       priceEvidence: manualPriceResult?.evidence?.length ? manualPriceResult.evidence : detail.priceEvidence || detail.evidence || [],
       priceCheckedAt: row.check.checkedAt,
@@ -2667,6 +2736,10 @@ type FreshnessRecommendationGroup = {
     removeServices?: string[];
     hijabiFriendly?: boolean;
     priceBand?: PriceBand;
+    servicePriceBand?: PriceBand;
+    packagePriceBand?: PriceBand;
+    priceIncludesHair?: boolean;
+    priceComparisonMode?: PriceComparisonMode | "";
     priceSource?: "auto" | "manual";
     priceEvidence?: string[];
     priceCheckedAt?: string;
@@ -2682,6 +2755,10 @@ type FreshnessRecommendationDetail = {
   service?: string;
   attributeField?: "hijabiFriendly";
   priceBand?: PriceBand;
+  servicePriceBand?: PriceBand;
+  packagePriceBand?: PriceBand;
+  priceIncludesHair?: boolean;
+  priceComparisonMode?: PriceComparisonMode | "";
   priceEvidence?: string[];
   priceValues?: number[];
   priceConfidence?: "high" | "medium" | "low" | "manual";
@@ -2815,6 +2892,10 @@ function buildFreshnessRecommendationGroups(checks: DirectoryCheck[]): Freshness
         label: `Set ${priceCheck.priceBand}`,
         description: `${titleCase(priceCheck.confidence)} confidence from ${priceCheck.priceCount} price${priceCheck.priceCount === 1 ? "" : "s"}`,
         priceBand: priceCheck.priceBand,
+        servicePriceBand: priceCheck.servicePriceBand || priceCheck.priceBand,
+        packagePriceBand: priceCheck.packagePriceBand || "",
+        priceIncludesHair: priceCheck.priceIncludesHair === true,
+        priceComparisonMode: priceCheck.priceComparisonMode || (priceCheck.packagePriceBand ? "mixed" : "service-only"),
         priceEvidence: priceCheck.evidence || [],
         priceValues: priceCheck.prices || [],
         priceConfidence: priceCheck.confidence === "unknown" ? "low" as const : priceCheck.confidence,
@@ -2858,6 +2939,10 @@ function buildFreshnessRecommendationGroups(checks: DirectoryCheck[]): Freshness
           ...(hasHijabiFriendlyRecommendation ? { hijabiFriendly: true } : {}),
           ...(hasPriceRecommendation && priceCheck?.priceBand ? {
             priceBand: priceCheck.priceBand,
+            servicePriceBand: priceCheck.servicePriceBand || priceCheck.priceBand,
+            packagePriceBand: priceCheck.packagePriceBand || "",
+            priceIncludesHair: priceCheck.priceIncludesHair === true,
+            priceComparisonMode: priceCheck.priceComparisonMode || (priceCheck.packagePriceBand ? "mixed" : "service-only"),
             priceSource: "auto" as const,
             priceEvidence: priceCheck.evidence || [],
             priceCheckedAt: check.checkedAt,
@@ -3760,6 +3845,10 @@ function DraftEditor({
             onChange={(value) =>
               onChange({
                 priceBand: (value as "" | PriceBand) || undefined,
+                servicePriceBand: (value as "" | PriceBand) || "",
+                packagePriceBand: value ? draft.packagePriceBand || "" : "",
+                priceIncludesHair: value ? draft.priceIncludesHair === true : false,
+                priceComparisonMode: value ? draft.priceComparisonMode || "service-only" : "",
                 priceSource: value ? "manual" : "",
                 priceConfidence: value ? "manual" : "",
                 priceUpdatedAt: value ? new Date().toISOString() : "",
@@ -3774,6 +3863,54 @@ function DraftEditor({
             ))}
           </Select>
         </Field>
+        <div className="grid gap-3 sm:grid-cols-2">
+          <Field label="Comparable service-only band">
+            <Select
+              value={draft.servicePriceBand || draft.priceBand || ""}
+              onChange={(value) =>
+                onChange({
+                  servicePriceBand: (value as "" | PriceBand) || "",
+                  priceBand: (value as "" | PriceBand) || draft.packagePriceBand || undefined,
+                  priceComparisonMode: draft.packagePriceBand && value ? "mixed" : value ? "service-only" : draft.packagePriceBand ? "package-only" : "",
+                })
+              }
+            >
+              {priceBandOptions.map((option) => (
+                <option key={`service-${option.value || "unset"}`} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </Select>
+          </Field>
+          <Field label="Hair-included package band">
+            <Select
+              value={draft.packagePriceBand || ""}
+              onChange={(value) =>
+                onChange({
+                  packagePriceBand: (value as "" | PriceBand) || "",
+                  priceIncludesHair: Boolean(value),
+                  priceComparisonMode: value && (draft.servicePriceBand || draft.priceBand) ? "mixed" : value ? "package-only" : draft.servicePriceBand || draft.priceBand ? "service-only" : "",
+                })
+              }
+            >
+              {priceBandOptions.map((option) => (
+                <option key={`package-${option.value || "unset"}`} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </Select>
+          </Field>
+        </div>
+        <DraftBooleanOption
+          label="Hair or extensions included in some packages"
+          checked={draft.priceIncludesHair === true}
+          onToggle={(checked) =>
+            onChange({
+              priceIncludesHair: checked,
+              priceComparisonMode: checked && (draft.servicePriceBand || draft.priceBand) && draft.packagePriceBand ? "mixed" : draft.priceComparisonMode || (checked ? "mixed" : "service-only"),
+            })
+          }
+        />
         <ManualPriceCalculator
           key={`${draft.id}-manual-price-calculator`}
           initialText={(draft.priceEvidence || []).join("\n")}
@@ -3782,6 +3919,10 @@ function DraftEditor({
             const now = new Date().toISOString();
             onChange({
               priceBand: priceBand || undefined,
+              servicePriceBand: priceBand || "",
+              packagePriceBand: priceBand ? draft.packagePriceBand || "" : "",
+              priceIncludesHair: priceBand ? draft.priceIncludesHair === true : false,
+              priceComparisonMode: priceBand ? draft.priceComparisonMode || "service-only" : "",
               priceSource: priceBand ? "manual" : "",
               priceConfidence: priceBand ? "manual" : "",
               priceCheckedAt: priceBand ? draft.priceCheckedAt || now : "",
@@ -3796,6 +3937,10 @@ function DraftEditor({
             const now = new Date().toISOString();
             onChange({
               priceBand: result.priceBand,
+              servicePriceBand: result.servicePriceBand || result.priceBand,
+              packagePriceBand: result.packagePriceBand || "",
+              priceIncludesHair: result.priceIncludesHair,
+              priceComparisonMode: result.priceComparisonMode || (result.packagePriceBand ? "mixed" : "service-only"),
               priceSource: "manual",
               priceEvidence: result.evidence?.length ? result.evidence : draft.priceEvidence || [],
               priceConfidence: "manual",
@@ -4114,6 +4259,10 @@ function publishedSalonToDraft(salon: Partial<StylistDraft>): StylistDraft {
     hijabiFriendly: salon.hijabiFriendly === true,
     canBraidWithoutGel: salon.canBraidWithoutGel === true,
     priceBand: salon.priceBand,
+    servicePriceBand: salon.servicePriceBand,
+    packagePriceBand: salon.packagePriceBand,
+    priceIncludesHair: salon.priceIncludesHair === true,
+    priceComparisonMode: salon.priceComparisonMode || "",
     priceSource: salon.priceSource || "",
     priceEvidence: Array.isArray(salon.priceEvidence) ? salon.priceEvidence : [],
     priceCheckedAt: salon.priceCheckedAt || "",
@@ -4438,6 +4587,10 @@ function buildDraftPricingUpdate(
   const checkedAt = new Date().toISOString();
   return {
     priceBand: priceCheck.priceBand,
+    servicePriceBand: priceCheck.servicePriceBand || priceCheck.priceBand,
+    packagePriceBand: priceCheck.packagePriceBand || "",
+    priceIncludesHair: priceCheck.priceIncludesHair === true,
+    priceComparisonMode: priceCheck.priceComparisonMode || (priceCheck.packagePriceBand ? "mixed" : "service-only"),
     priceSource: source,
     priceEvidence: (priceCheck.evidence || []).slice(0, 8),
     priceCheckedAt: checkedAt,
