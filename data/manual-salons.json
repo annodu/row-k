@@ -1,7 +1,7 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-06-06T18:35:57.193Z",
+    "updatedAt": "2026-06-06T18:39:39.717Z",
     "count": 695,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
@@ -468,7 +468,6 @@
       "services": [
         "Silk press",
         "Full head colour",
-        "Bouncy blowout / Round Brush Blow dry",
         "Trim / hair cut",
         "Scalp detox / treatments",
         "Wash & blowdry",
@@ -479,7 +478,7 @@
         "Moisturising treatment"
       ],
       "priceBand": "£",
-      "servicePriceBand": "£",
+      "servicePriceBand": "",
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
@@ -501,7 +500,11 @@
       "source": "manual",
       "evidence": [
         "Submitted link: https://www.instagram.com/maluwanichole/"
-      ]
+      ],
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "updatedAt": "2026-06-06T18:39:39.717Z"
     },
     {
       "id": "mourhairldn",
