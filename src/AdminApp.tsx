@@ -75,7 +75,7 @@ type StylistDraft = {
 
 type PriceBand = "£" | "££" | "£££" | "££££";
 type PriceComparisonMode = "service-only" | "mixed" | "package-only";
-type AdminView = "overview" | "drafts" | "freshness" | "pricing" | "keyword" | "discovery";
+type AdminView = "overview" | "drafts" | "freshness" | "pricing" | "keyword" | "discovery" | "filters";
 
 type DraftForm = {
   links: string;
@@ -121,6 +121,8 @@ type KeywordSearchResult = {
   keywords: string[];
   matches: KeywordSearchMatch[];
   checkedAt: string;
+  selectedService?: string;
+  selectedServiceAssigned?: boolean;
 };
 
 type KeywordSearchProgress = {
@@ -143,6 +145,12 @@ type SavedKeywordSearch = {
   lastRunAt?: string;
 };
 
+type KeywordSuggestionGroup = {
+  service?: string;
+  triggers: string[];
+  keywords: string[];
+};
+
 const londonParentAreaId = "all-london";
 const londonChildAreaIds = new Set(["central", "north", "north-west", "east", "south-east", "south-west", "west", "croydon"]);
 const priceBandOptions: { value: "" | PriceBand; label: string }[] = [
@@ -152,7 +160,7 @@ const priceBandOptions: { value: "" | PriceBand; label: string }[] = [
   { value: "£££", label: "£££ £200-£300" },
   { value: "££££", label: "££££ over £300" },
 ];
-const keywordSuggestionGroups = [
+const learnedKeywordSuggestionGroups: KeywordSuggestionGroup[] = [
   {
     triggers: ["kid", "kids", "child", "children", "junior", "teen", "teens"],
     keywords: ["kids", "kid", "children", "child", "junior", "under 12", "under 16", "girls", "boys", "teens"],
@@ -166,7 +174,8 @@ const keywordSuggestionGroups = [
     keywords: ["natural hair", "silk press", "treatment", "healthy hair", "scalp", "trim", "wash", "blowdry"],
   },
   {
-    triggers: ["bouncy", "bouncy blowout", "bouncy blowdry", "round brush", "round brush blow dry", "round brush blowdry", "curly blow dry", "90s blowout", "dominican blowdry", "dominican blow out", "glamorous blow dry", "volumising blow dry"],
+    service: "Bouncy blowout / Round Brush Blow dry",
+    triggers: ["bouncy", "bouncy blowout", "bouncy blowdry", "bouncy blow dry", "round brush", "round brush blow dry", "round brush blowdry", "roundbrush blow dry", "curly blow dry", "90s blowout", "dominican blowdry", "dominican blow out", "glamorous blow dry", "volumising blow dry"],
     keywords: [
       "bouncy blowout",
       "bouncy blow out",
@@ -193,7 +202,8 @@ const keywordSuggestionGroups = [
     ],
   },
   {
-    triggers: ["extensions blowdry", "extensions blow dry", "extensions blowout", "extensions blow out", "extension blowdry", "extension blowout", "weave blowdry", "weave blow dry"],
+    service: "Extensions blowdry",
+    triggers: ["extensions blowdry", "extensions blow dry", "extensions blowout", "extensions blow out", "extension blowdry", "extension blow dry", "extension blowout", "extension blow out", "weave blowdry", "weave blow dry", "wash blow dry with extensions", "blow out on sew in weave"],
     keywords: [
       "extensions blowdry",
       "extensions blow dry",
@@ -214,6 +224,53 @@ const keywordSuggestionGroups = [
       "wash and style",
       "wash blow dry extensions",
       "extension removal shampoo treatment blowdry",
+    ],
+  },
+  {
+    service: "Tracks (+ silk press) / partial / invisible sew-in",
+    triggers: ["track", "tracks", "per row", "per track", "weave tracks", "sew in tracks", "tracks sewn", "tracks install", "partial sew in", "invisible sew in"],
+    keywords: [
+      "tracks",
+      "track",
+      "weave tracks",
+      "sew in tracks",
+      "sew-in tracks",
+      "tracks sewn",
+      "sewing tracks",
+      "individual sewn on tracks",
+      "tracks install",
+      "tracks installation",
+      "tracks maintenance",
+      "track per row",
+      "per track",
+      "per row",
+      "one row",
+      "rows of weave",
+      "rows of sew in",
+      "weave rows",
+      "silk press tracks",
+      "silk press add on tracks",
+      "partial sew in",
+      "partial sewin",
+      "invisible sew in",
+      "invisible weave",
+      "invisible weft",
+    ],
+  },
+  {
+    service: "Roller set",
+    triggers: ["roller set", "roller sets", "rollers", "wet set", "perm rod", "perm rods", "curlformers", "rod set"],
+    keywords: [
+      "roller set",
+      "roller sets",
+      "rollers",
+      "wet set",
+      "wet roller set",
+      "perm rods",
+      "perm rod set",
+      "curlformers",
+      "rod set",
+      "flexi rods on wet hair",
     ],
   },
   {
@@ -514,6 +571,7 @@ const serviceGroups = [
       "Silk press",
       "Bouncy blowout / Round Brush Blow dry",
       "Trim / hair cut",
+      "Roller set",
       "Twist out / flexi rod",
       "Wash & blowdry",
       "Japanese head spa",
@@ -539,6 +597,7 @@ export function AdminApp() {
   const [publishedStylists, setPublishedStylists] = useState<StylistDraft[]>([]);
   const [regions, setRegions] = useState<RegionOption[]>([]);
   const [services, setServices] = useState<string[]>([]);
+  const [serviceKeywordSuggestionGroups, setServiceKeywordSuggestionGroups] = useState<KeywordSuggestionGroup[]>([]);
   const [form, setForm] = useState<DraftForm>(emptyForm);
   const [selectedDraftId, setSelectedDraftId] = useState<string | null>(null);
   const [message, setMessage] = useState("");
@@ -556,9 +615,11 @@ export function AdminApp() {
   const [isGeneratingSuggestions, setIsGeneratingSuggestions] = useState(false);
   const [keywordTerms, setKeywordTerms] = useState<string[]>([]);
   const [keywordInput, setKeywordInput] = useState("");
+  const [selectedKeywordService, setSelectedKeywordService] = useState("");
   const [keywordResults, setKeywordResults] = useState<KeywordSearchResult[]>([]);
   const [keywordProgress, setKeywordProgress] = useState<KeywordSearchProgress>({ checkedCount: 0, total: 0, skippedCount: 0, nextOffset: null });
   const [isRunningKeywordSearch, setIsRunningKeywordSearch] = useState(false);
+  const [assigningKeywordServiceIds, setAssigningKeywordServiceIds] = useState<string[]>([]);
   const [savedKeywordSearches, setSavedKeywordSearches] = useState<SavedKeywordSearch[]>([]);
   const [selectedKeywordSearchId, setSelectedKeywordSearchId] = useState("");
   const [keywordSearchName, setKeywordSearchName] = useState("");
@@ -582,6 +643,10 @@ export function AdminApp() {
 	  }
 
   const allStylists = useMemo(() => [...drafts, ...publishedStylists], [drafts, publishedStylists]);
+  const keywordSuggestionGroups = useMemo(
+    () => [...learnedKeywordSuggestionGroups, ...serviceKeywordSuggestionGroups],
+    [serviceKeywordSuggestionGroups],
+  );
 
 	  const selectedDraft = useMemo(
 	    () => (selectedDraftId ? allStylists.find((draft) => draft.id === selectedDraftId) ?? null : allStylists[0] ?? null),
@@ -752,6 +817,7 @@ export function AdminApp() {
       setPublishedStylists(publishedPayload?.stylists ?? []);
       setRegions(optionPayload.regions ?? []);
       setServices(optionPayload.services ?? []);
+      setServiceKeywordSuggestionGroups(optionPayload.keywordSuggestionGroups ?? []);
       setDashboard(dashboardPayload ?? null);
       setSuggestions(discoveryPayload?.suggestions ?? []);
       setChecks(savedChecksPayload?.checks ?? []);
@@ -1083,7 +1149,7 @@ export function AdminApp() {
   }
 
   async function runKeywordSearch(offset = 0) {
-    const typedSuggestions = suggestKeywordSearchTerms(keywordInput);
+    const typedSuggestions = suggestKeywordSearchTerms(keywordInput, keywordSuggestionGroups);
     const keywords = [...new Set([...keywordTerms, ...typedSuggestions])].map((term) => term.trim()).filter(Boolean);
     setMessage("");
     if (!keywords.length) {
@@ -1110,7 +1176,7 @@ export function AdminApp() {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           credentials: "include",
-          body: JSON.stringify({ keywords, offset: nextOffset, limit: 50 }),
+          body: JSON.stringify({ keywords, selectedService: selectedKeywordService || undefined, offset: nextOffset, limit: 50 }),
         });
         const payload = await response.json().catch(() => ({ message: "Could not run keyword search." }));
         if (!response.ok) {
@@ -1202,6 +1268,7 @@ export function AdminApp() {
     setKeywordSearchName(search.name);
     setKeywordTerms(search.keywords);
     setKeywordInput("");
+    setSelectedKeywordService("");
     setKeywordResults(search.results || []);
     setKeywordProgress({
       checkedCount: search.results?.length || 0,
@@ -1210,6 +1277,61 @@ export function AdminApp() {
       nextOffset: null,
     });
     setActiveView("keyword");
+  }
+
+  function selectKeywordService(service: string) {
+    setSelectedKeywordService(service);
+    if (!service) {
+      return;
+    }
+    const serviceGroups = keywordSuggestionGroups.filter((group) => group.service === service);
+    const nextKeywords = serviceGroups.length
+      ? [...new Set(serviceGroups.flatMap((group) => group.keywords))]
+      : suggestKeywordSearchTerms(service, keywordSuggestionGroups);
+    setKeywordTerms(nextKeywords);
+    setKeywordInput("");
+    setKeywordResults([]);
+    setKeywordProgress({ checkedCount: 0, total: 0, skippedCount: 0, nextOffset: null });
+    if (!keywordSearchName.trim()) {
+      setKeywordSearchName(service);
+    }
+  }
+
+  async function assignKeywordService(result: KeywordSearchResult) {
+    if (!result.id || !result.selectedService || result.selectedServiceAssigned) {
+      return;
+    }
+    setAssigningKeywordServiceIds((current) => [...new Set([...current, result.id])]);
+    setMessage("");
+    try {
+      const response = await fetch(`/api/admin/stylists/${result.id}/services`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({ service: result.selectedService }),
+      });
+      const payload = await response.json().catch(() => ({ message: "Could not assign service." }));
+      if (!response.ok || payload?.ok !== true) {
+        setMessage(payload.message || "Could not assign service.");
+        return;
+      }
+      if (payload.salon) {
+        updateStylist(result.id, payload.salon);
+      }
+      setKeywordResults((current) =>
+        current.map((item) =>
+          item.id === result.id
+            ? {
+                ...item,
+                selectedServiceAssigned: true,
+              }
+            : item,
+        ),
+      );
+      setMessage(`Assigned ${payload.service || result.selectedService} to ${result.name}.`);
+    } finally {
+      setAssigningKeywordServiceIds((current) => current.filter((id) => id !== result.id));
+    }
   }
 
   async function createDraftFromSuggestion(suggestionId: string) {
@@ -1436,7 +1558,7 @@ export function AdminApp() {
         </div>
 
         <nav className="mt-9 flex gap-7 overflow-x-auto border-b border-stone-200 dark:border-stone-800">
-          {(["overview", "drafts", "freshness", "pricing", "keyword"] as const).map((view) => (
+          {(["overview", "drafts", "freshness", "pricing", "keyword", "filters"] as const).map((view) => (
             <button
               key={view}
               type="button"
@@ -1446,7 +1568,7 @@ export function AdminApp() {
                 activeView === view ? "border-stone-950 text-stone-950 dark:border-stone-100 dark:text-stone-50" : "border-transparent text-stone-500 hover:text-stone-900 dark:text-stone-400 dark:hover:text-stone-100",
               )}
             >
-              {view === "drafts" ? "Stylists" : view === "freshness" ? "Health" : view === "pricing" ? "Pricing" : view === "keyword" ? "Keyword search" : view}
+              {view === "drafts" ? "Stylists" : view === "freshness" ? "Health" : view === "pricing" ? "Pricing" : view === "keyword" ? "Keyword search" : view === "filters" ? "Filters" : view}
             </button>
           ))}
         </nav>
@@ -1526,19 +1648,25 @@ export function AdminApp() {
         <KeywordSearchPage
           keywords={keywordTerms}
           keywordInput={keywordInput}
+          selectedService={selectedKeywordService}
+          services={services}
+          suggestionGroups={keywordSuggestionGroups}
           searchName={keywordSearchName}
           savedSearches={savedKeywordSearches}
           results={keywordResults}
           progress={keywordProgress}
           isRunning={isRunningKeywordSearch}
           isSaving={isSavingKeywordSearch}
+          assigningServiceIds={assigningKeywordServiceIds}
           onKeywordInputChange={setKeywordInput}
           onKeywordsChange={setKeywordTerms}
+          onSelectedServiceChange={selectKeywordService}
           onSearchNameChange={setKeywordSearchName}
           onRun={() => runKeywordSearch(0)}
           onSave={saveKeywordSearch}
           onLoad={loadKeywordSearch}
           onDelete={deleteKeywordSearch}
+          onAssignService={assignKeywordService}
         />
       ) : null}
 
@@ -1551,6 +1679,8 @@ export function AdminApp() {
           onCreateDraft={createDraftFromSuggestion}
         />
       ) : null}
+
+      {activeView === "filters" ? <FiltersPage /> : null}
 
       <AdminToastMessage toast={toast} onClose={() => setToast(null)} />
     </main>
@@ -3695,6 +3825,7 @@ const serviceEvidenceKeywords: Record<string, string[]> = {
   "Starter locs": ["starter locs", "start locs", "loc start"],
   "Stitch braids": ["stitch braids", "stitch"],
   "Scalp detox / treatments": ["scalp", "scalp care", "scalp therapy", "scalp treatment", "scalp treatments", "scalp scrub", "scalp detox", "scalp rejuvenation", "scalp renewal", "exfoliating scalp salt scrub"],
+  "Roller set": ["roller set", "roller sets", "rollers", "wet set", "wet roller set", "perm rods", "perm rod set", "curlformers", "flexi rods on wet hair", "rod set"],
 };
 
 const removalReviewKeywords: Record<string, string[]> = {
@@ -3837,38 +3968,50 @@ function titleCase(value: string) {
 function KeywordSearchPage({
   keywords,
   keywordInput,
+  selectedService,
+  services,
+  suggestionGroups,
   searchName,
   savedSearches,
   results,
   progress,
   isRunning,
   isSaving,
+  assigningServiceIds,
   onKeywordInputChange,
   onKeywordsChange,
+  onSelectedServiceChange,
   onSearchNameChange,
   onRun,
   onSave,
   onLoad,
   onDelete,
+  onAssignService,
 }: {
   keywords: string[];
   keywordInput: string;
+  selectedService: string;
+  services: string[];
+  suggestionGroups: KeywordSuggestionGroup[];
   searchName: string;
   savedSearches: SavedKeywordSearch[];
   results: KeywordSearchResult[];
   progress: KeywordSearchProgress;
   isRunning: boolean;
   isSaving: boolean;
+  assigningServiceIds: string[];
   onKeywordInputChange: (value: string) => void;
   onKeywordsChange: (keywords: string[]) => void;
+  onSelectedServiceChange: (service: string) => void;
   onSearchNameChange: (value: string) => void;
   onRun: () => void;
   onSave: () => void;
   onLoad: (search: SavedKeywordSearch) => void;
   onDelete: (searchId: string) => void;
+  onAssignService: (result: KeywordSearchResult) => void;
 }) {
   function suggestKeywords(value: string) {
-    const suggestedKeywords = suggestKeywordSearchTerms(value);
+    const suggestedKeywords = suggestKeywordSearchTerms(value, suggestionGroups);
     if (!suggestedKeywords.length) {
       onKeywordInputChange("");
       return;
@@ -3911,9 +4054,21 @@ function KeywordSearchPage({
         <Card className="rounded-none">
           <CardHeader>
             <CardTitle className="text-lg">Search terms</CardTitle>
-            <CardDescription>Enter a keyword to generate related search terms, then remove anything you do not want before running the search.</CardDescription>
+            <CardDescription>Select a service to load its aliases, or enter a custom keyword to generate related search terms.</CardDescription>
           </CardHeader>
           <CardContent className="space-y-5">
+            <div className="grid gap-2">
+              <label className="text-xs font-semibold uppercase tracking-[0.18em] text-stone-500">Directory service</label>
+              <Select value={selectedService} onChange={onSelectedServiceChange}>
+                <option value="">Custom keyword search</option>
+                {services.map((service) => (
+                  <option key={service} value={service}>
+                    {service}
+                  </option>
+                ))}
+              </Select>
+            </div>
+
             <div className="flex flex-wrap gap-2">
               {keywords.map((keyword) => (
                 <button
@@ -3943,7 +4098,16 @@ function KeywordSearchPage({
                   <Search className="size-4" />
                   Suggest
                 </Button>
-                <Button type="button" variant="outline" onClick={() => onKeywordsChange([])} disabled={!keywords.length} className="h-10 rounded-none bg-white px-4">
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={() => {
+                    onKeywordsChange([]);
+                    onSelectedServiceChange("");
+                  }}
+                  disabled={!keywords.length && !selectedService}
+                  className="h-10 rounded-none bg-white px-4"
+                >
                   Clear
                 </Button>
               </div>
@@ -3984,7 +4148,7 @@ function KeywordSearchPage({
           ) : results.length ? (
             <div className="space-y-3 p-4">
               {results.map((result) => (
-                <KeywordSearchResultCard key={result.id} result={result} />
+                <KeywordSearchResultCard key={result.id} result={result} isAssigning={assigningServiceIds.includes(result.id)} onAssignService={onAssignService} />
               ))}
               {isRunning ? <KeywordSearchSkeleton count={1} compact /> : null}
             </div>
@@ -4004,13 +4168,26 @@ function KeywordSearchPage({
   );
 }
 
-function KeywordSearchResultCard({ result }: { result: KeywordSearchResult }) {
+function KeywordSearchResultCard({ result, isAssigning, onAssignService }: { result: KeywordSearchResult; isAssigning: boolean; onAssignService: (result: KeywordSearchResult) => void }) {
   return (
     <article className="rounded-none border border-stone-200 bg-white p-4">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
         <div>
           <p className="text-sm font-semibold text-stone-950">{result.name}</p>
           <p className="mt-1 text-xs text-stone-500">{[result.areaLabel, result.bookingPlatform].filter(Boolean).join(" · ") || "Directory listing"}</p>
+          {result.selectedService ? (
+            <div className="mt-2 flex flex-wrap items-center gap-2">
+              <Badge variant="outline" className={cn("bg-white text-[11px]", result.selectedServiceAssigned ? "border-emerald-200 text-emerald-700" : "border-amber-200 text-amber-700")}>
+                {result.selectedServiceAssigned ? "Already assigned" : "Not assigned"}: {result.selectedService}
+              </Badge>
+              {!result.selectedServiceAssigned ? (
+                <Button type="button" variant="outline" onClick={() => onAssignService(result)} disabled={isAssigning} className="h-7 rounded-none bg-white px-2.5 text-[11px]">
+                  {isAssigning ? <Loader2 className="size-3 animate-spin" /> : <Plus className="size-3" />}
+                  Assign service
+                </Button>
+              ) : null}
+            </div>
+          ) : null}
         </div>
         <div className="flex flex-wrap gap-2">
           <KeywordResultLink href={result.bookingUrl} label="Booking" />
@@ -4133,14 +4310,101 @@ function normalizeKeywordInput(value: string) {
   return value.toLowerCase().replace(/\s+/g, " ").trim();
 }
 
-function suggestKeywordSearchTerms(value: string) {
+function keywordSuggestionTokens(value: string) {
+  return value
+    .toLowerCase()
+    .replace(/&/g, " and ")
+    .replace(/([a-z])([0-9])/g, "$1 $2")
+    .replace(/([0-9])([a-z])/g, "$1 $2")
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean)
+    .flatMap(splitKeywordSuggestionToken)
+    .map(normalizeKeywordSuggestionToken)
+    .filter((token) => !keywordSuggestionStopTokens.has(token));
+}
+
+const keywordSuggestionStopTokens = new Set(["and", "with", "for", "the", "of", "a", "an"]);
+
+function splitKeywordSuggestionToken(token: string) {
+  const compounds: Record<string, string[]> = {
+    blowdry: ["blow", "dry"],
+    blowout: ["blow", "out"],
+    roundbrush: ["round", "brush"],
+    sewin: ["sew", "in"],
+    sewins: ["sew", "in"],
+  };
+  return compounds[token] || [token];
+}
+
+function normalizeKeywordSuggestionToken(token: string) {
+  const aliases: Record<string, string> = {
+    blowdries: "blowdry",
+    extensions: "extension",
+    installs: "install",
+    installation: "install",
+    braids: "braid",
+    cornrows: "cornrow",
+    locs: "loc",
+    twists: "twist",
+    wigs: "wig",
+    styled: "style",
+    styling: "style",
+    styles: "style",
+    finishing: "finish",
+    finishes: "finish",
+    shampooing: "shampoo",
+  };
+  return aliases[token] || token.replace(/s$/, "");
+}
+
+function hasSequentialKeywordSuggestionTokens(lineTokens: string[], keywordTokens: string[]) {
+  if (!lineTokens.length || !keywordTokens.length || keywordTokens.length > lineTokens.length) {
+    return false;
+  }
+  for (let index = 0; index <= lineTokens.length - keywordTokens.length; index += 1) {
+    if (keywordTokens.every((token, offset) => lineTokens[index + offset] === token)) {
+      return true;
+    }
+  }
+  return false;
+}
+
+function isRelatedKeywordSuggestion(seed: string, trigger: string) {
+  const seedTokens = keywordSuggestionTokens(seed);
+  const triggerTokens = keywordSuggestionTokens(trigger);
+  if (!seedTokens.length || !triggerTokens.length) {
+    return false;
+  }
+  if (isGenericShortKeywordTrigger(triggerTokens) && seedTokens.length > triggerTokens.length) {
+    return false;
+  }
+  if (triggerTokens.length > seedTokens.length && seedTokens.length > 1 && !triggerTokens.slice(0, seedTokens.length).every((token, index) => token === seedTokens[index])) {
+    return false;
+  }
+  if (hasSequentialKeywordSuggestionTokens(seedTokens, triggerTokens) || hasSequentialKeywordSuggestionTokens(triggerTokens, seedTokens)) {
+    return true;
+  }
+  return seedTokens.some((token) => keywordSuggestionDistinctiveTokens.has(token) && triggerTokens.includes(token));
+}
+
+function isGenericShortKeywordTrigger(tokens: string[]) {
+  const key = tokens.join(" ");
+  return genericShortKeywordTriggers.has(key);
+}
+
+const genericShortKeywordTriggers = new Set(["blow out", "blow dry", "blowdry", "blowout", "wash", "shampoo", "style", "hair"]);
+const keywordSuggestionDistinctiveTokens = new Set(["bouncy", "round", "brush", "curly", "90", "dominican", "glamorous", "volumising", "volumizing", "extension", "weave", "sew", "track", "row", "partial", "invisible", "weft"]);
+
+function suggestKeywordSearchTerms(value: string, suggestionGroups: KeywordSuggestionGroup[] = learnedKeywordSuggestionGroups) {
   const seed = normalizeKeywordInput(value);
   if (!seed) {
     return [];
   }
 
-  const matchedGroups = keywordSuggestionGroups.filter((group) =>
-    group.triggers.some((trigger) => seed.includes(trigger) || trigger.includes(seed)),
+  const matchedGroups = suggestionGroups.filter((group) =>
+    group.triggers.some((trigger) => isRelatedKeywordSuggestion(seed, trigger)),
   );
   const suggestions = matchedGroups.flatMap((group) => [...group.keywords]);
   return [...new Set([seed, ...suggestions])];
@@ -4892,6 +5156,168 @@ function getDraftLocationLabel(draft: StylistDraft, regions: RegionOption[]) {
 
 function areaLabelFromId(areaId: string) {
   return areaId.split("-").map((part) => part.charAt(0).toUpperCase() + part.slice(1)).join(" ");
+}
+
+type FilterCategory = { id: string; label: string; subcategories: string[] };
+
+function FiltersPage() {
+  const [categories, setCategories] = useState<FilterCategory[]>([]);
+  const [isSaving, setIsSaving] = useState(false);
+  const [saveMessage, setSaveMessage] = useState<{ text: string; ok: boolean } | null>(null);
+  const [newSubcategoryInputs, setNewSubcategoryInputs] = useState<Record<string, string>>({});
+  const [newCategoryId, setNewCategoryId] = useState("");
+  const [newCategoryLabel, setNewCategoryLabel] = useState("");
+
+  useEffect(() => {
+    fetch("/api/admin/filters", { credentials: "include" })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.ok) setCategories(data.categories);
+      });
+  }, []);
+
+  function addSubcategory(categoryId: string) {
+    const name = (newSubcategoryInputs[categoryId] ?? "").trim();
+    if (!name) return;
+    setCategories((prev) =>
+      prev.map((cat) =>
+        cat.id === categoryId ? { ...cat, subcategories: [...cat.subcategories, name] } : cat,
+      ),
+    );
+    setNewSubcategoryInputs((prev) => ({ ...prev, [categoryId]: "" }));
+  }
+
+  function removeSubcategory(categoryId: string, subcategory: string) {
+    setCategories((prev) =>
+      prev.map((cat) =>
+        cat.id === categoryId ? { ...cat, subcategories: cat.subcategories.filter((s) => s !== subcategory) } : cat,
+      ),
+    );
+  }
+
+  function addCategory() {
+    const id = newCategoryId.trim().toLowerCase().replace(/\s+/g, "-");
+    const label = newCategoryLabel.trim();
+    if (!id || !label || categories.some((cat) => cat.id === id)) return;
+    setCategories((prev) => [...prev, { id, label, subcategories: [] }]);
+    setNewCategoryId("");
+    setNewCategoryLabel("");
+  }
+
+  function removeCategory(categoryId: string) {
+    setCategories((prev) => prev.filter((cat) => cat.id !== categoryId));
+  }
+
+  async function save() {
+    setIsSaving(true);
+    setSaveMessage(null);
+    try {
+      const res = await fetch("/api/admin/filters", {
+        method: "POST",
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ categories }),
+      });
+      const data = await res.json();
+      setSaveMessage({ text: data.ok ? "Saved. Reload the page to see changes take effect." : (data.error ?? "Failed to save."), ok: data.ok });
+    } catch {
+      setSaveMessage({ text: "Failed to save.", ok: false });
+    } finally {
+      setIsSaving(false);
+    }
+  }
+
+  return (
+    <div className="mx-auto max-w-4xl space-y-7 px-5 py-9">
+      <section className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+        <div>
+          <h1 className="text-3xl font-semibold tracking-tight text-stone-950">Filters</h1>
+          <p className="mt-2 text-sm text-stone-500">Edit the service categories and subcategories shown in the directory filter panel.</p>
+        </div>
+        <Button type="button" onClick={save} disabled={isSaving} className="h-10 rounded-none px-4">
+          {isSaving ? <Loader2 className="mr-2 size-4 animate-spin" /> : null}
+          Save changes
+        </Button>
+      </section>
+
+      {saveMessage ? (
+        <p className={cn("text-sm font-medium", saveMessage.ok ? "text-emerald-700" : "text-red-600")}>{saveMessage.text}</p>
+      ) : null}
+
+      <div className="space-y-5">
+        {categories.map((cat) => (
+          <div key={cat.id} className="rounded-none border border-stone-200 bg-white p-5">
+            <div className="flex items-center justify-between gap-3">
+              <div>
+                <p className="font-semibold text-stone-900">{cat.label}</p>
+                <p className="mt-0.5 text-xs text-stone-400">{cat.id}</p>
+              </div>
+              <button
+                type="button"
+                onClick={() => removeCategory(cat.id)}
+                className="text-xs font-medium text-stone-400 hover:text-red-600"
+              >
+                Remove category
+              </button>
+            </div>
+
+            <div className="mt-4 flex flex-wrap gap-2">
+              {cat.subcategories.map((sub) => (
+                <span key={sub} className="inline-flex items-center gap-1.5 rounded-none border border-stone-200 bg-stone-50 px-2.5 py-1 text-xs font-medium text-stone-700">
+                  {sub}
+                  <button
+                    type="button"
+                    onClick={() => removeSubcategory(cat.id, sub)}
+                    className="text-stone-400 hover:text-red-600"
+                    aria-label={`Remove ${sub}`}
+                  >
+                    <X className="size-3" />
+                  </button>
+                </span>
+              ))}
+            </div>
+
+            <div className="mt-3 flex gap-2">
+              <input
+                type="text"
+                value={newSubcategoryInputs[cat.id] ?? ""}
+                onChange={(e) => setNewSubcategoryInputs((prev) => ({ ...prev, [cat.id]: e.target.value }))}
+                onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(); addSubcategory(cat.id); } }}
+                placeholder="Add subcategory…"
+                className="h-8 flex-1 rounded-none border border-stone-300 bg-white px-2 text-sm focus:outline-none focus:ring-1 focus:ring-stone-500"
+              />
+              <Button type="button" variant="outline" onClick={() => addSubcategory(cat.id)} className="h-8 rounded-none px-3 text-xs">
+                Add
+              </Button>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className="rounded-none border border-dashed border-stone-300 p-5">
+        <p className="mb-3 text-sm font-semibold text-stone-700">Add new category</p>
+        <div className="flex flex-col gap-2 sm:flex-row">
+          <input
+            type="text"
+            value={newCategoryLabel}
+            onChange={(e) => setNewCategoryLabel(e.target.value)}
+            placeholder="Label (e.g. Curly Hair)"
+            className="h-9 flex-1 rounded-none border border-stone-300 bg-white px-2 text-sm focus:outline-none focus:ring-1 focus:ring-stone-500"
+          />
+          <input
+            type="text"
+            value={newCategoryId}
+            onChange={(e) => setNewCategoryId(e.target.value)}
+            placeholder="ID (e.g. curly-hair-services)"
+            className="h-9 flex-1 rounded-none border border-stone-300 bg-white px-2 text-sm focus:outline-none focus:ring-1 focus:ring-stone-500"
+          />
+          <Button type="button" variant="outline" onClick={addCategory} className="h-9 shrink-0 rounded-none px-4 text-sm">
+            Add category
+          </Button>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 function ServicePicker({

@@ -1,0 +1,144 @@
+{
+  "categories": [
+    {
+      "id": "braiding-services",
+      "label": "Braids",
+      "subcategories": [
+        "Boho braids / goddess braids",
+        "Braid take-down",
+        "Box braids",
+        "Crochet",
+        "Creative braids",
+        "Feed-in braids",
+        "French curl",
+        "Fulani / lemonade braids",
+        "Half braids, half sew-in",
+        "Knotless braids",
+        "Miracle knots",
+        "Microbraids / x-small braids",
+        "Pre-parting",
+        "Stitch braids",
+        "Twists (with extensions)"
+      ]
+    },
+    {
+      "id": "colour-services",
+      "label": "Colour",
+      "subcategories": [
+        "Balayage",
+        "Full head colour",
+        "Highlights",
+        "Wig colouring / bundle colouring"
+      ]
+    },
+    {
+      "id": "bridal-services",
+      "label": "Bridal",
+      "subcategories": []
+    },
+    {
+      "id": "editorial-services",
+      "label": "Editorial / Session styling",
+      "subcategories": []
+    },
+    {
+      "id": "extension-services",
+      "label": "Extensions",
+      "subcategories": [
+        "Clip ins (+ silk press)",
+        "K-tips / invisible strands",
+        "LA weave / microlinks wefts / braidless sew in",
+        "I-tips / microlinks strands",
+        "Tape ins"
+      ]
+    },
+    {
+      "id": "locs-services",
+      "label": "Locs",
+      "subcategories": [
+        "Butterfly locs",
+        "Faux locs",
+        "Microlocs / sisterlocs",
+        "Retwist",
+        "Starter locs"
+      ]
+    },
+    {
+      "id": "sew-in-weave",
+      "label": "Sew in / weave",
+      "subcategories": [
+        "Closure sew-in",
+        "Flipover / Versatile sew-in",
+        "Frontal sew-in",
+        "Hybrid sew in (tapes + sew in)",
+        "Pixie wig / weave install",
+        "Quick weave",
+        "Sew-in take-down",
+        "Tracks (+ silk press) / partial / invisible sew-in",
+        "Traditional sew-in / leave out"
+      ]
+    },
+    {
+      "id": "styling-services",
+      "label": "Styling (sew in / frontal / relaxer)",
+      "subcategories": [
+        "Extensions blowdry",
+        "Frontal ponytail / bun",
+        "Half up half down",
+        "Pixie / finger waves",
+        "Sleek ponytail / bun",
+        "Updo"
+      ]
+    },
+    {
+      "id": "straightening-treatments",
+      "label": "Treatments",
+      "subcategories": [
+        "Hair botox",
+        "Japanese straightening",
+        "K-18 treatment",
+        "Keratin treatment",
+        "Moisturising treatment",
+        "Olaplex treatment",
+        "Relaxer / texturiser",
+        "Texture release"
+      ]
+    },
+    {
+      "id": "natural-hair-services",
+      "label": "Natural hair washing & styling",
+      "subcategories": [
+        "Wig cornrows",
+        "Curly cut / wash & go",
+        "Silk press",
+        "Bouncy blowout / Round Brush Blow dry",
+        "Trim / hair cut",
+        "Roller set",
+        "Twist out / flexi rod",
+        "Wash & blowdry",
+        "Japanese head spa",
+        "Scalp detox / treatments"
+      ]
+    },
+    {
+      "id": "natural-hair-scalp-health",
+      "label": "Natural hair health & trichology",
+      "subcategories": [
+        "Healthy hair plans & consultations",
+        "Natural hair coaches / educators",
+        "Trichology / scalp analysis"
+      ]
+    },
+    {
+      "id": "wig-services",
+      "label": "Wigs",
+      "subcategories": [
+        "Custom wig",
+        "Pixie wig / weave install",
+        "U-part wig install",
+        "Wig colouring / bundle colouring",
+        "Wig install (frontal / closure)"
+      ]
+    }
+  ]
+}

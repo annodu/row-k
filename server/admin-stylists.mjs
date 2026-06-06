@@ -11,6 +11,7 @@ const draftsPath = path.resolve(__dirname, "../data/stylist-drafts.json");
 const freshnessChecksPath = path.resolve(__dirname, "../data/freshness-checks.json");
 const discoverySuggestionsPath = path.resolve(__dirname, "../data/discovery-suggestions.json");
 const keywordSearchesPath = path.resolve(__dirname, "../data/keyword-searches.json");
+const filtersPath = path.resolve(__dirname, "../data/filters.json");
 const manualIndexPath = path.resolve(__dirname, "../data/manual-salons.json");
 const sessionCookieName = "rowk_admin_session";
 const sessionMaxAgeSeconds = 60 * 60 * 12;
@@ -140,6 +141,7 @@ const serviceRuleMatchers = [
   ["Wash & blowdry", [/\bwash\b.*\b(blow\s*dry|blowdry|blowout)\b/, /\bshampoo\b.*\b(blow\s*dry|blowdry|blowout)\b/]],
   ["Trim / hair cut", [/\btrim\b/, /\bhair\s*cut\b/, /\bhaircut\b/, /\bcut\s+and\s+finish\b/]],
   ["Silk press", [/\bsilk\s+press\b/, /\bsilkpress\b/, /\bpress\s+and\s+curl\b/]],
+  ["Roller set", [/\broller\s*set\b/, /\bwet\s*set\b/, /\bperm\s*rods?\s+set\b/, /\bcurlformers\b/, /\brod\s*set\b/]],
   ["Twist out / flexi rod", [/\btwist\s*out\b/, /\bflexi\s*rod\b/, /\bflexi-rod\b/, /\bperm\s+rod\b/]],
   ["Wig cornrows", [/\bunder\s*wig\b/, /\bwig\s+(cornrows?|cainrows?)\b/, /\b(cornrows?|cainrows?)\s+for\s+wig\s+installation\b/, /\b(cornrows?|cainrows?)\s+without\s+extensions?\b/, /\bwig\s+cainrows?\b/, /\bcainrows?\b/, /\bcornrows?\b/]],
   ["Healthy hair plans & consultations", [/\bhealthy\s+hair\s+(regimes?|regimens?|plans?|journey|consultations?)\b/, /\bhair\s+growth\s+plans?\b/, /\bhair\s+health\s+plans?\b/]],
@@ -212,6 +214,7 @@ const serviceNegationHints = {
   "Tracks (+ silk press) / partial / invisible sew-in": ["tracks", "track per row", "per track", "per row", "one row", "individual sewn on track", "individual sewn on tracks", "tracks add on", "tracks add-on", "silk press add on tracks", "silk press add-on tracks", "sew in tracks", "sew-in tracks", "sew-in tracks per line", "row sew in", "rows of sew in", "weave tracks", "weave tracks per track", "weave on per row", "single track weave", "single double track weave", "traditional weave rows", "partial sew in", "partial sewin", "invisible sew in", "invisible weave", "invisible weft", "invisible wefts"],
   "Traditional sew-in / leave out": ["leave out", "traditional sew in", "traditional sewin", "traditional weave", "sew in", "sewin"],
   "Trim / hair cut": ["trim", "hair cut", "haircut", "cut and finish"],
+  "Roller set": ["roller set", "roller sets", "wet set", "wet roller set", "perm rod set", "rod set", "curlformers"],
   "Twist out / flexi rod": ["twist out", "flexi rod", "perm rod"],
   "Twists (with extensions)": ["twists with extensions", "passion twists", "marley twists", "senegalese twists", "kinky twists", "rope twists", "island twists", "island twist", "large twist", "large twists"],
   "U-part wig install": ["u part", "u-part", "upart", "u part wig", "u-part wig", "upart wig", "v part", "v-part", "vpart", "v part wig", "v-part wig", "vpart wig", "u vpart", "uvpart", "half wig"],
@@ -253,6 +256,7 @@ export function registerAdminStylistRoutes(app) {
       regions: regionOptions,
       services: canonicalServices,
       aliases: Object.keys(serviceAliases).sort((left, right) => left.localeCompare(right)),
+      keywordSuggestionGroups: buildServiceKeywordSuggestionGroups(),
     });
   });
 
@@ -624,7 +628,8 @@ export function registerAdminStylistRoutes(app) {
     if (!keywords.length) {
       return res.status(400).json({ ok: false, message: "Add at least one keyword." });
     }
-    const searchKeywords = expandKeywordSearchTerms(keywords);
+    const selectedService = normalizeSelectedKeywordService(req.body?.selectedService);
+    const searchKeywords = expandKeywordSearchTerms(keywords, { selectedService });
 
     const index = await readAdminSalonIndex();
     const offset = Math.max(Number(req.body?.offset || 0), 0);
@@ -632,7 +637,16 @@ export function registerAdminStylistRoutes(app) {
     const salons = index.salons || [];
     const batchSalons = salons.slice(offset, offset + limit);
     const checkedAt = new Date().toISOString();
-    const checks = await mapWithConcurrency(batchSalons, isHostedRuntime() ? 2 : 6, (salon) => searchSalonBookingKeywords(salon, searchKeywords), {
+    const checks = await mapWithConcurrency(batchSalons, isHostedRuntime() ? 2 : 10, (salon) => withTimeout(
+      searchSalonBookingKeywords(salon, searchKeywords, { selectedService }),
+      isHostedRuntime() ? 14_000 : 9_000,
+      buildKeywordSearchResult(salon, {
+        status: "unsearchable",
+        reason: "Timed out while searching booking or website page.",
+        keywords: searchKeywords,
+        selectedService,
+      }),
+    ), {
       delayMs: isHostedRuntime() ? 250 : 0,
     });
     const results = checks.filter((check) => check.matches.length > 0);
@@ -642,6 +656,7 @@ export function registerAdminStylistRoutes(app) {
     res.json({
       ok: true,
       keywords: searchKeywords,
+      selectedService,
       requestedKeywords: keywords,
       results,
       checkedAt,
@@ -700,6 +715,46 @@ export function registerAdminStylistRoutes(app) {
     }
     await writeKeywordSearchStore(searches);
     res.json({ ok: true, searches });
+  });
+
+  app.post("/api/admin/stylists/:id/services", requireAdmin, async (req, res) => {
+    const service = normalizeSelectedKeywordService(req.body?.service);
+    if (!service) {
+      return res.status(400).json({ ok: false, message: "Choose a valid directory service." });
+    }
+
+    const manualIndex = await readJson(manualIndexPath, { meta: { source: "manual" }, salons: [] });
+    const salonIndex = manualIndex.salons.findIndex((salon) => salon.id === req.params.id);
+    if (salonIndex === -1) {
+      return res.status(404).json({ ok: false, message: "Salon not found." });
+    }
+
+    const salon = manualIndex.salons[salonIndex];
+    const services = normalizeServices(salon.services || []);
+    const alreadyAssigned = services.includes(service);
+    const nextServices = alreadyAssigned ? services : [...services, service];
+    const now = new Date().toISOString();
+
+    if (!alreadyAssigned) {
+      manualIndex.salons[salonIndex] = {
+        ...salon,
+        services: nextServices,
+        updatedAt: now,
+      };
+      manualIndex.meta = {
+        ...manualIndex.meta,
+        updatedAt: now,
+        count: manualIndex.salons.length,
+      };
+      await writeJson(manualIndexPath, manualIndex);
+    }
+
+    res.json({
+      ok: true,
+      service,
+      alreadyAssigned,
+      salon: publishedSalonToDraft(manualIndex.salons[salonIndex], manualIndex.meta?.updatedAt || now),
+    });
   });
 
   app.patch("/api/admin/stylists/:id/freshness", requireAdmin, async (req, res) => {
@@ -878,6 +933,30 @@ export function registerAdminStylistRoutes(app) {
     store.drafts.unshift(...drafts);
     await writeDraftStore(store);
     res.status(201).json({ ok: true, drafts, duplicates: duplicateResults });
+  });
+
+  app.get("/api/admin/filters", requireAdmin, async (_req, res) => {
+    try {
+      const data = JSON.parse(await fs.readFile(filtersPath, "utf8"));
+      res.json({ ok: true, categories: data.categories });
+    } catch {
+      res.status(500).json({ ok: false, error: "Failed to read filters" });
+    }
+  });
+
+  app.post("/api/admin/filters", requireAdmin, async (req, res) => {
+    try {
+      const { categories } = req.body;
+      if (!Array.isArray(categories)) {
+        return res.status(400).json({ ok: false, error: "Invalid payload" });
+      }
+      await fs.writeFile(filtersPath, `${JSON.stringify({ categories }, null, 2)}\n`);
+      await patchFilterSourceFiles(categories);
+      res.json({ ok: true });
+    } catch (err) {
+      console.error("Failed to save filters:", err);
+      res.status(500).json({ ok: false, error: "Failed to save filters" });
+    }
   });
 
   app.get("/api/admin/discovery", requireAdmin, async (_req, res) => {
@@ -1078,6 +1157,63 @@ function getCookieValue(cookieHeader = "", name) {
     ?.slice(name.length + 1);
 }
 
+async function patchFilterSourceFiles(categories) {
+  const srcRoot = path.resolve(__dirname, "../src");
+
+  // Patch salon-index.mjs: replace categoryMap export
+  const salonIndexPath = path.resolve(__dirname, "salon-index.mjs");
+  const salonIndexSrc = await fs.readFile(salonIndexPath, "utf8");
+  const categoryMapLines = ["export const categoryMap = {"];
+  for (const cat of categories) {
+    const services = [...cat.subcategories];
+    categoryMapLines.push(`  "${cat.id}": ${JSON.stringify(services)},`);
+  }
+  categoryMapLines.push("};");
+  const newCategoryMap = categoryMapLines.join("\n");
+  const salonPatched = salonIndexSrc.replace(
+    /export const categoryMap = \{[\s\S]*?\};/,
+    newCategoryMap,
+  );
+  await fs.writeFile(salonIndexPath, salonPatched);
+
+  // Patch App.tsx: replace categoryMap and categoryServiceMap
+  const appTsxPath = path.resolve(srcRoot, "App.tsx");
+  const appSrc = await fs.readFile(appTsxPath, "utf8");
+
+  const appCategoryMapLines = ["const categoryMap = {", '  all: { label: "All services", subcategories: ["all"] },'];
+  for (const cat of categories) {
+    const subs = JSON.stringify(["all", ...cat.subcategories]);
+    appCategoryMapLines.push(`  "${cat.id}": { label: ${JSON.stringify(cat.label)}, subcategories: ${subs} },`);
+  }
+  appCategoryMapLines.push("} as const;");
+  const newAppCategoryMap = appCategoryMapLines.join("\n");
+
+  const appServiceMapLines = ["const categoryServiceMap = {"];
+  for (const cat of categories) {
+    const subs = JSON.stringify(cat.subcategories);
+    appServiceMapLines.push(`  "${cat.id}": ${subs},`);
+  }
+  appServiceMapLines.push('} as const satisfies Record<ServiceCategoryId, readonly string[]>;');
+  const newAppServiceMap = appServiceMapLines.join("\n");
+
+  let appPatched = appSrc.replace(/const categoryMap = \{[\s\S]*?\} as const;/, newAppCategoryMap);
+  appPatched = appPatched.replace(/const categoryServiceMap = \{[\s\S]*?\} as const satisfies Record<ServiceCategoryId, readonly string\[\]>;/, newAppServiceMap);
+  await fs.writeFile(appTsxPath, appPatched);
+
+  // Patch AdminApp.tsx: replace serviceGroups
+  const adminTsxPath = path.resolve(srcRoot, "AdminApp.tsx");
+  const adminSrc = await fs.readFile(adminTsxPath, "utf8");
+  const serviceGroupLines = ["const serviceGroups = ["];
+  for (const cat of categories) {
+    const services = cat.subcategories.length ? JSON.stringify(cat.subcategories) : "[]";
+    serviceGroupLines.push(`  { label: ${JSON.stringify(cat.label)}, services: ${services} },`);
+  }
+  serviceGroupLines.push("];");
+  const newServiceGroups = serviceGroupLines.join("\n");
+  const adminPatched = adminSrc.replace(/const serviceGroups = \[[\s\S]*?\];/, newServiceGroups);
+  await fs.writeFile(adminTsxPath, adminPatched);
+}
+
 async function readDraftStore() {
   const store = await readJson(draftsPath, { meta: { source: "admin-drafts" }, drafts: [] });
   return {
@@ -1183,6 +1319,8 @@ function sanitizeKeywordSearchResults(results = []) {
       bookingUrl: cleanString(result?.bookingUrl),
       websiteUrl: cleanString(result?.websiteUrl),
       instagramUrl: cleanString(result?.instagramUrl),
+      selectedService: normalizeSelectedKeywordService(result?.selectedService),
+      selectedServiceAssigned: result?.selectedServiceAssigned === true,
       matches: (Array.isArray(result?.matches) ? result.matches : []).slice(0, 6).map((match) => ({
         keywords: toArray(match?.keywords).slice(0, 8),
         line: cleanString(match?.line),
@@ -2572,6 +2710,7 @@ const serviceEvidenceKeywords = {
   "Japanese head spa": ["japanese head spa", "head spa", "headspa"],
   "Wig cornrows": ["under wig", "wig cornrows", "wig cainrows", "cornrows for wig installation", "cornrows without extensions", "cainrows"],
   "Scalp detox / treatments": ["scalp", "scalp care", "scalp therapy", "scalp treatment", "scalp treatments", "scalp scrub", "scalp detox", "scalp rejuvenation", "scalp renewal", "exfoliating scalp salt scrub"],
+  "Roller set": ["roller set", "roller sets", "wet set", "wet roller set", "perm rod set", "rod set", "curlformers", "rollers"],
 };
 
 function serviceFamilyFor(service) {
@@ -2584,7 +2723,7 @@ function serviceFamilyFor(service) {
   return "";
 }
 
-async function checkUrl(type, url, { includeText = false } = {}) {
+async function checkUrl(type, url, { includeText = false, timeoutMs } = {}) {
   if (!url) {
     return null;
   }
@@ -2606,7 +2745,7 @@ async function checkUrl(type, url, { includeText = false } = {}) {
       }
     }
 
-    const response = await fetchWithTimeout(url, { method: "GET", redirect: "follow" });
+    const response = await fetchWithTimeout(url, { method: "GET", redirect: "follow", timeoutMs });
     result.finalUrl = response.url || url;
     result.httpStatus = response.status;
     const instagramIssue = type === "instagram" ? getInstagramProfileIssue(url, result.finalUrl) : "";
@@ -2768,7 +2907,7 @@ function extractBookingServicesFromHtml(html) {
   };
 }
 
-async function searchSalonBookingKeywords(salon = {}, keywords = []) {
+async function searchSalonBookingKeywords(salon = {}, keywords = [], { selectedService = "" } = {}) {
   const urls = {
     bookingUrl: cleanString(salon.bookingUrl),
     websiteUrl: cleanString(salon.websiteUrl),
@@ -2786,7 +2925,7 @@ async function searchSalonBookingKeywords(salon = {}, keywords = []) {
     });
   }
 
-  const linkChecks = await Promise.all(sourceRequests.map((source) => checkUrl(source.type, source.url, { includeText: true })));
+  const linkChecks = await Promise.all(sourceRequests.map((source) => checkUrl(source.type, source.url, { includeText: true, timeoutMs: 4_000 })));
   const okChecks = linkChecks.filter((check) => check?.status === "ok" && check.responseText);
   if (!okChecks.length) {
     return buildKeywordSearchResult(salon, {
@@ -2799,6 +2938,16 @@ async function searchSalonBookingKeywords(salon = {}, keywords = []) {
   const embeddedBookingSources = await fetchEmbeddedBookingSources(okChecks.map((check) => ({
     html: check.responseText || "",
     url: check.finalUrl || check.url || "",
+  })), { limit: 2, timeoutMs: 3_500 });
+  const platformServiceSources = await Promise.all(okChecks.map((check) => extractPlatformKeywordSearchSource({
+    html: check.responseText || "",
+    url: check.finalUrl || check.url || "",
+    sourceType: `${check.type} catalogue`,
+  })));
+  const embeddedPlatformServiceSources = await Promise.all(embeddedBookingSources.map((source) => extractPlatformKeywordSearchSource({
+    html: source.html || "",
+    url: source.url,
+    sourceType: "embedded booking catalogue",
   })));
   const searchableSources = [
     ...okChecks.map((check) => ({
@@ -2811,6 +2960,7 @@ async function searchSalonBookingKeywords(salon = {}, keywords = []) {
       sourceUrl: check.finalUrl || check.url || "",
       text: extractStructuredKeywordSearchText(check.responseText || ""),
     })),
+    ...platformServiceSources,
     ...embeddedBookingSources.map((source) => ({
       sourceType: "embedded booking",
       sourceUrl: source.url,
@@ -2821,6 +2971,7 @@ async function searchSalonBookingKeywords(salon = {}, keywords = []) {
       sourceUrl: source.url,
       text: extractStructuredKeywordSearchText(source.html || ""),
     })),
+    ...embeddedPlatformServiceSources,
   ].filter((source) => source.text);
   const matches = searchableSources.flatMap((source) => findKeywordMatchesInText(source.text, keywords).map((match) => ({
     ...match,
@@ -2833,10 +2984,12 @@ async function searchSalonBookingKeywords(salon = {}, keywords = []) {
     reason: matches.length ? "" : "No keyword matches found.",
     keywords,
     matches: uniqueKeywordMatches(matches).slice(0, 12),
+    selectedService,
   });
 }
 
-function buildKeywordSearchResult(salon = {}, { status = "searched", reason = "", keywords = [], matches = [] } = {}) {
+function buildKeywordSearchResult(salon = {}, { status = "searched", reason = "", keywords = [], matches = [], selectedService = "" } = {}) {
+  const normalizedServices = normalizeServices(salon.services || []);
   return {
     id: salon.id,
     name: salon.name,
@@ -2849,6 +3002,8 @@ function buildKeywordSearchResult(salon = {}, { status = "searched", reason = ""
     reason,
     keywords,
     matches,
+    selectedService,
+    selectedServiceAssigned: selectedService ? normalizedServices.includes(selectedService) : false,
     checkedAt: new Date().toISOString(),
   };
 }
@@ -2870,6 +3025,37 @@ function extractStructuredKeywordSearchText(html = "") {
     .join("\n");
 }
 
+async function extractPlatformKeywordSearchSource({ html = "", url = "", sourceType = "booking catalogue" } = {}) {
+  const checks = [
+    extractPriceCheckFromHtml(html, sourceType, url),
+    extractSetmorePriceCheck(html, url),
+    extractTreatwellPriceCheck(html, url),
+    extractSquarePriceCheck(html, url),
+    extractBooksyPriceCheck(html, url),
+    extractEmbeddedBookingPlatformPriceCheck(html, url),
+  ];
+  const [freshaCheck, phorestCheck, salonIqCheck] = await Promise.all([
+    extractFreshaPriceCheck(html, url).catch(() => emptyPriceCheck(sourceType)),
+    extractPhorestPriceCheck(url).catch(() => emptyPriceCheck(sourceType)),
+    extractSalonIqPriceCheck(url).catch(() => emptyPriceCheck(sourceType)),
+  ]);
+  checks.push(freshaCheck, phorestCheck, salonIqCheck);
+
+  const serviceCheck = extractBookingServicesFromHtml(html);
+  const lines = [
+    ...checks.flatMap((check) => check?.evidence || []),
+    ...(serviceCheck.rawServices || []),
+  ]
+    .map((line) => cleanPriceEvidenceText(line))
+    .filter(Boolean);
+
+  return {
+    sourceType,
+    sourceUrl: url,
+    text: [...new Set(lines)].join("\n"),
+  };
+}
+
 function sanitizeKeywordSearchTerms(value) {
   const rawTerms = Array.isArray(value) ? value : String(value || "").split(/[,;\n]+/);
   return [...new Set(rawTerms
@@ -2881,7 +3067,8 @@ function sanitizeKeywordSearchTerms(value) {
 
 const learnedKeywordSearchExpansions = [
   {
-    triggers: ["bouncy", "bouncy blowout", "bouncy blowdry", "bouncy blow dry", "round brush", "round brush blow dry", "round brush blowdry", "curly blow dry", "90s blowout", "dominican blowdry", "dominican blow out", "glamorous blow dry", "volumising blow dry"],
+    service: "Bouncy blowout / Round Brush Blow dry",
+    triggers: ["bouncy", "bouncy blowout", "bouncy blowdry", "bouncy blow dry", "round brush", "round brush blow dry", "round brush blowdry", "roundbrush blow dry", "curly blow dry", "90s blowout", "dominican blowdry", "dominican blow out", "glamorous blow dry", "volumising blow dry"],
     keywords: [
       "bouncy blowout",
       "bouncy blow out",
@@ -2908,7 +3095,8 @@ const learnedKeywordSearchExpansions = [
     ],
   },
   {
-    triggers: ["extensions blowdry", "extensions blow dry", "extensions blowout", "extensions blow out", "extension blowdry", "extension blowout", "weave blowdry", "weave blow dry"],
+    service: "Extensions blowdry",
+    triggers: ["extensions blowdry", "extensions blow dry", "extensions blowout", "extensions blow out", "extension blowdry", "extension blow dry", "extension blowout", "extension blow out", "weave blowdry", "weave blow dry", "wash blow dry with extensions", "blow out on sew in weave"],
     keywords: [
       "extensions blowdry",
       "extensions blow dry",
@@ -2931,20 +3119,121 @@ const learnedKeywordSearchExpansions = [
       "extension removal shampoo treatment blowdry",
     ],
   },
+  {
+    service: "Tracks (+ silk press) / partial / invisible sew-in",
+    triggers: ["track", "tracks", "per row", "per track", "weave tracks", "sew in tracks", "tracks sewn", "tracks install", "partial sew in", "invisible sew in"],
+    keywords: [
+      "tracks",
+      "track",
+      "weave tracks",
+      "sew in tracks",
+      "sew-in tracks",
+      "tracks sewn",
+      "sewing tracks",
+      "individual sewn on tracks",
+      "tracks install",
+      "tracks installation",
+      "tracks maintenance",
+      "track per row",
+      "per track",
+      "per row",
+      "one row",
+      "rows of weave",
+      "rows of sew in",
+      "weave rows",
+      "silk press tracks",
+      "silk press add on tracks",
+      "partial sew in",
+      "partial sewin",
+      "invisible sew in",
+      "invisible weave",
+      "invisible weft",
+    ],
+  },
 ];
 
-function expandKeywordSearchTerms(keywords = []) {
+function buildServiceKeywordSuggestionGroups() {
+  const aliasesByService = new Map(canonicalServices.map((service) => [service, [service]]));
+  Object.entries(serviceAliases).forEach(([alias, service]) => {
+    if (!aliasesByService.has(service)) {
+      aliasesByService.set(service, [service]);
+    }
+    aliasesByService.get(service).push(alias);
+  });
+
+  Object.entries(serviceEvidenceKeywords).forEach(([service, keywords]) => {
+    if (!aliasesByService.has(service)) {
+      aliasesByService.set(service, [service]);
+    }
+    aliasesByService.get(service).push(...keywords);
+  });
+
+  return [...aliasesByService.entries()]
+    .map(([service, terms]) => {
+      const keywords = sanitizeKeywordSearchTerms(terms);
+      return {
+        service,
+        triggers: keywords,
+        keywords,
+      };
+    })
+    .filter((group) => group.keywords.length > 1);
+}
+
+function normalizeSelectedKeywordService(value = "") {
+  const raw = cleanString(value);
+  if (!raw) {
+    return "";
+  }
+  const exact = serviceAliases[raw] || canonicalServices.find((service) => service.toLowerCase() === raw.toLowerCase());
+  if (exact) {
+    return exact;
+  }
+  const aliasMatch = Object.entries(serviceAliases).find(([alias]) => alias.toLowerCase() === raw.toLowerCase());
+  return aliasMatch?.[1] || "";
+}
+
+function expandKeywordSearchTerms(keywords = [], { selectedService = "" } = {}) {
   const normalizedKeywords = sanitizeKeywordSearchTerms(keywords);
   const expanded = [...normalizedKeywords];
+  const keywordExpansionGroups = [...learnedKeywordSearchExpansions, ...buildServiceKeywordSuggestionGroups()];
   normalizedKeywords.forEach((keyword) => {
-    learnedKeywordSearchExpansions.forEach((group) => {
-      if (group.triggers.some((trigger) => keyword.includes(trigger) || trigger.includes(keyword))) {
+    keywordExpansionGroups.forEach((group) => {
+      if (selectedService && group.service && group.service !== selectedService) {
+        return;
+      }
+      if (group.triggers.some((trigger) => areRelatedKeywordSearchTerms(keyword, trigger))) {
         expanded.push(...group.keywords);
       }
     });
   });
   return sanitizeKeywordSearchTerms(expanded);
 }
+
+function areRelatedKeywordSearchTerms(keyword = "", trigger = "") {
+  const keywordTokens = keywordSearchTokens(keyword);
+  const triggerTokens = keywordSearchTokens(trigger);
+  if (!keywordTokens.length || !triggerTokens.length) {
+    return false;
+  }
+  if (isGenericShortKeywordTrigger(triggerTokens) && keywordTokens.length > triggerTokens.length) {
+    return false;
+  }
+  if (triggerTokens.length > keywordTokens.length && keywordTokens.length > 1 && !triggerTokens.slice(0, keywordTokens.length).every((token, index) => token === keywordTokens[index])) {
+    return false;
+  }
+  if (hasSequentialKeywordTokens(keywordTokens, triggerTokens) || hasSequentialKeywordTokens(triggerTokens, keywordTokens)) {
+    return true;
+  }
+  return keywordTokens.some((token) => distinctiveKeywordExpansionTokens.has(token) && triggerTokens.includes(token));
+}
+
+function isGenericShortKeywordTrigger(tokens = []) {
+  return genericShortKeywordTriggers.has(tokens.join(" "));
+}
+
+const genericShortKeywordTriggers = new Set(["blow out", "blow dry", "blowdry", "blowout", "wash", "shampoo", "style", "hair"]);
+const distinctiveKeywordExpansionTokens = new Set(["bouncy", "round", "brush", "curly", "90", "dominican", "glamorous", "volumising", "volumizing", "extension", "weave", "sew", "track", "row", "partial", "invisible", "weft"]);
 
 function findKeywordMatchesInText(text = "", keywords = []) {
   const lines = String(text || "")
@@ -2968,9 +3257,14 @@ function findKeywordMatchesInText(text = "", keywords = []) {
       line,
       lines[index + 1],
     ].filter(Boolean);
+    const contextText = contextLines.join(" ");
+    const filteredKeywords = matchedKeywords.filter((keyword) => isRelevantKeywordMatch(keyword, contextText));
+    if (!filteredKeywords.length) {
+      return;
+    }
     matches.push({
-      keyword: matchedKeywords[0],
-      keywords: matchedKeywords,
+      keyword: filteredKeywords[0],
+      keywords: filteredKeywords,
       line,
       snippet: contextLines.join(" / ").slice(0, 360),
     });
@@ -2978,6 +3272,59 @@ function findKeywordMatchesInText(text = "", keywords = []) {
 
   return matches;
 }
+
+function isRelevantKeywordMatch(keyword = "", contextText = "") {
+  const keywordTokens = keywordSearchTokens(keyword);
+  if (isKeywordNegatedInContext(keywordTokens, contextText)) {
+    return false;
+  }
+  if (keywordTokens.length === 1 && keywordTokens[0] === "track") {
+    return isHairTrackContext(contextText);
+  }
+  return true;
+}
+
+function isKeywordNegatedInContext(keywordTokens = [], contextText = "") {
+  if (!keywordTokens.length) {
+    return false;
+  }
+  const contextTokens = keywordSearchTokens(contextText);
+  for (let index = 0; index <= contextTokens.length - keywordTokens.length; index += 1) {
+    if (!keywordTokens.every((token, offset) => contextTokens[index + offset] === token)) {
+      continue;
+    }
+    const beforeTokens = contextTokens.slice(Math.max(0, index - 5), index);
+    if (beforeTokens.some((token) => keywordNegationTokens.has(token))) {
+      return true;
+    }
+    const beforeText = beforeTokens.join(" ");
+    if (keywordNegationPhrases.some((phrase) => beforeText.endsWith(phrase))) {
+      return true;
+    }
+  }
+  return false;
+}
+
+const keywordNegationTokens = new Set(["not", "no", "without", "exclude", "excludes", "excluding", "unavailable"]);
+const keywordNegationPhrases = ["does not", "do not", "doesnt", "don't", "not a", "not an", "not offer", "not offered", "no longer"];
+
+function isHairTrackContext(contextText = "") {
+  const tokens = keywordSearchTokens(contextText);
+  if (!tokens.includes("track")) {
+    return false;
+  }
+  if (tokens.some((token) => businessTrackContextTokens.has(token))) {
+    return false;
+  }
+  if (tokens.some((token) => excludedHairTrackContextTokens.has(token))) {
+    return false;
+  }
+  return tokens.some((token) => hairTrackContextTokens.has(token));
+}
+
+const hairTrackContextTokens = new Set(["hair", "weave", "sew", "sewn", "sewing", "row", "line", "install", "installation", "extension", "bundle", "silkpress", "silk", "press", "wash", "style", "styling", "cornrow", "partial", "invisible", "weft", "removal", "remove"]);
+const excludedHairTrackContextTokens = new Set(["loose", "tighten", "tightening", "retighten", "retightening", "glue", "gluing", "glued"]);
+const businessTrackContextTokens = new Set(["earning", "earnings", "package", "subscription", "gift", "certificate", "coupon", "payment", "payments", "securely", "booking", "revenue", "progress", "learn", "business", "customer", "client", "sales", "analytics", "report", "reports", "marketing", "order", "orders", "shipping", "delivery", "deliveries", "dispatch", "tracking", "shipment", "shipments", "parcel", "parcels"]);
 
 function keywordSearchTokens(value = "") {
   return String(value || "")
@@ -3182,7 +3529,7 @@ async function extractBestPriceCheck({ booking = "", website = "", bookingUrl = 
   return browserCheck;
 }
 
-async function fetchEmbeddedBookingSources(sources = []) {
+async function fetchEmbeddedBookingSources(sources = [], { limit = 4, timeoutMs } = {}) {
   const urls = [];
   const sourceUrls = new Set(sources.map((source) => normalizeUrlForComparison(source.url)).filter(Boolean));
   sources.forEach((source) => {
@@ -3194,11 +3541,11 @@ async function fetchEmbeddedBookingSources(sources = []) {
     });
   });
 
-  const uniqueUrls = [...new Set(urls.map((url) => normalizeBookingUrl(url)).filter(Boolean))].slice(0, 4);
+  const uniqueUrls = [...new Set(urls.map((url) => normalizeBookingUrl(url)).filter(Boolean))].slice(0, limit);
   const embeddedSources = [];
   for (const url of uniqueUrls) {
     try {
-      const linkCheck = await checkUrl("booking", url, { includeText: true });
+      const linkCheck = await checkUrl("booking", url, { includeText: true, timeoutMs });
       if (linkCheck.status === "ok" && linkCheck.responseText) {
         embeddedSources.push({ url: linkCheck.finalUrl || url, html: linkCheck.responseText, linkCheck });
       }
@@ -5375,20 +5722,35 @@ function emptyServiceCheck() {
 }
 
 async function fetchWithTimeout(url, options = {}) {
+  const { timeoutMs = 8000, ...fetchOptions } = options;
   const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 8000);
+  const timeout = setTimeout(() => controller.abort(), timeoutMs);
   try {
     return await fetch(url, {
-      ...options,
+      ...fetchOptions,
       signal: controller.signal,
       headers: {
         "User-Agent": browserUserAgent,
         Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-        ...options.headers,
+        ...fetchOptions.headers,
       },
     });
   } finally {
     clearTimeout(timeout);
+  }
+}
+
+async function withTimeout(promise, timeoutMs, fallbackValue) {
+  let timeoutId;
+  try {
+    return await Promise.race([
+      promise,
+      new Promise((resolve) => {
+        timeoutId = setTimeout(() => resolve(fallbackValue), timeoutMs);
+      }),
+    ]);
+  } finally {
+    clearTimeout(timeoutId);
   }
 }
 
@@ -5786,7 +6148,14 @@ function normalizeDiscoveryKey(value) {
 function sanitizeDraftUpdate(input) {
   const links = normalizeLines(input.links);
   const rawServices = normalizeLines(input.rawServices);
-  const services = matchServices(toArray(input.services));
+  // Admin UI sends already-canonical service names — pass them through normalizeServices (alias
+  // mapping only) rather than matchServices (fuzzy scraping logic that drops unrecognised names).
+  const allKnownServices = new Set(canonicalServices);
+  const inputServices = toArray(input.services);
+  const knownInputServices = normalizeServices(inputServices.filter((s) => allKnownServices.has(s) || serviceAliases[s]));
+  const unknownInputServices = inputServices.filter((s) => !allKnownServices.has(s) && !serviceAliases[s]);
+  const matchedUnknown = matchServices(unknownInputServices);
+  const services = [...new Set([...knownInputServices, ...matchedUnknown])];
   const inferred = inferFromLinks(links);
   const areaIds = normalizeAreaIds(input.areaIds?.length ? input.areaIds : input.areaId ? [input.areaId] : []);
   const areaLabel = cleanString(input.areaLabel) || areaLabelForIds(areaIds);

@@ -57,6 +57,7 @@ export const categoryMap = {
     "Trim / hair cut",
     "Silk press",
     "Bouncy blowout / Round Brush Blow dry",
+    "Roller set",
     "Twist out / flexi rod",
     "Wig cornrows",
     "Scalp detox / treatments",
