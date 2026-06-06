@@ -1,40 +1,10 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-06-06T12:31:15.096Z",
-    "count": 4
+    "updatedAt": "2026-06-06T16:56:20.435Z",
+    "count": 2
   },
   "drafts": [
-    {
-      "id": "braidsby-yosan-mq2c0s5p",
-      "status": "needs_review",
-      "name": "Braidsby Yosan",
-      "areaId": "",
-      "areaIds": [],
-      "areaLabel": "",
-      "neighbourhood": "",
-      "postcode": "",
-      "bookingPlatform": "",
-      "bookingUrl": "",
-      "websiteUrl": "",
-      "instagramUrl": "https://www.instagram.com/braidsby_yosan/",
-      "tiktokUrl": "",
-      "services": [],
-      "rawServices": [],
-      "summary": "Admin draft created from stylist intake.",
-      "confidence": 0.35,
-      "warnings": [
-        "No booking link identified yet.",
-        "No services matched yet."
-      ],
-      "evidence": [
-        "Submitted link: https://www.instagram.com/braidsby_yosan/"
-      ],
-      "source": "admin-draft",
-      "createdAt": "2026-06-06T12:31:15.085Z",
-      "updatedAt": "2026-06-06T12:31:15.085Z",
-      "lastCheckedAt": "2026-06-06T12:31:15.085Z"
-    },
     {
       "id": "braidedbytaiss-mq2c0fqv",
       "status": "needs_review",
@@ -64,36 +34,6 @@
       "createdAt": "2026-06-06T12:30:58.999Z",
       "updatedAt": "2026-06-06T12:30:58.999Z",
       "lastCheckedAt": "2026-06-06T12:30:58.999Z"
-    },
-    {
-      "id": "hairbymodia-mq2c04jv",
-      "status": "needs_review",
-      "name": "Hairbymodia",
-      "areaId": "",
-      "areaIds": [],
-      "areaLabel": "",
-      "neighbourhood": "",
-      "postcode": "",
-      "bookingPlatform": "",
-      "bookingUrl": "",
-      "websiteUrl": "",
-      "instagramUrl": "https://www.instagram.com/hairbymodia/",
-      "tiktokUrl": "",
-      "services": [],
-      "rawServices": [],
-      "summary": "Admin draft created from stylist intake.",
-      "confidence": 0.35,
-      "warnings": [
-        "No booking link identified yet.",
-        "No services matched yet."
-      ],
-      "evidence": [
-        "Submitted link: https://www.instagram.com/hairbymodia/"
-      ],
-      "source": "admin-draft",
-      "createdAt": "2026-06-06T12:30:44.489Z",
-      "updatedAt": "2026-06-06T12:30:44.489Z",
-      "lastCheckedAt": "2026-06-06T12:30:44.489Z"
     },
     {
       "id": "microsbylaura-mpi6stjg",

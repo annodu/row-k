@@ -1,11 +1,300 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-06-06T12:30:14.851Z",
-    "count": 680,
+    "updatedAt": "2026-06-06T16:56:20.421Z",
+    "count": 687,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "dillanbstudios",
+      "name": "Dillanbstudios",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london",
+        "south-east"
+      ],
+      "areaLabel": "South east London",
+      "neighbourhood": "South east London London",
+      "postcode": "",
+      "bookingPlatform": "Direct",
+      "bookingUrl": "https://www.dillanbstudios.com/",
+      "websiteUrl": "https://www.dillanbstudios.com/",
+      "instagramUrl": "https://www.instagram.com/dillanbstudios/",
+      "services": [
+        "Healthy hair plans & consultations",
+        "Scalp detox / treatments",
+        "Curly cut / wash & go",
+        "Moisturising treatment",
+        "Tracks (+ silk press) / partial / invisible sew-in",
+        "Silk press",
+        "Wash & blowdry",
+        "Trim / hair cut",
+        "Natural hair coaches / educators"
+      ],
+      "priceBand": "££",
+      "servicePriceBand": "££",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Silk Press - From £130"
+      ],
+      "priceCheckedAt": "2026-06-06T16:55:39.228Z",
+      "priceUpdatedAt": "2026-06-06T16:55:39.228Z",
+      "priceConfidence": "manual",
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/dillanbstudios/"
+      ]
+    },
+    {
+      "id": "crownedbeauty-22",
+      "name": "Crownedbeauty 22",
+      "areaId": "essex",
+      "areaLabel": "Essex",
+      "neighbourhood": "Essex London",
+      "postcode": "",
+      "bookingPlatform": "Direct",
+      "bookingUrl": "https://www.crownedbeauty22.com/book-online",
+      "websiteUrl": "https://www.crownedbeauty22.com/book-online",
+      "instagramUrl": "https://www.instagram.com/crownedbeauty_22/",
+      "services": [
+        "Custom wig",
+        "Bridal",
+        "Wig install (frontal / closure)",
+        "Frontal ponytail / bun",
+        "Traditional sew-in / leave out",
+        "Boho braids / goddess braids",
+        "Box braids",
+        "Wash & blowdry",
+        "Knotless braids"
+      ],
+      "priceBand": "££",
+      "servicePriceBand": "££",
+      "packagePriceBand": "££££",
+      "priceIncludesHair": true,
+      "priceComparisonMode": "mixed",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "full lace wig install - £230",
+        "Double frontal pony - £240",
+        "Premade frontal wig - £150",
+        "Lace closure wig: - £135",
+        "Lace frontal wig: - £170",
+        "360 Lace Frontal: - £230",
+        "Frontal pony - £150",
+        "Mini frontal wig : - £145"
+      ],
+      "priceCheckedAt": "2026-06-06T16:52:27.120Z",
+      "priceUpdatedAt": "2026-06-06T16:52:27.120Z",
+      "priceConfidence": "high",
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/crownedbeauty_22/"
+      ]
+    },
+    {
+      "id": "maluwanichole",
+      "name": "Maluwanichole",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london",
+        "south-east"
+      ],
+      "areaLabel": "South east London",
+      "neighbourhood": "South east London London",
+      "postcode": "",
+      "bookingPlatform": "Treatwell",
+      "bookingUrl": "https://www.treatwell.co.uk/place/maluwa-nichole/?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQPOTM2NjE5NzQzMzkyNDU5AAGn5VNOCXfPF5HdzaVOVmS1EW_8ix0N0EaSfbuQ6PmYhoxhm72sjXAz5d2Jqcc_aem__XJNSt56iR_NvxDCH04R-Q",
+      "websiteUrl": "https://www.treatwell.co.uk/place/maluwa-nichole/?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQPOTM2NjE5NzQzMzkyNDU5AAGn5VNOCXfPF5HdzaVOVmS1EW_8ix0N0EaSfbuQ6PmYhoxhm72sjXAz5d2Jqcc_aem__XJNSt56iR_NvxDCH04R-Q",
+      "instagramUrl": "https://www.instagram.com/maluwanichole/",
+      "services": [
+        "Silk press",
+        "Full head colour",
+        "Bouncy blowout / Round Brush Blow dry",
+        "Trim / hair cut",
+        "Scalp detox / treatments",
+        "Wash & blowdry",
+        "Tracks (+ silk press) / partial / invisible sew-in",
+        "Traditional sew-in / leave out",
+        "Quick weave",
+        "Closure sew-in",
+        "Moisturising treatment"
+      ],
+      "priceBand": "£",
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "The Luxe Weave Collection - £100",
+        "The Relax & Restore Collection fr - £120",
+        "The Relax & Restore Collection fr - £80",
+        "Hair Maintenance For Existing Customers(2) - £85",
+        "Maintenance Wash & Blow Dry - £56",
+        "Colour - root application - £20",
+        "Colour - full head application inc finish - from £81",
+        "Colour - full head application inc finish - from £106"
+      ],
+      "priceCheckedAt": "2026-06-06T16:47:45.736Z",
+      "priceUpdatedAt": "2026-06-06T16:48:29.681Z",
+      "priceConfidence": "manual",
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/maluwanichole/"
+      ]
+    },
+    {
+      "id": "mourhairldn",
+      "name": "Mourhairldn",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london",
+        "south-east",
+        "central"
+      ],
+      "areaLabel": "South east London / Central London",
+      "neighbourhood": "South east London and Central London London",
+      "postcode": "",
+      "bookingPlatform": "Fresha",
+      "bookingUrl": "https://www.fresha.com/en-GB/a/mour-hair-london-tradestars-copperfield-street-r20wly0v/booking?allOffer=true&menu=true&pId=452176&cartId=49a1d4f3-8250-4604-90f0-6ea77080865a",
+      "websiteUrl": "https://www.fresha.com/en-GB/a/mour-hair-london-tradestars-copperfield-street-r20wly0v/booking?allOffer=true&menu=true&pId=452176&cartId=49a1d4f3-8250-4604-90f0-6ea77080865a",
+      "instagramUrl": "https://www.instagram.com/mourhairldn/",
+      "services": [
+        "Trim / hair cut",
+        "Wash & blowdry",
+        "Bouncy blowout / Round Brush Blow dry",
+        "LA weave",
+        "Editorial / Session styling",
+        "Balayage",
+        "Highlights",
+        "Full head colour",
+        "Tape ins",
+        "Curly cut / wash & go",
+        "Keratin treatment",
+        "Olaplex treatment",
+        "K-18 treatment"
+      ],
+      "priceBand": "£",
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "Toner - from £65",
+        "Wash + Style - from £35",
+        "Maintenance - Beaded Weave - from £125",
+        "K18 add on for colour services - £25",
+        "Olaplex 4in1 Treatment Mask - £25"
+      ],
+      "priceCheckedAt": "2026-06-06T16:41:41.500Z",
+      "priceUpdatedAt": "2026-06-06T16:41:41.500Z",
+      "priceConfidence": "medium",
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/mourhairldn/"
+      ]
+    },
+    {
+      "id": "hairbymodia",
+      "name": "Hairbymodia",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london",
+        "south-east"
+      ],
+      "areaLabel": "South east London",
+      "neighbourhood": "South east London London",
+      "postcode": "",
+      "bookingPlatform": "Direct",
+      "bookingUrl": "https://www.instagram.com/hairbymodia/",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/hairbymodia/",
+      "services": [
+        "Boho braids / goddess braids",
+        "Feed-in braids",
+        "Fulani / lemonade braids",
+        "Creative braids (e.g. patewo)",
+        "Twists (with extensions)",
+        "French curl",
+        "Faux locs",
+        "Stitch braids"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/hairbymodia/"
+      ]
+    },
+    {
+      "id": "thedrybar",
+      "name": "Thedrybar",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london",
+        "central"
+      ],
+      "areaLabel": "Central London",
+      "neighbourhood": "Central London London",
+      "postcode": "",
+      "bookingPlatform": "Direct",
+      "bookingUrl": "https://www.drybarshops.co.uk/service/blow-services",
+      "websiteUrl": "https://www.drybarshops.co.uk/service/blow-services",
+      "instagramUrl": "https://www.instagram.com/thedrybar/",
+      "services": [
+        "Extensions blowdry"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/thedrybar/"
+      ]
+    },
+    {
+      "id": "patriziamanias",
+      "name": "Patriziamanias",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london",
+        "central"
+      ],
+      "areaLabel": "Central London",
+      "neighbourhood": "Central London London",
+      "postcode": "",
+      "bookingPlatform": "Zenoti",
+      "bookingUrl": "https://patriziamanias.zenoti.com/webstoreNew/services?utm_source=instagram&utm_medium=booking&utm_campaign=booking&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQPOTM2NjE5NzQzMzkyNDU5AAGnP22tjfzDnUyXZcH4ks18_n4Jy7gMR8hVEd_YJNWvi9SbOx5pY5q5tLTqpGY_aem_c_fs9-HjZB_5cdhbNCmw7Q",
+      "websiteUrl": "https://patriziamanias.zenoti.com/webstoreNew/services?utm_source=instagram&utm_medium=booking&utm_campaign=booking&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQPOTM2NjE5NzQzMzkyNDU5AAGnP22tjfzDnUyXZcH4ks18_n4Jy7gMR8hVEd_YJNWvi9SbOx5pY5q5tLTqpGY_aem_c_fs9-HjZB_5cdhbNCmw7Q",
+      "instagramUrl": "https://www.instagram.com/patriziamanias/",
+      "services": [
+        "Extensions blowdry"
+      ],
+      "priceBand": "££",
+      "servicePriceBand": "££",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wash Blow-Dry Wig - £105.00",
+        "Elevate your look with a personalised wig haircut crafted by one of our skilled professionals. C... Show more - £180.00"
+      ],
+      "priceCheckedAt": "2026-06-06T16:09:56.029Z",
+      "priceUpdatedAt": "2026-06-06T16:09:56.029Z",
+      "priceConfidence": "manual",
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/patriziamanias/"
+      ]
+    },
     {
       "id": "hair-bymahi",
       "name": "Hair Bymahi",
@@ -3698,7 +3987,11 @@
       "instagramUrl": "https://www.instagram.com/taylor_taylor_london/",
       "services": [
         "Wash & blowdry",
-        "Scalp detox / treatments"
+        "Scalp detox / treatments",
+        "Full head colour",
+        "Bouncy blowout / Round Brush Blow dry",
+        "Highlights",
+        "Balayage"
       ],
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
@@ -3723,7 +4016,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-06-05T17:15:25.082Z"
+      "updatedAt": "2026-06-06T15:50:29.064Z"
     },
     {
       "id": "aquahair-ldn",
@@ -3856,7 +4149,8 @@
         "Curly cut / wash & go",
         "Silk press",
         "Trim / hair cut",
-        "Full head colour"
+        "Full head colour",
+        "Bouncy blowout / Round Brush Blow dry"
       ],
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
@@ -3878,7 +4172,16 @@
       ],
       "priceCheckedAt": "2026-06-04T19:43:02.032Z",
       "priceUpdatedAt": "2026-06-04T22:45:22.087Z",
-      "priceConfidence": "manual"
+      "priceConfidence": "manual",
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "updatedAt": "2026-06-06T16:32:36.250Z"
     },
     {
       "id": "perfecttouch-hair-studio",
@@ -5726,7 +6029,9 @@
         "Trim / hair cut",
         "Scalp detox / treatments",
         "Curly cut / wash & go",
-        "Silk press"
+        "Silk press",
+        "Tracks (+ silk press) / partial / invisible sew-in",
+        "Extensions blowdry"
       ],
       "summary": "Manual entry added from your latest salon update batch.",
       "source": "manual",
@@ -5745,7 +6050,15 @@
       ],
       "priceCheckedAt": "2026-06-04T19:39:03.801Z",
       "priceUpdatedAt": "2026-06-04T22:32:34.126Z",
-      "priceConfidence": "manual"
+      "priceConfidence": "manual",
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "canBraidWithoutGel": false,
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "updatedAt": "2026-06-06T15:54:48.532Z"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -7930,7 +8243,9 @@
         "Twists (with extensions)",
         "Traditional sew-in / leave out",
         "Moisturising treatment",
-        "Curly cut / wash & go"
+        "Curly cut / wash & go",
+        "Silk press",
+        "Roller set"
       ],
       "summary": "Manual entry added from your latest salon update batch.",
       "source": "manual",
@@ -7960,7 +8275,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-06-05T18:35:01.224Z"
+      "updatedAt": "2026-06-06T15:59:48.500Z"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -13135,25 +13450,26 @@
       "bookingUrl": "https://www.helenslondon.net/services",
       "instagramUrl": "https://www.instagram.com/helens_london/",
       "services": [
-        "Balayage",
-        "Box braids",
-        "Closure sew-in",
         "Curly cut / wash & go",
-        "Full head colour",
-        "Japanese head spa",
-        "Keratin treatment",
-        "LA weave",
-        "Moisturising treatment",
-        "Relaxer / texturiser",
-        "Roller set",
-        "Silk press",
-        "Tape ins",
-        "Tracks (+ silk press) / partial / invisible sew-in",
-        "Traditional sew-in / leave out",
-        "Trim / hair cut",
-        "Twist out / flexi rod",
         "Wash & blowdry",
-        "Wig install (frontal / closure)"
+        "Silk press",
+        "Keratin treatment",
+        "Relaxer / texturiser",
+        "Closure sew-in",
+        "Traditional sew-in / leave out",
+        "Tracks (+ silk press) / partial / invisible sew-in",
+        "Tape ins",
+        "Moisturising treatment",
+        "Full head colour",
+        "Balayage",
+        "Wig install (frontal / closure)",
+        "Box braids",
+        "Twist out / flexi rod",
+        "Trim / hair cut",
+        "LA weave",
+        "Japanese head spa",
+        "Roller set",
+        "Bouncy blowout / Round Brush Blow dry"
       ],
       "priceBand": "£",
       "priceSource": "manual",
@@ -13169,7 +13485,16 @@
         "wash & afro pic - £45",
         "wash and silk press - £130",
         "wash and silk press - £70"
-      ]
+      ],
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "updatedAt": "2026-06-06T16:03:31.364Z"
     },
     {
       "id": "herdefinition",
