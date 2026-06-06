@@ -1,11 +1,53 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-06-06T18:08:10.394Z",
-    "count": 693,
+    "updatedAt": "2026-06-06T18:15:26.110Z",
+    "count": 694,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "hershesons",
+      "name": "Hershesons",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london",
+        "central"
+      ],
+      "areaLabel": "Central London",
+      "neighbourhood": "Central London London",
+      "postcode": "",
+      "bookingPlatform": "Zenoti",
+      "bookingUrl": "https://hershesons.zenoti.com/webstoreNew/services?utm_source=social%20media&utm_medium=instagram&utm_campaign=booknow&utm_id=booknow",
+      "websiteUrl": "https://hershesons.zenoti.com/webstoreNew/services?utm_source=social%20media&utm_medium=instagram&utm_campaign=booknow&utm_id=booknow",
+      "instagramUrl": "https://www.instagram.com/hershesons/",
+      "services": [
+        "Silk press",
+        "Bouncy blowout / Round Brush Blow dry",
+        "Sew in / extensions blowdry",
+        "Wig blowdry",
+        "Curly cut / wash & go / diffuse"
+      ],
+      "priceBand": "£££",
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "manual",
+      "priceEvidence": [],
+      "priceCheckedAt": "",
+      "priceUpdatedAt": "2026-06-06T18:13:08.701Z",
+      "priceConfidence": "manual",
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/hershesons/"
+      ],
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "updatedAt": "2026-06-06T18:15:26.110Z"
+    },
     {
       "id": "slayybychanny",
       "name": "Slayybychanny",
@@ -8975,9 +9017,8 @@
       "instagramUrl": "https://www.instagram.com/conor_hair/",
       "services": [
         "Bouncy blowout / Round Brush Blow dry",
-        "Wash & blowdry",
-        "Sew in / extensions blowdry",
-        "Wig blowdry"
+        "Silk press",
+        "Curly cut / wash & go / diffuse"
       ],
       "websiteUrl": "",
       "tiktokUrl": "",
@@ -8991,7 +9032,7 @@
       "priceCheckedAt": "2026-06-04T11:32:12.022Z",
       "priceUpdatedAt": "2026-06-05T19:00:38.488Z",
       "priceConfidence": "manual",
-      "updatedAt": "2026-06-06T17:43:29.220Z",
+      "updatedAt": "2026-06-06T18:15:07.051Z",
       "servicePriceBand": "",
       "packagePriceBand": "",
       "priceIncludesHair": false,
@@ -11708,10 +11749,7 @@
       "services": [
         "Bouncy blowout / Round Brush Blow dry",
         "Silk press",
-        "Trim / hair cut",
-        "Wash & blowdry",
-        "Sew in / extensions blowdry",
-        "Wig blowdry"
+        "Trim / hair cut"
       ],
       "summary": "Search for  3B or 4C, they have services like Textured Hair Cut & Finish",
       "source": "manual",
@@ -11736,7 +11774,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-06-06T17:42:57.704Z"
+      "updatedAt": "2026-06-06T18:14:42.762Z"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
