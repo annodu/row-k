@@ -1,7 +1,7 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-06-06T18:39:39.717Z",
+    "updatedAt": "2026-06-06T18:43:33.134Z",
     "count": 695,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
@@ -19122,6 +19122,7 @@
         "Healthy hair plans & consultations",
         "Wig install (frontal / closure)",
         "Frontal sew-in",
+        "Sew in / extensions blowdry",
         "LA weave"
       ],
       "priceBand": "££",
@@ -19136,11 +19137,11 @@
       "tiktokUrl": "",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
-      "servicePriceBand": "££",
+      "servicePriceBand": "",
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-06-06T17:42:35.359Z"
+      "updatedAt": "2026-06-06T18:43:33.134Z"
     },
     {
       "id": "phenomenal-hair",
