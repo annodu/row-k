@@ -1,7 +1,7 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-06-06T18:15:26.110Z",
+    "updatedAt": "2026-06-06T18:22:02.582Z",
     "count": 694,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
@@ -5829,8 +5829,7 @@
         "Crochet",
         "U-part wig install",
         "Texture release",
-        "Boho braids / goddess braids",
-        "Bouncy blowout / Round Brush Blow dry"
+        "Boho braids / goddess braids"
       ],
       "canBraidWithoutGel": true,
       "summary": "Manual entry added from your latest salon update batch.",
@@ -5853,7 +5852,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-06-06T12:19:26.364Z"
+      "updatedAt": "2026-06-06T18:22:02.582Z"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
