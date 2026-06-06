@@ -1,11 +1,298 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-06-06T16:56:20.421Z",
-    "count": 687,
+    "updatedAt": "2026-06-06T18:08:10.394Z",
+    "count": 693,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "slayybychanny",
+      "name": "Slayybychanny",
+      "areaId": "south-east",
+      "areaLabel": "South east London",
+      "neighbourhood": "South east London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://slayybychanny.as.me/schedule/513f0c1f",
+      "websiteUrl": "https://slayybychanny.as.me/schedule/513f0c1f",
+      "instagramUrl": "https://www.instagram.com/slayybychanny/",
+      "services": [
+        "Frontal ponytail / bun",
+        "Updo",
+        "Frontal sew-in",
+        "Traditional sew-in / leave out",
+        "Flipover / Versatile sew-in",
+        "Half up half down",
+        "Closure sew-in",
+        "Wig install (frontal / closure)",
+        "Wig cornrows"
+      ],
+      "priceBand": "£",
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Low Frontal Ponytail - 3 hours 20 minutes @ £90.00",
+        "Messy Updo Frontal Ponytail - 3 hours 40 minutes @ £100.00",
+        "Frontal Sew-in - 4 hours 30 minutes @ £120.00",
+        "Classic Sew-In - 4 hours @ £80.00",
+        "Versatile Sew-In - 4 hours @ £95.00",
+        "Half up half down sew-in - 3 hours 20 minutes @ £90.00",
+        "2x6 - 7x7 closure sew-in - 4 hours @ £110.00",
+        "Reinstall (not my work) - 2 hours 30 minutes @ £70.00"
+      ],
+      "priceCheckedAt": "2026-06-06T18:07:51.157Z",
+      "priceUpdatedAt": "2026-06-06T18:08:01.813Z",
+      "priceConfidence": "manual",
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/slayybychanny/"
+      ]
+    },
+    {
+      "id": "strandsbyangels",
+      "name": "Strandsbyangels",
+      "areaId": "essex",
+      "areaLabel": "Essex",
+      "neighbourhood": "Essex London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/strandsbyangels/",
+      "websiteUrl": "https://www.instagram.com/strandsbyangels/",
+      "instagramUrl": "https://www.instagram.com/strandsbyangels/",
+      "services": [
+        "Wash & blowdry",
+        "Bouncy blowout / Round Brush Blow dry"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/strandsbyangels/"
+      ]
+    },
+    {
+      "id": "theblowdryartist",
+      "name": "Theblowdryartist",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london",
+        "south-east"
+      ],
+      "areaLabel": "South east London",
+      "neighbourhood": "South east London London",
+      "postcode": "",
+      "bookingPlatform": "Direct",
+      "bookingUrl": "https://tress.ly/theblowdryartist",
+      "websiteUrl": "https://tress.ly/theblowdryartist",
+      "instagramUrl": "https://www.instagram.com/theblowdryartist/",
+      "services": [
+        "Curly cut / wash & go / diffuse",
+        "Keratin treatment",
+        "Silk press",
+        "Sew-in take-down",
+        "Braid take-down",
+        "Olaplex treatment",
+        "Texture release",
+        "Editorial / Session styling",
+        "Bouncy blowout / Round Brush Blow dry",
+        "Wash & blowdry"
+      ],
+      "priceBand": "££",
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Curly Cut & Diffuse Experience - £100",
+        "Curly Cut & Diffuse Experience - £120",
+        "Curly Cut & Diffuse Experience - £95",
+        "Precision Cut & Luxury Blowdry - £90",
+        "Keratin Smoothing Treatment - £250",
+        "Texture Release - £250",
+        "The Silk Press Experience - £130",
+        "Weave Removal Recovery Experience - £55"
+      ],
+      "priceCheckedAt": "2026-06-06T17:56:20.416Z",
+      "priceUpdatedAt": "2026-06-06T17:56:21.851Z",
+      "priceConfidence": "manual",
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/theblowdryartist/"
+      ],
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "updatedAt": "2026-06-06T18:01:03.794Z"
+    },
+    {
+      "id": "aaliyahsullivan-co",
+      "name": "Aaliyahsullivan Co",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london",
+        "south-east"
+      ],
+      "areaLabel": "South east London",
+      "neighbourhood": "South east London London",
+      "postcode": "",
+      "bookingPlatform": "Direct",
+      "bookingUrl": "https://tress.ly/aaliyahsullivan",
+      "websiteUrl": "https://tress.ly/aaliyahsullivan",
+      "instagramUrl": "https://www.instagram.com/aaliyahsullivan.co/",
+      "services": [
+        "Stitch braids",
+        "Traditional sew-in / leave out",
+        "Knotless braids",
+        "Boho braids / goddess braids",
+        "Sleek ponytail / bun",
+        "Fulani / lemonade braids",
+        "Half braids, half sew-in",
+        "Wash & blowdry"
+      ],
+      "priceBand": "££",
+      "servicePriceBand": "££",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Stitch braids - - Stitch braids - £70",
+        "Sew ins - - Sew ins - £85",
+        "Sew ins - - Sew ins - £105",
+        "A full head sew in - - A full head sew in - £75",
+        "Cassie braids/sew in - - Cassie braids/sew in - £110",
+        "Knotless braids - - Knotless braids - £150",
+        "Boho knotless braids - - Boho knotless braids - £165",
+        "Sleek Ponytail - - Sleek Ponytail - £75"
+      ],
+      "priceCheckedAt": "2026-06-06T17:54:52.295Z",
+      "priceUpdatedAt": "2026-06-06T17:58:54.600Z",
+      "priceConfidence": "manual",
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/aaliyahsullivan.co/"
+      ],
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "updatedAt": "2026-06-06T17:58:57.321Z"
+    },
+    {
+      "id": "hollylondon",
+      "name": "Hollylondon",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london",
+        "south-east"
+      ],
+      "areaLabel": "South east London",
+      "neighbourhood": "South east London London",
+      "postcode": "",
+      "bookingPlatform": "Direct",
+      "bookingUrl": "https://tress.ly/hollylondon",
+      "websiteUrl": "https://tress.ly/hollylondon",
+      "instagramUrl": "https://www.instagram.com/hollylondon__/",
+      "services": [
+        "Full head colour",
+        "Wash & blowdry",
+        "Highlights",
+        "Balayage",
+        "Trim / hair cut",
+        "Silk press",
+        "Curly cut / wash & go"
+      ],
+      "priceBand": "££",
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "Silk Press Time 2 Hrs - £120",
+        "Trim - £120",
+        "Trim - Price £120",
+        "Trim - Price £170",
+        "Trim - Price £220"
+      ],
+      "priceCheckedAt": "2026-06-06T17:51:07.023Z",
+      "priceUpdatedAt": "2026-06-06T17:51:07.023Z",
+      "priceConfidence": "medium",
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/hollylondon__/"
+      ],
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "updatedAt": "2026-06-06T17:52:35.304Z"
+    },
+    {
+      "id": "elleschair",
+      "name": "Elleschair",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london",
+        "south-east"
+      ],
+      "areaLabel": "South east London",
+      "neighbourhood": "South east London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://elleschair.as.me/schedule/bb1edd45",
+      "websiteUrl": "https://elleschair.as.me/schedule/bb1edd45",
+      "instagramUrl": "https://www.instagram.com/elleschair/",
+      "services": [
+        "Crochet",
+        "Miracle knots",
+        "Faux locs",
+        "Butterfly locs",
+        "Boho braids / goddess braids",
+        "Feed-in braids",
+        "Fulani / lemonade braids",
+        "Wig cornrows",
+        "Knotless braids",
+        "Wash & blowdry",
+        "Stitch braids",
+        "Retwist",
+        "Twists (with extensions)"
+      ],
+      "priceBand": "££",
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "Bubble Braids - £220",
+        "Crochet - £160",
+        "Miracle Knots - £180",
+        "Root re-touch - £135",
+        "Soft Locs - £190",
+        "Butterfly Locs - £220",
+        "Goddess Locs - £240",
+        "Signature Locs - £290"
+      ],
+      "priceCheckedAt": "2026-06-06T17:49:07.074Z",
+      "priceUpdatedAt": "2026-06-06T17:49:07.074Z",
+      "priceConfidence": "high",
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/elleschair/"
+      ],
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "updatedAt": "2026-06-06T17:52:29.447Z"
+    },
     {
       "id": "dillanbstudios",
       "name": "Dillanbstudios",
@@ -24,7 +311,7 @@
       "services": [
         "Healthy hair plans & consultations",
         "Scalp detox / treatments",
-        "Curly cut / wash & go",
+        "Curly cut / wash & go / diffuse",
         "Moisturising treatment",
         "Tracks (+ silk press) / partial / invisible sew-in",
         "Silk press",
@@ -176,7 +463,7 @@
         "Highlights",
         "Full head colour",
         "Tape ins",
-        "Curly cut / wash & go",
+        "Curly cut / wash & go / diffuse",
         "Keratin treatment",
         "Olaplex treatment",
         "K-18 treatment"
@@ -250,13 +537,28 @@
       "websiteUrl": "https://www.drybarshops.co.uk/service/blow-services",
       "instagramUrl": "https://www.instagram.com/thedrybar/",
       "services": [
-        "Extensions blowdry"
+        "Sew in / extensions blowdry",
+        "Wig blowdry"
       ],
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
       "evidence": [
         "Submitted link: https://www.instagram.com/thedrybar/"
-      ]
+      ],
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "priceBand": "",
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "",
+      "priceSource": "",
+      "priceEvidence": [],
+      "priceCheckedAt": "",
+      "priceUpdatedAt": "",
+      "priceConfidence": "",
+      "updatedAt": "2026-06-06T17:45:16.513Z"
     },
     {
       "id": "patriziamanias",
@@ -274,10 +576,10 @@
       "websiteUrl": "https://patriziamanias.zenoti.com/webstoreNew/services?utm_source=instagram&utm_medium=booking&utm_campaign=booking&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQPOTM2NjE5NzQzMzkyNDU5AAGnP22tjfzDnUyXZcH4ks18_n4Jy7gMR8hVEd_YJNWvi9SbOx5pY5q5tLTqpGY_aem_c_fs9-HjZB_5cdhbNCmw7Q",
       "instagramUrl": "https://www.instagram.com/patriziamanias/",
       "services": [
-        "Extensions blowdry"
+        "Wig blowdry"
       ],
       "priceBand": "££",
-      "servicePriceBand": "££",
+      "servicePriceBand": "",
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
@@ -293,7 +595,11 @@
       "source": "manual",
       "evidence": [
         "Submitted link: https://www.instagram.com/patriziamanias/"
-      ]
+      ],
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "updatedAt": "2026-06-06T17:40:53.652Z"
     },
     {
       "id": "hair-bymahi",
@@ -339,10 +645,11 @@
       "services": [
         "Bouncy blowout / Round Brush Blow dry",
         "Trim / hair cut",
-        "Extensions blowdry"
+        "Wig blowdry",
+        "Sew in / extensions blowdry"
       ],
       "priceBand": "£",
-      "servicePriceBand": "£",
+      "servicePriceBand": "",
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
@@ -359,7 +666,11 @@
       "source": "manual",
       "evidence": [
         "Submitted link: https://www.instagram.com/duckanddry/"
-      ]
+      ],
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "updatedAt": "2026-06-06T17:38:38.845Z"
     },
     {
       "id": "touchedby-tg",
@@ -3680,8 +3991,7 @@
         "Bouncy blowout / Round Brush Blow dry",
         "Closure sew-in",
         "Custom wig",
-        "Editorial / Session styling",
-        "Extensions blowdry",
+        "Sew in / extensions blowdry",
         "Flipover / Versatile sew-in",
         "Quick weave",
         "Sew-in take-down",
@@ -3689,7 +3999,9 @@
         "Sleek ponytail / bun",
         "Traditional sew-in / leave out",
         "Wash & blowdry",
-        "Wig install (frontal / closure)"
+        "Wig install (frontal / closure)",
+        "Wig blowdry",
+        "Editorial / Session styling"
       ],
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
@@ -3697,7 +4009,7 @@
         "Submitted link: https://www.instagram.com/fejiroboje/"
       ],
       "tiktokUrl": "",
-      "updatedAt": "2026-06-06T10:16:11.322Z",
+      "updatedAt": "2026-06-06T17:39:29.209Z",
       "priceBand": "£",
       "priceSource": "auto",
       "priceEvidence": [
@@ -3732,7 +4044,7 @@
       "bookingUrl": "https://www.fresha.com/a/curl-power-by-elaine-london-aston-heights-vza87pve/booking",
       "instagramUrl": "https://www.instagram.com/curl_power_by_elaine/",
       "services": [
-        "Curly cut / wash & go",
+        "Curly cut / wash & go / diffuse",
         "Moisturising treatment",
         "K-18 treatment"
       ],
@@ -4074,7 +4386,7 @@
       "bookingUrl": "https://www.phorest.com/salon/mylaanddavishernehill/locations",
       "instagramUrl": "https://www.instagram.com/mylaanddavis/",
       "services": [
-        "Curly cut / wash & go",
+        "Curly cut / wash & go / diffuse",
         "Twist out / flexi rod",
         "Trim / hair cut",
         "Wash & blowdry"
@@ -4146,7 +4458,7 @@
         "K-18 treatment",
         "Olaplex treatment",
         "Keratin treatment",
-        "Curly cut / wash & go",
+        "Curly cut / wash & go / diffuse",
         "Silk press",
         "Trim / hair cut",
         "Full head colour",
@@ -4327,7 +4639,7 @@
       "bookingUrl": "https://www.justcurlsessex.co.uk/booking.php",
       "instagramUrl": "https://www.instagram.com/justcurlsessex/",
       "services": [
-        "Curly cut / wash & go"
+        "Curly cut / wash & go / diffuse"
       ],
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
@@ -4453,7 +4765,7 @@
       "instagramUrl": "https://www.instagram.com/3thirtysalon/",
       "services": [
         "Balayage",
-        "Curly cut / wash & go",
+        "Curly cut / wash & go / diffuse",
         "Highlights",
         "Relaxer / texturiser",
         "Olaplex treatment",
@@ -4862,7 +5174,7 @@
       "instagramUrl": "https://www.instagram.com/adelinehairandbeauty/",
       "services": [
         "Wash & blowdry",
-        "Curly cut / wash & go",
+        "Curly cut / wash & go / diffuse",
         "Olaplex treatment",
         "Moisturising treatment",
         "Scalp detox / treatments",
@@ -4920,14 +5232,14 @@
         "Closure sew-in",
         "Frontal sew-in",
         "Sew-in take-down",
-        "LA weave",
         "Stitch braids",
         "Fulani / lemonade braids",
         "Twists (with extensions)",
         "Wig install (frontal / closure)",
         "Boho braids / goddess braids",
         "French curl",
-        "Custom wig"
+        "Custom wig",
+        "LA weave"
       ],
       "priceBand": "££",
       "priceSource": "auto",
@@ -4952,7 +5264,11 @@
       "tiktokUrl": "",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
-      "updatedAt": "2026-06-05T16:05:55.991Z"
+      "updatedAt": "2026-06-06T17:27:21.405Z",
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -5210,7 +5526,7 @@
         "Microlinks",
         "Tape ins",
         "Wash & blowdry",
-        "Extensions blowdry",
+        "Sew in / extensions blowdry",
         "Hybrid sew in (tapes + sew in)"
       ],
       "summary": "Manual entry added from your South East London extensions, sew-ins, and treatments list.",
@@ -5304,7 +5620,7 @@
         "Clip ins / Silk press + Clip ins",
         "Tracks / Silk press + tracks / Invisible sew-in",
         "Olaplex treatment",
-        "Extensions blowdry"
+        "Sew in / extensions blowdry"
       ],
       "priceBand": "£",
       "priceSource": "auto",
@@ -5449,7 +5765,7 @@
       "instagramUrl": "https://www.instagram.com/amahairsalon/",
       "services": [
         "Wash & blowdry",
-        "Curly cut / wash & go",
+        "Curly cut / wash & go / diffuse",
         "Knotless braids",
         "Box braids",
         "Microbraids / x-small braids",
@@ -5612,7 +5928,7 @@
       "instagramUrl": "https://www.instagram.com/andrepierreltd/",
       "services": [
         "Wash & blowdry",
-        "Extensions blowdry",
+        "Sew in / extensions blowdry",
         "Relaxer / texturiser",
         "Full head colour",
         "Balayage",
@@ -6028,10 +6344,10 @@
         "Wash & blowdry",
         "Trim / hair cut",
         "Scalp detox / treatments",
-        "Curly cut / wash & go",
+        "Curly cut / wash & go / diffuse",
         "Silk press",
         "Tracks (+ silk press) / partial / invisible sew-in",
-        "Extensions blowdry"
+        "Sew in / extensions blowdry"
       ],
       "summary": "Manual entry added from your latest salon update batch.",
       "source": "manual",
@@ -6058,7 +6374,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-06-06T15:54:48.532Z"
+      "updatedAt": "2026-06-06T17:37:07.190Z"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -6119,7 +6435,7 @@
         "Moisturising treatment",
         "Relaxer / texturiser",
         "Wash & blowdry",
-        "Extensions blowdry",
+        "Sew in / extensions blowdry",
         "Silk press",
         "Feed-in braids",
         "Knotless braids",
@@ -6977,7 +7293,7 @@
         "Full head colour",
         "Highlights",
         "Balayage",
-        "Extensions blowdry"
+        "Sew in / extensions blowdry"
       ],
       "priceBand": "££",
       "priceSource": "manual",
@@ -8243,7 +8559,7 @@
         "Twists (with extensions)",
         "Traditional sew-in / leave out",
         "Moisturising treatment",
-        "Curly cut / wash & go",
+        "Curly cut / wash & go / diffuse",
         "Silk press",
         "Roller set"
       ],
@@ -8659,7 +8975,9 @@
       "instagramUrl": "https://www.instagram.com/conor_hair/",
       "services": [
         "Bouncy blowout / Round Brush Blow dry",
-        "Wash & blowdry"
+        "Wash & blowdry",
+        "Sew in / extensions blowdry",
+        "Wig blowdry"
       ],
       "websiteUrl": "",
       "tiktokUrl": "",
@@ -8673,7 +8991,7 @@
       "priceCheckedAt": "2026-06-04T11:32:12.022Z",
       "priceUpdatedAt": "2026-06-05T19:00:38.488Z",
       "priceConfidence": "manual",
-      "updatedAt": "2026-06-06T10:14:47.399Z",
+      "updatedAt": "2026-06-06T17:43:29.220Z",
       "servicePriceBand": "",
       "packagePriceBand": "",
       "priceIncludesHair": false,
@@ -8846,7 +9164,7 @@
       "bookingUrl": "https://curltalk.book.app/book-now",
       "instagramUrl": "https://www.instagram.com/curl.talk/",
       "services": [
-        "Curly cut / wash & go",
+        "Curly cut / wash & go / diffuse",
         "Pixie / finger waves",
         "Moisturising treatment"
       ],
@@ -8887,7 +9205,7 @@
       "bookingUrl": "https://www.fresha.com/a/unruly-curls-london-96b-leather-lane-in00bv7m/booking?",
       "instagramUrl": "https://www.instagram.com/curlsbygabrielle/",
       "services": [
-        "Curly cut / wash & go"
+        "Curly cut / wash & go / diffuse"
       ],
       "summary": "Manual entry updated from your latest central London salon update batch.",
       "source": "manual",
@@ -8924,7 +9242,7 @@
         "Balayage",
         "Highlights",
         "Full head colour",
-        "Curly cut / wash & go"
+        "Curly cut / wash & go / diffuse"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -9674,7 +9992,7 @@
       "instagramUrl": "https://www.instagram.com/dominicanhair.republic/",
       "services": [
         "Bouncy blowout / Round Brush Blow dry",
-        "Extensions blowdry",
+        "Sew in / extensions blowdry",
         "Hair botox",
         "Relaxer / texturiser",
         "Roller set",
@@ -10143,7 +10461,7 @@
         "Olaplex treatment",
         "Moisturising treatment",
         "Cornrows / Twists / Underwig cornrows",
-        "Curly cut / wash & go",
+        "Curly cut / wash & go / diffuse",
         "Twist out / flexi rod",
         "Relaxer / texturiser",
         "Full head colour",
@@ -10276,7 +10594,7 @@
         "Traditional sew-in / leave out",
         "Closure sew-in",
         "Tape ins",
-        "Extensions blowdry",
+        "Sew in / extensions blowdry",
         "Clip ins (+ silk press)",
         "Half up half down",
         "Half braids, half sew-in",
@@ -10319,7 +10637,7 @@
         "Full head colour",
         "Highlights",
         "Balayage",
-        "Curly cut / wash & go",
+        "Curly cut / wash & go / diffuse",
         "Moisturising treatment",
         "Trim / hair cut"
       ],
@@ -10362,13 +10680,13 @@
       "instagramUrl": "https://www.instagram.com/erroldouglasldn/",
       "services": [
         "Wash & blowdry",
-        "Extensions blowdry",
+        "Sew in / extensions blowdry",
         "Full head colour",
         "Highlights",
         "Balayage",
         "Relaxer / texturiser",
         "Keratin treatment",
-        "Curly cut / wash & go"
+        "Curly cut / wash & go / diffuse"
       ],
       "priceBand": "£££",
       "priceSource": "manual",
@@ -10914,7 +11232,7 @@
       "instagramUrl": "https://www.instagram.com/fruittii.london/",
       "services": [
         "Trim / hair cut",
-        "Curly cut / wash & go",
+        "Curly cut / wash & go / diffuse",
         "Full head colour",
         "Highlights",
         "Balayage",
@@ -11391,7 +11709,9 @@
         "Bouncy blowout / Round Brush Blow dry",
         "Silk press",
         "Trim / hair cut",
-        "Wash & blowdry"
+        "Wash & blowdry",
+        "Sew in / extensions blowdry",
+        "Wig blowdry"
       ],
       "summary": "Search for  3B or 4C, they have services like Textured Hair Cut & Finish",
       "source": "manual",
@@ -11416,7 +11736,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-06-06T10:15:04.700Z"
+      "updatedAt": "2026-06-06T17:42:57.704Z"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -11942,7 +12262,7 @@
       "services": [
         "Moisturising treatment",
         "Wash & blowdry",
-        "Curly cut / wash & go",
+        "Curly cut / wash & go / diffuse",
         "Wig cornrows",
         "Silk press",
         "Relaxer / texturiser",
@@ -12625,7 +12945,7 @@
         "Crochet",
         "Tracks (+ silk press) / partial / invisible sew-in",
         "Miracle knots",
-        "Extensions blowdry"
+        "Sew in / extensions blowdry"
       ],
       "summary": "Manual entry added from your East London braids, extensions, sew-ins, and natural hair list.",
       "source": "manual",
@@ -13450,7 +13770,7 @@
       "bookingUrl": "https://www.helenslondon.net/services",
       "instagramUrl": "https://www.instagram.com/helens_london/",
       "services": [
-        "Curly cut / wash & go",
+        "Curly cut / wash & go / diffuse",
         "Wash & blowdry",
         "Silk press",
         "Keratin treatment",
@@ -14305,7 +14625,7 @@
       "instagramUrl": "https://www.instagram.com/innovativesalon9/",
       "services": [
         "Wash & blowdry",
-        "Extensions blowdry",
+        "Sew in / extensions blowdry",
         "Moisturising treatment",
         "Silk press",
         "Wig cornrows",
@@ -14576,7 +14896,7 @@
         "Sleek ponytail / bun",
         "Closure sew-in",
         "U-part wig install",
-        "Extensions blowdry"
+        "Sew in / extensions blowdry"
       ],
       "priceBand": "££",
       "priceSource": "auto",
@@ -15231,7 +15551,7 @@
       "bookingUrl": "https://book.getslick.com/#/salon/4338/",
       "instagramUrl": "https://www.instagram.com/kinkbynaturekbn/",
       "services": [
-        "Curly cut / wash & go",
+        "Curly cut / wash & go / diffuse",
         "Trim / hair cut",
         "Moisturising treatment",
         "Full head colour",
@@ -15276,7 +15596,7 @@
       "bookingUrl": "https://bookings.gettimely.com/kinson/book",
       "instagramUrl": "https://www.instagram.com/kinsonhairstudio/",
       "services": [
-        "Curly cut / wash & go",
+        "Curly cut / wash & go / diffuse",
         "Trim / hair cut",
         "K-18 treatment",
         "Bridal",
@@ -16906,7 +17226,7 @@
         "Highlights",
         "Balayage",
         "Wash & blowdry",
-        "Curly cut / wash & go"
+        "Curly cut / wash & go / diffuse"
       ],
       "summary": "Manual Instagram-led entry added from your latest salon update batch.",
       "source": "manual",
@@ -17338,7 +17658,7 @@
         "Highlights",
         "Keratin treatment",
         "Olaplex treatment",
-        "Curly cut / wash & go",
+        "Curly cut / wash & go / diffuse",
         "Clip ins (+ silk press)",
         "Tape ins",
         "LA weave",
@@ -17347,7 +17667,7 @@
         "Tracks (+ silk press) / partial / invisible sew-in",
         "Traditional sew-in / leave out",
         "Trim / hair cut",
-        "Extensions blowdry"
+        "Sew in / extensions blowdry"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -17481,7 +17801,7 @@
       "bookingUrl": "https://www.naturalgloe.com/book",
       "instagramUrl": "https://www.instagram.com/thenaturalgloe/",
       "services": [
-        "Curly cut / wash & go",
+        "Curly cut / wash & go / diffuse",
         "Silk press",
         "Wash & blowdry",
         "Microlocs / sisterlocs",
@@ -18441,7 +18761,7 @@
       "bookingUrl": "https://www.instagram.com/pashcanel/",
       "instagramUrl": "https://www.instagram.com/pashcanel/",
       "services": [
-        "Curly cut / wash & go",
+        "Curly cut / wash & go / diffuse",
         "Wash & blowdry"
       ]
     },
@@ -18708,10 +19028,9 @@
       "services": [
         "Full head colour",
         "Tape ins",
-        "LA weave",
         "Wash & blowdry",
         "Bouncy blowout / Round Brush Blow dry",
-        "Cornrows / Twists / Underwig cornrows",
+        "Wig cornrows",
         "Traditional sew-in / leave out",
         "Flipover / Versatile sew-in",
         "Closure sew-in",
@@ -18720,23 +19039,28 @@
         "Custom wig",
         "U-part wig install",
         "Updo",
-        "Extensions blowdry"
+        "Healthy hair plans & consultations",
+        "Wig install (frontal / closure)",
+        "Frontal sew-in",
+        "LA weave"
       ],
       "priceBand": "££",
-      "priceSource": "auto",
+      "priceSource": "manual",
       "priceEvidence": [
-        "Premade closure wig install - £120",
-        "Premade Frontal wig install - £140",
-        "Wash, Under wig cornrows, Closure wig install and Styling (Any style) - £185",
-        "Wash, Under wig cornrows, Frontal install wig install and Styling (Any style) - £200",
-        "Leave Out Sew in - £145",
-        "Lace Frontal sew in - £160",
-        "Lace Closure sew in - £150",
-        "Flip over sew in (curly hair) - £145"
+        "Half Head Curly/Straight wig construction only - Introductory offer - Half Head Curly/Straight wig construction only - Introductory offer £100"
       ],
-      "priceCheckedAt": "2026-06-04T10:33:13.879Z",
-      "priceConfidence": "high",
-      "priceUpdatedAt": "2026-06-04T10:33:13.881Z"
+      "priceCheckedAt": "2026-06-06T17:42:22.462Z",
+      "priceConfidence": "manual",
+      "priceUpdatedAt": "2026-06-06T17:42:22.462Z",
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "servicePriceBand": "££",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "updatedAt": "2026-06-06T17:42:35.359Z"
     },
     {
       "id": "phenomenal-hair",
@@ -19053,7 +19377,7 @@
         "Trim / hair cut",
         "Moisturising treatment",
         "Wash & blowdry",
-        "Curly cut / wash & go",
+        "Curly cut / wash & go / diffuse",
         "Starter locs",
         "Retwist",
         "Microlocs / sisterlocs",
@@ -19916,7 +20240,7 @@
       "bookingUrl": "https://www.fresha.com/providers/salt-salon-orb2pmqe?pId=518378",
       "instagramUrl": "https://www.instagram.com/saltsalonlondon/",
       "services": [
-        "Curly cut / wash & go",
+        "Curly cut / wash & go / diffuse",
         "Silk press",
         "Trim / hair cut",
         "Wash & blowdry"
@@ -19954,7 +20278,7 @@
       "instagramUrl": "https://www.instagram.com/sandrawebbhairdressing/",
       "services": [
         "Wash & blowdry",
-        "Extensions blowdry",
+        "Sew in / extensions blowdry",
         "LA weave",
         "Sew-in take-down",
         "Full head colour",
@@ -20842,7 +21166,7 @@
       "instagramUrl": "https://www.instagram.com/sistersspalondon/",
       "services": [
         "Wash & blowdry",
-        "Curly cut / wash & go",
+        "Curly cut / wash & go / diffuse",
         "Olaplex treatment",
         "Hair botox",
         "Full head colour",
@@ -21310,7 +21634,7 @@
         "Silk press",
         "Wash & blowdry",
         "Bouncy blowout / Round Brush Blow dry",
-        "Extensions blowdry",
+        "Sew in / extensions blowdry",
         "Trim / hair cut",
         "Texture release",
         "Keratin treatment",
@@ -21366,7 +21690,7 @@
         "Wig colouring / bundle colouring",
         "Texture release",
         "Wig install (frontal / closure)",
-        "Extensions blowdry"
+        "Sew in / extensions blowdry"
       ],
       "priceBand": "£",
       "priceSource": "auto",
@@ -21625,7 +21949,7 @@
         "Faux locs",
         "Wig cornrows",
         "Pre-parting",
-        "Curly cut / wash & go",
+        "Curly cut / wash & go / diffuse",
         "Miracle knots",
         "Stitch braids",
         "Quick weave",
@@ -21904,7 +22228,7 @@
         "Braid take-down",
         "Knotless braids",
         "Crochet",
-        "Curly cut / wash & go",
+        "Curly cut / wash & go / diffuse",
         "Twists (with extensions)"
       ],
       "priceBand": "£",
@@ -22491,7 +22815,7 @@
       "bookingUrl": "https://home.shortcutssoftware.com/texture#/_h/sites/66711/details",
       "instagramUrl": "https://www.instagram.com/texturehairbyfloria/",
       "services": [
-        "Curly cut / wash & go",
+        "Curly cut / wash & go / diffuse",
         "Trim / hair cut",
         "Moisturising treatment",
         "Twist out / flexi rod",
@@ -22698,7 +23022,7 @@
       "bookingUrl": "https://www.thecurlcoach.com/full-price-list",
       "instagramUrl": "https://www.instagram.com/the.curl.coach/",
       "services": [
-        "Curly cut / wash & go",
+        "Curly cut / wash & go / diffuse",
         "Natural hair coaches / educators",
         "Moisturising treatment",
         "Full head colour",
@@ -23442,7 +23766,7 @@
       "bookingUrl": "https://thestandardstudio.gettimely.com/",
       "instagramUrl": "https://www.instagram.com/the_standardstudio/",
       "services": [
-        "Curly cut / wash & go",
+        "Curly cut / wash & go / diffuse",
         "Olaplex treatment",
         "Highlights",
         "Balayage",
@@ -23562,7 +23886,7 @@
       "instagramUrl": "https://www.instagram.com/thecurlbarlondon/",
       "hijabiFriendly": true,
       "services": [
-        "Curly cut / wash & go",
+        "Curly cut / wash & go / diffuse",
         "Moisturising treatment"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
@@ -23597,7 +23921,7 @@
       "bookingUrl": "https://www.instagram.com/thecurleditbymya/",
       "instagramUrl": "https://www.instagram.com/thecurleditbymya/",
       "services": [
-        "Curly cut / wash & go"
+        "Curly cut / wash & go / diffuse"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -24036,34 +24360,43 @@
       "bookingUrl": "https://tress.ly/booking",
       "instagramUrl": "https://www.instagram.com/tressly.studios/",
       "services": [
-        "Balayage",
         "Boho braids / goddess braids",
-        "Bouncy blowout / Round Brush Blow dry",
-        "Clip ins (+ silk press)",
-        "Curly cut / wash & go",
-        "Custom wig",
-        "Extensions blowdry",
-        "Flipover / Versatile sew-in",
-        "Full head colour",
-        "Healthy hair plans & consultations",
-        "Highlights",
-        "Japanese straightening",
-        "K-18 treatment",
-        "Keratin treatment",
+        "Braid take-down",
+        "Crochet",
+        "Feed-in braids",
+        "Fulani / lemonade braids",
+        "Half braids, half sew-in",
         "Knotless braids",
-        "Moisturising treatment",
-        "Olaplex treatment",
-        "Pixie / finger waves",
-        "Relaxer / texturiser",
-        "Scalp detox / treatments",
-        "Silk press",
-        "Texture release",
+        "Miracle knots",
+        "Stitch braids",
+        "Twists (with extensions)",
+        "Balayage",
+        "Full head colour",
+        "Highlights",
+        "Editorial / Session styling",
+        "Clip ins (+ silk press)",
+        "Butterfly locs",
+        "Faux locs",
+        "Retwist",
+        "Flipover / Versatile sew-in",
+        "Sew-in take-down",
+        "Tracks (+ silk press) / partial / invisible sew-in",
         "Traditional sew-in / leave out",
+        "Half up half down",
+        "Pixie / finger waves",
+        "Sleek ponytail / bun",
+        "Updo",
+        "Keratin treatment",
+        "Olaplex treatment",
+        "Relaxer / texturiser",
+        "Texture release",
+        "Wig cornrows",
+        "Curly cut / wash & go / diffuse",
+        "Silk press",
+        "Bouncy blowout / Round Brush Blow dry",
         "Trim / hair cut",
-        "U-part wig install",
         "Wash & blowdry",
-        "Wig colouring / bundle colouring",
-        "Wig install (frontal / closure)"
+        "U-part wig install"
       ],
       "priceBand": "££",
       "priceSource": "auto",
@@ -24265,7 +24598,7 @@
       "bookingUrl": "https://www.untypeyourhair.com/appointments",
       "instagramUrl": "https://www.instagram.com/untypeyourhair/",
       "services": [
-        "Curly cut / wash & go",
+        "Curly cut / wash & go / diffuse",
         "Trim / hair cut",
         "Scalp detox / treatments",
         "Natural hair coaches / educators",
@@ -24488,7 +24821,7 @@
         "Wig install (frontal / closure)",
         "Closure sew-in",
         "Tape ins",
-        "Extensions blowdry",
+        "Sew in / extensions blowdry",
         "Frontal sew-in",
         "Traditional sew-in / leave out",
         "Frontal ponytail / bun",
@@ -24496,23 +24829,26 @@
         "U-part wig install",
         "Wig cornrows",
         "Hybrid sew in (tapes + sew in)",
-        "Wig colouring / bundle colouring"
+        "Wig colouring / bundle colouring",
+        "Wig blowdry"
       ],
       "priceBand": "££",
-      "priceSource": "auto",
+      "priceSource": "manual",
       "priceEvidence": [
-        "Curl Like Capri (Online or In Person Lesson) - £245",
-        "1-1 Masterclass (Wig Install) - £500",
-        "Wig Construction ONLY (Frontal) - £75",
-        "Wig Construction ONLY (Closure) - £75",
-        "Wig Cornrows ONLY - £25",
-        "Brow Waxing ONLY - £20",
-        "Custom Closure Install - £140",
-        "Glueless Custom Closure Install - £110"
+        "Tape Extension Deal - £100 Tape Extension Deal"
       ],
-      "priceCheckedAt": "2026-06-03T23:25:00.926Z",
-      "priceConfidence": "high",
-      "priceUpdatedAt": "2026-06-03T23:25:00.928Z"
+      "priceCheckedAt": "2026-06-06T17:47:33.200Z",
+      "priceConfidence": "manual",
+      "priceUpdatedAt": "2026-06-06T17:47:33.200Z",
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "servicePriceBand": "££",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "updatedAt": "2026-06-06T17:47:37.351Z"
     },
     {
       "id": "wendis-room",
@@ -24675,7 +25011,7 @@
       "instagramUrl": "https://www.instagram.com/hair_by_yairo/",
       "services": [
         "Wash & blowdry",
-        "Extensions blowdry",
+        "Sew in / extensions blowdry",
         "Trim / hair cut",
         "Full head colour",
         "Highlights",
@@ -24977,13 +25313,13 @@
         "Wash & blowdry",
         "Silk press",
         "Wig cornrows",
-        "Curly cut / wash & go",
+        "Curly cut / wash & go / diffuse",
         "Olaplex treatment",
         "K-18 treatment",
         "Keratin treatment",
         "Relaxer / texturiser",
         "Twist out / flexi rod",
-        "Extensions blowdry"
+        "Sew in / extensions blowdry"
       ],
       "summary": "Manual entry added from your latest salon update batch.",
       "source": "manual",
@@ -28002,7 +28338,7 @@
         "Full head colour",
         "Highlights",
         "Balayage",
-        "Curly cut / wash & go",
+        "Curly cut / wash & go / diffuse",
         "Starter locs",
         "Retwist",
         "Microlocs / sisterlocs",
@@ -28052,7 +28388,7 @@
       "services": [
         "Wash & blowdry",
         "Trim / hair cut",
-        "Curly cut / wash & go",
+        "Curly cut / wash & go / diffuse",
         "Wig cornrows",
         "Feed-in braids",
         "Traditional sew-in / leave out",

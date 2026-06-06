@@ -82,7 +82,7 @@
       "id": "styling-services",
       "label": "Styling (sew in / frontal / relaxer)",
       "subcategories": [
-        "Extensions blowdry",
+        "Sew in / extensions blowdry",
         "Frontal ponytail / bun",
         "Half up half down",
         "Pixie / finger waves",
@@ -109,7 +109,7 @@
       "label": "Natural hair washing & styling",
       "subcategories": [
         "Wig cornrows",
-        "Curly cut / wash & go",
+        "Curly cut / wash & go / diffuse",
         "Silk press",
         "Bouncy blowout / Round Brush Blow dry",
         "Trim / hair cut",
@@ -137,7 +137,8 @@
         "Pixie wig / weave install",
         "U-part wig install",
         "Wig colouring / bundle colouring",
-        "Wig install (frontal / closure)"
+        "Wig install (frontal / closure)",
+        "Wig blowdry"
       ]
     }
   ]

@@ -136,7 +136,8 @@ const serviceRuleMatchers = [
   ["Japanese head spa", [/\bjapanese\s+head\s+spa\b/, /\bhead\s*spa\b/]],
   ["Scalp detox / treatments", [/\bscalp\b/]],
   ["Curly cut / wash & go", [/\bcurly\s+cut\b/, /\bwash\s*(and|&)?\s*go\b/]],
-  ["Extensions blowdry", [/\bextensions?\b.*\b(blow\s*dry|blowdry|blow\s*out|blowout)\b/, /\b(blow\s*dry|blowdry|blow\s*out|blowout)\b.*\bextensions?\b/, /\bblow\s*out\b.*\b(sew\s*in|sewin)\b.*\bweave\b/]],
+  ["Sew in / extensions blowdry", [/\bextensions?\b.*\b(blow\s*dry|blowdry|blow\s*out|blowout)\b/, /\b(blow\s*dry|blowdry|blow\s*out|blowout)\b.*\bextensions?\b/, /\bblow\s*out\b.*\b(sew\s*in|sewin)\b.*\bweave\b/]],
+  ["Wig blowdry", [/\bwig\b.*\b(blow\s*dry|blowdry|blow\s*out|blowout)\b/, /\b(blow\s*dry|blowdry|blow\s*out|blowout)\b.*\bwig\b/]],
   ["Bouncy blowout / Round Brush Blow dry", [/\bbouncy\b.*\b(blow\s*dry|blowdry|blow\s*out|blowout)\b/, /\b(blow\s*dry|blowdry|blow\s*out|blowout)\b.*\bbouncy\b/, /\bround\s+brush\b.*\b(blow\s*dry|blowdry)\b/]],
   ["Wash & blowdry", [/\bwash\b.*\b(blow\s*dry|blowdry|blowout)\b/, /\bshampoo\b.*\b(blow\s*dry|blowdry|blowout)\b/]],
   ["Trim / hair cut", [/\btrim\b/, /\bhair\s*cut\b/, /\bhaircut\b/, /\bcut\s+and\s+finish\b/]],
@@ -161,7 +162,7 @@ const serviceNegationHints = {
   "Braid take-down": ["braid take down", "braid takedown", "braid removal", "remove braids"],
   "Bridal": ["bridal", "wedding"],
   "Editorial / Session styling": ["editorial", "session styling", "photoshoot"],
-  "Extensions blowdry": ["extensions blowdry", "extensions blow dry", "extensions blowout", "extensions blow out", "extension blowdry", "extension blow dry", "extension blowout", "extension blow out", "blowdry with extensions", "blow dry with extensions", "blowout with extensions", "blow out with extensions", "blow out on sew in weave", "blowout on sew in weave", "wash blow dry with extensions", "wash and blow dry with extensions"],
+  "Sew in / extensions blowdry": ["extensions blowdry", "extensions blow dry", "extensions blowout", "extensions blow out", "extension blowdry", "extension blow dry", "extension blowout", "extension blow out", "blowdry with extensions", "blow dry with extensions", "blowout with extensions", "blow out with extensions", "blow out on sew in weave", "blowout on sew in weave", "wash blow dry with extensions", "wash and blow dry with extensions", "wig blowdry", "wig blow dry", "wig blowout"],
   "Butterfly locs": ["butterfly locs"],
   "Clip ins (+ silk press)": ["clip ins", "clip in"],
   "Closure sew-in": ["closure sew in", "closure sew-in", "closure sewin", "closure weave", "weave with lace closure", "closure behind the hairline"],
@@ -946,12 +947,15 @@ export function registerAdminStylistRoutes(app) {
 
   app.post("/api/admin/filters", requireAdmin, async (req, res) => {
     try {
-      const { categories } = req.body;
+      const { categories, renames } = req.body;
       if (!Array.isArray(categories)) {
         return res.status(400).json({ ok: false, error: "Invalid payload" });
       }
       await fs.writeFile(filtersPath, `${JSON.stringify({ categories }, null, 2)}\n`);
       await patchFilterSourceFiles(categories);
+      if (Array.isArray(renames) && renames.length) {
+        await migrateRenamedServices(renames);
+      }
       res.json({ ok: true });
     } catch (err) {
       console.error("Failed to save filters:", err);
@@ -1155,6 +1159,51 @@ function getCookieValue(cookieHeader = "", name) {
     .map((part) => part.trim())
     .find((part) => part.startsWith(`${name}=`))
     ?.slice(name.length + 1);
+}
+
+async function migrateRenamedServices(renames) {
+  // Build a lookup from old name -> new name
+  const renameMap = Object.fromEntries(renames.map(({ from, to }) => [from, to]));
+
+  // Migrate manual-salons.json
+  const manualData = await readJson(manualIndexPath, { meta: {}, salons: [] });
+  let manualChanged = false;
+  for (const salon of manualData.salons) {
+    if (!Array.isArray(salon.services)) continue;
+    const next = salon.services.map((s) => renameMap[s] ?? s);
+    if (next.some((s, i) => s !== salon.services[i])) {
+      salon.services = next;
+      manualChanged = true;
+    }
+  }
+  if (manualChanged) await writeJson(manualIndexPath, manualData);
+
+  // Migrate stylist-drafts.json
+  const draftsData = await readJson(draftsPath, { meta: {}, drafts: [] });
+  let draftsChanged = false;
+  for (const draft of draftsData.drafts) {
+    if (!Array.isArray(draft.services)) continue;
+    const next = draft.services.map((s) => renameMap[s] ?? s);
+    if (next.some((s, i) => s !== draft.services[i])) {
+      draft.services = next;
+      draftsChanged = true;
+    }
+  }
+  if (draftsChanged) await writeJson(draftsPath, draftsData);
+
+  // Add old names as serviceAliases in salon-index.mjs so any lingering references still resolve
+  const salonIndexPath = path.resolve(__dirname, "salon-index.mjs");
+  let salonSrc = await fs.readFile(salonIndexPath, "utf8");
+  for (const { from, to } of renames) {
+    const aliasLine = `  ${JSON.stringify(from)}: ${JSON.stringify(to)},`;
+    if (!salonSrc.includes(aliasLine)) {
+      salonSrc = salonSrc.replace(
+        /export const serviceAliases = \{/,
+        `export const serviceAliases = {\n${aliasLine}`,
+      );
+    }
+  }
+  await fs.writeFile(salonIndexPath, salonSrc);
 }
 
 async function patchFilterSourceFiles(categories) {
@@ -2705,7 +2754,7 @@ const serviceEvidenceKeywords = {
   "Pixie wig / weave install": ["pixie wig", "pixie weave", "pixie install", "pixie cut wig making", "pixie cut wig making styling"],
   "Tracks (+ silk press) / partial / invisible sew-in": ["tracks", "track per row", "per track", "per row", "one row", "individual sewn on track", "individual sewn on tracks", "tracks add on", "tracks add-on", "silk press add on tracks", "silk press add-on tracks", "sew in tracks", "sew-in tracks", "weave tracks", "single track weave"],
   "Twists (with extensions)": ["twists with extensions", "passion twists", "marley twists", "senegalese twists", "kinky twists", "rope twists", "island twists", "island twist", "large twist", "large twists"],
-  "Extensions blowdry": ["extensions blowdry", "extensions blow dry", "extensions blowout", "extensions blow out", "extension blowdry", "extension blow dry", "extension blowout", "extension blow out", "blowdry with extensions", "blow dry with extensions", "blowout with extensions", "blow out with extensions", "blow out on sew in weave", "blowout on sew in weave", "wash blow dry with extensions", "wash and blow dry with extensions"],
+  "Sew in / extensions blowdry": ["extensions blowdry", "extensions blow dry", "extensions blowout", "extensions blow out", "extension blowdry", "extension blow dry", "extension blowout", "extension blow out", "blowdry with extensions", "blow dry with extensions", "blowout with extensions", "blow out with extensions", "blow out on sew in weave", "blowout on sew in weave", "wash blow dry with extensions", "wash and blow dry with extensions", "wig blowdry", "wig blow dry", "wig blowout"],
   "Wash & blowdry": ["wash blowdry", "wash blow dry", "wash and blowdry", "wash and blow dry", "washing blow drying", "washing and blow drying", "shampoo blowdry", "shampoo blow dry", "shampoo and blowdry", "shampoo and blow dry"],
   "Japanese head spa": ["japanese head spa", "head spa", "headspa"],
   "Wig cornrows": ["under wig", "wig cornrows", "wig cainrows", "cornrows for wig installation", "cornrows without extensions", "cainrows"],
@@ -3095,7 +3144,7 @@ const learnedKeywordSearchExpansions = [
     ],
   },
   {
-    service: "Extensions blowdry",
+    service: "Sew in / extensions blowdry",
     triggers: ["extensions blowdry", "extensions blow dry", "extensions blowout", "extensions blow out", "extension blowdry", "extension blow dry", "extension blowout", "extension blow out", "weave blowdry", "weave blow dry", "wash blow dry with extensions", "blow out on sew in weave"],
     keywords: [
       "extensions blowdry",

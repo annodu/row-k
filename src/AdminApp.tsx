@@ -17,6 +17,7 @@ import {
   MapPin,
   Plus,
   PoundSterling,
+  Pencil,
   RefreshCw,
   Save,
   Search,
@@ -202,7 +203,7 @@ const learnedKeywordSuggestionGroups: KeywordSuggestionGroup[] = [
     ],
   },
   {
-    service: "Extensions blowdry",
+    service: "Sew in / extensions blowdry",
     triggers: ["extensions blowdry", "extensions blow dry", "extensions blowout", "extensions blow out", "extension blowdry", "extension blow dry", "extension blowout", "extension blow out", "weave blowdry", "weave blow dry", "wash blow dry with extensions", "blow out on sew in weave"],
     keywords: [
       "extensions blowdry",
@@ -492,100 +493,18 @@ const emptyForm: DraftForm = {
 };
 
 const serviceGroups = [
-  {
-    label: "Braids",
-    services: [
-      "Boho braids / goddess braids",
-      "Braid take-down",
-      "Box braids",
-      "Crochet",
-      "Creative braids (e.g. patewo)",
-      "Feed-in braids",
-      "French curl",
-      "Fulani / lemonade braids",
-      "Half braids, half sew-in",
-      "Knotless braids",
-      "Miracle knots",
-      "Microbraids / x-small braids",
-      "Pre-parting",
-      "Stitch braids",
-      "Twists (with extensions)",
-    ],
-  },
-  {
-    label: "Colour",
-    services: ["Balayage", "Full head colour", "Highlights", "Wig colouring / bundle colouring"],
-  },
-  {
-    label: "Bridal",
-    services: ["Bridal"],
-  },
-  {
-    label: "Editorial / Session styling",
-    services: ["Editorial / Session styling"],
-  },
-  {
-    label: "Extensions",
-    services: ["Clip ins (+ silk press)", "K-tips / invisible strands", "LA weave", "Microlinks", "Tape ins"],
-  },
-  {
-    label: "Locs",
-    services: ["Butterfly locs", "Faux locs", "Microlocs / sisterlocs", "Retwist", "Starter locs"],
-  },
-  {
-    label: "Sew in / weave",
-    services: [
-      "Closure sew-in",
-      "Flipover / Versatile sew-in",
-      "Frontal sew-in",
-      "Hybrid sew in (tapes + sew in)",
-      "Pixie wig / weave install",
-      "Quick weave",
-      "Sew-in take-down",
-      "Tracks (+ silk press) / partial / invisible sew-in",
-      "Traditional sew-in / leave out",
-    ],
-  },
-  {
-    label: "Styling (sew in / frontal / relaxer)",
-    services: ["Extensions blowdry", "Frontal ponytail / bun", "Half up half down", "Pixie / finger waves", "Sleek ponytail / bun", "Updo"],
-  },
-  {
-    label: "Treatments",
-    services: [
-      "Hair botox",
-      "Japanese straightening",
-      "K-18 treatment",
-      "Keratin treatment",
-      "Moisturising treatment",
-      "Olaplex treatment",
-      "Relaxer / texturiser",
-      "Texture release",
-    ],
-  },
-  {
-    label: "Natural hair washing & styling",
-    services: [
-      "Wig cornrows",
-      "Curly cut / wash & go",
-      "Silk press",
-      "Bouncy blowout / Round Brush Blow dry",
-      "Trim / hair cut",
-      "Roller set",
-      "Twist out / flexi rod",
-      "Wash & blowdry",
-      "Japanese head spa",
-      "Scalp detox / treatments",
-    ],
-  },
-  {
-    label: "Natural hair health & trichology",
-    services: ["Healthy hair plans & consultations", "Natural hair coaches / educators", "Trichology / scalp analysis"],
-  },
-  {
-    label: "Wigs",
-    services: ["Custom wig", "Pixie wig / weave install", "U-part wig install", "Wig colouring / bundle colouring", "Wig install (frontal / closure)"],
-  },
+  { label: "Braids", services: ["Boho braids / goddess braids","Braid take-down","Box braids","Crochet","Creative braids","Feed-in braids","French curl","Fulani / lemonade braids","Half braids, half sew-in","Knotless braids","Miracle knots","Microbraids / x-small braids","Pre-parting","Stitch braids","Twists (with extensions)"] },
+  { label: "Colour", services: ["Balayage","Full head colour","Highlights","Wig colouring / bundle colouring"] },
+  { label: "Bridal", services: ["Bridal"] },
+  { label: "Editorial / Session styling", services: ["Editorial / Session styling"] },
+  { label: "Extensions", services: ["Clip ins (+ silk press)","K-tips / invisible strands","LA weave / microlinks wefts / braidless sew in","I-tips / microlinks strands","Tape ins"] },
+  { label: "Locs", services: ["Butterfly locs","Faux locs","Microlocs / sisterlocs","Retwist","Starter locs"] },
+  { label: "Sew in / weave", services: ["Closure sew-in","Flipover / Versatile sew-in","Frontal sew-in","Hybrid sew in (tapes + sew in)","Pixie wig / weave install","Quick weave","Sew-in take-down","Tracks (+ silk press) / partial / invisible sew-in","Traditional sew-in / leave out"] },
+  { label: "Styling (sew in / frontal / relaxer)", services: ["Sew in / extensions blowdry","Frontal ponytail / bun","Half up half down","Pixie / finger waves","Sleek ponytail / bun","Updo"] },
+  { label: "Treatments", services: ["Hair botox","Japanese straightening","K-18 treatment","Keratin treatment","Moisturising treatment","Olaplex treatment","Relaxer / texturiser","Texture release"] },
+  { label: "Natural hair washing & styling", services: ["Wig cornrows","Curly cut / wash & go / diffuse","Silk press","Bouncy blowout / Round Brush Blow dry","Trim / hair cut","Roller set","Twist out / flexi rod","Wash & blowdry","Japanese head spa","Scalp detox / treatments"] },
+  { label: "Natural hair health & trichology", services: ["Healthy hair plans & consultations","Natural hair coaches / educators","Trichology / scalp analysis"] },
+  { label: "Wigs", services: ["Custom wig","Pixie wig / weave install","U-part wig install","Wig colouring / bundle colouring","Wig install (frontal / closure)","Wig blowdry"] },
 ];
 
 export function AdminApp() {
@@ -3815,7 +3734,7 @@ const serviceEvidenceKeywords: Record<string, string[]> = {
   "Hybrid sew in (tapes + sew in)": ["hybrid sew in", "hybrid sew-in", "hybrid weave", "tracks + tapes hybrid", "tracks and tapes hybrid"],
   "Tracks (+ silk press) / partial / invisible sew-in": ["tracks", "track per row", "per track", "per row", "one row", "individual sewn on track", "individual sewn on tracks", "tracks add on", "tracks add-on", "silk press add on tracks", "silk press add-on tracks", "row sew in", "rows of sew in", "weave tracks", "weave tracks per track", "weave on per row", "traditional weave rows", "partial sew in", "partial sewin", "invisible sew in", "invisible weave", "invisible weft", "invisible wefts"],
   "Bouncy blowout / Round Brush Blow dry": ["bouncy blowout", "bouncy blow out", "bouncy blowdry", "bouncy blow dry", "bouncy blow-dry", "round brush blow dry", "round brush blowdry", "dry bouncy blow-dry", "blowout"],
-  "Extensions blowdry": ["extensions blowdry", "extensions blow dry", "extensions blowout", "extensions blow out", "extension blowdry", "extension blow dry", "extension blowout", "extension blow out", "blowdry with extensions", "blow dry with extensions", "blowout with extensions", "blow out with extensions", "blow out on sew in weave", "blowout on sew in weave", "wash blow dry with extensions", "wash and blow dry with extensions"],
+  "Sew in / extensions blowdry": ["extensions blowdry", "extensions blow dry", "extensions blowout", "extensions blow out", "extension blowdry", "extension blow dry", "extension blowout", "extension blow out", "blowdry with extensions", "blow dry with extensions", "blowout with extensions", "blow out with extensions", "blow out on sew in weave", "blowout on sew in weave", "wash blow dry with extensions", "wash and blow dry with extensions"],
   "Wash & blowdry": ["wash blowdry", "wash blow dry", "wash and blowdry", "wash and blow dry", "shampoo blowdry", "shampoo blow dry", "shampoo and blowdry", "shampoo and blow dry"],
   "Japanese head spa": ["japanese head spa", "head spa", "headspa"],
   "Updo": ["updo", "up do", "pin up", "french roll up", "french roll"],
@@ -5167,6 +5086,10 @@ function FiltersPage() {
   const [newSubcategoryInputs, setNewSubcategoryInputs] = useState<Record<string, string>>({});
   const [newCategoryId, setNewCategoryId] = useState("");
   const [newCategoryLabel, setNewCategoryLabel] = useState("");
+  // editing state: "catId" -> editing category label; "catId::subName" -> editing that subcategory
+  const [editing, setEditing] = useState<{ key: string; value: string } | null>(null);
+  // track subcategory renames so the server can migrate stylist records on save
+  const [renames, setRenames] = useState<{ from: string; to: string }[]>([]);
 
   useEffect(() => {
     fetch("/api/admin/filters", { credentials: "include" })
@@ -5195,6 +5118,47 @@ function FiltersPage() {
     );
   }
 
+  function startEditSubcategory(categoryId: string, sub: string) {
+    setEditing({ key: `${categoryId}::${sub}`, value: sub });
+  }
+
+  function commitEditSubcategory(categoryId: string, oldName: string) {
+    const newName = editing?.value.trim() ?? "";
+    if (newName && newName !== oldName) {
+      setCategories((prev) =>
+        prev.map((cat) =>
+          cat.id === categoryId
+            ? { ...cat, subcategories: cat.subcategories.map((s) => (s === oldName ? newName : s)) }
+            : cat,
+        ),
+      );
+      setRenames((prev) => {
+        // If oldName was itself the result of a previous rename, chain it so we
+        // only keep the original → latest mapping.
+        const existing = prev.find((r) => r.to === oldName);
+        if (existing) {
+          return prev.map((r) => (r.to === oldName ? { ...r, to: newName } : r));
+        }
+        return [...prev, { from: oldName, to: newName }];
+      });
+    }
+    setEditing(null);
+  }
+
+  function startEditCategoryLabel(cat: FilterCategory) {
+    setEditing({ key: cat.id, value: cat.label });
+  }
+
+  function commitEditCategoryLabel(categoryId: string) {
+    const newLabel = editing?.value.trim() ?? "";
+    if (newLabel) {
+      setCategories((prev) =>
+        prev.map((cat) => (cat.id === categoryId ? { ...cat, label: newLabel } : cat)),
+      );
+    }
+    setEditing(null);
+  }
+
   function addCategory() {
     const id = newCategoryId.trim().toLowerCase().replace(/\s+/g, "-");
     const label = newCategoryLabel.trim();
@@ -5216,9 +5180,10 @@ function FiltersPage() {
         method: "POST",
         credentials: "include",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ categories }),
+        body: JSON.stringify({ categories, renames }),
       });
       const data = await res.json();
+      if (data.ok) setRenames([]);
       setSaveMessage({ text: data.ok ? "Saved. Reload the page to see changes take effect." : (data.error ?? "Failed to save."), ok: data.ok });
     } catch {
       setSaveMessage({ text: "Failed to save.", ok: false });
@@ -5232,7 +5197,7 @@ function FiltersPage() {
       <section className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
         <div>
           <h1 className="text-3xl font-semibold tracking-tight text-stone-950">Filters</h1>
-          <p className="mt-2 text-sm text-stone-500">Edit the service categories and subcategories shown in the directory filter panel.</p>
+          <p className="mt-2 text-sm text-stone-500">Edit the service categories and subcategories shown in the directory filter panel. Click any name to rename it.</p>
         </div>
         <Button type="button" onClick={save} disabled={isSaving} className="h-10 rounded-none px-4">
           {isSaving ? <Loader2 className="mr-2 size-4 animate-spin" /> : null}
@@ -5245,12 +5210,37 @@ function FiltersPage() {
       ) : null}
 
       <div className="space-y-5">
-        {categories.map((cat) => (
+        {categories.map((cat) => {
+          const isEditingLabel = editing?.key === cat.id;
+          return (
           <div key={cat.id} className="rounded-none border border-stone-200 bg-white p-5">
             <div className="flex items-center justify-between gap-3">
-              <div>
-                <p className="font-semibold text-stone-900">{cat.label}</p>
-                <p className="mt-0.5 text-xs text-stone-400">{cat.id}</p>
+              <div className="flex items-center gap-2">
+                {isEditingLabel ? (
+                  <input
+                    autoFocus
+                    type="text"
+                    value={editing.value}
+                    onChange={(e) => setEditing({ ...editing, value: e.target.value })}
+                    onBlur={() => commitEditCategoryLabel(cat.id)}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") commitEditCategoryLabel(cat.id);
+                      if (e.key === "Escape") setEditing(null);
+                    }}
+                    className="h-7 rounded-none border border-stone-400 bg-white px-2 text-sm font-semibold focus:outline-none focus:ring-1 focus:ring-stone-500"
+                  />
+                ) : (
+                  <button
+                    type="button"
+                    onClick={() => startEditCategoryLabel(cat)}
+                    className="group flex items-center gap-1.5 font-semibold text-stone-900 hover:text-stone-600"
+                    title="Click to rename"
+                  >
+                    {cat.label}
+                    <Pencil className="size-3 opacity-0 group-hover:opacity-50" />
+                  </button>
+                )}
+                <p className="text-xs text-stone-400">{cat.id}</p>
               </div>
               <button
                 type="button"
@@ -5262,19 +5252,44 @@ function FiltersPage() {
             </div>
 
             <div className="mt-4 flex flex-wrap gap-2">
-              {cat.subcategories.map((sub) => (
-                <span key={sub} className="inline-flex items-center gap-1.5 rounded-none border border-stone-200 bg-stone-50 px-2.5 py-1 text-xs font-medium text-stone-700">
-                  {sub}
-                  <button
-                    type="button"
-                    onClick={() => removeSubcategory(cat.id, sub)}
-                    className="text-stone-400 hover:text-red-600"
-                    aria-label={`Remove ${sub}`}
-                  >
-                    <X className="size-3" />
-                  </button>
-                </span>
-              ))}
+              {cat.subcategories.map((sub) => {
+                const editKey = `${cat.id}::${sub}`;
+                const isEditingSub = editing?.key === editKey;
+                return isEditingSub ? (
+                  <input
+                    key={sub}
+                    autoFocus
+                    type="text"
+                    value={editing.value}
+                    onChange={(e) => setEditing({ ...editing, value: e.target.value })}
+                    onBlur={() => commitEditSubcategory(cat.id, sub)}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") commitEditSubcategory(cat.id, sub);
+                      if (e.key === "Escape") setEditing(null);
+                    }}
+                    className="h-7 rounded-none border border-stone-400 bg-white px-2 text-xs font-medium focus:outline-none focus:ring-1 focus:ring-stone-500"
+                  />
+                ) : (
+                  <span key={sub} className="group inline-flex items-center gap-1.5 rounded-none border border-stone-200 bg-stone-50 px-2.5 py-1 text-xs font-medium text-stone-700">
+                    <button
+                      type="button"
+                      onClick={() => startEditSubcategory(cat.id, sub)}
+                      className="hover:text-stone-950"
+                      title="Click to rename"
+                    >
+                      {sub}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => removeSubcategory(cat.id, sub)}
+                      className="text-stone-400 hover:text-red-600"
+                      aria-label={`Remove ${sub}`}
+                    >
+                      <X className="size-3" />
+                    </button>
+                  </span>
+                );
+              })}
             </div>
 
             <div className="mt-3 flex gap-2">
@@ -5291,7 +5306,8 @@ function FiltersPage() {
               </Button>
             </div>
           </div>
-        ))}
+          );
+        })}
       </div>
 
       <div className="rounded-none border border-dashed border-stone-300 p-5">
