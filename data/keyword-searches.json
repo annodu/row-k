@@ -1,0 +1,371 @@
+{
+  "meta": {
+    "source": "keyword-searches",
+    "updatedAt": "2026-06-06T02:49:16.346Z",
+    "count": 1
+  },
+  "searches": [
+    {
+      "id": "keyword-extensions-blowdry",
+      "name": "Bouncy blowout",
+      "keywords": [
+        "bouncy blowout",
+        "bouncy blowdry",
+        "90s blowout",
+        "round brush",
+        "curly blowdry"
+      ],
+      "status": "research",
+      "notes": "",
+      "resultCount": 14,
+      "results": [
+        {
+          "id": "moshhairlondon",
+          "name": "Moshhairlondon",
+          "areaLabel": "London",
+          "bookingPlatform": "Direct website",
+          "bookingUrl": "https://www.moshhairlondon.co.uk",
+          "websiteUrl": "https://www.moshhairlondon.co.uk",
+          "instagramUrl": "https://www.instagram.com/moshhairlondon/",
+          "matches": [
+            {
+              "keywords": [
+                "round brush"
+              ],
+              "line": "Wash & Round Brush Blow-dry",
+              "snippet": "NATURAL HAIR STYLING / Wash & Round Brush Blow-dry / NATURAL HAIR STYLING",
+              "sourceType": "embedded booking services",
+              "sourceUrl": "https://moshbeautyuk.as.me/schedule/5e6af3e2"
+            },
+            {
+              "keywords": [
+                "round brush"
+              ],
+              "line": "Wash, Cut & Round Brush Blow-dry/Style",
+              "snippet": "NATURAL HAIR STYLING / Wash, Cut & Round Brush Blow-dry/Style / NATURAL HAIR STYLING",
+              "sourceType": "embedded booking services",
+              "sourceUrl": "https://moshbeautyuk.as.me/schedule/5e6af3e2"
+            }
+          ]
+        },
+        {
+          "id": "walvan-hair",
+          "name": "Walvan Hair",
+          "areaLabel": "East",
+          "bookingPlatform": "Acuity",
+          "bookingUrl": "https://walvanhair.as.me/schedule/16aae1f3",
+          "websiteUrl": "",
+          "instagramUrl": "https://www.instagram.com/walvanhair/",
+          "matches": [
+            {
+              "keywords": [
+                "curly blowdry"
+              ],
+              "line": "Curly Blowdry",
+              "snippet": "Styling ONLY Services / Curly Blowdry / This service is for curls focused towards the end of your hair",
+              "sourceType": "booking services",
+              "sourceUrl": "https://walvanhair.as.me/schedule/16aae1f3"
+            }
+          ]
+        },
+        {
+          "id": "tribalbraidsandbeautysalon",
+          "name": "Tribalbraidsandbeautysalon",
+          "areaLabel": "North",
+          "bookingPlatform": "Direct website",
+          "bookingUrl": "https://tribalbraidsandbeauty.as.me/schedule/2c86eae2",
+          "websiteUrl": "",
+          "instagramUrl": "https://www.instagram.com/tribalbraidsandbeautysalon/",
+          "matches": [
+            {
+              "keywords": [
+                "round brush"
+              ],
+              "line": "Includes steam, shampoo, intensive moisture conditioning treatment, paddle or round brush blow dry, silk press, trim Arrive detangled or add on detangle. Detangling starts from £30",
+              "snippet": "Silk Press with intensive moisture conditioning treatment ABOVE SHOULDER / Includes steam, shampoo, intensive moisture conditioning treatment, paddle or round brush blow dry, silk press, trim Arrive detangled or add on detangle. Detangling starts from £30 / ✨Wash Day Sundays✨",
+              "sourceType": "booking services",
+              "sourceUrl": "https://tribalbraidsandbeauty.as.me/schedule/2c86eae2"
+            }
+          ]
+        },
+        {
+          "id": "tressly-studios",
+          "name": "Tressly Studios",
+          "areaLabel": "South East",
+          "bookingPlatform": "Direct website",
+          "bookingUrl": "https://tress.ly/booking",
+          "websiteUrl": "",
+          "instagramUrl": "https://www.instagram.com/tressly.studios/",
+          "matches": [
+            {
+              "keywords": [
+                "bouncy blowdry"
+              ],
+              "line": "Includes a wash, condition and basic blowdry. Not a bouncy blowdry or styling service.",
+              "snippet": "Wash and Blowdry / Includes a wash, condition and basic blowdry. Not a bouncy blowdry or styling service. / PIXIES",
+              "sourceType": "embedded booking services",
+              "sourceUrl": "https://iamolaeletu.as.me/schedule/d8cbe21f"
+            }
+          ]
+        },
+        {
+          "id": "pheliamarie",
+          "name": "Phelia Marie",
+          "areaLabel": "South East",
+          "bookingPlatform": "Acuity",
+          "bookingUrl": "https://pheliamarie.as.me/schedule/2bf40a73",
+          "websiteUrl": "",
+          "instagramUrl": "https://www.instagram.com/pheliamarie/",
+          "matches": [
+            {
+              "keywords": [
+                "bouncy blowout"
+              ],
+              "line": "Wash and Blow-dry (bouncy blow out or normal blow out)",
+              "snippet": "Package Deals / Wash and Blow-dry (bouncy blow out or normal blow out) / Great for natural hair and Hair extension installs. Service includes: -Consultation (optional) -Wash -Deep conditioning mask -Blow-dry (bouncy or straight) Location and extra styling in add ons.",
+              "sourceType": "booking services",
+              "sourceUrl": "https://pheliamarie.as.me/schedule/2bf40a73"
+            }
+          ]
+        },
+        {
+          "id": "iam-ola-eletu",
+          "name": "I Am Ola Eletu",
+          "areaLabel": "South East",
+          "bookingPlatform": ".as.me",
+          "bookingUrl": "https://iamolaeletu.as.me/schedule/d8cbe21f",
+          "websiteUrl": "",
+          "instagramUrl": "https://www.instagram.com/iamolaeletu_/",
+          "matches": [
+            {
+              "keywords": [
+                "bouncy blowdry"
+              ],
+              "line": "Includes a wash, condition and basic blowdry. Not a bouncy blowdry or styling service.",
+              "snippet": "Wash and Blowdry / Includes a wash, condition and basic blowdry. Not a bouncy blowdry or styling service. / PIXIES",
+              "sourceType": "booking services",
+              "sourceUrl": "https://iamolaeletu.as.me/schedule/d8cbe21f"
+            }
+          ]
+        },
+        {
+          "id": "hair-zones-uk",
+          "name": "Hair Zones UK",
+          "areaLabel": "East",
+          "bookingPlatform": "Setmore",
+          "bookingUrl": "https://hairzonesuk.setmore.com/",
+          "websiteUrl": "",
+          "instagramUrl": "https://www.instagram.com/hairzonesuk/",
+          "matches": [
+            {
+              "keywords": [
+                "round brush"
+              ],
+              "line": "WASH AND BLOWDRY (round brush)",
+              "snippet": "Book / WASH AND BLOWDRY (round brush) / .",
+              "sourceType": "booking",
+              "sourceUrl": "https://hairzonesuk.setmore.com/"
+            },
+            {
+              "keywords": [
+                "round brush"
+              ],
+              "line": "using the round brush for smooth and silky finish.",
+              "snippet": "£40 / using the round brush for smooth and silky finish. / Haircut",
+              "sourceType": "booking",
+              "sourceUrl": "https://hairzonesuk.setmore.com/"
+            }
+          ]
+        },
+        {
+          "id": "hair-by-geneve",
+          "name": "Hair by Geneve",
+          "areaLabel": "Essex",
+          "bookingPlatform": "Acuity",
+          "bookingUrl": "https://genevehairandbeauty.as.me/schedule/e305bd6f",
+          "websiteUrl": "",
+          "instagramUrl": "https://www.instagram.com/hairby_geneve/",
+          "matches": [
+            {
+              "keywords": [
+                "round brush"
+              ],
+              "line": "Wash and round brush blow-dry for a bouncy/smoother look NOT FOR WEAVES",
+              "snippet": "Wash and Brush Blow-dry / Wash and round brush blow-dry for a bouncy/smoother look NOT FOR WEAVES / Natural, Cornrows & Men's Hairstyles",
+              "sourceType": "booking services",
+              "sourceUrl": "https://genevehairandbeauty.as.me/schedule/e305bd6f"
+            }
+          ]
+        },
+        {
+          "id": "gias-hair-salon",
+          "name": "Gias Hair Salon",
+          "areaLabel": "South West",
+          "bookingPlatform": "Acuity",
+          "bookingUrl": "https://giashair.as.me/schedule/ab92ade9",
+          "websiteUrl": "",
+          "instagramUrl": "https://www.instagram.com/giashairsalon/",
+          "matches": [
+            {
+              "keywords": [
+                "bouncy blowdry"
+              ],
+              "line": "Wash & Bouncy Blowdry",
+              "snippet": "Natural hair care / Wash & Bouncy Blowdry / Training",
+              "sourceType": "booking services",
+              "sourceUrl": "https://giashair.as.me/schedule/ab92ade9"
+            }
+          ]
+        },
+        {
+          "id": "divas-by-claudia",
+          "name": "Divas by Claudia",
+          "areaLabel": "East",
+          "bookingPlatform": "Direct website",
+          "bookingUrl": "https://www.divasbyclaudia.com/book-appointment",
+          "websiteUrl": "",
+          "instagramUrl": "https://www.instagram.com/divasbyclaudia/",
+          "matches": [
+            {
+              "keywords": [
+                "round brush"
+              ],
+              "line": "ROUND BRUSH BLOW DRY",
+              "snippet": "Book Now / ROUND BRUSH BLOW DRY / For straight weaves and wigs only.",
+              "sourceType": "booking",
+              "sourceUrl": "https://www.divasbyclaudia.com/book-appointment"
+            }
+          ]
+        },
+        {
+          "id": "alevenn-hair",
+          "name": "Alevenn Hair",
+          "areaLabel": "North West",
+          "bookingPlatform": "Acuity",
+          "bookingUrl": "https://alevennhair.as.me/schedule/87443df7",
+          "websiteUrl": "",
+          "instagramUrl": "https://www.instagram.com/alevenn_hair/",
+          "matches": [
+            {
+              "keywords": [
+                "round brush"
+              ],
+              "line": "Removal of install and a wash, Olapex treatment & blow dry and (with afro comb pick attachment) if you would like a round brush blow dry please include as an add on.",
+              "snippet": "Sew in removal with Treatment / Removal of install and a wash, Olapex treatment & blow dry and (with afro comb pick attachment) if you would like a round brush blow dry please include as an add on. / Sew in weave Maintenance (includes 2x6 sew in)",
+              "sourceType": "booking services",
+              "sourceUrl": "https://alevennhair.as.me/schedule/87443df7"
+            },
+            {
+              "keywords": [
+                "round brush"
+              ],
+              "line": "Removal of install and a wash and blow dry (with afro comb pick attachment) if you would like a round brush blow dry please include as an add on.",
+              "snippet": "Quick weave removal / Removal of install and a wash and blow dry (with afro comb pick attachment) if you would like a round brush blow dry please include as an add on. / U- Part wig install",
+              "sourceType": "booking services",
+              "sourceUrl": "https://alevennhair.as.me/schedule/87443df7"
+            }
+          ]
+        },
+        {
+          "id": "fejiroboje",
+          "name": "Fejiroboje",
+          "areaLabel": "East London",
+          "bookingPlatform": "Acuity",
+          "bookingUrl": "https://app.acuityscheduling.com/schedule/67700638?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQPOTM2NjE5NzQzMzkyNDU5AAGn49O9nJliexPKxDgpPRDMXo6oDEGohl3f6N6o5GFcMnq6NhcP3f8W6Xw5wbQ_aem_D-xXNYFgPCFUo7XeMdYLFA&utm_id=97760_v0_s00_e0_tv3",
+          "websiteUrl": "",
+          "instagramUrl": "https://www.instagram.com/fejiroboje/",
+          "matches": [
+            {
+              "keywords": [
+                "bouncy blowdry"
+              ],
+              "line": "BOUNCY BLOWDRY",
+              "snippet": "STYLING SERVICES / BOUNCY BLOWDRY / STYLING SERVICES",
+              "sourceType": "booking services",
+              "sourceUrl": "https://app.acuityscheduling.com/schedule/67700638?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQPOTM2NjE5NzQzMzkyNDU5AAGn49O9nJliexPKxDgpPRDMXo6oDEGohl3f6N6o5GFcMnq6NhcP3f8W6Xw5wbQ_aem_D-xXNYFgPCFUo7XeMdYLFA&utm_id=97760_v0_s00_e0_tv3"
+            }
+          ]
+        },
+        {
+          "id": "blubanhair",
+          "name": "Blubanhair",
+          "areaLabel": "Essex",
+          "bookingPlatform": "Acuity",
+          "bookingUrl": "https://blubanhair.as.me/schedule/4c572026",
+          "websiteUrl": "",
+          "instagramUrl": "https://www.instagram.com/blubanhair_/",
+          "matches": [
+            {
+              "keywords": [
+                "round brush"
+              ],
+              "line": "Includes: - wash - smooth round brush blow dry - silk press - trim (extremely recommended but optional) Please send me a picture of your hair before booking this service.",
+              "snippet": "Silk press & wash / Includes: - wash - smooth round brush blow dry - silk press - trim (extremely recommended but optional) Please send me a picture of your hair before booking this service. / Natural hairstyles",
+              "sourceType": "booking services",
+              "sourceUrl": "https://blubanhair.as.me/schedule/4c572026"
+            },
+            {
+              "keywords": [
+                "round brush"
+              ],
+              "line": "Includes: - wash - deep conditioning steam treatment - smooth round brush blow dry - silk press - trim (extremely recommended but optional) Please send me a picture of your hair before booking this service.",
+              "snippet": "Silk press & treatment / Includes: - wash - deep conditioning steam treatment - smooth round brush blow dry - silk press - trim (extremely recommended but optional) Please send me a picture of your hair before booking this service. / Other services",
+              "sourceType": "booking services",
+              "sourceUrl": "https://blubanhair.as.me/schedule/4c572026"
+            }
+          ]
+        },
+        {
+          "id": "murisalondon",
+          "name": "Murisalondon",
+          "areaLabel": "Essex / East London",
+          "bookingPlatform": "Acuity",
+          "bookingUrl": "https://murisalondon.as.me/schedule/17455dc3",
+          "websiteUrl": "https://murisalondon.as.me/schedule/17455dc3",
+          "instagramUrl": "https://www.instagram.com/murisalondon/",
+          "matches": [
+            {
+              "keywords": [
+                "round brush"
+              ],
+              "line": "Includes - Wash - Deep conditioning steam/oil treatment - Scalp massage - Paddle/round brush blow dry",
+              "snippet": "Deep Hydration & Hot Oil Steam Treatment / Includes - Wash - Deep conditioning steam/oil treatment - Scalp massage - Paddle/round brush blow dry / Natural Hair Care & Styling",
+              "sourceType": "booking services",
+              "sourceUrl": "https://murisalondon.as.me/schedule/17455dc3"
+            },
+            {
+              "keywords": [
+                "round brush"
+              ],
+              "line": "Includes - Wash - Deep conditioning strengthening steam treatment or moisture protein steam treatment - Scalp massage - Paddle/round brush blow dry",
+              "snippet": "Protein Repair Steam Therapy / Includes - Wash - Deep conditioning strengthening steam treatment or moisture protein steam treatment - Scalp massage - Paddle/round brush blow dry / Natural Hair Care & Styling",
+              "sourceType": "booking services",
+              "sourceUrl": "https://murisalondon.as.me/schedule/17455dc3"
+            },
+            {
+              "keywords": [
+                "round brush"
+              ],
+              "line": "Includes - Scalp exfoliation - Wash - Deep conditioning steam treatment - Scalp massage - Paddle/round brush blow dry - Suitable for dry and/or itchy scalp",
+              "snippet": "Purifying Scalp Detox & Hydration Therapy / Includes - Scalp exfoliation - Wash - Deep conditioning steam treatment - Scalp massage - Paddle/round brush blow dry - Suitable for dry and/or itchy scalp / Natural Hair Care & Styling",
+              "sourceType": "booking services",
+              "sourceUrl": "https://murisalondon.as.me/schedule/17455dc3"
+            },
+            {
+              "keywords": [
+                "round brush"
+              ],
+              "line": "Includes - Steam Wash - Round brush or fork blow dry if needed - If your hair needs detangling, please send us a picture of your hair via email before booking an appointment.",
+              "snippet": "Wash & Blow Dry / Includes - Steam Wash - Round brush or fork blow dry if needed - If your hair needs detangling, please send us a picture of your hair via email before booking an appointment. / Natural Hair Care & Styling",
+              "sourceType": "booking services",
+              "sourceUrl": "https://murisalondon.as.me/schedule/17455dc3"
+            }
+          ]
+        }
+      ],
+      "createdAt": "2026-06-06T02:43:54.919Z",
+      "updatedAt": "2026-06-06T02:49:16.346Z",
+      "lastRunAt": "2026-06-06T02:44:48.862Z"
+    }
+  ]
+}

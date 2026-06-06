@@ -1,7 +1,7 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-06-05T19:08:41.823Z",
+    "updatedAt": "2026-06-06T03:05:12.362Z",
     "count": 678,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
@@ -290,19 +290,28 @@
       "evidence": [
         "Submitted link: https://www.instagram.com/fulhamscalphair/"
       ],
-      "priceBand": "",
-      "priceSource": "",
-      "priceEvidence": [],
-      "priceCheckedAt": "",
-      "priceConfidence": "",
-      "priceUpdatedAt": "",
+      "priceBand": "£",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "Clinical Treatment - £90",
+        "on orders over £60",
+        "Clinical Treatment: - £90",
+        "Price range: £18.00 through £55.00",
+        "Price range: £15.00 through £55.00",
+        "Price range: £18.00 through £30.00",
+        "£18.00 – £55.00",
+        "£15.00 – £55.00"
+      ],
+      "priceCheckedAt": "2026-06-05T21:52:19.489Z",
+      "priceConfidence": "high",
+      "priceUpdatedAt": "2026-06-05T21:52:19.490Z",
       "tiktokUrl": "",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
-      "servicePriceBand": "",
+      "servicePriceBand": "£",
       "packagePriceBand": "",
       "priceIncludesHair": false,
-      "priceComparisonMode": "",
+      "priceComparisonMode": "service-only",
       "updatedAt": "2026-06-05T18:45:43.366Z"
     },
     {
@@ -394,6 +403,8 @@
       "websiteUrl": "https://thecurlsanctuaryheadspa.as.me/schedule/80a82172",
       "instagramUrl": "https://www.instagram.com/thecurlsanctuaryheadspa/",
       "services": [
+        "Japanese head spa",
+        "Wash and go",
         "Wash & blowdry"
       ],
       "summary": "Admin draft created from stylist intake.",
@@ -700,19 +711,28 @@
       "evidence": [
         "Submitted link: https://www.instagram.com/covemedical/"
       ],
-      "priceBand": "",
-      "priceSource": "",
-      "priceEvidence": [],
-      "priceCheckedAt": "",
-      "priceConfidence": "",
-      "priceUpdatedAt": "",
+      "priceBand": "££",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "BIOTIN - £40",
+        "CHEEK FILLER 2ml - £210",
+        "CHEEK FILLER 1ml - £110",
+        "CHIN FILLER - £210",
+        "CHIN FILLER - £110",
+        "CLASSIC LIP FILLER 1ML - £110",
+        "CLASSIC LIP FILLER 0.7ML - £90",
+        "FACIAL BALANCING BUNDLE 4ML - £420"
+      ],
+      "priceCheckedAt": "2026-06-05T21:52:19.489Z",
+      "priceConfidence": "high",
+      "priceUpdatedAt": "2026-06-05T21:52:19.490Z",
       "tiktokUrl": "",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
-      "servicePriceBand": "",
+      "servicePriceBand": "££",
       "packagePriceBand": "",
       "priceIncludesHair": false,
-      "priceComparisonMode": "",
+      "priceComparisonMode": "service-only",
       "updatedAt": "2026-06-05T19:01:20.775Z"
     },
     {
@@ -831,7 +851,8 @@
         "Moisturising treatment",
         "Trim / hair cut",
         "Twists (with extensions)",
-        "Wash & blowdry"
+        "Wash & blowdry",
+        "Bouncy blowout / Round Brush Blow dry"
       ],
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
@@ -961,7 +982,7 @@
         "Traditional sew-in / leave out",
         "Quick weave",
         "Moisturising treatment",
-        "Wash & blowdry",
+        "Silk press",
         "U-part wig install",
         "Wig install (frontal / closure)",
         "Custom wig",
@@ -1328,6 +1349,7 @@
       "instagramUrl": "https://www.instagram.com/houseoffbl/",
       "services": [
         "Wash & blowdry",
+        "Bouncy blowout / Round Brush Blow dry",
         "Microlinks",
         "Clip ins (+ silk press)",
         "Wig colouring / bundle colouring",
@@ -1532,26 +1554,26 @@
       "evidence": [
         "Submitted link: https://www.instagram.com/mmluxe.hair/"
       ],
-      "priceBand": "£",
-      "priceSource": "manual",
+      "priceBand": "££££",
+      "priceSource": "auto",
       "priceEvidence": [
-        "Twist - - Twist - £20.00",
-        "Kids Twist - - Kids Twist - £2000",
-        "Medium - Large Knotless Braids - - Medium - Large Knotless Braids - £20.00",
-        "Small Medium Knotless Braids - - Small Medium Knotless Braids - £20.00",
-        "Small Knotless Braids - - Small Knotless Braids - £20.00",
-        "Extra Small Knotless Braids - - Extra Small Knotless Braids - £20.00",
-        "Bohemian Knotless Braids - - Bohemian Knotless Braids - £20.00",
-        "Goddess Braids - - Goddess Braids - £20.00"
+        "Twist - £2000",
+        "Kids Twist - £2000",
+        "Medium - Large Knotless Braids - £2000",
+        "Small Medium Knotless Braids - £2000",
+        "Small Knotless Braids - £2000",
+        "Extra Small Knotless Braids - £2000",
+        "Bohemian Knotless Braids - £2000",
+        "Goddess Braids - £2000"
       ],
-      "priceCheckedAt": "2026-06-04T16:05:19.590Z",
-      "priceConfidence": "manual",
-      "priceUpdatedAt": "2026-06-05T17:04:11.167Z",
+      "priceCheckedAt": "2026-06-05T21:50:39.655Z",
+      "priceConfidence": "high",
+      "priceUpdatedAt": "2026-06-05T21:50:39.655Z",
       "tiktokUrl": "",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
       "updatedAt": "2026-06-05T17:04:15.704Z",
-      "servicePriceBand": "",
+      "servicePriceBand": "££££",
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only"
@@ -2959,7 +2981,7 @@
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
       "updatedAt": "2026-05-26T23:12:15.324Z",
-      "priceBand": "£",
+      "priceBand": "££",
       "priceSource": "auto",
       "priceEvidence": [
         "Bohemian KB - Extra small - £280",
@@ -2969,11 +2991,15 @@
         "Freestyle Bohemian KB - Extra Small - £250",
         "Freestyle Bohemian KB - Small - £195",
         "Freestyle Bohemian KB - Medium - £175",
-        "2 Feed-in braids (all back) - £45"
+        "Bohemian KB take down & wash - £85"
       ],
-      "priceCheckedAt": "2026-06-03T23:33:16.054Z",
+      "priceCheckedAt": "2026-06-05T21:50:39.654Z",
       "priceConfidence": "high",
-      "priceUpdatedAt": "2026-06-03T23:33:16.055Z"
+      "priceUpdatedAt": "2026-06-05T21:50:39.655Z",
+      "servicePriceBand": "££",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only"
     },
     {
       "id": "her-ego",
@@ -3295,7 +3321,8 @@
         "Custom wig",
         "Silk press",
         "Wash & blowdry",
-        "Editorial / Session styling"
+        "Editorial / Session styling",
+        "Extensions blowdry"
       ],
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
@@ -4777,6 +4804,7 @@
         "Microlinks",
         "Tape ins",
         "Wash & blowdry",
+        "Extensions blowdry",
         "Hybrid sew in (tapes + sew in)"
       ],
       "summary": "Manual entry added from your South East London extensions, sew-ins, and treatments list.",
@@ -4869,7 +4897,8 @@
         "Wash & blowdry",
         "Clip ins / Silk press + Clip ins",
         "Tracks / Silk press + tracks / Invisible sew-in",
-        "Olaplex treatment"
+        "Olaplex treatment",
+        "Extensions blowdry"
       ],
       "priceBand": "£",
       "priceSource": "auto",
@@ -5131,7 +5160,7 @@
         "Wig install",
         "Custom wig"
       ],
-      "priceBand": "££",
+      "priceBand": "£",
       "priceSource": "auto",
       "priceEvidence": [
         "Traditional sew-in with 20” hair included - £370",
@@ -5143,9 +5172,13 @@
         "20\" Pre-made frontal wig install (HAIR INCLUDED) - £475",
         "22\" Pre-made frontal wig install (HAIR INCLUDED) - £500"
       ],
-      "priceCheckedAt": "2026-06-03T23:32:31.063Z",
+      "priceCheckedAt": "2026-06-05T21:48:45.150Z",
       "priceConfidence": "high",
-      "priceUpdatedAt": "2026-06-03T23:32:31.064Z"
+      "priceUpdatedAt": "2026-06-05T21:48:45.152Z",
+      "servicePriceBand": "£",
+      "packagePriceBand": "££££",
+      "priceIncludesHair": true,
+      "priceComparisonMode": "mixed"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -5164,6 +5197,7 @@
       "instagramUrl": "https://www.instagram.com/andrepierreltd/",
       "services": [
         "Wash & blowdry",
+        "Extensions blowdry",
         "Relaxer / texturiser",
         "Full head colour",
         "Balayage",
@@ -5660,6 +5694,7 @@
         "Moisturising treatment",
         "Relaxer / texturiser",
         "Wash & blowdry",
+        "Extensions blowdry",
         "Silk press",
         "Feed-in braids",
         "Knotless braids",
@@ -5913,22 +5948,22 @@
       "evidence": [
         "User-provided manual addition."
       ],
-      "priceBand": "££££",
-      "priceSource": "manual",
+      "priceBand": "£££",
+      "priceSource": "auto",
       "priceEvidence": [
-        "Small Boho Braids *Human ends & throughout* - 13 hours 20 minutes @ £430.00",
-        "10 hours @ £380.00",
-        "Please be patient style might take longer depending on hair texture. - 6 hours 40 minutes @ £300.00",
-        "5 hours @ £200.00",
-        "BOHO BRAIDS *100% HUMAN HAIR* - 12 hours @ £1,000.00",
-        "multiple curl pattern available: loose wave, wet and wavy (please contact me for other patterns) - 9 hours 10 minutes @ £800.00",
-        "multiple curl pattern available: loose wave, wet and wavy (please contact me for other patterns) - 7 hours 30 minutes @ £700.00",
-        "FLIP OVER FULANI BRAIDS - SMALL - 8 hours 20 minutes @ £310.00"
+        "Small Boho Braids *Human ends & throughout* - £430",
+        "S/M Boho *Human ends & throughout* - £380",
+        "MEDIUM *Human ends & throughout* - £300",
+        "LARGE *Human ends & throughout * - £200",
+        "SMALL *100% Human Hair* - £1000",
+        "S/M *100% human hair* - £800",
+        "MEDIUM. *100% Human Hair* - £700",
+        "FLIP OVER FULANI BRAIDS - SMALL - £310"
       ],
-      "priceCheckedAt": "2026-06-05T18:26:28.553Z",
-      "priceConfidence": "manual",
-      "priceUpdatedAt": "2026-06-05T18:26:48.100Z",
-      "servicePriceBand": "",
+      "priceCheckedAt": "2026-06-05T21:45:21.986Z",
+      "priceConfidence": "high",
+      "priceUpdatedAt": "2026-06-05T21:45:21.988Z",
+      "servicePriceBand": "£££",
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
@@ -6022,6 +6057,7 @@
       "hijabiFriendly": true,
       "services": [
         "Wash & blowdry",
+        "Bouncy blowout / Round Brush Blow dry",
         "K-18 treatment",
         "Olaplex treatment",
         "Hair botox",
@@ -6500,7 +6536,8 @@
         "Olaplex treatment",
         "Full head colour",
         "Highlights",
-        "Balayage"
+        "Balayage",
+        "Extensions blowdry"
       ],
       "priceBand": "££",
       "priceSource": "manual",
@@ -7932,7 +7969,6 @@
       "bookingUrl": "https://chrissieandhairxlushgirl.as.me/schedule/39090276",
       "instagramUrl": "https://www.instagram.com/chrissieandhair/",
       "services": [
-        "Wash & blowdry",
         "Cornrows / Twists / Underwig cornrows",
         "Pixie / finger waves",
         "Half up half down",
@@ -8003,8 +8039,6 @@
       "instagramUrl": "https://www.instagram.com/claire_the_curl_therapist/",
       "services": [
         "Wash & blowdry",
-        "Curly cut / wash & go",
-        "Full head colour",
         "Highlights",
         "Balayage",
         "Olaplex treatment",
@@ -8025,7 +8059,16 @@
       ],
       "priceCheckedAt": "2026-06-04T19:36:56.305Z",
       "priceUpdatedAt": "2026-06-04T22:37:53.006Z",
-      "priceConfidence": "manual"
+      "priceConfidence": "manual",
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "updatedAt": "2026-06-06T03:02:43.527Z"
     },
     {
       "id": "cm-hair-uk",
@@ -8089,22 +8132,22 @@
       "evidence": [
         "User-provided manual addition."
       ],
-      "priceBand": "££",
+      "priceBand": "££££",
       "priceSource": "auto",
       "priceEvidence": [
-        "Mens braids / cornrows - £50",
-        "Preparting Service Smedium Size - £120",
-        "Preparting Service Small Size - £150",
-        "Small 100% human hair braids Indian hair 3 bundles included - £850",
-        "Smedium 100% human hair braids Indian hair 2 bundles included - £550",
-        "Small Boho Braids Vietnamese hair 1 bundle included - £700",
-        "Smedium Boho Braids Indian hair 1 bundle included - £450",
-        "Boho Braids category - Vietnamese or Indian hair included"
+        "SMALL - 100% human hair braids - INDIAN HAIR (3 bundles) - £850",
+        "SMEDIUM - 100% human hair braids - INDIAN HAIR (2 bundles) - £550",
+        "SMEDIUM - 100% human hair braids - INDIAN HAIR (3 bundles) - £650",
+        "SMALL - 100% human hair braids - INDIAN HAIR (2 bundles) - £750",
+        "SMALL - 100% human hair braids - VIETNAMESE HAIR (3 bundles) - £900",
+        "SMALL - 100% human hair braids - VIETNAMESE HAIR (2 bundles) - £800",
+        "SMEDIUM - 100% human hair braids - VIETNAMESE HAIR (3 bundles) - £700",
+        "SMEDIUM - 100% human hair braids - VIETNAMESE HAIR (2 bundles) - £600"
       ],
-      "priceCheckedAt": "2026-06-04T10:34:29.798Z",
+      "priceCheckedAt": "2026-06-05T21:41:24.727Z",
       "priceConfidence": "high",
-      "priceUpdatedAt": "2026-06-04T10:34:29.798Z",
-      "servicePriceBand": "££",
+      "priceUpdatedAt": "2026-06-05T21:41:24.728Z",
+      "servicePriceBand": "££££",
       "packagePriceBand": "££££",
       "priceIncludesHair": true,
       "priceComparisonMode": "mixed"
@@ -8171,7 +8214,8 @@
       "bookingUrl": "https://www.hershesons.com/collections/meet-the-experts/products/conor-m",
       "instagramUrl": "https://www.instagram.com/conor_hair/",
       "services": [
-        "Wash & blowdry"
+        "Wash & blowdry",
+        "Bouncy blowout / Round Brush Blow dry"
       ],
       "websiteUrl": "",
       "tiktokUrl": "",
@@ -9099,6 +9143,7 @@
         "Tracks (+ silk press) / partial / invisible sew-in",
         "Flipover / Versatile sew-in",
         "Silk press",
+        "Bouncy blowout / Round Brush Blow dry",
         "Moisturising treatment",
         "U-part wig install",
         "Frontal ponytail / bun",
@@ -9183,8 +9228,12 @@
       "instagramUrl": "https://www.instagram.com/dominicanhair.republic/",
       "services": [
         "Wash & blowdry",
-        "Highlights",
-        "Full head colour"
+        "Tracks (+ silk press) / partial / invisible sew-in",
+        "Relaxer / texturiser",
+        "Trim / hair cut",
+        "Hair botox",
+        "Extensions blowdry",
+        "Bouncy blowout / Round Brush Blow dry"
       ],
       "summary": "Manual entry added from your latest salon update batch.",
       "source": "manual",
@@ -9205,7 +9254,16 @@
       ],
       "priceCheckedAt": "2026-06-04T17:00:18.149Z",
       "priceUpdatedAt": "2026-06-04T17:42:51.433Z",
-      "priceConfidence": "medium"
+      "priceConfidence": "medium",
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "updatedAt": "2026-06-06T03:00:45.150Z"
     },
     {
       "id": "drippin-styles-hair-studio",
@@ -9769,6 +9827,7 @@
         "Traditional sew-in / leave out",
         "Closure sew-in",
         "Tape ins",
+        "Extensions blowdry",
         "Clip ins (+ silk press)",
         "Half up half down",
         "Half braids, half sew-in",
@@ -9854,6 +9913,7 @@
       "instagramUrl": "https://www.instagram.com/erroldouglasldn/",
       "services": [
         "Wash & blowdry",
+        "Extensions blowdry",
         "Full head colour",
         "Highlights",
         "Balayage",
@@ -10173,8 +10233,6 @@
       "services": [
         "Pixie / finger waves",
         "Relaxer / texturiser",
-        "Trim / hair cut",
-        "Wash & blowdry",
         "Sleek ponytail / bun",
         "Half up half down",
         "Traditional sew-in / leave out",
@@ -10261,7 +10319,6 @@
         "Wig colouring / bundle colouring",
         "Sleek ponytail / bun",
         "Closure sew-in",
-        "Wash & blowdry",
         "Traditional sew-in / leave out",
         "U-part wig install",
         "Frontal ponytail / bun",
@@ -10315,10 +10372,7 @@
         "LA weave",
         "Traditional sew-in / leave out",
         "K-tips / invisible strands",
-        "Hybrid sew in (tapes + sew in)",
-        "Sew-in take-down",
-        "Wash & blowdry",
-        "Trim / hair cut"
+        "Hybrid sew in (tapes + sew in)"
       ],
       "summary": "Manual entry added from your latest salon update batch.",
       "source": "manual",
@@ -10668,19 +10722,30 @@
         "north-west",
         "central"
       ],
-      "priceBand": "££",
-      "priceSource": "manual",
+      "priceBand": "£",
+      "priceSource": "auto",
       "priceEvidence": [
-        "Organic Protein - from £132"
+        "Cut & Styling - from £66",
+        "Pos Chemicals Neutraliser - from £16.50",
+        "Organic Protein - from £132",
+        "Regrowth - from £55",
+        "Olaplex - £33",
+        "Toner - £33",
+        "Hair extensions tape - £220",
+        "Extension removed (tape) - £55"
       ],
-      "priceCheckedAt": "2026-06-03T23:48:13.120Z",
-      "priceConfidence": "manual",
-      "priceUpdatedAt": "2026-06-05T16:08:33.402Z",
+      "priceCheckedAt": "2026-06-05T21:39:02.320Z",
+      "priceConfidence": "high",
+      "priceUpdatedAt": "2026-06-05T21:39:02.320Z",
       "websiteUrl": "",
       "tiktokUrl": "",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
-      "updatedAt": "2026-06-05T16:08:37.296Z"
+      "updatedAt": "2026-06-05T16:08:37.296Z",
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only"
     },
     {
       "id": "glo-lounge-london",
@@ -10874,7 +10939,8 @@
       "services": [
         "Wash & blowdry",
         "Trim / hair cut",
-        "Silk press"
+        "Silk press",
+        "Bouncy blowout / Round Brush Blow dry"
       ],
       "summary": "Search for  3B or 4C, they have services like Textured Hair Cut & Finish",
       "source": "manual",
@@ -11428,8 +11494,7 @@
         "Knotless braids",
         "Box braids",
         "Pixie / finger waves",
-        "Healthy hair plans & consultations",
-        "Healthy hair consultations & regimes"
+        "Healthy hair plans & consultations"
       ],
       "priceBand": "££",
       "priceSource": "auto",
@@ -11497,6 +11562,7 @@
       "services": [
         "Olaplex treatment",
         "Silk press",
+        "Bouncy blowout / Round Brush Blow dry",
         "Texture release",
         "Tape ins",
         "Wash & blowdry",
@@ -12076,6 +12142,7 @@
         "Traditional sew-in / leave out",
         "Moisturising treatment",
         "Silk press",
+        "Bouncy blowout / Round Brush Blow dry",
         "K-tips / invisible strands",
         "LA weave",
         "Microlinks",
@@ -12096,7 +12163,8 @@
         "Half braids, half sew-in",
         "Crochet",
         "Tracks (+ silk press) / partial / invisible sew-in",
-        "Miracle knots"
+        "Miracle knots",
+        "Extensions blowdry"
       ],
       "summary": "Manual entry added from your East London braids, extensions, sew-ins, and natural hair list.",
       "source": "manual",
@@ -13064,7 +13132,7 @@
       "neighbourhood": "Central London",
       "postcode": "",
       "bookingPlatform": "Direct website",
-      "bookingUrl": "https://www.fourlondon.com/hilary-1",
+      "bookingUrl": "https://www.phorest.com/salon/fourlondon/about-us/staff-profile?staffId=OF1BDAlXGamqWnTxJVahGw&firstname=Hilary",
       "instagramUrl": "https://www.instagram.com/hilaryzitahair/",
       "services": [
         "Full head colour",
@@ -13106,6 +13174,7 @@
         "Trim / hair cut",
         "Silk press",
         "Wash & blowdry",
+        "Bouncy blowout / Round Brush Blow dry",
         "Scalp detox / treatments",
         "Full head colour"
       ],
@@ -13188,7 +13257,7 @@
       "evidence": [
         "User-provided manual addition."
       ],
-      "priceBand": "£££",
+      "priceBand": "££££",
       "priceSource": "auto",
       "priceEvidence": [
         "Book an Appointment - Wig / No Closure / Natural Black - £250",
@@ -13200,9 +13269,13 @@
         "Book an Appointment - Wig / Glueless Closure / Natural Black - £450",
         "Book an Appointment - Wig / Glueless Closure / Jet Black - £500"
       ],
-      "priceCheckedAt": "2026-06-04T11:57:17.051Z",
+      "priceCheckedAt": "2026-06-05T21:35:36.672Z",
       "priceConfidence": "high",
-      "priceUpdatedAt": "2026-06-04T11:57:17.052Z"
+      "priceUpdatedAt": "2026-06-05T21:35:36.673Z",
+      "servicePriceBand": "££££",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -13430,7 +13503,7 @@
       "evidence": [
         "User-provided Instagram handle awaiting categorisation."
       ],
-      "priceBand": "££££",
+      "priceBand": "£££",
       "priceSource": "auto",
       "priceEvidence": [
         "Boho knotless braids - £280",
@@ -13442,9 +13515,13 @@
         "Boho locs (shoulder length) or slightly pas shoulder - £280",
         "Boho locs 18” ( MidBack)or slightly past MidBack - £450"
       ],
-      "priceCheckedAt": "2026-06-04T10:33:59.204Z",
+      "priceCheckedAt": "2026-06-05T21:35:36.672Z",
       "priceConfidence": "high",
-      "priceUpdatedAt": "2026-06-04T10:33:59.206Z"
+      "priceUpdatedAt": "2026-06-05T21:35:36.673Z",
+      "servicePriceBand": "£££",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only"
     },
     {
       "id": "hurthe-stylist",
@@ -13756,6 +13833,7 @@
       "instagramUrl": "https://www.instagram.com/innovativesalon9/",
       "services": [
         "Wash & blowdry",
+        "Extensions blowdry",
         "Moisturising treatment",
         "Silk press",
         "Wig cornrows",
@@ -14025,7 +14103,8 @@
         "Traditional sew-in / leave out",
         "Sleek ponytail / bun",
         "Closure sew-in",
-        "U-part wig install"
+        "U-part wig install",
+        "Extensions blowdry"
       ],
       "priceBand": "££",
       "priceSource": "auto",
@@ -14606,18 +14685,29 @@
         "north-west",
         "central"
       ],
-      "priceBand": "££",
-      "priceSource": "manual",
+      "priceBand": "£",
+      "priceSource": "auto",
       "priceEvidence": [
-        "Organic protein - from £132"
+        "High density - £20",
+        "Organic protein - from £132",
+        "Pos Chemicals Neutraliser - £16.50",
+        "Short - £33",
+        "Medium - £44",
+        "Long - £49.50",
+        "Extra Long - £55",
+        "Cut - £66"
       ],
-      "priceCheckedAt": "2026-06-04T13:05:41.468Z",
-      "priceConfidence": "manual",
-      "priceUpdatedAt": "2026-06-05T16:07:58.161Z",
+      "priceCheckedAt": "2026-06-05T21:33:26.332Z",
+      "priceConfidence": "high",
+      "priceUpdatedAt": "2026-06-05T21:33:26.333Z",
       "websiteUrl": "",
       "tiktokUrl": "",
       "canBraidWithoutGel": false,
-      "updatedAt": "2026-06-05T16:08:01.244Z"
+      "updatedAt": "2026-06-05T16:08:01.244Z",
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -14675,6 +14765,7 @@
         "Balayage",
         "Highlights",
         "Wash & blowdry",
+        "Bouncy blowout / Round Brush Blow dry",
         "Scalp detox / treatments",
         "K-18 treatment",
         "Keratin treatment",
@@ -15187,8 +15278,7 @@
         "Frontal sew-in",
         "Hybrid sew in (tapes + sew in)",
         "K-tips / invisible strands",
-        "Silk press",
-        "Wash & blowdry"
+        "Silk press"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -15196,25 +15286,25 @@
         "User-provided Instagram handle awaiting categorisation."
       ],
       "hijabiFriendly": false,
-      "priceBand": "£££",
-      "priceSource": "manual",
+      "priceBand": "££",
+      "priceSource": "auto",
       "priceEvidence": [
-        "Hybrid sew-in (k-tips) - 3 hours 45 minutes @ £265.00",
-        "Hybrid sew-in K-tips REFRESH (previous clients only) - 2 hours 30 minutes @ £95.00",
-        "Sew- in removal (previous clients only) - 2 hours @ £65.00",
-        "This service is for previous clients only. This service includes and removal, wash and blow-dry and hair treatment. - In the case of extremely tangled hair, you will be charged an extra fee of £20.",
-        "Traditional Sew-in leave out (one part) - 2 hours 50 minutes @ £135.00",
-        "Traditional Sew-in leave out (one part + texture release on leave out) - 4 hours @ £175.00",
-        "Frontal / closure replacements (for previous clients only, with wash & blow-dry) - 3 hours 15 minutes @ £160.00",
-        "Frontal / closure replacements (for previous clients only, without wash & blow- dry) - 3 hours @ £160.00"
+        "Hybrid sew-in (k-tips) - £265",
+        "Hybrid sew-in K-tips REFRESH (previous clients only) - £95",
+        "Sew- in removal (previous clients only) - £65",
+        "Traditional Sew-in leave out (one part) - £135",
+        "Traditional Sew-in leave out (one part + texture release on leave out) - £175",
+        "frontal sew-in without W.B - £155",
+        "Closure sew-in without W.B - £140",
+        "closure/ frontal sew-in re- install (previous clients only) - £145"
       ],
-      "priceCheckedAt": "2026-06-04T01:26:12.406Z",
-      "priceConfidence": "manual",
-      "priceUpdatedAt": "2026-06-05T17:10:36.511Z",
+      "priceCheckedAt": "2026-06-05T21:33:26.332Z",
+      "priceConfidence": "high",
+      "priceUpdatedAt": "2026-06-05T21:33:26.333Z",
       "websiteUrl": "",
       "tiktokUrl": "",
       "canBraidWithoutGel": false,
-      "servicePriceBand": "",
+      "servicePriceBand": "££",
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
@@ -15637,26 +15727,30 @@
         "Tracks (+ silk press) / partial / invisible sew-in",
         "Frontal sew-in"
       ],
-      "priceBand": "£",
-      "priceSource": "manual",
+      "priceBand": "££££",
+      "priceSource": "auto",
       "priceEvidence": [
-        "Repair weave-on - - Repair weave-on - £50",
-        "Wash & style wig caps - - Wash & style wig caps - £35",
-        "Basic Blow dry only - - Basic Blow dry only - £10",
-        "Locs Deep cleansing shampoo - - Locs Deep cleansing shampoo - £40",
-        "Hot oil treatment - - Hot oil treatment - £45",
-        "repair frontal ponytail - - repair frontal ponytail - £50",
-        "Semi-permanent Colour: peroxide involve in this service, price starts from: - - Semi-permanent Colour: peroxide involve in this service, price starts from: - £40",
-        "undo weave-on - - undo weave-on - £15"
+        "Repair weave-on - £5000",
+        "Wash & style wig caps - £3500",
+        "Basic Blow dry only - £1000",
+        "Locs Deep cleansing shampoo - £4000",
+        "Hot oil treatment - £4500",
+        "repair frontal ponytail - £5000",
+        "Semi-permanent Colour: peroxide involve in this service, price starts from: - £4000",
+        "undo weave-on - £1500"
       ],
-      "priceCheckedAt": "2026-06-04T18:12:35.745Z",
-      "priceConfidence": "manual",
-      "priceUpdatedAt": "2026-06-05T16:15:44.321Z",
+      "priceCheckedAt": "2026-06-05T21:33:26.332Z",
+      "priceConfidence": "high",
+      "priceUpdatedAt": "2026-06-05T21:33:26.333Z",
       "websiteUrl": "",
       "tiktokUrl": "",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
-      "updatedAt": "2026-06-05T16:15:47.436Z"
+      "updatedAt": "2026-06-05T16:15:47.436Z",
+      "servicePriceBand": "££££",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -16597,7 +16691,7 @@
       "evidence": [
         "User-provided manual addition."
       ],
-      "priceBand": "£",
+      "priceBand": "££££",
       "priceSource": "auto",
       "priceEvidence": [
         "Traditional sew in - £110",
@@ -16609,18 +16703,18 @@
         "Traditional sew in (hair included: 3 26 inch bundles) - £425",
         "Traditional sew in (hair included: 4 24 inch bundles) - £494"
       ],
-      "priceCheckedAt": "2026-06-03T23:28:00.822Z",
+      "priceCheckedAt": "2026-06-05T21:32:06.168Z",
       "priceConfidence": "high",
-      "priceUpdatedAt": "2026-06-03T23:28:00.823Z",
+      "priceUpdatedAt": "2026-06-05T21:32:06.169Z",
       "websiteUrl": "",
       "tiktokUrl": "",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
       "updatedAt": "2026-06-03T16:23:54.504Z",
-      "servicePriceBand": "£",
-      "packagePriceBand": "££££",
-      "priceIncludesHair": true,
-      "priceComparisonMode": "mixed"
+      "servicePriceBand": "££££",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -16761,7 +16855,8 @@
         "Pixie / finger waves",
         "Tracks (+ silk press) / partial / invisible sew-in",
         "Traditional sew-in / leave out",
-        "Trim / hair cut"
+        "Trim / hair cut",
+        "Extensions blowdry"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -16949,26 +17044,26 @@
         "User-provided manual addition.",
         "User-confirmed explicit frontal ponytail service."
       ],
-      "priceBand": "££",
-      "priceSource": "manual",
+      "priceBand": "£",
+      "priceSource": "auto",
       "priceEvidence": [
-        "Seamless Clip Ins install - 3 hours @ £150.00",
-        "Frontal Unit - 2 hours @ £140.00",
-        "U Part Wig - 2 hours @ £130.00",
-        "Lace Closure Unit - 1 hour 30 minutes @ £130.00",
-        "Frontal pony - 2 hours @ £110.00",
-        "Lace Frontal ReadyMade - 2 hours @ £110.00",
-        "Premade Closure Unit - 2 hours @ £100.00",
-        "Re-installation - 1 hour 30 minutes @ £90.00"
+        "Frontal Unit - £140",
+        "U Part Wig - £130",
+        "Lace Closure Unit - £130",
+        "Frontal pony - £110",
+        "Lace Frontal ReadyMade - £110",
+        "Premade Closure Unit - £100",
+        "Re-installation - £90",
+        "Revamp Service - £100"
       ],
-      "priceCheckedAt": "2026-06-04T16:54:25.478Z",
-      "priceConfidence": "manual",
-      "priceUpdatedAt": "2026-06-05T18:50:01.308Z",
+      "priceCheckedAt": "2026-06-05T21:32:06.168Z",
+      "priceConfidence": "high",
+      "priceUpdatedAt": "2026-06-05T21:32:06.169Z",
       "websiteUrl": "",
       "tiktokUrl": "",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
-      "servicePriceBand": "",
+      "servicePriceBand": "£",
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
@@ -18122,6 +18217,7 @@
         "Tape ins",
         "LA weave",
         "Wash & blowdry",
+        "Bouncy blowout / Round Brush Blow dry",
         "Cornrows / Twists / Underwig cornrows",
         "Traditional sew-in / leave out",
         "Flipover / Versatile sew-in",
@@ -18130,7 +18226,8 @@
         "Sleek ponytail / bun",
         "Custom wig",
         "U-part wig install",
-        "Updo"
+        "Updo",
+        "Extensions blowdry"
       ],
       "priceBand": "££",
       "priceSource": "auto",
@@ -18771,7 +18868,8 @@
         "Moisturising treatment",
         "Full head colour",
         "Bridal",
-        "Crochet"
+        "Crochet",
+        "Trichology / scalp analysis"
       ],
       "priceBand": "£",
       "priceSource": "auto",
@@ -19358,6 +19456,7 @@
       "instagramUrl": "https://www.instagram.com/sandrawebbhairdressing/",
       "services": [
         "Wash & blowdry",
+        "Extensions blowdry",
         "LA weave",
         "Sew-in take-down",
         "Full head colour",
@@ -19689,7 +19788,6 @@
       "services": [
         "Tape ins",
         "Microlinks",
-        "Wash & blowdry",
         "Traditional sew-in / leave out",
         "Flipover / Versatile sew-in",
         "Hybrid sew in (tapes + sew in)",
@@ -20282,7 +20380,7 @@
         "User-provided manual addition.",
         "Restored Updo service from historical standalone-updo commit de619f9."
       ],
-      "priceBand": "££",
+      "priceBand": "£",
       "priceSource": "auto",
       "priceEvidence": [
         "6 classic stitch braids - £75",
@@ -20294,9 +20392,13 @@
         "Alicia key braids (Small/Medium) - £110",
         "10 Freestyle braids - £110"
       ],
-      "priceCheckedAt": "2026-06-04T10:32:58.478Z",
+      "priceCheckedAt": "2026-06-05T21:23:32.338Z",
       "priceConfidence": "high",
-      "priceUpdatedAt": "2026-06-04T10:32:58.480Z"
+      "priceUpdatedAt": "2026-06-05T21:23:32.342Z",
+      "servicePriceBand": "£",
+      "packagePriceBand": "££",
+      "priceIncludesHair": true,
+      "priceComparisonMode": "mixed"
     },
     {
       "id": "sk-beauty-ldn",
@@ -20687,6 +20789,8 @@
         "Olaplex treatment",
         "Silk press",
         "Wash & blowdry",
+        "Bouncy blowout / Round Brush Blow dry",
+        "Extensions blowdry",
         "Trim / hair cut",
         "Texture release",
         "Keratin treatment",
@@ -20741,7 +20845,8 @@
         "Silk press",
         "Wig colouring / bundle colouring",
         "Texture release",
-        "Wig install (frontal / closure)"
+        "Wig install (frontal / closure)",
+        "Extensions blowdry"
       ],
       "priceBand": "£",
       "priceSource": "auto",
@@ -21610,13 +21715,26 @@
       "tiktokUrl": "",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
-      "priceBand": "",
-      "priceSource": "",
-      "priceEvidence": [],
-      "priceCheckedAt": "",
-      "priceUpdatedAt": "",
-      "priceConfidence": "",
-      "updatedAt": "2026-06-05T00:09:50.324Z"
+      "priceBand": "££",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "SKH | Junior Refresh EXPRESS - £47.50",
+        "SKH | Junior Refresh - £87.50",
+        "SKH | Junior Refresh RESTYLE - £127.50",
+        "SKH | Junior Reshape - £15",
+        "SKH | Junior Revitalise - £67.50",
+        "SKH | Junior Rejuvenate - £187.50",
+        "SKH | Refresh EXPRESS - £95",
+        "SKH | Refresh - £175"
+      ],
+      "priceCheckedAt": "2026-06-05T21:23:32.336Z",
+      "priceUpdatedAt": "2026-06-05T21:23:32.342Z",
+      "priceConfidence": "high",
+      "updatedAt": "2026-06-05T00:09:50.324Z",
+      "servicePriceBand": "££",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only"
     },
     {
       "id": "sweet-handz-peckham",
@@ -22027,21 +22145,25 @@
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
       "updatedAt": "2026-06-05T00:45:49.383Z",
-      "priceBand": "££",
-      "priceSource": "manual",
+      "priceBand": "£",
+      "priceSource": "auto",
       "priceEvidence": [
-        "Boho Knotless Braids - Full Face Glam [£85]",
-        "Boho Knotless Braids - Soft Face Glam [£85]",
-        "Extra Small Boho Knotless Braids [ ] - Extra Small Boho Knotless Braids [From £250]",
-        "Extended Extra Small Boho Knotless Braids [ ] - Extended Extra Small Boho Knotless Braids [From £350]",
-        "Small Boho Knotless Braids [ ] - Small Boho Knotless Braids [From £200]",
-        "Extended S/Medium Boho Knotless Braids [ ] - Extended S/Medium Boho Knotless Braids [From £280]",
-        "Extended Small Boho Knotless Braids [ ] - Extended Small Boho Knotless Braids [From £300]",
-        "S/Medium Boho Knotless Braids [ ] - S/Medium Boho Knotless Braids [From £170]"
+        "Soft Face Glam [£85] - £25",
+        "Extra Small Boho Knotless Braids [From £250] - £25",
+        "Extended Extra Small Boho Knotless Braids [From £350] - £25",
+        "Small Boho Knotless Braids [From £200] - £25",
+        "Extended S/Medium Boho Knotless Braids [From £280] - £25",
+        "Extended Small Boho Knotless Braids [From £300] - £25",
+        "S/Medium Boho Knotless Braids [From £170] - £25",
+        "Medium Boho Knotless Braids [From £165] - £25"
       ],
-      "priceCheckedAt": "2026-06-05T00:45:43.263Z",
-      "priceConfidence": "manual",
-      "priceUpdatedAt": "2026-06-05T00:45:43.263Z"
+      "priceCheckedAt": "2026-06-05T21:21:14.071Z",
+      "priceConfidence": "high",
+      "priceUpdatedAt": "2026-06-05T21:21:14.072Z",
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only"
     },
     {
       "id": "the-curl-coach",
@@ -22187,7 +22309,6 @@
         "Scalp detox / treatments",
         "Traditional sew-in / leave out",
         "Clip ins / Silk press + Clip ins",
-        "Wash & blowdry",
         "Knotless braids",
         "Fulani / lemonade braids",
         "Silk press",
@@ -23467,21 +23588,25 @@
         "Wig install (frontal / closure)"
       ],
       "canBraidWithoutGel": true,
-      "priceBand": "££",
+      "priceBand": "£",
       "priceSource": "auto",
       "priceEvidence": [
-        "DELUXE TREATMENT Gift Certificate - £80",
-        "PREMIUM TREATMENT Gift Certificate - £80",
+        "Silk Press with intensive moisture conditioning treatment ABOVE SHOULDER - £100",
         "Silk Press with intensive moisture conditioning treatment SHOULDER TO MIDBACK - £110",
         "Silk Press with intensive moisture conditioning treatment EXTRA LONG LENGTH OR PAST MID BACK - £130",
         "Silk Press with Olaplex bond build & repair treatment ALL LENGTHS - £150",
         "Essential WASH ABOVE SHOULDER - £35",
         "Essential wash PAST SHOULDER - £40",
-        "Essential wash MID BACK OR EXTRA LONG LENGTH - £45"
+        "Essential wash MID BACK OR EXTRA LONG LENGTH - £45",
+        "Premium deep moisture treatment - £60"
       ],
-      "priceCheckedAt": "2026-06-04T19:20:13.520Z",
+      "priceCheckedAt": "2026-06-05T21:21:14.071Z",
       "priceConfidence": "high",
-      "priceUpdatedAt": "2026-06-04T19:20:13.523Z"
+      "priceUpdatedAt": "2026-06-05T21:21:14.072Z",
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only"
     },
     {
       "id": "tthairbarldn",
@@ -23511,28 +23636,25 @@
       "evidence": [
         "User-provided Instagram handle awaiting categorisation."
       ],
-      "priceBand": "££",
-      "servicePriceBand": "££",
-      "packagePriceBand": "££££",
-      "priceIncludesHair": true,
-      "priceComparisonMode": "mixed",
+      "priceBand": "£££",
+      "servicePriceBand": "£££",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
       "priceSource": "auto",
       "priceEvidence": [
         "BOB LENGTH- Boho Knotless Braids - £465",
-        "BOB LENGTH- Boho Knotless Braids - All hair and materials included - £465",
         "WAIST LENGTH- Boho Knotless Braids - £515",
         "BUM LENGTH- Boho Knotless Braids - £570",
         "WAIST LENGTH - Bora Bora Knotless Braids - £825",
         "BUM LENGTH - Bora Bora Knotless Braids - £975",
-        "16 BOHO Feed-in Braids - All hair and materials included - £150",
-        "20 BOHO Feed-in Braids - All hair and materials included - £200",
-        "Fulani Sew-in (Jayda Wayda Braids) - requires 2-3 bundles - £125",
-        "Men’s cornrows - £30",
-        "Patewo Braids - All materials included - £125"
+        "16 BOHO Feed-in Braids - WAIST LENGTH - £150",
+        "20 BOHO Feed-in Braids - WAIST LENGTH - £200",
+        "Fulani Sew-in (Jayda Wayda Braids) - £125"
       ],
-      "priceCheckedAt": "2026-06-04T10:32:43.947Z",
+      "priceCheckedAt": "2026-06-05T21:21:14.071Z",
       "priceConfidence": "high",
-      "priceUpdatedAt": "2026-06-04T10:32:43.950Z"
+      "priceUpdatedAt": "2026-06-05T21:21:14.072Z"
     },
     {
       "id": "uni-tinas-saloon",
@@ -23829,6 +23951,7 @@
         "Wig install (frontal / closure)",
         "Closure sew-in",
         "Tape ins",
+        "Extensions blowdry",
         "Frontal sew-in",
         "Traditional sew-in / leave out",
         "Frontal ponytail / bun",
@@ -24015,6 +24138,7 @@
       "instagramUrl": "https://www.instagram.com/hair_by_yairo/",
       "services": [
         "Wash & blowdry",
+        "Extensions blowdry",
         "Trim / hair cut"
       ],
       "summary": "Manual entry added from your latest salon update batch.",
@@ -24307,7 +24431,8 @@
         "K-18 treatment",
         "Keratin treatment",
         "Relaxer / texturiser",
-        "Twist out / flexi rod"
+        "Twist out / flexi rod",
+        "Extensions blowdry"
       ],
       "summary": "Manual entry added from your latest salon update batch.",
       "source": "manual",
@@ -24353,22 +24478,22 @@
       "evidence": [
         "User-provided Instagram handle awaiting categorisation."
       ],
-      "priceBand": "££",
+      "priceBand": "£££",
       "priceSource": "auto",
       "priceEvidence": [
-        "Zuri Goddess Braids Touch up - £250",
         "Zuri goddess braids - Hair included - from £800",
-        "Knotless braids - from £190",
+        "Boho Braids (Human & Synthetic Hair) - Hair included - from £600",
         "Reusing Human Hair - from £450",
-        "Braid Removal - £150",
-        "Knotless Braids Touch up - £150",
-        "Zuri goddess braids - Hair included - from £800",
-        "Boho Braids (Human & Synthetic Hair) - Hair included - from £600"
+        "Knotless braids - from £210",
+        "Passion Twist - from £270",
+        "Stitch Braids - Canerows - from £200",
+        "Faux Locs - £300",
+        "Zuri Goddess Braids Touch up - £250"
       ],
-      "priceCheckedAt": "2026-06-04T13:04:18.469Z",
-      "priceUpdatedAt": "2026-06-04T13:04:18.472Z",
+      "priceCheckedAt": "2026-06-05T21:19:48.010Z",
+      "priceUpdatedAt": "2026-06-05T21:19:48.011Z",
       "priceConfidence": "high",
-      "servicePriceBand": "££",
+      "servicePriceBand": "£££",
       "packagePriceBand": "££££",
       "priceIncludesHair": true,
       "priceComparisonMode": "mixed"
@@ -24398,21 +24523,25 @@
         "Instagram source: https://www.instagram.com/bkay_thestylist/",
         "User-provided correction: BKAY Hair Acuity service menu."
       ],
-      "priceBand": "£",
+      "priceBand": "££",
       "priceSource": "auto",
       "priceEvidence": [
+        "Full Glam - £80",
         "Frontal Ponytail (single) - £130",
         "Double Frontal Ponytail - £150",
         "Natural Hair Ponytail - £90",
         "Closure Quickweave - £130",
         "Quick-weave with Leave out - £110",
-        "WIG MAKING + INSTALLATION + BASIC STYLING - £190",
-        "PRE-MADE FRONTAL WIG INSTALL - £90",
-        "CLOSURE WIG INSTALL - £80"
+        "Half Up Half Down - £90",
+        "WIG MAKING + INSTALLATION + BASIC STYLING - £190"
       ],
-      "priceCheckedAt": "2026-06-04T19:15:37.710Z",
+      "priceCheckedAt": "2026-06-05T21:19:48.010Z",
       "priceConfidence": "high",
-      "priceUpdatedAt": "2026-06-04T19:15:37.711Z"
+      "priceUpdatedAt": "2026-06-05T21:19:48.011Z",
+      "servicePriceBand": "££",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only"
     },
     {
       "id": "thelacelabldn",
@@ -24758,6 +24887,7 @@
         "Flipover / Versatile sew-in",
         "Tape ins",
         "Wash & blowdry",
+        "Bouncy blowout / Round Brush Blow dry",
         "Moisturising treatment",
         "Trim / hair cut",
         "Texture release",
@@ -24828,21 +24958,21 @@
         "Instagram source: https://www.instagram.com/ccs.glamhousehair/",
         "User-provided correction: updated booking/services from follow-up message."
       ],
-      "priceBand": "£",
+      "priceBand": "££",
       "priceSource": "auto",
       "priceEvidence": [
+        "Custom Frontal Wig - £70",
         "Custom Closure Wig - £65",
         "Pre-made Wig Customisation - £50",
         "Frontal Ponytail - £135",
         "Frontal Wig Install - £110",
         "Closure Wig Install - £105",
         "Pre-made Frontal Wig Install - £95",
-        "Pre-made Closure Wig Install - £90",
-        "Wig Reinstall - £80"
+        "Pre-made Closure Wig Install - £90"
       ],
-      "priceCheckedAt": "2026-06-04T19:15:37.710Z",
+      "priceCheckedAt": "2026-06-05T21:19:48.010Z",
       "priceConfidence": "high",
-      "priceUpdatedAt": "2026-06-04T19:15:37.711Z",
+      "priceUpdatedAt": "2026-06-05T21:19:48.011Z",
       "areaIds": [
         "all-london",
         "south-east"
@@ -24851,7 +24981,11 @@
       "tiktokUrl": "",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
-      "updatedAt": "2026-06-03T16:02:03.188Z"
+      "updatedAt": "2026-06-03T16:02:03.188Z",
+      "servicePriceBand": "££",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only"
     },
     {
       "id": "riestylez",
@@ -25016,17 +25150,20 @@
     {
       "id": "chicayhair",
       "name": "Chicayhair",
-      "areaId": "south-west",
-      "areaLabel": "South West",
-      "neighbourhood": "South West",
+      "areaId": "all-london",
+      "areaLabel": "South east London",
+      "neighbourhood": "South east London London",
       "postcode": "",
       "bookingPlatform": "Direct website",
       "bookingUrl": "https://chicayhair.square.site",
       "instagramUrl": "https://www.instagram.com/chicayhair/",
       "services": [
+        "Wash & blowdry",
+        "Half up half down",
         "Sleek ponytail / bun",
         "Silk press",
-        "Wash & blowdry"
+        "Bouncy blowout / Round Brush Blow dry",
+        "Trim / hair cut"
       ],
       "summary": "Manual Instagram-led entry enriched from spreadsheet import.",
       "source": "manual",
@@ -25036,10 +25173,30 @@
       ],
       "priceBand": "£",
       "priceSource": "manual",
-      "priceEvidence": [],
+      "priceEvidence": [
+        "Trim - £30",
+        "Silk Press - £60",
+        "Round brush blow-dry - £60",
+        "Round brush blow-dry - £75",
+        "- ponytail attachment - £55",
+        "- ponytail attachment - £ 60"
+      ],
       "priceCheckedAt": "2026-06-04T19:12:14.977Z",
-      "priceUpdatedAt": "2026-06-04T22:37:25.915Z",
-      "priceConfidence": "manual"
+      "priceUpdatedAt": "2026-06-06T02:51:41.461Z",
+      "priceConfidence": "manual",
+      "areaIds": [
+        "all-london",
+        "south-east"
+      ],
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "updatedAt": "2026-06-06T02:51:55.144Z"
     },
     {
       "id": "byslaythebrand",
@@ -25139,21 +25296,25 @@
         "Instagram source: https://www.instagram.com/tcolourshair/",
         "User-provided correction: colour service should be Wig colouring / bundle colouring only."
       ],
-      "priceBand": "£",
+      "priceBand": "££",
       "priceSource": "auto",
       "priceEvidence": [
-        "Colour Correction Service - £102",
-        "1b to Single Colour - £107",
-        "613 to Single Colour - £97",
-        "Any Colour to Jet Black - £77",
-        "1b to Single Colour - £112",
-        "613 to Single Colour - £102",
-        "Any Colour to Jet Black - £82",
-        "Colour Correction Service - £107"
+        "2 Bundles Only Colouring Service - £72",
+        "3 Bundles Only Colouring Service - £82",
+        "4 Bundles Only Colouring Service - £92",
+        "2 Bundles Only Colouring Service - £77",
+        "3 Bundles Only Colouring Service - £87",
+        "4 Bundles Only Colouring Service - £107",
+        "1b Highlights - £117",
+        "1b to Single Colour - £107"
       ],
-      "priceCheckedAt": "2026-06-04T19:15:37.710Z",
+      "priceCheckedAt": "2026-06-05T21:19:48.010Z",
       "priceConfidence": "high",
-      "priceUpdatedAt": "2026-06-04T19:15:37.711Z"
+      "priceUpdatedAt": "2026-06-05T21:19:48.011Z",
+      "servicePriceBand": "££",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only"
     },
     {
       "id": "veehairlab",
@@ -25221,21 +25382,25 @@
         "Instagram source: https://www.instagram.com/thehairgalore/",
         "User-provided correction: The Hair Galore service menu."
       ],
-      "priceBand": "£",
+      "priceBand": "££",
       "priceSource": "auto",
       "priceEvidence": [
+        "1:1 LEARN HOW TO LAY A FRONTAL WIG - £600",
         "1:1 LEARN HOW TO LAY A FRONTAL WIG (NO CONSTRUCTION OF WIG) - £450",
         "Pre-Made Lace Frontal Unit - £105",
         "Pre-made Lace Frontal/closure Unit Reinstall - £75",
         "Pre-Made Closure Unit - £90",
         "Pre made lace frontal/closure reinstall - £90",
         "Frontal replacement - £90",
-        "Closure wig/Mini frontal Replacement - £80",
-        "Leave Out Sew In - £105"
+        "Closure wig/Mini frontal Replacement - £80"
       ],
-      "priceCheckedAt": "2026-06-04T19:15:37.710Z",
+      "priceCheckedAt": "2026-06-05T21:19:48.010Z",
       "priceConfidence": "high",
-      "priceUpdatedAt": "2026-06-04T19:15:37.711Z"
+      "priceUpdatedAt": "2026-06-05T21:19:48.011Z",
+      "servicePriceBand": "££",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only"
     },
     {
       "id": "fhairapy",
@@ -26016,10 +26181,7 @@
       "instagramUrl": "https://www.instagram.com/carterhairco_/",
       "services": [
         "Tape ins",
-        "Texture release",
-        "Trim / hair cut",
-        "Silk press",
-        "Wash & blowdry"
+        "Texture release"
       ],
       "summary": "Manual entry amalgamated from duplicate Carterhairco and Carter Hair Co records.",
       "source": "manual",
@@ -26159,21 +26321,25 @@
         "Instagram source: https://www.instagram.com/thehairtresser/",
         "Original spreadsheet filters: Sew-ins"
       ],
-      "priceBand": "£",
+      "priceBand": "££",
       "priceSource": "auto",
       "priceEvidence": [
+        "traditional sew-in - £100",
         "flipover sew-in - £100",
         "closure sew-in - £100",
         "versatile sew-in - £100",
         "row sew-in - £85",
         "sew-in maintenance - £60",
         "sew-in take-down and reinstall - £150",
-        "sew-in take-down - £60",
-        "extension hair colour mixing (2 colours) - £10"
+        "sew-in take-down - £60"
       ],
-      "priceCheckedAt": "2026-06-04T19:11:34.998Z",
+      "priceCheckedAt": "2026-06-05T21:17:23.739Z",
       "priceConfidence": "high",
-      "priceUpdatedAt": "2026-06-04T19:11:35.001Z"
+      "priceUpdatedAt": "2026-06-05T21:17:23.743Z",
+      "servicePriceBand": "££",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only"
     },
     {
       "id": "silkstylistuk",
@@ -26572,7 +26738,6 @@
         "Sleek ponytail / bun",
         "Half up half down",
         "Trim / hair cut",
-        "Wash & blowdry",
         "Wig cornrows"
       ],
       "summary": "Manual Instagram-led entry added from user-provided booking menu.",
@@ -27171,7 +27336,7 @@
         "User-provided location: East.",
         "User-provided service menu includes boho braids, Patewo, Fulani Kipeteka/Kipeteka/Shuku/stitch braided styles, butterfly or soft locs, French curl, Fulani braids, braids and sew-in, knotless braids, retwists, starter locs, natural braids/twists and stitch braids, ponytails, quick weaves, flipover sew-ins, middle/side part sew-ins, half up half down sew-ins, and sew-in bundle deals."
       ],
-      "priceBand": "££",
+      "priceBand": "£",
       "priceSource": "auto",
       "priceEvidence": [
         "Sew-in Deal - £250",
@@ -27183,9 +27348,13 @@
         "Shoulder Length (2 bundles included) - £190",
         "Mid Back (2 bundles included) - £240"
       ],
-      "priceCheckedAt": "2026-06-03T23:24:16.019Z",
+      "priceCheckedAt": "2026-06-05T21:17:23.739Z",
       "priceConfidence": "high",
-      "priceUpdatedAt": "2026-06-03T23:24:16.021Z"
+      "priceUpdatedAt": "2026-06-05T21:17:23.743Z",
+      "servicePriceBand": "£",
+      "packagePriceBand": "£££",
+      "priceIncludesHair": true,
+      "priceComparisonMode": "mixed"
     },
     {
       "id": "crown-signed",
@@ -27241,9 +27410,7 @@
         "Traditional sew-in / leave out",
         "Flipover / Versatile sew-in",
         "Hybrid sew in (tapes + sew in)",
-        "K-tips / invisible strands",
-        "Wash & blowdry",
-        "Trim / hair cut"
+        "K-tips / invisible strands"
       ],
       "summary": "Manual Instagram-led entry added from user-provided booking menu.",
       "source": "manual",
@@ -27392,21 +27559,25 @@
         "User-confirmed hijabi-friendly.",
         "User-provided service menu includes braidless sew-in mapped as LA weave, I-tips, tape-ins, tape-in/I-tip/braidless sew-in maintenance, K-tip/tape-in/braidless/I-tip removals or mini maintenance, wash and style, blow out, and silk press."
       ],
-      "priceBand": "££",
+      "priceBand": "£",
       "priceSource": "auto",
       "priceEvidence": [
-        "Braidless Sew-in - £200",
         "Tape-ins Maintenance (200-250g) - £300",
         "Tape-ins Maintenance (100-150g) - £280",
         "Braidless Sew-in Maintenance - £250",
         "I-tips Maintenance (200-250g) - £290",
         "I-tips Maintenance (100-150g) - £270",
         "Wash & style - £45",
-        "Blow out - £35"
+        "Blow out - £35",
+        "Silk press - £90"
       ],
-      "priceCheckedAt": "2026-06-04T19:11:34.995Z",
+      "priceCheckedAt": "2026-06-05T21:17:23.739Z",
       "priceConfidence": "high",
-      "priceUpdatedAt": "2026-06-04T19:11:35.001Z"
+      "priceUpdatedAt": "2026-06-05T21:17:23.743Z",
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only"
     },
     {
       "id": "azira-hair",
@@ -27475,19 +27646,28 @@
       "postcode": "",
       "summary": "Manual mobile specialist entry added from user-provided bridal/editorial split.",
       "source": "manual",
-      "priceBand": "",
-      "priceSource": "",
-      "priceEvidence": [],
-      "priceCheckedAt": "",
-      "priceConfidence": "",
-      "priceUpdatedAt": "",
+      "priceBand": "££",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "Wig Install - £500",
+        "Leave Out Sew In - £850",
+        "Sleek Ponytail - £80",
+        "Low Bun - £90",
+        "Side/Middle/Three Part Ponytail - £100",
+        "Frontal ponytail - £150",
+        "Half up half down with a Frontal ponytail - £160",
+        "Double frontal ponytail - £160"
+      ],
+      "priceCheckedAt": "2026-06-05T21:17:23.739Z",
+      "priceConfidence": "high",
+      "priceUpdatedAt": "2026-06-05T21:17:23.743Z",
       "tiktokUrl": "",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
-      "servicePriceBand": "",
+      "servicePriceBand": "££",
       "packagePriceBand": "",
       "priceIncludesHair": false,
-      "priceComparisonMode": "",
+      "priceComparisonMode": "service-only",
       "updatedAt": "2026-06-05T18:33:03.309Z"
     },
     {

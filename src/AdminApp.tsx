@@ -75,6 +75,7 @@ type StylistDraft = {
 
 type PriceBand = "£" | "££" | "£££" | "££££";
 type PriceComparisonMode = "service-only" | "mixed" | "package-only";
+type AdminView = "overview" | "drafts" | "freshness" | "pricing" | "keyword" | "discovery";
 
 type DraftForm = {
   links: string;
@@ -98,6 +99,50 @@ type DraftForm = {
 
 type DraftEditorStep = "details" | "services" | "review";
 
+type KeywordSearchMatch = {
+  keyword: string;
+  keywords: string[];
+  line: string;
+  snippet: string;
+  sourceType: string;
+  sourceUrl: string;
+};
+
+type KeywordSearchResult = {
+  id: string;
+  name: string;
+  areaLabel?: string;
+  bookingPlatform?: string;
+  bookingUrl?: string;
+  websiteUrl?: string;
+  instagramUrl?: string;
+  status: string;
+  reason?: string;
+  keywords: string[];
+  matches: KeywordSearchMatch[];
+  checkedAt: string;
+};
+
+type KeywordSearchProgress = {
+  checkedCount: number;
+  total: number;
+  skippedCount: number;
+  nextOffset: number | null;
+};
+
+type SavedKeywordSearch = {
+  id: string;
+  name: string;
+  keywords: string[];
+  status: "research" | "candidate_filter" | "promoted";
+  notes?: string;
+  resultCount: number;
+  results: KeywordSearchResult[];
+  createdAt: string;
+  updatedAt: string;
+  lastRunAt?: string;
+};
+
 const londonParentAreaId = "all-london";
 const londonChildAreaIds = new Set(["central", "north", "north-west", "east", "south-east", "south-west", "west", "croydon"]);
 const priceBandOptions: { value: "" | PriceBand; label: string }[] = [
@@ -107,6 +152,79 @@ const priceBandOptions: { value: "" | PriceBand; label: string }[] = [
   { value: "£££", label: "£££ £200-£300" },
   { value: "££££", label: "££££ over £300" },
 ];
+const keywordSuggestionGroups = [
+  {
+    triggers: ["kid", "kids", "child", "children", "junior", "teen", "teens"],
+    keywords: ["kids", "kid", "children", "child", "junior", "under 12", "under 16", "girls", "boys", "teens"],
+  },
+  {
+    triggers: ["bridal", "bride", "wedding"],
+    keywords: ["bridal", "bride", "wedding", "bridesmaid", "occasion", "trial"],
+  },
+  {
+    triggers: ["natural", "silk press", "treatment", "healthy hair", "scalp"],
+    keywords: ["natural hair", "silk press", "treatment", "healthy hair", "scalp", "trim", "wash", "blowdry"],
+  },
+  {
+    triggers: ["bouncy", "bouncy blowout", "bouncy blowdry", "round brush", "round brush blow dry", "round brush blowdry", "curly blow dry", "90s blowout", "dominican blowdry", "dominican blow out", "glamorous blow dry", "volumising blow dry"],
+    keywords: [
+      "bouncy blowout",
+      "bouncy blow out",
+      "bouncy blowdry",
+      "bouncy blow dry",
+      "round brush blow dry",
+      "round brush blowdry",
+      "roundbrush blow dry",
+      "roundbrush blowdry",
+      "round brush blow dry style",
+      "round brush",
+      "curly blow dry",
+      "curly blowdry",
+      "90s blowout",
+      "90s blow out",
+      "dominican blowdry",
+      "dominican blow dry",
+      "dominican blowout",
+      "dominican blow out",
+      "glamorous blow dry",
+      "glamorous blowdry",
+      "volumising blow dry",
+      "volumising blowdry",
+    ],
+  },
+  {
+    triggers: ["extensions blowdry", "extensions blow dry", "extensions blowout", "extensions blow out", "extension blowdry", "extension blowout", "weave blowdry", "weave blow dry"],
+    keywords: [
+      "extensions blowdry",
+      "extensions blow dry",
+      "extensions blowout",
+      "extensions blow out",
+      "blowdry with extensions",
+      "blow dry with extensions",
+      "blowout with extensions",
+      "blow out on sew in weave",
+      "blowout on sew in weave",
+      "wash blow dry with extensions",
+      "wash and blow dry with extensions",
+      "weave wash",
+      "shampoo weave",
+      "wash weave",
+      "wash set blow dry",
+      "wash set and blow dry",
+      "wash and style",
+      "wash blow dry extensions",
+      "extension removal shampoo treatment blowdry",
+    ],
+  },
+  {
+    triggers: ["loc", "locs", "starter", "retwist", "sisterloc"],
+    keywords: ["locs", "loc", "retwist", "starter locs", "microlocs", "sisterlocs", "interlock"],
+  },
+  {
+    triggers: ["braid", "braids", "boho", "knotless", "fulani"],
+    keywords: ["braids", "braid", "knotless", "boho", "fulani", "cornrows", "stitch"],
+  },
+] as const;
 
 type DirectoryCheck = {
   id: string;
@@ -373,7 +491,7 @@ const serviceGroups = [
   },
   {
     label: "Styling (sew in / frontal / relaxer)",
-    services: ["Frontal ponytail / bun", "Half up half down", "Pixie / finger waves", "Sleek ponytail / bun", "Updo"],
+    services: ["Extensions blowdry", "Frontal ponytail / bun", "Half up half down", "Pixie / finger waves", "Sleek ponytail / bun", "Updo"],
   },
   {
     label: "Treatments",
@@ -393,7 +511,8 @@ const serviceGroups = [
     services: [
       "Wig cornrows",
       "Curly cut / wash & go",
-      "Silk press / bouncy blowout",
+      "Silk press",
+      "Bouncy blowout / Round Brush Blow dry",
       "Trim / hair cut",
       "Twist out / flexi rod",
       "Wash & blowdry",
@@ -430,11 +549,20 @@ export function AdminApp() {
   const [isRunningChecks, setIsRunningChecks] = useState(false);
   const [checkProgress, setCheckProgress] = useState({ checkedCount: 0, total: 0, nextOffset: null as number | null });
   const [activeCheckBatch, setActiveCheckBatch] = useState({ from: 0, to: 50 });
-  const [activeView, setActiveView] = useState<"overview" | "drafts" | "freshness" | "pricing" | "discovery">("overview");
+  const [activeView, setActiveView] = useState<AdminView>("overview");
   const [intakeText, setIntakeText] = useState("");
   const [dashboard, setDashboard] = useState<DashboardMetrics | null>(null);
   const [suggestions, setSuggestions] = useState<DiscoverySuggestion[]>([]);
   const [isGeneratingSuggestions, setIsGeneratingSuggestions] = useState(false);
+  const [keywordTerms, setKeywordTerms] = useState<string[]>([]);
+  const [keywordInput, setKeywordInput] = useState("");
+  const [keywordResults, setKeywordResults] = useState<KeywordSearchResult[]>([]);
+  const [keywordProgress, setKeywordProgress] = useState<KeywordSearchProgress>({ checkedCount: 0, total: 0, skippedCount: 0, nextOffset: null });
+  const [isRunningKeywordSearch, setIsRunningKeywordSearch] = useState(false);
+  const [savedKeywordSearches, setSavedKeywordSearches] = useState<SavedKeywordSearch[]>([]);
+  const [selectedKeywordSearchId, setSelectedKeywordSearchId] = useState("");
+  const [keywordSearchName, setKeywordSearchName] = useState("");
+  const [isSavingKeywordSearch, setIsSavingKeywordSearch] = useState(false);
   const [stylistStatusFilter, setStylistStatusFilter] = useState("all");
   const [stylistSearchTerm, setStylistSearchTerm] = useState("");
   const [isDraftEditorOpen, setIsDraftEditorOpen] = useState(false);
@@ -600,13 +728,14 @@ export function AdminApp() {
   async function loadAdminData() {
     setIsBusy(true);
     try {
-      const [draftResponse, publishedResponse, optionResponse, dashboardResponse, discoveryResponse, savedChecksResponse] = await Promise.all([
+      const [draftResponse, publishedResponse, optionResponse, dashboardResponse, discoveryResponse, savedChecksResponse, keywordSearchResponse] = await Promise.all([
         fetch("/api/admin/stylists/drafts", { credentials: "include" }),
         fetch("/api/admin/stylists/published", { credentials: "include" }),
         fetch("/api/admin/stylists/options", { credentials: "include" }),
         fetch("/api/admin/dashboard", { credentials: "include" }),
         fetch("/api/admin/discovery", { credentials: "include" }),
         fetch("/api/admin/stylists/checks/saved", { credentials: "include" }),
+        fetch("/api/admin/stylists/keyword-searches", { credentials: "include" }),
       ]);
       if (!draftResponse.ok || !optionResponse.ok) {
         setIsAuthed(false);
@@ -618,6 +747,7 @@ export function AdminApp() {
       const dashboardPayload = dashboardResponse.ok ? await dashboardResponse.json() : null;
       const discoveryPayload = discoveryResponse.ok ? await discoveryResponse.json() : null;
       const savedChecksPayload = savedChecksResponse.ok ? await savedChecksResponse.json() : null;
+      const keywordSearchPayload = keywordSearchResponse.ok ? await keywordSearchResponse.json() : null;
       setDrafts(draftPayload.drafts ?? []);
       setPublishedStylists(publishedPayload?.stylists ?? []);
       setRegions(optionPayload.regions ?? []);
@@ -626,6 +756,7 @@ export function AdminApp() {
       setSuggestions(discoveryPayload?.suggestions ?? []);
       setChecks(savedChecksPayload?.checks ?? []);
       setChecksLoadedAt(savedChecksPayload?.checkedAt ?? "");
+      setSavedKeywordSearches(keywordSearchPayload?.searches ?? []);
       if (savedChecksPayload) {
         setCheckProgress({
           checkedCount: savedChecksPayload.checkedCount ?? 0,
@@ -951,6 +1082,136 @@ export function AdminApp() {
     }
   }
 
+  async function runKeywordSearch(offset = 0) {
+    const typedSuggestions = suggestKeywordSearchTerms(keywordInput);
+    const keywords = [...new Set([...keywordTerms, ...typedSuggestions])].map((term) => term.trim()).filter(Boolean);
+    setMessage("");
+    if (!keywords.length) {
+      setMessage("Add at least one keyword.");
+      return;
+    }
+    setKeywordTerms(keywords);
+    setKeywordInput("");
+
+    const isFullRun = offset === 0;
+    if (isFullRun) {
+      setKeywordResults([]);
+      setKeywordProgress({ checkedCount: 0, total: publishedStylists.length, skippedCount: 0, nextOffset: null });
+    }
+    setIsRunningKeywordSearch(true);
+    try {
+      let nextOffset: number | null = offset;
+      let completedResults: KeywordSearchResult[] = isFullRun ? [] : keywordResults;
+      let skippedCount = isFullRun ? 0 : keywordProgress.skippedCount;
+      let totalCount = keywordProgress.total || publishedStylists.length;
+
+      while (nextOffset !== null) {
+        const response = await fetch("/api/admin/stylists/keyword-search", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          credentials: "include",
+          body: JSON.stringify({ keywords, offset: nextOffset, limit: 50 }),
+        });
+        const payload = await response.json().catch(() => ({ message: "Could not run keyword search." }));
+        if (!response.ok) {
+          setMessage(payload.message || "Could not run keyword search.");
+          return;
+        }
+
+        const batchResults = payload.results ?? [];
+        completedResults = nextOffset === 0 ? batchResults : [...completedResults, ...batchResults];
+        skippedCount += payload.skippedCount ?? 0;
+        totalCount = payload.total ?? totalCount;
+        setKeywordResults(completedResults);
+        setKeywordProgress({
+          checkedCount: payload.checkedCount ?? 0,
+          total: totalCount,
+          skippedCount,
+          nextOffset: payload.nextOffset ?? null,
+        });
+        setMessage(`Searched ${payload.checkedCount ?? 0} of ${totalCount}. Found ${completedResults.length} matching stylist${completedResults.length === 1 ? "" : "s"}.`);
+        nextOffset = payload.nextOffset ?? null;
+      }
+
+      setMessage(`Keyword search complete. Found ${completedResults.length} matching stylist${completedResults.length === 1 ? "" : "s"}.`);
+    } finally {
+      setIsRunningKeywordSearch(false);
+    }
+  }
+
+  async function saveKeywordSearch() {
+    const keywords = keywordTerms.map((term) => term.trim()).filter(Boolean);
+    if (!keywords.length) {
+      setMessage("Add at least one keyword before saving.");
+      return;
+    }
+    const name = keywordSearchName.trim() || titleCase(keywords[0] || "Keyword search");
+    setIsSavingKeywordSearch(true);
+    setMessage("");
+    try {
+      const response = await fetch("/api/admin/stylists/keyword-searches", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({
+          id: selectedKeywordSearchId || undefined,
+          name,
+          keywords,
+          results: keywordResults,
+          resultCount: keywordResults.length,
+          lastRunAt: keywordResults[0]?.checkedAt || new Date().toISOString(),
+        }),
+      });
+      const payload = await response.json().catch(() => ({ message: "Could not save keyword search." }));
+      if (!response.ok) {
+        setMessage(payload.message || "Could not save keyword search.");
+        return;
+      }
+      setSavedKeywordSearches(payload.searches ?? []);
+      setSelectedKeywordSearchId(payload.search?.id || "");
+      setKeywordSearchName(payload.search?.name || name);
+      setMessage(`Saved "${payload.search?.name || name}".`);
+    } finally {
+      setIsSavingKeywordSearch(false);
+    }
+  }
+
+  async function deleteKeywordSearch(searchId: string) {
+    if (!searchId) {
+      return;
+    }
+    setMessage("");
+    const response = await fetch(`/api/admin/stylists/keyword-searches/${searchId}`, {
+      method: "DELETE",
+      credentials: "include",
+    });
+    const payload = await response.json().catch(() => ({ message: "Could not delete saved search." }));
+    if (!response.ok) {
+      setMessage(payload.message || "Could not delete saved search.");
+      return;
+    }
+    setSavedKeywordSearches(payload.searches ?? []);
+    if (selectedKeywordSearchId === searchId) {
+      setSelectedKeywordSearchId("");
+      setKeywordSearchName("");
+    }
+  }
+
+  function loadKeywordSearch(search: SavedKeywordSearch) {
+    setSelectedKeywordSearchId(search.id);
+    setKeywordSearchName(search.name);
+    setKeywordTerms(search.keywords);
+    setKeywordInput("");
+    setKeywordResults(search.results || []);
+    setKeywordProgress({
+      checkedCount: search.results?.length || 0,
+      total: search.resultCount || search.results?.length || 0,
+      skippedCount: 0,
+      nextOffset: null,
+    });
+    setActiveView("keyword");
+  }
+
   async function createDraftFromSuggestion(suggestionId: string) {
     setIsBusy(true);
     setMessage("");
@@ -1174,18 +1435,18 @@ export function AdminApp() {
           </div>
         </div>
 
-        <nav className="mt-9 flex gap-7 border-b border-stone-200 dark:border-stone-800">
-          {(["overview", "drafts", "freshness", "pricing"] as const).map((view) => (
+        <nav className="mt-9 flex gap-7 overflow-x-auto border-b border-stone-200 dark:border-stone-800">
+          {(["overview", "drafts", "freshness", "pricing", "keyword"] as const).map((view) => (
             <button
               key={view}
               type="button"
               onClick={() => setActiveView(view)}
               className={cn(
-                "border-b-2 px-0 pb-3 text-sm capitalize transition",
+                "whitespace-nowrap border-b-2 px-0 pb-3 text-sm capitalize transition",
                 activeView === view ? "border-stone-950 text-stone-950 dark:border-stone-100 dark:text-stone-50" : "border-transparent text-stone-500 hover:text-stone-900 dark:text-stone-400 dark:hover:text-stone-100",
               )}
             >
-              {view === "drafts" ? "Stylists" : view === "freshness" ? "Health" : view === "pricing" ? "Pricing" : view}
+              {view === "drafts" ? "Stylists" : view === "freshness" ? "Health" : view === "pricing" ? "Pricing" : view === "keyword" ? "Keyword search" : view}
             </button>
           ))}
         </nav>
@@ -1258,6 +1519,26 @@ export function AdminApp() {
           isBusy={isBusy}
           onRunMissingPrices={() => runChecks(0, "pricing")}
           onApply={applyFreshnessUpdate}
+        />
+      ) : null}
+
+      {activeView === "keyword" ? (
+        <KeywordSearchPage
+          keywords={keywordTerms}
+          keywordInput={keywordInput}
+          searchName={keywordSearchName}
+          savedSearches={savedKeywordSearches}
+          results={keywordResults}
+          progress={keywordProgress}
+          isRunning={isRunningKeywordSearch}
+          isSaving={isSavingKeywordSearch}
+          onKeywordInputChange={setKeywordInput}
+          onKeywordsChange={setKeywordTerms}
+          onSearchNameChange={setKeywordSearchName}
+          onRun={() => runKeywordSearch(0)}
+          onSave={saveKeywordSearch}
+          onLoad={loadKeywordSearch}
+          onDelete={deleteKeywordSearch}
         />
       ) : null}
 
@@ -1946,7 +2227,7 @@ function DashboardOverview({
   dashboard: DashboardMetrics | null;
   checks: DirectoryCheck[];
   publishedCount: number;
-  onOpenView: (view: "overview" | "drafts" | "freshness" | "pricing") => void;
+  onOpenView: (view: AdminView) => void;
 }) {
   const rows = buildFreshnessRecommendationGroups(checks);
   const healthRows = filterFreshnessRowsByDetail(rows, (detail) => detail.kind !== "price" && detail.kind !== "price-info" && detail.kind !== "manual-price");
@@ -3062,6 +3343,9 @@ function hasSupportedFreshnessEvidence(check: DirectoryCheck, service: string) {
   if (service === "Wash & blowdry") {
     return check.serviceCheck.rawServices.some((line) => hasWashBlowdryEvidence(line));
   }
+  if (service === "Bouncy blowout / Round Brush Blow dry") {
+    return check.serviceCheck.rawServices.some((line) => hasBouncyBlowoutEvidence(line));
+  }
   if (service === "Wig cornrows") {
     return check.serviceCheck.rawServices.some((line, index, lines) => hasWigCornrowsEvidence(line, lines, index));
   }
@@ -3171,7 +3455,12 @@ function hasWashBlowdryEvidence(value: string) {
   if (/\b(arrive|come|please|note|recommended)\b.*\b(freshly\s+washed|clean|product\s+free|product-free)\b/.test(normalized) && !/\bblow\s*dry|blowdry|blowout\b/.test(normalized)) {
     return false;
   }
-  return /\bwash\b.*\b(blow\s*dry|blowdry|blowout)\b|\bshampoo\b.*\b(blow\s*dry|blowdry|blowout)\b|\bblow\s*out\b|\bblowout\b/.test(normalized);
+  return /\bwash\b.*\b(blow\s*dry|blowdry|blowout)\b|\bshampoo\b.*\b(blow\s*dry|blowdry|blowout)\b/.test(normalized);
+}
+
+function hasBouncyBlowoutEvidence(value: string) {
+  const normalized = normalizeEvidenceText(value);
+  return /\bbouncy\b.*\b(blow\s*dry|blowdry|blow\s*out|blowout)\b|\b(blow\s*dry|blowdry|blow\s*out|blowout)\b.*\bbouncy\b|\bround\s+brush\b.*\b(blow\s*dry|blowdry)\b/.test(normalized);
 }
 
 function hasWigCornrowsEvidence(value: string, lines: string[] = [value], index = 0) {
@@ -3395,7 +3684,9 @@ const serviceEvidenceKeywords: Record<string, string[]> = {
   "Twists (with extensions)": ["twists with extensions", "passion twists", "marley twists", "senegalese twists", "kinky twists", "rope twists", "island twists", "island twist"],
   "Hybrid sew in (tapes + sew in)": ["hybrid sew in", "hybrid sew-in", "hybrid weave", "tracks + tapes hybrid", "tracks and tapes hybrid"],
   "Tracks (+ silk press) / partial / invisible sew-in": ["tracks", "track per row", "per track", "per row", "one row", "individual sewn on track", "individual sewn on tracks", "tracks add on", "tracks add-on", "silk press add on tracks", "silk press add-on tracks", "row sew in", "rows of sew in", "weave tracks", "weave tracks per track", "weave on per row", "traditional weave rows", "partial sew in", "partial sewin", "invisible sew in", "invisible weave", "invisible weft", "invisible wefts"],
-  "Wash & blowdry": ["wash blowdry", "wash blow dry", "wash and blowdry", "wash and blow dry", "shampoo blowdry", "shampoo blow dry", "shampoo and blowdry", "shampoo and blow dry", "blowout"],
+  "Bouncy blowout / Round Brush Blow dry": ["bouncy blowout", "bouncy blow out", "bouncy blowdry", "bouncy blow dry", "bouncy blow-dry", "round brush blow dry", "round brush blowdry", "dry bouncy blow-dry", "blowout"],
+  "Extensions blowdry": ["extensions blowdry", "extensions blow dry", "extensions blowout", "extensions blow out", "extension blowdry", "extension blow dry", "extension blowout", "extension blow out", "blowdry with extensions", "blow dry with extensions", "blowout with extensions", "blow out with extensions", "blow out on sew in weave", "blowout on sew in weave", "wash blow dry with extensions", "wash and blow dry with extensions"],
+  "Wash & blowdry": ["wash blowdry", "wash blow dry", "wash and blowdry", "wash and blow dry", "shampoo blowdry", "shampoo blow dry", "shampoo and blowdry", "shampoo and blow dry"],
   "Japanese head spa": ["japanese head spa", "head spa", "headspa"],
   "Updo": ["updo", "up do", "pin up", "french roll up", "french roll"],
   "Wig cornrows": ["under wig", "wig cornrows", "cornrows for wig installation", "cornrows"],
@@ -3541,6 +3832,318 @@ function formatRelativeTime(value: string) {
 
 function titleCase(value: string) {
   return value.replace(/_/g, " ").replace(/\b\w/g, (letter) => letter.toUpperCase());
+}
+
+function KeywordSearchPage({
+  keywords,
+  keywordInput,
+  searchName,
+  savedSearches,
+  results,
+  progress,
+  isRunning,
+  isSaving,
+  onKeywordInputChange,
+  onKeywordsChange,
+  onSearchNameChange,
+  onRun,
+  onSave,
+  onLoad,
+  onDelete,
+}: {
+  keywords: string[];
+  keywordInput: string;
+  searchName: string;
+  savedSearches: SavedKeywordSearch[];
+  results: KeywordSearchResult[];
+  progress: KeywordSearchProgress;
+  isRunning: boolean;
+  isSaving: boolean;
+  onKeywordInputChange: (value: string) => void;
+  onKeywordsChange: (keywords: string[]) => void;
+  onSearchNameChange: (value: string) => void;
+  onRun: () => void;
+  onSave: () => void;
+  onLoad: (search: SavedKeywordSearch) => void;
+  onDelete: (searchId: string) => void;
+}) {
+  function suggestKeywords(value: string) {
+    const suggestedKeywords = suggestKeywordSearchTerms(value);
+    if (!suggestedKeywords.length) {
+      onKeywordInputChange("");
+      return;
+    }
+    onKeywordsChange([...new Set([...keywords, ...suggestedKeywords])]);
+    onKeywordInputChange("");
+  }
+
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (keywordInput.trim()) {
+      suggestKeywords(keywordInput);
+      return;
+    }
+  }
+
+  function removeKeyword(keyword: string) {
+    onKeywordsChange(keywords.filter((item) => item !== keyword));
+  }
+
+  const progressLabel = progress.total
+    ? `${progress.checkedCount} of ${progress.total} searched`
+    : "Ready to scan live booking pages";
+  const isInitialLoading = isRunning && results.length === 0;
+
+  return (
+    <div className="mx-auto max-w-7xl space-y-7 px-5 py-9">
+      <section className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+        <div>
+          <h1 className="text-3xl font-semibold tracking-tight text-stone-950">Keyword search</h1>
+          <p className="mt-2 max-w-2xl text-sm text-stone-500">Scan live booking and website pages for services or wording that may not be saved in the directory yet.</p>
+        </div>
+        <Button type="button" variant="outline" onClick={onRun} disabled={isRunning || (keywords.length === 0 && !keywordInput.trim())} className="h-10 rounded-none bg-white px-4">
+          {isRunning ? <Loader2 className="size-4 animate-spin" /> : <SearchCheck className="size-4" />}
+          Run search
+        </Button>
+      </section>
+
+      <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_22rem]">
+        <Card className="rounded-none">
+          <CardHeader>
+            <CardTitle className="text-lg">Search terms</CardTitle>
+            <CardDescription>Enter a keyword to generate related search terms, then remove anything you do not want before running the search.</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-5">
+            <div className="flex flex-wrap gap-2">
+              {keywords.map((keyword) => (
+                <button
+                  key={keyword}
+                  type="button"
+                  onClick={() => removeKeyword(keyword)}
+                  className="inline-flex items-center gap-2 rounded-none border border-stone-300 bg-stone-50 px-3 py-1.5 text-xs font-medium text-stone-700 transition hover:border-stone-500 hover:text-stone-950"
+                >
+                  {keyword}
+                  <X className="size-3" />
+                </button>
+              ))}
+              {!keywords.length ? (
+                <p className="rounded-none border border-dashed border-stone-300 px-3 py-2 text-sm text-stone-500">No keywords selected.</p>
+              ) : null}
+            </div>
+
+            <form onSubmit={handleSubmit} className="flex flex-col gap-3 sm:flex-row">
+              <Input
+                value={keywordInput}
+                onChange={(event) => onKeywordInputChange(event.target.value)}
+                placeholder="Enter a keyword, e.g. kids, bridal, locs"
+                className="h-10 rounded-none bg-white"
+              />
+              <div className="flex gap-2">
+                <Button type="submit" variant="outline" className="h-10 rounded-none bg-white px-4">
+                  <Search className="size-4" />
+                  Suggest
+                </Button>
+                <Button type="button" variant="outline" onClick={() => onKeywordsChange([])} disabled={!keywords.length} className="h-10 rounded-none bg-white px-4">
+                  Clear
+                </Button>
+              </div>
+            </form>
+
+            <div className="grid gap-3 border-t border-stone-200 pt-5 sm:grid-cols-[minmax(0,1fr)_auto]">
+              <Input
+                value={searchName}
+                onChange={(event) => onSearchNameChange(event.target.value)}
+                placeholder="Search name, e.g. Kids services"
+                className="h-10 rounded-none bg-white"
+              />
+              <Button type="button" variant="outline" onClick={onSave} disabled={isSaving || !keywords.length} className="h-10 rounded-none bg-white px-4">
+                {isSaving ? <Loader2 className="size-4 animate-spin" /> : <Save className="size-4" />}
+                Save search
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+
+        <SavedKeywordSearchesPanel searches={savedSearches} onLoad={onLoad} onDelete={onDelete} />
+      </div>
+
+      <section className="space-y-4">
+        <div className="flex flex-col gap-2 border-b border-stone-200 pb-3 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <h2 className="text-lg font-semibold text-stone-950">Results</h2>
+            <p className="mt-1 text-sm text-stone-500">{progressLabel}{progress.skippedCount ? ` · ${progress.skippedCount} skipped` : ""}</p>
+          </div>
+          <p className="text-sm font-medium text-stone-600">{results.length} match{results.length === 1 ? "" : "es"}</p>
+        </div>
+
+        <div className="overflow-hidden rounded-none border border-stone-200 bg-white">
+          {isInitialLoading ? (
+            <div className="p-4">
+              <KeywordSearchSkeleton />
+            </div>
+          ) : results.length ? (
+            <div className="space-y-3 p-4">
+              {results.map((result) => (
+                <KeywordSearchResultCard key={result.id} result={result} />
+              ))}
+              {isRunning ? <KeywordSearchSkeleton count={1} compact /> : null}
+            </div>
+          ) : (
+            <div className="flex min-h-64 flex-col items-center justify-center px-6 py-16 text-center">
+              <h2 className="text-lg font-semibold tracking-tight text-stone-950">No matches yet</h2>
+              <p className="mt-3 max-w-xl text-base text-stone-500">Run a live keyword search to find matching wording across booking and website pages.</p>
+              <Button type="button" variant="outline" onClick={onRun} disabled={isRunning || (keywords.length === 0 && !keywordInput.trim())} className="mt-8 h-11 rounded-none bg-white px-4 text-sm">
+                <SearchCheck className="size-4" />
+                Run search
+              </Button>
+            </div>
+          )}
+        </div>
+      </section>
+    </div>
+  );
+}
+
+function KeywordSearchResultCard({ result }: { result: KeywordSearchResult }) {
+  return (
+    <article className="rounded-none border border-stone-200 bg-white p-4">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+        <div>
+          <p className="text-sm font-semibold text-stone-950">{result.name}</p>
+          <p className="mt-1 text-xs text-stone-500">{[result.areaLabel, result.bookingPlatform].filter(Boolean).join(" · ") || "Directory listing"}</p>
+        </div>
+        <div className="flex flex-wrap gap-2">
+          <KeywordResultLink href={result.bookingUrl} label="Booking" />
+          <KeywordResultLink href={result.websiteUrl} label="Website" />
+          <KeywordResultLink href={result.instagramUrl} label="Instagram" />
+        </div>
+      </div>
+
+      <div className="mt-4 space-y-2">
+        {result.matches.map((match, index) => (
+          <div key={`${match.sourceUrl}-${match.line}-${index}`} className="rounded-none bg-stone-50 p-3">
+            <div className="flex flex-wrap items-center gap-2 text-xs text-stone-500">
+              <Badge variant="outline" className="bg-white">{match.keywords.join(", ")}</Badge>
+              <span>{match.sourceType}</span>
+              <a href={match.sourceUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 font-medium underline underline-offset-2 hover:text-stone-950">
+                Open source
+                <ExternalLink className="size-3" />
+              </a>
+            </div>
+            <p className="mt-2 text-sm text-stone-700">{match.snippet || match.line}</p>
+          </div>
+        ))}
+      </div>
+    </article>
+  );
+}
+
+function SavedKeywordSearchesPanel({
+  searches,
+  onLoad,
+  onDelete,
+}: {
+  searches: SavedKeywordSearch[];
+  onLoad: (search: SavedKeywordSearch) => void;
+  onDelete: (searchId: string) => void;
+}) {
+  return (
+    <Card className="rounded-none">
+      <CardHeader>
+        <CardTitle className="text-lg">Saved searches</CardTitle>
+        <CardDescription>Research searches you may turn into filters later.</CardDescription>
+      </CardHeader>
+      <CardContent>
+        {searches.length ? (
+          <div className="max-h-96 space-y-2 overflow-auto">
+            {searches.map((search) => (
+              <div key={search.id} className="rounded-none border border-stone-200 bg-stone-50 p-3">
+                <div className="flex items-start justify-between gap-3">
+                  <button type="button" onClick={() => onLoad(search)} className="min-w-0 text-left">
+                    <p className="truncate text-sm font-semibold text-stone-950">{search.name}</p>
+                    <p className="mt-1 text-xs text-stone-500">{search.resultCount} result{search.resultCount === 1 ? "" : "s"}{search.lastRunAt ? ` · ${formatRelativeTime(search.lastRunAt)}` : ""}</p>
+                  </button>
+                  <button type="button" onClick={() => onDelete(search.id)} aria-label={`Delete ${search.name}`} className="text-stone-400 transition hover:text-red-600">
+                    <Trash2 className="size-4" />
+                  </button>
+                </div>
+                <div className="mt-3 flex flex-wrap gap-1">
+                  {search.keywords.slice(0, 6).map((keyword) => (
+                    <Badge key={keyword} variant="outline" className="bg-white text-[11px]">
+                      {keyword}
+                    </Badge>
+                  ))}
+                  {search.keywords.length > 6 ? (
+                    <Badge variant="outline" className="bg-white text-[11px]">+{search.keywords.length - 6}</Badge>
+                  ) : null}
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <p className="rounded-none border border-dashed border-stone-300 p-4 text-sm text-stone-500">No saved searches yet.</p>
+        )}
+      </CardContent>
+    </Card>
+  );
+}
+
+function KeywordSearchSkeleton({ count = 3, compact = false }: { count?: number; compact?: boolean }) {
+  return (
+    <div className="space-y-3">
+      {Array.from({ length: count }, (_, index) => (
+        <div key={index} className="rounded-none border border-stone-200 bg-white p-4">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+            <div className="space-y-2">
+              <div className="h-4 w-44 animate-pulse rounded-none bg-stone-200" />
+              <div className="h-3 w-32 animate-pulse rounded-none bg-stone-100" />
+            </div>
+            <div className="flex gap-2">
+              <div className="h-8 w-20 animate-pulse rounded-none bg-stone-100" />
+              <div className="h-8 w-20 animate-pulse rounded-none bg-stone-100" />
+              <div className="h-8 w-24 animate-pulse rounded-none bg-stone-100" />
+            </div>
+          </div>
+          {!compact ? (
+            <div className="mt-4 space-y-2 rounded-none bg-stone-50 p-3">
+              <div className="h-3 w-28 animate-pulse rounded-none bg-stone-200" />
+              <div className="h-4 w-full animate-pulse rounded-none bg-stone-200" />
+              <div className="h-4 w-4/5 animate-pulse rounded-none bg-stone-200" />
+            </div>
+          ) : null}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function KeywordResultLink({ href, label }: { href?: string; label: string }) {
+  if (!href) {
+    return null;
+  }
+  return (
+    <a href={href} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 rounded-none border border-stone-300 px-2.5 py-1.5 text-xs font-medium text-stone-600 transition hover:border-stone-500 hover:text-stone-950">
+      {label}
+      <ExternalLink className="size-3" />
+    </a>
+  );
+}
+
+function normalizeKeywordInput(value: string) {
+  return value.toLowerCase().replace(/\s+/g, " ").trim();
+}
+
+function suggestKeywordSearchTerms(value: string) {
+  const seed = normalizeKeywordInput(value);
+  if (!seed) {
+    return [];
+  }
+
+  const matchedGroups = keywordSuggestionGroups.filter((group) =>
+    group.triggers.some((trigger) => seed.includes(trigger) || trigger.includes(seed)),
+  );
+  const suggestions = matchedGroups.flatMap((group) => [...group.keywords]);
+  return [...new Set([seed, ...suggestions])];
 }
 
 function DiscoveryPage({

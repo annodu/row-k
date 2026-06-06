@@ -10,11 +10,12 @@ const __dirname = path.dirname(__filename);
 const draftsPath = path.resolve(__dirname, "../data/stylist-drafts.json");
 const freshnessChecksPath = path.resolve(__dirname, "../data/freshness-checks.json");
 const discoverySuggestionsPath = path.resolve(__dirname, "../data/discovery-suggestions.json");
+const keywordSearchesPath = path.resolve(__dirname, "../data/keyword-searches.json");
 const manualIndexPath = path.resolve(__dirname, "../data/manual-salons.json");
 const sessionCookieName = "rowk_admin_session";
 const sessionMaxAgeSeconds = 60 * 60 * 12;
 const repositoryRoot = path.resolve(__dirname, "..");
-const githubBackedJsonPaths = new Set(["data/manual-salons.json", "data/stylist-drafts.json", "data/discovery-suggestions.json", "data/freshness-checks.json"]);
+const githubBackedJsonPaths = new Set(["data/manual-salons.json", "data/stylist-drafts.json", "data/discovery-suggestions.json", "data/freshness-checks.json", "data/keyword-searches.json"]);
 
 const regionOptions = [
   { id: "all-london", label: "London" },
@@ -134,7 +135,9 @@ const serviceRuleMatchers = [
   ["Japanese head spa", [/\bjapanese\s+head\s+spa\b/, /\bhead\s*spa\b/]],
   ["Scalp detox / treatments", [/\bscalp\b/]],
   ["Curly cut / wash & go", [/\bcurly\s+cut\b/, /\bwash\s*(and|&)?\s*go\b/]],
-  ["Wash & blowdry", [/\bwash\b.*\b(blow\s*dry|blowdry|blowout)\b/, /\bshampoo\b.*\b(blow\s*dry|blowdry|blowout)\b/, /\bblow\s*out\b/, /\bblowout\b/]],
+  ["Extensions blowdry", [/\bextensions?\b.*\b(blow\s*dry|blowdry|blow\s*out|blowout)\b/, /\b(blow\s*dry|blowdry|blow\s*out|blowout)\b.*\bextensions?\b/, /\bblow\s*out\b.*\b(sew\s*in|sewin)\b.*\bweave\b/]],
+  ["Bouncy blowout / Round Brush Blow dry", [/\bbouncy\b.*\b(blow\s*dry|blowdry|blow\s*out|blowout)\b/, /\b(blow\s*dry|blowdry|blow\s*out|blowout)\b.*\bbouncy\b/, /\bround\s+brush\b.*\b(blow\s*dry|blowdry)\b/]],
+  ["Wash & blowdry", [/\bwash\b.*\b(blow\s*dry|blowdry|blowout)\b/, /\bshampoo\b.*\b(blow\s*dry|blowdry|blowout)\b/]],
   ["Trim / hair cut", [/\btrim\b/, /\bhair\s*cut\b/, /\bhaircut\b/, /\bcut\s+and\s+finish\b/]],
   ["Silk press", [/\bsilk\s+press\b/, /\bsilkpress\b/, /\bpress\s+and\s+curl\b/]],
   ["Twist out / flexi rod", [/\btwist\s*out\b/, /\bflexi\s*rod\b/, /\bflexi-rod\b/, /\bperm\s+rod\b/]],
@@ -150,11 +153,13 @@ const serviceRuleMatchers = [
 
 const serviceNegationHints = {
   "Balayage": ["balayage"],
+  "Bouncy blowout / Round Brush Blow dry": ["bouncy blowout", "bouncy blow out", "bouncy blowdry", "bouncy blow dry", "bouncy blow-dry", "round brush blow dry", "round brush blowdry", "dry bouncy blow-dry"],
   "Boho braids / goddess braids": ["boho", "goddess"],
   "Box braids": ["box braids"],
   "Braid take-down": ["braid take down", "braid takedown", "braid removal", "remove braids"],
   "Bridal": ["bridal", "wedding"],
   "Editorial / Session styling": ["editorial", "session styling", "photoshoot"],
+  "Extensions blowdry": ["extensions blowdry", "extensions blow dry", "extensions blowout", "extensions blow out", "extension blowdry", "extension blow dry", "extension blowout", "extension blow out", "blowdry with extensions", "blow dry with extensions", "blowout with extensions", "blow out with extensions", "blow out on sew in weave", "blowout on sew in weave", "wash blow dry with extensions", "wash and blow dry with extensions"],
   "Butterfly locs": ["butterfly locs"],
   "Clip ins (+ silk press)": ["clip ins", "clip in"],
   "Closure sew-in": ["closure sew in", "closure sew-in", "closure sewin", "closure weave", "weave with lace closure", "closure behind the hairline"],
@@ -211,7 +216,7 @@ const serviceNegationHints = {
   "Twists (with extensions)": ["twists with extensions", "passion twists", "marley twists", "senegalese twists", "kinky twists", "rope twists", "island twists", "island twist", "large twist", "large twists"],
   "U-part wig install": ["u part", "u-part", "upart", "u part wig", "u-part wig", "upart wig", "v part", "v-part", "vpart", "v part wig", "v-part wig", "vpart wig", "u vpart", "uvpart", "half wig"],
   "Updo": ["updo", "up do", "pin up", "french roll up", "french roll"],
-  "Wash & blowdry": ["wash blowdry", "wash blow dry", "wash and blowdry", "wash and blow dry", "washing blow drying", "washing and blow drying", "shampoo blowdry", "shampoo blow dry", "shampoo and blowdry", "shampoo and blow dry", "blowout"],
+  "Wash & blowdry": ["wash blowdry", "wash blow dry", "wash and blowdry", "wash and blow dry", "washing blow drying", "washing and blow drying", "shampoo blowdry", "shampoo blow dry", "shampoo and blowdry", "shampoo and blow dry"],
   "Japanese head spa": ["japanese head spa", "head spa", "headspa"],
   "Wig colouring / bundle colouring": ["wig colour", "wig color", "wig dye", "colour wig", "color wig", "wig colouring service", "hair bundle colouring service", "lace closure colouring", "lace frontal colouring", "highlights frontal bundles", "highlights bundles closure"],
   "Wig cornrows": ["under wig", "wig cornrows", "wig cainrows", "cainrows for wig installation", "cornrows for wig installation", "cornrows without extensions", "cainrows"],
@@ -612,6 +617,89 @@ export function registerAdminStylistRoutes(app) {
       serviceCheck,
       priceCheck,
     });
+  });
+
+  app.post("/api/admin/stylists/keyword-search", requireAdmin, async (req, res) => {
+    const keywords = sanitizeKeywordSearchTerms(req.body?.keywords);
+    if (!keywords.length) {
+      return res.status(400).json({ ok: false, message: "Add at least one keyword." });
+    }
+    const searchKeywords = expandKeywordSearchTerms(keywords);
+
+    const index = await readAdminSalonIndex();
+    const offset = Math.max(Number(req.body?.offset || 0), 0);
+    const limit = Math.min(Math.max(Number(req.body?.limit || 30), 1), 50);
+    const salons = index.salons || [];
+    const batchSalons = salons.slice(offset, offset + limit);
+    const checkedAt = new Date().toISOString();
+    const checks = await mapWithConcurrency(batchSalons, isHostedRuntime() ? 2 : 6, (salon) => searchSalonBookingKeywords(salon, searchKeywords), {
+      delayMs: isHostedRuntime() ? 250 : 0,
+    });
+    const results = checks.filter((check) => check.matches.length > 0);
+    const skippedCount = checks.filter((check) => check.status !== "searched").length;
+    const checkedCount = Math.min(offset + batchSalons.length, salons.length);
+
+    res.json({
+      ok: true,
+      keywords: searchKeywords,
+      requestedKeywords: keywords,
+      results,
+      checkedAt,
+      offset,
+      limit,
+      batchCount: batchSalons.length,
+      checkedCount,
+      total: salons.length,
+      skippedCount,
+      nextOffset: offset + batchSalons.length < salons.length ? offset + batchSalons.length : null,
+    });
+  });
+
+  app.get("/api/admin/stylists/keyword-searches", requireAdmin, async (_req, res) => {
+    const store = await readKeywordSearchStore();
+    res.json({ ok: true, searches: store.searches, meta: store.meta });
+  });
+
+  app.post("/api/admin/stylists/keyword-searches", requireAdmin, async (req, res) => {
+    const keywords = sanitizeKeywordSearchTerms(req.body?.keywords);
+    if (!keywords.length) {
+      return res.status(400).json({ ok: false, message: "Add at least one keyword before saving." });
+    }
+
+    const store = await readKeywordSearchStore();
+    const now = new Date().toISOString();
+    const name = cleanString(req.body?.name) || titleCase(keywords[0] || "Keyword search");
+    const incomingId = cleanString(req.body?.id);
+    const existingIndex = incomingId ? store.searches.findIndex((search) => search.id === incomingId) : -1;
+    const existing = existingIndex >= 0 ? store.searches[existingIndex] : null;
+    const savedSearch = sanitizeKeywordSearchRecord({
+      ...(existing || {}),
+      id: existing?.id || makeUniqueKeywordSearchId(name, store.searches),
+      name,
+      keywords,
+      status: sanitizeKeywordSearchStatus(req.body?.status) || existing?.status || "research",
+      notes: cleanString(req.body?.notes || existing?.notes || ""),
+      resultCount: Number(req.body?.resultCount) || sanitizeKeywordSearchResults(req.body?.results).length,
+      results: sanitizeKeywordSearchResults(req.body?.results),
+      createdAt: existing?.createdAt || now,
+      updatedAt: now,
+      lastRunAt: cleanString(req.body?.lastRunAt) || now,
+    });
+    const searches = existingIndex >= 0
+      ? store.searches.map((search, index) => (index === existingIndex ? savedSearch : search))
+      : [savedSearch, ...store.searches];
+    await writeKeywordSearchStore(searches);
+    res.status(existingIndex >= 0 ? 200 : 201).json({ ok: true, search: savedSearch, searches });
+  });
+
+  app.delete("/api/admin/stylists/keyword-searches/:id", requireAdmin, async (req, res) => {
+    const store = await readKeywordSearchStore();
+    const searches = store.searches.filter((search) => search.id !== req.params.id);
+    if (searches.length === store.searches.length) {
+      return res.status(404).json({ ok: false, message: "Saved search not found." });
+    }
+    await writeKeywordSearchStore(searches);
+    res.json({ ok: true, searches });
   });
 
   app.patch("/api/admin/stylists/:id/freshness", requireAdmin, async (req, res) => {
@@ -1038,6 +1126,91 @@ async function writeDiscoveryStore(suggestions) {
     },
     suggestions,
   });
+}
+
+async function readKeywordSearchStore() {
+  const store = await readJson(keywordSearchesPath, { meta: { source: "keyword-searches", updatedAt: null, count: 0 }, searches: [] });
+  const searches = Array.isArray(store.searches) ? store.searches.map(sanitizeKeywordSearchRecord).filter(Boolean) : [];
+  return {
+    meta: {
+      source: "keyword-searches",
+      updatedAt: store.meta?.updatedAt ?? null,
+      count: searches.length,
+    },
+    searches,
+  };
+}
+
+async function writeKeywordSearchStore(searches) {
+  await writeJson(keywordSearchesPath, {
+    meta: {
+      source: "keyword-searches",
+      updatedAt: new Date().toISOString(),
+      count: searches.length,
+    },
+    searches,
+  });
+}
+
+function sanitizeKeywordSearchRecord(search = {}) {
+  const keywords = sanitizeKeywordSearchTerms(search.keywords);
+  if (!keywords.length) {
+    return null;
+  }
+  const name = cleanString(search.name) || titleCase(keywords[0] || "Keyword search");
+  const results = sanitizeKeywordSearchResults(search.results);
+  return {
+    id: cleanString(search.id) || slugify(`keyword-${name}`),
+    name,
+    keywords,
+    status: sanitizeKeywordSearchStatus(search.status) || "research",
+    notes: cleanString(search.notes),
+    resultCount: Number(search.resultCount) || results.length,
+    results,
+    createdAt: cleanString(search.createdAt) || new Date().toISOString(),
+    updatedAt: cleanString(search.updatedAt) || new Date().toISOString(),
+    lastRunAt: cleanString(search.lastRunAt),
+  };
+}
+
+function sanitizeKeywordSearchResults(results = []) {
+  return (Array.isArray(results) ? results : [])
+    .map((result) => ({
+      id: cleanString(result?.id),
+      name: cleanString(result?.name),
+      areaLabel: cleanString(result?.areaLabel),
+      bookingPlatform: cleanString(result?.bookingPlatform),
+      bookingUrl: cleanString(result?.bookingUrl),
+      websiteUrl: cleanString(result?.websiteUrl),
+      instagramUrl: cleanString(result?.instagramUrl),
+      matches: (Array.isArray(result?.matches) ? result.matches : []).slice(0, 6).map((match) => ({
+        keywords: toArray(match?.keywords).slice(0, 8),
+        line: cleanString(match?.line),
+        snippet: cleanString(match?.snippet),
+        sourceType: cleanString(match?.sourceType),
+        sourceUrl: cleanString(match?.sourceUrl),
+      })).filter((match) => match.line || match.snippet),
+    }))
+    .filter((result) => result.id && result.name)
+    .slice(0, 200);
+}
+
+function sanitizeKeywordSearchStatus(value = "") {
+  const cleaned = cleanString(value);
+  return ["research", "candidate_filter", "promoted"].includes(cleaned) ? cleaned : "";
+}
+
+function makeUniqueKeywordSearchId(name = "", searches = []) {
+  const base = slugify(`keyword-${name || "search"}`);
+  const existingIds = new Set(searches.map((search) => search.id));
+  if (!existingIds.has(base)) {
+    return base;
+  }
+  let suffix = 2;
+  while (existingIds.has(`${base}-${suffix}`)) {
+    suffix += 1;
+  }
+  return `${base}-${suffix}`;
 }
 
 async function readFreshnessStore(fallback) {
@@ -2383,6 +2556,7 @@ function getServiceEvidence(rawServices = [], service) {
 
 const serviceEvidenceKeywords = {
   "Balayage": ["balayage"],
+  "Bouncy blowout / Round Brush Blow dry": ["bouncy blowout", "bouncy blow out", "bouncy blowdry", "bouncy blow dry", "bouncy blow-dry", "round brush blow dry", "round brush blowdry", "dry bouncy blow-dry"],
   "Highlights": ["highlight", "highlights", "lowlights"],
   "Full head colour": ["colour", "color", "tint", "dye", "rooting"],
   "Wig colouring / bundle colouring": ["wig colour", "wig color", "wig colouring service", "hair bundle colouring service", "lace closure colouring", "lace frontal colouring", "colouring full wig", "custom colour", "colour service", "613", "non-contact", "non contact", "bundle", "bundles", "frontal", "closure"],
@@ -2393,7 +2567,8 @@ const serviceEvidenceKeywords = {
   "Pixie wig / weave install": ["pixie wig", "pixie weave", "pixie install", "pixie cut wig making", "pixie cut wig making styling"],
   "Tracks (+ silk press) / partial / invisible sew-in": ["tracks", "track per row", "per track", "per row", "one row", "individual sewn on track", "individual sewn on tracks", "tracks add on", "tracks add-on", "silk press add on tracks", "silk press add-on tracks", "sew in tracks", "sew-in tracks", "weave tracks", "single track weave"],
   "Twists (with extensions)": ["twists with extensions", "passion twists", "marley twists", "senegalese twists", "kinky twists", "rope twists", "island twists", "island twist", "large twist", "large twists"],
-  "Wash & blowdry": ["wash blowdry", "wash blow dry", "wash and blowdry", "wash and blow dry", "washing blow drying", "washing and blow drying", "shampoo blowdry", "shampoo blow dry", "shampoo and blowdry", "shampoo and blow dry", "blowout"],
+  "Extensions blowdry": ["extensions blowdry", "extensions blow dry", "extensions blowout", "extensions blow out", "extension blowdry", "extension blow dry", "extension blowout", "extension blow out", "blowdry with extensions", "blow dry with extensions", "blowout with extensions", "blow out with extensions", "blow out on sew in weave", "blowout on sew in weave", "wash blow dry with extensions", "wash and blow dry with extensions"],
+  "Wash & blowdry": ["wash blowdry", "wash blow dry", "wash and blowdry", "wash and blow dry", "washing blow drying", "washing and blow drying", "shampoo blowdry", "shampoo blow dry", "shampoo and blowdry", "shampoo and blow dry"],
   "Japanese head spa": ["japanese head spa", "head spa", "headspa"],
   "Wig cornrows": ["under wig", "wig cornrows", "wig cainrows", "cornrows for wig installation", "cornrows without extensions", "cainrows"],
   "Scalp detox / treatments": ["scalp", "scalp care", "scalp therapy", "scalp treatment", "scalp treatments", "scalp scrub", "scalp detox", "scalp rejuvenation", "scalp renewal", "exfoliating scalp salt scrub"],
@@ -2591,6 +2766,302 @@ function extractBookingServicesFromHtml(html) {
     areaId: structured.areaId,
     areaLabel: areaLabelFor(structured.areaId),
   };
+}
+
+async function searchSalonBookingKeywords(salon = {}, keywords = []) {
+  const urls = {
+    bookingUrl: cleanString(salon.bookingUrl),
+    websiteUrl: cleanString(salon.websiteUrl),
+  };
+  const sourceRequests = [
+    urls.bookingUrl && !isSocialOnlyUrl(urls.bookingUrl) ? { type: "booking", url: urls.bookingUrl } : null,
+    urls.websiteUrl && urls.websiteUrl !== urls.bookingUrl && !isSocialOnlyUrl(urls.websiteUrl) ? { type: "website", url: urls.websiteUrl } : null,
+  ].filter(Boolean);
+
+  if (!sourceRequests.length) {
+    return buildKeywordSearchResult(salon, {
+      status: "skipped",
+      reason: "No machine-readable booking or website link.",
+      keywords,
+    });
+  }
+
+  const linkChecks = await Promise.all(sourceRequests.map((source) => checkUrl(source.type, source.url, { includeText: true })));
+  const okChecks = linkChecks.filter((check) => check?.status === "ok" && check.responseText);
+  if (!okChecks.length) {
+    return buildKeywordSearchResult(salon, {
+      status: "unsearchable",
+      reason: "Booking or website page could not be searched.",
+      keywords,
+    });
+  }
+
+  const embeddedBookingSources = await fetchEmbeddedBookingSources(okChecks.map((check) => ({
+    html: check.responseText || "",
+    url: check.finalUrl || check.url || "",
+  })));
+  const searchableSources = [
+    ...okChecks.map((check) => ({
+      sourceType: check.type,
+      sourceUrl: check.finalUrl || check.url || "",
+      text: htmlToReadableText(check.responseText || ""),
+    })),
+    ...okChecks.map((check) => ({
+      sourceType: `${check.type} services`,
+      sourceUrl: check.finalUrl || check.url || "",
+      text: extractStructuredKeywordSearchText(check.responseText || ""),
+    })),
+    ...embeddedBookingSources.map((source) => ({
+      sourceType: "embedded booking",
+      sourceUrl: source.url,
+      text: htmlToReadableText(source.html || ""),
+    })),
+    ...embeddedBookingSources.map((source) => ({
+      sourceType: "embedded booking services",
+      sourceUrl: source.url,
+      text: extractStructuredKeywordSearchText(source.html || ""),
+    })),
+  ].filter((source) => source.text);
+  const matches = searchableSources.flatMap((source) => findKeywordMatchesInText(source.text, keywords).map((match) => ({
+    ...match,
+    sourceType: source.sourceType,
+    sourceUrl: source.sourceUrl,
+  })));
+
+  return buildKeywordSearchResult(salon, {
+    status: "searched",
+    reason: matches.length ? "" : "No keyword matches found.",
+    keywords,
+    matches: uniqueKeywordMatches(matches).slice(0, 12),
+  });
+}
+
+function buildKeywordSearchResult(salon = {}, { status = "searched", reason = "", keywords = [], matches = [] } = {}) {
+  return {
+    id: salon.id,
+    name: salon.name,
+    areaLabel: salon.areaLabel || "",
+    bookingPlatform: salon.bookingPlatform || "",
+    bookingUrl: salon.bookingUrl || "",
+    websiteUrl: salon.websiteUrl || "",
+    instagramUrl: salon.instagramUrl || "",
+    status,
+    reason,
+    keywords,
+    matches,
+    checkedAt: new Date().toISOString(),
+  };
+}
+
+function extractStructuredKeywordSearchText(html = "") {
+  const business = extractAcuityBusiness(html);
+  if (!business) {
+    return "";
+  }
+
+  return extractAcuityAppointments(business)
+    .flatMap((appointment) => [
+      appointment.category,
+      appointment.name,
+      appointment.description,
+    ])
+    .map((line) => cleanPriceEvidenceText(String(line || "").replace(/<[^>]+>/g, " ")))
+    .filter(Boolean)
+    .join("\n");
+}
+
+function sanitizeKeywordSearchTerms(value) {
+  const rawTerms = Array.isArray(value) ? value : String(value || "").split(/[,;\n]+/);
+  return [...new Set(rawTerms
+    .map((term) => cleanString(term).toLowerCase())
+    .map((term) => term.replace(/\s+/g, " ").trim())
+    .filter((term) => term.length >= 2 && term.length <= 40)
+  )].slice(0, 40);
+}
+
+const learnedKeywordSearchExpansions = [
+  {
+    triggers: ["bouncy", "bouncy blowout", "bouncy blowdry", "bouncy blow dry", "round brush", "round brush blow dry", "round brush blowdry", "curly blow dry", "90s blowout", "dominican blowdry", "dominican blow out", "glamorous blow dry", "volumising blow dry"],
+    keywords: [
+      "bouncy blowout",
+      "bouncy blow out",
+      "bouncy blowdry",
+      "bouncy blow dry",
+      "round brush blow dry",
+      "round brush blowdry",
+      "roundbrush blow dry",
+      "roundbrush blowdry",
+      "round brush blow dry style",
+      "round brush",
+      "curly blow dry",
+      "curly blowdry",
+      "90s blowout",
+      "90s blow out",
+      "dominican blowdry",
+      "dominican blow dry",
+      "dominican blowout",
+      "dominican blow out",
+      "glamorous blow dry",
+      "glamorous blowdry",
+      "volumising blow dry",
+      "volumising blowdry",
+    ],
+  },
+  {
+    triggers: ["extensions blowdry", "extensions blow dry", "extensions blowout", "extensions blow out", "extension blowdry", "extension blowout", "weave blowdry", "weave blow dry"],
+    keywords: [
+      "extensions blowdry",
+      "extensions blow dry",
+      "extensions blowout",
+      "extensions blow out",
+      "blowdry with extensions",
+      "blow dry with extensions",
+      "blowout with extensions",
+      "blow out on sew in weave",
+      "blowout on sew in weave",
+      "wash blow dry with extensions",
+      "wash and blow dry with extensions",
+      "weave wash",
+      "shampoo weave",
+      "wash weave",
+      "wash set blow dry",
+      "wash set and blow dry",
+      "wash and style",
+      "wash blow dry extensions",
+      "extension removal shampoo treatment blowdry",
+    ],
+  },
+];
+
+function expandKeywordSearchTerms(keywords = []) {
+  const normalizedKeywords = sanitizeKeywordSearchTerms(keywords);
+  const expanded = [...normalizedKeywords];
+  normalizedKeywords.forEach((keyword) => {
+    learnedKeywordSearchExpansions.forEach((group) => {
+      if (group.triggers.some((trigger) => keyword.includes(trigger) || trigger.includes(keyword))) {
+        expanded.push(...group.keywords);
+      }
+    });
+  });
+  return sanitizeKeywordSearchTerms(expanded);
+}
+
+function findKeywordMatchesInText(text = "", keywords = []) {
+  const lines = String(text || "")
+    .split(/\n+/)
+    .map((line) => cleanPriceEvidenceText(line))
+    .filter((line) => line && line.length <= 260);
+  const patterns = keywords.map((keyword) => ({ keyword, tokens: keywordSearchTokens(keyword) })).filter((item) => item.tokens.length);
+  const matches = [];
+
+  lines.forEach((line, index) => {
+    const lineTokens = keywordSearchTokens(line);
+    const matchedKeywords = patterns
+      .filter(({ tokens }) => hasSequentialKeywordTokens(lineTokens, tokens))
+      .map(({ keyword }) => keyword);
+    if (!matchedKeywords.length) {
+      return;
+    }
+
+    const contextLines = [
+      lines[index - 1],
+      line,
+      lines[index + 1],
+    ].filter(Boolean);
+    matches.push({
+      keyword: matchedKeywords[0],
+      keywords: matchedKeywords,
+      line,
+      snippet: contextLines.join(" / ").slice(0, 360),
+    });
+  });
+
+  return matches;
+}
+
+function keywordSearchTokens(value = "") {
+  return String(value || "")
+    .toLowerCase()
+    .replace(/&/g, " and ")
+    .replace(/([a-z])([0-9])/g, "$1 $2")
+    .replace(/([0-9])([a-z])/g, "$1 $2")
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean)
+    .flatMap(splitKeywordSearchCompoundToken)
+    .map(normalizeKeywordSearchToken)
+    .filter((token) => !keywordSearchStopTokens.has(token));
+}
+
+const keywordSearchStopTokens = new Set(["and", "with", "for", "the", "of", "a", "an"]);
+
+function splitKeywordSearchCompoundToken(token = "") {
+  const compounds = {
+    blowdry: ["blow", "dry"],
+    blowout: ["blow", "out"],
+    roundbrush: ["round", "brush"],
+    sewin: ["sew", "in"],
+    reinstall: ["re", "install"],
+    restyle: ["re", "style"],
+    takedown: ["take", "down"],
+    takeout: ["take", "out"],
+    microlocs: ["micro", "locs"],
+    sisterlocs: ["sister", "locs"],
+    knotless: ["knotless"],
+  };
+  return compounds[token] || [token];
+}
+
+function normalizeKeywordSearchToken(token = "") {
+  const normalized = String(token || "").toLowerCase();
+  const aliases = {
+    colour: "color",
+    colouring: "color",
+    coloring: "color",
+    installs: "install",
+    installation: "install",
+    reinstall: "install",
+    reinstallation: "install",
+    braids: "braid",
+    cornrows: "cornrow",
+    locs: "loc",
+    twists: "twist",
+    wigs: "wig",
+    sewins: "sewin",
+    sewin: "sew",
+    styled: "style",
+    styling: "style",
+    styles: "style",
+    finishing: "finish",
+    finishes: "finish",
+    shampooing: "shampoo",
+  };
+  return aliases[normalized] || normalized.replace(/s$/, "");
+}
+
+function hasSequentialKeywordTokens(lineTokens = [], keywordTokens = []) {
+  if (!lineTokens.length || !keywordTokens.length || keywordTokens.length > lineTokens.length) {
+    return false;
+  }
+  for (let index = 0; index <= lineTokens.length - keywordTokens.length; index += 1) {
+    if (keywordTokens.every((token, offset) => lineTokens[index + offset] === token)) {
+      return true;
+    }
+  }
+  return false;
+}
+
+function uniqueKeywordMatches(matches = []) {
+  const seen = new Set();
+  return matches.filter((match) => {
+    const key = `${match.line}:${match.keywords.join(",")}`;
+    if (seen.has(key)) {
+      return false;
+    }
+    seen.add(key);
+    return true;
+  });
 }
 
 async function extractBestServiceCheck({ booking = "", website = "", bookingUrl = "", websiteUrl = "", allowAiFallback = false } = {}) {

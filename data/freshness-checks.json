@@ -1,10 +1,10 @@
 {
   "meta": {
     "source": "freshness-checks",
-    "updatedAt": "2026-06-05T00:15:45.283Z",
-    "count": 2,
-    "checkedCount": 684,
-    "total": 684,
+    "updatedAt": "2026-06-05T22:24:58.130Z",
+    "count": 0,
+    "checkedCount": 678,
+    "total": 678,
     "mode": "pricing"
   },
   "dismissedRecommendations": {
@@ -3679,11 +3679,17 @@
       "priceBand": "£"
     },
     "the-curl-coach": {
+      "addedServices": [],
+      "removedServices": [],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {},
       "handledFingerprints": [
         "price:£££|medium|110|175|275|325|curl makeover - £275|curl makeover + hands-on tutorial - £325|a curl-reviving detox, deep-moisture treatment, bespoke curly cut and finish... - £175|aka &ldquo; the wash & go&rdquo; - £110",
-        "price:£££|medium"
+        "price:£££|medium",
+        "price:££££|medium|275|325|curl makeover - £275|curl makeover + hands-on styling tutorial - £325",
+        "price:££££|medium"
       ],
-      "priceBand": "£££"
+      "priceBand": "££££"
     },
     "styled-by-barros": {
       "addedServices": [],
@@ -4184,9 +4190,11 @@
       "addedServiceEvidence": {},
       "handledFingerprints": [
         "price:£££|medium|65|480|the luxe lengths package - £480|studio rental (full day - 8hours) - £65",
-        "price:£££|medium"
+        "price:£££|medium",
+        "price:££££|medium|65|480|the luxe lengths package - £480|studio rental (full day - 8hours) - £65",
+        "price:££££|medium"
       ],
-      "priceBand": "££"
+      "priceBand": "££££"
     },
     "thecurlsanctuaryheadspa": {
       "addedServices": [],
@@ -4337,9 +4345,13 @@
       "addedServiceEvidence": {},
       "handledFingerprints": [
         "price:£|medium|10|10|10|15|15|20|30|30|30|40|40|40|50|50|50|50|90|90|90|90|90|90|90|90|90|90|90|100|100|150|150|170|700|micro - £700|locs - for interlocks +£100|500 locs - from £150 for|+ fri/sat)\",\"4 hours (£10|+ fri/sat)\",\"5 hours (£10|+ £30|ph (£15|(start price)+ £30",
-        "price:£|medium"
+        "price:£|medium",
+        "price:££|medium|10|10|100|100|150|150|700|micro - £700|locs - for interlocks +£100|500 locs - from £150 for|+ fri/sat)\",\"4 hours (£10|+ fri/sat)\",\"5 hours (£10|350-390 locs - for interlocks +£100|for hours (500 locs maximum) - from £150 for hours (500 locs maximum)",
+        "price:££|medium",
+        "link:booking|www.foryourlocsonly.com|www.foryourlocsonly.com|unverified|null",
+        "link:booking|www.foryourlocsonly.com|unverified|null"
       ],
-      "priceBand": "££££"
+      "priceBand": "££"
     },
     "paintedbykrystel": {
       "addedServices": [],
@@ -5589,8 +5601,11 @@
       "addedServiceFamilies": [],
       "addedServiceEvidence": {},
       "handledFingerprints": [
-        "price:unknown"
-      ]
+        "price:unknown",
+        "price:££££|medium|129|215|220|240|245|245|260|275|280|295|499|499|615|615|630|630|645|645|699|699|715|715|240 british pounds|260 british pounds|280 british pounds|295 british pounds|275 british pounds|215 british pounds|220 british pounds|human braids & curls - 245 british pounds",
+        "price:££££|medium"
+      ],
+      "priceBand": "££££"
     },
     "rd-hairstudio": {
       "addedServices": [],
@@ -5690,8 +5705,11 @@
       "addedServiceFamilies": [],
       "addedServiceEvidence": {},
       "handledFingerprints": [
-        "price:unknown"
-      ]
+        "price:unknown",
+        "price:£|low|25|30|40|appointments outside of these hours are offered on a limited basis and will incur an additional £25 fee|sunday appointments are limited and incur a £40 premium|drop offs outside of this window must be arranged in advance and may incur a £30 fee or result in your appointment be...",
+        "price:£|low"
+      ],
+      "priceBand": "£"
     },
     "sd-hair": {
       "addedServices": [],
@@ -5737,8 +5755,11 @@
       "addedServiceFamilies": [],
       "addedServiceEvidence": {},
       "handledFingerprints": [
-        "price:unknown"
-      ]
+        "price:unknown",
+        "price:£|medium|45|45|45|75|150|treatment - £45|treatment - £45.00|£75.0040minsmore infoselect|treatment - £150.0060minsmore infoselect|treatment - £45.0060minsmore infoselect",
+        "price:£|medium"
+      ],
+      "priceBand": "£"
     },
     "silone-sensei": {
       "addedServices": [],
@@ -6042,94 +6063,29 @@
       "handledFingerprints": [
         "price:unknown"
       ]
+    },
+    "conor-m": {
+      "addedServices": [],
+      "removedServices": [],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {},
+      "handledFingerprints": [
+        "price:££|medium|80|90|125|200|for your most stylish cut yet \\n - £80|fall in love with his elevated but effortless take on colour - £90|for natural texture and effortless, face-framing styles… - £200|born with it’ colour is his kind of vibe - £125",
+        "price:££|medium"
+      ],
+      "priceBand": "££"
+    },
+    "fola-fash": {
+      "addedServices": [],
+      "removedServices": [],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {},
+      "handledFingerprints": [
+        "price:£££|medium|150|250|250|300|400|keratin treatment - £400|avlon texture release treatment - £300|maintenance session - invisible k-tips - £250|sew-in maintenance - £150|signature silk press, treatment & cut - £250",
+        "price:£££|medium"
+      ],
+      "priceBand": "£££"
     }
   },
-  "checks": [
-    {
-      "id": "jusu-hair-boutique",
-      "name": "Jusu Hair Boutique",
-      "areaLabel": "North",
-      "bookingUrl": "https://www.instagram.com/jusuhairboutique/",
-      "instagramUrl": "https://www.instagram.com/jusuhairboutique/",
-      "websiteUrl": "",
-      "hijabiFriendly": false,
-      "priceBand": "",
-      "priceSource": "",
-      "priceConfidence": "",
-      "issues": [
-        "Manual price check required"
-      ],
-      "linkChecks": [],
-      "serviceCheck": {
-        "confidence": "unknown",
-        "rawServices": [],
-        "matchedServices": [],
-        "areaId": "",
-        "areaLabel": ""
-      },
-      "priceCheck": {
-        "source": "booking",
-        "confidence": "unknown",
-        "priceBand": "",
-        "medianPrice": 0,
-        "prices": [],
-        "priceCount": 0,
-        "evidence": []
-      },
-      "attributeSuggestions": [],
-      "currentServices": [
-        "Microlocs / sisterlocs"
-      ],
-      "detectedServices": [],
-      "addedServices": [],
-      "removedServices": [],
-      "locationReviewIgnored": false,
-      "checkedAt": "2026-06-04T19:30:44.541Z",
-      "backfillStatus": "skipped-social",
-      "backfillReason": "Skipped because this listing is Instagram/social-only and has no saved price band."
-    },
-    {
-      "id": "zoliesthetikbeauty",
-      "name": "Zoliesthetikbeauty",
-      "areaLabel": "South west London",
-      "bookingUrl": "https://www.instagram.com/zoliesthetikbeauty/",
-      "instagramUrl": "https://www.instagram.com/zoliesthetikbeauty/",
-      "websiteUrl": "https://www.instagram.com/zoliesthetikbeauty/",
-      "hijabiFriendly": false,
-      "priceBand": "",
-      "priceSource": "",
-      "priceConfidence": "",
-      "issues": [
-        "Manual price check required"
-      ],
-      "linkChecks": [],
-      "serviceCheck": {
-        "confidence": "unknown",
-        "rawServices": [],
-        "matchedServices": [],
-        "areaId": "",
-        "areaLabel": ""
-      },
-      "priceCheck": {
-        "source": "booking",
-        "confidence": "unknown",
-        "priceBand": "",
-        "medianPrice": 0,
-        "prices": [],
-        "priceCount": 0,
-        "evidence": []
-      },
-      "attributeSuggestions": [],
-      "currentServices": [
-        "Trichology / scalp analysis"
-      ],
-      "detectedServices": [],
-      "addedServices": [],
-      "removedServices": [],
-      "locationReviewIgnored": false,
-      "checkedAt": "2026-06-04T19:47:16.431Z",
-      "backfillStatus": "skipped-social",
-      "backfillReason": "Skipped because this listing is Instagram/social-only and has no saved price band."
-    }
-  ]
+  "checks": []
 }

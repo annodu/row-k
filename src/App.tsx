@@ -102,7 +102,7 @@ const categoryMap = {
   },
   "styling-services": {
     label: "Styling (sew in / frontal / relaxer)",
-    subcategories: ["all", "Frontal ponytail / bun", "Half up half down", "Pixie / finger waves", "Sleek ponytail / bun", "Updo"],
+    subcategories: ["all", "Extensions blowdry", "Frontal ponytail / bun", "Half up half down", "Pixie / finger waves", "Sleek ponytail / bun", "Updo"],
   },
   "straightening-treatments": {
     label: "Treatments",
@@ -124,7 +124,8 @@ const categoryMap = {
       "all",
       "Wig cornrows",
       "Curly cut / wash & go",
-      "Silk press / bouncy blowout",
+      "Silk press",
+      "Bouncy blowout / Round Brush Blow dry",
       "Trim / hair cut",
       "Twist out / flexi rod",
       "Wash & blowdry",
@@ -182,7 +183,7 @@ const categoryServiceMap = {
     "Tracks (+ silk press) / partial / invisible sew-in",
     "Traditional sew-in / leave out",
   ],
-  "styling-services": ["Frontal ponytail / bun", "Half up half down", "Pixie / finger waves", "Sleek ponytail / bun", "Updo"],
+  "styling-services": ["Extensions blowdry", "Frontal ponytail / bun", "Half up half down", "Pixie / finger waves", "Sleek ponytail / bun", "Updo"],
   "straightening-treatments": [
     "Hair botox",
     "Japanese straightening",
@@ -196,7 +197,8 @@ const categoryServiceMap = {
   "natural-hair-services": [
     "Wig cornrows",
     "Curly cut / wash & go",
-    "Silk press / bouncy blowout",
+    "Silk press",
+    "Bouncy blowout / Round Brush Blow dry",
     "Trim / hair cut",
     "Twist out / flexi rod",
     "Wash & blowdry",
@@ -274,7 +276,6 @@ const resultLocationLabelMap: Record<string, string> = {
 };
 
 const serviceDisplayNames: Record<string, string> = {
-  "Silk press": "Silk press / bouncy blowout",
   "Wig cornrows": "Cornrows / Twists / Wig cornrows",
 };
 
@@ -293,7 +294,7 @@ const serviceSearchAliases: Record<string, string[]> = {
   "Wig colouring / bundle colouring": ["wig colour", "wig color", "colouring full wig", "custom colour", "colour service", "613"],
   "Frontal sew-in": ["frontal sew in", "frontal sew-in", "frontal sewin", "frontal weave"],
   "Closure sew-in": ["closure sew in", "closure sew-in", "closure sewin", "closure weave", "weave with lace closure"],
-  "Creative braids": ["creative braids", "patewo", "dolly braids", "shuku", "koroba braids", "koroba", "tyla braids", "tyla"],
+  "Creative braids": ["creative braids", "patewo", "dolly braids", "shuku", "koroba braids", "koroba", "tyla braids", "tyla", "alicia keys braids"],
   "Feed-in braids": ["feed in", "feed-in", "all back", "braids going back", "all back cornrows", "all back braids", "cornrows with extensions", "cornrows with hair"],
   "Fulani / lemonade braids": ["fulani", "lemonade", "alicia keys braids"],
   "K-tips / invisible strands": ["k tips", "k-tips", "keratin tip", "keratin tips", "keratin bonds", "invisible strands"],
@@ -305,8 +306,10 @@ const serviceSearchAliases: Record<string, string[]> = {
   "Twists (with extensions)": ["twists with extensions", "passion twists", "marley twists", "senegalese twists", "kinky twists", "rope twists", "island twists", "island twist"],
   "Hybrid sew in (tapes + sew in)": ["hybrid sew in", "hybrid sew-in", "hybrid weave", "tracks + tapes hybrid", "tracks and tapes hybrid"],
   "Tracks (+ silk press) / partial / invisible sew-in": ["rows", "tracks", "track per row", "per row", "one row", "weave tracks", "partial sew in", "partial sew-in", "invisible sew in", "invisible weave", "invisible weft"],
-  "Silk press / bouncy blowout": ["straightening", "straighten", "silk press"],
-  "Wash & blowdry": ["wash blowdry", "wash blow dry", "wash and blowdry", "wash and blow dry", "shampoo blowdry", "blowout"],
+  "Silk press": ["straightening", "straighten", "silk press", "silkpress", "press and curl"],
+  "Bouncy blowout / Round Brush Blow dry": ["bouncy blowout", "bouncy blow out", "bouncy blowdry", "bouncy blow dry", "bouncy blow-dry", "round brush blow dry", "round brush blowdry", "blowout"],
+  "Extensions blowdry": ["extensions blowdry", "extensions blow dry", "extensions blowout", "extensions blow out", "extension blowdry", "extension blow dry", "extension blowout", "extension blow out", "blowdry with extensions", "blow dry with extensions", "blowout with extensions", "blow out with extensions"],
+  "Wash & blowdry": ["wash blowdry", "wash blow dry", "wash and blowdry", "wash and blow dry", "shampoo blowdry", "shampoo blow dry"],
   "Japanese head spa": ["japanese head spa", "head spa", "headspa"],
   "Updo": ["updo", "up do", "pin up", "french roll"],
   "Wig cornrows": ["under wig", "wig cornrows", "cornrows for wig", "cornrows"],
