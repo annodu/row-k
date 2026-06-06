@@ -1,7 +1,7 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-06-06T18:35:32.073Z",
+    "updatedAt": "2026-06-06T18:35:57.193Z",
     "count": 695,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
@@ -9041,7 +9041,9 @@
       "services": [
         "Bouncy blowout / Round Brush Blow dry",
         "Silk press",
-        "Curly cut / wash & go / diffuse"
+        "Curly cut / wash & go / diffuse",
+        "Wig blowdry",
+        "Sew in / extensions blowdry"
       ],
       "websiteUrl": "",
       "tiktokUrl": "",
@@ -9055,7 +9057,7 @@
       "priceCheckedAt": "2026-06-04T11:32:12.022Z",
       "priceUpdatedAt": "2026-06-05T19:00:38.488Z",
       "priceConfidence": "manual",
-      "updatedAt": "2026-06-06T18:15:07.051Z",
+      "updatedAt": "2026-06-06T18:35:57.193Z",
       "servicePriceBand": "",
       "packagePriceBand": "",
       "priceIncludesHair": false,
