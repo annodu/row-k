@@ -1,11 +1,35 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-06-06T18:22:02.582Z",
-    "count": 694,
+    "updatedAt": "2026-06-06T18:26:30.703Z",
+    "count": 695,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "marta-beautysalon",
+      "name": "Marta Beautysalon",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london",
+        "east"
+      ],
+      "areaLabel": "East London",
+      "neighbourhood": "East London London",
+      "postcode": "",
+      "bookingPlatform": "Direct",
+      "bookingUrl": "https://www.instagram.com/marta.beautysalon.academy/",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/marta.beautysalon.academy/",
+      "services": [
+        "Wig blowdry"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/marta.beautysalon.academy/"
+      ]
+    },
     {
       "id": "hershesons",
       "name": "Hershesons",

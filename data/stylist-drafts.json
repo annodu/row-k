@@ -1,40 +1,10 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-06-06T18:26:04.138Z",
-    "count": 3
+    "updatedAt": "2026-06-06T18:26:30.703Z",
+    "count": 2
   },
   "drafts": [
-    {
-      "id": "marta-beautysalon-academy-mq2op2vq",
-      "status": "needs_review",
-      "name": "Marta Beautysalon Academy",
-      "areaId": "",
-      "areaIds": [],
-      "areaLabel": "",
-      "neighbourhood": "",
-      "postcode": "",
-      "bookingPlatform": "",
-      "bookingUrl": "",
-      "websiteUrl": "",
-      "instagramUrl": "https://www.instagram.com/marta.beautysalon.academy/",
-      "tiktokUrl": "",
-      "services": [],
-      "rawServices": [],
-      "summary": "Admin draft created from stylist intake.",
-      "confidence": 0.35,
-      "warnings": [
-        "No booking link identified yet.",
-        "No services matched yet."
-      ],
-      "evidence": [
-        "Submitted link: https://www.instagram.com/marta.beautysalon.academy/"
-      ],
-      "source": "admin-draft",
-      "createdAt": "2026-06-06T18:26:04.117Z",
-      "updatedAt": "2026-06-06T18:26:04.117Z",
-      "lastCheckedAt": "2026-06-06T18:26:04.117Z"
-    },
     {
       "id": "braidedbytaiss-mq2c0fqv",
       "status": "needs_review",
