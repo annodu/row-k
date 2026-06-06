@@ -1,7 +1,7 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-06-06T18:26:30.703Z",
+    "updatedAt": "2026-06-06T18:33:36.535Z",
     "count": 695,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
@@ -9978,7 +9978,11 @@
         "Updo",
         "Half up half down",
         "Traditional sew-in / leave out",
-        "Wash & blowdry"
+        "Wash & blowdry",
+        "Pixie wig / weave install",
+        "Pixie / finger waves",
+        "Full head colour",
+        "Wig blowdry"
       ],
       "priceBand": "££",
       "priceSource": "manual",
@@ -9995,7 +9999,15 @@
       "priceCheckedAt": "2026-06-04T00:01:09.203Z",
       "priceUpdatedAt": "2026-06-04T00:09:03.477Z",
       "priceConfidence": "manual",
-      "hijabiFriendly": false
+      "hijabiFriendly": false,
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "canBraidWithoutGel": false,
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "updatedAt": "2026-06-06T18:33:36.535Z"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
