@@ -1,11 +1,60 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-06-07T21:12:50.440Z",
-    "count": 709,
+    "updatedAt": "2026-06-07T21:15:37.479Z",
+    "count": 710,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "hairmeoutx",
+      "name": "Hairmeoutx",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london",
+        "north"
+      ],
+      "areaLabel": "North London",
+      "neighbourhood": "North London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://hairmeoutx.as.me/schedule/78238897",
+      "websiteUrl": "https://hairmeoutx.as.me/schedule/78238897",
+      "instagramUrl": "https://www.instagram.com/hairmeoutx/",
+      "services": [
+        "Wig install (frontal / closure)",
+        "Quick weave",
+        "Updo",
+        "Wig cornrows",
+        "Traditional sew-in / leave out",
+        "Half up half down",
+        "Sleek ponytail / bun"
+      ],
+      "priceBand": "£",
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "Lace frontal unit - £80",
+        "Quick Weave - £60",
+        "Hair UpDo - £40",
+        "Pre-made frontal wig - £70",
+        "Pre-made Closure wig - £60",
+        "Lace closure unit - £70",
+        "Wig reinstall - £55",
+        "Styling Only - £30"
+      ],
+      "priceCheckedAt": "2026-06-07T21:15:12.019Z",
+      "priceUpdatedAt": "2026-06-07T21:15:12.019Z",
+      "priceConfidence": "high",
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/hairmeoutx/"
+      ]
+    },
     {
       "id": "bydiannn",
       "name": "Bydiannn",
