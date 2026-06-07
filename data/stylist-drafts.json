@@ -1,10 +1,40 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-06-07T19:26:10.203Z",
-    "count": 22
+    "updatedAt": "2026-06-07T19:26:44.233Z",
+    "count": 23
   },
   "drafts": [
+    {
+      "id": "ms-yvonne-1-mq46ay92",
+      "status": "needs_review",
+      "name": "Ms Yvonne 1",
+      "areaId": "",
+      "areaIds": [],
+      "areaLabel": "",
+      "neighbourhood": "",
+      "postcode": "",
+      "bookingPlatform": "",
+      "bookingUrl": "",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/ms.yvonne_1/",
+      "tiktokUrl": "",
+      "services": [],
+      "rawServices": [],
+      "summary": "Admin draft created from stylist intake.",
+      "confidence": 0.35,
+      "warnings": [
+        "No booking link identified yet.",
+        "No services matched yet."
+      ],
+      "evidence": [
+        "Submitted link: https://www.instagram.com/ms.yvonne_1/"
+      ],
+      "source": "admin-draft",
+      "createdAt": "2026-06-07T19:26:44.196Z",
+      "updatedAt": "2026-06-07T19:26:44.196Z",
+      "lastCheckedAt": "2026-06-07T19:26:44.196Z"
+    },
     {
       "id": "ajstylesdidthat-mq46a7z2",
       "status": "needs_review",
