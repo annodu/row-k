@@ -1,10 +1,40 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-06-07T17:12:09.063Z",
-    "count": 4
+    "updatedAt": "2026-06-07T17:34:15.494Z",
+    "count": 5
   },
   "drafts": [
+    {
+      "id": "jdv-hair-mq42aavx",
+      "status": "needs_review",
+      "name": "Jdv Hair",
+      "areaId": "",
+      "areaIds": [],
+      "areaLabel": "",
+      "neighbourhood": "",
+      "postcode": "",
+      "bookingPlatform": "",
+      "bookingUrl": "",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/jdv_hair/",
+      "tiktokUrl": "",
+      "services": [],
+      "rawServices": [],
+      "summary": "Admin draft created from stylist intake.",
+      "confidence": 0.35,
+      "warnings": [
+        "No booking link identified yet.",
+        "No services matched yet."
+      ],
+      "evidence": [
+        "Submitted link: https://www.instagram.com/jdv_hair/"
+      ],
+      "source": "admin-draft",
+      "createdAt": "2026-06-07T17:34:15.450Z",
+      "updatedAt": "2026-06-07T17:34:15.450Z",
+      "lastCheckedAt": "2026-06-07T17:34:15.450Z"
+    },
     {
       "id": "eduardooliver195-mq414woo",
       "status": "needs_review",
