@@ -1,11 +1,59 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-06-07T21:04:46.770Z",
-    "count": 705,
+    "updatedAt": "2026-06-07T21:07:37.283Z",
+    "count": 706,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "ctwigsuk",
+      "name": "Ctwigsuk",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london",
+        "south-east"
+      ],
+      "areaLabel": "South east London",
+      "neighbourhood": "South east London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://ctwigsuk.as.me/schedule/1f3c7e6b",
+      "websiteUrl": "https://ctwigsuk.as.me/schedule/1f3c7e6b",
+      "instagramUrl": "https://www.instagram.com/ctwigsuk/",
+      "services": [
+        "Frontal ponytail / bun",
+        "Updo",
+        "Traditional sew-in / leave out",
+        "Half up half down",
+        "Wig install (frontal / closure)",
+        "Custom wig"
+      ],
+      "priceBand": "£",
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Frontal Ponytail updo (only 13x4 frontals) - 2 hours 40 minutes @ £105.00",
+        "Frontal Ponytail low (only 13x4 frontals) - 2 hours 40 minutes @ £100.00",
+        "Frontal ponytail with two buns - 3 hours @ £105.00",
+        "Traditional Sewin - 3 hours @ £70.00",
+        "Half up half down sew in - 2 hours 30 minutes @ £70.00",
+        "Premade Frontal Install - 2 hours @ £75.00",
+        "Premade Closure Unit - 1 hour 30 minutes @ £70.00",
+        "Closure Wig Install and Construction - 1 hour 30 minutes @ £90.00"
+      ],
+      "priceCheckedAt": "2026-06-07T21:06:53.807Z",
+      "priceUpdatedAt": "2026-06-07T21:06:53.807Z",
+      "priceConfidence": "manual",
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/ctwigsuk/"
+      ]
+    },
     {
       "id": "corinnehurstknight",
       "name": "Corinnehurstknight",

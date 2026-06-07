@@ -1,8 +1,8 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-06-07T21:05:38.224Z",
-    "count": 15
+    "updatedAt": "2026-06-07T21:07:37.283Z",
+    "count": 14
   },
   "drafts": [
     {
@@ -394,36 +394,6 @@
       "createdAt": "2026-06-07T19:17:16.487Z",
       "updatedAt": "2026-06-07T19:17:16.487Z",
       "lastCheckedAt": "2026-06-07T19:17:16.487Z"
-    },
-    {
-      "id": "ctwigsuk-mq45yaxo",
-      "status": "needs_review",
-      "name": "Ctwigsuk",
-      "areaId": "",
-      "areaIds": [],
-      "areaLabel": "",
-      "neighbourhood": "",
-      "postcode": "",
-      "bookingPlatform": "",
-      "bookingUrl": "",
-      "websiteUrl": "",
-      "instagramUrl": "https://www.instagram.com/ctwigsuk/",
-      "tiktokUrl": "",
-      "services": [],
-      "rawServices": [],
-      "summary": "Admin draft created from stylist intake.",
-      "confidence": 0.35,
-      "warnings": [
-        "No booking link identified yet.",
-        "No services matched yet."
-      ],
-      "evidence": [
-        "Submitted link: https://www.instagram.com/ctwigsuk/"
-      ],
-      "source": "admin-draft",
-      "createdAt": "2026-06-07T19:16:54.107Z",
-      "updatedAt": "2026-06-07T19:16:54.107Z",
-      "lastCheckedAt": "2026-06-07T19:16:54.107Z"
     },
     {
       "id": "microsbylaura-mpi6stjg",
