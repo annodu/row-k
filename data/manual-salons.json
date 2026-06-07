@@ -1,7 +1,7 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-06-07T17:12:09.063Z",
+    "updatedAt": "2026-06-07T18:30:10.065Z",
     "count": 698,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
@@ -7257,28 +7257,27 @@
       "instagramUrl": "https://www.instagram.com/bettysunisexhairstudio/",
       "services": [
         "Wash & blowdry",
-        "Cornrows / Twists / Underwig cornrows",
+        "Wig cornrows",
         "Twist out / flexi rod",
         "Fulani / lemonade braids",
         "Knotless braids",
         "Relaxer / texturiser",
         "Texture release",
         "Moisturising treatment",
-        "Microlinks",
-        "LA weave",
-        "Wig colouring / bundle colouring",
-        "Wig install",
+        "Wig install (frontal / closure)",
         "Feed-in braids",
         "Boho braids / goddess braids",
         "French curl",
         "Twists (with extensions)",
         "Stitch braids",
         "Sleek ponytail / bun",
-        "Tracks / Silk press + tracks / Invisible sew-in",
+        "Tracks (+ silk press) / partial / invisible sew-in",
         "Flipover / Versatile sew-in",
         "Traditional sew-in / leave out",
         "Silk press",
-        "Crochet"
+        "Crochet",
+        "Microlinks",
+        "LA weave"
       ],
       "priceBand": "£",
       "priceSource": "auto",
@@ -7294,7 +7293,16 @@
       ],
       "priceCheckedAt": "2026-06-04T13:06:47.789Z",
       "priceConfidence": "high",
-      "priceUpdatedAt": "2026-06-04T13:06:47.791Z"
+      "priceUpdatedAt": "2026-06-04T13:06:47.791Z",
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "updatedAt": "2026-06-07T18:30:10.065Z"
     },
     {
       "id": "beyond-glam",
