@@ -1,8 +1,8 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-06-07T21:08:48.236Z",
-    "count": 13
+    "updatedAt": "2026-06-07T21:09:41.081Z",
+    "count": 12
   },
   "drafts": [
     {
@@ -334,36 +334,6 @@
       "createdAt": "2026-06-07T19:17:42.480Z",
       "updatedAt": "2026-06-07T19:17:42.480Z",
       "lastCheckedAt": "2026-06-07T19:17:42.480Z"
-    },
-    {
-      "id": "houseofzariuk-mq45z1b1",
-      "status": "needs_review",
-      "name": "Houseofzariuk",
-      "areaId": "",
-      "areaIds": [],
-      "areaLabel": "",
-      "neighbourhood": "",
-      "postcode": "",
-      "bookingPlatform": "",
-      "bookingUrl": "",
-      "websiteUrl": "",
-      "instagramUrl": "https://www.instagram.com/houseofzariuk/",
-      "tiktokUrl": "",
-      "services": [],
-      "rawServices": [],
-      "summary": "Admin draft created from stylist intake.",
-      "confidence": 0.35,
-      "warnings": [
-        "No booking link identified yet.",
-        "No services matched yet."
-      ],
-      "evidence": [
-        "Submitted link: https://www.instagram.com/houseofzariuk/"
-      ],
-      "source": "admin-draft",
-      "createdAt": "2026-06-07T19:17:28.283Z",
-      "updatedAt": "2026-06-07T19:17:28.283Z",
-      "lastCheckedAt": "2026-06-07T19:17:28.283Z"
     },
     {
       "id": "microsbylaura-mpi6stjg",

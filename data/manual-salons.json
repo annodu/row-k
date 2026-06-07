@@ -1,11 +1,55 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-06-07T21:08:48.235Z",
-    "count": 707,
+    "updatedAt": "2026-06-07T21:09:41.080Z",
+    "count": 708,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "houseofzariuk",
+      "name": "Houseofzariuk",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london",
+        "north-west"
+      ],
+      "areaLabel": "North west London",
+      "neighbourhood": "North west London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://houseofzari.as.me/schedule/e8391ff6",
+      "websiteUrl": "https://houseofzari.as.me/schedule/e8391ff6",
+      "instagramUrl": "https://www.instagram.com/houseofzariuk/",
+      "services": [
+        "Custom wig",
+        "Wig install (frontal / closure)"
+      ],
+      "priceBand": "£",
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "PRE - MADE FRONTAL - £85",
+        "PRE - MADE CLOSURE - £65",
+        "STYLING ONLY - CURLS - £30",
+        "CUSTOMISATION ONLY - £25",
+        "HANDMADE CUSTOM GLUE-LESS CLOSURE UNIT - £85",
+        "RE INSTALL CLOSURE - £50",
+        "RE INSTALL FRONTAL - £65",
+        "RE INSTALL - NOT OUR WORK - £70"
+      ],
+      "priceCheckedAt": "2026-06-07T21:09:14.472Z",
+      "priceUpdatedAt": "2026-06-07T21:09:14.472Z",
+      "priceConfidence": "high",
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/houseofzariuk/"
+      ]
+    },
     {
       "id": "hairtherapyy",
       "name": "Hairtherapyy",
