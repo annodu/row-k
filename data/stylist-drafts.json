@@ -1,8 +1,8 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-06-07T21:09:41.081Z",
-    "count": 12
+    "updatedAt": "2026-06-07T21:10:21.151Z",
+    "count": 11
   },
   "drafts": [
     {
@@ -304,36 +304,6 @@
       "createdAt": "2026-06-07T19:17:54.474Z",
       "updatedAt": "2026-06-07T19:17:54.474Z",
       "lastCheckedAt": "2026-06-07T19:17:54.474Z"
-    },
-    {
-      "id": "dolledbyc-mq45zc9e",
-      "status": "needs_review",
-      "name": "Dolledbyc",
-      "areaId": "",
-      "areaIds": [],
-      "areaLabel": "",
-      "neighbourhood": "",
-      "postcode": "",
-      "bookingPlatform": "",
-      "bookingUrl": "",
-      "websiteUrl": "",
-      "instagramUrl": "https://www.instagram.com/dolledbyc/",
-      "tiktokUrl": "",
-      "services": [],
-      "rawServices": [],
-      "summary": "Admin draft created from stylist intake.",
-      "confidence": 0.35,
-      "warnings": [
-        "No booking link identified yet.",
-        "No services matched yet."
-      ],
-      "evidence": [
-        "Submitted link: https://www.instagram.com/dolledbyc/"
-      ],
-      "source": "admin-draft",
-      "createdAt": "2026-06-07T19:17:42.480Z",
-      "updatedAt": "2026-06-07T19:17:42.480Z",
-      "lastCheckedAt": "2026-06-07T19:17:42.480Z"
     },
     {
       "id": "microsbylaura-mpi6stjg",
