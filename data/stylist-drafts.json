@@ -1,10 +1,40 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-06-07T19:17:28.303Z",
-    "count": 13
+    "updatedAt": "2026-06-07T19:17:42.509Z",
+    "count": 14
   },
   "drafts": [
+    {
+      "id": "dolledbyc-mq45zc9e",
+      "status": "needs_review",
+      "name": "Dolledbyc",
+      "areaId": "",
+      "areaIds": [],
+      "areaLabel": "",
+      "neighbourhood": "",
+      "postcode": "",
+      "bookingPlatform": "",
+      "bookingUrl": "",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/dolledbyc/",
+      "tiktokUrl": "",
+      "services": [],
+      "rawServices": [],
+      "summary": "Admin draft created from stylist intake.",
+      "confidence": 0.35,
+      "warnings": [
+        "No booking link identified yet.",
+        "No services matched yet."
+      ],
+      "evidence": [
+        "Submitted link: https://www.instagram.com/dolledbyc/"
+      ],
+      "source": "admin-draft",
+      "createdAt": "2026-06-07T19:17:42.480Z",
+      "updatedAt": "2026-06-07T19:17:42.480Z",
+      "lastCheckedAt": "2026-06-07T19:17:42.480Z"
+    },
     {
       "id": "houseofzariuk-mq45z1b1",
       "status": "needs_review",
