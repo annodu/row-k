@@ -1,8 +1,8 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-06-07T21:20:01.027Z",
-    "count": 5
+    "updatedAt": "2026-06-07T21:21:02.965Z",
+    "count": 4
   },
   "drafts": [
     {
@@ -94,36 +94,6 @@
       "createdAt": "2026-06-07T19:26:10.141Z",
       "updatedAt": "2026-06-07T19:26:10.141Z",
       "lastCheckedAt": "2026-06-07T19:26:10.141Z"
-    },
-    {
-      "id": "naomistyledit-mq4632n6",
-      "status": "needs_review",
-      "name": "Naomistyledit",
-      "areaId": "",
-      "areaIds": [],
-      "areaLabel": "",
-      "neighbourhood": "",
-      "postcode": "",
-      "bookingPlatform": "",
-      "bookingUrl": "",
-      "websiteUrl": "",
-      "instagramUrl": "https://www.instagram.com/naomistyledit_/",
-      "tiktokUrl": "",
-      "services": [],
-      "rawServices": [],
-      "summary": "Admin draft created from stylist intake.",
-      "confidence": 0.35,
-      "warnings": [
-        "No booking link identified yet.",
-        "No services matched yet."
-      ],
-      "evidence": [
-        "Submitted link: https://www.instagram.com/naomistyledit_/"
-      ],
-      "source": "admin-draft",
-      "createdAt": "2026-06-07T19:20:36.640Z",
-      "updatedAt": "2026-06-07T19:20:36.640Z",
-      "lastCheckedAt": "2026-06-07T19:20:36.640Z"
     },
     {
       "id": "microsbylaura-mpi6stjg",

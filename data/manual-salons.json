@@ -1,11 +1,38 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-06-07T21:20:01.027Z",
-    "count": 713,
+    "updatedAt": "2026-06-07T21:21:02.965Z",
+    "count": 714,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "naomistyledit",
+      "name": "Naomistyledit",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london",
+        "central"
+      ],
+      "areaLabel": "Central London",
+      "neighbourhood": "Central London London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/naomistyledit_/",
+      "websiteUrl": "https://www.instagram.com/naomistyledit_/",
+      "instagramUrl": "https://www.instagram.com/naomistyledit_/",
+      "services": [
+        "Wash & blowdry",
+        "Bouncy blowout / Round Brush Blow dry",
+        "Silk press",
+        "Trim / hair cut"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/naomistyledit_/"
+      ]
+    },
     {
       "id": "iamhairlondon",
       "name": "Iamhairlondon",
