@@ -1,44 +1,737 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-06-07T00:00:00.000Z",
-    "count": 695,
+    "updatedAt": "2026-06-07T21:28:07.976Z",
+    "count": 716,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
     {
-      "id": "a10hair",
-      "name": "A10hair",
-      "areaId": "east",
+      "id": "jaealexxishair",
+      "name": "Jaealexxishair",
+      "areaId": "all-london",
       "areaIds": [
+        "all-london",
+        "south-west"
+      ],
+      "areaLabel": "South west London",
+      "neighbourhood": "South west London London",
+      "postcode": "",
+      "bookingPlatform": "Direct",
+      "bookingUrl": "https://www.instagram.com/jaealexxishair/",
+      "websiteUrl": "https://www.instagram.com/jaealexxishair/",
+      "instagramUrl": "https://www.instagram.com/jaealexxishair/",
+      "services": [
+        "Silk press",
+        "Bouncy blowout / Round Brush Blow dry",
+        "Full head colour",
+        "Pixie / finger waves",
+        "Curly cut / wash & go / diffuse"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/jaealexxishair/"
+      ]
+    },
+    {
+      "id": "ajstylesdidthat",
+      "name": "Ajstylesdidthat",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london",
+        "south-west"
+      ],
+      "areaLabel": "South west London",
+      "neighbourhood": "South west London London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/ajstylesdidthat/",
+      "websiteUrl": "https://www.instagram.com/ajstylesdidthat/",
+      "instagramUrl": "https://www.instagram.com/ajstylesdidthat/",
+      "services": [
+        "Editorial / Session styling",
+        "Full head colour",
+        "Highlights",
+        "Trim / hair cut",
+        "Pixie / finger waves",
+        "Silk press",
+        "Bouncy blowout / Round Brush Blow dry"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/ajstylesdidthat/"
+      ]
+    },
+    {
+      "id": "naomistyledit",
+      "name": "Naomistyledit",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london",
+        "central"
+      ],
+      "areaLabel": "Central London",
+      "neighbourhood": "Central London London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/naomistyledit_/",
+      "websiteUrl": "https://www.instagram.com/naomistyledit_/",
+      "instagramUrl": "https://www.instagram.com/naomistyledit_/",
+      "services": [
+        "Wash & blowdry",
+        "Bouncy blowout / Round Brush Blow dry",
+        "Silk press",
+        "Trim / hair cut"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/naomistyledit_/"
+      ]
+    },
+    {
+      "id": "iamhairlondon",
+      "name": "Iamhairlondon",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london",
+        "north"
+      ],
+      "areaLabel": "North London",
+      "neighbourhood": "North London London",
+      "postcode": "",
+      "bookingPlatform": "Direct",
+      "bookingUrl": "https://www.instagram.com/iamhairlondon/",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/iamhairlondon/",
+      "services": [
+        "Full head colour",
+        "Highlights",
+        "Silk press"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/iamhairlondon/"
+      ]
+    },
+    {
+      "id": "heslayedthat",
+      "name": "Heslayedthat",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london",
+        "south-east"
+      ],
+      "areaLabel": "South east London",
+      "neighbourhood": "South east London London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/heslayedthat_/",
+      "websiteUrl": "https://www.instagram.com/heslayedthat_/",
+      "instagramUrl": "https://www.instagram.com/heslayedthat_/",
+      "services": [
+        "Wig colouring / bundle colouring",
+        "Silk press",
+        "Frontal ponytail / bun",
+        "Sleek ponytail / bun",
+        "Flipover / Versatile sew-in",
+        "Traditional sew-in / leave out",
+        "Wig install (frontal / closure)",
+        "Full head colour"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/heslayedthat_/"
+      ]
+    },
+    {
+      "id": "danielleigor",
+      "name": "Danielleigor",
+      "areaId": "all-london",
+      "areaLabel": "London",
+      "neighbourhood": "London London",
+      "postcode": "",
+      "bookingPlatform": "Direct",
+      "bookingUrl": "https://www.instagram.com/danielleigor/",
+      "websiteUrl": "https://www.instagram.com/danielleigor/",
+      "instagramUrl": "https://www.instagram.com/danielleigor/",
+      "services": [
+        "Editorial / Session styling"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/danielleigor/"
+      ]
+    },
+    {
+      "id": "hairmeoutx",
+      "name": "Hairmeoutx",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london",
+        "north"
+      ],
+      "areaLabel": "North London",
+      "neighbourhood": "North London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://hairmeoutx.as.me/schedule/78238897",
+      "websiteUrl": "https://hairmeoutx.as.me/schedule/78238897",
+      "instagramUrl": "https://www.instagram.com/hairmeoutx/",
+      "services": [
+        "Wig install (frontal / closure)",
+        "Quick weave",
+        "Updo",
+        "Wig cornrows",
+        "Traditional sew-in / leave out",
+        "Half up half down",
+        "Sleek ponytail / bun"
+      ],
+      "priceBand": "£",
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "Lace frontal unit - £80",
+        "Quick Weave - £60",
+        "Hair UpDo - £40",
+        "Pre-made frontal wig - £70",
+        "Pre-made Closure wig - £60",
+        "Lace closure unit - £70",
+        "Wig reinstall - £55",
+        "Styling Only - £30"
+      ],
+      "priceCheckedAt": "2026-06-07T21:15:12.019Z",
+      "priceUpdatedAt": "2026-06-07T21:15:12.019Z",
+      "priceConfidence": "high",
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/hairmeoutx/"
+      ]
+    },
+    {
+      "id": "bydiannn",
+      "name": "Bydiannn",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london",
         "east"
       ],
       "areaLabel": "East London",
       "neighbourhood": "East London London",
       "postcode": "",
-      "bookingPlatform": "Direct",
-      "bookingUrl": "https://www.instagram.com/a10hair_/",
-      "websiteUrl": "",
-      "instagramUrl": "https://www.instagram.com/a10hair_/",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://bydian.as.me/schedule/0ef2a496",
+      "websiteUrl": "https://bydian.as.me/schedule/0ef2a496",
+      "instagramUrl": "https://www.instagram.com/bydiannn_/",
       "services": [
         "Wig install (frontal / closure)",
+        "Custom wig",
+        "Frontal ponytail / bun",
+        "Closure sew-in",
+        "Frontal sew-in",
         "Traditional sew-in / leave out",
+        "Flipover / Versatile sew-in",
         "Half up half down"
       ],
-      "priceBand": "",
-      "servicePriceBand": "",
+      "priceBand": "££",
+      "servicePriceBand": "££",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Custom Frontal Wig - - Custom Frontal Wig - £150",
+        "Custom Closure wig - - Custom Closure wig - £140",
+        "Frontal ponytail - - Frontal ponytail - £140",
+        "Pre-made Mini frontal/Closure Install - - Pre-made Mini frontal/Closure Install - £120",
+        "360/Full lace wig Install - - 360/Full lace wig Install - £130",
+        "Pre-made Frontal Wig Install - - Pre-made Frontal Wig Install - £130"
+      ],
+      "priceCheckedAt": "2026-06-07T21:10:40.994Z",
+      "priceUpdatedAt": "2026-06-07T21:12:27.391Z",
+      "priceConfidence": "manual",
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/bydiannn_/"
+      ]
+    },
+    {
+      "id": "houseofzariuk",
+      "name": "Houseofzariuk",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london",
+        "north-west"
+      ],
+      "areaLabel": "North west London",
+      "neighbourhood": "North west London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://houseofzari.as.me/schedule/e8391ff6",
+      "websiteUrl": "https://houseofzari.as.me/schedule/e8391ff6",
+      "instagramUrl": "https://www.instagram.com/houseofzariuk/",
+      "services": [
+        "Custom wig",
+        "Wig install (frontal / closure)"
+      ],
+      "priceBand": "£",
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "PRE - MADE FRONTAL - £85",
+        "PRE - MADE CLOSURE - £65",
+        "STYLING ONLY - CURLS - £30",
+        "CUSTOMISATION ONLY - £25",
+        "HANDMADE CUSTOM GLUE-LESS CLOSURE UNIT - £85",
+        "RE INSTALL CLOSURE - £50",
+        "RE INSTALL FRONTAL - £65",
+        "RE INSTALL - NOT OUR WORK - £70"
+      ],
+      "priceCheckedAt": "2026-06-07T21:09:14.472Z",
+      "priceUpdatedAt": "2026-06-07T21:09:14.472Z",
+      "priceConfidence": "high",
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/houseofzariuk/"
+      ]
+    },
+    {
+      "id": "hairtherapyy",
+      "name": "Hairtherapyy",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london",
+        "south-east"
+      ],
+      "areaLabel": "South east London",
+      "neighbourhood": "South east London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://hairtherapyy.as.me/schedule/ccf718b8",
+      "websiteUrl": "https://hairtherapyy.as.me/schedule/ccf718b8",
+      "instagramUrl": "https://www.instagram.com/_hairtherapyy/",
+      "services": [
+        "Wig install (frontal / closure)",
+        "Custom wig",
+        "Traditional sew-in / leave out",
+        "Frontal ponytail / bun",
+        "Closure sew-in",
+        "Frontal sew-in"
+      ],
+      "priceBand": "£",
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "Frontal wig construction & Installation - £100",
+        "Mini frontal construction + Installation - £90",
+        "Readymade frontal wig customisation & installation - £75",
+        "Frontal replacement - £85",
+        "Frontal/ Mini frontal wig unit customisation NO INSTALLATION - £50",
+        "360 ready made wig / 360 full lace wig - £100",
+        "Ready made mini frontal - £70",
+        "Frontal REINSTALL - £60"
+      ],
+      "priceCheckedAt": "2026-06-07T21:08:28.905Z",
+      "priceUpdatedAt": "2026-06-07T21:08:28.905Z",
+      "priceConfidence": "high",
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/_hairtherapyy/"
+      ]
+    },
+    {
+      "id": "ctwigsuk",
+      "name": "Ctwigsuk",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london",
+        "south-east"
+      ],
+      "areaLabel": "South east London",
+      "neighbourhood": "South east London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://ctwigsuk.as.me/schedule/1f3c7e6b",
+      "websiteUrl": "https://ctwigsuk.as.me/schedule/1f3c7e6b",
+      "instagramUrl": "https://www.instagram.com/ctwigsuk/",
+      "services": [
+        "Frontal ponytail / bun",
+        "Updo",
+        "Traditional sew-in / leave out",
+        "Half up half down",
+        "Wig install (frontal / closure)",
+        "Custom wig"
+      ],
+      "priceBand": "£",
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Frontal Ponytail updo (only 13x4 frontals) - 2 hours 40 minutes @ £105.00",
+        "Frontal Ponytail low (only 13x4 frontals) - 2 hours 40 minutes @ £100.00",
+        "Frontal ponytail with two buns - 3 hours @ £105.00",
+        "Traditional Sewin - 3 hours @ £70.00",
+        "Half up half down sew in - 2 hours 30 minutes @ £70.00",
+        "Premade Frontal Install - 2 hours @ £75.00",
+        "Premade Closure Unit - 1 hour 30 minutes @ £70.00",
+        "Closure Wig Install and Construction - 1 hour 30 minutes @ £90.00"
+      ],
+      "priceCheckedAt": "2026-06-07T21:06:53.807Z",
+      "priceUpdatedAt": "2026-06-07T21:06:53.807Z",
+      "priceConfidence": "manual",
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/ctwigsuk/"
+      ]
+    },
+    {
+      "id": "corinnehurstknight",
+      "name": "Corinnehurstknight",
+      "areaId": "all-london",
+      "areaLabel": "London",
+      "neighbourhood": "London London",
+      "postcode": "",
+      "bookingPlatform": "Direct",
+      "bookingUrl": "https://www.instagram.com/corinnehurstknight/",
+      "websiteUrl": "https://www.instagram.com/corinnehurstknight/",
+      "instagramUrl": "https://www.instagram.com/corinnehurstknight/",
+      "services": [
+        "Silk press",
+        "Editorial / Session styling",
+        "Bouncy blowout / Round Brush Blow dry",
+        "Full head colour",
+        "Highlights",
+        "Tracks (+ silk press) / partial / invisible sew-in"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/corinnehurstknight/"
+      ]
+    },
+    {
+      "id": "faceoflife",
+      "name": "Faceoflife",
+      "areaId": "all-london",
+      "areaLabel": "London",
+      "neighbourhood": "London London",
+      "postcode": "",
+      "bookingPlatform": "Direct",
+      "bookingUrl": "https://www.instagram.com/faceoflife_/",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/faceoflife_/",
+      "services": [
+        "Healthy hair plans & consultations"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/faceoflife_/"
+      ]
+    },
+    {
+      "id": "lorraine-dublin",
+      "name": "Lorraine Dublin",
+      "areaId": "all-london",
+      "areaLabel": "London",
+      "neighbourhood": "London London",
+      "postcode": "",
+      "bookingPlatform": "Direct",
+      "bookingUrl": "https://www.instagram.com/lorraine_dublin/",
+      "websiteUrl": "https://www.instagram.com/lorraine_dublin/",
+      "instagramUrl": "https://www.instagram.com/lorraine_dublin/",
+      "services": [
+        "Editorial / Session styling"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/lorraine_dublin/"
+      ]
+    },
+    {
+      "id": "silkedbyli",
+      "name": "Silkedbyli",
+      "areaId": "mobile",
+      "areaLabel": "Mobile / home service",
+      "neighbourhood": "Mobile / home service London",
+      "postcode": "",
+      "bookingPlatform": "Setmore",
+      "bookingUrl": "https://silkedbyli.setmore.com/?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQPOTM2NjE5NzQzMzkyNDU5AAGnHLDeOc02sr6mE7KCbw_gNM0Cn49kDXyYJxcC5DakXUQddIvvmZZNv27CZv0_aem_9MbzO3oN_7DRENiB7ZrwIg&utm_id=97760_v0_s00_e0_tv3",
+      "websiteUrl": "https://silkedbyli.setmore.com/?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQPOTM2NjE5NzQzMzkyNDU5AAGnHLDeOc02sr6mE7KCbw_gNM0Cn49kDXyYJxcC5DakXUQddIvvmZZNv27CZv0_aem_9MbzO3oN_7DRENiB7ZrwIg&utm_id=97760_v0_s00_e0_tv3",
+      "instagramUrl": "https://www.instagram.com/silkedbyli/",
+      "services": [
+        "Wash & blowdry",
+        "Silk press",
+        "Keratin treatment",
+        "Braid take-down",
+        "Scalp detox / treatments"
+      ],
+      "priceBand": "£",
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "Wash & Blow Dry - £30",
+        "Take Down w/ Silk Press - £200",
+        "Silk Press - £70",
+        "L’Oréal Keratin Alpha Sleek Treatment - £115",
+        "Scalp Therapy Treatment (ADD ON) - £12",
+        "Wash & Blow Dry + Trim - £45",
+        "Take Down w/ Wash & Blow Dry - £100"
+      ],
+      "priceCheckedAt": "2026-06-07T20:57:24.402Z",
+      "priceUpdatedAt": "2026-06-07T20:57:24.402Z",
+      "priceConfidence": "high",
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/silkedbyli/"
+      ]
+    },
+    {
+      "id": "jdv-hair",
+      "name": "Jdv Hair",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london",
+        "south-west",
+        "west"
+      ],
+      "areaLabel": "South west London / West London",
+      "neighbourhood": "South west London and West London London",
+      "postcode": "",
+      "bookingPlatform": "Direct",
+      "bookingUrl": "https://www.instagram.com/jdv_hair/",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/jdv_hair/",
+      "services": [
+        "Wash & blowdry",
+        "Keratin treatment",
+        "Full head colour",
+        "Highlights",
+        "Balayage",
+        "Relaxer / texturiser",
+        "Wig cornrows",
+        "Feed-in braids",
+        "Knotless braids",
+        "Braid take-down",
+        "Tracks (+ silk press) / partial / invisible sew-in",
+        "Tape ins",
+        "Traditional sew-in / leave out",
+        "Quick weave",
+        "Box braids",
+        "Sleek ponytail / bun",
+        "Pixie / finger waves",
+        "Retwist",
+        "Silk press",
+        "Flipover / Versatile sew-in",
+        "LA weave"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/jdv_hair/"
+      ]
+    },
+    {
+      "id": "eduardooliver195",
+      "name": "Eduardooliver195",
+      "areaId": "all-london",
+      "areaLabel": "London",
+      "neighbourhood": "London London",
+      "postcode": "",
+      "bookingPlatform": "Direct",
+      "bookingUrl": "https://www.instagram.com/eduardooliver195/",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/eduardooliver195/",
+      "services": [
+        "Bouncy blowout / Round Brush Blow dry",
+        "Wash & blowdry",
+        "Silk press",
+        "Trim / hair cut",
+        "Sew in / extensions blowdry"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/eduardooliver195/"
+      ]
+    },
+    {
+      "id": "hairbycarlcampbell",
+      "name": "Hairbycarlcampbell",
+      "areaId": "all-london",
+      "areaLabel": "London",
+      "neighbourhood": "London London",
+      "postcode": "",
+      "bookingPlatform": "Direct",
+      "bookingUrl": "https://www.instagram.com/hairbycarlcampbell/",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/hairbycarlcampbell/",
+      "services": [
+        "Editorial / Session styling"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/hairbycarlcampbell/"
+      ]
+    },
+    {
+      "id": "jennierobertshair",
+      "name": "Jennierobertshair",
+      "areaId": "all-london",
+      "areaLabel": "London",
+      "neighbourhood": "London London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/jennierobertshair/",
+      "websiteUrl": "https://www.instagram.com/jennierobertshair/",
+      "instagramUrl": "https://www.instagram.com/jennierobertshair/",
+      "services": [
+        "Editorial / Session styling"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/jennierobertshair/"
+      ]
+    },
+    {
+      "id": "lockonego",
+      "name": "Lockonego",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london",
+        "south-west",
+        "west"
+      ],
+      "areaLabel": "South west London / West London",
+      "neighbourhood": "South west London and West London London",
+      "postcode": "",
+      "bookingPlatform": "Direct",
+      "bookingUrl": "https://s-iq.co/BookingPortal/dist/?salonid=7531f04e-98e4-4601-af96-f57bc70eb626&tab=book",
+      "websiteUrl": "https://s-iq.co/BookingPortal/dist/?salonid=7531f04e-98e4-4601-af96-f57bc70eb626&tab=book",
+      "instagramUrl": "https://www.instagram.com/lockonego/",
+      "services": [
+        "Bouncy blowout / Round Brush Blow dry"
+      ],
+      "priceBand": "££",
+      "servicePriceBand": "££",
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
       "priceSource": "manual",
       "priceEvidence": [],
       "priceCheckedAt": "",
-      "priceUpdatedAt": "",
-      "priceConfidence": "unknown",
+      "priceUpdatedAt": "2026-06-07T17:11:54.275Z",
+      "priceConfidence": "manual",
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
       "evidence": [
-        "Submitted link: https://www.instagram.com/a10hair_/"
+        "Submitted link: https://www.instagram.com/lockonego/"
+      ]
+    },
+    {
+      "id": "atstyledit",
+      "name": "Atstyledit",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london",
+        "east"
+      ],
+      "areaLabel": "East London",
+      "neighbourhood": "East London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://atstyleditt.as.me/schedule/5d7497fc",
+      "websiteUrl": "https://atstyleditt.as.me/schedule/5d7497fc",
+      "instagramUrl": "https://www.instagram.com/atstyledit",
+      "services": [
+        "Knotless braids",
+        "Microbraids / x-small braids",
+        "Fulani / lemonade braids",
+        "Faux locs",
+        "Wig cornrows",
+        "Retwist",
+        "Quick weave",
+        "Stitch braids",
+        "Feed-in braids",
+        "Twists (with extensions)",
+        "Creative braids (e.g. patewo)",
+        "Half braids, half sew-in"
+      ],
+      "priceBand": "££",
+      "servicePriceBand": "££",
+      "packagePriceBand": "££",
+      "priceIncludesHair": true,
+      "priceComparisonMode": "mixed",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "MEDIUM KNOTLESS - £100",
+        "SMALL KNOTLESS - £130",
+        "SHMEDIUM KNOTLESS - £110",
+        "LARGE KNOTLESS - £90",
+        "Xs knotless braids (Hair included) - £180",
+        "SMALL FULANI BRAIDS - £125",
+        "SHMEDIUM FULANI - £115",
+        "AT’s CREATIVE FULANI - £140"
+      ],
+      "priceCheckedAt": "2026-06-07T10:49:41.912Z",
+      "priceUpdatedAt": "2026-06-07T10:49:41.912Z",
+      "priceConfidence": "high",
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/atstyledit?igsh=MzdydWZ0dXZnc2d6"
+      ]
+    },
+    {
+      "id": "marta-beautysalon",
+      "name": "Marta Beautysalon",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london",
+        "east"
+      ],
+      "areaLabel": "East London",
+      "neighbourhood": "East London London",
+      "postcode": "",
+      "bookingPlatform": "Direct",
+      "bookingUrl": "https://www.instagram.com/marta.beautysalon.academy/",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/marta.beautysalon.academy/",
+      "services": [
+        "Wig blowdry"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/marta.beautysalon.academy/"
       ]
     },
     {
@@ -479,7 +1172,6 @@
       "services": [
         "Silk press",
         "Full head colour",
-        "Bouncy blowout / Round Brush Blow dry",
         "Trim / hair cut",
         "Scalp detox / treatments",
         "Wash & blowdry",
@@ -490,7 +1182,7 @@
         "Moisturising treatment"
       ],
       "priceBand": "£",
-      "servicePriceBand": "£",
+      "servicePriceBand": "",
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
@@ -512,7 +1204,11 @@
       "source": "manual",
       "evidence": [
         "Submitted link: https://www.instagram.com/maluwanichole/"
-      ]
+      ],
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "updatedAt": "2026-06-06T18:39:39.717Z"
     },
     {
       "id": "mourhairldn",
@@ -5864,8 +6560,7 @@
         "Crochet",
         "U-part wig install",
         "Texture release",
-        "Boho braids / goddess braids",
-        "Bouncy blowout / Round Brush Blow dry"
+        "Boho braids / goddess braids"
       ],
       "canBraidWithoutGel": true,
       "summary": "Manual entry added from your latest salon update batch.",
@@ -5888,7 +6583,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-06-06T12:19:26.364Z"
+      "updatedAt": "2026-06-06T18:22:02.582Z"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -7157,28 +7852,27 @@
       "instagramUrl": "https://www.instagram.com/bettysunisexhairstudio/",
       "services": [
         "Wash & blowdry",
-        "Cornrows / Twists / Underwig cornrows",
+        "Wig cornrows",
         "Twist out / flexi rod",
         "Fulani / lemonade braids",
         "Knotless braids",
         "Relaxer / texturiser",
         "Texture release",
         "Moisturising treatment",
-        "Microlinks",
-        "LA weave",
-        "Wig colouring / bundle colouring",
-        "Wig install",
+        "Wig install (frontal / closure)",
         "Feed-in braids",
         "Boho braids / goddess braids",
         "French curl",
         "Twists (with extensions)",
         "Stitch braids",
         "Sleek ponytail / bun",
-        "Tracks / Silk press + tracks / Invisible sew-in",
+        "Tracks (+ silk press) / partial / invisible sew-in",
         "Flipover / Versatile sew-in",
         "Traditional sew-in / leave out",
         "Silk press",
-        "Crochet"
+        "Crochet",
+        "Microlinks",
+        "LA weave"
       ],
       "priceBand": "£",
       "priceSource": "auto",
@@ -7194,7 +7888,16 @@
       ],
       "priceCheckedAt": "2026-06-04T13:06:47.789Z",
       "priceConfidence": "high",
-      "priceUpdatedAt": "2026-06-04T13:06:47.791Z"
+      "priceUpdatedAt": "2026-06-04T13:06:47.791Z",
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "updatedAt": "2026-06-07T18:30:10.065Z"
     },
     {
       "id": "beyond-glam",
@@ -9053,7 +9756,9 @@
       "services": [
         "Bouncy blowout / Round Brush Blow dry",
         "Silk press",
-        "Curly cut / wash & go / diffuse"
+        "Curly cut / wash & go / diffuse",
+        "Wig blowdry",
+        "Sew in / extensions blowdry"
       ],
       "websiteUrl": "",
       "tiktokUrl": "",
@@ -9067,7 +9772,7 @@
       "priceCheckedAt": "2026-06-04T11:32:12.022Z",
       "priceUpdatedAt": "2026-06-05T19:00:38.488Z",
       "priceConfidence": "manual",
-      "updatedAt": "2026-06-06T18:15:07.051Z",
+      "updatedAt": "2026-06-06T18:35:57.193Z",
       "servicePriceBand": "",
       "packagePriceBand": "",
       "priceIncludesHair": false,
@@ -9990,7 +10695,11 @@
         "Updo",
         "Half up half down",
         "Traditional sew-in / leave out",
-        "Wash & blowdry"
+        "Wash & blowdry",
+        "Pixie wig / weave install",
+        "Pixie / finger waves",
+        "Full head colour",
+        "Wig blowdry"
       ],
       "priceBand": "££",
       "priceSource": "manual",
@@ -10007,7 +10716,15 @@
       "priceCheckedAt": "2026-06-04T00:01:09.203Z",
       "priceUpdatedAt": "2026-06-04T00:09:03.477Z",
       "priceConfidence": "manual",
-      "hijabiFriendly": false
+      "hijabiFriendly": false,
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "canBraidWithoutGel": false,
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "updatedAt": "2026-06-06T18:33:36.535Z"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -11784,7 +12501,9 @@
       "services": [
         "Bouncy blowout / Round Brush Blow dry",
         "Silk press",
-        "Trim / hair cut"
+        "Trim / hair cut",
+        "Wig blowdry",
+        "Sew in / extensions blowdry"
       ],
       "summary": "Search for  3B or 4C, they have services like Textured Hair Cut & Finish",
       "source": "manual",
@@ -11809,7 +12528,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-06-06T18:14:42.762Z"
+      "updatedAt": "2026-06-06T18:35:32.073Z"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -12144,9 +12863,7 @@
         "Full head colour",
         "Highlights",
         "Balayage",
-        "Wig colouring / bundle colouring",
         "Relaxer / texturiser",
-        "LA weave",
         "Wig cornrows",
         "Feed-in braids",
         "Knotless braids",
@@ -12159,7 +12876,8 @@
         "Sleek ponytail / bun",
         "Pixie / finger waves",
         "Retwist",
-        "Silk press"
+        "Silk press",
+        "LA weave"
       ],
       "summary": "Manual entry expanded from user-provided full service menu.",
       "source": "manual",
@@ -12179,7 +12897,7 @@
       "tiktokUrl": "",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
-      "updatedAt": "2026-06-04T18:44:46.895Z",
+      "updatedAt": "2026-06-07T20:56:26.061Z",
       "priceBand": "£",
       "priceSource": "manual",
       "priceEvidence": [
@@ -12194,7 +12912,11 @@
       ],
       "priceCheckedAt": "2026-06-04T16:58:01.175Z",
       "priceUpdatedAt": "2026-06-04T18:43:24.088Z",
-      "priceConfidence": "manual"
+      "priceConfidence": "manual",
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -17839,8 +18561,8 @@
       "areaLabel": "Central",
       "neighbourhood": "Central London",
       "postcode": "",
-      "bookingPlatform": "Direct website",
-      "bookingUrl": "https://www.myhairbar.com/",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/myhairbarlondon/",
       "instagramUrl": "https://www.instagram.com/myhairbarlondon/",
       "services": [
         "Relaxer / texturiser",
@@ -17850,13 +18572,29 @@
         "Highlights",
         "Traditional sew-in / leave out",
         "Trim / hair cut",
-        "Silk press"
+        "Silk press",
+        "Bouncy blowout / Round Brush Blow dry"
       ],
       "summary": "Manual entry added from your latest salon update batch.",
       "source": "manual",
       "evidence": [
         "User-provided manual addition."
-      ]
+      ],
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "priceBand": "",
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "",
+      "priceSource": "",
+      "priceEvidence": [],
+      "priceCheckedAt": "",
+      "priceUpdatedAt": "",
+      "priceConfidence": "",
+      "updatedAt": "2026-06-07T16:39:07.453Z"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -19115,6 +19853,7 @@
         "Healthy hair plans & consultations",
         "Wig install (frontal / closure)",
         "Frontal sew-in",
+        "Sew in / extensions blowdry",
         "LA weave"
       ],
       "priceBand": "££",
@@ -19129,11 +19868,11 @@
       "tiktokUrl": "",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
-      "servicePriceBand": "££",
+      "servicePriceBand": "",
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-06-06T17:42:35.359Z"
+      "updatedAt": "2026-06-06T18:43:33.134Z"
     },
     {
       "id": "phenomenal-hair",
