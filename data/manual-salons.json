@@ -1,11 +1,41 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-06-07T21:21:02.965Z",
-    "count": 714,
+    "updatedAt": "2026-06-07T21:23:19.822Z",
+    "count": 715,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "ajstylesdidthat",
+      "name": "Ajstylesdidthat",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london",
+        "south-west"
+      ],
+      "areaLabel": "South west London",
+      "neighbourhood": "South west London London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/ajstylesdidthat/",
+      "websiteUrl": "https://www.instagram.com/ajstylesdidthat/",
+      "instagramUrl": "https://www.instagram.com/ajstylesdidthat/",
+      "services": [
+        "Editorial / Session styling",
+        "Full head colour",
+        "Highlights",
+        "Trim / hair cut",
+        "Pixie / finger waves",
+        "Silk press",
+        "Bouncy blowout / Round Brush Blow dry"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/ajstylesdidthat/"
+      ]
+    },
     {
       "id": "naomistyledit",
       "name": "Naomistyledit",

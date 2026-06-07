@@ -1,8 +1,8 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-06-07T21:21:02.965Z",
-    "count": 4
+    "updatedAt": "2026-06-07T21:23:19.823Z",
+    "count": 3
   },
   "drafts": [
     {
@@ -64,36 +64,6 @@
       "createdAt": "2026-06-07T19:26:44.196Z",
       "updatedAt": "2026-06-07T19:26:44.196Z",
       "lastCheckedAt": "2026-06-07T19:26:44.196Z"
-    },
-    {
-      "id": "ajstylesdidthat-mq46a7z2",
-      "status": "needs_review",
-      "name": "Ajstylesdidthat",
-      "areaId": "",
-      "areaIds": [],
-      "areaLabel": "",
-      "neighbourhood": "",
-      "postcode": "",
-      "bookingPlatform": "",
-      "bookingUrl": "",
-      "websiteUrl": "",
-      "instagramUrl": "https://www.instagram.com/ajstylesdidthat/",
-      "tiktokUrl": "",
-      "services": [],
-      "rawServices": [],
-      "summary": "Admin draft created from stylist intake.",
-      "confidence": 0.35,
-      "warnings": [
-        "No booking link identified yet.",
-        "No services matched yet."
-      ],
-      "evidence": [
-        "Submitted link: https://www.instagram.com/ajstylesdidthat/"
-      ],
-      "source": "admin-draft",
-      "createdAt": "2026-06-07T19:26:10.141Z",
-      "updatedAt": "2026-06-07T19:26:10.141Z",
-      "lastCheckedAt": "2026-06-07T19:26:10.141Z"
     },
     {
       "id": "microsbylaura-mpi6stjg",
