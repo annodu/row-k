@@ -1,10 +1,40 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-06-07T17:34:47.491Z",
-    "count": 7
+    "updatedAt": "2026-06-07T17:35:10.377Z",
+    "count": 8
   },
   "drafts": [
+    {
+      "id": "faceoflife-mq42bh8p",
+      "status": "needs_review",
+      "name": "Faceoflife",
+      "areaId": "",
+      "areaIds": [],
+      "areaLabel": "",
+      "neighbourhood": "",
+      "postcode": "",
+      "bookingPlatform": "",
+      "bookingUrl": "",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/faceoflife_/",
+      "tiktokUrl": "",
+      "services": [],
+      "rawServices": [],
+      "summary": "Admin draft created from stylist intake.",
+      "confidence": 0.35,
+      "warnings": [
+        "No booking link identified yet.",
+        "No services matched yet."
+      ],
+      "evidence": [
+        "Submitted link: https://www.instagram.com/faceoflife_/"
+      ],
+      "source": "admin-draft",
+      "createdAt": "2026-06-07T17:35:10.343Z",
+      "updatedAt": "2026-06-07T17:35:10.343Z",
+      "lastCheckedAt": "2026-06-07T17:35:10.343Z"
+    },
     {
       "id": "lorraine-dublin-mq42azld",
       "status": "needs_review",
