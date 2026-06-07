@@ -1,10 +1,40 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-06-07T19:17:16.543Z",
-    "count": 12
+    "updatedAt": "2026-06-07T19:17:28.303Z",
+    "count": 13
   },
   "drafts": [
+    {
+      "id": "houseofzariuk-mq45z1b1",
+      "status": "needs_review",
+      "name": "Houseofzariuk",
+      "areaId": "",
+      "areaIds": [],
+      "areaLabel": "",
+      "neighbourhood": "",
+      "postcode": "",
+      "bookingPlatform": "",
+      "bookingUrl": "",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/houseofzariuk/",
+      "tiktokUrl": "",
+      "services": [],
+      "rawServices": [],
+      "summary": "Admin draft created from stylist intake.",
+      "confidence": 0.35,
+      "warnings": [
+        "No booking link identified yet.",
+        "No services matched yet."
+      ],
+      "evidence": [
+        "Submitted link: https://www.instagram.com/houseofzariuk/"
+      ],
+      "source": "admin-draft",
+      "createdAt": "2026-06-07T19:17:28.283Z",
+      "updatedAt": "2026-06-07T19:17:28.283Z",
+      "lastCheckedAt": "2026-06-07T19:17:28.283Z"
+    },
     {
       "id": "hairtherapyy-mq45ys7d",
       "status": "needs_review",
