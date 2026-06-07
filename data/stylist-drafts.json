@@ -1,8 +1,8 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-06-07T21:07:37.283Z",
-    "count": 14
+    "updatedAt": "2026-06-07T21:08:48.236Z",
+    "count": 13
   },
   "drafts": [
     {
@@ -364,36 +364,6 @@
       "createdAt": "2026-06-07T19:17:28.283Z",
       "updatedAt": "2026-06-07T19:17:28.283Z",
       "lastCheckedAt": "2026-06-07T19:17:28.283Z"
-    },
-    {
-      "id": "hairtherapyy-mq45ys7d",
-      "status": "needs_review",
-      "name": "Hairtherapyy",
-      "areaId": "",
-      "areaIds": [],
-      "areaLabel": "",
-      "neighbourhood": "",
-      "postcode": "",
-      "bookingPlatform": "",
-      "bookingUrl": "",
-      "websiteUrl": "",
-      "instagramUrl": "https://www.instagram.com/_hairtherapyy/",
-      "tiktokUrl": "",
-      "services": [],
-      "rawServices": [],
-      "summary": "Admin draft created from stylist intake.",
-      "confidence": 0.35,
-      "warnings": [
-        "No booking link identified yet.",
-        "No services matched yet."
-      ],
-      "evidence": [
-        "Submitted link: https://www.instagram.com/_hairtherapyy/"
-      ],
-      "source": "admin-draft",
-      "createdAt": "2026-06-07T19:17:16.487Z",
-      "updatedAt": "2026-06-07T19:17:16.487Z",
-      "lastCheckedAt": "2026-06-07T19:17:16.487Z"
     },
     {
       "id": "microsbylaura-mpi6stjg",

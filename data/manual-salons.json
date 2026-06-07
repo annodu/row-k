@@ -1,11 +1,59 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-06-07T21:07:37.283Z",
-    "count": 706,
+    "updatedAt": "2026-06-07T21:08:48.235Z",
+    "count": 707,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "hairtherapyy",
+      "name": "Hairtherapyy",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london",
+        "south-east"
+      ],
+      "areaLabel": "South east London",
+      "neighbourhood": "South east London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://hairtherapyy.as.me/schedule/ccf718b8",
+      "websiteUrl": "https://hairtherapyy.as.me/schedule/ccf718b8",
+      "instagramUrl": "https://www.instagram.com/_hairtherapyy/",
+      "services": [
+        "Wig install (frontal / closure)",
+        "Custom wig",
+        "Traditional sew-in / leave out",
+        "Frontal ponytail / bun",
+        "Closure sew-in",
+        "Frontal sew-in"
+      ],
+      "priceBand": "£",
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "Frontal wig construction & Installation - £100",
+        "Mini frontal construction + Installation - £90",
+        "Readymade frontal wig customisation & installation - £75",
+        "Frontal replacement - £85",
+        "Frontal/ Mini frontal wig unit customisation NO INSTALLATION - £50",
+        "360 ready made wig / 360 full lace wig - £100",
+        "Ready made mini frontal - £70",
+        "Frontal REINSTALL - £60"
+      ],
+      "priceCheckedAt": "2026-06-07T21:08:28.905Z",
+      "priceUpdatedAt": "2026-06-07T21:08:28.905Z",
+      "priceConfidence": "high",
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/_hairtherapyy/"
+      ]
+    },
     {
       "id": "ctwigsuk",
       "name": "Ctwigsuk",
