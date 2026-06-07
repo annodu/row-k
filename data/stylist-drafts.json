@@ -1,10 +1,40 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-06-07T19:20:36.660Z",
-    "count": 21
+    "updatedAt": "2026-06-07T19:26:10.203Z",
+    "count": 22
   },
   "drafts": [
+    {
+      "id": "ajstylesdidthat-mq46a7z2",
+      "status": "needs_review",
+      "name": "Ajstylesdidthat",
+      "areaId": "",
+      "areaIds": [],
+      "areaLabel": "",
+      "neighbourhood": "",
+      "postcode": "",
+      "bookingPlatform": "",
+      "bookingUrl": "",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/ajstylesdidthat/",
+      "tiktokUrl": "",
+      "services": [],
+      "rawServices": [],
+      "summary": "Admin draft created from stylist intake.",
+      "confidence": 0.35,
+      "warnings": [
+        "No booking link identified yet.",
+        "No services matched yet."
+      ],
+      "evidence": [
+        "Submitted link: https://www.instagram.com/ajstylesdidthat/"
+      ],
+      "source": "admin-draft",
+      "createdAt": "2026-06-07T19:26:10.141Z",
+      "updatedAt": "2026-06-07T19:26:10.141Z",
+      "lastCheckedAt": "2026-06-07T19:26:10.141Z"
+    },
     {
       "id": "naomistyledit-mq4632n6",
       "status": "needs_review",
