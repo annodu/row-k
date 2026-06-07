@@ -1,8 +1,8 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-06-07T19:27:43.487Z",
-    "count": 24
+    "updatedAt": "2026-06-07T20:46:31.439Z",
+    "count": 23
   },
   "drafts": [
     {
@@ -664,36 +664,6 @@
       "createdAt": "2026-06-07T16:35:52.987Z",
       "updatedAt": "2026-06-07T16:35:52.987Z",
       "lastCheckedAt": "2026-06-07T16:35:52.987Z"
-    },
-    {
-      "id": "braidedbytaiss-mq2c0fqv",
-      "status": "needs_review",
-      "name": "Braidedbytaiss",
-      "areaId": "",
-      "areaIds": [],
-      "areaLabel": "",
-      "neighbourhood": "",
-      "postcode": "",
-      "bookingPlatform": "",
-      "bookingUrl": "",
-      "websiteUrl": "",
-      "instagramUrl": "https://www.instagram.com/braidedbytaiss_/",
-      "tiktokUrl": "",
-      "services": [],
-      "rawServices": [],
-      "summary": "Admin draft created from stylist intake.",
-      "confidence": 0.35,
-      "warnings": [
-        "No booking link identified yet.",
-        "No services matched yet."
-      ],
-      "evidence": [
-        "Submitted link: https://www.instagram.com/braidedbytaiss_/"
-      ],
-      "source": "admin-draft",
-      "createdAt": "2026-06-06T12:30:58.999Z",
-      "updatedAt": "2026-06-06T12:30:58.999Z",
-      "lastCheckedAt": "2026-06-06T12:30:58.999Z"
     },
     {
       "id": "microsbylaura-mpi6stjg",
