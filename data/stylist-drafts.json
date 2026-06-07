@@ -1,8 +1,8 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-06-07T21:18:31.150Z",
-    "count": 6
+    "updatedAt": "2026-06-07T21:20:01.027Z",
+    "count": 5
   },
   "drafts": [
     {
@@ -124,36 +124,6 @@
       "createdAt": "2026-06-07T19:20:36.640Z",
       "updatedAt": "2026-06-07T19:20:36.640Z",
       "lastCheckedAt": "2026-06-07T19:20:36.640Z"
-    },
-    {
-      "id": "iamhairlondon-mq461q44",
-      "status": "needs_review",
-      "name": "Iamhairlondon",
-      "areaId": "",
-      "areaIds": [],
-      "areaLabel": "",
-      "neighbourhood": "",
-      "postcode": "",
-      "bookingPlatform": "",
-      "bookingUrl": "",
-      "websiteUrl": "",
-      "instagramUrl": "https://www.instagram.com/iamhairlondon/",
-      "tiktokUrl": "",
-      "services": [],
-      "rawServices": [],
-      "summary": "Admin draft created from stylist intake.",
-      "confidence": 0.35,
-      "warnings": [
-        "No booking link identified yet.",
-        "No services matched yet."
-      ],
-      "evidence": [
-        "Submitted link: https://www.instagram.com/iamhairlondon/"
-      ],
-      "source": "admin-draft",
-      "createdAt": "2026-06-07T19:19:33.746Z",
-      "updatedAt": "2026-06-07T19:19:33.746Z",
-      "lastCheckedAt": "2026-06-07T19:19:33.746Z"
     },
     {
       "id": "microsbylaura-mpi6stjg",

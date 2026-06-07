@@ -1,11 +1,37 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-06-07T21:18:31.150Z",
-    "count": 712,
+    "updatedAt": "2026-06-07T21:20:01.027Z",
+    "count": 713,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "iamhairlondon",
+      "name": "Iamhairlondon",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london",
+        "north"
+      ],
+      "areaLabel": "North London",
+      "neighbourhood": "North London London",
+      "postcode": "",
+      "bookingPlatform": "Direct",
+      "bookingUrl": "https://www.instagram.com/iamhairlondon/",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/iamhairlondon/",
+      "services": [
+        "Full head colour",
+        "Highlights",
+        "Silk press"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/iamhairlondon/"
+      ]
+    },
     {
       "id": "heslayedthat",
       "name": "Heslayedthat",
