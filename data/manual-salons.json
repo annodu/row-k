@@ -1,11 +1,59 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-06-07T21:09:41.080Z",
-    "count": 708,
+    "updatedAt": "2026-06-07T21:12:50.440Z",
+    "count": 709,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "bydiannn",
+      "name": "Bydiannn",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london",
+        "east"
+      ],
+      "areaLabel": "East London",
+      "neighbourhood": "East London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://bydian.as.me/schedule/0ef2a496",
+      "websiteUrl": "https://bydian.as.me/schedule/0ef2a496",
+      "instagramUrl": "https://www.instagram.com/bydiannn_/",
+      "services": [
+        "Wig install (frontal / closure)",
+        "Custom wig",
+        "Frontal ponytail / bun",
+        "Closure sew-in",
+        "Frontal sew-in",
+        "Traditional sew-in / leave out",
+        "Flipover / Versatile sew-in",
+        "Half up half down"
+      ],
+      "priceBand": "££",
+      "servicePriceBand": "££",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Custom Frontal Wig - - Custom Frontal Wig - £150",
+        "Custom Closure wig - - Custom Closure wig - £140",
+        "Frontal ponytail - - Frontal ponytail - £140",
+        "Pre-made Mini frontal/Closure Install - - Pre-made Mini frontal/Closure Install - £120",
+        "360/Full lace wig Install - - 360/Full lace wig Install - £130",
+        "Pre-made Frontal Wig Install - - Pre-made Frontal Wig Install - £130"
+      ],
+      "priceCheckedAt": "2026-06-07T21:10:40.994Z",
+      "priceUpdatedAt": "2026-06-07T21:12:27.391Z",
+      "priceConfidence": "manual",
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/bydiannn_/"
+      ]
+    },
     {
       "id": "houseofzariuk",
       "name": "Houseofzariuk",
