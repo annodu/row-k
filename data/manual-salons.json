@@ -1,11 +1,31 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-06-07T20:58:46.019Z",
-    "count": 702,
+    "updatedAt": "2026-06-07T20:59:28.317Z",
+    "count": 703,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "lorraine-dublin",
+      "name": "Lorraine Dublin",
+      "areaId": "all-london",
+      "areaLabel": "London",
+      "neighbourhood": "London London",
+      "postcode": "",
+      "bookingPlatform": "Direct",
+      "bookingUrl": "https://www.instagram.com/lorraine_dublin/",
+      "websiteUrl": "https://www.instagram.com/lorraine_dublin/",
+      "instagramUrl": "https://www.instagram.com/lorraine_dublin/",
+      "services": [
+        "Editorial / Session styling"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/lorraine_dublin/"
+      ]
+    },
     {
       "id": "silkedbyli",
       "name": "Silkedbyli",

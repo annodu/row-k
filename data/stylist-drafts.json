@@ -1,8 +1,8 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-06-07T20:58:46.019Z",
-    "count": 19
+    "updatedAt": "2026-06-07T20:59:28.317Z",
+    "count": 18
   },
   "drafts": [
     {
@@ -514,36 +514,6 @@
       "createdAt": "2026-06-07T17:35:10.343Z",
       "updatedAt": "2026-06-07T17:35:10.343Z",
       "lastCheckedAt": "2026-06-07T17:35:10.343Z"
-    },
-    {
-      "id": "lorraine-dublin-mq42azld",
-      "status": "needs_review",
-      "name": "Lorraine Dublin",
-      "areaId": "",
-      "areaIds": [],
-      "areaLabel": "",
-      "neighbourhood": "",
-      "postcode": "",
-      "bookingPlatform": "",
-      "bookingUrl": "",
-      "websiteUrl": "",
-      "instagramUrl": "https://www.instagram.com/lorraine_dublin/",
-      "tiktokUrl": "",
-      "services": [],
-      "rawServices": [],
-      "summary": "Admin draft created from stylist intake.",
-      "confidence": 0.35,
-      "warnings": [
-        "No booking link identified yet.",
-        "No services matched yet."
-      ],
-      "evidence": [
-        "Submitted link: https://www.instagram.com/lorraine_dublin/"
-      ],
-      "source": "admin-draft",
-      "createdAt": "2026-06-07T17:34:47.472Z",
-      "updatedAt": "2026-06-07T17:34:47.472Z",
-      "lastCheckedAt": "2026-06-07T17:34:47.472Z"
     },
     {
       "id": "microsbylaura-mpi6stjg",
