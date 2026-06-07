@@ -1,10 +1,40 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-06-07T19:17:42.509Z",
-    "count": 14
+    "updatedAt": "2026-06-07T19:17:54.527Z",
+    "count": 15
   },
   "drafts": [
+    {
+      "id": "bydiannn-mq45zlik",
+      "status": "needs_review",
+      "name": "Bydiannn",
+      "areaId": "",
+      "areaIds": [],
+      "areaLabel": "",
+      "neighbourhood": "",
+      "postcode": "",
+      "bookingPlatform": "",
+      "bookingUrl": "",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/bydiannn_/",
+      "tiktokUrl": "",
+      "services": [],
+      "rawServices": [],
+      "summary": "Admin draft created from stylist intake.",
+      "confidence": 0.35,
+      "warnings": [
+        "No booking link identified yet.",
+        "No services matched yet."
+      ],
+      "evidence": [
+        "Submitted link: https://www.instagram.com/bydiannn_/"
+      ],
+      "source": "admin-draft",
+      "createdAt": "2026-06-07T19:17:54.474Z",
+      "updatedAt": "2026-06-07T19:17:54.474Z",
+      "lastCheckedAt": "2026-06-07T19:17:54.474Z"
+    },
     {
       "id": "dolledbyc-mq45zc9e",
       "status": "needs_review",
