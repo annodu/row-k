@@ -1,11 +1,35 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-06-07T20:47:20.012Z",
-    "count": 699,
+    "updatedAt": "2026-06-07T20:50:43.786Z",
+    "count": 700,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "eduardooliver195",
+      "name": "Eduardooliver195",
+      "areaId": "all-london",
+      "areaLabel": "London",
+      "neighbourhood": "London London",
+      "postcode": "",
+      "bookingPlatform": "Direct",
+      "bookingUrl": "https://www.instagram.com/eduardooliver195/",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/eduardooliver195/",
+      "services": [
+        "Bouncy blowout / Round Brush Blow dry",
+        "Wash & blowdry",
+        "Silk press",
+        "Trim / hair cut",
+        "Sew in / extensions blowdry"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/eduardooliver195/"
+      ]
+    },
     {
       "id": "hairbycarlcampbell",
       "name": "Hairbycarlcampbell",

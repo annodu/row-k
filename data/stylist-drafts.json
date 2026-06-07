@@ -1,8 +1,8 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-06-07T20:47:20.012Z",
-    "count": 22
+    "updatedAt": "2026-06-07T20:50:43.787Z",
+    "count": 21
   },
   "drafts": [
     {
@@ -604,36 +604,6 @@
       "createdAt": "2026-06-07T17:34:15.450Z",
       "updatedAt": "2026-06-07T17:34:15.450Z",
       "lastCheckedAt": "2026-06-07T17:34:15.450Z"
-    },
-    {
-      "id": "eduardooliver195-mq414woo",
-      "status": "needs_review",
-      "name": "Eduardooliver195",
-      "areaId": "",
-      "areaIds": [],
-      "areaLabel": "",
-      "neighbourhood": "",
-      "postcode": "",
-      "bookingPlatform": "",
-      "bookingUrl": "",
-      "websiteUrl": "",
-      "instagramUrl": "https://www.instagram.com/eduardooliver195/",
-      "tiktokUrl": "",
-      "services": [],
-      "rawServices": [],
-      "summary": "Admin draft created from stylist intake.",
-      "confidence": 0.35,
-      "warnings": [
-        "No booking link identified yet.",
-        "No services matched yet."
-      ],
-      "evidence": [
-        "Submitted link: https://www.instagram.com/eduardooliver195/"
-      ],
-      "source": "admin-draft",
-      "createdAt": "2026-06-07T17:02:04.150Z",
-      "updatedAt": "2026-06-07T17:02:04.150Z",
-      "lastCheckedAt": "2026-06-07T17:02:04.150Z"
     },
     {
       "id": "microsbylaura-mpi6stjg",
