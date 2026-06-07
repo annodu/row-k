@@ -1,40 +1,10 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-06-07T10:48:51.823Z",
-    "count": 3
+    "updatedAt": "2026-06-07T10:51:39.107Z",
+    "count": 2
   },
   "drafts": [
-    {
-      "id": "atstyledit-mq3nsymw",
-      "status": "needs_review",
-      "name": "Atstyledit",
-      "areaId": "",
-      "areaIds": [],
-      "areaLabel": "",
-      "neighbourhood": "",
-      "postcode": "",
-      "bookingPlatform": "",
-      "bookingUrl": "",
-      "websiteUrl": "",
-      "instagramUrl": "https://www.instagram.com/atstyledit?igsh=MzdydWZ0dXZnc2d6",
-      "tiktokUrl": "",
-      "services": [],
-      "rawServices": [],
-      "summary": "Admin draft created from stylist intake.",
-      "confidence": 0.35,
-      "warnings": [
-        "No booking link identified yet.",
-        "No services matched yet."
-      ],
-      "evidence": [
-        "Submitted link: https://www.instagram.com/atstyledit?igsh=MzdydWZ0dXZnc2d6"
-      ],
-      "source": "admin-draft",
-      "createdAt": "2026-06-07T10:48:51.798Z",
-      "updatedAt": "2026-06-07T10:48:51.798Z",
-      "lastCheckedAt": "2026-06-07T10:48:51.798Z"
-    },
     {
       "id": "braidedbytaiss-mq2c0fqv",
       "status": "needs_review",

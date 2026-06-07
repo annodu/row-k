@@ -1,11 +1,65 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-06-06T18:43:33.134Z",
-    "count": 695,
+    "updatedAt": "2026-06-07T10:51:39.106Z",
+    "count": 696,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "atstyledit",
+      "name": "Atstyledit",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london",
+        "east"
+      ],
+      "areaLabel": "East London",
+      "neighbourhood": "East London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://atstyleditt.as.me/schedule/5d7497fc",
+      "websiteUrl": "https://atstyleditt.as.me/schedule/5d7497fc",
+      "instagramUrl": "https://www.instagram.com/atstyledit",
+      "services": [
+        "Knotless braids",
+        "Microbraids / x-small braids",
+        "Fulani / lemonade braids",
+        "Faux locs",
+        "Wig cornrows",
+        "Retwist",
+        "Quick weave",
+        "Stitch braids",
+        "Feed-in braids",
+        "Twists (with extensions)",
+        "Creative braids (e.g. patewo)",
+        "Half braids, half sew-in"
+      ],
+      "priceBand": "££",
+      "servicePriceBand": "££",
+      "packagePriceBand": "££",
+      "priceIncludesHair": true,
+      "priceComparisonMode": "mixed",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "MEDIUM KNOTLESS - £100",
+        "SMALL KNOTLESS - £130",
+        "SHMEDIUM KNOTLESS - £110",
+        "LARGE KNOTLESS - £90",
+        "Xs knotless braids (Hair included) - £180",
+        "SMALL FULANI BRAIDS - £125",
+        "SHMEDIUM FULANI - £115",
+        "AT’s CREATIVE FULANI - £140"
+      ],
+      "priceCheckedAt": "2026-06-07T10:49:41.912Z",
+      "priceUpdatedAt": "2026-06-07T10:49:41.912Z",
+      "priceConfidence": "high",
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/atstyledit?igsh=MzdydWZ0dXZnc2d6"
+      ]
+    },
     {
       "id": "marta-beautysalon",
       "name": "Marta Beautysalon",
