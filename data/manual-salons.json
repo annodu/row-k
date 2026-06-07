@@ -1,11 +1,31 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-06-07T20:59:28.317Z",
-    "count": 703,
+    "updatedAt": "2026-06-07T21:00:44.058Z",
+    "count": 704,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "faceoflife",
+      "name": "Faceoflife",
+      "areaId": "all-london",
+      "areaLabel": "London",
+      "neighbourhood": "London London",
+      "postcode": "",
+      "bookingPlatform": "Direct",
+      "bookingUrl": "https://www.instagram.com/faceoflife_/",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/faceoflife_/",
+      "services": [
+        "Healthy hair plans & consultations"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/faceoflife_/"
+      ]
+    },
     {
       "id": "lorraine-dublin",
       "name": "Lorraine Dublin",

@@ -1,8 +1,8 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-06-07T20:59:28.317Z",
-    "count": 18
+    "updatedAt": "2026-06-07T21:00:44.058Z",
+    "count": 17
   },
   "drafts": [
     {
@@ -484,36 +484,6 @@
       "createdAt": "2026-06-07T17:38:26.610Z",
       "updatedAt": "2026-06-07T17:38:26.610Z",
       "lastCheckedAt": "2026-06-07T17:38:26.610Z"
-    },
-    {
-      "id": "faceoflife-mq42bh8p",
-      "status": "needs_review",
-      "name": "Faceoflife",
-      "areaId": "",
-      "areaIds": [],
-      "areaLabel": "",
-      "neighbourhood": "",
-      "postcode": "",
-      "bookingPlatform": "",
-      "bookingUrl": "",
-      "websiteUrl": "",
-      "instagramUrl": "https://www.instagram.com/faceoflife_/",
-      "tiktokUrl": "",
-      "services": [],
-      "rawServices": [],
-      "summary": "Admin draft created from stylist intake.",
-      "confidence": 0.35,
-      "warnings": [
-        "No booking link identified yet.",
-        "No services matched yet."
-      ],
-      "evidence": [
-        "Submitted link: https://www.instagram.com/faceoflife_/"
-      ],
-      "source": "admin-draft",
-      "createdAt": "2026-06-07T17:35:10.343Z",
-      "updatedAt": "2026-06-07T17:35:10.343Z",
-      "lastCheckedAt": "2026-06-07T17:35:10.343Z"
     },
     {
       "id": "microsbylaura-mpi6stjg",
