@@ -1,11 +1,56 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-06-07T20:50:43.786Z",
-    "count": 700,
+    "updatedAt": "2026-06-07T20:55:59.205Z",
+    "count": 701,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "jdv-hair",
+      "name": "Jdv Hair",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london",
+        "south-west",
+        "west"
+      ],
+      "areaLabel": "South west London / West London",
+      "neighbourhood": "South west London and West London London",
+      "postcode": "",
+      "bookingPlatform": "Direct",
+      "bookingUrl": "https://www.instagram.com/jdv_hair/",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/jdv_hair/",
+      "services": [
+        "Wash & blowdry",
+        "Keratin treatment",
+        "Full head colour",
+        "Highlights",
+        "Balayage",
+        "Relaxer / texturiser",
+        "Wig cornrows",
+        "Feed-in braids",
+        "Knotless braids",
+        "Braid take-down",
+        "Tracks (+ silk press) / partial / invisible sew-in",
+        "Tape ins",
+        "Traditional sew-in / leave out",
+        "Quick weave",
+        "Box braids",
+        "Sleek ponytail / bun",
+        "Pixie / finger waves",
+        "Retwist",
+        "Silk press",
+        "Flipover / Versatile sew-in",
+        "LA weave"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/jdv_hair/"
+      ]
+    },
     {
       "id": "eduardooliver195",
       "name": "Eduardooliver195",
