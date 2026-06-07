@@ -1,10 +1,40 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-06-07T16:25:22.302Z",
-    "count": 4
+    "updatedAt": "2026-06-07T16:35:53.012Z",
+    "count": 5
   },
   "drafts": [
+    {
+      "id": "hairbycarlcampbell-mq4078d9",
+      "status": "needs_review",
+      "name": "Hairbycarlcampbell",
+      "areaId": "",
+      "areaIds": [],
+      "areaLabel": "",
+      "neighbourhood": "",
+      "postcode": "",
+      "bookingPlatform": "",
+      "bookingUrl": "",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/hairbycarlcampbell/",
+      "tiktokUrl": "",
+      "services": [],
+      "rawServices": [],
+      "summary": "Admin draft created from stylist intake.",
+      "confidence": 0.35,
+      "warnings": [
+        "No booking link identified yet.",
+        "No services matched yet."
+      ],
+      "evidence": [
+        "Submitted link: https://www.instagram.com/hairbycarlcampbell/"
+      ],
+      "source": "admin-draft",
+      "createdAt": "2026-06-07T16:35:52.987Z",
+      "updatedAt": "2026-06-07T16:35:52.987Z",
+      "lastCheckedAt": "2026-06-07T16:35:52.987Z"
+    },
     {
       "id": "jennierobertshair-mq3ztppd",
       "status": "needs_review",
