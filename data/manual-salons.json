@@ -1,11 +1,53 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-06-07T20:56:26.061Z",
-    "count": 701,
+    "updatedAt": "2026-06-07T20:58:46.019Z",
+    "count": 702,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "silkedbyli",
+      "name": "Silkedbyli",
+      "areaId": "mobile",
+      "areaLabel": "Mobile / home service",
+      "neighbourhood": "Mobile / home service London",
+      "postcode": "",
+      "bookingPlatform": "Setmore",
+      "bookingUrl": "https://silkedbyli.setmore.com/?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQPOTM2NjE5NzQzMzkyNDU5AAGnHLDeOc02sr6mE7KCbw_gNM0Cn49kDXyYJxcC5DakXUQddIvvmZZNv27CZv0_aem_9MbzO3oN_7DRENiB7ZrwIg&utm_id=97760_v0_s00_e0_tv3",
+      "websiteUrl": "https://silkedbyli.setmore.com/?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQPOTM2NjE5NzQzMzkyNDU5AAGnHLDeOc02sr6mE7KCbw_gNM0Cn49kDXyYJxcC5DakXUQddIvvmZZNv27CZv0_aem_9MbzO3oN_7DRENiB7ZrwIg&utm_id=97760_v0_s00_e0_tv3",
+      "instagramUrl": "https://www.instagram.com/silkedbyli/",
+      "services": [
+        "Wash & blowdry",
+        "Silk press",
+        "Keratin treatment",
+        "Braid take-down",
+        "Scalp detox / treatments"
+      ],
+      "priceBand": "£",
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "Wash & Blow Dry - £30",
+        "Take Down w/ Silk Press - £200",
+        "Silk Press - £70",
+        "L’Oréal Keratin Alpha Sleek Treatment - £115",
+        "Scalp Therapy Treatment (ADD ON) - £12",
+        "Wash & Blow Dry + Trim - £45",
+        "Take Down w/ Wash & Blow Dry - £100"
+      ],
+      "priceCheckedAt": "2026-06-07T20:57:24.402Z",
+      "priceUpdatedAt": "2026-06-07T20:57:24.402Z",
+      "priceConfidence": "high",
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/silkedbyli/"
+      ]
+    },
     {
       "id": "jdv-hair",
       "name": "Jdv Hair",
