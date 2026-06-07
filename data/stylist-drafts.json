@@ -1,8 +1,8 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-06-07T20:46:31.439Z",
-    "count": 23
+    "updatedAt": "2026-06-07T20:47:20.012Z",
+    "count": 22
   },
   "drafts": [
     {
@@ -634,36 +634,6 @@
       "createdAt": "2026-06-07T17:02:04.150Z",
       "updatedAt": "2026-06-07T17:02:04.150Z",
       "lastCheckedAt": "2026-06-07T17:02:04.150Z"
-    },
-    {
-      "id": "hairbycarlcampbell-mq4078d9",
-      "status": "needs_review",
-      "name": "Hairbycarlcampbell",
-      "areaId": "",
-      "areaIds": [],
-      "areaLabel": "",
-      "neighbourhood": "",
-      "postcode": "",
-      "bookingPlatform": "",
-      "bookingUrl": "",
-      "websiteUrl": "",
-      "instagramUrl": "https://www.instagram.com/hairbycarlcampbell/",
-      "tiktokUrl": "",
-      "services": [],
-      "rawServices": [],
-      "summary": "Admin draft created from stylist intake.",
-      "confidence": 0.35,
-      "warnings": [
-        "No booking link identified yet.",
-        "No services matched yet."
-      ],
-      "evidence": [
-        "Submitted link: https://www.instagram.com/hairbycarlcampbell/"
-      ],
-      "source": "admin-draft",
-      "createdAt": "2026-06-07T16:35:52.987Z",
-      "updatedAt": "2026-06-07T16:35:52.987Z",
-      "lastCheckedAt": "2026-06-07T16:35:52.987Z"
     },
     {
       "id": "microsbylaura-mpi6stjg",
