@@ -1,10 +1,40 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-06-07T17:38:26.669Z",
-    "count": 9
+    "updatedAt": "2026-06-07T19:16:38.034Z",
+    "count": 10
   },
   "drafts": [
+    {
+      "id": "peoniahair-mq45xyhv",
+      "status": "needs_review",
+      "name": "Peoniahair",
+      "areaId": "",
+      "areaIds": [],
+      "areaLabel": "",
+      "neighbourhood": "",
+      "postcode": "",
+      "bookingPlatform": "",
+      "bookingUrl": "",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/peoniahair_/",
+      "tiktokUrl": "",
+      "services": [],
+      "rawServices": [],
+      "summary": "Admin draft created from stylist intake.",
+      "confidence": 0.35,
+      "warnings": [
+        "No booking link identified yet.",
+        "No services matched yet."
+      ],
+      "evidence": [
+        "Submitted link: https://www.instagram.com/peoniahair_/"
+      ],
+      "source": "admin-draft",
+      "createdAt": "2026-06-07T19:16:37.982Z",
+      "updatedAt": "2026-06-07T19:16:37.982Z",
+      "lastCheckedAt": "2026-06-07T19:16:37.982Z"
+    },
     {
       "id": "corinnehurstknight-mq42fool",
       "status": "needs_review",
