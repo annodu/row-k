@@ -1,7 +1,7 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-06-07T20:55:59.205Z",
+    "updatedAt": "2026-06-07T20:56:26.061Z",
     "count": 701,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
@@ -12357,9 +12357,7 @@
         "Full head colour",
         "Highlights",
         "Balayage",
-        "Wig colouring / bundle colouring",
         "Relaxer / texturiser",
-        "LA weave",
         "Wig cornrows",
         "Feed-in braids",
         "Knotless braids",
@@ -12372,7 +12370,8 @@
         "Sleek ponytail / bun",
         "Pixie / finger waves",
         "Retwist",
-        "Silk press"
+        "Silk press",
+        "LA weave"
       ],
       "summary": "Manual entry expanded from user-provided full service menu.",
       "source": "manual",
@@ -12392,7 +12391,7 @@
       "tiktokUrl": "",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
-      "updatedAt": "2026-06-04T18:44:46.895Z",
+      "updatedAt": "2026-06-07T20:56:26.061Z",
       "priceBand": "£",
       "priceSource": "manual",
       "priceEvidence": [
@@ -12407,7 +12406,11 @@
       ],
       "priceCheckedAt": "2026-06-04T16:58:01.175Z",
       "priceUpdatedAt": "2026-06-04T18:43:24.088Z",
-      "priceConfidence": "manual"
+      "priceConfidence": "manual",
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
