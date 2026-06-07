@@ -1,11 +1,31 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-06-07T21:15:37.479Z",
-    "count": 710,
+    "updatedAt": "2026-06-07T21:16:23.365Z",
+    "count": 711,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "danielleigor",
+      "name": "Danielleigor",
+      "areaId": "all-london",
+      "areaLabel": "London",
+      "neighbourhood": "London London",
+      "postcode": "",
+      "bookingPlatform": "Direct",
+      "bookingUrl": "https://www.instagram.com/danielleigor/",
+      "websiteUrl": "https://www.instagram.com/danielleigor/",
+      "instagramUrl": "https://www.instagram.com/danielleigor/",
+      "services": [
+        "Editorial / Session styling"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/danielleigor/"
+      ]
+    },
     {
       "id": "hairmeoutx",
       "name": "Hairmeoutx",
