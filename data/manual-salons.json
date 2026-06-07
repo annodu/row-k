@@ -1,11 +1,36 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-06-07T21:00:44.058Z",
-    "count": 704,
+    "updatedAt": "2026-06-07T21:04:46.770Z",
+    "count": 705,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "corinnehurstknight",
+      "name": "Corinnehurstknight",
+      "areaId": "all-london",
+      "areaLabel": "London",
+      "neighbourhood": "London London",
+      "postcode": "",
+      "bookingPlatform": "Direct",
+      "bookingUrl": "https://www.instagram.com/corinnehurstknight/",
+      "websiteUrl": "https://www.instagram.com/corinnehurstknight/",
+      "instagramUrl": "https://www.instagram.com/corinnehurstknight/",
+      "services": [
+        "Silk press",
+        "Editorial / Session styling",
+        "Bouncy blowout / Round Brush Blow dry",
+        "Full head colour",
+        "Highlights",
+        "Tracks (+ silk press) / partial / invisible sew-in"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/corinnehurstknight/"
+      ]
+    },
     {
       "id": "faceoflife",
       "name": "Faceoflife",

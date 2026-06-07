@@ -1,8 +1,8 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-06-07T21:00:44.058Z",
-    "count": 17
+    "updatedAt": "2026-06-07T21:04:46.770Z",
+    "count": 16
   },
   "drafts": [
     {
@@ -454,36 +454,6 @@
       "createdAt": "2026-06-07T19:16:37.982Z",
       "updatedAt": "2026-06-07T19:16:37.982Z",
       "lastCheckedAt": "2026-06-07T19:16:37.982Z"
-    },
-    {
-      "id": "corinnehurstknight-mq42fool",
-      "status": "needs_review",
-      "name": "Corinnehurstknight",
-      "areaId": "",
-      "areaIds": [],
-      "areaLabel": "",
-      "neighbourhood": "",
-      "postcode": "",
-      "bookingPlatform": "",
-      "bookingUrl": "",
-      "websiteUrl": "",
-      "instagramUrl": "https://www.instagram.com/corinnehurstknight/",
-      "tiktokUrl": "",
-      "services": [],
-      "rawServices": [],
-      "summary": "Admin draft created from stylist intake.",
-      "confidence": 0.35,
-      "warnings": [
-        "No booking link identified yet.",
-        "No services matched yet."
-      ],
-      "evidence": [
-        "Submitted link: https://www.instagram.com/corinnehurstknight/"
-      ],
-      "source": "admin-draft",
-      "createdAt": "2026-06-07T17:38:26.610Z",
-      "updatedAt": "2026-06-07T17:38:26.610Z",
-      "lastCheckedAt": "2026-06-07T17:38:26.610Z"
     },
     {
       "id": "microsbylaura-mpi6stjg",
