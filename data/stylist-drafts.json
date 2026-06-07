@@ -1,10 +1,40 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-06-07T19:17:54.527Z",
-    "count": 15
+    "updatedAt": "2026-06-07T19:18:19.409Z",
+    "count": 16
   },
   "drafts": [
+    {
+      "id": "hairbytaiah-mq4604pz",
+      "status": "needs_review",
+      "name": "Hairbytaiah",
+      "areaId": "",
+      "areaIds": [],
+      "areaLabel": "",
+      "neighbourhood": "",
+      "postcode": "",
+      "bookingPlatform": "",
+      "bookingUrl": "",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/hairbytaiah/",
+      "tiktokUrl": "",
+      "services": [],
+      "rawServices": [],
+      "summary": "Admin draft created from stylist intake.",
+      "confidence": 0.35,
+      "warnings": [
+        "No booking link identified yet.",
+        "No services matched yet."
+      ],
+      "evidence": [
+        "Submitted link: https://www.instagram.com/hairbytaiah/"
+      ],
+      "source": "admin-draft",
+      "createdAt": "2026-06-07T19:18:19.366Z",
+      "updatedAt": "2026-06-07T19:18:19.366Z",
+      "lastCheckedAt": "2026-06-07T19:18:19.366Z"
+    },
     {
       "id": "bydiannn-mq45zlik",
       "status": "needs_review",
