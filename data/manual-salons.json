@@ -1,11 +1,39 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-06-07T21:23:19.822Z",
-    "count": 715,
+    "updatedAt": "2026-06-07T21:28:07.976Z",
+    "count": 716,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "jaealexxishair",
+      "name": "Jaealexxishair",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london",
+        "south-west"
+      ],
+      "areaLabel": "South west London",
+      "neighbourhood": "South west London London",
+      "postcode": "",
+      "bookingPlatform": "Direct",
+      "bookingUrl": "https://www.instagram.com/jaealexxishair/",
+      "websiteUrl": "https://www.instagram.com/jaealexxishair/",
+      "instagramUrl": "https://www.instagram.com/jaealexxishair/",
+      "services": [
+        "Silk press",
+        "Bouncy blowout / Round Brush Blow dry",
+        "Full head colour",
+        "Pixie / finger waves",
+        "Curly cut / wash & go / diffuse"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/jaealexxishair/"
+      ]
+    },
     {
       "id": "ajstylesdidthat",
       "name": "Ajstylesdidthat",

@@ -1,40 +1,10 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-06-07T21:23:47.162Z",
-    "count": 2
+    "updatedAt": "2026-06-07T21:28:07.976Z",
+    "count": 1
   },
   "drafts": [
-    {
-      "id": "jaealexxishair-mq46c7yi",
-      "status": "needs_review",
-      "name": "Jaealexxishair",
-      "areaId": "",
-      "areaIds": [],
-      "areaLabel": "",
-      "neighbourhood": "",
-      "postcode": "",
-      "bookingPlatform": "",
-      "bookingUrl": "",
-      "websiteUrl": "",
-      "instagramUrl": "https://www.instagram.com/jaealexxishair/",
-      "tiktokUrl": "",
-      "services": [],
-      "rawServices": [],
-      "summary": "Admin draft created from stylist intake.",
-      "confidence": 0.35,
-      "warnings": [
-        "No booking link identified yet.",
-        "No services matched yet."
-      ],
-      "evidence": [
-        "Submitted link: https://www.instagram.com/jaealexxishair/"
-      ],
-      "source": "admin-draft",
-      "createdAt": "2026-06-07T19:27:43.432Z",
-      "updatedAt": "2026-06-07T19:27:43.432Z",
-      "lastCheckedAt": "2026-06-07T19:27:43.432Z"
-    },
     {
       "id": "microsbylaura-mpi6stjg",
       "status": "needs_review",
