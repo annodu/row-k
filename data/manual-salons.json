@@ -1,7 +1,7 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-06-07T16:35:46.592Z",
+    "updatedAt": "2026-06-07T16:39:07.453Z",
     "count": 696,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
@@ -17900,8 +17900,8 @@
       "areaLabel": "Central",
       "neighbourhood": "Central London",
       "postcode": "",
-      "bookingPlatform": "Direct website",
-      "bookingUrl": "https://www.myhairbar.com/",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/myhairbarlondon/",
       "instagramUrl": "https://www.instagram.com/myhairbarlondon/",
       "services": [
         "Relaxer / texturiser",
@@ -17933,7 +17933,7 @@
       "priceCheckedAt": "",
       "priceUpdatedAt": "",
       "priceConfidence": "",
-      "updatedAt": "2026-06-07T16:35:46.592Z"
+      "updatedAt": "2026-06-07T16:39:07.453Z"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
