@@ -1,7 +1,7 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-06-07T23:12:03.563Z",
+    "updatedAt": "2026-06-07T23:18:21.965Z",
     "count": 716,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
@@ -5185,9 +5185,9 @@
     {
       "id": "sulayhairsalon",
       "name": "Sulayhairsalon",
-      "areaId": "east",
-      "areaLabel": "East London",
-      "neighbourhood": "East London",
+      "areaId": "south-east",
+      "areaLabel": "South east London",
+      "neighbourhood": "South east London London",
       "postcode": "",
       "bookingPlatform": "Instagram",
       "bookingUrl": "https://www.instagram.com/sulayhairsalon/",
@@ -5217,7 +5217,7 @@
       "priceCheckedAt": "",
       "priceUpdatedAt": "",
       "priceConfidence": "",
-      "updatedAt": "2026-06-06T12:04:01.267Z"
+      "updatedAt": "2026-06-07T23:18:21.965Z"
     },
     {
       "id": "enasalon",
