@@ -1,8 +1,8 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-06-07T21:16:23.365Z",
-    "count": 7
+    "updatedAt": "2026-06-07T21:18:31.150Z",
+    "count": 6
   },
   "drafts": [
     {
@@ -154,36 +154,6 @@
       "createdAt": "2026-06-07T19:19:33.746Z",
       "updatedAt": "2026-06-07T19:19:33.746Z",
       "lastCheckedAt": "2026-06-07T19:19:33.746Z"
-    },
-    {
-      "id": "heslayedthat-mq4616qe",
-      "status": "needs_review",
-      "name": "Heslayedthat",
-      "areaId": "",
-      "areaIds": [],
-      "areaLabel": "",
-      "neighbourhood": "",
-      "postcode": "",
-      "bookingPlatform": "",
-      "bookingUrl": "",
-      "websiteUrl": "",
-      "instagramUrl": "https://www.instagram.com/heslayedthat_/",
-      "tiktokUrl": "",
-      "services": [],
-      "rawServices": [],
-      "summary": "Admin draft created from stylist intake.",
-      "confidence": 0.35,
-      "warnings": [
-        "No booking link identified yet.",
-        "No services matched yet."
-      ],
-      "evidence": [
-        "Submitted link: https://www.instagram.com/heslayedthat_/"
-      ],
-      "source": "admin-draft",
-      "createdAt": "2026-06-07T19:19:08.628Z",
-      "updatedAt": "2026-06-07T19:19:08.628Z",
-      "lastCheckedAt": "2026-06-07T19:19:08.628Z"
     },
     {
       "id": "microsbylaura-mpi6stjg",

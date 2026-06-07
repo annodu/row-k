@@ -1,11 +1,42 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-06-07T21:16:23.365Z",
-    "count": 711,
+    "updatedAt": "2026-06-07T21:18:31.150Z",
+    "count": 712,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "heslayedthat",
+      "name": "Heslayedthat",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london",
+        "south-east"
+      ],
+      "areaLabel": "South east London",
+      "neighbourhood": "South east London London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/heslayedthat_/",
+      "websiteUrl": "https://www.instagram.com/heslayedthat_/",
+      "instagramUrl": "https://www.instagram.com/heslayedthat_/",
+      "services": [
+        "Wig colouring / bundle colouring",
+        "Silk press",
+        "Frontal ponytail / bun",
+        "Sleek ponytail / bun",
+        "Flipover / Versatile sew-in",
+        "Traditional sew-in / leave out",
+        "Wig install (frontal / closure)",
+        "Full head colour"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/heslayedthat_/"
+      ]
+    },
     {
       "id": "danielleigor",
       "name": "Danielleigor",
