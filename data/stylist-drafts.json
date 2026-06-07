@@ -1,10 +1,40 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-06-07T17:34:15.494Z",
-    "count": 5
+    "updatedAt": "2026-06-07T17:34:28.656Z",
+    "count": 6
   },
   "drafts": [
+    {
+      "id": "silkedbyli-mq42al2a",
+      "status": "needs_review",
+      "name": "Silkedbyli",
+      "areaId": "",
+      "areaIds": [],
+      "areaLabel": "",
+      "neighbourhood": "",
+      "postcode": "",
+      "bookingPlatform": "",
+      "bookingUrl": "",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/silkedbyli/",
+      "tiktokUrl": "",
+      "services": [],
+      "rawServices": [],
+      "summary": "Admin draft created from stylist intake.",
+      "confidence": 0.35,
+      "warnings": [
+        "No booking link identified yet.",
+        "No services matched yet."
+      ],
+      "evidence": [
+        "Submitted link: https://www.instagram.com/silkedbyli/"
+      ],
+      "source": "admin-draft",
+      "createdAt": "2026-06-07T17:34:28.642Z",
+      "updatedAt": "2026-06-07T17:34:28.642Z",
+      "lastCheckedAt": "2026-06-07T17:34:28.642Z"
+    },
     {
       "id": "jdv-hair-mq42aavx",
       "status": "needs_review",
