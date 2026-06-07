@@ -1,7 +1,7 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-06-07T10:51:39.106Z",
+    "updatedAt": "2026-06-07T16:35:46.592Z",
     "count": 696,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
@@ -17911,13 +17911,29 @@
         "Highlights",
         "Traditional sew-in / leave out",
         "Trim / hair cut",
-        "Silk press"
+        "Silk press",
+        "Bouncy blowout / Round Brush Blow dry"
       ],
       "summary": "Manual entry added from your latest salon update batch.",
       "source": "manual",
       "evidence": [
         "User-provided manual addition."
-      ]
+      ],
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "priceBand": "",
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "",
+      "priceSource": "",
+      "priceEvidence": [],
+      "priceCheckedAt": "",
+      "priceUpdatedAt": "",
+      "priceConfidence": "",
+      "updatedAt": "2026-06-07T16:35:46.592Z"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
