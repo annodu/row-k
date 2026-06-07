@@ -1,8 +1,8 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-06-07T17:11:54.275Z",
-    "count": 5
+    "updatedAt": "2026-06-07T17:12:09.063Z",
+    "count": 4
   },
   "drafts": [
     {
@@ -64,36 +64,6 @@
       "createdAt": "2026-06-07T16:35:52.987Z",
       "updatedAt": "2026-06-07T16:35:52.987Z",
       "lastCheckedAt": "2026-06-07T16:35:52.987Z"
-    },
-    {
-      "id": "jennierobertshair-mq3ztppd",
-      "status": "needs_review",
-      "name": "Jennierobertshair",
-      "areaId": "",
-      "areaIds": [],
-      "areaLabel": "",
-      "neighbourhood": "",
-      "postcode": "",
-      "bookingPlatform": "",
-      "bookingUrl": "",
-      "websiteUrl": "",
-      "instagramUrl": "https://www.instagram.com/jennierobertshair/",
-      "tiktokUrl": "",
-      "services": [],
-      "rawServices": [],
-      "summary": "Admin draft created from stylist intake.",
-      "confidence": 0.35,
-      "warnings": [
-        "No booking link identified yet.",
-        "No services matched yet."
-      ],
-      "evidence": [
-        "Submitted link: https://www.instagram.com/jennierobertshair/"
-      ],
-      "source": "admin-draft",
-      "createdAt": "2026-06-07T16:25:22.271Z",
-      "updatedAt": "2026-06-07T16:25:22.271Z",
-      "lastCheckedAt": "2026-06-07T16:25:22.271Z"
     },
     {
       "id": "braidedbytaiss-mq2c0fqv",

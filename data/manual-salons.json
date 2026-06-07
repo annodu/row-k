@@ -1,11 +1,31 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-06-07T17:11:54.275Z",
-    "count": 697,
+    "updatedAt": "2026-06-07T17:12:09.063Z",
+    "count": 698,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "jennierobertshair",
+      "name": "Jennierobertshair",
+      "areaId": "all-london",
+      "areaLabel": "London",
+      "neighbourhood": "London London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/jennierobertshair/",
+      "websiteUrl": "https://www.instagram.com/jennierobertshair/",
+      "instagramUrl": "https://www.instagram.com/jennierobertshair/",
+      "services": [
+        "Editorial / Session styling"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/jennierobertshair/"
+      ]
+    },
     {
       "id": "lockonego",
       "name": "Lockonego",
