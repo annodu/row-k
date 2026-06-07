@@ -1,11 +1,46 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-06-07T16:39:07.453Z",
-    "count": 696,
+    "updatedAt": "2026-06-07T17:11:54.275Z",
+    "count": 697,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "lockonego",
+      "name": "Lockonego",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london",
+        "south-west",
+        "west"
+      ],
+      "areaLabel": "South west London / West London",
+      "neighbourhood": "South west London and West London London",
+      "postcode": "",
+      "bookingPlatform": "Direct",
+      "bookingUrl": "https://s-iq.co/BookingPortal/dist/?salonid=7531f04e-98e4-4601-af96-f57bc70eb626&tab=book",
+      "websiteUrl": "https://s-iq.co/BookingPortal/dist/?salonid=7531f04e-98e4-4601-af96-f57bc70eb626&tab=book",
+      "instagramUrl": "https://www.instagram.com/lockonego/",
+      "services": [
+        "Bouncy blowout / Round Brush Blow dry"
+      ],
+      "priceBand": "££",
+      "servicePriceBand": "££",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "manual",
+      "priceEvidence": [],
+      "priceCheckedAt": "",
+      "priceUpdatedAt": "2026-06-07T17:11:54.275Z",
+      "priceConfidence": "manual",
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/lockonego/"
+      ]
+    },
     {
       "id": "atstyledit",
       "name": "Atstyledit",

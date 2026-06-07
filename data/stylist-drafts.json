@@ -1,8 +1,8 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-06-07T17:02:04.212Z",
-    "count": 6
+    "updatedAt": "2026-06-07T17:11:54.275Z",
+    "count": 5
   },
   "drafts": [
     {
@@ -94,36 +94,6 @@
       "createdAt": "2026-06-07T16:25:22.271Z",
       "updatedAt": "2026-06-07T16:25:22.271Z",
       "lastCheckedAt": "2026-06-07T16:25:22.271Z"
-    },
-    {
-      "id": "lockonego-mq3zhf3j",
-      "status": "needs_review",
-      "name": "Lockonego",
-      "areaId": "",
-      "areaIds": [],
-      "areaLabel": "",
-      "neighbourhood": "",
-      "postcode": "",
-      "bookingPlatform": "",
-      "bookingUrl": "",
-      "websiteUrl": "",
-      "instagramUrl": "https://www.instagram.com/lockonego/",
-      "tiktokUrl": "",
-      "services": [],
-      "rawServices": [],
-      "summary": "Admin draft created from stylist intake.",
-      "confidence": 0.35,
-      "warnings": [
-        "No booking link identified yet.",
-        "No services matched yet."
-      ],
-      "evidence": [
-        "Submitted link: https://www.instagram.com/lockonego/"
-      ],
-      "source": "admin-draft",
-      "createdAt": "2026-06-07T16:15:48.652Z",
-      "updatedAt": "2026-06-07T16:15:48.652Z",
-      "lastCheckedAt": "2026-06-07T16:15:48.652Z"
     },
     {
       "id": "braidedbytaiss-mq2c0fqv",
