@@ -162,7 +162,7 @@
     },
     "scalpish-uk": {
       "addedServices": [
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Closure sew-in",
         "Pixie wig / weave install"
       ],
@@ -171,7 +171,7 @@
         "wig"
       ],
       "addedServiceEvidence": {
-        "Flipover / Versatile sew-in": [
+        "Flipover / versatile sew-in": [
           "Flipover half wig/ u-part wig install"
         ],
         "Closure sew-in": [
@@ -252,7 +252,7 @@
     "vstylsz": {
       "addedServices": [
         "Wig cornrows",
-        "Creative braids (e.g. patewo)",
+        "Creative braids",
         "Updo",
         "Starter locs"
       ],
@@ -266,7 +266,7 @@
           "Medium Fulanis (up to 12 cornrows)",
           "Small fulanis (up to 16 cornrows)"
         ],
-        "Creative braids (e.g. patewo)": [
+        "Creative braids": [
           "Bohemian BRAIDS/TWISTS",
           "Goddess smedium knotless braids/twists",
           "Goddess medium knotless braids/twist",
@@ -1011,7 +1011,7 @@
     "rachel-braids": {
       "addedServices": [
         "Wig cornrows",
-        "Creative braids (e.g. patewo)",
+        "Creative braids",
         "Half braids, half sew-in",
         "Sleek ponytail / bun",
         "Trim / hair cut"
@@ -1025,7 +1025,7 @@
           "2-4 Straight Back Cornrows (No Stiches)",
           "5-8 Straight Back Cornrows (No Stitches)"
         ],
-        "Creative braids (e.g. patewo)": [
+        "Creative braids": [
           "Boho Braids (Human Hair - Extra Fullness)",
           "Boho Braids (Human Hair - Regular Fullness)",
           "Boho Braids (Synthetic Hair)",
@@ -2473,12 +2473,12 @@
     },
     "iislay-hair": {
       "addedServices": [
-        "Flipover / Versatile sew-in"
+        "Flipover / versatile sew-in"
       ],
       "removedServices": [],
       "addedServiceFamilies": [],
       "addedServiceEvidence": {
-        "Flipover / Versatile sew-in": [
+        "Flipover / versatile sew-in": [
           "Flipover “Diva” Fulani Boho braids",
           "Flipover “diva” Fulani braids",
           "Flipover “diva” fulani touch up"
@@ -2943,7 +2943,7 @@
         "Traditional sew-in / leave out",
         "Frontal sew-in",
         "Closure sew-in",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Half up half down",
         "Frontal ponytail / bun",
         "Sleek ponytail / bun",
@@ -2967,7 +2967,7 @@
       ],
       "addedServices": [],
       "removedServices": [
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Half up half down",
         "Wig colouring / bundle colouring"
       ],
@@ -3027,7 +3027,7 @@
           "Highlights",
           "Pixie / finger waves",
           "Full head colour",
-          "Flipover / Versatile sew-in",
+          "Flipover / versatile sew-in",
           "Wash & blowdry"
         ],
         "areaId": "central",
@@ -3044,7 +3044,7 @@
         "Moisturising treatment",
         "Wash & blowdry",
         "Pixie / finger waves",
-        "Flipover / Versatile sew-in"
+        "Flipover / versatile sew-in"
       ],
       "detectedServices": [
         "Silk press",
@@ -3054,7 +3054,7 @@
         "Traditional sew-in / leave out",
         "Highlights",
         "Full head colour",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Wash & blowdry",
         "Pixie wig / weave install"
       ],
@@ -3117,7 +3117,7 @@
         "matchedServices": [
           "Frontal ponytail / bun",
           "Traditional sew-in / leave out",
-          "Flipover / Versatile sew-in",
+          "Flipover / versatile sew-in",
           "Closure sew-in",
           "Wig cornrows",
           "Wig install (frontal / closure)"
@@ -3128,7 +3128,7 @@
       "currentServices": [
         "Frontal ponytail / bun",
         "Traditional sew-in / leave out",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Closure sew-in",
         "Wig cornrows",
         "Wig install (frontal / closure)",
@@ -3138,7 +3138,7 @@
       "detectedServices": [
         "Frontal ponytail / bun",
         "Traditional sew-in / leave out",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Closure sew-in",
         "Wig cornrows",
         "Wig install (frontal / closure)"
@@ -3353,7 +3353,7 @@
           "Quick weave",
           "Half up half down",
           "Traditional sew-in / leave out",
-          "Flipover / Versatile sew-in",
+          "Flipover / versatile sew-in",
           "Frontal sew-in",
           "Sleek ponytail / bun",
           "Updo",
@@ -3386,7 +3386,7 @@
         "Quick weave",
         "Half up half down",
         "Traditional sew-in / leave out",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Frontal sew-in",
         "Sleek ponytail / bun",
         "Updo",
@@ -3395,7 +3395,7 @@
       ],
       "addedServices": [
         "Traditional sew-in / leave out",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Frontal sew-in"
       ],
       "removedServices": [],
@@ -3578,7 +3578,7 @@
           "Frontal ponytail / bun",
           "Sleek ponytail / bun",
           "Half up half down",
-          "Flipover / Versatile sew-in",
+          "Flipover / versatile sew-in",
           "Traditional sew-in / leave out",
           "Wig install (frontal / closure)",
           "Custom wig"
@@ -3593,7 +3593,7 @@
         "Sleek ponytail / bun",
         "Half up half down",
         "Quick weave",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Custom wig",
         "Wig install (frontal / closure)"
       ],
@@ -3604,7 +3604,7 @@
         "Frontal ponytail / bun",
         "Sleek ponytail / bun",
         "Half up half down",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Traditional sew-in / leave out",
         "Wig install (frontal / closure)",
         "Custom wig"
@@ -3673,7 +3673,7 @@
         "Half up half down",
         "Tracks (+ silk press) / partial / invisible sew-in",
         "Traditional sew-in / leave out",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Wig install (frontal / closure)",
         "Custom wig"
       ],
@@ -3686,7 +3686,7 @@
         "Sleek ponytail / bun",
         "Frontal sew-in",
         "Half up half down",
-        "Flipover / Versatile sew-in"
+        "Flipover / versatile sew-in"
       ],
       "checkedAt": "2026-05-22T23:03:49.210Z"
     },
@@ -3830,7 +3830,7 @@
         "matchedServices": [
           "Bridal",
           "U-part wig install",
-          "Flipover / Versatile sew-in",
+          "Flipover / versatile sew-in",
           "Wig colouring / bundle colouring",
           "Sleek ponytail / bun",
           "Frontal ponytail / bun",
@@ -3853,7 +3853,7 @@
       "detectedServices": [
         "Bridal",
         "U-part wig install",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Wig colouring / bundle colouring",
         "Sleek ponytail / bun",
         "Frontal ponytail / bun",
@@ -3929,7 +3929,7 @@
       "currentServices": [
         "Bridal",
         "Frontal ponytail / bun",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Closure sew-in",
         "Wig install (frontal / closure)"
       ],
@@ -3946,7 +3946,7 @@
       ],
       "removedServices": [
         "Bridal",
-        "Flipover / Versatile sew-in"
+        "Flipover / versatile sew-in"
       ],
       "checkedAt": "2026-05-22T23:03:51.827Z"
     },
@@ -4101,7 +4101,7 @@
         ],
         "matchedServices": [
           "Frontal ponytail / bun",
-          "Flipover / Versatile sew-in",
+          "Flipover / versatile sew-in",
           "Traditional sew-in / leave out",
           "Wig install (frontal / closure)",
           "Custom wig"
@@ -4111,13 +4111,13 @@
       },
       "currentServices": [
         "Frontal ponytail / bun",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Custom wig",
         "Wig install (frontal / closure)"
       ],
       "detectedServices": [
         "Frontal ponytail / bun",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Traditional sew-in / leave out",
         "Wig install (frontal / closure)",
         "Custom wig"
@@ -4444,7 +4444,7 @@
           "Knotless braids",
           "Fulani / lemonade braids",
           "Traditional sew-in / leave out",
-          "Flipover / Versatile sew-in"
+          "Flipover / versatile sew-in"
         ],
         "areaId": "south-east",
         "areaLabel": "South East London"
@@ -4456,7 +4456,7 @@
         "Stitch braids",
         "Half braids, half sew-in",
         "Traditional sew-in / leave out",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Fulani / lemonade braids"
       ],
       "detectedServices": [
@@ -4466,7 +4466,7 @@
         "Knotless braids",
         "Fulani / lemonade braids",
         "Traditional sew-in / leave out",
-        "Flipover / Versatile sew-in"
+        "Flipover / versatile sew-in"
       ],
       "addedServices": [],
       "removedServices": [
@@ -4788,11 +4788,11 @@
           "Miracle knots",
           "Fulani / lemonade braids",
           "Wig cornrows",
-          "Creative braids (e.g. patewo)",
+          "Creative braids",
           "Updo",
           "Traditional sew-in / leave out",
           "Faux locs",
-          "Flipover / Versatile sew-in",
+          "Flipover / versatile sew-in",
           "Closure sew-in"
         ],
         "areaId": "all-london",
@@ -4805,7 +4805,7 @@
         "Fulani / lemonade braids",
         "Half braids, half sew-in",
         "Knotless braids",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Closure sew-in",
         "Miracle knots"
       ],
@@ -4815,11 +4815,11 @@
         "Miracle knots",
         "Fulani / lemonade braids",
         "Wig cornrows",
-        "Creative braids (e.g. patewo)",
+        "Creative braids",
         "Updo",
         "Traditional sew-in / leave out",
         "Faux locs",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Closure sew-in"
       ],
       "addedServices": [],
@@ -4868,7 +4868,7 @@
         "Tape ins",
         "Traditional sew-in / leave out",
         "Microlinks",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Half braids, half sew-in",
         "Half up half down",
         "LA weave",
@@ -5301,7 +5301,7 @@
       "currentServices": [
         "Quick weave",
         "Traditional sew-in / leave out",
-        "Flipover / Versatile sew-in"
+        "Flipover / versatile sew-in"
       ],
       "detectedServices": [
         "Quick weave",
@@ -5309,7 +5309,7 @@
       ],
       "addedServices": [],
       "removedServices": [
-        "Flipover / Versatile sew-in"
+        "Flipover / versatile sew-in"
       ],
       "checkedAt": "2026-05-22T23:03:58.929Z"
     },
@@ -5502,7 +5502,7 @@
         "matchedServices": [
           "Fulani / lemonade braids",
           "Twists (with extensions)",
-          "Flipover / Versatile sew-in",
+          "Flipover / versatile sew-in",
           "French curl",
           "Knotless braids",
           "Box braids",
@@ -5538,7 +5538,7 @@
         "Faux locs",
         "Butterfly locs",
         "Half up half down",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Quick weave",
         "Traditional sew-in / leave out",
         "Closure sew-in",
@@ -5551,7 +5551,7 @@
       "detectedServices": [
         "Fulani / lemonade braids",
         "Twists (with extensions)",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "French curl",
         "Knotless braids",
         "Box braids",
@@ -5897,7 +5897,7 @@
       "currentServices": [
         "Traditional sew-in / leave out",
         "Closure sew-in",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Custom wig",
         "U-part wig install"
       ],
@@ -5909,7 +5909,7 @@
       ],
       "removedServices": [
         "Traditional sew-in / leave out",
-        "Flipover / Versatile sew-in"
+        "Flipover / versatile sew-in"
       ],
       "checkedAt": "2026-05-22T23:04:02.237Z"
     },
@@ -6171,7 +6171,7 @@
           "Half up half down",
           "Sleek ponytail / bun",
           "Tracks (+ silk press) / partial / invisible sew-in",
-          "Flipover / Versatile sew-in",
+          "Flipover / versatile sew-in",
           "Custom wig",
           "Pixie wig / weave install",
           "Wig cornrows"
@@ -6184,7 +6184,7 @@
         "Knotless braids",
         "Wig install (frontal / closure)",
         "Sleek ponytail / bun",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Wig colouring / bundle colouring",
         "Custom wig",
         "Tracks (+ silk press) / partial / invisible sew-in",
@@ -6208,7 +6208,7 @@
         "Half up half down",
         "Sleek ponytail / bun",
         "Tracks (+ silk press) / partial / invisible sew-in",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Custom wig",
         "Pixie wig / weave install",
         "Wig cornrows",
@@ -6668,7 +6668,7 @@
           "Frontal ponytail / bun",
           "Traditional sew-in / leave out",
           "Closure sew-in",
-          "Flipover / Versatile sew-in",
+          "Flipover / versatile sew-in",
           "Wig cornrows",
           "U-part wig install",
           "Wig install (frontal / closure)"
@@ -6679,7 +6679,7 @@
       "currentServices": [
         "Half up half down",
         "Sleek ponytail / bun",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Wig install (frontal / closure)",
         "Half braids, half sew-in",
         "U-part wig install",
@@ -6696,7 +6696,7 @@
         "Frontal ponytail / bun",
         "Traditional sew-in / leave out",
         "Closure sew-in",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Wig cornrows",
         "U-part wig install",
         "Wig install (frontal / closure)"
@@ -7117,7 +7117,7 @@
           "Quick weave",
           "Traditional sew-in / leave out",
           "Closure sew-in",
-          "Flipover / Versatile sew-in",
+          "Flipover / versatile sew-in",
           "U-part wig install",
           "Wig install (frontal / closure)",
           "Custom wig"
@@ -7132,7 +7132,7 @@
         "Feed-in braids",
         "Traditional sew-in / leave out",
         "Closure sew-in",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Wig install (frontal / closure)",
         "Half braids, half sew-in",
         "Quick weave",
@@ -7148,7 +7148,7 @@
         "Quick weave",
         "Traditional sew-in / leave out",
         "Closure sew-in",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "U-part wig install",
         "Wig install (frontal / closure)",
         "Custom wig"
@@ -7277,7 +7277,7 @@
           "K-tips / invisible strands",
           "Traditional sew-in / leave out",
           "Microlinks",
-          "Flipover / Versatile sew-in",
+          "Flipover / versatile sew-in",
           "Closure sew-in",
           "Half up half down",
           "U-part wig install",
@@ -7306,7 +7306,7 @@
         "K-tips / invisible strands",
         "Tape ins",
         "Traditional sew-in / leave out",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Closure sew-in",
         "Half up half down",
         "Hybrid sew-in",
@@ -7330,7 +7330,7 @@
         "K-tips / invisible strands",
         "Traditional sew-in / leave out",
         "Microlinks",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Closure sew-in",
         "Half up half down",
         "U-part wig install",
@@ -7698,7 +7698,7 @@
           "Traditional sew-in / leave out",
           "Closure sew-in",
           "Frontal sew-in",
-          "Flipover / Versatile sew-in",
+          "Flipover / versatile sew-in",
           "Sleek ponytail / bun",
           "Frontal ponytail / bun",
           "Half up half down",
@@ -7763,7 +7763,7 @@
         "Traditional sew-in / leave out",
         "Closure sew-in",
         "Frontal sew-in",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Frontal ponytail / bun",
         "Half up half down",
         "Tracks (+ silk press) / partial / invisible sew-in",
@@ -7779,7 +7779,7 @@
         "Traditional sew-in / leave out",
         "Closure sew-in",
         "Frontal sew-in",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Sleek ponytail / bun",
         "Frontal ponytail / bun",
         "Half up half down",
@@ -8159,7 +8159,7 @@
           "Frontal ponytail / bun",
           "Sleek ponytail / bun",
           "Quick weave",
-          "Flipover / Versatile sew-in"
+          "Flipover / versatile sew-in"
         ],
         "areaId": "all-london",
         "areaLabel": "London"
@@ -8168,7 +8168,7 @@
         "Feed-in braids",
         "Half braids, half sew-in",
         "Traditional sew-in / leave out",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Sleek ponytail / bun",
         "Wig install (frontal / closure)",
         "Quick weave",
@@ -8185,7 +8185,7 @@
         "Frontal ponytail / bun",
         "Sleek ponytail / bun",
         "Quick weave",
-        "Flipover / Versatile sew-in"
+        "Flipover / versatile sew-in"
       ],
       "addedServices": [],
       "removedServices": [
@@ -8505,7 +8505,7 @@
           "Stitch braids",
           "Wig cornrows",
           "Half up half down",
-          "Flipover / Versatile sew-in",
+          "Flipover / versatile sew-in",
           "Half braids, half sew-in",
           "Sleek ponytail / bun",
           "Feed-in braids",
@@ -8521,7 +8521,7 @@
         "Stitch braids",
         "Half up half down",
         "Fulani / lemonade braids",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Sleek ponytail / bun",
         "Custom wig",
         "Wig install (frontal / closure)",
@@ -8536,7 +8536,7 @@
         "Stitch braids",
         "Wig cornrows",
         "Half up half down",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Half braids, half sew-in",
         "Sleek ponytail / bun",
         "Feed-in braids",
@@ -8672,7 +8672,7 @@
           "Wig cornrows",
           "Faux locs",
           "Stitch braids",
-          "Creative braids (e.g. patewo)",
+          "Creative braids",
           "Fulani / lemonade braids"
         ],
         "areaId": "east",
@@ -8684,7 +8684,7 @@
         "Faux locs",
         "Stitch braids",
         "Twists (with extensions)",
-        "Creative braids (e.g. patewo)",
+        "Creative braids",
         "Bridal",
         "Half braids, half sew-in"
       ],
@@ -8697,7 +8697,7 @@
         "Wig cornrows",
         "Faux locs",
         "Stitch braids",
-        "Creative braids (e.g. patewo)",
+        "Creative braids",
         "Fulani / lemonade braids"
       ],
       "addedServices": [],
@@ -9150,7 +9150,7 @@
           "Feed-in braids",
           "Fulani / lemonade braids",
           "Wig cornrows",
-          "Flipover / Versatile sew-in",
+          "Flipover / versatile sew-in",
           "Traditional sew-in / leave out",
           "Miracle knots"
         ],
@@ -9163,7 +9163,7 @@
         "Fulani / lemonade braids",
         "Knotless braids",
         "Traditional sew-in / leave out",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Half braids, half sew-in",
         "Wig cornrows",
         "Miracle knots"
@@ -9174,7 +9174,7 @@
         "Feed-in braids",
         "Fulani / lemonade braids",
         "Wig cornrows",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Traditional sew-in / leave out",
         "Miracle knots"
       ],
@@ -9427,7 +9427,7 @@
           "Sleek ponytail / bun",
           "Frontal sew-in",
           "Half up half down",
-          "Flipover / Versatile sew-in",
+          "Flipover / versatile sew-in",
           "Hybrid sew-in",
           "Quick weave",
           "Updo",
@@ -9456,7 +9456,7 @@
         "Wig install (frontal / closure)",
         "Sleek ponytail / bun",
         "Half up half down",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Hybrid sew-in",
         "U-part wig install",
         "Tracks (+ silk press) / partial / invisible sew-in",
@@ -9476,7 +9476,7 @@
         "Sleek ponytail / bun",
         "Frontal sew-in",
         "Half up half down",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Hybrid sew-in",
         "Quick weave",
         "Updo",
@@ -9545,7 +9545,7 @@
           "Closure Replacement"
         ],
         "matchedServices": [
-          "Flipover / Versatile sew-in",
+          "Flipover / versatile sew-in",
           "Traditional sew-in / leave out",
           "Closure sew-in",
           "Tape ins"
@@ -9560,10 +9560,10 @@
         "Traditional sew-in / leave out",
         "Feed-in braids",
         "Hybrid sew-in",
-        "Flipover / Versatile sew-in"
+        "Flipover / versatile sew-in"
       ],
       "detectedServices": [
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Traditional sew-in / leave out",
         "Closure sew-in",
         "Tape ins"
@@ -9667,7 +9667,7 @@
           "Feed-in braids",
           "Fulani / lemonade braids",
           "Traditional sew-in / leave out",
-          "Flipover / Versatile sew-in",
+          "Flipover / versatile sew-in",
           "Closure sew-in",
           "Moisturising treatment",
           "Tape ins"
@@ -9682,13 +9682,13 @@
         "Traditional sew-in / leave out",
         "Knotless braids",
         "Tape ins",
-        "Flipover / Versatile sew-in"
+        "Flipover / versatile sew-in"
       ],
       "detectedServices": [
         "Feed-in braids",
         "Fulani / lemonade braids",
         "Traditional sew-in / leave out",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Closure sew-in",
         "Moisturising treatment",
         "Tape ins"
@@ -9956,7 +9956,7 @@
           "Half braids, half sew-in",
           "Half up half down",
           "Fulani / lemonade braids",
-          "Flipover / Versatile sew-in",
+          "Flipover / versatile sew-in",
           "Knotless braids"
         ],
         "areaId": "",
@@ -9977,11 +9977,11 @@
         "Half braids, half sew-in",
         "Half up half down",
         "Fulani / lemonade braids",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Knotless braids"
       ],
       "addedServices": [
-        "Flipover / Versatile sew-in"
+        "Flipover / versatile sew-in"
       ],
       "removedServices": [],
       "checkedAt": "2026-05-22T23:04:25.462Z"
@@ -10250,7 +10250,7 @@
         "Traditional sew-in / leave out",
         "Hybrid sew-in",
         "Sew-in take-down",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Tape ins"
       ],
       "detectedServices": [
@@ -10261,7 +10261,7 @@
       "addedServices": [],
       "removedServices": [
         "Hybrid sew-in",
-        "Flipover / Versatile sew-in"
+        "Flipover / versatile sew-in"
       ],
       "checkedAt": "2026-05-22T23:04:31.734Z"
     },
@@ -10326,7 +10326,7 @@
           "Custom wig",
           "Wig install (frontal / closure)",
           "U-part wig install",
-          "Flipover / Versatile sew-in",
+          "Flipover / versatile sew-in",
           "Closure sew-in",
           "Traditional sew-in / leave out"
         ],
@@ -10344,12 +10344,12 @@
         "Custom wig",
         "Wig install (frontal / closure)",
         "U-part wig install",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Closure sew-in",
         "Traditional sew-in / leave out"
       ],
       "addedServices": [
-        "Flipover / Versatile sew-in"
+        "Flipover / versatile sew-in"
       ],
       "removedServices": [],
       "checkedAt": "2026-05-22T23:04:32.017Z"
@@ -10409,7 +10409,7 @@
         "areaLabel": ""
       },
       "currentServices": [
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Traditional sew-in / leave out",
         "K-tips / invisible strands",
         "Tape ins",
@@ -10430,7 +10430,7 @@
         "Tracks (+ silk press) / partial / invisible sew-in"
       ],
       "removedServices": [
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Traditional sew-in / leave out",
         "Half up half down",
         "Sew-in take-down",
@@ -10825,7 +10825,7 @@
           "Crochet",
           "Wig cornrows",
           "Traditional sew-in / leave out",
-          "Creative braids (e.g. patewo)",
+          "Creative braids",
           "Half braids, half sew-in",
           "Fulani / lemonade braids",
           "Feed-in braids",
@@ -10863,7 +10863,7 @@
         "Crochet",
         "Wig cornrows",
         "Traditional sew-in / leave out",
-        "Creative braids (e.g. patewo)",
+        "Creative braids",
         "Half braids, half sew-in",
         "Fulani / lemonade braids",
         "Feed-in braids",
@@ -11137,7 +11137,7 @@
         "matchedServices": [
           "Closure sew-in",
           "Traditional sew-in / leave out",
-          "Flipover / Versatile sew-in",
+          "Flipover / versatile sew-in",
           "Tape ins",
           "Quick weave",
           "Hybrid sew-in"
@@ -11146,7 +11146,7 @@
         "areaLabel": "London"
       },
       "currentServices": [
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Closure sew-in",
         "Frontal sew-in",
         "Traditional sew-in / leave out",
@@ -11158,7 +11158,7 @@
       "detectedServices": [
         "Closure sew-in",
         "Traditional sew-in / leave out",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Tape ins",
         "Quick weave",
         "Hybrid sew-in"
@@ -11333,7 +11333,7 @@
           "Traditional sew-in / leave out",
           "Closure sew-in",
           "Frontal sew-in",
-          "Flipover / Versatile sew-in",
+          "Flipover / versatile sew-in",
           "Twists (with extensions)"
         ],
         "areaId": "south-east",
@@ -11349,7 +11349,7 @@
         "Fulani / lemonade braids",
         "Wash & blowdry",
         "Traditional sew-in / leave out",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Frontal sew-in",
         "Twists (with extensions)",
         "Wig install (frontal / closure)",
@@ -11368,7 +11368,7 @@
         "Traditional sew-in / leave out",
         "Closure sew-in",
         "Frontal sew-in",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Twists (with extensions)"
       ],
       "addedServices": [
@@ -11548,7 +11548,7 @@
           "Keratin treatment",
           "Updo",
           "Sleek ponytail / bun",
-          "Flipover / Versatile sew-in",
+          "Flipover / versatile sew-in",
           "Traditional sew-in / leave out"
         ],
         "areaId": "all-london",
@@ -11557,11 +11557,11 @@
       "currentServices": [
         "Sleek ponytail / bun",
         "Silk press",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Traditional sew-in / leave out",
         "Stitch braids",
         "Scalp detox / treatments",
-        "Creative braids (e.g. patewo)",
+        "Creative braids",
         "Updo",
         "Moisturising treatment",
         "Wig cornrows"
@@ -11577,14 +11577,14 @@
         "Keratin treatment",
         "Updo",
         "Sleek ponytail / bun",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Traditional sew-in / leave out"
       ],
       "addedServices": [
         "Wash & blowdry"
       ],
       "removedServices": [
-        "Creative braids (e.g. patewo)"
+        "Creative braids"
       ],
       "checkedAt": "2026-05-22T23:04:39.020Z"
     },
@@ -11909,7 +11909,7 @@
           "Tape ins",
           "Traditional sew-in / leave out",
           "Silk press",
-          "Flipover / Versatile sew-in",
+          "Flipover / versatile sew-in",
           "Updo"
         ],
         "areaId": "all-london",
@@ -11920,7 +11920,7 @@
         "Silk press",
         "Wash & blowdry",
         "Traditional sew-in / leave out",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Hybrid sew-in",
         "Sleek ponytail / bun",
         "Sew-in take-down",
@@ -11933,7 +11933,7 @@
         "Tape ins",
         "Traditional sew-in / leave out",
         "Silk press",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Updo"
       ],
       "addedServices": [],
@@ -12289,13 +12289,13 @@
           "Half up half down",
           "Sew-in take-down",
           "Sleek ponytail / bun",
-          "Flipover / Versatile sew-in"
+          "Flipover / versatile sew-in"
         ],
         "areaId": "all-london",
         "areaLabel": "London"
       },
       "currentServices": [
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Frontal sew-in",
         "Hybrid sew-in",
         "Sleek ponytail / bun",
@@ -12321,7 +12321,7 @@
         "Half up half down",
         "Sew-in take-down",
         "Sleek ponytail / bun",
-        "Flipover / Versatile sew-in"
+        "Flipover / versatile sew-in"
       ],
       "addedServices": [],
       "removedServices": [
@@ -12425,7 +12425,7 @@
         "areaLabel": "London"
       },
       "currentServices": [
-        "Creative braids (e.g. patewo)",
+        "Creative braids",
         "Knotless braids",
         "Fulani / lemonade braids",
         "Boho braids / goddess braids",
@@ -12449,7 +12449,7 @@
         "Traditional sew-in / leave out"
       ],
       "removedServices": [
-        "Creative braids (e.g. patewo)",
+        "Creative braids",
         "Half braids, half sew-in"
       ],
       "checkedAt": "2026-05-22T23:04:45.235Z"
@@ -12537,7 +12537,7 @@
         ],
         "matchedServices": [
           "Traditional sew-in / leave out",
-          "Flipover / Versatile sew-in",
+          "Flipover / versatile sew-in",
           "Closure sew-in",
           "Frontal sew-in",
           "Half braids, half sew-in",
@@ -12559,7 +12559,7 @@
         "areaLabel": "London"
       },
       "currentServices": [
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Closure sew-in",
         "Frontal sew-in",
         "Traditional sew-in / leave out",
@@ -12578,7 +12578,7 @@
       ],
       "detectedServices": [
         "Traditional sew-in / leave out",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Closure sew-in",
         "Frontal sew-in",
         "Half braids, half sew-in",
@@ -12808,7 +12808,7 @@
         "Wig cornrows",
         "Twists (with extensions)",
         "Faux locs",
-        "Creative braids (e.g. patewo)"
+        "Creative braids"
       ],
       "detectedServices": [
         "Feed-in braids",
@@ -12825,7 +12825,7 @@
       "addedServices": [],
       "removedServices": [
         "Moisturising treatment",
-        "Creative braids (e.g. patewo)"
+        "Creative braids"
       ],
       "checkedAt": "2026-05-22T23:04:47.159Z"
     },
@@ -12888,7 +12888,7 @@
           "Quick weave",
           "Closure sew-in",
           "Frontal sew-in",
-          "Flipover / Versatile sew-in",
+          "Flipover / versatile sew-in",
           "Wig install (frontal / closure)",
           "Custom wig"
         ],
@@ -12903,14 +12903,14 @@
         "Closure sew-in",
         "Quick weave",
         "Frontal sew-in",
-        "Flipover / Versatile sew-in"
+        "Flipover / versatile sew-in"
       ],
       "detectedServices": [
         "Traditional sew-in / leave out",
         "Quick weave",
         "Closure sew-in",
         "Frontal sew-in",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Wig install (frontal / closure)",
         "Custom wig"
       ],
@@ -13245,7 +13245,7 @@
         ],
         "matchedServices": [
           "Traditional sew-in / leave out",
-          "Flipover / Versatile sew-in",
+          "Flipover / versatile sew-in",
           "Wig install (frontal / closure)",
           "Custom wig"
         ],
@@ -13254,12 +13254,12 @@
       },
       "currentServices": [
         "Traditional sew-in / leave out",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Wig install (frontal / closure)"
       ],
       "detectedServices": [
         "Traditional sew-in / leave out",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Wig install (frontal / closure)",
         "Custom wig"
       ],
@@ -13839,7 +13839,7 @@
         "Traditional sew-in / leave out",
         "Half braids, half sew-in",
         "Wash & blowdry",
-        "Creative braids (e.g. patewo)",
+        "Creative braids",
         "Crochet",
         "Stitch braids"
       ],
@@ -13859,7 +13859,7 @@
         "Traditional sew-in / leave out",
         "Half braids, half sew-in",
         "Wash & blowdry",
-        "Creative braids (e.g. patewo)"
+        "Creative braids"
       ],
       "checkedAt": "2026-05-22T23:04:54.027Z"
     },
@@ -13926,7 +13926,7 @@
           "Closure sew-in",
           "Wig cornrows",
           "Quick weave",
-          "Flipover / Versatile sew-in",
+          "Flipover / versatile sew-in",
           "Fulani / lemonade braids",
           "Wash & blowdry",
           "Braid take-down",
@@ -13941,7 +13941,7 @@
         "Quick weave",
         "Traditional sew-in / leave out",
         "Closure sew-in",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Half braids, half sew-in",
         "Wash & blowdry",
         "Braid take-down",
@@ -13954,7 +13954,7 @@
         "Closure sew-in",
         "Wig cornrows",
         "Quick weave",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Fulani / lemonade braids",
         "Wash & blowdry",
         "Braid take-down",
@@ -14374,7 +14374,7 @@
           "Frontal sew-in",
           "Half up half down",
           "Closure sew-in",
-          "Flipover / Versatile sew-in",
+          "Flipover / versatile sew-in",
           "Full head colour",
           "Tape ins",
           "Knotless braids",
@@ -14421,7 +14421,7 @@
         "Retwist",
         "Twist out / flexi rod",
         "Scalp detox / treatments",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Crochet",
         "Butterfly locs",
         "Frontal ponytail / bun"
@@ -14434,7 +14434,7 @@
         "Frontal sew-in",
         "Half up half down",
         "Closure sew-in",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Full head colour",
         "Tape ins",
         "Knotless braids",
@@ -14537,7 +14537,7 @@
       "currentServices": [
         "Boho braids / goddess braids",
         "Knotless braids",
-        "Creative braids (e.g. patewo)",
+        "Creative braids",
         "Box braids",
         "Traditional sew-in / leave out",
         "French curl",
@@ -14558,7 +14558,7 @@
       ],
       "addedServices": [],
       "removedServices": [
-        "Creative braids (e.g. patewo)",
+        "Creative braids",
         "Half braids, half sew-in",
         "Crochet"
       ],
@@ -14733,7 +14733,7 @@
           "Sleek ponytail / bun",
           "Frontal ponytail / bun",
           "Quick weave",
-          "Flipover / Versatile sew-in",
+          "Flipover / versatile sew-in",
           "Traditional sew-in / leave out",
           "Half up half down",
           "Closure sew-in"
@@ -14745,7 +14745,7 @@
         "Sleek ponytail / bun",
         "Quick weave",
         "Traditional sew-in / leave out",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Frontal ponytail / bun",
         "Half up half down"
       ],
@@ -14753,7 +14753,7 @@
         "Sleek ponytail / bun",
         "Frontal ponytail / bun",
         "Quick weave",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Traditional sew-in / leave out",
         "Half up half down",
         "Closure sew-in"
@@ -15010,7 +15010,7 @@
           "Twists (with extensions)",
           "Wig install (frontal / closure)",
           "Wig colouring / bundle colouring",
-          "Flipover / Versatile sew-in",
+          "Flipover / versatile sew-in",
           "Traditional sew-in / leave out",
           "U-part wig install"
         ],
@@ -15020,7 +15020,7 @@
       "currentServices": [
         "Wig install (frontal / closure)",
         "Traditional sew-in / leave out",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Custom wig",
         "Retwist",
         "Starter locs",
@@ -15034,7 +15034,7 @@
         "Twists (with extensions)",
         "Wig install (frontal / closure)",
         "Wig colouring / bundle colouring",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Traditional sew-in / leave out",
         "U-part wig install"
       ],
@@ -15312,7 +15312,7 @@
           "Butterfly locs",
           "Faux locs",
           "Quick weave",
-          "Flipover / Versatile sew-in",
+          "Flipover / versatile sew-in",
           "Half up half down",
           "Sleek ponytail / bun",
           "Wig install (frontal / closure)"
@@ -15340,14 +15340,14 @@
         "Butterfly locs",
         "Faux locs",
         "Quick weave",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Half up half down",
         "Sleek ponytail / bun",
         "Wig install (frontal / closure)"
       ],
       "addedServices": [
         "Traditional sew-in / leave out",
-        "Flipover / Versatile sew-in"
+        "Flipover / versatile sew-in"
       ],
       "removedServices": [],
       "checkedAt": "2026-05-22T23:05:03.280Z"
@@ -15590,7 +15590,7 @@
       },
       "currentServices": [
         "Retwist",
-        "Creative braids (e.g. patewo)",
+        "Creative braids",
         "Fulani / lemonade braids",
         "Boho braids / goddess braids",
         "French curl",
@@ -15620,7 +15620,7 @@
       ],
       "addedServices": [],
       "removedServices": [
-        "Creative braids (e.g. patewo)"
+        "Creative braids"
       ],
       "checkedAt": "2026-05-22T23:05:05.250Z"
     },
@@ -15806,7 +15806,7 @@
           "Traditional sew-in / leave out",
           "Quick weave",
           "Closure sew-in",
-          "Flipover / Versatile sew-in",
+          "Flipover / versatile sew-in",
           "Tape ins",
           "Hybrid sew-in",
           "Wash & blowdry",
@@ -15826,7 +15826,7 @@
         "K-tips / invisible strands",
         "Half up half down",
         "Closure sew-in",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Tape ins",
         "Silk press",
         "Texture release",
@@ -15844,7 +15844,7 @@
         "Traditional sew-in / leave out",
         "Quick weave",
         "Closure sew-in",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Tape ins",
         "Hybrid sew-in",
         "Wash & blowdry",
@@ -15953,7 +15953,7 @@
         "Half up half down",
         "Full head colour",
         "Balayage",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Clip ins (+ silk press)"
       ],
       "detectedServices": [
@@ -15978,7 +15978,7 @@
         "Half up half down",
         "Full head colour",
         "Balayage",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Clip ins (+ silk press)"
       ],
       "checkedAt": "2026-05-22T23:05:06.159Z"
@@ -16053,7 +16053,7 @@
           "Silk press",
           "Traditional sew-in / leave out",
           "Half up half down",
-          "Flipover / Versatile sew-in",
+          "Flipover / versatile sew-in",
           "Fulani / lemonade braids",
           "Half braids, half sew-in"
         ],
@@ -16076,12 +16076,12 @@
         "Silk press",
         "Traditional sew-in / leave out",
         "Half up half down",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Fulani / lemonade braids",
         "Half braids, half sew-in"
       ],
       "addedServices": [
-        "Flipover / Versatile sew-in"
+        "Flipover / versatile sew-in"
       ],
       "removedServices": [
         "Moisturising treatment",
@@ -16608,7 +16608,7 @@
           "Traditional sew-in / leave out",
           "U-part wig install",
           "Closure sew-in",
-          "Flipover / Versatile sew-in",
+          "Flipover / versatile sew-in",
           "Custom wig",
           "Wig cornrows",
           "Quick weave"
@@ -16620,7 +16620,7 @@
         "Traditional sew-in / leave out",
         "Closure sew-in",
         "Wig install (frontal / closure)",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Quick weave",
         "Wig cornrows",
         "U-part wig install",
@@ -16630,7 +16630,7 @@
         "Traditional sew-in / leave out",
         "U-part wig install",
         "Closure sew-in",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Custom wig",
         "Wig cornrows",
         "Quick weave"
@@ -16715,7 +16715,7 @@
           "Wig cornrows",
           "Stitch braids",
           "Traditional sew-in / leave out",
-          "Flipover / Versatile sew-in"
+          "Flipover / versatile sew-in"
         ],
         "areaId": "all-london",
         "areaLabel": "London"
@@ -16724,7 +16724,7 @@
         "Fulani / lemonade braids",
         "Half braids, half sew-in",
         "Stitch braids",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Wig cornrows",
         "Knotless braids",
         "Feed-in braids"
@@ -16736,7 +16736,7 @@
         "Wig cornrows",
         "Stitch braids",
         "Traditional sew-in / leave out",
-        "Flipover / Versatile sew-in"
+        "Flipover / versatile sew-in"
       ],
       "addedServices": [
         "Traditional sew-in / leave out"
@@ -16853,7 +16853,7 @@
           "Boho braids / goddess braids",
           "Knotless braids",
           "Fulani / lemonade braids",
-          "Flipover / Versatile sew-in",
+          "Flipover / versatile sew-in",
           "Stitch braids",
           "Wig cornrows",
           "Sleek ponytail / bun",
@@ -16876,7 +16876,7 @@
         "Boho braids / goddess braids",
         "Knotless braids",
         "Fulani / lemonade braids",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Stitch braids",
         "Wig cornrows",
         "Sleek ponytail / bun",
@@ -17019,7 +17019,7 @@
         ],
         "matchedServices": [
           "Traditional sew-in / leave out",
-          "Flipover / Versatile sew-in",
+          "Flipover / versatile sew-in",
           "Clip ins (+ silk press)",
           "U-part wig install",
           "Silk press",
@@ -17047,12 +17047,12 @@
         "Tracks (+ silk press) / partial / invisible sew-in",
         "Updo",
         "Traditional sew-in / leave out",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "U-part wig install"
       ],
       "detectedServices": [
         "Traditional sew-in / leave out",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Clip ins (+ silk press)",
         "U-part wig install",
         "Silk press",
@@ -17715,7 +17715,7 @@
           "Sew-in take-down",
           "Traditional sew-in / leave out",
           "Closure sew-in",
-          "Flipover / Versatile sew-in",
+          "Flipover / versatile sew-in",
           "Wig cornrows",
           "Moisturising treatment",
           "Trim / hair cut",
@@ -17742,7 +17742,7 @@
         "Texture release",
         "Relaxer / texturiser",
         "Tracks (+ silk press) / partial / invisible sew-in",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Wig cornrows",
         "Moisturising treatment"
       ],
@@ -17753,7 +17753,7 @@
         "Sew-in take-down",
         "Traditional sew-in / leave out",
         "Closure sew-in",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Wig cornrows",
         "Moisturising treatment",
         "Trim / hair cut",
@@ -17824,7 +17824,7 @@
           "Keratin treatment",
           "Olaplex treatment",
           "Traditional sew-in / leave out",
-          "Flipover / Versatile sew-in",
+          "Flipover / versatile sew-in",
           "Tape ins"
         ],
         "areaId": "all-london",
@@ -17834,7 +17834,7 @@
         "Silk press",
         "Keratin treatment",
         "Traditional sew-in / leave out",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Hybrid sew-in",
         "Tape ins"
       ],
@@ -17843,7 +17843,7 @@
         "Keratin treatment",
         "Olaplex treatment",
         "Traditional sew-in / leave out",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Tape ins"
       ],
       "addedServices": [],
@@ -17897,14 +17897,14 @@
           "Traditional sew-in / leave out",
           "Quick weave",
           "Closure sew-in",
-          "Flipover / Versatile sew-in",
+          "Flipover / versatile sew-in",
           "U-part wig install"
         ],
         "areaId": "all-london",
         "areaLabel": "London"
       },
       "currentServices": [
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Closure sew-in",
         "Frontal sew-in",
         "Traditional sew-in / leave out",
@@ -17915,7 +17915,7 @@
         "Traditional sew-in / leave out",
         "Quick weave",
         "Closure sew-in",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "U-part wig install"
       ],
       "addedServices": [],
@@ -18204,7 +18204,7 @@
           "Traditional sew-in / leave out",
           "Hybrid sew-in",
           "Tape ins",
-          "Flipover / Versatile sew-in",
+          "Flipover / versatile sew-in",
           "Clip ins (+ silk press)"
         ],
         "areaId": "all-london",
@@ -18215,13 +18215,13 @@
         "Half braids, half sew-in",
         "Tape ins",
         "Clip ins (+ silk press)",
-        "Flipover / Versatile sew-in"
+        "Flipover / versatile sew-in"
       ],
       "detectedServices": [
         "Traditional sew-in / leave out",
         "Hybrid sew-in",
         "Tape ins",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Clip ins (+ silk press)"
       ],
       "addedServices": [
@@ -18325,7 +18325,7 @@
           "Twists (with extensions)",
           "Fulani / lemonade braids",
           "Knotless braids",
-          "Flipover / Versatile sew-in",
+          "Flipover / versatile sew-in",
           "Traditional sew-in / leave out",
           "Sleek ponytail / bun",
           "Half up half down",
@@ -18358,7 +18358,7 @@
         "Twists (with extensions)",
         "Fulani / lemonade braids",
         "Knotless braids",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Traditional sew-in / leave out",
         "Sleek ponytail / bun",
         "Half up half down",
@@ -18369,7 +18369,7 @@
         "Closure sew-in"
       ],
       "addedServices": [
-        "Flipover / Versatile sew-in"
+        "Flipover / versatile sew-in"
       ],
       "removedServices": [
         "Bridal"
@@ -18492,7 +18492,7 @@
           "Boho braids / goddess braids",
           "Wig cornrows",
           "Fulani / lemonade braids",
-          "Creative braids (e.g. patewo)",
+          "Creative braids",
           "Sleek ponytail / bun",
           "Feed-in braids",
           "Stitch braids",
@@ -18515,13 +18515,13 @@
         "Twists (with extensions)",
         "Crochet",
         "Stitch braids",
-        "Creative braids (e.g. patewo)"
+        "Creative braids"
       ],
       "detectedServices": [
         "Boho braids / goddess braids",
         "Wig cornrows",
         "Fulani / lemonade braids",
-        "Creative braids (e.g. patewo)",
+        "Creative braids",
         "Sleek ponytail / bun",
         "Feed-in braids",
         "Stitch braids",
@@ -19320,7 +19320,7 @@
           "Feed-in braids",
           "Fulani / lemonade braids",
           "Knotless braids",
-          "Flipover / Versatile sew-in",
+          "Flipover / versatile sew-in",
           "Retwist"
         ],
         "areaId": "all-london",
@@ -19342,11 +19342,11 @@
         "Feed-in braids",
         "Fulani / lemonade braids",
         "Knotless braids",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Retwist"
       ],
       "addedServices": [
-        "Flipover / Versatile sew-in"
+        "Flipover / versatile sew-in"
       ],
       "removedServices": [],
       "checkedAt": "2026-05-22T23:05:23.343Z"
@@ -19458,7 +19458,7 @@
           "Feed-in braids",
           "Sleek ponytail / bun",
           "Fulani / lemonade braids",
-          "Flipover / Versatile sew-in",
+          "Flipover / versatile sew-in",
           "Half braids, half sew-in",
           "Traditional sew-in / leave out",
           "Half up half down",
@@ -19491,7 +19491,7 @@
         "Feed-in braids",
         "Sleek ponytail / bun",
         "Fulani / lemonade braids",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Half braids, half sew-in",
         "Traditional sew-in / leave out",
         "Half up half down",
@@ -19501,7 +19501,7 @@
       ],
       "addedServices": [
         "Feed-in braids",
-        "Flipover / Versatile sew-in"
+        "Flipover / versatile sew-in"
       ],
       "removedServices": [
         "Relaxer / texturiser"
@@ -19615,7 +19615,7 @@
           "Box braids",
           "Twists (with extensions)",
           "Fulani / lemonade braids",
-          "Flipover / Versatile sew-in",
+          "Flipover / versatile sew-in",
           "Wig cornrows",
           "Updo",
           "Traditional sew-in / leave out",
@@ -19633,7 +19633,7 @@
         "Fulani / lemonade braids",
         "Knotless braids",
         "Boho braids / goddess braids",
-        "Creative braids (e.g. patewo)",
+        "Creative braids",
         "Feed-in braids",
         "Traditional sew-in / leave out",
         "Half up half down",
@@ -19646,7 +19646,7 @@
         "Box braids",
         "Twists (with extensions)",
         "Fulani / lemonade braids",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Wig cornrows",
         "Updo",
         "Traditional sew-in / leave out",
@@ -19656,12 +19656,12 @@
         "Faux locs"
       ],
       "addedServices": [
-        "Flipover / Versatile sew-in"
+        "Flipover / versatile sew-in"
       ],
       "removedServices": [
         "Knotless braids",
         "Boho braids / goddess braids",
-        "Creative braids (e.g. patewo)",
+        "Creative braids",
         "Bridal"
       ],
       "checkedAt": "2026-05-22T23:05:22.660Z"
@@ -19778,7 +19778,7 @@
           "Medium Passion Twist"
         ],
         "matchedServices": [
-          "Flipover / Versatile sew-in",
+          "Flipover / versatile sew-in",
           "Boho braids / goddess braids",
           "Knotless braids",
           "Feed-in braids",
@@ -19804,7 +19804,7 @@
         "Twists (with extensions)"
       ],
       "detectedServices": [
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Boho braids / goddess braids",
         "Knotless braids",
         "Feed-in braids",
@@ -19816,7 +19816,7 @@
         "Twists (with extensions)"
       ],
       "addedServices": [
-        "Flipover / Versatile sew-in"
+        "Flipover / versatile sew-in"
       ],
       "removedServices": [
         "Fulani / lemonade braids"
@@ -20224,7 +20224,7 @@
           "Texture release",
           "Full head colour",
           "Feed-in braids",
-          "Flipover / Versatile sew-in",
+          "Flipover / versatile sew-in",
           "Closure sew-in",
           "Knotless braids",
           "Box braids"
@@ -20244,7 +20244,7 @@
         "Feed-in braids",
         "Traditional sew-in / leave out",
         "Closure sew-in",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Knotless braids",
         "Box braids",
         "Pixie / finger waves"
@@ -20259,7 +20259,7 @@
         "Texture release",
         "Full head colour",
         "Feed-in braids",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Closure sew-in",
         "Knotless braids",
         "Box braids",
@@ -20379,7 +20379,7 @@
           "Quick weave",
           "Frontal sew-in",
           "Closure sew-in",
-          "Flipover / Versatile sew-in",
+          "Flipover / versatile sew-in",
           "Tape ins"
         ],
         "areaId": "all-london",
@@ -20395,7 +20395,7 @@
         "Tape ins",
         "Closure sew-in",
         "Frontal sew-in",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Quick weave",
         "Trim / hair cut",
         "Wig cornrows",
@@ -20418,7 +20418,7 @@
         "Quick weave",
         "Frontal sew-in",
         "Closure sew-in",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Tape ins"
       ],
       "addedServices": [],
@@ -20518,7 +20518,7 @@
           "Half up half down",
           "Retwist",
           "Traditional sew-in / leave out",
-          "Flipover / Versatile sew-in",
+          "Flipover / versatile sew-in",
           "Closure sew-in",
           "Wig install (frontal / closure)"
         ],
@@ -20535,7 +20535,7 @@
         "Wig install (frontal / closure)",
         "Traditional sew-in / leave out",
         "Half braids, half sew-in",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Closure sew-in",
         "Half up half down"
       ],
@@ -20548,7 +20548,7 @@
         "Half up half down",
         "Retwist",
         "Traditional sew-in / leave out",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Closure sew-in",
         "Wig install (frontal / closure)"
       ],
@@ -20946,7 +20946,7 @@
           "Custom wig",
           "Wig install (frontal / closure)",
           "Traditional sew-in / leave out",
-          "Flipover / Versatile sew-in",
+          "Flipover / versatile sew-in",
           "Sleek ponytail / bun",
           "Half up half down",
           "Tape ins",
@@ -20962,7 +20962,7 @@
       "currentServices": [
         "Wig install (frontal / closure)",
         "Traditional sew-in / leave out",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Closure sew-in",
         "Wig colouring / bundle colouring",
         "Tape ins",
@@ -20978,7 +20978,7 @@
         "Custom wig",
         "Wig install (frontal / closure)",
         "Traditional sew-in / leave out",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Sleek ponytail / bun",
         "Half up half down",
         "Tape ins",
@@ -21137,7 +21137,7 @@
           "Silk press",
           "Microlinks",
           "Traditional sew-in / leave out",
-          "Flipover / Versatile sew-in",
+          "Flipover / versatile sew-in",
           "K-tips / invisible strands",
           "Moisturising treatment",
           "Olaplex treatment",
@@ -21165,7 +21165,7 @@
         "Silk press",
         "Microlinks",
         "Traditional sew-in / leave out",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "K-tips / invisible strands",
         "Moisturising treatment",
         "Olaplex treatment",
@@ -21173,7 +21173,7 @@
         "Wash & blowdry"
       ],
       "addedServices": [
-        "Flipover / Versatile sew-in"
+        "Flipover / versatile sew-in"
       ],
       "removedServices": [
         "Sleek ponytail / bun"
@@ -21635,7 +21635,7 @@
           "Quick weave",
           "Closure sew-in",
           "Frontal sew-in",
-          "Flipover / Versatile sew-in",
+          "Flipover / versatile sew-in",
           "Fulani / lemonade braids",
           "U-part wig install",
           "Custom wig",
@@ -21669,7 +21669,7 @@
         "Quick weave",
         "Closure sew-in",
         "Frontal sew-in",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Fulani / lemonade braids",
         "U-part wig install",
         "Custom wig",
@@ -21677,7 +21677,7 @@
         "Wig install (frontal / closure)"
       ],
       "addedServices": [
-        "Flipover / Versatile sew-in"
+        "Flipover / versatile sew-in"
       ],
       "removedServices": [],
       "checkedAt": "2026-05-22T23:05:36.283Z"
@@ -21866,7 +21866,7 @@
           "Frontal ponytail / bun",
           "Half up half down",
           "Traditional sew-in / leave out",
-          "Flipover / Versatile sew-in",
+          "Flipover / versatile sew-in",
           "Closure sew-in",
           "Wig install (frontal / closure)"
         ],
@@ -21885,7 +21885,7 @@
         "Wig install (frontal / closure)",
         "Frontal ponytail / bun",
         "Pixie wig / weave install",
-        "Flipover / Versatile sew-in"
+        "Flipover / versatile sew-in"
       ],
       "detectedServices": [
         "Trim / hair cut",
@@ -21894,7 +21894,7 @@
         "Frontal ponytail / bun",
         "Half up half down",
         "Traditional sew-in / leave out",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Closure sew-in",
         "Wig install (frontal / closure)"
       ],
@@ -22099,7 +22099,7 @@
           "Fulani / lemonade braids",
           "Stitch braids",
           "Boho braids / goddess braids",
-          "Flipover / Versatile sew-in",
+          "Flipover / versatile sew-in",
           "Traditional sew-in / leave out"
         ],
         "areaId": "all-london",
@@ -22120,11 +22120,11 @@
         "Fulani / lemonade braids",
         "Stitch braids",
         "Boho braids / goddess braids",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Traditional sew-in / leave out"
       ],
       "addedServices": [
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Traditional sew-in / leave out"
       ],
       "removedServices": [
@@ -22222,7 +22222,7 @@
         ],
         "matchedServices": [
           "Boho braids / goddess braids",
-          "Flipover / Versatile sew-in",
+          "Flipover / versatile sew-in",
           "Fulani / lemonade braids",
           "Knotless braids",
           "Feed-in braids",
@@ -22241,7 +22241,7 @@
       ],
       "detectedServices": [
         "Boho braids / goddess braids",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Fulani / lemonade braids",
         "Knotless braids",
         "Feed-in braids",
@@ -22249,7 +22249,7 @@
         "Faux locs"
       ],
       "addedServices": [
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Twists (with extensions)"
       ],
       "removedServices": [],
@@ -22383,7 +22383,7 @@
         ],
         "matchedServices": [
           "Fulani / lemonade braids",
-          "Flipover / Versatile sew-in",
+          "Flipover / versatile sew-in",
           "Knotless braids",
           "Boho braids / goddess braids",
           "Twists (with extensions)",
@@ -22392,7 +22392,7 @@
           "Sleek ponytail / bun",
           "Half up half down",
           "Stitch braids",
-          "Creative braids (e.g. patewo)"
+          "Creative braids"
         ],
         "areaId": "all-london",
         "areaLabel": "London"
@@ -22402,7 +22402,7 @@
         "Knotless braids",
         "Retwist",
         "Half braids, half sew-in",
-        "Creative braids (e.g. patewo)",
+        "Creative braids",
         "Sleek ponytail / bun",
         "Half up half down",
         "Twists (with extensions)",
@@ -22412,7 +22412,7 @@
       ],
       "detectedServices": [
         "Fulani / lemonade braids",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Knotless braids",
         "Boho braids / goddess braids",
         "Twists (with extensions)",
@@ -22421,10 +22421,10 @@
         "Sleek ponytail / bun",
         "Half up half down",
         "Stitch braids",
-        "Creative braids (e.g. patewo)"
+        "Creative braids"
       ],
       "addedServices": [
-        "Flipover / Versatile sew-in"
+        "Flipover / versatile sew-in"
       ],
       "removedServices": [
         "Retwist",
@@ -22726,7 +22726,7 @@
           "Half up half down",
           "LA weave",
           "Frontal ponytail / bun",
-          "Flipover / Versatile sew-in",
+          "Flipover / versatile sew-in",
           "Microlinks",
           "Wig install (frontal / closure)",
           "Sew-in take-down",
@@ -22753,7 +22753,7 @@
         "Frontal sew-in",
         "Clip ins (+ silk press)",
         "LA weave",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Hybrid sew-in",
         "Tracks (+ silk press) / partial / invisible sew-in",
         "Tape ins",
@@ -22780,7 +22780,7 @@
         "Half up half down",
         "LA weave",
         "Frontal ponytail / bun",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Microlinks",
         "Wig install (frontal / closure)",
         "Sew-in take-down",
@@ -22891,7 +22891,7 @@
         "Wig cornrows",
         "Fulani / lemonade braids",
         "Twists (with extensions)",
-        "Creative braids (e.g. patewo)",
+        "Creative braids",
         "Retwist",
         "Box braids",
         "Knotless braids",
@@ -22915,7 +22915,7 @@
         "Traditional sew-in / leave out"
       ],
       "removedServices": [
-        "Creative braids (e.g. patewo)"
+        "Creative braids"
       ],
       "checkedAt": "2026-05-22T23:05:39.590Z"
     },
@@ -23038,7 +23038,7 @@
           "Closure sew-in",
           "Wash & blowdry",
           "Tracks (+ silk press) / partial / invisible sew-in",
-          "Flipover / Versatile sew-in",
+          "Flipover / versatile sew-in",
           "Half up half down",
           "Half braids, half sew-in",
           "Sew-in take-down",
@@ -23087,7 +23087,7 @@
         "Starter locs",
         "Retwist",
         "Frontal ponytail / bun",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Half up half down",
         "Sew-in take-down",
         "Moisturising treatment"
@@ -23098,7 +23098,7 @@
         "Closure sew-in",
         "Wash & blowdry",
         "Tracks (+ silk press) / partial / invisible sew-in",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Half up half down",
         "Half braids, half sew-in",
         "Sew-in take-down",
@@ -23261,7 +23261,7 @@
           "Frontal sew-in",
           "Wash & blowdry",
           "Tracks (+ silk press) / partial / invisible sew-in",
-          "Flipover / Versatile sew-in",
+          "Flipover / versatile sew-in",
           "Silk press",
           "Pixie / finger waves",
           "Olaplex treatment",
@@ -23285,7 +23285,7 @@
         "Frontal sew-in",
         "Sew-in take-down",
         "Tracks (+ silk press) / partial / invisible sew-in",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Silk press",
         "Moisturising treatment",
         "U-part wig install",
@@ -23314,7 +23314,7 @@
         "Frontal sew-in",
         "Wash & blowdry",
         "Tracks (+ silk press) / partial / invisible sew-in",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Silk press",
         "Olaplex treatment",
         "Trim / hair cut"
@@ -23870,7 +23870,7 @@
           "Traditional sew-in / leave out",
           "Half up half down",
           "Quick weave",
-          "Flipover / Versatile sew-in",
+          "Flipover / versatile sew-in",
           "Stitch braids"
         ],
         "areaId": "all-london",
@@ -23889,12 +23889,12 @@
         "Traditional sew-in / leave out",
         "Half up half down",
         "Quick weave",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Stitch braids"
       ],
       "addedServices": [
         "Traditional sew-in / leave out",
-        "Flipover / Versatile sew-in"
+        "Flipover / versatile sew-in"
       ],
       "removedServices": [],
       "checkedAt": "2026-05-22T23:05:44.451Z"
@@ -24563,7 +24563,7 @@
         "Wig install (frontal / closure)",
         "Custom wig",
         "Traditional sew-in / leave out",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Frontal ponytail / bun"
       ],
       "detectedServices": [
@@ -24574,7 +24574,7 @@
       "addedServices": [],
       "removedServices": [
         "Traditional sew-in / leave out",
-        "Flipover / Versatile sew-in"
+        "Flipover / versatile sew-in"
       ],
       "checkedAt": "2026-05-22T23:05:48.653Z"
     },
@@ -24866,7 +24866,7 @@
           "Traditional sew-in / leave out",
           "Closure sew-in",
           "U-part wig install",
-          "Flipover / Versatile sew-in",
+          "Flipover / versatile sew-in",
           "Updo",
           "Bridal"
         ],
@@ -24881,7 +24881,7 @@
         "Traditional sew-in / leave out",
         "Closure sew-in",
         "Frontal sew-in",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Frontal ponytail / bun",
         "Updo",
         "Wig colouring / bundle colouring",
@@ -24899,7 +24899,7 @@
         "Traditional sew-in / leave out",
         "Closure sew-in",
         "U-part wig install",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Updo",
         "Bridal"
       ],
@@ -24974,7 +24974,7 @@
           "Boho braids / goddess braids",
           "Half braids, half sew-in",
           "Fulani / lemonade braids",
-          "Flipover / Versatile sew-in",
+          "Flipover / versatile sew-in",
           "Knotless braids"
         ],
         "areaId": "all-london",
@@ -24991,11 +24991,11 @@
         "Boho braids / goddess braids",
         "Half braids, half sew-in",
         "Fulani / lemonade braids",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Knotless braids"
       ],
       "addedServices": [
-        "Flipover / Versatile sew-in"
+        "Flipover / versatile sew-in"
       ],
       "removedServices": [],
       "checkedAt": "2026-05-22T23:05:51.614Z"
@@ -25071,7 +25071,7 @@
           "Half up half down",
           "Sleek ponytail / bun",
           "Tracks (+ silk press) / partial / invisible sew-in",
-          "Flipover / Versatile sew-in",
+          "Flipover / versatile sew-in",
           "Wash & blowdry"
         ],
         "areaId": "south-east",
@@ -25081,7 +25081,7 @@
         "Traditional sew-in / leave out",
         "Half up half down",
         "Sleek ponytail / bun",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Silk press",
         "Wash & blowdry",
         "Tracks (+ silk press) / partial / invisible sew-in",
@@ -25097,7 +25097,7 @@
         "Half up half down",
         "Sleek ponytail / bun",
         "Tracks (+ silk press) / partial / invisible sew-in",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Wash & blowdry"
       ],
       "addedServices": [],
@@ -25190,7 +25190,7 @@
           "Closure sew-in",
           "Traditional sew-in / leave out",
           "Tape ins",
-          "Flipover / Versatile sew-in",
+          "Flipover / versatile sew-in",
           "Wig install (frontal / closure)",
           "Wig cornrows",
           "Sleek ponytail / bun",
@@ -25205,7 +25205,7 @@
         "Wig install (frontal / closure)",
         "Closure sew-in",
         "Tape ins",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Sew-in take-down",
         "Silk press"
       ],
@@ -25214,7 +25214,7 @@
         "Closure sew-in",
         "Traditional sew-in / leave out",
         "Tape ins",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Wig install (frontal / closure)",
         "Wig cornrows",
         "Sleek ponytail / bun",
@@ -25376,7 +25376,7 @@
           "Traditional sew-in / leave out",
           "Half up half down",
           "Quick weave",
-          "Flipover / Versatile sew-in",
+          "Flipover / versatile sew-in",
           "Closure sew-in",
           "Sleek ponytail / bun",
           "Wig install (frontal / closure)",
@@ -25389,7 +25389,7 @@
       "currentServices": [
         "Traditional sew-in / leave out",
         "Half up half down",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Closure sew-in",
         "Custom wig",
         "Wig install (frontal / closure)",
@@ -25400,7 +25400,7 @@
         "Traditional sew-in / leave out",
         "Half up half down",
         "Quick weave",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Closure sew-in",
         "Sleek ponytail / bun",
         "Wig install (frontal / closure)",
@@ -25629,7 +25629,7 @@
           "Closure sew-in",
           "Traditional sew-in / leave out",
           "Tape ins",
-          "Flipover / Versatile sew-in",
+          "Flipover / versatile sew-in",
           "Custom wig",
           "U-part wig install"
         ],
@@ -25642,7 +25642,7 @@
         "Traditional sew-in / leave out",
         "Tape ins",
         "Wig install (frontal / closure)",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Custom wig",
         "U-part wig install"
       ],
@@ -25651,7 +25651,7 @@
         "Closure sew-in",
         "Traditional sew-in / leave out",
         "Tape ins",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Custom wig",
         "U-part wig install"
       ],
@@ -25871,7 +25871,7 @@
           "Stitch braids",
           "Half braids, half sew-in",
           "French curl",
-          "Flipover / Versatile sew-in",
+          "Flipover / versatile sew-in",
           "Wash & blowdry",
           "Faux locs",
           "Wig cornrows",
@@ -25913,7 +25913,7 @@
         "Stitch braids",
         "Half braids, half sew-in",
         "French curl",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Wash & blowdry",
         "Faux locs",
         "Wig cornrows",
@@ -25925,7 +25925,7 @@
         "Half up half down"
       ],
       "addedServices": [
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Starter locs",
         "Retwist"
       ],
@@ -26026,7 +26026,7 @@
         "Boho braids / goddess braids",
         "Feed-in braids",
         "Fulani / lemonade braids",
-        "Creative braids (e.g. patewo)",
+        "Creative braids",
         "Wig cornrows",
         "Stitch braids"
       ],
@@ -26040,7 +26040,7 @@
       ],
       "addedServices": [],
       "removedServices": [
-        "Creative braids (e.g. patewo)"
+        "Creative braids"
       ],
       "checkedAt": "2026-05-22T23:06:00.142Z"
     },
@@ -26228,7 +26228,7 @@
           "Boho braids / goddess braids",
           "Feed-in braids",
           "Fulani / lemonade braids",
-          "Flipover / Versatile sew-in",
+          "Flipover / versatile sew-in",
           "Faux locs",
           "Pre-parting",
           "Starter locs",
@@ -26255,14 +26255,14 @@
         "Boho braids / goddess braids",
         "Feed-in braids",
         "Fulani / lemonade braids",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Faux locs",
         "Pre-parting",
         "Starter locs",
         "Retwist"
       ],
       "addedServices": [
-        "Flipover / Versatile sew-in"
+        "Flipover / versatile sew-in"
       ],
       "removedServices": [
         "French curl"
@@ -26533,7 +26533,7 @@
           "Wig install (frontal / closure)",
           "Sleek ponytail / bun",
           "Tape ins",
-          "Flipover / Versatile sew-in",
+          "Flipover / versatile sew-in",
           "Custom wig",
           "Clip ins (+ silk press)",
           "Pixie wig / weave install",
@@ -26572,7 +26572,7 @@
         "Wig colouring / bundle colouring",
         "Wig install (frontal / closure)",
         "Tape ins",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Clip ins (+ silk press)",
         "Pixie wig / weave install",
         "Scalp detox / treatments",
@@ -26592,7 +26592,7 @@
         "Wig install (frontal / closure)",
         "Sleek ponytail / bun",
         "Tape ins",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Custom wig",
         "Clip ins (+ silk press)",
         "Pixie wig / weave install",
@@ -26833,7 +26833,7 @@
           "Full head colour",
           "Sleek ponytail / bun",
           "Wig colouring / bundle colouring",
-          "Flipover / Versatile sew-in",
+          "Flipover / versatile sew-in",
           "Closure sew-in",
           "Frontal sew-in",
           "Sew-in take-down",
@@ -26859,7 +26859,7 @@
         "Traditional sew-in / leave out",
         "Half up half down",
         "Closure sew-in",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Pixie wig / weave install",
         "Sew-in take-down",
         "Moisturising treatment",
@@ -26888,7 +26888,7 @@
         "Full head colour",
         "Sleek ponytail / bun",
         "Wig colouring / bundle colouring",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Closure sew-in",
         "Frontal sew-in",
         "Sew-in take-down",
@@ -27102,7 +27102,7 @@
           "Boho braids / goddess braids",
           "Knotless braids",
           "Stitch braids",
-          "Flipover / Versatile sew-in",
+          "Flipover / versatile sew-in",
           "Fulani / lemonade braids",
           "Faux locs"
         ],
@@ -27120,12 +27120,12 @@
         "Boho braids / goddess braids",
         "Knotless braids",
         "Stitch braids",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Fulani / lemonade braids",
         "Faux locs"
       ],
       "addedServices": [
-        "Flipover / Versatile sew-in"
+        "Flipover / versatile sew-in"
       ],
       "removedServices": [
         "Microbraids / x-small braids"
@@ -27357,7 +27357,7 @@
           "Wig install (frontal / closure)",
           "Traditional sew-in / leave out",
           "Twists (with extensions)",
-          "Flipover / Versatile sew-in"
+          "Flipover / versatile sew-in"
         ],
         "areaId": "all-london",
         "areaLabel": "London"
@@ -27408,10 +27408,10 @@
         "Wig install (frontal / closure)",
         "Traditional sew-in / leave out",
         "Twists (with extensions)",
-        "Flipover / Versatile sew-in"
+        "Flipover / versatile sew-in"
       ],
       "addedServices": [
-        "Flipover / Versatile sew-in"
+        "Flipover / versatile sew-in"
       ],
       "removedServices": [],
       "checkedAt": "2026-05-22T23:06:06.301Z"
@@ -27578,7 +27578,7 @@
         "Half up half down",
         "Closure sew-in",
         "Frontal sew-in",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "U-part wig install",
         "Pixie wig / weave install",
         "Frontal ponytail / bun",
@@ -27619,7 +27619,7 @@
         "Box braids",
         "Half braids, half sew-in",
         "Half up half down",
-        "Flipover / Versatile sew-in"
+        "Flipover / versatile sew-in"
       ],
       "checkedAt": "2026-05-22T23:06:07.856Z"
     },
@@ -27904,7 +27904,7 @@
           "Frontal ponytail / bun",
           "Sleek ponytail / bun",
           "Half up half down",
-          "Flipover / Versatile sew-in",
+          "Flipover / versatile sew-in",
           "U-part wig install",
           "Wig install (frontal / closure)",
           "Custom wig"
@@ -27918,7 +27918,7 @@
         "French curl",
         "Sleek ponytail / bun",
         "Half up half down",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Wig install (frontal / closure)",
         "Half braids, half sew-in",
         "Fulani / lemonade braids",
@@ -27938,7 +27938,7 @@
         "Frontal ponytail / bun",
         "Sleek ponytail / bun",
         "Half up half down",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "U-part wig install",
         "Wig install (frontal / closure)",
         "Custom wig"
@@ -28027,7 +28027,7 @@
           "Traditional sew-in / leave out",
           "Wig install (frontal / closure)",
           "Sleek ponytail / bun",
-          "Flipover / Versatile sew-in",
+          "Flipover / versatile sew-in",
           "Custom wig"
         ],
         "areaId": "all-london",
@@ -28045,11 +28045,11 @@
         "Traditional sew-in / leave out",
         "Wig install (frontal / closure)",
         "Sleek ponytail / bun",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Custom wig"
       ],
       "addedServices": [
-        "Flipover / Versatile sew-in"
+        "Flipover / versatile sew-in"
       ],
       "removedServices": [],
       "checkedAt": "2026-05-22T23:06:12.053Z"
@@ -28119,7 +28119,7 @@
         "Retwist",
         "Silk press",
         "Braid take-down",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Traditional sew-in / leave out",
         "Twists (with extensions)",
         "Relaxer / texturiser",
@@ -28149,7 +28149,7 @@
         "Microbraids / x-small braids",
         "Retwist",
         "Braid take-down",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Traditional sew-in / leave out",
         "Keratin treatment",
         "Trim / hair cut",
@@ -28763,7 +28763,7 @@
         ],
         "matchedServices": [
           "Traditional sew-in / leave out",
-          "Flipover / Versatile sew-in",
+          "Flipover / versatile sew-in",
           "Sleek ponytail / bun",
           "Tracks (+ silk press) / partial / invisible sew-in",
           "Closure sew-in",
@@ -28783,7 +28783,7 @@
       "currentServices": [
         "Traditional sew-in / leave out",
         "Closure sew-in",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Knotless braids",
         "Boho braids / goddess braids",
         "Texture release",
@@ -28792,7 +28792,7 @@
       ],
       "detectedServices": [
         "Traditional sew-in / leave out",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Sleek ponytail / bun",
         "Tracks (+ silk press) / partial / invisible sew-in",
         "Closure sew-in",
@@ -28873,7 +28873,7 @@
         "Faux locs",
         "Feed-in braids",
         "Bridal",
-        "Creative braids (e.g. patewo)",
+        "Creative braids",
         "Knotless braids"
       ],
       "detectedServices": [
@@ -28885,7 +28885,7 @@
         "Fulani / lemonade braids",
         "Feed-in braids",
         "Bridal",
-        "Creative braids (e.g. patewo)"
+        "Creative braids"
       ],
       "checkedAt": "2026-05-22T23:06:17.972Z"
     },
@@ -29477,7 +29477,7 @@
           "Traditional sew-in / leave out",
           "Closure sew-in",
           "Frontal sew-in",
-          "Flipover / Versatile sew-in",
+          "Flipover / versatile sew-in",
           "U-part wig install",
           "Wig install (frontal / closure)",
           "Custom wig"
@@ -29496,7 +29496,7 @@
         "Traditional sew-in / leave out",
         "Closure sew-in",
         "Frontal sew-in",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "U-part wig install",
         "Custom wig",
         "Wig install (frontal / closure)",
@@ -29513,7 +29513,7 @@
         "Traditional sew-in / leave out",
         "Closure sew-in",
         "Frontal sew-in",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "U-part wig install",
         "Wig install (frontal / closure)",
         "Custom wig"
@@ -30102,7 +30102,7 @@
           "Sleek ponytail / bun",
           "Quick weave",
           "Closure sew-in",
-          "Flipover / Versatile sew-in",
+          "Flipover / versatile sew-in",
           "Japanese straightening",
           "Wig install (frontal / closure)",
           "Custom wig"
@@ -30118,7 +30118,7 @@
         "Closure sew-in",
         "Wig install (frontal / closure)",
         "Highlights",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Custom wig",
         "Silk press",
         "Wash & blowdry"
@@ -30130,7 +30130,7 @@
         "Sleek ponytail / bun",
         "Quick weave",
         "Closure sew-in",
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Japanese straightening",
         "Wig install (frontal / closure)",
         "Custom wig"

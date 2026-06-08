@@ -197,7 +197,7 @@
     },
     "scalpish-uk": {
       "addedServices": [
-        "Flipover / Versatile sew-in",
+        "Flipover / versatile sew-in",
         "Closure sew-in",
         "Pixie wig / weave install"
       ],
@@ -206,7 +206,7 @@
         "wig"
       ],
       "addedServiceEvidence": {
-        "Flipover / Versatile sew-in": [
+        "Flipover / versatile sew-in": [
           "Flipover half wig/ u-part wig install"
         ],
         "Closure sew-in": [
@@ -292,7 +292,7 @@
     "vstylsz": {
       "addedServices": [
         "Wig cornrows",
-        "Creative braids (e.g. patewo)",
+        "Creative braids",
         "Updo",
         "Starter locs"
       ],
@@ -306,7 +306,7 @@
           "Medium Fulanis (up to 12 cornrows)",
           "Small fulanis (up to 16 cornrows)"
         ],
-        "Creative braids (e.g. patewo)": [
+        "Creative braids": [
           "Bohemian BRAIDS/TWISTS",
           "Goddess smedium knotless braids/twists",
           "Goddess medium knotless braids/twist",
@@ -1104,7 +1104,7 @@
     "rachel-braids": {
       "addedServices": [
         "Wig cornrows",
-        "Creative braids (e.g. patewo)",
+        "Creative braids",
         "Half braids, half sew-in",
         "Sleek ponytail / bun",
         "Trim / hair cut"
@@ -1118,7 +1118,7 @@
           "2-4 Straight Back Cornrows (No Stiches)",
           "5-8 Straight Back Cornrows (No Stitches)"
         ],
-        "Creative braids (e.g. patewo)": [
+        "Creative braids": [
           "Boho Braids (Human Hair - Extra Fullness)",
           "Boho Braids (Human Hair - Regular Fullness)",
           "Boho Braids (Synthetic Hair)",
@@ -2701,12 +2701,12 @@
     },
     "iislay-hair": {
       "addedServices": [
-        "Flipover / Versatile sew-in"
+        "Flipover / versatile sew-in"
       ],
       "removedServices": [],
       "addedServiceFamilies": [],
       "addedServiceEvidence": {
-        "Flipover / Versatile sew-in": [
+        "Flipover / versatile sew-in": [
           "Flipover “Diva” Fulani Boho braids",
           "Flipover “diva” Fulani braids",
           "Flipover “diva” fulani touch up"

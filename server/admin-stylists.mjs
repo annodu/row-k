@@ -90,7 +90,7 @@ const serviceRuleMatchers = [
   ["Pixie wig / weave install", [/\bpixie\b.*\b(wig|weave|sew\s*in|sewin|install|making)\b/, /\b(wig|weave|sew\s*in|sewin|making)\b.*\bpixie\b/]],
   ["Closure sew-in", [/\bclosure\b.*\b(sew\s*in|sewin|weave)\b/, /\b(sew\s*in|sewin|weave)\b.*\bclosure\b/, /\bweave\b.*\b(lace\s+)?closure\b/, /\bclosure\b.*\bbehind\s+the\s+hairline\b/]],
   ["Frontal sew-in", [/\bfrontal\b.*\b(sew\s*in|sewin|weave)\b/, /\b(sew\s*in|sewin|weave)\b.*\bfrontal\b/]],
-  ["Flipover / Versatile sew-in", [/\bflip\s*over\b/, /\bflipover\b/, /\bversatile\b.*\b(sew\s*in|sewin|weave)\b/, /\bversatile\s+sew\s+in\b/]],
+  ["Flipover / versatile sew-in", [/\bflip\s*over\b/, /\bflipover\b/, /\bversatile\b.*\b(sew\s*in|sewin|weave)\b/, /\bversatile\s+sew\s+in\b/]],
   ["Quick weave", [/\bquick\b.*\bweave\b/, /\bquickweave\b/]],
   ["Hybrid sew in (tapes + sew in)", [/\bhybrid\b.*\b(sew\s*in|sewin|weave)\b/, /\btracks?\b.*\btapes?\b.*\bhybrid\b/, /\bhybrid\b.*\btracks?\b.*\btapes?\b/]],
   ["Sew-in take-down", [/\b(sew\s*in|sewin|weave|tracks?)\b.*\b(take\s*down|takedown|removal|remove)\b/, /\b(take\s*down|takedown|removal|remove)\b.*\b(sew\s*in|sewin|weave|tracks?)\b/]],
@@ -105,7 +105,7 @@ const serviceRuleMatchers = [
   ["Knotless braids", [/\bknotless\b/]],
   ["Box braids", [/\bbox\b.*\bbraids?\b/]],
   ["Crochet", [/\bcrochet\b/]],
-  ["Creative braids (e.g. patewo)", [/\bpatewo\b/, /\bdolly\s+braids?\b/, /\bshuku\b/, /\bkoroba\s+braids?\b/, /\bcreative\b.*\bbraids?\b/]],
+  ["Creative braids", [/\bpatewo\b/, /\bdolly\s+braids?\b/, /\bshuku\b/, /\bkoroba\s+braids?\b/, /\bcreative\b.*\bbraids?\b/]],
   ["Feed-in braids", [/\bfeed\s*in\b/, /\bfeed-in\b/, /\ball\s+back\b.*\b(braids?|cornrows?|feed\s*ins?)\b/, /\b(braids?|cornrows?|feed\s*ins?)\b.*\ball\s+back\b/, /\bbraids?\b.*\bgoing\s+back\b/, /\bgoing\s+back\b.*\bbraids?\b/, /\bcornrows?\b.*\b(extension|extensions|pre\s*pull(ed)?|braiding\s+hair)\b/, /\b(extension|extensions|pre\s*pull(ed)?|braiding\s+hair)\b.*\bcornrows?\b/]],
   ["French curl", [/\bfrench\s+curl\b/]],
   ["Fulani / lemonade braids", [/\bfulani\b/, /\blemonade\b/, /\balicia\s+keys?\s+braids?\b/]],
@@ -138,7 +138,7 @@ const serviceRuleMatchers = [
   ["Curly cut / wash & go", [/\bcurly\s+cut\b/, /\bwash\s*(and|&)?\s*go\b/]],
   ["Sew in / extensions blowdry", [/\bextensions?\b.*\b(blow\s*dry|blowdry|blow\s*out|blowout)\b/, /\b(blow\s*dry|blowdry|blow\s*out|blowout)\b.*\bextensions?\b/, /\b(weave|sew\s*in|sew-in|sewin|k[\s-]?tips?)\b.*\b(blow\s*dry|blowdry|blow\s*out|blowout)\b/, /\b(blow\s*dry|blowdry|blow\s*out|blowout)\b.*\b(weave|sew\s*in|sew-in|sewin|k[\s-]?tips?)\b/, /\bblow\s*out\b.*\b(sew\s*in|sew-in|sewin)\b.*\bweave\b/]],
   ["Wig blowdry", [/\bwig\b.*\b(blow\s*dry|blowdry|blow\s*out|blowout)\b/, /\b(blow\s*dry|blowdry|blow\s*out|blowout)\b.*\bwig\b/]],
-  ["Bouncy blowout / Round Brush Blow dry", [/\bbouncy\b.*\b(blow\s*dry|blowdry|blow\s*out|blowout)\b/, /\b(blow\s*dry|blowdry|blow\s*out|blowout)\b.*\bbouncy\b/, /\bround\s+brush\b.*\b(blow\s*dry|blowdry)\b/]],
+  ["Bouncy blowout / round brush blow dry", [/\bbouncy\b.*\b(blow\s*dry|blowdry|blow\s*out|blowout)\b/, /\b(blow\s*dry|blowdry|blow\s*out|blowout)\b.*\bbouncy\b/, /\bround\s+brush\b.*\b(blow\s*dry|blowdry)\b/]],
   ["Wash & blowdry", [/\bwash\b.*\b(blow\s*dry|blowdry|blowout)\b/, /\bshampoo\b.*\b(blow\s*dry|blowdry|blowout)\b/]],
   ["Trim / hair cut", [/\btrim\b/, /\bhair\s*cut\b/, /\bhaircut\b/, /\bcut\s+and\s+finish\b/]],
   ["Silk press", [/\bsilk\s+press\b/, /\bsilkpress\b/, /\bpress\s+and\s+curl\b/]],
@@ -156,7 +156,7 @@ const serviceRuleMatchers = [
 
 const serviceNegationHints = {
   "Balayage": ["balayage"],
-  "Bouncy blowout / Round Brush Blow dry": ["bouncy blowout", "bouncy blow out", "bouncy blowdry", "bouncy blow dry", "bouncy blow-dry", "round brush blow dry", "round brush blowdry", "dry bouncy blow-dry"],
+  "Bouncy blowout / round brush blow dry": ["bouncy blowout", "bouncy blow out", "bouncy blowdry", "bouncy blow dry", "bouncy blow-dry", "round brush blow dry", "round brush blowdry", "dry bouncy blow-dry"],
   "Boho braids / goddess braids": ["boho", "goddess"],
   "Box braids": ["box braids"],
   "Braid take-down": ["braid take down", "braid takedown", "braid removal", "remove braids"],
@@ -166,13 +166,13 @@ const serviceNegationHints = {
   "Butterfly locs": ["butterfly locs"],
   "Clip ins (+ silk press)": ["clip ins", "clip in"],
   "Closure sew-in": ["closure sew in", "closure sew-in", "closure sewin", "closure weave", "weave with lace closure", "closure behind the hairline"],
-  "Creative braids (e.g. patewo)": ["creative braids", "patewo", "dolly braids", "shuku", "koroba braids"],
+  "Creative braids": ["creative braids", "patewo", "dolly braids", "shuku", "koroba braids"],
   "Crochet": ["crochet"],
   "Curly cut / wash & go": ["curly cut", "wash go", "wash and go"],
   "Custom wig": ["custom wig", "bespoke wig", "custom handmade wig", "custom handmade wigs", "custom made frontal unit", "custom made closure unit", "customised closure unit", "customized closure unit", "custom mini frontal unit", "unit customisation", "unit customization", "wig making", "wig construction", "construction of wig", "construction of the wig", "wig customising", "wig customisation", "wig customization", "construction and customisation", "construction and customization"],
   "Faux locs": ["faux locs", "soft locs"],
   "Feed-in braids": ["feed in", "feed in braids", "all back", "braids going back", "cornrows incl extensions", "cornrows including extensions", "cornrows with extensions", "20 cornrows"],
-  "Flipover / Versatile sew-in": ["flipover", "flip over", "versatile sew in", "versatile sewin", "versatile weave"],
+  "Flipover / versatile sew-in": ["flipover", "flip over", "versatile sew in", "versatile sewin", "versatile weave"],
   "French curl": ["french curl"],
   "Frontal ponytail / bun": ["frontal ponytail", "frontal pony", "frontal bun"],
   "Frontal sew-in": ["frontal sew in", "frontal sewin", "frontal weave"],
@@ -2743,7 +2743,7 @@ function getServiceEvidence(rawServices = [], service) {
 
 const serviceEvidenceKeywords = {
   "Balayage": ["balayage"],
-  "Bouncy blowout / Round Brush Blow dry": ["bouncy blowout", "bouncy blow out", "bouncy blowdry", "bouncy blow dry", "bouncy blow-dry", "round brush blow dry", "round brush blowdry", "dry bouncy blow-dry"],
+  "Bouncy blowout / round brush blow dry": ["bouncy blowout", "bouncy blow out", "bouncy blowdry", "bouncy blow dry", "bouncy blow-dry", "round brush blow dry", "round brush blowdry", "dry bouncy blow-dry"],
   "Highlights": ["highlight", "highlights", "lowlights"],
   "Full head colour": ["colour", "color", "tint", "dye", "rooting"],
   "Wig colouring / bundle colouring": ["wig colour", "wig color", "wig colouring service", "hair bundle colouring service", "lace closure colouring", "lace frontal colouring", "colouring full wig", "custom colour", "colour service", "613", "non-contact", "non contact", "bundle", "bundles", "frontal", "closure"],
@@ -3116,7 +3116,7 @@ function sanitizeKeywordSearchTerms(value) {
 
 const learnedKeywordSearchExpansions = [
   {
-    service: "Bouncy blowout / Round Brush Blow dry",
+    service: "Bouncy blowout / round brush blow dry",
     triggers: ["bouncy", "bouncy blowout", "bouncy blowdry", "bouncy blow dry", "round brush", "round brush blow dry", "round brush blowdry", "roundbrush blow dry", "curly blow dry", "90s blowout", "dominican blowdry", "dominican blow out", "glamorous blow dry", "volumising blow dry"],
     keywords: [
       "bouncy blowout",
