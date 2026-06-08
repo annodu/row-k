@@ -57,6 +57,7 @@ type StylistDraft = {
   rawServices: string[];
   hijabiFriendly?: boolean;
   canBraidWithoutGel?: boolean;
+  wheelchairAccessible?: boolean;
   priceBand?: PriceBand;
   servicePriceBand?: PriceBand;
   packagePriceBand?: PriceBand;
@@ -86,6 +87,7 @@ type DraftForm = {
   services: string[];
   hijabiFriendly: boolean;
   canBraidWithoutGel: boolean;
+  wheelchairAccessible: boolean;
   priceBand: PriceBand | "";
   servicePriceBand: PriceBand | "";
   packagePriceBand: PriceBand | "";
@@ -498,6 +500,7 @@ const emptyForm: DraftForm = {
   services: [],
   hijabiFriendly: false,
   canBraidWithoutGel: false,
+  wheelchairAccessible: false,
   priceBand: "",
   servicePriceBand: "",
   packagePriceBand: "",
@@ -534,6 +537,7 @@ export function AdminApp() {
   const [publishedStylists, setPublishedStylists] = useState<StylistDraft[]>([]);
   const [regions, setRegions] = useState<RegionOption[]>([]);
   const [services, setServices] = useState<string[]>([]);
+  const [filterCategories, setFilterCategories] = useState<{ id: string; label: string; subcategories: string[] }[]>(serviceGroups.map((g) => ({ id: g.label, label: g.label, subcategories: g.services })));
   const [serviceKeywordSuggestionGroups, setServiceKeywordSuggestionGroups] = useState<KeywordSuggestionGroup[]>([]);
   const [form, setForm] = useState<DraftForm>(emptyForm);
   const [selectedDraftId, setSelectedDraftId] = useState<string | null>(null);
@@ -730,7 +734,7 @@ export function AdminApp() {
   async function loadAdminData() {
     setIsBusy(true);
     try {
-      const [draftResponse, publishedResponse, optionResponse, dashboardResponse, discoveryResponse, savedChecksResponse, keywordSearchResponse] = await Promise.all([
+      const [draftResponse, publishedResponse, optionResponse, dashboardResponse, discoveryResponse, savedChecksResponse, keywordSearchResponse, filtersResponse] = await Promise.all([
         fetch("/api/admin/stylists/drafts", { credentials: "include" }),
         fetch("/api/admin/stylists/published", { credentials: "include" }),
         fetch("/api/admin/stylists/options", { credentials: "include" }),
@@ -738,6 +742,7 @@ export function AdminApp() {
         fetch("/api/admin/discovery", { credentials: "include" }),
         fetch("/api/admin/stylists/checks/saved", { credentials: "include" }),
         fetch("/api/admin/stylists/keyword-searches", { credentials: "include" }),
+        fetch("/api/admin/filters", { credentials: "include" }),
       ]);
       if (!draftResponse.ok || !optionResponse.ok) {
         setIsAuthed(false);
@@ -750,10 +755,14 @@ export function AdminApp() {
       const discoveryPayload = discoveryResponse.ok ? await discoveryResponse.json() : null;
       const savedChecksPayload = savedChecksResponse.ok ? await savedChecksResponse.json() : null;
       const keywordSearchPayload = keywordSearchResponse.ok ? await keywordSearchResponse.json() : null;
+      const filtersPayload = filtersResponse.ok ? await filtersResponse.json() : null;
       setDrafts(draftPayload.drafts ?? []);
       setPublishedStylists(publishedPayload?.stylists ?? []);
       setRegions(optionPayload.regions ?? []);
       setServices(optionPayload.services ?? []);
+      if (filtersPayload?.ok && Array.isArray(filtersPayload.categories)) {
+        setFilterCategories(filtersPayload.categories);
+      }
       setServiceKeywordSuggestionGroups(optionPayload.keywordSuggestionGroups ?? []);
       setDashboard(dashboardPayload ?? null);
       setSuggestions(discoveryPayload?.suggestions ?? []);
@@ -1534,6 +1543,7 @@ export function AdminApp() {
           selectedDraft={isDraftEditorOpen ? selectedDraft : null}
           regions={regions}
           services={services}
+          filterCategories={filterCategories}
           onStatusFilterChange={setStylistStatusFilter}
           onSearchTermChange={setStylistSearchTerm}
           onIntakeChange={setIntakeText}
@@ -1617,7 +1627,7 @@ export function AdminApp() {
         />
       ) : null}
 
-      {activeView === "filters" ? <FiltersPage /> : null}
+      {activeView === "filters" ? <FiltersPage onCategoriesChange={setFilterCategories} /> : null}
 
       <AdminToastMessage toast={toast} onClose={() => setToast(null)} />
     </main>
@@ -1659,6 +1669,7 @@ function StylistsPage({
   selectedDraft,
   regions,
   services,
+  filterCategories,
   onStatusFilterChange,
   onSearchTermChange,
   onIntakeChange,
@@ -1683,6 +1694,7 @@ function StylistsPage({
   selectedDraft: StylistDraft | null;
   regions: RegionOption[];
   services: string[];
+  filterCategories: { id: string; label: string; subcategories: string[] }[];
   onStatusFilterChange: (value: string) => void;
   onSearchTermChange: (value: string) => void;
   onIntakeChange: (value: string) => void;
@@ -1868,6 +1880,7 @@ function StylistsPage({
           draft={selectedDraft}
           regions={regions}
           services={services}
+          filterCategories={filterCategories}
           isBusy={isBusy}
           onClose={onCloseEditor}
           onChange={onChangeDraft}
@@ -1885,6 +1898,7 @@ function DraftEditorDrawer({
   draft,
   regions,
   services,
+  filterCategories,
   isBusy,
   onClose,
   onChange,
@@ -1896,6 +1910,7 @@ function DraftEditorDrawer({
   draft: StylistDraft;
   regions: RegionOption[];
   services: string[];
+  filterCategories: { id: string; label: string; subcategories: string[] }[];
   isBusy: boolean;
   onClose: () => void;
   onChange: (update: Partial<StylistDraft>) => void;
@@ -1977,6 +1992,7 @@ function DraftEditorDrawer({
             draft={draft}
             regions={regions}
             services={services}
+            filterCategories={filterCategories}
             isBusy={isBusy}
             onChange={onChange}
             onChangeLocations={onChangeLocations}
@@ -4536,6 +4552,7 @@ function DraftEditor({
   draft,
   regions,
   services,
+  filterCategories,
   isBusy,
   onChange,
   onChangeLocations,
@@ -4550,6 +4567,7 @@ function DraftEditor({
   draft: StylistDraft;
   regions: RegionOption[];
   services: string[];
+  filterCategories?: { id: string; label: string; subcategories: string[] }[];
   isBusy: boolean;
   onChange: (update: Partial<StylistDraft>) => void;
   onChangeLocations: (areaIds: string[]) => void;
@@ -4567,6 +4585,13 @@ function DraftEditor({
   const selectedLocationLabels = getAreaIdsForLabels(selectedAreaIds)
     .map((areaId) => regions.find((region) => region.id === areaId)?.label || areaLabelFromId(areaId))
     .filter(Boolean);
+  const [additionalNeedsOptions, setAdditionalNeedsOptions] = useState<{ id: string; label: string }[]>([]);
+  useEffect(() => {
+    fetch("/api/admin/additional-needs", { credentials: "include" })
+      .then((res) => res.json())
+      .then((data) => { if (data.ok && Array.isArray(data.options)) setAdditionalNeedsOptions(data.options); })
+      .catch(() => {});
+  }, []);
 
   function updateInstagramUrl(instagramUrl: string) {
     onChange({
@@ -4625,21 +4650,7 @@ function DraftEditor({
 
       <DraftLocationSelector draft={draft} regions={regions} onChange={onChangeLocations} />
 
-      <div className="space-y-3">
-        <p className="text-xs font-semibold uppercase tracking-[0.12em] text-stone-500">Preferences</p>
-        <div className="grid gap-2">
-          <DraftBooleanOption
-            label="Hijabi friendly"
-            checked={draft.hijabiFriendly === true}
-            onToggle={(checked) => onChange({ hijabiFriendly: checked })}
-          />
-          <DraftBooleanOption
-            label="Can braid without gel"
-            checked={draft.canBraidWithoutGel === true}
-            onToggle={(checked) => onChange({ canBraidWithoutGel: checked })}
-          />
-        </div>
-      </div>
+      <DraftAdditionalNeeds draft={draft} options={additionalNeedsOptions} onChange={onChange} />
 
       <div className="space-y-3">
         <p className="text-xs font-semibold uppercase tracking-[0.12em] text-stone-500">Pricing</p>
@@ -4766,7 +4777,7 @@ function DraftEditor({
       <Field label="Raw services">
         <Textarea value={(draft.rawServices || []).join("\n")} onChange={(value) => onChange({ rawServices: splitLines(value) })} />
       </Field>
-      <ServicePicker services={services} selected={draft.services} onChange={(next) => onChange({ services: next })} />
+      <ServicePicker services={services} filterCategories={filterCategories} selected={draft.services} onChange={(next) => onChange({ services: next })} />
     </section>
   );
 
@@ -4783,10 +4794,13 @@ function DraftEditor({
         <DraftReviewRow label="Locations" value={selectedLocationLabels.length ? selectedLocationLabels.join(", ") : getDraftLocationLabel(draft, regions) || "No location selected"} />
         <DraftReviewRow
           label="Preferences"
-          value={[
-            draft.hijabiFriendly ? "Hijabi friendly" : "",
-            draft.canBraidWithoutGel ? "Can braid without gel" : "",
-          ].filter(Boolean).join(", ") || "None selected"}
+          value={additionalNeedsOptions
+            .filter((opt) => {
+              const field = additionalNeedsFieldMap[opt.id];
+              return field && draft[field] === true;
+            })
+            .map((opt) => opt.label)
+            .join(", ") || "None selected"}
         />
         <DraftReviewRow label="Pricing" value={draft.priceBand ? `${draft.priceBand} (${draft.priceSource || "manual"})` : "Not set"} />
         <DraftReviewRow label="Services">
@@ -4982,6 +4996,43 @@ function DraftLocationOption({
   );
 }
 
+// Map additional-needs option IDs to StylistDraft boolean field names
+const additionalNeedsFieldMap: Record<string, keyof StylistDraft> = {
+  hijabiFriendly: "hijabiFriendly",
+  canBraidWithoutGel: "canBraidWithoutGel",
+  "wheelchair-access": "wheelchairAccessible",
+};
+
+function DraftAdditionalNeeds({
+  draft,
+  options,
+  onChange,
+}: {
+  draft: StylistDraft;
+  options: { id: string; label: string }[];
+  onChange: (update: Partial<StylistDraft>) => void;
+}) {
+  return (
+    <div className="space-y-3">
+      <p className="text-xs font-semibold uppercase tracking-[0.12em] text-stone-500">Preferences</p>
+      <div className="grid gap-2">
+        {options.map((option) => {
+          const field = additionalNeedsFieldMap[option.id];
+          if (!field) return null;
+          return (
+            <DraftBooleanOption
+              key={option.id}
+              label={option.label}
+              checked={draft[field] === true}
+              onToggle={(checked) => onChange({ [field]: checked })}
+            />
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
 function DraftBooleanOption({ label, checked, onToggle }: { label: string; checked: boolean; onToggle: (checked: boolean) => void }) {
   return (
     <label
@@ -5062,6 +5113,7 @@ function publishedSalonToDraft(salon: Partial<StylistDraft>): StylistDraft {
     rawServices: [],
     hijabiFriendly: salon.hijabiFriendly === true,
     canBraidWithoutGel: salon.canBraidWithoutGel === true,
+    wheelchairAccessible: salon.wheelchairAccessible === true,
     priceBand: salon.priceBand,
     servicePriceBand: salon.servicePriceBand,
     packagePriceBand: salon.packagePriceBand,
@@ -5097,7 +5149,39 @@ function areaLabelFromId(areaId: string) {
 
 type FilterCategory = { id: string; label: string; subcategories: string[] };
 
-function FiltersPage() {
+function FiltersPage({ onCategoriesChange }: { onCategoriesChange?: (categories: FilterCategory[]) => void }) {
+  const [activeTab, setActiveTab] = useState<"services" | "locations" | "additional-needs">("services");
+
+  return (
+    <div className="mx-auto max-w-4xl px-5 py-9">
+      <h1 className="text-3xl font-semibold tracking-tight text-stone-950">Filters</h1>
+      <nav className="mt-6 flex gap-6 border-b border-stone-200">
+        {(["services", "locations", "additional-needs"] as const).map((tab) => (
+          <button
+            key={tab}
+            type="button"
+            onClick={() => setActiveTab(tab)}
+            className={cn(
+              "whitespace-nowrap border-b-2 pb-3 text-sm capitalize transition",
+              activeTab === tab
+                ? "border-stone-950 text-stone-950"
+                : "border-transparent text-stone-500 hover:text-stone-900",
+            )}
+          >
+            {tab === "additional-needs" ? "Additional needs" : tab.charAt(0).toUpperCase() + tab.slice(1)}
+          </button>
+        ))}
+      </nav>
+      <div className="mt-7">
+        {activeTab === "services" ? <ServicesFilterTab onCategoriesChange={onCategoriesChange} /> : null}
+        {activeTab === "locations" ? <LocationsFilterTab /> : null}
+        {activeTab === "additional-needs" ? <AdditionalNeedsFilterTab /> : null}
+      </div>
+    </div>
+  );
+}
+
+function ServicesFilterTab({ onCategoriesChange }: { onCategoriesChange?: (categories: FilterCategory[]) => void }) {
   const [categories, setCategories] = useState<FilterCategory[]>([]);
   const [isSaving, setIsSaving] = useState(false);
   const [saveMessage, setSaveMessage] = useState<{ text: string; ok: boolean } | null>(null);
@@ -5201,8 +5285,11 @@ function FiltersPage() {
         body: JSON.stringify({ categories, renames }),
       });
       const data = await res.json();
-      if (data.ok) setRenames([]);
-      setSaveMessage({ text: data.ok ? "Saved. Reload the page to see changes take effect." : (data.error ?? "Failed to save."), ok: data.ok });
+      if (data.ok) {
+        setRenames([]);
+        onCategoriesChange?.(categories);
+      }
+      setSaveMessage({ text: data.ok ? "Saved." : (data.error ?? "Failed to save."), ok: data.ok });
     } catch {
       setSaveMessage({ text: "Failed to save.", ok: false });
     } finally {
@@ -5211,13 +5298,10 @@ function FiltersPage() {
   }
 
   return (
-    <div className="mx-auto max-w-4xl space-y-7 px-5 py-9">
+    <div className="space-y-7">
       <section className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
-        <div>
-          <h1 className="text-3xl font-semibold tracking-tight text-stone-950">Filters</h1>
-          <p className="mt-2 text-sm text-stone-500">Edit the service categories and subcategories shown in the directory filter panel. Click any name to rename it.</p>
-        </div>
-        <Button type="button" onClick={save} disabled={isSaving} className="h-10 rounded-none px-4">
+        <p className="text-sm text-stone-500">Edit the service categories and subcategories shown in the directory filter panel. Click any name to rename it.</p>
+        <Button type="button" onClick={save} disabled={isSaving} className="h-10 shrink-0 rounded-none px-4">
           {isSaving ? <Loader2 className="mr-2 size-4 animate-spin" /> : null}
           Save changes
         </Button>
@@ -5354,22 +5438,342 @@ function FiltersPage() {
   );
 }
 
+type LocationRegion = { id: string; label: string };
+
+function LocationsFilterTab() {
+  const [regions, setRegions] = useState<LocationRegion[]>([]);
+  const [londonParentId, setLondonParentId] = useState("all-london");
+  const [londonChildIds, setLondonChildIds] = useState<string[]>([]);
+  const [standaloneIds, setStandaloneIds] = useState<string[]>([]);
+  const [isSaving, setIsSaving] = useState(false);
+  const [saveMessage, setSaveMessage] = useState<{ text: string; ok: boolean } | null>(null);
+  const [editing, setEditing] = useState<{ id: string; value: string } | null>(null);
+  const [newId, setNewId] = useState("");
+  const [newLabel, setNewLabel] = useState("");
+
+  useEffect(() => {
+    fetch("/api/admin/locations", { credentials: "include" })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.ok) {
+          setRegions(data.regions);
+          setLondonParentId(data.londonParentId ?? "all-london");
+          setLondonChildIds(data.londonChildIds ?? []);
+          setStandaloneIds(data.standaloneIds ?? []);
+        }
+      });
+  }, []);
+
+  function commitEdit(id: string) {
+    const newLabel = editing?.value.trim() ?? "";
+    if (newLabel) setRegions((prev) => prev.map((r) => (r.id === id ? { ...r, label: newLabel } : r)));
+    setEditing(null);
+  }
+
+  function removeRegion(id: string) {
+    setRegions((prev) => prev.filter((r) => r.id !== id));
+    setLondonChildIds((prev) => prev.filter((c) => c !== id));
+    setStandaloneIds((prev) => prev.filter((c) => c !== id));
+  }
+
+  function addRegion() {
+    const id = newId.trim().toLowerCase().replace(/\s+/g, "-");
+    const label = newLabel.trim();
+    if (!id || !label || regions.some((r) => r.id === id)) return;
+    setRegions((prev) => [...prev, { id, label }]);
+    setStandaloneIds((prev) => [...prev, id]);
+    setNewId("");
+    setNewLabel("");
+  }
+
+  function toggleChildId(id: string, checked: boolean) {
+    if (checked) {
+      setLondonChildIds((prev) => [...prev, id]);
+      setStandaloneIds((prev) => prev.filter((s) => s !== id));
+    } else {
+      setLondonChildIds((prev) => prev.filter((c) => c !== id));
+      setStandaloneIds((prev) => [...prev, id]);
+    }
+  }
+
+  async function save() {
+    setIsSaving(true);
+    setSaveMessage(null);
+    try {
+      const res = await fetch("/api/admin/locations", {
+        method: "POST",
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ regions, londonParentId, londonChildIds, standaloneIds }),
+      });
+      const data = await res.json();
+      setSaveMessage({ text: data.ok ? "Saved. Reload the page to see changes take effect." : (data.error ?? "Failed to save."), ok: data.ok });
+    } catch {
+      setSaveMessage({ text: "Failed to save.", ok: false });
+    } finally {
+      setIsSaving(false);
+    }
+  }
+
+  const londonChildSet = new Set(londonChildIds);
+
+  return (
+    <div className="space-y-7">
+      <section className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+        <p className="text-sm text-stone-500">Manage the location options shown in the directory filter panel. Check "London area" to nest a region under London.</p>
+        <Button type="button" onClick={save} disabled={isSaving} className="h-10 shrink-0 rounded-none px-4">
+          {isSaving ? <Loader2 className="mr-2 size-4 animate-spin" /> : null}
+          Save changes
+        </Button>
+      </section>
+
+      {saveMessage ? (
+        <p className={cn("text-sm font-medium", saveMessage.ok ? "text-emerald-700" : "text-red-600")}>{saveMessage.text}</p>
+      ) : null}
+
+      <div className="space-y-2">
+        {regions.map((region) => {
+          const isEditing = editing?.id === region.id;
+          const isLondonParent = region.id === londonParentId;
+          return (
+            <div key={region.id} className="flex items-center gap-3 rounded-none border border-stone-200 bg-white px-4 py-3">
+              <div className="flex-1 min-w-0">
+                {isEditing ? (
+                  <input
+                    autoFocus
+                    type="text"
+                    value={editing.value}
+                    onChange={(e) => setEditing({ ...editing, value: e.target.value })}
+                    onBlur={() => commitEdit(region.id)}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") commitEdit(region.id);
+                      if (e.key === "Escape") setEditing(null);
+                    }}
+                    className="h-7 w-full rounded-none border border-stone-400 bg-white px-2 text-sm font-medium focus:outline-none focus:ring-1 focus:ring-stone-500"
+                  />
+                ) : (
+                  <button
+                    type="button"
+                    onClick={() => setEditing({ id: region.id, value: region.label })}
+                    className="text-left text-sm font-medium text-stone-800 hover:text-stone-500"
+                  >
+                    {region.label}
+                  </button>
+                )}
+                <p className="text-xs text-stone-400">{region.id}</p>
+              </div>
+              {!isLondonParent ? (
+                <label className="flex items-center gap-1.5 text-xs text-stone-500 cursor-pointer select-none">
+                  <input
+                    type="checkbox"
+                    checked={londonChildSet.has(region.id)}
+                    onChange={(e) => toggleChildId(region.id, e.target.checked)}
+                    className="rounded-none"
+                  />
+                  London area
+                </label>
+              ) : (
+                <span className="text-xs text-stone-400 italic">London parent</span>
+              )}
+              {!isLondonParent ? (
+                <button
+                  type="button"
+                  onClick={() => removeRegion(region.id)}
+                  className="ml-2 text-stone-400 hover:text-red-500"
+                  aria-label={`Remove ${region.label}`}
+                >
+                  <X className="size-4" />
+                </button>
+              ) : null}
+            </div>
+          );
+        })}
+      </div>
+
+      <div className="rounded-none border border-dashed border-stone-300 p-5">
+        <p className="mb-3 text-sm font-semibold text-stone-700">Add new location</p>
+        <div className="flex flex-col gap-2 sm:flex-row">
+          <input
+            type="text"
+            value={newLabel}
+            onChange={(e) => setNewLabel(e.target.value)}
+            placeholder="Label (e.g. Surrey)"
+            className="h-9 flex-1 rounded-none border border-stone-300 bg-white px-2 text-sm focus:outline-none focus:ring-1 focus:ring-stone-500"
+          />
+          <input
+            type="text"
+            value={newId}
+            onChange={(e) => setNewId(e.target.value)}
+            placeholder="ID (e.g. surrey)"
+            className="h-9 flex-1 rounded-none border border-stone-300 bg-white px-2 text-sm focus:outline-none focus:ring-1 focus:ring-stone-500"
+          />
+          <Button type="button" variant="outline" onClick={addRegion} className="h-9 shrink-0 rounded-none px-4 text-sm">
+            Add location
+          </Button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+type AdditionalNeedOption = { id: string; label: string };
+
+function AdditionalNeedsFilterTab() {
+  const [options, setOptions] = useState<AdditionalNeedOption[]>([]);
+  const [isSaving, setIsSaving] = useState(false);
+  const [saveMessage, setSaveMessage] = useState<{ text: string; ok: boolean } | null>(null);
+  const [editing, setEditing] = useState<{ id: string; value: string } | null>(null);
+  const [newId, setNewId] = useState("");
+  const [newLabel, setNewLabel] = useState("");
+
+  useEffect(() => {
+    fetch("/api/admin/additional-needs", { credentials: "include" })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.ok) setOptions(data.options);
+      });
+  }, []);
+
+  function commitEdit(id: string) {
+    const val = editing?.value.trim() ?? "";
+    if (val) setOptions((prev) => prev.map((o) => (o.id === id ? { ...o, label: val } : o)));
+    setEditing(null);
+  }
+
+  function removeOption(id: string) {
+    setOptions((prev) => prev.filter((o) => o.id !== id));
+  }
+
+  function addOption() {
+    const id = newId.trim().toLowerCase().replace(/\s+/g, "-");
+    const label = newLabel.trim();
+    if (!id || !label || options.some((o) => o.id === id)) return;
+    setOptions((prev) => [...prev, { id, label }]);
+    setNewId("");
+    setNewLabel("");
+  }
+
+  async function save() {
+    setIsSaving(true);
+    setSaveMessage(null);
+    try {
+      const res = await fetch("/api/admin/additional-needs", {
+        method: "POST",
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ options }),
+      });
+      const data = await res.json();
+      setSaveMessage({ text: data.ok ? "Saved." : (data.error ?? "Failed to save."), ok: data.ok });
+    } catch {
+      setSaveMessage({ text: "Failed to save.", ok: false });
+    } finally {
+      setIsSaving(false);
+    }
+  }
+
+  return (
+    <div className="space-y-7">
+      <section className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+        <p className="text-sm text-stone-500">Manage the additional needs options shown in the directory filter panel. Click a label to rename it.</p>
+        <Button type="button" onClick={save} disabled={isSaving} className="h-10 shrink-0 rounded-none px-4">
+          {isSaving ? <Loader2 className="mr-2 size-4 animate-spin" /> : null}
+          Save changes
+        </Button>
+      </section>
+
+      {saveMessage ? (
+        <p className={cn("text-sm font-medium", saveMessage.ok ? "text-emerald-700" : "text-red-600")}>{saveMessage.text}</p>
+      ) : null}
+
+      <div className="space-y-2">
+        {options.map((option) => {
+          const isEditing = editing?.id === option.id;
+          return (
+            <div key={option.id} className="flex items-center gap-3 rounded-none border border-stone-200 bg-white px-4 py-3">
+              <div className="flex-1 min-w-0">
+                {isEditing ? (
+                  <input
+                    autoFocus
+                    type="text"
+                    value={editing.value}
+                    onChange={(e) => setEditing({ ...editing, value: e.target.value })}
+                    onBlur={() => commitEdit(option.id)}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") commitEdit(option.id);
+                      if (e.key === "Escape") setEditing(null);
+                    }}
+                    className="h-7 w-full rounded-none border border-stone-400 bg-white px-2 text-sm font-medium focus:outline-none focus:ring-1 focus:ring-stone-500"
+                  />
+                ) : (
+                  <button
+                    type="button"
+                    onClick={() => setEditing({ id: option.id, value: option.label })}
+                    className="text-left text-sm font-medium text-stone-800 hover:text-stone-500"
+                  >
+                    {option.label}
+                  </button>
+                )}
+                <p className="text-xs text-stone-400">{option.id}</p>
+              </div>
+              <button
+                type="button"
+                onClick={() => removeOption(option.id)}
+                className="text-stone-400 hover:text-red-500"
+                aria-label={`Remove ${option.label}`}
+              >
+                <X className="size-4" />
+              </button>
+            </div>
+          );
+        })}
+      </div>
+
+      <div className="rounded-none border border-dashed border-stone-300 p-5">
+        <p className="mb-3 text-sm font-semibold text-stone-700">Add new option</p>
+        <div className="flex flex-col gap-2 sm:flex-row">
+          <input
+            type="text"
+            value={newLabel}
+            onChange={(e) => setNewLabel(e.target.value)}
+            placeholder="Label (e.g. Pregnancy-safe)"
+            className="h-9 flex-1 rounded-none border border-stone-300 bg-white px-2 text-sm focus:outline-none focus:ring-1 focus:ring-stone-500"
+          />
+          <input
+            type="text"
+            value={newId}
+            onChange={(e) => setNewId(e.target.value)}
+            placeholder="ID (e.g. pregnancySafe)"
+            className="h-9 flex-1 rounded-none border border-stone-300 bg-white px-2 text-sm focus:outline-none focus:ring-1 focus:ring-stone-500"
+          />
+          <Button type="button" variant="outline" onClick={addOption} className="h-9 shrink-0 rounded-none px-4 text-sm">
+            Add option
+          </Button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function ServicePicker({
   services,
+  filterCategories,
   selected,
   onChange,
 }: {
   services: string[];
+  filterCategories?: { id: string; label: string; subcategories: string[] }[];
   selected: string[];
   onChange: (services: string[]) => void;
 }) {
   const [query, setQuery] = useState("");
   const normalizedQuery = query.trim().toLowerCase();
   const serviceSet = useMemo(() => new Set(services), [services]);
-  const groupedServices = serviceGroups
+  const groups = filterCategories ?? serviceGroups.map((g) => ({ id: g.label, label: g.label, subcategories: g.services }));
+  const groupedServices = groups
     .map((group) => ({
-      ...group,
-      services: group.services.filter(
+      label: group.label,
+      services: group.subcategories.filter(
         (service) => serviceSet.has(service) && (!normalizedQuery || service.toLowerCase().includes(normalizedQuery)),
       ),
     }))

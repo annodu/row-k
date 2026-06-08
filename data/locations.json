@@ -1,0 +1,19 @@
+{
+  "regions": [
+    { "id": "all-london", "label": "London" },
+    { "id": "central", "label": "Central London" },
+    { "id": "north", "label": "North London" },
+    { "id": "north-west", "label": "North west London" },
+    { "id": "east", "label": "East London" },
+    { "id": "south-east", "label": "South east London" },
+    { "id": "south-west", "label": "South west London" },
+    { "id": "west", "label": "West London" },
+    { "id": "croydon", "label": "Croydon" },
+    { "id": "kent", "label": "Kent" },
+    { "id": "essex", "label": "Essex" },
+    { "id": "mobile", "label": "Mobile / home service" }
+  ],
+  "londonParentId": "all-london",
+  "londonChildIds": ["central", "north", "north-west", "east", "south-east", "south-west", "west", "croydon"],
+  "standaloneIds": ["kent", "essex", "mobile"]
+}

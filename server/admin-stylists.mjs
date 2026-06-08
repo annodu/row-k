@@ -12,6 +12,8 @@ const freshnessChecksPath = path.resolve(__dirname, "../data/freshness-checks.js
 const discoverySuggestionsPath = path.resolve(__dirname, "../data/discovery-suggestions.json");
 const keywordSearchesPath = path.resolve(__dirname, "../data/keyword-searches.json");
 const filtersPath = path.resolve(__dirname, "../data/filters.json");
+const locationsPath = path.resolve(__dirname, "../data/locations.json");
+const additionalNeedsPath = path.resolve(__dirname, "../data/additional-needs.json");
 const manualIndexPath = path.resolve(__dirname, "../data/manual-salons.json");
 const sessionCookieName = "rowk_admin_session";
 const sessionMaxAgeSeconds = 60 * 60 * 12;
@@ -303,6 +305,7 @@ export function registerAdminStylistRoutes(app) {
       services: normalizeServices(update.services || []),
       hijabiFriendly: update.hijabiFriendly === true,
       canBraidWithoutGel: update.canBraidWithoutGel === true,
+      wheelchairAccessible: update.wheelchairAccessible === true,
       summary: update.summary || currentSalon.summary || "",
       evidence: update.evidence?.length ? update.evidence : currentSalon.evidence || [],
       ...pricingUpdate,
@@ -963,6 +966,51 @@ export function registerAdminStylistRoutes(app) {
     }
   });
 
+  app.get("/api/admin/locations", requireAdmin, async (_req, res) => {
+    try {
+      const data = JSON.parse(await fs.readFile(locationsPath, "utf8"));
+      res.json({ ok: true, regions: data.regions, londonParentId: data.londonParentId, londonChildIds: data.londonChildIds, standaloneIds: data.standaloneIds });
+    } catch {
+      res.status(500).json({ ok: false, error: "Failed to read locations" });
+    }
+  });
+
+  app.post("/api/admin/locations", requireAdmin, async (req, res) => {
+    try {
+      const { regions, londonParentId, londonChildIds, standaloneIds } = req.body;
+      if (!Array.isArray(regions)) return res.status(400).json({ ok: false, error: "Invalid payload" });
+      const data = { regions, londonParentId, londonChildIds, standaloneIds };
+      await fs.writeFile(locationsPath, `${JSON.stringify(data, null, 2)}\n`);
+      await patchLocationsSourceFiles(data);
+      res.json({ ok: true });
+    } catch (err) {
+      console.error("Failed to save locations:", err);
+      res.status(500).json({ ok: false, error: "Failed to save locations" });
+    }
+  });
+
+  app.get("/api/admin/additional-needs", requireAdmin, async (_req, res) => {
+    try {
+      const data = JSON.parse(await fs.readFile(additionalNeedsPath, "utf8"));
+      res.json({ ok: true, options: data.options });
+    } catch {
+      res.status(500).json({ ok: false, error: "Failed to read additional needs" });
+    }
+  });
+
+  app.post("/api/admin/additional-needs", requireAdmin, async (req, res) => {
+    try {
+      const { options } = req.body;
+      if (!Array.isArray(options)) return res.status(400).json({ ok: false, error: "Invalid payload" });
+      await fs.writeFile(additionalNeedsPath, `${JSON.stringify({ options }, null, 2)}\n`);
+      await patchAdditionalNeedsSourceFiles(options);
+      res.json({ ok: true });
+    } catch (err) {
+      console.error("Failed to save additional needs:", err);
+      res.status(500).json({ ok: false, error: "Failed to save additional needs" });
+    }
+  });
+
   app.get("/api/admin/discovery", requireAdmin, async (_req, res) => {
     const store = await readDiscoveryStore();
     res.json({ ok: true, suggestions: store.suggestions, meta: store.meta });
@@ -1261,6 +1309,53 @@ async function patchFilterSourceFiles(categories) {
   const newServiceGroups = serviceGroupLines.join("\n");
   const adminPatched = adminSrc.replace(/const serviceGroups = \[[\s\S]*?\];/, newServiceGroups);
   await fs.writeFile(adminTsxPath, adminPatched);
+}
+
+async function patchLocationsSourceFiles({ regions, londonParentId, londonChildIds, standaloneIds }) {
+  const srcRoot = path.resolve(__dirname, "../src");
+  const appTsxPath = path.resolve(srcRoot, "App.tsx");
+  const appSrc = await fs.readFile(appTsxPath, "utf8");
+
+  // Patch regions array
+  const regionsLines = ["const regions = ["];
+  for (const r of regions) {
+    regionsLines.push(`  { id: ${JSON.stringify(r.id)}, label: ${JSON.stringify(r.label)} },`);
+  }
+  regionsLines.push("] as const;");
+  const newRegions = regionsLines.join("\n");
+
+  // Patch nestedLondonRegionIds
+  const londonChildIdsSorted = (londonChildIds ?? []).filter((id) => id !== londonParentId);
+  const newNestedLondon = `const nestedLondonRegionIds = [${londonChildIdsSorted.map((id) => JSON.stringify(id)).join(", ")}] as const;`;
+
+  // Patch standaloneRegionIds
+  const newStandalone = `const standaloneRegionIds = [${(standaloneIds ?? []).map((id) => JSON.stringify(id)).join(", ")}] as const;`;
+
+  let patched = appSrc.replace(/const regions = \[[\s\S]*?\] as const;/, newRegions);
+  patched = patched.replace(/const nestedLondonRegionIds = \[.*?\] as const;/, newNestedLondon);
+  patched = patched.replace(/const standaloneRegionIds = \[.*?\] as const;/, newStandalone);
+  await fs.writeFile(appTsxPath, patched);
+
+  // Patch admin-stylists.mjs regionOptions
+  const selfPath = path.resolve(__dirname, "admin-stylists.mjs");
+  const selfSrc = await fs.readFile(selfPath, "utf8");
+  const regionOptionLines = ["const regionOptions = ["];
+  for (const r of regions) {
+    regionOptionLines.push(`  { id: ${JSON.stringify(r.id)}, label: ${JSON.stringify(r.label)} },`);
+  }
+  regionOptionLines.push("];");
+  const newRegionOptions = regionOptionLines.join("\n");
+  const selfPatched = selfSrc.replace(/const regionOptions = \[[\s\S]*?\];/, newRegionOptions);
+
+  const newLondonChildIds = `const londonChildAreaIds = new Set([${londonChildIdsSorted.map((id) => JSON.stringify(id)).join(", ")}]);`;
+  const selfPatched2 = selfPatched.replace(/const londonChildAreaIds = new Set\(\[.*?\]\);/, newLondonChildIds);
+  await fs.writeFile(selfPath, selfPatched2);
+}
+
+async function patchAdditionalNeedsSourceFiles(options) {
+  // Additional needs options are display-only labels — no source patching needed unless
+  // new boolean fields are added. For now just persist the JSON.
+  // Future: patch App.tsx toggle handlers if new fields are introduced.
 }
 
 async function readDraftStore() {
@@ -6247,6 +6342,7 @@ function sanitizeDraftUpdate(input) {
     rawServices,
     hijabiFriendly: input.hijabiFriendly === true,
     canBraidWithoutGel: input.canBraidWithoutGel === true,
+    wheelchairAccessible: input.wheelchairAccessible === true,
     priceBand: priceBand || servicePriceBand,
     servicePriceBand,
     packagePriceBand,
@@ -6442,6 +6538,7 @@ function publishedSalonToDraft(salon, fallbackDate = new Date().toISOString()) {
     rawServices: [],
     hijabiFriendly: salon.hijabiFriendly === true,
     canBraidWithoutGel: salon.canBraidWithoutGel === true,
+    wheelchairAccessible: salon.wheelchairAccessible === true,
     priceBand: sanitizePriceBand(salon.priceBand),
     priceSource: sanitizePriceSource(salon.priceSource),
     priceEvidence: toArray(salon.priceEvidence),
@@ -6518,6 +6615,7 @@ function draftToSalon(draft, existingIds) {
     services: normalizeServices(draft.services),
     ...(draft.hijabiFriendly === true ? { hijabiFriendly: true } : {}),
     ...(draft.canBraidWithoutGel === true ? { canBraidWithoutGel: true } : {}),
+    ...(draft.wheelchairAccessible === true ? { wheelchairAccessible: true } : {}),
     ...(sanitizePriceBand(draft.priceBand)
       ? {
           priceBand: sanitizePriceBand(draft.priceBand),

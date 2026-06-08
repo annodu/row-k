@@ -1,4 +1,4 @@
-import { Fragment, type ReactNode, useEffect, useRef, useState } from "react";
+import { Fragment, type ReactNode, useCallback, useEffect, useRef, useState } from "react";
 import { Check, ChevronDown, Globe, Search, X } from "lucide-react";
 
 import { Checkbox } from "@/components/ui/checkbox";
@@ -283,6 +283,58 @@ function sortResults(
   }
 }
 
+function useViewedOnce(onViewed: () => void) {
+  const ref = useRef<HTMLLIElement | null>(null);
+  const firedRef = useRef(false);
+  const callbackRef = useRef(onViewed);
+  callbackRef.current = onViewed;
+
+  const setRef = useCallback((node: HTMLLIElement | null) => {
+    ref.current = node;
+    if (!node) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !firedRef.current) {
+          firedRef.current = true;
+          callbackRef.current();
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.5 },
+    );
+    observer.observe(node);
+  }, []);
+
+  return setRef;
+}
+
+function StylistCardWrapper({
+  result,
+  services,
+  children,
+}: {
+  result: SalonResult;
+  services: string;
+  children: React.ReactNode;
+}) {
+  const setRef = useViewedOnce(() => {
+    trackUmamiEvent("stylist_viewed", {
+      salon: result.name,
+      location: result.areaLabel,
+      services,
+    });
+  });
+
+  return (
+    <li
+      ref={setRef}
+      className="flex w-full flex-col items-start gap-2 border-b border-stone-300 px-0 py-5 text-left last:border-b-0 dark:border-stone-800"
+    >
+      {children}
+    </li>
+  );
+}
+
 function trackUmamiEvent(eventName: string, data?: Record<string, string | number | boolean | null>) {
   window.umami?.track(eventName, data);
 }
@@ -318,6 +370,7 @@ function orderServicesBySelection(
   services: string[],
   selectedCategories: ServiceCategoryId[],
   selectedSubcategories: ServiceSubcategoryId[],
+  catServiceMap: Record<string, string[]> = categoryServiceMap,
 ) {
   if (selectedCategories.length === 0 && selectedSubcategories.length === 0) {
     return services;
@@ -326,7 +379,7 @@ function orderServicesBySelection(
   const prioritizedServices = new Set<string>(selectedSubcategories);
 
   selectedCategories.forEach((categoryId) => {
-    categoryServiceMap[categoryId].forEach((service) => {
+    (catServiceMap[categoryId] ?? []).forEach((service) => {
       prioritizedServices.add(service);
     });
   });
@@ -579,11 +632,41 @@ function ServicesSummary({ services }: { services: string[] }) {
   );
 }
 
+type RuntimeCategory = { id: string; label: string; subcategories: string[] };
+type RuntimeFilterConfig = {
+  categories: RuntimeCategory[];
+  nestedLondonRegionIds: string[];
+  standaloneRegionIds: string[];
+  regions: { id: string; label: string }[];
+};
+
+function buildRuntimeConfig(apiCategories: RuntimeCategory[], apiLocations: { regions: { id: string; label: string }[]; londonChildIds: string[]; standaloneIds: string[] } | null): RuntimeFilterConfig {
+  return {
+    categories: [{ id: "all", label: "All services", subcategories: [] }, ...apiCategories],
+    nestedLondonRegionIds: apiLocations?.londonChildIds ?? [...nestedLondonRegionIds],
+    standaloneRegionIds: apiLocations?.standaloneIds ?? [...standaloneRegionIds],
+    regions: apiLocations?.regions ?? regions.map((r) => ({ id: r.id, label: r.label })),
+  };
+}
+
+const defaultFilterConfig: RuntimeFilterConfig = {
+  categories: [
+    { id: "all", label: "All services", subcategories: [] },
+    ...Object.entries(categoryMap)
+      .filter(([id]) => id !== "all")
+      .map(([id, cat]) => ({ id, label: cat.label, subcategories: cat.subcategories.filter((s) => s !== "all") as string[] })),
+  ],
+  nestedLondonRegionIds: [...nestedLondonRegionIds],
+  standaloneRegionIds: [...standaloneRegionIds],
+  regions: regions.map((r) => ({ id: r.id, label: r.label })),
+};
+
 export default function App() {
   if (window.location.pathname.startsWith("/admin/stylists")) {
     return <AdminApp />;
   }
 
+  const [filterConfig, setFilterConfig] = useState<RuntimeFilterConfig>(defaultFilterConfig);
   const [selectedRegions, setSelectedRegions] = useState<RegionId[]>(["all"]);
   const [selectedCategories, setSelectedCategories] = useState<ServiceCategoryId[]>([]);
   const [selectedSubcategories, setSelectedSubcategories] = useState<ServiceSubcategoryId[]>([]);
@@ -619,6 +702,19 @@ export default function App() {
   const currentSelectedHijabiFriendly = isMobileModalEditing ? draftSelectedHijabiFriendly : selectedHijabiFriendly;
   const currentSelectedCanBraidWithoutGel = isMobileModalEditing ? draftSelectedCanBraidWithoutGel : selectedCanBraidWithoutGel;
   const currentSortOption = isMobileModalEditing ? draftSortOption : sortOption;
+
+  // Runtime filter data from API (falls back to hardcoded values on load)
+  const runtimeCategories = filterConfig.categories;
+  const runtimeNestedLondonIds = filterConfig.nestedLondonRegionIds;
+  const runtimeStandaloneIds = filterConfig.standaloneRegionIds;
+  const runtimeRegions = filterConfig.regions;
+  const runtimeSortedCategoryEntries: [string, { label: string; subcategories: string[] }][] = [
+    ...runtimeCategories.filter((c) => c.id === "all").map((c) => [c.id, { label: c.label, subcategories: ["all", ...c.subcategories] }] as [string, { label: string; subcategories: string[] }]),
+    ...runtimeCategories.filter((c) => c.id !== "all").sort((a, b) => a.label.localeCompare(b.label)).map((c) => [c.id, { label: c.label, subcategories: ["all", ...c.subcategories] }] as [string, { label: string; subcategories: string[] }]),
+  ];
+  const runtimeCategoryServiceMap = Object.fromEntries(
+    runtimeCategories.filter((c) => c.id !== "all").map((c) => [c.id, c.subcategories])
+  );
 
   function syncDraftFiltersFromApplied() {
     setDraftSelectedRegions(selectedRegions);
@@ -807,12 +903,17 @@ export default function App() {
     return currentSelectedCategories.includes(categoryId);
   }
 
-  function categoryHasSelectedSubcategories(categoryId: ServiceCategoryId) {
-    const availableSubcategories = categoryMap[categoryId].subcategories.filter(
-      (subcategory): subcategory is ServiceSubcategoryId => subcategory !== "all",
-    );
+  function getCategorySubcategories(categoryId: string): string[] {
+    return runtimeCategories.find((c) => c.id === categoryId)?.subcategories ?? [];
+  }
 
-    return availableSubcategories.some((subcategory) => currentSelectedSubcategories.includes(subcategory));
+  function getCategoryLabel(categoryId: string): string {
+    return runtimeCategories.find((c) => c.id === categoryId)?.label ?? categoryId;
+  }
+
+  function categoryHasSelectedSubcategories(categoryId: ServiceCategoryId) {
+    const availableSubcategories = getCategorySubcategories(categoryId);
+    return availableSubcategories.some((subcategory) => currentSelectedSubcategories.includes(subcategory as ServiceSubcategoryId));
   }
 
   function toggleCategory(nextCategory: CategoryId) {
@@ -826,7 +927,7 @@ export default function App() {
       return;
     }
 
-    const nextCategoryLabel = categoryMap[nextCategory].label;
+    const nextCategoryLabel = getCategoryLabel(nextCategory);
     const isCurrentlyActive = currentSelectedCategories.includes(nextCategory as ServiceCategoryId);
     trackUmamiEvent("service_filter_selected", {
       selection: nextCategoryLabel,
@@ -836,30 +937,15 @@ export default function App() {
 
     updateCategories((currentCategories) => {
       const isActive = currentCategories.includes(nextCategory);
-      if (isActive) {
-        const nextSubcategories = new Set(
-          categoryMap[nextCategory].subcategories.filter(
-            (subcategory): subcategory is ServiceSubcategoryId => subcategory !== "all",
-          ),
-        );
-
-        updateSubcategories((currentSubcategories) =>
-          currentSubcategories.filter((subcategory) => !nextSubcategories.has(subcategory)),
-        );
-
-        return currentCategories.filter((categoryId) => categoryId !== nextCategory);
-      }
-
-      const nextSubcategories = new Set(
-        categoryMap[nextCategory].subcategories.filter(
-          (subcategory): subcategory is ServiceSubcategoryId => subcategory !== "all",
-        ),
-      );
+      const nextSubcategories = new Set(getCategorySubcategories(nextCategory));
 
       updateSubcategories((currentSubcategories) =>
         currentSubcategories.filter((subcategory) => !nextSubcategories.has(subcategory)),
       );
 
+      if (isActive) {
+        return currentCategories.filter((categoryId) => categoryId !== nextCategory);
+      }
       return [...currentCategories, nextCategory];
     });
   }
@@ -871,10 +957,9 @@ export default function App() {
       type: "subcategory",
     });
 
-    const parentCategory = (Object.entries(categoryMap) as [CategoryId, (typeof categoryMap)[CategoryId]][]).find(
-      ([categoryId, category]) =>
-        categoryId !== "all" && category.subcategories.includes(nextSubcategory as SubcategoryId),
-    )?.[0] as ServiceCategoryId | undefined;
+    const parentCategory = runtimeCategories.find(
+      (cat) => cat.id !== "all" && cat.subcategories.includes(nextSubcategory),
+    )?.id as ServiceCategoryId | undefined;
 
     updateSubcategories((currentSubcategories) => {
       const isCurrentlySelected = currentSubcategories.includes(nextSubcategory);
@@ -883,18 +968,12 @@ export default function App() {
         : [...currentSubcategories, nextSubcategory];
 
       if (parentCategory) {
-        const parentSubcategories = categoryMap[parentCategory].subcategories.filter(
-          (subcategory): subcategory is ServiceSubcategoryId => subcategory !== "all",
-        );
-        const hasSelectedSiblingSubcategory = parentSubcategories.some((subcategory) => nextSubcategories.includes(subcategory));
+        const parentSubcategories = getCategorySubcategories(parentCategory);
+        const hasSelectedSiblingSubcategory = parentSubcategories.some((subcategory) => nextSubcategories.includes(subcategory as ServiceSubcategoryId));
 
         updateCategories((currentCategories) => {
           const categoriesWithoutParent = currentCategories.filter((categoryId) => categoryId !== parentCategory);
-
-          if (hasSelectedSiblingSubcategory) {
-            return categoriesWithoutParent;
-          }
-
+          if (hasSelectedSiblingSubcategory) return categoriesWithoutParent;
           return [...categoriesWithoutParent, parentCategory];
         });
       }
@@ -959,9 +1038,9 @@ export default function App() {
         return currentRegions.includes("london") ? ["all"] : ["london"];
       }
 
-      if (nestedLondonRegionIds.includes(nextRegion as (typeof nestedLondonRegionIds)[number])) {
+      if (runtimeNestedLondonIds.includes(nextRegion)) {
         const currentLondonSubregions = currentRegions.filter((regionId) =>
-          nestedLondonRegionIds.includes(regionId as (typeof nestedLondonRegionIds)[number]),
+          runtimeNestedLondonIds.includes(regionId),
         );
         const isActive = currentLondonSubregions.includes(nextRegion);
         const nextLondonSubregions = isActive
@@ -973,7 +1052,7 @@ export default function App() {
         }
 
         const nonLondonRegions = currentRegions.filter(
-          (regionId) => regionId !== "all" && regionId !== "london" && !nestedLondonRegionIds.includes(regionId as (typeof nestedLondonRegionIds)[number]),
+          (regionId) => regionId !== "all" && regionId !== "london" && !runtimeNestedLondonIds.includes(regionId),
         );
 
         return [...nonLondonRegions, ...nextLondonSubregions];
@@ -1035,6 +1114,26 @@ export default function App() {
         throw new Error(payload.message || "Search failed.");
       }
 
+      const resultCount = (payload.results ?? []).length;
+      const activeServices = [...selectedCategories, ...selectedSubcategories];
+
+      trackUmamiEvent("search_performed", {
+        services: activeServices.join(", ") || "none",
+        location: selectedRegions.join(", ") || "all",
+        result_count: resultCount,
+        hijabi_friendly: selectedHijabiFriendly,
+        no_gel: selectedCanBraidWithoutGel,
+      });
+
+      if (resultCount === 0) {
+        trackUmamiEvent("search_zero_results", {
+          services: activeServices.join(", ") || "none",
+          location: selectedRegions.join(", ") || "all",
+          hijabi_friendly: selectedHijabiFriendly,
+          no_gel: selectedCanBraidWithoutGel,
+        });
+      }
+
       setVisibleResultCount(RESULTS_BATCH_SIZE);
       setResults(payload.results ?? []);
       if (options?.scroll !== false) {
@@ -1051,6 +1150,17 @@ export default function App() {
   useEffect(() => {
     void handleSearch({ scroll: false });
   }, [selectedCategories, selectedSubcategories, selectedRegions, selectedHijabiFriendly, selectedCanBraidWithoutGel]);
+
+  useEffect(() => {
+    fetch("/api/filters")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.ok && Array.isArray(data.categories)) {
+          setFilterConfig(buildRuntimeConfig(data.categories, data.locations ?? null));
+        }
+      })
+      .catch(() => {});
+  }, []);
 
   useEffect(() => {
     const desktopMediaQuery = window.matchMedia("(min-width: 1024px)");
@@ -1170,12 +1280,10 @@ export default function App() {
     return () => desktopMediaQuery.removeListener(syncMobileFilterState);
   }, []);
 
-  const visibleResults = sortedResults.slice(0, visibleResultCount);
-  const selectedServiceCount = sortedCategoryEntries.reduce((count, [id]) => {
-    if (id === "all") {
-      return count;
-    }
 
+  const visibleResults = sortedResults.slice(0, visibleResultCount);
+  const selectedServiceCount = runtimeSortedCategoryEntries.reduce((count, [id]) => {
+    if (id === "all") return count;
     const categoryId = id as ServiceCategoryId;
     return isCategorySelected(categoryId) || categoryHasSelectedSubcategories(categoryId) ? count + 1 : count;
   }, 0);
@@ -1282,13 +1390,12 @@ export default function App() {
             <ul className="flex w-full list-none flex-col items-start">
               {visibleResults.map((result) => {
                 const locationLabels = getLocationLabels(result);
-                const orderedServices = orderServicesBySelection(result.services, selectedCategories, selectedSubcategories);
+                const orderedServices = orderServicesBySelection(result.services, selectedCategories, selectedSubcategories, runtimeCategoryServiceMap);
+
+                const activeServices = [...selectedCategories, ...selectedSubcategories].join(", ") || "none";
 
                 return (
-                  <li
-                    key={result.id}
-                    className="flex w-full flex-col items-start gap-2 border-b border-stone-300 px-0 py-5 text-left last:border-b-0 dark:border-stone-800"
-                  >
+                  <StylistCardWrapper key={result.id} result={result} services={activeServices}>
                     <article className="flex w-full flex-col gap-2.5 sm:grid sm:grid-cols-[minmax(0,1fr)_auto] sm:items-start sm:gap-x-4 sm:gap-y-2.5">
                       <div className="min-w-0">
                         <div className="min-w-0 grow">
@@ -1381,6 +1488,7 @@ export default function App() {
                                 salon: result.name,
                                 platform: result.bookingPlatform,
                                 location: result.areaLabel,
+                                services: [...selectedCategories, ...selectedSubcategories].join(", ") || "none",
                               })
                             }
                             className="inline-flex min-h-[46px] flex-1 items-center justify-center rounded-none bg-stone-950 px-5 py-2 text-[14px] font-medium text-stone-100 transition-colors duration-150 hover:bg-stone-800 active:bg-stone-800 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-stone-300 dark:active:bg-stone-300 sm:h-full sm:min-h-0 sm:flex-none sm:px-6"
@@ -1401,7 +1509,7 @@ export default function App() {
                         ) : null}
                       </div>
                     </article>
-                  </li>
+                  </StylistCardWrapper>
                 );
               })}
             </ul>
@@ -1573,7 +1681,7 @@ export default function App() {
                         </button>
                       ) : null}
                     </div>
-                    {sortedCategoryEntries.filter(([id, item]) => {
+                    {runtimeSortedCategoryEntries.filter(([id, item]) => {
                       if (!serviceSearch.trim()) return true;
                       const q = normalizeServiceSearch(serviceSearch);
                       if (normalizeServiceSearch(item.label).includes(q)) return true;
@@ -1696,9 +1804,9 @@ export default function App() {
                 <AnimatedCollapsible open={locationsOpen}>
                   <div className="space-y-2 pt-3">
                     {(() => {
-                      const allLocations = regions.find((item) => item.id === "all");
-                      const london = regions.find((item) => item.id === "london");
-                      const londonExpanded = isRegionSelected("london") || nestedLondonRegionIds.some((regionId) => isRegionSelected(regionId));
+                      const allLocations = runtimeRegions.find((item) => item.id === "all");
+                      const london = runtimeRegions.find((item) => item.id === "london");
+                      const londonExpanded = isRegionSelected("london") || runtimeNestedLondonIds.some((regionId) => isRegionSelected(regionId));
                       const allLocationsLabelId = allLocations ? makeFilterLabelId("region", allLocations.id) : "";
                       const londonLabelId = london ? makeFilterLabelId("region", london.id) : "";
 
@@ -1750,8 +1858,8 @@ export default function App() {
 
                           {londonExpanded ? (
                             <div className="space-y-2 pl-8">
-                              {nestedLondonRegionIds.map((regionId) => {
-                                const item = regions.find((regionItem) => regionItem.id === regionId);
+                              {runtimeNestedLondonIds.map((regionId) => {
+                                const item = runtimeRegions.find((regionItem) => regionItem.id === regionId);
                                 if (!item) return null;
                                 const regionLabelId = makeFilterLabelId("region", item.id);
 
@@ -1786,8 +1894,8 @@ export default function App() {
                       ) : null;
                     })()}
 
-                    {standaloneRegionIds.map((regionId) => {
-                      const item = regions.find((regionItem) => regionItem.id === regionId);
+                    {runtimeStandaloneIds.map((regionId) => {
+                      const item = runtimeRegions.find((regionItem) => regionItem.id === regionId);
                       if (!item) return null;
                       const regionLabelId = makeFilterLabelId("region", item.id);
 

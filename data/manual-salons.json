@@ -1,11 +1,59 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-06-08T17:02:16.073Z",
-    "count": 716,
+    "updatedAt": "2026-06-08T20:02:51.567Z",
+    "count": 708,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "mochasloungeuk",
+      "name": "Mochasloungeuk",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london",
+        "north"
+      ],
+      "areaLabel": "North London",
+      "neighbourhood": "North London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://mochasloungeuk.as.me/schedule/38f251f8",
+      "websiteUrl": "https://mochasloungeuk.as.me/schedule/38f251f8",
+      "instagramUrl": "https://www.instagram.com/mochasloungeuk/",
+      "services": [
+        "Boho braids / goddess braids",
+        "Twists (with extensions)",
+        "Feed-in braids",
+        "Traditional sew-in / leave out",
+        "Fulani / lemonade braids",
+        "Knotless braids"
+      ],
+      "priceBand": "££",
+      "servicePriceBand": "££",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "Small Boho Bob - £140",
+        "Smedium Boho Bob - £135",
+        "Medium Boho Bob - £125",
+        "Medium Boho Braids - Standard - £130",
+        "Medium Boho Braids - Full - £150",
+        "Smedium Boho Braids - Standard - £155",
+        "Smedium Boho Braids - Full - £175",
+        "Small Boho Braids - Standard - £180"
+      ],
+      "priceCheckedAt": "2026-06-08T20:02:22.591Z",
+      "priceUpdatedAt": "2026-06-08T20:02:22.591Z",
+      "priceConfidence": "high",
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/mochasloungeuk/"
+      ]
+    },
     {
       "id": "jaealexxishair",
       "name": "Jaealexxishair",
@@ -1440,31 +1488,6 @@
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
       "updatedAt": "2026-06-06T17:40:53.652Z"
-    },
-    {
-      "id": "hair-bymahi",
-      "name": "Hair Bymahi",
-      "areaId": "all-london",
-      "areaIds": [
-        "all-london",
-        "south-east"
-      ],
-      "areaLabel": "South east London",
-      "neighbourhood": "South east London London",
-      "postcode": "",
-      "bookingPlatform": "Instagram",
-      "bookingUrl": "https://www.instagram.com/hair_bymahi/",
-      "websiteUrl": "",
-      "instagramUrl": "https://www.instagram.com/hair_bymahi/",
-      "services": [
-        "Bouncy blowout / round brush blow dry",
-        "Silk press"
-      ],
-      "summary": "Admin draft created from stylist intake.",
-      "source": "manual",
-      "evidence": [
-        "Submitted link: https://www.instagram.com/hair_bymahi/"
-      ]
     },
     {
       "id": "duckanddry",
@@ -8308,7 +8331,16 @@
       ],
       "priceCheckedAt": "2026-06-03T23:31:46.149Z",
       "priceConfidence": "high",
-      "priceUpdatedAt": "2026-06-03T23:31:46.150Z"
+      "priceUpdatedAt": "2026-06-03T23:31:46.150Z",
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": true,
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "updatedAt": "2026-06-08T19:12:00.241Z"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -8449,25 +8481,6 @@
         "Editorial / Session styling"
       ],
       "summary": "Manual Instagram-led entry added from your London-wide braids list.",
-      "source": "manual",
-      "evidence": [
-        "User-provided manual addition."
-      ]
-    },
-    {
-      "id": "braids-off-london",
-      "name": "Braids off London",
-      "areaId": "mobile",
-      "areaLabel": "Mobile",
-      "neighbourhood": "Mobile",
-      "postcode": "",
-      "bookingPlatform": "Instagram",
-      "bookingUrl": "https://www.instagram.com/braidsofflondon/",
-      "instagramUrl": "https://www.instagram.com/braidsofflondon/",
-      "services": [
-        "Braid take-down"
-      ],
-      "summary": "Manual Instagram-led entry added from your mobile braids list.",
       "source": "manual",
       "evidence": [
         "User-provided manual addition."
@@ -10438,32 +10451,6 @@
       "instagramUrl": "https://www.instagram.com/dl_bridal/",
       "services": [
         "Bridal"
-      ]
-    },
-    {
-      "id": "london-braid-boss",
-      "name": "London Braid Boss",
-      "areaId": "mobile",
-      "areaLabel": "Mobile",
-      "neighbourhood": "Mobile",
-      "postcode": "",
-      "bookingPlatform": "Instagram",
-      "bookingUrl": "https://www.instagram.com/londonbraidboss/",
-      "instagramUrl": "https://www.instagram.com/londonbraidboss/",
-      "services": [
-        "French curl",
-        "Traditional sew-in / leave out",
-        "Fulani / lemonade braids",
-        "Twists (with extensions)",
-        "Boho braids / goddess braids",
-        "Creative braids",
-        "Wig install",
-        "Sleek ponytail / bun"
-      ],
-      "summary": "Manual entry added from your mobile salon update batch.",
-      "source": "manual",
-      "evidence": [
-        "User-provided manual addition."
       ]
     },
     {
@@ -12570,7 +12557,7 @@
     },
     {
       "id": "grace-n-h",
-      "name": "Grace N H - Fitzrovia",
+      "name": "Grace N H",
       "areaId": "central",
       "areaLabel": "Central",
       "neighbourhood": "Central London",
@@ -18111,13 +18098,29 @@
         "Highlights",
         "Balayage",
         "Wash & blowdry",
-        "Curly cut / wash & go / diffuse"
+        "Curly cut / wash & go / diffuse",
+        "Bouncy blowout / round brush blow dry"
       ],
       "summary": "Manual Instagram-led entry added from your latest salon update batch.",
       "source": "manual",
       "evidence": [
         "User-provided manual addition."
-      ]
+      ],
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "priceBand": "",
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "",
+      "priceSource": "",
+      "priceEvidence": [],
+      "priceCheckedAt": "",
+      "priceUpdatedAt": "",
+      "priceConfidence": "",
+      "updatedAt": "2026-06-08T18:35:47.844Z"
     },
     {
       "id": "michelle-amal-ldn",
@@ -18959,9 +18962,9 @@
       ],
       "id": "noque-salon",
       "name": "Noque Salon",
-      "areaId": "east",
-      "areaLabel": "East",
-      "neighbourhood": "East London",
+      "areaId": "south-east",
+      "areaLabel": "South east London",
+      "neighbourhood": "South east London London",
       "postcode": "",
       "bookingPlatform": ".as.me",
       "bookingUrl": "https://noquesalon.as.me/schedule/2baf9de3",
@@ -18976,7 +18979,9 @@
         "Retwist",
         "Wig cornrows",
         "Sleek ponytail / bun",
-        "Editorial / Session styling"
+        "Editorial / Session styling",
+        "Traditional sew-in / leave out",
+        "Feed-in braids"
       ],
       "priceBand": "££",
       "priceSource": "auto",
@@ -18992,7 +18997,16 @@
       ],
       "priceCheckedAt": "2026-06-03T23:28:00.822Z",
       "priceConfidence": "high",
-      "priceUpdatedAt": "2026-06-03T23:28:00.823Z"
+      "priceUpdatedAt": "2026-06-03T23:28:00.823Z",
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "updatedAt": "2026-06-08T17:35:09.590Z"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -19453,7 +19467,10 @@
         "Trim / hair cut",
         "Sleek ponytail / bun",
         "Half braids, half sew-in",
-        "Keratin treatment"
+        "Keratin treatment",
+        "Wig cornrows",
+        "Highlights",
+        "Balayage"
       ],
       "summary": "Manual entry added from your North London braids, natural hair, and wigs list.",
       "source": "manual",
@@ -19469,7 +19486,17 @@
         "from £38.25",
         "from £25.50",
         "from £34"
-      ]
+      ],
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": true,
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "updatedAt": "2026-06-08T19:38:01.185Z"
     },
     {
       "id": "oyinns-touch",
@@ -21483,27 +21510,6 @@
       "updatedAt": "2026-06-06T12:06:16.672Z"
     },
     {
-      "id": "selbraids",
-      "name": "Selbraids",
-      "areaId": "kent",
-      "areaLabel": "Kent",
-      "neighbourhood": "Kent",
-      "postcode": "",
-      "bookingPlatform": "Instagram",
-      "bookingUrl": "https://www.instagram.com/selbraids/",
-      "instagramUrl": "https://www.instagram.com/selbraids/",
-      "services": [
-        "Knotless braids",
-        "Boho braids / goddess braids",
-        "Twists (with extensions)"
-      ],
-      "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
-      "source": "manual",
-      "evidence": [
-        "User-provided Instagram handle awaiting categorisation."
-      ]
-    },
-    {
       "summary": "Manual entry added from your latest salon update batch.",
       "source": "manual",
       "evidence": [
@@ -22953,33 +22959,6 @@
       ]
     },
     {
-      "id": "studio29-uk",
-      "name": "Studio29 UK",
-      "areaId": "east",
-      "areaIds": [
-        "east",
-        "mobile"
-      ],
-      "areaLabel": "East",
-      "neighbourhood": "East London / Mobile",
-      "postcode": "",
-      "bookingPlatform": "Instagram",
-      "bookingUrl": "https://www.instagram.com/studio29.uk/",
-      "instagramUrl": "https://www.instagram.com/studio29.uk/",
-      "services": [
-        "Boho braids / goddess braids",
-        "French curl",
-        "Creative braids",
-        "Knotless braids"
-      ],
-      "canBraidWithoutGel": true,
-      "summary": "Manual entry added from your East London and mobile braids update batch.",
-      "source": "manual",
-      "evidence": [
-        "User-provided manual addition."
-      ]
-    },
-    {
       "id": "styled-by-ariii",
       "name": "Styled by Ariii",
       "areaId": "south-east",
@@ -23415,27 +23394,6 @@
       "priceCheckedAt": "2026-06-03T23:26:30.981Z",
       "priceConfidence": "high",
       "priceUpdatedAt": "2026-06-03T23:26:30.982Z"
-    },
-    {
-      "id": "styleurlookss",
-      "name": "Styleur Lookss",
-      "areaId": "kent",
-      "areaLabel": "Kent",
-      "neighbourhood": "Kent",
-      "postcode": "",
-      "bookingPlatform": "Instagram",
-      "bookingUrl": "https://www.instagram.com/styleurlookss/",
-      "instagramUrl": "https://www.instagram.com/styleurlookss/",
-      "services": [
-        "Feed-in braids",
-        "Boho braids / goddess braids",
-        "Knotless braids"
-      ],
-      "summary": "Manual entry added from your latest salon update batch.",
-      "source": "manual",
-      "evidence": [
-        "User-provided manual addition."
-      ]
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -24395,28 +24353,6 @@
       "priceUpdatedAt": "2026-06-04T10:32:43.950Z"
     },
     {
-      "summary": "Manual entry added from your latest salon update batch.",
-      "source": "manual",
-      "evidence": [
-        "User-provided manual addition."
-      ],
-      "id": "the-loc-den-ltd",
-      "name": "The Loc Den Ltd",
-      "areaId": "south-east",
-      "areaLabel": "South East",
-      "neighbourhood": "South East London",
-      "postcode": "",
-      "bookingPlatform": "Instagram",
-      "bookingUrl": "https://www.instagram.com/thelocdenltd/",
-      "instagramUrl": "https://www.instagram.com/thelocdenltd/",
-      "services": [
-        "Microlocs / sisterlocs",
-        "Starter locs",
-        "Retwist"
-      ],
-      "hijabiFriendly": true
-    },
-    {
       "id": "the-lush-lab-uk",
       "name": "The Lush Lab UK",
       "areaId": "east",
@@ -25075,26 +25011,6 @@
       "priceCheckedAt": "2026-06-03T23:25:46.207Z",
       "priceConfidence": "high",
       "priceUpdatedAt": "2026-06-03T23:25:46.207Z"
-    },
-    {
-      "summary": "Manual entry added from your latest salon update batch.",
-      "source": "manual",
-      "evidence": [
-        "User-provided manual addition."
-      ],
-      "id": "tle-hair",
-      "name": "TLE Hair",
-      "areaId": "london",
-      "areaLabel": "London",
-      "neighbourhood": "London",
-      "postcode": "",
-      "bookingPlatform": "Instagram",
-      "bookingUrl": "https://www.instagram.com/tlehair/",
-      "instagramUrl": "https://www.instagram.com/tlehair/",
-      "services": [
-        "Wig install",
-        "Traditional sew-in / leave out"
-      ]
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -26112,10 +26028,8 @@
       "instagramUrl": "https://www.instagram.com/zantibloom/",
       "services": [
         "Traditional sew-in / leave out",
-        "LA weave",
         "K-tips / invisible strands",
         "Tape ins",
-        "Microlinks",
         "Knotless braids",
         "Boho braids / goddess braids",
         "Fulani / lemonade braids",
@@ -26125,7 +26039,13 @@
         "Japanese straightening",
         "Moisturising treatment",
         "Silk press",
-        "Wash & blowdry"
+        "Wash & blowdry",
+        "Keratin treatment",
+        "Scalp detox / treatments",
+        "Olaplex treatment",
+        "Flipover / versatile sew-in",
+        "LA weave",
+        "Microlinks"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -26133,10 +26053,10 @@
         "User-provided Instagram handle awaiting categorisation."
       ],
       "priceBand": "££",
-      "servicePriceBand": "££",
-      "packagePriceBand": "£££",
-      "priceIncludesHair": true,
-      "priceComparisonMode": "mixed",
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
       "priceSource": "auto",
       "priceEvidence": [
         "Length Retention programme - £150",
@@ -26160,7 +26080,13 @@
       ],
       "priceCheckedAt": "2026-06-04T01:25:03.256Z",
       "priceConfidence": "high",
-      "priceUpdatedAt": "2026-06-04T01:25:03.258Z"
+      "priceUpdatedAt": "2026-06-04T01:25:03.258Z",
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": true,
+      "updatedAt": "2026-06-08T19:38:38.049Z"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -27936,31 +27862,6 @@
       "priceUpdatedAt": "2026-06-03T23:24:16.021Z"
     },
     {
-      "id": "tkb-beauty",
-      "name": "TKB Beauty",
-      "areaId": "kent",
-      "areaLabel": "Kent",
-      "neighbourhood": "Kent",
-      "postcode": "",
-      "bookingPlatform": "Instagram",
-      "bookingUrl": "https://www.instagram.com/tkb.beauty/",
-      "instagramUrl": "https://www.instagram.com/tkb.beauty/",
-      "services": [
-        "Traditional sew-in / leave out",
-        "Wig install (frontal / closure)",
-        "Sleek ponytail / bun",
-        "Bridal",
-        "Frontal ponytail / bun"
-      ],
-      "summary": "Manual Instagram-led entry enriched from spreadsheet import.",
-      "source": "manual",
-      "evidence": [
-        "Spreadsheet import: Stylists_Database.xlsx.",
-        "Instagram source: https://www.instagram.com/tkb.beauty/",
-        "Original spreadsheet filters: Sew-ins, Wig installs, Ponytails, Bridal"
-      ]
-    },
-    {
       "id": "carterhairco",
       "name": "Carter Hair Co",
       "areaId": "east",
@@ -29260,7 +29161,9 @@
         "Wash & blowdry",
         "Texture release",
         "Silk press",
-        "Editorial / Session styling"
+        "Editorial / Session styling",
+        "Healthy hair plans & consultations",
+        "Crochet"
       ],
       "summary": "Manual Instagram-led entry added from user-provided booking menu.",
       "source": "manual",
@@ -29286,7 +29189,15 @@
       ],
       "priceCheckedAt": "2026-06-03T23:24:16.019Z",
       "priceConfidence": "high",
-      "priceUpdatedAt": "2026-06-03T23:24:16.021Z"
+      "priceUpdatedAt": "2026-06-03T23:24:16.021Z",
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "canBraidWithoutGel": false,
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "updatedAt": "2026-06-08T19:38:21.717Z"
     },
     {
       "id": "dkuk-salon",

@@ -1,0 +1,16 @@
+{
+  "options": [
+    {
+      "id": "hijabiFriendly",
+      "label": "Hijabi-friendly"
+    },
+    {
+      "id": "canBraidWithoutGel",
+      "label": "Can braid without gel"
+    },
+    {
+      "id": "wheelchair-access",
+      "label": "Wheelchair accessible"
+    }
+  ]
+}

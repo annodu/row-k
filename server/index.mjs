@@ -35,6 +35,27 @@ app.get("/api/index-status", async (_req, res) => {
 
 registerAdminStylistRoutes(app);
 
+app.get("/api/filters", async (_req, res) => {
+  try {
+    const filtersPath = path.resolve(__dirname, "../data/filters.json");
+    const locationsPath = path.resolve(__dirname, "../data/locations.json");
+    const additionalNeedsPath = path.resolve(__dirname, "../data/additional-needs.json");
+    const [filtersRaw, locationsRaw, additionalNeedsRaw] = await Promise.all([
+      fs.promises.readFile(filtersPath, "utf8").catch(() => null),
+      fs.promises.readFile(locationsPath, "utf8").catch(() => null),
+      fs.promises.readFile(additionalNeedsPath, "utf8").catch(() => null),
+    ]);
+    res.json({
+      ok: true,
+      categories: filtersRaw ? JSON.parse(filtersRaw).categories : null,
+      locations: locationsRaw ? JSON.parse(locationsRaw) : null,
+      additionalNeeds: additionalNeedsRaw ? JSON.parse(additionalNeedsRaw).options : null,
+    });
+  } catch {
+    res.status(500).json({ ok: false });
+  }
+});
+
 app.post("/api/search", async (req, res) => {
   const categories = Array.isArray(req.body?.categories)
     ? req.body.categories.map((category) => String(category)).filter(Boolean)
