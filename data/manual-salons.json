@@ -1,7 +1,7 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-06-08T16:57:15.650Z",
+    "updatedAt": "2026-06-08T17:02:16.073Z",
     "count": 716,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
@@ -25276,7 +25276,6 @@
         "Balayage",
         "Full head colour",
         "Highlights",
-        "Editorial / Session styling",
         "Clip ins (+ silk press)",
         "Butterfly locs",
         "Faux locs",
@@ -25299,7 +25298,9 @@
         "Bouncy blowout / round brush blow dry",
         "Trim / hair cut",
         "Wash & blowdry",
-        "U-part wig install"
+        "U-part wig install",
+        "Healthy hair plans & consultations",
+        "Sew in / extensions blowdry"
       ],
       "priceBand": "££",
       "priceSource": "auto",
@@ -25324,7 +25325,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-06-06T11:22:24.431Z"
+      "updatedAt": "2026-06-08T17:02:16.073Z"
     },
     {
       "id": "tribalbraidsandbeautysalon",
