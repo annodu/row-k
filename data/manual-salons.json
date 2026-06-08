@@ -1,7 +1,7 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-06-08T12:57:16.542Z",
+    "updatedAt": "2026-06-08T16:57:15.650Z",
     "count": 716,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
@@ -14484,12 +14484,8 @@
       "id": "haus-of-shee",
       "name": "Haus of Shee",
       "areaId": "all-london",
-      "areaIds": [
-        "all-london",
-        "mobile"
-      ],
       "areaLabel": "London",
-      "neighbourhood": "London and Mobile",
+      "neighbourhood": "London London",
       "postcode": "",
       "bookingPlatform": "Instagram",
       "bookingUrl": "https://www.instagram.com/hausofshee/",
@@ -14502,7 +14498,20 @@
         "Editorial / Session styling"
       ],
       "hijabiFriendly": false,
-      "canBraidWithoutGel": false
+      "canBraidWithoutGel": false,
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "priceBand": "",
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "",
+      "priceSource": "",
+      "priceEvidence": [],
+      "priceCheckedAt": "",
+      "priceUpdatedAt": "",
+      "priceConfidence": "",
+      "updatedAt": "2026-06-08T16:57:15.650Z"
     },
     {
       "id": "haute-glam-hair",
