@@ -51,8 +51,8 @@ const categoryMap = {
 const categoryServiceMap = {
   "braiding-services": ["Boho braids / goddess braids","Braid take-down","Box braids","Crochet","Creative braids","Feed-in braids","French curl","Fulani / lemonade braids","Half braids, half sew-in","Knotless braids","Miracle knots","Microbraids / x-small braids","Pre-parting","Stitch braids","Twists (with extensions)"],
   "colour-services": ["Balayage","Full head colour","Highlights","Wig colouring / bundle colouring"],
-  "bridal-services": [],
-  "editorial-services": [],
+  "bridal-services": ["Bridal"],
+  "editorial-services": ["Editorial / Session styling"],
   "extension-services": ["Clip ins (+ silk press)","K-tips / invisible strands","LA weave / microlinks wefts / braidless sew in","I-tips / microlinks strands","Tape ins"],
   "locs-services": ["Butterfly locs","Faux locs","Microlocs / sisterlocs","Retwist","Starter locs"],
   "sew-in-weave": ["Closure sew-in / closure behind the hairline","Flipover / Versatile sew-in","Frontal sew-in","Hybrid sew in (tapes + sew in)","Pixie wig / weave install","Quick weave","Sew-in take-down","Tracks (+ silk press) / partial / invisible sew-in","Traditional sew-in / leave out"],
@@ -1464,7 +1464,7 @@ export default function App() {
                                 className="inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-none bg-transparent px-4 py-2 text-[14px] font-medium text-stone-950 transition-colors duration-150 hover:bg-stone-200 active:bg-stone-200 dark:bg-transparent dark:text-stone-100 dark:hover:bg-stone-800 dark:active:bg-stone-800 sm:hidden"
                               >
                                 <InstagramIcon className="size-4" />
-                                <span className="sr-only">{result.name} instagram - opens in a new tab</span>
+                                <span className="sr-only">Go to {result.name} Instagram - opens in a new tab</span>
                               </a>
                             ) : null}
                           </div>
@@ -1491,7 +1491,7 @@ export default function App() {
                             className="hidden min-h-[46px] items-center justify-center gap-2 rounded-none bg-transparent px-4 py-2 text-[14px] font-medium text-stone-950 transition-colors duration-150 hover:bg-stone-200 dark:bg-transparent dark:text-stone-100 dark:hover:bg-stone-800 sm:inline-flex sm:h-full sm:min-h-0"
                           >
                             <InstagramIcon className="size-4" />
-                            <span className="sr-only">{result.name} instagram - opens in a new tab</span>
+                            <span className="sr-only">Go to {result.name} Instagram - opens in a new tab</span>
                           </a>
                         ) : null}
                         {result.bookingPlatform !== "Instagram" ? (
@@ -1509,8 +1509,8 @@ export default function App() {
                             }
                             className="inline-flex min-h-[46px] flex-1 items-center justify-center rounded-none bg-stone-950 px-5 py-2 text-[14px] font-medium text-stone-100 transition-colors duration-150 hover:bg-stone-800 active:bg-stone-800 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-stone-300 dark:active:bg-stone-300 sm:h-full sm:min-h-0 sm:flex-none sm:px-6"
                           >
-                            Book
-                            <span className="sr-only"> - {result.name} - opens in a new tab</span>
+                            <span aria-hidden="true">Book</span>
+                            <span className="sr-only">Book {result.name} - opens in a new tab</span>
                           </a>
                         ) : null}
                         {result.websiteUrl && result.websiteUrl !== result.bookingUrl ? (

@@ -9,8 +9,8 @@ const manualIndexPath = path.resolve(__dirname, "../data/manual-salons.json");
 export const categoryMap = {
   "braiding-services": ["Boho braids / goddess braids","Braid take-down","Box braids","Crochet","Creative braids","Feed-in braids","French curl","Fulani / lemonade braids","Half braids, half sew-in","Knotless braids","Miracle knots","Microbraids / x-small braids","Pre-parting","Stitch braids","Twists (with extensions)"],
   "colour-services": ["Balayage","Full head colour","Highlights","Wig colouring / bundle colouring"],
-  "bridal-services": [],
-  "editorial-services": [],
+  "bridal-services": ["Bridal"],
+  "editorial-services": ["Editorial / Session styling"],
   "extension-services": ["Clip ins (+ silk press)","K-tips / invisible strands","LA weave / microlinks wefts / braidless sew in","I-tips / microlinks strands","Tape ins"],
   "locs-services": ["Butterfly locs","Faux locs","Microlocs / sisterlocs","Retwist","Starter locs"],
   "sew-in-weave": ["Closure sew-in / closure behind the hairline","Flipover / Versatile sew-in","Frontal sew-in","Hybrid sew in (tapes + sew in)","Pixie wig / weave install","Quick weave","Sew-in take-down","Tracks (+ silk press) / partial / invisible sew-in","Traditional sew-in / leave out"],
