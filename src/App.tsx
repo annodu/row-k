@@ -642,11 +642,16 @@ type RuntimeFilterConfig = {
 };
 
 function buildRuntimeConfig(apiCategories: RuntimeCategory[], apiLocations: { regions: { id: string; label: string }[]; londonChildIds: string[]; standaloneIds: string[] } | null): RuntimeFilterConfig {
+  const normaliseRegionId = (id: string) => id === "all-london" ? "london" : id;
+  const normalisedRegions = apiLocations?.regions.map((r) => ({ ...r, id: normaliseRegionId(r.id) }));
+  const regionsWithAll = normalisedRegions
+    ? [{ id: "all", label: "All locations" }, ...normalisedRegions.filter((r) => r.id !== "all")]
+    : null;
   return {
     categories: [{ id: "all", label: "All services", subcategories: [] }, ...apiCategories],
     nestedLondonRegionIds: apiLocations?.londonChildIds ?? [...nestedLondonRegionIds],
     standaloneRegionIds: apiLocations?.standaloneIds ?? [...standaloneRegionIds],
-    regions: apiLocations?.regions ?? regions.map((r) => ({ id: r.id, label: r.label })),
+    regions: regionsWithAll ?? regions.map((r) => ({ id: r.id, label: r.label })),
   };
 }
 

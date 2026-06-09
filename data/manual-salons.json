@@ -1,8 +1,8 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-06-09T11:40:54.153Z",
-    "count": 710,
+    "updatedAt": "2026-06-09T20:16:15.597Z",
+    "count": 709,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
@@ -975,9 +975,9 @@
     {
       "id": "slayybychanny",
       "name": "Slayybychanny",
-      "areaId": "south-east",
-      "areaLabel": "South east London",
-      "neighbourhood": "South east London London",
+      "areaId": "all-london",
+      "areaLabel": "South west London",
+      "neighbourhood": "South west London London",
       "postcode": "",
       "bookingPlatform": "Acuity",
       "bookingUrl": "https://slayybychanny.as.me/schedule/513f0c1f",
@@ -987,14 +987,15 @@
         "Updo",
         "Frontal sew-in",
         "Traditional sew-in / leave out",
-        "Flipover / versatile sew-in",
         "Half up half down",
         "Closure sew-in / closure behind the hairline",
         "Wig install (frontal / closure)",
-        "Wig cornrows"
+        "Wig cornrows",
+        "Closure sew-in",
+        "Flipover / Versatile sew-in"
       ],
       "priceBand": "£",
-      "servicePriceBand": "£",
+      "servicePriceBand": "",
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
@@ -1016,7 +1017,17 @@
       "source": "manual",
       "evidence": [
         "Submitted link: https://www.instagram.com/slayybychanny/"
-      ]
+      ],
+      "areaIds": [
+        "all-london",
+        "south-west"
+      ],
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "updatedAt": "2026-06-09T19:47:01.950Z"
     },
     {
       "id": "strandsbyangels",
@@ -7804,29 +7815,32 @@
         "Texture release",
         "Moisturising treatment",
         "Keratin treatment",
-        "Cornrows / Twists / Underwig cornrows",
-        "Braid take-down",
-        "Knotless braids",
         "Trim / hair cut",
         "Wash & blowdry",
         "Olaplex treatment",
-        "Silk press",
-        "Sleek ponytail / bun",
-        "Relaxer / texturiser",
-        "Closure sew-in / closure behind the hairline",
-        "Frontal sew-in",
-        "Traditional sew-in / leave out",
-        "Half up half down",
-        "Quick weave",
-        "Wig install",
-        "Custom wig",
-        "Tracks / Silk press + tracks / Invisible sew-in"
+        "Silk press"
       ],
       "summary": "Manual entry added from your latest salon update batch.",
       "source": "manual",
       "evidence": [
         "User-provided manual addition."
-      ]
+      ],
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "priceBand": "",
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "",
+      "priceSource": "",
+      "priceEvidence": [],
+      "priceCheckedAt": "",
+      "priceUpdatedAt": "",
+      "priceConfidence": "",
+      "updatedAt": "2026-06-09T20:10:26.637Z"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -8272,14 +8286,15 @@
       "neighbourhood": "South East London",
       "postcode": "",
       "bookingPlatform": "Direct website",
-      "bookingUrl": "https://bookings.gettimely.com/braidbarldn/waitlist/join/services?locationId=286159",
+      "bookingUrl": "https://braidbarldn.com/pages/book-appointment",
       "instagramUrl": "https://www.instagram.com/braidbarldn/",
       "services": [
         "Traditional sew-in / leave out",
         "Knotless braids",
         "Boho braids / goddess braids",
         "Stitch braids",
-        "Half up half down"
+        "Half up half down",
+        "Full head colour"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -8293,7 +8308,17 @@
       ],
       "priceCheckedAt": "2026-06-03T13:28:27.805Z",
       "priceUpdatedAt": "2026-06-03T14:02:58.502Z",
-      "priceConfidence": "low"
+      "priceConfidence": "low",
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "updatedAt": "2026-06-09T19:40:17.322Z"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -12879,10 +12904,12 @@
         "Retwist",
         "Wig install (frontal / closure)",
         "Traditional sew-in / leave out",
-        "Half braids, half sew-in",
-        "Flipover / versatile sew-in",
         "Closure sew-in / closure behind the hairline",
-        "Half up half down"
+        "Wig cornrows",
+        "Closure sew-in",
+        "Half braids, half sew-in",
+        "Half up half down",
+        "Flipover / Versatile sew-in"
       ],
       "priceBand": "£",
       "priceSource": "auto",
@@ -12898,7 +12925,17 @@
       ],
       "priceCheckedAt": "2026-06-03T23:30:16.251Z",
       "priceConfidence": "high",
-      "priceUpdatedAt": "2026-06-03T23:30:16.252Z"
+      "priceUpdatedAt": "2026-06-03T23:30:16.252Z",
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "updatedAt": "2026-06-09T19:52:13.006Z"
     },
     {
       "id": "hair-305-ltd",
@@ -14268,8 +14305,8 @@
       "areaLabel": "South West",
       "neighbourhood": "South West London",
       "postcode": "",
-      "bookingPlatform": "Booksy",
-      "bookingUrl": "https://booksy.com/en-gb/158286_hairspace-ldn_hair-salon_311817_london#ba_s=seo?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnf-9rF_kLQ6g-GBz7C81VXofvhAyX2sEbhTcz1XBG2d_hs7og_7loaJhW6sM_aem_r2skpDDNVOe0n7858PW0NA",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/hairspaceldn/",
       "instagramUrl": "https://www.instagram.com/hairspaceldn/",
       "services": [
         "Knotless braids",
@@ -14284,7 +14321,9 @@
         "Fulani / lemonade braids",
         "Faux locs",
         "Butterfly locs",
-        "Retwist"
+        "Retwist",
+        "Closure sew-in",
+        "Wig cornrows"
       ],
       "summary": "Manual entry added from your latest salon update batch.",
       "source": "manual",
@@ -14305,7 +14344,17 @@
       ],
       "priceCheckedAt": "2026-06-03T23:29:31.146Z",
       "priceConfidence": "high",
-      "priceUpdatedAt": "2026-06-03T23:29:31.147Z"
+      "priceUpdatedAt": "2026-06-03T23:29:31.147Z",
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "updatedAt": "2026-06-09T20:04:49.762Z"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -14683,17 +14732,18 @@
         "Half up half down",
         "Knotless braids",
         "Feed-in braids",
-        "Cornrows / Twists / Underwig cornrows",
+        "Wig cornrows",
         "Trim / hair cut",
         "Full head colour",
         "Wash & blowdry",
         "Texture release",
-        "LA weave",
         "Closure sew-in / closure behind the hairline",
-        "Wig install",
+        "Wig install (frontal / closure)",
         "Custom wig",
         "Bridal",
-        "Healthy hair plans & consultations"
+        "Healthy hair plans & consultations",
+        "Japanese head spa",
+        "LA weave"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -14714,7 +14764,17 @@
       ],
       "priceCheckedAt": "2026-06-04T13:05:56.421Z",
       "priceConfidence": "high",
-      "priceUpdatedAt": "2026-06-04T13:05:56.423Z"
+      "priceUpdatedAt": "2026-06-04T13:05:56.423Z",
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "updatedAt": "2026-06-09T20:05:57.085Z"
     },
     {
       "id": "hiikuss-hair",
@@ -15272,13 +15332,10 @@
         "Keratin treatment",
         "Texture release",
         "Trim / hair cut",
-        "Sleek ponytail / bun",
-        "Half up half down",
         "Tracks (+ silk press) / partial / invisible sew-in",
-        "Updo",
         "Traditional sew-in / leave out",
-        "Flipover / versatile sew-in",
-        "U-part wig install"
+        "U-part wig install",
+        "Flipover / Versatile sew-in"
       ],
       "summary": "Manual entry added from your South East London list. Notes mention pixie cut, sew-in, relaxer, keratin, and texture release.",
       "source": "manual",
@@ -15300,7 +15357,17 @@
       ],
       "priceCheckedAt": "2026-06-03T23:29:31.146Z",
       "priceConfidence": "high",
-      "priceUpdatedAt": "2026-06-03T23:29:31.147Z"
+      "priceUpdatedAt": "2026-06-03T23:29:31.147Z",
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "updatedAt": "2026-06-09T19:57:43.502Z"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -15859,18 +15926,14 @@
         "Texture release",
         "Tape ins",
         "Wash & blowdry",
-        "Twist out / flexi rod",
         "Trim / hair cut",
-        "Knotless braids",
         "Relaxer / texturiser",
-        "French curl",
         "Traditional sew-in / leave out",
-        "Half up half down",
+        "Moisturising treatment",
+        "Roller set",
+        "Wig cornrows",
         "Full head colour",
-        "Balayage",
-        "Flipover / versatile sew-in",
-        "Clip ins (+ silk press)",
-        "Roller set"
+        "Scalp detox / treatments"
       ],
       "summary": "Manual entry added from your latest salon update batch.",
       "source": "manual",
@@ -15879,7 +15942,7 @@
       ],
       "hijabiFriendly": true,
       "tiktokUrl": "",
-      "updatedAt": "2026-06-06T11:44:36.391Z",
+      "updatedAt": "2026-06-09T19:33:17.666Z",
       "priceBand": "£££",
       "priceSource": "auto",
       "priceEvidence": [
@@ -15894,7 +15957,14 @@
       ],
       "priceCheckedAt": "2026-06-03T23:28:45.876Z",
       "priceConfidence": "high",
-      "priceUpdatedAt": "2026-06-03T23:28:45.876Z"
+      "priceUpdatedAt": "2026-06-03T23:28:45.876Z",
+      "websiteUrl": "",
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only"
     },
     {
       "id": "jluxe-hair",
@@ -16734,11 +16804,8 @@
         "Fulani / lemonade braids",
         "Knotless braids",
         "Boho braids / goddess braids",
-        "Sleek ponytail / bun",
         "Stitch braids",
-        "Half up half down",
-        "Half braids, half sew-in",
-        "Traditional sew-in / leave out"
+        "Half braids, half sew-in"
       ],
       "priceBand": "££",
       "priceSource": "auto",
@@ -16762,7 +16829,13 @@
       "tiktokUrl": "",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
-      "updatedAt": "2026-06-03T16:10:24.161Z"
+      "updatedAt": "2026-06-09T19:46:06.838Z",
+      "websiteUrl": "",
+      "wheelchairAccessible": false,
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -23177,11 +23250,7 @@
         "French curl",
         "Stitch braids",
         "Fulani / lemonade braids",
-        "Wig cornrows",
-        "Feed-in braids",
-        "Sleek ponytail / bun",
-        "Half up half down",
-        "Flipover / versatile sew-in"
+        "Feed-in braids"
       ],
       "summary": "Manual Instagram-led entry added from your latest salon update batch.",
       "source": "manual",
@@ -23206,7 +23275,13 @@
       "priceCheckedAt": "2026-06-05T00:07:51.351Z",
       "priceUpdatedAt": "2026-06-05T00:07:51.351Z",
       "priceConfidence": "high",
-      "updatedAt": "2026-06-05T00:07:57.747Z"
+      "updatedAt": "2026-06-09T19:50:01.128Z",
+      "websiteUrl": "",
+      "wheelchairAccessible": false,
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -27157,9 +27232,9 @@
     {
       "id": "ksleek",
       "name": "Ksleek",
-      "areaId": "west",
-      "areaLabel": "West",
-      "neighbourhood": "West",
+      "areaId": "all-london",
+      "areaLabel": "South east London",
+      "neighbourhood": "South east London London",
       "postcode": "",
       "bookingPlatform": "Direct website",
       "bookingUrl": "https://app.acuityscheduling.com/schedule.php?owner=16265692",
@@ -27169,13 +27244,15 @@
         "Custom wig",
         "Wig install (frontal / closure)",
         "Closure sew-in / closure behind the hairline",
-        "Flipover / versatile sew-in",
         "Frontal ponytail / bun",
         "Sleek ponytail / bun",
         "Half up half down",
         "Feed-in braids",
         "Frontal sew-in",
-        "Updo"
+        "Updo",
+        "Closure sew-in",
+        "Tracks (+ silk press) / partial / invisible sew-in",
+        "Flipover / Versatile sew-in"
       ],
       "summary": "Manual Instagram-led entry enriched from spreadsheet import.",
       "source": "manual",
@@ -27198,7 +27275,21 @@
       ],
       "priceCheckedAt": "2026-06-03T23:25:00.926Z",
       "priceConfidence": "high",
-      "priceUpdatedAt": "2026-06-03T23:25:00.928Z"
+      "priceUpdatedAt": "2026-06-03T23:25:00.928Z",
+      "areaIds": [
+        "all-london",
+        "south-east"
+      ],
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "updatedAt": "2026-06-09T20:07:26.961Z"
     },
     {
       "id": "atanouk",
@@ -28705,49 +28796,6 @@
         "Sew in maintenance - £70",
         "Tape in maintenance - £90",
         "Deluxe olaplex treatment - £85"
-      ],
-      "priceCheckedAt": "2026-06-03T23:24:16.019Z",
-      "priceConfidence": "high",
-      "priceUpdatedAt": "2026-06-03T23:24:16.021Z"
-    },
-    {
-      "id": "kapri-sleeks",
-      "name": "Kapri Sleeks",
-      "areaId": "north",
-      "areaLabel": "North",
-      "neighbourhood": "North London",
-      "postcode": "",
-      "bookingPlatform": ".as.me",
-      "bookingUrl": "https://kaprisleeks.as.me/schedule/9c3041e7",
-      "instagramUrl": "https://www.instagram.com/kaprisleeks/",
-      "services": [
-        "Wig cornrows",
-        "U-part wig install",
-        "Quick weave",
-        "Half up half down",
-        "Traditional sew-in / leave out",
-        "Flipover / versatile sew-in"
-      ],
-      "summary": "Manual Instagram-led entry added from user-provided booking menu.",
-      "source": "manual",
-      "evidence": [
-        "User-provided manual addition on 2026-05-14.",
-        "Instagram source: https://www.instagram.com/kaprisleeks/",
-        "Booking source: https://kaprisleeks.as.me/schedule/9c3041e7",
-        "User-provided location: North London.",
-        "User-provided service menu includes sew-in maintenance, under-wig cornrows, recreation hairstyles, U-part/half wigs, side/flipover/half up half down quick weaves, middle/side/flipover sew-ins, half up half down sew-in, versatile flipover, and two-part sew-in."
-      ],
-      "priceBand": "£",
-      "priceSource": "auto",
-      "priceEvidence": [
-        "Sew-In Maintanance - £30",
-        "Under Wig Cornrows - £20",
-        "Recreation Hairstyles - £30",
-        "U Part/Half Wigs - £45",
-        "Side Part Quickweave - £45",
-        "Flip Over Quickweave - £45",
-        "Half Up Half Down Quickweave - £45",
-        "Middle Part Sew-In - £45"
       ],
       "priceCheckedAt": "2026-06-03T23:24:16.019Z",
       "priceConfidence": "high",
