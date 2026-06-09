@@ -9,19 +9,20 @@ const manualIndexPath = path.resolve(__dirname, "../data/manual-salons.json");
 export const categoryMap = {
   "braiding-services": ["Boho braids / goddess braids","Braid take-down","Box braids","Crochet","Creative braids","Feed-in braids","French curl","Fulani / lemonade braids","Half braids, half sew-in","Knotless braids","Miracle knots","Microbraids / x-small braids","Pre-parting","Stitch braids","Twists (with extensions)"],
   "colour-services": ["Balayage","Full head colour","Highlights","Wig colouring / bundle colouring"],
-  "bridal-services": ["Bridal"],
-  "editorial-services": ["Editorial / Session styling"],
+  "bridal-services": [],
+  "editorial-services": [],
   "extension-services": ["Clip ins (+ silk press)","K-tips / invisible strands","LA weave / microlinks wefts / braidless sew in","I-tips / microlinks strands","Tape ins"],
   "locs-services": ["Butterfly locs","Faux locs","Microlocs / sisterlocs","Retwist","Starter locs"],
-  "sew-in-weave": ["Closure sew-in","Flipover / versatile sew-in","Frontal sew-in","Hybrid sew in (tapes + sew in)","Pixie wig / weave install","Quick weave","Sew-in take-down","Tracks (+ silk press) / partial / invisible sew-in","Traditional sew-in / leave out"],
+  "sew-in-weave": ["Closure sew-in / closure behind the hairline","Flipover / Versatile sew-in","Frontal sew-in","Hybrid sew in (tapes + sew in)","Pixie wig / weave install","Quick weave","Sew-in take-down","Tracks (+ silk press) / partial / invisible sew-in","Traditional sew-in / leave out"],
   "styling-services": ["Sew in / extensions blowdry","Frontal ponytail / bun","Half up half down","Pixie / finger waves","Sleek ponytail / bun","Updo"],
   "straightening-treatments": ["Hair botox","Japanese straightening","K-18 treatment","Keratin treatment","Moisturising treatment","Olaplex treatment","Relaxer / texturiser","Texture release"],
-  "natural-hair-services": ["Wig cornrows","Curly cut / wash & go / diffuse","Silk press","Bouncy blowout / round brush blow dry","Trim / hair cut","Roller set","Twist out / flexi rod","Wash & blowdry","Japanese head spa","Scalp detox / treatments"],
+  "natural-hair-services": ["Wig cornrows","Curly cut / wash & go / diffuse","Silk press","Bouncy blowout / Round Brush Blow dry","Trim / hair cut","Roller set","Twist out / flexi rod","Wash & blowdry","Japanese head spa","Scalp detox / treatments"],
   "natural-hair-scalp-health": ["Healthy hair plans & consultations","Natural hair coaches / educators","Trichology / scalp analysis"],
   "wig-services": ["Custom wig","Pixie wig / weave install","U-part wig install","Wig colouring / bundle colouring","Wig install (frontal / closure)","Wig blowdry"],
 };
 
 export const serviceAliases = {
+  "Closure sew-in": "Closure sew-in / closure behind the hairline",
   "Curly cut / wash & go": "Curly cut / wash & go / diffuse",
   "Custom made frontal unit": "Custom wig",
   "Custom made closure unit": "Custom wig",
@@ -443,6 +444,7 @@ export async function searchSalons({
   regions = ["all"],
   hijabiFriendly = false,
   canBraidWithoutGel = false,
+  wheelchairAccessible = false,
 } = {}) {
   const index = await readSalonIndex();
   const normalizedRegions = Array.isArray(regions) && regions.length > 0 ? regions : ["all"];
@@ -457,7 +459,8 @@ export async function searchSalons({
         matchesRegion(salon, normalizedRegions) &&
         matchesServiceSelection(salon, normalizedCategories, normalizedSubcategories) &&
         matchesHijabiFriendly(salon, hijabiFriendly) &&
-        matchesCanBraidWithoutGel(salon, canBraidWithoutGel),
+        matchesCanBraidWithoutGel(salon, canBraidWithoutGel) &&
+        matchesWheelchairAccessible(salon, wheelchairAccessible),
     )
     .sort(compareRecentlyAdded);
 
@@ -538,6 +541,14 @@ function matchesCanBraidWithoutGel(salon, canBraidWithoutGel) {
   }
 
   return salon.canBraidWithoutGel === true;
+}
+
+function matchesWheelchairAccessible(salon, wheelchairAccessible) {
+  if (!wheelchairAccessible) {
+    return true;
+  }
+
+  return salon.wheelchairAccessible === true;
 }
 
 function compareSalons(left, right) {

@@ -40,10 +40,10 @@ const categoryMap = {
   "editorial-services": { label: "Editorial / Session styling", subcategories: ["all"] },
   "extension-services": { label: "Extensions", subcategories: ["all","Clip ins (+ silk press)","K-tips / invisible strands","LA weave / microlinks wefts / braidless sew in","I-tips / microlinks strands","Tape ins"] },
   "locs-services": { label: "Locs", subcategories: ["all","Butterfly locs","Faux locs","Microlocs / sisterlocs","Retwist","Starter locs"] },
-  "sew-in-weave": { label: "Sew in / weave", subcategories: ["all","Closure sew-in","Flipover / versatile sew-in","Frontal sew-in","Hybrid sew in (tapes + sew in)","Pixie wig / weave install","Quick weave","Sew-in take-down","Tracks (+ silk press) / partial / invisible sew-in","Traditional sew-in / leave out"] },
+  "sew-in-weave": { label: "Sew in / weave", subcategories: ["all","Closure sew-in / closure behind the hairline","Flipover / Versatile sew-in","Frontal sew-in","Hybrid sew in (tapes + sew in)","Pixie wig / weave install","Quick weave","Sew-in take-down","Tracks (+ silk press) / partial / invisible sew-in","Traditional sew-in / leave out"] },
   "styling-services": { label: "Styling (sew in / frontal / relaxer)", subcategories: ["all","Sew in / extensions blowdry","Frontal ponytail / bun","Half up half down","Pixie / finger waves","Sleek ponytail / bun","Updo"] },
   "straightening-treatments": { label: "Treatments", subcategories: ["all","Hair botox","Japanese straightening","K-18 treatment","Keratin treatment","Moisturising treatment","Olaplex treatment","Relaxer / texturiser","Texture release"] },
-  "natural-hair-services": { label: "Natural hair washing & styling", subcategories: ["all","Wig cornrows","Curly cut / wash & go / diffuse","Silk press","Bouncy blowout / round brush blow dry","Trim / hair cut","Roller set","Twist out / flexi rod","Wash & blowdry","Japanese head spa","Scalp detox / treatments"] },
+  "natural-hair-services": { label: "Natural hair washing & styling", subcategories: ["all","Wig cornrows","Curly cut / wash & go / diffuse","Silk press","Bouncy blowout / Round Brush Blow dry","Trim / hair cut","Roller set","Twist out / flexi rod","Wash & blowdry","Japanese head spa","Scalp detox / treatments"] },
   "natural-hair-scalp-health": { label: "Natural hair health & trichology", subcategories: ["all","Healthy hair plans & consultations","Natural hair coaches / educators","Trichology / scalp analysis"] },
   "wig-services": { label: "Wigs", subcategories: ["all","Custom wig","Pixie wig / weave install","U-part wig install","Wig colouring / bundle colouring","Wig install (frontal / closure)","Wig blowdry"] },
 } as const;
@@ -55,10 +55,10 @@ const categoryServiceMap = {
   "editorial-services": [],
   "extension-services": ["Clip ins (+ silk press)","K-tips / invisible strands","LA weave / microlinks wefts / braidless sew in","I-tips / microlinks strands","Tape ins"],
   "locs-services": ["Butterfly locs","Faux locs","Microlocs / sisterlocs","Retwist","Starter locs"],
-  "sew-in-weave": ["Closure sew-in","Flipover / versatile sew-in","Frontal sew-in","Hybrid sew in (tapes + sew in)","Pixie wig / weave install","Quick weave","Sew-in take-down","Tracks (+ silk press) / partial / invisible sew-in","Traditional sew-in / leave out"],
+  "sew-in-weave": ["Closure sew-in / closure behind the hairline","Flipover / Versatile sew-in","Frontal sew-in","Hybrid sew in (tapes + sew in)","Pixie wig / weave install","Quick weave","Sew-in take-down","Tracks (+ silk press) / partial / invisible sew-in","Traditional sew-in / leave out"],
   "styling-services": ["Sew in / extensions blowdry","Frontal ponytail / bun","Half up half down","Pixie / finger waves","Sleek ponytail / bun","Updo"],
   "straightening-treatments": ["Hair botox","Japanese straightening","K-18 treatment","Keratin treatment","Moisturising treatment","Olaplex treatment","Relaxer / texturiser","Texture release"],
-  "natural-hair-services": ["Wig cornrows","Curly cut / wash & go / diffuse","Silk press","Bouncy blowout / round brush blow dry","Trim / hair cut","Roller set","Twist out / flexi rod","Wash & blowdry","Japanese head spa","Scalp detox / treatments"],
+  "natural-hair-services": ["Wig cornrows","Curly cut / wash & go / diffuse","Silk press","Bouncy blowout / Round Brush Blow dry","Trim / hair cut","Roller set","Twist out / flexi rod","Wash & blowdry","Japanese head spa","Scalp detox / treatments"],
   "natural-hair-scalp-health": ["Healthy hair plans & consultations","Natural hair coaches / educators","Trichology / scalp analysis"],
   "wig-services": ["Custom wig","Pixie wig / weave install","U-part wig install","Wig colouring / bundle colouring","Wig install (frontal / closure)","Wig blowdry"],
 } as const satisfies Record<ServiceCategoryId, readonly string[]>;
@@ -95,6 +95,7 @@ type SalonResult = {
   services: string[];
   hijabiFriendly?: boolean;
   canBraidWithoutGel?: boolean;
+  wheelchairAccessible?: boolean;
   priceBand?: PriceBand;
   servicePriceBand?: PriceBand;
   packagePriceBand?: PriceBand;
@@ -679,6 +680,7 @@ export default function App() {
   const [draftSelectedPriceBands, setDraftSelectedPriceBands] = useState<PriceRangeFilterId[]>([]);
   const [draftSelectedHijabiFriendly, setDraftSelectedHijabiFriendly] = useState(false);
   const [draftSelectedCanBraidWithoutGel, setDraftSelectedCanBraidWithoutGel] = useState(false);
+  const [draftSelectedWheelchairAccessible, setDraftSelectedWheelchairAccessible] = useState(false);
   const [draftSortOption, setDraftSortOption] = useState<SortOption>("alphabetical-asc");
   const [visibleResultCount, setVisibleResultCount] = useState(RESULTS_BATCH_SIZE);
   const [isSearching, setIsSearching] = useState(false);
@@ -687,6 +689,7 @@ export default function App() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   const [selectedHijabiFriendly, setSelectedHijabiFriendly] = useState(false);
   const [selectedCanBraidWithoutGel, setSelectedCanBraidWithoutGel] = useState(false);
+  const [selectedWheelchairAccessible, setSelectedWheelchairAccessible] = useState(false);
   const [selectedPriceBands, setSelectedPriceBands] = useState<PriceRangeFilterId[]>([]);
   const [isDesktopViewport, setIsDesktopViewport] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
@@ -701,6 +704,7 @@ export default function App() {
   const currentSelectedPriceBands = isMobileModalEditing ? draftSelectedPriceBands : selectedPriceBands;
   const currentSelectedHijabiFriendly = isMobileModalEditing ? draftSelectedHijabiFriendly : selectedHijabiFriendly;
   const currentSelectedCanBraidWithoutGel = isMobileModalEditing ? draftSelectedCanBraidWithoutGel : selectedCanBraidWithoutGel;
+  const currentSelectedWheelchairAccessible = isMobileModalEditing ? draftSelectedWheelchairAccessible : selectedWheelchairAccessible;
   const currentSortOption = isMobileModalEditing ? draftSortOption : sortOption;
 
   // Runtime filter data from API (falls back to hardcoded values on load)
@@ -723,6 +727,7 @@ export default function App() {
     setDraftSelectedPriceBands(selectedPriceBands);
     setDraftSelectedHijabiFriendly(selectedHijabiFriendly);
     setDraftSelectedCanBraidWithoutGel(selectedCanBraidWithoutGel);
+    setDraftSelectedWheelchairAccessible(selectedWheelchairAccessible);
     setDraftSortOption(sortOption);
   }
 
@@ -744,6 +749,7 @@ export default function App() {
     setSelectedPriceBands(draftSelectedPriceBands);
     setSelectedHijabiFriendly(draftSelectedHijabiFriendly);
     setSelectedCanBraidWithoutGel(draftSelectedCanBraidWithoutGel);
+    setSelectedWheelchairAccessible(draftSelectedWheelchairAccessible);
     setSortOption(draftSortOption);
     setVisibleResultCount(RESULTS_BATCH_SIZE);
     setMobileFiltersOpen(false);
@@ -805,6 +811,15 @@ export default function App() {
     }
 
     setSelectedCanBraidWithoutGel(updater);
+  }
+
+  function updateWheelchairAccessible(updater: boolean | ((current: boolean) => boolean)) {
+    if (isMobileModalEditing) {
+      setDraftSelectedWheelchairAccessible(updater);
+      return;
+    }
+
+    setSelectedWheelchairAccessible(updater);
   }
 
   function updateSortOption(nextSort: SortOption) {
@@ -886,9 +901,10 @@ export default function App() {
       selected_services: currentSelectedCategories.length + currentSelectedSubcategories.length,
       selected_locations: currentSelectedRegions.filter((region) => region !== "all").length,
       selected_price_ranges: currentSelectedPriceBands.length,
-      selected_additional_needs: (currentSelectedHijabiFriendly ? 1 : 0) + (currentSelectedCanBraidWithoutGel ? 1 : 0),
+      selected_additional_needs: (currentSelectedHijabiFriendly ? 1 : 0) + (currentSelectedCanBraidWithoutGel ? 1 : 0) + (currentSelectedWheelchairAccessible ? 1 : 0),
       hijabi_friendly: currentSelectedHijabiFriendly,
       can_braid_without_gel: currentSelectedCanBraidWithoutGel,
+      wheelchair_accessible: currentSelectedWheelchairAccessible,
     });
     updateCategories([]);
     updateSubcategories([]);
@@ -896,6 +912,7 @@ export default function App() {
     updatePriceBands([]);
     updateHijabiFriendly(false);
     updateCanBraidWithoutGel(false);
+    updateWheelchairAccessible(false);
     updateSortOption("alphabetical-asc");
   }
 
@@ -998,6 +1015,10 @@ export default function App() {
     updateHijabiFriendly((current) => !current);
   }
 
+  function toggleWheelchairAccessible() {
+    updateWheelchairAccessible((current) => !current);
+  }
+
   function togglePriceBand(nextPriceBand: PriceRangeFilterId) {
     const nextSelected = !currentSelectedPriceBands.includes(nextPriceBand);
     trackUmamiEvent("price_filter_selected", {
@@ -1095,6 +1116,7 @@ export default function App() {
           regions: selectedRegions,
           hijabiFriendly: selectedHijabiFriendly,
           canBraidWithoutGel: selectedCanBraidWithoutGel,
+          wheelchairAccessible: selectedWheelchairAccessible,
         }),
       });
 
@@ -1123,6 +1145,7 @@ export default function App() {
         result_count: resultCount,
         hijabi_friendly: selectedHijabiFriendly,
         no_gel: selectedCanBraidWithoutGel,
+        wheelchair_accessible: selectedWheelchairAccessible,
       });
 
       if (resultCount === 0) {
@@ -1131,6 +1154,7 @@ export default function App() {
           location: selectedRegions.join(", ") || "all",
           hijabi_friendly: selectedHijabiFriendly,
           no_gel: selectedCanBraidWithoutGel,
+          wheelchair_accessible: selectedWheelchairAccessible,
         });
       }
 
@@ -1149,7 +1173,7 @@ export default function App() {
 
   useEffect(() => {
     void handleSearch({ scroll: false });
-  }, [selectedCategories, selectedSubcategories, selectedRegions, selectedHijabiFriendly, selectedCanBraidWithoutGel]);
+  }, [selectedCategories, selectedSubcategories, selectedRegions, selectedHijabiFriendly, selectedCanBraidWithoutGel, selectedWheelchairAccessible]);
 
   useEffect(() => {
     fetch("/api/filters")
@@ -1223,6 +1247,7 @@ export default function App() {
     selectedPriceBands.length > 0 ||
     selectedHijabiFriendly ||
     selectedCanBraidWithoutGel ||
+    selectedWheelchairAccessible ||
     selectedRegions.length !== 1 ||
     selectedRegions[0] !== "all";
   const priceFilteredResults = selectedPriceBands.length
@@ -1290,7 +1315,7 @@ export default function App() {
   const selectedLocationCount = currentSelectedRegions.filter((regionId) => regionId !== "all").length;
   const selectedPriceRangeCount = currentSelectedPriceBands.length;
   const selectedAdditionalNeedsCount =
-    (currentSelectedHijabiFriendly ? 1 : 0) + (currentSelectedCanBraidWithoutGel ? 1 : 0);
+    (currentSelectedHijabiFriendly ? 1 : 0) + (currentSelectedCanBraidWithoutGel ? 1 : 0) + (currentSelectedWheelchairAccessible ? 1 : 0);
 
   return (
     <div className="min-h-screen bg-stone-100 text-left dark:bg-stone-950">
@@ -1401,36 +1426,27 @@ export default function App() {
                         <div className="min-w-0 grow">
                           <div className="flex items-start justify-between gap-3">
                             <div className="min-w-0">
-                              <div className="flex flex-col items-start gap-1.5 sm:flex-row sm:flex-wrap sm:items-end sm:gap-2">
+                              <div className="flex flex-wrap items-baseline gap-x-2">
                                 <h3 className="text-[17px] font-semibold text-stone-950 dark:text-stone-50">{result.name}</h3>
-                                {result.hijabiFriendly || result.canBraidWithoutGel || comparablePriceBand(result) ? (
-                                  <div className="flex max-w-full flex-wrap items-center gap-2 sm:mb-[3.5px]">
-                                    {comparablePriceBand(result) ? (
-                                      <span className="inline-flex items-center rounded-none bg-stone-200 p-1 text-[11px] font-semibold lowercase leading-none text-stone-800 dark:bg-stone-800 dark:text-stone-200">
-                                        {comparablePriceBand(result)}
-                                      </span>
-                                    ) : null}
-                                    {result.hijabiFriendly ? (
-                                      <span className="inline-flex items-center rounded-none bg-emerald-100 p-1 text-[11px] font-medium lowercase leading-none text-emerald-800 dark:bg-emerald-950/50 dark:text-emerald-300">
-                                        hijabi-friendly
-                                      </span>
-                                    ) : null}
-                                    {result.canBraidWithoutGel ? (
-                                      <span className="inline-flex items-center rounded-none bg-pink-100 p-1 text-[11px] font-medium lowercase leading-none text-pink-800 dark:bg-pink-950/50 dark:text-pink-300">
-                                        can braid without gel
-                                      </span>
-                                    ) : null}
-                                  </div>
+                                {locationLabels.length > 0 ? (
+                                  <>
+                                    <span aria-hidden="true" className="text-[17px] font-semibold text-stone-400 dark:text-stone-500">·</span>
+                                    <span className="text-[17px] font-semibold text-stone-500 dark:text-stone-400">
+                                      {locationLabels.join(" · ")}
+                                    </span>
+                                  </>
                                 ) : null}
                               </div>
-                              {locationLabels.length > 0 ? (
-                                <div className="mt-0.5 flex flex-wrap items-center gap-2 text-[14px] text-stone-500 dark:text-stone-400">
-                                  {locationLabels.map((label, index) => (
-                                    <Fragment key={label}>
-                                      {index > 0 ? <span>•</span> : null}
-                                      <span>{label}</span>
-                                    </Fragment>
-                                  ))}
+                              {(comparablePriceBand(result) || result.hijabiFriendly || result.canBraidWithoutGel || result.wheelchairAccessible) ? (
+                                <div className="mt-1">
+                                  <span className="inline-flex items-center rounded-none bg-stone-200 px-1.5 py-1 text-[11px] font-medium leading-none tracking-[0.03em] text-stone-700 dark:bg-stone-700 dark:text-stone-100">
+                                    {[
+                                      comparablePriceBand(result),
+                                      result.wheelchairAccessible ? "wheelchair accessible" : null,
+                                      result.hijabiFriendly ? "hijabi-friendly" : null,
+                                      result.canBraidWithoutGel ? "can braid without gel" : null,
+                                    ].filter(Boolean).join(" · ")}
+                                  </span>
                                 </div>
                               ) : null}
                             </div>
@@ -2065,6 +2081,26 @@ export default function App() {
                       </span>
                       <span className="translate-y-[1.5px] text-[15px] text-stone-800 dark:text-stone-200">
                         Can braid without gel
+                      </span>
+                    </button>
+
+                    <button
+                      type="button"
+                      aria-pressed={currentSelectedWheelchairAccessible}
+                      onClick={toggleWheelchairAccessible}
+                      className="flex w-full cursor-pointer items-start gap-3 rounded-none px-2 py-2 text-left transition-colors hover:bg-stone-200 active:bg-stone-200 dark:hover:bg-stone-900 dark:active:bg-stone-900"
+                    >
+                      <span
+                        aria-hidden="true"
+                        className={cn(
+                          "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-none border border-stone-500 bg-white text-white transition dark:border-stone-500 dark:bg-stone-900",
+                          currentSelectedWheelchairAccessible && "border-stone-950 bg-stone-950 dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950",
+                        )}
+                      >
+                        {currentSelectedWheelchairAccessible ? <Check className="size-3.5" /> : null}
+                      </span>
+                      <span className="translate-y-[1.5px] text-[15px] text-stone-800 dark:text-stone-200">
+                        Wheelchair accessible
                       </span>
                     </button>
                   </div>

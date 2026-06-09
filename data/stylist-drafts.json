@@ -1,10 +1,100 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-06-08T20:02:51.578Z",
-    "count": 1
+    "updatedAt": "2026-06-09T11:23:24.709Z",
+    "count": 4
   },
   "drafts": [
+    {
+      "id": "nazsonmez-mq6gb9hd",
+      "status": "needs_review",
+      "name": "Nazsonmez",
+      "areaId": "",
+      "areaIds": [],
+      "areaLabel": "",
+      "neighbourhood": "",
+      "postcode": "",
+      "bookingPlatform": "",
+      "bookingUrl": "",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/nazsonmez/",
+      "tiktokUrl": "",
+      "services": [],
+      "rawServices": [],
+      "summary": "Admin draft created from stylist intake.",
+      "confidence": 0.35,
+      "warnings": [
+        "No booking link identified yet.",
+        "No services matched yet."
+      ],
+      "evidence": [
+        "Submitted link: https://www.instagram.com/nazsonmez/"
+      ],
+      "source": "admin-draft",
+      "createdAt": "2026-06-09T09:42:27.265Z",
+      "updatedAt": "2026-06-09T09:42:27.265Z",
+      "lastCheckedAt": "2026-06-09T09:42:27.265Z"
+    },
+    {
+      "id": "jan-franczak-hair-mq6ga9v7",
+      "status": "needs_review",
+      "name": "Jan Franczak Hair",
+      "areaId": "",
+      "areaIds": [],
+      "areaLabel": "",
+      "neighbourhood": "",
+      "postcode": "",
+      "bookingPlatform": "",
+      "bookingUrl": "",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/jan_franczak_hair/",
+      "tiktokUrl": "",
+      "services": [],
+      "rawServices": [],
+      "summary": "Admin draft created from stylist intake.",
+      "confidence": 0.35,
+      "warnings": [
+        "No booking link identified yet.",
+        "No services matched yet."
+      ],
+      "evidence": [
+        "Submitted link: https://www.instagram.com/jan_franczak_hair/"
+      ],
+      "source": "admin-draft",
+      "createdAt": "2026-06-09T09:41:41.106Z",
+      "updatedAt": "2026-06-09T09:41:41.106Z",
+      "lastCheckedAt": "2026-06-09T09:41:41.106Z"
+    },
+    {
+      "id": "adam-dyer-mq6g9kh2",
+      "status": "needs_review",
+      "name": "Adam Dyer",
+      "areaId": "",
+      "areaIds": [],
+      "areaLabel": "",
+      "neighbourhood": "",
+      "postcode": "",
+      "bookingPlatform": "",
+      "bookingUrl": "",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/adam__dyer/",
+      "tiktokUrl": "",
+      "services": [],
+      "rawServices": [],
+      "summary": "Admin draft created from stylist intake.",
+      "confidence": 0.35,
+      "warnings": [
+        "No booking link identified yet.",
+        "No services matched yet."
+      ],
+      "evidence": [
+        "Submitted link: https://www.instagram.com/adam__dyer/"
+      ],
+      "source": "admin-draft",
+      "createdAt": "2026-06-09T09:41:08.195Z",
+      "updatedAt": "2026-06-09T09:41:08.195Z",
+      "lastCheckedAt": "2026-06-09T09:41:08.195Z"
+    },
     {
       "id": "microsbylaura-mpi6stjg",
       "status": "needs_review",

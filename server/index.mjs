@@ -72,8 +72,9 @@ app.post("/api/search", async (req, res) => {
     : [String(req.body?.region || "all")];
   const hijabiFriendly = req.body?.hijabiFriendly === true;
   const canBraidWithoutGel = req.body?.canBraidWithoutGel === true;
+  const wheelchairAccessible = req.body?.wheelchairAccessible === true;
 
-  return res.json(await searchSalons({ categories, subcategories, regions, hijabiFriendly, canBraidWithoutGel }));
+  return res.json(await searchSalons({ categories, subcategories, regions, hijabiFriendly, canBraidWithoutGel, wheelchairAccessible }));
 });
 
 const server = http.createServer(app);
