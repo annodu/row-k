@@ -512,14 +512,14 @@ const emptyForm: DraftForm = {
 const serviceGroups = [
   { label: "Braids", services: ["Boho braids / goddess braids","Braid take-down","Box braids","Crochet","Creative braids","Feed-in braids","French curl","Fulani / lemonade braids","Half braids, half sew-in","Knotless braids","Miracle knots","Microbraids / x-small braids","Pre-parting","Stitch braids","Twists (with extensions)"] },
   { label: "Colour", services: ["Balayage","Full head colour","Highlights","Wig colouring / bundle colouring"] },
-  { label: "Bridal", services: [] },
-  { label: "Editorial / Session styling", services: [] },
+  { label: "Bridal", services: ["Bridal"] },
+  { label: "Editorial / Session styling", services: ["Editorial / Session styling"] },
   { label: "Extensions", services: ["Clip ins (+ silk press)","K-tips / invisible strands","LA weave / microlinks wefts / braidless sew in","I-tips / microlinks strands","Tape ins"] },
   { label: "Locs", services: ["Butterfly locs","Faux locs","Microlocs / sisterlocs","Retwist","Starter locs"] },
   { label: "Sew in / weave", services: ["Closure sew-in / closure behind the hairline","Flipover / Versatile sew-in","Frontal sew-in","Hybrid sew in (tapes + sew in)","Pixie wig / weave install","Quick weave","Sew-in take-down","Tracks (+ silk press) / partial / invisible sew-in","Traditional sew-in / leave out"] },
   { label: "Styling (sew in / frontal / relaxer)", services: ["Sew in / extensions blowdry","Frontal ponytail / bun","Half up half down","Pixie / finger waves","Sleek ponytail / bun","Updo"] },
   { label: "Treatments", services: ["Hair botox","Japanese straightening","K-18 treatment","Keratin treatment","Moisturising treatment","Olaplex treatment","Relaxer / texturiser","Texture release"] },
-  { label: "Natural hair washing & styling", services: ["Wig cornrows","Curly cut / wash & go / diffuse","Silk press","Bouncy blowout / Round Brush Blow dry","Trim / hair cut","Roller set","Twist out / flexi rod","Wash & blowdry","Japanese head spa","Scalp detox / treatments"] },
+  { label: "Natural hair washing & styling", services: ["Wig cornrows","Curly cut / wash & go / diffuse","Silk press","Bouncy blowout / round brush blow dry","Trim / hair cut","Roller set","Twist out / flexi rod","Wash & blowdry","Japanese head spa","Scalp detox / treatments"] },
   { label: "Natural hair health & trichology", services: ["Healthy hair plans & consultations","Natural hair coaches / educators","Trichology / scalp analysis"] },
   { label: "Wigs", services: ["Custom wig","Pixie wig / weave install","U-part wig install","Wig colouring / bundle colouring","Wig install (frontal / closure)","Wig blowdry"] },
 ];

@@ -1266,7 +1266,7 @@ async function patchFilterSourceFiles(categories) {
   const salonIndexSrc = await fs.readFile(salonIndexPath, "utf8");
   const categoryMapLines = ["export const categoryMap = {"];
   for (const cat of categories) {
-    const services = [...cat.subcategories];
+    const services = cat.subcategories.length ? [...cat.subcategories] : [cat.label];
     categoryMapLines.push(`  "${cat.id}": ${JSON.stringify(services)},`);
   }
   categoryMapLines.push("};");
@@ -1283,7 +1283,8 @@ async function patchFilterSourceFiles(categories) {
 
   const appCategoryMapLines = ["const categoryMap = {", '  all: { label: "All services", subcategories: ["all"] },'];
   for (const cat of categories) {
-    const subs = JSON.stringify(["all", ...cat.subcategories]);
+    const resolvedSubs = cat.subcategories.length ? cat.subcategories : [cat.label];
+    const subs = JSON.stringify(["all", ...resolvedSubs]);
     appCategoryMapLines.push(`  "${cat.id}": { label: ${JSON.stringify(cat.label)}, subcategories: ${subs} },`);
   }
   appCategoryMapLines.push("} as const;");
@@ -1291,7 +1292,8 @@ async function patchFilterSourceFiles(categories) {
 
   const appServiceMapLines = ["const categoryServiceMap = {"];
   for (const cat of categories) {
-    const subs = JSON.stringify(cat.subcategories);
+    const resolvedSubs = cat.subcategories.length ? cat.subcategories : [cat.label];
+    const subs = JSON.stringify(resolvedSubs);
     appServiceMapLines.push(`  "${cat.id}": ${subs},`);
   }
   appServiceMapLines.push('} as const satisfies Record<ServiceCategoryId, readonly string[]>;');
@@ -1306,8 +1308,8 @@ async function patchFilterSourceFiles(categories) {
   const adminSrc = await fs.readFile(adminTsxPath, "utf8");
   const serviceGroupLines = ["const serviceGroups = ["];
   for (const cat of categories) {
-    const services = cat.subcategories.length ? JSON.stringify(cat.subcategories) : "[]";
-    serviceGroupLines.push(`  { label: ${JSON.stringify(cat.label)}, services: ${services} },`);
+    const services = cat.subcategories.length ? cat.subcategories : [cat.label];
+    serviceGroupLines.push(`  { label: ${JSON.stringify(cat.label)}, services: ${JSON.stringify(services)} },`);
   }
   serviceGroupLines.push("];");
   const newServiceGroups = serviceGroupLines.join("\n");
