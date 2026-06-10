@@ -50,7 +50,6 @@ type StylistDraft = {
   postcode: string;
   bookingPlatform: string;
   bookingUrl: string;
-  websiteUrl: string;
   instagramUrl: string;
   tiktokUrl?: string;
   services: string[];
@@ -117,7 +116,6 @@ type KeywordSearchResult = {
   areaLabel?: string;
   bookingPlatform?: string;
   bookingUrl?: string;
-  websiteUrl?: string;
   instagramUrl?: string;
   status: string;
   reason?: string;
@@ -313,7 +311,6 @@ type DirectoryCheck = {
   locationReviewIgnored?: boolean;
   bookingUrl?: string;
   instagramUrl?: string;
-  websiteUrl?: string;
   hijabiFriendly?: boolean;
   priceBand?: PriceBand;
   servicePriceBand?: PriceBand;
@@ -391,7 +388,6 @@ type FreshnessUpdate = {
   removeServices?: string[];
   bookingUrl?: string;
   instagramUrl?: string;
-  websiteUrl?: string;
   hijabiFriendly?: boolean;
   priceBand?: PriceBand;
   servicePriceBand?: PriceBand;
@@ -675,20 +671,19 @@ export function AdminApp() {
     }
 
     const bookingUrl = selectedDraft.bookingUrl?.trim() || "";
-    const websiteUrl = selectedDraft.websiteUrl?.trim() || "";
-    const previewUrl = bookingUrl || websiteUrl;
+    const previewUrl = bookingUrl;
     if (!looksLikeHttpUrl(previewUrl) || isLikelySocialUrl(previewUrl)) {
       return;
     }
 
-    const previewKey = `${selectedDraft.id}|${bookingUrl}|${websiteUrl}`;
+    const previewKey = `${selectedDraft.id}|${bookingUrl}`;
     if (lastBookingPreviewKeyRef.current === previewKey) {
       return;
     }
 
     const timeout = window.setTimeout(async () => {
       lastBookingPreviewKeyRef.current = previewKey;
-      const preview = await fetchBookingPreview(bookingUrl, websiteUrl);
+      const preview = await fetchBookingPreview(bookingUrl);
       if (!preview) {
         return;
       }
@@ -712,7 +707,7 @@ export function AdminApp() {
     }, 800);
 
     return () => window.clearTimeout(timeout);
-  }, [selectedDraft?.id, selectedDraft?.bookingUrl, selectedDraft?.websiteUrl, isAuthed]);
+  }, [selectedDraft?.id, selectedDraft?.bookingUrl, isAuthed]);
 
   async function checkSession() {
     setIsCheckingSession(true);
@@ -1425,12 +1420,12 @@ export function AdminApp() {
     return payload?.ok ? payload : null;
   }
 
-  async function fetchBookingPreview(bookingUrl: string, websiteUrl: string): Promise<BookingPreview | null> {
+  async function fetchBookingPreview(bookingUrl: string): Promise<BookingPreview | null> {
     const response = await fetch("/api/admin/stylists/booking-preview", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       credentials: "include",
-      body: JSON.stringify({ bookingUrl, websiteUrl }),
+      body: JSON.stringify({ bookingUrl }),
     });
 
     if (!response.ok) {
@@ -2215,7 +2210,6 @@ function stylistMatchesSearch(draft: StylistDraft, searchTerm: string) {
     draft.postcode,
     draft.bookingPlatform,
     draft.bookingUrl,
-    draft.websiteUrl,
     draft.instagramUrl,
     draft.tiktokUrl,
     getStylistStatusLabel(getDraftDisplayStatus(draft)),
@@ -2258,7 +2252,7 @@ function getVisibleDraftWarnings(draft: StylistDraft) {
 }
 
 function hasDraftBookingLink(draft: StylistDraft) {
-  return Boolean(draft.bookingUrl.trim() || isBookingLikeUrl(draft.websiteUrl));
+  return Boolean(draft.bookingUrl.trim());
 }
 
 function urlsMatch(left = "", right = "") {
@@ -2618,7 +2612,7 @@ function FreshnessRecommendationCard({
   const [isOpen, setIsOpen] = useState(defaultOpen);
   const hasWebsiteLinkIssue = row.check.linkChecks.some((linkCheck) => linkCheck.type === "website" && linkCheck.status !== "ok");
   const primaryLinkLabel = hasWebsiteLinkIssue ? "Website URL" : "Booking URL";
-  const primaryLinkValue = hasWebsiteLinkIssue ? row.websiteUrl || row.bookingUrl || "" : row.bookingUrl || "";
+  const primaryLinkValue = row.bookingUrl || "";
   const [primaryLinkUrl, setPrimaryLinkUrl] = useState(primaryLinkValue);
   const [instagramUrl, setInstagramUrl] = useState(row.instagramUrl || "");
   const [linkSaveState, setLinkSaveState] = useState<"idle" | "saving" | "saved">("idle");
@@ -2627,12 +2621,7 @@ function FreshnessRecommendationCard({
   async function handleSaveLinks() {
     setLinkSaveState("saving");
     try {
-      const linkUpdate: FreshnessUpdate = hasWebsiteLinkIssue
-        ? { websiteUrl: primaryLinkUrl }
-        : {
-            bookingUrl: primaryLinkUrl,
-            ...(row.websiteUrl && urlsMatch(row.websiteUrl, row.bookingUrl) ? { websiteUrl: primaryLinkUrl } : {}),
-          };
+      const linkUpdate: FreshnessUpdate = { bookingUrl: primaryLinkUrl };
       await Promise.resolve(onApply(row.check, { ...linkUpdate, instagramUrl }));
       setLinkSaveState("saved");
       setTimeout(() => setLinkSaveState("idle"), 2500);
@@ -2803,8 +2792,8 @@ function FreshnessRecommendationItem({
         <div className="flex items-center justify-end gap-2 text-sm font-semibold">
           {isManualPrice ? (() => {
             const linkUrl = detail.manualPriceReason === "social-only"
-              ? (row.check.instagramUrl || row.check.bookingUrl || row.check.websiteUrl)
-              : (row.check.bookingUrl || row.check.websiteUrl || row.check.instagramUrl);
+              ? (row.check.instagramUrl || row.check.bookingUrl)
+              : (row.check.bookingUrl || row.check.instagramUrl);
             return linkUrl ? (
               <a
                 href={linkUrl}
@@ -3094,7 +3083,6 @@ type FreshnessRecommendationGroup = {
   status: "Open" | "Resolved";
   bookingUrl?: string;
   instagramUrl?: string;
-  websiteUrl?: string;
   acceptUpdate?: {
     addServices?: string[];
     removeServices?: string[];
@@ -3331,7 +3319,6 @@ function buildFreshnessRecommendationGroups(checks: DirectoryCheck[]): Freshness
       status: "Open" as const,
       bookingUrl: check.bookingUrl,
       instagramUrl: check.instagramUrl,
-      websiteUrl: check.websiteUrl,
       id: `${check.id}-recommendations`,
       recommendation: getFreshnessGroupRecommendation(check, brokenLinks.length, manualLinks.length, addedServices, removedServices, attributeSuggestions, hasLocationRecommendation),
       typeTone: brokenLinks.length ? "critical" : manualLinks.length ? "warning" : addedServices.length ? "info" : "neutral",
@@ -3623,9 +3610,6 @@ function getLinkDismissUpdate(check: DirectoryCheck): FreshnessUpdate | undefine
   if (linkTypes.has("booking") && check.bookingUrl !== undefined) {
     update.bookingUrl = check.bookingUrl;
   }
-  if (linkTypes.has("website") && check.websiteUrl !== undefined) {
-    update.websiteUrl = check.websiteUrl;
-  }
   if (linkTypes.has("instagram") && check.instagramUrl !== undefined) {
     update.instagramUrl = check.instagramUrl;
   }
@@ -3850,7 +3834,7 @@ function FreshnessRecommendationDetails({ row }: { row: FreshnessRecommendationG
 }
 
 function FreshnessLinkButtons({ row }: { row: FreshnessRecommendationGroup }) {
-  const websiteUrl = row.websiteUrl || row.bookingUrl;
+  const bookingDisplayUrl = row.bookingUrl;
   const brokenTypes = new Set(row.check.linkChecks.filter((lc) => lc.status !== "ok").map((lc) => lc.type));
   const instagramBroken = brokenTypes.has("instagram");
   const bookingBroken = brokenTypes.has("booking") || brokenTypes.has("website");
@@ -3871,12 +3855,12 @@ function FreshnessLinkButtons({ row }: { row: FreshnessRecommendationGroup }) {
           <InstagramIcon className="size-4" />
         </a>
       ) : null}
-      {websiteUrl ? (
+      {bookingDisplayUrl ? (
         <a
-          href={websiteUrl}
+          href={bookingDisplayUrl}
           target="_blank"
           rel="noreferrer"
-          aria-label={`${row.stylist} website${bookingBroken ? " (broken)" : ""}`}
+          aria-label={`${row.stylist} booking link${bookingBroken ? " (broken)" : ""}`}
           className={cn(
             "inline-flex size-7 items-center justify-center rounded-none transition hover:bg-stone-100",
             bookingBroken ? "text-red-500 hover:text-red-700" : "text-stone-500 hover:text-stone-950",
@@ -4144,7 +4128,6 @@ function KeywordSearchResultCard({ result, isAssigning, onAssignService }: { res
         </div>
         <div className="flex flex-wrap gap-2">
           <KeywordResultLink href={result.bookingUrl} label="Booking" />
-          <KeywordResultLink href={result.websiteUrl} label="Website" />
           <KeywordResultLink href={result.instagramUrl} label="Instagram" />
         </div>
       </div>
@@ -5106,7 +5089,6 @@ function publishedSalonToDraft(salon: Partial<StylistDraft>): StylistDraft {
     postcode: salon.postcode || "",
     bookingPlatform: salon.bookingPlatform || "",
     bookingUrl: salon.bookingUrl || "",
-    websiteUrl: salon.websiteUrl || "",
     instagramUrl: salon.instagramUrl || "",
     tiktokUrl: salon.tiktokUrl || "",
     services: Array.isArray(salon.services) ? salon.services : [],
@@ -6083,9 +6065,6 @@ function removeReviewedLinkChecks(check: DirectoryCheck, update: FreshnessUpdate
   if (update.bookingUrl !== undefined) {
     reviewedLinkTypes.add("booking");
   }
-  if (update.websiteUrl !== undefined) {
-    reviewedLinkTypes.add("website");
-  }
   if (update.instagramUrl !== undefined) {
     reviewedLinkTypes.add("instagram");
   }
@@ -6122,7 +6101,6 @@ function updateChecksAfterFreshnessAction(
           ...item,
           bookingUrl: update.bookingUrl ?? item.bookingUrl,
           instagramUrl: update.instagramUrl ?? item.instagramUrl,
-          websiteUrl: update.websiteUrl ?? item.websiteUrl,
           areaId: update.areaId ?? item.areaId,
           areaIds: update.areaIds ?? item.areaIds,
           areaLabel: update.areaLabel ?? item.areaLabel,

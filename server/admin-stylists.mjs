@@ -3,6 +3,10 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
+function today() {
+  return today().split("T")[0];
+}
+
 import { categoryMap, normalizeServices, serviceAliases } from "./salon-index.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -270,7 +274,7 @@ export function registerAdminStylistRoutes(app) {
 
   app.get("/api/admin/stylists/published", requireAdmin, async (_req, res) => {
     const manualIndex = await readJson(manualIndexPath, { meta: { source: "manual", updatedAt: null }, salons: [] });
-    const updatedAt = manualIndex.meta?.updatedAt || new Date().toISOString();
+    const updatedAt = manualIndex.meta?.updatedAt || today();
     const stylists = (manualIndex.salons || []).map((salon) => publishedSalonToDraft(salon, updatedAt));
 
     res.json({ ok: true, stylists, meta: manualIndex.meta || null });
@@ -285,7 +289,7 @@ export function registerAdminStylistRoutes(app) {
 
     const currentSalon = manualIndex.salons[salonIndex];
     const update = sanitizeDraftUpdate(req.body || {});
-    const now = new Date().toISOString();
+    const now = today();
     const areaIds = normalizeAreaIds(update.areaIds?.length ? update.areaIds : update.areaId ? [update.areaId] : []);
     const areaLabel = update.areaLabel || areaLabelForIds(areaIds);
     const pricingUpdate = buildPricingUpdate(update, currentSalon, now);
@@ -337,7 +341,7 @@ export function registerAdminStylistRoutes(app) {
     manualIndex.salons.splice(salonIndex, 1);
     manualIndex.meta = {
       ...manualIndex.meta,
-      updatedAt: new Date().toISOString(),
+      updatedAt: today(),
       count: manualIndex.salons.length,
     };
     await writeJson(manualIndexPath, manualIndex);
@@ -404,7 +408,7 @@ export function registerAdminStylistRoutes(app) {
     const existingStore = await readFreshnessStore({ meta: { source: "freshness-checks", updatedAt: null, count: 0 }, checks: [], dismissedRecommendations: {} });
     const manualIndex = await readJson(manualIndexPath, { meta: { source: "manual", count: 0 }, salons: [] });
     const salonsById = new Map((manualIndex.salons || []).map((salon) => [salon.id, salon]));
-    const checkedAt = cleanString(req.body?.checkedAt) || new Date().toISOString();
+    const checkedAt = cleanString(req.body?.checkedAt) || today();
     const dismissedRecommendations = existingStore.dismissedRecommendations || {};
     const checks = (Array.isArray(req.body?.checks) ? req.body.checks : [])
       .map((check) => sanitizeFreshnessCheck(check, check?.id))
@@ -447,7 +451,7 @@ export function registerAdminStylistRoutes(app) {
   app.get("/api/admin/stylists/checks", requireAdmin, async (req, res) => {
     const index = await readAdminSalonIndex();
     const manualIndex = await readJson(manualIndexPath, { meta: { source: "manual", updatedAt: null, count: 0 }, salons: [] });
-    const checkedAt = new Date().toISOString();
+    const checkedAt = today();
     const limit = Math.min(Math.max(Number(req.query.limit || 50), 1), 50);
     const offset = Math.max(Number(req.query.offset || 0), 0);
     const requestedMode = cleanString(req.query.mode);
@@ -487,7 +491,7 @@ export function registerAdminStylistRoutes(app) {
     if (autoPricingChanges.length) {
       const salonsById = new Map(manualIndex.salons.map((salon, index) => [salon.id, { salon, index }]));
       let changedPricing = false;
-      const now = new Date().toISOString();
+      const now = today();
       autoPricingChanges.forEach(({ check, update }) => {
         const match = salonsById.get(check.id);
         if (!match) {
@@ -640,7 +644,7 @@ export function registerAdminStylistRoutes(app) {
     const limit = Math.min(Math.max(Number(req.body?.limit || 30), 1), 50);
     const salons = index.salons || [];
     const batchSalons = salons.slice(offset, offset + limit);
-    const checkedAt = new Date().toISOString();
+    const checkedAt = today();
     const checks = await mapWithConcurrency(batchSalons, isHostedRuntime() ? 2 : 10, (salon) => withTimeout(
       searchSalonBookingKeywords(salon, searchKeywords, { selectedService }),
       isHostedRuntime() ? 14_000 : 9_000,
@@ -686,7 +690,7 @@ export function registerAdminStylistRoutes(app) {
     }
 
     const store = await readKeywordSearchStore();
-    const now = new Date().toISOString();
+    const now = today();
     const name = cleanString(req.body?.name) || titleCase(keywords[0] || "Keyword search");
     const incomingId = cleanString(req.body?.id);
     const existingIndex = incomingId ? store.searches.findIndex((search) => search.id === incomingId) : -1;
@@ -737,7 +741,7 @@ export function registerAdminStylistRoutes(app) {
     const services = normalizeServices(salon.services || []);
     const alreadyAssigned = services.includes(service);
     const nextServices = alreadyAssigned ? services : [...services, service];
-    const now = new Date().toISOString();
+    const now = today();
 
     if (!alreadyAssigned) {
       manualIndex.salons[salonIndex] = {
@@ -806,7 +810,7 @@ export function registerAdminStylistRoutes(app) {
     }
     manualIndex.meta = {
       ...manualIndex.meta,
-      updatedAt: new Date().toISOString(),
+      updatedAt: today(),
       count: manualIndex.salons.length,
     };
     if (
@@ -861,7 +865,7 @@ export function registerAdminStylistRoutes(app) {
       };
       manualIndex.meta = {
         ...manualIndex.meta,
-        updatedAt: new Date().toISOString(),
+        updatedAt: today(),
         count: manualIndex.salons.length,
       };
       await writeJson(manualIndexPath, manualIndex);
@@ -1050,7 +1054,7 @@ export function registerAdminStylistRoutes(app) {
     draftStore.drafts.unshift(draft);
     await writeDraftStore(draftStore);
     await writeDiscoveryStore(
-      store.suggestions.map((item) => (item.id === suggestion.id ? { ...item, status: "draft_created", updatedAt: new Date().toISOString() } : item)),
+      store.suggestions.map((item) => (item.id === suggestion.id ? { ...item, status: "draft_created", updatedAt: today() } : item)),
     );
     res.status(201).json({ ok: true, draft });
   });
@@ -1065,7 +1069,7 @@ export function registerAdminStylistRoutes(app) {
     store.drafts[draftIndex] = normalizeDraftState({
       ...store.drafts[draftIndex],
       ...sanitizeDraftUpdate(req.body || {}),
-      updatedAt: new Date().toISOString(),
+      updatedAt: today(),
     });
     await writeDraftStore(store);
     res.json({ ok: true, draft: store.drafts[draftIndex] });
@@ -1093,7 +1097,7 @@ export function registerAdminStylistRoutes(app) {
     manualIndex.salons.unshift(salon);
     manualIndex.meta = {
       ...manualIndex.meta,
-      updatedAt: new Date().toISOString(),
+      updatedAt: today(),
       count: manualIndex.salons.length,
     };
 
@@ -1378,7 +1382,7 @@ function buildDraftStorePayload(store) {
   return {
     meta: {
       source: "admin-drafts",
-      updatedAt: new Date().toISOString(),
+      updatedAt: today(),
       count: store.drafts.length,
     },
     drafts: store.drafts,
@@ -1401,7 +1405,7 @@ async function writeDiscoveryStore(suggestions) {
   await writeJson(discoverySuggestionsPath, {
     meta: {
       source: "discovery-suggestions",
-      updatedAt: new Date().toISOString(),
+      updatedAt: today(),
       count: suggestions.length,
     },
     suggestions,
@@ -1425,7 +1429,7 @@ async function writeKeywordSearchStore(searches) {
   await writeJson(keywordSearchesPath, {
     meta: {
       source: "keyword-searches",
-      updatedAt: new Date().toISOString(),
+      updatedAt: today(),
       count: searches.length,
     },
     searches,
@@ -1447,8 +1451,8 @@ function sanitizeKeywordSearchRecord(search = {}) {
     notes: cleanString(search.notes),
     resultCount: Number(search.resultCount) || results.length,
     results,
-    createdAt: cleanString(search.createdAt) || new Date().toISOString(),
-    updatedAt: cleanString(search.updatedAt) || new Date().toISOString(),
+    createdAt: cleanString(search.createdAt) || today(),
+    updatedAt: cleanString(search.updatedAt) || today(),
     lastRunAt: cleanString(search.lastRunAt),
   };
 }
@@ -1799,7 +1803,7 @@ async function updateFreshnessReview(salonId, {
           ? { ...(check.serviceCheck || emptyServiceCheck()), areaId: "", areaLabel: "" }
           : check.serviceCheck,
         ...(reviewedPrice ? { priceCheck: emptyPriceCheck(check.priceCheck?.source || "") } : {}),
-        reviewedAt: new Date().toISOString(),
+        reviewedAt: today(),
       };
     })
     .filter(hasActionableFreshnessCheck);
@@ -1808,7 +1812,7 @@ async function updateFreshnessReview(salonId, {
     meta: {
       ...(store.meta || {}),
       source: "freshness-checks",
-      updatedAt: new Date().toISOString(),
+      updatedAt: today(),
       count: checks.length,
     },
     dismissedRecommendations,
@@ -1852,7 +1856,7 @@ async function undoFreshnessReview(salonId, { check, update = {}, rejectAddedSer
     meta: {
       ...(store.meta || {}),
       source: "freshness-checks",
-      updatedAt: new Date().toISOString(),
+      updatedAt: today(),
       count: checks.length,
     },
     dismissedRecommendations,
@@ -2182,7 +2186,7 @@ function sanitizeFreshnessCheck(check, salonId) {
     detectedServices: normalizeServices(toArray(check.detectedServices)),
     addedServices: normalizeServices(toArray(check.addedServices)),
     removedServices: normalizeServices(toArray(check.removedServices)),
-    checkedAt: check.checkedAt || new Date().toISOString(),
+    checkedAt: check.checkedAt || today(),
   };
 }
 
@@ -2539,7 +2543,7 @@ async function checkSalonFreshness(salon, dismissedRecommendation = {}, previous
     addedServices,
     removedServices,
     locationReviewIgnored: locationReviewIgnored || false,
-    checkedAt: new Date().toISOString(),
+    checkedAt: today(),
   };
 }
 
@@ -2696,7 +2700,7 @@ function emptyFreshnessCheckForSalon(salon) {
     addedServices: [],
     removedServices: [],
     locationReviewIgnored: false,
-    checkedAt: new Date().toISOString(),
+    checkedAt: today(),
   };
 }
 
@@ -3148,7 +3152,7 @@ function buildKeywordSearchResult(salon = {}, { status = "searched", reason = ""
     matches,
     selectedService,
     selectedServiceAssigned: selectedService ? normalizedServices.includes(selectedService) : false,
-    checkedAt: new Date().toISOString(),
+    checkedAt: today(),
   };
 }
 
@@ -6024,7 +6028,7 @@ async function buildDraft(input) {
   const bookingServiceCheck = inferred.bookingUrl ? await extractBookingServices(inferred.bookingUrl) : emptyServiceCheck();
   const enrichedRawServices = [...rawServices, ...bookingServiceCheck.rawServices];
   const matchedServices = matchServices([...enrichedRawServices, ...bookingServiceCheck.matchedServices, ...explicitServices]);
-  const now = new Date().toISOString();
+  const now = today();
   const name = cleanString(input.name) || inferNameFromUrl(links[0]) || "New stylist";
   const inferredAreaId = cleanString(input.areaId) || bookingServiceCheck.areaId || inferAreaIdFromText([...links, name, ...enrichedRawServices].join(" "));
   const areaIds = normalizeAreaIds(input.areaIds?.length ? input.areaIds : inferredAreaId ? [inferredAreaId] : []);
@@ -6138,8 +6142,8 @@ async function generateDiscoverySuggestions() {
         areaLabel,
         services: [service],
         reason: `Generated from common ROW K pattern: ${service} listings in ${areaLabel || areaId}.`,
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString(),
+        createdAt: today(),
+        updatedAt: today(),
       });
     }
   }
@@ -6359,7 +6363,7 @@ function sanitizeDraftUpdate(input) {
   };
 }
 
-function buildPricingUpdate(update, current = {}, now = new Date().toISOString()) {
+function buildPricingUpdate(update, current = {}, now = today()) {
   const servicePriceBand = sanitizePriceBand(update.servicePriceBand);
   const packagePriceBand = sanitizePriceBand(update.packagePriceBand);
   const priceBand = sanitizePriceBand(update.priceBand) || servicePriceBand || packagePriceBand;
@@ -6413,7 +6417,7 @@ function sanitizeFreshnessPricingUpdate(input, current = {}) {
   if (!priceBand) {
     return {};
   }
-  const now = new Date().toISOString();
+  const now = today();
   const priceIncludesHair = input.priceIncludesHair === true || Boolean(packagePriceBand);
   return {
     priceBand,
@@ -6437,7 +6441,7 @@ function getAutoPricingUpdate(priceCheck) {
   if (!priceCheck?.priceBand || priceCheck.confidence !== "high") {
     return null;
   }
-  const now = new Date().toISOString();
+  const now = today();
   return {
     priceBand: priceCheck.priceBand,
     servicePriceBand: sanitizePriceBand(priceCheck.servicePriceBand),
@@ -6519,7 +6523,7 @@ function sanitizePriceConfidence(value) {
   return priceConfidences.has(cleaned) ? cleaned : "";
 }
 
-function publishedSalonToDraft(salon, fallbackDate = new Date().toISOString()) {
+function publishedSalonToDraft(salon, fallbackDate = today()) {
   return {
     id: salon.id,
     status: "approved",
@@ -6531,7 +6535,6 @@ function publishedSalonToDraft(salon, fallbackDate = new Date().toISOString()) {
     postcode: salon.postcode || "",
     bookingPlatform: salon.bookingPlatform || "",
     bookingUrl: salon.bookingUrl || "",
-    websiteUrl: salon.websiteUrl || "",
     instagramUrl: salon.instagramUrl || "",
     tiktokUrl: salon.tiktokUrl || "",
     services: Array.isArray(salon.services) ? salon.services : [],
@@ -6609,8 +6612,7 @@ function draftToSalon(draft, existingIds) {
     neighbourhood: draft.neighbourhood || areaLabel || "",
     postcode: draft.postcode || "",
     bookingPlatform: draft.bookingPlatform || platformFromUrl(draft.bookingUrl) || "Direct",
-    bookingUrl: draft.bookingUrl || draft.websiteUrl || draft.instagramUrl,
-    websiteUrl: draft.websiteUrl || draft.bookingUrl || "",
+    bookingUrl: draft.bookingUrl || draft.instagramUrl,
     instagramUrl: draft.instagramUrl || "",
     services: normalizeServices(draft.services),
     ...(draft.hijabiFriendly === true ? { hijabiFriendly: true } : {}),
@@ -6626,7 +6628,7 @@ function draftToSalon(draft, existingIds) {
           priceSource: sanitizePriceSource(draft.priceSource) || "manual",
           priceEvidence: toArray(draft.priceEvidence),
           priceCheckedAt: cleanString(draft.priceCheckedAt),
-          priceUpdatedAt: cleanString(draft.priceUpdatedAt) || new Date().toISOString(),
+          priceUpdatedAt: cleanString(draft.priceUpdatedAt) || today(),
           priceConfidence: sanitizePriceConfidence(draft.priceConfidence) || "manual",
         }
       : {}),
@@ -6640,7 +6642,6 @@ function inferFromLinks(links) {
   const result = {
     bookingPlatform: "",
     bookingUrl: "",
-    websiteUrl: "",
     instagramUrl: "",
     tiktokUrl: "",
   };

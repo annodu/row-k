@@ -504,6 +504,10 @@ function matchesRegion(salon, regions) {
       return areaIds.some((areaId) => londonAreas.has(areaId));
     }
 
+    if (region === "south-east" || region === "south-west") {
+      return areaIds.includes(region) || areaIds.includes("south");
+    }
+
     return areaIds.includes(region);
   });
 }

@@ -1,5 +1,5 @@
-import { Fragment, type ReactNode, useCallback, useEffect, useRef, useState } from "react";
-import { Check, ChevronDown, Globe, Search, X } from "lucide-react";
+import { Fragment, type ReactNode, useEffect, useRef, useState } from "react";
+import { Check, ChevronDown, Globe } from "lucide-react";
 
 import { Checkbox } from "@/components/ui/checkbox";
 import { AdminApp } from "@/AdminApp";
@@ -18,49 +18,170 @@ const regions = [
   { id: "london", label: "London" },
   { id: "central", label: "Central" },
   { id: "north", label: "North" },
-  { id: "north-west", label: "North west" },
+  { id: "north-west", label: "North West" },
   { id: "east", label: "East" },
-  { id: "south-east", label: "South east" },
-  { id: "south-west", label: "South west" },
+  { id: "south-east", label: "South East" },
+  { id: "south-west", label: "South West" },
   { id: "west", label: "West" },
   { id: "croydon", label: "Croydon" },
   { id: "kent", label: "Kent" },
   { id: "essex", label: "Essex" },
-  { id: "mobile", label: "Mobile / home service" },
+  { id: "mobile", label: "Mobile / Home service" },
 ] as const;
 
 const nestedLondonRegionIds = ["central", "north", "north-west", "east", "south-east", "south-west", "west", "croydon"] as const;
 const standaloneRegionIds = ["kent", "essex", "mobile"] as const;
 
 const categoryMap = {
-  all: { label: "All services", subcategories: ["all"] },
-  "braiding-services": { label: "Braids", subcategories: ["all","Boho braids / goddess braids","Braid take-down","Box braids","Crochet","Creative braids","Feed-in braids","French curl","Fulani / lemonade braids","Half braids, half sew-in","Knotless braids","Miracle knots","Microbraids / x-small braids","Pre-parting","Stitch braids","Twists (with extensions)"] },
-  "colour-services": { label: "Colour", subcategories: ["all","Balayage","Full head colour","Highlights","Wig colouring / bundle colouring"] },
-  "bridal-services": { label: "Bridal", subcategories: ["all"] },
-  "editorial-services": { label: "Editorial / Session styling", subcategories: ["all"] },
-  "extension-services": { label: "Extensions", subcategories: ["all","Clip ins (+ silk press)","K-tips / invisible strands","LA weave / microlinks wefts / braidless sew in","I-tips / microlinks strands","Tape ins"] },
-  "locs-services": { label: "Locs", subcategories: ["all","Butterfly locs","Faux locs","Microlocs / sisterlocs","Retwist","Starter locs"] },
-  "sew-in-weave": { label: "Sew in / weave", subcategories: ["all","Closure sew-in / closure behind the hairline","Flipover / Versatile sew-in","Frontal sew-in","Hybrid sew in (tapes + sew in)","Pixie wig / weave install","Quick weave","Sew-in take-down","Tracks (+ silk press) / partial / invisible sew-in","Traditional sew-in / leave out"] },
-  "styling-services": { label: "Styling (sew in / frontal / relaxer)", subcategories: ["all","Sew in / extensions blowdry","Frontal ponytail / bun","Half up half down","Pixie / finger waves","Sleek ponytail / bun","Updo"] },
-  "straightening-treatments": { label: "Treatments", subcategories: ["all","Hair botox","Japanese straightening","K-18 treatment","Keratin treatment","Moisturising treatment","Olaplex treatment","Relaxer / texturiser","Texture release"] },
-  "natural-hair-services": { label: "Natural hair washing & styling", subcategories: ["all","Wig cornrows","Curly cut / wash & go / diffuse","Silk press","Bouncy blowout / Round Brush Blow dry","Trim / hair cut","Roller set","Twist out / flexi rod","Wash & blowdry","Japanese head spa","Scalp detox / treatments"] },
-  "natural-hair-scalp-health": { label: "Natural hair health & trichology", subcategories: ["all","Healthy hair plans & consultations","Natural hair coaches / educators","Trichology / scalp analysis"] },
-  "wig-services": { label: "Wigs", subcategories: ["all","Custom wig","Pixie wig / weave install","U-part wig install","Wig colouring / bundle colouring","Wig install (frontal / closure)","Wig blowdry"] },
+  all: {
+    label: "All services",
+    subcategories: ["all"],
+  },
+  "braiding-services": {
+    label: "Braids",
+    subcategories: [
+      "all",
+      "Boho braids / Goddess braids",
+      "Braid take-down",
+      "Box braids",
+      "Crochet",
+      "Creative braids (e.g. patewo)",
+      "Feed in / All back braids",
+      "French curl",
+      "Fulani / Lemonade braids",
+      "Half braids, half sew-in",
+      "Knotless braids",
+      "Miracle knots",
+      "Microbraids / x-small braids",
+      "Pre-parting",
+      "Stitch braids",
+      "Twists (with extensions)",
+    ],
+  },
+  "colour-services": {
+    label: "Colour",
+    subcategories: ["all", "Balayage", "Full head colour", "Highlights", "Wig colour"],
+  },
+  "bridal-session-services": {
+    label: "Bridal / Editorial",
+    subcategories: ["all"],
+  },
+  "extension-services": {
+    label: "Extensions",
+    subcategories: ["all", "Clip ins (+ Silk press)", "K-tips / Invisible strands", "LA weave", "Microlinks", "Tape ins"],
+  },
+  "locs-services": {
+    label: "Locs",
+    subcategories: ["all", "Butterfly locs", "Faux locs", "Microlocs / Sisterlocs", "Retwist", "Starter locs"],
+  },
+  "sew-in-weave": {
+    label: "Sew in / Weave",
+    subcategories: [
+      "all",
+      "Closure sew-in",
+      "Flipover / Versatile sew-in",
+      "Frontal sew-in",
+      "Hybrid sew-in",
+      "Pixie wig / weave install",
+      "Quick weave",
+      "Sew-in take-down",
+      "Tracks (+ Silk press) / Partial / Invisible sew-in",
+      "Traditional sew-in / leave out",
+    ],
+  },
+  "styling-services": {
+    label: "Style (Sew-In / Frontal / Relaxer)",
+    subcategories: ["all", "Frontal ponytail / bun", "Half up half down", "Pixie / finger waves", "Sleek ponytail / bun", "Updo"],
+  },
+  "straightening-treatments": {
+    label: "Treatments",
+    subcategories: [
+      "all",
+      "Hair Botox",
+      "Japanese straightening",
+      "K-18 treatment",
+      "Keratin treatment",
+      "Moisturising treatment",
+      "Olaplex treatment",
+      "Relaxer / texturiser",
+      "Scalp care",
+      "Texture release",
+    ],
+  },
+  "natural-hair-services": {
+    label: "Wash / Style (Natural hair)",
+    subcategories: [
+      "all",
+      "Wig cornrows",
+      "Curly cut / Wash & go",
+      "Natural hair education",
+      "Silk press / Finish",
+      "Trim / Hair cut",
+      "Twist out / Flexi rod",
+      "Wash & blowdry",
+    ],
+  },
+  "wig-services": {
+    label: "Wigs",
+    subcategories: ["all", "Custom wig", "Pixie wig / weave install", "U-Part wig install", "Wig colour", "Wig install (frontal / closure)"],
+  },
 } as const;
 
 const categoryServiceMap = {
-  "braiding-services": ["Boho braids / goddess braids","Braid take-down","Box braids","Crochet","Creative braids","Feed-in braids","French curl","Fulani / lemonade braids","Half braids, half sew-in","Knotless braids","Miracle knots","Microbraids / x-small braids","Pre-parting","Stitch braids","Twists (with extensions)"],
-  "colour-services": ["Balayage","Full head colour","Highlights","Wig colouring / bundle colouring"],
-  "bridal-services": ["Bridal"],
-  "editorial-services": ["Editorial / Session styling"],
-  "extension-services": ["Clip ins (+ silk press)","K-tips / invisible strands","LA weave / microlinks wefts / braidless sew in","I-tips / microlinks strands","Tape ins"],
-  "locs-services": ["Butterfly locs","Faux locs","Microlocs / sisterlocs","Retwist","Starter locs"],
-  "sew-in-weave": ["Closure sew-in / closure behind the hairline","Flipover / Versatile sew-in","Frontal sew-in","Hybrid sew in (tapes + sew in)","Pixie wig / weave install","Quick weave","Sew-in take-down","Tracks (+ silk press) / partial / invisible sew-in","Traditional sew-in / leave out"],
-  "styling-services": ["Sew in / extensions blowdry","Frontal ponytail / bun","Half up half down","Pixie / finger waves","Sleek ponytail / bun","Updo"],
-  "straightening-treatments": ["Hair botox","Japanese straightening","K-18 treatment","Keratin treatment","Moisturising treatment","Olaplex treatment","Relaxer / texturiser","Texture release"],
-  "natural-hair-services": ["Wig cornrows","Curly cut / wash & go / diffuse","Silk press","Bouncy blowout / Round Brush Blow dry","Trim / hair cut","Roller set","Twist out / flexi rod","Wash & blowdry","Japanese head spa","Scalp detox / treatments"],
-  "natural-hair-scalp-health": ["Healthy hair plans & consultations","Natural hair coaches / educators","Trichology / scalp analysis"],
-  "wig-services": ["Custom wig","Pixie wig / weave install","U-part wig install","Wig colouring / bundle colouring","Wig install (frontal / closure)","Wig blowdry"],
+  "braiding-services": [
+    "Boho braids / goddess braids",
+    "Braid take-down",
+    "Box braids",
+    "Crochet",
+    "Creative braids (e.g. patewo)",
+    "Feed in / All back braids",
+    "French curl",
+    "Fulani / Lemonade braids",
+    "Half braids, half sew-in",
+    "Knotless braids",
+    "Miracle knots",
+    "Microbraids / x-small braids",
+    "Pre-parting",
+    "Stitch braids",
+    "Twists (with extensions)",
+  ],
+  "colour-services": ["Balayage", "Full head colour", "Highlights", "Wig colour"],
+  "bridal-session-services": ["Bridal / Editorial"],
+  "extension-services": ["Clip ins (+ Silk press)", "K-tips / Invisible strands", "LA weave", "Microlinks", "Tape ins"],
+  "locs-services": ["Butterfly locs", "Faux locs", "Microlocs / Sisterlocs", "Retwist", "Starter locs"],
+  "sew-in-weave": [
+    "Closure sew-in",
+    "Flipover / Versatile sew-in",
+    "Frontal sew-in",
+    "Hybrid sew-in",
+    "Pixie wig / weave install",
+    "Quick weave",
+    "Sew-in take-down",
+    "Tracks (+ Silk press) / Partial / Invisible sew-in",
+    "Traditional sew-in / leave out",
+  ],
+  "styling-services": ["Frontal ponytail / bun", "Half up half down", "Pixie / finger waves", "Sleek ponytail / bun", "Updo"],
+  "straightening-treatments": [
+    "Hair Botox",
+    "Japanese straightening",
+    "K-18 treatment",
+    "Keratin treatment",
+    "Moisturising treatment",
+    "Olaplex treatment",
+    "Relaxer / texturiser",
+    "Scalp care",
+    "Texture release",
+  ],
+  "natural-hair-services": [
+    "Wig cornrows",
+    "Curly cut / Wash & go",
+    "Natural hair education",
+    "Silk press / Finish",
+    "Trim / Hair cut",
+    "Twist out / Flexi rod",
+    "Wash & blowdry",
+  ],
+  "wig-services": ["Custom wig", "Pixie wig / weave install", "U-Part wig install", "Wig colour", "Wig install (frontal / closure)"],
 } as const satisfies Record<ServiceCategoryId, readonly string[]>;
 
 type RegionId = (typeof regions)[number]["id"];
@@ -68,16 +189,7 @@ type CategoryId = keyof typeof categoryMap;
 type SubcategoryId = (typeof categoryMap)[CategoryId]["subcategories"][number];
 type ServiceCategoryId = Exclude<CategoryId, "all">;
 type ServiceSubcategoryId = Exclude<SubcategoryId, "all">;
-type SortOption =
-  | "default"
-  | "alphabetical-asc"
-  | "alphabetical-desc"
-  | "most-specialised"
-  | "most-services"
-  | "price-asc"
-  | "price-desc";
-type PriceBand = "£" | "££" | "£££" | "££££";
-type PriceRangeFilterId = PriceBand | "not-listed";
+type SortOption = "default" | "alphabetical-asc" | "alphabetical-desc" | "most-specialised" | "most-services";
 
 type SalonResult = {
   id: string;
@@ -91,16 +203,10 @@ type SalonResult = {
   bookingPlatform: string;
   bookingUrl: string;
   instagramUrl?: string;
-
+  websiteUrl?: string;
   services: string[];
   hijabiFriendly?: boolean;
   canBraidWithoutGel?: boolean;
-  wheelchairAccessible?: boolean;
-  priceBand?: PriceBand;
-  servicePriceBand?: PriceBand;
-  packagePriceBand?: PriceBand;
-  priceIncludesHair?: boolean;
-  priceComparisonMode?: "service-only" | "mixed" | "package-only";
   summary: string;
   source: string;
 };
@@ -122,61 +228,12 @@ const resultLocationLabelMap: Record<string, string> = {
   "all-london": "London",
   central: "Central London",
   north: "North London",
-  "north-west": "North west London",
+  "north-west": "North West London",
   east: "East London",
-  "south-east": "South east London",
-  "south-west": "South west London",
+  "south-east": "South East London",
+  "south-west": "South West London",
   west: "West London",
   south: "South London",
-};
-
-const serviceDisplayNames: Record<string, string> = {
-  "Wig cornrows": "Cornrows / Twists / Wig cornrows",
-};
-
-function getServiceDisplayName(service: string) {
-  return serviceDisplayNames[service] ?? service;
-}
-
-function normalizeServiceSearch(s: string) {
-  return s.toLowerCase().replace(/[-–—]/g, " ").replace(/\s+/g, " ").trim();
-}
-
-const serviceSearchAliases: Record<string, string[]> = {
-  "Balayage": ["balayage"],
-  "Highlights": ["highlight", "highlights", "lowlights"],
-  "Full head colour": ["colour", "color", "tint", "dye", "rooting"],
-  "Wig colouring / bundle colouring": ["wig colour", "wig color", "colouring full wig", "custom colour", "colour service", "613"],
-  "Frontal sew-in": ["frontal sew in", "frontal sew-in", "frontal sewin", "frontal weave"],
-  "Closure sew-in": ["closure sew in", "closure sew-in", "closure sewin", "closure weave", "weave with lace closure"],
-  "Creative braids": ["creative braids", "patewo", "dolly braids", "shuku", "koroba braids", "koroba", "tyla braids", "tyla", "alicia keys braids", "diva braids"],
-  "Feed-in braids": ["feed in", "feed-in", "all back", "braids going back", "all back cornrows", "all back braids", "cornrows with extensions", "cornrows with hair"],
-  "Fulani / lemonade braids": ["fulani", "lemonade", "alicia keys braids"],
-  "K-tips / invisible strands": ["k tips", "k-tips", "keratin tip", "keratin tips", "keratin bonds", "invisible strands"],
-  "Frontal ponytail / bun": ["frontal ponytail", "frontal pony", "frontal bun", "frontal updo"],
-  "U-part wig install": ["u part", "upart", "u-part", "u part wig", "u-part wig", "v part", "vpart", "v-part"],
-  "Custom wig": ["custom wig", "bespoke wig", "custom lace", "custom unit", "wig making", "wig construction"],
-  "Wig install (frontal / closure)": ["wig install", "wig installation", "wig application", "wig fitting", "glueless wig", "lace wig", "frontal wig", "closure wig", "frontal unit install", "closure unit install"],
-  "Pixie wig / weave install": ["pixie wig", "pixie weave", "pixie install", "pixie sew in", "pixie sew-in"],
-  "Twists (with extensions)": ["twists with extensions", "passion twists", "marley twists", "senegalese twists", "kinky twists", "rope twists", "island twists", "island twist"],
-  "Hybrid sew in (tapes + sew in)": ["hybrid sew in", "hybrid sew-in", "hybrid weave", "tracks + tapes hybrid", "tracks and tapes hybrid"],
-  "Tracks (+ silk press) / partial / invisible sew-in": ["rows", "tracks", "track per row", "per row", "one row", "weave tracks", "partial sew in", "partial sew-in", "invisible sew in", "invisible weave", "invisible weft", "half head weave"],
-  "Silk press": ["straightening", "straighten", "silk press", "silkpress", "press and curl"],
-  "Bouncy blowout / round brush blow dry": ["bouncy blowout", "bouncy blow out", "bouncy blowdry", "bouncy blow dry", "bouncy blow-dry", "round brush blow dry", "round brush blowdry", "blowout"],
-  "Sew in / extensions blowdry": ["extensions blowdry", "extensions blow dry", "extensions blowout", "extensions blow out", "extension blowdry", "extension blow dry", "extension blowout", "extension blow out", "blowdry with extensions", "blow dry with extensions", "blowout with extensions", "blow out with extensions", "weave blowdry", "weave blow dry", "weave blowout", "weave blow out", "sew in blowdry", "sew in blow dry", "sew-in blowdry", "sew-in blow dry", "sewin blowdry", "sewin blow dry", "sew in blowout", "sew in blow out", "sew-in blowout", "sew-in blow out", "k tips blowdry", "k-tips blowdry", "ktips blowdry", "k tips blow dry", "k-tips blow dry", "ktips blow dry"],
-  "Wash & blowdry": ["wash blowdry", "wash blow dry", "wash and blowdry", "wash and blow dry", "shampoo blowdry", "shampoo blow dry"],
-  "Japanese head spa": ["japanese head spa", "head spa", "headspa"],
-  "Updo": ["updo", "up do", "pin up", "french roll"],
-  "Wig cornrows": ["under wig", "wig cornrows", "cornrows for wig", "cornrows"],
-  "Butterfly locs": ["butterfly locs"],
-  "Faux locs": ["faux locs", "invisible locs", "soft locs"],
-  "Starter locs": ["starter locs", "start locs", "loc start"],
-  "Half braids, half sew-in": ["boho braids sew in", "boho braid sew in", "boho sew in", "fulani braids sew in", "fulani braid sew in", "fulani sew in"],
-  "Braid take-down": ["braids removal", "braid removal", "braids takedown", "braid takedown"],
-  "Sew-in take-down": ["sew in removal", "sewin removal", "sew-in removal", "weave removal", "weave takedown", "sew in takedown", "sewin takedown"],
-  "Stitch braids": ["stitch braids", "stitch"],
-  "Scalp detox / treatments": ["scalp", "scalp care", "scalp therapy", "scalp treatment", "scalp scrub", "scalp detox"],
-  "Trichology / scalp analysis": ["scalp", "scalp analysis", "scalp health", "trichology"],
 };
 
 const sortedCategoryEntries = [
@@ -191,17 +248,8 @@ const RESULTS_SKELETON_COUNT = 6;
 const sortOptions: { id: SortOption; label: string }[] = [
   { id: "alphabetical-asc", label: "A → Z" },
   { id: "alphabetical-desc", label: "Z → A" },
-  { id: "price-asc", label: "Price: Low to high" },
-  { id: "price-desc", label: "Price: High to low" },
   { id: "most-specialised", label: "Most specialised" },
   { id: "most-services", label: "Most services" },
-];
-const priceRangeOptions: { id: PriceRangeFilterId; label: string }[] = [
-  { id: "£", label: "£: under £100" },
-  { id: "££", label: "££: £100-£200" },
-  { id: "£££", label: "£££: £200-£300" },
-  { id: "££££", label: "££££: over £300" },
-  { id: "not-listed", label: "Price not listed" },
 ];
 
 function compareSalonNames(left: SalonResult, right: SalonResult) {
@@ -219,45 +267,6 @@ function compareSalonNamesDesc(left: SalonResult, right: SalonResult) {
   return compareSalonNames(right, left);
 }
 
-const priceBandSortRank: Record<PriceBand, number> = {
-  "£": 1,
-  "££": 2,
-  "£££": 3,
-  "££££": 4,
-};
-
-function comparablePriceBand(result: SalonResult) {
-  return result.servicePriceBand || result.priceBand;
-}
-
-function priceBandRank(result: SalonResult) {
-  const priceBand = comparablePriceBand(result);
-  return priceBand ? priceBandSortRank[priceBand] : Number.POSITIVE_INFINITY;
-}
-
-function compareSalonPriceBandsAsc(left: SalonResult, right: SalonResult) {
-  return priceBandRank(left) - priceBandRank(right) || compareSalonNames(left, right);
-}
-
-function compareSalonPriceBandsDesc(left: SalonResult, right: SalonResult) {
-  const leftRank = priceBandRank(left);
-  const rightRank = priceBandRank(right);
-
-  if (!Number.isFinite(leftRank) && !Number.isFinite(rightRank)) {
-    return compareSalonNames(left, right);
-  }
-
-  if (!Number.isFinite(leftRank)) {
-    return 1;
-  }
-
-  if (!Number.isFinite(rightRank)) {
-    return -1;
-  }
-
-  return rightRank - leftRank || compareSalonNames(left, right);
-}
-
 function sortResults(
   results: SalonResult[],
   sortOption: SortOption,
@@ -270,10 +279,6 @@ function sortResults(
       return [...results].sort(compareSalonNames);
     case "alphabetical-desc":
       return [...results].sort(compareSalonNamesDesc);
-    case "price-asc":
-      return [...results].sort(compareSalonPriceBandsAsc);
-    case "price-desc":
-      return [...results].sort(compareSalonPriceBandsDesc);
     case "most-services":
       return [...results].sort((left, right) => right.services.length - left.services.length || compareSalonNames(left, right));
     case "most-specialised":
@@ -282,58 +287,6 @@ function sortResults(
     default:
       return results;
   }
-}
-
-function useViewedOnce(onViewed: () => void) {
-  const ref = useRef<HTMLLIElement | null>(null);
-  const firedRef = useRef(false);
-  const callbackRef = useRef(onViewed);
-  callbackRef.current = onViewed;
-
-  const setRef = useCallback((node: HTMLLIElement | null) => {
-    ref.current = node;
-    if (!node) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !firedRef.current) {
-          firedRef.current = true;
-          callbackRef.current();
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.5 },
-    );
-    observer.observe(node);
-  }, []);
-
-  return setRef;
-}
-
-function StylistCardWrapper({
-  result,
-  services,
-  children,
-}: {
-  result: SalonResult;
-  services: string;
-  children: React.ReactNode;
-}) {
-  const setRef = useViewedOnce(() => {
-    trackUmamiEvent("stylist_viewed", {
-      salon: result.name,
-      location: result.areaLabel,
-      services,
-    });
-  });
-
-  return (
-    <li
-      ref={setRef}
-      className="flex w-full flex-col items-start gap-2 border-b border-stone-300 px-0 py-5 text-left last:border-b-0 dark:border-stone-800"
-    >
-      {children}
-    </li>
-  );
 }
 
 function trackUmamiEvent(eventName: string, data?: Record<string, string | number | boolean | null>) {
@@ -371,7 +324,6 @@ function orderServicesBySelection(
   services: string[],
   selectedCategories: ServiceCategoryId[],
   selectedSubcategories: ServiceSubcategoryId[],
-  catServiceMap: Record<string, string[]> = categoryServiceMap,
 ) {
   if (selectedCategories.length === 0 && selectedSubcategories.length === 0) {
     return services;
@@ -380,7 +332,7 @@ function orderServicesBySelection(
   const prioritizedServices = new Set<string>(selectedSubcategories);
 
   selectedCategories.forEach((categoryId) => {
-    (catServiceMap[categoryId] ?? []).forEach((service) => {
+    categoryServiceMap[categoryId].forEach((service) => {
       prioritizedServices.add(service);
     });
   });
@@ -553,7 +505,7 @@ function ServicesSummary({ services }: { services: string[] }) {
       {services.slice(0, visibleCount).map((service, index) => (
         <Fragment key={`${service}-${index}`}>
           {index > 0 ? <span className="text-stone-500/70 dark:text-stone-500/80"> · </span> : null}
-          <span>{getServiceDisplayName(service)}</span>
+          <span>{service}</span>
         </Fragment>
       ))}
       {hiddenCount > 0 ? (
@@ -610,7 +562,7 @@ function ServicesSummary({ services }: { services: string[] }) {
             }}
             className="inline-block text-[12px] font-normal lowercase leading-[18px] tracking-[0.02em]"
           >
-            {getServiceDisplayName(service)}
+            {service}
           </span>
         ))}
         {services.map((_, hiddenCountIndex) => {
@@ -633,59 +585,21 @@ function ServicesSummary({ services }: { services: string[] }) {
   );
 }
 
-type RuntimeCategory = { id: string; label: string; subcategories: string[] };
-type RuntimeFilterConfig = {
-  categories: RuntimeCategory[];
-  nestedLondonRegionIds: string[];
-  standaloneRegionIds: string[];
-  regions: { id: string; label: string }[];
-};
-
-function buildRuntimeConfig(apiCategories: RuntimeCategory[], apiLocations: { regions: { id: string; label: string }[]; londonChildIds: string[]; standaloneIds: string[] } | null): RuntimeFilterConfig {
-  const normaliseRegionId = (id: string) => id === "all-london" ? "london" : id;
-  const normalisedRegions = apiLocations?.regions.map((r) => ({ ...r, id: normaliseRegionId(r.id) }));
-  const regionsWithAll = normalisedRegions
-    ? [{ id: "all", label: "All locations" }, ...normalisedRegions.filter((r) => r.id !== "all")]
-    : null;
-  return {
-    categories: [{ id: "all", label: "All services", subcategories: [] }, ...apiCategories],
-    nestedLondonRegionIds: apiLocations?.londonChildIds ?? [...nestedLondonRegionIds],
-    standaloneRegionIds: apiLocations?.standaloneIds ?? [...standaloneRegionIds],
-    regions: regionsWithAll ?? regions.map((r) => ({ id: r.id, label: r.label })),
-  };
-}
-
-const defaultFilterConfig: RuntimeFilterConfig = {
-  categories: [
-    { id: "all", label: "All services", subcategories: [] },
-    ...Object.entries(categoryMap)
-      .filter(([id]) => id !== "all")
-      .map(([id, cat]) => ({ id, label: cat.label, subcategories: cat.subcategories.filter((s) => s !== "all") as string[] })),
-  ],
-  nestedLondonRegionIds: [...nestedLondonRegionIds],
-  standaloneRegionIds: [...standaloneRegionIds],
-  regions: regions.map((r) => ({ id: r.id, label: r.label })),
-};
-
 export default function App() {
   if (window.location.pathname.startsWith("/admin/stylists")) {
     return <AdminApp />;
   }
 
-  const [filterConfig, setFilterConfig] = useState<RuntimeFilterConfig>(defaultFilterConfig);
   const [selectedRegions, setSelectedRegions] = useState<RegionId[]>(["all"]);
   const [selectedCategories, setSelectedCategories] = useState<ServiceCategoryId[]>([]);
   const [selectedSubcategories, setSelectedSubcategories] = useState<ServiceSubcategoryId[]>([]);
-  const [serviceSearch, setServiceSearch] = useState("");
   const [results, setResults] = useState<SalonResult[]>([]);
   const [sortOption, setSortOption] = useState<SortOption>("alphabetical-asc");
   const [draftSelectedRegions, setDraftSelectedRegions] = useState<RegionId[]>(["all"]);
   const [draftSelectedCategories, setDraftSelectedCategories] = useState<ServiceCategoryId[]>([]);
   const [draftSelectedSubcategories, setDraftSelectedSubcategories] = useState<ServiceSubcategoryId[]>([]);
-  const [draftSelectedPriceBands, setDraftSelectedPriceBands] = useState<PriceRangeFilterId[]>([]);
   const [draftSelectedHijabiFriendly, setDraftSelectedHijabiFriendly] = useState(false);
   const [draftSelectedCanBraidWithoutGel, setDraftSelectedCanBraidWithoutGel] = useState(false);
-  const [draftSelectedWheelchairAccessible, setDraftSelectedWheelchairAccessible] = useState(false);
   const [draftSortOption, setDraftSortOption] = useState<SortOption>("alphabetical-asc");
   const [visibleResultCount, setVisibleResultCount] = useState(RESULTS_BATCH_SIZE);
   const [isSearching, setIsSearching] = useState(false);
@@ -694,45 +608,25 @@ export default function App() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   const [selectedHijabiFriendly, setSelectedHijabiFriendly] = useState(false);
   const [selectedCanBraidWithoutGel, setSelectedCanBraidWithoutGel] = useState(false);
-  const [selectedWheelchairAccessible, setSelectedWheelchairAccessible] = useState(false);
-  const [selectedPriceBands, setSelectedPriceBands] = useState<PriceRangeFilterId[]>([]);
   const [isDesktopViewport, setIsDesktopViewport] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const [locationsOpen, setLocationsOpen] = useState(false);
-  const [priceRangesOpen, setPriceRangesOpen] = useState(false);
   const [additionalNeedsOpen, setAdditionalNeedsOpen] = useState(false);
   const loadMoreRef = useRef<HTMLDivElement | null>(null);
   const isMobileModalEditing = mobileFiltersOpen && !isDesktopViewport;
   const currentSelectedRegions = isMobileModalEditing ? draftSelectedRegions : selectedRegions;
   const currentSelectedCategories = isMobileModalEditing ? draftSelectedCategories : selectedCategories;
   const currentSelectedSubcategories = isMobileModalEditing ? draftSelectedSubcategories : selectedSubcategories;
-  const currentSelectedPriceBands = isMobileModalEditing ? draftSelectedPriceBands : selectedPriceBands;
   const currentSelectedHijabiFriendly = isMobileModalEditing ? draftSelectedHijabiFriendly : selectedHijabiFriendly;
   const currentSelectedCanBraidWithoutGel = isMobileModalEditing ? draftSelectedCanBraidWithoutGel : selectedCanBraidWithoutGel;
-  const currentSelectedWheelchairAccessible = isMobileModalEditing ? draftSelectedWheelchairAccessible : selectedWheelchairAccessible;
   const currentSortOption = isMobileModalEditing ? draftSortOption : sortOption;
-
-  // Runtime filter data from API (falls back to hardcoded values on load)
-  const runtimeCategories = filterConfig.categories;
-  const runtimeNestedLondonIds = filterConfig.nestedLondonRegionIds;
-  const runtimeStandaloneIds = filterConfig.standaloneRegionIds;
-  const runtimeRegions = filterConfig.regions;
-  const runtimeSortedCategoryEntries: [string, { label: string; subcategories: string[] }][] = [
-    ...runtimeCategories.filter((c) => c.id === "all").map((c) => [c.id, { label: c.label, subcategories: ["all", ...c.subcategories] }] as [string, { label: string; subcategories: string[] }]),
-    ...runtimeCategories.filter((c) => c.id !== "all").sort((a, b) => a.label.localeCompare(b.label)).map((c) => [c.id, { label: c.label, subcategories: ["all", ...c.subcategories] }] as [string, { label: string; subcategories: string[] }]),
-  ];
-  const runtimeCategoryServiceMap = Object.fromEntries(
-    runtimeCategories.filter((c) => c.id !== "all").map((c) => [c.id, c.subcategories])
-  );
 
   function syncDraftFiltersFromApplied() {
     setDraftSelectedRegions(selectedRegions);
     setDraftSelectedCategories(selectedCategories);
     setDraftSelectedSubcategories(selectedSubcategories);
-    setDraftSelectedPriceBands(selectedPriceBands);
     setDraftSelectedHijabiFriendly(selectedHijabiFriendly);
     setDraftSelectedCanBraidWithoutGel(selectedCanBraidWithoutGel);
-    setDraftSelectedWheelchairAccessible(selectedWheelchairAccessible);
     setDraftSortOption(sortOption);
   }
 
@@ -751,10 +645,8 @@ export default function App() {
     setSelectedRegions(draftSelectedRegions);
     setSelectedCategories(draftSelectedCategories);
     setSelectedSubcategories(draftSelectedSubcategories);
-    setSelectedPriceBands(draftSelectedPriceBands);
     setSelectedHijabiFriendly(draftSelectedHijabiFriendly);
     setSelectedCanBraidWithoutGel(draftSelectedCanBraidWithoutGel);
-    setSelectedWheelchairAccessible(draftSelectedWheelchairAccessible);
     setSortOption(draftSortOption);
     setVisibleResultCount(RESULTS_BATCH_SIZE);
     setMobileFiltersOpen(false);
@@ -791,15 +683,6 @@ export default function App() {
     setSelectedSubcategories(updater);
   }
 
-  function updatePriceBands(updater: PriceRangeFilterId[] | ((current: PriceRangeFilterId[]) => PriceRangeFilterId[])) {
-    if (isMobileModalEditing) {
-      setDraftSelectedPriceBands(updater);
-      return;
-    }
-
-    setSelectedPriceBands(updater);
-  }
-
   function updateHijabiFriendly(updater: boolean | ((current: boolean) => boolean)) {
     if (isMobileModalEditing) {
       setDraftSelectedHijabiFriendly(updater);
@@ -818,15 +701,6 @@ export default function App() {
     setSelectedCanBraidWithoutGel(updater);
   }
 
-  function updateWheelchairAccessible(updater: boolean | ((current: boolean) => boolean)) {
-    if (isMobileModalEditing) {
-      setDraftSelectedWheelchairAccessible(updater);
-      return;
-    }
-
-    setSelectedWheelchairAccessible(updater);
-  }
-
   function updateSortOption(nextSort: SortOption) {
     if (isMobileModalEditing) {
       setDraftSortOption(nextSort);
@@ -842,7 +716,6 @@ export default function App() {
       const nextIsOpen = !current;
       if (nextIsOpen) {
         setLocationsOpen(false);
-        setPriceRangesOpen(false);
         setAdditionalNeedsOpen(false);
       }
       trackUmamiEvent("filter_section_toggled", {
@@ -858,27 +731,10 @@ export default function App() {
       const nextIsOpen = !current;
       if (nextIsOpen) {
         setServicesOpen(false);
-        setPriceRangesOpen(false);
         setAdditionalNeedsOpen(false);
       }
       trackUmamiEvent("filter_section_toggled", {
         section: "locations",
-        expanded: nextIsOpen,
-      });
-      return nextIsOpen;
-    });
-  }
-
-  function togglePriceRangesOpen() {
-    setPriceRangesOpen((current) => {
-      const nextIsOpen = !current;
-      if (nextIsOpen) {
-        setServicesOpen(false);
-        setLocationsOpen(false);
-        setAdditionalNeedsOpen(false);
-      }
-      trackUmamiEvent("filter_section_toggled", {
-        section: "price_ranges",
         expanded: nextIsOpen,
       });
       return nextIsOpen;
@@ -891,7 +747,6 @@ export default function App() {
       if (nextIsOpen) {
         setServicesOpen(false);
         setLocationsOpen(false);
-        setPriceRangesOpen(false);
       }
       trackUmamiEvent("filter_section_toggled", {
         section: "additional_needs",
@@ -905,19 +760,15 @@ export default function App() {
     trackUmamiEvent("filter_reset", {
       selected_services: currentSelectedCategories.length + currentSelectedSubcategories.length,
       selected_locations: currentSelectedRegions.filter((region) => region !== "all").length,
-      selected_price_ranges: currentSelectedPriceBands.length,
-      selected_additional_needs: (currentSelectedHijabiFriendly ? 1 : 0) + (currentSelectedCanBraidWithoutGel ? 1 : 0) + (currentSelectedWheelchairAccessible ? 1 : 0),
+      selected_additional_needs: (currentSelectedHijabiFriendly ? 1 : 0) + (currentSelectedCanBraidWithoutGel ? 1 : 0),
       hijabi_friendly: currentSelectedHijabiFriendly,
       can_braid_without_gel: currentSelectedCanBraidWithoutGel,
-      wheelchair_accessible: currentSelectedWheelchairAccessible,
     });
     updateCategories([]);
     updateSubcategories([]);
     updateRegions(["all"]);
-    updatePriceBands([]);
     updateHijabiFriendly(false);
     updateCanBraidWithoutGel(false);
-    updateWheelchairAccessible(false);
     updateSortOption("alphabetical-asc");
   }
 
@@ -925,17 +776,12 @@ export default function App() {
     return currentSelectedCategories.includes(categoryId);
   }
 
-  function getCategorySubcategories(categoryId: string): string[] {
-    return runtimeCategories.find((c) => c.id === categoryId)?.subcategories ?? [];
-  }
-
-  function getCategoryLabel(categoryId: string): string {
-    return runtimeCategories.find((c) => c.id === categoryId)?.label ?? categoryId;
-  }
-
   function categoryHasSelectedSubcategories(categoryId: ServiceCategoryId) {
-    const availableSubcategories = getCategorySubcategories(categoryId);
-    return availableSubcategories.some((subcategory) => currentSelectedSubcategories.includes(subcategory as ServiceSubcategoryId));
+    const availableSubcategories = categoryMap[categoryId].subcategories.filter(
+      (subcategory): subcategory is ServiceSubcategoryId => subcategory !== "all",
+    );
+
+    return availableSubcategories.some((subcategory) => currentSelectedSubcategories.includes(subcategory));
   }
 
   function toggleCategory(nextCategory: CategoryId) {
@@ -949,7 +795,7 @@ export default function App() {
       return;
     }
 
-    const nextCategoryLabel = getCategoryLabel(nextCategory);
+    const nextCategoryLabel = categoryMap[nextCategory].label;
     const isCurrentlyActive = currentSelectedCategories.includes(nextCategory as ServiceCategoryId);
     trackUmamiEvent("service_filter_selected", {
       selection: nextCategoryLabel,
@@ -959,15 +805,30 @@ export default function App() {
 
     updateCategories((currentCategories) => {
       const isActive = currentCategories.includes(nextCategory);
-      const nextSubcategories = new Set(getCategorySubcategories(nextCategory));
+      if (isActive) {
+        const nextSubcategories = new Set(
+          categoryMap[nextCategory].subcategories.filter(
+            (subcategory): subcategory is ServiceSubcategoryId => subcategory !== "all",
+          ),
+        );
+
+        updateSubcategories((currentSubcategories) =>
+          currentSubcategories.filter((subcategory) => !nextSubcategories.has(subcategory)),
+        );
+
+        return currentCategories.filter((categoryId) => categoryId !== nextCategory);
+      }
+
+      const nextSubcategories = new Set(
+        categoryMap[nextCategory].subcategories.filter(
+          (subcategory): subcategory is ServiceSubcategoryId => subcategory !== "all",
+        ),
+      );
 
       updateSubcategories((currentSubcategories) =>
         currentSubcategories.filter((subcategory) => !nextSubcategories.has(subcategory)),
       );
 
-      if (isActive) {
-        return currentCategories.filter((categoryId) => categoryId !== nextCategory);
-      }
       return [...currentCategories, nextCategory];
     });
   }
@@ -979,9 +840,10 @@ export default function App() {
       type: "subcategory",
     });
 
-    const parentCategory = runtimeCategories.find(
-      (cat) => cat.id !== "all" && cat.subcategories.includes(nextSubcategory),
-    )?.id as ServiceCategoryId | undefined;
+    const parentCategory = (Object.entries(categoryMap) as [CategoryId, (typeof categoryMap)[CategoryId]][]).find(
+      ([categoryId, category]) =>
+        categoryId !== "all" && category.subcategories.includes(nextSubcategory as SubcategoryId),
+    )?.[0] as ServiceCategoryId | undefined;
 
     updateSubcategories((currentSubcategories) => {
       const isCurrentlySelected = currentSubcategories.includes(nextSubcategory);
@@ -990,12 +852,18 @@ export default function App() {
         : [...currentSubcategories, nextSubcategory];
 
       if (parentCategory) {
-        const parentSubcategories = getCategorySubcategories(parentCategory);
-        const hasSelectedSiblingSubcategory = parentSubcategories.some((subcategory) => nextSubcategories.includes(subcategory as ServiceSubcategoryId));
+        const parentSubcategories = categoryMap[parentCategory].subcategories.filter(
+          (subcategory): subcategory is ServiceSubcategoryId => subcategory !== "all",
+        );
+        const hasSelectedSiblingSubcategory = parentSubcategories.some((subcategory) => nextSubcategories.includes(subcategory));
 
         updateCategories((currentCategories) => {
           const categoriesWithoutParent = currentCategories.filter((categoryId) => categoryId !== parentCategory);
-          if (hasSelectedSiblingSubcategory) return categoriesWithoutParent;
+
+          if (hasSelectedSiblingSubcategory) {
+            return categoriesWithoutParent;
+          }
+
           return [...categoriesWithoutParent, parentCategory];
         });
       }
@@ -1018,25 +886,6 @@ export default function App() {
       enabled: !currentSelectedHijabiFriendly,
     });
     updateHijabiFriendly((current) => !current);
-  }
-
-  function toggleWheelchairAccessible() {
-    updateWheelchairAccessible((current) => !current);
-  }
-
-  function togglePriceBand(nextPriceBand: PriceRangeFilterId) {
-    const nextSelected = !currentSelectedPriceBands.includes(nextPriceBand);
-    trackUmamiEvent("price_filter_selected", {
-      selection: nextPriceBand,
-      selected: nextSelected,
-    });
-
-    updatePriceBands((currentPriceBands) =>
-      currentPriceBands.includes(nextPriceBand)
-        ? currentPriceBands.filter((priceBand) => priceBand !== nextPriceBand)
-        : [...currentPriceBands, nextPriceBand],
-    );
-    setVisibleResultCount(RESULTS_BATCH_SIZE);
   }
 
   function isRegionSelected(regionId: RegionId) {
@@ -1064,9 +913,9 @@ export default function App() {
         return currentRegions.includes("london") ? ["all"] : ["london"];
       }
 
-      if (runtimeNestedLondonIds.includes(nextRegion)) {
+      if (nestedLondonRegionIds.includes(nextRegion as (typeof nestedLondonRegionIds)[number])) {
         const currentLondonSubregions = currentRegions.filter((regionId) =>
-          runtimeNestedLondonIds.includes(regionId),
+          nestedLondonRegionIds.includes(regionId as (typeof nestedLondonRegionIds)[number]),
         );
         const isActive = currentLondonSubregions.includes(nextRegion);
         const nextLondonSubregions = isActive
@@ -1078,7 +927,7 @@ export default function App() {
         }
 
         const nonLondonRegions = currentRegions.filter(
-          (regionId) => regionId !== "all" && regionId !== "london" && !runtimeNestedLondonIds.includes(regionId),
+          (regionId) => regionId !== "all" && regionId !== "london" && !nestedLondonRegionIds.includes(regionId as (typeof nestedLondonRegionIds)[number]),
         );
 
         return [...nonLondonRegions, ...nextLondonSubregions];
@@ -1121,7 +970,6 @@ export default function App() {
           regions: selectedRegions,
           hijabiFriendly: selectedHijabiFriendly,
           canBraidWithoutGel: selectedCanBraidWithoutGel,
-          wheelchairAccessible: selectedWheelchairAccessible,
         }),
       });
 
@@ -1141,28 +989,6 @@ export default function App() {
         throw new Error(payload.message || "Search failed.");
       }
 
-      const resultCount = (payload.results ?? []).length;
-      const activeServices = [...selectedCategories, ...selectedSubcategories];
-
-      trackUmamiEvent("search_performed", {
-        services: activeServices.join(", ") || "none",
-        location: selectedRegions.join(", ") || "all",
-        result_count: resultCount,
-        hijabi_friendly: selectedHijabiFriendly,
-        no_gel: selectedCanBraidWithoutGel,
-        wheelchair_accessible: selectedWheelchairAccessible,
-      });
-
-      if (resultCount === 0) {
-        trackUmamiEvent("search_zero_results", {
-          services: activeServices.join(", ") || "none",
-          location: selectedRegions.join(", ") || "all",
-          hijabi_friendly: selectedHijabiFriendly,
-          no_gel: selectedCanBraidWithoutGel,
-          wheelchair_accessible: selectedWheelchairAccessible,
-        });
-      }
-
       setVisibleResultCount(RESULTS_BATCH_SIZE);
       setResults(payload.results ?? []);
       if (options?.scroll !== false) {
@@ -1178,18 +1004,7 @@ export default function App() {
 
   useEffect(() => {
     void handleSearch({ scroll: false });
-  }, [selectedCategories, selectedSubcategories, selectedRegions, selectedHijabiFriendly, selectedCanBraidWithoutGel, selectedWheelchairAccessible]);
-
-  useEffect(() => {
-    fetch("/api/filters")
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.ok && Array.isArray(data.categories)) {
-          setFilterConfig(buildRuntimeConfig(data.categories, data.locations ?? null));
-        }
-      })
-      .catch(() => {});
-  }, []);
+  }, [selectedCategories, selectedSubcategories, selectedRegions, selectedHijabiFriendly, selectedCanBraidWithoutGel]);
 
   useEffect(() => {
     const desktopMediaQuery = window.matchMedia("(min-width: 1024px)");
@@ -1249,20 +1064,11 @@ export default function App() {
   const hasActiveFilters =
     selectedCategories.length > 0 ||
     selectedSubcategories.length > 0 ||
-    selectedPriceBands.length > 0 ||
     selectedHijabiFriendly ||
     selectedCanBraidWithoutGel ||
-    selectedWheelchairAccessible ||
     selectedRegions.length !== 1 ||
     selectedRegions[0] !== "all";
-  const priceFilteredResults = selectedPriceBands.length
-    ? results.filter((result) =>
-        comparablePriceBand(result)
-          ? selectedPriceBands.includes(comparablePriceBand(result) as PriceBand)
-          : selectedPriceBands.includes("not-listed"),
-      )
-    : results;
-  const sortedResults = sortResults(priceFilteredResults, sortOption, hasActiveFilters, selectedCategories, selectedSubcategories);
+  const sortedResults = sortResults(results, sortOption, hasActiveFilters, selectedCategories, selectedSubcategories);
 
   useEffect(() => {
     const node = loadMoreRef.current;
@@ -1310,17 +1116,18 @@ export default function App() {
     return () => desktopMediaQuery.removeListener(syncMobileFilterState);
   }, []);
 
-
   const visibleResults = sortedResults.slice(0, visibleResultCount);
-  const selectedServiceCount = runtimeSortedCategoryEntries.reduce((count, [id]) => {
-    if (id === "all") return count;
+  const selectedServiceCount = sortedCategoryEntries.reduce((count, [id]) => {
+    if (id === "all") {
+      return count;
+    }
+
     const categoryId = id as ServiceCategoryId;
     return isCategorySelected(categoryId) || categoryHasSelectedSubcategories(categoryId) ? count + 1 : count;
   }, 0);
   const selectedLocationCount = currentSelectedRegions.filter((regionId) => regionId !== "all").length;
-  const selectedPriceRangeCount = currentSelectedPriceBands.length;
   const selectedAdditionalNeedsCount =
-    (currentSelectedHijabiFriendly ? 1 : 0) + (currentSelectedCanBraidWithoutGel ? 1 : 0) + (currentSelectedWheelchairAccessible ? 1 : 0);
+    (currentSelectedHijabiFriendly ? 1 : 0) + (currentSelectedCanBraidWithoutGel ? 1 : 0);
 
   return (
     <div className="min-h-screen bg-stone-100 text-left dark:bg-stone-950">
@@ -1420,38 +1227,43 @@ export default function App() {
             <ul className="flex w-full list-none flex-col items-start">
               {visibleResults.map((result) => {
                 const locationLabels = getLocationLabels(result);
-                const orderedServices = orderServicesBySelection(result.services, selectedCategories, selectedSubcategories, runtimeCategoryServiceMap);
-
-                const activeServices = [...selectedCategories, ...selectedSubcategories].join(", ") || "none";
+                const orderedServices = orderServicesBySelection(result.services, selectedCategories, selectedSubcategories);
 
                 return (
-                  <StylistCardWrapper key={result.id} result={result} services={activeServices}>
+                  <li
+                    key={result.id}
+                    className="flex w-full flex-col items-start gap-2 border-b border-stone-300 px-0 py-5 text-left last:border-b-0 dark:border-stone-800"
+                  >
                     <article className="flex w-full flex-col gap-2.5 sm:grid sm:grid-cols-[minmax(0,1fr)_auto] sm:items-start sm:gap-x-4 sm:gap-y-2.5">
                       <div className="min-w-0">
                         <div className="min-w-0 grow">
                           <div className="flex items-start justify-between gap-3">
                             <div className="min-w-0">
-                              <div className="flex flex-wrap items-baseline gap-x-2">
+                              <div className="flex flex-col items-start gap-1.5 sm:flex-row sm:flex-wrap sm:items-end sm:gap-2">
                                 <h3 className="text-[17px] font-semibold text-stone-950 dark:text-stone-50">{result.name}</h3>
-                                {locationLabels.length > 0 ? (
-                                  <>
-                                    <span aria-hidden="true" className="text-[17px] font-semibold text-stone-400 dark:text-stone-500">·</span>
-                                    <span className="text-[17px] font-semibold text-stone-500 dark:text-stone-400">
-                                      {locationLabels.join(" · ")}
-                                    </span>
-                                  </>
+                                {result.hijabiFriendly || result.canBraidWithoutGel ? (
+                                  <div className="flex max-w-full flex-wrap items-center gap-2 sm:mb-[3.5px]">
+                                    {result.hijabiFriendly ? (
+                                      <span className="inline-flex items-center rounded-none bg-emerald-100 p-1 text-[11px] font-medium lowercase leading-none text-emerald-800 dark:bg-emerald-950/50 dark:text-emerald-300">
+                                        hijabi-friendly
+                                      </span>
+                                    ) : null}
+                                    {result.canBraidWithoutGel ? (
+                                      <span className="inline-flex items-center rounded-none bg-pink-100 p-1 text-[11px] font-medium lowercase leading-none text-pink-800 dark:bg-pink-950/50 dark:text-pink-300">
+                                        can braid without gel
+                                      </span>
+                                    ) : null}
+                                  </div>
                                 ) : null}
                               </div>
-                              {(comparablePriceBand(result) || result.hijabiFriendly || result.canBraidWithoutGel || result.wheelchairAccessible) ? (
-                                <div className="mt-1">
-                                  <span className="inline-flex items-center rounded-none bg-stone-200 px-1.5 py-1 text-[11px] font-medium leading-none tracking-[0.03em] text-stone-700 dark:bg-stone-700 dark:text-stone-100">
-                                    {[
-                                      comparablePriceBand(result),
-                                      result.wheelchairAccessible ? "wheelchair accessible" : null,
-                                      result.hijabiFriendly ? "hijabi-friendly" : null,
-                                      result.canBraidWithoutGel ? "can braid without gel" : null,
-                                    ].filter(Boolean).join(" · ")}
-                                  </span>
+                              {locationLabels.length > 0 ? (
+                                <div className="mt-0.5 flex flex-wrap items-center gap-2 text-[14px] text-stone-500 dark:text-stone-400">
+                                  {locationLabels.map((label, index) => (
+                                    <Fragment key={label}>
+                                      {index > 0 ? <span>•</span> : null}
+                                      <span>{label}</span>
+                                    </Fragment>
+                                  ))}
                                 </div>
                               ) : null}
                             </div>
@@ -1469,7 +1281,7 @@ export default function App() {
                                 className="inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-none bg-transparent px-4 py-2 text-[14px] font-medium text-stone-950 transition-colors duration-150 hover:bg-stone-200 active:bg-stone-200 dark:bg-transparent dark:text-stone-100 dark:hover:bg-stone-800 dark:active:bg-stone-800 sm:hidden"
                               >
                                 <InstagramIcon className="size-4" />
-                                <span className="sr-only">Go to {result.name} Instagram - opens in a new tab</span>
+                                <span className="sr-only">{result.name} instagram - opens in a new tab</span>
                               </a>
                             ) : null}
                           </div>
@@ -1496,7 +1308,7 @@ export default function App() {
                             className="hidden min-h-[46px] items-center justify-center gap-2 rounded-none bg-transparent px-4 py-2 text-[14px] font-medium text-stone-950 transition-colors duration-150 hover:bg-stone-200 dark:bg-transparent dark:text-stone-100 dark:hover:bg-stone-800 sm:inline-flex sm:h-full sm:min-h-0"
                           >
                             <InstagramIcon className="size-4" />
-                            <span className="sr-only">Go to {result.name} Instagram - opens in a new tab</span>
+                            <span className="sr-only">{result.name} instagram - opens in a new tab</span>
                           </a>
                         ) : null}
                         {result.bookingPlatform !== "Instagram" ? (
@@ -1509,18 +1321,27 @@ export default function App() {
                                 salon: result.name,
                                 platform: result.bookingPlatform,
                                 location: result.areaLabel,
-                                services: [...selectedCategories, ...selectedSubcategories].join(", ") || "none",
                               })
                             }
                             className="inline-flex min-h-[46px] flex-1 items-center justify-center rounded-none bg-stone-950 px-5 py-2 text-[14px] font-medium text-stone-100 transition-colors duration-150 hover:bg-stone-800 active:bg-stone-800 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-stone-300 dark:active:bg-stone-300 sm:h-full sm:min-h-0 sm:flex-none sm:px-6"
                           >
-                            <span aria-hidden="true">Book</span>
-                            <span className="sr-only">Book {result.name} - opens in a new tab</span>
+                            Book
+                            <span className="sr-only"> - {result.name} - opens in a new tab</span>
+                          </a>
+                        ) : null}
+                        {result.websiteUrl && result.websiteUrl !== result.bookingUrl ? (
+                          <a
+                            href={result.websiteUrl}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="inline-flex min-h-11 items-center justify-center rounded-none border border-stone-300 bg-stone-50 px-4 py-2 text-[14px] font-medium text-stone-950 transition-colors duration-150 hover:border-stone-400 hover:bg-stone-200 active:border-stone-400 active:bg-stone-200 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100 dark:hover:border-stone-600 dark:hover:bg-stone-800 dark:active:border-stone-600 dark:active:bg-stone-800"
+                          >
+                            <Globe className="size-4" />
                           </a>
                         ) : null}
                       </div>
                     </article>
-                  </StylistCardWrapper>
+                  </li>
                 );
               })}
             </ul>
@@ -1671,49 +1492,18 @@ export default function App() {
 
                 <AnimatedCollapsible open={servicesOpen}>
                   <div className="space-y-2 pt-3">
-                    <div className="relative mb-1">
-                      <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-stone-400" />
-                      <input
-                        type="text"
-                        aria-label="Search services"
-                        placeholder="Search services"
-                        value={serviceSearch}
-                        onChange={(e) => setServiceSearch(e.target.value)}
-                        className="h-10 w-full border border-stone-300 bg-white pl-9 pr-9 text-[13px] text-stone-800 placeholder-stone-400 outline-none focus:border-stone-500 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-200 dark:placeholder-stone-500 dark:focus:border-stone-400"
-                      />
-                      {serviceSearch ? (
-                        <button
-                          type="button"
-                          onClick={() => setServiceSearch("")}
-                          className="absolute right-2 top-1/2 inline-flex size-7 -translate-y-1/2 items-center justify-center text-stone-400 transition hover:text-stone-900 dark:hover:text-stone-100"
-                          aria-label="Clear service search"
-                        >
-                          <X className="size-4" />
-                        </button>
-                      ) : null}
-                    </div>
-                    {runtimeSortedCategoryEntries.filter(([id, item]) => {
-                      if (!serviceSearch.trim()) return true;
-                      const q = normalizeServiceSearch(serviceSearch);
-                      if (normalizeServiceSearch(item.label).includes(q)) return true;
-                      if (item.subcategories.some((s) => s !== "all" && normalizeServiceSearch(s).includes(q))) return true;
-                      const aliases = serviceSearchAliases[item.label] ?? [];
-                      if (aliases.some((alias) => normalizeServiceSearch(alias).includes(q))) return true;
-                      return item.subcategories.some((s) => s !== "all" && (serviceSearchAliases[s] ?? []).some((alias) => normalizeServiceSearch(alias).includes(q)));
-                    }).map(([id, item]) => {
+                    {sortedCategoryEntries.map(([id, item]) => {
                       const isAllServices = id === "all";
                       const isActive = isAllServices
                         ? currentSelectedCategories.length === 0 && currentSelectedSubcategories.length === 0
                         : isCategorySelected(id as ServiceCategoryId);
                       const categoryLabelId = makeFilterLabelId("service-category", id);
-                      const searchQ = normalizeServiceSearch(serviceSearch);
                       const visibleSubcategories = item.subcategories
                         .filter((subItem) => subItem !== "all")
-                        .filter((subItem) => !searchQ || normalizeServiceSearch(subItem).includes(searchQ) || (serviceSearchAliases[subItem] ?? []).some((alias) => normalizeServiceSearch(alias).includes(searchQ)))
                         .sort((left, right) => left.localeCompare(right));
                       const showSubcategories =
                         !isAllServices &&
-                        (isCategorySelected(id as ServiceCategoryId) || categoryHasSelectedSubcategories(id as ServiceCategoryId) || (!!searchQ && visibleSubcategories.length > 0));
+                        (isCategorySelected(id as ServiceCategoryId) || categoryHasSelectedSubcategories(id as ServiceCategoryId));
 
                       return (
                         <div key={id} className="space-y-2">
@@ -1768,7 +1558,7 @@ export default function App() {
                                       {isSubcategoryActive ? <Check className="size-3.5" /> : null}
                                     </span>
                                     <span id={subcategoryLabelId} className="translate-y-[1.5px] text-[15px] text-stone-800 dark:text-stone-200">
-                                      {getServiceDisplayName(itemSubcategory)}
+                                      {itemSubcategory}
                                     </span>
                                   </button>
                                 );
@@ -1815,9 +1605,9 @@ export default function App() {
                 <AnimatedCollapsible open={locationsOpen}>
                   <div className="space-y-2 pt-3">
                     {(() => {
-                      const allLocations = runtimeRegions.find((item) => item.id === "all");
-                      const london = runtimeRegions.find((item) => item.id === "london");
-                      const londonExpanded = isRegionSelected("london") || runtimeNestedLondonIds.some((regionId) => isRegionSelected(regionId));
+                      const allLocations = regions.find((item) => item.id === "all");
+                      const london = regions.find((item) => item.id === "london");
+                      const londonExpanded = isRegionSelected("london") || nestedLondonRegionIds.some((regionId) => isRegionSelected(regionId));
                       const allLocationsLabelId = allLocations ? makeFilterLabelId("region", allLocations.id) : "";
                       const londonLabelId = london ? makeFilterLabelId("region", london.id) : "";
 
@@ -1869,8 +1659,8 @@ export default function App() {
 
                           {londonExpanded ? (
                             <div className="space-y-2 pl-8">
-                              {runtimeNestedLondonIds.map((regionId) => {
-                                const item = runtimeRegions.find((regionItem) => regionItem.id === regionId);
+                              {nestedLondonRegionIds.map((regionId) => {
+                                const item = regions.find((regionItem) => regionItem.id === regionId);
                                 if (!item) return null;
                                 const regionLabelId = makeFilterLabelId("region", item.id);
 
@@ -1905,8 +1695,8 @@ export default function App() {
                       ) : null;
                     })()}
 
-                    {runtimeStandaloneIds.map((regionId) => {
-                      const item = runtimeRegions.find((regionItem) => regionItem.id === regionId);
+                    {standaloneRegionIds.map((regionId) => {
+                      const item = regions.find((regionItem) => regionItem.id === regionId);
                       if (!item) return null;
                       const regionLabelId = makeFilterLabelId("region", item.id);
 
@@ -1933,71 +1723,6 @@ export default function App() {
                             {item.label}
                           </span>
                         </div>
-                      );
-                    })}
-                  </div>
-                </AnimatedCollapsible>
-              </div>
-
-              <div>
-                <div
-                  className={cn(
-                    "bg-stone-100 pb-2 dark:bg-stone-950 lg:sticky lg:top-0 lg:z-20",
-                    priceRangesOpen && "border-b border-stone-300 dark:border-stone-800",
-                  )}
-                >
-                  <button
-                    type="button"
-                    aria-expanded={priceRangesOpen}
-                    onClick={togglePriceRangesOpen}
-                    className="group flex min-h-11 w-full items-center justify-between rounded-none bg-transparent px-0 py-2 text-left"
-                  >
-                    <span className="text-[15px] font-medium text-stone-950 transition-colors group-hover:text-stone-500 group-active:text-stone-500 dark:text-stone-100 dark:group-hover:text-stone-500 dark:group-active:text-stone-500">
-                      Average price
-                    </span>
-                    <span className="flex items-center gap-2">
-                      {selectedPriceRangeCount > 0 ? (
-                        <span className="inline-flex min-h-5 min-w-5 items-center justify-center rounded-full bg-stone-950 px-2 text-[11px] font-bold leading-none text-stone-100 transition-colors group-hover:bg-stone-500 dark:bg-stone-100 dark:text-stone-950 dark:group-hover:bg-stone-500">
-                          {selectedPriceRangeCount}
-                        </span>
-                      ) : null}
-                      <ChevronDown
-                        className={cn("size-4 text-stone-700 transition-colors transition-transform group-hover:text-stone-500 group-active:text-stone-500 dark:text-stone-200 dark:group-hover:text-stone-400 dark:group-active:text-stone-400", priceRangesOpen && "rotate-180")}
-                        aria-hidden="true"
-                      />
-                    </span>
-                  </button>
-                </div>
-
-                <AnimatedCollapsible open={priceRangesOpen}>
-                  <div className="space-y-2 pt-3">
-                    <p className="px-2 text-[12px] leading-4 text-stone-500 dark:text-stone-500">
-                      The median price for all services on their booking site. Some services may be more or less than this price range. Some providers do not list their prices online.
-                    </p>
-                    {priceRangeOptions.map((option) => {
-                      const isActive = currentSelectedPriceBands.includes(option.id);
-
-                      return (
-                        <button
-                          type="button"
-                          aria-pressed={isActive}
-                          key={option.id}
-                          onClick={() => togglePriceBand(option.id)}
-                          className="flex w-full cursor-pointer items-start gap-3 rounded-none px-2 py-2 text-left transition-colors hover:bg-stone-200 active:bg-stone-200 dark:hover:bg-stone-900 dark:active:bg-stone-900"
-                        >
-                          <span
-                            aria-hidden="true"
-                            className={cn(
-                              "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-none border border-stone-500 bg-white text-white transition dark:border-stone-500 dark:bg-stone-900",
-                              isActive && "border-stone-950 bg-stone-950 dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950",
-                            )}
-                          >
-                            {isActive ? <Check className="size-3.5" /> : null}
-                          </span>
-                          <span className="translate-y-[1.5px] text-[15px] text-stone-800 dark:text-stone-200">
-                            {option.label}
-                          </span>
-                        </button>
                       );
                     })}
                   </div>
@@ -2076,26 +1801,6 @@ export default function App() {
                       </span>
                       <span className="translate-y-[1.5px] text-[15px] text-stone-800 dark:text-stone-200">
                         Can braid without gel
-                      </span>
-                    </button>
-
-                    <button
-                      type="button"
-                      aria-pressed={currentSelectedWheelchairAccessible}
-                      onClick={toggleWheelchairAccessible}
-                      className="flex w-full cursor-pointer items-start gap-3 rounded-none px-2 py-2 text-left transition-colors hover:bg-stone-200 active:bg-stone-200 dark:hover:bg-stone-900 dark:active:bg-stone-900"
-                    >
-                      <span
-                        aria-hidden="true"
-                        className={cn(
-                          "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-none border border-stone-500 bg-white text-white transition dark:border-stone-500 dark:bg-stone-900",
-                          currentSelectedWheelchairAccessible && "border-stone-950 bg-stone-950 dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950",
-                        )}
-                      >
-                        {currentSelectedWheelchairAccessible ? <Check className="size-3.5" /> : null}
-                      </span>
-                      <span className="translate-y-[1.5px] text-[15px] text-stone-800 dark:text-stone-200">
-                        Wheelchair accessible
                       </span>
                     </button>
                   </div>

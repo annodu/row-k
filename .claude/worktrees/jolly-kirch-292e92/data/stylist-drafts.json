@@ -1,22 +1,22 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-06-10",
+    "updatedAt": "2026-05-16T11:53:17.703Z",
     "count": 1
   },
   "drafts": [
     {
-      "id": "microsbylaura-mpi6stjg",
+      "id": "justcurlsessex-mp8af2x2",
       "status": "needs_review",
-      "name": "Microsbylaura",
+      "name": "Justcurlsessex",
       "areaId": "",
-      "areaIds": [],
       "areaLabel": "",
       "neighbourhood": "",
       "postcode": "",
       "bookingPlatform": "",
       "bookingUrl": "",
-      "instagramUrl": "https://www.instagram.com/microsbylaura/",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/justcurlsessex/",
       "tiktokUrl": "",
       "services": [],
       "rawServices": [],
@@ -27,13 +27,12 @@
         "No services matched yet."
       ],
       "evidence": [
-        "Submitted link: https://www.instagram.com/microsbylaura/"
+        "Submitted link: https://www.instagram.com/justcurlsessex/"
       ],
       "source": "admin-draft",
-      "createdAt": "2026-05-23",
-      "updatedAt": "2026-05-23",
-      "lastCheckedAt": "2026-05-23",
-      "addedVia": "Manual discovery"
+      "createdAt": "2026-05-16T11:53:17.698Z",
+      "updatedAt": "2026-05-16T11:53:17.698Z",
+      "lastCheckedAt": "2026-05-16T11:53:17.698Z"
     }
   ]
 }
