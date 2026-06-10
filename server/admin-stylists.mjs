@@ -4,7 +4,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 function today() {
-  return today().split("T")[0];
+  return new Date().toISOString().split("T")[0];
 }
 
 import { categoryMap, normalizeServices, serviceAliases } from "./salon-index.mjs";
