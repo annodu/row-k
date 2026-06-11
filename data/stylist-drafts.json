@@ -2,9 +2,39 @@
   "meta": {
     "source": "admin-drafts",
     "updatedAt": "2026-06-11",
-    "count": 2
+    "count": 3
   },
   "drafts": [
+    {
+      "id": "unrulycurls-mq9vif12",
+      "status": "needs_review",
+      "name": "Unrulycurls",
+      "areaId": "",
+      "areaIds": [],
+      "areaLabel": "",
+      "neighbourhood": "",
+      "postcode": "",
+      "bookingPlatform": "",
+      "bookingUrl": "",
+      "instagramUrl": "https://www.instagram.com/unrulycurls/?hl=en-gb",
+      "tiktokUrl": "",
+      "addedVia": "Manual discovery",
+      "services": [],
+      "rawServices": [],
+      "summary": "Admin draft created from stylist intake.",
+      "confidence": 0.35,
+      "warnings": [
+        "No booking link identified yet.",
+        "No services matched yet."
+      ],
+      "evidence": [
+        "Submitted link: https://www.instagram.com/unrulycurls/?hl=en-gb"
+      ],
+      "source": "admin-draft",
+      "createdAt": "2026-06-11",
+      "updatedAt": "2026-06-11",
+      "lastCheckedAt": "2026-06-11"
+    },
     {
       "id": "yazes-touch237-mq9ct4gw",
       "status": "needs_review",
