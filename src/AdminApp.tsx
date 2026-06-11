@@ -3,6 +3,7 @@ import {
   AlertTriangle,
   ArrowUp,
   Check,
+  CheckSquare,
   ChevronDown,
   ChevronLeft,
   ChevronRight,
@@ -13,6 +14,7 @@ import {
   FileText,
   Globe,
   Link2,
+  List,
   Loader2,
   MapPin,
   Plus,
@@ -52,6 +54,7 @@ type StylistDraft = {
   bookingUrl: string;
   instagramUrl: string;
   tiktokUrl?: string;
+  addedVia?: string;
   services: string[];
   rawServices: string[];
   hijabiFriendly?: boolean;
@@ -100,6 +103,8 @@ type DraftForm = {
 };
 
 type DraftEditorStep = "details" | "services" | "review";
+
+const addedViaOptions = ["Manual discovery", "User submission", "Cowork scrape"] as const;
 
 type KeywordSearchMatch = {
   keyword: string;
@@ -517,7 +522,7 @@ const serviceGroups = [
   { label: "Extensions", services: ["Clip ins (+ silk press)","K-tips / invisible strands","LA weave / microlinks wefts / braidless sew in","I-tips / microlinks strands","Tape ins"] },
   { label: "Locs", services: ["Butterfly locs","Faux locs","Microlocs / sisterlocs","Retwist","Starter locs"] },
   { label: "Sew in / weave", services: ["Closure sew-in / closure behind the hairline","Flipover / Versatile sew-in","Frontal sew-in","Hybrid sew in (tapes + sew in)","Pixie wig / weave install","Quick weave","Sew-in take-down","Tracks (+ silk press) / partial / invisible sew-in","Traditional sew-in / leave out"] },
-  { label: "Styling (sew in / frontal / relaxer)", services: ["Sew in / extensions blowdry","Frontal ponytail / bun","Half up half down","Pixie / finger waves","Sleek ponytail / bun","Updo"] },
+  { label: "Styling (sew in / frontal / relaxer)", services: ["Sew in / extensions blowdry","Frontal ponytail / bun","Half up half down","Pixie cut / finger waves","Sleek ponytail / bun","Updo"] },
   { label: "Treatments", services: ["Hair botox","Japanese straightening","K-18 treatment","Keratin treatment","Moisturising treatment","Olaplex treatment","Relaxer / texturiser","Texture release"] },
   { label: "Natural hair washing & styling", services: ["Wig cornrows","Curly cut / wash & go / diffuse","Silk press","Bouncy blowout / round brush blow dry","Trim / hair cut","Roller set","Twist out / flexi rod","Wash & blowdry","Japanese head spa","Scalp detox / treatments"] },
   { label: "Natural hair health & trichology", services: ["Healthy hair plans & consultations","Natural hair coaches / educators","Trichology / scalp analysis"] },
@@ -568,7 +573,7 @@ export function AdminApp() {
   const lastBookingPreviewKeyRef = useRef("");
 
 	  function updateDraftLocations(draft: StylistDraft, nextAreaIds: string[]) {
-	    const normalizedAreaIds = [...new Set(nextAreaIds.filter(Boolean))];
+	    const normalizedAreaIds = normalizeAreaIds(nextAreaIds);
 	    const primaryAreaId = normalizedAreaIds[0] || "";
 	    const labels = getAreaIdsForLabels(normalizedAreaIds).map((areaId) => regions.find((region) => region.id === areaId)?.label || areaLabelFromId(areaId)).filter(Boolean);
 	    updateStylist(draft.id, {
@@ -1917,34 +1922,13 @@ function DraftEditorDrawer({
   const isPublished = getDraftDisplayStatus(draft) === "published";
   const deleteLabel = isPublished ? "Delete published stylist" : "Delete draft";
   const displayStatus = getDraftDisplayStatus(draft);
-  const [activeStep, setActiveStep] = useState<DraftEditorStep>("details");
   const [hasAttemptedPublish, setHasAttemptedPublish] = useState(false);
   const contentRef = useRef<HTMLDivElement | null>(null);
-  const stepOrder: DraftEditorStep[] = ["details", "services", "review"];
-  const activeStepIndex = stepOrder.indexOf(activeStep);
-  const canGoBack = activeStepIndex > 0;
-  const canGoNext = activeStepIndex < stepOrder.length - 1;
 
   useEffect(() => {
-    setActiveStep("details");
     setHasAttemptedPublish(false);
-  }, [draft.id]);
-
-  useEffect(() => {
     contentRef.current?.scrollTo({ top: 0, left: 0 });
-  }, [activeStep, draft.id]);
-
-  function goToPreviousStep() {
-    if (canGoBack) {
-      setActiveStep(stepOrder[activeStepIndex - 1]);
-    }
-  }
-
-  function goToNextStep() {
-    if (canGoNext) {
-      setActiveStep(stepOrder[activeStepIndex + 1]);
-    }
-  }
+  }, [draft.id]);
 
   function publishDraft() {
     setHasAttemptedPublish(true);
@@ -1952,37 +1936,28 @@ function DraftEditorDrawer({
   }
 
   return (
-    <div className="fixed inset-0 z-50 bg-stone-950/20 backdrop-blur-[1px]">
+    <div className="fixed inset-0 z-50 bg-stone-950/10">
       <button type="button" aria-label="Close editor" className="absolute inset-0 cursor-default" onClick={onClose} />
-      <aside className="absolute inset-y-0 right-0 flex w-full max-w-[628px] flex-col overflow-hidden border-l border-stone-200 bg-white">
-        <div className="shrink-0 border-b border-stone-200 px-7 pb-7 pt-7">
-          <div className="flex items-center justify-between gap-3">
-            <div className="flex items-center gap-2 text-stone-700">
-              <button type="button" onClick={onClose} className="inline-flex size-8 items-center justify-center rounded-none hover:bg-stone-100" aria-label="Close editor">
-                <ChevronsRight className="size-4" />
-              </button>
-            </div>
+      <aside className="absolute inset-y-0 right-0 flex w-full max-w-[600px] flex-col overflow-hidden border-l border-stone-200 bg-white shadow-xl shadow-stone-950/10">
+        <div className="shrink-0 border-b border-stone-200 px-8 pb-2 pt-5">
+          <div className="flex items-center justify-between gap-4">
+            <button type="button" onClick={onClose} className="inline-flex size-8 items-center justify-center rounded-md text-stone-500 hover:bg-stone-100 hover:text-stone-950" aria-label="Close editor" title="Close editor">
+              <ChevronsRight className="size-4" />
+            </button>
             <button
               type="button"
               onClick={onDelete}
               disabled={isBusy}
-              className="inline-flex size-8 items-center justify-center rounded-none text-red-700 transition hover:bg-red-50 disabled:cursor-not-allowed disabled:opacity-40"
+              className="inline-flex size-8 items-center justify-center rounded-md text-red-700 transition hover:bg-red-50 disabled:cursor-not-allowed disabled:opacity-40"
               aria-label={deleteLabel}
               title={deleteLabel}
             >
               <Trash2 className="size-4" />
             </button>
           </div>
-
-          <div className="mt-6 flex flex-wrap items-center justify-between gap-3">
-            <h2 className="text-2xl font-semibold tracking-tight text-stone-950">{draft.name || "Untitled stylist"}</h2>
-            <DraftStatusPill status={displayStatus} />
-          </div>
-
-          <DraftEditorStepper activeStep={activeStep} onStepChange={setActiveStep} />
         </div>
 
-        <div ref={contentRef} className="min-h-0 flex-1 overflow-y-auto px-7 py-7">
+        <div ref={contentRef} className="min-h-0 flex-1 overflow-y-auto px-8 pb-8 pt-8">
           <DraftEditor
             draft={draft}
             regions={regions}
@@ -1995,42 +1970,26 @@ function DraftEditorDrawer({
             onApprove={onApprove}
             onDelete={onDelete}
             canDelete={!isPublished}
-            activeStep={activeStep}
             showWarnings={hasAttemptedPublish}
             isEmbedded
           />
         </div>
 
-        <div className="shrink-0 border-t border-stone-200 bg-white/95 px-7 py-4 backdrop-blur">
-          <div className="grid grid-cols-2 gap-4">
-            {canGoBack || isPublished ? (
-              <Button
-                type="button"
-                variant="outline"
-                onClick={canGoBack ? goToPreviousStep : onSave}
-                disabled={isBusy}
-                className="h-11 rounded-none bg-white"
-              >
-                {canGoBack ? <ChevronLeft className="size-4" /> : null}
-                {canGoBack ? "Back" : "Save changes"}
+        <div className="shrink-0 border-t border-stone-200 bg-white px-8 py-5">
+          <div className="flex items-center justify-end gap-4">
+            {!isPublished ? (
+              <Button type="button" variant="outline" onClick={onSave} disabled={isBusy} className="h-11 rounded-none border-transparent bg-transparent px-3 text-sm text-stone-600 hover:bg-stone-50 hover:text-stone-950 focus-visible:border-stone-300">
+                Save changes
               </Button>
-            ) : (
-              <div aria-hidden="true" />
-            )}
-            {canGoNext ? (
-              <Button type="button" onClick={goToNextStep} disabled={isBusy} className="h-11 rounded-none bg-stone-950">
-                {activeStep === "details" ? "Services" : "Review"}
-                <ChevronRight className="size-4" />
-              </Button>
-            ) : !isPublished ? (
-              <Button type="button" onClick={publishDraft} disabled={isBusy} className="h-11 rounded-none bg-stone-950">
-                Publish
-              </Button>
-            ) : (
-              <Button type="button" onClick={onSave} disabled={isBusy} className="h-11 rounded-none bg-stone-950">
-                Save
-              </Button>
-            )}
+            ) : null}
+            <Button
+              type="button"
+              onClick={isPublished ? onSave : publishDraft}
+              disabled={isBusy}
+              className="h-12 w-1/2 min-w-[220px] rounded-none bg-stone-950 px-6 text-base font-medium text-white hover:bg-stone-900"
+            >
+              {isPublished ? "Save changes" : "Publish"}
+            </Button>
           </div>
         </div>
       </aside>
@@ -2048,7 +2007,7 @@ function DraftStatusPill({ status }: { status: string }) {
         : "bg-stone-100 text-stone-700";
 
   return (
-    <span className={cn("inline-flex items-center gap-1.5 rounded-none px-3 py-1.5 text-sm font-medium", colorClass)}>
+    <span className={cn("inline-flex items-center gap-1.5 rounded-md px-2 py-0.5 text-xs font-medium", colorClass)}>
       {status === "ready_to_publish" ? <Check className="size-3.5" /> : null}
       {label}
     </span>
@@ -2159,6 +2118,14 @@ function InstagramIcon({ className }: { className?: string }) {
       <rect x="3" y="3" width="18" height="18" rx="5" />
       <circle cx="12" cy="12" r="4" />
       <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
+function TikTokIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
+      <path d="M14.7 3h2.7c.2 1.3.8 2.4 1.7 3.2.7.6 1.6 1.1 2.6 1.2v2.8a7.1 7.1 0 0 1-4.2-1.4v6.4c0 3.3-2.5 5.8-5.8 5.8a5.6 5.6 0 0 1-5.8-5.6c0-3.2 2.6-5.7 5.8-5.7.4 0 .8 0 1.2.1v2.9a3 3 0 0 0-1.2-.2 2.8 2.8 0 1 0 2.9 2.8V3Z" />
     </svg>
   );
 }
@@ -3386,7 +3353,7 @@ function hasSupportedFreshnessEvidence(check: DirectoryCheck, service: string) {
   if (service === "Custom wig") {
     return hasCustomWigEvidence(check.serviceCheck.rawServices);
   }
-  if (service === "Pixie / finger waves") {
+  if (service === "Pixie cut / finger waves") {
     return hasRawEvidenceForService(check.serviceCheck.rawServices, service);
   }
   if (service === "Feed-in braids") {
@@ -3438,7 +3405,7 @@ function hasRawEvidenceForService(rawServices: string[], service: string) {
   if (service === "Pixie wig / weave install") {
     return rawServices.some((line) => hasPixieInstallEvidence(line));
   }
-  if (service === "Pixie / finger waves") {
+  if (service === "Pixie cut / finger waves") {
     return /\b(finger\s+waves?|pixie\s+cut|short\s+pixie|wrap)\b/.test(normalizedRaw) && !hasRawEvidenceForService(rawServices, "Pixie wig / weave install");
   }
   if (service === "Wig colouring / bundle colouring") {
@@ -3994,7 +3961,7 @@ function KeywordSearchPage({
             <CardDescription>Select a service to load its aliases, or enter a custom keyword to generate related search terms.</CardDescription>
           </CardHeader>
           <CardContent className="space-y-5">
-            <div className="grid gap-2">
+            <div className="grid gap-1">
               <label className="text-xs font-semibold uppercase tracking-[0.18em] text-stone-500">Directory service</label>
               <Select value={selectedService} onChange={onSelectedServiceChange}>
                 <option value="">Custom keyword search</option>
@@ -4028,7 +3995,7 @@ function KeywordSearchPage({
                 value={keywordInput}
                 onChange={(event) => onKeywordInputChange(event.target.value)}
                 placeholder="Enter a keyword, e.g. kids, bridal, locs"
-                className="h-10 rounded-none bg-white"
+                className="h-8 rounded-md border-transparent bg-transparent px-2 py-1 hover:bg-stone-100 focus-visible:border-stone-300"
               />
               <div className="flex gap-2">
                 <Button type="submit" variant="outline" className="h-10 rounded-none bg-white px-4">
@@ -4055,7 +4022,7 @@ function KeywordSearchPage({
                 value={searchName}
                 onChange={(event) => onSearchNameChange(event.target.value)}
                 placeholder="Search name, e.g. Kids services"
-                className="h-10 rounded-none bg-white"
+                className="h-8 rounded-md border-transparent bg-transparent px-2 py-1 hover:bg-stone-100 focus-visible:border-stone-300"
               />
               <Button type="button" variant="outline" onClick={onSave} disabled={isSaving || !keywords.length} className="h-10 rounded-none bg-white px-4">
                 {isSaving ? <Loader2 className="size-4 animate-spin" /> : <Save className="size-4" />}
@@ -4068,7 +4035,7 @@ function KeywordSearchPage({
         <SavedKeywordSearchesPanel searches={savedSearches} onLoad={onLoad} onDelete={onDelete} />
       </div>
 
-      <section className="space-y-4">
+      <section className="space-y-3">
         <div className="flex flex-col gap-2 border-b border-stone-200 pb-3 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <h2 className="text-lg font-semibold text-stone-950">Results</h2>
@@ -4203,11 +4170,11 @@ function SavedKeywordSearchesPanel({
 
 function KeywordSearchSkeleton({ count = 3, compact = false }: { count?: number; compact?: boolean }) {
   return (
-    <div className="space-y-3">
+    <div className="space-y-2">
       {Array.from({ length: count }, (_, index) => (
         <div key={index} className="rounded-none border border-stone-200 bg-white p-4">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-            <div className="space-y-2">
+            <div className="space-y-1.5">
               <div className="h-4 w-44 animate-pulse rounded-none bg-stone-200" />
               <div className="h-3 w-32 animate-pulse rounded-none bg-stone-100" />
             </div>
@@ -4457,7 +4424,7 @@ function FreshnessResultCard({
       </div>
 
       {check.addedServices.length ? (
-        <div className="space-y-2">
+        <div className="space-y-1.5">
           <ServiceSuggestionList
             label="Possible added"
             services={check.addedServices}
@@ -4472,7 +4439,7 @@ function FreshnessResultCard({
       ) : null}
 
       {check.removedServices.length ? (
-        <div className="space-y-2">
+        <div className="space-y-1.5">
           <ServiceSuggestionList
             label="Possible removed"
             services={check.removedServices}
@@ -4569,6 +4536,7 @@ function DraftEditor({
     .map((areaId) => regions.find((region) => region.id === areaId)?.label || areaLabelFromId(areaId))
     .filter(Boolean);
   const [additionalNeedsOptions, setAdditionalNeedsOptions] = useState<{ id: string; label: string }[]>([]);
+  const [openSourcePanel, setOpenSourcePanel] = useState<"pricing" | "services" | null>(null);
   useEffect(() => {
     fetch("/api/admin/additional-needs", { credentials: "include" })
       .then((res) => res.json())
@@ -4600,15 +4568,33 @@ function DraftEditor({
         <Input value={draft.name} onChange={(event) => onChange({ name: event.target.value })} placeholder="Stylist name" className="h-11 rounded-none" />
       </Field>
 
-      <div className="space-y-3">
+      <Field label="Added via">
+        <Select value={draft.addedVia || "Manual discovery"} onChange={(addedVia) => onChange({ addedVia })}>
+          {[...new Set([...addedViaOptions, ...(draft.addedVia ? [draft.addedVia] : [])])].map((option) => (
+            <option key={option} value={option}>
+              {option}
+            </option>
+          ))}
+        </Select>
+      </Field>
+
+      <div className="space-y-2">
         <p className="text-xs font-semibold uppercase tracking-[0.12em] text-stone-500">Links</p>
         <DraftLinkField
           label="Instagram"
           icon={<InstagramIcon className="size-4" />}
           value={draft.instagramUrl}
           onChange={updateInstagramUrl}
-          placeholder="@handle or URL"
+          placeholder="Enter instagram URL"
           href={draft.instagramUrl}
+        />
+        <DraftLinkField
+          label="TikTok recommendation"
+          icon={<Link2 className="size-4" />}
+          value={draft.tiktokUrl || ""}
+          onChange={(tiktokUrl) => onChange({ tiktokUrl })}
+          placeholder="Enter TikTok URL"
+          href={draft.tiktokUrl}
         />
         <DraftLinkField
           label="Booking URL"
@@ -4624,7 +4610,7 @@ function DraftEditor({
               checked={bookingMatchesInstagram}
               disabled={!draft.instagramUrl}
               onChange={(event) => toggleBookingSameAsInstagram(event.target.checked)}
-              className="size-4 rounded-none border-stone-300 accent-stone-950 disabled:opacity-40"
+              className="size-3.5 rounded-none border-stone-300 accent-stone-950 disabled:opacity-40"
             />
             Same as Instagram
           </label>
@@ -4635,7 +4621,7 @@ function DraftEditor({
 
       <DraftAdditionalNeeds draft={draft} options={additionalNeedsOptions} onChange={onChange} />
 
-      <div className="space-y-3">
+      <div className="space-y-2">
         <p className="text-xs font-semibold uppercase tracking-[0.12em] text-stone-500">Pricing</p>
         <Field label="Price band">
           <Select
@@ -4758,7 +4744,7 @@ function DraftEditor({
         <p className="mt-1 text-sm text-stone-500">Raw booking copy and matched services.</p>
       </div>
       <Field label="Raw services">
-        <Textarea value={(draft.rawServices || []).join("\n")} onChange={(value) => onChange({ rawServices: splitLines(value) })} />
+        <Textarea value={(draft.rawServices || []).join("\n")} onChange={(value) => onChange({ rawServices: splitNoteLines(value) })} />
       </Field>
       <ServicePicker services={services} filterCategories={filterCategories} selected={draft.services} onChange={(next) => onChange({ services: next })} />
     </section>
@@ -4774,6 +4760,8 @@ function DraftEditor({
         <DraftReviewRow label="Name" value={draft.name || "Untitled stylist"} />
         <DraftReviewRow label="Instagram" value={draft.instagramUrl || "Not added"} />
         <DraftReviewRow label="Booking URL" value={draft.bookingUrl || "Not added"} />
+        <DraftReviewRow label="TikTok recommendation" value={draft.tiktokUrl || "Not added"} />
+        <DraftReviewRow label="Added via" value={draft.addedVia || "Not set"} />
         <DraftReviewRow label="Locations" value={selectedLocationLabels.length ? selectedLocationLabels.join(", ") : getDraftLocationLabel(draft, regions) || "No location selected"} />
         <DraftReviewRow
           label="Preferences"
@@ -4787,7 +4775,7 @@ function DraftEditor({
         />
         <DraftReviewRow label="Pricing" value={draft.priceBand ? `${draft.priceBand} (${draft.priceSource || "manual"})` : "Not set"} />
         <DraftReviewRow label="Services">
-          <div className="space-y-3">
+          <div className="space-y-2">
             <p className="text-sm font-medium text-stone-900">{draft.services.length} selected</p>
             {draft.services.length ? (
               <div className="flex flex-wrap gap-2">
@@ -4804,6 +4792,175 @@ function DraftEditor({
     </section>
   );
 
+  const selectedPreferenceLabels = additionalNeedsOptions
+    .filter((option) => {
+      const field = additionalNeedsFieldMap[option.id];
+      return field && draft[field] === true;
+    })
+    .map((option) => option.label);
+
+  const embeddedContent = (
+    <div className="space-y-7">
+      <div className="space-y-3">
+        <Input
+          value={draft.name}
+          onChange={(event) => onChange({ name: event.target.value })}
+          placeholder="Untitled stylist"
+          className="h-auto rounded-none border-transparent bg-transparent px-0 py-0 text-[32px] font-semibold leading-tight tracking-normal text-stone-950 placeholder:text-stone-300 hover:bg-transparent focus-visible:border-transparent focus-visible:ring-0"
+        />
+        {warningsContent}
+      </div>
+      <div className="bg-white">
+        <DraftPropertyRow icon={<ClockAlert className="size-4" />} label="Status">
+          <DraftStatusPill status={getDraftDisplayStatus(draft)} />
+        </DraftPropertyRow>
+
+        <DraftPropertyRow icon={<Plus className="size-4" />} label="Added via">
+          <Select value={draft.addedVia || "Manual discovery"} onChange={(addedVia) => onChange({ addedVia })}>
+            {[...new Set([...addedViaOptions, ...(draft.addedVia ? [draft.addedVia] : [])])].map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
+          </Select>
+        </DraftPropertyRow>
+
+        <DraftPropertyRow icon={<InstagramIcon className="size-4" />} label="Instagram">
+          <div className="flex items-center gap-2">
+            <Input value={draft.instagramUrl} onChange={(event) => updateInstagramUrl(event.target.value)} placeholder="Enter Instagram URL" className="h-8 rounded-md border-transparent bg-transparent px-2 py-1 hover:bg-stone-100 focus-visible:border-stone-300" />
+            {draft.instagramUrl ? (
+              <a href={draft.instagramUrl} target="_blank" rel="noreferrer" className="inline-flex size-8 shrink-0 items-center justify-center rounded-md text-stone-400 transition hover:bg-stone-100 hover:text-stone-950" aria-label="Open Instagram">
+                <ExternalLink className="size-4" />
+              </a>
+            ) : null}
+          </div>
+        </DraftPropertyRow>
+
+        <DraftPropertyRow icon={<TikTokIcon className="size-4" />} label="TikTok recommendation">
+          <div className="flex items-center gap-2">
+            <Input value={draft.tiktokUrl || ""} onChange={(event) => onChange({ tiktokUrl: event.target.value })} placeholder="Enter TikTok URL" className="h-8 rounded-md border-transparent bg-transparent px-2 py-1 hover:bg-stone-100 focus-visible:border-stone-300" />
+            {draft.tiktokUrl ? (
+              <a href={draft.tiktokUrl} target="_blank" rel="noreferrer" className="inline-flex size-8 shrink-0 items-center justify-center rounded-md text-stone-400 transition hover:bg-stone-100 hover:text-stone-950" aria-label="Open TikTok">
+                <ExternalLink className="size-4" />
+              </a>
+            ) : null}
+          </div>
+        </DraftPropertyRow>
+
+        <DraftPropertyRow icon={<Globe className="size-4" />} label="Booking URL">
+          <div className="flex items-center gap-2">
+            <Input value={draft.bookingUrl} onChange={(event) => onChange({ bookingUrl: event.target.value })} placeholder="https://..." className="h-8 rounded-md border-transparent bg-transparent px-2 py-1 hover:bg-stone-100 focus-visible:border-stone-300" />
+            {draft.bookingUrl ? (
+              <a href={draft.bookingUrl} target="_blank" rel="noreferrer" className="inline-flex size-8 shrink-0 items-center justify-center rounded-md text-stone-400 transition hover:bg-stone-100 hover:text-stone-950" aria-label="Open booking URL">
+                <ExternalLink className="size-4" />
+              </a>
+            ) : null}
+          </div>
+        </DraftPropertyRow>
+
+        <DraftPropertyRow icon={<CheckSquare className="size-4" />} label="Booking link is Instagram">
+          <input
+            type="checkbox"
+            checked={bookingMatchesInstagram}
+            disabled={!draft.instagramUrl}
+            onChange={(event) => toggleBookingSameAsInstagram(event.target.checked)}
+            className="ml-2 size-4 rounded border-stone-300 accent-stone-500 disabled:opacity-40"
+          />
+        </DraftPropertyRow>
+
+        <DraftPropertyRow icon={<MapPin className="size-4" />} label="Locations">
+          <DraftLocationSelector draft={draft} regions={regions} onChange={onChangeLocations} hideLabel />
+        </DraftPropertyRow>
+
+        {additionalNeedsOptions.map((option) => {
+          const field = additionalNeedsFieldMap[option.id];
+          if (!field) return null;
+          return (
+            <DraftPropertyRow key={option.id} icon={<CheckSquare className="size-4" />} label={option.label}>
+              <input
+                type="checkbox"
+                checked={draft[field] === true}
+                onChange={(event) => onChange({ [field]: event.target.checked })}
+                className="ml-2 size-4 rounded border-stone-300 accent-stone-500"
+              />
+            </DraftPropertyRow>
+          );
+        })}
+
+        <DraftPropertyRow icon={<PoundSterling className="size-4" />} label="Pricing">
+          <div className="flex items-center gap-1.5">
+            <Select
+              value={draft.priceBand || ""}
+              onChange={(value) =>
+                onChange({
+                  priceBand: (value as "" | PriceBand) || undefined,
+                  servicePriceBand: (value as "" | PriceBand) || "",
+                  packagePriceBand: value ? draft.packagePriceBand || "" : "",
+                  priceIncludesHair: value ? draft.priceIncludesHair === true : false,
+                  priceComparisonMode: value ? draft.priceComparisonMode || "service-only" : "",
+                  priceSource: value ? "manual" : "",
+                  priceConfidence: value ? "manual" : "",
+                  priceUpdatedAt: value ? new Date().toISOString() : "",
+                  ...(!value ? { priceEvidence: [], priceCheckedAt: "" } : {}),
+                })
+              }
+            >
+              {priceBandOptions.map((option) => (
+                <option key={option.value || "unset"} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </Select>
+            <SourceNotesButton
+              isOpen={openSourcePanel === "pricing"}
+              label="raw pricing notes"
+              count={draft.priceEvidence?.length || 0}
+              onClick={() => setOpenSourcePanel((current) => (current === "pricing" ? null : "pricing"))}
+            />
+          </div>
+        </DraftPropertyRow>
+
+        {openSourcePanel === "pricing" ? (
+          <DraftPropertyRow icon={<Pencil className="size-4" />} label="Raw pricing notes">
+            <SourceNotesPanel>
+              <Textarea
+                value={(draft.priceEvidence || []).join("\n")}
+                onChange={(value) => onChange({ priceEvidence: splitNoteLines(value) })}
+                placeholder="Paste pricing notes, menu text, or evidence"
+              />
+            </SourceNotesPanel>
+          </DraftPropertyRow>
+        ) : null}
+
+        <DraftPropertyRow icon={<List className="size-4" />} label="Services">
+          <div className="flex items-start gap-1.5">
+            <div className="min-w-0 flex-1">
+              <ServicePicker services={services} filterCategories={filterCategories} selected={draft.services} onChange={(next) => onChange({ services: next })} label={null} />
+            </div>
+            <SourceNotesButton
+              isOpen={openSourcePanel === "services"}
+              label="raw service notes"
+              count={draft.rawServices?.length || 0}
+              onClick={() => setOpenSourcePanel((current) => (current === "services" ? null : "services"))}
+            />
+          </div>
+        </DraftPropertyRow>
+
+        {openSourcePanel === "services" ? (
+          <DraftPropertyRow icon={<Pencil className="size-4" />} label="Raw service notes">
+            <SourceNotesPanel>
+              <Textarea
+                value={(draft.rawServices || []).join("\n")}
+                onChange={(value) => onChange({ rawServices: splitNoteLines(value) })}
+                placeholder="Paste service list, booking menu text, or notes"
+              />
+            </SourceNotesPanel>
+          </DraftPropertyRow>
+        ) : null}
+      </div>
+    </div>
+  );
+
   const stepContent = activeStep === "details" ? detailsContent : activeStep === "services" ? servicesContent : reviewContent;
   const content = (
     <div className="space-y-7">
@@ -4813,9 +4970,7 @@ function DraftEditor({
   );
 
   if (isEmbedded) {
-    return (
-      <div>{content}</div>
-    );
+    return embeddedContent;
   }
 
   return (
@@ -4854,6 +5009,50 @@ function DraftEditor({
   );
 }
 
+function SourceNotesButton({ isOpen, label, count, onClick }: { isOpen: boolean; label: string; count: number; onClick: () => void }) {
+  const actionLabel = (isOpen ? "Hide " : "Edit ") + label + (count ? ", " + count + " lines" : "");
+
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      aria-expanded={isOpen}
+      aria-label={actionLabel}
+      title={actionLabel}
+      className={cn(
+        "mt-0.5 inline-flex size-7 shrink-0 items-center justify-center rounded-md text-stone-400 transition hover:bg-stone-100 hover:text-stone-950",
+        isOpen ? "bg-stone-100 text-stone-950" : "",
+      )}
+    >
+      <Pencil className="size-3.5" />
+    </button>
+  );
+}
+
+function SourceNotesPanel({ children }: { children: React.ReactNode }) {
+  return <div className="rounded-md bg-stone-50 p-2">{children}</div>;
+}
+
+function DraftPropertyRow({
+  icon,
+  label,
+  children,
+}: {
+  icon: React.ReactNode;
+  label: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="grid gap-1 py-2 sm:grid-cols-[210px_minmax(0,1fr)] sm:gap-8">
+      <div className="flex min-h-8 items-start gap-3 pt-1 text-[15px] font-medium text-stone-500">
+        <span className="flex size-5 shrink-0 items-center justify-center text-stone-400">{icon}</span>
+        <span>{label}</span>
+      </div>
+      <div className="min-w-0">{children}</div>
+    </div>
+  );
+}
+
 function DraftReviewRow({ label, value, children }: { label: string; value?: string; children?: React.ReactNode }) {
   return (
     <div className="grid gap-1 px-4 py-3 sm:grid-cols-[128px_1fr] sm:gap-4">
@@ -4887,7 +5086,7 @@ function DraftLinkField({
         {label}
       </div>
       <div className="flex items-center gap-3">
-        <Input value={value} onChange={(event) => onChange(event.target.value)} placeholder={placeholder} className="h-10 rounded-none bg-white" />
+        <Input value={value} onChange={(event) => onChange(event.target.value)} placeholder={placeholder} className="h-8 rounded-md border-transparent bg-transparent px-2 py-1 hover:bg-stone-100 focus-visible:border-stone-300" />
         {href ? (
           <a
             href={href}
@@ -4911,71 +5110,264 @@ function DraftLocationSelector({
   draft,
   regions,
   onChange,
+  hideLabel = false,
 }: {
   draft: StylistDraft;
   regions: RegionOption[];
   onChange: (areaIds: string[]) => void;
+  hideLabel?: boolean;
 }) {
   const selectedAreaIds = getDraftAreaIds(draft);
-  const london = regions.find((region) => region.id === londonParentAreaId);
-  const londonRows = regions.filter((region) => londonChildAreaIds.has(region.id));
-  const topLevelRows = [londonParentAreaId, "essex", "kent", "mobile"]
-    .map((regionId) => regions.find((region) => region.id === regionId))
-    .filter((region): region is RegionOption => Boolean(region));
-  const showLondonAreas = selectedAreaIds.includes(londonParentAreaId) || selectedAreaIds.some((areaId) => londonChildAreaIds.has(areaId));
+  const selectedAreaSet = useMemo(() => new Set(selectedAreaIds), [selectedAreaIds]);
+  const [query, setQuery] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
+  const [activeGroupId, setActiveGroupId] = useState("london");
+  const popoverRef = useRef<HTMLDivElement | null>(null);
+  const triggerRef = useRef<HTMLButtonElement | null>(null);
+  const searchInputRef = useRef<HTMLInputElement | null>(null);
+  const normalizedQuery = query.trim().toLowerCase();
+  const locationGroups = useMemo(() => {
+    const londonParent = regions.find((region) => region.id === londonParentAreaId);
+    const londonRows = [
+      ...(londonParent ? [{ ...londonParent, label: "All London" }] : []),
+      ...regions.filter((region) => londonChildAreaIds.has(region.id)),
+    ];
+    const otherRows = ["essex", "kent", "mobile"]
+      .map((regionId) => regions.find((region) => region.id === regionId))
+      .filter((region): region is RegionOption => Boolean(region));
+    return [
+      { id: "london", label: "London", regions: londonRows },
+      { id: "other", label: "Other", regions: otherRows },
+    ].filter((group) => group.regions.length > 0);
+  }, [regions]);
+  const activeGroup = locationGroups.find((group) => group.id === activeGroupId) ?? locationGroups[0] ?? null;
+  const selectedLocationLabels = getAreaIdsForLabels(selectedAreaIds)
+    .map((areaId) => regions.find((region) => region.id === areaId)?.label || areaLabelFromId(areaId))
+    .filter(Boolean);
+  const searchGroups = locationGroups
+    .map((group) => ({
+      ...group,
+      regions: group.regions.filter((region) => region.label.toLowerCase().includes(normalizedQuery)),
+    }))
+    .filter((group) => group.regions.length > 0);
+  const visibleSelected = selectedLocationLabels.slice(0, 4);
+  const hiddenSelectedCount = Math.max(selectedLocationLabels.length - visibleSelected.length, 0);
+
+  useEffect(() => {
+    if (!locationGroups.length) {
+      setActiveGroupId("");
+      return;
+    }
+    if (!activeGroupId || !locationGroups.some((group) => group.id === activeGroupId)) {
+      setActiveGroupId(locationGroups[0].id);
+    }
+  }, [activeGroupId, locationGroups]);
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handlePointerDown = (event: MouseEvent) => {
+      const target = event.target as Node;
+      if (popoverRef.current?.contains(target) || triggerRef.current?.contains(target)) {
+        return;
+      }
+      setIsOpen(false);
+    };
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setIsOpen(false);
+        triggerRef.current?.focus();
+      }
+    };
+
+    document.addEventListener("mousedown", handlePointerDown);
+    document.addEventListener("keydown", handleKeyDown);
+    window.setTimeout(() => searchInputRef.current?.focus(), 0);
+
+    return () => {
+      document.removeEventListener("mousedown", handlePointerDown);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isOpen]);
 
   function toggle(areaId: string) {
-    onChange(selectedAreaIds.includes(areaId) ? selectedAreaIds.filter((id) => id !== areaId) : [...selectedAreaIds, areaId]);
+    const nextAreaIds = selectedAreaIds.includes(areaId) ? selectedAreaIds.filter((id) => id !== areaId) : [...selectedAreaIds, areaId];
+    onChange(normalizeAreaIds(nextAreaIds, areaId));
+  }
+
+  function removeByLabel(label: string) {
+    const match = regions.find((region) => region.label === label);
+    if (match) {
+      onChange(selectedAreaIds.filter((id) => id !== match.id));
+    }
+  }
+
+  function renderLocationButton(region: RegionOption) {
+    const isSelected = selectedAreaSet.has(region.id);
+    return (
+      <button
+        key={region.id}
+        type="button"
+        onClick={() => toggle(region.id)}
+        aria-pressed={isSelected}
+        aria-label={(isSelected ? "Remove " : "Add ") + region.label}
+        className={cn(
+          "flex min-h-8 w-full items-center justify-between gap-2 rounded-none border px-2 py-1.5 text-left text-[11px] font-medium transition",
+          isSelected ? "border-stone-950 bg-stone-950 text-white" : "border-stone-200 bg-white text-stone-800 hover:border-stone-300 hover:bg-stone-50",
+        )}
+      >
+        <span className="truncate">{region.label}</span>
+        {isSelected ? <Check className="size-3.5 shrink-0" /> : null}
+      </button>
+    );
+  }
+
+  const picker = (
+    <div className="relative space-y-2">
+      <div className="flex items-end justify-between gap-3">
+        <div className="flex-1">
+          <button
+            ref={triggerRef}
+            type="button"
+            onClick={() => setIsOpen((current) => !current)}
+            aria-expanded={isOpen}
+            className="min-h-8 w-full rounded-md border border-transparent bg-transparent px-2 py-1 text-left outline-none transition hover:bg-stone-100 focus:border-stone-300"
+          >
+            {selectedLocationLabels.length ? (
+              <span className="flex flex-wrap gap-1">
+                {visibleSelected.map((label) => (
+                  <span key={label} className="max-w-full truncate rounded-md bg-stone-100 px-1.5 py-0.5 text-[12px] font-medium text-stone-800">
+                    {label}
+                  </span>
+                ))}
+                {hiddenSelectedCount ? <span className="rounded-md bg-stone-100 px-1.5 py-0.5 text-[12px] font-medium text-stone-500">+{hiddenSelectedCount}</span> : null}
+              </span>
+            ) : (
+              <span className="text-[13px] text-stone-400">Select locations</span>
+            )}
+          </button>
+        </div>
+      </div>
+
+      {isOpen ? (
+        <div ref={popoverRef} className="absolute left-0 right-0 z-30 max-h-[360px] overflow-hidden rounded-none border border-stone-200 bg-white shadow-xl shadow-stone-950/10">
+          <div className="border-b border-stone-100 p-2">
+            <div className="relative">
+              <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-stone-400" />
+              <Input
+                ref={searchInputRef}
+                value={query}
+                onChange={(event) => setQuery(event.target.value)}
+                placeholder="Search locations"
+                className="h-8 rounded-none border-stone-200 bg-white pl-8 pr-8"
+              />
+              {query ? (
+                <button
+                  type="button"
+                  onClick={() => setQuery("")}
+                  className="absolute right-2 top-1/2 inline-flex size-7 -translate-y-1/2 items-center justify-center text-stone-400 transition hover:text-stone-900"
+                  aria-label="Clear location search"
+                >
+                  <X className="size-4" />
+                </button>
+              ) : null}
+            </div>
+            <div className="mt-2 min-h-7">
+              {selectedLocationLabels.length ? (
+                <div className="flex flex-wrap gap-1">
+                  {selectedLocationLabels.map((label) => (
+                    <button
+                      key={label}
+                      type="button"
+                      onClick={() => removeByLabel(label)}
+                      aria-label={"Remove " + label}
+                      className="inline-flex max-w-full items-center gap-1 rounded-none bg-stone-950 px-1.5 py-0.5 text-[11px] font-medium text-white transition hover:bg-stone-800"
+                    >
+                      <span className="truncate">{label}</span>
+                      <X className="size-3 shrink-0" />
+                    </button>
+                  ))}
+                </div>
+              ) : (
+                <p className="px-1 py-1 text-[13px] text-stone-400">No locations selected</p>
+              )}
+            </div>
+          </div>
+
+          {normalizedQuery ? (
+            <div className="max-h-[236px] overflow-y-auto p-2">
+              {searchGroups.length ? (
+                <div className="space-y-3">
+                  {searchGroups.map((group) => (
+                    <div key={group.id} className="space-y-1.5">
+                      <p className="text-xs font-semibold uppercase tracking-[0.12em] text-stone-500">{group.label}</p>
+                      <div className="grid gap-1.5 sm:grid-cols-2">{group.regions.map(renderLocationButton)}</div>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <p className="p-3 text-sm text-stone-500">No locations match</p>
+              )}
+            </div>
+          ) : (
+            <div className="grid max-h-[236px] min-h-0 grid-rows-[auto_1fr] md:grid-cols-[132px_1fr] md:grid-rows-1">
+              <div className="overflow-x-auto border-b border-stone-100 p-1.5 md:overflow-y-auto md:border-b-0 md:border-r">
+                <div className="flex gap-1.5 md:block md:space-y-1">
+                  {locationGroups.map((group) => {
+                    const selectedCount = group.regions.filter((region) => selectedAreaSet.has(region.id)).length;
+                    const isActive = activeGroup?.id === group.id;
+                    return (
+                      <button
+                        key={group.id}
+                        type="button"
+                        onClick={() => setActiveGroupId(group.id)}
+                        aria-pressed={isActive}
+                        className={cn(
+                          "flex shrink-0 items-center justify-between gap-2 rounded-none px-2 py-1.5 text-left text-[11px] font-medium transition md:w-full",
+                          isActive ? "bg-stone-950 text-white" : "bg-stone-50 text-stone-700 hover:bg-stone-100",
+                        )}
+                      >
+                        <span className="min-w-0 truncate">{group.label}</span>
+                        <span className="inline-flex shrink-0 items-center gap-1">
+                          {selectedCount ? (
+                            <span className={cn("rounded-none px-1.5 py-0.5 text-[10px]", isActive ? "bg-white text-stone-950" : "bg-stone-950 text-white")}>{selectedCount}</span>
+                          ) : null}
+                          <span className={cn("text-[10px]", isActive ? "text-stone-200" : "text-stone-400")}>{group.regions.length}</span>
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+              <div className="min-h-0 overflow-y-auto p-2">
+                {activeGroup ? (
+                  <div className="space-y-1.5">
+                    <div className="flex items-center justify-between gap-3">
+                      <p className="text-xs font-semibold uppercase tracking-[0.12em] text-stone-500">{activeGroup.label}</p>
+                      <span className="text-xs text-stone-400">{activeGroup.regions.length} locations</span>
+                    </div>
+                    <div className="grid gap-1.5 sm:grid-cols-2">{activeGroup.regions.map(renderLocationButton)}</div>
+                  </div>
+                ) : (
+                  <p className="p-3 text-sm text-stone-500">No locations available.</p>
+                )}
+              </div>
+            </div>
+          )}
+        </div>
+      ) : null}
+    </div>
+  );
+
+  if (hideLabel) {
+    return picker;
   }
 
   return (
-    <div className="space-y-3">
-      <p className="text-xs font-semibold uppercase tracking-[0.12em] text-stone-500">Locations</p>
-      <div className="grid gap-2">
-        {topLevelRows.map((region) => (
-          <div key={region.id} className="space-y-2">
-            <DraftLocationOption region={region} checked={selectedAreaIds.includes(region.id)} onToggle={() => toggle(region.id)} />
-            {region.id === london?.id && showLondonAreas ? (
-              <div className="grid gap-2 pl-6 sm:grid-cols-2">
-                {londonRows.map((londonRegion) => (
-                  <DraftLocationOption
-                    key={londonRegion.id}
-                    region={londonRegion}
-                    checked={selectedAreaIds.includes(londonRegion.id)}
-                    onToggle={() => toggle(londonRegion.id)}
-                  />
-                ))}
-              </div>
-            ) : null}
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function DraftLocationOption({
-  region,
-  checked,
-  onToggle,
-  className,
-}: {
-  region: RegionOption;
-  checked: boolean;
-  onToggle: () => void;
-  className?: string;
-}) {
-  return (
-    <label
-      className={cn(
-        "flex cursor-pointer items-center gap-3 rounded-none border border-stone-200 bg-white px-4 py-3 text-sm font-medium text-stone-900 transition hover:border-stone-300",
-        checked ? "border-stone-400 bg-stone-50" : "",
-        className,
-      )}
-    >
-      <input type="checkbox" checked={checked} onChange={onToggle} className="size-4 rounded-none border-stone-300 accent-stone-950" />
-      {region.label}
-    </label>
+    <Field label="Locations">
+      {picker}
+    </Field>
   );
 }
 
@@ -4990,15 +5382,17 @@ function DraftAdditionalNeeds({
   draft,
   options,
   onChange,
+  hideLabel = false,
 }: {
   draft: StylistDraft;
   options: { id: string; label: string }[];
   onChange: (update: Partial<StylistDraft>) => void;
+  hideLabel?: boolean;
 }) {
   return (
-    <div className="space-y-3">
-      <p className="text-xs font-semibold uppercase tracking-[0.12em] text-stone-500">Preferences</p>
-      <div className="grid gap-2">
+    <div className="space-y-1">
+      {hideLabel ? null : <p className="text-xs font-semibold uppercase tracking-[0.12em] text-stone-500">Preferences</p>}
+      <div className="grid gap-1">
         {options.map((option) => {
           const field = additionalNeedsFieldMap[option.id];
           if (!field) return null;
@@ -5018,14 +5412,9 @@ function DraftAdditionalNeeds({
 
 function DraftBooleanOption({ label, checked, onToggle }: { label: string; checked: boolean; onToggle: (checked: boolean) => void }) {
   return (
-    <label
-      className={cn(
-        "flex cursor-pointer items-center gap-3 rounded-none border border-stone-200 bg-white px-4 py-3 text-sm font-medium text-stone-900 transition hover:border-stone-300",
-        checked ? "border-stone-400 bg-stone-50" : "",
-      )}
-    >
-      <input type="checkbox" checked={checked} onChange={(event) => onToggle(event.target.checked)} className="size-4 rounded-none border-stone-300 accent-stone-950" />
-      {label}
+    <label className="flex min-h-8 cursor-pointer items-center gap-3 rounded-md px-2 py-1 text-[15px] font-medium text-stone-800 transition hover:bg-stone-100">
+      <input type="checkbox" checked={checked} onChange={(event) => onToggle(event.target.checked)} className="size-4 rounded border-stone-300 accent-stone-500" />
+      <span>{label}</span>
     </label>
   );
 }
@@ -5048,7 +5437,7 @@ function MultiLocationPicker({
   return (
     <Field label="Locations">
       <div className="rounded-none border border-stone-200 bg-white p-3">
-        <div className="grid gap-2 sm:grid-cols-2">
+        <div className="grid gap-1.5 sm:grid-cols-2">
           {regions.map((region) => (
             <label
               key={region.id}
@@ -5073,7 +5462,17 @@ function MultiLocationPicker({
 }
 
 function getDraftAreaIds(draft: StylistDraft) {
-  return draft.areaIds?.length ? draft.areaIds : draft.areaId ? [draft.areaId] : [];
+  return normalizeAreaIds(draft.areaIds?.length ? draft.areaIds : draft.areaId ? [draft.areaId] : []);
+}
+
+function normalizeAreaIds(areaIds: string[], latestAreaId?: string) {
+  const uniqueAreaIds = [...new Set(areaIds.filter(Boolean))];
+  if (latestAreaId === londonParentAreaId) {
+    return uniqueAreaIds.filter((areaId) => areaId === londonParentAreaId || !londonChildAreaIds.has(areaId));
+  }
+
+  const hasSpecificLondonArea = uniqueAreaIds.some((areaId) => londonChildAreaIds.has(areaId));
+  return hasSpecificLondonArea ? uniqueAreaIds.filter((areaId) => areaId !== londonParentAreaId) : uniqueAreaIds;
 }
 
 function publishedSalonToDraft(salon: Partial<StylistDraft>): StylistDraft {
@@ -5091,6 +5490,7 @@ function publishedSalonToDraft(salon: Partial<StylistDraft>): StylistDraft {
     bookingUrl: salon.bookingUrl || "",
     instagramUrl: salon.instagramUrl || "",
     tiktokUrl: salon.tiktokUrl || "",
+    addedVia: salon.addedVia || "",
     services: Array.isArray(salon.services) ? salon.services : [],
     rawServices: [],
     hijabiFriendly: salon.hijabiFriendly === true,
@@ -5513,7 +5913,7 @@ function LocationsFilterTab() {
         <p className={cn("text-sm font-medium", saveMessage.ok ? "text-emerald-700" : "text-red-600")}>{saveMessage.text}</p>
       ) : null}
 
-      <div className="space-y-2">
+      <div className="space-y-1.5">
         {regions.map((region) => {
           const isEditing = editing?.id === region.id;
           const isLondonParent = region.id === londonParentId;
@@ -5668,7 +6068,7 @@ function AdditionalNeedsFilterTab() {
         <p className={cn("text-sm font-medium", saveMessage.ok ? "text-emerald-700" : "text-red-600")}>{saveMessage.text}</p>
       ) : null}
 
-      <div className="space-y-2">
+      <div className="space-y-1.5">
         {options.map((option) => {
           const isEditing = editing?.id === option.id;
           return (
@@ -5742,80 +6142,276 @@ function ServicePicker({
   filterCategories,
   selected,
   onChange,
+  label = "Services",
 }: {
   services: string[];
   filterCategories?: { id: string; label: string; subcategories: string[] }[];
   selected: string[];
   onChange: (services: string[]) => void;
+  label?: string | null;
 }) {
   const [query, setQuery] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
+  const [activeCategoryId, setActiveCategoryId] = useState("");
+  const popoverRef = useRef<HTMLDivElement | null>(null);
+  const triggerRef = useRef<HTMLButtonElement | null>(null);
+  const searchInputRef = useRef<HTMLInputElement | null>(null);
   const normalizedQuery = query.trim().toLowerCase();
   const serviceSet = useMemo(() => new Set(services), [services]);
-  const groups = filterCategories ?? serviceGroups.map((g) => ({ id: g.label, label: g.label, subcategories: g.services }));
-  const groupedServices = groups
+  const selectedSet = useMemo(() => new Set(selected), [selected]);
+  const sourceGroups = filterCategories ?? serviceGroups.map((g) => ({ id: g.label, label: g.label, subcategories: g.services }));
+  const groups = sourceGroups
     .map((group) => ({
+      id: group.id,
       label: group.label,
-      services: group.subcategories.filter(
-        (service) => serviceSet.has(service) && (!normalizedQuery || service.toLowerCase().includes(normalizedQuery)),
-      ),
+      services: (group.subcategories.length ? group.subcategories : [group.label]).filter((service) => serviceSet.has(service)),
     }))
     .filter((group) => group.services.length > 0);
+  const activeCategory = groups.find((group) => group.id === activeCategoryId) ?? groups[0] ?? null;
+  const searchGroups = groups
+    .map((group) => ({
+      ...group,
+      services: group.services.filter((service) => service.toLowerCase().includes(normalizedQuery)),
+    }))
+    .filter((group) => group.services.length > 0);
+  const visibleSelected = selected.slice(0, 5);
+  const hiddenSelectedCount = Math.max(selected.length - visibleSelected.length, 0);
+
+  useEffect(() => {
+    if (!groups.length) {
+      setActiveCategoryId("");
+      return;
+    }
+
+    if (!activeCategoryId || !groups.some((group) => group.id === activeCategoryId)) {
+      setActiveCategoryId(groups[0].id);
+    }
+  }, [activeCategoryId, groups]);
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handlePointerDown = (event: MouseEvent) => {
+      const target = event.target as Node;
+      if (popoverRef.current?.contains(target) || triggerRef.current?.contains(target)) {
+        return;
+      }
+      setIsOpen(false);
+    };
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setIsOpen(false);
+        triggerRef.current?.focus();
+      }
+    };
+
+    document.addEventListener("mousedown", handlePointerDown);
+    document.addEventListener("keydown", handleKeyDown);
+    window.setTimeout(() => searchInputRef.current?.focus(), 0);
+
+    return () => {
+      document.removeEventListener("mousedown", handlePointerDown);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isOpen]);
 
   function toggle(service: string) {
     onChange(selected.includes(service) ? selected.filter((item) => item !== service) : [...selected, service]);
   }
 
+  function removeSelected(service: string) {
+    onChange(selected.filter((item) => item !== service));
+  }
+
+  function renderServiceButton(service: string, groupLabel: string) {
+    const isSelected = selectedSet.has(service);
+    return (
+      <button
+        key={groupLabel + "-" + service}
+        type="button"
+        onClick={() => toggle(service)}
+        aria-pressed={isSelected}
+        aria-label={(isSelected ? "Remove " : "Add ") + service}
+        className={cn(
+          "flex min-h-8 w-full items-center justify-between gap-2 rounded-none border px-2 py-1.5 text-left text-[11px] font-medium transition",
+          isSelected
+            ? "border-stone-950 bg-stone-950 text-white"
+            : "border-stone-200 bg-white text-stone-800 hover:border-stone-300 hover:bg-stone-50",
+        )}
+      >
+        <span className="min-w-0 overflow-hidden [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:2]">{service}</span>
+        {isSelected ? <Check className="size-3.5 shrink-0" /> : null}
+      </button>
+    );
+  }
+
   return (
-    <div className="space-y-3">
+    <div className="relative space-y-3">
       <div className="flex items-end justify-between gap-3">
-        <Field label="Matched services" className="flex-1">
-          <Input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search filters" />
-        </Field>
-        <Badge variant="secondary">{selected.length} selected</Badge>
+        {label ? (
+          <Field label={label} className="flex-1">
+            <ServicePickerTrigger triggerRef={triggerRef} isOpen={isOpen} selected={selected} visibleSelected={visibleSelected} hiddenSelectedCount={hiddenSelectedCount} onToggle={() => setIsOpen((current) => !current)} />
+          </Field>
+        ) : (
+          <div className="flex-1">
+            <ServicePickerTrigger triggerRef={triggerRef} isOpen={isOpen} selected={selected} visibleSelected={visibleSelected} hiddenSelectedCount={hiddenSelectedCount} onToggle={() => setIsOpen((current) => !current)} />
+          </div>
+        )}
       </div>
-      <div className="flex flex-wrap gap-2">
-        {selected.map((service) => (
-          <button
-            key={service}
-            type="button"
-            onClick={() => toggle(service)}
-            aria-label={`Remove ${service}`}
-            className="rounded-none bg-stone-950 px-3 py-1 text-xs text-white"
-          >
-            {service}
-          </button>
-        ))}
-      </div>
-      <div className="max-h-80 overflow-auto rounded-none border border-stone-200 bg-white p-3">
-        {groupedServices.length ? (
-          <div className="space-y-4">
-            {groupedServices.map((group) => (
-              <div key={group.label} className="space-y-2">
-                <p className="text-xs font-semibold uppercase tracking-[0.12em] text-stone-500">{group.label}</p>
-                <div className="grid gap-2 sm:grid-cols-2">
-                  {group.services.map((service) => (
+
+      {isOpen ? (
+        <div
+          ref={popoverRef}
+          className="absolute left-0 right-0 z-30 max-h-[390px] overflow-hidden rounded-none border border-stone-200 bg-white shadow-xl shadow-stone-950/10"
+        >
+          <div className="border-b border-stone-100 p-2">
+            <div className="relative">
+              <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-stone-400" />
+              <Input
+                ref={searchInputRef}
+                value={query}
+                onChange={(event) => setQuery(event.target.value)}
+                placeholder="Search services"
+                className="h-8 rounded-none border-stone-200 bg-white pl-8 pr-8"
+              />
+              {query ? (
+                <button
+                  type="button"
+                  onClick={() => setQuery("")}
+                  className="absolute right-2 top-1/2 inline-flex size-7 -translate-y-1/2 items-center justify-center text-stone-400 transition hover:text-stone-900"
+                  aria-label="Clear service search"
+                >
+                  <X className="size-4" />
+                </button>
+              ) : null}
+            </div>
+
+            <div className="mt-2 min-h-7">
+              {selected.length ? (
+                <div className="flex flex-wrap gap-1">
+                  {selected.map((service) => (
                     <button
-                      key={`${group.label}-${service}`}
+                      key={service}
                       type="button"
-                      onClick={() => toggle(service)}
-                      aria-label={`${selected.includes(service) ? "Remove" : "Add"} ${service}`}
-                      className={cn(
-                        "rounded-none px-3 py-2 text-left text-xs transition",
-                        selected.includes(service) ? "bg-stone-900 text-white" : "bg-stone-100 text-stone-700 hover:bg-stone-200",
-                      )}
+                      onClick={() => removeSelected(service)}
+                      aria-label={"Remove " + service}
+                      className="inline-flex max-w-full items-center gap-1 rounded-none bg-stone-950 px-1.5 py-0.5 text-[11px] font-medium text-white transition hover:bg-stone-800"
                     >
-                      {service}
+                      <span className="truncate">{service}</span>
+                      <X className="size-3 shrink-0" />
                     </button>
                   ))}
                 </div>
-              </div>
-            ))}
+              ) : (
+                <p className="px-1 py-1 text-sm text-stone-400">No services selected</p>
+              )}
+            </div>
           </div>
-        ) : (
-          <p className="p-3 text-sm text-stone-500">No matching services.</p>
-        )}
-      </div>
+
+          {normalizedQuery ? (
+            <div className="max-h-[276px] overflow-y-auto p-2">
+              {searchGroups.length ? (
+                <div className="space-y-3">
+                  {searchGroups.map((group) => (
+                    <div key={group.id} className="space-y-1.5">
+                      <p className="text-xs font-semibold uppercase tracking-[0.12em] text-stone-500">{group.label}</p>
+                      <div className="grid gap-1.5 sm:grid-cols-2">{group.services.map((service) => renderServiceButton(service, group.label))}</div>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <p className="p-3 text-sm text-stone-500">No services match</p>
+              )}
+            </div>
+          ) : (
+            <div className="grid max-h-[276px] min-h-0 grid-rows-[auto_1fr] md:grid-cols-[164px_1fr] md:grid-rows-1">
+              <div className="overflow-x-auto border-b border-stone-100 p-1.5 md:overflow-y-auto md:border-b-0 md:border-r">
+                <div className="flex gap-1.5 md:block md:space-y-1">
+                  {groups.map((group) => {
+                    const selectedCount = group.services.filter((service) => selectedSet.has(service)).length;
+                    const isActive = activeCategory?.id === group.id;
+                    return (
+                      <button
+                        key={group.id}
+                        type="button"
+                        onClick={() => setActiveCategoryId(group.id)}
+                        aria-pressed={isActive}
+                        className={cn(
+                          "flex shrink-0 items-center justify-between gap-2 rounded-none px-2 py-1.5 text-left text-[11px] font-medium transition md:w-full",
+                          isActive ? "bg-stone-950 text-white" : "bg-stone-50 text-stone-700 hover:bg-stone-100",
+                        )}
+                      >
+                        <span className="min-w-0 truncate">{group.label}</span>
+                        <span className="inline-flex shrink-0 items-center gap-1">
+                          {selectedCount ? (
+                            <span className={cn("rounded-none px-1.5 py-0.5 text-[10px]", isActive ? "bg-white text-stone-950" : "bg-stone-950 text-white")}>{selectedCount}</span>
+                          ) : null}
+                          <span className={cn("text-[10px]", isActive ? "text-stone-200" : "text-stone-400")}>{group.services.length}</span>
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              <div className="min-h-0 overflow-y-auto p-2">
+                {activeCategory ? (
+                  <div className="space-y-1.5">
+                    <div className="flex items-center justify-between gap-3">
+                      <p className="text-xs font-semibold uppercase tracking-[0.12em] text-stone-500">{activeCategory.label}</p>
+                      <span className="text-xs text-stone-400">{activeCategory.services.length} services</span>
+                    </div>
+                    <div className="grid gap-1.5 sm:grid-cols-2">{activeCategory.services.map((service) => renderServiceButton(service, activeCategory.label))}</div>
+                  </div>
+                ) : (
+                  <p className="p-3 text-sm text-stone-500">No services available.</p>
+                )}
+              </div>
+            </div>
+          )}
+        </div>
+      ) : null}
     </div>
+  );
+}
+
+function ServicePickerTrigger({
+  triggerRef,
+  isOpen,
+  selected,
+  visibleSelected,
+  hiddenSelectedCount,
+  onToggle,
+}: {
+  triggerRef: React.RefObject<HTMLButtonElement | null>;
+  isOpen: boolean;
+  selected: string[];
+  visibleSelected: string[];
+  hiddenSelectedCount: number;
+  onToggle: () => void;
+}) {
+  return (
+    <button
+      ref={triggerRef}
+      type="button"
+      onClick={onToggle}
+      aria-expanded={isOpen}
+      className="min-h-8 w-full rounded-md border border-transparent bg-transparent px-2 py-1 text-left outline-none transition hover:bg-stone-100 focus:border-stone-300"
+    >
+      {selected.length ? (
+        <span className="flex flex-wrap gap-1">
+          {visibleSelected.map((service) => (
+            <span key={service} className="max-w-full truncate rounded-md bg-stone-100 px-1.5 py-0.5 text-[12px] font-medium text-stone-800">
+              {service}
+            </span>
+          ))}
+          {hiddenSelectedCount ? <span className="rounded-md bg-stone-100 px-1.5 py-0.5 text-[12px] font-medium text-stone-500">+{hiddenSelectedCount}</span> : null}
+        </span>
+      ) : (
+        <span className="text-[13px] text-stone-400">Select services</span>
+      )}
+    </button>
   );
 }
 
@@ -5959,26 +6555,37 @@ function Textarea({ value, onChange, placeholder }: { value: string; onChange: (
       value={value}
       onChange={(event) => onChange(event.target.value)}
       placeholder={placeholder}
-      className="min-h-28 w-full rounded-none border border-stone-200 bg-white px-4 py-3 text-sm outline-none placeholder:text-stone-400 focus:border-stone-400"
+      className="min-h-20 w-full rounded-none border border-transparent bg-transparent px-2 py-1.5 text-[13px] outline-none placeholder:text-stone-400 transition hover:bg-stone-50 focus:border-stone-300"
     />
   );
 }
 
 function Select({ value, onChange, children }: { value: string; onChange: (value: string) => void; children: React.ReactNode }) {
   return (
-    <select
-      value={value}
-      onChange={(event) => onChange(event.target.value)}
-      className="h-12 w-full rounded-none border border-stone-200 bg-white px-4 text-sm outline-none focus:border-stone-400"
-    >
-      {children}
-    </select>
+    <div className="relative w-full">
+      <select
+        value={value}
+        onChange={(event) => onChange(event.target.value)}
+        style={{ appearance: "none", WebkitAppearance: "none", MozAppearance: "none" }}
+        className="h-8 w-full appearance-none rounded-md border border-transparent bg-transparent pl-2 pr-10 text-[15px] outline-none transition hover:bg-stone-100 focus:border-stone-300"
+      >
+        {children}
+      </select>
+      <ChevronDown className="pointer-events-none absolute right-2 top-1/2 size-4 -translate-y-1/2 text-stone-950" />
+    </div>
   );
 }
 
 function splitLines(value: string) {
   return value
     .split(/\n|,/)
+    .map((line) => line.trim())
+    .filter(Boolean);
+}
+
+function splitNoteLines(value: string) {
+  return value
+    .split(/\n/)
     .map((line) => line.trim())
     .filter(Boolean);
 }

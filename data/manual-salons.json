@@ -1,11 +1,129 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-06-10",
-    "count": 729,
+    "updatedAt": "2026-06-11",
+    "count": 733,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "bylatishahair",
+      "name": "Bylatishahair",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london",
+        "south-west"
+      ],
+      "areaLabel": "South west London",
+      "neighbourhood": "South west London London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/bylatishahair/",
+      "instagramUrl": "https://www.instagram.com/bylatishahair/",
+      "services": [
+        "Silk press",
+        "Trim / hair cut",
+        "Curly cut / wash & go / diffuse",
+        "Pixie cut / finger waves"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/bylatishahair/"
+      ]
+    },
+    {
+      "id": "aminatacreative",
+      "name": "Aminatacreative",
+      "areaId": "all-london",
+      "areaLabel": "London",
+      "neighbourhood": "London London",
+      "postcode": "",
+      "bookingPlatform": "Direct",
+      "bookingUrl": "https://www.instagram.com/aminatacreative/",
+      "instagramUrl": "https://www.instagram.com/aminatacreative/",
+      "services": [
+        "Editorial / Session styling"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/aminatacreative/"
+      ]
+    },
+    {
+      "id": "braidsome",
+      "name": "Braidsome",
+      "areaId": "mobile",
+      "areaLabel": "Mobile / home service",
+      "neighbourhood": "Mobile / home service London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/braidsome/",
+      "instagramUrl": "https://www.instagram.com/braidsome/",
+      "services": [
+        "Crochet",
+        "Braid take-down",
+        "Wig cornrows",
+        "Knotless braids",
+        "Faux locs",
+        "Twists (with extensions)",
+        "Stitch braids",
+        "Boho braids / goddess braids",
+        "Box braids",
+        "Fulani / lemonade braids"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/braidsome/"
+      ]
+    },
+    {
+      "id": "becrochetcreation",
+      "name": "Becrochetcreation",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london",
+        "south-east"
+      ],
+      "areaLabel": "South east London",
+      "neighbourhood": "South east London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://app.acuityscheduling.com/schedule/5f67633e",
+      "instagramUrl": "https://www.instagram.com/becrochetcreation/",
+      "services": [
+        "Box braids",
+        "Twists (with extensions)",
+        "Faux locs",
+        "Crochet"
+      ],
+      "priceBand": "££",
+      "servicePriceBand": "££",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "Box braids/Senegalese twist/passion twist - £90",
+        "Faux locs touch up - £55",
+        "AFRO HAIRSTYLES - £90",
+        "Curly crochet braids - £100",
+        "Curly crochet Bun Option - £130",
+        "Curly multiple part - £150",
+        "HUMAN hair curly (1 part) - £150",
+        "HUMAN HAIR Curly with 360 (bun) - £200"
+      ],
+      "priceCheckedAt": "2026-06-11T10:15:19.982Z",
+      "priceUpdatedAt": "2026-06-11T10:15:19.982Z",
+      "priceConfidence": "high",
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/becrochetcreation/"
+      ]
+    },
     {
       "id": "the-reign-spitalfields",
       "name": "The Reign Spitalfields",
@@ -37,7 +155,7 @@
         "Olaplex treatment",
         "Updo",
         "Moisturising treatment",
-        "Pixie / finger waves",
+        "Pixie cut / finger waves",
         "Texture release",
         "Silk press",
         "Scalp detox / treatments"
@@ -370,7 +488,7 @@
         "Relaxer / texturiser",
         "Moisturising treatment",
         "Keratin treatment",
-        "Pixie / finger waves",
+        "Pixie cut / finger waves",
         "Full head colour",
         "Balayage"
       ],
@@ -420,7 +538,7 @@
       "bookingUrl": "https://www.instagram.com/athstudiosldn/",
       "instagramUrl": "https://www.instagram.com/athstudiosldn/",
       "services": [
-        "Pixie / finger waves",
+        "Pixie cut / finger waves",
         "Trim / hair cut",
         "Full head colour"
       ],
@@ -1012,7 +1130,7 @@
         "Silk press",
         "Bouncy blowout / round brush blow dry",
         "Full head colour",
-        "Pixie / finger waves",
+        "Pixie cut / finger waves",
         "Curly cut / wash & go / diffuse"
       ],
       "summary": "Admin draft created from stylist intake.",
@@ -1057,7 +1175,7 @@
         "Full head colour",
         "Highlights",
         "Trim / hair cut",
-        "Pixie / finger waves",
+        "Pixie cut / finger waves",
         "Silk press",
         "Bouncy blowout / round brush blow dry"
       ],
@@ -1620,7 +1738,7 @@
         "Quick weave",
         "Box braids",
         "Sleek ponytail / bun",
-        "Pixie / finger waves",
+        "Pixie cut / finger waves",
         "Retwist",
         "Silk press",
         "Flipover / Versatile sew-in",
@@ -3333,7 +3451,7 @@
         "Healthy hair plans & consultations",
         "Scalp detox / treatments",
         "Silk press",
-        "Pixie / finger waves",
+        "Pixie cut / finger waves",
         "Relaxer / texturiser",
         "Texture release",
         "Traditional sew-in / leave out",
@@ -3706,7 +3824,7 @@
         "Twist out / flexi rod",
         "Retwist",
         "Sleek ponytail / bun",
-        "Pixie / finger waves",
+        "Pixie cut / finger waves",
         "Traditional sew-in / leave out",
         "Sew-in take-down",
         "Closure sew-in / closure behind the hairline",
@@ -4022,7 +4140,7 @@
         "Sleek ponytail / bun",
         "Wig install (frontal / closure)",
         "Butterfly locs",
-        "Pixie / finger waves",
+        "Pixie cut / finger waves",
         "Bridal"
       ],
       "summary": "Admin draft created from stylist intake.",
@@ -4365,7 +4483,7 @@
         "Updo",
         "Silk press",
         "Sleek ponytail / bun",
-        "Pixie / finger waves",
+        "Pixie cut / finger waves",
         "Wig install (frontal / closure)",
         "Relaxer / texturiser",
         "Full head colour",
@@ -5913,7 +6031,7 @@
       "services": [
         "Traditional sew-in / leave out",
         "Silk press",
-        "Pixie / finger waves",
+        "Pixie cut / finger waves",
         "Texture release",
         "Microlinks",
         "LA weave",
@@ -6163,7 +6281,7 @@
         "Relaxer / texturiser",
         "Silk press",
         "Moisturising treatment",
-        "Pixie / finger waves",
+        "Pixie cut / finger waves",
         "Trim / hair cut",
         "Braid take-down",
         "Full head colour"
@@ -6524,7 +6642,7 @@
         "Wig cornrows",
         "Trim / hair cut",
         "Half up half down",
-        "Pixie / finger waves",
+        "Pixie cut / finger waves",
         "Relaxer / texturiser",
         "K-18 treatment",
         "Pixie wig / weave install"
@@ -6748,7 +6866,7 @@
         "Frontal sew-in",
         "Half up half down",
         "Updo",
-        "Pixie / finger waves",
+        "Pixie cut / finger waves",
         "Wig cornrows",
         "Quick weave"
       ],
@@ -7504,7 +7622,7 @@
         "Tracks (+ silk press) / partial / invisible sew-in",
         "Scalp detox / treatments",
         "Healthy hair plans & consultations",
-        "Pixie / finger waves",
+        "Pixie cut / finger waves",
         "Sleek ponytail / bun",
         "Braid take-down",
         "Flipover / Versatile sew-in"
@@ -8026,7 +8144,7 @@
         "Keratin treatment",
         "Moisturising treatment",
         "Olaplex treatment",
-        "Pixie / finger waves",
+        "Pixie cut / finger waves",
         "Traditional sew-in / leave out",
         "Tracks (+ silk press) / partial / invisible sew-in",
         "Sew-in take-down"
@@ -8977,7 +9095,7 @@
         "Texture release",
         "Crochet",
         "Wig cornrows",
-        "Pixie / finger waves",
+        "Pixie cut / finger waves",
         "Trim / hair cut",
         "Roller set",
         "Twist out / flexi rod",
@@ -9142,7 +9260,7 @@
         "Texture release",
         "Keratin treatment",
         "Trim / hair cut",
-        "Pixie / finger waves",
+        "Pixie cut / finger waves",
         "Knotless braids",
         "Boho braids / goddess braids",
         "Tracks (+ silk press) / partial / invisible sew-in",
@@ -9873,7 +9991,13 @@
         "Stitch braids",
         "Half braids, half sew-in",
         "Wash & blowdry",
-        "Wig cornrows"
+        "Wig cornrows",
+        "Flipover / Versatile sew-in",
+        "Sleek ponytail / bun",
+        "Half up half down",
+        "Starter locs",
+        "Retwist",
+        "Creative braids"
       ],
       "canBraidWithoutGel": true,
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
@@ -9904,7 +10028,8 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-06-10"
+      "updatedAt": "2026-06-11",
+      "websiteUrl": ""
     },
     {
       "id": "braidzbynadz",
@@ -10696,7 +10821,7 @@
       "services": [
         "Bridal",
         "Wig install (frontal / closure)",
-        "Pixie / finger waves",
+        "Pixie cut / finger waves",
         "Sleek ponytail / bun",
         "Traditional sew-in / leave out",
         "Closure sew-in / closure behind the hairline",
@@ -10972,7 +11097,7 @@
       "instagramUrl": "https://www.instagram.com/chrissieandhair/",
       "services": [
         "Cornrows / Twists / Underwig cornrows",
-        "Pixie / finger waves",
+        "Pixie cut / finger waves",
         "Half up half down",
         "Traditional sew-in / leave out",
         "Wig install",
@@ -11212,7 +11337,7 @@
         "User-provided manual addition."
       ],
       "id": "conor-m",
-      "name": "Conor M - Belgravia",
+      "name": "Conor M",
       "areaId": "central",
       "areaLabel": "Central",
       "neighbourhood": "Central London",
@@ -11238,13 +11363,15 @@
       "priceCheckedAt": "2026-06-04",
       "priceUpdatedAt": "2026-06-05",
       "priceConfidence": "manual",
-      "updatedAt": "2026-06-06",
+      "updatedAt": "2026-06-11",
       "servicePriceBand": "",
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
       "salonId": "hershesons",
-      "addedVia": "Cowork scrape"
+      "addedVia": "Cowork scrape",
+      "websiteUrl": "",
+      "wheelchairAccessible": false
     },
     {
       "id": "cotresshairlounge",
@@ -11428,7 +11555,7 @@
       "instagramUrl": "https://www.instagram.com/curl.talk/",
       "services": [
         "Curly cut / wash & go / diffuse",
-        "Pixie / finger waves",
+        "Pixie cut / finger waves",
         "Moisturising treatment"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
@@ -12092,7 +12219,7 @@
         "Wig cornrows",
         "Braid take-down",
         "Sew-in take-down",
-        "Pixie / finger waves",
+        "Pixie cut / finger waves",
         "Scalp detox / treatments",
         "Wash & blowdry",
         "Custom wig",
@@ -12220,7 +12347,7 @@
         "Traditional sew-in / leave out",
         "Wash & blowdry",
         "Pixie wig / weave install",
-        "Pixie / finger waves",
+        "Pixie cut / finger waves",
         "Full head colour",
         "Wig blowdry",
         "Closure sew-in",
@@ -12689,7 +12816,7 @@
         "Full head colour",
         "Highlights",
         "Keratin treatment",
-        "Pixie / finger waves",
+        "Pixie cut / finger waves",
         "Relaxer / texturiser",
         "Roller set",
         "Sew-in take-down",
@@ -12743,7 +12870,7 @@
         "Healthy hair plans & consultations",
         "Highlights",
         "Keratin treatment",
-        "Pixie / finger waves",
+        "Pixie cut / finger waves",
         "Relaxer / texturiser",
         "Roller set",
         "Silk press",
@@ -13357,7 +13484,7 @@
       "bookingUrl": "https://fdhairbeauty.as.me/schedule/cf064183",
       "instagramUrl": "https://www.instagram.com/f.dhairandbeauty/",
       "services": [
-        "Pixie / finger waves",
+        "Pixie cut / finger waves",
         "Relaxer / texturiser",
         "Sleek ponytail / bun",
         "Half up half down",
@@ -14024,7 +14151,7 @@
       "bookingUrl": "https://goldenntouchh.as.me/schedule/5b847e30",
       "instagramUrl": "https://www.instagram.com/golden_tuchhhh/",
       "services": [
-        "Pixie / finger waves",
+        "Pixie cut / finger waves",
         "Traditional sew-in / leave out",
         "Closure sew-in / closure behind the hairline",
         "Pixie wig / weave install"
@@ -14281,7 +14408,8 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-06-10"
+      "updatedAt": "2026-06-10",
+      "websiteUrl": ""
     },
     {
       "id": "gslaysuk",
@@ -14303,7 +14431,6 @@
         "Half up half down",
         "Sleek ponytail / bun",
         "Wig cornrows",
-        "Crochet",
         "Quick weave"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
@@ -14326,7 +14453,17 @@
       "priceCheckedAt": "2026-06-03",
       "priceConfidence": "high",
       "priceUpdatedAt": "2026-06-03",
-      "addedVia": "Cowork scrape"
+      "addedVia": "Cowork scrape",
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "updatedAt": "2026-06-10"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -14507,7 +14644,7 @@
         "Quick weave",
         "Box braids",
         "Sleek ponytail / bun",
-        "Pixie / finger waves",
+        "Pixie cut / finger waves",
         "Retwist",
         "Silk press",
         "LA weave"
@@ -14705,7 +14842,7 @@
         "Closure sew-in / closure behind the hairline",
         "Knotless braids",
         "Box braids",
-        "Pixie / finger waves",
+        "Pixie cut / finger waves",
         "Healthy hair plans & consultations",
         "Trim / hair cut",
         "Closure sew-in",
@@ -14792,7 +14929,7 @@
         "Tape ins",
         "Wash & blowdry",
         "Wig cornrows",
-        "Pixie / finger waves",
+        "Pixie cut / finger waves",
         "Sleek ponytail / bun",
         "Scalp detox / treatments",
         "Moisturising treatment",
@@ -14908,7 +15045,7 @@
         "Sleek ponytail / bun",
         "Full head colour",
         "Highlights",
-        "Pixie / finger waves",
+        "Pixie cut / finger waves",
         "Wig cornrows",
         "Crochet"
       ],
@@ -15337,7 +15474,7 @@
       "bookingUrl": "https://www.instagram.com/hairdesignstudio_/",
       "instagramUrl": "https://www.instagram.com/hairdesignstudio_/",
       "services": [
-        "Pixie / finger waves"
+        "Pixie cut / finger waves"
       ],
       "addedVia": "Cowork scrape"
     },
@@ -16273,7 +16410,7 @@
         "Trim / hair cut",
         "Wash & blowdry",
         "Silk press",
-        "Pixie / finger waves",
+        "Pixie cut / finger waves",
         "Scalp detox / treatments",
         "Texture release",
         "Relaxer / texturiser",
@@ -16999,7 +17136,7 @@
         "Clip ins (+ silk press)",
         "Silk press",
         "Wash & blowdry",
-        "Pixie / finger waves",
+        "Pixie cut / finger waves",
         "Relaxer / texturiser",
         "Keratin treatment",
         "Texture release",
@@ -17841,7 +17978,7 @@
         "Traditional sew-in / leave out",
         "Moisturising treatment",
         "Tracks (+ silk press) / partial / invisible sew-in",
-        "Pixie / finger waves",
+        "Pixie cut / finger waves",
         "Braid take-down",
         "Sew-in take-down",
         "Crochet",
@@ -19201,7 +19338,7 @@
         "Knotless braids",
         "Moisturising treatment",
         "Olaplex treatment",
-        "Pixie / finger waves",
+        "Pixie cut / finger waves",
         "Relaxer / texturiser",
         "Retwist",
         "Roller set",
@@ -19474,7 +19611,7 @@
         "Texture release",
         "Silk press",
         "Full head colour",
-        "Pixie / finger waves",
+        "Pixie cut / finger waves",
         "Keratin treatment",
         "K-18 treatment",
         "Olaplex treatment",
@@ -19587,7 +19724,7 @@
       "bookingUrl": "https://www.manelistudios.com/",
       "instagramUrl": "https://www.instagram.com/manelistudios/",
       "services": [
-        "Pixie / finger waves",
+        "Pixie cut / finger waves",
         "Relaxer / texturiser",
         "Sleek ponytail / bun",
         "Updo"
@@ -19770,7 +19907,6 @@
         "Half braids, half sew-in",
         "Wash & blowdry",
         "Creative braids",
-        "Crochet",
         "Stitch braids"
       ],
       "priceBand": "££",
@@ -19788,7 +19924,17 @@
       "priceCheckedAt": "2026-06-04",
       "priceConfidence": "high",
       "priceUpdatedAt": "2026-06-04",
-      "addedVia": "Cowork scrape"
+      "addedVia": "Cowork scrape",
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "updatedAt": "2026-06-10"
     },
     {
       "id": "mauwi-hair",
@@ -20458,7 +20604,7 @@
         "Tape ins",
         "LA weave",
         "Wig colouring / bundle colouring",
-        "Pixie / finger waves",
+        "Pixie cut / finger waves",
         "Tracks (+ silk press) / partial / invisible sew-in",
         "Traditional sew-in / leave out",
         "Trim / hair cut",
@@ -20857,7 +21003,7 @@
         "Half braids, half sew-in",
         "Stitch braids",
         "Half up half down",
-        "Pixie / finger waves",
+        "Pixie cut / finger waves",
         "Olaplex treatment",
         "Silk press",
         "Feed-in braids"
@@ -21704,7 +21850,8 @@
         "Texture release",
         "Trim / hair cut",
         "Twist out / flexi rod",
-        "Relaxer / texturiser"
+        "Relaxer / texturiser",
+        "Bouncy blowout / round brush blow dry"
       ],
       "addedVia": "Cowork scrape",
       "tiktokUrl": "https://www.tiktok.com/@naomi.native/video/7416039240028409120?lang=en-GB",
@@ -21721,11 +21868,12 @@
       "priceCheckedAt": "",
       "priceUpdatedAt": "",
       "priceConfidence": "",
-      "updatedAt": "2026-06-10",
+      "updatedAt": "2026-06-11",
       "areaIds": [
         "all-london",
         "south-east"
-      ]
+      ],
+      "websiteUrl": ""
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -23325,7 +23473,7 @@
         "Relaxer / texturiser",
         "K-18 treatment",
         "Keratin treatment",
-        "Pixie / finger waves"
+        "Pixie cut / finger waves"
       ],
       "priceBand": "£",
       "priceSource": "manual",
@@ -23687,7 +23835,7 @@
       "bookingUrl": "https://app.acuityscheduling.com/schedule/8dde07fb",
       "instagramUrl": "https://www.instagram.com/serenityluxuryhair_/",
       "services": [
-        "Pixie / finger waves"
+        "Pixie cut / finger waves"
       ],
       "priceBand": "££",
       "priceSource": "auto",
@@ -24513,7 +24661,8 @@
         "Knotless braids",
         "Boho braids / goddess braids",
         "French curl",
-        "Braid take-down"
+        "Braid take-down",
+        "Crochet"
       ],
       "summary": "Manual entry amalgamated from duplicate Slayedbyp and Slayed by P Hairstyles records.",
       "source": "manual",
@@ -24536,7 +24685,17 @@
       "priceCheckedAt": "2026-06-03",
       "priceConfidence": "high",
       "priceUpdatedAt": "2026-06-03",
-      "addedVia": "Manual discovery"
+      "addedVia": "Manual discovery",
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "updatedAt": "2026-06-11"
     },
     {
       "id": "slayedbyl",
@@ -25584,7 +25743,7 @@
         "Wig colouring / bundle colouring",
         "Balayage",
         "Half braids, half sew-in",
-        "Pixie / finger waves",
+        "Pixie cut / finger waves",
         "Crochet",
         "U-part wig install",
         "Custom wig",
@@ -25743,7 +25902,7 @@
         "Closure sew-in / closure behind the hairline",
         "Hybrid sew in (tapes + sew in)",
         "K-tips / invisible strands",
-        "Pixie / finger waves",
+        "Pixie cut / finger waves",
         "Silk press",
         "Sleek ponytail / bun",
         "Stitch braids",
@@ -26736,7 +26895,7 @@
         "Feed-in braids",
         "Boho braids / goddess braids",
         "Full head colour",
-        "Pixie / finger waves",
+        "Pixie cut / finger waves",
         "Wig cornrows"
       ],
       "summary": "Manual entry added from your known South East London flipover sew-in list.",
@@ -27419,7 +27578,7 @@
       "bookingUrl": "https://www.phorest.com/salon/touchofclasshairlounge",
       "instagramUrl": "https://www.instagram.com/touchofclass_12/",
       "services": [
-        "Pixie / finger waves",
+        "Pixie cut / finger waves",
         "Silk press",
         "Wash & blowdry",
         "Trim / hair cut",
@@ -27581,7 +27740,7 @@
         "Tracks (+ silk press) / partial / invisible sew-in",
         "Traditional sew-in / leave out",
         "Half up half down",
-        "Pixie / finger waves",
+        "Pixie cut / finger waves",
         "Sleek ponytail / bun",
         "Updo",
         "Keratin treatment",
@@ -27768,7 +27927,7 @@
         "Frontal sew-in",
         "Silk press",
         "Full head colour",
-        "Pixie / finger waves",
+        "Pixie cut / finger waves",
         "Relaxer / texturiser",
         "Trim / hair cut"
       ],
@@ -28081,7 +28240,7 @@
         "Traditional sew-in / leave out",
         "Keratin treatment",
         "Trim / hair cut",
-        "Pixie / finger waves"
+        "Pixie cut / finger waves"
       ],
       "summary": "Manual entry added from your Instagram-led silk press, sew-in, keratin, cut, and pixie list.",
       "source": "manual",
@@ -30303,7 +30462,7 @@
         "Highlights",
         "Moisturising treatment",
         "Wash & blowdry",
-        "Pixie / finger waves",
+        "Pixie cut / finger waves",
         "Flipover / versatile sew-in"
       ],
       "summary": "Manual Instagram-led entry added from user-provided booking menu.",
@@ -31679,7 +31838,6 @@
         "Texture release",
         "Silk press",
         "Healthy hair plans & consultations",
-        "Crochet",
         "Editorial / Session styling"
       ],
       "summary": "Manual Instagram-led entry added from user-provided booking menu.",
@@ -31713,7 +31871,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-06-10",
+      "updatedAt": "2026-06-11",
       "wheelchairAccessible": true,
       "addedVia": "Manual discovery",
       "communityNotes": [
@@ -31722,7 +31880,8 @@
           "sentiment": "positive",
           "date": "2026-06-10"
         }
-      ]
+      ],
+      "websiteUrl": ""
     },
     {
       "id": "dkuk-salon",

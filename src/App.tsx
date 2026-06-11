@@ -36,12 +36,12 @@ const categoryMap = {
   all: { label: "All services", subcategories: ["all"] },
   "braiding-services": { label: "Braids", subcategories: ["all","Boho braids / goddess braids","Braid take-down","Box braids","Crochet","Creative braids","Feed-in braids","French curl","Fulani / lemonade braids","Half braids, half sew-in","Knotless braids","Miracle knots","Microbraids / x-small braids","Pre-parting","Stitch braids","Twists (with extensions)"] },
   "colour-services": { label: "Colour", subcategories: ["all","Balayage","Full head colour","Highlights","Wig colouring / bundle colouring"] },
-  "bridal-services": { label: "Bridal", subcategories: ["all","Bridal"] },
-  "editorial-services": { label: "Editorial / Session styling", subcategories: ["all","Editorial / Session styling"] },
+  "bridal-services": { label: "Bridal", subcategories: ["all"] },
+  "editorial-services": { label: "Editorial / Session styling", subcategories: ["all"] },
   "extension-services": { label: "Extensions", subcategories: ["all","Clip ins (+ silk press)","K-tips / invisible strands","LA weave / microlinks wefts / braidless sew in","I-tips / microlinks strands","Tape ins"] },
   "locs-services": { label: "Locs", subcategories: ["all","Butterfly locs","Faux locs","Microlocs / sisterlocs","Retwist","Starter locs"] },
   "sew-in-weave": { label: "Sew in / weave", subcategories: ["all","Closure sew-in / closure behind the hairline","Flipover / Versatile sew-in","Frontal sew-in","Hybrid sew in (tapes + sew in)","Pixie wig / weave install","Quick weave","Sew-in take-down","Tracks (+ silk press) / partial / invisible sew-in","Traditional sew-in / leave out"] },
-  "styling-services": { label: "Styling (sew in / frontal / relaxer)", subcategories: ["all","Sew in / extensions blowdry","Frontal ponytail / bun","Half up half down","Pixie / finger waves","Sleek ponytail / bun","Updo"] },
+  "styling-services": { label: "Styling (sew in / frontal / relaxer)", subcategories: ["all","Sew in / extensions blowdry","Frontal ponytail / bun","Half up half down","Pixie cut / finger waves","Sleek ponytail / bun","Updo"] },
   "straightening-treatments": { label: "Treatments", subcategories: ["all","Hair botox","Japanese straightening","K-18 treatment","Keratin treatment","Moisturising treatment","Olaplex treatment","Relaxer / texturiser","Texture release"] },
   "natural-hair-services": { label: "Natural hair washing & styling", subcategories: ["all","Wig cornrows","Curly cut / wash & go / diffuse","Silk press","Bouncy blowout / round brush blow dry","Trim / hair cut","Roller set","Twist out / flexi rod","Wash & blowdry","Japanese head spa","Scalp detox / treatments"] },
   "natural-hair-scalp-health": { label: "Natural hair health & trichology", subcategories: ["all","Healthy hair plans & consultations","Natural hair coaches / educators","Trichology / scalp analysis"] },
@@ -56,7 +56,7 @@ const categoryServiceMap = {
   "extension-services": ["Clip ins (+ silk press)","K-tips / invisible strands","LA weave / microlinks wefts / braidless sew in","I-tips / microlinks strands","Tape ins"],
   "locs-services": ["Butterfly locs","Faux locs","Microlocs / sisterlocs","Retwist","Starter locs"],
   "sew-in-weave": ["Closure sew-in / closure behind the hairline","Flipover / Versatile sew-in","Frontal sew-in","Hybrid sew in (tapes + sew in)","Pixie wig / weave install","Quick weave","Sew-in take-down","Tracks (+ silk press) / partial / invisible sew-in","Traditional sew-in / leave out"],
-  "styling-services": ["Sew in / extensions blowdry","Frontal ponytail / bun","Half up half down","Pixie / finger waves","Sleek ponytail / bun","Updo"],
+  "styling-services": ["Sew in / extensions blowdry","Frontal ponytail / bun","Half up half down","Pixie cut / finger waves","Sleek ponytail / bun","Updo"],
   "straightening-treatments": ["Hair botox","Japanese straightening","K-18 treatment","Keratin treatment","Moisturising treatment","Olaplex treatment","Relaxer / texturiser","Texture release"],
   "natural-hair-services": ["Wig cornrows","Curly cut / wash & go / diffuse","Silk press","Bouncy blowout / round brush blow dry","Trim / hair cut","Roller set","Twist out / flexi rod","Wash & blowdry","Japanese head spa","Scalp detox / treatments"],
   "natural-hair-scalp-health": ["Healthy hair plans & consultations","Natural hair coaches / educators","Trichology / scalp analysis"],
@@ -641,6 +641,16 @@ type RuntimeFilterConfig = {
   regions: { id: string; label: string }[];
 };
 
+const terminalServiceCategoryIds = new Set<string>(["bridal-services", "editorial-services"]);
+
+function normalizeRuntimeCategory(category: RuntimeCategory): RuntimeCategory {
+  if (!terminalServiceCategoryIds.has(category.id)) {
+    return category;
+  }
+
+  return { ...category, subcategories: [] };
+}
+
 function buildRuntimeConfig(apiCategories: RuntimeCategory[], apiLocations: { regions: { id: string; label: string }[]; londonChildIds: string[]; standaloneIds: string[] } | null): RuntimeFilterConfig {
   const normaliseRegionId = (id: string) => id === "all-london" ? "london" : id;
   const normalisedRegions = apiLocations?.regions.map((r) => ({ ...r, id: normaliseRegionId(r.id) }));
@@ -648,7 +658,7 @@ function buildRuntimeConfig(apiCategories: RuntimeCategory[], apiLocations: { re
     ? [{ id: "all", label: "All locations" }, ...normalisedRegions.filter((r) => r.id !== "all")]
     : null;
   return {
-    categories: [{ id: "all", label: "All services", subcategories: [] }, ...apiCategories],
+    categories: [{ id: "all", label: "All services", subcategories: [] }, ...apiCategories.map(normalizeRuntimeCategory)],
     nestedLondonRegionIds: apiLocations?.londonChildIds ?? [...nestedLondonRegionIds],
     standaloneRegionIds: apiLocations?.standaloneIds ?? [...standaloneRegionIds],
     regions: regionsWithAll ?? regions.map((r) => ({ id: r.id, label: r.label })),
@@ -660,7 +670,7 @@ const defaultFilterConfig: RuntimeFilterConfig = {
     { id: "all", label: "All services", subcategories: [] },
     ...Object.entries(categoryMap)
       .filter(([id]) => id !== "all")
-      .map(([id, cat]) => ({ id, label: cat.label, subcategories: cat.subcategories.filter((s) => s !== "all") as string[] })),
+      .map(([id, cat]) => normalizeRuntimeCategory({ id, label: cat.label, subcategories: cat.subcategories.filter((s) => s !== "all") as string[] })),
   ],
   nestedLondonRegionIds: [...nestedLondonRegionIds],
   standaloneRegionIds: [...standaloneRegionIds],
@@ -722,7 +732,7 @@ export default function App() {
     ...runtimeCategories.filter((c) => c.id !== "all").sort((a, b) => a.label.localeCompare(b.label)).map((c) => [c.id, { label: c.label, subcategories: ["all", ...c.subcategories] }] as [string, { label: string; subcategories: string[] }]),
   ];
   const runtimeCategoryServiceMap = Object.fromEntries(
-    runtimeCategories.filter((c) => c.id !== "all").map((c) => [c.id, c.subcategories])
+    runtimeCategories.filter((c) => c.id !== "all").map((c) => [c.id, c.subcategories.length ? c.subcategories : [...(categoryServiceMap[c.id as ServiceCategoryId] ?? [])]])
   );
 
   function syncDraftFiltersFromApplied() {
@@ -1431,12 +1441,12 @@ export default function App() {
                         <div className="min-w-0 grow">
                           <div className="flex items-start justify-between gap-3">
                             <div className="min-w-0">
-                              <div className="flex flex-wrap items-baseline gap-x-2">
+                              <div className="flex flex-col items-start sm:flex-row sm:flex-wrap sm:items-baseline sm:gap-x-2">
                                 <h3 className="text-[17px] font-semibold text-stone-950 dark:text-stone-50">{result.name}</h3>
                                 {locationLabels.length > 0 ? (
                                   <>
-                                    <span aria-hidden="true" className="text-[17px] font-semibold text-stone-400 dark:text-stone-500">·</span>
-                                    <span className="text-[17px] font-semibold text-stone-500 dark:text-stone-400">
+                                    <span aria-hidden="true" className="hidden text-[17px] font-semibold text-stone-400 dark:text-stone-500 sm:inline">·</span>
+                                    <span className="text-[15px] font-semibold text-stone-500 dark:text-stone-400 sm:text-[17px]">
                                       {locationLabels.join(" · ")}
                                     </span>
                                   </>

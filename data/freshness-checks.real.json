@@ -338,7 +338,7 @@
     "tressly-studios": {
       "addedServices": [],
       "removedServices": [
-        "Pixie / finger waves",
+        "Pixie cut / finger waves",
         "Wash & blowdry",
         "Custom wig",
         "Wig install (frontal / closure)"
@@ -1944,7 +1944,7 @@
         "Wig colouring / bundle colouring"
       ],
       "removedServices": [
-        "Pixie / finger waves"
+        "Pixie cut / finger waves"
       ],
       "addedServiceFamilies": [
         "colour"
@@ -2272,7 +2272,7 @@
     "ceo-hair-london": {
       "addedServices": [],
       "removedServices": [
-        "Pixie / finger waves"
+        "Pixie cut / finger waves"
       ],
       "addedServiceFamilies": [],
       "addedServiceEvidence": {}
@@ -2343,7 +2343,7 @@
       "addedServices": [],
       "removedServices": [
         "Wig install (frontal / closure)",
-        "Pixie / finger waves",
+        "Pixie cut / finger waves",
         "Tracks (+ silk press) / partial / invisible sew-in",
         "Wig cornrows",
         "Custom wig"
@@ -2381,7 +2381,7 @@
     "fd-hair-and-beauty": {
       "addedServices": [],
       "removedServices": [
-        "Pixie / finger waves",
+        "Pixie cut / finger waves",
         "Wash & blowdry"
       ],
       "addedServiceFamilies": [],
@@ -2579,7 +2579,7 @@
     "hair-by-geneve": {
       "addedServices": [],
       "removedServices": [
-        "Pixie / finger waves",
+        "Pixie cut / finger waves",
         "Tracks (+ silk press) / partial / invisible sew-in"
       ],
       "addedServiceFamilies": [],
@@ -2635,7 +2635,7 @@
         "Trim / hair cut"
       ],
       "removedServices": [
-        "Pixie / finger waves"
+        "Pixie cut / finger waves"
       ],
       "addedServiceFamilies": [],
       "addedServiceEvidence": {
@@ -2684,7 +2684,7 @@
         "K-18 treatment"
       ],
       "removedServices": [
-        "Pixie / finger waves"
+        "Pixie cut / finger waves"
       ],
       "addedServiceFamilies": [],
       "addedServiceEvidence": {
@@ -3025,7 +3025,7 @@
           "Tracks (+ silk press) / partial / invisible sew-in",
           "Traditional sew-in / leave out",
           "Highlights",
-          "Pixie / finger waves",
+          "Pixie cut / finger waves",
           "Full head colour",
           "Flipover / versatile sew-in",
           "Wash & blowdry"
@@ -3043,7 +3043,7 @@
         "Highlights",
         "Moisturising treatment",
         "Wash & blowdry",
-        "Pixie / finger waves",
+        "Pixie cut / finger waves",
         "Flipover / versatile sew-in"
       ],
       "detectedServices": [
@@ -3063,7 +3063,7 @@
       ],
       "removedServices": [
         "Moisturising treatment",
-        "Pixie / finger waves"
+        "Pixie cut / finger waves"
       ],
       "checkedAt": "2026-05-22T23:03:39.504Z"
     },
@@ -5210,7 +5210,7 @@
         "Full head colour",
         "Highlights",
         "Wig colouring / bundle colouring",
-        "Pixie / finger waves",
+        "Pixie cut / finger waves",
         "Relaxer / texturiser",
         "Curly cut / wash & go",
         "Silk press",
@@ -6167,7 +6167,7 @@
           "U-part wig install",
           "Closure sew-in",
           "Frontal sew-in",
-          "Pixie / finger waves",
+          "Pixie cut / finger waves",
           "Half up half down",
           "Sleek ponytail / bun",
           "Tracks (+ silk press) / partial / invisible sew-in",
@@ -7500,7 +7500,7 @@
           "Olaplex treatment",
           "Moisturising treatment",
           "Trim / hair cut",
-          "Pixie / finger waves"
+          "Pixie cut / finger waves"
         ],
         "areaId": "all-london",
         "areaLabel": "London"
@@ -7522,7 +7522,7 @@
         "Hybrid sew-in",
         "LA weave",
         "K-tips / invisible strands",
-        "Pixie / finger waves",
+        "Pixie cut / finger waves",
         "Silk press",
         "Sleek ponytail / bun",
         "Stitch braids",
@@ -7561,7 +7561,7 @@
         "Olaplex treatment",
         "Moisturising treatment",
         "Trim / hair cut",
-        "Pixie / finger waves"
+        "Pixie cut / finger waves"
       ],
       "addedServices": [
         "Retwist",
@@ -7717,7 +7717,7 @@
           "K-18 treatment",
           "Full head colour",
           "Moisturising treatment",
-          "Pixie / finger waves",
+          "Pixie cut / finger waves",
           "Silk press",
           "Wash & blowdry",
           "Retwist",
@@ -7756,7 +7756,7 @@
         "Wig colouring / bundle colouring",
         "Balayage",
         "Half braids, half sew-in",
-        "Pixie / finger waves",
+        "Pixie cut / finger waves",
         "Crochet",
         "U-part wig install",
         "Custom wig",
@@ -7797,7 +7797,7 @@
         "Butterfly locs",
         "K-18 treatment",
         "Moisturising treatment",
-        "Pixie / finger waves",
+        "Pixie cut / finger waves",
         "Silk press",
         "Wash & blowdry",
         "Retwist",
@@ -12571,7 +12571,7 @@
         "Half braids, half sew-in",
         "Stitch braids",
         "Half up half down",
-        "Pixie / finger waves",
+        "Pixie cut / finger waves",
         "Olaplex treatment",
         "Silk press",
         "Feed-in braids"
@@ -12602,7 +12602,7 @@
       ],
       "removedServices": [
         "Moisturising treatment",
-        "Pixie / finger waves"
+        "Pixie cut / finger waves"
       ],
       "checkedAt": "2026-05-22T23:04:45.745Z"
     },
@@ -13017,7 +13017,7 @@
           "Olaplex treatment",
           "Wash & blowdry",
           "Trim / hair cut",
-          "Pixie / finger waves",
+          "Pixie cut / finger waves",
           "Traditional sew-in / leave out",
           "Clip ins (+ silk press)",
           "Tape ins",
@@ -13041,7 +13041,7 @@
         "Tape ins",
         "LA weave",
         "Wig colouring / bundle colouring",
-        "Pixie / finger waves",
+        "Pixie cut / finger waves",
         "Tracks (+ silk press) / partial / invisible sew-in"
       ],
       "detectedServices": [
@@ -13065,7 +13065,7 @@
       ],
       "removedServices": [
         "Curly cut / wash & go",
-        "Pixie / finger waves"
+        "Pixie cut / finger waves"
       ],
       "checkedAt": "2026-05-22T23:04:48.916Z"
     },
@@ -14019,7 +14019,7 @@
         "Texture release",
         "Silk press",
         "Full head colour",
-        "Pixie / finger waves",
+        "Pixie cut / finger waves",
         "Keratin treatment",
         "K-18 treatment",
         "Olaplex treatment",
@@ -14414,7 +14414,7 @@
         "Moisturising treatment",
         "Texture release",
         "Silk press",
-        "Pixie / finger waves",
+        "Pixie cut / finger waves",
         "Wig install (frontal / closure)",
         "Sleek ponytail / bun",
         "Trim / hair cut",
@@ -15800,7 +15800,7 @@
         ],
         "matchedServices": [
           "Sleek ponytail / bun",
-          "Pixie / finger waves",
+          "Pixie cut / finger waves",
           "K-tips / invisible strands",
           "Half up half down",
           "Traditional sew-in / leave out",
@@ -15838,7 +15838,7 @@
       ],
       "detectedServices": [
         "Sleek ponytail / bun",
-        "Pixie / finger waves",
+        "Pixie cut / finger waves",
         "K-tips / invisible strands",
         "Half up half down",
         "Traditional sew-in / leave out",
@@ -15856,7 +15856,7 @@
         "Wig install (frontal / closure)"
       ],
       "addedServices": [
-        "Pixie / finger waves",
+        "Pixie cut / finger waves",
         "Traditional sew-in / leave out",
         "Wash & blowdry"
       ],
@@ -17024,7 +17024,7 @@
           "U-part wig install",
           "Silk press",
           "Wash & blowdry",
-          "Pixie / finger waves",
+          "Pixie cut / finger waves",
           "Relaxer / texturiser",
           "Trim / hair cut",
           "Texture release",
@@ -17037,7 +17037,7 @@
         "Clip ins (+ silk press)",
         "Silk press",
         "Wash & blowdry",
-        "Pixie / finger waves",
+        "Pixie cut / finger waves",
         "Relaxer / texturiser",
         "Keratin treatment",
         "Texture release",
@@ -17067,7 +17067,7 @@
         "Pixie wig / weave install"
       ],
       "removedServices": [
-        "Pixie / finger waves",
+        "Pixie cut / finger waves",
         "Sleek ponytail / bun",
         "Half up half down",
         "Updo"
@@ -17719,7 +17719,7 @@
           "Wig cornrows",
           "Moisturising treatment",
           "Trim / hair cut",
-          "Pixie / finger waves",
+          "Pixie cut / finger waves",
           "Wash & blowdry",
           "Silk press",
           "Scalp detox / treatments",
@@ -17737,7 +17737,7 @@
         "Trim / hair cut",
         "Wash & blowdry",
         "Silk press",
-        "Pixie / finger waves",
+        "Pixie cut / finger waves",
         "Scalp detox / treatments",
         "Texture release",
         "Relaxer / texturiser",
@@ -17770,7 +17770,7 @@
         "Pixie wig / weave install"
       ],
       "removedServices": [
-        "Pixie / finger waves",
+        "Pixie cut / finger waves",
         "Texture release"
       ],
       "checkedAt": "2026-05-22T23:05:18.068Z"
@@ -20066,7 +20066,7 @@
           "Crochet",
           "Wash & blowdry",
           "Wig cornrows",
-          "Pixie / finger waves",
+          "Pixie cut / finger waves",
           "Traditional sew-in / leave out",
           "Sleek ponytail / bun",
           "Relaxer / texturiser",
@@ -20084,7 +20084,7 @@
         "Tape ins",
         "Wash & blowdry",
         "Wig cornrows",
-        "Pixie / finger waves",
+        "Pixie cut / finger waves",
         "Sleek ponytail / bun",
         "Scalp detox / treatments",
         "Moisturising treatment",
@@ -20220,7 +20220,7 @@
           "Wig cornrows",
           "Silk press",
           "Relaxer / texturiser",
-          "Pixie / finger waves",
+          "Pixie cut / finger waves",
           "Texture release",
           "Full head colour",
           "Feed-in braids",
@@ -20247,7 +20247,7 @@
         "Flipover / versatile sew-in",
         "Knotless braids",
         "Box braids",
-        "Pixie / finger waves"
+        "Pixie cut / finger waves"
       ],
       "detectedServices": [
         "Wash & blowdry",
@@ -20271,7 +20271,7 @@
       "removedServices": [
         "Moisturising treatment",
         "Traditional sew-in / leave out",
-        "Pixie / finger waves"
+        "Pixie cut / finger waves"
       ],
       "checkedAt": "2026-05-22T23:05:27.334Z"
     },
@@ -21859,7 +21859,7 @@
           "Ready Made Wig Installation (HD Only)"
         ],
         "matchedServices": [
-          "Pixie / finger waves",
+          "Pixie cut / finger waves",
           "Trim / hair cut",
           "Pixie wig / weave install",
           "Sleek ponytail / bun",
@@ -21874,7 +21874,7 @@
         "areaLabel": "London"
       },
       "currentServices": [
-        "Pixie / finger waves",
+        "Pixie cut / finger waves",
         "Relaxer / texturiser",
         "Trim / hair cut",
         "Wash & blowdry",
@@ -23263,7 +23263,7 @@
           "Tracks (+ silk press) / partial / invisible sew-in",
           "Flipover / versatile sew-in",
           "Silk press",
-          "Pixie / finger waves",
+          "Pixie cut / finger waves",
           "Olaplex treatment",
           "Trim / hair cut",
           "Full head colour"
@@ -23558,7 +23558,7 @@
           "Retwist",
           "Starter locs",
           "Sleek ponytail / bun",
-          "Pixie / finger waves",
+          "Pixie cut / finger waves",
           "K-18 treatment",
           "Scalp detox / treatments",
           "Custom wig",
@@ -23585,7 +23585,7 @@
         "Wig cornrows",
         "Braid take-down",
         "Sew-in take-down",
-        "Pixie / finger waves",
+        "Pixie cut / finger waves",
         "Scalp detox / treatments",
         "Wash & blowdry",
         "Custom wig",
@@ -24858,7 +24858,7 @@
           "Custom wig",
           "Wig colouring / bundle colouring",
           "Wig install (frontal / closure)",
-          "Pixie / finger waves",
+          "Pixie cut / finger waves",
           "Pixie wig / weave install",
           "Frontal ponytail / bun",
           "Sleek ponytail / bun",
@@ -24876,7 +24876,7 @@
       "currentServices": [
         "Bridal",
         "Wig install (frontal / closure)",
-        "Pixie / finger waves",
+        "Pixie cut / finger waves",
         "Sleek ponytail / bun",
         "Traditional sew-in / leave out",
         "Closure sew-in",
@@ -26816,7 +26816,7 @@
           "Wig cornrows",
           "Silk press",
           "Olaplex treatment",
-          "Pixie / finger waves",
+          "Pixie cut / finger waves",
           "Relaxer / texturiser",
           "Trim / hair cut",
           "Texture release",
@@ -27549,7 +27549,7 @@
           "Trim / hair cut",
           "K-18 treatment",
           "Silk press",
-          "Pixie / finger waves",
+          "Pixie cut / finger waves",
           "Tracks (+ silk press) / partial / invisible sew-in",
           "Traditional sew-in / leave out",
           "Closure sew-in",
@@ -29321,7 +29321,7 @@
           "Traditional sew-in / leave out",
           "Wig cornrows",
           "Frontal ponytail / bun",
-          "Pixie / finger waves",
+          "Pixie cut / finger waves",
           "Sleek ponytail / bun",
           "Half up half down",
           "Updo"
@@ -29336,7 +29336,7 @@
         "Frontal sew-in",
         "Half up half down",
         "Updo",
-        "Pixie / finger waves",
+        "Pixie cut / finger waves",
         "Wig cornrows"
       ],
       "detectedServices": [
@@ -29355,7 +29355,7 @@
       ],
       "removedServices": [
         "Frontal sew-in",
-        "Pixie / finger waves"
+        "Pixie cut / finger waves"
       ],
       "checkedAt": "2026-05-22T23:06:18.384Z"
     },

@@ -156,7 +156,7 @@ const serviceRuleMatchers = [
   ["Natural hair coaches / educators", [/\b(afro|natural|curly|curl|hair)\b.*\beducation\b/, /\beducation\b.*\b(afro|natural|curly|curl|hair)\b/, /\b(hair|curl|styling)\b.*\btutorial\b/, /\btutorial\b.*\b(hair|curl|styling)\b/, /\bhair\s+health\b.*\b(assessment|plan|growth|consultation)\b/, /\bgrowth\s+plan\b/, /\bconsultation\b.*\bnatural\b/, /\bnatural\s+hair\b.*\b(class|education|consultation)\b/, /\bcurl\s+makeover\b.*\b(hands?\s*on|tutorial|styling)\b/]],
   ["Sleek ponytail / bun", [/\bsleek\b.*\b(pony|ponytail|bun)\b/, /\bpony\s*tail\b/, /\bponytail\b/, /\bbun\b/]],
   ["Half up half down", [/\bhalf\s+up\b.*\bhalf\s+down\b/, /\bhalf\s+up\s+half\s+down\b/, /\bhalf\s+up\s+half\s+down\b.*\b(quick\s+weave|sew\s+in|sewin|weave)\b/]],
-  ["Pixie / finger waves", [/\bfinger\s+waves?\b/, /\bpixie\b/, /\bwrap\b/]],
+  ["Pixie cut / finger waves", [/\bfinger\s+waves?\b/, /\bpixie\b/, /\bwrap\b/]],
   ["Updo", [/\bup\s*do\b/, /\bupdo\b/, /\bpin\s*up\b/, /\bfrench\s+roll\s+up\b/, /\bfrench\s+roll\b/]],
 ];
 
@@ -204,7 +204,7 @@ const serviceNegationHints = {
   "Natural hair coaches / educators": ["natural hair education", "natural hair class", "natural hair consultation", "natural hair coach", "natural hair coaches", "educator", "educators"],
   "Trichology / scalp analysis": ["trichologist", "trichologists", "trichology", "scalp analysis"],
   "Olaplex treatment": ["olaplex"],
-  "Pixie / finger waves": ["pixie", "finger waves"],
+  "Pixie cut / finger waves": ["pixie", "finger waves"],
   "Pixie wig / weave install": ["pixie wig", "pixie weave", "pixie install", "pixie cut wig making", "pixie cut wig making styling"],
   "Pre-parting": ["pre parting", "pre part"],
   "Quick weave": ["quick weave", "quickweave"],
@@ -306,6 +306,7 @@ export function registerAdminStylistRoutes(app) {
       websiteUrl: update.websiteUrl || "",
       instagramUrl: update.instagramUrl || "",
       tiktokUrl: update.tiktokUrl || "",
+      addedVia: update.addedVia || currentSalon.addedVia || "",
       services: normalizeServices(update.services || []),
       hijabiFriendly: update.hijabiFriendly === true,
       canBraidWithoutGel: update.canBraidWithoutGel === true,
@@ -2797,7 +2798,7 @@ function adjustDetectedServicesForCurrentContext(detectedServices, currentServic
   const hasPixieInstallContext = /\bpixie\b/.test(rawText) && /\b(wig|weave|sew\s*in|sewin|install|installation)\b/.test(rawText);
   const adjustedServices = hasPixieInstallContext
     ? normalizeServices([
-        ...detectedServices.filter((service) => service !== "Pixie / finger waves"),
+        ...detectedServices.filter((service) => service !== "Pixie cut / finger waves"),
         "Pixie wig / weave install",
       ])
     : detectedServices;
@@ -6050,6 +6051,7 @@ async function buildDraft(input) {
     websiteUrl: cleanString(input.websiteUrl) || inferred.websiteUrl,
     instagramUrl: cleanString(input.instagramUrl) || inferred.instagramUrl,
     tiktokUrl: cleanString(input.tiktokUrl) || inferred.tiktokUrl,
+    addedVia: cleanString(input.addedVia) || "Manual discovery",
     services: matchedServices,
     rawServices: [...new Set(enrichedRawServices)],
     summary: cleanString(input.summary) || "Admin draft created from stylist intake.",
@@ -6344,6 +6346,7 @@ function sanitizeDraftUpdate(input) {
     websiteUrl: cleanString(input.websiteUrl) || inferred.websiteUrl,
     instagramUrl: cleanString(input.instagramUrl) || inferred.instagramUrl,
     tiktokUrl: cleanString(input.tiktokUrl) || inferred.tiktokUrl,
+    addedVia: cleanString(input.addedVia),
     services,
     rawServices,
     hijabiFriendly: input.hijabiFriendly === true,
@@ -6539,6 +6542,7 @@ function publishedSalonToDraft(salon, fallbackDate = today()) {
     bookingUrl: salon.bookingUrl || "",
     instagramUrl: salon.instagramUrl || "",
     tiktokUrl: salon.tiktokUrl || "",
+    addedVia: salon.addedVia || "",
     services: Array.isArray(salon.services) ? salon.services : [],
     rawServices: [],
     hijabiFriendly: salon.hijabiFriendly === true,
@@ -6616,6 +6620,8 @@ function draftToSalon(draft, existingIds) {
     bookingPlatform: draft.bookingPlatform || platformFromUrl(draft.bookingUrl) || "Direct",
     bookingUrl: draft.bookingUrl || draft.instagramUrl,
     instagramUrl: draft.instagramUrl || "",
+    tiktokUrl: draft.tiktokUrl || "",
+    addedVia: draft.addedVia || "Manual discovery",
     services: normalizeServices(draft.services),
     ...(draft.hijabiFriendly === true ? { hijabiFriendly: true } : {}),
     ...(draft.canBraidWithoutGel === true ? { canBraidWithoutGel: true } : {}),
@@ -6815,7 +6821,7 @@ function shouldSuppressTraditionalSewInForTrackContext(service, context) {
 }
 
 function shouldSuppressPixieStylingForInstallContext(service, context) {
-  if (service !== "Pixie / finger waves") {
+  if (service !== "Pixie cut / finger waves") {
     return false;
   }
 
@@ -7131,7 +7137,9 @@ function areaLabelFor(areaId = "") {
 
 function normalizeAreaIds(areaIds = []) {
   const validAreaIds = new Set(regionOptions.map((region) => region.id));
-  return [...new Set(toArray(areaIds).map(cleanString).filter((areaId) => areaId && validAreaIds.has(areaId)))];
+  const uniqueAreaIds = [...new Set(toArray(areaIds).map(cleanString).filter((areaId) => areaId && validAreaIds.has(areaId)))];
+  const hasSpecificLondonArea = uniqueAreaIds.some((areaId) => londonChildAreaIds.has(areaId));
+  return hasSpecificLondonArea ? uniqueAreaIds.filter((areaId) => areaId !== londonParentAreaId) : uniqueAreaIds;
 }
 
 function areaLabelForIds(areaIds = []) {
