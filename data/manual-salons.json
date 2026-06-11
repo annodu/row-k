@@ -1705,10 +1705,11 @@
         "Silk press",
         "Keratin treatment",
         "Braid take-down",
-        "Scalp detox / treatments"
+        "Scalp detox / treatments",
+        "Bouncy blowout / round brush blow dry"
       ],
       "priceBand": "£",
-      "servicePriceBand": "£",
+      "servicePriceBand": "",
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
@@ -1730,7 +1731,13 @@
       "evidence": [
         "Submitted link: https://www.instagram.com/silkedbyli/"
       ],
-      "addedVia": "Manual discovery"
+      "addedVia": "Manual discovery",
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "updatedAt": "2026-06-11"
     },
     {
       "id": "jdv-hair",
