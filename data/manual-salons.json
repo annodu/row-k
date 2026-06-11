@@ -2,10 +2,34 @@
   "meta": {
     "source": "manual",
     "updatedAt": "2026-06-11",
-    "count": 734,
+    "count": 735,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "curluxe",
+      "name": "Curluxe",
+      "areaId": "all-london",
+      "areaLabel": "London",
+      "neighbourhood": "London London",
+      "postcode": "",
+      "bookingPlatform": "Direct",
+      "bookingUrl": "https://www.instagram.com/curluxe_/?hl=en-gb",
+      "instagramUrl": "https://www.instagram.com/curluxe_/?hl=en-gb",
+      "tiktokUrl": "",
+      "addedVia": "Manual discovery",
+      "services": [
+        "Balayage",
+        "Full head colour",
+        "Highlights",
+        "Curly cut / wash & go / diffuse"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/curluxe_/?hl=en-gb"
+      ]
+    },
     {
       "id": "bushkuts",
       "name": "Bushkuts",

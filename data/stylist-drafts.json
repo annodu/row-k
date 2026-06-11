@@ -2,39 +2,9 @@
   "meta": {
     "source": "admin-drafts",
     "updatedAt": "2026-06-11",
-    "count": 3
+    "count": 2
   },
   "drafts": [
-    {
-      "id": "curluxe-mq9vg5iv",
-      "status": "needs_review",
-      "name": "Curluxe",
-      "areaId": "",
-      "areaIds": [],
-      "areaLabel": "",
-      "neighbourhood": "",
-      "postcode": "",
-      "bookingPlatform": "",
-      "bookingUrl": "",
-      "instagramUrl": "https://www.instagram.com/curluxe_/?hl=en-gb",
-      "tiktokUrl": "",
-      "addedVia": "Manual discovery",
-      "services": [],
-      "rawServices": [],
-      "summary": "Admin draft created from stylist intake.",
-      "confidence": 0.35,
-      "warnings": [
-        "No booking link identified yet.",
-        "No services matched yet."
-      ],
-      "evidence": [
-        "Submitted link: https://www.instagram.com/curluxe_/?hl=en-gb"
-      ],
-      "source": "admin-draft",
-      "createdAt": "2026-06-11",
-      "updatedAt": "2026-06-11",
-      "lastCheckedAt": "2026-06-11"
-    },
     {
       "id": "yazes-touch237-mq9ct4gw",
       "status": "needs_review",
