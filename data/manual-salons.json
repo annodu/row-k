@@ -2,10 +2,36 @@
   "meta": {
     "source": "manual",
     "updatedAt": "2026-06-11",
-    "count": 733,
+    "count": 734,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "bushkuts",
+      "name": "Bushkuts",
+      "areaId": "central",
+      "areaLabel": "Central London",
+      "neighbourhood": "Central London London",
+      "postcode": "",
+      "bookingPlatform": "Direct",
+      "bookingUrl": "https://waitwhile.com/locations/dosso-beauty",
+      "instagramUrl": "https://www.instagram.com/bushkuts/",
+      "tiktokUrl": "",
+      "addedVia": "Manual discovery",
+      "services": [
+        "Editorial / Session styling",
+        "Trichology / scalp analysis",
+        "Twist out / flexi rod",
+        "Retwist",
+        "Knotless braids",
+        "Stitch braids"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/bushkuts/"
+      ]
+    },
     {
       "id": "bylatishahair",
       "name": "Bylatishahair",
