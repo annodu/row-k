@@ -30,7 +30,22 @@
       "source": "manual",
       "evidence": [
         "Submitted link: https://www.instagram.com/bushkuts/"
-      ]
+      ],
+      "websiteUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "priceBand": "£",
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "manual",
+      "priceEvidence": [],
+      "priceCheckedAt": "",
+      "priceUpdatedAt": "2026-06-11T18:33:47.815Z",
+      "priceConfidence": "manual",
+      "updatedAt": "2026-06-11"
     },
     {
       "id": "bylatishahair",
