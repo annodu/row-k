@@ -1,11 +1,32 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-06-11",
-    "count": 736,
+    "updatedAt": "2026-06-12",
+    "count": 737,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "diamondhairlondon",
+      "name": "Diamondhairlondon",
+      "areaId": "east",
+      "areaLabel": "East London",
+      "neighbourhood": "East London London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/diamondhairlondon/",
+      "instagramUrl": "https://www.instagram.com/diamondhairlondon/",
+      "tiktokUrl": "https://www.tiktok.com/@adaobi_artistry/video/7648378439455591702",
+      "addedVia": "Manual discovery",
+      "services": [
+        "Wig blowdry"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/diamondhairlondon/"
+      ]
+    },
     {
       "id": "unrulycurls",
       "name": "Unrulycurls",

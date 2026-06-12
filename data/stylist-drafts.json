@@ -2,39 +2,9 @@
   "meta": {
     "source": "admin-drafts",
     "updatedAt": "2026-06-12",
-    "count": 4
+    "count": 3
   },
   "drafts": [
-    {
-      "id": "diamondhairlondon-mqa789fg",
-      "status": "needs_review",
-      "name": "Diamondhairlondon",
-      "areaId": "",
-      "areaIds": [],
-      "areaLabel": "",
-      "neighbourhood": "",
-      "postcode": "",
-      "bookingPlatform": "",
-      "bookingUrl": "",
-      "instagramUrl": "https://www.instagram.com/diamondhairlondon/",
-      "tiktokUrl": "",
-      "addedVia": "Manual discovery",
-      "services": [],
-      "rawServices": [],
-      "summary": "Admin draft created from stylist intake.",
-      "confidence": 0.35,
-      "warnings": [
-        "No booking link identified yet.",
-        "No services matched yet."
-      ],
-      "evidence": [
-        "Submitted link: https://www.instagram.com/diamondhairlondon/"
-      ],
-      "source": "admin-draft",
-      "createdAt": "2026-06-12",
-      "updatedAt": "2026-06-12",
-      "lastCheckedAt": "2026-06-12"
-    },
     {
       "id": "update-hairdesignuk-mqa0sdy6",
       "status": "needs_review",
