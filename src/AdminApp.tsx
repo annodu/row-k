@@ -103,8 +103,11 @@ type DraftForm = {
 };
 
 type DraftEditorStep = "details" | "services" | "review";
+type StylistSortKey = "name" | "status" | "services" | "pricing" | "location" | "addedVia";
+type StylistSortDirection = "asc" | "desc";
+type StylistSort = { key: StylistSortKey; direction: StylistSortDirection } | null;
 
-const addedViaOptions = ["Manual discovery", "User submission", "Cowork scrape"] as const;
+const addedViaOptions = ["Manual", "User submission", "Stylist submission", "Cowork scrape"] as const;
 
 type KeywordSearchMatch = {
   keyword: string;
@@ -1699,6 +1702,7 @@ function StylistsPage({
   onDeleteDraft: () => void;
 }) {
   const [stylistView, setStylistView] = useState<"table" | "kanban">("table");
+  const [stylistSort, setStylistSort] = useState<StylistSort>(null);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const stylistSearchRef = useRef<HTMLInputElement | null>(null);
   const statusLabel = statusFilter === "all" ? "All statuses" : getStylistStatusLabel(statusFilter);
@@ -1711,6 +1715,13 @@ function StylistsPage({
     ...column,
     drafts: drafts.filter((draft) => getDraftDisplayStatus(draft) === column.id),
   }));
+  const sortedDrafts = useMemo(() => sortStylistDrafts(drafts, stylistSort, regions), [drafts, regions, stylistSort]);
+
+  function changeStylistSort(key: StylistSortKey) {
+    setStylistSort((current) =>
+      current?.key === key ? { key, direction: current.direction === "asc" ? "desc" : "asc" } : { key, direction: "asc" },
+    );
+  }
 
   useEffect(() => {
     if (isSearchOpen) {
@@ -1832,20 +1843,20 @@ function StylistsPage({
             <table className="w-full text-left text-[15px] md:min-w-[1100px]">
               <thead className="border-b border-stone-200 text-[15px] font-semibold text-stone-500">
                 <tr>
-                  <th className="px-4 py-3">Stylist</th>
-                  <th className="px-4 py-3">Status</th>
-                  <th className="hidden px-4 py-3 md:table-cell">Services</th>
-                  <th className="hidden px-4 py-3 md:table-cell">Pricing</th>
-                  <th className="hidden px-4 py-3 md:table-cell">Location</th>
-                  <th className="hidden w-28 whitespace-nowrap px-4 py-3 md:table-cell">Last edited</th>
+                  <StylistSortHeader label="Stylist" sortKey="name" sort={stylistSort} onSort={changeStylistSort} />
+                  <StylistSortHeader label="Status" sortKey="status" sort={stylistSort} onSort={changeStylistSort} />
+                  <StylistSortHeader label="Services" sortKey="services" sort={stylistSort} onSort={changeStylistSort} className="hidden md:table-cell" />
+                  <StylistSortHeader label="Pricing" sortKey="pricing" sort={stylistSort} onSort={changeStylistSort} className="hidden md:table-cell" />
+                  <StylistSortHeader label="Location" sortKey="location" sort={stylistSort} onSort={changeStylistSort} className="hidden md:table-cell" />
+                  <StylistSortHeader label="Added via" sortKey="addedVia" sort={stylistSort} onSort={changeStylistSort} className="hidden w-36 whitespace-nowrap md:table-cell" />
                   <th className="w-10 px-4 py-3">
                     <span className="sr-only">Open stylist</span>
                   </th>
                 </tr>
               </thead>
               <tbody>
-                {drafts.length ? (
-                  drafts.map((draft) => {
+                {sortedDrafts.length ? (
+                  sortedDrafts.map((draft) => {
                     return <StylistTableRow key={draft.id} draft={draft} regions={regions} onSelectDraft={onSelectDraft} />;
                   })
                 ) : (
@@ -1902,6 +1913,84 @@ function StylistsPage({
   );
 }
 
+function sortStylistDrafts(drafts: StylistDraft[], sort: StylistSort, regions: RegionOption[]) {
+  if (!sort) {
+    return drafts;
+  }
+
+  const directionMultiplier = sort.direction === "asc" ? 1 : -1;
+
+  return drafts
+    .map((draft, index) => ({ draft, index }))
+    .sort((left, right) => {
+      const comparison = compareStylistSortValue(
+        getStylistSortValue(left.draft, sort.key, regions),
+        getStylistSortValue(right.draft, sort.key, regions),
+      );
+      return comparison ? comparison * directionMultiplier : left.index - right.index;
+    })
+    .map(({ draft }) => draft);
+}
+
+function getStylistSortValue(draft: StylistDraft, key: StylistSortKey, regions: RegionOption[]) {
+  switch (key) {
+    case "name":
+      return draft.name || "Untitled stylist";
+    case "status":
+      return getStylistStatusLabel(getDraftDisplayStatus(draft));
+    case "services":
+      return draft.services.join(", ");
+    case "pricing":
+      return draft.priceBand || "";
+    case "location":
+      return getDraftLocationLabel(draft, regions) || "";
+    case "addedVia":
+      return draft.addedVia || "";
+  }
+}
+
+function compareStylistSortValue(left: string, right: string) {
+  if (!left && right) {
+    return 1;
+  }
+  if (left && !right) {
+    return -1;
+  }
+  return left.localeCompare(right, undefined, { numeric: true, sensitivity: "base" });
+}
+
+function StylistSortHeader({
+  label,
+  sortKey,
+  sort,
+  onSort,
+  className,
+}: {
+  label: string;
+  sortKey: StylistSortKey;
+  sort: StylistSort;
+  onSort: (key: StylistSortKey) => void;
+  className?: string;
+}) {
+  const isActive = sort?.key === sortKey;
+  const directionLabel = isActive && sort?.direction === "asc" ? "ascending" : "descending";
+
+  return (
+    <th scope="col" aria-sort={isActive ? directionLabel : "none"} className={cn("px-4 py-3", className)}>
+      <button
+        type="button"
+        onClick={() => onSort(sortKey)}
+        className="inline-flex items-center gap-1.5 whitespace-nowrap font-semibold text-stone-500 transition hover:text-stone-950"
+      >
+        {label}
+        <span className={cn("inline-flex size-4 items-center justify-center", isActive ? "text-stone-900" : "text-stone-300")}>
+          {isActive && sort?.direction === "desc" ? <ChevronDown className="size-3.5" /> : <ChevronUp className="size-3.5" />}
+        </span>
+      </button>
+    </th>
+  );
+}
+
 function StylistTableRow({
   draft,
   regions,
@@ -1946,7 +2035,7 @@ function StylistTableRow({
       </td>
       <td className="hidden px-4 py-4 text-stone-700 md:table-cell">{draft.priceBand || "-"}</td>
       <td className="hidden px-4 py-4 text-stone-700 md:table-cell">{getDraftLocationLabel(draft, regions) || "-"}</td>
-      <td className="hidden w-28 whitespace-nowrap px-4 py-4 text-stone-500 md:table-cell">{formatRelativeTime(draft.updatedAt || draft.createdAt)}</td>
+      <td className="hidden w-36 whitespace-nowrap px-4 py-4 text-stone-500 md:table-cell">{draft.addedVia || "-"}</td>
       <td className="px-4 py-4">
         <span className="inline-flex size-7 items-center justify-center rounded-none text-stone-500">
           <ChevronRight className="size-4" />
@@ -4653,7 +4742,7 @@ function DraftEditor({
       </Field>
 
       <Field label="Added via">
-        <Select value={draft.addedVia || "Manual discovery"} onChange={(addedVia) => onChange({ addedVia })}>
+        <Select value={draft.addedVia || "Manual"} onChange={(addedVia) => onChange({ addedVia })}>
           {[...new Set([...addedViaOptions, ...(draft.addedVia ? [draft.addedVia] : [])])].map((option) => (
             <option key={option} value={option}>
               {option}
@@ -4900,7 +4989,7 @@ function DraftEditor({
         </DraftPropertyRow>
 
         <DraftPropertyRow icon={<Plus className="size-4" />} label="Added via">
-          <Select value={draft.addedVia || "Manual discovery"} onChange={(addedVia) => onChange({ addedVia })}>
+          <Select value={draft.addedVia || "Manual"} onChange={(addedVia) => onChange({ addedVia })}>
             {[...new Set([...addedViaOptions, ...(draft.addedVia ? [draft.addedVia] : [])])].map((option) => (
               <option key={option} value={option}>
                 {option}

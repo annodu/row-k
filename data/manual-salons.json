@@ -2,10 +2,45 @@
   "meta": {
     "source": "manual",
     "updatedAt": "2026-06-12",
-    "count": 738,
+    "count": 739,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "britlaced",
+      "name": "Britlaced",
+      "areaId": "south-west",
+      "areaLabel": "South west London",
+      "neighbourhood": "South west London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://britlaced.as.me/schedule/7e886121",
+      "instagramUrl": "https://www.instagram.com/britlaced/",
+      "tiktokUrl": "",
+      "addedVia": "Stylist submission",
+      "services": [
+        "Wig install (frontal / closure)"
+      ],
+      "priceBand": "£",
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "Pre-made frontal wig installation - £60",
+        "Reinstallation - £55",
+        "Male hairstyles - £35"
+      ],
+      "priceCheckedAt": "2026-06-12T15:12:49.321Z",
+      "priceUpdatedAt": "2026-06-12T15:12:49.321Z",
+      "priceConfidence": "medium",
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/britlaced/"
+      ]
+    },
     {
       "id": "alankitrellll",
       "name": "Alankitrellll",
@@ -156,11 +191,7 @@
     {
       "id": "bylatishahair",
       "name": "Bylatishahair",
-      "areaId": "all-london",
-      "areaIds": [
-        "all-london",
-        "south-west"
-      ],
+      "areaId": "south-west",
       "areaLabel": "South west London",
       "neighbourhood": "South west London London",
       "postcode": "",
@@ -177,7 +208,24 @@
       "source": "manual",
       "evidence": [
         "Submitted link: https://www.instagram.com/bylatishahair/"
-      ]
+      ],
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "addedVia": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "priceBand": "",
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "",
+      "priceSource": "",
+      "priceEvidence": [],
+      "priceCheckedAt": "",
+      "priceUpdatedAt": "",
+      "priceConfidence": "",
+      "updatedAt": "2026-06-12"
     },
     {
       "id": "aminatacreative",
@@ -196,7 +244,24 @@
       "source": "manual",
       "evidence": [
         "Submitted link: https://www.instagram.com/aminatacreative/"
-      ]
+      ],
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "addedVia": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "priceBand": "",
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "",
+      "priceSource": "",
+      "priceEvidence": [],
+      "priceCheckedAt": "",
+      "priceUpdatedAt": "",
+      "priceConfidence": "",
+      "updatedAt": "2026-06-12"
     },
     {
       "id": "braidsome",
@@ -224,7 +289,24 @@
       "source": "manual",
       "evidence": [
         "Submitted link: https://www.instagram.com/braidsome/"
-      ]
+      ],
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "addedVia": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "priceBand": "",
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "",
+      "priceSource": "",
+      "priceEvidence": [],
+      "priceCheckedAt": "",
+      "priceUpdatedAt": "",
+      "priceConfidence": "",
+      "updatedAt": "2026-06-12"
     },
     {
       "id": "becrochetcreation",
@@ -3111,12 +3193,13 @@
       "priceCheckedAt": "2026-06-04",
       "priceConfidence": "high",
       "priceUpdatedAt": "2026-06-04",
-      "addedVia": "User submission",
+      "addedVia": "Stylist submission",
       "tiktokUrl": "",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
       "wheelchairAccessible": false,
-      "updatedAt": "2026-06-10"
+      "updatedAt": "2026-06-12",
+      "websiteUrl": ""
     },
     {
       "id": "fulhamscalphair",
@@ -5771,7 +5854,7 @@
         "freestyle - £60",
         "bun - £55"
       ],
-      "addedVia": "User submission",
+      "addedVia": "Stylist submission",
       "tiktokUrl": "",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
@@ -5780,7 +5863,8 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-06-10"
+      "updatedAt": "2026-06-12",
+      "websiteUrl": ""
     },
     {
       "id": "ajahsbeautybase",
@@ -5873,7 +5957,7 @@
       "priceCheckedAt": "2026-06-03",
       "priceConfidence": "high",
       "priceUpdatedAt": "2026-06-03",
-      "addedVia": "User submission",
+      "addedVia": "Stylist submission",
       "tiktokUrl": "",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
@@ -5882,7 +5966,8 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-06-10"
+      "updatedAt": "2026-06-12",
+      "websiteUrl": ""
     },
     {
       "id": "blubanhair",
@@ -19014,7 +19099,7 @@
       "priceCheckedAt": "2026-06-03",
       "priceConfidence": "high",
       "priceUpdatedAt": "2026-06-03",
-      "addedVia": "User submission",
+      "addedVia": "Stylist submission",
       "tiktokUrl": "",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
@@ -19023,7 +19108,8 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-06-10"
+      "updatedAt": "2026-06-12",
+      "websiteUrl": ""
     },
     {
       "id": "lael-london",
@@ -28382,9 +28468,9 @@
     {
       "id": "wendis-room",
       "name": "Wendi's Room",
-      "areaId": "all-london",
-      "areaLabel": "London",
-      "neighbourhood": "London London",
+      "areaId": "croydon",
+      "areaLabel": "Croydon",
+      "neighbourhood": "Croydon London",
       "postcode": "",
       "bookingPlatform": "Instagram",
       "bookingUrl": "https://www.instagram.com/wendisroom/",
@@ -28404,7 +28490,7 @@
       "evidence": [
         "User-provided manual addition."
       ],
-      "addedVia": "Cowork scrape",
+      "addedVia": "User submission",
       "tiktokUrl": "",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
