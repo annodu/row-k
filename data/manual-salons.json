@@ -22338,7 +22338,8 @@
         "Balayage",
         "Moisturising treatment",
         "Olaplex treatment",
-        "Silk press"
+        "Silk press",
+        "Bouncy blowout / round brush blow dry"
       ],
       "hijabiFriendly": true,
       "priceBand": "£",
@@ -22356,7 +22357,16 @@
       "priceCheckedAt": "2026-06-04",
       "priceConfidence": "high",
       "priceUpdatedAt": "2026-06-04",
-      "addedVia": "Cowork scrape"
+      "addedVia": "Cowork scrape",
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "updatedAt": "2026-06-12"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
