@@ -2,9 +2,39 @@
   "meta": {
     "source": "admin-drafts",
     "updatedAt": "2026-06-12",
-    "count": 3
+    "count": 4
   },
   "drafts": [
+    {
+      "id": "alankitrellll-mqa7b1vv",
+      "status": "needs_review",
+      "name": "Alankitrellll",
+      "areaId": "",
+      "areaIds": [],
+      "areaLabel": "",
+      "neighbourhood": "",
+      "postcode": "",
+      "bookingPlatform": "",
+      "bookingUrl": "",
+      "instagramUrl": "https://www.instagram.com/alankitrellll/",
+      "tiktokUrl": "",
+      "addedVia": "Manual discovery",
+      "services": [],
+      "rawServices": [],
+      "summary": "Admin draft created from stylist intake.",
+      "confidence": 0.35,
+      "warnings": [
+        "No booking link identified yet.",
+        "No services matched yet."
+      ],
+      "evidence": [
+        "Submitted link: https://www.instagram.com/alankitrellll/"
+      ],
+      "source": "admin-draft",
+      "createdAt": "2026-06-12",
+      "updatedAt": "2026-06-12",
+      "lastCheckedAt": "2026-06-12"
+    },
     {
       "id": "update-hairdesignuk-mqa0sdy6",
       "status": "needs_review",
