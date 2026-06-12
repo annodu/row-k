@@ -2,10 +2,31 @@
   "meta": {
     "source": "manual",
     "updatedAt": "2026-06-12",
-    "count": 737,
+    "count": 738,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "alankitrellll",
+      "name": "Alankitrellll",
+      "areaId": "all-london",
+      "areaLabel": "London",
+      "neighbourhood": "London London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/alankitrellll/",
+      "instagramUrl": "https://www.instagram.com/alankitrellll/",
+      "tiktokUrl": "",
+      "addedVia": "Manual discovery",
+      "services": [
+        "Editorial / Session styling"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/alankitrellll/"
+      ]
+    },
     {
       "id": "diamondhairlondon",
       "name": "Diamondhairlondon",
