@@ -2,10 +2,115 @@
   "meta": {
     "source": "manual",
     "updatedAt": "2026-06-11",
-    "count": 733,
+    "count": 736,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "unrulycurls",
+      "name": "Unrulycurls",
+      "areaId": "central",
+      "areaLabel": "Central London",
+      "neighbourhood": "Central London London",
+      "postcode": "",
+      "bookingPlatform": "Fresha",
+      "bookingUrl": "https://www.fresha.com/en-GB/a/unruly-curls-london-96b-leather-lane-in00bv7m/booking?menu=true&dppub=true&cartId=98659972-b39a-4156-a07d-f2088df5d288",
+      "instagramUrl": "https://www.instagram.com/unrulycurls/?hl=en-gb",
+      "tiktokUrl": "",
+      "addedVia": "Manual discovery",
+      "services": [
+        "Curly cut / wash & go / diffuse"
+      ],
+      "priceBand": "££",
+      "servicePriceBand": "££",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "Cado cut - £150",
+        "Rezo cut (no wash and dry) - £140",
+        "Rezo cut (with wash and dry) - £155",
+        "Deva X cut (no wash no dry) advanced stylist - £85",
+        "Deva cut with wash and diffuse advanced stylist - £125",
+        "Deva cut with wash and diffuse by a Director - £145",
+        "Deva cut advanced senior stylist - £135",
+        "Deva X Cut (no wash or dry) by a Director - £105"
+      ],
+      "priceCheckedAt": "2026-06-11T19:11:33.496Z",
+      "priceUpdatedAt": "2026-06-11T19:11:33.496Z",
+      "priceConfidence": "high",
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/unrulycurls/?hl=en-gb"
+      ]
+    },
+    {
+      "id": "curluxe",
+      "name": "Curluxe",
+      "areaId": "all-london",
+      "areaLabel": "London",
+      "neighbourhood": "London London",
+      "postcode": "",
+      "bookingPlatform": "Direct",
+      "bookingUrl": "https://www.instagram.com/curluxe_/?hl=en-gb",
+      "instagramUrl": "https://www.instagram.com/curluxe_/?hl=en-gb",
+      "tiktokUrl": "",
+      "addedVia": "Manual discovery",
+      "services": [
+        "Balayage",
+        "Full head colour",
+        "Highlights",
+        "Curly cut / wash & go / diffuse"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/curluxe_/?hl=en-gb"
+      ]
+    },
+    {
+      "id": "bushkuts",
+      "name": "Bushkuts",
+      "areaId": "central",
+      "areaLabel": "Central London",
+      "neighbourhood": "Central London London",
+      "postcode": "",
+      "bookingPlatform": "Direct",
+      "bookingUrl": "https://waitwhile.com/locations/dosso-beauty",
+      "instagramUrl": "https://www.instagram.com/bushkuts/",
+      "tiktokUrl": "",
+      "addedVia": "Manual discovery",
+      "services": [
+        "Editorial / Session styling",
+        "Trichology / scalp analysis",
+        "Twist out / flexi rod",
+        "Retwist",
+        "Knotless braids",
+        "Stitch braids"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/bushkuts/"
+      ],
+      "websiteUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "priceBand": "£",
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "manual",
+      "priceEvidence": [],
+      "priceCheckedAt": "",
+      "priceUpdatedAt": "2026-06-11T18:33:47.815Z",
+      "priceConfidence": "manual",
+      "updatedAt": "2026-06-11"
+    },
     {
       "id": "bylatishahair",
       "name": "Bylatishahair",
@@ -1679,10 +1784,11 @@
         "Silk press",
         "Keratin treatment",
         "Braid take-down",
-        "Scalp detox / treatments"
+        "Scalp detox / treatments",
+        "Bouncy blowout / round brush blow dry"
       ],
       "priceBand": "£",
-      "servicePriceBand": "£",
+      "servicePriceBand": "",
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
@@ -1704,7 +1810,13 @@
       "evidence": [
         "Submitted link: https://www.instagram.com/silkedbyli/"
       ],
-      "addedVia": "Manual discovery"
+      "addedVia": "Manual discovery",
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "updatedAt": "2026-06-11"
     },
     {
       "id": "jdv-hair",

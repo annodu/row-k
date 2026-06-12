@@ -6,9 +6,9 @@
   },
   "drafts": [
     {
-      "id": "bushkuts-mq9lqlz0",
+      "id": "update-hairdesignuk-mqa0sdy6",
       "status": "needs_review",
-      "name": "Bushkuts",
+      "name": "Update Hairdesignuk",
       "areaId": "",
       "areaIds": [],
       "areaLabel": "",
@@ -16,8 +16,9 @@
       "postcode": "",
       "bookingPlatform": "",
       "bookingUrl": "",
-      "instagramUrl": "https://www.instagram.com/bushkuts/",
+      "instagramUrl": "https://www.instagram.com/update_hairdesignuk/",
       "tiktokUrl": "",
+      "addedVia": "Manual discovery",
       "services": [],
       "rawServices": [],
       "summary": "Admin draft created from stylist intake.",
@@ -27,7 +28,7 @@
         "No services matched yet."
       ],
       "evidence": [
-        "Submitted link: https://www.instagram.com/bushkuts/"
+        "Submitted link: https://www.instagram.com/update_hairdesignuk/"
       ],
       "source": "admin-draft",
       "createdAt": "2026-06-11",
