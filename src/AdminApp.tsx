@@ -1533,9 +1533,6 @@ export function AdminApp() {
         <StylistsPage
           drafts={filteredStylists}
           allDrafts={allStylists}
-          editableDrafts={drafts}
-          publishedStylists={publishedStylists}
-          dashboard={dashboard}
           statusFilter={stylistStatusFilter}
           searchTerm={stylistSearchTerm}
           isBusy={isBusy}
@@ -1659,9 +1656,6 @@ function AdminToastMessage({ toast, onClose }: { toast: AdminToast | null; onClo
 function StylistsPage({
   drafts,
   allDrafts,
-  editableDrafts,
-  publishedStylists,
-  dashboard,
   statusFilter,
   searchTerm,
   isBusy,
@@ -1684,9 +1678,6 @@ function StylistsPage({
 }: {
   drafts: StylistDraft[];
   allDrafts: StylistDraft[];
-  editableDrafts: StylistDraft[];
-  publishedStylists: StylistDraft[];
-  dashboard: DashboardMetrics | null;
   statusFilter: string;
   searchTerm: string;
   isBusy: boolean;
@@ -1707,11 +1698,25 @@ function StylistsPage({
   onApproveDraft: () => void;
   onDeleteDraft: () => void;
 }) {
-  const readyDraftCount = editableDrafts.filter((draft) => getDraftDisplayStatus(draft) === "ready_to_publish").length;
-  const draftCount = editableDrafts.filter((draft) => getDraftDisplayStatus(draft) === "draft").length;
-  const ready = readyDraftCount || dashboard?.drafts.readyToApprove || 0;
-  const published = publishedStylists.length || dashboard?.freshness.total || 0;
+  const [stylistView, setStylistView] = useState<"table" | "kanban">("table");
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const stylistSearchRef = useRef<HTMLInputElement | null>(null);
   const statusLabel = statusFilter === "all" ? "All statuses" : getStylistStatusLabel(statusFilter);
+  const kanbanColumns = [
+    { id: "draft", label: "Draft" },
+    { id: "ready_to_publish", label: "Ready to publish" },
+    { id: "published", label: "Published" },
+  ] as const;
+  const draftsByStatus = kanbanColumns.map((column) => ({
+    ...column,
+    drafts: drafts.filter((draft) => getDraftDisplayStatus(draft) === column.id),
+  }));
+
+  useEffect(() => {
+    if (isSearchOpen) {
+      window.setTimeout(() => stylistSearchRef.current?.focus(), 0);
+    }
+  }, [isSearchOpen]);
 
   function submitIntakeOnEnter(event: KeyboardEvent<HTMLTextAreaElement>) {
     if (event.key !== "Enter" || event.shiftKey) {
@@ -1725,154 +1730,157 @@ function StylistsPage({
   }
 
   return (
-    <div className="mx-auto max-w-7xl space-y-7 px-5 py-9">
-      <section>
-        <h1 className="text-3xl font-semibold tracking-tight text-stone-950">Stylists</h1>
+    <div className="mx-auto max-w-7xl space-y-8 px-5 py-12">
+      <section className="space-y-12">
+        <h1 className="flex items-center gap-3 text-3xl font-semibold tracking-tight text-stone-950">
+          Stylists
+        </h1>
+
+        <form onSubmit={onSubmitIntake} className="relative">
+          <Plus className="pointer-events-none absolute left-6 top-1/2 size-5 -translate-y-1/2 text-stone-400" />
+          <textarea
+            value={intakeText}
+            onChange={(event) => onIntakeChange(event.target.value)}
+            onKeyDown={submitIntakeOnEnter}
+            rows={1}
+            aria-label="Create draft from link, handle, or notes"
+            placeholder="Paste an Instagram link..."
+            className="block h-16 min-h-16 w-full resize-none overflow-hidden whitespace-nowrap rounded-none border border-stone-200 bg-white py-5 pl-16 pr-24 text-base leading-6 outline-none placeholder:text-stone-400 focus:border-stone-400"
+          />
+          <button
+            type="submit"
+            disabled={isBusy || !intakeText.trim()}
+            className="absolute right-3 top-1/2 inline-flex size-12 -translate-y-1/2 items-center justify-center rounded-none bg-stone-100 text-stone-600 transition hover:bg-stone-200 hover:text-stone-900 disabled:cursor-not-allowed disabled:opacity-50"
+            aria-label="Create draft"
+            title="Create draft"
+          >
+            {isBusy ? <Loader2 className="size-5 animate-spin" /> : <ArrowUp className="size-5" />}
+          </button>
+        </form>
       </section>
 
-      <form onSubmit={onSubmitIntake} className="relative">
-        <Plus className="pointer-events-none absolute left-6 top-1/2 size-5 -translate-y-1/2 text-stone-400" />
-        <textarea
-          value={intakeText}
-          onChange={(event) => onIntakeChange(event.target.value)}
-          onKeyDown={submitIntakeOnEnter}
-          rows={1}
-          aria-label="Create draft from link, handle, or notes"
-          placeholder="Paste an Instagram link..."
-          className="block h-16 min-h-16 w-full resize-none overflow-hidden whitespace-nowrap rounded-none border border-stone-200 bg-white py-5 pl-16 pr-24 text-base leading-6 outline-none placeholder:text-stone-400 focus:border-stone-400"
-        />
-        <button
-          type="submit"
-          disabled={isBusy || !intakeText.trim()}
-          className="absolute right-3 top-1/2 inline-flex size-12 -translate-y-1/2 items-center justify-center rounded-none bg-stone-100 text-stone-600 transition hover:bg-stone-200 hover:text-stone-900 disabled:cursor-not-allowed disabled:opacity-50"
-          aria-label="Create draft"
-        >
-          {isBusy ? <Loader2 className="size-5 animate-spin" /> : <ArrowUp className="size-5" />}
-        </button>
-      </form>
-
-      <div className="grid gap-4 md:grid-cols-3">
-        <StylistMetricCard
-          title="Draft"
-          value={draftCount}
-          icon={<FileText className="size-4" />}
-          valueClassName="text-sky-700"
-          isActive={statusFilter === "draft"}
-          onClick={() => onStatusFilterChange(statusFilter === "draft" ? "all" : "draft")}
-        />
-        <StylistMetricCard
-          title="Ready to Publish"
-          value={ready}
-          icon={<Check className="size-4" />}
-          valueClassName="text-emerald-700"
-          isActive={statusFilter === "ready_to_publish"}
-          onClick={() => onStatusFilterChange(statusFilter === "ready_to_publish" ? "all" : "ready_to_publish")}
-        />
-        <StylistMetricCard
-          title="Published"
-          value={published}
-          icon={<CompassDot />}
-          isActive={statusFilter === "published"}
-          onClick={() => onStatusFilterChange(statusFilter === "published" ? "all" : "published")}
-        />
-      </div>
-
-      <section className="overflow-hidden rounded-none border border-stone-200 bg-white">
-        <div className="flex items-start justify-between gap-4 p-6">
-          <div>
-            <h2 className="text-lg font-semibold tracking-tight">Stylist entries</h2>
-            <p className="mt-1 text-sm text-stone-500">
-              {drafts.length} of {allDrafts.length} stylist{allDrafts.length === 1 ? "" : "s"}
-              {statusFilter !== "all" ? ` · ${statusLabel}` : ""}
-              {searchTerm.trim() ? ` · search: ${searchTerm.trim()}` : ""}
-            </p>
+      <section className="space-y-4">
+        <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+          <div className="flex flex-wrap items-center gap-4">
+            <button
+              type="button"
+              onClick={() => setStylistView("table")}
+              aria-pressed={stylistView === "table"}
+              className={cn("inline-flex h-10 items-center gap-2 rounded-full px-4 text-[15px] font-semibold transition", stylistView === "table" ? "bg-stone-100 text-stone-950" : "text-stone-500 hover:bg-stone-100 hover:text-stone-950")}
+            >
+              <List className="size-4" />
+              Table
+            </button>
+            <button
+              type="button"
+              onClick={() => setStylistView("kanban")}
+              aria-pressed={stylistView === "kanban"}
+              className={cn("inline-flex h-10 items-center gap-2 rounded-full px-4 text-[15px] font-semibold transition", stylistView === "kanban" ? "bg-stone-100 text-stone-950" : "text-stone-500 hover:bg-stone-100 hover:text-stone-950")}
+            >
+              <List className="size-4" />
+              Kanban
+            </button>
           </div>
-          <div className="relative w-full max-w-xs">
-            <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-stone-400" />
-            <Input
-              value={searchTerm}
-              onChange={(event) => onSearchTermChange(event.target.value)}
-              placeholder="Search stylists"
-              aria-label="Search stylist entries"
-              className="h-10 rounded-none pl-9 pr-10"
-            />
-            {searchTerm ? (
+          <div className="flex items-center gap-2">
+            {isSearchOpen || searchTerm ? (
+              <div className="relative w-64">
+                <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-stone-400" />
+                <Input
+                  ref={stylistSearchRef}
+                  value={searchTerm}
+                  onChange={(event) => onSearchTermChange(event.target.value)}
+                  onBlur={() => {
+                    if (!searchTerm.trim()) {
+                      setIsSearchOpen(false);
+                    }
+                  }}
+                  placeholder="Search"
+                  aria-label="Search stylist entries"
+                  className="h-9 rounded-md border-transparent bg-transparent pl-9 pr-10 text-sm focus-visible:border-stone-300"
+                />
+                {searchTerm ? (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      onSearchTermChange("");
+                      setIsSearchOpen(false);
+                    }}
+                    className="absolute right-2 top-1/2 inline-flex size-7 -translate-y-1/2 items-center justify-center rounded-md text-stone-400 transition hover:bg-stone-100 hover:text-stone-900"
+                    aria-label="Clear stylist search"
+                    title="Clear stylist search"
+                  >
+                    <X className="size-4" />
+                  </button>
+                ) : null}
+              </div>
+            ) : (
               <button
                 type="button"
-                onClick={() => onSearchTermChange("")}
-                className="absolute right-2 top-1/2 inline-flex size-7 -translate-y-1/2 items-center justify-center rounded-none text-stone-400 transition hover:bg-stone-100 hover:text-stone-900"
-                aria-label="Clear stylist search"
+                onClick={() => setIsSearchOpen(true)}
+                className="inline-flex size-9 items-center justify-center rounded-md text-stone-500 transition hover:bg-stone-100 hover:text-stone-950"
+                aria-label="Search stylist entries"
+                title="Search stylist entries"
               >
-                <X className="size-4" />
+                <Search className="size-4" />
               </button>
-            ) : null}
+            )}
           </div>
         </div>
-        <div className="overflow-x-auto">
-          <table className="w-full text-left text-sm md:min-w-[900px]">
-            <thead className="border-b border-stone-100 text-xs font-medium text-stone-500">
-              <tr>
-                <th className="px-4 py-3">Stylist</th>
-                <th className="px-4 py-3">Status</th>
-                <th className="hidden px-4 py-3 md:table-cell">Completeness</th>
-                <th className="hidden px-4 py-3 md:table-cell">Services</th>
-                <th className="hidden px-4 py-3 md:table-cell">Location</th>
-                <th className="hidden w-28 whitespace-nowrap px-4 py-3 md:table-cell">Last edited</th>
-                <th className="w-10 px-4 py-3">
-                  <span className="sr-only">Open stylist</span>
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {drafts.length ? (
-                drafts.map((draft) => {
-                  const completeness = getDraftCompleteness(draft);
-                  return (
-	                    <tr
-	                      key={draft.id}
-	                      tabIndex={0}
-	                      onClick={() => onSelectDraft(draft.id)}
-	                      onKeyDown={(event) => {
-	                        if (event.key === "Enter" || event.key === " ") {
-	                          event.preventDefault();
-	                          onSelectDraft(draft.id);
-	                        }
-	                      }}
-	                      className="cursor-pointer border-b border-stone-100 transition hover:bg-stone-50 focus:bg-stone-50 focus:outline-none last:border-b-0"
-	                    >
-                      <td className="max-w-[12rem] truncate px-4 py-4 font-medium text-stone-950 sm:max-w-none">{draft.name || "Untitled stylist"}</td>
-                      <td className="px-4 py-4">
-                        <DraftTableStatusBadge draft={draft} />
-                      </td>
-                      <td className="hidden px-4 py-4 md:table-cell">
-                        <div className="flex items-center gap-3">
-                          <div className="h-2 w-20 overflow-hidden rounded-none bg-stone-100">
-                            <div className="h-full rounded-none bg-stone-950" style={{ width: `${completeness}%` }} />
-                          </div>
-                          <span className="text-xs text-stone-500">{completeness}%</span>
-                        </div>
-                      </td>
-                      <td className="hidden px-4 py-4 text-stone-700 md:table-cell">{draft.services.length}</td>
-                      <td className="hidden px-4 py-4 text-stone-700 md:table-cell">{getDraftLocationLabel(draft, regions) || "—"}</td>
-                      <td className="hidden w-28 whitespace-nowrap px-4 py-4 text-stone-500 md:table-cell">{formatRelativeTime(draft.updatedAt || draft.createdAt)}</td>
-	                      <td className="px-4 py-4">
-	                        <span className="inline-flex size-7 items-center justify-center rounded-none text-stone-500">
-	                          <ChevronRight className="size-4" />
-	                        </span>
-	                      </td>
-                    </tr>
-                  );
-                })
-              ) : (
+
+        {stylistView === "table" ? (
+          <div className="overflow-x-auto border-t border-stone-200">
+            <table className="w-full text-left text-[15px] md:min-w-[1100px]">
+              <thead className="border-b border-stone-200 text-[15px] font-semibold text-stone-500">
                 <tr>
-                  <td colSpan={7} className="px-4 py-10 text-center text-sm text-stone-500">
-                    No stylists match those filters.
-                  </td>
+                  <th className="px-4 py-3">Stylist</th>
+                  <th className="px-4 py-3">Status</th>
+                  <th className="hidden px-4 py-3 md:table-cell">Services</th>
+                  <th className="hidden px-4 py-3 md:table-cell">Pricing</th>
+                  <th className="hidden px-4 py-3 md:table-cell">Location</th>
+                  <th className="hidden w-28 whitespace-nowrap px-4 py-3 md:table-cell">Last edited</th>
+                  <th className="w-10 px-4 py-3">
+                    <span className="sr-only">Open stylist</span>
+                  </th>
                 </tr>
-              )}
-            </tbody>
-          </table>
-        </div>
+              </thead>
+              <tbody>
+                {drafts.length ? (
+                  drafts.map((draft) => {
+                    return <StylistTableRow key={draft.id} draft={draft} regions={regions} onSelectDraft={onSelectDraft} />;
+                  })
+                ) : (
+                  <tr>
+                    <td colSpan={7} className="px-4 py-10 text-center text-sm text-stone-500">
+                      No stylists match those filters.
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
+        ) : (
+          <div className="overflow-x-auto pt-3">
+            <div className="grid min-w-[980px] gap-4 lg:grid-cols-3">
+              {draftsByStatus.map((column) => (
+                <div key={column.id} className="min-h-[520px] rounded-[18px] bg-stone-50 p-3">
+                  <div className="mb-4 flex h-12 items-center justify-between rounded-[14px] bg-white/70 px-3 py-2">
+                    <div className="flex items-center gap-2">
+                      <span className="text-sm font-medium text-stone-700">{column.label}</span>
+                      <span className="rounded-none bg-white px-1.5 py-0.5 text-xs text-stone-500">{column.drafts.length}</span>
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    {column.drafts.length ? (
+                      column.drafts.map((draft) => <StylistKanbanCard key={draft.id} draft={draft} regions={regions} onSelectDraft={onSelectDraft} />)
+                    ) : (
+                      <div className="rounded-none border border-dashed border-stone-300 bg-white/60 p-4 text-sm text-stone-400">No stylists</div>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </section>
 
       {selectedDraft ? (
@@ -1891,6 +1899,82 @@ function StylistsPage({
         />
       ) : null}
     </div>
+  );
+}
+
+function StylistTableRow({
+  draft,
+  regions,
+  onSelectDraft,
+}: {
+  draft: StylistDraft;
+  regions: RegionOption[];
+  onSelectDraft: (draftId: string) => void;
+}) {
+  const visibleServices = draft.services.slice(0, 2);
+  const hiddenServiceCount = Math.max(draft.services.length - visibleServices.length, 0);
+
+  return (
+    <tr
+      tabIndex={0}
+      onClick={() => onSelectDraft(draft.id)}
+      onKeyDown={(event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          onSelectDraft(draft.id);
+        }
+      }}
+      className="cursor-pointer border-b border-stone-100 transition hover:bg-stone-50 focus:bg-stone-50 focus:outline-none last:border-b-0"
+    >
+      <td className="max-w-[12rem] truncate px-4 py-4 font-medium text-stone-950 sm:max-w-none">{draft.name || "Untitled stylist"}</td>
+      <td className="px-4 py-4">
+        <DraftTableStatusBadge draft={draft} />
+      </td>
+      <td className="hidden px-4 py-4 text-stone-700 md:table-cell">
+        {visibleServices.length ? (
+          <div className="flex max-w-[320px] flex-nowrap gap-1 overflow-hidden">
+            {visibleServices.map((service) => (
+              <span key={service} className="min-w-0 max-w-[140px] shrink truncate rounded-md bg-stone-100 px-1.5 py-0.5 text-xs font-medium text-stone-700">
+                {service}
+              </span>
+            ))}
+            {hiddenServiceCount ? <span className="shrink-0 rounded-md bg-stone-100 px-1.5 py-0.5 text-xs font-medium text-stone-500">+{hiddenServiceCount}</span> : null}
+          </div>
+        ) : (
+          <span className="text-stone-400">-</span>
+        )}
+      </td>
+      <td className="hidden px-4 py-4 text-stone-700 md:table-cell">{draft.priceBand || "-"}</td>
+      <td className="hidden px-4 py-4 text-stone-700 md:table-cell">{getDraftLocationLabel(draft, regions) || "-"}</td>
+      <td className="hidden w-28 whitespace-nowrap px-4 py-4 text-stone-500 md:table-cell">{formatRelativeTime(draft.updatedAt || draft.createdAt)}</td>
+      <td className="px-4 py-4">
+        <span className="inline-flex size-7 items-center justify-center rounded-none text-stone-500">
+          <ChevronRight className="size-4" />
+        </span>
+      </td>
+    </tr>
+  );
+}
+
+function StylistKanbanCard({ draft, regions, onSelectDraft }: { draft: StylistDraft; regions: RegionOption[]; onSelectDraft: (draftId: string) => void }) {
+  const location = getDraftLocationLabel(draft, regions);
+
+  return (
+    <button
+      type="button"
+      onClick={() => onSelectDraft(draft.id)}
+      className="w-full rounded-none border border-stone-200 bg-white p-3 text-left shadow-sm transition hover:border-stone-300 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-stone-300"
+    >
+      <div className="flex items-start justify-between gap-3">
+        <p className="min-w-0 flex-1 truncate text-sm font-semibold text-stone-950">{draft.name || "Untitled stylist"}</p>
+        <DraftTableStatusBadge draft={draft} />
+      </div>
+      <div className="mt-3 space-y-2 text-xs text-stone-500">
+        <p>{draft.services.length} services</p>
+        <p className="truncate">{location || "No location"}</p>
+        <p>{formatRelativeTime(draft.updatedAt || draft.createdAt)}</p>
+      </div>
+    </button>
   );
 }
 
@@ -5251,7 +5335,7 @@ function DraftLocationSelector({
       </div>
 
       {isOpen ? (
-        <div ref={popoverRef} className="absolute left-0 right-0 z-30 max-h-[360px] overflow-hidden rounded-none border border-stone-200 bg-white shadow-xl shadow-stone-950/10">
+        <div ref={popoverRef} className="mt-2 overflow-hidden rounded-none border border-stone-200 bg-white sm:-ml-[242px] sm:w-[calc(100%+242px)]">
           <div className="border-b border-stone-100 p-2">
             <div className="relative">
               <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-stone-400" />
@@ -5296,7 +5380,7 @@ function DraftLocationSelector({
           </div>
 
           {normalizedQuery ? (
-            <div className="max-h-[236px] overflow-y-auto p-2">
+            <div className="max-h-[320px] overflow-y-auto p-2">
               {searchGroups.length ? (
                 <div className="space-y-3">
                   {searchGroups.map((group) => (
@@ -5311,7 +5395,7 @@ function DraftLocationSelector({
               )}
             </div>
           ) : (
-            <div className="grid max-h-[236px] min-h-0 grid-rows-[auto_1fr] md:grid-cols-[132px_1fr] md:grid-rows-1">
+            <div className="grid max-h-[320px] min-h-0 grid-rows-[auto_1fr] md:grid-cols-[132px_1fr] md:grid-rows-1">
               <div className="overflow-x-auto border-b border-stone-100 p-1.5 md:overflow-y-auto md:border-b-0 md:border-r">
                 <div className="flex gap-1.5 md:block md:space-y-1">
                   {locationGroups.map((group) => {
@@ -6263,7 +6347,7 @@ function ServicePicker({
       {isOpen ? (
         <div
           ref={popoverRef}
-          className="absolute left-0 right-0 z-30 max-h-[390px] overflow-hidden rounded-none border border-stone-200 bg-white shadow-xl shadow-stone-950/10"
+          className="mt-2 overflow-hidden rounded-none border border-stone-200 bg-white sm:-ml-[242px] sm:w-[calc(100%+242px)]"
         >
           <div className="border-b border-stone-100 p-2">
             <div className="relative">
@@ -6310,7 +6394,7 @@ function ServicePicker({
           </div>
 
           {normalizedQuery ? (
-            <div className="max-h-[276px] overflow-y-auto p-2">
+            <div className="max-h-[320px] overflow-y-auto p-2">
               {searchGroups.length ? (
                 <div className="space-y-3">
                   {searchGroups.map((group) => (
@@ -6325,7 +6409,7 @@ function ServicePicker({
               )}
             </div>
           ) : (
-            <div className="grid max-h-[276px] min-h-0 grid-rows-[auto_1fr] md:grid-cols-[164px_1fr] md:grid-rows-1">
+            <div className="grid max-h-[320px] min-h-0 grid-rows-[auto_1fr] md:grid-cols-[180px_1fr] md:grid-rows-1">
               <div className="overflow-x-auto border-b border-stone-100 p-1.5 md:overflow-y-auto md:border-b-0 md:border-r">
                 <div className="flex gap-1.5 md:block md:space-y-1">
                   {groups.map((group) => {
