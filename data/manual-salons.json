@@ -2,10 +2,31 @@
   "meta": {
     "source": "manual",
     "updatedAt": "2026-06-13",
-    "count": 740,
+    "count": 741,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "hairbysarahsango",
+      "name": "Hairbysarahsango",
+      "areaId": "all-london",
+      "areaLabel": "London",
+      "neighbourhood": "London London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/hairbysarahsango/",
+      "instagramUrl": "https://www.instagram.com/hairbysarahsango/",
+      "tiktokUrl": "",
+      "addedVia": "Manual",
+      "services": [
+        "Editorial / Session styling"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/hairbysarahsango/"
+      ]
+    },
     {
       "id": "selasie-a",
       "name": "Selasie A",
