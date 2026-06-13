@@ -2,10 +2,36 @@
   "meta": {
     "source": "manual",
     "updatedAt": "2026-06-13",
-    "count": 743,
+    "count": 744,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "update-hairdesignuk",
+      "name": "Update Hairdesignuk",
+      "areaId": "south-east",
+      "areaLabel": "South east London",
+      "neighbourhood": "South east London London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/update_hairdesignuk/",
+      "instagramUrl": "https://www.instagram.com/update_hairdesignuk/",
+      "tiktokUrl": "",
+      "addedVia": "Manual discovery",
+      "services": [
+        "Silk press",
+        "Pixie cut / finger waves",
+        "Full head colour",
+        "Curly cut / wash & go / diffuse",
+        "Traditional sew-in / leave out",
+        "Wash & blowdry"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/update_hairdesignuk/"
+      ]
+    },
     {
       "id": "rohmempire",
       "name": "Rohmempire",
