@@ -2,10 +2,61 @@
   "meta": {
     "source": "manual",
     "updatedAt": "2026-06-13",
-    "count": 744,
+    "count": 745,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "hair-by-sharon-dempsey",
+      "name": "Hair By Sharon Dempsey",
+      "areaId": "central",
+      "areaLabel": "Central London",
+      "neighbourhood": "Central London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://app.acuityscheduling.com/schedule/1e352fe4/category/Sharon%2520Dempsey?fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQPOTM2NjE5NzQzMzkyNDU5AAGnOx62rxVKPDWiurNh9DX5_AWMYn7-fnTylJ7JnHt_UC35CdN3e6Moi1jwwpA_aem_BMn5T9fkX38jL8w9x9bJXA&utm_source=ig&utm_medium=social&utm_content=link_in_bio&utm_id=97760_v0_s00_e0_tv3",
+      "instagramUrl": "https://www.instagram.com/hair_by_sharon_dempsey/",
+      "tiktokUrl": "",
+      "addedVia": "Manual",
+      "services": [
+        "Curly cut / wash & go / diffuse",
+        "Silk press",
+        "Trim / hair cut",
+        "Wash & blowdry",
+        "Hair botox",
+        "Relaxer / texturiser",
+        "Balayage",
+        "Full head colour",
+        "Highlights",
+        "Olaplex treatment",
+        "Moisturising treatment",
+        "Scalp detox / treatments"
+      ],
+      "priceBand": "££",
+      "servicePriceBand": "££",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Color Change from 2h - Color Change From £250 from 2h",
+        "Keratin Smoothing from 2h - Keratin Smoothing from £250 from 2h",
+        "Treatment - Root Bleach From £150",
+        "Sew In With Leave/Finish With Wash Prior - Sew In With Leave/Finish With Wash Prior £30",
+        "Dry Trim /25 - Dry Trim £20/25",
+        "Dry Cut with Clippers /25 - Dry Cut with Clippers £20/25",
+        "Wash Blowdry No Straightening - Highlights Start from £120",
+        "Men Wash Blow/Braid - Men Wash Blow/Braid From £70"
+      ],
+      "priceCheckedAt": "2026-06-13T09:43:25.597Z",
+      "priceUpdatedAt": "2026-06-13T09:43:25.597Z",
+      "priceConfidence": "manual",
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/hair_by_sharon_dempsey/"
+      ]
+    },
     {
       "id": "update-hairdesignuk",
       "name": "Update Hairdesignuk",
