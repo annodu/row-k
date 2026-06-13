@@ -1,7 +1,7 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-06-12",
+    "updatedAt": "2026-06-13",
     "count": 740,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
@@ -22359,8 +22359,7 @@
         "Balayage",
         "Moisturising treatment",
         "Olaplex treatment",
-        "Silk press",
-        "Bouncy blowout / round brush blow dry"
+        "Silk press"
       ],
       "hijabiFriendly": true,
       "priceBand": "£",
@@ -22387,7 +22386,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-06-12"
+      "updatedAt": "2026-06-13"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
