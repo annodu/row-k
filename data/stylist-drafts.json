@@ -2,39 +2,9 @@
   "meta": {
     "source": "admin-drafts",
     "updatedAt": "2026-06-13",
-    "count": 4
+    "count": 3
   },
   "drafts": [
-    {
-      "id": "rohmempire-mqbnlzkr",
-      "status": "needs_review",
-      "name": "Rohmempire",
-      "areaId": "",
-      "areaIds": [],
-      "areaLabel": "",
-      "neighbourhood": "",
-      "postcode": "",
-      "bookingPlatform": "",
-      "bookingUrl": "",
-      "instagramUrl": "https://www.instagram.com/rohmempire/",
-      "tiktokUrl": "",
-      "addedVia": "Manual",
-      "services": [],
-      "rawServices": [],
-      "summary": "Admin draft created from stylist intake.",
-      "confidence": 0.35,
-      "warnings": [
-        "No booking link identified yet.",
-        "No services matched yet."
-      ],
-      "evidence": [
-        "Submitted link: https://www.instagram.com/rohmempire/"
-      ],
-      "source": "admin-draft",
-      "createdAt": "2026-06-13",
-      "updatedAt": "2026-06-13",
-      "lastCheckedAt": "2026-06-13"
-    },
     {
       "id": "update-hairdesignuk-mqa0sdy6",
       "status": "needs_review",
