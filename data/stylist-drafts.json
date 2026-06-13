@@ -2,9 +2,39 @@
   "meta": {
     "source": "admin-drafts",
     "updatedAt": "2026-06-13",
-    "count": 1
+    "count": 2
   },
   "drafts": [
+    {
+      "id": "hair-by-sharon-dempsey-mqc631te",
+      "status": "needs_review",
+      "name": "Hair By Sharon Dempsey",
+      "areaId": "",
+      "areaIds": [],
+      "areaLabel": "",
+      "neighbourhood": "",
+      "postcode": "",
+      "bookingPlatform": "",
+      "bookingUrl": "",
+      "instagramUrl": "https://www.instagram.com/hair_by_sharon_dempsey/",
+      "tiktokUrl": "",
+      "addedVia": "Manual",
+      "services": [],
+      "rawServices": [],
+      "summary": "Admin draft created from stylist intake.",
+      "confidence": 0.35,
+      "warnings": [
+        "No booking link identified yet.",
+        "No services matched yet."
+      ],
+      "evidence": [
+        "Submitted link: https://www.instagram.com/hair_by_sharon_dempsey/"
+      ],
+      "source": "admin-draft",
+      "createdAt": "2026-06-13",
+      "updatedAt": "2026-06-13",
+      "lastCheckedAt": "2026-06-13"
+    },
     {
       "id": "microsbylaura-mpi6stjg",
       "status": "needs_review",
