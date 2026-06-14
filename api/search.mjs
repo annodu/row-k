@@ -1,10 +1,19 @@
 import { searchSalons, setNoStoreHeaders } from "../server/salon-index.mjs";
+import { enforceRateLimit } from "../server/security.mjs";
 
 export default async function handler(req, res) {
   setNoStoreHeaders(res);
 
   if (req.method !== "POST") {
     return res.status(405).json({ ok: false, message: "Method not allowed." });
+  }
+  if (!enforceRateLimit(req, res, {
+    windowMs: 60 * 1000,
+    max: 60,
+    keyPrefix: "public-search",
+    message: "Too many searches. Please try again shortly.",
+  })) {
+    return;
   }
 
   try {

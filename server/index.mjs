@@ -5,18 +5,26 @@ import { fileURLToPath } from "node:url";
 import express from "express";
 import { readSalonIndex, searchSalons, setNoStoreHeaders } from "./salon-index.mjs";
 import { registerAdminStylistRoutes } from "./admin-stylists.mjs";
+import { createRateLimiter, requestLogger } from "./security.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 loadLocalEnv(path.resolve(__dirname, "../.env"));
 
 const app = express();
 const port = Number(process.env.PORT || 3001);
+const publicSearchRateLimit = createRateLimiter({
+  windowMs: 60 * 1000,
+  max: 60,
+  keyPrefix: "public-search",
+  message: "Too many searches. Please try again shortly.",
+});
 
 app.use(express.json({ limit: "1mb" }));
 app.use((_, res, next) => {
   setNoStoreHeaders(res);
   next();
 });
+app.use(requestLogger);
 
 app.get("/api/health", async (_req, res) => {
   const index = await readSalonIndex();
@@ -56,7 +64,7 @@ app.get("/api/filters", async (_req, res) => {
   }
 });
 
-app.post("/api/search", async (req, res) => {
+app.post("/api/search", publicSearchRateLimit, async (req, res) => {
   const categories = Array.isArray(req.body?.categories)
     ? req.body.categories.map((category) => String(category)).filter(Boolean)
     : req.body?.category && req.body.category !== "all"

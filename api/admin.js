@@ -1,6 +1,7 @@
 import express from "express";
 import { registerAdminStylistRoutes } from "../server/admin-stylists.mjs";
 import { setNoStoreHeaders } from "../server/salon-index.mjs";
+import { requestLogger, sanitizeErrorMessage } from "../server/security.mjs";
 
 export const config = {
   maxDuration: 60,
@@ -13,12 +14,13 @@ app.use((_, res, next) => {
   setNoStoreHeaders(res);
   next();
 });
+app.use(requestLogger);
 
 registerAdminStylistRoutes(app);
 
 app.use((error, _req, res, _next) => {
   console.error("Admin API failed", error);
-  res.status(500).json({ ok: false, message: error?.message || "Admin API failed." });
+  res.status(500).json({ ok: false, message: sanitizeErrorMessage(error, "Admin API failed.") });
 });
 
 export default function handler(req, res) {
