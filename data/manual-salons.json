@@ -1,7 +1,7 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-06-13",
+    "updatedAt": "2026-06-19",
     "count": 745,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
@@ -32233,9 +32233,9 @@
     {
       "id": "alternativee-hair",
       "name": "Alternativee Hair",
-      "areaId": "north",
-      "areaLabel": "North",
-      "neighbourhood": "North London",
+      "areaId": "croydon",
+      "areaLabel": "Croydon",
+      "neighbourhood": "Croydon London",
       "postcode": "",
       "bookingPlatform": ".as.me",
       "bookingUrl": "https://alternativeehair.as.me/schedule/5612eb10",
@@ -32254,7 +32254,8 @@
         "Texture release",
         "Silk press",
         "Healthy hair plans & consultations",
-        "Editorial / Session styling"
+        "Editorial / Session styling",
+        "Crochet"
       ],
       "summary": "Manual Instagram-led entry added from user-provided booking menu.",
       "source": "manual",
@@ -32287,7 +32288,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-06-11",
+      "updatedAt": "2026-06-19",
       "wheelchairAccessible": true,
       "addedVia": "Manual discovery",
       "communityNotes": [
