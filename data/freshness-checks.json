@@ -1,10 +1,10 @@
 {
   "meta": {
     "source": "freshness-checks",
-    "updatedAt": "2026-06-05T22:24:58.130Z",
+    "updatedAt": "2026-06-24",
     "count": 0,
-    "checkedCount": 678,
-    "total": 678,
+    "checkedCount": 200,
+    "total": 744,
     "mode": "pricing"
   },
   "dismissedRecommendations": {
@@ -15,13 +15,18 @@
         "Sew-in take-down",
         "Healthy hair consultations & regimes"
       ],
-      "removedServices": [],
+      "removedServices": [
+        "Wash & blowdry"
+      ],
       "addedServiceFamilies": [],
       "addedServiceEvidence": {
         "Healthy hair consultations & regimes": [
           "Natural hair"
         ]
-      }
+      },
+      "handledFingerprints": [
+        "service-remove:wash & blowdry"
+      ]
     },
     "alternativee-hair": {
       "addedServices": [
@@ -42,15 +47,53 @@
     "crown-signed": {
       "addedServices": [
         "Moisturising treatment",
-        "Scalp detox / treatments"
+        "Scalp detox / treatments",
+        "U-part wig install",
+        "Custom wig",
+        "Wig cornrows",
+        "Sew-in take-down",
+        "Braid take-down",
+        "Silk press"
       ],
       "removedServices": [],
-      "addedServiceFamilies": [],
+      "addedServiceFamilies": [
+        "wig"
+      ],
       "addedServiceEvidence": {
         "Scalp detox / treatments": [
           "Scalp Safe Sew In Installation"
+        ],
+        "U-part wig install": [
+          "Glueless Wig Install",
+          "Scalp Safe Sew In Installation",
+          "U-Part Wig Install",
+          "Wig Installation"
+        ],
+        "Custom wig": [
+          "Wig Construction Only"
+        ],
+        "Sew-in take-down": [
+          "Cornrows Base Braid Down",
+          "Braids and Sew In Take Down"
+        ],
+        "Braid take-down": [
+          "Consultation & Braid Pattern Assessment",
+          "Low Tension Foundation Braiding",
+          "Cornrows Base Braid Down",
+          "Braids and Sew In Take Down"
+        ],
+        "Silk press": [
+          "SILK PRESS"
         ]
-      }
+      },
+      "handledFingerprints": [
+        "service-add:u-part wig install|glueless wig install|scalp safe sew in installation|u-part wig install|wig installation",
+        "service-add:custom wig|wig construction only",
+        "service-add:wig cornrows",
+        "service-add:sew-in take-down|cornrows base braid down|braids and sew in take down",
+        "service-add:braid take-down|consultation & braid pattern assessment|low tension foundation braiding|cornrows base braid down|braids and sew in take down",
+        "service-add:silk press|silk press"
+      ]
     },
     "k-luxe-hair": {
       "addedServices": [
@@ -101,7 +144,10 @@
         "Frontal sew-in"
       ],
       "removedServices": [
-        "Wig colouring / bundle colouring"
+        "Wig colouring / bundle colouring",
+        "Full head colour",
+        "Balayage",
+        "Highlights"
       ],
       "addedServiceFamilies": [
         "colour"
@@ -122,7 +168,12 @@
           "Highlights",
           "Half Head Highlights"
         ]
-      }
+      },
+      "handledFingerprints": [
+        "service-remove:full head colour",
+        "service-remove:balayage",
+        "service-remove:highlights"
+      ]
     },
     "aluxeuk": {
       "addedServices": [
@@ -156,7 +207,9 @@
       "addedServices": [
         "Frontal sew-in"
       ],
-      "removedServices": [],
+      "removedServices": [
+        "U-part wig install"
+      ],
       "addedServiceFamilies": [],
       "addedServiceEvidence": {
         "Frontal sew-in": [
@@ -164,7 +217,10 @@
           "Mini Frontal (6x6 - 7x7 - 8x8 - 9x6)",
           "Low Frontal Ponytail"
         ]
-      }
+      },
+      "handledFingerprints": [
+        "service-remove:u-part wig install"
+      ]
     },
     "bbhair-lounge": {
       "addedServices": [
@@ -222,15 +278,22 @@
     },
     "bkay-thestylist": {
       "addedServices": [
-        "Traditional sew-in / leave out"
+        "Traditional sew-in / leave out",
+        "Updo"
       ],
       "removedServices": [],
       "addedServiceFamilies": [],
       "addedServiceEvidence": {
         "Traditional sew-in / leave out": [
           "Quick-weave with Leave out"
+        ],
+        "Updo": [
+          "Frontal updo"
         ]
-      }
+      },
+      "handledFingerprints": [
+        "service-add:updo|frontal updo"
+      ]
     },
     "Yairoby Hair & Beauty": {
       "addedServices": [
@@ -388,10 +451,26 @@
         "Pixie cut / finger waves",
         "Wash & blowdry",
         "Custom wig",
-        "Wig install (frontal / closure)"
+        "Wig install (frontal / closure)",
+        "Stitch braids",
+        "Twists (with extensions)",
+        "Butterfly locs",
+        "Faux locs",
+        "Tracks (+ silk press) / partial / invisible sew-in",
+        "Wig cornrows",
+        "Bouncy blowout / round brush blow dry"
       ],
       "addedServiceFamilies": [],
-      "addedServiceEvidence": {}
+      "addedServiceEvidence": {},
+      "handledFingerprints": [
+        "service-remove:stitch braids",
+        "service-remove:twists (with extensions)",
+        "service-remove:butterfly locs",
+        "service-remove:faux locs",
+        "service-remove:tracks (+ silk press) / partial / invisible sew-in",
+        "service-remove:wig cornrows",
+        "service-remove:bouncy blowout / round brush blow dry"
+      ]
     },
     "theorchidroom-co": {
       "addedServices": [
@@ -411,7 +490,8 @@
     },
     "theesbnuk": {
       "addedServices": [
-        "Starter locs"
+        "Starter locs",
+        "Miracle knots"
       ],
       "removedServices": [
         "Wig install (frontal / closure)",
@@ -424,8 +504,15 @@
           "bob length butterfly locs",
           "mid back butterfly locs",
           "bum length butterfly locs"
+        ],
+        "Miracle knots": [
+          "medium miracle knots",
+          "smedium miracle knots"
         ]
-      }
+      },
+      "handledFingerprints": [
+        "service-add:miracle knots|medium miracle knots|smedium miracle knots"
+      ]
     },
     "thebraidingvault-uk": {
       "addedServices": [
@@ -486,7 +573,10 @@
         "Feed-in braids",
         "Boho braids / goddess braids"
       ],
-      "removedServices": [],
+      "removedServices": [
+        "Full head colour",
+        "Pixie cut / finger waves"
+      ],
       "addedServiceFamilies": [],
       "addedServiceEvidence": {
         "Feed-in braids": [
@@ -501,7 +591,11 @@
           "Medium knotless braids",
           "Large knotless braids"
         ]
-      }
+      },
+      "handledFingerprints": [
+        "service-remove:full head colour",
+        "service-remove:pixie cut / finger waves"
+      ]
     },
     "the-hairplus": {
       "addedServices": [
@@ -680,7 +774,8 @@
     },
     "allseezn": {
       "addedServices": [
-        "Moisturising treatment"
+        "Moisturising treatment",
+        "Half up half down"
       ],
       "removedServices": [
         "Custom wig"
@@ -691,8 +786,15 @@
           "Paraffin Wax Treatment (Hands)",
           "Hot wax treatment that improves moisture.",
           "Paraffin Wax Treatment (Feet)"
+        ],
+        "Half up half down": [
+          "Frontal, Half up half down",
+          "Half up half down with added frontal"
         ]
-      }
+      },
+      "handledFingerprints": [
+        "service-add:half up half down|frontal, half up half down|half up half down with added frontal"
+      ]
     },
     "shanslaysss": {
       "addedServices": [
@@ -756,7 +858,8 @@
     "purely-natural-salon": {
       "addedServices": [
         "Scalp detox / treatments",
-        "Box braids"
+        "Box braids",
+        "Roller set"
       ],
       "removedServices": [
         "Starter locs"
@@ -771,8 +874,14 @@
           "Pop Smoke Braids 1/2 head (From)",
           "Fulani braids (From)",
           "Jumbo Triangle braids (From)"
+        ],
+        "Roller set": [
+          "Rod set/ Bendy roller (From)"
         ]
-      }
+      },
+      "handledFingerprints": [
+        "service-add:roller set|rod set/ bendy roller (from)"
+      ]
     },
     "paule-baptiste": {
       "addedServices": [
@@ -804,13 +913,25 @@
       }
     },
     "styled-by-kb": {
-      "addedServices": [],
+      "addedServices": [
+        "Miracle knots"
+      ],
       "removedServices": [
         "Feed-in braids",
         "Closure sew-in"
       ],
       "addedServiceFamilies": [],
-      "addedServiceEvidence": {}
+      "addedServiceEvidence": {
+        "Miracle knots": [
+          "Small Miracle Knots",
+          "Smedium Miracle Knots",
+          "Medium Miracle Knots",
+          "Large Miracle Knots"
+        ]
+      },
+      "handledFingerprints": [
+        "service-add:miracle knots|small miracle knots|smedium miracle knots|medium miracle knots|large miracle knots"
+      ]
     },
     "steaze-glam": {
       "addedServices": [
@@ -841,12 +962,16 @@
     "so-pressed-london": {
       "addedServices": [
         "Keratin treatment",
-        "Healthy hair consultations & regimes"
+        "Healthy hair consultations & regimes",
+        "Custom wig",
+        "U-part wig install"
       ],
       "removedServices": [
         "Closure sew-in"
       ],
-      "addedServiceFamilies": [],
+      "addedServiceFamilies": [
+        "wig"
+      ],
       "addedServiceEvidence": {
         "Keratin treatment": [
           "Extension Removal, Shampoo, Treatment and Blowdry.",
@@ -857,8 +982,21 @@
           "Hair Extension Maintenance",
           "Hair Extension Refitting/Reinstall",
           "Hair Extension Removal Services"
+        ],
+        "Custom wig": [
+          "U-part Wig Construction & Fitting"
+        ],
+        "U-part wig install": [
+          "Hair Extension Install",
+          "Keratin Tip Extension Install",
+          "Microlink I-Tip Extension Install",
+          "Microlink Weft Extension Install"
         ]
-      }
+      },
+      "handledFingerprints": [
+        "service-add:custom wig|u-part wig construction & fitting",
+        "service-add:u-part wig install|hair extension install|keratin tip extension install|microlink i-tip extension install|microlink weft extension install"
+      ]
     },
     "sn-chair": {
       "addedServices": [
@@ -1009,10 +1147,14 @@
       "addedServices": [],
       "removedServices": [
         "Custom wig",
-        "Sleek ponytail / bun"
+        "Sleek ponytail / bun",
+        "Tracks (+ silk press) / partial / invisible sew-in"
       ],
       "addedServiceFamilies": [],
-      "addedServiceEvidence": {}
+      "addedServiceEvidence": {},
+      "handledFingerprints": [
+        "service-remove:tracks (+ silk press) / partial / invisible sew-in"
+      ]
     },
     "shiannes-touch": {
       "addedServices": [
@@ -1253,13 +1395,18 @@
       "addedServices": [
         "Fulani / lemonade braids"
       ],
-      "removedServices": [],
+      "removedServices": [
+        "Custom wig"
+      ],
       "addedServiceFamilies": [],
       "addedServiceEvidence": {
         "Fulani / lemonade braids": [
           "Fulani Sew in"
         ]
-      }
+      },
+      "handledFingerprints": [
+        "service-remove:custom wig"
+      ]
     },
     "les-braid-it": {
       "addedServices": [
@@ -1292,7 +1439,9 @@
       "addedServices": [
         "Fulani / lemonade braids",
         "Boho braids / goddess braids",
-        "Half up half down"
+        "Half up half down",
+        "Traditional sew-in / leave out",
+        "Stitch braids"
       ],
       "removedServices": [],
       "addedServiceFamilies": [],
@@ -1314,8 +1463,21 @@
           "Half sew in w/feedins (standard)",
           "Half sew in w/feedins (freestyle)",
           "Half up Half down Quick Weave"
+        ],
+        "Traditional sew-in / leave out": [
+          "Half sew in w/feedins ( no leave out)"
+        ],
+        "Stitch braids": [
+          "Feed-in Braids",
+          "2 feed-in braids",
+          "6 Feedin braids",
+          "8 Feedin braids"
         ]
-      }
+      },
+      "handledFingerprints": [
+        "service-add:traditional sew-in / leave out|half sew in w/feedins ( no leave out)",
+        "service-add:stitch braids|feed-in braids|2 feed-in braids|6 feedin braids|8 feedin braids"
+      ]
     },
     "kitokohairlounge": {
       "addedServices": [
@@ -1365,7 +1527,8 @@
       "addedServices": [
         "Moisturising treatment",
         "Olaplex treatment",
-        "Healthy hair plans & consultations"
+        "Healthy hair plans & consultations",
+        "Keratin treatment"
       ],
       "removedServices": [],
       "addedServiceFamilies": [],
@@ -1387,8 +1550,17 @@
           "2x6 or 5x5 closure hair provided",
           "Flip over sew-in hair provided",
           "Tape-ins full hair (hair not provided)"
+        ],
+        "Keratin treatment": [
+          "Deep softening hair treatment",
+          "Hair thickening treatment",
+          "Repair + hot steam treatment",
+          "Keratin Texture release"
         ]
-      }
+      },
+      "handledFingerprints": [
+        "service-add:keratin treatment|deep softening hair treatment|hair thickening treatment|repair + hot steam treatment|keratin texture release"
+      ]
     },
     "ivys-beauty-world": {
       "addedServices": [
@@ -1422,7 +1594,9 @@
         "Wig install (frontal / closure)",
         "Healthy hair plans & consultations"
       ],
-      "removedServices": [],
+      "removedServices": [
+        "Tracks (+ silk press) / partial / invisible sew-in"
+      ],
       "addedServiceFamilies": [
         "wig"
       ],
@@ -1430,7 +1604,10 @@
         "Healthy hair plans & consultations": [
           "Sister Packages (Natural Hair)"
         ]
-      }
+      },
+      "handledFingerprints": [
+        "service-remove:tracks (+ silk press) / partial / invisible sew-in"
+      ]
     },
     "hairbyzhb": {
       "addedServices": [
@@ -1453,7 +1630,8 @@
     "hairboyldn": {
       "addedServices": [
         "Moisturising treatment",
-        "K-18 treatment"
+        "K-18 treatment",
+        "Wig blowdry"
       ],
       "removedServices": [],
       "addedServiceFamilies": [],
@@ -1469,8 +1647,14 @@
           "Cleanse, Treatment, Trim & Silkpress( short- Medium)",
           "Cleanse, Treatment, Trim & Silkpress - (Below shoulder/thick)",
           "- Tailored treatment for your hair"
+        ],
+        "Wig blowdry": [
+          "Deep Cleanse, Condition & Blowdry ONLY (short)"
         ]
-      }
+      },
+      "handledFingerprints": [
+        "service-add:wig blowdry|deep cleanse, condition & blowdry only (short)"
+      ]
     },
     "hair-priscription": {
       "addedServices": [
@@ -1511,7 +1695,8 @@
     },
     "hair-by-opee": {
       "addedServices": [
-        "Sleek ponytail / bun"
+        "Sleek ponytail / bun",
+        "Miracle knots"
       ],
       "removedServices": [],
       "addedServiceFamilies": [],
@@ -1521,11 +1706,16 @@
           "7-9 Feed In Braids Ponytail/Goddess Braids",
           "Small Feed In Ponytail (waist length)",
           "7 - 9 Feedin Ponytail"
+        ],
+        "Miracle knots": [
+          "MIRACLE KNOTS",
+          "Miracle knot"
         ]
       },
       "handledFingerprints": [
         "location:east london / essex|essex|essex",
-        "location:essex|essex"
+        "location:essex|essex",
+        "service-add:miracle knots|miracle knots|miracle knot"
       ],
       "locationLabel": "Essex"
     },
@@ -1562,7 +1752,13 @@
           "Large Goddess braids (waist length)",
           "Medium knotless braids (waist length)"
         ]
-      }
+      },
+      "handledFingerprints": [
+        "link:booking|gslaysuk.as.me|gslaysuk.as.me/schedule/7c627126|unverified|503",
+        "link:booking|gslaysuk.as.me|unverified|503",
+        "link:instagram|www.instagram.com/gslaysuk|www.instagram.com/accounts/login/?next=https%3a%2f%2fwww.instagram.com%2fgslaysuk%2f&is_from_rle|unverified|200",
+        "link:instagram|www.instagram.com/gslaysuk|unverified|200"
+      ]
     },
     "gripped-it": {
       "addedServices": [
@@ -1757,7 +1953,11 @@
           "Half Feed in Braids With Sew in/Weave - Medium",
           "Half Feed in Braids With Sew in/Weave - Small"
         ]
-      }
+      },
+      "handledFingerprints": [
+        "link:booking|braidsbyfels.as.me|braidsbyfels.as.me/schedule/4ac840b5|unverified|503",
+        "link:booking|braidsbyfels.as.me|unverified|503"
+      ]
     },
     "braidbarldn": {
       "addedServices": [
@@ -1814,16 +2014,34 @@
           "BOHO BRAIDS *100% HUMAN HAIR*",
           "FLIP OVER FULANI BRAIDS - SMALL"
         ]
-      }
+      },
+      "handledFingerprints": [
+        "location:essex|kent|kent",
+        "location:kent|kent"
+      ],
+      "locationLabel": "Kent"
     },
     "awralla-london": {
       "addedServices": [
-        "K-18 treatment"
+        "K-18 treatment",
+        "Balayage",
+        "Olaplex treatment"
       ],
       "removedServices": [],
-      "addedServiceFamilies": [],
+      "addedServiceFamilies": [
+        "colour"
+      ],
       "addedServiceEvidence": {
         "K-18 treatment": [
+          "Treatment",
+          "Olaplex treatment",
+          "Keratin treatment",
+          "Hair oil treatment"
+        ],
+        "Balayage": [
+          "Full Head Balayage"
+        ],
+        "Olaplex treatment": [
           "Treatment",
           "Olaplex treatment",
           "Keratin treatment",
@@ -1832,7 +2050,9 @@
       },
       "handledFingerprints": [
         "price:£|medium|45|55|150|bridal hair - £150|silk press - £55|wash, cut and blowdry - £45",
-        "price:£|medium"
+        "price:£|medium",
+        "service-add:balayage|full head balayage",
+        "service-add:olaplex treatment|treatment|olaplex treatment|keratin treatment|hair oil treatment"
       ],
       "priceBand": "£"
     },
@@ -1890,15 +2110,22 @@
     },
     "kayy-didd-thatt": {
       "addedServices": [
-        "Half up half down"
+        "Half up half down",
+        "Miracle knots"
       ],
       "removedServices": [],
       "addedServiceFamilies": [],
       "addedServiceEvidence": {
         "Half up half down": [
           "medium fulani braids / half up half down"
+        ],
+        "Miracle knots": [
+          "miracle knots"
         ]
-      }
+      },
+      "handledFingerprints": [
+        "service-add:miracle knots|miracle knots"
+      ]
     },
     "fejiroboje": {
       "addedServices": [
@@ -1993,7 +2220,8 @@
       "addedServices": [
         "Trim / hair cut",
         "Sleek ponytail / bun",
-        "Microbraids / x-small braids"
+        "Microbraids / x-small braids",
+        "Roller set"
       ],
       "removedServices": [],
       "addedServiceFamilies": [],
@@ -2012,8 +2240,14 @@
           "10 stitch braids half & half weave",
           "5. BRAIDS",
           "8 STITCH BRAIDS ALL BACK"
+        ],
+        "Roller set": [
+          "Roller Set Finish & Style"
         ]
-      }
+      },
+      "handledFingerprints": [
+        "service-add:roller set|roller set finish & style"
+      ]
     },
     "mulaaxhair": {
       "addedServices": [
@@ -2033,12 +2267,17 @@
         ]
       },
       "handledFingerprints": [
-        "location:south west london|south-east|south east london"
+        "location:south west london|south-east|south east london",
+        "link:booking|mulaaxhair.as.me/schedule/23033e4d|mulaaxhair.as.me/schedule/23033e4d|broken|404|booking link appears to be gone",
+        "link:booking|mulaaxhair.as.me/schedule/23033e4d|broken|404",
+        "link:instagram|www.instagram.com/mulaaxhair|www.instagram.com/mulaaxhair|ok|200",
+        "link:instagram|www.instagram.com/mulaaxhair|ok|200"
       ]
     },
     "dee-sleek": {
       "addedServices": [
-        "Stitch braids"
+        "Stitch braids",
+        "Flipover / Versatile sew-in"
       ],
       "removedServices": [
         "Wig cornrows"
@@ -2047,8 +2286,14 @@
       "addedServiceEvidence": {
         "Stitch braids": [
           "High Ponytail with 2 Stitch Braids"
+        ],
+        "Flipover / Versatile sew-in": [
+          "Sew In - Versatile"
         ]
-      }
+      },
+      "handledFingerprints": [
+        "service-add:flipover / versatile sew-in|sew in - versatile"
+      ]
     },
     "drippin-styles-hair-studio": {
       "addedServices": [
@@ -2117,7 +2362,8 @@
         "Scalp detox / treatments"
       ],
       "removedServices": [
-        "Pixie cut / finger waves"
+        "Pixie cut / finger waves",
+        "Full head colour"
       ],
       "addedServiceFamilies": [
         "colour"
@@ -2140,12 +2386,15 @@
         ]
       },
       "handledFingerprints": [
-        "price:£|medium|15|15|15|20|20|20|25|30|35|35|35|35|35|35|40|40|40|40|40|45|45|45|45|45|50|50|50|50|55|55|55|55|60|60|60|60|65|90|95|100|100|100|100|100|100|100|100|100|100|110|110|115|115|120|120|130|150|150|150|150|wash & style wig caps - £35|locs deep cleansing shampoo - £60|locs deep cleansing shampoo - £40|this service dose not involve people with locs. - £45|this service dose not involve people with locs. - £15|shampoo & blow dry - £35|shampoo & blow dry - £20|undo weave + wash & blowdry - £50"
+        "price:£|medium|15|15|15|20|20|20|25|30|35|35|35|35|35|35|40|40|40|40|40|45|45|45|45|45|50|50|50|50|55|55|55|55|60|60|60|60|65|90|95|100|100|100|100|100|100|100|100|100|100|110|110|115|115|120|120|130|150|150|150|150|wash & style wig caps - £35|locs deep cleansing shampoo - £60|locs deep cleansing shampoo - £40|this service dose not involve people with locs. - £45|this service dose not involve people with locs. - £15|shampoo & blow dry - £35|shampoo & blow dry - £20|undo weave + wash & blowdry - £50",
+        "service-remove:full head colour"
       ]
     },
     "lael-london": {
       "addedServices": [
-        "Wig cornrows"
+        "Wig cornrows",
+        "I-tips / microlinks strands",
+        "Texture release"
       ],
       "removedServices": [
         "Wig install (frontal / closure)",
@@ -2156,8 +2405,24 @@
       "addedServiceEvidence": {
         "Wig cornrows": [
           ": Please ensure your hair is free of any styles such as braids, cornrows, or sew-ins etc."
+        ],
+        "I-tips / microlinks strands": [
+          "Hybrid sew-in (k-tips)",
+          "Hybrid sew-in K-tips REFRESH (previous clients only)",
+          "Full- head I-tips + texture release ( roots)",
+          "Full- head I-tips + texture release ( chin length)"
+        ],
+        "Texture release": [
+          "Traditional Sew-in leave out (one part + texture release on leave out)",
+          "I-tip + texture release",
+          "Full- head I-tips + texture release ( roots)",
+          "Full- head I-tips + texture release ( chin length)"
         ]
-      }
+      },
+      "handledFingerprints": [
+        "service-add:i-tips / microlinks strands|hybrid sew-in (k-tips)|hybrid sew-in k-tips refresh (previous clients only)|full- head i-tips + texture release ( roots)|full- head i-tips + texture release ( chin length)",
+        "service-add:texture release|traditional sew-in leave out (one part + texture release on leave out)|i-tip + texture release|full- head i-tips + texture release ( roots)|full- head i-tips + texture release ( chin length)"
+      ]
     },
     "haute-glam-hair": {
       "addedServices": [
@@ -2202,25 +2467,47 @@
       }
     },
     "hm-hair": {
-      "addedServices": [],
+      "addedServices": [
+        "Frontal ponytail / bun",
+        "Closure sew-in / closure behind the hairline"
+      ],
       "removedServices": [
-        "Wig install (frontal / closure)"
+        "Wig install (frontal / closure)",
+        "Sleek ponytail / bun"
       ],
       "addedServiceFamilies": [],
-      "addedServiceEvidence": {}
+      "addedServiceEvidence": {
+        "Frontal ponytail / bun": [
+          "PONYTAILS / MESSY UPDO",
+          "Frontal Ponytail / Messy Updo",
+          "Custom Mini Frontal (Any Size Closure)",
+          "Custom Lace Frontal Wig (Frontal and Bundles)"
+        ],
+        "Closure sew-in / closure behind the hairline": [
+          "Closure Sew-In",
+          "Custom Mini Frontal (Any Size Closure)"
+        ]
+      },
+      "handledFingerprints": [
+        "service-remove:sleek ponytail / bun",
+        "service-add:frontal ponytail / bun|ponytails / messy updo|frontal ponytail / messy updo|custom mini frontal (any size closure)|custom lace frontal wig (frontal and bundles)",
+        "service-add:closure sew-in / closure behind the hairline|closure sew-in|custom mini frontal (any size closure)"
+      ]
     },
     "helens-london": {
       "addedServices": [],
       "removedServices": [
         "Closure sew-in",
         "Wig install (frontal / closure)",
-        "Balayage"
+        "Balayage",
+        "Bouncy blowout / round brush blow dry"
       ],
       "addedServiceFamilies": [],
       "addedServiceEvidence": {},
       "handledFingerprints": [
         "price:£|medium|10|12|13|15|17|20|25|28|30|30|30|30|35|40|40|40|45|45|50|60|65|65|70|70|80|85|85|85|90|90|90|120|130|145|150|150|170|180|200|230|300|shampoo, set and blow dry - £60|shampoo, set and blow dry - £70|wash, haircut & silk press - £85|shampoo, set, cut & blow dry - £85|keratin treatment - from £180|wash & afro pic - £45|wash and silk press - £130|wash and silk press - £70",
-        "price:£|medium"
+        "price:£|medium",
+        "service-remove:bouncy blowout / round brush blow dry"
       ],
       "priceBand": "£"
     },
@@ -2318,18 +2605,46 @@
     },
     "hairgurulabldn": {
       "addedServices": [
-        "Moisturising treatment"
+        "Moisturising treatment",
+        "Healthy hair plans & consultations",
+        "Japanese head spa",
+        "Closure sew-in / closure behind the hairline",
+        "Sew in / extensions blowdry"
       ],
-      "removedServices": [],
+      "removedServices": [
+        "Wash & blowdry"
+      ],
       "addedServiceFamilies": [],
       "addedServiceEvidence": {
         "Moisturising treatment": [
           "treatment relaxer",
           "Moisture Revival Treatment"
+        ],
+        "Healthy hair plans & consultations": [
+          "Water Therapy hair and scalp SPA",
+          "Weaves/hair extensions / installs",
+          "Quick weave/top weave (short hair)"
+        ],
+        "Japanese head spa": [
+          "Classic Water Head Spa with CR Drip Therapy",
+          "Premium Water Head SPA with CR drip therapy"
+        ],
+        "Closure sew-in / closure behind the hairline": [
+          "Closure weave",
+          "Bespoke custom made closure wig",
+          "Closure replacement"
+        ],
+        "Sew in / extensions blowdry": [
+          "Weave Blow out & silk Finish"
         ]
       },
       "handledFingerprints": [
-        "price:unknown"
+        "price:unknown",
+        "service-remove:wash & blowdry",
+        "service-add:healthy hair plans & consultations|water therapy hair and scalp spa|weaves/hair extensions / installs|quick weave/top weave (short hair)",
+        "service-add:japanese head spa|classic water head spa with cr drip therapy|premium water head spa with cr drip therapy",
+        "service-add:closure sew-in / closure behind the hairline|closure weave|bespoke custom made closure wig|closure replacement",
+        "service-add:sew in / extensions blowdry|weave blow out & silk finish"
       ]
     },
     "cutzgalore": {
@@ -2440,12 +2755,23 @@
       }
     },
     "bykhalildavies": {
-      "addedServices": [],
+      "addedServices": [
+        "Miracle knots"
+      ],
       "removedServices": [
         "Feed-in braids"
       ],
       "addedServiceFamilies": [],
-      "addedServiceEvidence": {}
+      "addedServiceEvidence": {
+        "Miracle knots": [
+          "Miracle knots",
+          "Small miracle knots",
+          "Medium miracle knots"
+        ]
+      },
+      "handledFingerprints": [
+        "service-add:miracle knots|miracle knots|small miracle knots|medium miracle knots"
+      ]
     },
     "cabelobeau": {
       "addedServices": [
@@ -2501,12 +2827,14 @@
       "addedServices": [],
       "removedServices": [
         "Wig install (frontal / closure)",
-        "Wash & blowdry"
+        "Wash & blowdry",
+        "Wig cornrows"
       ],
       "addedServiceFamilies": [],
       "addedServiceEvidence": {},
       "handledFingerprints": [
-        "price:£|low|25.5|34|38.25|from £38.25|from £25.50|from £34"
+        "price:£|low|25.5|34|38.25|from £38.25|from £25.50|from £34",
+        "service-remove:wig cornrows"
       ]
     },
     "ourahhairsalon": {
@@ -2587,13 +2915,25 @@
       "addedServiceEvidence": {}
     },
     "fd-hair-and-beauty": {
-      "addedServices": [],
+      "addedServices": [
+        "Trim / hair cut"
+      ],
       "removedServices": [
         "Pixie cut / finger waves",
         "Wash & blowdry"
       ],
       "addedServiceFamilies": [],
-      "addedServiceEvidence": {}
+      "addedServiceEvidence": {
+        "Trim / hair cut": [
+          "Relax, Cut and C Curls/Pin Curls (Virgin Hair)",
+          "Relax, Cut and Straighten (Virgin Hair, No Curls Included)",
+          "Wash, Trim and C Curls/Pin Curls",
+          "Wash, Trim and Straighten (No Curls Included)"
+        ]
+      },
+      "handledFingerprints": [
+        "service-add:trim / hair cut|relax, cut and c curls/pin curls (virgin hair)|relax, cut and straighten (virgin hair, no curls included)|wash, trim and c curls/pin curls|wash, trim and straighten (no curls included)"
+      ]
     },
     "errold-douglas-ldn": {
       "addedServices": [],
@@ -2614,7 +2954,8 @@
     },
     "ellise-tresses": {
       "addedServices": [
-        "Boho braids / goddess braids"
+        "Boho braids / goddess braids",
+        "Editorial / Session styling"
       ],
       "removedServices": [],
       "addedServiceFamilies": [],
@@ -2623,8 +2964,14 @@
           "Fulani Braids",
           "Flip over Fulani braids",
           "Knotless Braids"
+        ],
+        "Editorial / Session styling": [
+          "Editorial Fulani"
         ]
-      }
+      },
+      "handledFingerprints": [
+        "service-add:editorial / session styling|editorial fulani"
+      ]
     },
     "ella-iman-hair": {
       "addedServices": [
@@ -2654,14 +3001,22 @@
       }
     },
     "ksanya-hair": {
-      "addedServices": [],
+      "addedServices": [
+        "Half up half down"
+      ],
       "removedServices": [
         "Feed-in braids"
       ],
       "addedServiceFamilies": [],
-      "addedServiceEvidence": {},
+      "addedServiceEvidence": {
+        "Half up half down": [
+          "Half up half down sew in with stitch braids",
+          "Half 6 stitch braids"
+        ]
+      },
       "handledFingerprints": [
-        "location:south east london / kent|kent|kent"
+        "location:south east london / kent|kent|kent",
+        "service-add:half up half down|half up half down sew in with stitch braids|half 6 stitch braids"
       ]
     },
     "jo-johnson-ltd": {
@@ -2732,7 +3087,8 @@
     },
     "helena-macris-salon": {
       "addedServices": [
-        "Olaplex treatment"
+        "Olaplex treatment",
+        "Closure sew-in / closure behind the hairline"
       ],
       "removedServices": [
         "Highlights"
@@ -2744,11 +3100,16 @@
           "Keratin Treatment",
           "Cornrows for wig & Moisture treatment, Short hair",
           "Cornrows for wig, Protein treatment, Short hair"
+        ],
+        "Closure sew-in / closure behind the hairline": [
+          "Weave Fix Using Closure",
+          "ADD ON: Keratin hairline"
         ]
       },
       "handledFingerprints": [
         "price:£|medium|15|17.5|20|25|25|25|25|30|30|30|30|30|30|35|35|35|35|35|35|40|40|40|40|40|45|45|45|50|50|50|50|52.5|55|55|55|55|60|60|60|60|60|65|65|65|70|70|80|80|87.5|95|100|105|110|110|120|120|150|150|150|180|fix track 2 lines - £17.50|fix track 3 lines - £35|fix track 4 lines - £52.50|fix track 5 lines - £70|fix track 6 lines - £87.50|fix track 6 lines - £105|wash tracks or weave up to 12\" - £25|wash tracks or weave 14” to 16” - £45",
-        "price:£|medium"
+        "price:£|medium",
+        "service-add:closure sew-in / closure behind the hairline|weave fix using closure|add on: keratin hairline"
       ],
       "priceBand": "£"
     },
@@ -2760,7 +3121,8 @@
         "Olaplex treatment"
       ],
       "removedServices": [
-        "Twists (with extensions)"
+        "Twists (with extensions)",
+        "Bouncy blowout / round brush blow dry"
       ],
       "addedServiceFamilies": [
         "colour"
@@ -2784,7 +3146,10 @@
           "Braids Removal And Treatment",
           "Removal of medium size braids, wash and treatment making you feel fresh and relaxed."
         ]
-      }
+      },
+      "handledFingerprints": [
+        "service-remove:bouncy blowout / round brush blow dry"
+      ]
     },
     "hair-by-resa": {
       "addedServices": [],
@@ -2824,7 +3189,8 @@
       ],
       "removedServices": [
         "Pixie cut / finger waves",
-        "Tracks (+ silk press) / partial / invisible sew-in"
+        "Tracks (+ silk press) / partial / invisible sew-in",
+        "Bouncy blowout / round brush blow dry"
       ],
       "addedServiceFamilies": [],
       "addedServiceEvidence": {
@@ -2834,7 +3200,10 @@
           "Wash, wrap and style (short/pixie hair)",
           "Wash & wrap (short hair)"
         ]
-      }
+      },
+      "handledFingerprints": [
+        "service-remove:bouncy blowout / round brush blow dry"
+      ]
     },
     "hair-by-anais": {
       "addedServices": [],
@@ -2860,12 +3229,24 @@
       }
     },
     "gxtouched": {
-      "addedServices": [],
+      "addedServices": [
+        "Frontal ponytail / bun"
+      ],
       "removedServices": [
         "Wig install (frontal / closure)"
       ],
       "addedServiceFamilies": [],
-      "addedServiceEvidence": {}
+      "addedServiceEvidence": {
+        "Frontal ponytail / bun": [
+          "Ponytails",
+          "Sleek ponytail/ bun",
+          "Frontal ponytail",
+          "Pre-made frontal"
+        ]
+      },
+      "handledFingerprints": [
+        "service-add:frontal ponytail / bun|ponytails|sleek ponytail/ bun|frontal ponytail|pre-made frontal"
+      ]
     },
     "groath-hair": {
       "addedServices": [
@@ -2913,7 +3294,9 @@
       "removedServices": [
         "Twists (with extensions)",
         "Faux locs",
-        "Tracks (+ silk press) / partial / invisible sew-in"
+        "Tracks (+ silk press) / partial / invisible sew-in",
+        "Pixie cut / finger waves",
+        "Full head colour"
       ],
       "addedServiceFamilies": [],
       "addedServiceEvidence": {
@@ -2933,7 +3316,9 @@
         "price:£|medium|10|50|55|60|60|60|60|65|70|70|70|80|80|90|per line for tracks installation - £60 per line for tracks installation|£50per bundle|£70 per bundle|£60 per bundle|£80 per bundle|per lace closure (2*6,4*4,5*5,6*6) - £55 per lace closure (2*6,4*4,5*5,6*6)|per lace closure (2*6,4*4,5*5,6*6) - £60 per lace closure (2*6,4*4,5*5,6*6)|per lace closure (2*6,4*4,5*5,6*6) - £65 per lace closure (2*6,4*4,5*5,6*6)",
         "price:£|medium",
         "price:££|medium|30|60|60|80|80|80|80|85|90|90|90|95|95|100|100|100|100|100|100|100|105|110|110|110|115|120|120|120|120|120|120|120|120|130|140|150|150|150|150|150|150|160|170|170|170|170|180|200|200|200|200|200|200|200|210|210|260|285|300|300|lace frontal wig making & styling(13x4, 13x6) - 30 british pounds|u-part wig fitting & styling - 260 british pounds|u-part wig fitting & styling - 120 british pounds|mini frontal dimensions :5x5, 6x6, etc - 210 british pounds|lace frontal replacement - 100 british pounds|frontal reglue /styling - 120 british pounds|closure reglue/styling (5*5,6*6) - 100 british pounds|includes making of wig, styling, cornrow for base - 200 british pounds",
-        "price:££|medium"
+        "price:££|medium",
+        "service-remove:pixie cut / finger waves",
+        "service-remove:full head colour"
       ],
       "priceBand": "££"
     },
@@ -2998,10 +3383,14 @@
       "removedServices": [
         "Wash & blowdry",
         "Wig install (frontal / closure)",
-        "Balayage"
+        "Balayage",
+        "Highlights"
       ],
       "addedServiceFamilies": [],
-      "addedServiceEvidence": {}
+      "addedServiceEvidence": {},
+      "handledFingerprints": [
+        "service-remove:highlights"
+      ]
     },
     "dbp-hair": {
       "addedServices": [],
@@ -3098,10 +3487,14 @@
     "alevenn-hair": {
       "addedServices": [],
       "removedServices": [
-        "Tracks (+ silk press) / partial / invisible sew-in"
+        "Tracks (+ silk press) / partial / invisible sew-in",
+        "Wash & blowdry"
       ],
       "addedServiceFamilies": [],
-      "addedServiceEvidence": {}
+      "addedServiceEvidence": {},
+      "handledFingerprints": [
+        "service-remove:wash & blowdry"
+      ]
     },
     "marla-mae-hair": {
       "addedServices": [],
@@ -3154,12 +3547,23 @@
       "addedServiceEvidence": {}
     },
     "beyondthebrushldn": {
-      "addedServices": [],
+      "addedServices": [
+        "Full head colour"
+      ],
       "removedServices": [
         "Wash & blowdry"
       ],
-      "addedServiceFamilies": [],
-      "addedServiceEvidence": {}
+      "addedServiceFamilies": [
+        "colour"
+      ],
+      "addedServiceEvidence": {
+        "Full head colour": [
+          "Tints (block Colour)"
+        ]
+      },
+      "handledFingerprints": [
+        "service-add:full head colour|tints (block colour)"
+      ]
     },
     "hairbycarollassey": {
       "addedServices": [],
@@ -3279,7 +3683,8 @@
     "ddhairofficial": {
       "addedServices": [
         "Healthy hair consultations & regimes",
-        "Miracle knots"
+        "Miracle knots",
+        "Healthy hair plans & consultations"
       ],
       "removedServices": [],
       "addedServiceFamilies": [],
@@ -3292,10 +3697,14 @@
           "Medium Miracle Knotless Braids",
           "Smedium Miracle Fulani Braids",
           "Large Miracle Braids"
+        ],
+        "Healthy hair plans & consultations": [
+          "NATURAL HAIR"
         ]
       },
       "handledFingerprints": [
-        "service-add:miracle knots|miracle knots|medium miracle knotless braids|smedium miracle fulani braids|large miracle braids"
+        "service-add:miracle knots|miracle knots|medium miracle knotless braids|smedium miracle fulani braids|large miracle braids",
+        "service-add:healthy hair plans & consultations|natural hair"
       ]
     },
     "dr-eve-skin": {
@@ -3316,11 +3725,13 @@
     "forever-by-rs": {
       "addedServices": [
         "Editorial / Session styling",
-        "Custom wig"
+        "Custom wig",
+        "Wig colouring / bundle colouring"
       ],
       "removedServices": [],
       "addedServiceFamilies": [
-        "wig"
+        "wig",
+        "colour"
       ],
       "addedServiceEvidence": {
         "Editorial / Session styling": [
@@ -3332,11 +3743,18 @@
         "Custom wig": [
           "Custom wig construction",
           "Wig construction, installation, and styling"
+        ],
+        "Wig colouring / bundle colouring": [
+          "High lift blonde Highlights (Closure)",
+          "High lift blonde Highlights (Frontal)",
+          "Burgundy/Auburn/Ginger/Solid Colour (Closure)",
+          "Burgundy/Auburn/Ginger/Solid Colour (Frontal)"
         ]
       },
       "handledFingerprints": [
         "price:£££|medium|30|50|90|100|180|185|200|200|300|300|320|350|475|500|575|700|850|1000|1250|bridal packages - bronze package - £475|optional trial session (styling only using an old wig) - silver package - £575|optional trial session (styling only using an old wig) - gold package - £700|optional trial session (styling only using an old wig) - traditional & white wedding - £850|optional trial session (styling only using an old wig) - destination wedding 1 day package - £1000|optional trial session (styling only using an old wig) - destination wedding 2 day package - £1250|frontal construction + installation + styling - - frontal construction + installation + styling - £350|closure construction + installation + styling - - closure construction + installation + styling - £320",
-        "price:£££|medium"
+        "price:£££|medium",
+        "service-add:wig colouring / bundle colouring|high lift blonde highlights (closure)|high lift blonde highlights (frontal)|burgundy/auburn/ginger/solid colour (closure)|burgundy/auburn/ginger/solid colour (frontal)"
       ],
       "priceBand": "£££"
     },
@@ -3385,7 +3803,8 @@
     },
     "os-hair": {
       "addedServices": [
-        "Healthy hair consultations & regimes"
+        "Healthy hair consultations & regimes",
+        "Sew-in take-down"
       ],
       "removedServices": [],
       "addedServiceFamilies": [],
@@ -3393,20 +3812,54 @@
         "Healthy hair consultations & regimes": [
           "U-Part Wig Install (OS Hair Wig Only)",
           "OS Hair Wig Installs"
+        ],
+        "Sew-in take-down": [
+          "Half-up Half down",
+          "Takedown Sew-In Service"
         ]
-      }
+      },
+      "handledFingerprints": [
+        "service-add:sew-in take-down|half-up half down|takedown sew-in service"
+      ]
     },
     "moshhairlondon": {
       "addedServices": [
-        "Bridal"
+        "Bridal",
+        "Relaxer / texturiser",
+        "Silk press",
+        "I-tips / microlinks strands"
       ],
-      "removedServices": [],
+      "removedServices": [
+        "Bouncy blowout / round brush blow dry",
+        "Wig cornrows"
+      ],
       "addedServiceFamilies": [],
       "addedServiceEvidence": {
         "Bridal": [
           "BRIDAL SERVICES"
+        ],
+        "Relaxer / texturiser": [
+          "Relaxer retouch & Style",
+          "Relaxer retouch, Trim & style",
+          "Relaxer retouch, Cut & Style"
+        ],
+        "Silk press": [
+          "Silk Press",
+          "Silk Press & Trim",
+          "Silk Press & Cut"
+        ],
+        "I-tips / microlinks strands": [
+          "I-tip Microlinks Install (Up-to 200g)",
+          "I-tip Microlinks Install (Up-to 300g)"
         ]
-      }
+      },
+      "handledFingerprints": [
+        "service-remove:bouncy blowout / round brush blow dry",
+        "service-add:relaxer / texturiser|relaxer retouch & style|relaxer retouch, trim & style|relaxer retouch, cut & style",
+        "service-add:silk press|silk press|silk press & trim|silk press & cut",
+        "service-add:i-tips / microlinks strands|i-tip microlinks install (up-to 200g)|i-tip microlinks install (up-to 300g)",
+        "service-remove:wig cornrows"
+      ]
     },
     "larostudios": {
       "addedServices": [
@@ -3435,15 +3888,48 @@
     },
     "hairkemistry": {
       "addedServices": [
-        "Healthy hair consultations & regimes"
+        "Healthy hair consultations & regimes",
+        "Fulani / lemonade braids",
+        "French curl",
+        "Boho braids / goddess braids",
+        "Knotless braids"
       ],
       "removedServices": [],
       "addedServiceFamilies": [],
       "addedServiceEvidence": {
         "Healthy hair consultations & regimes": [
           "Natural hair"
+        ],
+        "Fulani / lemonade braids": [
+          "Under Wig Braids",
+          "Wash and Under Wig Braids",
+          "Large Goddess Braids",
+          "Medium Goddess Braids"
+        ],
+        "French curl": [
+          "French Curl Bob",
+          "French Curl Long Bob",
+          "French Curl Long"
+        ],
+        "Boho braids / goddess braids": [
+          "Under Wig Braids",
+          "Wash and Under Wig Braids",
+          "Large Goddess Braids",
+          "Medium Goddess Braids"
+        ],
+        "Knotless braids": [
+          "Under Wig Braids",
+          "Wash and Under Wig Braids",
+          "Large Goddess Braids",
+          "Medium Goddess Braids"
         ]
-      }
+      },
+      "handledFingerprints": [
+        "service-add:fulani / lemonade braids|under wig braids|wash and under wig braids|large goddess braids|medium goddess braids",
+        "service-add:french curl|french curl bob|french curl long bob|french curl long",
+        "service-add:boho braids / goddess braids|under wig braids|wash and under wig braids|large goddess braids|medium goddess braids",
+        "service-add:knotless braids|under wig braids|wash and under wig braids|large goddess braids|medium goddess braids"
+      ]
     },
     "hott-uk": {
       "addedServices": [
@@ -3455,7 +3941,10 @@
     },
     "murisalondon": {
       "addedServices": [
-        "Fulani / lemonade braids"
+        "Fulani / lemonade braids",
+        "Retwist",
+        "Starter locs",
+        "Stitch braids"
       ],
       "removedServices": [],
       "addedServiceFamilies": [],
@@ -3465,12 +3954,34 @@
           "4 Stitch Braids",
           "6-8 Stitch Braids",
           "Fulani Quickweave"
+        ],
+        "Retwist": [
+          "Retwist",
+          "Retwist & Style"
+        ],
+        "Starter locs": [
+          "z. Locs",
+          "Starter Locs (Comb Coils)",
+          "Starter Locs (Two Strand Twist)",
+          "Starter Locs + Barrel style"
+        ],
+        "Stitch braids": [
+          "2 feed ins (Clavish Braids)",
+          "4 Stitch Braids",
+          "6 Stitch Braids",
+          "8 Stitch Braids"
         ]
-      }
+      },
+      "handledFingerprints": [
+        "service-add:retwist|retwist|retwist & style",
+        "service-add:starter locs|z. locs|starter locs (comb coils)|starter locs (two strand twist)|starter locs + barrel style",
+        "service-add:stitch braids|2 feed ins (clavish braids)|4 stitch braids|6 stitch braids|8 stitch braids"
+      ]
     },
     "bestbyjessica-salon": {
       "addedServices": [
-        "Microbraids / x-small braids"
+        "Microbraids / x-small braids",
+        "Wig cornrows"
       ],
       "removedServices": [],
       "addedServiceFamilies": [],
@@ -3484,7 +3995,8 @@
       },
       "handledFingerprints": [
         "price:££|medium|45|65|90|90|100|110|120|125|130|130|130|130|130|135|145|150|150|160|160|160|190|250|310|400|460|closure sew-in - £90|frontal sew-in - £100|half sew-in, half braids - £120|large knotless braids - from £130|medium knotless braids - from £90|small-medium knotless braids - from £110|small knotless braids - from £130|extra small knotless braids - from £250",
-        "price:££|medium"
+        "price:££|medium",
+        "service-add:wig cornrows"
       ],
       "priceBand": "££"
     },
@@ -3566,7 +4078,9 @@
     "ajahsbeautybase": {
       "addedServices": [
         "Healthy hair plans & consultations",
-        "Full head colour"
+        "Full head colour",
+        "Bridal",
+        "Fulani / lemonade braids"
       ],
       "removedServices": [],
       "addedServiceFamilies": [
@@ -3580,11 +4094,24 @@
         ],
         "Full head colour": [
           "Online Braiding & boho colour Hair consultation"
+        ],
+        "Bridal": [
+          "Bridal consultations & bookings",
+          "Online Bridal hair consultation",
+          "Bridal online consultation"
+        ],
+        "Fulani / lemonade braids": [
+          "Stitch braids 1-1 intensive 1 day masterclass",
+          "Knotless braids 1-1 intensive 1 day masterclass",
+          "Luxury Fulani braid collection",
+          "Freestyle Fulani braids with curled ends"
         ]
       },
       "handledFingerprints": [
         "location:south west london|kent|kent",
-        "location:kent|kent"
+        "location:kent|kent",
+        "service-add:bridal|bridal consultations & bookings|online bridal hair consultation|bridal online consultation",
+        "service-add:fulani / lemonade braids|stitch braids 1-1 intensive 1 day masterclass|knotless braids 1-1 intensive 1 day masterclass|luxury fulani braid collection|freestyle fulani braids with curled ends"
       ],
       "locationLabel": "Kent"
     },
@@ -3705,8 +4232,15 @@
       "priceBand": "££"
     },
     "simply-g-hair": {
+      "addedServices": [
+        "Wig cornrows"
+      ],
+      "removedServices": [],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {},
       "handledFingerprints": [
-        "price:£|medium|20|30|30|60|60|65|70|80|130|braids - from £130|colour - from £60|colour - from £70|colour - from £80|gel twists - from £30|gel twists - from £60|gel twists - from £65|trim - from £20"
+        "price:£|medium|20|30|30|60|60|65|70|80|130|braids - from £130|colour - from £60|colour - from £70|colour - from £80|gel twists - from £30|gel twists - from £60|gel twists - from £65|trim - from £20",
+        "service-add:wig cornrows"
       ]
     },
     "silkrose-ldn": {
@@ -3723,8 +4257,27 @@
       "priceBand": "£££"
     },
     "rens-touch": {
+      "addedServices": [
+        "U-part wig install",
+        "Wig install (frontal / closure)"
+      ],
+      "removedServices": [],
+      "addedServiceFamilies": [
+        "wig"
+      ],
+      "addedServiceEvidence": {
+        "U-part wig install": [
+          "Half Wig or Upart Construction & Installation",
+          "Half Wig Installation - Renstouch Wigs Only"
+        ],
+        "Wig install (frontal / closure)": [
+          "Half Wig Installation - Renstouch Wigs Only"
+        ]
+      },
       "handledFingerprints": [
-        "price:££|medium|30|85|110|120|250|the classic pony series 3in1 - £250.00|the classic pony series 3in1 - £120.00|side fringe pony & bun 2in1 - £110.00|side fringe pony tutorial - £85.00|braided ponytail tutorial “2023” - £30.00"
+        "price:££|medium|30|85|110|120|250|the classic pony series 3in1 - £250.00|the classic pony series 3in1 - £120.00|side fringe pony & bun 2in1 - £110.00|side fringe pony tutorial - £85.00|braided ponytail tutorial “2023” - £30.00",
+        "service-add:u-part wig install|half wig or upart construction & installation|half wig installation - renstouch wigs only",
+        "service-add:wig install (frontal / closure)|half wig installation - renstouch wigs only"
       ]
     },
     "platinum-tresses-bridal": {
@@ -3738,8 +4291,22 @@
       ]
     },
     "marnis-touch": {
+      "addedServices": [
+        "Miracle knots"
+      ],
+      "removedServices": [],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {
+        "Miracle knots": [
+          "Miracle Knots",
+          "Medium Miracle Knots",
+          "Small-Medium Miracle Knots",
+          "Small Miracle Knots"
+        ]
+      },
       "handledFingerprints": [
-        "location:south west|south-east|south east london"
+        "location:south west|south-east|south east london",
+        "service-add:miracle knots|miracle knots|medium miracle knots|small-medium miracle knots|small miracle knots"
       ]
     },
     "lizz-davies-hair": {
@@ -3784,13 +4351,21 @@
       "priceBand": "££"
     },
     "joycekartistry": {
-      "addedServices": [],
+      "addedServices": [
+        "Half up half down"
+      ],
       "removedServices": [],
       "addedServiceFamilies": [],
-      "addedServiceEvidence": {},
+      "addedServiceEvidence": {
+        "Half up half down": [
+          "Half up , Half down",
+          "Bantu Knot Crown Half Up - Half down"
+        ]
+      },
       "handledFingerprints": [
         "location:north|kent|kent",
-        "location:kent|kent"
+        "location:kent|kent",
+        "service-add:half up half down|half up , half down|bantu knot crown half up - half down"
       ],
       "locationLabel": "Kent"
     },
@@ -3830,13 +4405,20 @@
       "priceBand": "££"
     },
     "nzphair": {
-      "addedServices": [],
+      "addedServices": [
+        "Silk press"
+      ],
       "removedServices": [],
       "addedServiceFamilies": [],
-      "addedServiceEvidence": {},
+      "addedServiceEvidence": {
+        "Silk press": [
+          "Silk Press"
+        ]
+      },
       "handledFingerprints": [
         "price:£|medium|40|55|55|60|65|closure reinstall - £40|half up half down - £65|ponytail - £55|freestyle - £60|bun - £55",
-        "price:£|medium"
+        "price:£|medium",
+        "service-add:silk press|silk press"
       ],
       "priceBand": "£"
     },
@@ -3847,7 +4429,11 @@
       "addedServiceEvidence": {},
       "handledFingerprints": [
         "price:£|medium|60|65|70|90|100|pre-made closure wig install - £65|pre-made frontal wig install - £70|custom made closure wig install - £90|custom made lace frontal wig install - £100|frontal/closure wig reinstall - £60",
-        "price:£|medium"
+        "price:£|medium",
+        "link:booking|monarchiehair.as.me/schedule/0bd4a458|monarchiehair.as.me/schedule/0bd4a458|broken|404|booking link appears to be gone",
+        "link:booking|monarchiehair.as.me/schedule/0bd4a458|broken|404",
+        "link:instagram|www.instagram.com/monarchiehair|www.instagram.com/monarchiehair|ok|200",
+        "link:instagram|www.instagram.com/monarchiehair|ok|200"
       ],
       "priceBand": "£"
     },
@@ -3931,12 +4517,21 @@
     },
     "bels-beauty-complex": {
       "addedServices": [],
-      "removedServices": [],
+      "removedServices": [
+        "Wash & blowdry",
+        "Pixie cut / finger waves",
+        "Tracks (+ silk press) / partial / invisible sew-in",
+        "Twists (with extensions)"
+      ],
       "addedServiceFamilies": [],
       "addedServiceEvidence": {},
       "handledFingerprints": [
         "price:£|medium|20|20|33|33|35|35|36|36|45|45|50|50|50|50|50|58|65|65|70|75|85|85|85|90|90|90|95|100|120|120|120|120|180|180|58 british pounds|95 british pounds|70 british pounds|75 british pounds|100 british pounds|85 british pounds|quick wash & blow dry - 65 british pounds|quick wash & blow dry - £65",
-        "price:£|medium"
+        "price:£|medium",
+        "service-remove:wash & blowdry",
+        "service-remove:pixie cut / finger waves",
+        "service-remove:tracks (+ silk press) / partial / invisible sew-in",
+        "service-remove:twists (with extensions)"
       ],
       "priceBand": "££"
     },
@@ -3987,13 +4582,21 @@
       "priceBand": "£"
     },
     "mane-li-studios": {
-      "addedServices": [],
+      "addedServices": [
+        "Trim / hair cut"
+      ],
       "removedServices": [],
       "addedServiceFamilies": [],
-      "addedServiceEvidence": {},
+      "addedServiceEvidence": {
+        "Trim / hair cut": [
+          "Pixie Haircut",
+          "Hair Styling Classes"
+        ]
+      },
       "handledFingerprints": [
         "price:££|medium|75|75|115|115|130|150|160|160|160|160|160|170|170|220|220|layered pixie cut - 160 british pounds|layered pixie cut - £160|layered pixie cut - 150 british pounds|wash + style - 170 british pounds|wash + style - £170|retouch, trim and style - 75 british pounds|retouch, trim and style - £75|bowl cut - 115 british pounds",
-        "price:££|medium"
+        "price:££|medium",
+        "service-add:trim / hair cut|pixie haircut|hair styling classes"
       ],
       "priceBand": "££"
     },
@@ -4032,12 +4635,17 @@
     },
     "taylor-taylor-london": {
       "addedServices": [],
-      "removedServices": [],
+      "removedServices": [
+        "Wash & blowdry",
+        "Bouncy blowout / round brush blow dry"
+      ],
       "addedServiceFamilies": [],
       "addedServiceEvidence": {},
       "handledFingerprints": [
         "price:£|low|16|54|85|85|95|105|120|130|wash & blow-dry - £85.00|wash & blow-dry - £54.00|from £95.00|from £105.00|from £120.00|from £130.00|from £85.00|a discretionary charge of £16.00 may apply for complex tonging or longer hair extensions. *priced by stylist.",
-        "price:£|low"
+        "price:£|low",
+        "service-remove:wash & blowdry",
+        "service-remove:bouncy blowout / round brush blow dry"
       ],
       "priceBand": "££"
     },
@@ -4075,11 +4683,16 @@
     },
     "dkuk-salon": {
       "addedServices": [],
-      "removedServices": [],
+      "removedServices": [
+        "Wig cornrows",
+        "Wash & blowdry"
+      ],
       "addedServiceFamilies": [],
       "addedServiceEvidence": {},
       "handledFingerprints": [
-        "price:unknown"
+        "price:unknown",
+        "service-remove:wig cornrows",
+        "service-remove:wash & blowdry"
       ],
       "priceBand": "£"
     },
@@ -4184,15 +4797,25 @@
       "priceBand": "££"
     },
     "dstylistt": {
-      "addedServices": [],
+      "addedServices": [
+        "U-part wig install"
+      ],
       "removedServices": [],
-      "addedServiceFamilies": [],
-      "addedServiceEvidence": {},
+      "addedServiceFamilies": [
+        "wig"
+      ],
+      "addedServiceEvidence": {
+        "U-part wig install": [
+          "Hair care + U part / Half Wig construction",
+          "Hair Care & Seamless Wig Installation"
+        ]
+      },
       "handledFingerprints": [
         "price:£££|medium|65|480|the luxe lengths package - £480|studio rental (full day - 8hours) - £65",
         "price:£££|medium",
         "price:££££|medium|65|480|the luxe lengths package - £480|studio rental (full day - 8hours) - £65",
-        "price:££££|medium"
+        "price:££££|medium",
+        "service-add:u-part wig install|hair care + u part / half wig construction|hair care & seamless wig installation"
       ],
       "priceBand": "££££"
     },
@@ -4452,21 +5075,42 @@
       "priceBand": "££"
     },
     "afrotherapy": {
-      "addedServices": [],
-      "removedServices": [],
+      "addedServices": [
+        "Trim / hair cut"
+      ],
+      "removedServices": [
+        "Wash & blowdry",
+        "Wig cornrows",
+        "Faux locs",
+        "Pixie cut / finger waves"
+      ],
       "addedServiceFamilies": [],
-      "addedServiceEvidence": {},
+      "addedServiceEvidence": {
+        "Trim / hair cut": [
+          "os = trim(os.replace(data, ''));"
+        ]
+      },
       "handledFingerprints": [
-        "price:unknown"
+        "price:unknown",
+        "service-remove:wash & blowdry",
+        "service-remove:wig cornrows",
+        "service-remove:faux locs",
+        "service-remove:pixie cut / finger waves",
+        "service-add:trim / hair cut|os = trim(os.replace(data, ''));"
       ]
     },
     "aveda-covent-garden": {
       "addedServices": [],
-      "removedServices": [],
+      "removedServices": [
+        "Wash & blowdry",
+        "Bouncy blowout / round brush blow dry"
+      ],
       "addedServiceFamilies": [],
       "addedServiceEvidence": {},
       "handledFingerprints": [
-        "price:unknown"
+        "price:unknown",
+        "service-remove:wash & blowdry",
+        "service-remove:bouncy blowout / round brush blow dry"
       ],
       "priceBand": "££"
     },
@@ -4511,11 +5155,14 @@
     },
     "dunnys-touch": {
       "addedServices": [],
-      "removedServices": [],
+      "removedServices": [
+        "Wash & blowdry"
+      ],
       "addedServiceFamilies": [],
       "addedServiceEvidence": {},
       "handledFingerprints": [
-        "price:unknown"
+        "price:unknown",
+        "service-remove:wash & blowdry"
       ],
       "priceBand": "££"
     },
@@ -4581,11 +5228,18 @@
     },
     "hiikuss-hair": {
       "addedServices": [],
-      "removedServices": [],
+      "removedServices": [
+        "Wash & blowdry",
+        "Wig cornrows",
+        "Wig install (frontal / closure)"
+      ],
       "addedServiceFamilies": [],
       "addedServiceEvidence": {},
       "handledFingerprints": [
-        "price:unknown"
+        "price:unknown",
+        "service-remove:wash & blowdry",
+        "service-remove:wig cornrows",
+        "service-remove:wig install (frontal / closure)"
       ],
       "priceBand": "£"
     },
@@ -4610,22 +5264,43 @@
       "priceBand": "£"
     },
     "karina-beauty-hub-uk": {
-      "addedServices": [],
-      "removedServices": [],
+      "addedServices": [
+        "Trim / hair cut"
+      ],
+      "removedServices": [
+        "Faux locs",
+        "Butterfly locs"
+      ],
       "addedServiceFamilies": [],
-      "addedServiceEvidence": {},
+      "addedServiceEvidence": {
+        "Trim / hair cut": [
+          "void 0===e?\"\":String(e)).trim(),A=Object.freeze({}),m=e=>null===e"
+        ]
+      },
       "handledFingerprints": [
-        "price:unknown"
+        "price:unknown",
+        "service-remove:faux locs",
+        "service-remove:butterfly locs",
+        "service-add:trim / hair cut|void 0===e?\"\":string(e)).trim(),a=object.freeze({}),m=e=>null===e"
       ],
       "priceBand": "££"
     },
     "kinkbynaturekbn": {
       "addedServices": [],
-      "removedServices": [],
+      "removedServices": [
+        "Balayage",
+        "Highlights",
+        "Wash & blowdry",
+        "Bouncy blowout / round brush blow dry"
+      ],
       "addedServiceFamilies": [],
       "addedServiceEvidence": {},
       "handledFingerprints": [
-        "price:unknown"
+        "price:unknown",
+        "service-remove:balayage",
+        "service-remove:highlights",
+        "service-remove:wash & blowdry",
+        "service-remove:bouncy blowout / round brush blow dry"
       ],
       "priceBand": "£"
     },
@@ -4641,11 +5316,20 @@
     },
     "morells-of-brockley": {
       "addedServices": [],
-      "removedServices": [],
+      "removedServices": [
+        "Wash & blowdry",
+        "Balayage",
+        "Wig cornrows",
+        "Tracks (+ silk press) / partial / invisible sew-in"
+      ],
       "addedServiceFamilies": [],
       "addedServiceEvidence": {},
       "handledFingerprints": [
-        "price:unknown"
+        "price:unknown",
+        "service-remove:wash & blowdry",
+        "service-remove:balayage",
+        "service-remove:wig cornrows",
+        "service-remove:tracks (+ silk press) / partial / invisible sew-in"
       ],
       "priceBand": "££"
     },
@@ -4688,13 +5372,24 @@
       "priceBand": "££"
     },
     "shannel-watson": {
-      "addedServices": [],
+      "addedServices": [
+        "Scalp detox / treatments"
+      ],
       "removedServices": [],
       "addedServiceFamilies": [],
-      "addedServiceEvidence": {},
+      "addedServiceEvidence": {
+        "Scalp detox / treatments": [
+          "In-clinic hair and scalp assessments",
+          "Hair and scalp consultations"
+        ]
+      },
       "handledFingerprints": [
-        "price:unknown"
-      ]
+        "price:unknown",
+        "service-add:scalp detox / treatments|in-clinic hair and scalp assessments|hair and scalp consultations",
+        "price:£££|low|95|225|390|online q & a session - £95|medical-grade mesotherapy - £225|exosome therapy - £390",
+        "price:£££|low"
+      ],
+      "priceBand": "£££"
     },
     "snm-london-hair-studio": {
       "addedServices": [],
@@ -4717,12 +5412,22 @@
       "priceBand": "££"
     },
     "stylesbyfarahpearl": {
-      "addedServices": [],
+      "addedServices": [
+        "Trim / hair cut"
+      ],
       "removedServices": [],
       "addedServiceFamilies": [],
-      "addedServiceEvidence": {},
+      "addedServiceEvidence": {
+        "Trim / hair cut": [
+          "[\\n\\t]/g,\" \").replace(/(\\s\\s+)/g,\" \").trim()}const L0e=/^(Mon",
+          "{if(!a)return;const[o,...u]=a.split(\":\"),l=u.join(\":\").trim().replace(/^'+",
+          "'+$/g,\"\");n[o.trim()]",
+          "(n[o.trim()]=l),l===\"false\"&&(n[o.trim()]=!1),l===\"true\"&&(n[o.trim()]=!0),isNaN(l)"
+        ]
+      },
       "handledFingerprints": [
-        "price:unknown"
+        "price:unknown",
+        "service-add:trim / hair cut|[\\n\\t]/g,\" \").replace(/(\\s\\s+)/g,\" \").trim()}const l0e=/^(mon|{if(!a)return;const[o,...u]=a.split(\":\"),l=u.join(\":\").trim().replace(/^'+|'+$/g,\"\");n[o.trim()]|(n[o.trim()]=l),l===\"false\"&&(n[o.trim()]=!1),l===\"true\"&&(n[o.trim()]=!0),isnan(l)"
       ],
       "priceBand": "££££"
     },
@@ -4970,21 +5675,27 @@
     },
     "branco-hair": {
       "addedServices": [],
-      "removedServices": [],
+      "removedServices": [
+        "Wig cornrows"
+      ],
       "addedServiceFamilies": [],
       "addedServiceEvidence": {},
       "handledFingerprints": [
-        "price:unknown"
+        "price:unknown",
+        "service-remove:wig cornrows"
       ],
       "priceBand": "£"
     },
     "bslayedit": {
       "addedServices": [],
-      "removedServices": [],
+      "removedServices": [
+        "Custom wig"
+      ],
       "addedServiceFamilies": [],
       "addedServiceEvidence": {},
       "handledFingerprints": [
-        "price:unknown"
+        "price:unknown",
+        "service-remove:custom wig"
       ],
       "priceBand": "£"
     },
@@ -5239,30 +5950,62 @@
     },
     "hairology-by-christiana-e": {
       "addedServices": [],
-      "removedServices": [],
+      "removedServices": [
+        "U-part wig install",
+        "Wig cornrows"
+      ],
       "addedServiceFamilies": [],
       "addedServiceEvidence": {},
       "handledFingerprints": [
-        "price:unknown"
+        "price:unknown",
+        "service-remove:u-part wig install",
+        "service-remove:wig cornrows"
       ]
     },
     "hairweather-uk": {
-      "addedServices": [],
-      "removedServices": [],
+      "addedServices": [
+        "Moisturising treatment"
+      ],
+      "removedServices": [
+        "Highlights",
+        "Full head colour",
+        "Custom wig"
+      ],
       "addedServiceFamilies": [],
-      "addedServiceEvidence": {},
+      "addedServiceEvidence": {
+        "Moisturising treatment": [
+          "Organic natural hydration treatment",
+          "Hot oil treatment",
+          "Deep moisture treatment",
+          "Wash + Treatment"
+        ]
+      },
       "handledFingerprints": [
-        "price:unknown"
+        "price:unknown",
+        "service-remove:highlights",
+        "service-remove:full head colour",
+        "service-remove:custom wig",
+        "service-add:moisturising treatment|organic natural hydration treatment|hot oil treatment|deep moisture treatment|wash + treatment"
       ],
       "priceBand": "£"
     },
     "hannurco": {
-      "addedServices": [],
+      "addedServices": [
+        "Wig cornrows",
+        "Fulani / lemonade braids"
+      ],
       "removedServices": [],
       "addedServiceFamilies": [],
-      "addedServiceEvidence": {},
+      "addedServiceEvidence": {
+        "Fulani / lemonade braids": [
+          "Fulani braids",
+          "Freestyle Fulani braids"
+        ]
+      },
       "handledFingerprints": [
-        "price:unknown"
+        "price:unknown",
+        "service-add:wig cornrows",
+        "service-add:fulani / lemonade braids|fulani braids|freestyle fulani braids"
       ]
     },
     "hany-hair-salon": {
@@ -5379,11 +6122,16 @@
     },
     "kl-hairport": {
       "addedServices": [],
-      "removedServices": [],
+      "removedServices": [
+        "Stitch braids",
+        "Twists (with extensions)"
+      ],
       "addedServiceFamilies": [],
       "addedServiceEvidence": {},
       "handledFingerprints": [
-        "price:unknown"
+        "price:unknown",
+        "service-remove:stitch braids",
+        "service-remove:twists (with extensions)"
       ]
     },
     "kumba-secka": {
@@ -5441,12 +6189,32 @@
       ]
     },
     "lush-london": {
-      "addedServices": [],
-      "removedServices": [],
+      "addedServices": [
+        "Curly cut / wash & go / diffuse",
+        "Wig cornrows",
+        "Tape ins"
+      ],
+      "removedServices": [
+        "Stitch braids"
+      ],
       "addedServiceFamilies": [],
-      "addedServiceEvidence": {},
+      "addedServiceEvidence": {
+        "Curly cut / wash & go / diffuse": [
+          "Curly Girls",
+          "Wash & Big Chop",
+          "Curly Cuts",
+          "Curly Cut"
+        ],
+        "Tape ins": [
+          "Hair Extensions, Weaves & Tape Ins (Hair Not Included)"
+        ]
+      },
       "handledFingerprints": [
-        "price:unknown"
+        "price:unknown",
+        "service-remove:stitch braids",
+        "service-add:curly cut / wash & go / diffuse|curly girls|wash & big chop|curly cuts|curly cut",
+        "service-add:wig cornrows",
+        "service-add:tape ins|hair extensions, weaves & tape ins (hair not included)"
       ]
     },
     "lyc-bridal": {
@@ -5597,13 +6365,18 @@
     },
     "precision-n-hair-and-beauty": {
       "addedServices": [],
-      "removedServices": [],
+      "removedServices": [
+        "Twists (with extensions)",
+        "Wig cornrows"
+      ],
       "addedServiceFamilies": [],
       "addedServiceEvidence": {},
       "handledFingerprints": [
         "price:unknown",
         "price:££££|medium|129|215|220|240|245|245|260|275|280|295|499|499|615|615|630|630|645|645|699|699|715|715|240 british pounds|260 british pounds|280 british pounds|295 british pounds|275 british pounds|215 british pounds|220 british pounds|human braids & curls - 245 british pounds",
-        "price:££££|medium"
+        "price:££££|medium",
+        "service-remove:twists (with extensions)",
+        "service-remove:wig cornrows"
       ],
       "priceBand": "££££"
     },
@@ -5701,13 +6474,16 @@
     },
     "scalpedit": {
       "addedServices": [],
-      "removedServices": [],
+      "removedServices": [
+        "Wig install (frontal / closure)"
+      ],
       "addedServiceFamilies": [],
       "addedServiceEvidence": {},
       "handledFingerprints": [
         "price:unknown",
         "price:£|low|25|30|40|appointments outside of these hours are offered on a limited basis and will incur an additional £25 fee|sunday appointments are limited and incur a £40 premium|drop offs outside of this window must be arranged in advance and may incur a £30 fee or result in your appointment be...",
-        "price:£|low"
+        "price:£|low",
+        "service-remove:wig install (frontal / closure)"
       ],
       "priceBand": "£"
     },
@@ -5722,12 +6498,42 @@
       "priceBand": "£"
     },
     "sebastianpierre-salon": {
-      "addedServices": [],
+      "addedServices": [
+        "Bouncy blowout / round brush blow dry",
+        "Silk press",
+        "Keratin treatment",
+        "Trim / hair cut"
+      ],
       "removedServices": [],
       "addedServiceFamilies": [],
-      "addedServiceEvidence": {},
+      "addedServiceEvidence": {
+        "Bouncy blowout / round brush blow dry": [
+          "Bouncy Blow Dry"
+        ],
+        "Silk press": [
+          "Silk Press Long Hair",
+          "Silk Press Medium Hair",
+          "Silk Press Short Hair"
+        ],
+        "Keratin treatment": [
+          "Hair & Scalp Treatments",
+          "Keratin Treatment",
+          "Collagen Treatment",
+          "Therapy Filler Treatment"
+        ],
+        "Trim / hair cut": [
+          "Toner - Blow Dry for Short Hair",
+          "Toner - Blow Dry for Medium Length Hair",
+          "Toner - Blow Dry for Long Hair",
+          "Blow Dry for Short Hair - T-Section Highlights - Toner"
+        ]
+      },
       "handledFingerprints": [
-        "price:unknown"
+        "price:unknown",
+        "service-add:bouncy blowout / round brush blow dry|bouncy blow dry",
+        "service-add:silk press|silk press long hair|silk press medium hair|silk press short hair",
+        "service-add:keratin treatment|hair & scalp treatments|keratin treatment|collagen treatment|therapy filler treatment",
+        "service-add:trim / hair cut|toner - blow dry for short hair|toner - blow dry for medium length hair|toner - blow dry for long hair|blow dry for short hair - t-section highlights - toner"
       ],
       "priceBand": "£"
     },
@@ -5750,14 +6556,21 @@
       ]
     },
     "shirley-mcdonald-trichologist": {
-      "addedServices": [],
+      "addedServices": [
+        "K-18 treatment"
+      ],
       "removedServices": [],
       "addedServiceFamilies": [],
-      "addedServiceEvidence": {},
+      "addedServiceEvidence": {
+        "K-18 treatment": [
+          "Treatment"
+        ]
+      },
       "handledFingerprints": [
         "price:unknown",
         "price:£|medium|45|45|45|75|150|treatment - £45|treatment - £45.00|£75.0040minsmore infoselect|treatment - £150.0060minsmore infoselect|treatment - £45.0060minsmore infoselect",
-        "price:£|medium"
+        "price:£|medium",
+        "service-add:k-18 treatment|treatment"
       ],
       "priceBand": "£"
     },
@@ -5856,12 +6669,27 @@
       ]
     },
     "styledbyambss": {
-      "addedServices": [],
+      "addedServices": [
+        "Half up half down",
+        "Wig cornrows"
+      ],
       "removedServices": [],
       "addedServiceFamilies": [],
-      "addedServiceEvidence": {},
+      "addedServiceEvidence": {
+        "Half up half down": [
+          "Front half feed ins only",
+          "half feedins half knotless",
+          "half up half down",
+          "Half cornrows half twists"
+        ],
+        "Wig cornrows": [
+          "wig cornrows"
+        ]
+      },
       "handledFingerprints": [
-        "price:unknown"
+        "price:unknown",
+        "service-add:half up half down|front half feed ins only|half feedins half knotless|half up half down|half cornrows half twists",
+        "service-add:wig cornrows|wig cornrows"
       ]
     },
     "styleurlookss": {
@@ -5875,11 +6703,14 @@
     },
     "subrina-kidd-hair": {
       "addedServices": [],
-      "removedServices": [],
+      "removedServices": [
+        "Wash & blowdry"
+      ],
       "addedServiceFamilies": [],
       "addedServiceEvidence": {},
       "handledFingerprints": [
-        "price:unknown"
+        "price:unknown",
+        "service-remove:wash & blowdry"
       ]
     },
     "sulayhairsalon": {
@@ -6076,15 +6907,1936 @@
       "priceBand": "££"
     },
     "fola-fash": {
+      "addedServices": [
+        "Wash & blowdry",
+        "Trim / hair cut"
+      ],
+      "removedServices": [],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {
+        "Wash & blowdry": [
+          "This service includes a wash and blowdry/silk press. It also includes a cut and styling."
+        ],
+        "Trim / hair cut": [
+          "Silk press, treatment & trim/cut"
+        ]
+      },
+      "handledFingerprints": [
+        "price:£££|medium|150|250|250|300|400|keratin treatment - £400|avlon texture release treatment - £300|maintenance session - invisible k-tips - £250|sew-in maintenance - £150|signature silk press, treatment & cut - £250",
+        "price:£££|medium",
+        "service-add:wash & blowdry|this service includes a wash and blowdry/silk press. it also includes a cut and styling.",
+        "service-add:trim / hair cut|silk press, treatment & trim/cut"
+      ],
+      "priceBand": "£££"
+    },
+    "belewa-hair": {
       "addedServices": [],
       "removedServices": [],
       "addedServiceFamilies": [],
       "addedServiceEvidence": {},
       "handledFingerprints": [
-        "price:£££|medium|150|250|250|300|400|keratin treatment - £400|avlon texture release treatment - £300|maintenance session - invisible k-tips - £250|sew-in maintenance - £150|signature silk press, treatment & cut - £250",
-        "price:£££|medium"
+        "link:booking|belewahair.as.me/schedule/ae0f15d6|belewahair.as.me/schedule/ae0f15d6|unverified|503",
+        "link:booking|belewahair.as.me/schedule/ae0f15d6|unverified|503"
+      ]
+    },
+    "di-locsmith": {
+      "addedServices": [],
+      "removedServices": [],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {},
+      "handledFingerprints": [
+        "link:booking|dilocsmith.as.me|dilocsmith.as.me/schedule/8e673db3|unverified|503",
+        "link:booking|dilocsmith.as.me|unverified|503"
+      ]
+    },
+    "hollylondon": {
+      "addedServices": [],
+      "removedServices": [],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {},
+      "handledFingerprints": [
+        "link:booking|tress.ly/hollylondon|tress.ly/hollylondon|unverified|null",
+        "link:booking|tress.ly/hollylondon|unverified|null"
+      ]
+    },
+    "ify-london": {
+      "addedServices": [],
+      "removedServices": [],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {},
+      "handledFingerprints": [
+        "link:booking|ifylondon.as.me/schedule/9b0d21a2|ifylondon.as.me/schedule/9b0d21a2|unverified|503",
+        "link:booking|ifylondon.as.me/schedule/9b0d21a2|unverified|503"
+      ]
+    },
+    "loveroots": {
+      "addedServices": [],
+      "removedServices": [],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {},
+      "handledFingerprints": [
+        "link:booking|loveeverythinglondon.as.me/schedule/8bc9f7bd|loveeverythinglondon.as.me/schedule/8bc9f7bd|unverified|503",
+        "link:booking|loveeverythinglondon.as.me/schedule/8bc9f7bd|unverified|503",
+        "link:instagram|www.instagram.com/loveroots__|www.instagram.com/accounts/login/?next=https%3a%2f%2fwww.instagram.com%2floveroots__%2f&is_from_rle|unverified|200",
+        "link:instagram|www.instagram.com/loveroots__|unverified|200"
+      ]
+    },
+    "hairbykdouglas": {
+      "addedServices": [
+        "K-18 treatment",
+        "Olaplex treatment",
+        "Hair botox"
       ],
-      "priceBand": "£££"
+      "removedServices": [],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {
+        "K-18 treatment": [
+          "Treatment",
+          "Treatment & Go Curly Finish",
+          "Basic Treatment Blow/Finish",
+          "Prescribed Treatment Blow/Finish (Uberliss/Collagen)"
+        ],
+        "Olaplex treatment": [
+          "Treatment",
+          "Treatment & Go Curly Finish",
+          "Basic Treatment Blow/Finish",
+          "Prescribed Treatment Blow/Finish (Uberliss/Collagen)"
+        ],
+        "Hair botox": [
+          "Cut and Blow dry Long hair",
+          "Keratin Smoothing Short Hair",
+          "Keratin Smoothing Medium Hair",
+          "Kertin Smoothing Long Hair"
+        ]
+      },
+      "handledFingerprints": [
+        "location:east london / central london|central|central london",
+        "location:central|central london",
+        "service-add:k-18 treatment|treatment|treatment & go curly finish|basic treatment blow/finish|prescribed treatment blow/finish (uberliss/collagen)",
+        "service-add:olaplex treatment|treatment|treatment & go curly finish|basic treatment blow/finish|prescribed treatment blow/finish (uberliss/collagen)",
+        "service-add:hair botox|cut and blow dry long hair|keratin smoothing short hair|keratin smoothing medium hair|kertin smoothing long hair"
+      ],
+      "locationLabel": "Central London"
+    },
+    "j-stylez-ldn": {
+      "addedServices": [
+        "Traditional sew-in / leave out"
+      ],
+      "removedServices": [],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {
+        "Traditional sew-in / leave out": [
+          "Traditional Sew In",
+          "Quickweave leave out"
+        ]
+      },
+      "handledFingerprints": [
+        "location:mobile|west|west london",
+        "location:west|west london",
+        "service-add:traditional sew-in / leave out|traditional sew in|quickweave leave out"
+      ],
+      "locationLabel": "West London"
+    },
+    "the-hair-spa-clinic": {
+      "addedServices": [
+        "Moisturising treatment",
+        "Olaplex treatment",
+        "Braid take-down",
+        "Wig cornrows",
+        "Sew-in take-down",
+        "Retwist",
+        "Natural hair coaches / educators",
+        "Texture release",
+        "Closure sew-in / closure behind the hairline",
+        "Flipover / Versatile sew-in",
+        "U-part wig install"
+      ],
+      "removedServices": [],
+      "addedServiceFamilies": [
+        "wig"
+      ],
+      "addedServiceEvidence": {
+        "Moisturising treatment": [
+          "Subscription trial treatment",
+          "Silk Press + Korean smooth and defrizz treatment",
+          "🌿✨ HAIR GROWTH AND REPAIR STEAM TREATMENTSPECIAL OFFER: £70- Returning Clients £80 – New Clients ✨🌿",
+          "AB- Hair Growth and Repair treatments"
+        ],
+        "Olaplex treatment": [
+          "Subscription trial treatment",
+          "Silk Press + Korean smooth and defrizz treatment",
+          "🌿✨ HAIR GROWTH AND REPAIR STEAM TREATMENTSPECIAL OFFER: £70- Returning Clients £80 – New Clients ✨🌿",
+          "AB- Hair Growth and Repair treatments"
+        ],
+        "Braid take-down": [
+          "Take down, Aloe Vera & sea moss treatment and re do cornrows",
+          "Sew in take down & sea moss treatment",
+          "Braids & Locs",
+          "Small knotless braids (waist length)"
+        ],
+        "Sew-in take-down": [
+          "Take down, Aloe Vera & sea moss treatment and re do cornrows",
+          "Sew in take down & sea moss treatment"
+        ],
+        "Retwist": [
+          "Locs- Retwist",
+          "Locs: Retwist & style (from £80)"
+        ],
+        "Natural hair coaches / educators": [
+          "🌿✨ HAIR GROWTH AND REPAIR STEAM TREATMENTSPECIAL OFFER: £70- Returning Clients £80 – New Clients ✨🌿",
+          "AB- Hair Growth and Repair treatments",
+          "Children Plant based Hair Spa Treatment",
+          "Ayurvedic Hair growth and repair treatment with Olaplex"
+        ],
+        "Texture release": [
+          "Keratin treatment or Texture release"
+        ],
+        "Closure sew-in / closure behind the hairline": [
+          "Natural hair treatment & closure sew in package"
+        ],
+        "Flipover / Versatile sew-in": [
+          "Versatile Sew-in"
+        ],
+        "U-part wig install": [
+          "POSTPARTUM CROWN RECOVERY THERAPY",
+          "POSTPARTUM HAIR GROWTH AND SHEDDING RECOVERY",
+          "Clip ins install + Silk Press Package",
+          "U-part wig install and style"
+        ]
+      },
+      "handledFingerprints": [
+        "location:south east|kent|kent",
+        "location:kent|kent",
+        "service-add:moisturising treatment|subscription trial treatment|silk press + korean smooth and defrizz treatment|🌿✨ hair growth and repair steam treatmentspecial offer: £70- returning clients £80 – new clients ✨🌿|ab- hair growth and repair treatments",
+        "service-add:olaplex treatment|subscription trial treatment|silk press + korean smooth and defrizz treatment|🌿✨ hair growth and repair steam treatmentspecial offer: £70- returning clients £80 – new clients ✨🌿|ab- hair growth and repair treatments",
+        "service-add:braid take-down|take down, aloe vera & sea moss treatment and re do cornrows|sew in take down & sea moss treatment|braids & locs|small knotless braids (waist length)",
+        "service-add:wig cornrows",
+        "service-add:sew-in take-down|take down, aloe vera & sea moss treatment and re do cornrows|sew in take down & sea moss treatment",
+        "service-add:retwist|locs- retwist|locs: retwist & style (from £80)",
+        "service-add:natural hair coaches / educators|🌿✨ hair growth and repair steam treatmentspecial offer: £70- returning clients £80 – new clients ✨🌿|ab- hair growth and repair treatments|children plant based hair spa treatment|ayurvedic hair growth and repair treatment with olaplex",
+        "service-add:texture release|keratin treatment or texture release",
+        "service-add:closure sew-in / closure behind the hairline|natural hair treatment & closure sew in package",
+        "service-add:flipover / versatile sew-in|versatile sew-in",
+        "service-add:u-part wig install|postpartum crown recovery therapy|postpartum hair growth and shedding recovery|clip ins install + silk press package|u-part wig install and style"
+      ],
+      "locationLabel": "Kent"
+    },
+    "the-reign-spitalfields": {
+      "addedServices": [
+        "K-18 treatment",
+        "Hair botox"
+      ],
+      "removedServices": [],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {
+        "K-18 treatment": [
+          "Treatment",
+          "Treatment & Go Curly Finish",
+          "Basic Treatment Blow/Finish",
+          "Prescribed Treatment Blow/Finish (Uberliss/Collagen)"
+        ],
+        "Hair botox": [
+          "Cut and Blow dry Long hair",
+          "Keratin Smoothing Short Hair",
+          "Keratin Smoothing Medium Hair",
+          "Kertin Smoothing Long Hair"
+        ]
+      },
+      "handledFingerprints": [
+        "location:central london / east london|central|central london",
+        "location:central|central london",
+        "service-add:k-18 treatment|treatment|treatment & go curly finish|basic treatment blow/finish|prescribed treatment blow/finish (uberliss/collagen)",
+        "service-add:hair botox|cut and blow dry long hair|keratin smoothing short hair|keratin smoothing medium hair|kertin smoothing long hair"
+      ],
+      "locationLabel": "Central London"
+    },
+    "tressavenue": {
+      "addedServices": [
+        "Tape ins",
+        "Updo",
+        "Boho braids / goddess braids",
+        "Half up half down"
+      ],
+      "removedServices": [],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {
+        "Tape ins": [
+          "Tape ins (full head)"
+        ],
+        "Updo": [
+          "Curly updo ponytail"
+        ],
+        "Boho braids / goddess braids": [
+          "Boho flip over braids x Sew in"
+        ],
+        "Half up half down": [
+          "Half up half down",
+          "Feed ins x Half sew in"
+        ]
+      },
+      "handledFingerprints": [
+        "location:north west|west|west london",
+        "location:west|west london",
+        "service-add:tape ins|tape ins (full head)",
+        "service-add:updo|curly updo ponytail",
+        "service-add:boho braids / goddess braids|boho flip over braids x sew in",
+        "service-add:half up half down|half up half down|feed ins x half sew in"
+      ],
+      "locationLabel": "West London"
+    },
+    "the-lush-lab-uk": {
+      "addedServices": [],
+      "removedServices": [],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {},
+      "handledFingerprints": [
+        "location:east|south-west|south west london",
+        "location:south-west|south west london"
+      ],
+      "locationLabel": "South west London"
+    },
+    "yinsbeautybar": {
+      "addedServices": [],
+      "removedServices": [],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {},
+      "handledFingerprints": [
+        "location:east london / essex|essex|essex",
+        "location:essex|essex"
+      ],
+      "locationLabel": "Essex"
+    },
+    "7styles": {
+      "addedServices": [
+        "Wig colouring / bundle colouring",
+        "Frontal ponytail / bun"
+      ],
+      "removedServices": [],
+      "addedServiceFamilies": [
+        "colour"
+      ],
+      "addedServiceEvidence": {
+        "Wig colouring / bundle colouring": [
+          "CUSTOM COLOUR",
+          "Custom colour - 3 bundles and a closure",
+          "Custom colour- 3 bundles and a frontal",
+          "Custom colour-613 bundles - 3 bundles and a frontal (1 colour)"
+        ],
+        "Frontal ponytail / bun": [
+          "Custom colour- 3 bundles and a frontal",
+          "Custom colour-613 bundles - 3 bundles and a frontal (1 colour)",
+          "Single bundle/ frontal/ closure colour",
+          "Ponytails"
+        ]
+      },
+      "handledFingerprints": [
+        "service-add:wig colouring / bundle colouring|custom colour|custom colour - 3 bundles and a closure|custom colour- 3 bundles and a frontal|custom colour-613 bundles - 3 bundles and a frontal (1 colour)",
+        "service-add:frontal ponytail / bun|custom colour- 3 bundles and a frontal|custom colour-613 bundles - 3 bundles and a frontal (1 colour)|single bundle/ frontal/ closure colour|ponytails"
+      ]
+    },
+    "aaliyahnaomihair": {
+      "addedServices": [],
+      "removedServices": [
+        "Keratin treatment",
+        "U-part wig install",
+        "Wig install (frontal / closure)",
+        "Custom wig"
+      ],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {},
+      "handledFingerprints": [
+        "service-remove:keratin treatment",
+        "service-remove:u-part wig install",
+        "service-remove:wig install (frontal / closure)",
+        "service-remove:custom wig"
+      ]
+    },
+    "allure-by-ec": {
+      "addedServices": [
+        "Fulani / lemonade braids",
+        "Braid take-down",
+        "Wig install (frontal / closure)",
+        "Healthy hair plans & consultations"
+      ],
+      "removedServices": [],
+      "addedServiceFamilies": [
+        "wig"
+      ],
+      "addedServiceEvidence": {
+        "Fulani / lemonade braids": [
+          "Knotless Braids 1-1 Lesson",
+          "Braids",
+          "Knotless Bob Braids",
+          "Fulani Twist Bob"
+        ],
+        "Braid take-down": [
+          "Knotless Braids 1-1 Lesson",
+          "Braids",
+          "Knotless Bob Braids",
+          "Boho Braids"
+        ],
+        "Wig install (frontal / closure)": [
+          "Lace Frontal Wig (With Install)"
+        ],
+        "Healthy hair plans & consultations": [
+          "Makeup & Hair Combo",
+          "Hair Care",
+          "Hair Installations"
+        ]
+      },
+      "handledFingerprints": [
+        "service-add:fulani / lemonade braids|knotless braids 1-1 lesson|braids|knotless bob braids|fulani twist bob",
+        "service-add:braid take-down|knotless braids 1-1 lesson|braids|knotless bob braids|boho braids",
+        "service-add:wig install (frontal / closure)|lace frontal wig (with install)",
+        "service-add:healthy hair plans & consultations|makeup & hair combo|hair care|hair installations"
+      ]
+    },
+    "andrewjosesalon": {
+      "addedServices": [
+        "Keratin treatment",
+        "Bridal"
+      ],
+      "removedServices": [
+        "Wash & blowdry"
+      ],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {
+        "Keratin treatment": [
+          "Autumn / Winter Treatments",
+          "Other Conditioning Treatments",
+          "Brazilian Keratin",
+          "Hair Treatments"
+        ],
+        "Bridal": [
+          "Bridal Hair & Make Up"
+        ]
+      },
+      "handledFingerprints": [
+        "service-remove:wash & blowdry",
+        "service-add:keratin treatment|autumn / winter treatments|other conditioning treatments|brazilian keratin|hair treatments",
+        "service-add:bridal|bridal hair & make up"
+      ]
+    },
+    "annels-braids": {
+      "addedServices": [],
+      "removedServices": [
+        "Butterfly locs",
+        "Twists (with extensions)"
+      ],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {},
+      "handledFingerprints": [
+        "service-remove:butterfly locs",
+        "service-remove:twists (with extensions)"
+      ]
+    },
+    "arewa-uk": {
+      "addedServices": [
+        "Fulani / lemonade braids",
+        "Half up half down",
+        "Updo",
+        "Feed-in braids",
+        "Creative braids"
+      ],
+      "removedServices": [
+        "Wig cornrows"
+      ],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {
+        "Fulani / lemonade braids": [
+          "Boho knotless Braids - Human Hair 100g (human hair curls coming out of the braid, synthetic hair for the braid).",
+          "Boho knotless Braids - Human Hair 200g (human hair curls coming out of the braid, synthetic hair for the braid).",
+          "Boho Knotless Braids- Synthetic Extreme(1.5-2packs of synthetic curls included)",
+          "Boho Knotless Braids- Synthetic Standard (0.5-1 pack of synthetic curls included)"
+        ],
+        "Half up half down": [
+          "Half up Half down",
+          "Large Half Feed-ins Half Sew-in",
+          "Medium Half Feed-ins Half Sew-in",
+          "Small Half Feed-ins Half Sew-in"
+        ],
+        "Updo": [
+          "Stitch Braids - Updo"
+        ],
+        "Feed-in braids": [
+          "Large Half Feed-ins Half Sew-in",
+          "Medium Half Feed-ins Half Sew-in",
+          "Small Half Feed-ins Half Sew-in",
+          "22+ Feed ins"
+        ],
+        "Creative braids": [
+          "Boho knotless Braids - Human Hair 100g (human hair curls coming out of the braid, synthetic hair for the braid).",
+          "Boho knotless Braids - Human Hair 200g (human hair curls coming out of the braid, synthetic hair for the braid).",
+          "Boho Knotless Braids- Synthetic Extreme(1.5-2packs of synthetic curls included)",
+          "Boho Knotless Braids- Synthetic Standard (0.5-1 pack of synthetic curls included)"
+        ]
+      },
+      "handledFingerprints": [
+        "service-remove:wig cornrows",
+        "service-add:fulani / lemonade braids|boho knotless braids - human hair 100g (human hair curls coming out of the braid, synthetic hair for the braid).|boho knotless braids - human hair 200g (human hair curls coming out of the braid, synthetic hair for the braid).|boho knotless braids- synthetic extreme(1.5-2packs of synthetic curls included)|boho knotless braids- synthetic standard (0.5-1 pack of synthetic curls included)",
+        "service-add:half up half down|half up half down|large half feed-ins half sew-in|medium half feed-ins half sew-in|small half feed-ins half sew-in",
+        "service-add:updo|stitch braids - updo",
+        "service-add:feed-in braids|large half feed-ins half sew-in|medium half feed-ins half sew-in|small half feed-ins half sew-in|22+ feed ins",
+        "service-add:creative braids|boho knotless braids - human hair 100g (human hair curls coming out of the braid, synthetic hair for the braid).|boho knotless braids - human hair 200g (human hair curls coming out of the braid, synthetic hair for the braid).|boho knotless braids- synthetic extreme(1.5-2packs of synthetic curls included)|boho knotless braids- synthetic standard (0.5-1 pack of synthetic curls included)"
+      ]
+    },
+    "ariela-london": {
+      "addedServices": [],
+      "removedServices": [
+        "Pixie cut / finger waves"
+      ],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {},
+      "handledFingerprints": [
+        "service-remove:pixie cut / finger waves"
+      ]
+    },
+    "as-braids-n-beauty": {
+      "addedServices": [
+        "Updo",
+        "Healthy hair plans & consultations"
+      ],
+      "removedServices": [
+        "Twists (with extensions)"
+      ],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {
+        "Updo": [
+          "Messy updo"
+        ],
+        "Healthy hair plans & consultations": [
+          "Natural hair braids",
+          "Kid - (natural hair)",
+          "Consultations"
+        ]
+      },
+      "handledFingerprints": [
+        "service-remove:twists (with extensions)",
+        "service-add:updo|messy updo",
+        "service-add:healthy hair plans & consultations|natural hair braids|kid - (natural hair)|consultations"
+      ]
+    },
+    "bdl-uk": {
+      "addedServices": [],
+      "removedServices": [
+        "Full head colour"
+      ],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {},
+      "handledFingerprints": [
+        "service-remove:full head colour"
+      ]
+    },
+    "becrochetcreation": {
+      "addedServices": [
+        "Healthy hair plans & consultations",
+        "Boho braids / goddess braids"
+      ],
+      "removedServices": [],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {
+        "Healthy hair plans & consultations": [
+          "Consultation- Hairstyles, Hair help, Alopecia Advice",
+          "AFRO HAIRSTYLES",
+          "HUMAN hair curly (1 part)",
+          "HUMAN HAIR Curly with 360 (bun)"
+        ],
+        "Boho braids / goddess braids": [
+          "Box braids/Senegalese twist/passion twist",
+          "CROCHET BRAIDS CURLY",
+          "Curly crochet braids",
+          "Human hair goddess Braids"
+        ]
+      },
+      "handledFingerprints": [
+        "service-add:healthy hair plans & consultations|consultation- hairstyles, hair help, alopecia advice|afro hairstyles|human hair curly (1 part)|human hair curly with 360 (bun)",
+        "service-add:boho braids / goddess braids|box braids/senegalese twist/passion twist|crochet braids curly|curly crochet braids|human hair goddess braids"
+      ]
+    },
+    "blessed-by-sj": {
+      "addedServices": [
+        "Silk press",
+        "Moisturising treatment"
+      ],
+      "removedServices": [],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {
+        "Silk press": [
+          "Silk Press"
+        ],
+        "Moisturising treatment": [
+          "Tailored Steam Treatment"
+        ]
+      },
+      "handledFingerprints": [
+        "service-add:silk press|silk press",
+        "service-add:moisturising treatment|tailored steam treatment"
+      ]
+    },
+    "bleuribbonhair": {
+      "addedServices": [
+        "Wig colouring / bundle colouring"
+      ],
+      "removedServices": [
+        "Wig cornrows"
+      ],
+      "addedServiceFamilies": [
+        "colour"
+      ],
+      "addedServiceEvidence": {
+        "Wig colouring / bundle colouring": [
+          "1.2 CLASSIC LEAVE OUT - BUNDLE COMBO",
+          "CLASSIC LEAVE OUT X (VIRGIN HAIR) BUNDLE COMBO",
+          "CLASSIC LEAVE OUT X (RAW HAIR) BUNDLE COMBO",
+          "FLIP OVER CLASSIC LEAVE OUT - SEW-IN - NO BUNDLES INCLUDED"
+        ]
+      },
+      "handledFingerprints": [
+        "service-remove:wig cornrows",
+        "service-add:wig colouring / bundle colouring|1.2 classic leave out - bundle combo|classic leave out x (virgin hair) bundle combo|classic leave out x (raw hair) bundle combo|flip over classic leave out - sew-in - no bundles included"
+      ]
+    },
+    "braided-by-tayla": {
+      "addedServices": [
+        "Half braids, half sew-in"
+      ],
+      "removedServices": [],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {
+        "Half braids, half sew-in": [
+          "Knotless Braids",
+          "Boho Knotless Braids",
+          "Small Boho Knotless Braids",
+          "Smedium Boho Knotless Braids"
+        ]
+      },
+      "handledFingerprints": [
+        "service-add:half braids, half sew-in|knotless braids|boho knotless braids|small boho knotless braids|smedium boho knotless braids"
+      ]
+    },
+    "brushandbundles": {
+      "addedServices": [
+        "Wig install (frontal / closure)"
+      ],
+      "removedServices": [],
+      "addedServiceFamilies": [
+        "wig"
+      ],
+      "addedServiceEvidence": {
+        "Wig install (frontal / closure)": [
+          "Half wig install"
+        ]
+      },
+      "handledFingerprints": [
+        "service-add:wig install (frontal / closure)|half wig install"
+      ]
+    },
+    "bybrittss": {
+      "addedServices": [
+        "Wig colouring / bundle colouring",
+        "Wig install (frontal / closure)"
+      ],
+      "removedServices": [],
+      "addedServiceFamilies": [
+        "colour",
+        "wig"
+      ],
+      "addedServiceEvidence": {
+        "Wig colouring / bundle colouring": [
+          "Leave Out Sew In + Luxury Bundle package",
+          "Leave Out Sew In + Luxury Bundle package (baby highlights)",
+          "Half Up Half Down Leave Out + Luxury Bundle package",
+          "Ponytail + Luxury Bundle package"
+        ],
+        "Wig install (frontal / closure)": [
+          "Frontal wigs made and posted",
+          "Closure wig made and posted"
+        ]
+      },
+      "handledFingerprints": [
+        "service-add:wig colouring / bundle colouring|leave out sew in + luxury bundle package|leave out sew in + luxury bundle package (baby highlights)|half up half down leave out + luxury bundle package|ponytail + luxury bundle package",
+        "service-add:wig install (frontal / closure)|frontal wigs made and posted|closure wig made and posted"
+      ]
+    },
+    "theblowdryartist": {
+      "addedServices": [],
+      "removedServices": [
+        "Bouncy blowout / round brush blow dry",
+        "Wash & blowdry"
+      ],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {},
+      "handledFingerprints": [
+        "service-remove:bouncy blowout / round brush blow dry",
+        "service-remove:wash & blowdry"
+      ]
+    },
+    "slayybychanny": {
+      "addedServices": [],
+      "removedServices": [
+        "Wig cornrows"
+      ],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {},
+      "handledFingerprints": [
+        "service-remove:wig cornrows"
+      ]
+    },
+    "silkedbyli": {
+      "addedServices": [],
+      "removedServices": [
+        "Bouncy blowout / round brush blow dry"
+      ],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {},
+      "handledFingerprints": [
+        "service-remove:bouncy blowout / round brush blow dry"
+      ]
+    },
+    "si-hair-uk": {
+      "addedServices": [
+        "Stitch braids"
+      ],
+      "removedServices": [
+        "Wig cornrows"
+      ],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {
+        "Stitch braids": [
+          "Boho knotless braids",
+          "Smedium boho knotless braids",
+          "Medium boho knotless braids",
+          "Small boho bob knotless braids"
+        ]
+      },
+      "handledFingerprints": [
+        "service-remove:wig cornrows",
+        "service-add:stitch braids|boho knotless braids|smedium boho knotless braids|medium boho knotless braids|small boho bob knotless braids"
+      ]
+    },
+    "patriziamanias": {
+      "addedServices": [
+        "Trim / hair cut"
+      ],
+      "removedServices": [],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {
+        "Trim / hair cut": [
+          "os = trim(os.replace(data, ''));"
+        ]
+      },
+      "handledFingerprints": [
+        "service-add:trim / hair cut|os = trim(os.replace(data, ''));"
+      ]
+    },
+    "naomistyledit": {
+      "addedServices": [],
+      "removedServices": [
+        "Wash & blowdry",
+        "Bouncy blowout / round brush blow dry"
+      ],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {},
+      "handledFingerprints": [
+        "service-remove:wash & blowdry",
+        "service-remove:bouncy blowout / round brush blow dry"
+      ]
+    },
+    "michellebldn": {
+      "addedServices": [],
+      "removedServices": [
+        "Highlights"
+      ],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {},
+      "handledFingerprints": [
+        "service-remove:highlights"
+      ]
+    },
+    "maluwanichole": {
+      "addedServices": [
+        "K-18 treatment"
+      ],
+      "removedServices": [
+        "Wash & blowdry",
+        "Tracks (+ silk press) / partial / invisible sew-in"
+      ],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {
+        "K-18 treatment": [
+          "The Treatment Files",
+          "Filter by treatment",
+          "Treatment",
+          "All treatments"
+        ]
+      },
+      "handledFingerprints": [
+        "service-remove:wash & blowdry",
+        "service-remove:tracks (+ silk press) / partial / invisible sew-in",
+        "service-add:k-18 treatment|the treatment files|filter by treatment|treatment|all treatments"
+      ]
+    },
+    "jennifer-cynthia-the-hairstylist": {
+      "addedServices": [],
+      "removedServices": [
+        "Wig cornrows"
+      ],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {},
+      "handledFingerprints": [
+        "service-remove:wig cornrows"
+      ]
+    },
+    "hershesons": {
+      "addedServices": [
+        "Trim / hair cut"
+      ],
+      "removedServices": [
+        "Bouncy blowout / round brush blow dry"
+      ],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {
+        "Trim / hair cut": [
+          "os = trim(os.replace(data, ''));"
+        ]
+      },
+      "handledFingerprints": [
+        "service-remove:bouncy blowout / round brush blow dry",
+        "service-add:trim / hair cut|os = trim(os.replace(data, ''));"
+      ]
+    },
+    "hair-by-lauralyn-clinton-london": {
+      "addedServices": [],
+      "removedServices": [
+        "Faux locs",
+        "Wig install (frontal / closure)",
+        "Highlights",
+        "Pixie cut / finger waves",
+        "Wig cornrows"
+      ],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {},
+      "handledFingerprints": [
+        "service-remove:faux locs",
+        "service-remove:wig install (frontal / closure)",
+        "service-remove:highlights",
+        "service-remove:pixie cut / finger waves",
+        "service-remove:wig cornrows"
+      ]
+    },
+    "goddess-dream-booking": {
+      "addedServices": [
+        "Crochet",
+        "Boho braids / goddess braids",
+        "Moisturising treatment",
+        "Fulani / lemonade braids",
+        "Trim / hair cut",
+        "Closure sew-in / closure behind the hairline",
+        "Custom wig",
+        "Wig install (frontal / closure)"
+      ],
+      "removedServices": [
+        "Faux locs"
+      ],
+      "addedServiceFamilies": [
+        "wig"
+      ],
+      "addedServiceEvidence": {
+        "Crochet": [
+          "Crochet",
+          "Crochet Braids",
+          "Crochet Weave"
+        ],
+        "Boho braids / goddess braids": [
+          "Crochet Braids",
+          "Ghana Braids - Jumbo",
+          "Ghana Braids - Medium",
+          "Ghana Braids - Small"
+        ],
+        "Moisturising treatment": [
+          "hair treatment",
+          "protein hair treatment",
+          "deep conditioning treatment",
+          "hot oil treatment"
+        ],
+        "Fulani / lemonade braids": [
+          "Crochet Braids",
+          "Ghana Braids - Jumbo",
+          "Ghana Braids - Medium",
+          "Ghana Braids - Small"
+        ],
+        "Trim / hair cut": [
+          "hair treatment",
+          "protein hair treatment",
+          "Men’s hair cut",
+          "Men’s hair cut / barbing"
+        ],
+        "Closure sew-in / closure behind the hairline": [
+          "Weave 1 Closure / Frontal + 3 bundles"
+        ],
+        "Custom wig": [
+          "Wig Making"
+        ],
+        "Wig install (frontal / closure)": [
+          "Wig installation and revamping"
+        ]
+      },
+      "handledFingerprints": [
+        "service-remove:faux locs",
+        "service-add:crochet|crochet|crochet braids|crochet weave",
+        "service-add:boho braids / goddess braids|crochet braids|ghana braids - jumbo|ghana braids - medium|ghana braids - small",
+        "service-add:moisturising treatment|hair treatment|protein hair treatment|deep conditioning treatment|hot oil treatment",
+        "service-add:fulani / lemonade braids|crochet braids|ghana braids - jumbo|ghana braids - medium|ghana braids - small",
+        "service-add:trim / hair cut|hair treatment|protein hair treatment|men’s hair cut|men’s hair cut / barbing",
+        "service-add:closure sew-in / closure behind the hairline|weave 1 closure / frontal + 3 bundles",
+        "service-add:custom wig|wig making",
+        "service-add:wig install (frontal / closure)|wig installation and revamping|wig installation and revamping"
+      ]
+    },
+    "elleschair": {
+      "addedServices": [
+        "Healthy hair plans & consultations"
+      ],
+      "removedServices": [
+        "Faux locs",
+        "Butterfly locs",
+        "Twists (with extensions)"
+      ],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {
+        "Healthy hair plans & consultations": [
+          "Consultations",
+          "Kid Consultations (Under 16s)",
+          "Adult Consultations ( 16+)",
+          "Natural Hair Treatments"
+        ]
+      },
+      "handledFingerprints": [
+        "service-remove:faux locs",
+        "service-remove:butterfly locs",
+        "service-remove:twists (with extensions)",
+        "service-add:healthy hair plans & consultations|consultations|kid consultations (under 16s)|adult consultations ( 16+)|natural hair treatments"
+      ]
+    },
+    "cotresshairlounge": {
+      "addedServices": [
+        "Wig cornrows",
+        "Scalp detox / treatments",
+        "Olaplex treatment"
+      ],
+      "removedServices": [
+        "Twists (with extensions)"
+      ],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {
+        "Wig cornrows": [
+          "Wig (cornrows)"
+        ],
+        "Scalp detox / treatments": [
+          "Scalp acne: symptoms, causes, prevention and treatment"
+        ],
+        "Olaplex treatment": [
+          "Scalp acne: symptoms, causes, prevention and treatment",
+          "Treatments for damaged hair",
+          "What Olaplex treatment is?"
+        ]
+      },
+      "handledFingerprints": [
+        "service-remove:twists (with extensions)",
+        "service-add:wig cornrows|wig (cornrows)",
+        "service-add:scalp detox / treatments|scalp acne: symptoms, causes, prevention and treatment",
+        "service-add:olaplex treatment|scalp acne: symptoms, causes, prevention and treatment|treatments for damaged hair|what olaplex treatment is?"
+      ]
+    },
+    "colouredbyad": {
+      "addedServices": [
+        "Full head colour"
+      ],
+      "removedServices": [],
+      "addedServiceFamilies": [
+        "colour"
+      ],
+      "addedServiceEvidence": {
+        "Full head colour": [
+          "Book a slot for hair colour customisation &mdash; ColouredbyAd",
+          "Investing in good quality hair is key for achieving your desired hair colour.",
+          "1B ONE COLOUR",
+          "Email: colouredbyad@gmail.com"
+        ]
+      },
+      "handledFingerprints": [
+        "service-add:full head colour|book a slot for hair colour customisation &mdash; colouredbyad|investing in good quality hair is key for achieving your desired hair colour.|1b one colour|email: colouredbyad@gmail.com"
+      ]
+    },
+    "catkalihair": {
+      "addedServices": [],
+      "removedServices": [
+        "Wash & blowdry"
+      ],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {},
+      "handledFingerprints": [
+        "service-remove:wash & blowdry"
+      ]
+    },
+    "clouisebeauty": {
+      "addedServices": [
+        "Healthy hair plans & consultations"
+      ],
+      "removedServices": [
+        "Wash & blowdry",
+        "Wig cornrows"
+      ],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {
+        "Healthy hair plans & consultations": [
+          "Consultations",
+          "Natural hair",
+          "1 part sew in - hair purchased from us",
+          "2 part sew in - Hair purchased from us"
+        ]
+      },
+      "handledFingerprints": [
+        "service-remove:wash & blowdry",
+        "service-remove:wig cornrows",
+        "service-add:healthy hair plans & consultations|consultations|natural hair|1 part sew in - hair purchased from us|2 part sew in - hair purchased from us"
+      ]
+    },
+    "zantibloom": {
+      "addedServices": [
+        "Closure sew-in / closure behind the hairline",
+        "Sleek ponytail / bun"
+      ],
+      "removedServices": [],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {
+        "Closure sew-in / closure behind the hairline": [
+          "Closure sew in",
+          "Behind the hairline sew in (2X6)"
+        ],
+        "Sleek ponytail / bun": [
+          "Sleek ponytail"
+        ]
+      },
+      "handledFingerprints": [
+        "service-add:closure sew-in / closure behind the hairline|closure sew in|behind the hairline sew in (2x6)",
+        "service-add:sleek ponytail / bun|sleek ponytail"
+      ]
+    },
+    "za-wigs": {
+      "addedServices": [],
+      "removedServices": [
+        "Sleek ponytail / bun"
+      ],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {},
+      "handledFingerprints": [
+        "service-remove:sleek ponytail / bun"
+      ]
+    },
+    "with-taliyah-marrett": {
+      "addedServices": [
+        "Healthy hair plans & consultations",
+        "U-part wig install",
+        "Braid take-down",
+        "Trim / hair cut",
+        "Olaplex treatment"
+      ],
+      "removedServices": [],
+      "addedServiceFamilies": [
+        "wig"
+      ],
+      "addedServiceEvidence": {
+        "Healthy hair plans & consultations": [
+          "Consultations",
+          "Take down, wash, treatment & hair extension application"
+        ],
+        "U-part wig install": [
+          "Custom U-Part Wig install- MADE ON THE HEAD",
+          "Custom made U-Part Wig Unit- MADE IN ADVANCE",
+          "Custom Half Wig install- MADE ON THE HEAD",
+          "Installs"
+        ],
+        "Braid take-down": [
+          "Take down, wash, treatment & hair extension application"
+        ],
+        "Trim / hair cut": [
+          "Take down, wash, treatment & hair extension application",
+          "Amika Treatment | Sew & Trim",
+          "Bond Repair Treatment | Sew & Trim",
+          "K18 Revival Treatment | Sew & Trim"
+        ],
+        "Olaplex treatment": [
+          "Treatments +",
+          "Take down, wash, treatment & hair extension application",
+          "Amika Treatment | Sew & Trim",
+          "Bond Repair Treatment | Sew & Trim"
+        ]
+      },
+      "handledFingerprints": [
+        "service-add:healthy hair plans & consultations|consultations|take down, wash, treatment & hair extension application",
+        "service-add:u-part wig install|custom u-part wig install- made on the head|custom made u-part wig unit- made in advance|custom half wig install- made on the head|installs",
+        "service-add:braid take-down|take down, wash, treatment & hair extension application",
+        "service-add:trim / hair cut|take down, wash, treatment & hair extension application|amika treatment | sew & trim|bond repair treatment | sew & trim|k18 revival treatment | sew & trim",
+        "service-add:olaplex treatment|treatments +|take down, wash, treatment & hair extension application|amika treatment | sew & trim|bond repair treatment | sew & trim"
+      ]
+    },
+    "tthairbarldn": {
+      "addedServices": [
+        "Feed-in braids",
+        "Wig cornrows"
+      ],
+      "removedServices": [],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {
+        "Feed-in braids": [
+          "Boho Feed-in Braids Services",
+          "16 BOHO Feed-in Braids - WAIST LENGTH",
+          "20 BOHO Feed-in Braids - WAIST LENGTH"
+        ]
+      },
+      "handledFingerprints": [
+        "service-add:feed-in braids|boho feed-in braids services|16 boho feed-in braids - waist length|20 boho feed-in braids - waist length",
+        "service-add:wig cornrows"
+      ]
+    },
+    "touchedby-tg": {
+      "addedServices": [
+        "Wig cornrows",
+        "Feed-in braids",
+        "Braid take-down"
+      ],
+      "removedServices": [],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {
+        "Wig cornrows": [
+          "Wig cornrows"
+        ],
+        "Feed-in braids": [
+          "All back cornrows- men"
+        ],
+        "Braid take-down": [
+          "Braids",
+          "Goddess braids",
+          "Box Braids - small",
+          "Boho braids"
+        ]
+      },
+      "handledFingerprints": [
+        "service-add:wig cornrows|wig cornrows",
+        "service-add:feed-in braids|all back cornrows- men",
+        "service-add:braid take-down|braids|goddess braids|box braids - small|boho braids"
+      ]
+    },
+    "thelacespaceuk": {
+      "addedServices": [
+        "Closure sew-in / closure behind the hairline"
+      ],
+      "removedServices": [],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {
+        "Closure sew-in / closure behind the hairline": [
+          "PRE-MADE CLOSURE INSTALL",
+          "GLUELESS CLOSURE INSTALL",
+          "FRONTAL/CLOSURE REPLACEMENT + INSTALL DEAL",
+          "CLOSURE REINSTALL"
+        ]
+      },
+      "handledFingerprints": [
+        "service-add:closure sew-in / closure behind the hairline|pre-made closure install|glueless closure install|frontal/closure replacement + install deal|closure reinstall"
+      ]
+    },
+    "the-lace-suite": {
+      "addedServices": [],
+      "removedServices": [
+        "Sleek ponytail / bun"
+      ],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {},
+      "handledFingerprints": [
+        "service-remove:sleek ponytail / bun"
+      ]
+    },
+    "thehairtresser": {
+      "addedServices": [
+        "Boho braids / goddess braids",
+        "Wig cornrows",
+        "Fulani / lemonade braids",
+        "Feed-in braids",
+        "French curl",
+        "Knotless braids",
+        "Curly cut / wash & go / diffuse",
+        "Miracle knots"
+      ],
+      "removedServices": [],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {
+        "Boho braids / goddess braids": [
+          "boho braids",
+          "small bob-length boho braids (+ curling)",
+          "small mid-back length boho braids (+ curling)",
+          "small waist length boho braids"
+        ],
+        "Wig cornrows": [
+          "wig cornrows"
+        ],
+        "Fulani / lemonade braids": [
+          "boho braids",
+          "small bob-length boho braids (+ curling)",
+          "small mid-back length boho braids (+ curling)",
+          "small waist length boho braids"
+        ],
+        "Feed-in braids": [
+          "2 - 6 straight back feed-in braids",
+          "7 - 10 straight back feed-in braids",
+          "11+ straight back feed-in braids"
+        ],
+        "French curl": [
+          "small bob-length boho braids (+ curling)",
+          "small mid-back length boho braids (+ curling)",
+          "medium bob length boho braids (+ curling)",
+          "large bob length boho braids (+curling)"
+        ],
+        "Knotless braids": [
+          "boho braids",
+          "small bob-length boho braids (+ curling)",
+          "small mid-back length boho braids (+ curling)",
+          "small waist length boho braids"
+        ],
+        "Curly cut / wash & go / diffuse": [
+          "wash & go"
+        ],
+        "Miracle knots": [
+          "miracle knots"
+        ]
+      },
+      "handledFingerprints": [
+        "service-add:boho braids / goddess braids|boho braids|small bob-length boho braids (+ curling)|small mid-back length boho braids (+ curling)|small waist length boho braids",
+        "service-add:wig cornrows|wig cornrows",
+        "service-add:fulani / lemonade braids|boho braids|small bob-length boho braids (+ curling)|small mid-back length boho braids (+ curling)|small waist length boho braids",
+        "service-add:feed-in braids|2 - 6 straight back feed-in braids|7 - 10 straight back feed-in braids|11+ straight back feed-in braids",
+        "service-add:french curl|small bob-length boho braids (+ curling)|small mid-back length boho braids (+ curling)|medium bob length boho braids (+ curling)|large bob length boho braids (+curling)",
+        "service-add:knotless braids|boho braids|small bob-length boho braids (+ curling)|small mid-back length boho braids (+ curling)|small waist length boho braids",
+        "service-add:curly cut / wash & go / diffuse|wash & go",
+        "service-add:miracle knots|miracle knots"
+      ]
+    },
+    "the-chair": {
+      "addedServices": [
+        "Healthy hair plans & consultations"
+      ],
+      "removedServices": [
+        "Custom wig"
+      ],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {
+        "Healthy hair plans & consultations": [
+          "Consultations",
+          "Hair Care Plan Consultation [£30]",
+          "Hair Loss Weave Services",
+          "Hair Loss Weave + Closure [£375]"
+        ]
+      },
+      "handledFingerprints": [
+        "service-remove:custom wig",
+        "service-add:healthy hair plans & consultations|consultations|hair care plan consultation [£30]|hair loss weave services|hair loss weave + closure [£375]"
+      ]
+    },
+    "styledbyroxii": {
+      "addedServices": [
+        "Feed-in braids",
+        "Stitch braids",
+        "Butterfly locs",
+        "Highlights"
+      ],
+      "removedServices": [],
+      "addedServiceFamilies": [
+        "colour"
+      ],
+      "addedServiceEvidence": {
+        "Feed-in braids": [
+          "FEED INS",
+          "6-8 FEED INS",
+          "10-12 Feed In Braids",
+          "12-14 Feed In Braids"
+        ],
+        "Stitch braids": [
+          "BOHO BRAIDS",
+          "Smedium boho braids",
+          "Medium Boho Braids",
+          "Large boho braids"
+        ],
+        "Butterfly locs": [
+          "Smedium Butterfly Locs",
+          "Medium Butterfly locs",
+          "Large Butterfly Locs",
+          "✨JAH LOCS✨"
+        ],
+        "Highlights": [
+          "RECREATION/Highlighted styles",
+          "MODEL HIGHLIGHTS RECREATION"
+        ]
+      },
+      "handledFingerprints": [
+        "service-add:feed-in braids|feed ins|6-8 feed ins|10-12 feed in braids|12-14 feed in braids",
+        "service-add:stitch braids|boho braids|smedium boho braids|medium boho braids|large boho braids",
+        "service-add:butterfly locs|smedium butterfly locs|medium butterfly locs|large butterfly locs|✨jah locs✨",
+        "service-add:highlights|recreation/highlighted styles|model highlights recreation"
+      ]
+    },
+    "sixxx": {
+      "addedServices": [
+        "Wash & blowdry",
+        "Boho braids / goddess braids",
+        "Fulani / lemonade braids",
+        "Stitch braids",
+        "Microbraids / x-small braids"
+      ],
+      "removedServices": [],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {
+        "Wash & blowdry": [
+          "Basic Wash and blow dry"
+        ],
+        "Boho braids / goddess braids": [
+          "Classic straight back stitch braids/ XS feed-in braids straight back",
+          "6 classic stitch braids",
+          "6 classic stitch braids with small braids in between",
+          "8 classic stitch braids"
+        ],
+        "Fulani / lemonade braids": [
+          "Classic straight back stitch braids/ XS feed-in braids straight back",
+          "6 classic stitch braids",
+          "6 classic stitch braids with small braids in between",
+          "8 classic stitch braids"
+        ],
+        "Stitch braids": [
+          "Classic straight back stitch braids/ XS feed-in braids straight back",
+          "6 classic stitch braids",
+          "6 classic stitch braids with small braids in between",
+          "8 classic stitch braids"
+        ],
+        "Microbraids / x-small braids": [
+          "Classic straight back stitch braids/ XS feed-in braids straight back",
+          "6 classic stitch braids",
+          "6 classic stitch braids with small braids in between",
+          "8 classic stitch braids"
+        ]
+      },
+      "handledFingerprints": [
+        "service-add:wash & blowdry|basic wash and blow dry",
+        "service-add:boho braids / goddess braids|classic straight back stitch braids/ xs feed-in braids straight back|6 classic stitch braids|6 classic stitch braids with small braids in between|8 classic stitch braids",
+        "service-add:fulani / lemonade braids|classic straight back stitch braids/ xs feed-in braids straight back|6 classic stitch braids|6 classic stitch braids with small braids in between|8 classic stitch braids",
+        "service-add:stitch braids|classic straight back stitch braids/ xs feed-in braids straight back|6 classic stitch braids|6 classic stitch braids with small braids in between|8 classic stitch braids",
+        "service-add:microbraids / x-small braids|classic straight back stitch braids/ xs feed-in braids straight back|6 classic stitch braids|6 classic stitch braids with small braids in between|8 classic stitch braids"
+      ]
+    },
+    "silkstylistuk": {
+      "addedServices": [
+        "Healthy hair plans & consultations"
+      ],
+      "removedServices": [],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {
+        "Healthy hair plans & consultations": [
+          "Natural Hair",
+          "Tape-Ins (HAIR INCLUDED)",
+          "80 pc Tape in install (HAIR INCLUDED)",
+          "100 pc Tape in install (HAIR INCLUDED)"
+        ]
+      },
+      "handledFingerprints": [
+        "service-add:healthy hair plans & consultations|natural hair|tape-ins (hair included)|80 pc tape in install (hair included)|100 pc tape in install (hair included)"
+      ]
+    },
+    "sbeks-hair": {
+      "addedServices": [
+        "Roller set",
+        "Closure sew-in / closure behind the hairline",
+        "Healthy hair plans & consultations"
+      ],
+      "removedServices": [],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {
+        "Roller set": [
+          "Wet set",
+          "Wet set Infill"
+        ],
+        "Closure sew-in / closure behind the hairline": [
+          "Closure Behind Hairline Sew In"
+        ],
+        "Healthy hair plans & consultations": [
+          "Closure Behind Hairline Sew In",
+          "Natural Hair Care",
+          "Sbeks Hair’s Reset",
+          "Sbeks Hair Reset (Blowdry Only)"
+        ]
+      },
+      "handledFingerprints": [
+        "service-add:roller set|wet set|wet set infill",
+        "service-add:closure sew-in / closure behind the hairline|closure behind hairline sew in",
+        "service-add:healthy hair plans & consultations|closure behind hairline sew in|natural hair care|sbeks hair’s reset|sbeks hair reset (blowdry only)"
+      ]
+    },
+    "remolabeauty": {
+      "addedServices": [
+        "Closure sew-in / closure behind the hairline",
+        "Fulani / lemonade braids"
+      ],
+      "removedServices": [],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {
+        "Closure sew-in / closure behind the hairline": [
+          "Closure Sew-In",
+          "2x6 closure behind the hairline"
+        ],
+        "Fulani / lemonade braids": [
+          "Fulani Sew-In"
+        ]
+      },
+      "handledFingerprints": [
+        "service-add:closure sew-in / closure behind the hairline|closure sew-in|2x6 closure behind the hairline",
+        "service-add:fulani / lemonade braids|fulani sew-in"
+      ]
+    },
+    "philip-eric-hair": {
+      "addedServices": [
+        "Closure sew-in / closure behind the hairline",
+        "Sleek ponytail / bun",
+        "Custom wig"
+      ],
+      "removedServices": [],
+      "addedServiceFamilies": [
+        "wig"
+      ],
+      "addedServiceEvidence": {
+        "Closure sew-in / closure behind the hairline": [
+          "LACE CLOSURES",
+          "Lace Closure",
+          "Mini frontal (5\"x5\"/6\"x6\") Closure Sew In",
+          "Handmade Lace Closure Wig"
+        ],
+        "Sleek ponytail / bun": [
+          "1:1 Ponytail ( Private class)"
+        ],
+        "Custom wig": [
+          "Custom Lace frontal Wig"
+        ]
+      },
+      "handledFingerprints": [
+        "service-add:closure sew-in / closure behind the hairline|lace closures|lace closure|mini frontal (5\"x5\"/6\"x6\") closure sew in|handmade lace closure wig",
+        "service-add:sleek ponytail / bun|1:1 ponytail ( private class)",
+        "service-add:custom wig|custom lace frontal wig"
+      ]
+    },
+    "penggirlshair": {
+      "addedServices": [
+        "Frontal sew-in"
+      ],
+      "removedServices": [],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {
+        "Frontal sew-in": [
+          "Frontal sew in",
+          "Frontal ponytail.",
+          "Lace Frontal installation",
+          "360 Frontal install"
+        ]
+      },
+      "handledFingerprints": [
+        "service-add:frontal sew-in|frontal sew in|frontal ponytail.|lace frontal installation|360 frontal install"
+      ]
+    },
+    "peckham-palms": {
+      "addedServices": [
+        "Trim / hair cut",
+        "Faux locs",
+        "Relaxer / texturiser"
+      ],
+      "removedServices": [
+        "Stitch braids"
+      ],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {
+        "Trim / hair cut": [
+          "Trim",
+          "Hair Straightening",
+          "Natural Hair",
+          "Cornrows Natural Hair from"
+        ],
+        "Faux locs": [
+          "Faux Locs"
+        ],
+        "Relaxer / texturiser": [
+          "Relaxers & Texturisers",
+          "Relaxer Retouch",
+          "Relaxer - Virgin"
+        ]
+      },
+      "handledFingerprints": [
+        "service-remove:stitch braids",
+        "service-add:trim / hair cut|trim|hair straightening|natural hair|cornrows natural hair from",
+        "service-add:faux locs|faux locs|faux locs",
+        "service-add:relaxer / texturiser|relaxers & texturisers|relaxer retouch|relaxer - virgin"
+      ]
+    },
+    "nhanced-hair": {
+      "addedServices": [
+        "Highlights"
+      ],
+      "removedServices": [],
+      "addedServiceFamilies": [
+        "colour"
+      ],
+      "addedServiceEvidence": {
+        "Highlights": [
+          "'Faux Highlights' Hair Included Sew-In",
+          "'Faux Highlights' Hair Included Tape-in Install"
+        ]
+      },
+      "handledFingerprints": [
+        "service-add:highlights|'faux highlights' hair included sew-in|'faux highlights' hair included tape-in install"
+      ]
+    },
+    "mochasloungeuk": {
+      "addedServices": [
+        "Wig cornrows"
+      ],
+      "removedServices": [],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {
+        "Wig cornrows": [
+          "Wig Cornrows"
+        ]
+      },
+      "handledFingerprints": [
+        "service-add:wig cornrows|wig cornrows"
+      ]
+    },
+    "lesley-hairx": {
+      "addedServices": [
+        "Quick weave"
+      ],
+      "removedServices": [],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {
+        "Quick weave": [
+          "Small Fulani Quickweave",
+          "Medium Fulani Quickweave"
+        ]
+      },
+      "handledFingerprints": [
+        "service-add:quick weave|small fulani quickweave|medium fulani quickweave"
+      ]
+    },
+    "lamin-label": {
+      "addedServices": [
+        "Quick weave"
+      ],
+      "removedServices": [
+        "U-part wig install",
+        "Twists (with extensions)"
+      ],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {
+        "Quick weave": [
+          "Quick weave flip over"
+        ]
+      },
+      "handledFingerprints": [
+        "service-remove:u-part wig install",
+        "service-add:quick weave|quick weave flip over",
+        "service-remove:twists (with extensions)"
+      ]
+    },
+    "laid-by-sophh": {
+      "addedServices": [
+        "Closure sew-in / closure behind the hairline"
+      ],
+      "removedServices": [],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {
+        "Closure sew-in / closure behind the hairline": [
+          "2x6 Behind the Hairline Closure Sew-In"
+        ]
+      },
+      "handledFingerprints": [
+        "service-add:closure sew-in / closure behind the hairline|2x6 behind the hairline closure sew-in"
+      ]
+    },
+    "kulture-hair": {
+      "addedServices": [
+        "U-part wig install"
+      ],
+      "removedServices": [],
+      "addedServiceFamilies": [
+        "wig"
+      ],
+      "addedServiceEvidence": {
+        "U-part wig install": [
+          "1. Wig Making& Install",
+          "Standard Custom Wig Making& Install",
+          "HALF WIG/UPART WIG CONSTRUCTION",
+          "Bespoke Custom Wig Making& Install"
+        ]
+      },
+      "handledFingerprints": [
+        "service-add:u-part wig install|1. wig making& install|standard custom wig making& install|half wig/upart wig construction|bespoke custom wig making& install"
+      ]
+    },
+    "kimmie-cosmetics": {
+      "addedServices": [],
+      "removedServices": [
+        "Wash & blowdry"
+      ],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {},
+      "handledFingerprints": [
+        "service-remove:wash & blowdry"
+      ]
+    },
+    "keratin-by-anais": {
+      "addedServices": [
+        "Keratin treatment"
+      ],
+      "removedServices": [],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {
+        "Keratin treatment": [
+          "Make an appointment at Keratin by Anais - 16b Pratt Street - London"
+        ]
+      },
+      "handledFingerprints": [
+        "service-add:keratin treatment|make an appointment at keratin by anais - 16b pratt street - london"
+      ]
+    },
+    "jazzy-thee-hair-artist": {
+      "addedServices": [
+        "Half up half down"
+      ],
+      "removedServices": [],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {
+        "Half up half down": [
+          "Maine Strand (Y tip) half head",
+          "Microlinks I tip (half head)",
+          "Half up Half down sew in"
+        ]
+      },
+      "handledFingerprints": [
+        "service-add:half up half down|maine strand (y tip) half head|microlinks i tip (half head)|half up half down sew in"
+      ]
+    },
+    "hurthe-stylist": {
+      "addedServices": [
+        "Wig cornrows"
+      ],
+      "removedServices": [],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {},
+      "handledFingerprints": [
+        "service-add:wig cornrows"
+      ]
+    },
+    "houseofsoraiafurtado": {
+      "addedServices": [
+        "Miracle knots"
+      ],
+      "removedServices": [],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {
+        "Miracle knots": [
+          "Miracle knots"
+        ]
+      },
+      "handledFingerprints": [
+        "service-add:miracle knots|miracle knots"
+      ]
+    },
+    "houseoflocsuk": {
+      "addedServices": [
+        "Starter locs"
+      ],
+      "removedServices": [],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {
+        "Starter locs": [
+          "Boho Locs with raw human hair - Semi permanent locs",
+          "Boho locs (shoulder length) or slightly pas shoulder",
+          "Boho locs 18” ( MidBack)or slightly past MidBack",
+          "Boho locs 24” or above butt (Waist Length)"
+        ]
+      },
+      "handledFingerprints": [
+        "service-add:starter locs|boho locs with raw human hair - semi permanent locs|boho locs (shoulder length) or slightly pas shoulder|boho locs 18” ( midback)or slightly past midback|boho locs 24” or above butt (waist length)"
+      ]
+    },
+    "hair-studio-by-enitan": {
+      "addedServices": [
+        "Olaplex treatment"
+      ],
+      "removedServices": [
+        "Wash & blowdry",
+        "Natural hair coaches / educators"
+      ],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {
+        "Olaplex treatment": [
+          "Bond Builder Treatment"
+        ]
+      },
+      "handledFingerprints": [
+        "service-remove:wash & blowdry",
+        "service-remove:natural hair coaches / educators",
+        "service-add:olaplex treatment|bond builder treatment"
+      ]
+    },
+    "hairbytshi": {
+      "addedServices": [
+        "Flipover / Versatile sew-in"
+      ],
+      "removedServices": [],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {
+        "Flipover / Versatile sew-in": [
+          "Flipover Sew-in",
+          "Versatile Sew-in"
+        ]
+      },
+      "handledFingerprints": [
+        "service-add:flipover / versatile sew-in|flipover sew-in|versatile sew-in"
+      ]
+    },
+    "hairbyjldn": {
+      "addedServices": [
+        "Butterfly locs",
+        "French curl",
+        "Twists (with extensions)",
+        "Wig cornrows"
+      ],
+      "removedServices": [],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {
+        "Butterfly locs": [
+          "Faux Locs/ invisible locs",
+          "Faux/butterfly locs- shoulder length",
+          "Faux/butterfly locs- mid back",
+          "Faux/butterfly locs- bum length"
+        ],
+        "French curl": [
+          "French curls",
+          "Medium French curls waist",
+          "Smedium French curls waist",
+          "Small French curls waist length"
+        ],
+        "Twists (with extensions)": [
+          "Smedium goddess senegalese twists- waist",
+          "Small goddess senegalese twists- waist",
+          "Senegalese twists",
+          "Large Senegalese twists-waist"
+        ]
+      },
+      "handledFingerprints": [
+        "service-add:butterfly locs|faux locs/ invisible locs|faux/butterfly locs- shoulder length|faux/butterfly locs- mid back|faux/butterfly locs- bum length",
+        "service-add:french curl|french curls|medium french curls waist|smedium french curls waist|small french curls waist length",
+        "service-add:twists (with extensions)|smedium goddess senegalese twists- waist|small goddess senegalese twists- waist|senegalese twists|large senegalese twists-waist",
+        "service-add:wig cornrows"
+      ]
+    },
+    "hair-by-sharon-dempsey": {
+      "addedServices": [
+        "Keratin treatment",
+        "Healthy hair plans & consultations",
+        "K-18 treatment",
+        "Traditional sew-in / leave out"
+      ],
+      "removedServices": [],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {
+        "Keratin treatment": [
+          "Keratin Smoothing Short Hair",
+          "Keratin Smoothing Medium Hair",
+          "Keratin Smoothing from £250 from 2h",
+          "Treatment"
+        ],
+        "Healthy hair plans & consultations": [
+          "Cut and Blow dry Long hair",
+          "Keratin Smoothing Short Hair",
+          "Keratin Smoothing Medium Hair",
+          "Kertin Smoothing Long Hair"
+        ],
+        "K-18 treatment": [
+          "Treatment",
+          "Treatment & Go Curly Finish",
+          "Basic Treatment Blow/Finish",
+          "Prescribed Treatment Blow/Finish (Uberliss/Collagen)"
+        ],
+        "Traditional sew-in / leave out": [
+          "Sew in with Leave/Finish",
+          "Sew In With Leave/Finish With Wash Prior £30"
+        ]
+      },
+      "handledFingerprints": [
+        "service-add:keratin treatment|keratin smoothing short hair|keratin smoothing medium hair|keratin smoothing from £250 from 2h|treatment",
+        "service-add:healthy hair plans & consultations|cut and blow dry long hair|keratin smoothing short hair|keratin smoothing medium hair|kertin smoothing long hair",
+        "service-add:k-18 treatment|treatment|treatment & go curly finish|basic treatment blow/finish|prescribed treatment blow/finish (uberliss/collagen)",
+        "service-add:traditional sew-in / leave out|sew in with leave/finish|sew in with leave/finish with wash prior £30"
+      ]
+    },
+    "ess-belle-tresses": {
+      "addedServices": [
+        "Traditional sew-in / leave out"
+      ],
+      "removedServices": [],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {
+        "Traditional sew-in / leave out": [
+          "Traditional Sew In"
+        ]
+      },
+      "handledFingerprints": [
+        "service-add:traditional sew-in / leave out|traditional sew in"
+      ]
+    },
+    "daniella-osei": {
+      "addedServices": [
+        "Moisturising treatment"
+      ],
+      "removedServices": [],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {
+        "Moisturising treatment": [
+          "Moisture Maintenance Treatment - Returning Clients",
+          "Scalp Revival Treatment (New/Returning)"
+        ]
+      },
+      "handledFingerprints": [
+        "service-add:moisturising treatment|moisture maintenance treatment - returning clients|scalp revival treatment (new/returning)"
+      ]
+    },
+    "crownedbygabs": {
+      "addedServices": [
+        "Twists (with extensions)",
+        "Knotless braids",
+        "Wig cornrows",
+        "Crochet",
+        "Sleek ponytail / bun"
+      ],
+      "removedServices": [],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {
+        "Twists (with extensions)": [
+          "Passion twists",
+          "Crochet Passion Twists",
+          "Passion twists - 12\"",
+          "Passion twists - 18''"
+        ],
+        "Knotless braids": [
+          "Indie Locs - Knotless",
+          "Knotless Soft Locs"
+        ],
+        "Crochet": [
+          "Crochet Locs - Install Only",
+          "Individual Crochet Locs",
+          "Invisible Crochet Install",
+          "Crochet Passion Twists"
+        ],
+        "Sleek ponytail / bun": [
+          "Barbie Locs Ponytail"
+        ]
+      },
+      "handledFingerprints": [
+        "service-add:twists (with extensions)|passion twists|crochet passion twists|passion twists - 12\"|passion twists - 18''",
+        "service-add:knotless braids|indie locs - knotless|knotless soft locs",
+        "service-add:wig cornrows",
+        "service-add:crochet|crochet locs - install only|individual crochet locs|invisible crochet install|crochet passion twists",
+        "service-add:sleek ponytail / bun|barbie locs ponytail"
+      ]
+    },
+    "crownedbeauty-22": {
+      "addedServices": [
+        "Closure sew-in / closure behind the hairline"
+      ],
+      "removedServices": [],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {
+        "Closure sew-in / closure behind the hairline": [
+          "Lace closure wig:",
+          "Closure sewin",
+          "Premade closure wig",
+          "Closure wig reglue"
+        ]
+      },
+      "handledFingerprints": [
+        "service-add:closure sew-in / closure behind the hairline|lace closure wig:|closure sewin|premade closure wig|closure wig reglue"
+      ]
+    },
+    "coiffedbywonita": {
+      "addedServices": [
+        "Updo"
+      ],
+      "removedServices": [],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {
+        "Updo": [
+          "Prom updo special"
+        ]
+      },
+      "handledFingerprints": [
+        "service-add:updo|prom updo special"
+      ]
+    },
+    "cocoas-touch": {
+      "addedServices": [
+        "Microbraids / x-small braids"
+      ],
+      "removedServices": [],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {
+        "Microbraids / x-small braids": [
+          "100% Human Hair Only l Boho Braids (Vietnamese or Indian hair included)",
+          "SMALL - 100% human hair braids - INDIAN HAIR (3 bundles)",
+          "SMEDIUM - 100% human hair braids - INDIAN HAIR (2 bundles)",
+          "SMEDIUM - 100% human hair braids - INDIAN HAIR (3 bundles)"
+        ]
+      },
+      "handledFingerprints": [
+        "service-add:microbraids / x-small braids|100% human hair only l boho braids (vietnamese or indian hair included)|small - 100% human hair braids - indian hair (3 bundles)|smedium - 100% human hair braids - indian hair (2 bundles)|smedium - 100% human hair braids - indian hair (3 bundles)"
+      ]
+    },
+    "chae-hair": {
+      "addedServices": [
+        "U-part wig install",
+        "Updo",
+        "Wig install (frontal / closure)",
+        "Closure sew-in / closure behind the hairline"
+      ],
+      "removedServices": [],
+      "addedServiceFamilies": [
+        "wig"
+      ],
+      "addedServiceEvidence": {
+        "U-part wig install": [
+          "Middle Part Braided Pony",
+          "3 Part Braided Pony",
+          "Middle Part Knot Bun",
+          "3 Part Knot Bun"
+        ],
+        "Wig install (frontal / closure)": [
+          "2x6 Closure Wig Unit",
+          "Ready Made Half Wig Install"
+        ],
+        "Closure sew-in / closure behind the hairline": [
+          "2x6 Closure Wig Unit",
+          "2x6 Closure Sew In"
+        ]
+      },
+      "handledFingerprints": [
+        "service-add:u-part wig install|middle part braided pony|3 part braided pony|middle part knot bun|3 part knot bun",
+        "service-add:updo",
+        "service-add:wig install (frontal / closure)|2x6 closure wig unit|ready made half wig install",
+        "service-add:closure sew-in / closure behind the hairline|2x6 closure wig unit|2x6 closure sew in"
+      ]
     }
   },
   "checks": []

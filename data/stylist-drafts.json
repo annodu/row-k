@@ -1,10 +1,62 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-06-13",
-    "count": 1
+    "updatedAt": "2026-06-24",
+    "count": 2
   },
   "drafts": [
+    {
+      "id": "hannurco",
+      "status": "ready_to_approve",
+      "name": "Hannurco",
+      "areaId": "kent",
+      "areaIds": [
+        "kent",
+        "mobile"
+      ],
+      "areaLabel": "Kent",
+      "neighbourhood": "Kent and Mobile",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://hannur.as.me/schedule/8bb3fffe",
+      "instagramUrl": "https://www.instagram.com/hannurco/",
+      "tiktokUrl": "",
+      "addedVia": "Cowork scrape",
+      "services": [
+        "Feed-in braids",
+        "Twists (with extensions)",
+        "Retwist",
+        "Braid take-down",
+        "Wash & blowdry",
+        "Fulani / lemonade braids"
+      ],
+      "rawServices": [],
+      "hijabiFriendly": true,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "priceBand": "£",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "Take down service - £45",
+        "Cornrows - £25",
+        "Fulani braids - £45",
+        "Cornrows into plaits / twists - £45",
+        "Small single plaits / Twists - £45",
+        "Medium single plaits / Twists - £40",
+        "Large single plaits / Twists - £35",
+        "Locs retwist & Styling - £65"
+      ],
+      "priceCheckedAt": "2026-06-04",
+      "priceUpdatedAt": "2026-06-04",
+      "priceConfidence": "high",
+      "summary": "Manual entry added from your latest salon update batch.",
+      "warnings": [],
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "createdAt": "2026-06-24",
+      "updatedAt": "2026-06-24"
+    },
     {
       "id": "microsbylaura-mpi6stjg",
       "status": "needs_review",

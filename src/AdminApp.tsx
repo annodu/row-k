@@ -320,6 +320,7 @@ type DirectoryCheck = {
   bookingUrl?: string;
   instagramUrl?: string;
   hijabiFriendly?: boolean;
+  wheelchairAccessible?: boolean;
   priceBand?: PriceBand;
   servicePriceBand?: PriceBand;
   packagePriceBand?: PriceBand;
@@ -382,7 +383,7 @@ type BookingPreview = {
 };
 
 type AttributeSuggestion = {
-  field: "hijabiFriendly";
+  field: "hijabiFriendly" | "wheelchairAccessible";
   value: true;
   label: string;
   evidence: {
@@ -396,7 +397,9 @@ type FreshnessUpdate = {
   removeServices?: string[];
   bookingUrl?: string;
   instagramUrl?: string;
+  websiteUrl?: string;
   hijabiFriendly?: boolean;
+  wheelchairAccessible?: boolean;
   priceBand?: PriceBand;
   servicePriceBand?: PriceBand;
   packagePriceBand?: PriceBand;
@@ -409,6 +412,7 @@ type FreshnessUpdate = {
   rejectAddedServices?: string[];
   rejectRemovedServices?: string[];
   rejectHijabiFriendly?: boolean;
+  rejectWheelchairAccessible?: boolean;
   rejectPriceBand?: boolean;
   rejectLocation?: boolean;
   areaId?: string;
@@ -439,6 +443,7 @@ type FreshnessUndoState = {
   check: DirectoryCheck;
   previousServices: string[];
   previousHijabiFriendly?: boolean;
+  previousWheelchairAccessible?: boolean;
   update: FreshnessUpdate;
   label: string;
 };
@@ -975,6 +980,36 @@ export function AdminApp() {
     }
   }
 
+  async function unpublishStylist(draft: StylistDraft) {
+    if (getDraftDisplayStatus(draft) !== "published") {
+      return;
+    }
+
+    setMessage("");
+    setIsBusy(true);
+    try {
+      const response = await fetch(`/api/admin/stylists/published/${draft.id}/unpublish`, {
+        method: "POST",
+        credentials: "include",
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok) {
+        notify(payload.message || "Could not unpublish stylist.", "error");
+        return;
+      }
+
+      if (payload.draft) {
+        setDrafts((current) => [payload.draft, ...current.filter((item) => item.id !== payload.draft.id)]);
+      }
+      setPublishedStylists((current) => current.filter((item) => item.id !== draft.id));
+      setSelectedDraftId(payload.draft?.id ?? draft.id);
+      setIsDraftEditorOpen(true);
+      notify("Stylist moved back to ready to publish.");
+    } finally {
+      setIsBusy(false);
+    }
+  }
+
   async function runChecks(offset = 0, mode: "freshness" | "pricing" = "freshness") {
     setMessage("");
     const isFullRun = offset === 0;
@@ -1308,6 +1343,7 @@ export function AdminApp() {
       check: cloneDirectoryCheck(check),
       previousServices: [...check.currentServices],
       previousHijabiFriendly: check.hijabiFriendly === true,
+      previousWheelchairAccessible: check.wheelchairAccessible === true,
       update,
       label: getFreshnessUndoLabel(update),
     };
@@ -1330,6 +1366,9 @@ export function AdminApp() {
       );
       if (update.hijabiFriendly === true) {
         setPublishedStylists((current) => current.map((item) => (item.id === check.id ? { ...item, hijabiFriendly: true } : item)));
+      }
+      if (update.wheelchairAccessible === true) {
+        setPublishedStylists((current) => current.map((item) => (item.id === check.id ? { ...item, wheelchairAccessible: true } : item)));
       }
       if (update.priceBand) {
         setPublishedStylists((current) =>
@@ -1370,9 +1409,11 @@ export function AdminApp() {
           update: lastFreshnessUndo.update,
           previousServices: lastFreshnessUndo.previousServices,
           previousHijabiFriendly: lastFreshnessUndo.previousHijabiFriendly,
+          previousWheelchairAccessible: lastFreshnessUndo.previousWheelchairAccessible,
           rejectAddedServices: lastFreshnessUndo.update.rejectAddedServices,
           rejectRemovedServices: lastFreshnessUndo.update.rejectRemovedServices,
           rejectHijabiFriendly: lastFreshnessUndo.update.rejectHijabiFriendly,
+          rejectWheelchairAccessible: lastFreshnessUndo.update.rejectWheelchairAccessible,
           rejectPriceBand: lastFreshnessUndo.update.rejectPriceBand,
           rejectLocation: lastFreshnessUndo.update.rejectLocation,
         }),
@@ -1558,6 +1599,7 @@ export function AdminApp() {
           onSaveDraft={() => selectedDraft ? saveDraft(selectedDraft) : undefined}
           onApproveDraft={() => selectedDraft ? approveDraft(selectedDraft) : undefined}
           onDeleteDraft={() => selectedDraft ? deleteStylist(selectedDraft) : undefined}
+          onUnpublishDraft={() => selectedDraft ? unpublishStylist(selectedDraft) : undefined}
         />
       ) : null}
 
@@ -1678,6 +1720,7 @@ function StylistsPage({
   onSaveDraft,
   onApproveDraft,
   onDeleteDraft,
+  onUnpublishDraft,
 }: {
   drafts: StylistDraft[];
   allDrafts: StylistDraft[];
@@ -1700,6 +1743,7 @@ function StylistsPage({
   onSaveDraft: () => void;
   onApproveDraft: () => void;
   onDeleteDraft: () => void;
+  onUnpublishDraft: () => void;
 }) {
   const [stylistView, setStylistView] = useState<"table" | "kanban">("table");
   const [stylistSort, setStylistSort] = useState<StylistSort>(null);
@@ -1907,6 +1951,7 @@ function StylistsPage({
           onSave={onSaveDraft}
           onApprove={onApproveDraft}
           onDelete={onDeleteDraft}
+          onUnpublish={onUnpublishDraft}
         />
       ) : null}
     </div>
@@ -2079,6 +2124,7 @@ function DraftEditorDrawer({
   onSave,
   onApprove,
   onDelete,
+  onUnpublish,
 }: {
   draft: StylistDraft;
   regions: RegionOption[];
@@ -2091,6 +2137,7 @@ function DraftEditorDrawer({
   onSave: () => void;
   onApprove: () => void;
   onDelete: () => void;
+  onUnpublish: () => void;
 }) {
   const isPublished = getDraftDisplayStatus(draft) === "published";
   const deleteLabel = isPublished ? "Delete published stylist" : "Delete draft";
@@ -2117,16 +2164,30 @@ function DraftEditorDrawer({
             <button type="button" onClick={onClose} className="inline-flex size-8 items-center justify-center rounded-md text-stone-500 hover:bg-stone-100 hover:text-stone-950" aria-label="Close editor" title="Close editor">
               <ChevronsRight className="size-4" />
             </button>
-            <button
-              type="button"
-              onClick={onDelete}
-              disabled={isBusy}
-              className="inline-flex size-8 items-center justify-center rounded-md text-red-700 transition hover:bg-red-50 disabled:cursor-not-allowed disabled:opacity-40"
-              aria-label={deleteLabel}
-              title={deleteLabel}
-            >
-              <Trash2 className="size-4" />
-            </button>
+            <div className="flex items-center gap-2">
+              {isPublished ? (
+                <button
+                  type="button"
+                  onClick={onUnpublish}
+                  disabled={isBusy}
+                  className="inline-flex size-8 items-center justify-center rounded-md text-stone-600 transition hover:bg-stone-100 hover:text-stone-950 disabled:cursor-not-allowed disabled:opacity-40"
+                  aria-label="Unpublish stylist"
+                  title="Unpublish stylist"
+                >
+                  <Unlink className="size-4" />
+                </button>
+              ) : null}
+              <button
+                type="button"
+                onClick={onDelete}
+                disabled={isBusy}
+                className="inline-flex size-8 items-center justify-center rounded-md text-red-700 transition hover:bg-red-50 disabled:cursor-not-allowed disabled:opacity-40"
+                aria-label={deleteLabel}
+                title={deleteLabel}
+              >
+                <Trash2 className="size-4" />
+              </button>
+            </div>
           </div>
         </div>
 
@@ -2874,14 +2935,14 @@ function FreshnessRecommendationItem({
       ? { rejectAddedServices: [detail.service] }
       : detail.kind === "remove" && detail.service
         ? { rejectRemovedServices: [detail.service] }
-        : detail.kind === "attribute" && detail.attributeField === "hijabiFriendly"
-          ? { rejectHijabiFriendly: true }
+        : detail.kind === "attribute" && detail.attributeField
+          ? getAttributeRejectUpdate(detail.attributeField)
           : detail.kind === "price" || detail.kind === "manual-price"
             ? { rejectPriceBand: true }
             : detail.kind === "location"
               ? { rejectLocation: true }
         : row.rejectUpdate;
-  const primaryActionLabel = isAdd ? "Add service" : isRemove ? "Remove" : isAttribute ? "Mark hijabi-friendly" : isPrice || isManualPrice ? "Set band" : detail.kind === "location" ? "Update location" : detail.kind === "fix" ? "Save" : "Resolve";
+  const primaryActionLabel = isAdd ? "Add service" : isRemove ? "Remove" : isAttribute ? getAttributeActionLabel(detail.attributeField) : isPrice || isManualPrice ? "Set band" : detail.kind === "location" ? "Update location" : detail.kind === "fix" ? "Save" : "Resolve";
   const secondaryActionLabel = isAdd ? "Ignore" : isRemove ? "Keep" : "Ignore";
   const sortedPriceValues = [...(detail.priceValues || [])].sort((left, right) => left - right);
 
@@ -3166,8 +3227,8 @@ function getFreshnessDetailAcceptUpdate(detail: FreshnessRecommendationDetail, r
   if (detail.kind === "remove" && detail.service) {
     return { removeServices: [detail.service] };
   }
-  if (detail.kind === "attribute" && detail.attributeField === "hijabiFriendly") {
-    return { hijabiFriendly: true };
+  if (detail.kind === "attribute" && detail.attributeField) {
+    return getAttributeAcceptUpdate(detail.attributeField);
   }
   if ((detail.kind === "price" || detail.kind === "manual-price") && (selectedPriceBand || detail.priceBand)) {
     return {
@@ -3190,6 +3251,18 @@ function getFreshnessDetailAcceptUpdate(detail: FreshnessRecommendationDetail, r
     };
   }
   return row.acceptUpdate;
+}
+
+function getAttributeAcceptUpdate(field: AttributeSuggestion["field"]): FreshnessUpdate {
+  return field === "wheelchairAccessible" ? { wheelchairAccessible: true } : { hijabiFriendly: true };
+}
+
+function getAttributeRejectUpdate(field: AttributeSuggestion["field"]): FreshnessUpdate {
+  return field === "wheelchairAccessible" ? { rejectWheelchairAccessible: true } : { rejectHijabiFriendly: true };
+}
+
+function getAttributeActionLabel(field?: AttributeSuggestion["field"]) {
+  return field === "wheelchairAccessible" ? "Mark wheelchair accessible" : "Mark hijabi-friendly";
 }
 
 function formatDetectedPrice(value: number) {
@@ -3227,6 +3300,7 @@ type FreshnessRecommendationGroup = {
     addServices?: string[];
     removeServices?: string[];
     hijabiFriendly?: boolean;
+    wheelchairAccessible?: boolean;
     priceBand?: PriceBand;
     servicePriceBand?: PriceBand;
     packagePriceBand?: PriceBand;
@@ -3245,7 +3319,7 @@ type FreshnessRecommendationDetail = {
   label: string;
   description: string;
   service?: string;
-  attributeField?: "hijabiFriendly";
+  attributeField?: AttributeSuggestion["field"];
   priceBand?: PriceBand;
   servicePriceBand?: PriceBand;
   packagePriceBand?: PriceBand;
@@ -3423,12 +3497,15 @@ function buildFreshnessRecommendationGroups(checks: DirectoryCheck[]): Freshness
 
     const hasServiceRecommendations = addedServices.length > 0 || removedServices.length > 0;
     const hasHijabiFriendlyRecommendation = attributeSuggestions.some((suggestion) => suggestion.field === "hijabiFriendly");
+    const hasWheelchairAccessibleRecommendation = attributeSuggestions.some((suggestion) => suggestion.field === "wheelchairAccessible");
+    const hasAttributeRecommendations = hasHijabiFriendlyRecommendation || hasWheelchairAccessibleRecommendation;
     const linkDismissUpdate = getLinkDismissUpdate(check);
-    const acceptUpdate = hasServiceRecommendations || hasHijabiFriendlyRecommendation || hasPriceRecommendation
+    const acceptUpdate = hasServiceRecommendations || hasAttributeRecommendations || hasPriceRecommendation
       ? {
           ...(addedServices.length ? { addServices: addedServices } : {}),
           ...(removedServices.length ? { removeServices: removedServices } : {}),
           ...(hasHijabiFriendlyRecommendation ? { hijabiFriendly: true } : {}),
+          ...(hasWheelchairAccessibleRecommendation ? { wheelchairAccessible: true } : {}),
           ...(hasPriceRecommendation && priceCheck?.priceBand ? {
             priceBand: priceCheck.priceBand,
             servicePriceBand: priceCheck.servicePriceBand || priceCheck.priceBand,
@@ -3442,11 +3519,12 @@ function buildFreshnessRecommendationGroups(checks: DirectoryCheck[]): Freshness
           } : {}),
         }
       : undefined;
-    const rejectUpdate = hasServiceRecommendations || hasHijabiFriendlyRecommendation || linkDismissUpdate || hasPriceRecommendation
+    const rejectUpdate = hasServiceRecommendations || hasAttributeRecommendations || linkDismissUpdate || hasPriceRecommendation
       ? {
           ...(addedServices.length ? { rejectAddedServices: addedServices } : {}),
           ...(removedServices.length ? { rejectRemovedServices: removedServices } : {}),
           ...(hasHijabiFriendlyRecommendation ? { rejectHijabiFriendly: true } : {}),
+          ...(hasWheelchairAccessibleRecommendation ? { rejectWheelchairAccessible: true } : {}),
           ...(hasPriceRecommendation ? { rejectPriceBand: true } : {}),
           ...linkDismissUpdate,
         }
@@ -3925,7 +4003,7 @@ function normalizeEvidenceText(value: string) {
 
 function isActionableFreshnessIssue(issue: string, check: DirectoryCheck) {
   const normalizedIssue = issue.toLowerCase();
-  if (normalizedIssue === "possible new services found" || normalizedIssue === "possible removed services found" || normalizedIssue === "possible hijabi-friendly wording found" || normalizedIssue === "possible pricing band found" || normalizedIssue === "manual price check required") {
+  if (normalizedIssue === "possible new services found" || normalizedIssue === "possible removed services found" || normalizedIssue === "possible hijabi-friendly wording found" || normalizedIssue === "possible wheelchair accessibility wording found" || normalizedIssue === "possible pricing band found" || normalizedIssue === "manual price check required") {
     return false;
   }
   if (normalizedIssue.includes("instagram") && check.linkChecks.some((linkCheck) => linkCheck.type === "instagram" && linkCheck.status !== "ok")) {
@@ -6833,11 +6911,15 @@ function removeReviewedServices(current: string[], reviewed: string[]) {
 }
 
 function removeReviewedAttributeSuggestions(current: AttributeSuggestion[] = [], update: FreshnessUpdate) {
-  if (update.hijabiFriendly !== true && update.rejectHijabiFriendly !== true) {
-    return current;
-  }
-
-  return current.filter((suggestion) => suggestion.field !== "hijabiFriendly");
+  return current.filter((suggestion) => {
+    if (suggestion.field === "hijabiFriendly") {
+      return update.hijabiFriendly !== true && update.rejectHijabiFriendly !== true;
+    }
+    if (suggestion.field === "wheelchairAccessible") {
+      return update.wheelchairAccessible !== true && update.rejectWheelchairAccessible !== true;
+    }
+    return true;
+  });
 }
 
 function removeReviewedLinkChecks(check: DirectoryCheck, update: FreshnessUpdate) {
@@ -6886,6 +6968,7 @@ function updateChecksAfterFreshnessAction(
           areaLabel: update.areaLabel ?? item.areaLabel,
           locationReviewIgnored: update.rejectLocation === true ? true : item.locationReviewIgnored,
           hijabiFriendly: update.hijabiFriendly === true ? true : item.hijabiFriendly,
+          wheelchairAccessible: update.wheelchairAccessible === true ? true : item.wheelchairAccessible,
           priceCheck: update.priceBand || update.rejectPriceBand ? undefined : item.priceCheck,
           currentServices: salon?.services ?? item.currentServices,
           addedServices: removeReviewedServices(item.addedServices, [...(update.addServices ?? []), ...(update.rejectAddedServices ?? [])]),
@@ -6916,6 +6999,12 @@ function getFreshnessUndoLabel(update: FreshnessUpdate) {
   }
   if (update.rejectHijabiFriendly === true) {
     return "ignored hijabi-friendly recommendation";
+  }
+  if (update.wheelchairAccessible === true) {
+    return "marked wheelchair accessible";
+  }
+  if (update.rejectWheelchairAccessible === true) {
+    return "ignored wheelchair accessibility recommendation";
   }
   if (update.rejectPriceBand === true) {
     return "ignored price recommendation";

@@ -365,6 +365,45 @@ export function registerAdminStylistRoutes(app) {
     res.json({ ok: true, id: req.params.id });
   });
 
+  app.post("/api/admin/stylists/published/:id/unpublish", requireAdmin, async (req, res) => {
+    const manualIndex = await readJson(manualIndexPath, { meta: { source: "manual" }, salons: [] });
+    const salonIndex = manualIndex.salons.findIndex((salon) => salon.id === req.params.id);
+    if (salonIndex === -1) {
+      return res.status(404).json({ ok: false, message: "Published stylist not found." });
+    }
+
+    const now = today();
+    const [salon] = manualIndex.salons.splice(salonIndex, 1);
+    manualIndex.meta = {
+      ...manualIndex.meta,
+      updatedAt: now,
+      count: manualIndex.salons.length,
+    };
+
+    const store = await readDraftStore();
+    const draft = {
+      ...publishedSalonToDraft(salon, now),
+      status: "ready_to_approve",
+      updatedAt: now,
+    };
+    store.drafts = [draft, ...store.drafts.filter((item) => item.id !== draft.id)];
+
+    if (isGitHubJsonBacked()) {
+      await writeJsonFilesToGitHub(
+        [
+          { path: "data/manual-salons.json", payload: manualIndex },
+          { path: "data/stylist-drafts.json", payload: buildDraftStorePayload(store) },
+        ],
+        `Unpublish ${salon.name}`,
+      );
+    } else {
+      await writeJson(manualIndexPath, manualIndex);
+      await writeDraftStore(store);
+    }
+
+    res.json({ ok: true, draft, id: req.params.id });
+  });
+
   app.get("/api/admin/dashboard", requireAdmin, async (_req, res) => {
     const draftStore = await readDraftStore();
     const freshnessStore = await readFreshnessStore({ meta: { updatedAt: null, checkedCount: 0, total: 0 }, checks: [] });
@@ -794,6 +833,7 @@ export function registerAdminStylistRoutes(app) {
     const rejectAddedServices = normalizeServices(toArray(req.body?.rejectAddedServices));
     const rejectRemovedServices = normalizeServices(toArray(req.body?.rejectRemovedServices));
     const rejectHijabiFriendly = req.body?.rejectHijabiFriendly === true;
+    const rejectWheelchairAccessible = req.body?.rejectWheelchairAccessible === true;
     const locationAreaIds = normalizeAreaIds(Array.isArray(req.body?.areaIds) && req.body.areaIds.length ? req.body.areaIds : req.body?.areaId ? [req.body.areaId] : []);
     const locationAreaLabel = cleanString(req.body?.areaLabel) || areaLabelForIds(locationAreaIds);
     const currentServices = normalizeServices(salon.services || []);
@@ -818,6 +858,7 @@ export function registerAdminStylistRoutes(app) {
           }
         : {}),
       ...(req.body?.hijabiFriendly === true ? { hijabiFriendly: true } : {}),
+      ...(req.body?.wheelchairAccessible === true ? { wheelchairAccessible: true } : {}),
       ...sanitizeFreshnessPricingUpdate(req.body || {}, salon),
       services: nextServices,
     };
@@ -833,6 +874,7 @@ export function registerAdminStylistRoutes(app) {
       addServices.length ||
       removeServices.length ||
       req.body?.hijabiFriendly === true ||
+      req.body?.wheelchairAccessible === true ||
       hasFreshnessPricingUpdate(req.body || {}) ||
       locationAreaIds.length ||
       typeof req.body?.bookingUrl === "string" ||
@@ -848,12 +890,14 @@ export function registerAdminStylistRoutes(app) {
       rejectAddedServices,
       rejectRemovedServices,
       rejectHijabiFriendly,
+      rejectWheelchairAccessible,
       rejectPriceBand: req.body?.rejectPriceBand === true,
       rejectLocation: req.body?.rejectLocation === true,
       bookingUrl: typeof req.body?.bookingUrl === "string" ? cleanString(req.body.bookingUrl) : undefined,
       instagramUrl: typeof req.body?.instagramUrl === "string" ? cleanString(req.body.instagramUrl) : undefined,
       websiteUrl: typeof req.body?.websiteUrl === "string" ? cleanString(req.body.websiteUrl) : undefined,
       hijabiFriendly: req.body?.hijabiFriendly === true ? true : undefined,
+      wheelchairAccessible: req.body?.wheelchairAccessible === true ? true : undefined,
       priceBand: sanitizePriceBand(req.body?.priceBand),
       areaId: locationAreaIds[0] || "",
       areaIds: locationAreaIds,
@@ -873,11 +917,13 @@ export function registerAdminStylistRoutes(app) {
 
     const previousServices = normalizeServices(toArray(req.body?.previousServices));
     const hasPreviousHijabiFriendly = typeof req.body?.previousHijabiFriendly === "boolean";
-    if (previousServices.length || hasPreviousHijabiFriendly) {
+    const hasPreviousWheelchairAccessible = typeof req.body?.previousWheelchairAccessible === "boolean";
+    if (previousServices.length || hasPreviousHijabiFriendly || hasPreviousWheelchairAccessible) {
       manualIndex.salons[salonIndex] = {
         ...manualIndex.salons[salonIndex],
         ...(previousServices.length ? { services: previousServices } : {}),
         ...(hasPreviousHijabiFriendly ? { hijabiFriendly: req.body.previousHijabiFriendly } : {}),
+        ...(hasPreviousWheelchairAccessible ? { wheelchairAccessible: req.body.previousWheelchairAccessible } : {}),
       };
       manualIndex.meta = {
         ...manualIndex.meta,
@@ -893,6 +939,7 @@ export function registerAdminStylistRoutes(app) {
       rejectAddedServices: toArray(req.body?.rejectAddedServices),
       rejectRemovedServices: toArray(req.body?.rejectRemovedServices),
       rejectHijabiFriendly: req.body?.rejectHijabiFriendly === true,
+      rejectWheelchairAccessible: req.body?.rejectWheelchairAccessible === true,
       rejectPriceBand: req.body?.rejectPriceBand === true,
       rejectLocation: req.body?.rejectLocation === true,
     });
@@ -1732,12 +1779,14 @@ async function updateFreshnessReview(salonId, {
   rejectAddedServices = [],
   rejectRemovedServices = [],
   rejectHijabiFriendly = false,
+  rejectWheelchairAccessible = false,
   rejectPriceBand = false,
   rejectLocation = false,
   bookingUrl,
   instagramUrl,
   websiteUrl,
   hijabiFriendly,
+  wheelchairAccessible,
   priceBand,
   areaId = "",
   areaIds = [],
@@ -1755,7 +1804,9 @@ async function updateFreshnessReview(salonId, {
     rejectAddedServices,
     rejectRemovedServices,
     hijabiFriendly,
+    wheelchairAccessible,
     rejectHijabiFriendly,
+    rejectWheelchairAccessible,
     bookingUrl,
     instagramUrl,
     websiteUrl,
@@ -1792,6 +1843,7 @@ async function updateFreshnessReview(salonId, {
         ...(instagramUrl !== undefined ? { instagramUrl } : {}),
         ...(websiteUrl !== undefined ? { websiteUrl } : {}),
         ...(hijabiFriendly === true ? { hijabiFriendly: true } : {}),
+        ...(wheelchairAccessible === true ? { wheelchairAccessible: true } : {}),
         ...(priceBand ? { priceBand } : {}),
         ...(nextAreaIds.length
           ? {
@@ -1805,17 +1857,17 @@ async function updateFreshnessReview(salonId, {
         addedServices: (check.addedServices || []).filter((service) => !reviewedAdds.includes(service)),
         removedServices: (check.removedServices || []).filter((service) => !reviewedRemoves.includes(service)),
         attributeSuggestions: (check.attributeSuggestions || []).filter((suggestion) => {
-          if (suggestion?.field !== "hijabiFriendly") {
+          if (!attributeFieldWasReviewed(suggestion?.field, { hijabiFriendly, rejectHijabiFriendly, wheelchairAccessible, rejectWheelchairAccessible })) {
             return true;
           }
-          return hijabiFriendly !== true && rejectHijabiFriendly !== true;
+          return false;
         }),
         linkChecks: (check.linkChecks || []).filter((linkCheck) => !reviewedLinkTypes.has(linkCheck.type)),
         issues: (check.issues || []).filter((issue) => {
           if (reviewedLinkIssues.has(issue)) {
             return false;
           }
-          return !(String(issue).toLowerCase() === "possible hijabi-friendly wording found" && (hijabiFriendly === true || rejectHijabiFriendly === true));
+          return !attributeIssueWasReviewed(issue, { hijabiFriendly, rejectHijabiFriendly, wheelchairAccessible, rejectWheelchairAccessible });
         }).filter((issue) => !((String(issue).toLowerCase() === "possible pricing band found" || String(issue).toLowerCase() === "manual price check required") && reviewedPrice)),
         serviceCheck: reviewedLocation && !nextAreaIds.length
           ? { ...(check.serviceCheck || emptyServiceCheck()), areaId: "", areaLabel: "" }
@@ -1854,7 +1906,7 @@ function getReviewedLinkTypes({ bookingUrl, instagramUrl, websiteUrl }) {
   return reviewedLinkTypes;
 }
 
-async function undoFreshnessReview(salonId, { check, update = {}, rejectAddedServices = [], rejectRemovedServices = [], rejectHijabiFriendly = false, rejectPriceBand = false, rejectLocation = false }) {
+async function undoFreshnessReview(salonId, { check, update = {}, rejectAddedServices = [], rejectRemovedServices = [], rejectHijabiFriendly = false, rejectWheelchairAccessible = false, rejectPriceBand = false, rejectLocation = false }) {
   const store = await readFreshnessStore({ meta: { source: "freshness-checks", updatedAt: null, count: 0 }, checks: [], dismissedRecommendations: {} });
   const dismissedRecommendations = removeDismissedRecommendations(store.dismissedRecommendations || {}, salonId, {
     update,
@@ -1862,6 +1914,7 @@ async function undoFreshnessReview(salonId, { check, update = {}, rejectAddedSer
     rejectAddedServices,
     rejectRemovedServices,
     rejectHijabiFriendly,
+    rejectWheelchairAccessible,
     rejectPriceBand,
     rejectLocation,
   });
@@ -1890,7 +1943,9 @@ function updateDismissedRecommendations(dismissedRecommendations, salonId, {
   rejectAddedServices = [],
   rejectRemovedServices = [],
   hijabiFriendly = false,
+  wheelchairAccessible = false,
   rejectHijabiFriendly = false,
+  rejectWheelchairAccessible = false,
   bookingUrl,
   instagramUrl,
   websiteUrl,
@@ -1913,7 +1968,9 @@ function updateDismissedRecommendations(dismissedRecommendations, salonId, {
     rejectAddedServices,
     rejectRemovedServices,
     hijabiFriendly,
+    wheelchairAccessible,
     rejectHijabiFriendly,
+    rejectWheelchairAccessible,
     bookingUrl,
     instagramUrl,
     websiteUrl,
@@ -1924,7 +1981,7 @@ function updateDismissedRecommendations(dismissedRecommendations, salonId, {
     areaIds,
     areaLabel,
   });
-  if (!reviewedAdds.length && !reviewedRemoves.length && rejectHijabiFriendly !== true && hijabiFriendly !== true && rejectPriceBand !== true && !dismissedPriceBand && !priceBand && rejectLocation !== true && !dismissedLocationLabel && !areaId && !areaIds.length && !areaLabel && !handledFingerprints.length) {
+  if (!reviewedAdds.length && !reviewedRemoves.length && rejectHijabiFriendly !== true && hijabiFriendly !== true && rejectWheelchairAccessible !== true && wheelchairAccessible !== true && rejectPriceBand !== true && !dismissedPriceBand && !priceBand && rejectLocation !== true && !dismissedLocationLabel && !areaId && !areaIds.length && !areaLabel && !handledFingerprints.length) {
     return dismissedRecommendations;
   }
 
@@ -1945,25 +2002,27 @@ function updateDismissedRecommendations(dismissedRecommendations, salonId, {
       addedServiceEvidence,
       handledFingerprints: [...new Set([...(current.handledFingerprints || []), ...handledFingerprints])],
       ...(rejectHijabiFriendly === true || hijabiFriendly === true ? { hijabiFriendly: true } : current.hijabiFriendly === true ? { hijabiFriendly: true } : {}),
+      ...(rejectWheelchairAccessible === true || wheelchairAccessible === true ? { wheelchairAccessible: true } : current.wheelchairAccessible === true ? { wheelchairAccessible: true } : {}),
       ...(dismissedPriceBand || priceBand ? { priceBand: dismissedPriceBand || priceBand } : current.priceBand ? { priceBand: current.priceBand } : {}),
       ...(dismissedLocationLabel || areaLabel ? { locationLabel: dismissedLocationLabel || areaLabel } : current.locationLabel ? { locationLabel: current.locationLabel } : {}),
     },
   };
 }
 
-function removeDismissedRecommendations(dismissedRecommendations, salonId, { update = {}, check = null, rejectAddedServices = [], rejectRemovedServices = [], rejectHijabiFriendly = false, rejectPriceBand = false, rejectLocation = false }) {
+function removeDismissedRecommendations(dismissedRecommendations, salonId, { update = {}, check = null, rejectAddedServices = [], rejectRemovedServices = [], rejectHijabiFriendly = false, rejectWheelchairAccessible = false, rejectPriceBand = false, rejectLocation = false }) {
   const undoUpdate = {
     ...update,
     rejectAddedServices: update.rejectAddedServices || rejectAddedServices,
     rejectRemovedServices: update.rejectRemovedServices || rejectRemovedServices,
     rejectHijabiFriendly: update.rejectHijabiFriendly === true || rejectHijabiFriendly === true,
+    rejectWheelchairAccessible: update.rejectWheelchairAccessible === true || rejectWheelchairAccessible === true,
     rejectPriceBand: update.rejectPriceBand === true || rejectPriceBand === true,
     rejectLocation: update.rejectLocation === true || rejectLocation === true,
   };
   const reviewedAdds = normalizeServices([...(undoUpdate.addServices || []), ...(undoUpdate.rejectAddedServices || [])]);
   const reviewedRemoves = normalizeServices([...(undoUpdate.removeServices || []), ...(undoUpdate.rejectRemovedServices || [])]);
   const handledFingerprints = buildHandledFingerprintsForUpdate(check, undoUpdate);
-  if (!reviewedAdds.length && !reviewedRemoves.length && undoUpdate.rejectHijabiFriendly !== true && undoUpdate.hijabiFriendly !== true && undoUpdate.rejectPriceBand !== true && !undoUpdate.priceBand && undoUpdate.rejectLocation !== true && !undoUpdate.areaId && !toArray(undoUpdate.areaIds).length && !undoUpdate.areaLabel && !handledFingerprints.length) {
+  if (!reviewedAdds.length && !reviewedRemoves.length && undoUpdate.rejectHijabiFriendly !== true && undoUpdate.hijabiFriendly !== true && undoUpdate.rejectWheelchairAccessible !== true && undoUpdate.wheelchairAccessible !== true && undoUpdate.rejectPriceBand !== true && !undoUpdate.priceBand && undoUpdate.rejectLocation !== true && !undoUpdate.areaId && !toArray(undoUpdate.areaIds).length && !undoUpdate.areaLabel && !handledFingerprints.length) {
     return dismissedRecommendations;
   }
 
@@ -1975,11 +2034,12 @@ function removeDismissedRecommendations(dismissedRecommendations, salonId, { upd
     addedServiceEvidence: Object.fromEntries(Object.entries(current.addedServiceEvidence || {}).filter(([service]) => !reviewedAdds.includes(service))),
     handledFingerprints: (current.handledFingerprints || []).filter((fingerprint) => !handledFingerprints.includes(fingerprint)),
     ...(undoUpdate.rejectHijabiFriendly === true || undoUpdate.hijabiFriendly === true ? {} : current.hijabiFriendly === true ? { hijabiFriendly: true } : {}),
+    ...(undoUpdate.rejectWheelchairAccessible === true || undoUpdate.wheelchairAccessible === true ? {} : current.wheelchairAccessible === true ? { wheelchairAccessible: true } : {}),
     ...(undoUpdate.rejectPriceBand === true || undoUpdate.priceBand ? {} : current.priceBand ? { priceBand: current.priceBand } : {}),
     ...(undoUpdate.rejectLocation === true || undoUpdate.areaId || toArray(undoUpdate.areaIds).length || undoUpdate.areaLabel ? {} : current.locationLabel ? { locationLabel: current.locationLabel } : {}),
   };
   const updated = { ...dismissedRecommendations };
-  if (next.addedServices.length || next.removedServices.length || next.handledFingerprints.length || next.hijabiFriendly === true || next.priceBand || next.locationLabel) {
+  if (next.addedServices.length || next.removedServices.length || next.handledFingerprints.length || next.hijabiFriendly === true || next.wheelchairAccessible === true || next.priceBand || next.locationLabel) {
     updated[salonId] = next;
   } else {
     delete updated[salonId];
@@ -2000,9 +2060,12 @@ function buildHandledFingerprintsForUpdate(check, update = {}) {
     fingerprints.push(serviceRecommendationFingerprint("remove", service));
   });
 
-  if (update.hijabiFriendly === true || update.rejectHijabiFriendly === true) {
-    fingerprints.push(...(check.attributeSuggestions || []).map(attributeRecommendationFingerprint));
-  }
+  const reviewedAttributeFields = new Set(getReviewedAttributeFields(update));
+  fingerprints.push(
+    ...(check.attributeSuggestions || [])
+      .filter((suggestion) => reviewedAttributeFields.has(suggestion?.field))
+      .map(attributeRecommendationFingerprint),
+  );
 
   const reviewedLinkTypes = getReviewedLinkTypes(update);
   (check.linkChecks || [])
@@ -2027,6 +2090,23 @@ function buildHandledFingerprintsForUpdate(check, update = {}) {
   }
 
   return [...new Set(fingerprints.filter(Boolean))];
+}
+
+function getReviewedAttributeFields(update = {}) {
+  return Object.entries(attributeSuggestionConfig)
+    .filter(([field, config]) => update[field] === true || update[config.rejectField] === true)
+    .map(([field]) => field);
+}
+
+function attributeFieldWasReviewed(field, update = {}) {
+  return getReviewedAttributeFields(update).includes(field);
+}
+
+function attributeIssueWasReviewed(issue, update = {}) {
+  const normalizedIssue = String(issue || "").toLowerCase();
+  return Object.entries(attributeSuggestionConfig).some(([field, config]) => {
+    return attributeFieldWasReviewed(field, update) && normalizedIssue === config.issue.toLowerCase();
+  });
 }
 
 function getDismissedFingerprintSet(dismissedRecommendation = {}) {
@@ -2190,6 +2270,8 @@ function sanitizeFreshnessCheck(check, salonId) {
     bookingUrl: cleanString(check.bookingUrl),
     instagramUrl: cleanString(check.instagramUrl),
     websiteUrl: cleanString(check.websiteUrl),
+    hijabiFriendly: check.hijabiFriendly === true,
+    wheelchairAccessible: check.wheelchairAccessible === true,
     priceBand: sanitizePriceBand(check.priceBand),
     priceSource: sanitizePriceSource(check.priceSource),
     priceConfidence: sanitizePriceConfidence(check.priceConfidence),
@@ -2216,6 +2298,8 @@ function hydrateFreshnessCheckFromSalon(check, salon = {}) {
   const savedPriceBand = sanitizePriceBand(salon.priceBand || check.priceBand);
   const next = {
     ...check,
+    hijabiFriendly: salon.hijabiFriendly === true || check.hijabiFriendly === true,
+    wheelchairAccessible: salon.wheelchairAccessible === true || check.wheelchairAccessible === true,
     priceBand: savedPriceBand,
     priceSource: sanitizePriceSource(salon.priceSource || check.priceSource),
     priceConfidence: sanitizePriceConfidence(salon.priceConfidence || check.priceConfidence),
@@ -2277,7 +2361,7 @@ function applyDismissedRecommendationToCheck(check, dismissedRecommendation = {}
   });
 
   next.attributeSuggestions = next.attributeSuggestions.filter((suggestion) => {
-    if (!hasAttributeDismissals && dismissedRecommendation.hijabiFriendly === true && suggestion?.field === "hijabiFriendly") {
+    if (!hasAttributeDismissals && dismissedRecommendation[suggestion?.field] === true) {
       return false;
     }
     return !dismissedFingerprints.has(attributeRecommendationFingerprint(suggestion));
@@ -2334,8 +2418,13 @@ function hasActionableFreshnessCheck(check) {
 
   return (check.issues || []).some((issue) => {
     const normalizedIssue = String(issue).toLowerCase();
-    return normalizedIssue !== "possible new services found" && normalizedIssue !== "possible removed services found" && normalizedIssue !== "possible hijabi-friendly wording found" && normalizedIssue !== "possible pricing band found";
+    return normalizedIssue !== "possible new services found" && normalizedIssue !== "possible removed services found" && !isAttributeIssue(issue) && normalizedIssue !== "possible pricing band found";
   });
+}
+
+function isAttributeIssue(issue) {
+  const normalizedIssue = String(issue || "").toLowerCase();
+  return Object.values(attributeSuggestionConfig).some((config) => normalizedIssue === config.issue.toLowerCase());
 }
 
 function hasDetectedLocationFreshnessUpdate(check) {
@@ -2395,10 +2484,28 @@ function stripAutoAppliedPriceCheck(check) {
   return check;
 }
 
+const attributeSuggestionConfig = {
+  hijabiFriendly: {
+    field: "hijabiFriendly",
+    rejectField: "rejectHijabiFriendly",
+    label: "Hijabi friendly",
+    issue: "Possible hijabi-friendly wording found",
+    evidenceFinder: findHijabiFriendlyEvidence,
+  },
+  wheelchairAccessible: {
+    field: "wheelchairAccessible",
+    rejectField: "rejectWheelchairAccessible",
+    label: "Wheelchair accessible",
+    issue: "Possible wheelchair accessibility wording found",
+    evidenceFinder: findWheelchairAccessibleEvidence,
+  },
+};
+
 function sanitizeAttributeSuggestions(suggestions) {
   return (Array.isArray(suggestions) ? suggestions : [])
     .map((suggestion) => {
-      if (suggestion?.field !== "hijabiFriendly" || suggestion.value !== true) {
+      const config = attributeSuggestionConfig[suggestion?.field];
+      if (!config || suggestion.value !== true) {
         return null;
       }
 
@@ -2414,9 +2521,9 @@ function sanitizeAttributeSuggestions(suggestions) {
       }
 
       return {
-        field: "hijabiFriendly",
+        field: config.field,
         value: true,
-        label: "Hijabi friendly",
+        label: config.label,
         evidence,
       };
     })
@@ -2496,7 +2603,7 @@ async function checkSalonFreshness(salon, dismissedRecommendation = {}, previous
     booking: bookingLinkCheck?.responseText || "",
     website: websiteLinkCheck?.responseText || "",
     instagram: instagramLinkCheck?.profileText || "",
-  }, hasAttributeDismissals ? { ...dismissedRecommendation, hijabiFriendly: false } : dismissedRecommendation).filter((suggestion) => !dismissedFingerprints.has(attributeRecommendationFingerprint(suggestion)));
+  }, resetDismissedAttributeFlags(dismissedRecommendation, hasAttributeDismissals)).filter((suggestion) => !dismissedFingerprints.has(attributeRecommendationFingerprint(suggestion)));
   const currentServices = normalizeServices(salon.services || []);
   const detectedServices = adjustDetectedServicesForCurrentContext(normalizeServices(serviceCheck.matchedServices), currentServices, serviceCheck.rawServices);
   const dismissedAddedServices = normalizeServices(dismissedRecommendation.addedServices || []);
@@ -2529,9 +2636,12 @@ async function checkSalonFreshness(salon, dismissedRecommendation = {}, previous
   if (removedServices.length > 0) {
     issues.push("Possible removed services found");
   }
-  if (attributeSuggestions.length > 0) {
-    issues.push("Possible hijabi-friendly wording found");
-  }
+  attributeSuggestions.forEach((suggestion) => {
+    const issue = attributeSuggestionConfig[suggestion.field]?.issue;
+    if (issue) {
+      issues.push(issue);
+    }
+  });
 
   const detectedLocationLabel = serviceCheck.areaLabel || "";
   const dismissedLocationLabel = dismissedRecommendation.locationLabel || "";
@@ -2551,6 +2661,7 @@ async function checkSalonFreshness(salon, dismissedRecommendation = {}, previous
     instagramUrl: salon.instagramUrl || "",
     websiteUrl: salon.websiteUrl || "",
     hijabiFriendly: salon.hijabiFriendly === true,
+    wheelchairAccessible: salon.wheelchairAccessible === true,
     issues: actionableIssues,
     linkChecks: activeLinkChecks,
     serviceCheck,
@@ -2705,6 +2816,7 @@ function emptyFreshnessCheckForSalon(salon) {
     instagramUrl: salon.instagramUrl || "",
     websiteUrl: salon.websiteUrl || "",
     hijabiFriendly: salon.hijabiFriendly === true,
+    wheelchairAccessible: salon.wheelchairAccessible === true,
     priceBand: sanitizePriceBand(salon.priceBand),
     priceSource: sanitizePriceSource(salon.priceSource),
     priceConfidence: sanitizePriceConfidence(salon.priceConfidence),
@@ -2771,22 +2883,37 @@ function summarizeMissingPriceBackfillResults(checks = []) {
 }
 
 function buildAttributeSuggestions(salon, sources, dismissedRecommendation = {}) {
-  if (salon.hijabiFriendly === true || dismissedRecommendation.hijabiFriendly === true) {
-    return [];
+  return Object.entries(attributeSuggestionConfig).flatMap(([field, config]) => {
+    if (salon[field] === true || dismissedRecommendation[field] === true) {
+      return [];
+    }
+
+    const evidence = Object.entries(sources)
+      .flatMap(([source, text]) => config.evidenceFinder(text).map((line) => ({ source, text: line })))
+      .slice(0, 6);
+
+    return evidence.length
+      ? [{
+          field: config.field,
+          value: true,
+          label: config.label,
+          evidence,
+        }]
+      : [];
+  });
+}
+
+function resetDismissedAttributeFlags(dismissedRecommendation = {}, shouldReset = false) {
+  if (!shouldReset) {
+    return dismissedRecommendation;
   }
 
-  const evidence = Object.entries(sources)
-    .flatMap(([source, text]) => findHijabiFriendlyEvidence(text).map((line) => ({ source, text: line })))
-    .slice(0, 6);
-
-  return evidence.length
-    ? [{
-        field: "hijabiFriendly",
-        value: true,
-        label: "Hijabi friendly",
-        evidence,
-      }]
-    : [];
+  return Object.fromEntries(
+    Object.entries(dismissedRecommendation).map(([key, value]) => [
+      key,
+      attributeSuggestionConfig[key] ? false : value,
+    ]),
+  );
 }
 
 function findHijabiFriendlyEvidence(value = "") {
@@ -2799,7 +2926,22 @@ function findHijabiFriendlyEvidence(value = "") {
     text
       .split(/\n|\.|•|·|\|/)
       .map((line) => line.replace(/\s+/g, " ").trim())
-      .filter((line) => /\bhijab(?:i)?[\s-]+friendly\b/i.test(line))
+      .filter((line) => /\bhijabi?\b/i.test(line))
+      .filter((line) => line.length >= 4 && line.length <= 180),
+  )].slice(0, 4);
+}
+
+function findWheelchairAccessibleEvidence(value = "") {
+  const text = htmlToReadableText(value);
+  if (!text) {
+    return [];
+  }
+
+  return [...new Set(
+    text
+      .split(/\n|\.|•|·|\|/)
+      .map((line) => line.replace(/\s+/g, " ").trim())
+      .filter((line) => /\bwheelchair[\s-]+accessible\b|\bstep[\s-]+free\s+access\b|\bdisabled\s+access\b|\baccessible\s+entrance\b/i.test(line))
       .filter((line) => line.length >= 4 && line.length <= 180),
   )].slice(0, 4);
 }
