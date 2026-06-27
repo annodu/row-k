@@ -1,11 +1,169 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-06-24",
-    "count": 743,
+    "updatedAt": "2026-06-27",
+    "count": 747,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "theeklparlour",
+      "name": "Theeklparlour",
+      "areaId": "east",
+      "areaLabel": "East London",
+      "neighbourhood": "East London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://theeklparlour.as.me/schedule/1c5d0ee6",
+      "instagramUrl": "https://www.instagram.com/theeklparlour/",
+      "tiktokUrl": "",
+      "addedVia": "Manual",
+      "services": [
+        "Boho braids / goddess braids",
+        "Fulani / lemonade braids",
+        "Knotless braids",
+        "Stitch braids",
+        "Miracle knots",
+        "Wig cornrows"
+      ],
+      "priceBand": "££",
+      "servicePriceBand": "££",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "Medium Boho Braids - £340",
+        "Smedium Boho Braids - £355",
+        "Small Boho Braids - £385",
+        "Flip Over Fulani - £155",
+        "Basic Fulani Braids / Freestyle - £145",
+        "Fulani Quickweave - £90",
+        "Smedium Goddess - £280",
+        "Medium Goddess - £260"
+      ],
+      "priceCheckedAt": "2026-06-27T12:17:40.857Z",
+      "priceUpdatedAt": "2026-06-27T12:17:40.857Z",
+      "priceConfidence": "high",
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/theeklparlour/"
+      ]
+    },
+    {
+      "id": "hairpalaceldn",
+      "name": "Hairpalaceldn",
+      "areaId": "south-east",
+      "areaLabel": "South east London",
+      "neighbourhood": "South east London London",
+      "postcode": "",
+      "bookingPlatform": "Fresha",
+      "bookingUrl": "fresha.com/en-GB/a/hair-palace-ldn-peckham-rye-5-choumert-road-qzr03wgv/booking?menu=true&pId=522464&utm_content=link_in_bio&utm_medium=social&utm_source=ig",
+      "instagramUrl": "https://www.instagram.com/hairpalaceldn/",
+      "tiktokUrl": "",
+      "addedVia": "Manual",
+      "services": [
+        "Miracle knots",
+        "Knotless braids",
+        "Boho braids / goddess braids",
+        "Wig cornrows",
+        "Wash & blowdry",
+        "Box braids",
+        "Fulani / lemonade braids"
+      ],
+      "priceBand": "£",
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wash & Blow Dry",
+        "55 mins - 1 hour 35 mins",
+        "from £20",
+        "Twists",
+        "1 hour 5 mins",
+        "Natural hair only. For this service, especially the boys, you have to send me a photo of the style you want to do in Instagram please don’t forget put your name in thank you",
+        "from £30",
+        "Cornrows",
+        "1 hour 5 mins - 1 hour 30 mins",
+        "Natural hair only. For this service, especially the boys, you have to send me a photo of the style you want to do in Instagram please don’t forget put your name in thank you",
+        "from £25",
+        "Knotless Goddess with curly",
+        "4 hours 30 mins - 5 hours 30 mins",
+        "from £120",
+        "Box /Star Braids",
+        "3 hours 30 mins - 5 hours 30 mins",
+        "This service depends how long and full you want the hair and please don't forget to send us a photo of the hairstyles you want in Instagram thank you.",
+        "from £70",
+        "Single Plaits",
+        "3 hours 30 mins - 5 hours 30 mins",
+        "This service depends how long you want the hair and don't forget to send us a photo of the hairstyles you want in Instagram thank you.",
+        "from £70",
+        "Wash & Blow Dry",
+        "Wash & Blow Dry",
+        "55 mins - 1 hour 35 mins",
+        "from £20"
+      ],
+      "priceCheckedAt": "",
+      "priceUpdatedAt": "2026-06-27T12:03:20.595Z",
+      "priceConfidence": "manual",
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/hairpalaceldn/"
+      ]
+    },
+    {
+      "id": "fadom-beauty",
+      "name": "Fadom Beauty",
+      "areaId": "south-east",
+      "areaLabel": "South east London",
+      "neighbourhood": "South east London London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/fadom_beauty/",
+      "instagramUrl": "https://www.instagram.com/fadom_beauty/",
+      "tiktokUrl": "",
+      "addedVia": "Manual",
+      "services": [
+        "Box braids",
+        "Boho braids / goddess braids",
+        "Fulani / lemonade braids",
+        "Feed-in braids",
+        "Knotless braids",
+        "Miracle knots",
+        "Wash & blowdry"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/fadom_beauty/"
+      ]
+    },
+    {
+      "id": "redz-hair-crazy",
+      "name": "Redz Hair Crazy",
+      "areaId": "south-west",
+      "areaLabel": "South west London",
+      "neighbourhood": "South west London London",
+      "postcode": "",
+      "bookingPlatform": "Direct",
+      "bookingUrl": "https://www.redzhaircrazy.com/appointments",
+      "instagramUrl": "https://www.instagram.com/redz_hair_crazy/",
+      "tiktokUrl": "",
+      "addedVia": "Manual",
+      "services": [
+        "Pixie cut / finger waves",
+        "Relaxer / texturiser"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/redz_hair_crazy/"
+      ]
+    },
     {
       "id": "hair-by-sharon-dempsey",
       "name": "Hair By Sharon Dempsey",
@@ -1812,23 +1970,25 @@
         "Flipover / versatile sew-in",
         "Half up half down"
       ],
-      "priceBand": "££",
-      "servicePriceBand": "££",
+      "priceBand": "£",
+      "servicePriceBand": "£",
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "priceSource": "manual",
+      "priceSource": "auto",
       "priceEvidence": [
-        "Custom Frontal Wig - - Custom Frontal Wig - £150",
-        "Custom Closure wig - - Custom Closure wig - £140",
-        "Frontal ponytail - - Frontal ponytail - £140",
-        "Pre-made Mini frontal/Closure Install - - Pre-made Mini frontal/Closure Install - £120",
-        "360/Full lace wig Install - - 360/Full lace wig Install - £130",
-        "Pre-made Frontal Wig Install - - Pre-made Frontal Wig Install - £130"
+        "ByDian Express ~ Customisation - £65",
+        "ByDian Express ~ Revamp - £85",
+        "Custom Frontal Wig - £150",
+        "Custom Closure wig - £140",
+        "Frontal ponytail - £140",
+        "Pre-made Mini frontal/Closure Install - £120",
+        "360/Full lace wig Install - £130",
+        "Pre-made Frontal Wig Install - £130"
       ],
-      "priceCheckedAt": "2026-06-07",
-      "priceUpdatedAt": "2026-06-07",
-      "priceConfidence": "manual",
+      "priceCheckedAt": "2026-06-24",
+      "priceUpdatedAt": "2026-06-24",
+      "priceConfidence": "high",
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
       "evidence": [
@@ -2247,16 +2407,25 @@
       "services": [
         "Bouncy blowout / Round Brush Blow dry"
       ],
-      "priceBand": "££",
-      "servicePriceBand": "",
+      "priceBand": "£",
+      "servicePriceBand": "£",
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "priceSource": "manual",
-      "priceEvidence": [],
-      "priceCheckedAt": "",
-      "priceUpdatedAt": "2026-06-07",
-      "priceConfidence": "manual",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "1/2 Head Highlights - £120",
+        "3/4 Head Highlights - £140",
+        "All Over Colour - £90",
+        "Balayage Full Head - £150",
+        "Balayage Hairline - £115",
+        "Balayage Half Head - £135",
+        "Base Breaker - £35",
+        "Full Head Highlights - £150"
+      ],
+      "priceCheckedAt": "2026-06-24",
+      "priceUpdatedAt": "2026-06-24",
+      "priceConfidence": "high",
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
       "evidence": [
@@ -3913,22 +4082,26 @@
       "evidence": [
         "Submitted link: https://www.instagram.com/karenwrightsalon/"
       ],
-      "priceBand": "£",
-      "priceSource": "manual",
+      "priceBand": "££",
+      "priceSource": "auto",
       "priceEvidence": [
-        "Weave Removal - - Weave Removal - from £170.00",
-        "Weave Removal - - Weave Removal - from £30.00",
-        "Wig Cap (Bonding) - - Wig Cap (Bonding) - from £90.00",
-        "Afro wash & blow-dry (thick/long) - - Afro wash & blow-dry (thick/long) - from £60.00",
-        "Afro wash & blowdry - - Afro wash & blowdry - from £45.00",
-        "Afro wash, blowdry & trim - - Afro wash, blowdry & trim - from £75.00",
-        "Afro wash, blowdry & trim (thick/long) - - Afro wash, blowdry & trim (thick/long) - from £90.00",
-        "Afro wash, blowdry & trim (thick/long) - - Afro wash, blowdry & trim (thick/long) - from £270.00"
+        "Afro wash & blowdry - £45",
+        "Afro wash & blow-dry (thick/long) - £60",
+        "Afro wash, blowdry & trim - £75",
+        "Afro wash, blowdry & trim (thick/long) - £90",
+        "Cornrows (under wig) - £45",
+        "Extra detangling (up to 30mins) - £20",
+        "Silk Press - £90",
+        "Silk Press & Cut - £130"
       ],
-      "priceCheckedAt": "2026-06-04",
-      "priceUpdatedAt": "2026-06-04",
-      "priceConfidence": "manual",
-      "addedVia": "Manual discovery"
+      "priceCheckedAt": "2026-06-24",
+      "priceUpdatedAt": "2026-06-24",
+      "priceConfidence": "high",
+      "addedVia": "Manual discovery",
+      "servicePriceBand": "££",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only"
     },
     {
       "id": "dalandahair",
@@ -4170,26 +4343,30 @@
       "evidence": [
         "Submitted link: https://www.instagram.com/houseofsoraiafurtado/"
       ],
-      "priceBand": "£",
+      "priceBand": "££",
       "priceSource": "auto",
       "priceEvidence": [
         "Extra Small braids - £300",
         "Boho braids + Sew in - £225",
+        "Miracle knots - £145",
         "Small Boho Knotless Braids - £250",
         "Bob with Bangs - £175",
         "Locs Retwist - £85",
         "Half Fulani braids w/natural hair - £25",
-        "Fulani Braids Re-Touch - £50",
-        "Basic Hair Wash - £18"
+        "Fulani Braids Re-Touch - £50"
       ],
-      "priceCheckedAt": "2026-06-03",
+      "priceCheckedAt": "2026-06-24",
       "priceConfidence": "high",
-      "priceUpdatedAt": "2026-06-03",
+      "priceUpdatedAt": "2026-06-24",
       "tiktokUrl": "",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
       "updatedAt": "2026-06-03",
-      "addedVia": "Manual discovery"
+      "addedVia": "Manual discovery",
+      "servicePriceBand": "££",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only"
     },
     {
       "id": "hairbyblessings",
@@ -8202,14 +8379,21 @@
         "Full head colour",
         "U-part wig install"
       ],
-      "priceBand": "££",
-      "priceSource": "manual",
+      "priceBand": "£",
+      "priceSource": "auto",
       "priceEvidence": [
-        "Avalon Texture Release - From £165 [Price is Dependant on hair length/Thickness]"
+        "Silk Press - £75",
+        "Roots (Hair colour) & Silk Press & Olaplex Combo Treatment - £120",
+        "Avalon Texture Release| From £165 [Price is Dependant on hair length/Thickness] - £165",
+        "Silk Press (For texture released hair) - £65",
+        "Traditional Sew In Weave (With hair purchased from Alevenn hair only) - £85",
+        "Sew in Weave - £105",
+        "2x6 closure Sew In Weave (With hair purchased from Alevenn hair only) - £105",
+        "Traditional quick Weave (With hair purchased from Alevenn hair only) - £75"
       ],
-      "priceCheckedAt": "2026-06-10",
-      "priceConfidence": "manual",
-      "priceUpdatedAt": "2026-06-10",
+      "priceCheckedAt": "2026-06-24",
+      "priceConfidence": "high",
+      "priceUpdatedAt": "2026-06-24",
       "addedVia": "Cowork scrape",
       "tiktokUrl": "",
       "hijabiFriendly": false,
@@ -8222,7 +8406,7 @@
           "date": "2026-06-10"
         }
       ],
-      "servicePriceBand": "££",
+      "servicePriceBand": "£",
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
@@ -8771,22 +8955,26 @@
         "User-provided manual addition.",
         "User-confirmed explicit frontal ponytail service from booking-page service list."
       ],
-      "priceBand": "££",
+      "priceBand": "£",
       "priceSource": "auto",
       "priceEvidence": [
+        "Wash, Blowdry and Trim - £30",
+        "Removal, Wash, Blowdry - £65",
         "Jumbo Knotless braids - £90",
         "Large Knotless Braids - £120",
         "Medium Knotless Braids - £160",
         "Smedium Knotless Braids - £170",
         "Small Knotless Braids - £190",
-        "Extra small knotless braids - £220",
-        "x/s braids with French/spanish curl - £265",
-        "Sew in paired with medium knotless braids (for those who do not like to sit for long) - £170"
+        "Extra small knotless braids - £220"
       ],
-      "priceCheckedAt": "2026-06-03",
+      "priceCheckedAt": "2026-06-24",
       "priceConfidence": "high",
-      "priceUpdatedAt": "2026-06-03",
-      "addedVia": "Cowork scrape"
+      "priceUpdatedAt": "2026-06-24",
+      "addedVia": "Cowork scrape",
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only"
     },
     {
       "id": "artistrybyserena",
@@ -10886,22 +11074,26 @@
         "Half up half down",
         "Sleek ponytail / bun"
       ],
-      "priceBand": "££",
+      "priceBand": "£",
       "priceSource": "auto",
       "priceEvidence": [
-        "Signature Hair Reset | Returning Clients - £110",
         "Sew In Maintenance - £80",
         "Traditional Sew-In | Install Only - £115",
         "Traditional Sew-In + Treatment - £145",
         "Traditional Sew In Install | 16 inches - £335",
         "Traditional Sew In Install | 18 inches - £345",
         "Traditional Sew In Install | 20 inches - £375",
-        "Traditional Sew In Install | 22 inches - £405"
+        "Traditional Sew In Install | 22 inches - £405",
+        "Signature Silk Press & Treatment - £90"
       ],
-      "priceCheckedAt": "2026-06-03",
+      "priceCheckedAt": "2026-06-24",
       "priceConfidence": "high",
-      "priceUpdatedAt": "2026-06-03",
-      "addedVia": "Cowork scrape"
+      "priceUpdatedAt": "2026-06-24",
+      "addedVia": "Cowork scrape",
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -14158,7 +14350,7 @@
         "Wash & blowdry",
         "Editorial / Session styling"
       ],
-      "priceBand": "£",
+      "priceBand": "££",
       "priceSource": "auto",
       "priceEvidence": [
         "Short Haircut - £59",
@@ -14170,10 +14362,14 @@
         "Fringe / Clean - Up - £25",
         "Alternative Style Cut With Wash & Finish - £115"
       ],
-      "priceCheckedAt": "2026-06-04",
+      "priceCheckedAt": "2026-06-24",
       "priceConfidence": "high",
-      "priceUpdatedAt": "2026-06-04",
-      "addedVia": "Cowork scrape"
+      "priceUpdatedAt": "2026-06-24",
+      "addedVia": "Cowork scrape",
+      "servicePriceBand": "££",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only"
     },
     {
       "id": "fs-hairr-uk",
@@ -18164,24 +18360,24 @@
       "hijabiFriendly": true,
       "tiktokUrl": "https://www.tiktok.com/@xo_karrieee/video/7592032929845366019?lang=en-GB",
       "updatedAt": "2026-06-10",
-      "priceBand": "£££",
+      "priceBand": "££",
       "priceSource": "auto",
       "priceEvidence": [
         "Silk Press – Maintenance - £120",
         "Avlon Texture Release – New Roots Maintenance - £245",
         "Relaxer – New Roots Maintenance - £207",
-        "Wash & Blowdry - £88",
         "Roller Set - £175",
         "Hydrating Twist Style - £185",
-        "Silky Blend Tape Extensions – Full Service - £375",
-        "Weave Sew in – Full Service - £395"
+        "Jennifer Cynthia’s Signature Tape Extensions – Full Service - £410",
+        "Jennifer Cynthia’s Signature Weave Sew in – Full Service - £395",
+        "Tape Extensions Maintenance - £150"
       ],
-      "priceCheckedAt": "2026-06-03",
+      "priceCheckedAt": "2026-06-24",
       "priceConfidence": "high",
-      "priceUpdatedAt": "2026-06-03",
+      "priceUpdatedAt": "2026-06-24",
       "canBraidWithoutGel": false,
       "wheelchairAccessible": false,
-      "servicePriceBand": "",
+      "servicePriceBand": "££",
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
@@ -18374,27 +18570,27 @@
         "Twist out / flexi rod",
         "Healthy hair plans & consultations"
       ],
-      "priceBand": "£",
-      "priceSource": "manual",
+      "priceBand": "££",
+      "priceSource": "auto",
       "priceEvidence": [
-        "Box Cut & Style - from £80.00",
-        "Cut & Twist Outs - from £80.00",
-        "Silk Press - from £95.00",
-        "Silk Press & Cut - from £140.00",
-        "Silk Press & Trim - from £115.00",
-        "Buzz Cut (One Level) - from £150.00",
-        "Buzz Cut (One Level) - from £25.00",
-        "Tapered Cut - from £45.00"
+        "Emergency Treatment (Breakage) - £35",
+        "Keratin Treatment - £45",
+        "Moisture Treatment - £20",
+        "Olaplex Treatment - £28",
+        "Reconstructor Repair Treatment - £25",
+        "Revlon Bond Repair Treatment - £30",
+        "Trim - £30",
+        "Wash & Blowdry ONLY - £35"
       ],
-      "priceCheckedAt": "2026-06-04",
-      "priceUpdatedAt": "2026-06-04",
-      "priceConfidence": "manual",
+      "priceCheckedAt": "2026-06-24",
+      "priceUpdatedAt": "2026-06-24",
+      "priceConfidence": "high",
       "addedVia": "Cowork scrape",
       "tiktokUrl": "https://www.tiktok.com/@naturaltolu/video/7613441062186568982?lang=en-GB",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
       "wheelchairAccessible": false,
-      "servicePriceBand": "",
+      "servicePriceBand": "££",
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
