@@ -24,7 +24,10 @@
         "Knotless braids",
         "Stitch braids",
         "Miracle knots",
-        "Wig cornrows"
+        "Wig cornrows",
+        "Flipover / Versatile sew-in",
+        "Quick weave",
+        "Half braids, half sew-in"
       ],
       "priceBand": "££",
       "servicePriceBand": "££",
@@ -49,7 +52,12 @@
       "source": "manual",
       "evidence": [
         "Submitted link: https://www.instagram.com/theeklparlour/"
-      ]
+      ],
+      "websiteUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "updatedAt": "2026-06-27"
     },
     {
       "id": "hairpalaceldn",
