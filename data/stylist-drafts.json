@@ -1,10 +1,40 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-06-27",
-    "count": 4
+    "updatedAt": "2026-07-02",
+    "count": 5
   },
   "drafts": [
+    {
+      "id": "divadollslondon-mr434co6",
+      "status": "needs_review",
+      "name": "Divadollslondon",
+      "areaId": "",
+      "areaIds": [],
+      "areaLabel": "",
+      "neighbourhood": "",
+      "postcode": "",
+      "bookingPlatform": "",
+      "bookingUrl": "",
+      "instagramUrl": "https://www.instagram.com/divadollslondon/",
+      "tiktokUrl": "",
+      "addedVia": "Manual",
+      "services": [],
+      "rawServices": [],
+      "summary": "Admin draft created from stylist intake.",
+      "confidence": 0.35,
+      "warnings": [
+        "No booking link identified yet.",
+        "No services matched yet."
+      ],
+      "evidence": [
+        "Submitted link: https://www.instagram.com/divadollslondon/"
+      ],
+      "source": "admin-draft",
+      "createdAt": "2026-07-02",
+      "updatedAt": "2026-07-02",
+      "lastCheckedAt": "2026-07-02"
+    },
     {
       "id": "evolutionhairandbeautyw7-mqttpelh",
       "status": "needs_review",
