@@ -1,11 +1,37 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-06-27",
-    "count": 747,
+    "updatedAt": "2026-07-02",
+    "count": 748,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "divadollslondon",
+      "name": "Divadollslondon",
+      "areaId": "north-west",
+      "areaLabel": "North west London",
+      "neighbourhood": "North west London London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/divadollslondon/",
+      "instagramUrl": "https://www.instagram.com/divadollslondon/",
+      "tiktokUrl": "",
+      "addedVia": "Stylist submission",
+      "services": [
+        "Traditional sew-in / leave out",
+        "Bridal",
+        "Custom wig",
+        "Wig install (frontal / closure)",
+        "Frontal ponytail / bun",
+        "Sleek ponytail / bun"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/divadollslondon/"
+      ]
+    },
     {
       "id": "theeklparlour",
       "name": "Theeklparlour",
