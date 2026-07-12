@@ -1,22 +1,32 @@
-import { FormEvent, KeyboardEvent, useEffect, useMemo, useRef, useState } from "react";
+import { FormEvent, KeyboardEvent, type ComponentType, type ReactNode, useEffect, useMemo, useRef, useState } from "react";
 import {
+  Activity,
   AlertTriangle,
-  ArrowUp,
+  Ban,
   Check,
   CheckSquare,
   ChevronDown,
   ChevronLeft,
   ChevronRight,
   ChevronUp,
+  ChevronsLeft,
   ChevronsRight,
+  ChevronsUpDown,
   ClockAlert,
+  CreditCard,
   ExternalLink,
   FileText,
   Globe,
+  Heart,
+  LayoutDashboard,
   Link2,
   List,
   Loader2,
+  LogOut,
   MapPin,
+  Menu,
+  PanelLeftClose,
+  PanelLeftOpen,
   Plus,
   PoundSterling,
   Pencil,
@@ -24,15 +34,21 @@ import {
   Save,
   Search,
   SearchCheck,
+  SearchX,
+  SlidersHorizontal,
+  Sparkles,
+  Tag,
   Trash2,
   Unlink,
   Undo2,
+  Users,
   X,
 } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 
@@ -55,6 +71,7 @@ type StylistDraft = {
   instagramUrl: string;
   tiktokUrl?: string;
   addedVia?: string;
+  discoverySource?: string;
   services: string[];
   rawServices: string[];
   hijabiFriendly?: boolean;
@@ -81,6 +98,26 @@ type PriceBand = "£" | "££" | "£££" | "££££";
 type PriceComparisonMode = "service-only" | "mixed" | "package-only";
 type AdminView = "overview" | "drafts" | "freshness" | "pricing" | "keyword" | "discovery" | "filters";
 
+type AdminNavItem = { id: AdminView; label: string; icon: ComponentType<{ className?: string }> };
+
+const ADMIN_NAV_GROUPS: { label?: string; items: AdminNavItem[] }[] = [
+  { items: [{ id: "overview", label: "Overview", icon: LayoutDashboard }] },
+  {
+    label: "Directory",
+    items: [
+      { id: "drafts", label: "Stylists", icon: Users },
+      { id: "filters", label: "Filters", icon: SlidersHorizontal },
+    ],
+  },
+  {
+    label: "Checks",
+    items: [
+      { id: "freshness", label: "Health", icon: Activity },
+      { id: "pricing", label: "Pricing", icon: PoundSterling },
+    ],
+  },
+];
+
 type DraftForm = {
   links: string;
   name: string;
@@ -103,11 +140,12 @@ type DraftForm = {
 };
 
 type DraftEditorStep = "details" | "services" | "review";
-type StylistSortKey = "name" | "status" | "services" | "pricing" | "location" | "addedVia";
+type StylistSortKey = "name" | "status" | "services" | "pricing" | "location" | "discoverySource";
 type StylistSortDirection = "asc" | "desc";
 type StylistSort = { key: StylistSortKey; direction: StylistSortDirection } | null;
 
-const addedViaOptions = ["Manual", "User submission", "Stylist submission", "Cowork scrape"] as const;
+const addedViaOptions = ["Code edit", "Admin tool", "Submission form", "Bulk import", "Automated"] as const;
+const discoverySourceOptions = ["Manual search", "User submission", "Stylist submission"] as const;
 
 type KeywordSearchMatch = {
   keyword: string;
@@ -559,7 +597,6 @@ export function AdminApp() {
   const [checkProgress, setCheckProgress] = useState({ checkedCount: 0, total: 0, nextOffset: null as number | null });
   const [activeCheckBatch, setActiveCheckBatch] = useState({ from: 0, to: 50 });
   const [activeView, setActiveView] = useState<AdminView>("overview");
-  const [intakeText, setIntakeText] = useState("");
   const [dashboard, setDashboard] = useState<DashboardMetrics | null>(null);
   const [suggestions, setSuggestions] = useState<DiscoverySuggestion[]>([]);
   const [isGeneratingSuggestions, setIsGeneratingSuggestions] = useState(false);
@@ -578,6 +615,8 @@ export function AdminApp() {
   const [stylistSearchTerm, setStylistSearchTerm] = useState("");
   const [isDraftEditorOpen, setIsDraftEditorOpen] = useState(false);
   const [freshnessUndoStack, setFreshnessUndoStack] = useState<FreshnessUndoState[]>([]);
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+  const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
   const lastBookingPreviewKeyRef = useRef("");
 
 	  function updateDraftLocations(draft: StylistDraft, nextAreaIds: string[]) {
@@ -593,6 +632,16 @@ export function AdminApp() {
 	  }
 
   const allStylists = useMemo(() => [...drafts, ...publishedStylists], [drafts, publishedStylists]);
+  const stylistStats = useMemo(() => {
+    const stats = { total: allStylists.length, draft: 0, readyToPublish: 0, published: 0 };
+    for (const stylist of allStylists) {
+      const status = getDraftDisplayStatus(stylist);
+      if (status === "ready_to_publish") stats.readyToPublish += 1;
+      else if (status === "published") stats.published += 1;
+      else stats.draft += 1;
+    }
+    return stats;
+  }, [allStylists]);
   const keywordSuggestionGroups = useMemo(
     () => [...learnedKeywordSuggestionGroups, ...serviceKeywordSuggestionGroups],
     [serviceKeywordSuggestionGroups],
@@ -667,7 +716,7 @@ export function AdminApp() {
         update.services = mergeServices(selectedDraft.services, matchedServices);
       }
 
-      const pricingUpdate = buildDraftPricingUpdate(priceCheck, selectedDraft, "manual", { allowOverwriteManual: false });
+      const pricingUpdate = buildDraftPricingUpdate(priceCheck, selectedDraft, "auto", { allowOverwriteManual: false });
       Object.assign(update, pricingUpdate);
 
       if (Object.keys(update).length) {
@@ -677,6 +726,25 @@ export function AdminApp() {
 
     return () => window.clearTimeout(timeout);
   }, [selectedDraft?.id, selectedDraftRawServices, isAuthed]);
+
+  const selectedDraftPriceEvidence = selectedDraft?.priceEvidence?.join("\n") ?? "";
+
+  useEffect(() => {
+    if (!isAuthed || !selectedDraft || !selectedDraftPriceEvidence.trim()) {
+      return;
+    }
+
+    const timeout = window.setTimeout(async () => {
+      const priceCheck = await parsePriceListText(selectedDraftPriceEvidence);
+      const pricingUpdate = buildDraftPricingUpdate(priceCheck, selectedDraft, "auto", { allowOverwriteManual: false });
+
+      if (Object.keys(pricingUpdate).length) {
+        updateStylist(selectedDraft.id, pricingUpdate);
+      }
+    }, 350);
+
+    return () => window.clearTimeout(timeout);
+  }, [selectedDraft?.id, selectedDraftPriceEvidence, isAuthed]);
 
   useEffect(() => {
     if (!isAuthed || !selectedDraft) {
@@ -824,8 +892,7 @@ export function AdminApp() {
     setToast({ id: Date.now(), message: messageText, tone });
   }
 
-  async function createDraft(event: FormEvent) {
-    event.preventDefault();
+  async function createDraft() {
     setMessage("");
     setIsBusy(true);
     try {
@@ -833,7 +900,7 @@ export function AdminApp() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
-        body: JSON.stringify(form),
+        body: JSON.stringify(emptyForm),
       });
       const payload = await response.json();
       if (!response.ok) {
@@ -846,52 +913,6 @@ export function AdminApp() {
       setActiveView("drafts");
       setIsDraftEditorOpen(true);
       notify("Draft created.");
-    } finally {
-      setIsBusy(false);
-    }
-  }
-
-  async function createBulkDrafts(event: FormEvent) {
-    event.preventDefault();
-    setMessage("");
-    setIsBusy(true);
-    try {
-      const response = await fetch("/api/admin/stylists/intake-bulk", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
-        body: JSON.stringify({
-          text: intakeText,
-          priceBand: form.priceBand,
-          servicePriceBand: form.servicePriceBand,
-          packagePriceBand: form.packagePriceBand,
-          priceIncludesHair: form.priceIncludesHair,
-          priceComparisonMode: form.priceComparisonMode,
-          priceSource: form.priceSource,
-          priceEvidence: form.priceEvidence,
-          priceCheckedAt: form.priceCheckedAt,
-          priceUpdatedAt: form.priceUpdatedAt,
-          priceConfidence: form.priceConfidence,
-        }),
-      });
-      const payload = await response.json();
-      if (!response.ok) {
-        notify(formatDuplicateResponse(payload) || payload.message || "Could not create drafts.", "error");
-        return;
-      }
-      const createdDrafts = payload.drafts ?? [];
-      const duplicateCount = Array.isArray(payload.duplicates) ? payload.duplicates.length : 0;
-      setIntakeText("");
-      setForm(emptyForm);
-      setDrafts((current) => [...createdDrafts, ...current]);
-      setSelectedDraftId(createdDrafts[0]?.id ?? null);
-      setActiveView("drafts");
-      setIsDraftEditorOpen(true);
-      notify(
-        duplicateCount
-          ? `Created ${createdDrafts.length} draft${createdDrafts.length === 1 ? "" : "s"}; skipped ${duplicateCount} duplicate${duplicateCount === 1 ? "" : "s"}.`
-          : `Created ${createdDrafts.length} draft${createdDrafts.length === 1 ? "" : "s"}.`,
-      );
     } finally {
       setIsBusy(false);
     }
@@ -1004,7 +1025,7 @@ export function AdminApp() {
       setPublishedStylists((current) => current.filter((item) => item.id !== draft.id));
       setSelectedDraftId(payload.draft?.id ?? draft.id);
       setIsDraftEditorOpen(true);
-      notify("Stylist moved back to ready to publish.");
+      notify("Stylist moved back to complete.");
     } finally {
       setIsBusy(false);
     }
@@ -1527,152 +1548,262 @@ export function AdminApp() {
     );
   }
 
-  const syncLabel = dashboard?.freshness.updatedAt ? `Synced ${formatRelativeTime(dashboard.freshness.updatedAt)}` : "Synced just now";
-
   return (
-    <main className="admin-ui min-h-screen bg-[#f8f8f7] text-stone-950 dark:bg-stone-950 dark:text-stone-50">
-      <header className="mx-auto max-w-7xl px-5 pt-10">
-        <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
-          <div>
-            <p className="inline-flex rounded-none bg-stone-950 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.24em] text-white dark:bg-stone-100 dark:text-stone-950">ROW K ADMIN</p>
-          </div>
-          <div className="flex items-center gap-4">
-            <span className="inline-flex items-center gap-2 text-xs text-stone-500">
-              <span className="size-2 rounded-none bg-emerald-500" />
-              {syncLabel}
-            </span>
-            <Button type="button" variant="outline" onClick={logout} className="h-9 rounded-none bg-white px-3 text-xs dark:bg-transparent">
-              Log out
-            </Button>
-          </div>
-        </div>
+    <main className="admin-ui flex min-h-screen bg-[#f8f8f7] text-stone-950 dark:bg-stone-950 dark:text-stone-50">
+      <AdminSidebar
+        activeView={activeView}
+        onSelectView={(view) => {
+          setActiveView(view);
+          setIsMobileNavOpen(false);
+        }}
+        collapsed={isSidebarCollapsed}
+        onToggleCollapsed={() => setIsSidebarCollapsed((current) => !current)}
+        isMobileOpen={isMobileNavOpen}
+        onCloseMobile={() => setIsMobileNavOpen(false)}
+        onLogout={logout}
+      />
 
-        <nav className="mt-9 flex gap-7 overflow-x-auto border-b border-stone-200 dark:border-stone-800">
-          {(["overview", "drafts", "freshness", "pricing", "keyword", "filters"] as const).map((view) => (
-            <button
-              key={view}
-              type="button"
-              onClick={() => setActiveView(view)}
-              className={cn(
-                "whitespace-nowrap border-b-2 px-0 pb-3 text-sm capitalize transition",
-                activeView === view ? "border-stone-950 text-stone-950 dark:border-stone-100 dark:text-stone-50" : "border-transparent text-stone-500 hover:text-stone-900 dark:text-stone-400 dark:hover:text-stone-100",
-              )}
-            >
-              {view === "drafts" ? "Stylists" : view === "freshness" ? "Health" : view === "pricing" ? "Pricing" : view === "keyword" ? "Keyword search" : view === "filters" ? "Filters" : view}
-            </button>
-          ))}
-        </nav>
-      </header>
+      <div className="min-w-0 flex-1">
+        <header className="flex items-center justify-between gap-3 border-b border-stone-200 px-5 py-4 dark:border-stone-800 lg:hidden">
+          <button
+            type="button"
+            onClick={() => setIsMobileNavOpen(true)}
+            className="inline-flex size-9 items-center justify-center border border-stone-200 text-stone-600 dark:border-stone-800 dark:text-stone-300"
+          >
+            <Menu className="size-4" />
+          </button>
+          <p className="inline-flex rounded-none bg-stone-950 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.24em] text-white dark:bg-stone-100 dark:text-stone-950">ROW K ADMIN</p>
+          <span className="inline-flex items-center gap-2 text-xs text-stone-500">
+            <span className="size-2 rounded-none bg-emerald-500" />
+          </span>
+        </header>
 
-      {activeView === "overview" ? (
-        <DashboardOverview
-          dashboard={dashboard}
-          checks={checks}
-          publishedCount={publishedStylists.length}
-          onOpenView={setActiveView}
-        />
-      ) : null}
+        {activeView === "overview" ? (
+          <DashboardOverview
+            dashboard={dashboard}
+            checks={checks}
+            publishedCount={publishedStylists.length}
+            onOpenView={setActiveView}
+          />
+        ) : null}
 
-      {activeView === "drafts" ? (
-        <StylistsPage
-          drafts={filteredStylists}
-          allDrafts={allStylists}
-          statusFilter={stylistStatusFilter}
-          searchTerm={stylistSearchTerm}
-          isBusy={isBusy}
-          intakeText={intakeText}
-          selectedDraft={isDraftEditorOpen ? selectedDraft : null}
-          regions={regions}
-          services={services}
-          filterCategories={filterCategories}
-          onStatusFilterChange={setStylistStatusFilter}
-          onSearchTermChange={setStylistSearchTerm}
-          onIntakeChange={setIntakeText}
-          onSubmitIntake={createBulkDrafts}
-          onSelectDraft={(draftId) => {
-            setSelectedDraftId(draftId);
-            setIsDraftEditorOpen(true);
-          }}
-          onCloseEditor={() => setIsDraftEditorOpen(false)}
-          onChangeDraft={(update) => selectedDraft ? updateStylist(selectedDraft.id, update) : undefined}
-          onChangeDraftLocations={(areaIds) => selectedDraft ? updateDraftLocations(selectedDraft, areaIds) : undefined}
-          onSaveDraft={() => selectedDraft ? saveDraft(selectedDraft) : undefined}
-          onApproveDraft={() => selectedDraft ? approveDraft(selectedDraft) : undefined}
-          onDeleteDraft={() => selectedDraft ? deleteStylist(selectedDraft) : undefined}
-          onUnpublishDraft={() => selectedDraft ? unpublishStylist(selectedDraft) : undefined}
-        />
-      ) : null}
+        {activeView === "drafts" ? (
+          <StylistsPage
+            drafts={filteredStylists}
+            stats={stylistStats}
+            statusFilter={stylistStatusFilter}
+            searchTerm={stylistSearchTerm}
+            isBusy={isBusy}
+            selectedDraft={isDraftEditorOpen ? selectedDraft : null}
+            regions={regions}
+            services={services}
+            filterCategories={filterCategories}
+            onStatusFilterChange={setStylistStatusFilter}
+            onSearchTermChange={setStylistSearchTerm}
+            onCreateDraft={createDraft}
+            onSelectDraft={(draftId) => {
+              setSelectedDraftId(draftId);
+              setIsDraftEditorOpen(true);
+            }}
+            onCloseEditor={() => setIsDraftEditorOpen(false)}
+            onChangeDraft={(update) => selectedDraft ? updateStylist(selectedDraft.id, update) : undefined}
+            onChangeDraftLocations={(areaIds) => selectedDraft ? updateDraftLocations(selectedDraft, areaIds) : undefined}
+            onSaveDraft={() => selectedDraft ? saveDraft(selectedDraft) : undefined}
+            onApproveDraft={() => selectedDraft ? approveDraft(selectedDraft) : undefined}
+            onDeleteDraft={() => selectedDraft ? deleteStylist(selectedDraft) : undefined}
+            onUnpublishDraft={() => selectedDraft ? unpublishStylist(selectedDraft) : undefined}
+          />
+        ) : null}
 
-      {activeView === "freshness" ? (
-        <FreshnessPage
-          dashboard={dashboard}
-          checks={checks}
-          checksLoadedAt={checksLoadedAt}
-          checkProgress={checkProgress}
-          activeCheckBatch={activeCheckBatch}
-          isRunningChecks={isRunningChecks}
-          isBusy={isBusy}
-          lastUndo={freshnessUndoStack[freshnessUndoStack.length - 1] ?? null}
-          onRunChecks={() => runChecks(0)}
-          onApply={applyFreshnessUpdate}
-          onUndo={undoFreshnessUpdate}
-        />
-      ) : null}
+        {activeView === "freshness" ? (
+          <FreshnessPage
+            dashboard={dashboard}
+            checks={checks}
+            checksLoadedAt={checksLoadedAt}
+            checkProgress={checkProgress}
+            activeCheckBatch={activeCheckBatch}
+            isRunningChecks={isRunningChecks}
+            isBusy={isBusy}
+            lastUndo={freshnessUndoStack[freshnessUndoStack.length - 1] ?? null}
+            onRunChecks={() => runChecks(0)}
+            onApply={applyFreshnessUpdate}
+            onUndo={undoFreshnessUpdate}
+          />
+        ) : null}
 
-      {activeView === "pricing" ? (
-        <PricingPage
-          dashboard={dashboard}
-          checks={checks}
-          checksLoadedAt={checksLoadedAt}
-          checkProgress={checkProgress}
-          activeCheckBatch={activeCheckBatch}
-          isRunningChecks={isRunningChecks}
-          isBusy={isBusy}
-          onRunMissingPrices={() => runChecks(0, "pricing")}
-          onApply={applyFreshnessUpdate}
-        />
-      ) : null}
+        {activeView === "pricing" ? (
+          <PricingPage
+            dashboard={dashboard}
+            checks={checks}
+            checksLoadedAt={checksLoadedAt}
+            checkProgress={checkProgress}
+            activeCheckBatch={activeCheckBatch}
+            isRunningChecks={isRunningChecks}
+            isBusy={isBusy}
+            onRunMissingPrices={() => runChecks(0, "pricing")}
+            onApply={applyFreshnessUpdate}
+          />
+        ) : null}
 
-      {activeView === "keyword" ? (
-        <KeywordSearchPage
-          keywords={keywordTerms}
-          keywordInput={keywordInput}
-          selectedService={selectedKeywordService}
-          services={services}
-          suggestionGroups={keywordSuggestionGroups}
-          searchName={keywordSearchName}
-          savedSearches={savedKeywordSearches}
-          results={keywordResults}
-          progress={keywordProgress}
-          isRunning={isRunningKeywordSearch}
-          isSaving={isSavingKeywordSearch}
-          assigningServiceIds={assigningKeywordServiceIds}
-          onKeywordInputChange={setKeywordInput}
-          onKeywordsChange={setKeywordTerms}
-          onSelectedServiceChange={selectKeywordService}
-          onSearchNameChange={setKeywordSearchName}
-          onRun={() => runKeywordSearch(0)}
-          onSave={saveKeywordSearch}
-          onLoad={loadKeywordSearch}
-          onDelete={deleteKeywordSearch}
-          onAssignService={assignKeywordService}
-        />
-      ) : null}
+        {activeView === "keyword" ? (
+          <KeywordSearchPage
+            keywords={keywordTerms}
+            keywordInput={keywordInput}
+            selectedService={selectedKeywordService}
+            services={services}
+            suggestionGroups={keywordSuggestionGroups}
+            searchName={keywordSearchName}
+            savedSearches={savedKeywordSearches}
+            results={keywordResults}
+            progress={keywordProgress}
+            isRunning={isRunningKeywordSearch}
+            isSaving={isSavingKeywordSearch}
+            assigningServiceIds={assigningKeywordServiceIds}
+            onKeywordInputChange={setKeywordInput}
+            onKeywordsChange={setKeywordTerms}
+            onSelectedServiceChange={selectKeywordService}
+            onSearchNameChange={setKeywordSearchName}
+            onRun={() => runKeywordSearch(0)}
+            onSave={saveKeywordSearch}
+            onLoad={loadKeywordSearch}
+            onDelete={deleteKeywordSearch}
+            onAssignService={assignKeywordService}
+          />
+        ) : null}
 
-      {activeView === "discovery" ? (
-        <DiscoveryPage
-          suggestions={suggestions}
-          isGenerating={isGeneratingSuggestions}
-          isBusy={isBusy}
-          onGenerate={generateDiscoverySuggestions}
-          onCreateDraft={createDraftFromSuggestion}
-        />
-      ) : null}
+        {activeView === "discovery" ? (
+          <DiscoveryPage
+            suggestions={suggestions}
+            isGenerating={isGeneratingSuggestions}
+            isBusy={isBusy}
+            onGenerate={generateDiscoverySuggestions}
+            onCreateDraft={createDraftFromSuggestion}
+          />
+        ) : null}
 
-      {activeView === "filters" ? <FiltersPage onCategoriesChange={setFilterCategories} /> : null}
+        {activeView === "filters" ? <FiltersPage onCategoriesChange={setFilterCategories} /> : null}
+      </div>
 
       <AdminToastMessage toast={toast} onClose={() => setToast(null)} />
     </main>
+  );
+}
+
+function AdminSidebar({
+  activeView,
+  onSelectView,
+  collapsed,
+  onToggleCollapsed,
+  isMobileOpen,
+  onCloseMobile,
+  onLogout,
+}: {
+  activeView: AdminView;
+  onSelectView: (view: AdminView) => void;
+  collapsed: boolean;
+  onToggleCollapsed: () => void;
+  isMobileOpen: boolean;
+  onCloseMobile: () => void;
+  onLogout: () => void;
+}) {
+  const navList = (
+    <nav className="flex-1 space-y-4 overflow-y-auto px-3 py-4">
+      {ADMIN_NAV_GROUPS.map((group, groupIndex) => (
+        <div key={group.label ?? `group-${groupIndex}`} className="space-y-1">
+          {group.label && !collapsed ? (
+            <p className="px-3 pb-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-stone-400 dark:text-stone-500">{group.label}</p>
+          ) : null}
+          {group.label && collapsed ? <div className="mx-2 mb-2 border-t border-stone-200 dark:border-stone-800" /> : null}
+          {group.items.map((item) => {
+            const Icon = item.icon;
+            const isActive = activeView === item.id;
+            return (
+              <button
+                key={item.id}
+                type="button"
+                title={collapsed ? item.label : undefined}
+                onClick={() => onSelectView(item.id)}
+                className={cn(
+                  "flex w-full items-center gap-3 rounded-none border-l-2 px-3 py-2 text-sm transition",
+                  collapsed ? "justify-center" : "",
+                  isActive
+                    ? "border-stone-950 bg-stone-950/5 font-medium text-stone-950 dark:border-stone-100 dark:bg-stone-100/10 dark:text-stone-50"
+                    : "border-transparent text-stone-500 hover:bg-stone-950/5 hover:text-stone-900 dark:text-stone-400 dark:hover:bg-stone-100/5 dark:hover:text-stone-100",
+                )}
+              >
+                <Icon className="size-4 shrink-0" />
+                {collapsed ? null : <span className="truncate">{item.label}</span>}
+              </button>
+            );
+          })}
+        </div>
+      ))}
+    </nav>
+  );
+
+  const footer = (
+    <div className="border-t border-stone-200 px-3 py-4 dark:border-stone-800">
+      <Button
+        type="button"
+        variant="ghost"
+        onClick={onLogout}
+        title={collapsed ? "Log out" : undefined}
+        className={cn(
+          "h-9 w-full rounded-none border border-solid border-stone-300 bg-stone-100 text-xs text-stone-700 hover:border-stone-400 hover:bg-stone-200 hover:text-stone-900 dark:border-stone-600 dark:bg-stone-800 dark:text-stone-200 dark:hover:border-stone-500 dark:hover:bg-stone-700",
+          collapsed ? "px-0" : "justify-start gap-2 px-3",
+        )}
+      >
+        <LogOut className="size-4" />
+        {collapsed ? null : "Log out"}
+      </Button>
+    </div>
+  );
+
+  return (
+    <>
+      <aside
+        className={cn(
+          "sticky top-0 hidden h-screen shrink-0 flex-col border-r border-stone-200 bg-white transition-[width] dark:border-stone-800 dark:bg-stone-950 lg:flex",
+          collapsed ? "w-[68px]" : "w-64",
+        )}
+      >
+        <div className={cn("flex items-center border-b border-stone-200 px-4 py-5 dark:border-stone-800", collapsed ? "justify-center px-0" : "justify-between")}>
+          {collapsed ? null : (
+            <p className="inline-flex rounded-none bg-stone-950 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.24em] text-white dark:bg-stone-100 dark:text-stone-950">ROW K</p>
+          )}
+          <button
+            type="button"
+            onClick={onToggleCollapsed}
+            title={collapsed ? "Expand sidebar" : "Collapse sidebar"}
+            className="inline-flex size-8 shrink-0 items-center justify-center text-stone-500 hover:text-stone-900 dark:text-stone-400 dark:hover:text-stone-100"
+          >
+            {collapsed ? <PanelLeftOpen className="size-4" /> : <PanelLeftClose className="size-4" />}
+          </button>
+        </div>
+        {navList}
+        {footer}
+      </aside>
+
+      {isMobileOpen ? (
+        <div className="fixed inset-0 z-50 lg:hidden">
+          <button type="button" aria-label="Close navigation" onClick={onCloseMobile} className="absolute inset-0 bg-stone-950/40" />
+          <aside className="absolute inset-y-0 left-0 flex w-72 flex-col border-r border-stone-200 bg-white dark:border-stone-800 dark:bg-stone-950">
+            <div className="flex items-center justify-between border-b border-stone-200 px-4 py-5 dark:border-stone-800">
+              <p className="inline-flex rounded-none bg-stone-950 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.24em] text-white dark:bg-stone-100 dark:text-stone-950">ROW K ADMIN</p>
+              <button
+                type="button"
+                onClick={onCloseMobile}
+                className="inline-flex size-8 items-center justify-center text-stone-500 hover:text-stone-900 dark:text-stone-400 dark:hover:text-stone-100"
+              >
+                <X className="size-4" />
+              </button>
+            </div>
+            {navList}
+            {footer}
+          </aside>
+        </div>
+      ) : null}
+    </>
   );
 }
 
@@ -1700,19 +1831,17 @@ function AdminToastMessage({ toast, onClose }: { toast: AdminToast | null; onClo
 
 function StylistsPage({
   drafts,
-  allDrafts,
+  stats,
   statusFilter,
   searchTerm,
   isBusy,
-  intakeText,
   selectedDraft,
   regions,
   services,
   filterCategories,
   onStatusFilterChange,
   onSearchTermChange,
-  onIntakeChange,
-  onSubmitIntake,
+  onCreateDraft,
   onSelectDraft,
   onCloseEditor,
   onChangeDraft,
@@ -1723,19 +1852,17 @@ function StylistsPage({
   onUnpublishDraft,
 }: {
   drafts: StylistDraft[];
-  allDrafts: StylistDraft[];
+  stats: { total: number; draft: number; readyToPublish: number; published: number };
   statusFilter: string;
   searchTerm: string;
   isBusy: boolean;
-  intakeText: string;
   selectedDraft: StylistDraft | null;
   regions: RegionOption[];
   services: string[];
   filterCategories: { id: string; label: string; subcategories: string[] }[];
   onStatusFilterChange: (value: string) => void;
   onSearchTermChange: (value: string) => void;
-  onIntakeChange: (value: string) => void;
-  onSubmitIntake: (event: FormEvent) => void;
+  onCreateDraft: () => void;
   onSelectDraft: (draftId: string) => void;
   onCloseEditor: () => void;
   onChangeDraft: (update: Partial<StylistDraft>) => void;
@@ -1745,21 +1872,31 @@ function StylistsPage({
   onDeleteDraft: () => void;
   onUnpublishDraft: () => void;
 }) {
-  const [stylistView, setStylistView] = useState<"table" | "kanban">("table");
   const [stylistSort, setStylistSort] = useState<StylistSort>(null);
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const stylistSearchRef = useRef<HTMLInputElement | null>(null);
-  const statusLabel = statusFilter === "all" ? "All statuses" : getStylistStatusLabel(statusFilter);
-  const kanbanColumns = [
-    { id: "draft", label: "Draft" },
-    { id: "ready_to_publish", label: "Ready to publish" },
-    { id: "published", label: "Published" },
-  ] as const;
-  const draftsByStatus = kanbanColumns.map((column) => ({
-    ...column,
-    drafts: drafts.filter((draft) => getDraftDisplayStatus(draft) === column.id),
-  }));
-  const sortedDrafts = useMemo(() => sortStylistDrafts(drafts, stylistSort, regions), [drafts, regions, stylistSort]);
+  const [page, setPage] = useState(1);
+  const [pageSize, setPageSize] = useState(10);
+  const [categoryFilter, setCategoryFilter] = useState("all");
+  const [locationFilter, setLocationFilter] = useState("all");
+  const [priceFilter, setPriceFilter] = useState("all");
+  const [needsFilter, setNeedsFilter] = useState<string[]>([]);
+  const filteredDrafts = useMemo(
+    () =>
+      drafts.filter((draft) => {
+        const matchesCategory = categoryFilter === "all" || draftMatchesCategory(draft, categoryFilter, filterCategories);
+        const matchesLocation = locationFilter === "all" || draftMatchesLocation(draft, locationFilter);
+        const matchesPrice = priceFilter === "all" || (draft.priceBand || "not-listed") === priceFilter;
+        const matchesNeeds = needsFilter.every((need) => Boolean(draft[need as "hijabiFriendly" | "canBraidWithoutGel" | "wheelchairAccessible"]));
+        return matchesCategory && matchesLocation && matchesPrice && matchesNeeds;
+      }),
+    [drafts, categoryFilter, locationFilter, priceFilter, needsFilter, filterCategories],
+  );
+  const sortedDrafts = useMemo(() => sortStylistDrafts(filteredDrafts, stylistSort, regions), [filteredDrafts, regions, stylistSort]);
+  const pageCount = Math.max(Math.ceil(sortedDrafts.length / pageSize), 1);
+  const currentPage = Math.min(page, pageCount);
+  const pagedDrafts = useMemo(
+    () => sortedDrafts.slice((currentPage - 1) * pageSize, (currentPage - 1) * pageSize + pageSize),
+    [sortedDrafts, currentPage, pageSize],
+  );
 
   function changeStylistSort(key: StylistSortKey) {
     setStylistSort((current) =>
@@ -1768,174 +1905,109 @@ function StylistsPage({
   }
 
   useEffect(() => {
-    if (isSearchOpen) {
-      window.setTimeout(() => stylistSearchRef.current?.focus(), 0);
-    }
-  }, [isSearchOpen]);
-
-  function submitIntakeOnEnter(event: KeyboardEvent<HTMLTextAreaElement>) {
-    if (event.key !== "Enter" || event.shiftKey) {
-      return;
-    }
-
-    event.preventDefault();
-    if (!isBusy && intakeText.trim()) {
-      event.currentTarget.form?.requestSubmit();
-    }
-  }
+    setPage(1);
+  }, [drafts, pageSize, categoryFilter, locationFilter, priceFilter, needsFilter]);
 
   return (
-    <div className="mx-auto max-w-7xl space-y-8 px-5 py-12">
-      <section className="space-y-12">
-        <h1 className="flex items-center gap-3 text-3xl font-semibold tracking-tight text-stone-950">
-          Stylists
-        </h1>
-
-        <form onSubmit={onSubmitIntake} className="relative">
-          <Plus className="pointer-events-none absolute left-6 top-1/2 size-5 -translate-y-1/2 text-stone-400" />
-          <textarea
-            value={intakeText}
-            onChange={(event) => onIntakeChange(event.target.value)}
-            onKeyDown={submitIntakeOnEnter}
-            rows={1}
-            aria-label="Create draft from link, handle, or notes"
-            placeholder="Paste an Instagram link..."
-            className="block h-16 min-h-16 w-full resize-none overflow-hidden whitespace-nowrap rounded-none border border-stone-200 bg-white py-5 pl-16 pr-24 text-base leading-6 outline-none placeholder:text-stone-400 focus:border-stone-400"
-          />
-          <button
-            type="submit"
-            disabled={isBusy || !intakeText.trim()}
-            className="absolute right-3 top-1/2 inline-flex size-12 -translate-y-1/2 items-center justify-center rounded-none bg-stone-100 text-stone-600 transition hover:bg-stone-200 hover:text-stone-900 disabled:cursor-not-allowed disabled:opacity-50"
-            aria-label="Create draft"
-            title="Create draft"
-          >
-            {isBusy ? <Loader2 className="size-5 animate-spin" /> : <ArrowUp className="size-5" />}
-          </button>
-        </form>
-      </section>
-
-      <section className="space-y-4">
-        <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-          <div className="flex flex-wrap items-center gap-4">
+    <div className="mx-auto max-w-7xl space-y-4 px-5 py-12">
+      <section className="space-y-6">
+        <div className="flex flex-wrap items-start justify-between gap-4">
+          <h1 className="text-3xl font-bold tracking-tight text-stone-950">Stylists</h1>
+          <div className="flex items-center gap-4">
             <button
               type="button"
-              onClick={() => setStylistView("table")}
-              aria-pressed={stylistView === "table"}
-              className={cn("inline-flex h-10 items-center gap-2 rounded-full px-4 text-[15px] font-semibold transition", stylistView === "table" ? "bg-stone-100 text-stone-950" : "text-stone-500 hover:bg-stone-100 hover:text-stone-950")}
+              onClick={onCreateDraft}
+              disabled={isBusy}
+              className="inline-flex h-10 items-center gap-2 rounded-none bg-stone-950 px-4 text-[13px] font-semibold text-white transition hover:bg-stone-800 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-stone-300"
             >
-              <List className="size-4" />
-              Table
+              <Plus className="size-4" />
+              Create
             </button>
-            <button
-              type="button"
-              onClick={() => setStylistView("kanban")}
-              aria-pressed={stylistView === "kanban"}
-              className={cn("inline-flex h-10 items-center gap-2 rounded-full px-4 text-[15px] font-semibold transition", stylistView === "kanban" ? "bg-stone-100 text-stone-950" : "text-stone-500 hover:bg-stone-100 hover:text-stone-950")}
-            >
-              <List className="size-4" />
-              Kanban
-            </button>
-          </div>
-          <div className="flex items-center gap-2">
-            {isSearchOpen || searchTerm ? (
-              <div className="relative w-64">
-                <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-stone-400" />
-                <Input
-                  ref={stylistSearchRef}
-                  value={searchTerm}
-                  onChange={(event) => onSearchTermChange(event.target.value)}
-                  onBlur={() => {
-                    if (!searchTerm.trim()) {
-                      setIsSearchOpen(false);
-                    }
-                  }}
-                  placeholder="Search"
-                  aria-label="Search stylist entries"
-                  className="h-9 rounded-md border-transparent bg-transparent pl-9 pr-10 text-sm focus-visible:border-stone-300"
-                />
-                {searchTerm ? (
-                  <button
-                    type="button"
-                    onClick={() => {
-                      onSearchTermChange("");
-                      setIsSearchOpen(false);
-                    }}
-                    className="absolute right-2 top-1/2 inline-flex size-7 -translate-y-1/2 items-center justify-center rounded-md text-stone-400 transition hover:bg-stone-100 hover:text-stone-900"
-                    aria-label="Clear stylist search"
-                    title="Clear stylist search"
-                  >
-                    <X className="size-4" />
-                  </button>
-                ) : null}
-              </div>
-            ) : (
-              <button
-                type="button"
-                onClick={() => setIsSearchOpen(true)}
-                className="inline-flex size-9 items-center justify-center rounded-md text-stone-500 transition hover:bg-stone-100 hover:text-stone-950"
-                aria-label="Search stylist entries"
-                title="Search stylist entries"
-              >
-                <Search className="size-4" />
-              </button>
-            )}
           </div>
         </div>
 
-        {stylistView === "table" ? (
-          <div className="overflow-x-auto border-t border-stone-200">
-            <table className="w-full text-left text-[15px] md:min-w-[1100px]">
-              <thead className="border-b border-stone-200 text-[15px] font-semibold text-stone-500">
+        <div className="grid grid-cols-2 divide-x divide-y divide-stone-200 rounded-none border border-stone-200 bg-white sm:grid-cols-4 sm:divide-y-0">
+          <StylistStatCell label="Draft" value={stats.draft} />
+          <StylistStatCell label="Complete" value={stats.readyToPublish} />
+          <StylistStatCell label="Published" value={stats.published} />
+          <StylistStatCell label="Total" value={stats.total} />
+        </div>
+      </section>
+
+      <section className="space-y-3">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <div className="relative w-full max-w-xs">
+            <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-stone-400" />
+            <Input
+              value={searchTerm}
+              onChange={(event) => onSearchTermChange(event.target.value)}
+              placeholder="Search name or location"
+              aria-label="Search stylist entries"
+              className="h-10 rounded-none pl-9 text-sm"
+            />
+          </div>
+          <StylistFilterMenu
+            statusValue={statusFilter}
+            onStatusChange={onStatusFilterChange}
+            categoryValue={categoryFilter}
+            onCategoryChange={setCategoryFilter}
+            locationValue={locationFilter}
+            onLocationChange={setLocationFilter}
+            priceValue={priceFilter}
+            onPriceChange={setPriceFilter}
+            needsValue={needsFilter}
+            onNeedsChange={setNeedsFilter}
+            filterCategories={filterCategories}
+            regions={regions}
+          />
+        </div>
+
+        <div className="border border-stone-200 bg-white dark:border-stone-800 dark:bg-stone-900">
+          <div className="overflow-x-auto">
+            <table className="w-full text-left text-[13px] md:min-w-[1120px]">
+              <thead className="border-b border-stone-200 bg-stone-100 text-[12px] font-semibold uppercase tracking-wide text-stone-500 dark:border-stone-800">
                 <tr>
                   <StylistSortHeader label="Stylist" sortKey="name" sort={stylistSort} onSort={changeStylistSort} />
                   <StylistSortHeader label="Status" sortKey="status" sort={stylistSort} onSort={changeStylistSort} />
                   <StylistSortHeader label="Services" sortKey="services" sort={stylistSort} onSort={changeStylistSort} className="hidden md:table-cell" />
                   <StylistSortHeader label="Pricing" sortKey="pricing" sort={stylistSort} onSort={changeStylistSort} className="hidden md:table-cell" />
                   <StylistSortHeader label="Location" sortKey="location" sort={stylistSort} onSort={changeStylistSort} className="hidden md:table-cell" />
-                  <StylistSortHeader label="Added via" sortKey="addedVia" sort={stylistSort} onSort={changeStylistSort} className="hidden w-36 whitespace-nowrap md:table-cell" />
+                  <StylistSortHeader label="Discovery" sortKey="discoverySource" sort={stylistSort} onSort={changeStylistSort} className="hidden w-32 whitespace-nowrap md:table-cell" />
                   <th className="w-10 px-4 py-3">
                     <span className="sr-only">Open stylist</span>
                   </th>
                 </tr>
               </thead>
               <tbody>
-                {sortedDrafts.length ? (
-                  sortedDrafts.map((draft) => {
+                {pagedDrafts.length ? (
+                  pagedDrafts.map((draft) => {
                     return <StylistTableRow key={draft.id} draft={draft} regions={regions} onSelectDraft={onSelectDraft} />;
                   })
                 ) : (
                   <tr>
                     <td colSpan={7} className="px-4 py-10 text-center text-sm text-stone-500">
-                      No stylists match those filters.
+                      <div className="flex flex-col items-center gap-2">
+                        <SearchX className="size-6 text-stone-300" />
+                        No stylists match those filters.
+                      </div>
                     </td>
                   </tr>
                 )}
               </tbody>
             </table>
           </div>
-        ) : (
-          <div className="overflow-x-auto pt-3">
-            <div className="grid min-w-[980px] gap-4 lg:grid-cols-3">
-              {draftsByStatus.map((column) => (
-                <div key={column.id} className="min-h-[520px] rounded-[18px] bg-stone-50 p-3">
-                  <div className="mb-4 flex h-12 items-center justify-between rounded-[14px] bg-white/70 px-3 py-2">
-                    <div className="flex items-center gap-2">
-                      <span className="text-sm font-medium text-stone-700">{column.label}</span>
-                      <span className="rounded-none bg-white px-1.5 py-0.5 text-xs text-stone-500">{column.drafts.length}</span>
-                    </div>
-                  </div>
-                  <div className="space-y-2">
-                    {column.drafts.length ? (
-                      column.drafts.map((draft) => <StylistKanbanCard key={draft.id} draft={draft} regions={regions} onSelectDraft={onSelectDraft} />)
-                    ) : (
-                      <div className="rounded-none border border-dashed border-stone-300 bg-white/60 p-4 text-sm text-stone-400">No stylists</div>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
+
+          <div className="border-t border-stone-200 bg-stone-100 px-4 py-3 dark:border-stone-800">
+            <StylistTablePagination
+              page={currentPage}
+              pageCount={pageCount}
+              pageSize={pageSize}
+              totalCount={sortedDrafts.length}
+              onPageChange={setPage}
+              onPageSizeChange={setPageSize}
+            />
           </div>
-        )}
+        </div>
       </section>
 
       {selectedDraft ? (
@@ -1954,6 +2026,15 @@ function StylistsPage({
           onUnpublish={onUnpublishDraft}
         />
       ) : null}
+    </div>
+  );
+}
+
+function StylistStatCell({ label, value }: { label: string; value: number }) {
+  return (
+    <div className="p-5">
+      <p className="text-[13px] text-stone-500">{label}</p>
+      <p className="mt-2 text-2xl font-semibold tracking-tight text-stone-950">{value}</p>
     </div>
   );
 }
@@ -1977,20 +2058,30 @@ function sortStylistDrafts(drafts: StylistDraft[], sort: StylistSort, regions: R
     .map(({ draft }) => draft);
 }
 
+const stylistStatusSortRank: Record<string, number> = {
+  draft: 1,
+  ready_to_publish: 2,
+  published: 3,
+};
+
 function getStylistSortValue(draft: StylistDraft, key: StylistSortKey, regions: RegionOption[]) {
   switch (key) {
-    case "name":
-      return draft.name || "Untitled stylist";
-    case "status":
-      return getStylistStatusLabel(getDraftDisplayStatus(draft));
+    case "name": {
+      const name = draft.name || "Untitled stylist";
+      return `${/^\d/.test(name) ? 1 : 0}_${name}`;
+    }
+    case "status": {
+      const status = getDraftDisplayStatus(draft);
+      return `${stylistStatusSortRank[status] ?? 9}_${getStylistStatusLabel(status)}`;
+    }
     case "services":
       return draft.services.join(", ");
     case "pricing":
       return draft.priceBand || "";
     case "location":
       return getDraftLocationLabel(draft, regions) || "";
-    case "addedVia":
-      return draft.addedVia || "";
+    case "discoverySource":
+      return draft.discoverySource || "";
   }
 }
 
@@ -2025,11 +2116,11 @@ function StylistSortHeader({
       <button
         type="button"
         onClick={() => onSort(sortKey)}
-        className="inline-flex items-center gap-1.5 whitespace-nowrap font-semibold text-stone-500 transition hover:text-stone-950"
+        className="inline-flex items-center gap-1 whitespace-nowrap transition hover:text-stone-950 dark:hover:text-stone-100"
       >
         {label}
-        <span className={cn("inline-flex size-4 items-center justify-center", isActive ? "text-stone-900" : "text-stone-300")}>
-          {isActive && sort?.direction === "desc" ? <ChevronDown className="size-3.5" /> : <ChevronUp className="size-3.5" />}
+        <span className={cn("inline-flex size-3.5 items-center justify-center", isActive ? "text-stone-900 dark:text-stone-100" : "text-stone-400")}>
+          {isActive ? sort?.direction === "desc" ? <ChevronDown className="size-3.5" /> : <ChevronUp className="size-3.5" /> : <ChevronsUpDown className="size-3.5" />}
         </span>
       </button>
     </th>
@@ -2058,31 +2149,31 @@ function StylistTableRow({
           onSelectDraft(draft.id);
         }
       }}
-      className="cursor-pointer border-b border-stone-100 transition hover:bg-stone-50 focus:bg-stone-50 focus:outline-none last:border-b-0"
+      className="group cursor-pointer border-b border-stone-100 transition hover:bg-stone-50 focus:bg-stone-50 focus:outline-none last:border-b-0 dark:border-stone-900 dark:hover:bg-stone-900"
     >
-      <td className="max-w-[12rem] truncate px-4 py-4 font-medium text-stone-950 sm:max-w-none">{draft.name || "Untitled stylist"}</td>
-      <td className="px-4 py-4">
+      <td className="max-w-[12rem] truncate px-4 py-3 font-medium text-stone-950 sm:max-w-none dark:text-stone-50">{draft.name || "Untitled stylist"}</td>
+      <td className="px-4 py-3">
         <DraftTableStatusBadge draft={draft} />
       </td>
-      <td className="hidden px-4 py-4 text-stone-700 md:table-cell">
+      <td className="hidden px-4 py-3 text-stone-700 md:table-cell dark:text-stone-300">
         {visibleServices.length ? (
           <div className="flex max-w-[320px] flex-nowrap gap-1 overflow-hidden">
             {visibleServices.map((service) => (
-              <span key={service} className="min-w-0 max-w-[140px] shrink truncate rounded-md bg-stone-100 px-1.5 py-0.5 text-xs font-medium text-stone-700">
+              <span key={service} className="min-w-0 max-w-[140px] shrink truncate rounded-none border border-stone-200 px-1.5 py-0.5 text-xs font-medium text-stone-700 dark:border-stone-700 dark:text-stone-300">
                 {service}
               </span>
             ))}
-            {hiddenServiceCount ? <span className="shrink-0 rounded-md bg-stone-100 px-1.5 py-0.5 text-xs font-medium text-stone-500">+{hiddenServiceCount}</span> : null}
+            {hiddenServiceCount ? <span className="shrink-0 rounded-none border border-stone-200 px-1.5 py-0.5 text-xs font-medium text-stone-500 dark:border-stone-700">+{hiddenServiceCount}</span> : null}
           </div>
         ) : (
           <span className="text-stone-400">-</span>
         )}
       </td>
-      <td className="hidden px-4 py-4 text-stone-700 md:table-cell">{draft.priceBand || "-"}</td>
-      <td className="hidden px-4 py-4 text-stone-700 md:table-cell">{getDraftLocationLabel(draft, regions) || "-"}</td>
-      <td className="hidden w-36 whitespace-nowrap px-4 py-4 text-stone-500 md:table-cell">{draft.addedVia || "-"}</td>
-      <td className="px-4 py-4">
-        <span className="inline-flex size-7 items-center justify-center rounded-none text-stone-500">
+      <td className="hidden px-4 py-3 text-stone-700 md:table-cell dark:text-stone-300">{draft.priceBand || "-"}</td>
+      <td className="hidden px-4 py-3 text-stone-700 md:table-cell dark:text-stone-300">{getDraftLocationLabel(draft, regions) || "-"}</td>
+      <td className="hidden w-32 whitespace-nowrap px-4 py-3 text-stone-500 md:table-cell">{draft.discoverySource || "-"}</td>
+      <td className="px-4 py-3">
+        <span className="inline-flex size-7 items-center justify-center rounded-none text-stone-400 transition group-hover:text-stone-600 dark:group-hover:text-stone-300">
           <ChevronRight className="size-4" />
         </span>
       </td>
@@ -2090,25 +2181,554 @@ function StylistTableRow({
   );
 }
 
-function StylistKanbanCard({ draft, regions, onSelectDraft }: { draft: StylistDraft; regions: RegionOption[]; onSelectDraft: (draftId: string) => void }) {
-  const location = getDraftLocationLabel(draft, regions);
+const stylistPriceFilterOptions = [
+  { id: "£", label: "£: under £100" },
+  { id: "££", label: "££: £100-£200" },
+  { id: "£££", label: "£££: £200-£300" },
+  { id: "££££", label: "££££: over £300" },
+  { id: "not-listed", label: "Price not listed" },
+];
 
+const stylistNeedsFilterOptions = [
+  { id: "hijabiFriendly", label: "Hijabi-friendly" },
+  { id: "canBraidWithoutGel", label: "Can braid without gel" },
+  { id: "wheelchairAccessible", label: "Wheelchair accessible" },
+];
+
+const stylistStatusFilterOptions = [
+  { id: "draft", label: "Draft" },
+  { id: "ready_to_publish", label: "Complete" },
+  { id: "published", label: "Published" },
+];
+
+function FilterMenuCollapsible({ open, children }: { open: boolean; children: ReactNode }) {
+  return (
+    <div aria-hidden={!open} className="overflow-hidden" style={{ height: open ? "auto" : 0 }}>
+      <div className={cn(open ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-0 opacity-0")}>{children}</div>
+    </div>
+  );
+}
+
+function FilterMenuSection({ title, count, open, onToggle, children }: { title: string; count: number; open: boolean; onToggle: () => void; children: ReactNode }) {
+  return (
+    <div className={cn("border-b border-stone-100 px-3 dark:border-stone-800", open && "pb-3")}>
+      <button type="button" aria-expanded={open} onClick={onToggle} className="group flex min-h-11 w-full items-center justify-between rounded-none bg-transparent py-2 text-left">
+        <span className="text-[13px] font-semibold text-stone-900 transition-colors group-hover:text-stone-500 dark:text-stone-100 dark:group-hover:text-stone-400">{title}</span>
+        <span className="flex items-center gap-2">
+          {count > 0 ? (
+            <span className="inline-flex min-h-5 min-w-5 items-center justify-center rounded-full bg-stone-950 px-1.5 text-[11px] font-bold leading-none text-stone-100 dark:bg-stone-100 dark:text-stone-950">
+              {count}
+            </span>
+          ) : null}
+          <ChevronDown className={cn("size-4 text-stone-500 transition-transform", open && "rotate-180")} aria-hidden="true" />
+        </span>
+      </button>
+      <FilterMenuCollapsible open={open}>{children}</FilterMenuCollapsible>
+    </div>
+  );
+}
+
+function FilterMenuOptionRow({ label, isSelected, onClick, indent = false }: { label: string; isSelected: boolean; onClick: () => void; indent?: boolean }) {
   return (
     <button
       type="button"
-      onClick={() => onSelectDraft(draft.id)}
-      className="w-full rounded-none border border-stone-200 bg-white p-3 text-left shadow-sm transition hover:border-stone-300 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-stone-300"
+      aria-pressed={isSelected}
+      onClick={onClick}
+      className={cn(
+        "flex w-full cursor-pointer items-start gap-3 rounded-none px-2 py-2 text-left transition-colors hover:bg-stone-100 active:bg-stone-100 dark:hover:bg-stone-800 dark:active:bg-stone-800",
+        indent && "pl-8",
+      )}
     >
-      <div className="flex items-start justify-between gap-3">
-        <p className="min-w-0 flex-1 truncate text-sm font-semibold text-stone-950">{draft.name || "Untitled stylist"}</p>
-        <DraftTableStatusBadge draft={draft} />
-      </div>
-      <div className="mt-3 space-y-2 text-xs text-stone-500">
-        <p>{draft.services.length} services</p>
-        <p className="truncate">{location || "No location"}</p>
-        <p>{formatRelativeTime(draft.updatedAt || draft.createdAt)}</p>
-      </div>
+      <span
+        aria-hidden="true"
+        className={cn(
+          "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-none border border-stone-400 bg-white transition dark:border-stone-600 dark:bg-stone-900",
+          isSelected && "border-stone-950 bg-stone-950 dark:border-stone-100 dark:bg-stone-100",
+        )}
+      >
+        {isSelected ? <Check className="size-3.5 text-white dark:text-stone-950" /> : null}
+      </span>
+      <span className="translate-y-[1.5px] text-[13px] text-stone-800 dark:text-stone-200">{label}</span>
     </button>
+  );
+}
+
+function StylistFilterMenu({
+  statusValue,
+  onStatusChange,
+  categoryValue,
+  onCategoryChange,
+  locationValue,
+  onLocationChange,
+  priceValue,
+  onPriceChange,
+  needsValue,
+  onNeedsChange,
+  filterCategories,
+  regions,
+}: {
+  statusValue: string;
+  onStatusChange: (value: string) => void;
+  categoryValue: string;
+  onCategoryChange: (value: string) => void;
+  locationValue: string;
+  onLocationChange: (value: string) => void;
+  priceValue: string;
+  onPriceChange: (value: string) => void;
+  needsValue: string[];
+  onNeedsChange: (value: string[]) => void;
+  filterCategories: { id: string; label: string; subcategories: string[] }[];
+  regions: RegionOption[];
+}) {
+  const [isOpen, setIsOpen] = useState(false);
+  const [openSection, setOpenSection] = useState<"status" | "category" | "location" | "price" | "needs" | null>(null);
+  const popoverRef = useRef<HTMLDivElement | null>(null);
+  const triggerRef = useRef<HTMLButtonElement | null>(null);
+  const activeCount =
+    (statusValue !== "all" ? 1 : 0) + (categoryValue !== "all" ? 1 : 0) + (locationValue !== "all" ? 1 : 0) + (priceValue !== "all" ? 1 : 0) + needsValue.length;
+  const isActive = activeCount > 0;
+  const londonRegion = regions.find((region) => region.id === londonParentAreaId);
+  const londonChildRegions = regions.filter((region) => londonChildAreaIds.has(region.id));
+  const standaloneRegions = regions.filter((region) => region.id !== londonParentAreaId && !londonChildAreaIds.has(region.id));
+  const isLondonExpanded = locationValue === londonParentAreaId || londonChildRegions.some((region) => region.id === locationValue);
+
+  function toggleSection(section: "status" | "category" | "location" | "price" | "needs") {
+    setOpenSection((current) => (current === section ? null : section));
+  }
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handlePointerDown = (event: MouseEvent) => {
+      const target = event.target as Node;
+      if (popoverRef.current?.contains(target) || triggerRef.current?.contains(target)) {
+        return;
+      }
+      setIsOpen(false);
+    };
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setIsOpen(false);
+        triggerRef.current?.focus();
+      }
+    };
+
+    document.addEventListener("mousedown", handlePointerDown);
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("mousedown", handlePointerDown);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isOpen]);
+
+  function toggleNeed(id: string) {
+    onNeedsChange(needsValue.includes(id) ? needsValue.filter((need) => need !== id) : [...needsValue, id]);
+  }
+
+  function clearAll() {
+    onStatusChange("all");
+    onCategoryChange("all");
+    onLocationChange("all");
+    onPriceChange("all");
+    onNeedsChange([]);
+  }
+
+  return (
+    <div className="relative">
+      <button
+        ref={triggerRef}
+        type="button"
+        onClick={() => setIsOpen((current) => !current)}
+        aria-expanded={isOpen}
+        className={cn(
+          "inline-flex h-10 items-center gap-1.5 rounded-none border border-solid px-3 text-[13px] font-medium transition",
+          isActive
+            ? "border-stone-400 bg-stone-200 text-stone-950 hover:border-stone-500 hover:bg-stone-300 dark:border-stone-500 dark:bg-stone-700 dark:text-stone-100 dark:hover:border-stone-400 dark:hover:bg-stone-600"
+            : "border-stone-300 bg-stone-100 text-stone-600 hover:border-stone-400 hover:bg-stone-200 hover:text-stone-900 dark:border-stone-600 dark:bg-stone-800 dark:text-stone-300 dark:hover:border-stone-500 dark:hover:bg-stone-700 dark:hover:text-stone-100",
+        )}
+      >
+        <SlidersHorizontal className="size-3.5" />
+        Filter
+        {isActive ? (
+          <span className="inline-flex size-4 items-center justify-center rounded-full bg-stone-950 text-[10px] font-semibold text-white dark:bg-stone-100 dark:text-stone-950">
+            {activeCount}
+          </span>
+        ) : null}
+      </button>
+
+      {isOpen ? (
+        <div
+          ref={popoverRef}
+          className="absolute right-0 top-full z-20 mt-1 max-h-[75vh] w-80 overflow-y-auto rounded-none border border-stone-200 bg-white shadow-lg dark:border-stone-700 dark:bg-stone-900"
+        >
+          <div className="flex items-center justify-between border-b border-stone-100 px-3 py-2 dark:border-stone-800">
+            <span className="text-[13px] font-semibold text-stone-900 dark:text-stone-100">Filters</span>
+            {isActive ? (
+              <button type="button" onClick={clearAll} className="text-[12px] font-medium text-stone-500 transition hover:text-stone-900 dark:hover:text-stone-100">
+                Clear all
+              </button>
+            ) : null}
+          </div>
+
+          <FilterMenuSection title="Status" count={statusValue !== "all" ? 1 : 0} open={openSection === "status"} onToggle={() => toggleSection("status")}>
+            <div className="space-y-1 pt-1">
+              {stylistStatusFilterOptions.map((option) => (
+                <FilterMenuOptionRow
+                  key={option.id}
+                  label={option.label}
+                  isSelected={statusValue === option.id}
+                  onClick={() => onStatusChange(statusValue === option.id ? "all" : option.id)}
+                />
+              ))}
+            </div>
+          </FilterMenuSection>
+
+          <FilterMenuSection title="Category" count={categoryValue !== "all" ? 1 : 0} open={openSection === "category"} onToggle={() => toggleSection("category")}>
+            <div className="space-y-1 pt-1">
+              {filterCategories.map((category) => (
+                <FilterMenuOptionRow
+                  key={category.id}
+                  label={category.label}
+                  isSelected={categoryValue === category.id}
+                  onClick={() => onCategoryChange(categoryValue === category.id ? "all" : category.id)}
+                />
+              ))}
+            </div>
+          </FilterMenuSection>
+
+          <FilterMenuSection title="Location" count={locationValue !== "all" ? 1 : 0} open={openSection === "location"} onToggle={() => toggleSection("location")}>
+            <div className="space-y-1 pt-1">
+              {londonRegion ? (
+                <FilterMenuOptionRow
+                  label={londonRegion.label}
+                  isSelected={locationValue === londonRegion.id}
+                  onClick={() => onLocationChange(locationValue === londonRegion.id ? "all" : londonRegion.id)}
+                />
+              ) : null}
+              {isLondonExpanded
+                ? londonChildRegions.map((region) => (
+                    <FilterMenuOptionRow
+                      key={region.id}
+                      label={region.label}
+                      isSelected={locationValue === region.id}
+                      onClick={() => onLocationChange(locationValue === region.id ? "all" : region.id)}
+                      indent
+                    />
+                  ))
+                : null}
+              {standaloneRegions.map((region) => (
+                <FilterMenuOptionRow
+                  key={region.id}
+                  label={region.label}
+                  isSelected={locationValue === region.id}
+                  onClick={() => onLocationChange(locationValue === region.id ? "all" : region.id)}
+                />
+              ))}
+            </div>
+          </FilterMenuSection>
+
+          <FilterMenuSection title="Price" count={priceValue !== "all" ? 1 : 0} open={openSection === "price"} onToggle={() => toggleSection("price")}>
+            <div className="space-y-1 pt-1">
+              {stylistPriceFilterOptions.map((option) => (
+                <FilterMenuOptionRow
+                  key={option.id}
+                  label={option.label}
+                  isSelected={priceValue === option.id}
+                  onClick={() => onPriceChange(priceValue === option.id ? "all" : option.id)}
+                />
+              ))}
+            </div>
+          </FilterMenuSection>
+
+          <FilterMenuSection title="Additional needs" count={needsValue.length} open={openSection === "needs"} onToggle={() => toggleSection("needs")}>
+            <div className="space-y-1 pt-1">
+              {stylistNeedsFilterOptions.map((option) => (
+                <FilterMenuOptionRow key={option.id} label={option.label} isSelected={needsValue.includes(option.id)} onClick={() => toggleNeed(option.id)} />
+              ))}
+            </div>
+          </FilterMenuSection>
+        </div>
+      ) : null}
+    </div>
+  );
+}
+
+const freshnessFilterOptions: { id: "service-changes" | "link-issues" | "location-updates"; label: string }[] = [
+  { id: "service-changes", label: "Services incorrect" },
+  { id: "link-issues", label: "Link issues" },
+  { id: "location-updates", label: "Location updates" },
+];
+
+function FreshnessFilterMenu({
+  value,
+  onChange,
+}: {
+  value: "all" | "service-changes" | "link-issues" | "location-updates";
+  onChange: (value: "all" | "service-changes" | "link-issues" | "location-updates") => void;
+}) {
+  const [isOpen, setIsOpen] = useState(false);
+  const popoverRef = useRef<HTMLDivElement | null>(null);
+  const triggerRef = useRef<HTMLButtonElement | null>(null);
+  const isActive = value !== "all";
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handlePointerDown = (event: MouseEvent) => {
+      const target = event.target as Node;
+      if (popoverRef.current?.contains(target) || triggerRef.current?.contains(target)) {
+        return;
+      }
+      setIsOpen(false);
+    };
+
+    const handleKeyDown = (event: globalThis.KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setIsOpen(false);
+        triggerRef.current?.focus();
+      }
+    };
+
+    document.addEventListener("mousedown", handlePointerDown);
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("mousedown", handlePointerDown);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isOpen]);
+
+  return (
+    <div className="relative">
+      <button
+        ref={triggerRef}
+        type="button"
+        onClick={() => setIsOpen((current) => !current)}
+        aria-expanded={isOpen}
+        className={cn(
+          "inline-flex h-10 items-center gap-1.5 rounded-none border border-solid px-3 text-[13px] font-medium transition",
+          isActive
+            ? "border-stone-400 bg-stone-200 text-stone-950 hover:border-stone-500 hover:bg-stone-300 dark:border-stone-500 dark:bg-stone-700 dark:text-stone-100 dark:hover:border-stone-400 dark:hover:bg-stone-600"
+            : "border-stone-300 bg-stone-100 text-stone-600 hover:border-stone-400 hover:bg-stone-200 hover:text-stone-900 dark:border-stone-600 dark:bg-stone-800 dark:text-stone-300 dark:hover:border-stone-500 dark:hover:bg-stone-700 dark:hover:text-stone-100",
+        )}
+      >
+        <SlidersHorizontal className="size-3.5" />
+        Filter
+        {isActive ? (
+          <span className="inline-flex size-4 items-center justify-center rounded-full bg-stone-950 text-[10px] font-semibold text-white dark:bg-stone-100 dark:text-stone-950">
+            1
+          </span>
+        ) : null}
+      </button>
+
+      {isOpen ? (
+        <div
+          ref={popoverRef}
+          className="absolute right-0 top-full z-20 mt-1 w-64 overflow-y-auto rounded-none border border-stone-200 bg-white shadow-lg dark:border-stone-700 dark:bg-stone-900"
+        >
+          <div className="flex items-center justify-between border-b border-stone-100 px-3 py-2 dark:border-stone-800">
+            <span className="text-[13px] font-semibold text-stone-900 dark:text-stone-100">Filters</span>
+            {isActive ? (
+              <button type="button" onClick={() => onChange("all")} className="text-[12px] font-medium text-stone-500 transition hover:text-stone-900 dark:hover:text-stone-100">
+                Clear all
+              </button>
+            ) : null}
+          </div>
+          <div className="space-y-1 p-2">
+            {freshnessFilterOptions.map((option) => (
+              <FilterMenuOptionRow
+                key={option.id}
+                label={option.label}
+                isSelected={value === option.id}
+                onClick={() => onChange(value === option.id ? "all" : option.id)}
+              />
+            ))}
+          </div>
+        </div>
+      ) : null}
+    </div>
+  );
+}
+
+const pricingFilterOptions: { id: "suggestions" | "instagram" | "missing"; label: string }[] = [
+  { id: "suggestions", label: "Suggestions" },
+  { id: "instagram", label: "Instagram only" },
+  { id: "missing", label: "No pricing found" },
+];
+
+function PricingFilterMenu({
+  value,
+  onChange,
+}: {
+  value: "all" | "suggestions" | "instagram" | "missing";
+  onChange: (value: "all" | "suggestions" | "instagram" | "missing") => void;
+}) {
+  const [isOpen, setIsOpen] = useState(false);
+  const popoverRef = useRef<HTMLDivElement | null>(null);
+  const triggerRef = useRef<HTMLButtonElement | null>(null);
+  const isActive = value !== "all";
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handlePointerDown = (event: MouseEvent) => {
+      const target = event.target as Node;
+      if (popoverRef.current?.contains(target) || triggerRef.current?.contains(target)) {
+        return;
+      }
+      setIsOpen(false);
+    };
+
+    const handleKeyDown = (event: globalThis.KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setIsOpen(false);
+        triggerRef.current?.focus();
+      }
+    };
+
+    document.addEventListener("mousedown", handlePointerDown);
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("mousedown", handlePointerDown);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isOpen]);
+
+  return (
+    <div className="relative">
+      <button
+        ref={triggerRef}
+        type="button"
+        onClick={() => setIsOpen((current) => !current)}
+        aria-expanded={isOpen}
+        className={cn(
+          "inline-flex h-10 items-center gap-1.5 rounded-none border border-solid px-3 text-[13px] font-medium transition",
+          isActive
+            ? "border-stone-400 bg-stone-200 text-stone-950 hover:border-stone-500 hover:bg-stone-300 dark:border-stone-500 dark:bg-stone-700 dark:text-stone-100 dark:hover:border-stone-400 dark:hover:bg-stone-600"
+            : "border-stone-300 bg-stone-100 text-stone-600 hover:border-stone-400 hover:bg-stone-200 hover:text-stone-900 dark:border-stone-600 dark:bg-stone-800 dark:text-stone-300 dark:hover:border-stone-500 dark:hover:bg-stone-700 dark:hover:text-stone-100",
+        )}
+      >
+        <SlidersHorizontal className="size-3.5" />
+        Filter
+        {isActive ? (
+          <span className="inline-flex size-4 items-center justify-center rounded-full bg-stone-950 text-[10px] font-semibold text-white dark:bg-stone-100 dark:text-stone-950">
+            1
+          </span>
+        ) : null}
+      </button>
+
+      {isOpen ? (
+        <div
+          ref={popoverRef}
+          className="absolute right-0 top-full z-20 mt-1 w-64 overflow-y-auto rounded-none border border-stone-200 bg-white shadow-lg dark:border-stone-700 dark:bg-stone-900"
+        >
+          <div className="flex items-center justify-between border-b border-stone-100 px-3 py-2 dark:border-stone-800">
+            <span className="text-[13px] font-semibold text-stone-900 dark:text-stone-100">Filters</span>
+            {isActive ? (
+              <button type="button" onClick={() => onChange("all")} className="text-[12px] font-medium text-stone-500 transition hover:text-stone-900 dark:hover:text-stone-100">
+                Clear all
+              </button>
+            ) : null}
+          </div>
+          <div className="space-y-1 p-2">
+            {pricingFilterOptions.map((option) => (
+              <FilterMenuOptionRow
+                key={option.id}
+                label={option.label}
+                isSelected={value === option.id}
+                onClick={() => onChange(value === option.id ? "all" : option.id)}
+              />
+            ))}
+          </div>
+        </div>
+      ) : null}
+    </div>
+  );
+}
+
+function StylistTablePagination({
+  page,
+  pageCount,
+  pageSize,
+  totalCount,
+  onPageChange,
+  onPageSizeChange,
+}: {
+  page: number;
+  pageCount: number;
+  pageSize: number;
+  totalCount: number;
+  onPageChange: (page: number) => void;
+  onPageSizeChange: (pageSize: number) => void;
+}) {
+  return (
+    <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex items-center gap-2 text-[13px] text-stone-500">
+        <label htmlFor="stylist-page-size" className="whitespace-nowrap">
+          Rows per page
+        </label>
+        <select
+          id="stylist-page-size"
+          value={pageSize}
+          onChange={(event) => onPageSizeChange(Number(event.target.value))}
+          className="h-8 rounded-none border border-stone-200 bg-white px-2 text-[13px] text-stone-700 outline-none focus-visible:border-stone-400 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-200"
+        >
+          {[10, 25, 50, 100].map((size) => (
+            <option key={size} value={size}>
+              {size}
+            </option>
+          ))}
+        </select>
+        <span className="hidden whitespace-nowrap sm:inline">{totalCount} total</span>
+      </div>
+
+      <div className="flex items-center gap-4">
+        <span className="whitespace-nowrap text-[13px] text-stone-500">
+          Page {page} of {pageCount}
+        </span>
+        <div className="flex items-center gap-1">
+          <button
+            type="button"
+            onClick={() => onPageChange(1)}
+            disabled={page <= 1}
+            className="inline-flex size-8 items-center justify-center rounded-none border border-stone-200 text-stone-500 transition hover:bg-stone-50 disabled:cursor-not-allowed disabled:opacity-40 dark:border-stone-700 dark:hover:bg-stone-900"
+            aria-label="First page"
+          >
+            <ChevronsLeft className="size-4" />
+          </button>
+          <button
+            type="button"
+            onClick={() => onPageChange(Math.max(page - 1, 1))}
+            disabled={page <= 1}
+            className="inline-flex size-8 items-center justify-center rounded-none border border-stone-200 text-stone-500 transition hover:bg-stone-50 disabled:cursor-not-allowed disabled:opacity-40 dark:border-stone-700 dark:hover:bg-stone-900"
+            aria-label="Previous page"
+          >
+            <ChevronLeft className="size-4" />
+          </button>
+          <button
+            type="button"
+            onClick={() => onPageChange(Math.min(page + 1, pageCount))}
+            disabled={page >= pageCount}
+            className="inline-flex size-8 items-center justify-center rounded-none border border-stone-200 text-stone-500 transition hover:bg-stone-50 disabled:cursor-not-allowed disabled:opacity-40 dark:border-stone-700 dark:hover:bg-stone-900"
+            aria-label="Next page"
+          >
+            <ChevronRight className="size-4" />
+          </button>
+          <button
+            type="button"
+            onClick={() => onPageChange(pageCount)}
+            disabled={page >= pageCount}
+            className="inline-flex size-8 items-center justify-center rounded-none border border-stone-200 text-stone-500 transition hover:bg-stone-50 disabled:cursor-not-allowed disabled:opacity-40 dark:border-stone-700 dark:hover:bg-stone-900"
+            aria-label="Last page"
+          >
+            <ChevronsRight className="size-4" />
+          </button>
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -2367,14 +2987,14 @@ function TikTokIcon({ className }: { className?: string }) {
 function DraftTableStatusBadge({ draft }: { draft: StylistDraft }) {
   const status = getDraftDisplayStatus(draft);
   const label = getStylistStatusLabel(status);
-  const colorClass =
+  const pillClass =
     status === "ready_to_publish"
-      ? "bg-emerald-100 text-emerald-800"
+      ? "border-amber-300 bg-amber-50 text-amber-700 dark:border-amber-800 dark:bg-amber-950/30 dark:text-amber-400"
       : status === "published"
-        ? "bg-blue-100 text-blue-800"
-        : "bg-sky-100 text-sky-800";
+        ? "border-emerald-300 bg-emerald-50 text-emerald-700 dark:border-emerald-800 dark:bg-emerald-950/30 dark:text-emerald-400"
+        : "border-stone-300 bg-stone-50 text-stone-600 dark:border-stone-700 dark:text-stone-300";
 
-  return <span className={cn("rounded-none px-3 py-1 text-xs", colorClass)}>{label}</span>;
+  return <span className={cn("inline-flex items-center rounded-none border px-2 py-0.5 text-xs font-medium", pillClass)}>{label}</span>;
 }
 
 function getDraftDisplayStatus(draft: StylistDraft) {
@@ -2391,7 +3011,7 @@ function getDraftDisplayStatus(draft: StylistDraft) {
 
 function getStylistStatusLabel(status: string) {
   if (status === "ready_to_publish") {
-    return "Ready to Publish";
+    return "Complete";
   }
   if (status === "published") {
     return "Published";
@@ -2526,7 +3146,7 @@ function DashboardOverview({
         <DashboardCard
           title="Stylists"
           value={publishedCount}
-          detail={`${dashboard?.drafts.total ?? 0} draft${(dashboard?.drafts.total ?? 0) === 1 ? "" : "s"} · ${dashboard?.drafts.readyToApprove ?? 0} ready · ${publishedCount} published`}
+          detail={`${dashboard?.drafts.total ?? 0} draft${(dashboard?.drafts.total ?? 0) === 1 ? "" : "s"} · ${dashboard?.drafts.readyToApprove ?? 0} complete · ${publishedCount} published`}
           icon={<FileText className="size-4" />}
           onClick={() => onOpenView("drafts")}
         />
@@ -2615,6 +3235,7 @@ function FreshnessPage({
   const total = checkProgress.total || dashboard?.freshness.total || 0;
   const checkedCount = checkProgress.checkedCount || dashboard?.freshness.checkedCount || 0;
   const [freshnessFilter, setFreshnessFilter] = useState<"all" | "service-changes" | "link-issues" | "location-updates">("all");
+  const [freshnessSearchTerm, setFreshnessSearchTerm] = useState("");
 	  const rows = buildFreshnessRecommendationGroups(checks);
   const healthRows = filterFreshnessRowsByDetail(rows, (detail) => detail.kind !== "price" && detail.kind !== "price-info" && detail.kind !== "manual-price");
 	  const recommendationCount = healthRows.length;
@@ -2635,7 +3256,10 @@ function FreshnessPage({
       : freshnessFilter === "location-updates"
           ? healthRows.filter((row) => row.details.some((d) => d.kind === "location"))
           : healthRows;
-  const visibleRows = filteredRows;
+  const normalizedFreshnessSearch = freshnessSearchTerm.trim().toLowerCase();
+  const visibleRows = normalizedFreshnessSearch
+    ? filteredRows.filter((row) => row.stylist.toLowerCase().includes(normalizedFreshnessSearch))
+    : filteredRows;
 
 	  return (
 	    <div className="mx-auto max-w-7xl space-y-7 px-5 py-9">
@@ -2669,35 +3293,248 @@ function FreshnessPage({
 	      {isWaitingForResults ? (
           <FreshnessMetricSkeleton />
         ) : (
-          <div className="grid gap-5 md:grid-cols-4">
-            <FreshnessMetricCard title="Stale entries" value={recommendationCount} icon={<RefreshCw className="size-4" />} isActive={freshnessFilter === "all"} onClick={() => setFreshnessFilter("all")} />
-            <FreshnessMetricCard title="Services incorrect" value={serviceChanges} icon={<AlertTriangle className="size-4" />} isActive={freshnessFilter === "service-changes"} onClick={() => setFreshnessFilter(freshnessFilter === "service-changes" ? "all" : "service-changes")} />
-            <FreshnessMetricCard title="Link issues" value={linkIssues} icon={<Unlink className="size-4" />} isActive={freshnessFilter === "link-issues"} onClick={() => setFreshnessFilter(freshnessFilter === "link-issues" ? "all" : "link-issues")} />
-            <FreshnessMetricCard title="Location updates" value={locationUpdates} icon={<MapPin className="size-4" />} isActive={freshnessFilter === "location-updates"} onClick={() => setFreshnessFilter(freshnessFilter === "location-updates" ? "all" : "location-updates")} />
+          <div className="grid grid-cols-2 divide-x divide-y divide-stone-200 rounded-none border border-stone-200 bg-white sm:grid-cols-4 sm:divide-y-0">
+            <StylistStatCell label="Services incorrect" value={serviceChanges} />
+            <StylistStatCell label="Link issues" value={linkIssues} />
+            <StylistStatCell label="Location updates" value={locationUpdates} />
+            <StylistStatCell label="Total" value={recommendationCount} />
           </div>
         )}
 
-      <section className="overflow-hidden rounded-none border border-stone-200 bg-white">
-          {isWaitingForResults ? (
-            <FreshnessSkeleton />
-          ) : visibleRows.length ? (
-            visibleRows.map((row, index) => (
-              <FreshnessRecommendationCard key={row.id} row={row} defaultOpen={index === 0} isBusy={isBusy} onApply={onApply} />
-            ))
-          ) : (
-            <div className="flex min-h-64 flex-col items-center justify-center px-6 py-16 text-center">
-              <h2 className="text-lg font-semibold tracking-tight text-stone-950">All clear</h2>
-              <p className="mt-3 max-w-xl text-base text-stone-500">No health issues found. Everything is running smoothly.</p>
-              <Button type="button" variant="outline" onClick={onRunChecks} disabled={isRunningChecks} className="mt-8 h-11 rounded-none bg-white px-4 text-sm">
-                <RefreshCw className="size-4" />
-                Run check again
-              </Button>
-            </div>
-          )}
-        </section>
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <div className="relative w-full max-w-xs">
+          <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-stone-400" />
+          <Input
+            value={freshnessSearchTerm}
+            onChange={(event) => setFreshnessSearchTerm(event.target.value)}
+            placeholder="Search stylist name"
+            aria-label="Search health check entries"
+            className="h-10 rounded-none pl-9 text-sm"
+          />
+        </div>
+        <FreshnessFilterMenu value={freshnessFilter} onChange={setFreshnessFilter} />
+      </div>
+
+      <FreshnessInboxLayout
+        rows={visibleRows}
+        hasUnfilteredRows={healthRows.length > 0}
+        isBusy={isBusy}
+        isWaitingForResults={isWaitingForResults}
+        onApply={onApply}
+        onRunChecks={onRunChecks}
+        onClearFilters={() => {
+          setFreshnessSearchTerm("");
+          setFreshnessFilter("all");
+        }}
+        isRunningChecks={isRunningChecks}
+      />
 	    </div>
 	  );
 	}
+
+function FreshnessInboxLayout({
+  rows,
+  hasUnfilteredRows,
+  isBusy,
+  isWaitingForResults,
+  onApply,
+  onRunChecks,
+  onClearFilters,
+  isRunningChecks,
+}: {
+  rows: FreshnessRecommendationGroup[];
+  hasUnfilteredRows: boolean;
+  isBusy: boolean;
+  isWaitingForResults: boolean;
+  onApply: FreshnessPageApplyHandler;
+  onRunChecks: () => void;
+  onClearFilters: () => void;
+  isRunningChecks: boolean;
+}) {
+  const [selectedRowId, setSelectedRowId] = useState<string | null>(rows[0]?.id ?? null);
+  const [mobileDetailOpen, setMobileDetailOpen] = useState(false);
+
+  useEffect(() => {
+    if (!rows.some((row) => row.id === selectedRowId)) {
+      setSelectedRowId(rows[0]?.id ?? null);
+    }
+  }, [rows, selectedRowId]);
+
+  const selectedRow = rows.find((row) => row.id === selectedRowId) ?? null;
+
+  if (isWaitingForResults) {
+    return (
+      <section className="overflow-hidden rounded-none border border-stone-200 bg-white">
+        <FreshnessSkeleton />
+      </section>
+    );
+  }
+
+  if (!rows.length) {
+    return (
+      <section className="overflow-hidden rounded-none border border-stone-200 bg-white">
+        {hasUnfilteredRows ? (
+          <div className="flex min-h-64 flex-col items-center justify-center px-6 py-16 text-center">
+            <SearchX className="mb-4 size-8 text-stone-300" />
+            <h2 className="text-lg font-semibold tracking-tight text-stone-950">No matches</h2>
+            <p className="mt-3 max-w-xl text-base text-stone-500">No health issues match your search or filter.</p>
+            <Button type="button" variant="outline" onClick={onClearFilters} className="mt-8 h-11 rounded-none bg-white px-4 text-sm">
+              <X className="size-4" />
+              Clear search & filter
+            </Button>
+          </div>
+        ) : (
+          <div className="flex min-h-64 flex-col items-center justify-center px-6 py-16 text-center">
+            <SearchX className="mb-4 size-8 text-stone-300" />
+            <h2 className="text-lg font-semibold tracking-tight text-stone-950">All clear</h2>
+            <p className="mt-3 max-w-xl text-base text-stone-500">No health issues found. Everything is running smoothly.</p>
+            <Button type="button" variant="outline" onClick={onRunChecks} disabled={isRunningChecks} className="mt-8 h-11 rounded-none bg-white px-4 text-sm">
+              <RefreshCw className="size-4" />
+              Run check again
+            </Button>
+          </div>
+        )}
+      </section>
+    );
+  }
+
+  return (
+    <section className="grid overflow-hidden rounded-none border border-stone-200 bg-white lg:grid-cols-4">
+      <div className={cn("max-h-[75vh] overflow-y-auto border-stone-200 lg:col-span-1 lg:block lg:border-r", mobileDetailOpen ? "hidden" : "block")}>
+        <FreshnessInboxList
+          rows={rows}
+          selectedRowId={selectedRowId}
+          onSelect={(rowId) => {
+            setSelectedRowId(rowId);
+            setMobileDetailOpen(true);
+          }}
+        />
+      </div>
+      <div className={cn("max-h-[75vh] overflow-y-auto lg:col-span-3", mobileDetailOpen ? "block" : "hidden lg:block")}>
+        <FreshnessInboxDetail
+          row={selectedRow}
+          isBusy={isBusy}
+          onApply={onApply}
+          onBack={() => setMobileDetailOpen(false)}
+        />
+      </div>
+    </section>
+  );
+}
+
+function FreshnessInboxList({
+  rows,
+  selectedRowId,
+  onSelect,
+}: {
+  rows: FreshnessRecommendationGroup[];
+  selectedRowId: string | null;
+  onSelect: (rowId: string) => void;
+}) {
+  return (
+    <div>
+      {rows.map((row) => (
+        <FreshnessInboxListItem key={row.id} row={row} isActive={row.id === selectedRowId} onSelect={() => onSelect(row.id)} />
+      ))}
+    </div>
+  );
+}
+
+function FreshnessInboxListItem({
+  row,
+  isActive,
+  onSelect,
+}: {
+  row: FreshnessRecommendationGroup;
+  isActive: boolean;
+  onSelect: () => void;
+}) {
+  const preview = summarizeFreshnessDetailsAsText(row.details) || row.recommendation;
+
+  return (
+    <button
+      type="button"
+      onClick={onSelect}
+      className={cn(
+        "flex w-full items-start gap-3 border-b border-stone-100 px-4 py-4 text-left transition last:border-b-0",
+        isActive ? "bg-stone-100" : "hover:bg-stone-50",
+      )}
+    >
+      <FreshnessInboxAvatar name={row.stylist} tone={row.typeTone} />
+      <div className="min-w-0 flex-1">
+        <div className="flex items-center justify-between gap-2">
+          <p className="truncate text-sm font-semibold text-stone-950">{row.stylist}</p>
+          <span className="shrink-0 text-xs text-stone-400">{row.detected}</span>
+        </div>
+        <p className="mt-0.5 truncate text-sm text-stone-500">{preview}</p>
+      </div>
+    </button>
+  );
+}
+
+function FreshnessInboxAvatar({ name, tone }: { name: string; tone: FreshnessRecommendationGroup["typeTone"] }) {
+  const initial = name.trim().charAt(0).toUpperCase() || "?";
+  const toneClass =
+    tone === "critical"
+      ? "bg-red-100 text-red-700"
+      : tone === "warning"
+        ? "bg-amber-100 text-amber-700"
+        : tone === "info"
+          ? "bg-sky-100 text-sky-700"
+          : "bg-stone-100 text-stone-600";
+
+  return (
+    <span className={cn("inline-flex size-10 shrink-0 items-center justify-center rounded-none text-sm font-semibold", toneClass)}>
+      {initial}
+    </span>
+  );
+}
+
+function FreshnessInboxDetail({
+  row,
+  isBusy,
+  onApply,
+  onBack,
+}: {
+  row: FreshnessRecommendationGroup | null;
+  isBusy: boolean;
+  onApply: FreshnessPageApplyHandler;
+  onBack: () => void;
+}) {
+  if (!row) {
+    return (
+      <div className="flex min-h-64 flex-col items-center justify-center px-6 py-16 text-center">
+        <p className="text-sm text-stone-500">Select a salon to see what needs attention.</p>
+      </div>
+    );
+  }
+
+  return (
+    <div>
+      <div className="flex items-center gap-3 border-b border-stone-200 px-6 py-5">
+        <button
+          type="button"
+          onClick={onBack}
+          className="inline-flex size-8 shrink-0 items-center justify-center rounded-none text-stone-500 hover:bg-stone-100 hover:text-stone-950 lg:hidden"
+          aria-label="Back to list"
+        >
+          <ChevronLeft className="size-4" />
+        </button>
+        <FreshnessInboxAvatar name={row.stylist} tone={row.typeTone} />
+        <div className="min-w-0 flex-1">
+          <p className="truncate text-lg font-semibold text-stone-950">{row.stylist}</p>
+          <p className="truncate text-sm text-stone-500">{row.check.areaLabel || row.recommendation}</p>
+        </div>
+        <div className="flex shrink-0 items-center gap-2 text-stone-700">
+          <FreshnessLinkButtons row={row} />
+        </div>
+      </div>
+      <div className="px-6 py-6">
+        <FreshnessRecommendationBody key={row.id} row={row} isBusy={isBusy} onApply={onApply} />
+      </div>
+    </div>
+  );
+}
 
 function PlayIcon() {
   return <span className="ml-0.5 inline-block size-0 border-y-[5px] border-l-[8px] border-y-transparent border-l-current" />;
@@ -2726,12 +3563,24 @@ function PricingPage({
 }) {
   const total = checkProgress.total || dashboard?.freshness.total || 0;
   const activeBatchTo = total ? Math.min(activeCheckBatch.to, total) : activeCheckBatch.to;
-  const [pricingView, setPricingView] = useState<"suggestions" | "instagram" | "missing">("suggestions");
+  const [pricingFilter, setPricingFilter] = useState<"all" | "suggestions" | "instagram" | "missing">("all");
+  const [pricingSearchTerm, setPricingSearchTerm] = useState("");
   const rows = buildFreshnessRecommendationGroups(checks);
   const suggestionRows = filterFreshnessRowsByDetail(rows, (detail) => detail.kind === "price" && detail.priceAutoApplied !== true);
   const instagramRows = filterFreshnessRowsByDetail(rows, (detail, row) => detail.kind === "manual-price" && detail.manualPriceReason === "social-only" && !hasSavedPriceBand(row.check));
   const missingRows = filterFreshnessRowsByDetail(rows, (detail, row) => detail.kind === "manual-price" && detail.manualPriceReason === "no-price" && !hasSavedPriceBand(row.check));
-  const visibleRows = pricingView === "instagram" ? instagramRows : pricingView === "missing" ? missingRows : suggestionRows;
+  const allPricingRows = Array.from(new Map([...suggestionRows, ...instagramRows, ...missingRows].map((row) => [row.id, row])).values());
+  const filteredPricingRows = pricingFilter === "suggestions"
+    ? suggestionRows
+    : pricingFilter === "instagram"
+      ? instagramRows
+      : pricingFilter === "missing"
+        ? missingRows
+        : allPricingRows;
+  const normalizedPricingSearch = pricingSearchTerm.trim().toLowerCase();
+  const visibleRows = normalizedPricingSearch
+    ? filteredPricingRows.filter((row) => row.stylist.toLowerCase().includes(normalizedPricingSearch))
+    : filteredPricingRows;
   const lastCompletedAt = checksLoadedAt || dashboard?.freshness.updatedAt;
 
   return (
@@ -2749,10 +3598,25 @@ function PricingPage({
         </Button>
       </section>
 
-      <div className="grid gap-5 md:grid-cols-3">
-        <FreshnessMetricCard title="Suggestions" value={suggestionRows.length} icon={<PoundSterling className="size-4" />} isActive={pricingView === "suggestions"} onClick={() => setPricingView("suggestions")} />
-        <FreshnessMetricCard title="Instagram only" value={instagramRows.length} icon={<Globe className="size-4" />} isActive={pricingView === "instagram"} onClick={() => setPricingView("instagram")} />
-        <FreshnessMetricCard title="No pricing found" value={missingRows.length} icon={<FileText className="size-4" />} isActive={pricingView === "missing"} onClick={() => setPricingView("missing")} />
+      <div className="grid grid-cols-2 divide-x divide-y divide-stone-200 rounded-none border border-stone-200 bg-white sm:grid-cols-4 sm:divide-y-0">
+        <StylistStatCell label="Suggestions" value={suggestionRows.length} />
+        <StylistStatCell label="Instagram only" value={instagramRows.length} />
+        <StylistStatCell label="No pricing found" value={missingRows.length} />
+        <StylistStatCell label="Total" value={allPricingRows.length} />
+      </div>
+
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <div className="relative w-full max-w-xs">
+          <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-stone-400" />
+          <Input
+            value={pricingSearchTerm}
+            onChange={(event) => setPricingSearchTerm(event.target.value)}
+            placeholder="Search stylist name"
+            aria-label="Search pricing check entries"
+            className="h-10 rounded-none pl-9 text-sm"
+          />
+        </div>
+        <PricingFilterMenu value={pricingFilter} onChange={setPricingFilter} />
       </div>
 
       <section className="overflow-hidden rounded-none border border-stone-200 bg-white">
@@ -2762,40 +3626,33 @@ function PricingPage({
           visibleRows.map((row, index) => (
             <FreshnessRecommendationCard key={row.id} row={row} defaultOpen={index === 0} isBusy={isBusy} onApply={onApply} />
           ))
+        ) : allPricingRows.length ? (
+          <div className="flex min-h-64 flex-col items-center justify-center px-6 py-16 text-center">
+            <SearchX className="mb-4 size-8 text-stone-300" />
+            <h2 className="text-lg font-semibold tracking-tight text-stone-950">No matches</h2>
+            <p className="mt-3 max-w-xl text-base text-stone-500">No pricing checks match your search or filter.</p>
+            <Button
+              type="button"
+              variant="outline"
+              onClick={() => {
+                setPricingSearchTerm("");
+                setPricingFilter("all");
+              }}
+              className="mt-8 h-11 rounded-none bg-white px-4 text-sm"
+            >
+              <X className="size-4" />
+              Clear search & filter
+            </Button>
+          </div>
         ) : (
           <div className="flex min-h-64 flex-col items-center justify-center px-6 py-16 text-center">
-            <h2 className="text-lg font-semibold tracking-tight text-stone-950">
-              {pricingView === "instagram" ? "No Instagram-only checks" : pricingView === "missing" ? "No missing price checks" : "No price suggestions"}
-            </h2>
-            <p className="mt-3 max-w-xl text-base text-stone-500">
-              {pricingView === "instagram" ? "No Instagram-only stylists need manual price checking." : pricingView === "missing" ? "No checked booking pages are missing machine-readable prices." : "No price suggestions need review."}
-            </p>
+            <SearchX className="mb-4 size-8 text-stone-300" />
+            <h2 className="text-lg font-semibold tracking-tight text-stone-950">No pricing checks</h2>
+            <p className="mt-3 max-w-xl text-base text-stone-500">No price suggestions, Instagram-only checks, or missing prices need review.</p>
           </div>
         )}
       </section>
     </div>
-  );
-}
-
-function FreshnessMetricCard({ title, value, icon, isActive, onClick }: { title: string; value: number; icon: React.ReactNode; isActive: boolean; onClick: () => void }) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      aria-label={`Show ${title}`}
-      className={cn(
-        "cursor-pointer rounded-none border border-stone-200 bg-white p-7 text-left transition hover:border-stone-300 active:bg-stone-50",
-        isActive
-          ? ""
-          : "",
-      )}
-    >
-      <div className="flex items-center justify-between gap-4">
-        <p className="text-xs font-semibold uppercase tracking-[0.14em] text-stone-500">{title}</p>
-        <span className="text-stone-400">{icon}</span>
-      </div>
-      <p className="mt-6 text-4xl font-semibold leading-none tracking-tight text-stone-950">{value}</p>
-    </button>
   );
 }
 
@@ -2811,25 +3668,6 @@ function FreshnessRecommendationCard({
   onApply: FreshnessPageApplyHandler;
 }) {
   const [isOpen, setIsOpen] = useState(defaultOpen);
-  const hasWebsiteLinkIssue = row.check.linkChecks.some((linkCheck) => linkCheck.type === "website" && linkCheck.status !== "ok");
-  const primaryLinkLabel = hasWebsiteLinkIssue ? "Website URL" : "Booking URL";
-  const primaryLinkValue = row.bookingUrl || "";
-  const [primaryLinkUrl, setPrimaryLinkUrl] = useState(primaryLinkValue);
-  const [instagramUrl, setInstagramUrl] = useState(row.instagramUrl || "");
-  const [linkSaveState, setLinkSaveState] = useState<"idle" | "saving" | "saved">("idle");
-  const hasLinkIssues = row.details.some((d) => d.kind === "fix" || d.kind === "manual");
-
-  async function handleSaveLinks() {
-    setLinkSaveState("saving");
-    try {
-      const linkUpdate: FreshnessUpdate = { bookingUrl: primaryLinkUrl };
-      await Promise.resolve(onApply(row.check, { ...linkUpdate, instagramUrl }));
-      setLinkSaveState("saved");
-      setTimeout(() => setLinkSaveState("idle"), 2500);
-    } catch {
-      setLinkSaveState("idle");
-    }
-  }
 
   return (
     <div className="border-b border-stone-100 last:border-b-0">
@@ -2850,169 +3688,167 @@ function FreshnessRecommendationCard({
       </div>
 
       {isOpen ? (
-        <div className="space-y-3 px-7 pb-6">
-          {row.details.map((detail, index) => (
-            <FreshnessRecommendationItem
-              key={`${row.id}-${detail.label}-${index}`}
-              detail={detail}
-              row={row}
-              isBusy={isBusy}
-              onApply={onApply}
-              onSaveLinks={handleSaveLinks}
-              linkSaveState={linkSaveState}
-            />
-          ))}
-          {hasLinkIssues ? (
-            <div className="space-y-3 rounded-none border border-stone-200 bg-stone-50 p-4">
-              <div className="flex items-center justify-between gap-3">
-                <p className="text-xs font-semibold uppercase tracking-[0.12em] text-stone-600">Links</p>
-                <button
-                  type="button"
-                  disabled={isBusy || linkSaveState === "saving"}
-                  onClick={handleSaveLinks}
-                  className={cn(
-                    "inline-flex items-center gap-2 rounded-none border px-3 py-2 text-sm font-semibold transition disabled:cursor-not-allowed disabled:opacity-35",
-                    linkSaveState === "saved"
-                      ? "border-emerald-200 bg-emerald-50 text-emerald-700"
-                      : "border-stone-950 bg-stone-950 text-white hover:bg-stone-800 active:bg-stone-700",
-                  )}
-                >
-                  {linkSaveState === "saving" ? (
-                    <><Loader2 className="size-3.5 animate-spin" /> Updating</>
-                  ) : linkSaveState === "saved" ? (
-                    <><Check className="size-3.5" /> Updated</>
-                  ) : (
-                    "Update"
-                  )}
-                </button>
-              </div>
-              <div className="h-px bg-stone-200" />
-              <div className="grid gap-3 sm:grid-cols-2">
-                <Field label={primaryLinkLabel}>
-                  <Input value={primaryLinkUrl} onChange={(event) => setPrimaryLinkUrl(event.target.value)} placeholder="https://..." className="h-9 rounded-none" />
-                </Field>
-                <Field label="Instagram URL">
-                  <Input value={instagramUrl} onChange={(event) => setInstagramUrl(event.target.value)} placeholder="https://www.instagram.com/..." className="h-9 rounded-none" />
-                </Field>
-              </div>
-            </div>
-          ) : null}
+        <div className="px-7 pb-6">
+          <FreshnessRecommendationBody row={row} isBusy={isBusy} onApply={onApply} />
         </div>
       ) : null}
     </div>
   );
 }
 
-function FreshnessRecommendationItem({
-  detail,
+function FreshnessRecommendationBody({
   row,
   isBusy,
   onApply,
-  onSaveLinks,
-  linkSaveState,
 }: {
-  detail: FreshnessRecommendationDetail;
   row: FreshnessRecommendationGroup;
   isBusy: boolean;
   onApply: FreshnessPageApplyHandler;
-  onSaveLinks: () => void;
-  linkSaveState: "idle" | "saving" | "saved";
 }) {
-  const isAdd = detail.kind === "add";
-  const isRemove = detail.kind === "remove";
-  const isManual = detail.kind === "manual";
-  const isAttribute = detail.kind === "attribute";
-  const isPrice = detail.kind === "price";
-  const isManualPrice = detail.kind === "manual-price";
-  const isInformational = detail.kind === "price-info";
-  const isAutoAppliedPrice = isPrice && detail.priceAutoApplied === true;
-  const [selectedPriceBand, setSelectedPriceBand] = useState<PriceBand | "">(detail.priceBand || "");
-  const [manualPriceResult, setManualPriceResult] = useState<ManualPriceParseResult | null>(null);
-  const visual = getFreshnessDetailVisual(detail);
-  const acceptUpdate = getFreshnessDetailAcceptUpdate(detail, row, selectedPriceBand, manualPriceResult);
-  const rejectUpdate =
-    detail.kind === "add" && detail.service
-      ? { rejectAddedServices: [detail.service] }
-      : detail.kind === "remove" && detail.service
-        ? { rejectRemovedServices: [detail.service] }
-        : detail.kind === "attribute" && detail.attributeField
-          ? getAttributeRejectUpdate(detail.attributeField)
-          : detail.kind === "price" || detail.kind === "manual-price"
-            ? { rejectPriceBand: true }
-            : detail.kind === "location"
-              ? { rejectLocation: true }
-        : row.rejectUpdate;
-  const primaryActionLabel = isAdd ? "Add service" : isRemove ? "Remove" : isAttribute ? getAttributeActionLabel(detail.attributeField) : isPrice || isManualPrice ? "Set band" : detail.kind === "location" ? "Update location" : detail.kind === "fix" ? "Save" : "Resolve";
-  const secondaryActionLabel = isAdd ? "Ignore" : isRemove ? "Keep" : "Ignore";
-  const sortedPriceValues = [...(detail.priceValues || [])].sort((left, right) => left - right);
+  const hasWebsiteLinkIssue = row.check.linkChecks.some((linkCheck) => linkCheck.type === "website" && linkCheck.status !== "ok");
+  const primaryLinkLabel = hasWebsiteLinkIssue ? "Website URL" : "Booking URL";
+  const primaryLinkValue = row.bookingUrl || "";
+  const [primaryLinkUrl, setPrimaryLinkUrl] = useState(primaryLinkValue);
+  const [instagramUrl, setInstagramUrl] = useState(row.instagramUrl || "");
+  const [linkSaveState, setLinkSaveState] = useState<"idle" | "saving" | "saved">("idle");
+  const [selectedIndexes, setSelectedIndexes] = useState<Set<number>>(new Set());
+  const hasLinkIssues = row.details.some((d) => d.kind === "fix" || d.kind === "manual");
+  const selectableIndexes = row.details.map((_, index) => index).filter((index) => isDetailBulkSelectable(row.details[index], row));
+  const allSelected = selectableIndexes.length > 0 && selectableIndexes.every((index) => selectedIndexes.has(index));
+  const someSelected = selectableIndexes.some((index) => selectedIndexes.has(index));
+
+  async function handleSaveLinks() {
+    setLinkSaveState("saving");
+    try {
+      const linkUpdate: FreshnessUpdate = { bookingUrl: primaryLinkUrl };
+      await Promise.resolve(onApply(row.check, { ...linkUpdate, instagramUrl }));
+      setLinkSaveState("saved");
+      setTimeout(() => setLinkSaveState("idle"), 2500);
+    } catch {
+      setLinkSaveState("idle");
+    }
+  }
+
+  async function handleBulkAccept() {
+    const selectedDetails = Array.from(selectedIndexes).map((index) => row.details[index]).filter(Boolean);
+    const merged = mergeFreshnessAcceptUpdates(selectedDetails, row);
+    if (!merged) {
+      return;
+    }
+    await Promise.resolve(onApply(row.check, merged));
+    setSelectedIndexes(new Set());
+  }
+
+  async function handleBulkIgnore() {
+    const selectedDetails = Array.from(selectedIndexes).map((index) => row.details[index]).filter(Boolean);
+    const merged = mergeFreshnessRejectUpdates(selectedDetails, row);
+    if (!merged) {
+      return;
+    }
+    await Promise.resolve(onApply(row.check, merged));
+    setSelectedIndexes(new Set());
+  }
+
+  function toggleSelected(index: number) {
+    setSelectedIndexes((current) => {
+      const next = new Set(current);
+      if (next.has(index)) {
+        next.delete(index);
+      } else {
+        next.add(index);
+      }
+      return next;
+    });
+  }
+
+  function toggleSelectAll() {
+    setSelectedIndexes(allSelected ? new Set() : new Set(selectableIndexes));
+  }
 
   return (
-    <div
-      className={cn(
-        "grid gap-4 rounded-none border border-stone-200 bg-stone-50 px-4 sm:grid-cols-[minmax(0,1fr)_auto]",
-        isManual ? "py-3 sm:items-center" : "py-4 sm:items-start",
-      )}
-    >
-      <div className={cn("grid min-w-0 flex-1 gap-4", isManual ? "sm:grid-cols-[7rem_minmax(0,1fr)] sm:items-center" : "sm:grid-cols-[5.5rem_minmax(0,1fr)] sm:items-start")}>
-        <div className={cn("mt-1 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.08em]", visual.textClass)}>
-          <span className={cn("size-3 rounded-none", visual.dotClass)} />
-          {visual.label}
-        </div>
-        <div className="min-w-0">
-          <div className={cn("flex min-w-0 flex-wrap items-center", isManual ? "gap-x-5 gap-y-1" : "gap-x-3 gap-y-1")}>
-            <p className="font-semibold text-stone-950">{detail.label}</p>
-            {detail.kind === "fix" || detail.kind === "manual" || detail.kind === "price" || detail.kind === "price-info" || detail.kind === "review" || detail.kind === "manual-price" ? (
-              <p className="text-sm font-medium text-stone-500">{detail.description}</p>
-            ) : null}
-          </div>
-          {sortedPriceValues.length ? (
-            <p className="mt-2 text-sm font-semibold text-stone-700">
-              {sortedPriceValues.map(formatDetectedPrice).join(", ")}
-            </p>
-          ) : null}
-          {(isPrice && !isAutoAppliedPrice) || isManualPrice ? (
-            <ManualPriceCalculator
-              detail={detail}
-              selectedPriceBand={selectedPriceBand}
-              onSelectedPriceBandChange={setSelectedPriceBand}
-              onManualPriceResult={setManualPriceResult}
-            />
-          ) : null}
-          {detail.evidence?.length ? (
-            <div className="mt-2 flex flex-wrap gap-1.5">
-              {detail.evidence.map((line) => (
-                <span key={line} className="rounded-none border border-stone-200 bg-white px-2 py-1 text-xs font-medium text-stone-500">
-                  {line}
-                </span>
-              ))}
-            </div>
-          ) : null}
-        </div>
+    <div className="space-y-4">
+      <div className="overflow-hidden rounded-none border border-stone-200">
+        <table className="w-full table-fixed text-left text-sm">
+          <thead className="border-b border-stone-200 bg-stone-50 text-[13px] font-semibold text-stone-500">
+            <tr>
+              <th className="w-10 px-4 py-3">
+                <Checkbox
+                  checked={allSelected ? true : someSelected ? "indeterminate" : false}
+                  onCheckedChange={toggleSelectAll}
+                  disabled={!selectableIndexes.length}
+                  aria-label="Select all suggestions"
+                />
+              </th>
+              <th className="w-28 px-4 py-3">Type</th>
+              <th className="w-64 px-4 py-3">Suggestion</th>
+              <th className="px-4 py-3">Evidence</th>
+            </tr>
+          </thead>
+          <tbody>
+            {row.details.map((detail, index) => (
+              <FreshnessRecommendationTableRow
+                key={`${row.id}-${detail.label}-${index}`}
+                detail={detail}
+                row={row}
+                isBusy={isBusy}
+                onApply={onApply}
+                selectable={isDetailBulkSelectable(detail, row)}
+                isSelected={selectedIndexes.has(index)}
+                onToggleSelected={() => toggleSelected(index)}
+              />
+            ))}
+          </tbody>
+        </table>
       </div>
-      {detail.kind !== "fix" && !isAutoAppliedPrice && !isInformational ? (
-        <div className="flex items-center justify-end gap-2 text-sm font-semibold">
-          {isManualPrice ? (() => {
-            const linkUrl = detail.manualPriceReason === "social-only"
-              ? (row.check.instagramUrl || row.check.bookingUrl)
-              : (row.check.bookingUrl || row.check.instagramUrl);
-            return linkUrl ? (
-              <a
-                href={linkUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-none border border-stone-200 bg-white px-3 py-2 text-stone-700 transition hover:border-stone-300 hover:text-stone-950"
-              >
-                Open link
-              </a>
-            ) : null;
-          })() : null}
-          {isManual ? (
+      {someSelected ? (
+        <div className="sticky bottom-4 z-10 flex justify-center">
+          <div className="inline-flex items-center gap-4 rounded-none bg-stone-950 px-5 py-3 text-sm font-medium text-white shadow-lg">
+            <span className="inline-flex items-center gap-2">
+              <span className="inline-flex size-5 items-center justify-center rounded-none bg-white/15 text-xs font-semibold">{selectedIndexes.size}</span>
+              selected
+            </span>
+            <span className="h-4 w-px bg-white/20" />
+            <button
+              type="button"
+              disabled={isBusy}
+              onClick={handleBulkAccept}
+              className="inline-flex items-center gap-1.5 transition hover:text-emerald-300 disabled:cursor-not-allowed disabled:opacity-40"
+            >
+              <Check className="size-4" />
+              Accept
+            </button>
+            <span className="h-4 w-px bg-white/20" />
+            <button
+              type="button"
+              disabled={isBusy}
+              onClick={handleBulkIgnore}
+              className="inline-flex items-center gap-1.5 transition hover:text-red-300 disabled:cursor-not-allowed disabled:opacity-40"
+            >
+              <Ban className="size-4" />
+              Ignore
+            </button>
+            <span className="h-4 w-px bg-white/20" />
+            <button
+              type="button"
+              onClick={() => setSelectedIndexes(new Set())}
+              aria-label="Clear selection"
+              className="inline-flex items-center justify-center text-stone-300 transition hover:text-white"
+            >
+              <X className="size-4" />
+            </button>
+          </div>
+        </div>
+      ) : null}
+      {hasLinkIssues ? (
+        <div className="space-y-3 rounded-none border border-stone-200 bg-stone-50 p-4">
+          <div className="flex items-center justify-between gap-3">
+            <p className="text-xs font-semibold uppercase tracking-[0.12em] text-stone-600">Links</p>
             <button
               type="button"
               disabled={isBusy || linkSaveState === "saving"}
-              onClick={onSaveLinks}
+              onClick={handleSaveLinks}
               className={cn(
-                "inline-flex items-center gap-2 rounded-none border px-3 py-2 transition disabled:cursor-not-allowed disabled:opacity-35",
+                "inline-flex items-center gap-2 rounded-none border px-3 py-2 text-sm font-semibold transition disabled:cursor-not-allowed disabled:opacity-35",
                 linkSaveState === "saved"
                   ? "border-emerald-200 bg-emerald-50 text-emerald-700"
                   : "border-stone-950 bg-stone-950 text-white hover:bg-stone-800 active:bg-stone-700",
@@ -3026,33 +3862,134 @@ function FreshnessRecommendationItem({
                 "Update"
               )}
             </button>
-          ) : null}
-          <button
-            type="button"
-            disabled={isBusy || !rejectUpdate}
-            onClick={() => rejectUpdate ? onApply(row.check, rejectUpdate) : undefined}
-            className="rounded-none border border-stone-200 bg-white px-3 py-2 text-stone-700 transition hover:border-stone-300 hover:text-stone-950 disabled:cursor-not-allowed disabled:opacity-35"
-          >
-            {secondaryActionLabel}
-          </button>
-          {!isManual ? (
-            <button
-              type="button"
-              disabled={isBusy || !acceptUpdate || ((isPrice || isManualPrice) && !selectedPriceBand)}
-              onClick={() => acceptUpdate ? onApply(row.check, acceptUpdate) : undefined}
-              className={cn(
-                "rounded-none px-3 py-2 transition disabled:cursor-not-allowed disabled:opacity-35",
-                isAdd || isAttribute || isPrice || isManualPrice
-                  ? "border border-emerald-200 bg-emerald-50 text-emerald-700 hover:bg-emerald-100"
-                  : "border border-red-200 bg-red-50 text-red-700 hover:bg-red-100",
-              )}
-            >
-              {primaryActionLabel}
-            </button>
-          ) : null}
+          </div>
+          <div className="h-px bg-stone-200" />
+          <div className="grid gap-3 sm:grid-cols-2">
+            <Field label={primaryLinkLabel}>
+              <Input value={primaryLinkUrl} onChange={(event) => setPrimaryLinkUrl(event.target.value)} placeholder="https://..." className="h-9 rounded-none" />
+            </Field>
+            <Field label="Instagram URL">
+              <Input value={instagramUrl} onChange={(event) => setInstagramUrl(event.target.value)} placeholder="https://www.instagram.com/..." className="h-9 rounded-none" />
+            </Field>
+          </div>
         </div>
       ) : null}
     </div>
+  );
+}
+
+function FreshnessRecommendationTableRow({
+  detail,
+  row,
+  isBusy,
+  onApply,
+  selectable,
+  isSelected,
+  onToggleSelected,
+}: {
+  detail: FreshnessRecommendationDetail;
+  row: FreshnessRecommendationGroup;
+  isBusy: boolean;
+  onApply: FreshnessPageApplyHandler;
+  selectable: boolean;
+  isSelected: boolean;
+  onToggleSelected: () => void;
+}) {
+  const isAdd = detail.kind === "add";
+  const isRemove = detail.kind === "remove";
+  const isAttribute = detail.kind === "attribute";
+  const isPrice = detail.kind === "price";
+  const isManualPrice = detail.kind === "manual-price";
+  const isAutoAppliedPrice = isPrice && detail.priceAutoApplied === true;
+  const [selectedPriceBand, setSelectedPriceBand] = useState<PriceBand | "">(detail.priceBand || "");
+  const [manualPriceResult, setManualPriceResult] = useState<ManualPriceParseResult | null>(null);
+  const visual = getFreshnessDetailVisual(detail);
+  const acceptUpdate = getFreshnessDetailAcceptUpdate(detail, row, selectedPriceBand, manualPriceResult);
+  const primaryActionLabel = isAdd ? "Add service" : isRemove ? "Remove" : isAttribute ? getAttributeActionLabel(detail.attributeField) : isPrice || isManualPrice ? "Set band" : detail.kind === "location" ? "Update location" : detail.kind === "fix" ? "Save" : "Resolve";
+  const sortedPriceValues = [...(detail.priceValues || [])].sort((left, right) => left - right);
+  const showCalculator = (isPrice && !isAutoAppliedPrice) || isManualPrice;
+  const showDescription = detail.kind === "fix" || detail.kind === "manual" || detail.kind === "price" || detail.kind === "price-info" || detail.kind === "review" || detail.kind === "manual-price";
+  const suggestionSubtext = [
+    showDescription ? detail.description : "",
+    sortedPriceValues.length ? sortedPriceValues.map(formatDetectedPrice).join(", ") : "",
+  ].filter(Boolean).join(" · ");
+
+  return (
+    <>
+      <tr className={cn("border-b border-stone-100 last:border-b-0", isSelected ? "bg-emerald-50/40" : "")}>
+        <td className="w-10 px-4 py-4">
+          <Checkbox checked={isSelected} onCheckedChange={onToggleSelected} disabled={!selectable || isBusy} aria-label={`Select ${detail.label}`} />
+        </td>
+        <td className="w-28 px-4 py-4">
+          <span className={cn("inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold", visual.pillClass)}>
+            {visual.label}
+          </span>
+        </td>
+        <td className="min-w-0 px-4 py-4">
+          <div className="flex min-w-0 items-baseline gap-2">
+            <p className={cn("truncate font-semibold text-stone-950", suggestionSubtext ? "max-w-[50%] shrink-0" : "min-w-0 flex-1")}>{detail.label}</p>
+            {suggestionSubtext ? <p className="min-w-0 flex-1 truncate text-sm font-medium text-stone-500">{suggestionSubtext}</p> : null}
+          </div>
+        </td>
+        <td className="min-w-0 px-4 py-4">
+          {detail.evidence?.length ? (
+            <div className="flex min-w-0 flex-nowrap items-center gap-1.5 overflow-hidden">
+              {detail.evidence.slice(0, 3).map((line) => (
+                <span key={line} title={line} className="min-w-0 max-w-[220px] shrink truncate rounded-none border border-stone-200 bg-white px-2 py-1 text-xs font-medium text-stone-500">
+                  {line}
+                </span>
+              ))}
+              {detail.evidence.length > 3 ? (
+                <span title={detail.evidence.slice(3).join(", ")} className="shrink-0 rounded-none border border-stone-200 bg-stone-50 px-2 py-1 text-xs font-medium text-stone-500">
+                  +{detail.evidence.length - 3}
+                </span>
+              ) : null}
+            </div>
+          ) : (
+            <span className="text-sm text-stone-400">—</span>
+          )}
+        </td>
+      </tr>
+      {showCalculator ? (() => {
+        const linkUrl = detail.manualPriceReason === "social-only"
+          ? (row.check.instagramUrl || row.check.bookingUrl)
+          : (row.check.bookingUrl || row.check.instagramUrl);
+        return (
+          <tr className="border-b border-stone-100 last:border-b-0">
+            <td colSpan={4} className="bg-stone-50 px-4 py-3">
+              <ManualPriceCalculator
+                detail={detail}
+                selectedPriceBand={selectedPriceBand}
+                onSelectedPriceBandChange={setSelectedPriceBand}
+                onManualPriceResult={setManualPriceResult}
+              />
+              <div className="mt-3 flex items-center gap-2">
+                {linkUrl ? (
+                  <a
+                    href={linkUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-none border border-stone-200 bg-white px-3 py-2 text-sm font-semibold text-stone-700 transition hover:border-stone-300 hover:text-stone-950"
+                  >
+                    <ExternalLink className="size-4" />
+                    Open link
+                  </a>
+                ) : null}
+                <button
+                  type="button"
+                  disabled={isBusy || !acceptUpdate || !selectedPriceBand}
+                  onClick={() => acceptUpdate ? onApply(row.check, acceptUpdate) : undefined}
+                  className="inline-flex items-center gap-2 rounded-none border border-emerald-200 bg-emerald-50 px-3 py-2 text-sm font-semibold text-emerald-700 transition hover:bg-emerald-100 disabled:cursor-not-allowed disabled:opacity-35"
+                >
+                  <Check className="size-4" />
+                  {primaryActionLabel}
+                </button>
+              </div>
+            </td>
+          </tr>
+        );
+      })() : null}
+    </>
   );
 }
 
@@ -3253,6 +4190,89 @@ function getFreshnessDetailAcceptUpdate(detail: FreshnessRecommendationDetail, r
   return row.acceptUpdate;
 }
 
+function isDetailBulkSelectable(detail: FreshnessRecommendationDetail, row: FreshnessRecommendationGroup) {
+  if (detail.kind === "manual" || detail.kind === "fix" || detail.kind === "price" || detail.kind === "manual-price" || detail.kind === "price-info") {
+    return false;
+  }
+  return Boolean(getFreshnessDetailAcceptUpdate(detail, row));
+}
+
+function mergeFreshnessAcceptUpdates(details: FreshnessRecommendationDetail[], row: FreshnessRecommendationGroup): FreshnessUpdate | undefined {
+  const merged: FreshnessUpdate = {};
+  for (const detail of details) {
+    const update = getFreshnessDetailAcceptUpdate(detail, row);
+    if (!update) {
+      continue;
+    }
+    if (update.addServices?.length) {
+      merged.addServices = [...(merged.addServices || []), ...update.addServices];
+    }
+    if (update.removeServices?.length) {
+      merged.removeServices = [...(merged.removeServices || []), ...update.removeServices];
+    }
+    if (update.hijabiFriendly) {
+      merged.hijabiFriendly = true;
+    }
+    if (update.wheelchairAccessible) {
+      merged.wheelchairAccessible = true;
+    }
+    if (update.areaId) {
+      merged.areaId = update.areaId;
+      merged.areaIds = update.areaIds;
+      merged.areaLabel = update.areaLabel;
+    }
+  }
+  return Object.keys(merged).length ? merged : undefined;
+}
+
+function getFreshnessDetailRejectUpdate(detail: FreshnessRecommendationDetail, row: FreshnessRecommendationGroup): FreshnessUpdate | undefined {
+  if (detail.kind === "add" && detail.service) {
+    return { rejectAddedServices: [detail.service] };
+  }
+  if (detail.kind === "remove" && detail.service) {
+    return { rejectRemovedServices: [detail.service] };
+  }
+  if (detail.kind === "attribute" && detail.attributeField) {
+    return getAttributeRejectUpdate(detail.attributeField);
+  }
+  if (detail.kind === "price" || detail.kind === "manual-price") {
+    return { rejectPriceBand: true };
+  }
+  if (detail.kind === "location") {
+    return { rejectLocation: true };
+  }
+  return row.rejectUpdate;
+}
+
+function mergeFreshnessRejectUpdates(details: FreshnessRecommendationDetail[], row: FreshnessRecommendationGroup): FreshnessUpdate | undefined {
+  const merged: FreshnessUpdate = {};
+  for (const detail of details) {
+    const update = getFreshnessDetailRejectUpdate(detail, row);
+    if (!update) {
+      continue;
+    }
+    if (update.rejectAddedServices?.length) {
+      merged.rejectAddedServices = [...(merged.rejectAddedServices || []), ...update.rejectAddedServices];
+    }
+    if (update.rejectRemovedServices?.length) {
+      merged.rejectRemovedServices = [...(merged.rejectRemovedServices || []), ...update.rejectRemovedServices];
+    }
+    if (update.rejectHijabiFriendly) {
+      merged.rejectHijabiFriendly = true;
+    }
+    if (update.rejectWheelchairAccessible) {
+      merged.rejectWheelchairAccessible = true;
+    }
+    if (update.rejectLocation) {
+      merged.rejectLocation = true;
+    }
+    if (update.rejectPriceBand) {
+      merged.rejectPriceBand = true;
+    }
+  }
+  return Object.keys(merged).length ? merged : undefined;
+}
+
 function getAttributeAcceptUpdate(field: AttributeSuggestion["field"]): FreshnessUpdate {
   return field === "wheelchairAccessible" ? { wheelchairAccessible: true } : { hijabiFriendly: true };
 }
@@ -3337,47 +4357,51 @@ type FreshnessRecommendationDetail = {
 
 function getFreshnessDetailVisual(detail: FreshnessRecommendationDetail) {
   if (detail.kind === "add") {
-    return { label: "Add", dotClass: "bg-emerald-500", textClass: "text-emerald-700" };
+    return { label: "Add", dotClass: "bg-emerald-500", textClass: "text-emerald-700", pillClass: "bg-emerald-100 text-emerald-700" };
   }
   if (detail.kind === "remove" && detail.reviewTone === "caution") {
-    return { label: "Review", dotClass: "bg-sky-500", textClass: "text-sky-700" };
+    return { label: "Review", dotClass: "bg-sky-500", textClass: "text-sky-700", pillClass: "bg-sky-100 text-sky-700" };
   }
   if (detail.kind === "fix") {
-    return { label: "Fix", dotClass: "bg-red-500", textClass: "text-red-700" };
+    return { label: "Fix", dotClass: "bg-red-500", textClass: "text-red-700", pillClass: "bg-red-100 text-red-700" };
   }
   if (detail.kind === "remove") {
-    return { label: "Remove", dotClass: "bg-red-500", textClass: "text-red-700" };
+    return { label: "Remove", dotClass: "bg-red-500", textClass: "text-red-700", pillClass: "bg-red-100 text-red-700" };
   }
   if (detail.kind === "manual") {
-    return { label: "Verify", dotClass: "bg-amber-500", textClass: "text-amber-700" };
+    return { label: "Verify", dotClass: "bg-amber-500", textClass: "text-amber-700", pillClass: "bg-amber-100 text-amber-700" };
   }
   if (detail.kind === "attribute") {
-    return { label: "Mark", dotClass: "bg-emerald-500", textClass: "text-emerald-700" };
+    return { label: "Mark", dotClass: "bg-emerald-500", textClass: "text-emerald-700", pillClass: "bg-emerald-100 text-emerald-700" };
   }
   if (detail.kind === "price") {
-    return { label: "Price", dotClass: "bg-sky-500", textClass: "text-sky-700" };
+    return { label: "Price", dotClass: "bg-sky-500", textClass: "text-sky-700", pillClass: "bg-sky-100 text-sky-700" };
   }
   if (detail.kind === "price-info") {
-    return { label: "Price", dotClass: "bg-stone-400", textClass: "text-stone-600" };
+    return { label: "Price", dotClass: "bg-stone-400", textClass: "text-stone-600", pillClass: "bg-stone-100 text-stone-600" };
   }
   if (detail.kind === "location") {
-    return { label: "Location", dotClass: "bg-violet-500", textClass: "text-violet-700" };
+    return { label: "Location", dotClass: "bg-violet-500", textClass: "text-violet-700", pillClass: "bg-violet-100 text-violet-700" };
   }
   if (detail.kind === "manual-price") {
-    return { label: "Price", dotClass: "bg-amber-500", textClass: "text-amber-700" };
+    return { label: "Price", dotClass: "bg-amber-500", textClass: "text-amber-700", pillClass: "bg-amber-100 text-amber-700" };
   }
-  return { label: "Review", dotClass: "bg-sky-500", textClass: "text-sky-700" };
+  return { label: "Review", dotClass: "bg-sky-500", textClass: "text-sky-700", pillClass: "bg-sky-100 text-sky-700" };
 }
 
-function FreshnessDetailSummary({ details }: { details: FreshnessRecommendationDetail[] }) {
-  const counts = details.reduce(
+function getFreshnessDetailCounts(details: FreshnessRecommendationDetail[]) {
+  return details.reduce(
     (summary, detail) => ({
       ...summary,
       [detail.kind === "remove" && detail.reviewTone === "caution" ? "review" : detail.kind]: summary[detail.kind === "remove" && detail.reviewTone === "caution" ? "review" : detail.kind] + 1,
     }),
     { add: 0, remove: 0, fix: 0, manual: 0, attribute: 0, price: 0, "price-info": 0, location: 0, review: 0, "manual-price": 0 } as Record<FreshnessRecommendationDetail["kind"], number>,
   );
-  const parts = [
+}
+
+function getFreshnessDetailSummaryParts(details: FreshnessRecommendationDetail[]) {
+  const counts = getFreshnessDetailCounts(details);
+  return [
     { count: counts.add, label: "add", className: "bg-emerald-100 text-emerald-700" },
     { count: counts.remove, label: "remove", className: "bg-red-100 text-red-700" },
     { count: counts.fix, label: "link fix", className: "bg-red-100 text-red-700" },
@@ -3389,6 +4413,16 @@ function FreshnessDetailSummary({ details }: { details: FreshnessRecommendationD
     { count: counts.review, label: "review", className: "bg-stone-100 text-stone-600" },
     { count: counts["manual-price"], label: "price", className: "bg-amber-100 text-amber-700" },
   ].filter((part) => part.count);
+}
+
+function summarizeFreshnessDetailsAsText(details: FreshnessRecommendationDetail[]) {
+  return getFreshnessDetailSummaryParts(details)
+    .map((part) => `${part.count} ${part.label}`)
+    .join(" · ");
+}
+
+function FreshnessDetailSummary({ details }: { details: FreshnessRecommendationDetail[] }) {
+  const parts = getFreshnessDetailSummaryParts(details);
 
   return (
     <span className="inline-flex min-w-0 flex-wrap items-center gap-2 text-sm text-stone-500">
@@ -4819,8 +5853,18 @@ function DraftEditor({
         <Input value={draft.name} onChange={(event) => onChange({ name: event.target.value })} placeholder="Stylist name" className="h-11 rounded-none" />
       </Field>
 
+      <Field label="Discovery source">
+        <Select value={draft.discoverySource || "Manual search"} onChange={(discoverySource) => onChange({ discoverySource })}>
+          {[...new Set([...discoverySourceOptions, ...(draft.discoverySource ? [draft.discoverySource] : [])])].map((option) => (
+            <option key={option} value={option}>
+              {option}
+            </option>
+          ))}
+        </Select>
+      </Field>
+
       <Field label="Added via">
-        <Select value={draft.addedVia || "Manual"} onChange={(addedVia) => onChange({ addedVia })}>
+        <Select value={draft.addedVia || "Code edit"} onChange={(addedVia) => onChange({ addedVia })}>
           {[...new Set([...addedViaOptions, ...(draft.addedVia ? [draft.addedVia] : [])])].map((option) => (
             <option key={option} value={option}>
               {option}
@@ -5012,6 +6056,7 @@ function DraftEditor({
         <DraftReviewRow label="Instagram" value={draft.instagramUrl || "Not added"} />
         <DraftReviewRow label="Booking URL" value={draft.bookingUrl || "Not added"} />
         <DraftReviewRow label="TikTok recommendation" value={draft.tiktokUrl || "Not added"} />
+        <DraftReviewRow label="Discovery source" value={draft.discoverySource || "Not set"} />
         <DraftReviewRow label="Added via" value={draft.addedVia || "Not set"} />
         <DraftReviewRow label="Locations" value={selectedLocationLabels.length ? selectedLocationLabels.join(", ") : getDraftLocationLabel(draft, regions) || "No location selected"} />
         <DraftReviewRow
@@ -5066,8 +6111,18 @@ function DraftEditor({
           <DraftStatusPill status={getDraftDisplayStatus(draft)} />
         </DraftPropertyRow>
 
+        <DraftPropertyRow icon={<Search className="size-4" />} label="Discovery source">
+          <Select value={draft.discoverySource || "Manual search"} onChange={(discoverySource) => onChange({ discoverySource })}>
+            {[...new Set([...discoverySourceOptions, ...(draft.discoverySource ? [draft.discoverySource] : [])])].map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
+          </Select>
+        </DraftPropertyRow>
+
         <DraftPropertyRow icon={<Plus className="size-4" />} label="Added via">
-          <Select value={draft.addedVia || "Manual"} onChange={(addedVia) => onChange({ addedVia })}>
+          <Select value={draft.addedVia || "Code edit"} onChange={(addedVia) => onChange({ addedVia })}>
             {[...new Set([...addedViaOptions, ...(draft.addedVia ? [draft.addedVia] : [])])].map((option) => (
               <option key={option} value={option}>
                 {option}
@@ -5716,6 +6771,25 @@ function getDraftAreaIds(draft: StylistDraft) {
   return normalizeAreaIds(draft.areaIds?.length ? draft.areaIds : draft.areaId ? [draft.areaId] : []);
 }
 
+function draftMatchesCategory(draft: StylistDraft, categoryId: string, filterCategories: { id: string; label: string; subcategories: string[] }[]) {
+  const category = filterCategories.find((item) => item.id === categoryId);
+  if (!category) {
+    return true;
+  }
+  if (!category.subcategories.length) {
+    return draft.services.includes(category.label);
+  }
+  return draft.services.some((service) => category.subcategories.includes(service));
+}
+
+function draftMatchesLocation(draft: StylistDraft, regionId: string) {
+  const areaIds = getDraftAreaIds(draft);
+  if (regionId === londonParentAreaId) {
+    return areaIds.some((areaId) => areaId === londonParentAreaId || londonChildAreaIds.has(areaId));
+  }
+  return areaIds.includes(regionId);
+}
+
 function normalizeAreaIds(areaIds: string[], latestAreaId?: string) {
   const uniqueAreaIds = [...new Set(areaIds.filter(Boolean))];
   if (latestAreaId === londonParentAreaId) {
@@ -5742,6 +6816,7 @@ function publishedSalonToDraft(salon: Partial<StylistDraft>): StylistDraft {
     instagramUrl: salon.instagramUrl || "",
     tiktokUrl: salon.tiktokUrl || "",
     addedVia: salon.addedVia || "",
+    discoverySource: salon.discoverySource || "",
     services: Array.isArray(salon.services) ? salon.services : [],
     rawServices: [],
     hijabiFriendly: salon.hijabiFriendly === true,
@@ -5782,49 +6857,23 @@ function areaLabelFromId(areaId: string) {
 
 type FilterCategory = { id: string; label: string; subcategories: string[] };
 
+type FilterTypeId = "services" | "locations" | "additional-needs" | "price-range";
+
 function FiltersPage({ onCategoriesChange }: { onCategoriesChange?: (categories: FilterCategory[]) => void }) {
-  const [activeTab, setActiveTab] = useState<"services" | "locations" | "additional-needs">("services");
+  const [activeType, setActiveType] = useState<FilterTypeId>("services");
 
-  return (
-    <div className="mx-auto max-w-4xl px-5 py-9">
-      <h1 className="text-3xl font-semibold tracking-tight text-stone-950">Filters</h1>
-      <nav className="mt-6 flex gap-6 border-b border-stone-200">
-        {(["services", "locations", "additional-needs"] as const).map((tab) => (
-          <button
-            key={tab}
-            type="button"
-            onClick={() => setActiveTab(tab)}
-            className={cn(
-              "whitespace-nowrap border-b-2 pb-3 text-sm capitalize transition",
-              activeTab === tab
-                ? "border-stone-950 text-stone-950"
-                : "border-transparent text-stone-500 hover:text-stone-900",
-            )}
-          >
-            {tab === "additional-needs" ? "Additional needs" : tab.charAt(0).toUpperCase() + tab.slice(1)}
-          </button>
-        ))}
-      </nav>
-      <div className="mt-7">
-        {activeTab === "services" ? <ServicesFilterTab onCategoriesChange={onCategoriesChange} /> : null}
-        {activeTab === "locations" ? <LocationsFilterTab /> : null}
-        {activeTab === "additional-needs" ? <AdditionalNeedsFilterTab /> : null}
-      </div>
-    </div>
-  );
-}
-
-function ServicesFilterTab({ onCategoriesChange }: { onCategoriesChange?: (categories: FilterCategory[]) => void }) {
   const [categories, setCategories] = useState<FilterCategory[]>([]);
-  const [isSaving, setIsSaving] = useState(false);
-  const [saveMessage, setSaveMessage] = useState<{ text: string; ok: boolean } | null>(null);
-  const [newSubcategoryInputs, setNewSubcategoryInputs] = useState<Record<string, string>>({});
-  const [newCategoryId, setNewCategoryId] = useState("");
-  const [newCategoryLabel, setNewCategoryLabel] = useState("");
-  // editing state: "catId" -> editing category label; "catId::subName" -> editing that subcategory
-  const [editing, setEditing] = useState<{ key: string; value: string } | null>(null);
-  // track subcategory renames so the server can migrate stylist records on save
-  const [renames, setRenames] = useState<{ from: string; to: string }[]>([]);
+  const [categoryRenames, setCategoryRenames] = useState<{ from: string; to: string }[]>([]);
+
+  const [regions, setRegions] = useState<LocationRegion[]>([]);
+  const [londonParentId, setLondonParentId] = useState("all-london");
+  const [londonChildIds, setLondonChildIds] = useState<string[]>([]);
+  const [standaloneIds, setStandaloneIds] = useState<string[]>([]);
+
+  const [needsOptions, setNeedsOptions] = useState<AdditionalNeedOption[]>([]);
+
+  const [isPublishing, setIsPublishing] = useState(false);
+  const [publishMessage, setPublishMessage] = useState<{ text: string; ok: boolean } | null>(null);
 
   useEffect(() => {
     fetch("/api/admin/filters", { credentials: "include" })
@@ -5833,256 +6882,6 @@ function ServicesFilterTab({ onCategoriesChange }: { onCategoriesChange?: (categ
         if (data.ok) setCategories(data.categories);
       });
   }, []);
-
-  function addSubcategory(categoryId: string) {
-    const name = (newSubcategoryInputs[categoryId] ?? "").trim();
-    if (!name) return;
-    setCategories((prev) =>
-      prev.map((cat) =>
-        cat.id === categoryId ? { ...cat, subcategories: [...cat.subcategories, name] } : cat,
-      ),
-    );
-    setNewSubcategoryInputs((prev) => ({ ...prev, [categoryId]: "" }));
-  }
-
-  function removeSubcategory(categoryId: string, subcategory: string) {
-    setCategories((prev) =>
-      prev.map((cat) =>
-        cat.id === categoryId ? { ...cat, subcategories: cat.subcategories.filter((s) => s !== subcategory) } : cat,
-      ),
-    );
-  }
-
-  function startEditSubcategory(categoryId: string, sub: string) {
-    setEditing({ key: `${categoryId}::${sub}`, value: sub });
-  }
-
-  function commitEditSubcategory(categoryId: string, oldName: string) {
-    const newName = editing?.value.trim() ?? "";
-    if (newName && newName !== oldName) {
-      setCategories((prev) =>
-        prev.map((cat) =>
-          cat.id === categoryId
-            ? { ...cat, subcategories: cat.subcategories.map((s) => (s === oldName ? newName : s)) }
-            : cat,
-        ),
-      );
-      setRenames((prev) => {
-        // If oldName was itself the result of a previous rename, chain it so we
-        // only keep the original → latest mapping.
-        const existing = prev.find((r) => r.to === oldName);
-        if (existing) {
-          return prev.map((r) => (r.to === oldName ? { ...r, to: newName } : r));
-        }
-        return [...prev, { from: oldName, to: newName }];
-      });
-    }
-    setEditing(null);
-  }
-
-  function startEditCategoryLabel(cat: FilterCategory) {
-    setEditing({ key: cat.id, value: cat.label });
-  }
-
-  function commitEditCategoryLabel(categoryId: string) {
-    const newLabel = editing?.value.trim() ?? "";
-    if (newLabel) {
-      setCategories((prev) =>
-        prev.map((cat) => (cat.id === categoryId ? { ...cat, label: newLabel } : cat)),
-      );
-    }
-    setEditing(null);
-  }
-
-  function addCategory() {
-    const id = newCategoryId.trim().toLowerCase().replace(/\s+/g, "-");
-    const label = newCategoryLabel.trim();
-    if (!id || !label || categories.some((cat) => cat.id === id)) return;
-    setCategories((prev) => [...prev, { id, label, subcategories: [] }]);
-    setNewCategoryId("");
-    setNewCategoryLabel("");
-  }
-
-  function removeCategory(categoryId: string) {
-    setCategories((prev) => prev.filter((cat) => cat.id !== categoryId));
-  }
-
-  async function save() {
-    setIsSaving(true);
-    setSaveMessage(null);
-    try {
-      const res = await fetch("/api/admin/filters", {
-        method: "POST",
-        credentials: "include",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ categories, renames }),
-      });
-      const data = await res.json();
-      if (data.ok) {
-        setRenames([]);
-        onCategoriesChange?.(categories);
-      }
-      setSaveMessage({ text: data.ok ? "Saved." : (data.error ?? "Failed to save."), ok: data.ok });
-    } catch {
-      setSaveMessage({ text: "Failed to save.", ok: false });
-    } finally {
-      setIsSaving(false);
-    }
-  }
-
-  return (
-    <div className="space-y-7">
-      <section className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
-        <p className="text-sm text-stone-500">Edit the service categories and subcategories shown in the directory filter panel. Click any name to rename it.</p>
-        <Button type="button" onClick={save} disabled={isSaving} className="h-10 shrink-0 rounded-none px-4">
-          {isSaving ? <Loader2 className="mr-2 size-4 animate-spin" /> : null}
-          Save changes
-        </Button>
-      </section>
-
-      {saveMessage ? (
-        <p className={cn("text-sm font-medium", saveMessage.ok ? "text-emerald-700" : "text-red-600")}>{saveMessage.text}</p>
-      ) : null}
-
-      <div className="space-y-5">
-        {categories.map((cat) => {
-          const isEditingLabel = editing?.key === cat.id;
-          return (
-          <div key={cat.id} className="rounded-none border border-stone-200 bg-white p-5">
-            <div className="flex items-center justify-between gap-3">
-              <div className="flex items-center gap-2">
-                {isEditingLabel ? (
-                  <input
-                    autoFocus
-                    type="text"
-                    value={editing.value}
-                    onChange={(e) => setEditing({ ...editing, value: e.target.value })}
-                    onBlur={() => commitEditCategoryLabel(cat.id)}
-                    onKeyDown={(e) => {
-                      if (e.key === "Enter") commitEditCategoryLabel(cat.id);
-                      if (e.key === "Escape") setEditing(null);
-                    }}
-                    className="h-7 rounded-none border border-stone-400 bg-white px-2 text-sm font-semibold focus:outline-none focus:ring-1 focus:ring-stone-500"
-                  />
-                ) : (
-                  <button
-                    type="button"
-                    onClick={() => startEditCategoryLabel(cat)}
-                    className="group flex items-center gap-1.5 font-semibold text-stone-900 hover:text-stone-600"
-                    title="Click to rename"
-                  >
-                    {cat.label}
-                    <Pencil className="size-3 opacity-0 group-hover:opacity-50" />
-                  </button>
-                )}
-                <p className="text-xs text-stone-400">{cat.id}</p>
-              </div>
-              <button
-                type="button"
-                onClick={() => removeCategory(cat.id)}
-                className="text-xs font-medium text-stone-400 hover:text-red-600"
-              >
-                Remove category
-              </button>
-            </div>
-
-            <div className="mt-4 flex flex-wrap gap-2">
-              {cat.subcategories.map((sub) => {
-                const editKey = `${cat.id}::${sub}`;
-                const isEditingSub = editing?.key === editKey;
-                return isEditingSub ? (
-                  <input
-                    key={sub}
-                    autoFocus
-                    type="text"
-                    value={editing.value}
-                    onChange={(e) => setEditing({ ...editing, value: e.target.value })}
-                    onBlur={() => commitEditSubcategory(cat.id, sub)}
-                    onKeyDown={(e) => {
-                      if (e.key === "Enter") commitEditSubcategory(cat.id, sub);
-                      if (e.key === "Escape") setEditing(null);
-                    }}
-                    className="h-7 rounded-none border border-stone-400 bg-white px-2 text-xs font-medium focus:outline-none focus:ring-1 focus:ring-stone-500"
-                  />
-                ) : (
-                  <span key={sub} className="group inline-flex items-center gap-1.5 rounded-none border border-stone-200 bg-stone-50 px-2.5 py-1 text-xs font-medium text-stone-700">
-                    <button
-                      type="button"
-                      onClick={() => startEditSubcategory(cat.id, sub)}
-                      className="hover:text-stone-950"
-                      title="Click to rename"
-                    >
-                      {sub}
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => removeSubcategory(cat.id, sub)}
-                      className="text-stone-400 hover:text-red-600"
-                      aria-label={`Remove ${sub}`}
-                    >
-                      <X className="size-3" />
-                    </button>
-                  </span>
-                );
-              })}
-            </div>
-
-            <div className="mt-3 flex gap-2">
-              <input
-                type="text"
-                value={newSubcategoryInputs[cat.id] ?? ""}
-                onChange={(e) => setNewSubcategoryInputs((prev) => ({ ...prev, [cat.id]: e.target.value }))}
-                onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(); addSubcategory(cat.id); } }}
-                placeholder="Add subcategory…"
-                className="h-8 flex-1 rounded-none border border-stone-300 bg-white px-2 text-sm focus:outline-none focus:ring-1 focus:ring-stone-500"
-              />
-              <Button type="button" variant="outline" onClick={() => addSubcategory(cat.id)} className="h-8 rounded-none px-3 text-xs">
-                Add
-              </Button>
-            </div>
-          </div>
-          );
-        })}
-      </div>
-
-      <div className="rounded-none border border-dashed border-stone-300 p-5">
-        <p className="mb-3 text-sm font-semibold text-stone-700">Add new category</p>
-        <div className="flex flex-col gap-2 sm:flex-row">
-          <input
-            type="text"
-            value={newCategoryLabel}
-            onChange={(e) => setNewCategoryLabel(e.target.value)}
-            placeholder="Label (e.g. Curly Hair)"
-            className="h-9 flex-1 rounded-none border border-stone-300 bg-white px-2 text-sm focus:outline-none focus:ring-1 focus:ring-stone-500"
-          />
-          <input
-            type="text"
-            value={newCategoryId}
-            onChange={(e) => setNewCategoryId(e.target.value)}
-            placeholder="ID (e.g. curly-hair-services)"
-            className="h-9 flex-1 rounded-none border border-stone-300 bg-white px-2 text-sm focus:outline-none focus:ring-1 focus:ring-stone-500"
-          />
-          <Button type="button" variant="outline" onClick={addCategory} className="h-9 shrink-0 rounded-none px-4 text-sm">
-            Add category
-          </Button>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-type LocationRegion = { id: string; label: string };
-
-function LocationsFilterTab() {
-  const [regions, setRegions] = useState<LocationRegion[]>([]);
-  const [londonParentId, setLondonParentId] = useState("all-london");
-  const [londonChildIds, setLondonChildIds] = useState<string[]>([]);
-  const [standaloneIds, setStandaloneIds] = useState<string[]>([]);
-  const [isSaving, setIsSaving] = useState(false);
-  const [saveMessage, setSaveMessage] = useState<{ text: string; ok: boolean } | null>(null);
-  const [editing, setEditing] = useState<{ id: string; value: string } | null>(null);
-  const [newId, setNewId] = useState("");
-  const [newLabel, setNewLabel] = useState("");
 
   useEffect(() => {
     fetch("/api/admin/locations", { credentials: "include" })
@@ -6097,135 +6896,517 @@ function LocationsFilterTab() {
       });
   }, []);
 
-  function commitEdit(id: string) {
+  useEffect(() => {
+    fetch("/api/admin/additional-needs", { credentials: "include" })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.ok) setNeedsOptions(data.options);
+      });
+  }, []);
+
+  const subcategoryCount = categories.reduce((sum, cat) => sum + cat.subcategories.length, 0);
+
+  const filterTypes: { id: FilterTypeId; label: string; description: string; count: number; icon: ComponentType<{ className?: string }> }[] = [
+    { id: "services", label: "Service Categories", description: "Group and subcategory taxonomy", count: categories.length, icon: Tag },
+    { id: "locations", label: "Location", description: "Regions across London", count: regions.length, icon: MapPin },
+    { id: "additional-needs", label: "Additional Needs", description: "Accessibility and preferences", count: needsOptions.length, icon: Heart },
+    { id: "price-range", label: "Price Range", description: "Budget tiers for services", count: priceBandOptions.length, icon: CreditCard },
+  ];
+
+  function recordRename(oldName: string, newName: string) {
+    setCategoryRenames((prev) => {
+      const existing = prev.find((r) => r.to === oldName);
+      if (existing) {
+        return prev.map((r) => (r.to === oldName ? { ...r, to: newName } : r));
+      }
+      return [...prev, { from: oldName, to: newName }];
+    });
+  }
+
+  async function publish() {
+    setIsPublishing(true);
+    setPublishMessage(null);
+    try {
+      const [filtersRes, locationsRes, needsRes] = await Promise.all([
+        fetch("/api/admin/filters", {
+          method: "POST",
+          credentials: "include",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ categories, renames: categoryRenames }),
+        }),
+        fetch("/api/admin/locations", {
+          method: "POST",
+          credentials: "include",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ regions, londonParentId, londonChildIds, standaloneIds }),
+        }),
+        fetch("/api/admin/additional-needs", {
+          method: "POST",
+          credentials: "include",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ options: needsOptions }),
+        }),
+      ]);
+      const [filtersData, locationsData, needsData] = await Promise.all([filtersRes.json(), locationsRes.json(), needsRes.json()]);
+      const ok = filtersData.ok && locationsData.ok && needsData.ok;
+      if (filtersData.ok) {
+        setCategoryRenames([]);
+        onCategoriesChange?.(categories);
+      }
+      setPublishMessage({
+        text: ok ? "Published." : (filtersData.error || locationsData.error || needsData.error || "Failed to publish some changes."),
+        ok,
+      });
+    } catch {
+      setPublishMessage({ text: "Failed to publish changes.", ok: false });
+    } finally {
+      setIsPublishing(false);
+    }
+  }
+
+  return (
+    <div className="mx-auto max-w-6xl px-5 py-9">
+      <div className="flex flex-wrap items-start justify-between gap-4">
+        <div>
+          <h1 className="text-3xl font-semibold tracking-tight text-stone-950">Filters</h1>
+          <p className="mt-1 text-sm text-stone-500">Manage filter types, groups and categories for the directory</p>
+        </div>
+        <div className="flex items-center gap-3">
+          {publishMessage ? (
+            <p className={cn("text-sm font-medium", publishMessage.ok ? "text-emerald-700" : "text-red-600")}>{publishMessage.text}</p>
+          ) : null}
+          <Button type="button" onClick={publish} disabled={isPublishing} className="h-10 rounded-none px-4 text-sm">
+            {isPublishing ? <Loader2 className="size-4 animate-spin" /> : <RefreshCw className="size-4" />}
+            Publish
+          </Button>
+        </div>
+      </div>
+
+      <div className="mt-8 grid gap-8 lg:grid-cols-[300px_1fr]">
+        <aside className="space-y-4">
+          <div className="flex items-center justify-between px-1">
+            <p className="text-xs font-semibold uppercase tracking-[0.12em] text-stone-500">Filter types</p>
+            <span className="inline-flex min-w-5 items-center justify-center rounded-full bg-stone-100 px-1.5 text-[11px] font-semibold text-stone-600">{filterTypes.length}</span>
+          </div>
+          <div className="space-y-2">
+            {filterTypes.map((type) => {
+              const Icon = type.icon;
+              const isActive = activeType === type.id;
+              return (
+                <button
+                  key={type.id}
+                  type="button"
+                  onClick={() => setActiveType(type.id)}
+                  aria-current={isActive ? "true" : undefined}
+                  className={cn(
+                    "flex w-full items-center gap-3 border bg-white px-4 py-3 text-left transition",
+                    isActive ? "border-stone-950" : "border-stone-200 hover:bg-stone-50",
+                  )}
+                >
+                  <Icon className="size-4 shrink-0 text-stone-500" />
+                  <span className="min-w-0 flex-1">
+                    <span className="block text-sm font-semibold text-stone-900">{type.label}</span>
+                    <span className="block truncate text-xs text-stone-500">{type.description}</span>
+                  </span>
+                  <span className="inline-flex min-w-6 shrink-0 items-center justify-center rounded-full bg-stone-100 px-1.5 text-[11px] font-semibold text-stone-600">{type.count}</span>
+                  <ChevronRight className="size-4 shrink-0 text-stone-300" />
+                </button>
+              );
+            })}
+          </div>
+          <button
+            type="button"
+            disabled
+            title="Filter types are fixed for this directory"
+            className="flex w-full cursor-not-allowed items-center justify-center gap-2 border border-dashed border-stone-300 px-4 py-3 text-sm font-medium text-stone-400"
+          >
+            <Plus className="size-4" />
+            Add filter type
+          </button>
+        </aside>
+
+        <main>
+          {activeType === "services" ? (
+            <ServicesFilterPanel
+              categories={categories}
+              onCategoriesChange={setCategories}
+              onRename={recordRename}
+              subcategoryCount={subcategoryCount}
+            />
+          ) : null}
+          {activeType === "locations" ? (
+            <LocationsFilterPanel
+              regions={regions}
+              onRegionsChange={setRegions}
+              londonParentId={londonParentId}
+              londonChildIds={londonChildIds}
+              onLondonChildIdsChange={setLondonChildIds}
+              onStandaloneIdsChange={setStandaloneIds}
+            />
+          ) : null}
+          {activeType === "additional-needs" ? (
+            <AdditionalNeedsFilterPanel options={needsOptions} onOptionsChange={setNeedsOptions} />
+          ) : null}
+          {activeType === "price-range" ? <PriceRangeFilterPanel /> : null}
+        </main>
+      </div>
+    </div>
+  );
+}
+
+function ServicesFilterPanel({
+  categories,
+  onCategoriesChange,
+  onRename,
+  subcategoryCount,
+}: {
+  categories: FilterCategory[];
+  onCategoriesChange: (updater: (prev: FilterCategory[]) => FilterCategory[]) => void;
+  onRename: (oldName: string, newName: string) => void;
+  subcategoryCount: number;
+}) {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [openGroups, setOpenGroups] = useState<Set<string>>(new Set());
+  const [hasInitializedOpenGroups, setHasInitializedOpenGroups] = useState(false);
+  const [editing, setEditing] = useState<{ key: string; value: string } | null>(null);
+  const [newSubcategoryInputs, setNewSubcategoryInputs] = useState<Record<string, string>>({});
+  const [isAddingGroup, setIsAddingGroup] = useState(false);
+  const [newGroupLabel, setNewGroupLabel] = useState("");
+  const [newGroupId, setNewGroupId] = useState("");
+
+  useEffect(() => {
+    if (!hasInitializedOpenGroups && categories.length) {
+      setOpenGroups(new Set([categories[0].id]));
+      setHasInitializedOpenGroups(true);
+    }
+  }, [categories, hasInitializedOpenGroups]);
+
+  const normalizedSearch = searchTerm.trim().toLowerCase();
+  const visibleCategories = normalizedSearch
+    ? categories
+        .map((cat) => ({
+          ...cat,
+          subcategories: cat.label.toLowerCase().includes(normalizedSearch)
+            ? cat.subcategories
+            : cat.subcategories.filter((sub) => sub.toLowerCase().includes(normalizedSearch)),
+        }))
+        .filter((cat) => cat.label.toLowerCase().includes(normalizedSearch) || cat.subcategories.length)
+    : categories;
+
+  function toggleGroup(id: string) {
+    setOpenGroups((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) {
+        next.delete(id);
+      } else {
+        next.add(id);
+      }
+      return next;
+    });
+  }
+
+  function addSubcategory(categoryId: string) {
+    const name = (newSubcategoryInputs[categoryId] ?? "").trim();
+    if (!name) return;
+    onCategoriesChange((prev) => prev.map((cat) => (cat.id === categoryId ? { ...cat, subcategories: [...cat.subcategories, name] } : cat)));
+    setNewSubcategoryInputs((prev) => ({ ...prev, [categoryId]: "" }));
+  }
+
+  function removeSubcategory(categoryId: string, sub: string) {
+    onCategoriesChange((prev) => prev.map((cat) => (cat.id === categoryId ? { ...cat, subcategories: cat.subcategories.filter((s) => s !== sub) } : cat)));
+  }
+
+  function startEditSubcategory(categoryId: string, sub: string) {
+    setEditing({ key: `${categoryId}::${sub}`, value: sub });
+  }
+
+  function commitEditSubcategory(categoryId: string, oldName: string) {
+    const newName = editing?.value.trim() ?? "";
+    if (newName && newName !== oldName) {
+      onCategoriesChange((prev) =>
+        prev.map((cat) => (cat.id === categoryId ? { ...cat, subcategories: cat.subcategories.map((s) => (s === oldName ? newName : s)) } : cat)),
+      );
+      onRename(oldName, newName);
+    }
+    setEditing(null);
+  }
+
+  function startEditGroupLabel(cat: FilterCategory) {
+    setEditing({ key: cat.id, value: cat.label });
+  }
+
+  function commitEditGroupLabel(categoryId: string) {
     const newLabel = editing?.value.trim() ?? "";
-    if (newLabel) setRegions((prev) => prev.map((r) => (r.id === id ? { ...r, label: newLabel } : r)));
+    if (newLabel) onCategoriesChange((prev) => prev.map((cat) => (cat.id === categoryId ? { ...cat, label: newLabel } : cat)));
+    setEditing(null);
+  }
+
+  function removeGroup(categoryId: string) {
+    onCategoriesChange((prev) => prev.filter((cat) => cat.id !== categoryId));
+  }
+
+  function addGroup() {
+    const id = newGroupId.trim().toLowerCase().replace(/\s+/g, "-");
+    const label = newGroupLabel.trim();
+    if (!id || !label || categories.some((cat) => cat.id === id)) return;
+    onCategoriesChange((prev) => [...prev, { id, label, subcategories: [] }]);
+    setOpenGroups((prev) => new Set(prev).add(id));
+    setNewGroupLabel("");
+    setNewGroupId("");
+    setIsAddingGroup(false);
+  }
+
+  return (
+    <section className="space-y-5">
+      <div className="flex flex-wrap items-start justify-between gap-4">
+        <div>
+          <h2 className="text-2xl font-semibold tracking-tight text-stone-950">Service Categories</h2>
+          <p className="mt-1 text-sm text-stone-500">
+            {categories.length} groups · {subcategoryCount} subcategories
+          </p>
+        </div>
+        <Button type="button" variant="outline" onClick={() => setIsAddingGroup((current) => !current)} className="h-10 rounded-none px-4 text-sm">
+          <Plus className="size-4" />
+          Add group
+        </Button>
+      </div>
+
+      {isAddingGroup ? (
+        <div className="flex flex-col gap-2 border border-dashed border-stone-300 p-4 sm:flex-row">
+          <input
+            type="text"
+            value={newGroupLabel}
+            onChange={(e) => setNewGroupLabel(e.target.value)}
+            placeholder="Label (e.g. Curly Hair)"
+            className="h-9 flex-1 rounded-none border border-stone-300 bg-white px-2 text-sm focus:outline-none focus:ring-1 focus:ring-stone-500"
+          />
+          <input
+            type="text"
+            value={newGroupId}
+            onChange={(e) => setNewGroupId(e.target.value)}
+            placeholder="ID (e.g. curly-hair)"
+            className="h-9 flex-1 rounded-none border border-stone-300 bg-white px-2 text-sm focus:outline-none focus:ring-1 focus:ring-stone-500"
+          />
+          <Button type="button" variant="outline" onClick={addGroup} className="h-9 shrink-0 rounded-none px-4 text-sm">
+            Add
+          </Button>
+        </div>
+      ) : null}
+
+      <div className="relative">
+        <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-stone-400" />
+        <Input
+          value={searchTerm}
+          onChange={(event) => setSearchTerm(event.target.value)}
+          placeholder="Search groups and subcategories..."
+          className="h-10 rounded-none pl-9 text-sm"
+        />
+      </div>
+
+      <div className="divide-y divide-stone-100 border border-stone-200 bg-white">
+        {visibleCategories.length ? (
+          visibleCategories.map((cat) => {
+            const isOpen = normalizedSearch ? true : openGroups.has(cat.id);
+            const isEditingLabel = editing?.key === cat.id;
+            return (
+              <div key={cat.id}>
+                <div className="flex items-center gap-3 px-4 py-3">
+                  <button type="button" onClick={() => toggleGroup(cat.id)} className="flex min-w-0 flex-1 items-center gap-2 text-left" aria-expanded={isOpen}>
+                    <ChevronDown className={cn("size-4 shrink-0 text-stone-400 transition-transform", !isOpen && "-rotate-90")} />
+                    {isEditingLabel ? (
+                      <input
+                        autoFocus
+                        type="text"
+                        value={editing.value}
+                        onClick={(e) => e.stopPropagation()}
+                        onChange={(e) => setEditing({ ...editing, value: e.target.value })}
+                        onBlur={() => commitEditGroupLabel(cat.id)}
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter") commitEditGroupLabel(cat.id);
+                          if (e.key === "Escape") setEditing(null);
+                        }}
+                        className="h-7 min-w-0 flex-1 rounded-none border border-stone-400 bg-white px-2 text-sm font-semibold focus:outline-none focus:ring-1 focus:ring-stone-500"
+                      />
+                    ) : (
+                      <span className="truncate font-semibold text-stone-900">{cat.label}</span>
+                    )}
+                    <span className="inline-flex min-w-6 shrink-0 items-center justify-center rounded-full bg-stone-100 px-1.5 text-[11px] font-semibold text-stone-600">
+                      {cat.subcategories.length}
+                    </span>
+                  </button>
+                  <div className="flex shrink-0 items-center gap-1">
+                    <button
+                      type="button"
+                      onClick={() => startEditGroupLabel(cat)}
+                      className="inline-flex size-8 items-center justify-center text-stone-400 transition hover:bg-stone-100 hover:text-stone-900"
+                      aria-label={`Rename ${cat.label}`}
+                    >
+                      <Pencil className="size-4" />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => removeGroup(cat.id)}
+                      className="inline-flex size-8 items-center justify-center text-red-500 transition hover:bg-red-50"
+                      aria-label={`Remove ${cat.label}`}
+                    >
+                      <Trash2 className="size-4" />
+                    </button>
+                  </div>
+                </div>
+
+                {isOpen ? (
+                  <div className="divide-y divide-stone-50 border-t border-stone-100 bg-stone-50/40 pl-9">
+                    {cat.subcategories.map((sub) => {
+                      const editKey = `${cat.id}::${sub}`;
+                      const isEditingSub = editing?.key === editKey;
+                      return (
+                        <div key={sub} className="flex items-center gap-3 py-2.5 pr-4">
+                          {isEditingSub ? (
+                            <input
+                              autoFocus
+                              type="text"
+                              value={editing.value}
+                              onChange={(e) => setEditing({ ...editing, value: e.target.value })}
+                              onBlur={() => commitEditSubcategory(cat.id, sub)}
+                              onKeyDown={(e) => {
+                                if (e.key === "Enter") commitEditSubcategory(cat.id, sub);
+                                if (e.key === "Escape") setEditing(null);
+                              }}
+                              className="h-7 min-w-0 flex-1 rounded-none border border-stone-400 bg-white px-2 text-sm focus:outline-none focus:ring-1 focus:ring-stone-500"
+                            />
+                          ) : (
+                            <span className="min-w-0 flex-1 truncate text-sm text-stone-700">{sub}</span>
+                          )}
+                          <div className="flex shrink-0 items-center gap-1">
+                            <button
+                              type="button"
+                              onClick={() => startEditSubcategory(cat.id, sub)}
+                              className="inline-flex size-7 items-center justify-center text-stone-400 transition hover:bg-stone-100 hover:text-stone-900"
+                              aria-label={`Rename ${sub}`}
+                            >
+                              <Pencil className="size-3.5" />
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() => removeSubcategory(cat.id, sub)}
+                              className="inline-flex size-7 items-center justify-center text-red-500 transition hover:bg-red-50"
+                              aria-label={`Remove ${sub}`}
+                            >
+                              <Trash2 className="size-3.5" />
+                            </button>
+                          </div>
+                        </div>
+                      );
+                    })}
+                    <div className="flex items-center gap-2 py-2.5 pr-4">
+                      <input
+                        type="text"
+                        value={newSubcategoryInputs[cat.id] ?? ""}
+                        onChange={(e) => setNewSubcategoryInputs((prev) => ({ ...prev, [cat.id]: e.target.value }))}
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter") {
+                            e.preventDefault();
+                            addSubcategory(cat.id);
+                          }
+                        }}
+                        placeholder="Add subcategory…"
+                        className="h-8 min-w-0 flex-1 rounded-none border border-stone-300 bg-white px-2 text-sm focus:outline-none focus:ring-1 focus:ring-stone-500"
+                      />
+                      <Button type="button" variant="outline" onClick={() => addSubcategory(cat.id)} className="h-8 shrink-0 rounded-none px-3 text-xs">
+                        Add
+                      </Button>
+                    </div>
+                  </div>
+                ) : null}
+              </div>
+            );
+          })
+        ) : (
+          <div className="flex flex-col items-center justify-center gap-2 px-6 py-16 text-center">
+            <SearchX className="size-8 text-stone-300" />
+            <p className="text-sm text-stone-500">No groups or subcategories match your search.</p>
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}
+
+type LocationRegion = { id: string; label: string };
+
+function LocationsFilterPanel({
+  regions,
+  onRegionsChange,
+  londonParentId,
+  londonChildIds,
+  onLondonChildIdsChange,
+  onStandaloneIdsChange,
+}: {
+  regions: LocationRegion[];
+  onRegionsChange: (updater: (prev: LocationRegion[]) => LocationRegion[]) => void;
+  londonParentId: string;
+  londonChildIds: string[];
+  onLondonChildIdsChange: (updater: (prev: string[]) => string[]) => void;
+  onStandaloneIdsChange: (updater: (prev: string[]) => string[]) => void;
+}) {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [editing, setEditing] = useState<{ id: string; value: string } | null>(null);
+  const [isAdding, setIsAdding] = useState(false);
+  const [newLabel, setNewLabel] = useState("");
+  const [newId, setNewId] = useState("");
+
+  const londonChildSet = new Set(londonChildIds);
+  const normalizedSearch = searchTerm.trim().toLowerCase();
+  const visibleRegions = normalizedSearch ? regions.filter((r) => r.label.toLowerCase().includes(normalizedSearch)) : regions;
+
+  function commitEdit(id: string) {
+    const label = editing?.value.trim() ?? "";
+    if (label) onRegionsChange((prev) => prev.map((r) => (r.id === id ? { ...r, label } : r)));
     setEditing(null);
   }
 
   function removeRegion(id: string) {
-    setRegions((prev) => prev.filter((r) => r.id !== id));
-    setLondonChildIds((prev) => prev.filter((c) => c !== id));
-    setStandaloneIds((prev) => prev.filter((c) => c !== id));
+    onRegionsChange((prev) => prev.filter((r) => r.id !== id));
+    onLondonChildIdsChange((prev) => prev.filter((c) => c !== id));
+    onStandaloneIdsChange((prev) => prev.filter((c) => c !== id));
   }
 
   function addRegion() {
     const id = newId.trim().toLowerCase().replace(/\s+/g, "-");
     const label = newLabel.trim();
     if (!id || !label || regions.some((r) => r.id === id)) return;
-    setRegions((prev) => [...prev, { id, label }]);
-    setStandaloneIds((prev) => [...prev, id]);
-    setNewId("");
+    onRegionsChange((prev) => [...prev, { id, label }]);
+    onStandaloneIdsChange((prev) => [...prev, id]);
     setNewLabel("");
+    setNewId("");
+    setIsAdding(false);
   }
 
   function toggleChildId(id: string, checked: boolean) {
     if (checked) {
-      setLondonChildIds((prev) => [...prev, id]);
-      setStandaloneIds((prev) => prev.filter((s) => s !== id));
+      onLondonChildIdsChange((prev) => [...prev, id]);
+      onStandaloneIdsChange((prev) => prev.filter((s) => s !== id));
     } else {
-      setLondonChildIds((prev) => prev.filter((c) => c !== id));
-      setStandaloneIds((prev) => [...prev, id]);
+      onLondonChildIdsChange((prev) => prev.filter((c) => c !== id));
+      onStandaloneIdsChange((prev) => [...prev, id]);
     }
   }
-
-  async function save() {
-    setIsSaving(true);
-    setSaveMessage(null);
-    try {
-      const res = await fetch("/api/admin/locations", {
-        method: "POST",
-        credentials: "include",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ regions, londonParentId, londonChildIds, standaloneIds }),
-      });
-      const data = await res.json();
-      setSaveMessage({ text: data.ok ? "Saved. Reload the page to see changes take effect." : (data.error ?? "Failed to save."), ok: data.ok });
-    } catch {
-      setSaveMessage({ text: "Failed to save.", ok: false });
-    } finally {
-      setIsSaving(false);
-    }
-  }
-
-  const londonChildSet = new Set(londonChildIds);
 
   return (
-    <div className="space-y-7">
-      <section className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
-        <p className="text-sm text-stone-500">Manage the location options shown in the directory filter panel. Check "London area" to nest a region under London.</p>
-        <Button type="button" onClick={save} disabled={isSaving} className="h-10 shrink-0 rounded-none px-4">
-          {isSaving ? <Loader2 className="mr-2 size-4 animate-spin" /> : null}
-          Save changes
+    <section className="space-y-5">
+      <div className="flex flex-wrap items-start justify-between gap-4">
+        <div>
+          <h2 className="text-2xl font-semibold tracking-tight text-stone-950">Location</h2>
+          <p className="mt-1 text-sm text-stone-500">{regions.length} regions</p>
+        </div>
+        <Button type="button" onClick={() => setIsAdding((current) => !current)} className="h-10 rounded-none px-4 text-sm">
+          <Plus className="size-4" />
+          Add location
         </Button>
-      </section>
-
-      {saveMessage ? (
-        <p className={cn("text-sm font-medium", saveMessage.ok ? "text-emerald-700" : "text-red-600")}>{saveMessage.text}</p>
-      ) : null}
-
-      <div className="space-y-1.5">
-        {regions.map((region) => {
-          const isEditing = editing?.id === region.id;
-          const isLondonParent = region.id === londonParentId;
-          return (
-            <div key={region.id} className="flex items-center gap-3 rounded-none border border-stone-200 bg-white px-4 py-3">
-              <div className="flex-1 min-w-0">
-                {isEditing ? (
-                  <input
-                    autoFocus
-                    type="text"
-                    value={editing.value}
-                    onChange={(e) => setEditing({ ...editing, value: e.target.value })}
-                    onBlur={() => commitEdit(region.id)}
-                    onKeyDown={(e) => {
-                      if (e.key === "Enter") commitEdit(region.id);
-                      if (e.key === "Escape") setEditing(null);
-                    }}
-                    className="h-7 w-full rounded-none border border-stone-400 bg-white px-2 text-sm font-medium focus:outline-none focus:ring-1 focus:ring-stone-500"
-                  />
-                ) : (
-                  <button
-                    type="button"
-                    onClick={() => setEditing({ id: region.id, value: region.label })}
-                    className="text-left text-sm font-medium text-stone-800 hover:text-stone-500"
-                  >
-                    {region.label}
-                  </button>
-                )}
-                <p className="text-xs text-stone-400">{region.id}</p>
-              </div>
-              {!isLondonParent ? (
-                <label className="flex items-center gap-1.5 text-xs text-stone-500 cursor-pointer select-none">
-                  <input
-                    type="checkbox"
-                    checked={londonChildSet.has(region.id)}
-                    onChange={(e) => toggleChildId(region.id, e.target.checked)}
-                    className="rounded-none"
-                  />
-                  London area
-                </label>
-              ) : (
-                <span className="text-xs text-stone-400 italic">London parent</span>
-              )}
-              {!isLondonParent ? (
-                <button
-                  type="button"
-                  onClick={() => removeRegion(region.id)}
-                  className="ml-2 text-stone-400 hover:text-red-500"
-                  aria-label={`Remove ${region.label}`}
-                >
-                  <X className="size-4" />
-                </button>
-              ) : null}
-            </div>
-          );
-        })}
       </div>
 
-      <div className="rounded-none border border-dashed border-stone-300 p-5">
-        <p className="mb-3 text-sm font-semibold text-stone-700">Add new location</p>
-        <div className="flex flex-col gap-2 sm:flex-row">
+      {isAdding ? (
+        <div className="flex flex-col gap-2 border border-dashed border-stone-300 p-4 sm:flex-row">
           <input
             type="text"
             value={newLabel}
@@ -6241,130 +7422,142 @@ function LocationsFilterTab() {
             className="h-9 flex-1 rounded-none border border-stone-300 bg-white px-2 text-sm focus:outline-none focus:ring-1 focus:ring-stone-500"
           />
           <Button type="button" variant="outline" onClick={addRegion} className="h-9 shrink-0 rounded-none px-4 text-sm">
-            Add location
+            Add
           </Button>
         </div>
+      ) : null}
+
+      <div className="relative">
+        <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-stone-400" />
+        <Input
+          value={searchTerm}
+          onChange={(event) => setSearchTerm(event.target.value)}
+          placeholder="Search locations..."
+          className="h-10 rounded-none pl-9 text-sm"
+        />
       </div>
-    </div>
+
+      <div className="divide-y divide-stone-100 border border-stone-200 bg-white">
+        {visibleRegions.length ? (
+          visibleRegions.map((region) => {
+            const isEditing = editing?.id === region.id;
+            const isLondonParent = region.id === londonParentId;
+            return (
+              <div key={region.id} className="flex items-center gap-3 px-4 py-3">
+                <div className="min-w-0 flex-1">
+                  {isEditing ? (
+                    <input
+                      autoFocus
+                      type="text"
+                      value={editing.value}
+                      onChange={(e) => setEditing({ ...editing, value: e.target.value })}
+                      onBlur={() => commitEdit(region.id)}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter") commitEdit(region.id);
+                        if (e.key === "Escape") setEditing(null);
+                      }}
+                      className="h-7 w-full rounded-none border border-stone-400 bg-white px-2 text-sm font-medium focus:outline-none focus:ring-1 focus:ring-stone-500"
+                    />
+                  ) : (
+                    <p className="truncate text-sm font-medium text-stone-900">{region.label}</p>
+                  )}
+                  <p className="text-xs text-stone-400">{region.id}</p>
+                </div>
+                {!isLondonParent ? (
+                  <label className="flex shrink-0 cursor-pointer select-none items-center gap-1.5 text-xs text-stone-500">
+                    <input type="checkbox" checked={londonChildSet.has(region.id)} onChange={(e) => toggleChildId(region.id, e.target.checked)} className="rounded-none" />
+                    London area
+                  </label>
+                ) : (
+                  <span className="shrink-0 text-xs italic text-stone-400">London parent</span>
+                )}
+                <div className="flex shrink-0 items-center gap-1">
+                  <button
+                    type="button"
+                    onClick={() => setEditing({ id: region.id, value: region.label })}
+                    className="inline-flex size-8 items-center justify-center text-stone-400 transition hover:bg-stone-100 hover:text-stone-900"
+                    aria-label={`Rename ${region.label}`}
+                  >
+                    <Pencil className="size-4" />
+                  </button>
+                  {!isLondonParent ? (
+                    <button
+                      type="button"
+                      onClick={() => removeRegion(region.id)}
+                      className="inline-flex size-8 items-center justify-center text-red-500 transition hover:bg-red-50"
+                      aria-label={`Remove ${region.label}`}
+                    >
+                      <Trash2 className="size-4" />
+                    </button>
+                  ) : null}
+                </div>
+              </div>
+            );
+          })
+        ) : (
+          <div className="flex flex-col items-center justify-center gap-2 px-6 py-16 text-center">
+            <SearchX className="size-8 text-stone-300" />
+            <p className="text-sm text-stone-500">No locations match your search.</p>
+          </div>
+        )}
+      </div>
+    </section>
   );
 }
 
 type AdditionalNeedOption = { id: string; label: string };
 
-function AdditionalNeedsFilterTab() {
-  const [options, setOptions] = useState<AdditionalNeedOption[]>([]);
-  const [isSaving, setIsSaving] = useState(false);
-  const [saveMessage, setSaveMessage] = useState<{ text: string; ok: boolean } | null>(null);
+function AdditionalNeedsFilterPanel({
+  options,
+  onOptionsChange,
+}: {
+  options: AdditionalNeedOption[];
+  onOptionsChange: (updater: (prev: AdditionalNeedOption[]) => AdditionalNeedOption[]) => void;
+}) {
+  const [searchTerm, setSearchTerm] = useState("");
   const [editing, setEditing] = useState<{ id: string; value: string } | null>(null);
-  const [newId, setNewId] = useState("");
+  const [isAdding, setIsAdding] = useState(false);
   const [newLabel, setNewLabel] = useState("");
+  const [newId, setNewId] = useState("");
 
-  useEffect(() => {
-    fetch("/api/admin/additional-needs", { credentials: "include" })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.ok) setOptions(data.options);
-      });
-  }, []);
+  const normalizedSearch = searchTerm.trim().toLowerCase();
+  const visibleOptions = normalizedSearch ? options.filter((o) => o.label.toLowerCase().includes(normalizedSearch)) : options;
 
   function commitEdit(id: string) {
-    const val = editing?.value.trim() ?? "";
-    if (val) setOptions((prev) => prev.map((o) => (o.id === id ? { ...o, label: val } : o)));
+    const label = editing?.value.trim() ?? "";
+    if (label) onOptionsChange((prev) => prev.map((o) => (o.id === id ? { ...o, label } : o)));
     setEditing(null);
   }
 
   function removeOption(id: string) {
-    setOptions((prev) => prev.filter((o) => o.id !== id));
+    onOptionsChange((prev) => prev.filter((o) => o.id !== id));
   }
 
   function addOption() {
     const id = newId.trim().toLowerCase().replace(/\s+/g, "-");
     const label = newLabel.trim();
     if (!id || !label || options.some((o) => o.id === id)) return;
-    setOptions((prev) => [...prev, { id, label }]);
-    setNewId("");
+    onOptionsChange((prev) => [...prev, { id, label }]);
     setNewLabel("");
-  }
-
-  async function save() {
-    setIsSaving(true);
-    setSaveMessage(null);
-    try {
-      const res = await fetch("/api/admin/additional-needs", {
-        method: "POST",
-        credentials: "include",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ options }),
-      });
-      const data = await res.json();
-      setSaveMessage({ text: data.ok ? "Saved." : (data.error ?? "Failed to save."), ok: data.ok });
-    } catch {
-      setSaveMessage({ text: "Failed to save.", ok: false });
-    } finally {
-      setIsSaving(false);
-    }
+    setNewId("");
+    setIsAdding(false);
   }
 
   return (
-    <div className="space-y-7">
-      <section className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
-        <p className="text-sm text-stone-500">Manage the additional needs options shown in the directory filter panel. Click a label to rename it.</p>
-        <Button type="button" onClick={save} disabled={isSaving} className="h-10 shrink-0 rounded-none px-4">
-          {isSaving ? <Loader2 className="mr-2 size-4 animate-spin" /> : null}
-          Save changes
+    <section className="space-y-5">
+      <div className="flex flex-wrap items-start justify-between gap-4">
+        <div>
+          <h2 className="text-2xl font-semibold tracking-tight text-stone-950">Additional Needs</h2>
+          <p className="mt-1 text-sm text-stone-500">{options.length} options</p>
+        </div>
+        <Button type="button" onClick={() => setIsAdding((current) => !current)} className="h-10 rounded-none px-4 text-sm">
+          <Plus className="size-4" />
+          Add option
         </Button>
-      </section>
-
-      {saveMessage ? (
-        <p className={cn("text-sm font-medium", saveMessage.ok ? "text-emerald-700" : "text-red-600")}>{saveMessage.text}</p>
-      ) : null}
-
-      <div className="space-y-1.5">
-        {options.map((option) => {
-          const isEditing = editing?.id === option.id;
-          return (
-            <div key={option.id} className="flex items-center gap-3 rounded-none border border-stone-200 bg-white px-4 py-3">
-              <div className="flex-1 min-w-0">
-                {isEditing ? (
-                  <input
-                    autoFocus
-                    type="text"
-                    value={editing.value}
-                    onChange={(e) => setEditing({ ...editing, value: e.target.value })}
-                    onBlur={() => commitEdit(option.id)}
-                    onKeyDown={(e) => {
-                      if (e.key === "Enter") commitEdit(option.id);
-                      if (e.key === "Escape") setEditing(null);
-                    }}
-                    className="h-7 w-full rounded-none border border-stone-400 bg-white px-2 text-sm font-medium focus:outline-none focus:ring-1 focus:ring-stone-500"
-                  />
-                ) : (
-                  <button
-                    type="button"
-                    onClick={() => setEditing({ id: option.id, value: option.label })}
-                    className="text-left text-sm font-medium text-stone-800 hover:text-stone-500"
-                  >
-                    {option.label}
-                  </button>
-                )}
-                <p className="text-xs text-stone-400">{option.id}</p>
-              </div>
-              <button
-                type="button"
-                onClick={() => removeOption(option.id)}
-                className="text-stone-400 hover:text-red-500"
-                aria-label={`Remove ${option.label}`}
-              >
-                <X className="size-4" />
-              </button>
-            </div>
-          );
-        })}
       </div>
 
-      <div className="rounded-none border border-dashed border-stone-300 p-5">
-        <p className="mb-3 text-sm font-semibold text-stone-700">Add new option</p>
-        <div className="flex flex-col gap-2 sm:flex-row">
+      {isAdding ? (
+        <div className="flex flex-col gap-2 border border-dashed border-stone-300 p-4 sm:flex-row">
           <input
             type="text"
             value={newLabel}
@@ -6380,11 +7573,96 @@ function AdditionalNeedsFilterTab() {
             className="h-9 flex-1 rounded-none border border-stone-300 bg-white px-2 text-sm focus:outline-none focus:ring-1 focus:ring-stone-500"
           />
           <Button type="button" variant="outline" onClick={addOption} className="h-9 shrink-0 rounded-none px-4 text-sm">
-            Add option
+            Add
           </Button>
         </div>
+      ) : null}
+
+      <div className="relative">
+        <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-stone-400" />
+        <Input
+          value={searchTerm}
+          onChange={(event) => setSearchTerm(event.target.value)}
+          placeholder="Search additional needs..."
+          className="h-10 rounded-none pl-9 text-sm"
+        />
       </div>
-    </div>
+
+      <div className="divide-y divide-stone-100 border border-stone-200 bg-white">
+        {visibleOptions.length ? (
+          visibleOptions.map((option) => {
+            const isEditing = editing?.id === option.id;
+            return (
+              <div key={option.id} className="flex items-center gap-3 px-4 py-3">
+                <div className="min-w-0 flex-1">
+                  {isEditing ? (
+                    <input
+                      autoFocus
+                      type="text"
+                      value={editing.value}
+                      onChange={(e) => setEditing({ ...editing, value: e.target.value })}
+                      onBlur={() => commitEdit(option.id)}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter") commitEdit(option.id);
+                        if (e.key === "Escape") setEditing(null);
+                      }}
+                      className="h-7 w-full rounded-none border border-stone-400 bg-white px-2 text-sm font-medium focus:outline-none focus:ring-1 focus:ring-stone-500"
+                    />
+                  ) : (
+                    <p className="truncate text-sm font-medium text-stone-900">{option.label}</p>
+                  )}
+                  <p className="text-xs text-stone-400">{option.id}</p>
+                </div>
+                <div className="flex shrink-0 items-center gap-1">
+                  <button
+                    type="button"
+                    onClick={() => setEditing({ id: option.id, value: option.label })}
+                    className="inline-flex size-8 items-center justify-center text-stone-400 transition hover:bg-stone-100 hover:text-stone-900"
+                    aria-label={`Rename ${option.label}`}
+                  >
+                    <Pencil className="size-4" />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => removeOption(option.id)}
+                    className="inline-flex size-8 items-center justify-center text-red-500 transition hover:bg-red-50"
+                    aria-label={`Remove ${option.label}`}
+                  >
+                    <Trash2 className="size-4" />
+                  </button>
+                </div>
+              </div>
+            );
+          })
+        ) : (
+          <div className="flex flex-col items-center justify-center gap-2 px-6 py-16 text-center">
+            <SearchX className="size-8 text-stone-300" />
+            <p className="text-sm text-stone-500">No options match your search.</p>
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}
+
+function PriceRangeFilterPanel() {
+  const bands = priceBandOptions;
+  return (
+    <section className="space-y-5">
+      <div>
+        <h2 className="text-2xl font-semibold tracking-tight text-stone-950">Price Range</h2>
+        <p className="mt-1 text-sm text-stone-500">{bands.length} tiers · fixed for the directory</p>
+      </div>
+      <div className="divide-y divide-stone-100 border border-stone-200 bg-white">
+        {bands.map((band) => (
+          <div key={band.value || "unset"} className="flex items-center gap-3 px-4 py-3">
+            <PoundSterling className="size-4 shrink-0 text-stone-400" />
+            <p className="min-w-0 flex-1 text-sm font-medium text-stone-900">{band.label}</p>
+          </div>
+        ))}
+      </div>
+      <p className="text-xs text-stone-400">Price tiers are defined in code and shared with the pricing check tools. Contact an engineer to change the bands themselves.</p>
+    </section>
   );
 }
 
@@ -6777,14 +8055,11 @@ function FreshnessSkeleton() {
 
 function FreshnessMetricSkeleton() {
   return (
-    <div className="grid gap-5 md:grid-cols-4">
+    <div className="grid grid-cols-2 divide-x divide-y divide-stone-200 rounded-none border border-stone-200 bg-white sm:grid-cols-4 sm:divide-y-0">
       {[0, 1, 2, 3].map((item) => (
-        <div key={item} className="rounded-none border border-stone-200 bg-white p-6">
-          <div className="flex items-center justify-between gap-4">
-            <div className="h-3 w-28 animate-pulse rounded-none bg-stone-200" />
-            <div className="size-4 animate-pulse rounded-none bg-stone-100" />
-          </div>
-          <div className="mt-5 h-10 w-16 animate-pulse rounded-none bg-stone-200" />
+        <div key={item} className="p-5">
+          <div className="h-3 w-20 animate-pulse rounded-none bg-stone-200" />
+          <div className="mt-3 h-7 w-12 animate-pulse rounded-none bg-stone-200" />
         </div>
       ))}
     </div>

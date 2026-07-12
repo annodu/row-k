@@ -11,7 +11,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 loadLocalEnv(path.resolve(__dirname, "../.env"));
 
 const app = express();
-const port = Number(process.env.PORT || 3001);
+const port = Number(process.env.API_PORT || 3001);
 const publicSearchRateLimit = createRateLimiter({
   windowMs: 60 * 1000,
   max: 60,
