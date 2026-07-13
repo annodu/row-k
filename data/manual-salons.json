@@ -1,7 +1,7 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-07-12",
+    "updatedAt": "2026-07-13",
     "count": 748,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
@@ -3629,8 +3629,7 @@
         "Half braids, half sew-in",
         "Traditional sew-in / leave out",
         "Flipover / Versatile sew-in",
-        "Feed-in braids",
-        "Butterfly locs"
+        "Feed-in braids"
       ],
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
@@ -19760,7 +19759,6 @@
       "bookingUrl": "https://app.acuityscheduling.com/schedule/e612e3c3",
       "instagramUrl": "https://www.instagram.com/ksanyahair/",
       "services": [
-        "Feed-in braids",
         "Fulani / lemonade braids",
         "Knotless braids",
         "Boho braids / goddess braids",
@@ -19816,8 +19814,7 @@
       "bookingUrl": "https://ktystudios.as.me/schedule/e9bb622c",
       "instagramUrl": "https://www.instagram.com/ktystudios/",
       "services": [
-        "Traditional sew-in / leave out",
-        "Wig install"
+        "Traditional sew-in / leave out"
       ],
       "priceBand": "£",
       "priceSource": "auto",
@@ -28328,8 +28325,7 @@
         "Half braids, half sew-in",
         "Knotless braids",
         "Sleek ponytail / bun",
-        "Half up half down",
-        "Twists (with extensions)"
+        "Half up half down"
       ],
       "summary": "Manual entry added from your East London braids, locs, and styling list.",
       "source": "manual",

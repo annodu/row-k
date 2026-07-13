@@ -41,6 +41,7 @@ import {
   Trash2,
   Unlink,
   Undo2,
+  UploadCloud,
   Users,
   X,
 } from "lucide-react";
@@ -1745,13 +1746,10 @@ function AdminSidebar({
     <div className="border-t border-stone-200 px-3 py-4 dark:border-stone-800">
       <Button
         type="button"
-        variant="ghost"
+        variant="outline"
         onClick={onLogout}
         title={collapsed ? "Log out" : undefined}
-        className={cn(
-          "h-9 w-full rounded-none border border-solid border-stone-300 bg-stone-100 text-xs text-stone-700 hover:border-stone-400 hover:bg-stone-200 hover:text-stone-900 dark:border-stone-600 dark:bg-stone-800 dark:text-stone-200 dark:hover:border-stone-500 dark:hover:bg-stone-700",
-          collapsed ? "px-0" : "justify-start gap-2 px-3",
-        )}
+        className={cn("h-10 w-full rounded-none text-sm", collapsed ? "px-0" : "justify-start gap-2 px-4")}
       >
         <LogOut className="size-4" />
         {collapsed ? null : "Log out"}
@@ -3277,10 +3275,10 @@ function FreshnessPage({
 	              onClick={onUndo}
 	              disabled={isBusy}
 	              title={`Undo ${lastUndo.label}`}
-	              className="inline-flex h-10 items-center gap-2 rounded-none border border-stone-200 bg-white px-3 text-sm text-stone-700 transition hover:border-stone-300 hover:bg-stone-50 hover:text-stone-950 disabled:cursor-not-allowed disabled:opacity-40"
+	              className="inline-flex size-10 items-center justify-center rounded-none border border-stone-200 bg-white text-stone-700 transition hover:border-stone-300 hover:bg-stone-50 hover:text-stone-950 disabled:cursor-not-allowed disabled:opacity-40"
 	            >
 	              <Undo2 className="size-4" />
-	              Undo
+	              <span className="sr-only">Undo {lastUndo.label}</span>
 	            </button>
 	          ) : null}
 	          <Button type="button" onClick={onRunChecks} disabled={isRunningChecks} className="h-10 rounded-none bg-stone-950 px-4 text-sm">
@@ -3908,7 +3906,7 @@ function FreshnessRecommendationTableRow({
   const primaryActionLabel = isAdd ? "Add service" : isRemove ? "Remove" : isAttribute ? getAttributeActionLabel(detail.attributeField) : isPrice || isManualPrice ? "Set band" : detail.kind === "location" ? "Update location" : detail.kind === "fix" ? "Save" : "Resolve";
   const sortedPriceValues = [...(detail.priceValues || [])].sort((left, right) => left - right);
   const showCalculator = (isPrice && !isAutoAppliedPrice) || isManualPrice;
-  const showDescription = detail.kind === "fix" || detail.kind === "manual" || detail.kind === "price" || detail.kind === "price-info" || detail.kind === "review" || detail.kind === "manual-price";
+  const showDescription = detail.kind === "fix" || detail.kind === "manual" || detail.kind === "price" || detail.kind === "price-info" || detail.kind === "manual-price";
   const suggestionSubtext = [
     showDescription ? detail.description : "",
     sortedPriceValues.length ? sortedPriceValues.map(formatDetectedPrice).join(", ") : "",
@@ -4335,7 +4333,7 @@ type FreshnessRecommendationGroup = {
 };
 
 type FreshnessRecommendationDetail = {
-  kind: "add" | "remove" | "fix" | "manual" | "attribute" | "price" | "price-info" | "location" | "review" | "manual-price";
+  kind: "add" | "remove" | "fix" | "manual" | "attribute" | "price" | "price-info" | "location" | "manual-price";
   label: string;
   description: string;
   service?: string;
@@ -4351,16 +4349,12 @@ type FreshnessRecommendationDetail = {
   priceAutoApplied?: boolean;
   evidence?: string[];
   evidenceLabel?: string;
-  reviewTone?: "danger" | "caution";
   manualPriceReason?: "social-only" | "no-price";
 };
 
 function getFreshnessDetailVisual(detail: FreshnessRecommendationDetail) {
   if (detail.kind === "add") {
     return { label: "Add", dotClass: "bg-emerald-500", textClass: "text-emerald-700", pillClass: "bg-emerald-100 text-emerald-700" };
-  }
-  if (detail.kind === "remove" && detail.reviewTone === "caution") {
-    return { label: "Review", dotClass: "bg-sky-500", textClass: "text-sky-700", pillClass: "bg-sky-100 text-sky-700" };
   }
   if (detail.kind === "fix") {
     return { label: "Fix", dotClass: "bg-red-500", textClass: "text-red-700", pillClass: "bg-red-100 text-red-700" };
@@ -4393,9 +4387,9 @@ function getFreshnessDetailCounts(details: FreshnessRecommendationDetail[]) {
   return details.reduce(
     (summary, detail) => ({
       ...summary,
-      [detail.kind === "remove" && detail.reviewTone === "caution" ? "review" : detail.kind]: summary[detail.kind === "remove" && detail.reviewTone === "caution" ? "review" : detail.kind] + 1,
+      [detail.kind]: summary[detail.kind] + 1,
     }),
-    { add: 0, remove: 0, fix: 0, manual: 0, attribute: 0, price: 0, "price-info": 0, location: 0, review: 0, "manual-price": 0 } as Record<FreshnessRecommendationDetail["kind"], number>,
+    { add: 0, remove: 0, fix: 0, manual: 0, attribute: 0, price: 0, "price-info": 0, location: 0, "manual-price": 0 } as Record<FreshnessRecommendationDetail["kind"], number>,
   );
 }
 
@@ -4410,7 +4404,6 @@ function getFreshnessDetailSummaryParts(details: FreshnessRecommendationDetail[]
     { count: counts.price, label: "price", className: "bg-sky-100 text-sky-700" },
     { count: counts["price-info"], label: "price check", className: "bg-stone-100 text-stone-600" },
     { count: counts.location, label: "location", className: "bg-violet-100 text-violet-700" },
-    { count: counts.review, label: "review", className: "bg-stone-100 text-stone-600" },
     { count: counts["manual-price"], label: "price", className: "bg-amber-100 text-amber-700" },
   ].filter((part) => part.count);
 }
@@ -4449,7 +4442,6 @@ function buildFreshnessRecommendationGroups(checks: DirectoryCheck[]): Freshness
     const priceCheck = check.priceCheck;
     const hasLocationRecommendation = hasDetectedLocationUpdate(check);
     const hasPriceRecommendation = Boolean(priceCheck?.priceBand && priceCheck.confidence !== "high" && check.issues.some((issue) => issue.toLowerCase() === "possible pricing band found"));
-    const actionableIssues = check.issues.filter((issue) => isActionableFreshnessIssue(issue, check));
     const details: FreshnessRecommendationDetail[] = [
       ...brokenLinks.map((linkCheck) => ({
         kind: "fix" as const,
@@ -4470,7 +4462,6 @@ function buildFreshnessRecommendationGroups(checks: DirectoryCheck[]): Freshness
           service,
           evidence: possibleEvidence,
           evidenceLabel: possibleEvidence.length ? "Evidence it still exists" : undefined,
-          reviewTone: possibleEvidence.length ? "caution" as const : "danger" as const,
         };
       }),
       ...addedServices.map((service) => ({
@@ -4518,11 +4509,6 @@ function buildFreshnessRecommendationGroups(checks: DirectoryCheck[]): Freshness
           : "Booking page found but no pricing detected",
         manualPriceReason: (check.backfillStatus === "skipped-social" ? "social-only" : "no-price") as "social-only" | "no-price",
       }] : []),
-      ...actionableIssues.map((issue) => ({
-        kind: "review" as const,
-        label: "Review listing",
-        description: issue,
-      })),
     ];
 
     if (!details.length) {
@@ -5033,20 +5019,6 @@ function isColourService(service: string) {
 
 function normalizeEvidenceText(value: string) {
   return value.toLowerCase().replace(/\s+/g, " ").trim();
-}
-
-function isActionableFreshnessIssue(issue: string, check: DirectoryCheck) {
-  const normalizedIssue = issue.toLowerCase();
-  if (normalizedIssue === "possible new services found" || normalizedIssue === "possible removed services found" || normalizedIssue === "possible hijabi-friendly wording found" || normalizedIssue === "possible wheelchair accessibility wording found" || normalizedIssue === "possible pricing band found" || normalizedIssue === "manual price check required") {
-    return false;
-  }
-  if (normalizedIssue.includes("instagram") && check.linkChecks.some((linkCheck) => linkCheck.type === "instagram" && linkCheck.status !== "ok")) {
-    return false;
-  }
-  if (normalizedIssue.includes("booking link") && check.bookingUrl) {
-    return false;
-  }
-  return true;
 }
 
 function FreshnessIssuePill({ tone, children }: { tone: FreshnessRecommendationGroup["typeTone"]; children: React.ReactNode }) {
@@ -6976,19 +6948,19 @@ function FiltersPage({ onCategoriesChange }: { onCategoriesChange?: (categories:
             <p className={cn("text-sm font-medium", publishMessage.ok ? "text-emerald-700" : "text-red-600")}>{publishMessage.text}</p>
           ) : null}
           <Button type="button" onClick={publish} disabled={isPublishing} className="h-10 rounded-none px-4 text-sm">
-            {isPublishing ? <Loader2 className="size-4 animate-spin" /> : <RefreshCw className="size-4" />}
+            {isPublishing ? <Loader2 className="size-4 animate-spin" /> : <UploadCloud className="size-4" />}
             Publish
           </Button>
         </div>
       </div>
 
-      <div className="mt-8 grid gap-8 lg:grid-cols-[300px_1fr]">
-        <aside className="space-y-4">
-          <div className="flex items-center justify-between px-1">
+      <div className="mt-8 grid overflow-hidden rounded-none border border-stone-200 bg-white lg:h-[75vh] lg:grid-cols-[300px_1fr]">
+        <aside className="max-h-[75vh] overflow-y-auto border-stone-200 bg-white lg:border-r">
+          <div className="flex items-center justify-between px-4 py-3">
             <p className="text-xs font-semibold uppercase tracking-[0.12em] text-stone-500">Filter types</p>
             <span className="inline-flex min-w-5 items-center justify-center rounded-full bg-stone-100 px-1.5 text-[11px] font-semibold text-stone-600">{filterTypes.length}</span>
           </div>
-          <div className="space-y-2">
+          <div>
             {filterTypes.map((type) => {
               const Icon = type.icon;
               const isActive = activeType === type.id;
@@ -6999,33 +6971,37 @@ function FiltersPage({ onCategoriesChange }: { onCategoriesChange?: (categories:
                   onClick={() => setActiveType(type.id)}
                   aria-current={isActive ? "true" : undefined}
                   className={cn(
-                    "flex w-full items-center gap-3 border bg-white px-4 py-3 text-left transition",
-                    isActive ? "border-stone-950" : "border-stone-200 hover:bg-stone-50",
+                    "flex w-full items-start gap-3 border-t border-stone-100 px-4 py-4 text-left transition",
+                    isActive ? "bg-stone-100" : "hover:bg-stone-50",
                   )}
                 >
-                  <Icon className="size-4 shrink-0 text-stone-500" />
-                  <span className="min-w-0 flex-1">
-                    <span className="block text-sm font-semibold text-stone-900">{type.label}</span>
-                    <span className="block truncate text-xs text-stone-500">{type.description}</span>
-                  </span>
-                  <span className="inline-flex min-w-6 shrink-0 items-center justify-center rounded-full bg-stone-100 px-1.5 text-[11px] font-semibold text-stone-600">{type.count}</span>
-                  <ChevronRight className="size-4 shrink-0 text-stone-300" />
+                  <Icon className="mt-0.5 size-4 shrink-0 text-stone-500" />
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-center justify-between gap-2">
+                      <p className="truncate text-sm font-semibold text-stone-950">{type.label}</p>
+                      <span className="inline-flex min-w-5 shrink-0 items-center justify-center rounded-full bg-stone-100 px-1.5 text-[11px] font-semibold text-stone-600">{type.count}</span>
+                    </div>
+                    <p className="mt-0.5 truncate text-sm text-stone-500">{type.description}</p>
+                  </div>
                 </button>
               );
             })}
           </div>
-          <button
-            type="button"
-            disabled
-            title="Filter types are fixed for this directory"
-            className="flex w-full cursor-not-allowed items-center justify-center gap-2 border border-dashed border-stone-300 px-4 py-3 text-sm font-medium text-stone-400"
-          >
-            <Plus className="size-4" />
-            Add filter type
-          </button>
+          <div className="border-t border-stone-100 p-3">
+            <Button
+              type="button"
+              variant="outline"
+              disabled
+              title="Filter types are fixed for this directory"
+              className="h-10 w-full rounded-none px-4 text-sm"
+            >
+              <Plus className="size-4" />
+              Add filter type
+            </Button>
+          </div>
         </aside>
 
-        <main>
+        <main className="max-h-[75vh] overflow-y-auto bg-white p-6">
           {activeType === "services" ? (
             <ServicesFilterPanel
               categories={categories}
@@ -7054,6 +7030,62 @@ function FiltersPage({ onCategoriesChange }: { onCategoriesChange?: (categories:
   );
 }
 
+function AddFilterItemDrawer({
+  title,
+  labelPlaceholder,
+  idPlaceholder,
+  onClose,
+  onSubmit,
+}: {
+  title: string;
+  labelPlaceholder: string;
+  idPlaceholder: string;
+  onClose: () => void;
+  onSubmit: (label: string, id: string) => void;
+}) {
+  const [label, setLabel] = useState("");
+  const [id, setId] = useState("");
+
+  function handleSubmit() {
+    if (!label.trim() || !id.trim()) return;
+    onSubmit(label.trim(), id.trim());
+  }
+
+  return (
+    <div className="fixed inset-0 z-50 bg-stone-950/10">
+      <button type="button" aria-label="Close" className="absolute inset-0 cursor-default" onClick={onClose} />
+      <aside className="absolute inset-y-0 right-0 flex w-full max-w-[440px] flex-col overflow-hidden border-l border-stone-200 bg-white shadow-xl shadow-stone-950/10">
+        <div className="flex shrink-0 items-center justify-between border-b border-stone-200 px-6 py-5">
+          <h2 className="text-lg font-semibold tracking-tight text-stone-950">{title}</h2>
+          <button
+            type="button"
+            onClick={onClose}
+            className="inline-flex size-8 items-center justify-center text-stone-500 transition hover:bg-stone-100 hover:text-stone-950"
+            aria-label="Close"
+          >
+            <X className="size-4" />
+          </button>
+        </div>
+
+        <div className="min-h-0 flex-1 space-y-5 overflow-y-auto px-6 py-6">
+          <Field label="Label">
+            <Input autoFocus value={label} onChange={(event) => setLabel(event.target.value)} placeholder={labelPlaceholder} className="h-11 rounded-none" />
+          </Field>
+          <Field label="ID">
+            <Input value={id} onChange={(event) => setId(event.target.value)} placeholder={idPlaceholder} className="h-11 rounded-none" />
+          </Field>
+        </div>
+
+        <div className="shrink-0 border-t border-stone-200 px-6 py-5">
+          <Button type="button" onClick={handleSubmit} disabled={!label.trim() || !id.trim()} className="h-11 w-full rounded-none">
+            Add
+          </Button>
+        </div>
+      </aside>
+    </div>
+  );
+}
+
 function ServicesFilterPanel({
   categories,
   onCategoriesChange,
@@ -7071,8 +7103,6 @@ function ServicesFilterPanel({
   const [editing, setEditing] = useState<{ key: string; value: string } | null>(null);
   const [newSubcategoryInputs, setNewSubcategoryInputs] = useState<Record<string, string>>({});
   const [isAddingGroup, setIsAddingGroup] = useState(false);
-  const [newGroupLabel, setNewGroupLabel] = useState("");
-  const [newGroupId, setNewGroupId] = useState("");
 
   useEffect(() => {
     if (!hasInitializedOpenGroups && categories.length) {
@@ -7145,14 +7175,11 @@ function ServicesFilterPanel({
     onCategoriesChange((prev) => prev.filter((cat) => cat.id !== categoryId));
   }
 
-  function addGroup() {
-    const id = newGroupId.trim().toLowerCase().replace(/\s+/g, "-");
-    const label = newGroupLabel.trim();
+  function addGroup(label: string, rawId: string) {
+    const id = rawId.trim().toLowerCase().replace(/\s+/g, "-");
     if (!id || !label || categories.some((cat) => cat.id === id)) return;
     onCategoriesChange((prev) => [...prev, { id, label, subcategories: [] }]);
     setOpenGroups((prev) => new Set(prev).add(id));
-    setNewGroupLabel("");
-    setNewGroupId("");
     setIsAddingGroup(false);
   }
 
@@ -7160,7 +7187,7 @@ function ServicesFilterPanel({
     <section className="space-y-5">
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
-          <h2 className="text-2xl font-semibold tracking-tight text-stone-950">Service Categories</h2>
+          <h2 className="text-xl font-semibold tracking-tight text-stone-950">Service Categories</h2>
           <p className="mt-1 text-sm text-stone-500">
             {categories.length} groups · {subcategoryCount} subcategories
           </p>
@@ -7172,25 +7199,13 @@ function ServicesFilterPanel({
       </div>
 
       {isAddingGroup ? (
-        <div className="flex flex-col gap-2 border border-dashed border-stone-300 p-4 sm:flex-row">
-          <input
-            type="text"
-            value={newGroupLabel}
-            onChange={(e) => setNewGroupLabel(e.target.value)}
-            placeholder="Label (e.g. Curly Hair)"
-            className="h-9 flex-1 rounded-none border border-stone-300 bg-white px-2 text-sm focus:outline-none focus:ring-1 focus:ring-stone-500"
-          />
-          <input
-            type="text"
-            value={newGroupId}
-            onChange={(e) => setNewGroupId(e.target.value)}
-            placeholder="ID (e.g. curly-hair)"
-            className="h-9 flex-1 rounded-none border border-stone-300 bg-white px-2 text-sm focus:outline-none focus:ring-1 focus:ring-stone-500"
-          />
-          <Button type="button" variant="outline" onClick={addGroup} className="h-9 shrink-0 rounded-none px-4 text-sm">
-            Add
-          </Button>
-        </div>
+        <AddFilterItemDrawer
+          title="Add group"
+          labelPlaceholder="e.g. Curly Hair"
+          idPlaceholder="e.g. curly-hair"
+          onClose={() => setIsAddingGroup(false)}
+          onSubmit={addGroup}
+        />
       ) : null}
 
       <div className="relative">
@@ -7352,8 +7367,6 @@ function LocationsFilterPanel({
   const [searchTerm, setSearchTerm] = useState("");
   const [editing, setEditing] = useState<{ id: string; value: string } | null>(null);
   const [isAdding, setIsAdding] = useState(false);
-  const [newLabel, setNewLabel] = useState("");
-  const [newId, setNewId] = useState("");
 
   const londonChildSet = new Set(londonChildIds);
   const normalizedSearch = searchTerm.trim().toLowerCase();
@@ -7371,14 +7384,11 @@ function LocationsFilterPanel({
     onStandaloneIdsChange((prev) => prev.filter((c) => c !== id));
   }
 
-  function addRegion() {
-    const id = newId.trim().toLowerCase().replace(/\s+/g, "-");
-    const label = newLabel.trim();
+  function addRegion(label: string, rawId: string) {
+    const id = rawId.trim().toLowerCase().replace(/\s+/g, "-");
     if (!id || !label || regions.some((r) => r.id === id)) return;
     onRegionsChange((prev) => [...prev, { id, label }]);
     onStandaloneIdsChange((prev) => [...prev, id]);
-    setNewLabel("");
-    setNewId("");
     setIsAdding(false);
   }
 
@@ -7396,35 +7406,23 @@ function LocationsFilterPanel({
     <section className="space-y-5">
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
-          <h2 className="text-2xl font-semibold tracking-tight text-stone-950">Location</h2>
+          <h2 className="text-xl font-semibold tracking-tight text-stone-950">Location</h2>
           <p className="mt-1 text-sm text-stone-500">{regions.length} regions</p>
         </div>
-        <Button type="button" onClick={() => setIsAdding((current) => !current)} className="h-10 rounded-none px-4 text-sm">
+        <Button type="button" variant="outline" onClick={() => setIsAdding((current) => !current)} className="h-10 rounded-none px-4 text-sm">
           <Plus className="size-4" />
           Add location
         </Button>
       </div>
 
       {isAdding ? (
-        <div className="flex flex-col gap-2 border border-dashed border-stone-300 p-4 sm:flex-row">
-          <input
-            type="text"
-            value={newLabel}
-            onChange={(e) => setNewLabel(e.target.value)}
-            placeholder="Label (e.g. Surrey)"
-            className="h-9 flex-1 rounded-none border border-stone-300 bg-white px-2 text-sm focus:outline-none focus:ring-1 focus:ring-stone-500"
-          />
-          <input
-            type="text"
-            value={newId}
-            onChange={(e) => setNewId(e.target.value)}
-            placeholder="ID (e.g. surrey)"
-            className="h-9 flex-1 rounded-none border border-stone-300 bg-white px-2 text-sm focus:outline-none focus:ring-1 focus:ring-stone-500"
-          />
-          <Button type="button" variant="outline" onClick={addRegion} className="h-9 shrink-0 rounded-none px-4 text-sm">
-            Add
-          </Button>
-        </div>
+        <AddFilterItemDrawer
+          title="Add location"
+          labelPlaceholder="e.g. Surrey"
+          idPlaceholder="e.g. surrey"
+          onClose={() => setIsAdding(false)}
+          onSubmit={addRegion}
+        />
       ) : null}
 
       <div className="relative">
@@ -7517,8 +7515,6 @@ function AdditionalNeedsFilterPanel({
   const [searchTerm, setSearchTerm] = useState("");
   const [editing, setEditing] = useState<{ id: string; value: string } | null>(null);
   const [isAdding, setIsAdding] = useState(false);
-  const [newLabel, setNewLabel] = useState("");
-  const [newId, setNewId] = useState("");
 
   const normalizedSearch = searchTerm.trim().toLowerCase();
   const visibleOptions = normalizedSearch ? options.filter((o) => o.label.toLowerCase().includes(normalizedSearch)) : options;
@@ -7533,13 +7529,10 @@ function AdditionalNeedsFilterPanel({
     onOptionsChange((prev) => prev.filter((o) => o.id !== id));
   }
 
-  function addOption() {
-    const id = newId.trim().toLowerCase().replace(/\s+/g, "-");
-    const label = newLabel.trim();
+  function addOption(label: string, rawId: string) {
+    const id = rawId.trim().toLowerCase().replace(/\s+/g, "-");
     if (!id || !label || options.some((o) => o.id === id)) return;
     onOptionsChange((prev) => [...prev, { id, label }]);
-    setNewLabel("");
-    setNewId("");
     setIsAdding(false);
   }
 
@@ -7547,35 +7540,23 @@ function AdditionalNeedsFilterPanel({
     <section className="space-y-5">
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
-          <h2 className="text-2xl font-semibold tracking-tight text-stone-950">Additional Needs</h2>
+          <h2 className="text-xl font-semibold tracking-tight text-stone-950">Additional Needs</h2>
           <p className="mt-1 text-sm text-stone-500">{options.length} options</p>
         </div>
-        <Button type="button" onClick={() => setIsAdding((current) => !current)} className="h-10 rounded-none px-4 text-sm">
+        <Button type="button" variant="outline" onClick={() => setIsAdding((current) => !current)} className="h-10 rounded-none px-4 text-sm">
           <Plus className="size-4" />
           Add option
         </Button>
       </div>
 
       {isAdding ? (
-        <div className="flex flex-col gap-2 border border-dashed border-stone-300 p-4 sm:flex-row">
-          <input
-            type="text"
-            value={newLabel}
-            onChange={(e) => setNewLabel(e.target.value)}
-            placeholder="Label (e.g. Pregnancy-safe)"
-            className="h-9 flex-1 rounded-none border border-stone-300 bg-white px-2 text-sm focus:outline-none focus:ring-1 focus:ring-stone-500"
-          />
-          <input
-            type="text"
-            value={newId}
-            onChange={(e) => setNewId(e.target.value)}
-            placeholder="ID (e.g. pregnancySafe)"
-            className="h-9 flex-1 rounded-none border border-stone-300 bg-white px-2 text-sm focus:outline-none focus:ring-1 focus:ring-stone-500"
-          />
-          <Button type="button" variant="outline" onClick={addOption} className="h-9 shrink-0 rounded-none px-4 text-sm">
-            Add
-          </Button>
-        </div>
+        <AddFilterItemDrawer
+          title="Add option"
+          labelPlaceholder="e.g. Pregnancy-safe"
+          idPlaceholder="e.g. pregnancySafe"
+          onClose={() => setIsAdding(false)}
+          onSubmit={addOption}
+        />
       ) : null}
 
       <div className="relative">
@@ -7650,7 +7631,7 @@ function PriceRangeFilterPanel() {
   return (
     <section className="space-y-5">
       <div>
-        <h2 className="text-2xl font-semibold tracking-tight text-stone-950">Price Range</h2>
+        <h2 className="text-xl font-semibold tracking-tight text-stone-950">Price Range</h2>
         <p className="mt-1 text-sm text-stone-500">{bands.length} tiers · fixed for the directory</p>
       </div>
       <div className="divide-y divide-stone-100 border border-stone-200 bg-white">
