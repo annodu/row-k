@@ -1,5 +1,6 @@
 import { searchSalons, setNoStoreHeaders } from "../server/salon-index.mjs";
 import { enforceRateLimit } from "../server/security.mjs";
+import { sanitizeCustomFilters } from "../server/admin-stylists.mjs";
 
 export default async function handler(req, res) {
   setNoStoreHeaders(res);
@@ -33,8 +34,19 @@ export default async function handler(req, res) {
     const hijabiFriendly = req.body?.hijabiFriendly === true;
     const canBraidWithoutGel = req.body?.canBraidWithoutGel === true;
     const wheelchairAccessible = req.body?.wheelchairAccessible === true;
+    const kidsFriendly = req.body?.kidsFriendly === true;
+    const customFilters = sanitizeCustomFilters(req.body?.customFilters);
 
-    const payload = await searchSalons({ categories, subcategories, regions, hijabiFriendly, canBraidWithoutGel, wheelchairAccessible });
+    const payload = await searchSalons({
+      categories,
+      subcategories,
+      regions,
+      hijabiFriendly,
+      canBraidWithoutGel,
+      wheelchairAccessible,
+      kidsFriendly,
+      customFilters,
+    });
     return res.status(200).json(payload);
   } catch (error) {
     console.error("Search API failed", error);

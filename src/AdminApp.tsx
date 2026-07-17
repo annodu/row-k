@@ -1,8 +1,10 @@
-import { FormEvent, KeyboardEvent, type ComponentType, type ReactNode, useEffect, useMemo, useRef, useState } from "react";
+import { FormEvent, KeyboardEvent, type ComponentType, type ReactNode, createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
 import {
   Activity,
   AlertTriangle,
+  ArrowRight,
   Ban,
+  BarChart3,
   Check,
   CheckSquare,
   ChevronDown,
@@ -36,7 +38,6 @@ import {
   SearchCheck,
   SearchX,
   SlidersHorizontal,
-  Sparkles,
   Tag,
   Trash2,
   Unlink,
@@ -78,6 +79,8 @@ type StylistDraft = {
   hijabiFriendly?: boolean;
   canBraidWithoutGel?: boolean;
   wheelchairAccessible?: boolean;
+  kidsFriendly?: boolean;
+  customFilters?: Record<string, string[]>;
   priceBand?: PriceBand;
   servicePriceBand?: PriceBand;
   packagePriceBand?: PriceBand;
@@ -95,14 +98,23 @@ type StylistDraft = {
   updatedAt: string;
 };
 
-type PriceBand = "£" | "££" | "£££" | "££££";
+type PriceBand = string;
 type PriceComparisonMode = "service-only" | "mixed" | "package-only";
-type AdminView = "overview" | "drafts" | "freshness" | "pricing" | "keyword" | "discovery" | "filters";
+type CustomFilterBehavior = "toggle-group" | "tag-multiselect";
+type CustomFilterOption = { id: string; label: string };
+type CustomFilterType = { id: string; label: string; description: string; behavior: CustomFilterBehavior; options: CustomFilterOption[] };
+type PriceBandTier = { symbol: string; label: string; maxAmount: number | null };
+type AdminView = "overview" | "analytics" | "drafts" | "freshness" | "pricing" | "keyword" | "discovery" | "filters";
 
 type AdminNavItem = { id: AdminView; label: string; icon: ComponentType<{ className?: string }> };
 
 const ADMIN_NAV_GROUPS: { label?: string; items: AdminNavItem[] }[] = [
-  { items: [{ id: "overview", label: "Overview", icon: LayoutDashboard }] },
+  {
+    items: [
+      { id: "overview", label: "Overview", icon: LayoutDashboard },
+      { id: "analytics", label: "Analytics", icon: BarChart3 },
+    ],
+  },
   {
     label: "Directory",
     items: [
@@ -117,6 +129,10 @@ const ADMIN_NAV_GROUPS: { label?: string; items: AdminNavItem[] }[] = [
       { id: "pricing", label: "Pricing", icon: PoundSterling },
     ],
   },
+  {
+    label: "Discover",
+    items: [{ id: "keyword", label: "Keyword search", icon: SearchCheck }],
+  },
 ];
 
 type DraftForm = {
@@ -128,6 +144,7 @@ type DraftForm = {
   hijabiFriendly: boolean;
   canBraidWithoutGel: boolean;
   wheelchairAccessible: boolean;
+  kidsFriendly: boolean;
   priceBand: PriceBand | "";
   servicePriceBand: PriceBand | "";
   packagePriceBand: PriceBand | "";
@@ -180,34 +197,88 @@ type KeywordSearchProgress = {
   nextOffset: number | null;
 };
 
-type SavedKeywordSearch = {
-  id: string;
-  name: string;
-  keywords: string[];
-  status: "research" | "candidate_filter" | "promoted";
-  notes?: string;
-  resultCount: number;
-  results: KeywordSearchResult[];
-  createdAt: string;
-  updatedAt: string;
-  lastRunAt?: string;
-};
-
 type KeywordSuggestionGroup = {
   service?: string;
   triggers: string[];
   keywords: string[];
 };
 
-const londonParentAreaId = "all-london";
-const londonChildAreaIds = new Set(["central", "north", "north-west", "east", "south-east", "south-west", "west", "croydon"]);
-const priceBandOptions: { value: "" | PriceBand; label: string }[] = [
-  { value: "", label: "Not set" },
-  { value: "£", label: "£ under £100" },
-  { value: "££", label: "££ £100-£200" },
-  { value: "£££", label: "£££ £200-£300" },
-  { value: "££££", label: "££££ over £300" },
+type RegionParentGroup = { parentId: string; childIds: string[] };
+const defaultRegionParentGroups: RegionParentGroup[] = [
+  { parentId: "all-london", childIds: ["central", "north", "north-west", "east", "south-east", "south-west", "west", "croydon"] },
 ];
+let regionParentGroupsCache: RegionParentGroup[] = defaultRegionParentGroups;
+const regionParentGroupsListeners = new Set<(groups: RegionParentGroup[]) => void>();
+
+function setRegionParentGroupsCache(groups: RegionParentGroup[]) {
+  regionParentGroupsCache = groups;
+  regionParentGroupsListeners.forEach((listener) => listener(groups));
+}
+
+function useRegionParentGroups(): RegionParentGroup[] {
+  const [groups, setGroups] = useState<RegionParentGroup[]>(regionParentGroupsCache);
+  useEffect(() => {
+    regionParentGroupsListeners.add(setGroups);
+    return () => {
+      regionParentGroupsListeners.delete(setGroups);
+    };
+  }, []);
+  return groups;
+}
+
+function findParentGroupForId(id: string): RegionParentGroup | undefined {
+  return regionParentGroupsCache.find((group) => group.parentId === id || group.childIds.includes(id));
+}
+
+const defaultPriceBandTiers: PriceBandTier[] = [
+  { symbol: "£", label: "under £100", maxAmount: 100 },
+  { symbol: "££", label: "£100-£200", maxAmount: 200 },
+  { symbol: "£££", label: "£200-£300", maxAmount: 300 },
+  { symbol: "££££", label: "over £300", maxAmount: null },
+];
+let priceBandTiersCache: PriceBandTier[] | null = null;
+let priceBandTiersPromise: Promise<PriceBandTier[]> | null = null;
+const priceBandTiersListeners = new Set<(tiers: PriceBandTier[]) => void>();
+
+function setPriceBandTiersCache(tiers: PriceBandTier[]) {
+  priceBandTiersCache = tiers;
+  priceBandTiersListeners.forEach((listener) => listener(tiers));
+}
+
+function fetchPriceBandTiers(): Promise<PriceBandTier[]> {
+  if (priceBandTiersCache) return Promise.resolve(priceBandTiersCache);
+  if (!priceBandTiersPromise) {
+    priceBandTiersPromise = fetch("/api/admin/price-bands", { credentials: "include" })
+      .then((res) => res.json())
+      .then((data) => {
+        const bands = Array.isArray(data.bands) && data.bands.length ? data.bands : defaultPriceBandTiers;
+        priceBandTiersCache = bands;
+        return bands;
+      })
+      .catch(() => defaultPriceBandTiers);
+  }
+  return priceBandTiersPromise;
+}
+
+function usePriceBandTiers(): PriceBandTier[] {
+  const [tiers, setTiers] = useState<PriceBandTier[]>(priceBandTiersCache ?? defaultPriceBandTiers);
+  useEffect(() => {
+    let cancelled = false;
+    fetchPriceBandTiers().then((bands) => {
+      if (!cancelled) setTiers(bands);
+    });
+    priceBandTiersListeners.add(setTiers);
+    return () => {
+      cancelled = true;
+      priceBandTiersListeners.delete(setTiers);
+    };
+  }, []);
+  return tiers;
+}
+
+function priceBandOptionsFromTiers(tiers: PriceBandTier[]): { value: "" | PriceBand; label: string }[] {
+  return [{ value: "", label: "Not set" }, ...tiers.map((tier) => ({ value: tier.symbol, label: `${tier.symbol} ${tier.label}` }))];
+}
 const learnedKeywordSuggestionGroups: KeywordSuggestionGroup[] = [
   {
     triggers: ["kid", "kids", "child", "children", "junior", "teen", "teens"],
@@ -538,6 +609,84 @@ type DashboardMetrics = {
     highConfidence: number;
     needsReview: number;
   };
+  analytics?: AnalyticsSummary;
+};
+
+type AnalyticsSummary = {
+  visitorsByDay: { date: string; count: number }[];
+  bookingClicks7d: number;
+  instagramClicks7d: number;
+  filterUsage: { label: string; rows: { label: string; count: number }[] }[];
+  zeroResultSearches: { filters: string[]; count: number; lastSeenAt: string }[];
+};
+
+// Placeholder until the Umami API is wired up server-side (see DashboardMetrics.analytics).
+// filterUsage/zeroResultSearches mirror the real filter chips users combine (service, location, price band, needs)
+// and the real Umami events already firing from App.tsx (service_filter_selected, location_filter_selected,
+// price_filter_selected, hijabi_toggle_changed, braiding_preference_selected, book_click, instagram_click).
+const MOCK_ANALYTICS: AnalyticsSummary = {
+  visitorsByDay: [
+    { date: "2026-07-02", count: 214 },
+    { date: "2026-07-03", count: 238 },
+    { date: "2026-07-04", count: 196 },
+    { date: "2026-07-05", count: 173 },
+    { date: "2026-07-06", count: 181 },
+    { date: "2026-07-07", count: 267 },
+    { date: "2026-07-08", count: 302 },
+    { date: "2026-07-09", count: 289 },
+    { date: "2026-07-10", count: 245 },
+    { date: "2026-07-11", count: 231 },
+    { date: "2026-07-12", count: 198 },
+    { date: "2026-07-13", count: 176 },
+    { date: "2026-07-14", count: 264 },
+  ],
+  bookingClicks7d: 118,
+  instagramClicks7d: 264,
+  filterUsage: [
+    {
+      label: "Services",
+      rows: [
+        { label: "Braids", count: 412 },
+        { label: "Locs", count: 298 },
+        { label: "Wigs", count: 245 },
+        { label: "Sew in / weave", count: 210 },
+        { label: "Colour", count: 96 },
+      ],
+    },
+    {
+      label: "Locations",
+      rows: [
+        { label: "South East", count: 380 },
+        { label: "London", count: 340 },
+        { label: "East", count: 210 },
+        { label: "Croydon", count: 140 },
+        { label: "Mobile", count: 88 },
+      ],
+    },
+    {
+      label: "Price",
+      rows: [
+        { label: "££", count: 290 },
+        { label: "£", count: 205 },
+        { label: "£££", count: 120 },
+        { label: "££££", count: 34 },
+      ],
+    },
+    {
+      label: "Preferences",
+      rows: [
+        { label: "Hijabi friendly", count: 176 },
+        { label: "Can braid without gel", count: 92 },
+      ],
+    },
+  ],
+  zeroResultSearches: [
+    { filters: ["Microlocs / sisterlocs", "Croydon"], count: 14, lastSeenAt: "2026-07-14" },
+    { filters: ["Bridal", "South East London", "£££"], count: 9, lastSeenAt: "2026-07-14" },
+    { filters: ["Silk press", "Mobile"], count: 8, lastSeenAt: "2026-07-13" },
+    { filters: ["Wig install (frontal / closure)", "North West London"], count: 6, lastSeenAt: "2026-07-12" },
+    { filters: ["Retwist", "South West London"], count: 5, lastSeenAt: "2026-07-11" },
+  ],
 };
 
 const emptyForm: DraftForm = {
@@ -549,6 +698,7 @@ const emptyForm: DraftForm = {
   hijabiFriendly: false,
   canBraidWithoutGel: false,
   wheelchairAccessible: false,
+  kidsFriendly: false,
   priceBand: "",
   servicePriceBand: "",
   packagePriceBand: "",
@@ -562,7 +712,7 @@ const emptyForm: DraftForm = {
 };
 
 const serviceGroups = [
-  { label: "Braids", services: ["Boho braids / goddess braids","Braid take-down","Box braids","Crochet","Creative braids","Feed-in braids","French curl","Fulani / lemonade braids","Half braids, half sew-in","Knotless braids","Miracle knots","Microbraids / x-small braids","Pre-parting","Stitch braids","Twists (with extensions)"] },
+  { label: "Braids", services: ["Boho braids / goddess braids","Braid take-down","Box braids","Crochet","Creative braids","Feed-in braids","French curl","Fulani / lemonade braids","Half braids, half sew-in","Knotless braids","Miracle knots","Microbraids / x-small braids","Pre-parting","Stitch braids","Twists (with extensions)","Boho bob","French curl bob"] },
   { label: "Colour", services: ["Balayage","Full head colour","Highlights","Wig colouring / bundle colouring"] },
   { label: "Bridal", services: ["Bridal"] },
   { label: "Editorial / Session styling", services: ["Editorial / Session styling"] },
@@ -576,7 +726,132 @@ const serviceGroups = [
   { label: "Wigs", services: ["Custom wig","Pixie wig / weave install","U-part wig install","Wig colouring / bundle colouring","Wig install (frontal / closure)","Wig blowdry"] },
 ];
 
+type ConfirmOptions = {
+  title: string;
+  description: string;
+  confirmLabel?: string;
+  cancelLabel?: string;
+  tone?: "danger" | "neutral";
+};
+type PendingConfirm = ConfirmOptions & { resolve: (value: boolean) => void };
+
+const ConfirmContext = createContext<((options: ConfirmOptions) => Promise<boolean>) | null>(null);
+
+function useConfirm() {
+  const confirm = useContext(ConfirmContext);
+  if (!confirm) {
+    throw new Error("useConfirm must be used within a ConfirmProvider");
+  }
+  return confirm;
+}
+
+function ConfirmProvider({ children }: { children: ReactNode }) {
+  const [pending, setPending] = useState<PendingConfirm | null>(null);
+  const [isConfirming, setIsConfirming] = useState(false);
+
+  const confirm = useCallback((options: ConfirmOptions) => {
+    return new Promise<boolean>((resolve) => {
+      setPending({ ...options, resolve });
+    });
+  }, []);
+
+  function settle(value: boolean) {
+    pending?.resolve(value);
+    setPending(null);
+    setIsConfirming(false);
+  }
+
+  async function handleConfirmClick() {
+    setIsConfirming(true);
+    settle(true);
+  }
+
+  return (
+    <ConfirmContext.Provider value={confirm}>
+      {children}
+      {pending ? (
+        <ConfirmDialog
+          title={pending.title}
+          description={pending.description}
+          confirmLabel={pending.confirmLabel ?? "Confirm"}
+          cancelLabel={pending.cancelLabel ?? "Cancel"}
+          tone={pending.tone ?? "neutral"}
+          isBusy={isConfirming}
+          onConfirm={handleConfirmClick}
+          onCancel={() => settle(false)}
+        />
+      ) : null}
+    </ConfirmContext.Provider>
+  );
+}
+
+function ConfirmDialog({
+  title,
+  description,
+  confirmLabel,
+  cancelLabel,
+  tone,
+  isBusy,
+  onConfirm,
+  onCancel,
+}: {
+  title: string;
+  description: string;
+  confirmLabel: string;
+  cancelLabel: string;
+  tone: "danger" | "neutral";
+  isBusy: boolean;
+  onConfirm: () => void;
+  onCancel: () => void;
+}) {
+  useEffect(() => {
+    function handleKeyDown(event: globalThis.KeyboardEvent) {
+      if (event.key === "Escape") onCancel();
+    }
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [onCancel]);
+
+  return (
+    <div className="fixed inset-0 z-[60] flex items-center justify-center bg-stone-950/40 px-4">
+      <button type="button" aria-label="Close" className="absolute inset-0 cursor-default" onClick={onCancel} />
+      <div role="alertdialog" aria-modal="true" aria-labelledby="confirm-dialog-title" className="relative w-full max-w-sm border border-stone-200 bg-white p-6 shadow-xl shadow-stone-950/10">
+        <h2 id="confirm-dialog-title" className="text-lg font-semibold tracking-tight text-stone-950">
+          {title}
+        </h2>
+        <p className="mt-2 text-sm text-stone-600">{description}</p>
+        <div className="mt-6 flex items-center justify-end gap-3">
+          <Button type="button" variant="outline" onClick={onCancel} disabled={isBusy} className="h-10 rounded-none px-4 text-sm">
+            {cancelLabel}
+          </Button>
+          <Button
+            type="button"
+            onClick={onConfirm}
+            disabled={isBusy}
+            className={cn(
+              "h-10 rounded-none px-4 text-sm",
+              tone === "danger" ? "bg-red-600 text-white hover:bg-red-700" : "bg-stone-950 text-white hover:bg-stone-900",
+            )}
+          >
+            {isBusy ? <Loader2 className="size-4 animate-spin" /> : null}
+            {confirmLabel}
+          </Button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export function AdminApp() {
+  return (
+    <ConfirmProvider>
+      <AdminAppInner />
+    </ConfirmProvider>
+  );
+}
+
+function AdminAppInner() {
+  const confirm = useConfirm();
   const [isCheckingSession, setIsCheckingSession] = useState(true);
   const [isAuthed, setIsAuthed] = useState(false);
   const [password, setPassword] = useState("");
@@ -603,15 +878,10 @@ export function AdminApp() {
   const [isGeneratingSuggestions, setIsGeneratingSuggestions] = useState(false);
   const [keywordTerms, setKeywordTerms] = useState<string[]>([]);
   const [keywordInput, setKeywordInput] = useState("");
-  const [selectedKeywordService, setSelectedKeywordService] = useState("");
   const [keywordResults, setKeywordResults] = useState<KeywordSearchResult[]>([]);
   const [keywordProgress, setKeywordProgress] = useState<KeywordSearchProgress>({ checkedCount: 0, total: 0, skippedCount: 0, nextOffset: null });
   const [isRunningKeywordSearch, setIsRunningKeywordSearch] = useState(false);
   const [assigningKeywordServiceIds, setAssigningKeywordServiceIds] = useState<string[]>([]);
-  const [savedKeywordSearches, setSavedKeywordSearches] = useState<SavedKeywordSearch[]>([]);
-  const [selectedKeywordSearchId, setSelectedKeywordSearchId] = useState("");
-  const [keywordSearchName, setKeywordSearchName] = useState("");
-  const [isSavingKeywordSearch, setIsSavingKeywordSearch] = useState(false);
   const [stylistStatusFilter, setStylistStatusFilter] = useState("all");
   const [stylistSearchTerm, setStylistSearchTerm] = useState("");
   const [isDraftEditorOpen, setIsDraftEditorOpen] = useState(false);
@@ -811,14 +1081,13 @@ export function AdminApp() {
   async function loadAdminData() {
     setIsBusy(true);
     try {
-      const [draftResponse, publishedResponse, optionResponse, dashboardResponse, discoveryResponse, savedChecksResponse, keywordSearchResponse, filtersResponse] = await Promise.all([
+      const [draftResponse, publishedResponse, optionResponse, dashboardResponse, discoveryResponse, savedChecksResponse, filtersResponse] = await Promise.all([
         fetch("/api/admin/stylists/drafts", { credentials: "include" }),
         fetch("/api/admin/stylists/published", { credentials: "include" }),
         fetch("/api/admin/stylists/options", { credentials: "include" }),
         fetch("/api/admin/dashboard", { credentials: "include" }),
         fetch("/api/admin/discovery", { credentials: "include" }),
         fetch("/api/admin/stylists/checks/saved", { credentials: "include" }),
-        fetch("/api/admin/stylists/keyword-searches", { credentials: "include" }),
         fetch("/api/admin/filters", { credentials: "include" }),
       ]);
       if (!draftResponse.ok || !optionResponse.ok) {
@@ -831,11 +1100,13 @@ export function AdminApp() {
       const dashboardPayload = dashboardResponse.ok ? await dashboardResponse.json() : null;
       const discoveryPayload = discoveryResponse.ok ? await discoveryResponse.json() : null;
       const savedChecksPayload = savedChecksResponse.ok ? await savedChecksResponse.json() : null;
-      const keywordSearchPayload = keywordSearchResponse.ok ? await keywordSearchResponse.json() : null;
       const filtersPayload = filtersResponse.ok ? await filtersResponse.json() : null;
       setDrafts(draftPayload.drafts ?? []);
       setPublishedStylists(publishedPayload?.stylists ?? []);
       setRegions(optionPayload.regions ?? []);
+      if (Array.isArray(optionPayload.regionParentGroups)) {
+        setRegionParentGroupsCache(optionPayload.regionParentGroups);
+      }
       setServices(optionPayload.services ?? []);
       if (filtersPayload?.ok && Array.isArray(filtersPayload.categories)) {
         setFilterCategories(filtersPayload.categories);
@@ -845,7 +1116,6 @@ export function AdminApp() {
       setSuggestions(discoveryPayload?.suggestions ?? []);
       setChecks(savedChecksPayload?.checks ?? []);
       setChecksLoadedAt(savedChecksPayload?.checkedAt ?? "");
-      setSavedKeywordSearches(keywordSearchPayload?.searches ?? []);
       if (savedChecksPayload) {
         setCheckProgress({
           checkedCount: savedChecksPayload.checkedCount ?? 0,
@@ -976,10 +1246,27 @@ export function AdminApp() {
   }
 
   async function deleteStylist(draft: StylistDraft) {
+    const isPublished = getDraftDisplayStatus(draft) === "published";
+    const confirmed = await confirm(
+      isPublished
+        ? {
+            title: "Delete this stylist from the directory?",
+            description: "They'll be permanently removed from the live site immediately. This can't be undone.",
+            confirmLabel: "Delete",
+            tone: "danger",
+          }
+        : {
+            title: "Delete this draft?",
+            description: "This permanently removes it. This can't be undone.",
+            confirmLabel: "Delete",
+            tone: "danger",
+          },
+    );
+    if (!confirmed) return;
+
     setMessage("");
     setIsBusy(true);
     try {
-      const isPublished = getDraftDisplayStatus(draft) === "published";
       const response = await fetch(isPublished ? `/api/admin/stylists/published/${draft.id}` : `/api/admin/stylists/drafts/${draft.id}`, {
         method: "DELETE",
         credentials: "include",
@@ -1006,6 +1293,14 @@ export function AdminApp() {
     if (getDraftDisplayStatus(draft) !== "published") {
       return;
     }
+
+    const confirmed = await confirm({
+      title: "Unpublish this stylist?",
+      description: "They'll be removed from the live site immediately. You can re-publish anytime from Drafts.",
+      confirmLabel: "Unpublish",
+      tone: "neutral",
+    });
+    if (!confirmed) return;
 
     setMessage("");
     setIsBusy(true);
@@ -1182,7 +1477,7 @@ export function AdminApp() {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           credentials: "include",
-          body: JSON.stringify({ keywords, selectedService: selectedKeywordService || undefined, offset: nextOffset, limit: 50 }),
+          body: JSON.stringify({ keywords, offset: nextOffset, limit: 50 }),
         });
         const payload = await response.json().catch(() => ({ message: "Could not run keyword search." }));
         if (!response.ok) {
@@ -1208,98 +1503,6 @@ export function AdminApp() {
       setMessage(`Keyword search complete. Found ${completedResults.length} matching stylist${completedResults.length === 1 ? "" : "s"}.`);
     } finally {
       setIsRunningKeywordSearch(false);
-    }
-  }
-
-  async function saveKeywordSearch() {
-    const keywords = keywordTerms.map((term) => term.trim()).filter(Boolean);
-    if (!keywords.length) {
-      setMessage("Add at least one keyword before saving.");
-      return;
-    }
-    const name = keywordSearchName.trim() || titleCase(keywords[0] || "Keyword search");
-    setIsSavingKeywordSearch(true);
-    setMessage("");
-    try {
-      const response = await fetch("/api/admin/stylists/keyword-searches", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
-        body: JSON.stringify({
-          id: selectedKeywordSearchId || undefined,
-          name,
-          keywords,
-          results: keywordResults,
-          resultCount: keywordResults.length,
-          lastRunAt: keywordResults[0]?.checkedAt || new Date().toISOString(),
-        }),
-      });
-      const payload = await response.json().catch(() => ({ message: "Could not save keyword search." }));
-      if (!response.ok) {
-        setMessage(payload.message || "Could not save keyword search.");
-        return;
-      }
-      setSavedKeywordSearches(payload.searches ?? []);
-      setSelectedKeywordSearchId(payload.search?.id || "");
-      setKeywordSearchName(payload.search?.name || name);
-      setMessage(`Saved "${payload.search?.name || name}".`);
-    } finally {
-      setIsSavingKeywordSearch(false);
-    }
-  }
-
-  async function deleteKeywordSearch(searchId: string) {
-    if (!searchId) {
-      return;
-    }
-    setMessage("");
-    const response = await fetch(`/api/admin/stylists/keyword-searches/${searchId}`, {
-      method: "DELETE",
-      credentials: "include",
-    });
-    const payload = await response.json().catch(() => ({ message: "Could not delete saved search." }));
-    if (!response.ok) {
-      setMessage(payload.message || "Could not delete saved search.");
-      return;
-    }
-    setSavedKeywordSearches(payload.searches ?? []);
-    if (selectedKeywordSearchId === searchId) {
-      setSelectedKeywordSearchId("");
-      setKeywordSearchName("");
-    }
-  }
-
-  function loadKeywordSearch(search: SavedKeywordSearch) {
-    setSelectedKeywordSearchId(search.id);
-    setKeywordSearchName(search.name);
-    setKeywordTerms(search.keywords);
-    setKeywordInput("");
-    setSelectedKeywordService("");
-    setKeywordResults(search.results || []);
-    setKeywordProgress({
-      checkedCount: search.results?.length || 0,
-      total: search.resultCount || search.results?.length || 0,
-      skippedCount: 0,
-      nextOffset: null,
-    });
-    setActiveView("keyword");
-  }
-
-  function selectKeywordService(service: string) {
-    setSelectedKeywordService(service);
-    if (!service) {
-      return;
-    }
-    const serviceGroups = keywordSuggestionGroups.filter((group) => group.service === service);
-    const nextKeywords = serviceGroups.length
-      ? [...new Set(serviceGroups.flatMap((group) => group.keywords))]
-      : suggestKeywordSearchTerms(service, keywordSuggestionGroups);
-    setKeywordTerms(nextKeywords);
-    setKeywordInput("");
-    setKeywordResults([]);
-    setKeywordProgress({ checkedCount: 0, total: 0, skippedCount: 0, nextOffset: null });
-    if (!keywordSearchName.trim()) {
-      setKeywordSearchName(service);
     }
   }
 
@@ -1582,10 +1785,13 @@ export function AdminApp() {
         {activeView === "overview" ? (
           <DashboardOverview
             dashboard={dashboard}
-            checks={checks}
             publishedCount={publishedStylists.length}
             onOpenView={setActiveView}
           />
+        ) : null}
+
+        {activeView === "analytics" ? (
+          <AnalyticsPage dashboard={dashboard} publishedStylists={publishedStylists} onOpenView={setActiveView} />
         ) : null}
 
         {activeView === "drafts" ? (
@@ -1650,24 +1856,14 @@ export function AdminApp() {
           <KeywordSearchPage
             keywords={keywordTerms}
             keywordInput={keywordInput}
-            selectedService={selectedKeywordService}
-            services={services}
             suggestionGroups={keywordSuggestionGroups}
-            searchName={keywordSearchName}
-            savedSearches={savedKeywordSearches}
             results={keywordResults}
             progress={keywordProgress}
             isRunning={isRunningKeywordSearch}
-            isSaving={isSavingKeywordSearch}
             assigningServiceIds={assigningKeywordServiceIds}
             onKeywordInputChange={setKeywordInput}
             onKeywordsChange={setKeywordTerms}
-            onSelectedServiceChange={selectKeywordService}
-            onSearchNameChange={setKeywordSearchName}
             onRun={() => runKeywordSearch(0)}
-            onSave={saveKeywordSearch}
-            onLoad={loadKeywordSearch}
-            onDelete={deleteKeywordSearch}
             onAssignService={assignKeywordService}
           />
         ) : null}
@@ -1746,7 +1942,7 @@ function AdminSidebar({
     <div className="border-t border-stone-200 px-3 py-4 dark:border-stone-800">
       <Button
         type="button"
-        variant="outline"
+        variant="ghost"
         onClick={onLogout}
         title={collapsed ? "Log out" : undefined}
         className={cn("h-10 w-full rounded-none text-sm", collapsed ? "px-0" : "justify-start gap-2 px-4")}
@@ -1883,7 +2079,7 @@ function StylistsPage({
         const matchesCategory = categoryFilter === "all" || draftMatchesCategory(draft, categoryFilter, filterCategories);
         const matchesLocation = locationFilter === "all" || draftMatchesLocation(draft, locationFilter);
         const matchesPrice = priceFilter === "all" || (draft.priceBand || "not-listed") === priceFilter;
-        const matchesNeeds = needsFilter.every((need) => Boolean(draft[need as "hijabiFriendly" | "canBraidWithoutGel" | "wheelchairAccessible"]));
+        const matchesNeeds = needsFilter.every((need) => Boolean(draft[need as "hijabiFriendly" | "canBraidWithoutGel" | "wheelchairAccessible" | "kidsFriendly"]));
         return matchesCategory && matchesLocation && matchesPrice && matchesNeeds;
       }),
     [drafts, categoryFilter, locationFilter, priceFilter, needsFilter, filterCategories],
@@ -2188,8 +2384,9 @@ const stylistPriceFilterOptions = [
 ];
 
 const stylistNeedsFilterOptions = [
-  { id: "hijabiFriendly", label: "Hijabi-friendly" },
   { id: "canBraidWithoutGel", label: "Can braid without gel" },
+  { id: "hijabiFriendly", label: "Hijabi-friendly" },
+  { id: "kidsFriendly", label: "Kids & teens styles" },
   { id: "wheelchairAccessible", label: "Wheelchair accessible" },
 ];
 
@@ -2285,10 +2482,10 @@ function StylistFilterMenu({
   const activeCount =
     (statusValue !== "all" ? 1 : 0) + (categoryValue !== "all" ? 1 : 0) + (locationValue !== "all" ? 1 : 0) + (priceValue !== "all" ? 1 : 0) + needsValue.length;
   const isActive = activeCount > 0;
-  const londonRegion = regions.find((region) => region.id === londonParentAreaId);
-  const londonChildRegions = regions.filter((region) => londonChildAreaIds.has(region.id));
-  const standaloneRegions = regions.filter((region) => region.id !== londonParentAreaId && !londonChildAreaIds.has(region.id));
-  const isLondonExpanded = locationValue === londonParentAreaId || londonChildRegions.some((region) => region.id === locationValue);
+  const regionParentGroups = useRegionParentGroups();
+  const parentIdSet = new Set(regionParentGroups.map((group) => group.parentId));
+  const childIdSet = new Set(regionParentGroups.flatMap((group) => group.childIds));
+  const standaloneRegions = regions.filter((region) => !parentIdSet.has(region.id) && !childIdSet.has(region.id));
 
   function toggleSection(section: "status" | "category" | "location" | "price" | "needs") {
     setOpenSection((current) => (current === section ? null : section));
@@ -2398,24 +2595,32 @@ function StylistFilterMenu({
 
           <FilterMenuSection title="Location" count={locationValue !== "all" ? 1 : 0} open={openSection === "location"} onToggle={() => toggleSection("location")}>
             <div className="space-y-1 pt-1">
-              {londonRegion ? (
-                <FilterMenuOptionRow
-                  label={londonRegion.label}
-                  isSelected={locationValue === londonRegion.id}
-                  onClick={() => onLocationChange(locationValue === londonRegion.id ? "all" : londonRegion.id)}
-                />
-              ) : null}
-              {isLondonExpanded
-                ? londonChildRegions.map((region) => (
+              {regionParentGroups.map((group) => {
+                const parentRegion = regions.find((region) => region.id === group.parentId);
+                if (!parentRegion) return null;
+                const childRegions = regions.filter((region) => group.childIds.includes(region.id));
+                const isExpanded = locationValue === group.parentId || childRegions.some((region) => region.id === locationValue);
+                return (
+                  <div key={group.parentId}>
                     <FilterMenuOptionRow
-                      key={region.id}
-                      label={region.label}
-                      isSelected={locationValue === region.id}
-                      onClick={() => onLocationChange(locationValue === region.id ? "all" : region.id)}
-                      indent
+                      label={parentRegion.label}
+                      isSelected={locationValue === parentRegion.id}
+                      onClick={() => onLocationChange(locationValue === parentRegion.id ? "all" : parentRegion.id)}
                     />
-                  ))
-                : null}
+                    {isExpanded
+                      ? childRegions.map((region) => (
+                          <FilterMenuOptionRow
+                            key={region.id}
+                            label={region.label}
+                            isSelected={locationValue === region.id}
+                            onClick={() => onLocationChange(locationValue === region.id ? "all" : region.id)}
+                            indent
+                          />
+                        ))
+                      : null}
+                  </div>
+                );
+              })}
               {standaloneRegions.map((region) => (
                 <FilterMenuOptionRow
                   key={region.id}
@@ -3116,23 +3321,15 @@ function getDraftCompleteness(draft: StylistDraft) {
 
 function DashboardOverview({
   dashboard,
-  checks,
   publishedCount,
   onOpenView,
 }: {
   dashboard: DashboardMetrics | null;
-  checks: DirectoryCheck[];
   publishedCount: number;
   onOpenView: (view: AdminView) => void;
 }) {
-  const rows = buildFreshnessRecommendationGroups(checks);
-  const healthRows = filterFreshnessRowsByDetail(rows, (detail) => detail.kind !== "price" && detail.kind !== "price-info" && detail.kind !== "manual-price");
-  const pricingRows = filterFreshnessRowsByDetail(rows, (detail) => detail.kind === "price" || detail.kind === "manual-price");
-  const visibleStaleEntries = checks.length ? healthRows.length : dashboard?.freshness.totalIssues || 0;
-  const visibleWrongServices = healthRows.filter((row) => row.details.some((detail) => detail.kind === "add" || detail.kind === "remove")).length;
-  const visibleBrokenLinks = healthRows.filter((row) => row.details.some((detail) => detail.kind === "fix")).length;
-  const visibleManualChecks = healthRows.filter((row) => row.details.some((detail) => detail.kind === "manual")).length;
-  const pricingActions = pricingRows.length;
+  const analytics = dashboard?.analytics ?? MOCK_ANALYTICS;
+  const visitors7d = analytics.visitorsByDay.slice(-7).reduce((sum, day) => sum + day.count, 0);
 
   return (
     <div className="mx-auto max-w-7xl space-y-8 px-5 py-11">
@@ -3140,63 +3337,273 @@ function DashboardOverview({
         <h1 className="text-3xl font-semibold tracking-tight text-stone-950">Overview</h1>
       </section>
 
+      <div className="grid grid-cols-3 divide-x divide-stone-200 rounded-none border border-stone-200 bg-white">
+        <OverviewStatCell label="Stylists" value={publishedCount} onClick={() => onOpenView("drafts")} />
+        <OverviewStatCell label="Visitors (7d)" value={visitors7d} onClick={() => onOpenView("analytics")} />
+        <OverviewStatCell label="Clicked book (7d)" value={analytics.bookingClicks7d} onClick={() => onOpenView("analytics")} />
+      </div>
+
       <div className="grid gap-4 lg:grid-cols-3">
-        <DashboardCard
-          title="Stylists"
-          value={publishedCount}
-          detail={`${dashboard?.drafts.total ?? 0} draft${(dashboard?.drafts.total ?? 0) === 1 ? "" : "s"} · ${dashboard?.drafts.readyToApprove ?? 0} complete · ${publishedCount} published`}
-          icon={<FileText className="size-4" />}
-          onClick={() => onOpenView("drafts")}
-        />
-        <DashboardCard
-          title="Stale entries"
-          value={visibleStaleEntries}
-          detail={`${visibleWrongServices} wrong service${visibleWrongServices === 1 ? "" : "s"} · ${visibleBrokenLinks} broken link${visibleBrokenLinks === 1 ? "" : "s"} · ${visibleManualChecks} couldn't verify`}
-          icon={<ClockAlert className="size-4" />}
-          onClick={() => onOpenView("freshness")}
-        />
-        <DashboardCard
-          title="Pricing"
-          value={pricingActions}
-          detail="Manual price suggestions and Instagram-only pricing checks"
-          icon={<PoundSterling className="size-4" />}
-          onClick={() => onOpenView("pricing")}
-        />
+        <div className="flex h-full flex-col border border-stone-200 bg-white p-6 lg:col-span-2">
+          <div className="flex flex-wrap items-start justify-between gap-4">
+            <div>
+              <h2 className="text-sm font-semibold text-stone-950">Analytics</h2>
+              <p className="mt-1 text-xs text-stone-500">
+                {visitors7d} visitors · {analytics.bookingClicks7d} booking clicks · {analytics.instagramClicks7d} instagram clicks (7d)
+              </p>
+            </div>
+            <button
+              type="button"
+              onClick={() => onOpenView("analytics")}
+              className="text-xs font-medium text-stone-600 underline underline-offset-2 transition hover:text-stone-950"
+            >
+              View analytics
+            </button>
+          </div>
+          <OverviewBarChart
+            bars={analytics.visitorsByDay.map((day) => ({
+              label: formatShortDate(day.date),
+              value: day.count,
+            }))}
+            emptyLabel="No visitor data yet."
+          />
+        </div>
+
+        <div className="border border-stone-200 bg-white p-6">
+          <h2 className="text-sm font-semibold text-stone-950">Zero-result searches</h2>
+          <p className="mt-1 text-xs text-stone-500">Demand signals for Discovery</p>
+          <ZeroResultSearchesList rows={analytics.zeroResultSearches} onOpen={() => onOpenView("discovery")} />
+        </div>
       </div>
     </div>
   );
 }
 
-function DashboardCard({
-  title,
-  value,
-  detail,
-  icon,
-  onClick,
+function AnalyticsPage({
+  dashboard,
+  publishedStylists,
+  onOpenView,
 }: {
-  title: string;
-  value: number;
-  detail: string;
-  icon: React.ReactNode;
-  onClick: () => void;
+  dashboard: DashboardMetrics | null;
+  publishedStylists: StylistDraft[];
+  onOpenView: (view: AdminView) => void;
 }) {
+  const analytics = dashboard?.analytics ?? MOCK_ANALYTICS;
+  const visitors7d = analytics.visitorsByDay.slice(-7).reduce((sum, day) => sum + day.count, 0);
+  const topStylists = mockTopStylists(publishedStylists);
+
+  return (
+    <div className="mx-auto max-w-7xl space-y-8 px-5 py-11">
+      <section>
+        <h1 className="text-3xl font-semibold tracking-tight text-stone-950">Analytics</h1>
+        <p className="mt-2 text-sm text-stone-500">Visitor activity on the public directory</p>
+      </section>
+
+      <div className="grid grid-cols-3 divide-x divide-stone-200 rounded-none border border-stone-200 bg-white">
+        <OverviewStatCell label="Unique visitors (7d)" value={visitors7d} />
+        <OverviewStatCell label="Booking link clicks (7d)" value={analytics.bookingClicks7d} />
+        <OverviewStatCell label="Instagram link clicks (7d)" value={analytics.instagramClicks7d} />
+      </div>
+
+      <div className="grid gap-4 lg:grid-cols-3">
+        <div className="border border-stone-200 bg-white p-6 lg:col-span-2">
+          <h2 className="text-sm font-semibold text-stone-950">Visitors</h2>
+          <p className="mt-1 text-xs text-stone-500">Daily site visitors, last 14 days</p>
+          <OverviewBarChart
+            bars={analytics.visitorsByDay.map((day) => ({
+              label: formatShortDate(day.date),
+              value: day.count,
+            }))}
+            emptyLabel="No visitor data yet."
+          />
+        </div>
+
+        <div className="border border-stone-200 bg-white p-6">
+          <h2 className="text-sm font-semibold text-stone-950">Most popular stylists</h2>
+          <p className="mt-1 text-xs text-stone-500">By profile views</p>
+          <TopStylistsList rows={topStylists} />
+        </div>
+      </div>
+
+      <div className="grid gap-4 lg:grid-cols-3">
+        <div className="border border-stone-200 bg-white p-6 lg:col-span-2">
+          <h2 className="text-sm font-semibold text-stone-950">Filters people are selecting</h2>
+          <p className="mt-1 text-xs text-stone-500">Most-used filter values across all visitors</p>
+          <div className="mt-5 grid grid-cols-2 gap-x-6 gap-y-6">
+            {analytics.filterUsage.map((group) => (
+              <FilterUsageGroup key={group.label} label={group.label} rows={group.rows} />
+            ))}
+          </div>
+        </div>
+
+        <div className="border border-stone-200 bg-white p-6">
+          <h2 className="text-sm font-semibold text-stone-950">Zero-result searches</h2>
+          <p className="mt-1 text-xs text-stone-500">Filter combinations that returned nothing</p>
+          <ZeroResultSearchesList rows={analytics.zeroResultSearches} onOpen={() => onOpenView("discovery")} />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function FilterUsageGroup({ label, rows }: { label: string; rows: { label: string; count: number }[] }) {
+  const max = Math.max(1, ...rows.map((row) => row.count));
+
+  return (
+    <div>
+      <p className="text-xs font-medium uppercase tracking-[0.1em] text-stone-400">{label}</p>
+      <ul className="mt-3 space-y-2.5">
+        {rows.map((row) => (
+          <li key={row.label}>
+            <div className="flex items-center justify-between gap-3 text-sm">
+              <span className="truncate text-stone-700">{row.label}</span>
+              <span className="shrink-0 font-medium text-stone-950">{row.count}</span>
+            </div>
+            <div className="mt-1 h-1 w-full bg-stone-100">
+              <div className="h-1 bg-stone-950" style={{ width: `${Math.max(4, (row.count / max) * 100)}%` }} />
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+function TopStylistsList({ rows }: { rows: { name: string; areaLabel: string; views: number }[] }) {
+  if (!rows.length) {
+    return <p className="mt-8 text-sm text-stone-400">No published stylists yet.</p>;
+  }
+
+  return (
+    <ul className="mt-5 space-y-4">
+      {rows.map((row) => (
+        <li key={row.name} className="flex items-center gap-3">
+          <span className="flex size-9 shrink-0 items-center justify-center bg-stone-100 text-xs font-semibold text-stone-600">
+            {getInitials(row.name)}
+          </span>
+          <span className="min-w-0 flex-1">
+            <span className="block truncate text-sm font-medium text-stone-950">{row.name}</span>
+            <span className="block truncate text-xs text-stone-500">{row.areaLabel || "Unknown area"}</span>
+          </span>
+          <span className="shrink-0 text-xs font-semibold text-stone-950">{row.views} views</span>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function getInitials(name: string) {
+  const parts = name.trim().split(/\s+/).filter(Boolean);
+  if (!parts.length) {
+    return "?";
+  }
+  return parts
+    .slice(0, 2)
+    .map((part) => part[0]?.toUpperCase())
+    .join("");
+}
+
+// Placeholder ranking until real view-count analytics are wired up; picks from real published stylists
+// so the layout reflects actual directory names rather than invented ones.
+function mockTopStylists(stylists: StylistDraft[]) {
+  const mockViewCounts = [412, 356, 298, 241, 187];
+  return stylists.slice(0, mockViewCounts.length).map((stylist, index) => ({
+    name: stylist.name,
+    areaLabel: stylist.areaLabel,
+    views: mockViewCounts[index],
+  }));
+}
+
+function formatShortDate(value: string) {
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) {
+    return value;
+  }
+  return date.toLocaleDateString("en-GB", { day: "numeric", month: "short" });
+}
+
+function OverviewStatCell({ label, value, onClick }: { label: string; value: number; onClick?: () => void }) {
+  const content = (
+    <>
+      <p className="text-[13px] text-stone-500">{label}</p>
+      <p className="mt-2 text-2xl font-semibold tracking-tight text-stone-950">{value}</p>
+    </>
+  );
+
+  if (!onClick) {
+    return <div className="p-5">{content}</div>;
+  }
+
   return (
     <button
       type="button"
       onClick={onClick}
-      aria-label={`Open ${title}`}
-      className={cn(
-        "cursor-pointer rounded-none border p-6 text-left transition",
-        "border-stone-200 bg-white hover:border-stone-300 hover:bg-stone-50 active:bg-stone-100",
-      )}
+      aria-label={`Open ${label}`}
+      className="cursor-pointer p-5 text-left transition hover:bg-stone-50 active:bg-stone-100"
     >
-      <div className="flex items-center justify-between gap-4">
-        <p className="text-xs font-medium uppercase tracking-[0.14em] text-stone-500">{title}</p>
-        <span className="text-stone-400">{icon}</span>
-      </div>
-      <p className="mt-5 text-4xl font-semibold leading-none tracking-tight text-stone-950">{value}</p>
-      <p className="mt-4 text-sm text-stone-500">{detail}</p>
+      {content}
     </button>
+  );
+}
+
+function OverviewBarChart({ bars, emptyLabel }: { bars: { label: string; value: number }[]; emptyLabel: string }) {
+  const max = Math.max(1, ...bars.map((bar) => bar.value));
+
+  if (!bars.length) {
+    return <p className="mt-8 text-sm text-stone-400">{emptyLabel}</p>;
+  }
+
+  return (
+    <div className="mt-6 flex min-h-56 flex-1 items-end gap-3">
+      {bars.map((bar) => (
+        <div key={bar.label} className="flex h-full flex-1 flex-col items-center justify-end gap-2">
+          <p className="text-xs font-medium text-stone-600">{bar.value}</p>
+          <div
+            className="w-full max-w-10 bg-stone-950"
+            style={{ height: `${Math.max(4, (bar.value / max) * 100)}%` }}
+          />
+          <p className="w-full truncate text-center text-[11px] text-stone-500" title={bar.label}>
+            {bar.label}
+          </p>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function ZeroResultSearchesList({
+  rows,
+  onOpen,
+}: {
+  rows: { filters: string[]; count: number; lastSeenAt: string }[];
+  onOpen: () => void;
+}) {
+  if (!rows.length) {
+    return <p className="mt-8 text-sm text-stone-400">No zero-result searches recorded.</p>;
+  }
+
+  return (
+    <ul className="mt-5 space-y-4">
+      {rows.map((row) => (
+        <li key={row.filters.join("|")}>
+          <button type="button" onClick={onOpen} className="flex w-full items-start justify-between gap-3 text-left">
+            <span className="min-w-0 flex-1">
+              <span className="flex flex-wrap gap-1.5">
+                {row.filters.map((filter) => (
+                  <Badge key={filter} variant="outline" className="bg-white text-[11px]">
+                    {filter}
+                  </Badge>
+                ))}
+              </span>
+              <span className="mt-1.5 block truncate text-xs text-stone-500">Last seen {formatRelativeTime(row.lastSeenAt)}</span>
+            </span>
+            <span className="shrink-0 whitespace-nowrap text-xs font-semibold text-stone-950">
+              {row.count} search{row.count === 1 ? "" : "es"}
+            </span>
+          </button>
+        </li>
+      ))}
+    </ul>
   );
 }
 
@@ -4011,6 +4418,8 @@ function ManualPriceCalculator({
   const [isOcrRunning, setIsOcrRunning] = useState(false);
   const [parseMessage, setParseMessage] = useState("");
   const sortedPriceValues = parseResult?.prices?.length ? parseResult.prices : detail?.priceValues || [];
+  const priceBandTiers = usePriceBandTiers();
+  const priceBandOptions = priceBandOptionsFromTiers(priceBandTiers);
 
   async function parseText(nextText = priceText) {
     setIsParsing(true);
@@ -5129,46 +5538,26 @@ function titleCase(value: string) {
 function KeywordSearchPage({
   keywords,
   keywordInput,
-  selectedService,
-  services,
   suggestionGroups,
-  searchName,
-  savedSearches,
   results,
   progress,
   isRunning,
-  isSaving,
   assigningServiceIds,
   onKeywordInputChange,
   onKeywordsChange,
-  onSelectedServiceChange,
-  onSearchNameChange,
   onRun,
-  onSave,
-  onLoad,
-  onDelete,
   onAssignService,
 }: {
   keywords: string[];
   keywordInput: string;
-  selectedService: string;
-  services: string[];
   suggestionGroups: KeywordSuggestionGroup[];
-  searchName: string;
-  savedSearches: SavedKeywordSearch[];
   results: KeywordSearchResult[];
   progress: KeywordSearchProgress;
   isRunning: boolean;
-  isSaving: boolean;
   assigningServiceIds: string[];
   onKeywordInputChange: (value: string) => void;
   onKeywordsChange: (keywords: string[]) => void;
-  onSelectedServiceChange: (service: string) => void;
-  onSearchNameChange: (value: string) => void;
   onRun: () => void;
-  onSave: () => void;
-  onLoad: (search: SavedKeywordSearch) => void;
-  onDelete: (searchId: string) => void;
   onAssignService: (result: KeywordSearchResult) => void;
 }) {
   function suggestKeywords(value: string) {
@@ -5200,103 +5589,62 @@ function KeywordSearchPage({
 
   return (
     <div className="mx-auto max-w-7xl space-y-7 px-5 py-9">
-      <section className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
-        <div>
-          <h1 className="text-3xl font-semibold tracking-tight text-stone-950">Keyword search</h1>
-          <p className="mt-2 max-w-2xl text-sm text-stone-500">Scan live booking and website pages for services or wording that may not be saved in the directory yet.</p>
-        </div>
-        <Button type="button" variant="outline" onClick={onRun} disabled={isRunning || (keywords.length === 0 && !keywordInput.trim())} className="h-10 rounded-none bg-white px-4">
-          {isRunning ? <Loader2 className="size-4 animate-spin" /> : <SearchCheck className="size-4" />}
-          Run search
-        </Button>
+      <section>
+        <h1 className="text-3xl font-semibold tracking-tight text-stone-950">Keyword search</h1>
+        <p className="mt-2 text-sm text-stone-500">{progressLabel}</p>
       </section>
 
-      <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_22rem]">
-        <Card className="rounded-none">
-          <CardHeader>
-            <CardTitle className="text-lg">Search terms</CardTitle>
-            <CardDescription>Select a service to load its aliases, or enter a custom keyword to generate related search terms.</CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-5">
-            <div className="grid gap-1">
-              <label className="text-xs font-semibold uppercase tracking-[0.18em] text-stone-500">Directory service</label>
-              <Select value={selectedService} onChange={onSelectedServiceChange}>
-                <option value="">Custom keyword search</option>
-                {services.map((service) => (
-                  <option key={service} value={service}>
-                    {service}
-                  </option>
-                ))}
-              </Select>
-            </div>
+      <div className="grid grid-cols-2 divide-x divide-y divide-stone-200 rounded-none border border-stone-200 bg-white sm:grid-cols-4 sm:divide-y-0">
+        <StylistStatCell label="Matches found" value={results.length} />
+        <StylistStatCell label="Searched" value={progress.checkedCount} />
+        <StylistStatCell label="Skipped" value={progress.skippedCount} />
+        <StylistStatCell label="Total" value={progress.total} />
+      </div>
 
-            <div className="flex flex-wrap gap-2">
-              {keywords.map((keyword) => (
+      <div className="rounded-none border border-stone-300 bg-white px-4 py-2.5 shadow-sm">
+        <form onSubmit={handleSubmit} className="flex items-center gap-3">
+          <Search className="size-4 shrink-0 text-stone-400" aria-hidden="true" />
+          <div className="flex min-h-8 flex-1 flex-wrap items-center gap-2">
+            {keywords.map((keyword) => (
+              <span
+                key={keyword}
+                className="inline-flex items-center gap-1.5 rounded-none border border-stone-300 bg-stone-50 px-2.5 py-1 text-xs font-medium text-stone-700"
+              >
+                {keyword}
                 <button
-                  key={keyword}
                   type="button"
                   onClick={() => removeKeyword(keyword)}
-                  className="inline-flex items-center gap-2 rounded-none border border-stone-300 bg-stone-50 px-3 py-1.5 text-xs font-medium text-stone-700 transition hover:border-stone-500 hover:text-stone-950"
+                  aria-label={`Remove ${keyword}`}
+                  className="text-stone-400 transition hover:text-stone-950"
                 >
-                  {keyword}
                   <X className="size-3" />
                 </button>
-              ))}
-              {!keywords.length ? (
-                <p className="rounded-none border border-dashed border-stone-300 px-3 py-2 text-sm text-stone-500">No keywords selected.</p>
-              ) : null}
-            </div>
-
-            <form onSubmit={handleSubmit} className="flex flex-col gap-3 sm:flex-row">
-              <Input
-                value={keywordInput}
-                onChange={(event) => onKeywordInputChange(event.target.value)}
-                placeholder="Enter a keyword, e.g. kids, bridal, locs"
-                className="h-8 rounded-md border-transparent bg-transparent px-2 py-1 hover:bg-stone-100 focus-visible:border-stone-300"
-              />
-              <div className="flex gap-2">
-                <Button type="submit" variant="outline" className="h-10 rounded-none bg-white px-4">
-                  <Search className="size-4" />
-                  Suggest
-                </Button>
-                <Button
-                  type="button"
-                  variant="outline"
-                  onClick={() => {
-                    onKeywordsChange([]);
-                    onSelectedServiceChange("");
-                  }}
-                  disabled={!keywords.length && !selectedService}
-                  className="h-10 rounded-none bg-white px-4"
-                >
-                  Clear
-                </Button>
-              </div>
-            </form>
-
-            <div className="grid gap-3 border-t border-stone-200 pt-5 sm:grid-cols-[minmax(0,1fr)_auto]">
-              <Input
-                value={searchName}
-                onChange={(event) => onSearchNameChange(event.target.value)}
-                placeholder="Search name, e.g. Kids services"
-                className="h-8 rounded-md border-transparent bg-transparent px-2 py-1 hover:bg-stone-100 focus-visible:border-stone-300"
-              />
-              <Button type="button" variant="outline" onClick={onSave} disabled={isSaving || !keywords.length} className="h-10 rounded-none bg-white px-4">
-                {isSaving ? <Loader2 className="size-4 animate-spin" /> : <Save className="size-4" />}
-                Save search
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
-
-        <SavedKeywordSearchesPanel searches={savedSearches} onLoad={onLoad} onDelete={onDelete} />
+              </span>
+            ))}
+            <input
+              value={keywordInput}
+              onChange={(event) => onKeywordInputChange(event.target.value)}
+              placeholder={keywords.length ? "Add another keyword..." : "Enter a keyword, e.g. kids, bridal, locs"}
+              className="min-w-[160px] flex-1 border-none bg-transparent px-1 py-1 text-sm text-stone-950 outline-none placeholder:text-stone-400"
+            />
+          </div>
+          <button
+            type="button"
+            onClick={onRun}
+            disabled={isRunning || (keywords.length === 0 && !keywordInput.trim())}
+            aria-label="Run search"
+            className="inline-flex size-9 shrink-0 items-center justify-center rounded-none bg-stone-950 text-white transition hover:bg-stone-800 disabled:cursor-not-allowed disabled:opacity-40"
+          >
+            {isRunning ? <Loader2 className="size-4 animate-spin" /> : <ArrowRight className="size-4" />}
+          </button>
+        </form>
       </div>
 
       <section className="space-y-3">
-        <div className="flex flex-col gap-2 border-b border-stone-200 pb-3 sm:flex-row sm:items-end sm:justify-between">
+        <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <h2 className="text-lg font-semibold text-stone-950">Results</h2>
-            <p className="mt-1 text-sm text-stone-500">{progressLabel}{progress.skippedCount ? ` · ${progress.skippedCount} skipped` : ""}</p>
+            <p className="mt-1 text-sm text-stone-500">{progress.skippedCount ? `${progress.skippedCount} skipped` : "Live scan of booking and website pages"}</p>
           </div>
           <p className="text-sm font-medium text-stone-600">{results.length} match{results.length === 1 ? "" : "es"}</p>
         </div>
@@ -5315,9 +5663,10 @@ function KeywordSearchPage({
             </div>
           ) : (
             <div className="flex min-h-64 flex-col items-center justify-center px-6 py-16 text-center">
+              <SearchX className="mb-4 size-8 text-stone-300" />
               <h2 className="text-lg font-semibold tracking-tight text-stone-950">No matches yet</h2>
               <p className="mt-3 max-w-xl text-base text-stone-500">Run a live keyword search to find matching wording across booking and website pages.</p>
-              <Button type="button" variant="outline" onClick={onRun} disabled={isRunning || (keywords.length === 0 && !keywordInput.trim())} className="mt-8 h-11 rounded-none bg-white px-4 text-sm">
+              <Button type="button" onClick={onRun} disabled={isRunning || (keywords.length === 0 && !keywordInput.trim())} className="mt-8 h-11 rounded-none bg-stone-950 px-4 text-sm">
                 <SearchCheck className="size-4" />
                 Run search
               </Button>
@@ -5372,56 +5721,6 @@ function KeywordSearchResultCard({ result, isAssigning, onAssignService }: { res
         ))}
       </div>
     </article>
-  );
-}
-
-function SavedKeywordSearchesPanel({
-  searches,
-  onLoad,
-  onDelete,
-}: {
-  searches: SavedKeywordSearch[];
-  onLoad: (search: SavedKeywordSearch) => void;
-  onDelete: (searchId: string) => void;
-}) {
-  return (
-    <Card className="rounded-none">
-      <CardHeader>
-        <CardTitle className="text-lg">Saved searches</CardTitle>
-        <CardDescription>Research searches you may turn into filters later.</CardDescription>
-      </CardHeader>
-      <CardContent>
-        {searches.length ? (
-          <div className="max-h-96 space-y-2 overflow-auto">
-            {searches.map((search) => (
-              <div key={search.id} className="rounded-none border border-stone-200 bg-stone-50 p-3">
-                <div className="flex items-start justify-between gap-3">
-                  <button type="button" onClick={() => onLoad(search)} className="min-w-0 text-left">
-                    <p className="truncate text-sm font-semibold text-stone-950">{search.name}</p>
-                    <p className="mt-1 text-xs text-stone-500">{search.resultCount} result{search.resultCount === 1 ? "" : "s"}{search.lastRunAt ? ` · ${formatRelativeTime(search.lastRunAt)}` : ""}</p>
-                  </button>
-                  <button type="button" onClick={() => onDelete(search.id)} aria-label={`Delete ${search.name}`} className="text-stone-400 transition hover:text-red-600">
-                    <Trash2 className="size-4" />
-                  </button>
-                </div>
-                <div className="mt-3 flex flex-wrap gap-1">
-                  {search.keywords.slice(0, 6).map((keyword) => (
-                    <Badge key={keyword} variant="outline" className="bg-white text-[11px]">
-                      {keyword}
-                    </Badge>
-                  ))}
-                  {search.keywords.length > 6 ? (
-                    <Badge variant="outline" className="bg-white text-[11px]">+{search.keywords.length - 6}</Badge>
-                  ) : null}
-                </div>
-              </div>
-            ))}
-          </div>
-        ) : (
-          <p className="rounded-none border border-dashed border-stone-300 p-4 text-sm text-stone-500">No saved searches yet.</p>
-        )}
-      </CardContent>
-    </Card>
   );
 }
 
@@ -5755,6 +6054,20 @@ function FreshnessResultCard({
   );
 }
 
+function nameFromInstagramUrl(value: string) {
+  const trimmed = value.trim();
+  if (!trimmed) {
+    return "";
+  }
+  const urlMatch = trimmed.match(/instagram\.com\/([^/?]+)/i);
+  const handle = (urlMatch ? urlMatch[1] : trimmed).replace(/^@/, "");
+  return handle
+    .split(/[._-]+/)
+    .filter(Boolean)
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+    .join(" ");
+}
+
 function DraftEditor({
   draft,
   regions,
@@ -5793,19 +6106,45 @@ function DraftEditor({
     .map((areaId) => regions.find((region) => region.id === areaId)?.label || areaLabelFromId(areaId))
     .filter(Boolean);
   const [additionalNeedsOptions, setAdditionalNeedsOptions] = useState<{ id: string; label: string }[]>([]);
+  const [customFilterTypes, setCustomFilterTypes] = useState<CustomFilterType[]>([]);
   const [openSourcePanel, setOpenSourcePanel] = useState<"pricing" | "services" | null>(null);
+  const priceBandTiers = usePriceBandTiers();
+  const priceBandOptions = priceBandOptionsFromTiers(priceBandTiers);
   useEffect(() => {
     fetch("/api/admin/additional-needs", { credentials: "include" })
       .then((res) => res.json())
       .then((data) => { if (data.ok && Array.isArray(data.options)) setAdditionalNeedsOptions(data.options); })
       .catch(() => {});
   }, []);
+  useEffect(() => {
+    fetch("/api/admin/custom-filters", { credentials: "include" })
+      .then((res) => res.json())
+      .then((data) => { if (data.ok && Array.isArray(data.filterTypes)) setCustomFilterTypes(data.filterTypes); })
+      .catch(() => {});
+  }, []);
+
+  function toggleCustomFilterValue(filterTypeId: string, optionId: string) {
+    const current = draft.customFilters?.[filterTypeId] ?? [];
+    const next = current.includes(optionId) ? current.filter((v) => v !== optionId) : [...current, optionId];
+    onChange({ customFilters: { ...draft.customFilters, [filterTypeId]: next } });
+  }
 
   function updateInstagramUrl(instagramUrl: string) {
     onChange({
       instagramUrl,
       ...(bookingMatchesInstagram ? { bookingUrl: instagramUrl } : {}),
     });
+  }
+
+  function autofillNameFromInstagram() {
+    const currentName = draft.name.trim();
+    if (currentName && currentName !== "New stylist") {
+      return;
+    }
+    const derivedName = nameFromInstagramUrl(draft.instagramUrl);
+    if (derivedName) {
+      onChange({ name: derivedName });
+    }
   }
 
   function toggleBookingSameAsInstagram(checked: boolean) {
@@ -5852,6 +6191,7 @@ function DraftEditor({
           icon={<InstagramIcon className="size-4" />}
           value={draft.instagramUrl}
           onChange={updateInstagramUrl}
+          onBlur={autofillNameFromInstagram}
           placeholder="Enter instagram URL"
           href={draft.instagramUrl}
         />
@@ -5887,6 +6227,8 @@ function DraftEditor({
       <DraftLocationSelector draft={draft} regions={regions} onChange={onChangeLocations} />
 
       <DraftAdditionalNeeds draft={draft} options={additionalNeedsOptions} onChange={onChange} />
+
+      <DraftCustomFilters draft={draft} filterTypes={customFilterTypes} onChange={onChange} />
 
       <div className="space-y-2">
         <p className="text-xs font-semibold uppercase tracking-[0.12em] text-stone-500">Pricing</p>
@@ -6105,7 +6447,13 @@ function DraftEditor({
 
         <DraftPropertyRow icon={<InstagramIcon className="size-4" />} label="Instagram">
           <div className="flex items-center gap-2">
-            <Input value={draft.instagramUrl} onChange={(event) => updateInstagramUrl(event.target.value)} placeholder="Enter Instagram URL" className="h-8 rounded-md border-transparent bg-transparent px-2 py-1 hover:bg-stone-100 focus-visible:border-stone-300" />
+            <Input
+              value={draft.instagramUrl}
+              onChange={(event) => updateInstagramUrl(event.target.value)}
+              onBlur={autofillNameFromInstagram}
+              placeholder="Enter Instagram URL"
+              className="h-8 rounded-md border-transparent bg-transparent px-2 py-1 hover:bg-stone-100 focus-visible:border-stone-300"
+            />
             {draft.instagramUrl ? (
               <a href={draft.instagramUrl} target="_blank" rel="noreferrer" className="inline-flex size-8 shrink-0 items-center justify-center rounded-md text-stone-400 transition hover:bg-stone-100 hover:text-stone-950" aria-label="Open Instagram">
                 <ExternalLink className="size-4" />
@@ -6161,6 +6509,48 @@ function DraftEditor({
                 onChange={(event) => onChange({ [field]: event.target.checked })}
                 className="ml-2 size-4 rounded border-stone-300 accent-stone-500"
               />
+            </DraftPropertyRow>
+          );
+        })}
+
+        {customFilterTypes.map((filterType) => {
+          const selected = draft.customFilters?.[filterType.id] ?? [];
+          return (
+            <DraftPropertyRow key={filterType.id} icon={<Tag className="size-4" />} label={filterType.label}>
+              {filterType.behavior === "toggle-group" ? (
+                <div className="flex flex-col gap-1.5 py-1">
+                  {filterType.options.map((option) => (
+                    <label key={option.id} className="flex items-center gap-2 text-sm text-stone-700">
+                      <input
+                        type="checkbox"
+                        checked={selected.includes(option.id)}
+                        onChange={() => toggleCustomFilterValue(filterType.id, option.id)}
+                        className="size-4 rounded border-stone-300 accent-stone-500"
+                      />
+                      {option.label}
+                    </label>
+                  ))}
+                </div>
+              ) : (
+                <div className="flex flex-wrap gap-1.5 py-1">
+                  {filterType.options.map((option) => {
+                    const isSelected = selected.includes(option.id);
+                    return (
+                      <button
+                        key={option.id}
+                        type="button"
+                        onClick={() => toggleCustomFilterValue(filterType.id, option.id)}
+                        className={cn(
+                          "rounded-full border px-2.5 py-1 text-xs font-medium transition",
+                          isSelected ? "border-stone-950 bg-stone-950 text-white" : "border-stone-200 bg-white text-stone-600 hover:bg-stone-50",
+                        )}
+                      >
+                        {option.label}
+                      </button>
+                    );
+                  })}
+                </div>
+              )}
             </DraftPropertyRow>
           );
         })}
@@ -6345,6 +6735,7 @@ function DraftLinkField({
   icon,
   value,
   onChange,
+  onBlur,
   placeholder,
   href,
   children,
@@ -6353,6 +6744,7 @@ function DraftLinkField({
   icon: React.ReactNode;
   value: string;
   onChange: (value: string) => void;
+  onBlur?: () => void;
   placeholder: string;
   href?: string;
   children?: React.ReactNode;
@@ -6364,7 +6756,13 @@ function DraftLinkField({
         {label}
       </div>
       <div className="flex items-center gap-3">
-        <Input value={value} onChange={(event) => onChange(event.target.value)} placeholder={placeholder} className="h-8 rounded-md border-transparent bg-transparent px-2 py-1 hover:bg-stone-100 focus-visible:border-stone-300" />
+        <Input
+          value={value}
+          onChange={(event) => onChange(event.target.value)}
+          onBlur={onBlur}
+          placeholder={placeholder}
+          className="h-8 rounded-md border-transparent bg-transparent px-2 py-1 hover:bg-stone-100 focus-visible:border-stone-300"
+        />
         {href ? (
           <a
             href={href}
@@ -6399,25 +6797,26 @@ function DraftLocationSelector({
   const selectedAreaSet = useMemo(() => new Set(selectedAreaIds), [selectedAreaIds]);
   const [query, setQuery] = useState("");
   const [isOpen, setIsOpen] = useState(false);
-  const [activeGroupId, setActiveGroupId] = useState("london");
+  const [activeGroupId, setActiveGroupId] = useState("");
   const popoverRef = useRef<HTMLDivElement | null>(null);
   const triggerRef = useRef<HTMLButtonElement | null>(null);
   const searchInputRef = useRef<HTMLInputElement | null>(null);
   const normalizedQuery = query.trim().toLowerCase();
+  const regionParentGroups = useRegionParentGroups();
   const locationGroups = useMemo(() => {
-    const londonParent = regions.find((region) => region.id === londonParentAreaId);
-    const londonRows = [
-      ...(londonParent ? [{ ...londonParent, label: "All London" }] : []),
-      ...regions.filter((region) => londonChildAreaIds.has(region.id)),
-    ];
-    const otherRows = ["essex", "kent", "mobile"]
-      .map((regionId) => regions.find((region) => region.id === regionId))
-      .filter((region): region is RegionOption => Boolean(region));
-    return [
-      { id: "london", label: "London", regions: londonRows },
-      { id: "other", label: "Other", regions: otherRows },
-    ].filter((group) => group.regions.length > 0);
-  }, [regions]);
+    const groups = regionParentGroups.map((group) => {
+      const parentRegion = regions.find((region) => region.id === group.parentId);
+      const rows = [
+        ...(parentRegion ? [{ ...parentRegion, label: `All ${parentRegion.label}` }] : []),
+        ...regions.filter((region) => group.childIds.includes(region.id)),
+      ];
+      return { id: group.parentId, label: parentRegion?.label ?? group.parentId, regions: rows };
+    });
+    const parentIdSet = new Set(regionParentGroups.map((group) => group.parentId));
+    const childIdSet = new Set(regionParentGroups.flatMap((group) => group.childIds));
+    const otherRows = regions.filter((region) => !parentIdSet.has(region.id) && !childIdSet.has(region.id));
+    return [...groups, { id: "other", label: "Other", regions: otherRows }].filter((group) => group.regions.length > 0);
+  }, [regions, regionParentGroups]);
   const activeGroup = locationGroups.find((group) => group.id === activeGroupId) ?? locationGroups[0] ?? null;
   const selectedLocationLabels = getAreaIdsForLabels(selectedAreaIds)
     .map((areaId) => regions.find((region) => region.id === areaId)?.label || areaLabelFromId(areaId))
@@ -6654,6 +7053,7 @@ const additionalNeedsFieldMap: Record<string, keyof StylistDraft> = {
   hijabiFriendly: "hijabiFriendly",
   canBraidWithoutGel: "canBraidWithoutGel",
   "wheelchair-access": "wheelchairAccessible",
+  kidsFriendly: "kidsFriendly",
 };
 
 function DraftAdditionalNeeds({
@@ -6684,6 +7084,68 @@ function DraftAdditionalNeeds({
           );
         })}
       </div>
+    </div>
+  );
+}
+
+function DraftCustomFilters({
+  draft,
+  filterTypes,
+  onChange,
+}: {
+  draft: StylistDraft;
+  filterTypes: CustomFilterType[];
+  onChange: (update: Partial<StylistDraft>) => void;
+}) {
+  if (!filterTypes.length) return null;
+
+  function toggle(filterTypeId: string, optionId: string) {
+    const current = draft.customFilters?.[filterTypeId] ?? [];
+    const next = current.includes(optionId) ? current.filter((v) => v !== optionId) : [...current, optionId];
+    onChange({ customFilters: { ...draft.customFilters, [filterTypeId]: next } });
+  }
+
+  return (
+    <div className="space-y-4">
+      {filterTypes.map((filterType) => {
+        const selected = draft.customFilters?.[filterType.id] ?? [];
+        return (
+          <div key={filterType.id} className="space-y-1">
+            <p className="text-xs font-semibold uppercase tracking-[0.12em] text-stone-500">{filterType.label}</p>
+            {filterType.behavior === "toggle-group" ? (
+              <div className="grid gap-1">
+                {filterType.options.map((option) => (
+                  <DraftBooleanOption
+                    key={option.id}
+                    label={option.label}
+                    checked={selected.includes(option.id)}
+                    onToggle={() => toggle(filterType.id, option.id)}
+                  />
+                ))}
+              </div>
+            ) : (
+              <div className="flex flex-wrap gap-1.5">
+                {filterType.options.map((option) => {
+                  const isSelected = selected.includes(option.id);
+                  return (
+                    <button
+                      key={option.id}
+                      type="button"
+                      onClick={() => toggle(filterType.id, option.id)}
+                      className={cn(
+                        "rounded-full border px-2.5 py-1 text-xs font-medium transition",
+                        isSelected ? "border-stone-950 bg-stone-950 text-white" : "border-stone-200 bg-white text-stone-600 hover:bg-stone-50",
+                      )}
+                    >
+                      {option.label}
+                    </button>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+        );
+      })}
     </div>
   );
 }
@@ -6756,20 +7218,25 @@ function draftMatchesCategory(draft: StylistDraft, categoryId: string, filterCat
 
 function draftMatchesLocation(draft: StylistDraft, regionId: string) {
   const areaIds = getDraftAreaIds(draft);
-  if (regionId === londonParentAreaId) {
-    return areaIds.some((areaId) => areaId === londonParentAreaId || londonChildAreaIds.has(areaId));
+  const group = regionParentGroupsCache.find((g) => g.parentId === regionId);
+  if (group) {
+    return areaIds.some((areaId) => areaId === regionId || group.childIds.includes(areaId));
   }
   return areaIds.includes(regionId);
 }
 
 function normalizeAreaIds(areaIds: string[], latestAreaId?: string) {
   const uniqueAreaIds = [...new Set(areaIds.filter(Boolean))];
-  if (latestAreaId === londonParentAreaId) {
-    return uniqueAreaIds.filter((areaId) => areaId === londonParentAreaId || !londonChildAreaIds.has(areaId));
+  const latestGroup = latestAreaId ? regionParentGroupsCache.find((g) => g.parentId === latestAreaId) : undefined;
+  if (latestGroup) {
+    return uniqueAreaIds.filter((areaId) => areaId === latestAreaId || !latestGroup.childIds.includes(areaId));
   }
 
-  const hasSpecificLondonArea = uniqueAreaIds.some((areaId) => londonChildAreaIds.has(areaId));
-  return hasSpecificLondonArea ? uniqueAreaIds.filter((areaId) => areaId !== londonParentAreaId) : uniqueAreaIds;
+  const owningGroup = latestAreaId ? regionParentGroupsCache.find((g) => g.childIds.includes(latestAreaId)) : undefined;
+  if (owningGroup) {
+    return uniqueAreaIds.filter((areaId) => areaId !== owningGroup.parentId);
+  }
+  return uniqueAreaIds;
 }
 
 function publishedSalonToDraft(salon: Partial<StylistDraft>): StylistDraft {
@@ -6794,6 +7261,7 @@ function publishedSalonToDraft(salon: Partial<StylistDraft>): StylistDraft {
     hijabiFriendly: salon.hijabiFriendly === true,
     canBraidWithoutGel: salon.canBraidWithoutGel === true,
     wheelchairAccessible: salon.wheelchairAccessible === true,
+    kidsFriendly: salon.kidsFriendly === true,
     priceBand: salon.priceBand,
     servicePriceBand: salon.servicePriceBand,
     packagePriceBand: salon.packagePriceBand,
@@ -6813,8 +7281,11 @@ function publishedSalonToDraft(salon: Partial<StylistDraft>): StylistDraft {
 }
 
 function getAreaIdsForLabels(areaIds: string[]) {
-  const hasSpecificLondonArea = areaIds.some((areaId) => londonChildAreaIds.has(areaId));
-  return hasSpecificLondonArea ? areaIds.filter((areaId) => areaId !== londonParentAreaId) : areaIds;
+  const areaIdSet = new Set(areaIds);
+  const redundantParentIds = new Set(
+    regionParentGroupsCache.filter((group) => group.childIds.some((childId) => areaIdSet.has(childId))).map((group) => group.parentId),
+  );
+  return areaIds.filter((areaId) => !redundantParentIds.has(areaId));
 }
 
 function getDraftLocationLabel(draft: StylistDraft, regions: RegionOption[]) {
@@ -6829,29 +7300,116 @@ function areaLabelFromId(areaId: string) {
 
 type FilterCategory = { id: string; label: string; subcategories: string[] };
 
-type FilterTypeId = "services" | "locations" | "additional-needs" | "price-range";
+type FilterTypeId = "services" | "locations" | "additional-needs" | "price-range" | string;
+
+type FiltersBaseline = {
+  categories: FilterCategory[];
+  regions: LocationRegion[];
+  needsOptions: AdditionalNeedOption[];
+  customFilterTypes: CustomFilterType[];
+};
+
+function getFilterRemovals(baseline: FiltersBaseline | null, current: FiltersBaseline & { priceBandTiers: PriceBandTier[] }, priceBandBaseline: PriceBandTier[]): string[] {
+  if (!baseline) return [];
+  const removals: string[] = [];
+
+  const currentCategoryIds = new Set(current.categories.map((c) => c.id));
+  const removedGroups = baseline.categories.filter((c) => !currentCategoryIds.has(c.id));
+  if (removedGroups.length) {
+    removals.push(`${removedGroups.length} service ${removedGroups.length === 1 ? "group" : "groups"} (${removedGroups.map((c) => c.label).join(", ")})`);
+  }
+
+  let removedSubcategoryCount = 0;
+  for (const baselineCategory of baseline.categories) {
+    const currentCategory = current.categories.find((c) => c.id === baselineCategory.id);
+    if (!currentCategory) continue;
+    const currentSubs = new Set(currentCategory.subcategories);
+    removedSubcategoryCount += baselineCategory.subcategories.filter((sub) => !currentSubs.has(sub)).length;
+  }
+  if (removedSubcategoryCount) {
+    removals.push(`${removedSubcategoryCount} service ${removedSubcategoryCount === 1 ? "subcategory" : "subcategories"}`);
+  }
+
+  const currentRegionIds = new Set(current.regions.map((r) => r.id));
+  const removedRegions = baseline.regions.filter((r) => !currentRegionIds.has(r.id));
+  if (removedRegions.length) {
+    removals.push(`${removedRegions.length} ${removedRegions.length === 1 ? "region" : "regions"} (${removedRegions.map((r) => r.label).join(", ")})`);
+  }
+
+  const currentNeedIds = new Set(current.needsOptions.map((o) => o.id));
+  const removedNeeds = baseline.needsOptions.filter((o) => !currentNeedIds.has(o.id));
+  if (removedNeeds.length) {
+    removals.push(`${removedNeeds.length} additional-need ${removedNeeds.length === 1 ? "option" : "options"} (${removedNeeds.map((o) => o.label).join(", ")})`);
+  }
+
+  const currentFilterTypeIds = new Set(current.customFilterTypes.map((t) => t.id));
+  const removedFilterTypes = baseline.customFilterTypes.filter((t) => !currentFilterTypeIds.has(t.id));
+  if (removedFilterTypes.length) {
+    removals.push(`${removedFilterTypes.length} custom filter ${removedFilterTypes.length === 1 ? "type" : "types"} (${removedFilterTypes.map((t) => t.label).join(", ")})`);
+  }
+
+  let removedFilterOptionCount = 0;
+  for (const baselineType of baseline.customFilterTypes) {
+    const currentType = current.customFilterTypes.find((t) => t.id === baselineType.id);
+    if (!currentType) continue;
+    const currentOptionIds = new Set(currentType.options.map((o) => o.id));
+    removedFilterOptionCount += baselineType.options.filter((o) => !currentOptionIds.has(o.id)).length;
+  }
+  if (removedFilterOptionCount) {
+    removals.push(`${removedFilterOptionCount} custom filter ${removedFilterOptionCount === 1 ? "option" : "options"}`);
+  }
+
+  const currentTierSymbols = new Set(current.priceBandTiers.map((t) => t.symbol));
+  const removedTiers = priceBandBaseline.filter((t) => !currentTierSymbols.has(t.symbol));
+  if (removedTiers.length) {
+    removals.push(`${removedTiers.length} price ${removedTiers.length === 1 ? "tier" : "tiers"} (${removedTiers.map((t) => t.label).join(", ")})`);
+  }
+
+  return removals;
+}
 
 function FiltersPage({ onCategoriesChange }: { onCategoriesChange?: (categories: FilterCategory[]) => void }) {
+  const confirm = useConfirm();
+  const baselineRef = useRef<FiltersBaseline | null>(null);
   const [activeType, setActiveType] = useState<FilterTypeId>("services");
 
   const [categories, setCategories] = useState<FilterCategory[]>([]);
   const [categoryRenames, setCategoryRenames] = useState<{ from: string; to: string }[]>([]);
 
   const [regions, setRegions] = useState<LocationRegion[]>([]);
-  const [londonParentId, setLondonParentId] = useState("all-london");
-  const [londonChildIds, setLondonChildIds] = useState<string[]>([]);
+  const [parentGroups, setParentGroups] = useState<RegionParentGroup[]>([]);
   const [standaloneIds, setStandaloneIds] = useState<string[]>([]);
 
   const [needsOptions, setNeedsOptions] = useState<AdditionalNeedOption[]>([]);
 
+  const [customFilterTypes, setCustomFilterTypes] = useState<CustomFilterType[]>([]);
+  const [isAddingFilterType, setIsAddingFilterType] = useState(false);
+
+  const priceBandTiers = usePriceBandTiers();
+  const [draftPriceBandTiers, setDraftPriceBandTiers] = useState<PriceBandTier[]>(priceBandTiers);
+  const [hasPriceBandChanges, setHasPriceBandChanges] = useState(false);
+
   const [isPublishing, setIsPublishing] = useState(false);
   const [publishMessage, setPublishMessage] = useState<{ text: string; ok: boolean } | null>(null);
+
+  function updateBaseline(patch: Partial<FiltersBaseline>) {
+    baselineRef.current = {
+      categories: baselineRef.current?.categories ?? [],
+      regions: baselineRef.current?.regions ?? [],
+      needsOptions: baselineRef.current?.needsOptions ?? [],
+      customFilterTypes: baselineRef.current?.customFilterTypes ?? [],
+      ...patch,
+    };
+  }
 
   useEffect(() => {
     fetch("/api/admin/filters", { credentials: "include" })
       .then((res) => res.json())
       .then((data) => {
-        if (data.ok) setCategories(data.categories);
+        if (data.ok) {
+          setCategories(data.categories);
+          updateBaseline({ categories: data.categories });
+        }
       });
   }, []);
 
@@ -6861,9 +7419,9 @@ function FiltersPage({ onCategoriesChange }: { onCategoriesChange?: (categories:
       .then((data) => {
         if (data.ok) {
           setRegions(data.regions);
-          setLondonParentId(data.londonParentId ?? "all-london");
-          setLondonChildIds(data.londonChildIds ?? []);
+          setParentGroups(data.parentGroups ?? []);
           setStandaloneIds(data.standaloneIds ?? []);
+          updateBaseline({ regions: data.regions });
         }
       });
   }, []);
@@ -6872,17 +7430,43 @@ function FiltersPage({ onCategoriesChange }: { onCategoriesChange?: (categories:
     fetch("/api/admin/additional-needs", { credentials: "include" })
       .then((res) => res.json())
       .then((data) => {
-        if (data.ok) setNeedsOptions(data.options);
+        if (data.ok) {
+          setNeedsOptions(data.options);
+          updateBaseline({ needsOptions: data.options });
+        }
       });
   }, []);
 
+  useEffect(() => {
+    fetch("/api/admin/custom-filters", { credentials: "include" })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.ok) {
+          setCustomFilterTypes(data.filterTypes);
+          updateBaseline({ customFilterTypes: data.filterTypes });
+        }
+      });
+  }, []);
+
+  useEffect(() => {
+    if (!hasPriceBandChanges) setDraftPriceBandTiers(priceBandTiers);
+  }, [priceBandTiers, hasPriceBandChanges]);
+
   const subcategoryCount = categories.reduce((sum, cat) => sum + cat.subcategories.length, 0);
 
-  const filterTypes: { id: FilterTypeId; label: string; description: string; count: number; icon: ComponentType<{ className?: string }> }[] = [
+  const filterTypes: { id: FilterTypeId; label: string; description: string; count: number; icon: ComponentType<{ className?: string }>; removable?: boolean }[] = [
     { id: "services", label: "Service Categories", description: "Group and subcategory taxonomy", count: categories.length, icon: Tag },
     { id: "locations", label: "Location", description: "Regions across London", count: regions.length, icon: MapPin },
     { id: "additional-needs", label: "Additional Needs", description: "Accessibility and preferences", count: needsOptions.length, icon: Heart },
-    { id: "price-range", label: "Price Range", description: "Budget tiers for services", count: priceBandOptions.length, icon: CreditCard },
+    { id: "price-range", label: "Price Range", description: "Budget tiers for services", count: draftPriceBandTiers.length, icon: CreditCard },
+    ...customFilterTypes.map((type) => ({
+      id: type.id,
+      label: type.label,
+      description: type.description || (type.behavior === "toggle-group" ? "Checklist filter" : "Tag multiselect filter"),
+      count: type.options.length,
+      icon: type.behavior === "toggle-group" ? Heart : Tag,
+      removable: true,
+    })),
   ];
 
   function recordRename(oldName: string, newName: string) {
@@ -6895,11 +7479,47 @@ function FiltersPage({ onCategoriesChange }: { onCategoriesChange?: (categories:
     });
   }
 
+  function addCustomFilterType(label: string, id: string, description: string, behavior: CustomFilterBehavior) {
+    if (customFilterTypes.some((type) => type.id === id)) return;
+    setCustomFilterTypes((prev) => [...prev, { id, label, description, behavior, options: [] }]);
+    setIsAddingFilterType(false);
+    setActiveType(id);
+  }
+
+  function removeCustomFilterType(id: string) {
+    setCustomFilterTypes((prev) => prev.filter((type) => type.id !== id));
+    if (activeType === id) setActiveType("services");
+  }
+
+  function updateCustomFilterType(id: string, updates: Partial<CustomFilterType>) {
+    setCustomFilterTypes((prev) => prev.map((type) => (type.id === id ? { ...type, ...updates } : type)));
+  }
+
+  function updatePriceBandTiers(updater: (prev: PriceBandTier[]) => PriceBandTier[]) {
+    setHasPriceBandChanges(true);
+    setDraftPriceBandTiers(updater);
+  }
+
   async function publish() {
+    const removals = getFilterRemovals(
+      baselineRef.current,
+      { categories, regions, needsOptions, customFilterTypes, priceBandTiers: draftPriceBandTiers },
+      priceBandTiers,
+    );
+    if (removals.length) {
+      const confirmed = await confirm({
+        title: "Publish these changes?",
+        description: `This will remove: ${removals.join(", ")}. Stylists using these will lose them from the live site.`,
+        confirmLabel: "Publish",
+        tone: "danger",
+      });
+      if (!confirmed) return;
+    }
+
     setIsPublishing(true);
     setPublishMessage(null);
     try {
-      const [filtersRes, locationsRes, needsRes] = await Promise.all([
+      const [filtersRes, locationsRes, needsRes, customFiltersRes, priceBandsRes] = await Promise.all([
         fetch("/api/admin/filters", {
           method: "POST",
           credentials: "include",
@@ -6910,7 +7530,7 @@ function FiltersPage({ onCategoriesChange }: { onCategoriesChange?: (categories:
           method: "POST",
           credentials: "include",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ regions, londonParentId, londonChildIds, standaloneIds }),
+          body: JSON.stringify({ regions, parentGroups, standaloneIds }),
         }),
         fetch("/api/admin/additional-needs", {
           method: "POST",
@@ -6918,15 +7538,51 @@ function FiltersPage({ onCategoriesChange }: { onCategoriesChange?: (categories:
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ options: needsOptions }),
         }),
+        fetch("/api/admin/custom-filters", {
+          method: "POST",
+          credentials: "include",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ filterTypes: customFilterTypes }),
+        }),
+        fetch("/api/admin/price-bands", {
+          method: "POST",
+          credentials: "include",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ bands: draftPriceBandTiers }),
+        }),
       ]);
-      const [filtersData, locationsData, needsData] = await Promise.all([filtersRes.json(), locationsRes.json(), needsRes.json()]);
-      const ok = filtersData.ok && locationsData.ok && needsData.ok;
+      const [filtersData, locationsData, needsData, customFiltersData, priceBandsData] = await Promise.all([
+        filtersRes.json(),
+        locationsRes.json(),
+        needsRes.json(),
+        customFiltersRes.json(),
+        priceBandsRes.json(),
+      ]);
+      const ok = filtersData.ok && locationsData.ok && needsData.ok && customFiltersData.ok && priceBandsData.ok;
       if (filtersData.ok) {
         setCategoryRenames([]);
         onCategoriesChange?.(categories);
+        updateBaseline({ categories });
+      }
+      if (locationsData.ok) {
+        updateBaseline({ regions });
+        setRegionParentGroupsCache(parentGroups);
+      }
+      if (needsData.ok) {
+        updateBaseline({ needsOptions });
+      }
+      if (customFiltersData.ok && Array.isArray(customFiltersData.filterTypes)) {
+        setCustomFilterTypes(customFiltersData.filterTypes);
+        updateBaseline({ customFilterTypes: customFiltersData.filterTypes });
+      }
+      if (priceBandsData.ok && Array.isArray(priceBandsData.bands)) {
+        setHasPriceBandChanges(false);
+        setPriceBandTiersCache(priceBandsData.bands);
       }
       setPublishMessage({
-        text: ok ? "Published." : (filtersData.error || locationsData.error || needsData.error || "Failed to publish some changes."),
+        text: ok
+          ? "Published."
+          : (filtersData.error || locationsData.error || needsData.error || customFiltersData.error || priceBandsData.error || "Failed to publish some changes."),
         ok,
       });
     } catch {
@@ -6991,8 +7647,7 @@ function FiltersPage({ onCategoriesChange }: { onCategoriesChange?: (categories:
             <Button
               type="button"
               variant="outline"
-              disabled
-              title="Filter types are fixed for this directory"
+              onClick={() => setIsAddingFilterType(true)}
               className="h-10 w-full rounded-none px-4 text-sm"
             >
               <Plus className="size-4" />
@@ -7014,18 +7669,34 @@ function FiltersPage({ onCategoriesChange }: { onCategoriesChange?: (categories:
             <LocationsFilterPanel
               regions={regions}
               onRegionsChange={setRegions}
-              londonParentId={londonParentId}
-              londonChildIds={londonChildIds}
-              onLondonChildIdsChange={setLondonChildIds}
+              parentGroups={parentGroups}
+              onParentGroupsChange={setParentGroups}
               onStandaloneIdsChange={setStandaloneIds}
             />
           ) : null}
           {activeType === "additional-needs" ? (
             <AdditionalNeedsFilterPanel options={needsOptions} onOptionsChange={setNeedsOptions} />
           ) : null}
-          {activeType === "price-range" ? <PriceRangeFilterPanel /> : null}
+          {activeType === "price-range" ? (
+            <PriceRangeFilterPanel tiers={draftPriceBandTiers} onTiersChange={updatePriceBandTiers} />
+          ) : null}
+          {customFilterTypes.some((type) => type.id === activeType) ? (
+            <CustomFilterPanel
+              filterType={customFilterTypes.find((type) => type.id === activeType)!}
+              onChange={(updates) => updateCustomFilterType(activeType, updates)}
+              onDelete={() => removeCustomFilterType(activeType)}
+            />
+          ) : null}
         </main>
       </div>
+
+      {isAddingFilterType ? (
+        <AddCustomFilterTypeDrawer
+          existingIds={new Set(filterTypes.map((type) => type.id))}
+          onClose={() => setIsAddingFilterType(false)}
+          onSubmit={addCustomFilterType}
+        />
+      ) : null}
     </div>
   );
 }
@@ -7036,19 +7707,24 @@ function AddFilterItemDrawer({
   idPlaceholder,
   onClose,
   onSubmit,
+  showParentToggle,
+  parentToggleLabel,
 }: {
   title: string;
   labelPlaceholder: string;
   idPlaceholder: string;
   onClose: () => void;
-  onSubmit: (label: string, id: string) => void;
+  onSubmit: (label: string, id: string, isParent?: boolean) => void;
+  showParentToggle?: boolean;
+  parentToggleLabel?: string;
 }) {
   const [label, setLabel] = useState("");
   const [id, setId] = useState("");
+  const [isParent, setIsParent] = useState(false);
 
   function handleSubmit() {
     if (!label.trim() || !id.trim()) return;
-    onSubmit(label.trim(), id.trim());
+    onSubmit(label.trim(), id.trim(), isParent);
   }
 
   return (
@@ -7074,6 +7750,17 @@ function AddFilterItemDrawer({
           <Field label="ID">
             <Input value={id} onChange={(event) => setId(event.target.value)} placeholder={idPlaceholder} className="h-11 rounded-none" />
           </Field>
+          {showParentToggle ? (
+            <label className="flex cursor-pointer items-start gap-2.5 text-sm text-stone-700">
+              <input
+                type="checkbox"
+                checked={isParent}
+                onChange={(event) => setIsParent(event.target.checked)}
+                className="mt-0.5 size-4 rounded-none border-stone-300 accent-stone-950"
+              />
+              {parentToggleLabel ?? "This is a parent location (like London)"}
+            </label>
+          ) : null}
         </div>
 
         <div className="shrink-0 border-t border-stone-200 px-6 py-5">
@@ -7083,6 +7770,332 @@ function AddFilterItemDrawer({
         </div>
       </aside>
     </div>
+  );
+}
+
+function EditFilterItemDrawer({
+  title,
+  label,
+  onLabelChange,
+  id,
+  onClose,
+  onSave,
+  onDelete,
+  deleteLabel,
+  showParentToggle,
+  parentToggleLabel,
+  isParent,
+  onIsParentChange,
+  nestOptions,
+  nestedUnderId,
+  onNestedUnderChange,
+}: {
+  title: string;
+  label: string;
+  onLabelChange: (value: string) => void;
+  id?: string;
+  onClose: () => void;
+  onSave: () => void;
+  onDelete?: () => void;
+  deleteLabel?: string;
+  showParentToggle?: boolean;
+  parentToggleLabel?: string;
+  isParent?: boolean;
+  onIsParentChange?: (value: boolean) => void;
+  nestOptions?: { value: string; label: string }[];
+  nestedUnderId?: string;
+  onNestedUnderChange?: (value: string) => void;
+}) {
+  return (
+    <div className="fixed inset-0 z-50 bg-stone-950/10">
+      <button type="button" aria-label="Close" className="absolute inset-0 cursor-default" onClick={onClose} />
+      <aside className="absolute inset-y-0 right-0 flex w-full max-w-[600px] flex-col overflow-hidden border-l border-stone-200 bg-white shadow-xl shadow-stone-950/10">
+        <div className="shrink-0 border-b border-stone-200 px-8 pb-2 pt-5">
+          <div className="flex items-center justify-between gap-4">
+            <button
+              type="button"
+              onClick={onClose}
+              className="inline-flex size-8 items-center justify-center rounded-md text-stone-500 hover:bg-stone-100 hover:text-stone-950"
+              aria-label="Close"
+              title="Close"
+            >
+              <ChevronsRight className="size-4" />
+            </button>
+            {onDelete ? (
+              <button
+                type="button"
+                onClick={onDelete}
+                className="inline-flex size-8 items-center justify-center rounded-md text-red-700 transition hover:bg-red-50"
+                aria-label={deleteLabel ?? "Delete"}
+                title={deleteLabel ?? "Delete"}
+              >
+                <Trash2 className="size-4" />
+              </button>
+            ) : null}
+          </div>
+        </div>
+
+        <div className="min-h-0 flex-1 overflow-y-auto px-8 pb-8 pt-8">
+          <p className="text-xs font-semibold uppercase tracking-[0.12em] text-stone-500">{title}</p>
+          <Input
+            autoFocus
+            value={label}
+            onChange={(event) => onLabelChange(event.target.value)}
+            onKeyDown={(event) => {
+              if (event.key === "Enter") onSave();
+            }}
+            placeholder="Label"
+            className="mt-2 h-auto rounded-none border-transparent bg-transparent px-0 py-0 text-[32px] font-semibold leading-tight tracking-normal text-stone-950 placeholder:text-stone-300 hover:bg-transparent focus-visible:border-transparent focus-visible:ring-0"
+          />
+          {id ? <p className="mt-2 text-sm text-stone-400">ID: {id}</p> : null}
+
+          {showParentToggle ? (
+            <div className="mt-6 space-y-4">
+              <label className="flex cursor-pointer items-start gap-2.5 text-sm text-stone-700">
+                <input
+                  type="checkbox"
+                  checked={isParent ?? false}
+                  onChange={(event) => onIsParentChange?.(event.target.checked)}
+                  className="mt-0.5 size-4 rounded-none border-stone-300 accent-stone-950"
+                />
+                {parentToggleLabel ?? "This is a parent location"}
+              </label>
+
+              {!isParent && nestOptions ? (
+                <Field label="Nested under">
+                  <select
+                    value={nestedUnderId ?? ""}
+                    onChange={(event) => onNestedUnderChange?.(event.target.value)}
+                    className="h-11 w-full rounded-none border border-stone-300 bg-white px-3 text-sm text-stone-900 focus:outline-none focus:ring-1 focus:ring-stone-500"
+                  >
+                    <option value="">None (standalone)</option>
+                    {nestOptions.map((option) => (
+                      <option key={option.value} value={option.value}>
+                        {option.label}
+                      </option>
+                    ))}
+                  </select>
+                </Field>
+              ) : null}
+            </div>
+          ) : null}
+        </div>
+
+        <div className="shrink-0 border-t border-stone-200 bg-white px-8 py-5">
+          <Button type="button" onClick={onSave} disabled={!label.trim()} className="h-12 w-full rounded-none bg-stone-950 px-6 text-base font-medium text-white hover:bg-stone-900">
+            Save changes
+          </Button>
+        </div>
+      </aside>
+    </div>
+  );
+}
+
+function AddCustomFilterTypeDrawer({
+  existingIds,
+  onClose,
+  onSubmit,
+}: {
+  existingIds: Set<string>;
+  onClose: () => void;
+  onSubmit: (label: string, id: string, description: string, behavior: CustomFilterBehavior) => void;
+}) {
+  const [label, setLabel] = useState("");
+  const [description, setDescription] = useState("");
+  const [behavior, setBehavior] = useState<CustomFilterBehavior>("toggle-group");
+
+  const id = label.trim().toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+  const isDuplicate = Boolean(id) && existingIds.has(id);
+
+  function handleSubmit() {
+    if (!label.trim() || !id || isDuplicate) return;
+    onSubmit(label.trim(), id, description.trim(), behavior);
+  }
+
+  return (
+    <div className="fixed inset-0 z-50 bg-stone-950/10">
+      <button type="button" aria-label="Close" className="absolute inset-0 cursor-default" onClick={onClose} />
+      <aside className="absolute inset-y-0 right-0 flex w-full max-w-[440px] flex-col overflow-hidden border-l border-stone-200 bg-white shadow-xl shadow-stone-950/10">
+        <div className="flex shrink-0 items-center justify-between border-b border-stone-200 px-6 py-5">
+          <h2 className="text-lg font-semibold tracking-tight text-stone-950">Add filter type</h2>
+          <button
+            type="button"
+            onClick={onClose}
+            className="inline-flex size-8 items-center justify-center text-stone-500 transition hover:bg-stone-100 hover:text-stone-950"
+            aria-label="Close"
+          >
+            <X className="size-4" />
+          </button>
+        </div>
+
+        <div className="min-h-0 flex-1 space-y-5 overflow-y-auto px-6 py-6">
+          <Field label="Label">
+            <Input autoFocus value={label} onChange={(event) => setLabel(event.target.value)} placeholder="e.g. Hair type" className="h-11 rounded-none" />
+          </Field>
+          {id ? <p className={cn("-mt-3 text-xs", isDuplicate ? "text-red-600" : "text-stone-400")}>ID: {id}{isDuplicate ? " (already in use)" : ""}</p> : null}
+          <Field label="Description">
+            <Input value={description} onChange={(event) => setDescription(event.target.value)} placeholder="Shown under the filter name" className="h-11 rounded-none" />
+          </Field>
+          <Field label="Behaviour">
+            <div className="space-y-2">
+              <label className={cn("flex cursor-pointer items-start gap-3 border px-4 py-3", behavior === "toggle-group" ? "border-stone-950 bg-stone-50" : "border-stone-200")}>
+                <input
+                  type="radio"
+                  name="custom-filter-behavior"
+                  checked={behavior === "toggle-group"}
+                  onChange={() => setBehavior("toggle-group")}
+                  className="mt-1 size-4 accent-stone-950"
+                />
+                <span>
+                  <span className="block text-sm font-semibold text-stone-950">Checklist</span>
+                  <span className="block text-sm text-stone-500">A list of checkboxes, like Additional Needs.</span>
+                </span>
+              </label>
+              <label className={cn("flex cursor-pointer items-start gap-3 border px-4 py-3", behavior === "tag-multiselect" ? "border-stone-950 bg-stone-50" : "border-stone-200")}>
+                <input
+                  type="radio"
+                  name="custom-filter-behavior"
+                  checked={behavior === "tag-multiselect"}
+                  onChange={() => setBehavior("tag-multiselect")}
+                  className="mt-1 size-4 accent-stone-950"
+                />
+                <span>
+                  <span className="block text-sm font-semibold text-stone-950">Tag multiselect</span>
+                  <span className="block text-sm text-stone-500">Compact selectable tags, like Services.</span>
+                </span>
+              </label>
+            </div>
+          </Field>
+        </div>
+
+        <div className="shrink-0 border-t border-stone-200 px-6 py-5">
+          <Button type="button" onClick={handleSubmit} disabled={!label.trim() || !id || isDuplicate} className="h-11 w-full rounded-none">
+            Add
+          </Button>
+        </div>
+      </aside>
+    </div>
+  );
+}
+
+function CustomFilterPanel({
+  filterType,
+  onChange,
+  onDelete,
+}: {
+  filterType: CustomFilterType;
+  onChange: (updates: Partial<CustomFilterType>) => void;
+  onDelete: () => void;
+}) {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [editingOption, setEditingOption] = useState<{ id: string; label: string } | null>(null);
+  const [isAdding, setIsAdding] = useState(false);
+
+  const normalizedSearch = searchTerm.trim().toLowerCase();
+  const visibleOptions = normalizedSearch
+    ? filterType.options.filter((o) => o.label.toLowerCase().includes(normalizedSearch))
+    : filterType.options;
+
+  function commitEdit(id: string, label: string) {
+    const trimmed = label.trim();
+    if (trimmed) onChange({ options: filterType.options.map((o) => (o.id === id ? { ...o, label: trimmed } : o)) });
+    setEditingOption(null);
+  }
+
+  function removeOption(id: string) {
+    onChange({ options: filterType.options.filter((o) => o.id !== id) });
+    setEditingOption(null);
+  }
+
+  function addOption(label: string, rawId: string) {
+    const id = rawId.trim().toLowerCase().replace(/\s+/g, "-");
+    if (!id || !label || filterType.options.some((o) => o.id === id)) return;
+    onChange({ options: [...filterType.options, { id, label }] });
+    setIsAdding(false);
+  }
+
+  return (
+    <section className="space-y-5">
+      <div className="flex flex-wrap items-start justify-between gap-4">
+        <div>
+          <h2 className="text-xl font-semibold tracking-tight text-stone-950">{filterType.label}</h2>
+          <p className="mt-1 text-sm text-stone-500">
+            {filterType.options.length} options · {filterType.behavior === "toggle-group" ? "Checklist" : "Tag multiselect"}
+          </p>
+        </div>
+        <div className="flex items-center gap-2">
+          <Button type="button" variant="outline" onClick={() => setIsAdding((current) => !current)} className="h-10 rounded-none px-4 text-sm">
+            <Plus className="size-4" />
+            Add option
+          </Button>
+          <Button type="button" variant="outline" onClick={onDelete} className="h-10 rounded-none px-4 text-sm text-red-600 hover:bg-red-50">
+            <Trash2 className="size-4" />
+            Delete filter type
+          </Button>
+        </div>
+      </div>
+
+      {isAdding ? (
+        <AddFilterItemDrawer
+          title="Add option"
+          labelPlaceholder="e.g. Type 4 hair"
+          idPlaceholder="e.g. type4Hair"
+          onClose={() => setIsAdding(false)}
+          onSubmit={addOption}
+        />
+      ) : null}
+
+      {editingOption ? (
+        <EditFilterItemDrawer
+          title="Edit option"
+          label={editingOption.label}
+          onLabelChange={(value) => setEditingOption({ ...editingOption, label: value })}
+          id={editingOption.id}
+          onClose={() => setEditingOption(null)}
+          onSave={() => commitEdit(editingOption.id, editingOption.label)}
+          onDelete={() => removeOption(editingOption.id)}
+          deleteLabel={`Remove ${editingOption.label}`}
+        />
+      ) : null}
+
+      <div className="relative">
+        <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-stone-400" />
+        <Input
+          value={searchTerm}
+          onChange={(event) => setSearchTerm(event.target.value)}
+          placeholder="Search options..."
+          className="h-10 rounded-none pl-9 text-sm"
+        />
+      </div>
+
+      <div className="divide-y divide-stone-100 border border-stone-200 bg-white">
+        {visibleOptions.length ? (
+          visibleOptions.map((option) => (
+            <div key={option.id} className="flex items-center gap-3 px-4 py-3">
+              <div className="min-w-0 flex-1">
+                <p className="truncate text-sm font-medium text-stone-900">{option.label}</p>
+                <p className="text-xs text-stone-400">{option.id}</p>
+              </div>
+              <div className="flex shrink-0 items-center gap-1">
+                <button
+                  type="button"
+                  onClick={() => setEditingOption({ id: option.id, label: option.label })}
+                  className="inline-flex size-8 items-center justify-center text-stone-400 transition hover:bg-stone-100 hover:text-stone-900"
+                  aria-label={`Edit ${option.label}`}
+                >
+                  <Pencil className="size-4" />
+                </button>
+              </div>
+            </div>
+          ))
+        ) : (
+          <div className="flex flex-col items-center justify-center gap-2 px-6 py-16 text-center">
+            <SearchX className="size-8 text-stone-300" />
+            <p className="text-sm text-stone-500">No options match your search.</p>
+          </div>
+        )}
+      </div>
+    </section>
   );
 }
 
@@ -7100,7 +8113,9 @@ function ServicesFilterPanel({
   const [searchTerm, setSearchTerm] = useState("");
   const [openGroups, setOpenGroups] = useState<Set<string>>(new Set());
   const [hasInitializedOpenGroups, setHasInitializedOpenGroups] = useState(false);
-  const [editing, setEditing] = useState<{ key: string; value: string } | null>(null);
+  const [editingItem, setEditingItem] = useState<
+    { type: "group"; categoryId: string; label: string } | { type: "subcategory"; categoryId: string; oldName: string; label: string } | null
+  >(null);
   const [newSubcategoryInputs, setNewSubcategoryInputs] = useState<Record<string, string>>({});
   const [isAddingGroup, setIsAddingGroup] = useState(false);
 
@@ -7144,35 +8159,29 @@ function ServicesFilterPanel({
 
   function removeSubcategory(categoryId: string, sub: string) {
     onCategoriesChange((prev) => prev.map((cat) => (cat.id === categoryId ? { ...cat, subcategories: cat.subcategories.filter((s) => s !== sub) } : cat)));
+    setEditingItem(null);
   }
 
-  function startEditSubcategory(categoryId: string, sub: string) {
-    setEditing({ key: `${categoryId}::${sub}`, value: sub });
-  }
-
-  function commitEditSubcategory(categoryId: string, oldName: string) {
-    const newName = editing?.value.trim() ?? "";
-    if (newName && newName !== oldName) {
+  function commitEditSubcategory(categoryId: string, oldName: string, newName: string) {
+    const trimmed = newName.trim();
+    if (trimmed && trimmed !== oldName) {
       onCategoriesChange((prev) =>
-        prev.map((cat) => (cat.id === categoryId ? { ...cat, subcategories: cat.subcategories.map((s) => (s === oldName ? newName : s)) } : cat)),
+        prev.map((cat) => (cat.id === categoryId ? { ...cat, subcategories: cat.subcategories.map((s) => (s === oldName ? trimmed : s)) } : cat)),
       );
-      onRename(oldName, newName);
+      onRename(oldName, trimmed);
     }
-    setEditing(null);
+    setEditingItem(null);
   }
 
-  function startEditGroupLabel(cat: FilterCategory) {
-    setEditing({ key: cat.id, value: cat.label });
-  }
-
-  function commitEditGroupLabel(categoryId: string) {
-    const newLabel = editing?.value.trim() ?? "";
-    if (newLabel) onCategoriesChange((prev) => prev.map((cat) => (cat.id === categoryId ? { ...cat, label: newLabel } : cat)));
-    setEditing(null);
+  function commitEditGroupLabel(categoryId: string, newLabel: string) {
+    const trimmed = newLabel.trim();
+    if (trimmed) onCategoriesChange((prev) => prev.map((cat) => (cat.id === categoryId ? { ...cat, label: trimmed } : cat)));
+    setEditingItem(null);
   }
 
   function removeGroup(categoryId: string) {
     onCategoriesChange((prev) => prev.filter((cat) => cat.id !== categoryId));
+    setEditingItem(null);
   }
 
   function addGroup(label: string, rawId: string) {
@@ -7208,6 +8217,31 @@ function ServicesFilterPanel({
         />
       ) : null}
 
+      {editingItem?.type === "group" ? (
+        <EditFilterItemDrawer
+          title="Edit group"
+          label={editingItem.label}
+          onLabelChange={(value) => setEditingItem({ ...editingItem, label: value })}
+          id={editingItem.categoryId}
+          onClose={() => setEditingItem(null)}
+          onSave={() => commitEditGroupLabel(editingItem.categoryId, editingItem.label)}
+          onDelete={() => removeGroup(editingItem.categoryId)}
+          deleteLabel={`Remove ${editingItem.label}`}
+        />
+      ) : null}
+
+      {editingItem?.type === "subcategory" ? (
+        <EditFilterItemDrawer
+          title="Edit subcategory"
+          label={editingItem.label}
+          onLabelChange={(value) => setEditingItem({ ...editingItem, label: value })}
+          onClose={() => setEditingItem(null)}
+          onSave={() => commitEditSubcategory(editingItem.categoryId, editingItem.oldName, editingItem.label)}
+          onDelete={() => removeSubcategory(editingItem.categoryId, editingItem.oldName)}
+          deleteLabel={`Remove ${editingItem.label}`}
+        />
+      ) : null}
+
       <div className="relative">
         <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-stone-400" />
         <Input
@@ -7222,29 +8256,12 @@ function ServicesFilterPanel({
         {visibleCategories.length ? (
           visibleCategories.map((cat) => {
             const isOpen = normalizedSearch ? true : openGroups.has(cat.id);
-            const isEditingLabel = editing?.key === cat.id;
             return (
               <div key={cat.id}>
                 <div className="flex items-center gap-3 px-4 py-3">
                   <button type="button" onClick={() => toggleGroup(cat.id)} className="flex min-w-0 flex-1 items-center gap-2 text-left" aria-expanded={isOpen}>
                     <ChevronDown className={cn("size-4 shrink-0 text-stone-400 transition-transform", !isOpen && "-rotate-90")} />
-                    {isEditingLabel ? (
-                      <input
-                        autoFocus
-                        type="text"
-                        value={editing.value}
-                        onClick={(e) => e.stopPropagation()}
-                        onChange={(e) => setEditing({ ...editing, value: e.target.value })}
-                        onBlur={() => commitEditGroupLabel(cat.id)}
-                        onKeyDown={(e) => {
-                          if (e.key === "Enter") commitEditGroupLabel(cat.id);
-                          if (e.key === "Escape") setEditing(null);
-                        }}
-                        className="h-7 min-w-0 flex-1 rounded-none border border-stone-400 bg-white px-2 text-sm font-semibold focus:outline-none focus:ring-1 focus:ring-stone-500"
-                      />
-                    ) : (
-                      <span className="truncate font-semibold text-stone-900">{cat.label}</span>
-                    )}
+                    <span className="truncate font-semibold text-stone-900">{cat.label}</span>
                     <span className="inline-flex min-w-6 shrink-0 items-center justify-center rounded-full bg-stone-100 px-1.5 text-[11px] font-semibold text-stone-600">
                       {cat.subcategories.length}
                     </span>
@@ -7252,19 +8269,11 @@ function ServicesFilterPanel({
                   <div className="flex shrink-0 items-center gap-1">
                     <button
                       type="button"
-                      onClick={() => startEditGroupLabel(cat)}
+                      onClick={() => setEditingItem({ type: "group", categoryId: cat.id, label: cat.label })}
                       className="inline-flex size-8 items-center justify-center text-stone-400 transition hover:bg-stone-100 hover:text-stone-900"
-                      aria-label={`Rename ${cat.label}`}
+                      aria-label={`Edit ${cat.label}`}
                     >
                       <Pencil className="size-4" />
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => removeGroup(cat.id)}
-                      className="inline-flex size-8 items-center justify-center text-red-500 transition hover:bg-red-50"
-                      aria-label={`Remove ${cat.label}`}
-                    >
-                      <Trash2 className="size-4" />
                     </button>
                   </div>
                 </div>
@@ -7272,42 +8281,17 @@ function ServicesFilterPanel({
                 {isOpen ? (
                   <div className="divide-y divide-stone-50 border-t border-stone-100 bg-stone-50/40 pl-9">
                     {cat.subcategories.map((sub) => {
-                      const editKey = `${cat.id}::${sub}`;
-                      const isEditingSub = editing?.key === editKey;
                       return (
                         <div key={sub} className="flex items-center gap-3 py-2.5 pr-4">
-                          {isEditingSub ? (
-                            <input
-                              autoFocus
-                              type="text"
-                              value={editing.value}
-                              onChange={(e) => setEditing({ ...editing, value: e.target.value })}
-                              onBlur={() => commitEditSubcategory(cat.id, sub)}
-                              onKeyDown={(e) => {
-                                if (e.key === "Enter") commitEditSubcategory(cat.id, sub);
-                                if (e.key === "Escape") setEditing(null);
-                              }}
-                              className="h-7 min-w-0 flex-1 rounded-none border border-stone-400 bg-white px-2 text-sm focus:outline-none focus:ring-1 focus:ring-stone-500"
-                            />
-                          ) : (
-                            <span className="min-w-0 flex-1 truncate text-sm text-stone-700">{sub}</span>
-                          )}
+                          <span className="min-w-0 flex-1 truncate text-sm text-stone-700">{sub}</span>
                           <div className="flex shrink-0 items-center gap-1">
                             <button
                               type="button"
-                              onClick={() => startEditSubcategory(cat.id, sub)}
+                              onClick={() => setEditingItem({ type: "subcategory", categoryId: cat.id, oldName: sub, label: sub })}
                               className="inline-flex size-7 items-center justify-center text-stone-400 transition hover:bg-stone-100 hover:text-stone-900"
-                              aria-label={`Rename ${sub}`}
+                              aria-label={`Edit ${sub}`}
                             >
                               <Pencil className="size-3.5" />
-                            </button>
-                            <button
-                              type="button"
-                              onClick={() => removeSubcategory(cat.id, sub)}
-                              className="inline-flex size-7 items-center justify-center text-red-500 transition hover:bg-red-50"
-                              aria-label={`Remove ${sub}`}
-                            >
-                              <Trash2 className="size-3.5" />
                             </button>
                           </div>
                         </div>
@@ -7352,55 +8336,168 @@ type LocationRegion = { id: string; label: string };
 function LocationsFilterPanel({
   regions,
   onRegionsChange,
-  londonParentId,
-  londonChildIds,
-  onLondonChildIdsChange,
+  parentGroups,
+  onParentGroupsChange,
   onStandaloneIdsChange,
 }: {
   regions: LocationRegion[];
   onRegionsChange: (updater: (prev: LocationRegion[]) => LocationRegion[]) => void;
-  londonParentId: string;
-  londonChildIds: string[];
-  onLondonChildIdsChange: (updater: (prev: string[]) => string[]) => void;
+  parentGroups: RegionParentGroup[];
+  onParentGroupsChange: (updater: (prev: RegionParentGroup[]) => RegionParentGroup[]) => void;
   onStandaloneIdsChange: (updater: (prev: string[]) => string[]) => void;
 }) {
   const [searchTerm, setSearchTerm] = useState("");
-  const [editing, setEditing] = useState<{ id: string; value: string } | null>(null);
+  const [editingRegion, setEditingRegion] = useState<{ id: string; label: string; isParent: boolean; nestedUnderId: string } | null>(null);
   const [isAdding, setIsAdding] = useState(false);
+  const [addingSubAreaFor, setAddingSubAreaFor] = useState<string | null>(null);
+  const [closedParentIds, setClosedParentIds] = useState<Set<string>>(new Set());
 
-  const londonChildSet = new Set(londonChildIds);
+  const parentIdSet = new Set(parentGroups.map((group) => group.parentId));
+  const childIdSet = new Set(parentGroups.flatMap((group) => group.childIds));
+  const standaloneRegions = regions.filter((r) => !parentIdSet.has(r.id) && !childIdSet.has(r.id));
+
   const normalizedSearch = searchTerm.trim().toLowerCase();
-  const visibleRegions = normalizedSearch ? regions.filter((r) => r.label.toLowerCase().includes(normalizedSearch)) : regions;
+  const matchesSearch = (region: LocationRegion) => !normalizedSearch || region.label.toLowerCase().includes(normalizedSearch);
+  const visibleStandaloneRegions = standaloneRegions.filter(matchesSearch);
+  const parentSections = parentGroups
+    .map((group) => {
+      const parent = regions.find((r) => r.id === group.parentId) ?? null;
+      if (!parent) return null;
+      const children = regions.filter((r) => group.childIds.includes(r.id));
+      const parentMatches = matchesSearch(parent);
+      const visibleChildren = children.filter(matchesSearch);
+      return { group, parent, children, parentMatches, visibleChildren };
+    })
+    .filter((section): section is NonNullable<typeof section> => Boolean(section))
+    .filter((section) => !normalizedSearch || section.parentMatches || section.visibleChildren.length > 0);
+  const hasAnyResults = parentSections.length > 0 || visibleStandaloneRegions.length > 0;
 
-  function commitEdit(id: string) {
-    const label = editing?.value.trim() ?? "";
-    if (label) onRegionsChange((prev) => prev.map((r) => (r.id === id ? { ...r, label } : r)));
-    setEditing(null);
+  function openEditRegion(region: LocationRegion) {
+    const owningGroup = parentGroups.find((group) => group.childIds.includes(region.id));
+    setEditingRegion({
+      id: region.id,
+      label: region.label,
+      isParent: parentIdSet.has(region.id),
+      nestedUnderId: owningGroup?.parentId ?? "",
+    });
+  }
+
+  function commitEditRegion() {
+    if (!editingRegion) return;
+    const { id, label, isParent, nestedUnderId } = editingRegion;
+    const trimmedLabel = label.trim();
+    if (trimmedLabel) {
+      onRegionsChange((prev) => prev.map((r) => (r.id === id ? { ...r, label: trimmedLabel } : r)));
+    }
+
+    const previousGroup = parentGroups.find((group) => group.parentId === id);
+    const orphanedChildIds = !isParent && previousGroup ? previousGroup.childIds : [];
+
+    onParentGroupsChange((prev) => {
+      const withoutId = prev.filter((group) => group.parentId !== id).map((group) => ({ ...group, childIds: group.childIds.filter((childId) => childId !== id) }));
+      if (isParent) {
+        return [...withoutId, { parentId: id, childIds: previousGroup?.childIds ?? [] }];
+      }
+      if (nestedUnderId) {
+        return withoutId.map((group) => (group.parentId === nestedUnderId ? { ...group, childIds: [...group.childIds, id] } : group));
+      }
+      return withoutId;
+    });
+
+    onStandaloneIdsChange((prev) => {
+      let next = prev.filter((s) => s !== id);
+      if (!isParent && !nestedUnderId) next = [...next, id];
+      if (orphanedChildIds.length) next = [...next, ...orphanedChildIds.filter((childId) => !next.includes(childId))];
+      return next;
+    });
+
+    setClosedParentIds((prev) => {
+      const next = new Set(prev);
+      if (isParent || nestedUnderId) next.delete(isParent ? id : nestedUnderId);
+      return next;
+    });
+
+    setEditingRegion(null);
   }
 
   function removeRegion(id: string) {
     onRegionsChange((prev) => prev.filter((r) => r.id !== id));
-    onLondonChildIdsChange((prev) => prev.filter((c) => c !== id));
+    onParentGroupsChange((prev) =>
+      prev
+        .filter((group) => group.parentId !== id)
+        .map((group) => ({ ...group, childIds: group.childIds.filter((childId) => childId !== id) })),
+    );
     onStandaloneIdsChange((prev) => prev.filter((c) => c !== id));
+    setEditingRegion(null);
   }
 
-  function addRegion(label: string, rawId: string) {
+  function addRegion(label: string, rawId: string, isParent?: boolean) {
     const id = rawId.trim().toLowerCase().replace(/\s+/g, "-");
     if (!id || !label || regions.some((r) => r.id === id)) return;
     onRegionsChange((prev) => [...prev, { id, label }]);
-    onStandaloneIdsChange((prev) => [...prev, id]);
+    if (isParent) {
+      onParentGroupsChange((prev) => [...prev, { parentId: id, childIds: [] }]);
+    } else {
+      onStandaloneIdsChange((prev) => [...prev, id]);
+    }
     setIsAdding(false);
   }
 
-  function toggleChildId(id: string, checked: boolean) {
-    if (checked) {
-      onLondonChildIdsChange((prev) => [...prev, id]);
-      onStandaloneIdsChange((prev) => prev.filter((s) => s !== id));
-    } else {
-      onLondonChildIdsChange((prev) => prev.filter((c) => c !== id));
-      onStandaloneIdsChange((prev) => [...prev, id]);
-    }
+  function addSubArea(label: string, rawId: string) {
+    const parentId = addingSubAreaFor;
+    if (!parentId) return;
+    const id = rawId.trim().toLowerCase().replace(/\s+/g, "-");
+    if (!id || !label || regions.some((r) => r.id === id)) return;
+    onRegionsChange((prev) => [...prev, { id, label }]);
+    onParentGroupsChange((prev) => prev.map((group) => (group.parentId === parentId ? { ...group, childIds: [...group.childIds, id] } : group)));
+    onStandaloneIdsChange((prev) => prev.filter((s) => s !== id));
+    setAddingSubAreaFor(null);
+    setClosedParentIds((prev) => {
+      const next = new Set(prev);
+      next.delete(parentId);
+      return next;
+    });
   }
+
+  function toggleParentOpen(parentId: string) {
+    setClosedParentIds((prev) => {
+      const next = new Set(prev);
+      if (next.has(parentId)) {
+        next.delete(parentId);
+      } else {
+        next.add(parentId);
+      }
+      return next;
+    });
+  }
+
+  function renderRegionRow(region: LocationRegion, options: { indent?: boolean } = {}) {
+    return (
+      <div
+        key={region.id}
+        className={cn("flex items-center gap-3 py-2.5 pr-4", options.indent ? "border-l-2 border-stone-200 pl-8" : "px-4")}
+      >
+        <div className="min-w-0 flex-1">
+          <p className="truncate text-sm font-medium text-stone-900">{region.label}</p>
+          <p className="text-xs text-stone-400">{region.id}</p>
+        </div>
+        <div className="flex shrink-0 items-center gap-1">
+          <button
+            type="button"
+            onClick={() => openEditRegion(region)}
+            className="inline-flex size-8 items-center justify-center text-stone-400 transition hover:bg-stone-100 hover:text-stone-900"
+            aria-label={`Edit ${region.label}`}
+          >
+            <Pencil className="size-4" />
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  const nestOptions = parentSections
+    .filter((section) => section.group.parentId !== editingRegion?.id)
+    .map((section) => ({ value: section.group.parentId, label: section.parent.label }));
 
   return (
     <section className="space-y-5">
@@ -7422,6 +8519,42 @@ function LocationsFilterPanel({
           idPlaceholder="e.g. surrey"
           onClose={() => setIsAdding(false)}
           onSubmit={addRegion}
+          showParentToggle
+          parentToggleLabel="This is a parent location (like London)"
+        />
+      ) : null}
+
+      {addingSubAreaFor ? (
+        <AddFilterItemDrawer
+          title="Add sub-area"
+          labelPlaceholder="e.g. Shoreditch"
+          idPlaceholder="e.g. shoreditch"
+          onClose={() => setAddingSubAreaFor(null)}
+          onSubmit={addSubArea}
+        />
+      ) : null}
+
+      {editingRegion ? (
+        <EditFilterItemDrawer
+          title={editingRegion.isParent ? "Edit parent location" : "Edit location"}
+          label={editingRegion.label}
+          onLabelChange={(value) => setEditingRegion({ ...editingRegion, label: value })}
+          id={editingRegion.id}
+          onClose={() => setEditingRegion(null)}
+          onSave={commitEditRegion}
+          onDelete={() => removeRegion(editingRegion.id)}
+          deleteLabel={
+            editingRegion.isParent
+              ? `Remove ${editingRegion.label} (sub-areas move back to Other locations)`
+              : `Remove ${editingRegion.label}`
+          }
+          showParentToggle
+          parentToggleLabel="This is a parent location (like London)"
+          isParent={editingRegion.isParent}
+          onIsParentChange={(value) => setEditingRegion({ ...editingRegion, isParent: value })}
+          nestOptions={nestOptions}
+          nestedUnderId={editingRegion.nestedUnderId}
+          onNestedUnderChange={(value) => setEditingRegion({ ...editingRegion, nestedUnderId: value })}
         />
       ) : null}
 
@@ -7436,62 +8569,68 @@ function LocationsFilterPanel({
       </div>
 
       <div className="divide-y divide-stone-100 border border-stone-200 bg-white">
-        {visibleRegions.length ? (
-          visibleRegions.map((region) => {
-            const isEditing = editing?.id === region.id;
-            const isLondonParent = region.id === londonParentId;
-            return (
-              <div key={region.id} className="flex items-center gap-3 px-4 py-3">
-                <div className="min-w-0 flex-1">
-                  {isEditing ? (
-                    <input
-                      autoFocus
-                      type="text"
-                      value={editing.value}
-                      onChange={(e) => setEditing({ ...editing, value: e.target.value })}
-                      onBlur={() => commitEdit(region.id)}
-                      onKeyDown={(e) => {
-                        if (e.key === "Enter") commitEdit(region.id);
-                        if (e.key === "Escape") setEditing(null);
-                      }}
-                      className="h-7 w-full rounded-none border border-stone-400 bg-white px-2 text-sm font-medium focus:outline-none focus:ring-1 focus:ring-stone-500"
-                    />
-                  ) : (
-                    <p className="truncate text-sm font-medium text-stone-900">{region.label}</p>
-                  )}
-                  <p className="text-xs text-stone-400">{region.id}</p>
-                </div>
-                {!isLondonParent ? (
-                  <label className="flex shrink-0 cursor-pointer select-none items-center gap-1.5 text-xs text-stone-500">
-                    <input type="checkbox" checked={londonChildSet.has(region.id)} onChange={(e) => toggleChildId(region.id, e.target.checked)} className="rounded-none" />
-                    London area
-                  </label>
-                ) : (
-                  <span className="shrink-0 text-xs italic text-stone-400">London parent</span>
-                )}
-                <div className="flex shrink-0 items-center gap-1">
-                  <button
-                    type="button"
-                    onClick={() => setEditing({ id: region.id, value: region.label })}
-                    className="inline-flex size-8 items-center justify-center text-stone-400 transition hover:bg-stone-100 hover:text-stone-900"
-                    aria-label={`Rename ${region.label}`}
-                  >
-                    <Pencil className="size-4" />
-                  </button>
-                  {!isLondonParent ? (
+        {hasAnyResults ? (
+          <>
+            {parentSections.map(({ group, parent, children, visibleChildren }) => {
+              const isExpanded = normalizedSearch ? true : !closedParentIds.has(group.parentId);
+              return (
+                <div key={group.parentId}>
+                  <div className="flex items-center gap-3 px-4 py-3">
                     <button
                       type="button"
-                      onClick={() => removeRegion(region.id)}
-                      className="inline-flex size-8 items-center justify-center text-red-500 transition hover:bg-red-50"
-                      aria-label={`Remove ${region.label}`}
+                      onClick={() => toggleParentOpen(group.parentId)}
+                      className="flex min-w-0 flex-1 items-center gap-2 text-left"
+                      aria-expanded={isExpanded}
                     >
-                      <Trash2 className="size-4" />
+                      <ChevronDown className={cn("size-4 shrink-0 text-stone-400 transition-transform", !isExpanded && "-rotate-90")} />
+                      <span className="truncate font-semibold text-stone-900">{parent.label}</span>
+                      <span className="inline-flex min-w-6 shrink-0 items-center justify-center rounded-full bg-stone-100 px-1.5 text-[11px] font-semibold text-stone-600">
+                        {children.length}
+                      </span>
                     </button>
+                    <div className="flex shrink-0 items-center gap-1">
+                      <button
+                        type="button"
+                        onClick={() => setAddingSubAreaFor(group.parentId)}
+                        className="inline-flex size-8 items-center justify-center text-stone-400 transition hover:bg-stone-100 hover:text-stone-900"
+                        aria-label={`Add sub-area under ${parent.label}`}
+                        title="Add sub-area"
+                      >
+                        <Plus className="size-4" />
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => openEditRegion(parent)}
+                        className="inline-flex size-8 items-center justify-center text-stone-400 transition hover:bg-stone-100 hover:text-stone-900"
+                        aria-label={`Edit ${parent.label}`}
+                      >
+                        <Pencil className="size-4" />
+                      </button>
+                    </div>
+                  </div>
+
+                  {isExpanded ? (
+                    <div className="border-t border-stone-100 bg-stone-50/40">
+                      {visibleChildren.length ? (
+                        visibleChildren.map((child) => renderRegionRow(child, { indent: true }))
+                      ) : (
+                        <p className="py-4 pl-8 pr-4 text-sm text-stone-400">No sub-areas yet.</p>
+                      )}
+                    </div>
                   ) : null}
                 </div>
+              );
+            })}
+
+            {visibleStandaloneRegions.length ? (
+              <div>
+                {parentSections.length ? (
+                  <p className="px-4 pt-3 text-xs font-semibold uppercase tracking-[0.12em] text-stone-400">Other locations</p>
+                ) : null}
+                {visibleStandaloneRegions.map((region) => renderRegionRow(region))}
               </div>
-            );
-          })
+            ) : null}
+          </>
         ) : (
           <div className="flex flex-col items-center justify-center gap-2 px-6 py-16 text-center">
             <SearchX className="size-8 text-stone-300" />
@@ -7513,20 +8652,21 @@ function AdditionalNeedsFilterPanel({
   onOptionsChange: (updater: (prev: AdditionalNeedOption[]) => AdditionalNeedOption[]) => void;
 }) {
   const [searchTerm, setSearchTerm] = useState("");
-  const [editing, setEditing] = useState<{ id: string; value: string } | null>(null);
+  const [editingOption, setEditingOption] = useState<{ id: string; label: string } | null>(null);
   const [isAdding, setIsAdding] = useState(false);
 
   const normalizedSearch = searchTerm.trim().toLowerCase();
   const visibleOptions = normalizedSearch ? options.filter((o) => o.label.toLowerCase().includes(normalizedSearch)) : options;
 
-  function commitEdit(id: string) {
-    const label = editing?.value.trim() ?? "";
-    if (label) onOptionsChange((prev) => prev.map((o) => (o.id === id ? { ...o, label } : o)));
-    setEditing(null);
+  function commitEdit(id: string, label: string) {
+    const trimmed = label.trim();
+    if (trimmed) onOptionsChange((prev) => prev.map((o) => (o.id === id ? { ...o, label: trimmed } : o)));
+    setEditingOption(null);
   }
 
   function removeOption(id: string) {
     onOptionsChange((prev) => prev.filter((o) => o.id !== id));
+    setEditingOption(null);
   }
 
   function addOption(label: string, rawId: string) {
@@ -7559,6 +8699,19 @@ function AdditionalNeedsFilterPanel({
         />
       ) : null}
 
+      {editingOption ? (
+        <EditFilterItemDrawer
+          title="Edit option"
+          label={editingOption.label}
+          onLabelChange={(value) => setEditingOption({ ...editingOption, label: value })}
+          id={editingOption.id}
+          onClose={() => setEditingOption(null)}
+          onSave={() => commitEdit(editingOption.id, editingOption.label)}
+          onDelete={() => removeOption(editingOption.id)}
+          deleteLabel={`Remove ${editingOption.label}`}
+        />
+      ) : null}
+
       <div className="relative">
         <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-stone-400" />
         <Input
@@ -7571,50 +8724,24 @@ function AdditionalNeedsFilterPanel({
 
       <div className="divide-y divide-stone-100 border border-stone-200 bg-white">
         {visibleOptions.length ? (
-          visibleOptions.map((option) => {
-            const isEditing = editing?.id === option.id;
-            return (
-              <div key={option.id} className="flex items-center gap-3 px-4 py-3">
-                <div className="min-w-0 flex-1">
-                  {isEditing ? (
-                    <input
-                      autoFocus
-                      type="text"
-                      value={editing.value}
-                      onChange={(e) => setEditing({ ...editing, value: e.target.value })}
-                      onBlur={() => commitEdit(option.id)}
-                      onKeyDown={(e) => {
-                        if (e.key === "Enter") commitEdit(option.id);
-                        if (e.key === "Escape") setEditing(null);
-                      }}
-                      className="h-7 w-full rounded-none border border-stone-400 bg-white px-2 text-sm font-medium focus:outline-none focus:ring-1 focus:ring-stone-500"
-                    />
-                  ) : (
-                    <p className="truncate text-sm font-medium text-stone-900">{option.label}</p>
-                  )}
-                  <p className="text-xs text-stone-400">{option.id}</p>
-                </div>
-                <div className="flex shrink-0 items-center gap-1">
-                  <button
-                    type="button"
-                    onClick={() => setEditing({ id: option.id, value: option.label })}
-                    className="inline-flex size-8 items-center justify-center text-stone-400 transition hover:bg-stone-100 hover:text-stone-900"
-                    aria-label={`Rename ${option.label}`}
-                  >
-                    <Pencil className="size-4" />
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => removeOption(option.id)}
-                    className="inline-flex size-8 items-center justify-center text-red-500 transition hover:bg-red-50"
-                    aria-label={`Remove ${option.label}`}
-                  >
-                    <Trash2 className="size-4" />
-                  </button>
-                </div>
+          visibleOptions.map((option) => (
+            <div key={option.id} className="flex items-center gap-3 px-4 py-3">
+              <div className="min-w-0 flex-1">
+                <p className="truncate text-sm font-medium text-stone-900">{option.label}</p>
+                <p className="text-xs text-stone-400">{option.id}</p>
               </div>
-            );
-          })
+              <div className="flex shrink-0 items-center gap-1">
+                <button
+                  type="button"
+                  onClick={() => setEditingOption({ id: option.id, label: option.label })}
+                  className="inline-flex size-8 items-center justify-center text-stone-400 transition hover:bg-stone-100 hover:text-stone-900"
+                  aria-label={`Edit ${option.label}`}
+                >
+                  <Pencil className="size-4" />
+                </button>
+              </div>
+            </div>
+          ))
         ) : (
           <div className="flex flex-col items-center justify-center gap-2 px-6 py-16 text-center">
             <SearchX className="size-8 text-stone-300" />
@@ -7626,23 +8753,76 @@ function AdditionalNeedsFilterPanel({
   );
 }
 
-function PriceRangeFilterPanel() {
-  const bands = priceBandOptions;
+function PriceRangeFilterPanel({
+  tiers,
+  onTiersChange,
+}: {
+  tiers: PriceBandTier[];
+  onTiersChange: (updater: (prev: PriceBandTier[]) => PriceBandTier[]) => void;
+}) {
+  function updateTier(index: number, updates: Partial<PriceBandTier>) {
+    onTiersChange((prev) => prev.map((tier, i) => (i === index ? { ...tier, ...updates } : tier)));
+  }
+
+  function removeTier(index: number) {
+    onTiersChange((prev) => prev.filter((_, i) => i !== index));
+  }
+
+  function addTier() {
+    onTiersChange((prev) => [...prev, { symbol: "£".repeat(prev.length + 1), label: "", maxAmount: null }]);
+  }
+
   return (
     <section className="space-y-5">
-      <div>
-        <h2 className="text-xl font-semibold tracking-tight text-stone-950">Price Range</h2>
-        <p className="mt-1 text-sm text-stone-500">{bands.length} tiers · fixed for the directory</p>
+      <div className="flex flex-wrap items-start justify-between gap-4">
+        <div>
+          <h2 className="text-xl font-semibold tracking-tight text-stone-950">Price Range</h2>
+          <p className="mt-1 text-sm text-stone-500">{tiers.length} tiers · shared with the automated pricing checker</p>
+        </div>
+        <Button type="button" variant="outline" onClick={addTier} className="h-10 rounded-none px-4 text-sm">
+          <Plus className="size-4" />
+          Add tier
+        </Button>
       </div>
+
       <div className="divide-y divide-stone-100 border border-stone-200 bg-white">
-        {bands.map((band) => (
-          <div key={band.value || "unset"} className="flex items-center gap-3 px-4 py-3">
+        {tiers.map((tier, index) => (
+          <div key={index} className="flex flex-wrap items-center gap-3 px-4 py-3">
             <PoundSterling className="size-4 shrink-0 text-stone-400" />
-            <p className="min-w-0 flex-1 text-sm font-medium text-stone-900">{band.label}</p>
+            <Input
+              value={tier.symbol}
+              onChange={(event) => updateTier(index, { symbol: event.target.value })}
+              placeholder="£"
+              className="h-9 w-20 rounded-none text-sm"
+            />
+            <Input
+              value={tier.label}
+              onChange={(event) => updateTier(index, { label: event.target.value })}
+              placeholder="e.g. £100-£200"
+              className="h-9 min-w-0 flex-1 rounded-none text-sm"
+            />
+            <div className="flex items-center gap-1.5">
+              <span className="text-xs text-stone-400">Up to £</span>
+              <Input
+                type="number"
+                value={tier.maxAmount ?? ""}
+                onChange={(event) => updateTier(index, { maxAmount: event.target.value === "" ? null : Number(event.target.value) })}
+                placeholder="No limit"
+                className="h-9 w-28 rounded-none text-sm"
+              />
+            </div>
+            <button
+              type="button"
+              onClick={() => removeTier(index)}
+              className="inline-flex size-8 shrink-0 items-center justify-center text-red-500 transition hover:bg-red-50"
+              aria-label={`Remove ${tier.label || tier.symbol}`}
+            >
+              <Trash2 className="size-4" />
+            </button>
           </div>
         ))}
       </div>
-      <p className="text-xs text-stone-400">Price tiers are defined in code and shared with the pricing check tools. Contact an engineer to change the bands themselves.</p>
+      <p className="text-xs text-stone-400">Tiers are matched in order by "Up to £" amount; leave it blank for the top, open-ended tier. Publish to update both the manual price pickers and the automated pricing checker.</p>
     </section>
   );
 }

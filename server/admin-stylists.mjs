@@ -8,7 +8,7 @@ function today() {
   return new Date().toISOString().split("T")[0];
 }
 
-import { categoryMap, normalizeServices, serviceAliases } from "./salon-index.mjs";
+import { categoryMap, normalizeServices, serviceAliases, setRegionParentGroupsCache } from "./salon-index.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -19,6 +19,8 @@ const keywordSearchesPath = path.resolve(__dirname, "../data/keyword-searches.js
 const filtersPath = path.resolve(__dirname, "../data/filters.json");
 const locationsPath = path.resolve(__dirname, "../data/locations.json");
 const additionalNeedsPath = path.resolve(__dirname, "../data/additional-needs.json");
+const customFilterTypesPath = path.resolve(__dirname, "../data/custom-filter-types.json");
+const priceBandsPath = path.resolve(__dirname, "../data/price-bands.json");
 const manualIndexPath = path.resolve(__dirname, "../data/manual-salons.json");
 const sessionCookieName = "rowk_admin_session";
 const sessionMaxAgeSeconds = 60 * 60 * 12;
@@ -39,8 +41,20 @@ const regionOptions = [
   { id: "essex", label: "Essex" },
   { id: "mobile", label: "Mobile / home service" },
 ];
-const londonParentAreaId = "all-london";
-const londonChildAreaIds = new Set(["central", "north", "north-west", "east", "south-east", "south-west", "west", "croydon"]);
+const defaultRegionParentGroups = [
+  { parentId: "all-london", childIds: ["central", "north", "north-west", "east", "south-east", "south-west", "west", "croydon"] },
+];
+let regionParentGroups = defaultRegionParentGroups;
+(async () => {
+  try {
+    const data = JSON.parse(await fs.readFile(locationsPath, "utf8"));
+    if (Array.isArray(data.parentGroups)) {
+      regionParentGroups = data.parentGroups;
+    }
+  } catch {
+    // keep defaults
+  }
+})();
 
 const bookingPlatformMatchers = [
   ["fresha.com", "Fresha"],
@@ -68,8 +82,29 @@ const browserUserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleW
 let nextInstagramProfileProbeAt = 0;
 let priceCheckBrowserPromise = null;
 const canonicalServices = [...new Set(Object.values(categoryMap).flat().filter(Boolean))].sort((left, right) => left.localeCompare(right));
-const priceBands = new Set(["£", "££", "£££", "££££"]);
 const priceConfidences = new Set(["high", "medium", "low", "manual", "unknown"]);
+
+const defaultPriceBandTiers = [
+  { symbol: "£", label: "under £100", maxAmount: 100 },
+  { symbol: "££", label: "£100-£200", maxAmount: 200 },
+  { symbol: "£££", label: "£200-£300", maxAmount: 300 },
+  { symbol: "££££", label: "over £300", maxAmount: null },
+];
+let priceBandTiers = defaultPriceBandTiers;
+(async () => {
+  try {
+    const data = JSON.parse(await fs.readFile(priceBandsPath, "utf8"));
+    if (Array.isArray(data.bands) && data.bands.length) {
+      priceBandTiers = data.bands;
+    }
+  } catch {
+    // keep defaults
+  }
+})();
+
+function priceBandSymbolSet() {
+  return new Set(priceBandTiers.map((tier) => tier.symbol));
+}
 const adminLoginRateLimit = createRateLimiter({
   windowMs: 15 * 60 * 1000,
   max: 8,
@@ -121,12 +156,14 @@ const serviceRuleMatchers = [
   ["Microlinks", [/\bmicro\s*links?\b/, /\bmicrolinks?\b/, /\bi\s*tips?\b/, /\bitips?\b/]],
   ["Clip ins (+ silk press)", [/\bclip\s*ins?\b/, /\bclip-in\b/]],
   ["Boho braids / goddess braids", [/\bboho\b/, /\bgoddess\b/]],
+  ["Boho bob", [/\bboho\b.*\bbob\b/, /\bbob\b.*\bboho\b/]],
   ["Knotless braids", [/\bknotless\b/]],
   ["Box braids", [/\bbox\b.*\bbraids?\b/]],
   ["Crochet", [/\bcrochet\b/]],
   ["Creative braids", [/\bpatewo\b/, /\bdolly\s+braids?\b/, /\bshuku\b/, /\bkoroba\s+braids?\b/, /\bcreative\b.*\bbraids?\b/]],
   ["Feed-in braids", [/\bfeed\s*in\b/, /\bfeed-in\b/, /\ball\s+back\b.*\b(braids?|cornrows?|feed\s*ins?)\b/, /\b(braids?|cornrows?|feed\s*ins?)\b.*\ball\s+back\b/, /\bbraids?\b.*\bgoing\s+back\b/, /\bgoing\s+back\b.*\bbraids?\b/, /\bcornrows?\b.*\b(extension|extensions|pre\s*pull(ed)?|braiding\s+hair)\b/, /\b(extension|extensions|pre\s*pull(ed)?|braiding\s+hair)\b.*\bcornrows?\b/]],
   ["French curl", [/\bfrench\s+curl\b/]],
+  ["French curl bob", [/\bfrench\s+curl\b.*\bbob\b/, /\bbob\b.*\bfrench\s+curl\b/]],
   ["Fulani / lemonade braids", [/\bfulani\b/, /\blemonade\b/, /\balicia\s+keys?\s+braids?\b/]],
   ["Miracle knots", [/\bmiracle\s+knots?\b/]],
   ["Microbraids / x-small braids", [/\bmicro\s*braids?\b/, /\bmicrobraids?\b/, /\bx\s*small\b.*\bbraids?\b/, /\bxs\b.*\bbraids?\b/]],
@@ -176,6 +213,7 @@ const serviceRuleMatchers = [
 const serviceNegationHints = {
   "Balayage": ["balayage"],
   "Bouncy blowout / round brush blow dry": ["bouncy blowout", "bouncy blow out", "bouncy blowdry", "bouncy blow dry", "bouncy blow-dry", "round brush blow dry", "round brush blowdry", "dry bouncy blow-dry"],
+  "Boho bob": ["boho bob", "boho bob braids"],
   "Boho braids / goddess braids": ["boho", "goddess"],
   "Box braids": ["box braids"],
   "Braid take-down": ["braid take down", "braid takedown", "braid removal", "remove braids"],
@@ -193,6 +231,7 @@ const serviceNegationHints = {
   "Feed-in braids": ["feed in", "feed in braids", "all back", "braids going back", "cornrows incl extensions", "cornrows including extensions", "cornrows with extensions", "20 cornrows"],
   "Flipover / versatile sew-in": ["flipover", "flip over", "versatile sew in", "versatile sewin", "versatile weave"],
   "French curl": ["french curl"],
+  "French curl bob": ["french curl bob"],
   "Frontal ponytail / bun": ["frontal ponytail", "frontal pony", "frontal bun"],
   "Frontal sew-in": ["frontal sew in", "frontal sewin", "frontal weave"],
   "Fulani / lemonade braids": ["fulani", "lemonade", "alicia keys braids"],
@@ -276,6 +315,7 @@ export function registerAdminStylistRoutes(app) {
     res.json({
       ok: true,
       regions: regionOptions,
+      regionParentGroups,
       services: canonicalServices,
       aliases: Object.keys(serviceAliases).sort((left, right) => left.localeCompare(right)),
       keywordSuggestionGroups: buildServiceKeywordSuggestionGroups(),
@@ -326,6 +366,8 @@ export function registerAdminStylistRoutes(app) {
       hijabiFriendly: update.hijabiFriendly === true,
       canBraidWithoutGel: update.canBraidWithoutGel === true,
       wheelchairAccessible: update.wheelchairAccessible === true,
+      kidsFriendly: update.kidsFriendly === true,
+      customFilters: sanitizeCustomFilters(update.customFilters),
       summary: update.summary || currentSalon.summary || "",
       evidence: update.evidence?.length ? update.evidence : currentSalon.evidence || [],
       ...pricingUpdate,
@@ -1036,7 +1078,7 @@ export function registerAdminStylistRoutes(app) {
   app.get("/api/admin/locations", requireAdmin, async (_req, res) => {
     try {
       const data = JSON.parse(await fs.readFile(locationsPath, "utf8"));
-      res.json({ ok: true, regions: data.regions, londonParentId: data.londonParentId, londonChildIds: data.londonChildIds, standaloneIds: data.standaloneIds });
+      res.json({ ok: true, regions: data.regions, parentGroups: data.parentGroups, standaloneIds: data.standaloneIds });
     } catch {
       res.status(500).json({ ok: false, error: "Failed to read locations" });
     }
@@ -1044,11 +1086,20 @@ export function registerAdminStylistRoutes(app) {
 
   app.post("/api/admin/locations", requireAdmin, async (req, res) => {
     try {
-      const { regions, londonParentId, londonChildIds, standaloneIds } = req.body;
-      if (!Array.isArray(regions)) return res.status(400).json({ ok: false, error: "Invalid payload" });
-      const data = { regions, londonParentId, londonChildIds, standaloneIds };
+      const { regions, parentGroups, standaloneIds } = req.body;
+      if (!Array.isArray(regions) || !Array.isArray(parentGroups)) return res.status(400).json({ ok: false, error: "Invalid payload" });
+      const sanitizedParentGroups = parentGroups
+        .map((group) => {
+          const parentId = cleanString(group?.parentId);
+          const childIds = Array.isArray(group?.childIds) ? group.childIds.map((id) => cleanString(id)).filter(Boolean) : [];
+          return parentId ? { parentId, childIds } : null;
+        })
+        .filter(Boolean);
+      const data = { regions, parentGroups: sanitizedParentGroups, standaloneIds };
       await fs.writeFile(locationsPath, `${JSON.stringify(data, null, 2)}\n`);
       await patchLocationsSourceFiles(data);
+      regionParentGroups = sanitizedParentGroups;
+      setRegionParentGroupsCache(sanitizedParentGroups);
       res.json({ ok: true });
     } catch (err) {
       console.error("Failed to save locations:", err);
@@ -1075,6 +1126,54 @@ export function registerAdminStylistRoutes(app) {
     } catch (err) {
       console.error("Failed to save additional needs:", err);
       res.status(500).json({ ok: false, error: "Failed to save additional needs" });
+    }
+  });
+
+  app.get("/api/admin/custom-filters", requireAdmin, async (_req, res) => {
+    try {
+      const data = JSON.parse(await fs.readFile(customFilterTypesPath, "utf8"));
+      res.json({ ok: true, filterTypes: Array.isArray(data.filterTypes) ? data.filterTypes : [] });
+    } catch {
+      res.status(500).json({ ok: false, error: "Failed to read custom filters" });
+    }
+  });
+
+  app.post("/api/admin/custom-filters", requireAdmin, async (req, res) => {
+    try {
+      const { filterTypes } = req.body;
+      if (!Array.isArray(filterTypes)) return res.status(400).json({ ok: false, error: "Invalid payload" });
+      const sanitized = filterTypes
+        .map((type) => sanitizeCustomFilterType(type))
+        .filter(Boolean);
+      await fs.writeFile(customFilterTypesPath, `${JSON.stringify({ filterTypes: sanitized }, null, 2)}\n`);
+      res.json({ ok: true, filterTypes: sanitized });
+    } catch (err) {
+      console.error("Failed to save custom filters:", err);
+      res.status(500).json({ ok: false, error: "Failed to save custom filters" });
+    }
+  });
+
+  app.get("/api/admin/price-bands", requireAdmin, async (_req, res) => {
+    try {
+      const data = JSON.parse(await fs.readFile(priceBandsPath, "utf8"));
+      res.json({ ok: true, bands: Array.isArray(data.bands) && data.bands.length ? data.bands : defaultPriceBandTiers });
+    } catch {
+      res.status(500).json({ ok: false, error: "Failed to read price bands" });
+    }
+  });
+
+  app.post("/api/admin/price-bands", requireAdmin, async (req, res) => {
+    try {
+      const { bands } = req.body;
+      if (!Array.isArray(bands) || !bands.length) return res.status(400).json({ ok: false, error: "Invalid payload" });
+      const sanitized = bands.map((band) => sanitizePriceBandTier(band)).filter(Boolean);
+      if (!sanitized.length) return res.status(400).json({ ok: false, error: "Invalid payload" });
+      await fs.writeFile(priceBandsPath, `${JSON.stringify({ bands: sanitized }, null, 2)}\n`);
+      priceBandTiers = sanitized;
+      res.json({ ok: true, bands: sanitized });
+    } catch (err) {
+      console.error("Failed to save price bands:", err);
+      res.status(500).json({ ok: false, error: "Failed to save price bands" });
     }
   });
 
@@ -1380,7 +1479,7 @@ async function patchFilterSourceFiles(categories) {
   await fs.writeFile(adminTsxPath, adminPatched);
 }
 
-async function patchLocationsSourceFiles({ regions, londonParentId, londonChildIds, standaloneIds }) {
+async function patchLocationsSourceFiles({ regions, standaloneIds }) {
   const srcRoot = path.resolve(__dirname, "../src");
   const appTsxPath = path.resolve(srcRoot, "App.tsx");
   const appSrc = await fs.readFile(appTsxPath, "utf8");
@@ -1393,15 +1492,10 @@ async function patchLocationsSourceFiles({ regions, londonParentId, londonChildI
   regionsLines.push("] as const;");
   const newRegions = regionsLines.join("\n");
 
-  // Patch nestedLondonRegionIds
-  const londonChildIdsSorted = (londonChildIds ?? []).filter((id) => id !== londonParentId);
-  const newNestedLondon = `const nestedLondonRegionIds = [${londonChildIdsSorted.map((id) => JSON.stringify(id)).join(", ")}] as const;`;
-
   // Patch standaloneRegionIds
   const newStandalone = `const standaloneRegionIds = [${(standaloneIds ?? []).map((id) => JSON.stringify(id)).join(", ")}] as const;`;
 
   let patched = appSrc.replace(/const regions = \[[\s\S]*?\] as const;/, newRegions);
-  patched = patched.replace(/const nestedLondonRegionIds = \[.*?\] as const;/, newNestedLondon);
   patched = patched.replace(/const standaloneRegionIds = \[.*?\] as const;/, newStandalone);
   await fs.writeFile(appTsxPath, patched);
 
@@ -1415,10 +1509,7 @@ async function patchLocationsSourceFiles({ regions, londonParentId, londonChildI
   regionOptionLines.push("];");
   const newRegionOptions = regionOptionLines.join("\n");
   const selfPatched = selfSrc.replace(/const regionOptions = \[[\s\S]*?\];/, newRegionOptions);
-
-  const newLondonChildIds = `const londonChildAreaIds = new Set([${londonChildIdsSorted.map((id) => JSON.stringify(id)).join(", ")}]);`;
-  const selfPatched2 = selfPatched.replace(/const londonChildAreaIds = new Set\(\[.*?\]\);/, newLondonChildIds);
-  await fs.writeFile(selfPath, selfPatched2);
+  await fs.writeFile(selfPath, selfPatched);
 }
 
 async function patchAdditionalNeedsSourceFiles(options) {
@@ -5809,16 +5900,12 @@ function priceBandForValue(value) {
   if (!Number.isFinite(value)) {
     return "";
   }
-  if (value < 100) {
-    return "£";
+  for (const tier of priceBandTiers) {
+    if (tier.maxAmount == null || value <= tier.maxAmount) {
+      return tier.symbol;
+    }
   }
-  if (value <= 200) {
-    return "££";
-  }
-  if (value <= 300) {
-    return "£££";
-  }
-  return "££££";
+  return priceBandTiers[priceBandTiers.length - 1]?.symbol || "";
 }
 
 function emptyPriceCheck(source = "") {
@@ -6491,6 +6578,8 @@ function sanitizeDraftUpdate(input) {
     hijabiFriendly: input.hijabiFriendly === true,
     canBraidWithoutGel: input.canBraidWithoutGel === true,
     wheelchairAccessible: input.wheelchairAccessible === true,
+    kidsFriendly: input.kidsFriendly === true,
+    customFilters: sanitizeCustomFilters(input.customFilters),
     priceBand: priceBand || servicePriceBand,
     servicePriceBand,
     packagePriceBand,
@@ -6636,7 +6725,7 @@ function pricingFieldsEqual(current = {}, next = {}) {
 
 function sanitizePriceBand(value) {
   const cleaned = cleanString(value);
-  return priceBands.has(cleaned) ? cleaned : "";
+  return priceBandSymbolSet().has(cleaned) ? cleaned : "";
 }
 
 function sanitizePriceComparisonMode(value) {
@@ -6688,6 +6777,8 @@ function publishedSalonToDraft(salon, fallbackDate = today()) {
     hijabiFriendly: salon.hijabiFriendly === true,
     canBraidWithoutGel: salon.canBraidWithoutGel === true,
     wheelchairAccessible: salon.wheelchairAccessible === true,
+    kidsFriendly: salon.kidsFriendly === true,
+    customFilters: sanitizeCustomFilters(salon.customFilters),
     priceBand: sanitizePriceBand(salon.priceBand),
     priceSource: sanitizePriceSource(salon.priceSource),
     priceEvidence: toArray(salon.priceEvidence),
@@ -6767,6 +6858,8 @@ function draftToSalon(draft, existingIds) {
     ...(draft.hijabiFriendly === true ? { hijabiFriendly: true } : {}),
     ...(draft.canBraidWithoutGel === true ? { canBraidWithoutGel: true } : {}),
     ...(draft.wheelchairAccessible === true ? { wheelchairAccessible: true } : {}),
+    ...(draft.kidsFriendly === true ? { kidsFriendly: true } : {}),
+    ...(Object.keys(sanitizeCustomFilters(draft.customFilters)).length ? { customFilters: sanitizeCustomFilters(draft.customFilters) } : {}),
     ...(sanitizePriceBand(draft.priceBand)
       ? {
           priceBand: sanitizePriceBand(draft.priceBand),
@@ -7262,6 +7355,55 @@ function cleanString(value) {
   return String(value || "").trim();
 }
 
+const customFilterBehaviors = new Set(["toggle-group", "tag-multiselect"]);
+
+function sanitizeCustomFilterType(type) {
+  const id = cleanString(type?.id);
+  const label = cleanString(type?.label);
+  if (!id || !label) return null;
+  const behavior = customFilterBehaviors.has(type?.behavior) ? type.behavior : "toggle-group";
+  const options = Array.isArray(type?.options)
+    ? type.options
+        .map((option) => {
+          const optionId = cleanString(option?.id);
+          const optionLabel = cleanString(option?.label);
+          return optionId && optionLabel ? { id: optionId, label: optionLabel } : null;
+        })
+        .filter(Boolean)
+    : [];
+  return {
+    id,
+    label,
+    description: cleanString(type?.description),
+    behavior,
+    options,
+  };
+}
+
+export function sanitizeCustomFilters(value) {
+  if (!value || typeof value !== "object" || Array.isArray(value)) return {};
+  const result = {};
+  for (const [filterTypeId, selected] of Object.entries(value)) {
+    const cleanedId = cleanString(filterTypeId);
+    if (!cleanedId || !Array.isArray(selected)) continue;
+    const values = [...new Set(selected.map((v) => cleanString(v)).filter(Boolean))];
+    if (values.length) result[cleanedId] = values;
+  }
+  return result;
+}
+
+function sanitizePriceBandTier(band) {
+  const symbol = cleanString(band?.symbol);
+  const label = cleanString(band?.label);
+  if (!symbol || !label) return null;
+  const maxAmount = band?.maxAmount === null || band?.maxAmount === undefined || band?.maxAmount === "" ? null : Number(band.maxAmount);
+  return {
+    symbol,
+    label,
+    maxAmount: Number.isFinite(maxAmount) ? maxAmount : null,
+  };
+}
+
 function inferNameFromUrl(url = "") {
   try {
     const parsed = new URL(url);
@@ -7276,18 +7418,23 @@ function areaLabelFor(areaId = "") {
   return regionOptions.find((region) => region.id === areaId)?.label || "";
 }
 
+function stripRedundantParentIds(areaIds) {
+  const areaIdSet = new Set(areaIds);
+  const redundantParentIds = new Set(
+    regionParentGroups.filter((group) => group.childIds.some((childId) => areaIdSet.has(childId))).map((group) => group.parentId),
+  );
+  return areaIds.filter((areaId) => !redundantParentIds.has(areaId));
+}
+
 function normalizeAreaIds(areaIds = []) {
   const validAreaIds = new Set(regionOptions.map((region) => region.id));
   const uniqueAreaIds = [...new Set(toArray(areaIds).map(cleanString).filter((areaId) => areaId && validAreaIds.has(areaId)))];
-  const hasSpecificLondonArea = uniqueAreaIds.some((areaId) => londonChildAreaIds.has(areaId));
-  return hasSpecificLondonArea ? uniqueAreaIds.filter((areaId) => areaId !== londonParentAreaId) : uniqueAreaIds;
+  return stripRedundantParentIds(uniqueAreaIds);
 }
 
 function areaLabelForIds(areaIds = []) {
   const normalizedAreaIds = normalizeAreaIds(areaIds);
-  const labelAreaIds = normalizedAreaIds.some((areaId) => londonChildAreaIds.has(areaId))
-    ? normalizedAreaIds.filter((areaId) => areaId !== londonParentAreaId)
-    : normalizedAreaIds;
+  const labelAreaIds = stripRedundantParentIds(normalizedAreaIds);
   return labelAreaIds.map(areaLabelFor).filter(Boolean).join(" / ");
 }
 

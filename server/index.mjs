@@ -4,7 +4,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import express from "express";
 import { readSalonIndex, searchSalons, setNoStoreHeaders } from "./salon-index.mjs";
-import { registerAdminStylistRoutes } from "./admin-stylists.mjs";
+import { registerAdminStylistRoutes, sanitizeCustomFilters } from "./admin-stylists.mjs";
 import { createRateLimiter, requestLogger } from "./security.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -48,16 +48,22 @@ app.get("/api/filters", async (_req, res) => {
     const filtersPath = path.resolve(__dirname, "../data/filters.json");
     const locationsPath = path.resolve(__dirname, "../data/locations.json");
     const additionalNeedsPath = path.resolve(__dirname, "../data/additional-needs.json");
-    const [filtersRaw, locationsRaw, additionalNeedsRaw] = await Promise.all([
+    const customFilterTypesPath = path.resolve(__dirname, "../data/custom-filter-types.json");
+    const priceBandsPath = path.resolve(__dirname, "../data/price-bands.json");
+    const [filtersRaw, locationsRaw, additionalNeedsRaw, customFilterTypesRaw, priceBandsRaw] = await Promise.all([
       fs.promises.readFile(filtersPath, "utf8").catch(() => null),
       fs.promises.readFile(locationsPath, "utf8").catch(() => null),
       fs.promises.readFile(additionalNeedsPath, "utf8").catch(() => null),
+      fs.promises.readFile(customFilterTypesPath, "utf8").catch(() => null),
+      fs.promises.readFile(priceBandsPath, "utf8").catch(() => null),
     ]);
     res.json({
       ok: true,
       categories: filtersRaw ? JSON.parse(filtersRaw).categories : null,
       locations: locationsRaw ? JSON.parse(locationsRaw) : null,
       additionalNeeds: additionalNeedsRaw ? JSON.parse(additionalNeedsRaw).options : null,
+      customFilterTypes: customFilterTypesRaw ? JSON.parse(customFilterTypesRaw).filterTypes : null,
+      priceBands: priceBandsRaw ? JSON.parse(priceBandsRaw).bands : null,
     });
   } catch {
     res.status(500).json({ ok: false });
@@ -81,8 +87,12 @@ app.post("/api/search", publicSearchRateLimit, async (req, res) => {
   const hijabiFriendly = req.body?.hijabiFriendly === true;
   const canBraidWithoutGel = req.body?.canBraidWithoutGel === true;
   const wheelchairAccessible = req.body?.wheelchairAccessible === true;
+  const kidsFriendly = req.body?.kidsFriendly === true;
+  const customFilters = sanitizeCustomFilters(req.body?.customFilters);
 
-  return res.json(await searchSalons({ categories, subcategories, regions, hijabiFriendly, canBraidWithoutGel, wheelchairAccessible }));
+  return res.json(
+    await searchSalons({ categories, subcategories, regions, hijabiFriendly, canBraidWithoutGel, wheelchairAccessible, kidsFriendly, customFilters }),
+  );
 });
 
 const server = http.createServer(app);

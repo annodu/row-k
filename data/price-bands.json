@@ -1,0 +1,24 @@
+{
+  "bands": [
+    {
+      "symbol": "£",
+      "label": "under £100",
+      "maxAmount": 100
+    },
+    {
+      "symbol": "££",
+      "label": "£100-£200",
+      "maxAmount": 200
+    },
+    {
+      "symbol": "£££",
+      "label": "£200-£300",
+      "maxAmount": 300
+    },
+    {
+      "symbol": "££££",
+      "label": "over £300",
+      "maxAmount": null
+    }
+  ]
+}

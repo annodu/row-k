@@ -6,9 +6,33 @@ import { setSecurityHeaders } from "./security.mjs";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const manualIndexPath = path.resolve(__dirname, "../data/manual-salons.json");
+const locationsPath = path.resolve(__dirname, "../data/locations.json");
+
+const defaultRegionParentGroups = [
+  { parentId: "all-london", childIds: ["central", "north", "north-west", "east", "south-east", "south-west", "west", "croydon"] },
+];
+let regionParentGroups = defaultRegionParentGroups;
+
+export function setRegionParentGroupsCache(groups) {
+  if (Array.isArray(groups)) {
+    regionParentGroups = groups;
+  }
+}
+
+(async () => {
+  try {
+    const raw = await fs.readFile(locationsPath, "utf8");
+    const data = JSON.parse(raw);
+    if (Array.isArray(data.parentGroups)) {
+      regionParentGroups = data.parentGroups;
+    }
+  } catch {
+    // keep default
+  }
+})();
 
 export const categoryMap = {
-  "braiding-services": ["Boho braids / goddess braids","Braid take-down","Box braids","Crochet","Creative braids","Feed-in braids","French curl","Fulani / lemonade braids","Half braids, half sew-in","Knotless braids","Miracle knots","Microbraids / x-small braids","Pre-parting","Stitch braids","Twists (with extensions)"],
+  "braiding-services": ["Boho braids / goddess braids","Braid take-down","Box braids","Crochet","Creative braids","Feed-in braids","French curl","Fulani / lemonade braids","Half braids, half sew-in","Knotless braids","Miracle knots","Microbraids / x-small braids","Pre-parting","Stitch braids","Twists (with extensions)","Boho bob","French curl bob"],
   "colour-services": ["Balayage","Full head colour","Highlights","Wig colouring / bundle colouring"],
   "bridal-services": ["Bridal"],
   "editorial-services": ["Editorial / Session styling"],
@@ -452,6 +476,8 @@ export async function searchSalons({
   hijabiFriendly = false,
   canBraidWithoutGel = false,
   wheelchairAccessible = false,
+  kidsFriendly = false,
+  customFilters = {},
 } = {}) {
   const index = await readSalonIndex();
   const normalizedRegions = Array.isArray(regions) && regions.length > 0 ? regions : ["all"];
@@ -467,7 +493,9 @@ export async function searchSalons({
         matchesServiceSelection(salon, normalizedCategories, normalizedSubcategories) &&
         matchesHijabiFriendly(salon, hijabiFriendly) &&
         matchesCanBraidWithoutGel(salon, canBraidWithoutGel) &&
-        matchesWheelchairAccessible(salon, wheelchairAccessible),
+        matchesWheelchairAccessible(salon, wheelchairAccessible) &&
+        matchesKidsFriendly(salon, kidsFriendly) &&
+        matchesCustomFilters(salon, customFilters),
     )
     .sort(compareRecentlyAdded);
 
@@ -500,7 +528,6 @@ async function readIndexFile(filePath, source) {
 
 function matchesRegion(salon, regions) {
   const areaIds = Array.isArray(salon.areaIds) ? salon.areaIds : salon.areaId ? [salon.areaId] : [];
-  const londonAreas = new Set(["all-london", "central", "north", "north-west", "east", "south-east", "south-west", "west", "croydon"]);
   const selectedRegions = Array.isArray(regions) && regions.length > 0 ? regions : ["all"];
 
   if (selectedRegions.includes("all")) {
@@ -508,8 +535,9 @@ function matchesRegion(salon, regions) {
   }
 
   return selectedRegions.some((region) => {
-    if (region === "london") {
-      return areaIds.some((areaId) => londonAreas.has(areaId));
+    const parentGroup = regionParentGroups.find((group) => group.parentId === region);
+    if (parentGroup) {
+      return areaIds.some((areaId) => areaId === region || parentGroup.childIds.includes(areaId));
     }
 
     if (region === "south-east" || region === "south-west") {
@@ -561,6 +589,35 @@ function matchesWheelchairAccessible(salon, wheelchairAccessible) {
   }
 
   return salon.wheelchairAccessible === true;
+}
+
+function matchesKidsFriendly(salon, kidsFriendly) {
+  if (!kidsFriendly) {
+    return true;
+  }
+
+  return salon.kidsFriendly === true;
+}
+
+function matchesCustomFilters(salon, customFilters) {
+  if (!customFilters || typeof customFilters !== "object") {
+    return true;
+  }
+
+  const selectedEntries = Object.entries(customFilters).filter(
+    ([, values]) => Array.isArray(values) && values.length > 0,
+  );
+
+  if (selectedEntries.length === 0) {
+    return true;
+  }
+
+  const salonCustomFilters = salon.customFilters && typeof salon.customFilters === "object" ? salon.customFilters : {};
+
+  return selectedEntries.every(([filterTypeId, values]) => {
+    const salonValues = Array.isArray(salonCustomFilters[filterTypeId]) ? salonCustomFilters[filterTypeId] : [];
+    return values.every((value) => salonValues.includes(value));
+  });
 }
 
 function compareSalons(left, right) {

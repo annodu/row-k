@@ -14,30 +14,32 @@ declare global {
 }
 
 const regions = [
-  { id: "all", label: "All locations" },
-  { id: "london", label: "London" },
-  { id: "central", label: "Central" },
-  { id: "north", label: "North" },
-  { id: "north-west", label: "North west" },
-  { id: "east", label: "East" },
-  { id: "south-east", label: "South east" },
-  { id: "south-west", label: "South west" },
-  { id: "west", label: "West" },
+  { id: "all-london", label: "London" },
+  { id: "central", label: "Central London" },
+  { id: "north", label: "North London" },
+  { id: "north-west", label: "North west London" },
+  { id: "east", label: "East London" },
+  { id: "south-east", label: "South east London" },
+  { id: "south-west", label: "South west London" },
+  { id: "west", label: "West London" },
   { id: "croydon", label: "Croydon" },
   { id: "kent", label: "Kent" },
   { id: "essex", label: "Essex" },
   { id: "mobile", label: "Mobile / home service" },
 ] as const;
 
-const nestedLondonRegionIds = ["central", "north", "north-west", "east", "south-east", "south-west", "west", "croydon"] as const;
+type RegionParentGroup = { id: string; label: string; childIds: string[] };
+const defaultRegionParentGroups: RegionParentGroup[] = [
+  { id: "all-london", label: "London", childIds: ["central", "north", "north-west", "east", "south-east", "south-west", "west", "croydon"] },
+];
 const standaloneRegionIds = ["kent", "essex", "mobile"] as const;
 
 const categoryMap = {
   all: { label: "All services", subcategories: ["all"] },
-  "braiding-services": { label: "Braids", subcategories: ["all","Boho braids / goddess braids","Braid take-down","Box braids","Crochet","Creative braids","Feed-in braids","French curl","Fulani / lemonade braids","Half braids, half sew-in","Knotless braids","Miracle knots","Microbraids / x-small braids","Pre-parting","Stitch braids","Twists (with extensions)"] },
+  "braiding-services": { label: "Braids", subcategories: ["all","Boho braids / goddess braids","Braid take-down","Box braids","Crochet","Creative braids","Feed-in braids","French curl","Fulani / lemonade braids","Half braids, half sew-in","Knotless braids","Miracle knots","Microbraids / x-small braids","Pre-parting","Stitch braids","Twists (with extensions)","Boho bob","French curl bob"] },
   "colour-services": { label: "Colour", subcategories: ["all","Balayage","Full head colour","Highlights","Wig colouring / bundle colouring"] },
-  "bridal-services": { label: "Bridal", subcategories: ["all"] },
-  "editorial-services": { label: "Editorial / Session styling", subcategories: ["all"] },
+  "bridal-services": { label: "Bridal", subcategories: ["all","Bridal"] },
+  "editorial-services": { label: "Editorial / Session styling", subcategories: ["all","Editorial / Session styling"] },
   "extension-services": { label: "Extensions", subcategories: ["all","Clip ins (+ silk press)","K-tips / invisible strands","LA weave / microlinks wefts / braidless sew in","I-tips / microlinks strands","Tape ins"] },
   "locs-services": { label: "Locs", subcategories: ["all","Butterfly locs","Faux locs","Microlocs / sisterlocs","Retwist","Starter locs"] },
   "sew-in-weave": { label: "Sew in / weave", subcategories: ["all","Closure sew-in / closure behind the hairline","Flipover / Versatile sew-in","Frontal sew-in","Hybrid sew in (tapes + sew in)","Pixie wig / weave install","Quick weave","Sew-in take-down","Tracks (+ silk press) / partial / invisible sew-in","Traditional sew-in / leave out"] },
@@ -49,7 +51,7 @@ const categoryMap = {
 } as const;
 
 const categoryServiceMap = {
-  "braiding-services": ["Boho braids / goddess braids","Braid take-down","Box braids","Crochet","Creative braids","Feed-in braids","French curl","Fulani / lemonade braids","Half braids, half sew-in","Knotless braids","Miracle knots","Microbraids / x-small braids","Pre-parting","Stitch braids","Twists (with extensions)"],
+  "braiding-services": ["Boho braids / goddess braids","Braid take-down","Box braids","Crochet","Creative braids","Feed-in braids","French curl","Fulani / lemonade braids","Half braids, half sew-in","Knotless braids","Miracle knots","Microbraids / x-small braids","Pre-parting","Stitch braids","Twists (with extensions)","Boho bob","French curl bob"],
   "colour-services": ["Balayage","Full head colour","Highlights","Wig colouring / bundle colouring"],
   "bridal-services": ["Bridal"],
   "editorial-services": ["Editorial / Session styling"],
@@ -76,8 +78,9 @@ type SortOption =
   | "most-services"
   | "price-asc"
   | "price-desc";
-type PriceBand = "£" | "££" | "£££" | "££££";
+type PriceBand = string;
 type PriceRangeFilterId = PriceBand | "not-listed";
+type PriceBandTier = { symbol: string; label: string; maxAmount: number | null };
 
 type SalonResult = {
   id: string;
@@ -96,6 +99,8 @@ type SalonResult = {
   hijabiFriendly?: boolean;
   canBraidWithoutGel?: boolean;
   wheelchairAccessible?: boolean;
+  kidsFriendly?: boolean;
+  customFilters?: Record<string, string[]>;
   priceBand?: PriceBand;
   servicePriceBand?: PriceBand;
   packagePriceBand?: PriceBand;
@@ -196,13 +201,17 @@ const sortOptions: { id: SortOption; label: string }[] = [
   { id: "most-specialised", label: "Most specialised" },
   { id: "most-services", label: "Most services" },
 ];
-const priceRangeOptions: { id: PriceRangeFilterId; label: string }[] = [
-  { id: "£", label: "£: under £100" },
-  { id: "££", label: "££: £100-£200" },
-  { id: "£££", label: "£££: £200-£300" },
-  { id: "££££", label: "££££: over £300" },
-  { id: "not-listed", label: "Price not listed" },
+const defaultPriceBandTiers: PriceBandTier[] = [
+  { symbol: "£", label: "under £100", maxAmount: 100 },
+  { symbol: "££", label: "£100-£200", maxAmount: 200 },
+  { symbol: "£££", label: "£200-£300", maxAmount: 300 },
+  { symbol: "££££", label: "over £300", maxAmount: null },
 ];
+let priceBandTiersCache: PriceBandTier[] = defaultPriceBandTiers;
+
+function getPriceRangeOptions(tiers: PriceBandTier[]): { id: PriceRangeFilterId; label: string }[] {
+  return [...tiers.map((tier) => ({ id: tier.symbol, label: `${tier.symbol}: ${tier.label}` })), { id: "not-listed", label: "Price not listed" }];
+}
 
 function compareSalonNames(left: SalonResult, right: SalonResult) {
   const leftStartsWithDigit = /^\d/.test(left.name);
@@ -219,20 +228,23 @@ function compareSalonNamesDesc(left: SalonResult, right: SalonResult) {
   return compareSalonNames(right, left);
 }
 
-const priceBandSortRank: Record<PriceBand, number> = {
-  "£": 1,
-  "££": 2,
-  "£££": 3,
-  "££££": 4,
-};
-
 function comparablePriceBand(result: SalonResult) {
   return result.servicePriceBand || result.priceBand;
 }
 
+function getResultCustomFilterLabels(result: SalonResult, filterTypes: CustomFilterType[]): string[] {
+  if (!result.customFilters) return [];
+  return filterTypes.flatMap((filterType) => {
+    const selectedIds = result.customFilters?.[filterType.id] ?? [];
+    return filterType.options.filter((option) => selectedIds.includes(option.id)).map((option) => option.label);
+  });
+}
+
 function priceBandRank(result: SalonResult) {
   const priceBand = comparablePriceBand(result);
-  return priceBand ? priceBandSortRank[priceBand] : Number.POSITIVE_INFINITY;
+  if (!priceBand) return Number.POSITIVE_INFINITY;
+  const index = priceBandTiersCache.findIndex((tier) => tier.symbol === priceBand);
+  return index === -1 ? Number.POSITIVE_INFINITY : index + 1;
 }
 
 function compareSalonPriceBandsAsc(left: SalonResult, right: SalonResult) {
@@ -636,9 +648,16 @@ function ServicesSummary({ services }: { services: string[] }) {
 type RuntimeCategory = { id: string; label: string; subcategories: string[] };
 type RuntimeFilterConfig = {
   categories: RuntimeCategory[];
-  nestedLondonRegionIds: string[];
+  parentGroups: RegionParentGroup[];
   standaloneRegionIds: string[];
   regions: { id: string; label: string }[];
+};
+type CustomFilterType = {
+  id: string;
+  label: string;
+  description: string;
+  behavior: "toggle-group" | "tag-multiselect";
+  options: { id: string; label: string }[];
 };
 
 const terminalServiceCategoryIds = new Set<string>(["bridal-services", "editorial-services"]);
@@ -651,15 +670,24 @@ function normalizeRuntimeCategory(category: RuntimeCategory): RuntimeCategory {
   return { ...category, subcategories: [] };
 }
 
-function buildRuntimeConfig(apiCategories: RuntimeCategory[], apiLocations: { regions: { id: string; label: string }[]; londonChildIds: string[]; standaloneIds: string[] } | null): RuntimeFilterConfig {
-  const normaliseRegionId = (id: string) => id === "all-london" ? "london" : id;
-  const normalisedRegions = apiLocations?.regions.map((r) => ({ ...r, id: normaliseRegionId(r.id) }));
-  const regionsWithAll = normalisedRegions
-    ? [{ id: "all", label: "All locations" }, ...normalisedRegions.filter((r) => r.id !== "all")]
+function buildRuntimeConfig(
+  apiCategories: RuntimeCategory[],
+  apiLocations: { regions: { id: string; label: string }[]; parentGroups: { parentId: string; childIds: string[] }[]; standaloneIds: string[] } | null,
+): RuntimeFilterConfig {
+  const regionsWithAll = apiLocations
+    ? [{ id: "all", label: "All locations" }, ...apiLocations.regions.filter((r) => r.id !== "all")]
     : null;
+  const parentGroups = apiLocations
+    ? apiLocations.parentGroups
+        .map((group) => {
+          const parent = apiLocations.regions.find((r) => r.id === group.parentId);
+          return parent ? { id: parent.id, label: parent.label, childIds: group.childIds } : null;
+        })
+        .filter((group): group is RegionParentGroup => Boolean(group))
+    : defaultRegionParentGroups;
   return {
     categories: [{ id: "all", label: "All services", subcategories: [] }, ...apiCategories.map(normalizeRuntimeCategory)],
-    nestedLondonRegionIds: apiLocations?.londonChildIds ?? [...nestedLondonRegionIds],
+    parentGroups,
     standaloneRegionIds: apiLocations?.standaloneIds ?? [...standaloneRegionIds],
     regions: regionsWithAll ?? regions.map((r) => ({ id: r.id, label: r.label })),
   };
@@ -672,7 +700,7 @@ const defaultFilterConfig: RuntimeFilterConfig = {
       .filter(([id]) => id !== "all")
       .map(([id, cat]) => normalizeRuntimeCategory({ id, label: cat.label, subcategories: cat.subcategories.filter((s) => s !== "all") as string[] })),
   ],
-  nestedLondonRegionIds: [...nestedLondonRegionIds],
+  parentGroups: defaultRegionParentGroups,
   standaloneRegionIds: [...standaloneRegionIds],
   regions: regions.map((r) => ({ id: r.id, label: r.label })),
 };
@@ -683,6 +711,12 @@ export default function App() {
   }
 
   const [filterConfig, setFilterConfig] = useState<RuntimeFilterConfig>(defaultFilterConfig);
+  const [priceBandTiers, setPriceBandTiers] = useState<PriceBandTier[]>(defaultPriceBandTiers);
+  const priceRangeOptions = getPriceRangeOptions(priceBandTiers);
+  const [customFilterTypes, setCustomFilterTypes] = useState<CustomFilterType[]>([]);
+  const [selectedCustomFilters, setSelectedCustomFilters] = useState<Record<string, string[]>>({});
+  const [draftSelectedCustomFilters, setDraftSelectedCustomFilters] = useState<Record<string, string[]>>({});
+  const [openCustomFilterTypeId, setOpenCustomFilterTypeId] = useState<string | null>(null);
   const [selectedRegions, setSelectedRegions] = useState<RegionId[]>(["all"]);
   const [selectedCategories, setSelectedCategories] = useState<ServiceCategoryId[]>([]);
   const [selectedSubcategories, setSelectedSubcategories] = useState<ServiceSubcategoryId[]>([]);
@@ -696,6 +730,7 @@ export default function App() {
   const [draftSelectedHijabiFriendly, setDraftSelectedHijabiFriendly] = useState(false);
   const [draftSelectedCanBraidWithoutGel, setDraftSelectedCanBraidWithoutGel] = useState(false);
   const [draftSelectedWheelchairAccessible, setDraftSelectedWheelchairAccessible] = useState(false);
+  const [draftSelectedKidsFriendly, setDraftSelectedKidsFriendly] = useState(false);
   const [draftSortOption, setDraftSortOption] = useState<SortOption>("alphabetical-asc");
   const [visibleResultCount, setVisibleResultCount] = useState(RESULTS_BATCH_SIZE);
   const [isSearching, setIsSearching] = useState(false);
@@ -705,6 +740,7 @@ export default function App() {
   const [selectedHijabiFriendly, setSelectedHijabiFriendly] = useState(false);
   const [selectedCanBraidWithoutGel, setSelectedCanBraidWithoutGel] = useState(false);
   const [selectedWheelchairAccessible, setSelectedWheelchairAccessible] = useState(false);
+  const [selectedKidsFriendly, setSelectedKidsFriendly] = useState(false);
   const [selectedPriceBands, setSelectedPriceBands] = useState<PriceRangeFilterId[]>([]);
   const [isDesktopViewport, setIsDesktopViewport] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
@@ -720,11 +756,13 @@ export default function App() {
   const currentSelectedHijabiFriendly = isMobileModalEditing ? draftSelectedHijabiFriendly : selectedHijabiFriendly;
   const currentSelectedCanBraidWithoutGel = isMobileModalEditing ? draftSelectedCanBraidWithoutGel : selectedCanBraidWithoutGel;
   const currentSelectedWheelchairAccessible = isMobileModalEditing ? draftSelectedWheelchairAccessible : selectedWheelchairAccessible;
+  const currentSelectedKidsFriendly = isMobileModalEditing ? draftSelectedKidsFriendly : selectedKidsFriendly;
+  const currentSelectedCustomFilters = isMobileModalEditing ? draftSelectedCustomFilters : selectedCustomFilters;
   const currentSortOption = isMobileModalEditing ? draftSortOption : sortOption;
 
   // Runtime filter data from API (falls back to hardcoded values on load)
   const runtimeCategories = filterConfig.categories;
-  const runtimeNestedLondonIds = filterConfig.nestedLondonRegionIds;
+  const runtimeParentGroups = filterConfig.parentGroups;
   const runtimeStandaloneIds = filterConfig.standaloneRegionIds;
   const runtimeRegions = filterConfig.regions;
   const runtimeSortedCategoryEntries: [string, { label: string; subcategories: string[] }][] = [
@@ -743,6 +781,8 @@ export default function App() {
     setDraftSelectedHijabiFriendly(selectedHijabiFriendly);
     setDraftSelectedCanBraidWithoutGel(selectedCanBraidWithoutGel);
     setDraftSelectedWheelchairAccessible(selectedWheelchairAccessible);
+    setDraftSelectedKidsFriendly(selectedKidsFriendly);
+    setDraftSelectedCustomFilters(selectedCustomFilters);
     setDraftSortOption(sortOption);
   }
 
@@ -765,6 +805,8 @@ export default function App() {
     setSelectedHijabiFriendly(draftSelectedHijabiFriendly);
     setSelectedCanBraidWithoutGel(draftSelectedCanBraidWithoutGel);
     setSelectedWheelchairAccessible(draftSelectedWheelchairAccessible);
+    setSelectedKidsFriendly(draftSelectedKidsFriendly);
+    setSelectedCustomFilters(draftSelectedCustomFilters);
     setSortOption(draftSortOption);
     setVisibleResultCount(RESULTS_BATCH_SIZE);
     setMobileFiltersOpen(false);
@@ -837,6 +879,24 @@ export default function App() {
     setSelectedWheelchairAccessible(updater);
   }
 
+  function updateKidsFriendly(updater: boolean | ((current: boolean) => boolean)) {
+    if (isMobileModalEditing) {
+      setDraftSelectedKidsFriendly(updater);
+      return;
+    }
+
+    setSelectedKidsFriendly(updater);
+  }
+
+  function updateCustomFilters(updater: Record<string, string[]> | ((current: Record<string, string[]>) => Record<string, string[]>)) {
+    if (isMobileModalEditing) {
+      setDraftSelectedCustomFilters(updater);
+      return;
+    }
+
+    setSelectedCustomFilters(updater);
+  }
+
   function updateSortOption(nextSort: SortOption) {
     if (isMobileModalEditing) {
       setDraftSortOption(nextSort);
@@ -854,6 +914,7 @@ export default function App() {
         setLocationsOpen(false);
         setPriceRangesOpen(false);
         setAdditionalNeedsOpen(false);
+        setOpenCustomFilterTypeId(null);
       }
       trackUmamiEvent("filter_section_toggled", {
         section: "services",
@@ -870,6 +931,7 @@ export default function App() {
         setServicesOpen(false);
         setPriceRangesOpen(false);
         setAdditionalNeedsOpen(false);
+        setOpenCustomFilterTypeId(null);
       }
       trackUmamiEvent("filter_section_toggled", {
         section: "locations",
@@ -886,6 +948,7 @@ export default function App() {
         setServicesOpen(false);
         setLocationsOpen(false);
         setAdditionalNeedsOpen(false);
+        setOpenCustomFilterTypeId(null);
       }
       trackUmamiEvent("filter_section_toggled", {
         section: "price_ranges",
@@ -902,6 +965,7 @@ export default function App() {
         setServicesOpen(false);
         setLocationsOpen(false);
         setPriceRangesOpen(false);
+        setOpenCustomFilterTypeId(null);
       }
       trackUmamiEvent("filter_section_toggled", {
         section: "additional_needs",
@@ -911,15 +975,33 @@ export default function App() {
     });
   }
 
+  function toggleCustomFilterTypeOpen(filterTypeId: string) {
+    setOpenCustomFilterTypeId((current) => {
+      const nextIsOpen = current !== filterTypeId;
+      if (nextIsOpen) {
+        setServicesOpen(false);
+        setLocationsOpen(false);
+        setPriceRangesOpen(false);
+        setAdditionalNeedsOpen(false);
+      }
+      trackUmamiEvent("filter_section_toggled", {
+        section: `custom_${filterTypeId}`,
+        expanded: nextIsOpen,
+      });
+      return nextIsOpen ? filterTypeId : null;
+    });
+  }
+
   function clearFilters() {
     trackUmamiEvent("filter_reset", {
       selected_services: currentSelectedCategories.length + currentSelectedSubcategories.length,
       selected_locations: currentSelectedRegions.filter((region) => region !== "all").length,
       selected_price_ranges: currentSelectedPriceBands.length,
-      selected_additional_needs: (currentSelectedHijabiFriendly ? 1 : 0) + (currentSelectedCanBraidWithoutGel ? 1 : 0) + (currentSelectedWheelchairAccessible ? 1 : 0),
+      selected_additional_needs: (currentSelectedHijabiFriendly ? 1 : 0) + (currentSelectedCanBraidWithoutGel ? 1 : 0) + (currentSelectedWheelchairAccessible ? 1 : 0) + (currentSelectedKidsFriendly ? 1 : 0),
       hijabi_friendly: currentSelectedHijabiFriendly,
       can_braid_without_gel: currentSelectedCanBraidWithoutGel,
       wheelchair_accessible: currentSelectedWheelchairAccessible,
+      kids_friendly: currentSelectedKidsFriendly,
     });
     updateCategories([]);
     updateSubcategories([]);
@@ -928,6 +1010,8 @@ export default function App() {
     updateHijabiFriendly(false);
     updateCanBraidWithoutGel(false);
     updateWheelchairAccessible(false);
+    updateKidsFriendly(false);
+    updateCustomFilters({});
     updateSortOption("alphabetical-asc");
   }
 
@@ -1034,6 +1118,32 @@ export default function App() {
     updateWheelchairAccessible((current) => !current);
   }
 
+  function toggleKidsFriendly() {
+    trackUmamiEvent("kids_friendly_toggle_changed", {
+      enabled: !currentSelectedKidsFriendly,
+    });
+    updateKidsFriendly((current) => !current);
+  }
+
+  function toggleCustomFilterOption(filterTypeId: string, optionId: string) {
+    const current = currentSelectedCustomFilters[filterTypeId] ?? [];
+    const nextSelected = !current.includes(optionId);
+    trackUmamiEvent("custom_filter_selected", {
+      filter_type: filterTypeId,
+      selection: optionId,
+      selected: nextSelected,
+    });
+
+    updateCustomFilters((currentFilters) => {
+      const currentValues = currentFilters[filterTypeId] ?? [];
+      const nextValues = currentValues.includes(optionId)
+        ? currentValues.filter((value) => value !== optionId)
+        : [...currentValues, optionId];
+      return { ...currentFilters, [filterTypeId]: nextValues };
+    });
+    setVisibleResultCount(RESULTS_BATCH_SIZE);
+  }
+
   function togglePriceBand(nextPriceBand: PriceRangeFilterId) {
     const nextSelected = !currentSelectedPriceBands.includes(nextPriceBand);
     trackUmamiEvent("price_filter_selected", {
@@ -1070,31 +1180,33 @@ export default function App() {
         return ["all"];
       }
 
-      if (nextRegion === "london") {
-        return currentRegions.includes("london") ? ["all"] : ["london"];
+      const parentGroup = runtimeParentGroups.find((group) => group.id === nextRegion);
+      if (parentGroup) {
+        return currentRegions.includes(nextRegion) ? ["all"] : [nextRegion];
       }
 
-      if (runtimeNestedLondonIds.includes(nextRegion)) {
-        const currentLondonSubregions = currentRegions.filter((regionId) =>
-          runtimeNestedLondonIds.includes(regionId),
-        );
-        const isActive = currentLondonSubregions.includes(nextRegion);
-        const nextLondonSubregions = isActive
-          ? currentLondonSubregions.filter((regionId) => regionId !== nextRegion)
-          : [...currentLondonSubregions, nextRegion];
+      const owningGroup = runtimeParentGroups.find((group) => group.childIds.includes(nextRegion));
+      if (owningGroup) {
+        const currentGroupChildren = currentRegions.filter((regionId) => owningGroup.childIds.includes(regionId));
+        const isActive = currentGroupChildren.includes(nextRegion);
+        const nextGroupChildren = isActive
+          ? currentGroupChildren.filter((regionId) => regionId !== nextRegion)
+          : [...currentGroupChildren, nextRegion];
 
-        if (nextLondonSubregions.length === 0) {
-          return ["london"];
+        if (nextGroupChildren.length === 0) {
+          return [owningGroup.id];
         }
 
-        const nonLondonRegions = currentRegions.filter(
-          (regionId) => regionId !== "all" && regionId !== "london" && !runtimeNestedLondonIds.includes(regionId),
+        const nonGroupRegions = currentRegions.filter(
+          (regionId) => regionId !== "all" && regionId !== owningGroup.id && !owningGroup.childIds.includes(regionId),
         );
 
-        return [...nonLondonRegions, ...nextLondonSubregions];
+        return [...nonGroupRegions, ...nextGroupChildren];
       }
 
-      const withoutUmbrellas = currentRegions.filter((regionId) => regionId !== "all" && regionId !== "london");
+      const withoutUmbrellas = currentRegions.filter(
+        (regionId) => regionId !== "all" && !runtimeParentGroups.some((group) => group.id === regionId),
+      );
       const isActive = withoutUmbrellas.includes(nextRegion);
       const nextRegions = isActive
         ? withoutUmbrellas.filter((regionId) => regionId !== nextRegion)
@@ -1132,6 +1244,8 @@ export default function App() {
           hijabiFriendly: selectedHijabiFriendly,
           canBraidWithoutGel: selectedCanBraidWithoutGel,
           wheelchairAccessible: selectedWheelchairAccessible,
+          kidsFriendly: selectedKidsFriendly,
+          customFilters: selectedCustomFilters,
         }),
       });
 
@@ -1161,6 +1275,7 @@ export default function App() {
         hijabi_friendly: selectedHijabiFriendly,
         no_gel: selectedCanBraidWithoutGel,
         wheelchair_accessible: selectedWheelchairAccessible,
+        kids_friendly: selectedKidsFriendly,
       });
 
       if (resultCount === 0) {
@@ -1170,6 +1285,7 @@ export default function App() {
           hijabi_friendly: selectedHijabiFriendly,
           no_gel: selectedCanBraidWithoutGel,
           wheelchair_accessible: selectedWheelchairAccessible,
+          kids_friendly: selectedKidsFriendly,
         });
       }
 
@@ -1188,7 +1304,7 @@ export default function App() {
 
   useEffect(() => {
     void handleSearch({ scroll: false });
-  }, [selectedCategories, selectedSubcategories, selectedRegions, selectedHijabiFriendly, selectedCanBraidWithoutGel, selectedWheelchairAccessible]);
+  }, [selectedCategories, selectedSubcategories, selectedRegions, selectedHijabiFriendly, selectedCanBraidWithoutGel, selectedWheelchairAccessible, selectedKidsFriendly, selectedCustomFilters]);
 
   useEffect(() => {
     fetch("/api/filters")
@@ -1196,6 +1312,13 @@ export default function App() {
       .then((data) => {
         if (data.ok && Array.isArray(data.categories)) {
           setFilterConfig(buildRuntimeConfig(data.categories, data.locations ?? null));
+        }
+        if (data.ok && Array.isArray(data.priceBands) && data.priceBands.length) {
+          priceBandTiersCache = data.priceBands;
+          setPriceBandTiers(data.priceBands);
+        }
+        if (data.ok && Array.isArray(data.customFilterTypes)) {
+          setCustomFilterTypes(data.customFilterTypes);
         }
       })
       .catch(() => {});
@@ -1263,6 +1386,8 @@ export default function App() {
     selectedHijabiFriendly ||
     selectedCanBraidWithoutGel ||
     selectedWheelchairAccessible ||
+    selectedKidsFriendly ||
+    Object.values(selectedCustomFilters).some((values) => values.length > 0) ||
     selectedRegions.length !== 1 ||
     selectedRegions[0] !== "all";
   const priceFilteredResults = selectedPriceBands.length
@@ -1330,7 +1455,10 @@ export default function App() {
   const selectedLocationCount = currentSelectedRegions.filter((regionId) => regionId !== "all").length;
   const selectedPriceRangeCount = currentSelectedPriceBands.length;
   const selectedAdditionalNeedsCount =
-    (currentSelectedHijabiFriendly ? 1 : 0) + (currentSelectedCanBraidWithoutGel ? 1 : 0) + (currentSelectedWheelchairAccessible ? 1 : 0);
+    (currentSelectedHijabiFriendly ? 1 : 0) + (currentSelectedCanBraidWithoutGel ? 1 : 0) + (currentSelectedWheelchairAccessible ? 1 : 0) + (currentSelectedKidsFriendly ? 1 : 0);
+  const selectedCustomFilterCounts = Object.fromEntries(
+    customFilterTypes.map((filterType) => [filterType.id, (currentSelectedCustomFilters[filterType.id] ?? []).length]),
+  );
 
   return (
     <div className="min-h-screen bg-stone-100 text-left dark:bg-stone-950">
@@ -1452,7 +1580,7 @@ export default function App() {
                                   </>
                                 ) : null}
                               </div>
-                              {(comparablePriceBand(result) || result.hijabiFriendly || result.canBraidWithoutGel || result.wheelchairAccessible) ? (
+                              {(comparablePriceBand(result) || result.hijabiFriendly || result.canBraidWithoutGel || result.wheelchairAccessible || result.kidsFriendly || getResultCustomFilterLabels(result, customFilterTypes).length > 0) ? (
                                 <div className="mt-1">
                                   <span className="inline-flex items-center rounded-none bg-stone-200 px-1.5 py-1 text-[11px] font-medium leading-none tracking-[0.03em] text-stone-700 dark:bg-stone-700 dark:text-stone-100">
                                     {[
@@ -1460,6 +1588,8 @@ export default function App() {
                                       result.wheelchairAccessible ? "wheelchair accessible" : null,
                                       result.hijabiFriendly ? "hijabi-friendly" : null,
                                       result.canBraidWithoutGel ? "can braid without gel" : null,
+                                      result.kidsFriendly ? "kids & teens styles" : null,
+                                      ...getResultCustomFilterLabels(result, customFilterTypes),
                                     ].filter(Boolean).join(" · ")}
                                   </span>
                                 </div>
@@ -1826,60 +1956,66 @@ export default function App() {
                   <div className="space-y-2 pt-3">
                     {(() => {
                       const allLocations = runtimeRegions.find((item) => item.id === "all");
-                      const london = runtimeRegions.find((item) => item.id === "london");
-                      const londonExpanded = isRegionSelected("london") || runtimeNestedLondonIds.some((regionId) => isRegionSelected(regionId));
                       const allLocationsLabelId = allLocations ? makeFilterLabelId("region", allLocations.id) : "";
-                      const londonLabelId = london ? makeFilterLabelId("region", london.id) : "";
 
-                      return allLocations && london ? (
-                        <>
+                      return allLocations ? (
+                        <div
+                          role="checkbox"
+                          tabIndex={0}
+                          aria-checked={isRegionSelected(allLocations.id)}
+                          aria-labelledby={allLocationsLabelId}
+                          className={cn(
+                            "flex w-full cursor-pointer items-start gap-3 rounded-none px-2 py-2 text-left transition-colors hover:bg-stone-200 active:bg-stone-200 dark:hover:bg-stone-900 dark:active:bg-stone-900",
+                          )}
+                          onClick={() => toggleRegion(allLocations.id)}
+                          onKeyDown={(event) => handleToggleKeyDown(event, () => toggleRegion(allLocations.id))}
+                        >
+                          <Checkbox
+                            checked={isRegionSelected(allLocations.id)}
+                            aria-hidden="true"
+                            tabIndex={-1}
+                            className="pointer-events-none mt-0.5"
+                          />
+                          <span id={allLocationsLabelId} className="translate-y-[1.5px] text-[15px] text-stone-800 dark:text-stone-200">
+                            {allLocations.label}
+                          </span>
+                        </div>
+                      ) : null;
+                    })()}
+
+                    {runtimeParentGroups.map((group) => {
+                      const parent = runtimeRegions.find((item) => item.id === group.id);
+                      if (!parent) return null;
+                      const groupExpanded = isRegionSelected(group.id) || group.childIds.some((regionId) => isRegionSelected(regionId));
+                      const parentLabelId = makeFilterLabelId("region", parent.id);
+
+                      return (
+                        <div key={group.id}>
                           <div
                             role="checkbox"
                             tabIndex={0}
-                            aria-checked={isRegionSelected(allLocations.id)}
-                            aria-labelledby={allLocationsLabelId}
+                            aria-checked={isRegionSelected(parent.id)}
+                            aria-labelledby={parentLabelId}
                             className={cn(
                               "flex w-full cursor-pointer items-start gap-3 rounded-none px-2 py-2 text-left transition-colors hover:bg-stone-200 active:bg-stone-200 dark:hover:bg-stone-900 dark:active:bg-stone-900",
                             )}
-                            onClick={() => toggleRegion(allLocations.id)}
-                            onKeyDown={(event) => handleToggleKeyDown(event, () => toggleRegion(allLocations.id))}
+                            onClick={() => toggleRegion(parent.id)}
+                            onKeyDown={(event) => handleToggleKeyDown(event, () => toggleRegion(parent.id))}
                           >
                             <Checkbox
-                              checked={isRegionSelected(allLocations.id)}
+                              checked={isRegionSelected(parent.id)}
                               aria-hidden="true"
                               tabIndex={-1}
                               className="pointer-events-none mt-0.5"
                             />
-                            <span id={allLocationsLabelId} className="translate-y-[1.5px] text-[15px] text-stone-800 dark:text-stone-200">
-                              {allLocations.label}
+                            <span id={parentLabelId} className="translate-y-[1.5px] text-[15px] text-stone-800 dark:text-stone-200">
+                              {parent.label}
                             </span>
                           </div>
 
-                          <div
-                            role="checkbox"
-                            tabIndex={0}
-                            aria-checked={isRegionSelected(london.id)}
-                            aria-labelledby={londonLabelId}
-                            className={cn(
-                              "flex w-full cursor-pointer items-start gap-3 rounded-none px-2 py-2 text-left transition-colors hover:bg-stone-200 active:bg-stone-200 dark:hover:bg-stone-900 dark:active:bg-stone-900",
-                            )}
-                            onClick={() => toggleRegion(london.id)}
-                            onKeyDown={(event) => handleToggleKeyDown(event, () => toggleRegion(london.id))}
-                          >
-                            <Checkbox
-                              checked={isRegionSelected(london.id)}
-                              aria-hidden="true"
-                              tabIndex={-1}
-                              className="pointer-events-none mt-0.5"
-                            />
-                            <span id={londonLabelId} className="translate-y-[1.5px] text-[15px] text-stone-800 dark:text-stone-200">
-                              {london.label}
-                            </span>
-                          </div>
-
-                          {londonExpanded ? (
+                          {groupExpanded ? (
                             <div className="space-y-2 pl-8">
-                              {runtimeNestedLondonIds.map((regionId) => {
+                              {group.childIds.map((regionId) => {
                                 const item = runtimeRegions.find((regionItem) => regionItem.id === regionId);
                                 if (!item) return null;
                                 const regionLabelId = makeFilterLabelId("region", item.id);
@@ -1911,9 +2047,9 @@ export default function App() {
                               })}
                             </div>
                           ) : null}
-                        </>
-                      ) : null;
-                    })()}
+                        </div>
+                      );
+                    })}
 
                     {runtimeStandaloneIds.map((regionId) => {
                       const item = runtimeRegions.find((regionItem) => regionItem.id === regionId);
@@ -2051,6 +2187,26 @@ export default function App() {
                     </p>
                     <button
                       type="button"
+                      aria-pressed={currentSelectedCanBraidWithoutGel}
+                      onClick={toggleCanBraidWithoutGel}
+                      className="flex w-full cursor-pointer items-start gap-3 rounded-none px-2 py-2 text-left transition-colors hover:bg-stone-200 active:bg-stone-200 dark:hover:bg-stone-900 dark:active:bg-stone-900"
+                    >
+                      <span
+                        aria-hidden="true"
+                        className={cn(
+                          "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-none border border-stone-500 bg-white text-white transition dark:border-stone-500 dark:bg-stone-900",
+                          currentSelectedCanBraidWithoutGel && "border-stone-950 bg-stone-950 dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950",
+                        )}
+                      >
+                        {currentSelectedCanBraidWithoutGel ? <Check className="size-3.5" /> : null}
+                      </span>
+                      <span className="translate-y-[1.5px] text-[15px] text-stone-800 dark:text-stone-200">
+                        Can braid without gel
+                      </span>
+                    </button>
+
+                    <button
+                      type="button"
                       aria-pressed={currentSelectedHijabiFriendly}
                       onClick={toggleHijabiFriendly}
                       className="flex w-full cursor-pointer items-start gap-3 rounded-none px-2 py-2 text-left transition-colors hover:bg-stone-200 active:bg-stone-200 dark:hover:bg-stone-900 dark:active:bg-stone-900"
@@ -2071,21 +2227,21 @@ export default function App() {
 
                     <button
                       type="button"
-                      aria-pressed={currentSelectedCanBraidWithoutGel}
-                      onClick={toggleCanBraidWithoutGel}
+                      aria-pressed={currentSelectedKidsFriendly}
+                      onClick={toggleKidsFriendly}
                       className="flex w-full cursor-pointer items-start gap-3 rounded-none px-2 py-2 text-left transition-colors hover:bg-stone-200 active:bg-stone-200 dark:hover:bg-stone-900 dark:active:bg-stone-900"
                     >
                       <span
                         aria-hidden="true"
                         className={cn(
                           "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-none border border-stone-500 bg-white text-white transition dark:border-stone-500 dark:bg-stone-900",
-                          currentSelectedCanBraidWithoutGel && "border-stone-950 bg-stone-950 dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950",
+                          currentSelectedKidsFriendly && "border-stone-950 bg-stone-950 dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950",
                         )}
                       >
-                        {currentSelectedCanBraidWithoutGel ? <Check className="size-3.5" /> : null}
+                        {currentSelectedKidsFriendly ? <Check className="size-3.5" /> : null}
                       </span>
                       <span className="translate-y-[1.5px] text-[15px] text-stone-800 dark:text-stone-200">
-                        Can braid without gel
+                        Kids & teens styles
                       </span>
                     </button>
 
@@ -2111,6 +2267,98 @@ export default function App() {
                   </div>
                 </AnimatedCollapsible>
               </div>
+
+              {customFilterTypes.map((filterType) => {
+                const isOpen = openCustomFilterTypeId === filterType.id;
+                const selectedCount = selectedCustomFilterCounts[filterType.id] ?? 0;
+                const selectedValues = currentSelectedCustomFilters[filterType.id] ?? [];
+                return (
+                  <div key={filterType.id}>
+                    <div
+                      className={cn(
+                        "bg-stone-100 pb-2 dark:bg-stone-950 lg:sticky lg:top-0 lg:z-20",
+                        isOpen && "border-b border-stone-300 dark:border-stone-800",
+                      )}
+                    >
+                      <button
+                        type="button"
+                        aria-expanded={isOpen}
+                        onClick={() => toggleCustomFilterTypeOpen(filterType.id)}
+                        className="group flex min-h-11 w-full items-center justify-between rounded-none bg-transparent px-0 py-2 text-left"
+                      >
+                        <span className="text-[15px] font-medium text-stone-950 transition-colors group-hover:text-stone-500 group-active:text-stone-500 dark:text-stone-100 dark:group-hover:text-stone-500 dark:group-active:text-stone-500">
+                          {filterType.label}
+                        </span>
+                        <span className="flex items-center gap-2">
+                          {selectedCount > 0 ? (
+                            <span className="inline-flex min-h-5 min-w-5 items-center justify-center rounded-full bg-stone-950 px-2 text-[11px] font-bold leading-none text-stone-100 transition-colors group-hover:bg-stone-500 dark:bg-stone-100 dark:text-stone-950 dark:group-hover:bg-stone-500">
+                              {selectedCount}
+                            </span>
+                          ) : null}
+                          <ChevronDown
+                            className={cn("size-4 text-stone-700 transition-colors transition-transform group-hover:text-stone-500 group-active:text-stone-500 dark:text-stone-200 dark:group-hover:text-stone-400 dark:group-active:text-stone-400", isOpen && "rotate-180")}
+                            aria-hidden="true"
+                          />
+                        </span>
+                      </button>
+                    </div>
+
+                    <AnimatedCollapsible open={isOpen}>
+                      {filterType.behavior === "toggle-group" ? (
+                        <div className="space-y-2 pt-3">
+                          {filterType.options.map((option) => {
+                            const isActive = selectedValues.includes(option.id);
+                            return (
+                              <button
+                                type="button"
+                                aria-pressed={isActive}
+                                key={option.id}
+                                onClick={() => toggleCustomFilterOption(filterType.id, option.id)}
+                                className="flex w-full cursor-pointer items-start gap-3 rounded-none px-2 py-2 text-left transition-colors hover:bg-stone-200 active:bg-stone-200 dark:hover:bg-stone-900 dark:active:bg-stone-900"
+                              >
+                                <span
+                                  aria-hidden="true"
+                                  className={cn(
+                                    "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-none border border-stone-500 bg-white text-white transition dark:border-stone-500 dark:bg-stone-900",
+                                    isActive && "border-stone-950 bg-stone-950 dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950",
+                                  )}
+                                >
+                                  {isActive ? <Check className="size-3.5" /> : null}
+                                </span>
+                                <span className="translate-y-[1.5px] text-[15px] text-stone-800 dark:text-stone-200">
+                                  {option.label}
+                                </span>
+                              </button>
+                            );
+                          })}
+                        </div>
+                      ) : (
+                        <div className="flex flex-wrap gap-2 pt-3">
+                          {filterType.options.map((option) => {
+                            const isActive = selectedValues.includes(option.id);
+                            return (
+                              <button
+                                type="button"
+                                aria-pressed={isActive}
+                                key={option.id}
+                                onClick={() => toggleCustomFilterOption(filterType.id, option.id)}
+                                className={cn(
+                                  "rounded-full border px-3 py-1.5 text-[13px] font-medium transition-colors",
+                                  isActive
+                                    ? "border-stone-950 bg-stone-950 text-stone-100 dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950"
+                                    : "border-stone-400 bg-white text-stone-700 hover:bg-stone-200 dark:border-stone-600 dark:bg-stone-900 dark:text-stone-200 dark:hover:bg-stone-800",
+                                )}
+                              >
+                                {option.label}
+                              </button>
+                            );
+                          })}
+                        </div>
+                      )}
+                    </AnimatedCollapsible>
+                  </div>
+                );
+              })}
           </section>
           {mobileFiltersOpen ? (
             <div className="shrink-0 border-t border-stone-300 bg-stone-100 px-4 pb-[max(1rem,env(safe-area-inset-bottom))] pt-3 dark:border-stone-800 dark:bg-stone-950 sm:px-6 lg:hidden">

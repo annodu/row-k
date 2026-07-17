@@ -1,12 +1,16 @@
 {
   "options": [
     {
+      "id": "canBraidWithoutGel",
+      "label": "Can braid without gel"
+    },
+    {
       "id": "hijabiFriendly",
       "label": "Hijabi-friendly"
     },
     {
-      "id": "canBraidWithoutGel",
-      "label": "Can braid without gel"
+      "id": "kidsFriendly",
+      "label": "Kids & teens styles"
     },
     {
       "id": "wheelchair-access",
