@@ -1,10 +1,132 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-07-16",
-    "count": 2
+    "updatedAt": "2026-07-15",
+    "count": 6
   },
   "drafts": [
+    {
+      "id": "new-stylist-mrmaco7s",
+      "status": "needs_review",
+      "name": "New stylist",
+      "areaId": "",
+      "areaIds": [],
+      "areaLabel": "",
+      "neighbourhood": "",
+      "postcode": "",
+      "bookingPlatform": "",
+      "bookingUrl": "",
+      "instagramUrl": "",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Manual search",
+      "services": [],
+      "rawServices": [],
+      "summary": "Admin draft created from stylist intake.",
+      "confidence": 0.35,
+      "warnings": [
+        "No booking link identified yet.",
+        "No services matched yet."
+      ],
+      "evidence": [
+        "Created through ROW K admin intake."
+      ],
+      "source": "admin-draft",
+      "createdAt": "2026-07-15",
+      "updatedAt": "2026-07-15",
+      "lastCheckedAt": "2026-07-15"
+    },
+    {
+      "id": "new-stylist-mri7tgy9",
+      "status": "needs_review",
+      "name": "New stylist",
+      "areaId": "",
+      "areaIds": [],
+      "areaLabel": "",
+      "neighbourhood": "",
+      "postcode": "",
+      "bookingPlatform": "",
+      "bookingUrl": "",
+      "instagramUrl": "",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Manual search",
+      "services": [],
+      "rawServices": [],
+      "summary": "Admin draft created from stylist intake.",
+      "confidence": 0.35,
+      "warnings": [
+        "No booking link identified yet.",
+        "No services matched yet."
+      ],
+      "evidence": [
+        "Created through ROW K admin intake."
+      ],
+      "source": "admin-draft",
+      "createdAt": "2026-07-12",
+      "updatedAt": "2026-07-12",
+      "lastCheckedAt": "2026-07-12"
+    },
+    {
+      "id": "evolutionhairandbeautyw7-mqttpelh",
+      "status": "needs_review",
+      "name": "Evolutionhairandbeautyw7",
+      "areaId": "",
+      "areaIds": [],
+      "areaLabel": "",
+      "neighbourhood": "",
+      "postcode": "",
+      "bookingPlatform": "",
+      "bookingUrl": "",
+      "instagramUrl": "https://www.instagram.com/evolutionhairandbeautyw7/",
+      "tiktokUrl": "",
+      "addedVia": "Manual",
+      "services": [],
+      "rawServices": [],
+      "summary": "Admin draft created from stylist intake.",
+      "confidence": 0.35,
+      "warnings": [
+        "No booking link identified yet.",
+        "No services matched yet."
+      ],
+      "evidence": [
+        "Submitted link: https://www.instagram.com/evolutionhairandbeautyw7/"
+      ],
+      "source": "admin-draft",
+      "createdAt": "2026-06-25",
+      "updatedAt": "2026-06-25",
+      "lastCheckedAt": "2026-06-25"
+    },
+    {
+      "id": "claudiaq-qualitytimehair-mqttozv2",
+      "status": "needs_review",
+      "name": "Claudiaq Qualitytimehair",
+      "areaId": "",
+      "areaIds": [],
+      "areaLabel": "",
+      "neighbourhood": "",
+      "postcode": "",
+      "bookingPlatform": "",
+      "bookingUrl": "",
+      "instagramUrl": "https://www.instagram.com/claudiaq_qualitytimehair/",
+      "tiktokUrl": "",
+      "addedVia": "Manual",
+      "services": [],
+      "rawServices": [],
+      "summary": "Admin draft created from stylist intake.",
+      "confidence": 0.35,
+      "warnings": [
+        "No booking link identified yet.",
+        "No services matched yet."
+      ],
+      "evidence": [
+        "Submitted link: https://www.instagram.com/claudiaq_qualitytimehair/"
+      ],
+      "source": "admin-draft",
+      "createdAt": "2026-06-25",
+      "updatedAt": "2026-06-25",
+      "lastCheckedAt": "2026-06-25"
+    },
     {
       "id": "hannurco",
       "status": "ready_to_approve",
