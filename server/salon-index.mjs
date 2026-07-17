@@ -31,8 +31,10 @@ export function setRegionParentGroupsCache(groups) {
   }
 })();
 
-export const categoryMap = {
-  "braiding-services": ["Boho braids / goddess braids","Braid take-down","Box braids","Crochet","Creative braids","Feed-in braids","French curl","Fulani / lemonade braids","Half braids, half sew-in","Knotless braids","Miracle knots","Microbraids / x-small braids","Pre-parting","Stitch braids","Twists (with extensions)","Boho bob","French curl bob"],
+const filtersPath = path.resolve(__dirname, "../data/filters.json");
+
+const defaultCategoryMap = {
+  "braiding-services": ["Boho braids / goddess braids","Braid take-down","Box braids","Crochet","Creative braids","Feed-in braids","French curl","Fulani / lemonade braids","Half braids, half sew-in","Knotless braids","Miracle knots","Microbraids / x-small braids","Pre-parting","Stitch braids","Twists (with extensions)","Boho braids bob","French curl bob"],
   "colour-services": ["Balayage","Full head colour","Highlights","Wig colouring / bundle colouring"],
   "bridal-services": ["Bridal"],
   "editorial-services": ["Editorial / Session styling"],
@@ -45,8 +47,32 @@ export const categoryMap = {
   "natural-hair-scalp-health": ["Healthy hair plans & consultations","Natural hair coaches / educators","Trichology / scalp analysis"],
   "wig-services": ["Custom wig","Pixie wig / weave install","U-part wig install","Wig colouring / bundle colouring","Wig install (frontal / closure)","Wig blowdry"],
 };
+export let categoryMap = defaultCategoryMap;
+
+export function setCategoryMapCache(categories) {
+  if (!Array.isArray(categories)) return;
+  const next = {};
+  for (const cat of categories) {
+    const services = Array.isArray(cat?.subcategories) && cat.subcategories.length ? cat.subcategories : [cat?.label].filter(Boolean);
+    if (cat?.id) next[cat.id] = services;
+  }
+  categoryMap = next;
+}
+
+(async () => {
+  try {
+    const raw = await fs.readFile(filtersPath, "utf8");
+    const data = JSON.parse(raw);
+    if (Array.isArray(data.categories) && data.categories.length) {
+      setCategoryMapCache(data.categories);
+    }
+  } catch {
+    // keep default
+  }
+})();
 
 export const serviceAliases = {
+  "Boho bob": "Boho braids bob",
   "Closure sew-in": "Closure sew-in / closure behind the hairline",
   "Curly cut / wash & go": "Curly cut / wash & go / diffuse",
   "Custom made frontal unit": "Custom wig",

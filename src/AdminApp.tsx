@@ -712,7 +712,7 @@ const emptyForm: DraftForm = {
 };
 
 const serviceGroups = [
-  { label: "Braids", services: ["Boho braids / goddess braids","Braid take-down","Box braids","Crochet","Creative braids","Feed-in braids","French curl","Fulani / lemonade braids","Half braids, half sew-in","Knotless braids","Miracle knots","Microbraids / x-small braids","Pre-parting","Stitch braids","Twists (with extensions)","Boho bob","French curl bob"] },
+  { label: "Braids", services: ["Boho braids / goddess braids","Braid take-down","Box braids","Crochet","Creative braids","Feed-in braids","French curl","Fulani / lemonade braids","Half braids, half sew-in","Knotless braids","Miracle knots","Microbraids / x-small braids","Pre-parting","Stitch braids","Twists (with extensions)","Boho braids bob","French curl bob"] },
   { label: "Colour", services: ["Balayage","Full head colour","Highlights","Wig colouring / bundle colouring"] },
   { label: "Bridal", services: ["Bridal"] },
   { label: "Editorial / Session styling", services: ["Editorial / Session styling"] },
@@ -5601,7 +5601,7 @@ function KeywordSearchPage({
         <StylistStatCell label="Total" value={progress.total} />
       </div>
 
-      <div className="rounded-none border border-stone-300 bg-white px-4 py-2.5 shadow-sm">
+      <div className="rounded-none border border-stone-300 bg-white px-4 py-2.5">
         <form onSubmit={handleSubmit} className="flex items-center gap-3">
           <Search className="size-4 shrink-0 text-stone-400" aria-hidden="true" />
           <div className="flex min-h-8 flex-1 flex-wrap items-center gap-2">

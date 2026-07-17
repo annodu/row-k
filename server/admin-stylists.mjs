@@ -8,7 +8,7 @@ function today() {
   return new Date().toISOString().split("T")[0];
 }
 
-import { categoryMap, normalizeServices, serviceAliases, setRegionParentGroupsCache } from "./salon-index.mjs";
+import { categoryMap, normalizeServices, serviceAliases, setCategoryMapCache, setRegionParentGroupsCache } from "./salon-index.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -25,7 +25,18 @@ const manualIndexPath = path.resolve(__dirname, "../data/manual-salons.json");
 const sessionCookieName = "rowk_admin_session";
 const sessionMaxAgeSeconds = 60 * 60 * 12;
 const repositoryRoot = path.resolve(__dirname, "..");
-const githubBackedJsonPaths = new Set(["data/manual-salons.json", "data/stylist-drafts.json", "data/discovery-suggestions.json", "data/freshness-checks.json", "data/keyword-searches.json"]);
+const githubBackedJsonPaths = new Set([
+  "data/manual-salons.json",
+  "data/stylist-drafts.json",
+  "data/discovery-suggestions.json",
+  "data/freshness-checks.json",
+  "data/keyword-searches.json",
+  "data/filters.json",
+  "data/locations.json",
+  "data/additional-needs.json",
+  "data/custom-filter-types.json",
+  "data/price-bands.json",
+]);
 
 const regionOptions = [
   { id: "all-london", label: "London" },
@@ -156,7 +167,7 @@ const serviceRuleMatchers = [
   ["Microlinks", [/\bmicro\s*links?\b/, /\bmicrolinks?\b/, /\bi\s*tips?\b/, /\bitips?\b/]],
   ["Clip ins (+ silk press)", [/\bclip\s*ins?\b/, /\bclip-in\b/]],
   ["Boho braids / goddess braids", [/\bboho\b/, /\bgoddess\b/]],
-  ["Boho bob", [/\bboho\b.*\bbob\b/, /\bbob\b.*\bboho\b/]],
+  ["Boho braids bob", [/\bboho\b.*\bbob\b/, /\bbob\b.*\bboho\b/]],
   ["Knotless braids", [/\bknotless\b/]],
   ["Box braids", [/\bbox\b.*\bbraids?\b/]],
   ["Crochet", [/\bcrochet\b/]],
@@ -213,7 +224,7 @@ const serviceRuleMatchers = [
 const serviceNegationHints = {
   "Balayage": ["balayage"],
   "Bouncy blowout / round brush blow dry": ["bouncy blowout", "bouncy blow out", "bouncy blowdry", "bouncy blow dry", "bouncy blow-dry", "round brush blow dry", "round brush blowdry", "dry bouncy blow-dry"],
-  "Boho bob": ["boho bob", "boho bob braids"],
+  "Boho braids bob": ["boho bob", "boho bob braids", "boho braids bob"],
   "Boho braids / goddess braids": ["boho", "goddess"],
   "Box braids": ["box braids"],
   "Braid take-down": ["braid take down", "braid takedown", "braid removal", "remove braids"],
@@ -1050,7 +1061,7 @@ export function registerAdminStylistRoutes(app) {
 
   app.get("/api/admin/filters", requireAdmin, async (_req, res) => {
     try {
-      const data = JSON.parse(await fs.readFile(filtersPath, "utf8"));
+      const data = await readJson(filtersPath, { categories: [] });
       res.json({ ok: true, categories: data.categories });
     } catch {
       res.status(500).json({ ok: false, error: "Failed to read filters" });
@@ -1063,8 +1074,11 @@ export function registerAdminStylistRoutes(app) {
       if (!Array.isArray(categories)) {
         return res.status(400).json({ ok: false, error: "Invalid payload" });
       }
-      await fs.writeFile(filtersPath, `${JSON.stringify({ categories }, null, 2)}\n`);
-      await patchFilterSourceFiles(categories);
+      await writeJson(filtersPath, { categories });
+      if (!isHostedRuntime()) {
+        await patchFilterSourceFiles(categories);
+      }
+      setCategoryMapCache(categories);
       if (Array.isArray(renames) && renames.length) {
         await migrateRenamedServices(renames);
       }
@@ -1077,7 +1091,7 @@ export function registerAdminStylistRoutes(app) {
 
   app.get("/api/admin/locations", requireAdmin, async (_req, res) => {
     try {
-      const data = JSON.parse(await fs.readFile(locationsPath, "utf8"));
+      const data = await readJson(locationsPath, { regions: regionOptions, parentGroups: defaultRegionParentGroups, standaloneIds: [] });
       res.json({ ok: true, regions: data.regions, parentGroups: data.parentGroups, standaloneIds: data.standaloneIds });
     } catch {
       res.status(500).json({ ok: false, error: "Failed to read locations" });
@@ -1096,8 +1110,10 @@ export function registerAdminStylistRoutes(app) {
         })
         .filter(Boolean);
       const data = { regions, parentGroups: sanitizedParentGroups, standaloneIds };
-      await fs.writeFile(locationsPath, `${JSON.stringify(data, null, 2)}\n`);
-      await patchLocationsSourceFiles(data);
+      await writeJson(locationsPath, data);
+      if (!isHostedRuntime()) {
+        await patchLocationsSourceFiles(data);
+      }
       regionParentGroups = sanitizedParentGroups;
       setRegionParentGroupsCache(sanitizedParentGroups);
       res.json({ ok: true });
@@ -1109,7 +1125,7 @@ export function registerAdminStylistRoutes(app) {
 
   app.get("/api/admin/additional-needs", requireAdmin, async (_req, res) => {
     try {
-      const data = JSON.parse(await fs.readFile(additionalNeedsPath, "utf8"));
+      const data = await readJson(additionalNeedsPath, { options: [] });
       res.json({ ok: true, options: data.options });
     } catch {
       res.status(500).json({ ok: false, error: "Failed to read additional needs" });
@@ -1120,7 +1136,7 @@ export function registerAdminStylistRoutes(app) {
     try {
       const { options } = req.body;
       if (!Array.isArray(options)) return res.status(400).json({ ok: false, error: "Invalid payload" });
-      await fs.writeFile(additionalNeedsPath, `${JSON.stringify({ options }, null, 2)}\n`);
+      await writeJson(additionalNeedsPath, { options });
       await patchAdditionalNeedsSourceFiles(options);
       res.json({ ok: true });
     } catch (err) {
@@ -1131,7 +1147,7 @@ export function registerAdminStylistRoutes(app) {
 
   app.get("/api/admin/custom-filters", requireAdmin, async (_req, res) => {
     try {
-      const data = JSON.parse(await fs.readFile(customFilterTypesPath, "utf8"));
+      const data = await readJson(customFilterTypesPath, { filterTypes: [] });
       res.json({ ok: true, filterTypes: Array.isArray(data.filterTypes) ? data.filterTypes : [] });
     } catch {
       res.status(500).json({ ok: false, error: "Failed to read custom filters" });
@@ -1145,7 +1161,7 @@ export function registerAdminStylistRoutes(app) {
       const sanitized = filterTypes
         .map((type) => sanitizeCustomFilterType(type))
         .filter(Boolean);
-      await fs.writeFile(customFilterTypesPath, `${JSON.stringify({ filterTypes: sanitized }, null, 2)}\n`);
+      await writeJson(customFilterTypesPath, { filterTypes: sanitized });
       res.json({ ok: true, filterTypes: sanitized });
     } catch (err) {
       console.error("Failed to save custom filters:", err);
@@ -1155,7 +1171,7 @@ export function registerAdminStylistRoutes(app) {
 
   app.get("/api/admin/price-bands", requireAdmin, async (_req, res) => {
     try {
-      const data = JSON.parse(await fs.readFile(priceBandsPath, "utf8"));
+      const data = await readJson(priceBandsPath, { bands: defaultPriceBandTiers });
       res.json({ ok: true, bands: Array.isArray(data.bands) && data.bands.length ? data.bands : defaultPriceBandTiers });
     } catch {
       res.status(500).json({ ok: false, error: "Failed to read price bands" });
@@ -1168,7 +1184,7 @@ export function registerAdminStylistRoutes(app) {
       if (!Array.isArray(bands) || !bands.length) return res.status(400).json({ ok: false, error: "Invalid payload" });
       const sanitized = bands.map((band) => sanitizePriceBandTier(band)).filter(Boolean);
       if (!sanitized.length) return res.status(400).json({ ok: false, error: "Invalid payload" });
-      await fs.writeFile(priceBandsPath, `${JSON.stringify({ bands: sanitized }, null, 2)}\n`);
+      await writeJson(priceBandsPath, { bands: sanitized });
       priceBandTiers = sanitized;
       res.json({ ok: true, bands: sanitized });
     } catch (err) {
