@@ -610,21 +610,35 @@ type DashboardMetrics = {
     needsReview: number;
   };
   analytics?: AnalyticsSummary;
+  allTime?: { visitors: number; bookingClicks: number; instagramClicks: number };
 };
 
 type AnalyticsSummary = {
+  granularity?: "hour" | "day";
   visitorsByDay: { date: string; count: number }[];
-  bookingClicks7d: number;
-  instagramClicks7d: number;
+  bookingClicks: number;
+  instagramClicks: number;
   filterUsage: { label: string; rows: { label: string; count: number }[] }[];
   zeroResultSearches: { filters: string[]; count: number; lastSeenAt: string }[];
+  topStylists: { name: string; areaLabel: string; clicks: number }[];
 };
 
-// Placeholder until the Umami API is wired up server-side (see DashboardMetrics.analytics).
+const ANALYTICS_RANGES = [
+  { key: "24h", label: "Last 24 hours" },
+  { key: "7d", label: "Last 7 days" },
+  { key: "30d", label: "Last 30 days" },
+  { key: "90d", label: "Last 90 days" },
+  { key: "all", label: "All time" },
+] as const;
+
+type AnalyticsRangeKey = (typeof ANALYTICS_RANGES)[number]["key"];
+
+// Placeholder until the PostHog API is wired up server-side (see DashboardMetrics.analytics).
 // filterUsage/zeroResultSearches mirror the real filter chips users combine (service, location, price band, needs)
-// and the real Umami events already firing from App.tsx (service_filter_selected, location_filter_selected,
+// and the real PostHog events already firing from App.tsx (service_filter_selected, location_filter_selected,
 // price_filter_selected, hijabi_toggle_changed, braiding_preference_selected, book_click, instagram_click).
 const MOCK_ANALYTICS: AnalyticsSummary = {
+  granularity: "day",
   visitorsByDay: [
     { date: "2026-07-02", count: 214 },
     { date: "2026-07-03", count: 238 },
@@ -640,8 +654,8 @@ const MOCK_ANALYTICS: AnalyticsSummary = {
     { date: "2026-07-13", count: 176 },
     { date: "2026-07-14", count: 264 },
   ],
-  bookingClicks7d: 118,
-  instagramClicks7d: 264,
+  bookingClicks: 118,
+  instagramClicks: 264,
   filterUsage: [
     {
       label: "Services",
@@ -687,6 +701,19 @@ const MOCK_ANALYTICS: AnalyticsSummary = {
     { filters: ["Wig install (frontal / closure)", "North West London"], count: 6, lastSeenAt: "2026-07-12" },
     { filters: ["Retwist", "South West London"], count: 5, lastSeenAt: "2026-07-11" },
   ],
+  topStylists: [
+    { name: "Braidnaturelle", areaLabel: "South east London", clicks: 412 },
+    { name: "Evolutionhairandbeautyw7", areaLabel: "West London", clicks: 356 },
+    { name: "Claudiaq Qualitytimehair", areaLabel: "North west London", clicks: 298 },
+    { name: "Divadollslondon", areaLabel: "North west London", clicks: 241 },
+    { name: "Theeklparlour", areaLabel: "East London", clicks: 187 },
+  ],
+};
+
+const MOCK_ALL_TIME = {
+  visitors: 24680,
+  bookingClicks: 3120,
+  instagramClicks: 6840,
 };
 
 const emptyForm: DraftForm = {
@@ -1791,7 +1818,7 @@ function AdminAppInner() {
         ) : null}
 
         {activeView === "analytics" ? (
-          <AnalyticsPage dashboard={dashboard} publishedStylists={publishedStylists} onOpenView={setActiveView} />
+          <AnalyticsPage dashboard={dashboard} onOpenView={setActiveView} />
         ) : null}
 
         {activeView === "drafts" ? (
@@ -3329,7 +3356,7 @@ function DashboardOverview({
   onOpenView: (view: AdminView) => void;
 }) {
   const analytics = dashboard?.analytics ?? MOCK_ANALYTICS;
-  const visitors7d = analytics.visitorsByDay.slice(-7).reduce((sum, day) => sum + day.count, 0);
+  const allTime = dashboard?.allTime ?? MOCK_ALL_TIME;
 
   return (
     <div className="mx-auto max-w-7xl space-y-8 px-5 py-11">
@@ -3339,8 +3366,8 @@ function DashboardOverview({
 
       <div className="grid grid-cols-3 divide-x divide-stone-200 rounded-none border border-stone-200 bg-white">
         <OverviewStatCell label="Stylists" value={publishedCount} onClick={() => onOpenView("drafts")} />
-        <OverviewStatCell label="Visitors (7d)" value={visitors7d} onClick={() => onOpenView("analytics")} />
-        <OverviewStatCell label="Clicked book (7d)" value={analytics.bookingClicks7d} onClick={() => onOpenView("analytics")} />
+        <OverviewStatCell label="Visitors" value={allTime.visitors} onClick={() => onOpenView("analytics")} />
+        <OverviewStatCell label="Clicked book" value={allTime.bookingClicks} onClick={() => onOpenView("analytics")} />
       </div>
 
       <div className="grid gap-4 lg:grid-cols-3">
@@ -3348,9 +3375,7 @@ function DashboardOverview({
           <div className="flex flex-wrap items-start justify-between gap-4">
             <div>
               <h2 className="text-sm font-semibold text-stone-950">Analytics</h2>
-              <p className="mt-1 text-xs text-stone-500">
-                {visitors7d} visitors · {analytics.bookingClicks7d} booking clicks · {analytics.instagramClicks7d} instagram clicks (7d)
-              </p>
+              <p className="mt-1 text-xs text-stone-500">Visitors, last 7 days</p>
             </div>
             <button
               type="button"
@@ -3360,19 +3385,27 @@ function DashboardOverview({
               View analytics
             </button>
           </div>
-          <OverviewBarChart
-            bars={analytics.visitorsByDay.map((day) => ({
-              label: formatShortDate(day.date),
-              value: day.count,
-            }))}
-            emptyLabel="No visitor data yet."
-          />
+          {dashboard === null ? (
+            <VisitorsLineChartSkeleton />
+          ) : (
+            <VisitorsLineChart
+              bars={analytics.visitorsByDay.map((day) => ({
+                label: formatShortDate(day.date),
+                value: day.count,
+              }))}
+              emptyLabel="No visitor data yet."
+            />
+          )}
         </div>
 
         <div className="border border-stone-200 bg-white p-6">
           <h2 className="text-sm font-semibold text-stone-950">Zero-result searches</h2>
           <p className="mt-1 text-xs text-stone-500">Demand signals for Discovery</p>
-          <ZeroResultSearchesList rows={analytics.zeroResultSearches} onOpen={() => onOpenView("discovery")} />
+          {dashboard === null ? (
+            <ZeroResultSearchesSkeleton />
+          ) : (
+            <ZeroResultSearchesList rows={analytics.zeroResultSearches} onOpen={() => onOpenView("discovery")} />
+          )}
         </div>
       </div>
     </div>
@@ -3381,47 +3414,85 @@ function DashboardOverview({
 
 function AnalyticsPage({
   dashboard,
-  publishedStylists,
   onOpenView,
 }: {
   dashboard: DashboardMetrics | null;
-  publishedStylists: StylistDraft[];
   onOpenView: (view: AdminView) => void;
 }) {
-  const analytics = dashboard?.analytics ?? MOCK_ANALYTICS;
-  const visitors7d = analytics.visitorsByDay.slice(-7).reduce((sum, day) => sum + day.count, 0);
-  const topStylists = mockTopStylists(publishedStylists);
+  const [range, setRange] = useState<AnalyticsRangeKey>("7d");
+  const [rangedAnalytics, setRangedAnalytics] = useState<AnalyticsSummary | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    setRangedAnalytics(null);
+    fetch(`/api/admin/analytics?range=${range}`, { credentials: "include" })
+      .then((response) => (response.ok ? response.json() : null))
+      .then((payload) => {
+        if (!cancelled) setRangedAnalytics(payload?.analytics ?? null);
+      })
+      .catch(() => {
+        if (!cancelled) setRangedAnalytics(null);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [range]);
+
+  const isRangeLoading = rangedAnalytics === null;
+  const analytics = rangedAnalytics ?? dashboard?.analytics ?? MOCK_ANALYTICS;
+  const totalVisitors = analytics.visitorsByDay.reduce((sum, bucket) => sum + bucket.count, 0);
+  const rangeLabel = ANALYTICS_RANGES.find((entry) => entry.key === range)?.label ?? "Last 7 days";
+  const visitorsChartLabel = analytics.granularity === "hour" ? "Hourly site visitors" : "Daily site visitors";
 
   return (
     <div className="mx-auto max-w-7xl space-y-8 px-5 py-11">
-      <section>
-        <h1 className="text-3xl font-semibold tracking-tight text-stone-950">Analytics</h1>
-        <p className="mt-2 text-sm text-stone-500">Visitor activity on the public directory</p>
+      <section className="flex flex-wrap items-start justify-between gap-4">
+        <div>
+          <h1 className="text-3xl font-semibold tracking-tight text-stone-950">Analytics</h1>
+          <p className="mt-2 text-sm text-stone-500">Visitor activity on the public directory</p>
+        </div>
+        <select
+          value={range}
+          onChange={(event) => setRange(event.target.value as AnalyticsRangeKey)}
+          className="h-9 border border-stone-300 bg-white px-3 text-sm text-stone-700 focus:border-stone-500 focus:outline-none"
+        >
+          {ANALYTICS_RANGES.map((entry) => (
+            <option key={entry.key} value={entry.key}>
+              {entry.label}
+            </option>
+          ))}
+        </select>
       </section>
 
       <div className="grid grid-cols-3 divide-x divide-stone-200 rounded-none border border-stone-200 bg-white">
-        <OverviewStatCell label="Unique visitors (7d)" value={visitors7d} />
-        <OverviewStatCell label="Booking link clicks (7d)" value={analytics.bookingClicks7d} />
-        <OverviewStatCell label="Instagram link clicks (7d)" value={analytics.instagramClicks7d} />
+        <OverviewStatCell label="Unique visitors" value={totalVisitors} />
+        <OverviewStatCell label="Booking link clicks" value={analytics.bookingClicks} />
+        <OverviewStatCell label="Instagram link clicks" value={analytics.instagramClicks} />
       </div>
 
       <div className="grid gap-4 lg:grid-cols-3">
         <div className="border border-stone-200 bg-white p-6 lg:col-span-2">
           <h2 className="text-sm font-semibold text-stone-950">Visitors</h2>
-          <p className="mt-1 text-xs text-stone-500">Daily site visitors, last 14 days</p>
-          <OverviewBarChart
-            bars={analytics.visitorsByDay.map((day) => ({
-              label: formatShortDate(day.date),
-              value: day.count,
-            }))}
-            emptyLabel="No visitor data yet."
-          />
+          <p className="mt-1 text-xs text-stone-500">
+            {visitorsChartLabel}, {rangeLabel.toLowerCase()}
+          </p>
+          {isRangeLoading ? (
+            <VisitorsLineChartSkeleton />
+          ) : (
+            <VisitorsLineChart
+              bars={analytics.visitorsByDay.map((bucket) => ({
+                label: analytics.granularity === "hour" ? formatShortTime(bucket.date) : formatShortDate(bucket.date),
+                value: bucket.count,
+              }))}
+              emptyLabel="No visitor data yet."
+            />
+          )}
         </div>
 
         <div className="border border-stone-200 bg-white p-6">
           <h2 className="text-sm font-semibold text-stone-950">Most popular stylists</h2>
-          <p className="mt-1 text-xs text-stone-500">By profile views</p>
-          <TopStylistsList rows={topStylists} />
+          <p className="mt-1 text-xs text-stone-500">By booking &amp; Instagram clicks</p>
+          {isRangeLoading ? <TopStylistsSkeleton /> : <TopStylistsList rows={analytics.topStylists} />}
         </div>
       </div>
 
@@ -3429,17 +3500,29 @@ function AnalyticsPage({
         <div className="border border-stone-200 bg-white p-6 lg:col-span-2">
           <h2 className="text-sm font-semibold text-stone-950">Filters people are selecting</h2>
           <p className="mt-1 text-xs text-stone-500">Most-used filter values across all visitors</p>
-          <div className="mt-5 grid grid-cols-2 gap-x-6 gap-y-6">
-            {analytics.filterUsage.map((group) => (
-              <FilterUsageGroup key={group.label} label={group.label} rows={group.rows} />
-            ))}
-          </div>
+          {isRangeLoading ? (
+            <FilterUsageSkeleton />
+          ) : analytics.filterUsage.length ? (
+            <div className="mt-5 grid grid-cols-2 gap-x-6 gap-y-6">
+              {analytics.filterUsage.map((group) => (
+                <FilterUsageGroup key={group.label} label={group.label} rows={group.rows} />
+              ))}
+            </div>
+          ) : (
+            <SkeletonEmptyState label="No data">
+              <FilterUsageSkeleton pulse={false} />
+            </SkeletonEmptyState>
+          )}
         </div>
 
         <div className="border border-stone-200 bg-white p-6">
           <h2 className="text-sm font-semibold text-stone-950">Zero-result searches</h2>
           <p className="mt-1 text-xs text-stone-500">Filter combinations that returned nothing</p>
-          <ZeroResultSearchesList rows={analytics.zeroResultSearches} onOpen={() => onOpenView("discovery")} />
+          {isRangeLoading ? (
+            <ZeroResultSearchesSkeleton />
+          ) : (
+            <ZeroResultSearchesList rows={analytics.zeroResultSearches} onOpen={() => onOpenView("discovery")} />
+          )}
         </div>
       </div>
     </div>
@@ -3469,9 +3552,50 @@ function FilterUsageGroup({ label, rows }: { label: string; rows: { label: strin
   );
 }
 
-function TopStylistsList({ rows }: { rows: { name: string; areaLabel: string; views: number }[] }) {
+function SkeletonEmptyState({ label, children }: { label: string; children: ReactNode }) {
+  return (
+    <div className="relative">
+      <div aria-hidden className="select-none">{children}</div>
+      <div className="absolute inset-0 flex items-center justify-center bg-white/70">
+        <span className="text-xs font-medium text-stone-400">{label}</span>
+      </div>
+    </div>
+  );
+}
+
+function FilterUsageSkeleton({ pulse = true }: { pulse?: boolean }) {
+  const bar = pulse ? "animate-pulse bg-stone-200" : "bg-stone-100";
+  const barLight = pulse ? "animate-pulse bg-stone-100" : "bg-stone-50";
+
+  return (
+    <div className="mt-5 grid grid-cols-2 gap-x-6 gap-y-6">
+      {[0, 1, 2, 3].map((groupIndex) => (
+        <div key={groupIndex}>
+          <span className={cn("block h-3 w-16 rounded-none", bar)} />
+          <ul className="mt-3 space-y-2.5">
+            {[0, 1, 2].map((rowIndex) => (
+              <li key={rowIndex}>
+                <div className="flex items-center justify-between gap-3">
+                  <span className={cn("h-3.5 w-24 rounded-none", barLight)} />
+                  <span className={cn("h-3.5 w-6 shrink-0 rounded-none", bar)} />
+                </div>
+                <div className={cn("mt-1 h-1 w-full", barLight)} />
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function TopStylistsList({ rows }: { rows: { name: string; areaLabel: string; clicks: number }[] }) {
   if (!rows.length) {
-    return <p className="mt-8 text-sm text-stone-400">No published stylists yet.</p>;
+    return (
+      <SkeletonEmptyState label="No data">
+        <TopStylistsSkeleton pulse={false} />
+      </SkeletonEmptyState>
+    );
   }
 
   return (
@@ -3485,7 +3609,29 @@ function TopStylistsList({ rows }: { rows: { name: string; areaLabel: string; vi
             <span className="block truncate text-sm font-medium text-stone-950">{row.name}</span>
             <span className="block truncate text-xs text-stone-500">{row.areaLabel || "Unknown area"}</span>
           </span>
-          <span className="shrink-0 text-xs font-semibold text-stone-950">{row.views} views</span>
+          <span className="shrink-0 text-xs font-semibold text-stone-950">
+            {row.clicks} click{row.clicks === 1 ? "" : "s"}
+          </span>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function TopStylistsSkeleton({ pulse = true }: { pulse?: boolean }) {
+  const bar = pulse ? "animate-pulse bg-stone-200" : "bg-stone-100";
+  const barLight = pulse ? "animate-pulse bg-stone-100" : "bg-stone-50";
+
+  return (
+    <ul className="mt-5 space-y-4">
+      {[0, 1, 2, 3, 4].map((index) => (
+        <li key={index} className="flex items-center gap-3">
+          <span className={cn("size-9 shrink-0 rounded-none", bar)} />
+          <span className="min-w-0 flex-1">
+            <span className={cn("block h-3.5 w-32 rounded-none", bar)} />
+            <span className={cn("mt-1.5 block h-3 w-20 rounded-none", barLight)} />
+          </span>
+          <span className={cn("h-3 w-12 shrink-0 rounded-none", bar)} />
         </li>
       ))}
     </ul>
@@ -3503,16 +3649,6 @@ function getInitials(name: string) {
     .join("");
 }
 
-// Placeholder ranking until real view-count analytics are wired up; picks from real published stylists
-// so the layout reflects actual directory names rather than invented ones.
-function mockTopStylists(stylists: StylistDraft[]) {
-  const mockViewCounts = [412, 356, 298, 241, 187];
-  return stylists.slice(0, mockViewCounts.length).map((stylist, index) => ({
-    name: stylist.name,
-    areaLabel: stylist.areaLabel,
-    views: mockViewCounts[index],
-  }));
-}
 
 function formatShortDate(value: string) {
   const date = new Date(value);
@@ -3522,11 +3658,26 @@ function formatShortDate(value: string) {
   return date.toLocaleDateString("en-GB", { day: "numeric", month: "short" });
 }
 
+function formatShortTime(value: string) {
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) {
+    return value;
+  }
+  return date.toLocaleTimeString("en-GB", { hour: "numeric" });
+}
+
+function formatStatValue(value: number) {
+  if (value < 10000) return value.toLocaleString("en-GB");
+  return new Intl.NumberFormat("en-GB", { notation: "compact", maximumFractionDigits: 1 }).format(value);
+}
+
 function OverviewStatCell({ label, value, onClick }: { label: string; value: number; onClick?: () => void }) {
   const content = (
     <>
       <p className="text-[13px] text-stone-500">{label}</p>
-      <p className="mt-2 text-2xl font-semibold tracking-tight text-stone-950">{value}</p>
+      <p className="mt-2 text-2xl font-semibold tracking-tight text-stone-950" title={value.toLocaleString("en-GB")}>
+        {formatStatValue(value)}
+      </p>
     </>
   );
 
@@ -3546,28 +3697,146 @@ function OverviewStatCell({ label, value, onClick }: { label: string; value: num
   );
 }
 
-function OverviewBarChart({ bars, emptyLabel }: { bars: { label: string; value: number }[]; emptyLabel: string }) {
-  const max = Math.max(1, ...bars.map((bar) => bar.value));
+function VisitorsLineChartSkeleton() {
+  return <div className="mt-6 h-56 w-full animate-pulse rounded-none bg-stone-100" />;
+}
+
+function VisitorsLineChart({ bars, emptyLabel }: { bars: { label: string; value: number }[]; emptyLabel: string }) {
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   if (!bars.length) {
     return <p className="mt-8 text-sm text-stone-400">{emptyLabel}</p>;
   }
 
+  const width = 700;
+  const height = 220;
+  const paddingX = 4;
+  const paddingTop = 28;
+  const paddingBottom = 4;
+  const plotWidth = width - paddingX * 2;
+  const plotHeight = height - paddingTop - paddingBottom;
+  const max = Math.max(1, ...bars.map((bar) => bar.value));
+
+  const points = bars.map((bar, index) => ({
+    x: bars.length === 1 ? paddingX + plotWidth / 2 : paddingX + (index / (bars.length - 1)) * plotWidth,
+    y: paddingTop + plotHeight - (bar.value / max) * plotHeight,
+    bar,
+  }));
+
+  const linePath = points.map((point, index) => `${index === 0 ? "M" : "L"}${point.x.toFixed(2)},${point.y.toFixed(2)}`).join(" ");
+  const areaPath = `${linePath} L${points[points.length - 1].x.toFixed(2)},${paddingTop + plotHeight} L${points[0].x.toFixed(2)},${paddingTop + plotHeight} Z`;
+  const lastPoint = points[points.length - 1];
+  const hovered = hoveredIndex !== null ? points[hoveredIndex] : null;
+
+  // Cap the number of x-axis labels shown so they never overlap, whether the series has 7 points or 90.
+  // Evenly spaced by rounded position (not a fixed step) so the last label never crowds the one before it.
+  const maxLabels = 8;
+  const labelCount = Math.min(maxLabels, points.length);
+  const labelIndices = new Set(
+    Array.from({ length: labelCount }, (_, i) => (labelCount === 1 ? 0 : Math.round((i * (points.length - 1)) / (labelCount - 1)))),
+  );
+
   return (
-    <div className="mt-6 flex min-h-56 flex-1 items-end gap-3">
-      {bars.map((bar) => (
-        <div key={bar.label} className="flex h-full flex-1 flex-col items-center justify-end gap-2">
-          <p className="text-xs font-medium text-stone-600">{bar.value}</p>
+    <div className="mt-6 flex-1">
+      <div className="relative">
+        <span className="pointer-events-none absolute left-0 top-0 text-[11px] font-medium text-stone-400">peak {max}</span>
+        {!hovered ? (
+          <span
+            className="pointer-events-none absolute whitespace-nowrap text-xs font-semibold text-stone-950"
+            style={{ left: `${(lastPoint.x / width) * 100}%`, top: `${(lastPoint.y / height) * 100}%`, transform: "translate(-100%, -160%)" }}
+          >
+            {lastPoint.bar.value}
+          </span>
+        ) : null}
+        {hovered ? (
           <div
-            className="w-full max-w-10 bg-stone-950"
-            style={{ height: `${Math.max(4, (bar.value / max) * 100)}%` }}
-          />
-          <p className="w-full truncate text-center text-[11px] text-stone-500" title={bar.label}>
-            {bar.label}
-          </p>
-        </div>
-      ))}
+            className="pointer-events-none absolute z-10 whitespace-nowrap border border-stone-200 bg-white px-2 py-1 text-xs shadow-sm"
+            style={{
+              left: `${(hovered.x / width) * 100}%`,
+              top: `${(hovered.y / height) * 100}%`,
+              transform: `translate(${hoveredIndex === 0 ? "0%" : hoveredIndex === points.length - 1 ? "-100%" : "-50%"}, -135%)`,
+            }}
+          >
+            <span className="text-stone-500">{hovered.bar.label}</span>{" "}
+            <span className="font-semibold text-stone-950">{hovered.bar.value}</span>
+          </div>
+        ) : null}
+        <svg
+          viewBox={`0 0 ${width} ${height}`}
+          preserveAspectRatio="none"
+          className="h-56 w-full overflow-visible"
+          role="img"
+          aria-label="Visitors over time"
+          onMouseLeave={() => setHoveredIndex(null)}
+        >
+          <path d={areaPath} fill="rgba(28,25,23,0.08)" stroke="none" />
+          <path d={linePath} fill="none" stroke="#1c1917" strokeWidth={2} vectorEffect="non-scaling-stroke" />
+          {points.map((point, index) => (
+            <circle
+              key={index}
+              cx={point.x}
+              cy={point.y}
+              r={hoveredIndex === index ? 4 : 2.5}
+              fill="#1c1917"
+              className="transition-[r]"
+            />
+          ))}
+          {points.map((point, index) => (
+            <circle
+              key={`hit-${index}`}
+              cx={point.x}
+              cy={point.y}
+              r={10}
+              fill="transparent"
+              onMouseEnter={() => setHoveredIndex(index)}
+              style={{ cursor: "pointer" }}
+            />
+          ))}
+        </svg>
+      </div>
+      <div className="relative mt-2 h-4 text-[11px] text-stone-500">
+        {points.map((point, index) => {
+          if (!labelIndices.has(index)) return null;
+          const percent = (point.x / width) * 100;
+          const isFirst = index === 0;
+          const isLast = index === points.length - 1;
+          return (
+            <span
+              key={index}
+              className="absolute whitespace-nowrap"
+              style={{
+                left: `${percent}%`,
+                transform: isFirst ? "translateX(0)" : isLast ? "translateX(-100%)" : "translateX(-50%)",
+              }}
+            >
+              {point.bar.label}
+            </span>
+          );
+        })}
+      </div>
     </div>
+  );
+}
+
+function ZeroResultSearchesSkeleton({ pulse = true }: { pulse?: boolean }) {
+  const bar = pulse ? "animate-pulse bg-stone-200" : "bg-stone-100";
+  const barLight = pulse ? "animate-pulse bg-stone-100" : "bg-stone-50";
+
+  return (
+    <ul className="mt-5 space-y-4">
+      {[0, 1, 2].map((index) => (
+        <li key={index} className="flex items-start justify-between gap-3">
+          <span className="min-w-0 flex-1">
+            <span className="flex flex-wrap gap-1.5">
+              <span className={cn("h-5 w-20 rounded-none", bar)} />
+              <span className={cn("h-5 w-16 rounded-none", barLight)} />
+            </span>
+            <span className={cn("mt-1.5 block h-3 w-24 rounded-none", barLight)} />
+          </span>
+          <span className={cn("h-3 w-14 shrink-0 rounded-none", bar)} />
+        </li>
+      ))}
+    </ul>
   );
 }
 
@@ -3579,7 +3848,11 @@ function ZeroResultSearchesList({
   onOpen: () => void;
 }) {
   if (!rows.length) {
-    return <p className="mt-8 text-sm text-stone-400">No zero-result searches recorded.</p>;
+    return (
+      <SkeletonEmptyState label="No data">
+        <ZeroResultSearchesSkeleton pulse={false} />
+      </SkeletonEmptyState>
+    );
   }
 
   return (

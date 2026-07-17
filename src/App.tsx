@@ -3,15 +3,8 @@ import { Check, ChevronDown, Globe, Search, X } from "lucide-react";
 
 import { Checkbox } from "@/components/ui/checkbox";
 import { AdminApp } from "@/AdminApp";
+import { trackEvent as trackAnalyticsEvent } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
-
-declare global {
-  interface Window {
-    umami?: {
-      track: (eventName: string, data?: Record<string, string | number | boolean | null>) => void;
-    };
-  }
-}
 
 const regions = [
   { id: "all-london", label: "London" },
@@ -194,6 +187,7 @@ const sortedCategoryEntries = [
 const RESULTS_BATCH_SIZE = 20;
 const RESULTS_SKELETON_COUNT = 6;
 const sortOptions: { id: SortOption; label: string }[] = [
+  { id: "default", label: "Default" },
   { id: "alphabetical-asc", label: "A → Z" },
   { id: "alphabetical-desc", label: "Z → A" },
   { id: "price-asc", label: "Price: Low to high" },
@@ -276,6 +270,7 @@ function sortResults(
   _hasActiveFilters: boolean,
   _selectedCategories: ServiceCategoryId[],
   _selectedSubcategories: ServiceSubcategoryId[],
+  getShuffleKey: (id: string) => number,
 ) {
   switch (sortOption) {
     case "alphabetical-asc":
@@ -292,7 +287,9 @@ function sortResults(
       return [...results].sort((left, right) => left.services.length - right.services.length || compareSalonNames(left, right));
     case "default":
     default:
-      return results;
+      // Stable per-session random order so no single stylist (e.g. alphabetically first) always
+      // gets the most impressions — see StylistCardWrapper's view-tracking IntersectionObserver.
+      return [...results].sort((left, right) => getShuffleKey(left.id) - getShuffleKey(right.id));
   }
 }
 
@@ -331,7 +328,7 @@ function StylistCardWrapper({
   children: React.ReactNode;
 }) {
   const setRef = useViewedOnce(() => {
-    trackUmamiEvent("stylist_viewed", {
+    trackAnalyticsEvent("stylist_viewed", {
       salon: result.name,
       location: result.areaLabel,
       services,
@@ -346,10 +343,6 @@ function StylistCardWrapper({
       {children}
     </li>
   );
-}
-
-function trackUmamiEvent(eventName: string, data?: Record<string, string | number | boolean | null>) {
-  window.umami?.track(eventName, data);
 }
 
 function makeFilterLabelId(...parts: string[]) {
@@ -722,7 +715,16 @@ export default function App() {
   const [selectedSubcategories, setSelectedSubcategories] = useState<ServiceSubcategoryId[]>([]);
   const [serviceSearch, setServiceSearch] = useState("");
   const [results, setResults] = useState<SalonResult[]>([]);
-  const [sortOption, setSortOption] = useState<SortOption>("alphabetical-asc");
+  const [sortOption, setSortOption] = useState<SortOption>("default");
+  const shuffleKeysRef = useRef<Map<string, number>>(new Map());
+  const getShuffleKey = useCallback((id: string) => {
+    let key = shuffleKeysRef.current.get(id);
+    if (key === undefined) {
+      key = Math.random();
+      shuffleKeysRef.current.set(id, key);
+    }
+    return key;
+  }, []);
   const [draftSelectedRegions, setDraftSelectedRegions] = useState<RegionId[]>(["all"]);
   const [draftSelectedCategories, setDraftSelectedCategories] = useState<ServiceCategoryId[]>([]);
   const [draftSelectedSubcategories, setDraftSelectedSubcategories] = useState<ServiceSubcategoryId[]>([]);
@@ -731,7 +733,7 @@ export default function App() {
   const [draftSelectedCanBraidWithoutGel, setDraftSelectedCanBraidWithoutGel] = useState(false);
   const [draftSelectedWheelchairAccessible, setDraftSelectedWheelchairAccessible] = useState(false);
   const [draftSelectedKidsFriendly, setDraftSelectedKidsFriendly] = useState(false);
-  const [draftSortOption, setDraftSortOption] = useState<SortOption>("alphabetical-asc");
+  const [draftSortOption, setDraftSortOption] = useState<SortOption>("default");
   const [visibleResultCount, setVisibleResultCount] = useState(RESULTS_BATCH_SIZE);
   const [isSearching, setIsSearching] = useState(false);
   const [searchError, setSearchError] = useState<string | null>(null);
@@ -788,7 +790,7 @@ export default function App() {
 
   function openMobileFilters() {
     syncDraftFiltersFromApplied();
-    trackUmamiEvent("filter_opened", { source: "results_header" });
+    trackAnalyticsEvent("filter_opened", { source: "results_header" });
     setMobileFiltersOpen(true);
   }
 
@@ -916,7 +918,7 @@ export default function App() {
         setAdditionalNeedsOpen(false);
         setOpenCustomFilterTypeId(null);
       }
-      trackUmamiEvent("filter_section_toggled", {
+      trackAnalyticsEvent("filter_section_toggled", {
         section: "services",
         expanded: nextIsOpen,
       });
@@ -933,7 +935,7 @@ export default function App() {
         setAdditionalNeedsOpen(false);
         setOpenCustomFilterTypeId(null);
       }
-      trackUmamiEvent("filter_section_toggled", {
+      trackAnalyticsEvent("filter_section_toggled", {
         section: "locations",
         expanded: nextIsOpen,
       });
@@ -950,7 +952,7 @@ export default function App() {
         setAdditionalNeedsOpen(false);
         setOpenCustomFilterTypeId(null);
       }
-      trackUmamiEvent("filter_section_toggled", {
+      trackAnalyticsEvent("filter_section_toggled", {
         section: "price_ranges",
         expanded: nextIsOpen,
       });
@@ -967,7 +969,7 @@ export default function App() {
         setPriceRangesOpen(false);
         setOpenCustomFilterTypeId(null);
       }
-      trackUmamiEvent("filter_section_toggled", {
+      trackAnalyticsEvent("filter_section_toggled", {
         section: "additional_needs",
         expanded: nextIsOpen,
       });
@@ -984,7 +986,7 @@ export default function App() {
         setPriceRangesOpen(false);
         setAdditionalNeedsOpen(false);
       }
-      trackUmamiEvent("filter_section_toggled", {
+      trackAnalyticsEvent("filter_section_toggled", {
         section: `custom_${filterTypeId}`,
         expanded: nextIsOpen,
       });
@@ -993,7 +995,7 @@ export default function App() {
   }
 
   function clearFilters() {
-    trackUmamiEvent("filter_reset", {
+    trackAnalyticsEvent("filter_reset", {
       selected_services: currentSelectedCategories.length + currentSelectedSubcategories.length,
       selected_locations: currentSelectedRegions.filter((region) => region !== "all").length,
       selected_price_ranges: currentSelectedPriceBands.length,
@@ -1012,7 +1014,7 @@ export default function App() {
     updateWheelchairAccessible(false);
     updateKidsFriendly(false);
     updateCustomFilters({});
-    updateSortOption("alphabetical-asc");
+    updateSortOption("default");
   }
 
   function isCategorySelected(categoryId: ServiceCategoryId) {
@@ -1034,7 +1036,7 @@ export default function App() {
 
   function toggleCategory(nextCategory: CategoryId) {
     if (nextCategory === "all") {
-      trackUmamiEvent("service_filter_selected", {
+      trackAnalyticsEvent("service_filter_selected", {
         selection: "all",
         selected: currentSelectedCategories.length > 0 || currentSelectedSubcategories.length > 0,
       });
@@ -1045,7 +1047,7 @@ export default function App() {
 
     const nextCategoryLabel = getCategoryLabel(nextCategory);
     const isCurrentlyActive = currentSelectedCategories.includes(nextCategory as ServiceCategoryId);
-    trackUmamiEvent("service_filter_selected", {
+    trackAnalyticsEvent("service_filter_selected", {
       selection: nextCategoryLabel,
       selected: !isCurrentlyActive,
       type: "category",
@@ -1067,7 +1069,7 @@ export default function App() {
   }
 
   function toggleSubcategory(nextSubcategory: ServiceSubcategoryId) {
-    trackUmamiEvent("service_filter_selected", {
+    trackAnalyticsEvent("service_filter_selected", {
       selection: nextSubcategory,
       selected: !currentSelectedSubcategories.includes(nextSubcategory),
       type: "subcategory",
@@ -1100,7 +1102,7 @@ export default function App() {
 
   function toggleCanBraidWithoutGel() {
     const nextSelected = !currentSelectedCanBraidWithoutGel;
-    trackUmamiEvent("braiding_preference_selected", {
+    trackAnalyticsEvent("braiding_preference_selected", {
       selection: "Can braid without gel",
       selected: nextSelected,
     });
@@ -1108,7 +1110,7 @@ export default function App() {
   }
 
   function toggleHijabiFriendly() {
-    trackUmamiEvent("hijabi_toggle_changed", {
+    trackAnalyticsEvent("hijabi_toggle_changed", {
       enabled: !currentSelectedHijabiFriendly,
     });
     updateHijabiFriendly((current) => !current);
@@ -1119,7 +1121,7 @@ export default function App() {
   }
 
   function toggleKidsFriendly() {
-    trackUmamiEvent("kids_friendly_toggle_changed", {
+    trackAnalyticsEvent("kids_friendly_toggle_changed", {
       enabled: !currentSelectedKidsFriendly,
     });
     updateKidsFriendly((current) => !current);
@@ -1128,7 +1130,7 @@ export default function App() {
   function toggleCustomFilterOption(filterTypeId: string, optionId: string) {
     const current = currentSelectedCustomFilters[filterTypeId] ?? [];
     const nextSelected = !current.includes(optionId);
-    trackUmamiEvent("custom_filter_selected", {
+    trackAnalyticsEvent("custom_filter_selected", {
       filter_type: filterTypeId,
       selection: optionId,
       selected: nextSelected,
@@ -1146,7 +1148,7 @@ export default function App() {
 
   function togglePriceBand(nextPriceBand: PriceRangeFilterId) {
     const nextSelected = !currentSelectedPriceBands.includes(nextPriceBand);
-    trackUmamiEvent("price_filter_selected", {
+    trackAnalyticsEvent("price_filter_selected", {
       selection: nextPriceBand,
       selected: nextSelected,
     });
@@ -1170,7 +1172,7 @@ export default function App() {
         ? currentSelectedRegions.length > 1 || !currentSelectedRegions.includes("all")
         : currentSelectedRegions.includes(nextRegion);
 
-    trackUmamiEvent("location_filter_selected", {
+    trackAnalyticsEvent("location_filter_selected", {
       selection: regionLabel,
       selected: !isCurrentlyActive,
     });
@@ -1268,7 +1270,7 @@ export default function App() {
       const resultCount = (payload.results ?? []).length;
       const activeServices = [...selectedCategories, ...selectedSubcategories];
 
-      trackUmamiEvent("search_performed", {
+      trackAnalyticsEvent("search_performed", {
         services: activeServices.join(", ") || "none",
         location: selectedRegions.join(", ") || "all",
         result_count: resultCount,
@@ -1279,7 +1281,7 @@ export default function App() {
       });
 
       if (resultCount === 0) {
-        trackUmamiEvent("search_zero_results", {
+        trackAnalyticsEvent("search_zero_results", {
           services: activeServices.join(", ") || "none",
           location: selectedRegions.join(", ") || "all",
           hijabi_friendly: selectedHijabiFriendly,
@@ -1397,7 +1399,7 @@ export default function App() {
           : selectedPriceBands.includes("not-listed"),
       )
     : results;
-  const sortedResults = sortResults(priceFilteredResults, sortOption, hasActiveFilters, selectedCategories, selectedSubcategories);
+  const sortedResults = sortResults(priceFilteredResults, sortOption, hasActiveFilters, selectedCategories, selectedSubcategories, getShuffleKey);
 
   useEffect(() => {
     const node = loadMoreRef.current;
@@ -1601,7 +1603,7 @@ export default function App() {
                                 target="_blank"
                                 rel="noreferrer"
                                 onClick={() =>
-                                  trackUmamiEvent("instagram_click", {
+                                  trackAnalyticsEvent("instagram_click", {
                                     salon: result.name,
                                     placement: "mobile",
                                   })
@@ -1628,7 +1630,7 @@ export default function App() {
                             target="_blank"
                             rel="noreferrer"
                             onClick={() =>
-                              trackUmamiEvent("instagram_click", {
+                              trackAnalyticsEvent("instagram_click", {
                                 salon: result.name,
                                 placement: "desktop",
                               })
@@ -1645,7 +1647,7 @@ export default function App() {
                             target="_blank"
                             rel="noreferrer"
                             onClick={() =>
-                              trackUmamiEvent("book_click", {
+                              trackAnalyticsEvent("book_click", {
                                 salon: result.name,
                                 platform: result.bookingPlatform,
                                 location: result.areaLabel,
@@ -1762,7 +1764,7 @@ export default function App() {
                     value={currentSortOption}
                     onChange={(event) => {
                       const nextSort = event.target.value as SortOption;
-                      trackUmamiEvent("sort_changed", { sort: nextSort });
+                      trackAnalyticsEvent("sort_changed", { sort: nextSort });
                       updateSortOption(nextSort);
                     }}
                     className="min-h-11 w-full appearance-none rounded-none border border-stone-300 bg-stone-50 pl-4 pr-12 py-2 text-[13px] text-stone-900 outline-none transition-colors hover:border-stone-400 active:border-stone-400 focus:border-stone-950 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100 dark:hover:border-stone-500 dark:active:border-stone-500 dark:focus:border-stone-100"

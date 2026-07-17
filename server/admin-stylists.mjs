@@ -3,6 +3,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { assertSafeOutboundHttpUrl, createRateLimiter, requireTrustedOrigin } from "./security.mjs";
+import { fetchAllTimeSummary, fetchAnalyticsSummary } from "./analytics.mjs";
 
 function today() {
   return new Date().toISOString().split("T")[0];
@@ -465,9 +466,12 @@ export function registerAdminStylistRoutes(app) {
     const drafts = draftStore.drafts;
     const freshnessChecks = freshnessStore.checks || [];
     const suggestions = discoveryStore.suggestions;
+    const [analytics, allTime] = await Promise.all([fetchAnalyticsSummary(), fetchAllTimeSummary()]);
 
     res.json({
       ok: true,
+      ...(analytics ? { analytics } : {}),
+      ...(allTime ? { allTime } : {}),
       drafts: {
         total: drafts.length,
         needsReview: drafts.filter((draft) => draft.status === "needs_review").length,
@@ -490,6 +494,12 @@ export function registerAdminStylistRoutes(app) {
         needsReview: suggestions.filter((suggestion) => suggestion.status === "suggested").length,
       },
     });
+  });
+
+  app.get("/api/admin/analytics", requireAdmin, async (req, res) => {
+    const range = typeof req.query.range === "string" ? req.query.range : "7d";
+    const analytics = await fetchAnalyticsSummary(range);
+    res.json({ ok: true, analytics });
   });
 
   app.get("/api/admin/stylists/checks/saved", requireAdmin, async (_req, res) => {
