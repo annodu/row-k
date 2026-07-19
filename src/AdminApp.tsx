@@ -52,6 +52,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
+import { markAsInternalVisitor } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 
 type RegionOption = {
@@ -633,89 +634,6 @@ const ANALYTICS_RANGES = [
 
 type AnalyticsRangeKey = (typeof ANALYTICS_RANGES)[number]["key"];
 
-// Placeholder until the PostHog API is wired up server-side (see DashboardMetrics.analytics).
-// filterUsage/zeroResultSearches mirror the real filter chips users combine (service, location, price band, needs)
-// and the real PostHog events already firing from App.tsx (service_filter_selected, location_filter_selected,
-// price_filter_selected, hijabi_toggle_changed, braiding_preference_selected, book_click, instagram_click).
-const MOCK_ANALYTICS: AnalyticsSummary = {
-  granularity: "day",
-  visitorsByDay: [
-    { date: "2026-07-02", count: 214 },
-    { date: "2026-07-03", count: 238 },
-    { date: "2026-07-04", count: 196 },
-    { date: "2026-07-05", count: 173 },
-    { date: "2026-07-06", count: 181 },
-    { date: "2026-07-07", count: 267 },
-    { date: "2026-07-08", count: 302 },
-    { date: "2026-07-09", count: 289 },
-    { date: "2026-07-10", count: 245 },
-    { date: "2026-07-11", count: 231 },
-    { date: "2026-07-12", count: 198 },
-    { date: "2026-07-13", count: 176 },
-    { date: "2026-07-14", count: 264 },
-  ],
-  bookingClicks: 118,
-  instagramClicks: 264,
-  filterUsage: [
-    {
-      label: "Services",
-      rows: [
-        { label: "Braids", count: 412 },
-        { label: "Locs", count: 298 },
-        { label: "Wigs", count: 245 },
-        { label: "Sew in / weave", count: 210 },
-        { label: "Colour", count: 96 },
-      ],
-    },
-    {
-      label: "Locations",
-      rows: [
-        { label: "South East", count: 380 },
-        { label: "London", count: 340 },
-        { label: "East", count: 210 },
-        { label: "Croydon", count: 140 },
-        { label: "Mobile", count: 88 },
-      ],
-    },
-    {
-      label: "Price",
-      rows: [
-        { label: "££", count: 290 },
-        { label: "£", count: 205 },
-        { label: "£££", count: 120 },
-        { label: "££££", count: 34 },
-      ],
-    },
-    {
-      label: "Preferences",
-      rows: [
-        { label: "Hijabi friendly", count: 176 },
-        { label: "Can braid without gel", count: 92 },
-      ],
-    },
-  ],
-  zeroResultSearches: [
-    { filters: ["Microlocs / sisterlocs", "Croydon"], count: 14, lastSeenAt: "2026-07-14" },
-    { filters: ["Bridal", "South East London", "£££"], count: 9, lastSeenAt: "2026-07-14" },
-    { filters: ["Silk press", "Mobile"], count: 8, lastSeenAt: "2026-07-13" },
-    { filters: ["Wig install (frontal / closure)", "North West London"], count: 6, lastSeenAt: "2026-07-12" },
-    { filters: ["Retwist", "South West London"], count: 5, lastSeenAt: "2026-07-11" },
-  ],
-  topStylists: [
-    { name: "Braidnaturelle", areaLabel: "South east London", clicks: 412 },
-    { name: "Evolutionhairandbeautyw7", areaLabel: "West London", clicks: 356 },
-    { name: "Claudiaq Qualitytimehair", areaLabel: "North west London", clicks: 298 },
-    { name: "Divadollslondon", areaLabel: "North west London", clicks: 241 },
-    { name: "Theeklparlour", areaLabel: "East London", clicks: 187 },
-  ],
-};
-
-const MOCK_ALL_TIME = {
-  visitors: 24680,
-  bookingClicks: 3120,
-  instagramClicks: 6840,
-};
-
 const emptyForm: DraftForm = {
   links: "",
   name: "",
@@ -1097,7 +1015,9 @@ function AdminAppInner() {
       });
       const contentType = response.headers.get("content-type") || "";
       const payload = contentType.includes("application/json") ? await response.json().catch(() => null) : null;
-      setIsAuthed(response.ok && payload?.ok === true);
+      const authed = response.ok && payload?.ok === true;
+      setIsAuthed(authed);
+      if (authed) markAsInternalVisitor();
     } catch {
       setIsAuthed(false);
     } finally {
@@ -1174,6 +1094,7 @@ function AdminAppInner() {
       }
       setPassword("");
       setIsAuthed(true);
+      markAsInternalVisitor();
     } finally {
       setIsBusy(false);
     }
@@ -1818,7 +1739,7 @@ function AdminAppInner() {
         ) : null}
 
         {activeView === "analytics" ? (
-          <AnalyticsPage dashboard={dashboard} onOpenView={setActiveView} />
+          <AnalyticsPage onOpenView={setActiveView} />
         ) : null}
 
         {activeView === "drafts" ? (
@@ -3355,8 +3276,10 @@ function DashboardOverview({
   publishedCount: number;
   onOpenView: (view: AdminView) => void;
 }) {
-  const analytics = dashboard?.analytics ?? MOCK_ANALYTICS;
-  const allTime = dashboard?.allTime ?? MOCK_ALL_TIME;
+  const isLoading = dashboard === null;
+  const analytics = dashboard?.analytics;
+  const allTime = dashboard?.allTime;
+  const statState = isLoading ? "loading" : allTime ? "loaded" : "empty";
 
   return (
     <div className="mx-auto max-w-7xl space-y-8 px-5 py-11">
@@ -3365,9 +3288,19 @@ function DashboardOverview({
       </section>
 
       <div className="grid grid-cols-3 divide-x divide-stone-200 rounded-none border border-stone-200 bg-white">
-        <OverviewStatCell label="Stylists" value={publishedCount} onClick={() => onOpenView("drafts")} />
-        <OverviewStatCell label="Visitors" value={allTime.visitors} onClick={() => onOpenView("analytics")} />
-        <OverviewStatCell label="Clicked book" value={allTime.bookingClicks} onClick={() => onOpenView("analytics")} />
+        <OverviewStatCell
+          label="Stylists"
+          value={publishedCount}
+          onClick={() => onOpenView("drafts")}
+          state={isLoading ? "loading" : "loaded"}
+        />
+        <OverviewStatCell label="Visitors" value={allTime?.visitors ?? 0} onClick={() => onOpenView("analytics")} state={statState} />
+        <OverviewStatCell
+          label="Clicked book"
+          value={allTime?.bookingClicks ?? 0}
+          onClick={() => onOpenView("analytics")}
+          state={statState}
+        />
       </div>
 
       <div className="grid gap-4 lg:grid-cols-3">
@@ -3385,9 +3318,9 @@ function DashboardOverview({
               View analytics
             </button>
           </div>
-          {dashboard === null ? (
+          {isLoading ? (
             <VisitorsLineChartSkeleton />
-          ) : (
+          ) : analytics ? (
             <VisitorsLineChart
               bars={analytics.visitorsByDay.map((day) => ({
                 label: formatShortDate(day.date),
@@ -3395,16 +3328,20 @@ function DashboardOverview({
               }))}
               emptyLabel="No visitor data yet."
             />
+          ) : (
+            <SkeletonEmptyState label="No data">
+              <VisitorsLineChartSkeleton pulse={false} />
+            </SkeletonEmptyState>
           )}
         </div>
 
         <div className="border border-stone-200 bg-white p-6">
           <h2 className="text-sm font-semibold text-stone-950">Zero-result searches</h2>
           <p className="mt-1 text-xs text-stone-500">Demand signals for Discovery</p>
-          {dashboard === null ? (
+          {isLoading ? (
             <ZeroResultSearchesSkeleton />
           ) : (
-            <ZeroResultSearchesList rows={analytics.zeroResultSearches} onOpen={() => onOpenView("discovery")} />
+            <ZeroResultSearchesList rows={analytics?.zeroResultSearches ?? []} onOpen={() => onOpenView("discovery")} />
           )}
         </div>
       </div>
@@ -3412,37 +3349,35 @@ function DashboardOverview({
   );
 }
 
-function AnalyticsPage({
-  dashboard,
-  onOpenView,
-}: {
-  dashboard: DashboardMetrics | null;
-  onOpenView: (view: AdminView) => void;
-}) {
+function AnalyticsPage({ onOpenView }: { onOpenView: (view: AdminView) => void }) {
   const [range, setRange] = useState<AnalyticsRangeKey>("7d");
-  const [rangedAnalytics, setRangedAnalytics] = useState<AnalyticsSummary | null>(null);
+  const [analytics, setAnalytics] = useState<AnalyticsSummary | null>(null);
+  const [isRangeLoading, setIsRangeLoading] = useState(true);
 
   useEffect(() => {
     let cancelled = false;
-    setRangedAnalytics(null);
+    setIsRangeLoading(true);
     fetch(`/api/admin/analytics?range=${range}`, { credentials: "include" })
       .then((response) => (response.ok ? response.json() : null))
       .then((payload) => {
-        if (!cancelled) setRangedAnalytics(payload?.analytics ?? null);
+        if (cancelled) return;
+        setAnalytics(payload?.analytics ?? null);
+        setIsRangeLoading(false);
       })
       .catch(() => {
-        if (!cancelled) setRangedAnalytics(null);
+        if (cancelled) return;
+        setAnalytics(null);
+        setIsRangeLoading(false);
       });
     return () => {
       cancelled = true;
     };
   }, [range]);
 
-  const isRangeLoading = rangedAnalytics === null;
-  const analytics = rangedAnalytics ?? dashboard?.analytics ?? MOCK_ANALYTICS;
-  const totalVisitors = analytics.visitorsByDay.reduce((sum, bucket) => sum + bucket.count, 0);
+  const statState = isRangeLoading ? "loading" : analytics ? "loaded" : "empty";
+  const totalVisitors = analytics?.visitorsByDay.reduce((sum, bucket) => sum + bucket.count, 0) ?? 0;
   const rangeLabel = ANALYTICS_RANGES.find((entry) => entry.key === range)?.label ?? "Last 7 days";
-  const visitorsChartLabel = analytics.granularity === "hour" ? "Hourly site visitors" : "Daily site visitors";
+  const visitorsChartLabel = analytics?.granularity === "hour" ? "Hourly site visitors" : "Daily site visitors";
 
   return (
     <div className="mx-auto max-w-7xl space-y-8 px-5 py-11">
@@ -3451,23 +3386,30 @@ function AnalyticsPage({
           <h1 className="text-3xl font-semibold tracking-tight text-stone-950">Analytics</h1>
           <p className="mt-2 text-sm text-stone-500">Visitor activity on the public directory</p>
         </div>
-        <select
-          value={range}
-          onChange={(event) => setRange(event.target.value as AnalyticsRangeKey)}
-          className="h-9 border border-stone-300 bg-white px-3 text-sm text-stone-700 focus:border-stone-500 focus:outline-none"
-        >
-          {ANALYTICS_RANGES.map((entry) => (
-            <option key={entry.key} value={entry.key}>
-              {entry.label}
-            </option>
-          ))}
-        </select>
+        <div className="relative">
+          <select
+            value={range}
+            onChange={(event) => setRange(event.target.value as AnalyticsRangeKey)}
+            aria-label="Date range"
+            className="min-h-11 w-full appearance-none rounded-none border border-stone-300 bg-stone-50 py-2 pl-4 pr-12 text-[13px] text-stone-900 outline-none transition-colors hover:border-stone-400 active:border-stone-400 focus:border-stone-950 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100 dark:hover:border-stone-500 dark:active:border-stone-500 dark:focus:border-stone-100"
+          >
+            {ANALYTICS_RANGES.map((entry) => (
+              <option key={entry.key} value={entry.key}>
+                {entry.label}
+              </option>
+            ))}
+          </select>
+          <ChevronDown
+            className="pointer-events-none absolute right-4 top-1/2 size-4 -translate-y-1/2 text-stone-500 dark:text-stone-400"
+            aria-hidden="true"
+          />
+        </div>
       </section>
 
       <div className="grid grid-cols-3 divide-x divide-stone-200 rounded-none border border-stone-200 bg-white">
-        <OverviewStatCell label="Unique visitors" value={totalVisitors} />
-        <OverviewStatCell label="Booking link clicks" value={analytics.bookingClicks} />
-        <OverviewStatCell label="Instagram link clicks" value={analytics.instagramClicks} />
+        <OverviewStatCell label="Unique visitors" value={totalVisitors} state={statState} />
+        <OverviewStatCell label="Booking link clicks" value={analytics?.bookingClicks ?? 0} state={statState} />
+        <OverviewStatCell label="Instagram link clicks" value={analytics?.instagramClicks ?? 0} state={statState} />
       </div>
 
       <div className="grid gap-4 lg:grid-cols-3">
@@ -3478,7 +3420,7 @@ function AnalyticsPage({
           </p>
           {isRangeLoading ? (
             <VisitorsLineChartSkeleton />
-          ) : (
+          ) : analytics ? (
             <VisitorsLineChart
               bars={analytics.visitorsByDay.map((bucket) => ({
                 label: analytics.granularity === "hour" ? formatShortTime(bucket.date) : formatShortDate(bucket.date),
@@ -3486,13 +3428,17 @@ function AnalyticsPage({
               }))}
               emptyLabel="No visitor data yet."
             />
+          ) : (
+            <SkeletonEmptyState label="No data">
+              <VisitorsLineChartSkeleton pulse={false} />
+            </SkeletonEmptyState>
           )}
         </div>
 
         <div className="border border-stone-200 bg-white p-6">
           <h2 className="text-sm font-semibold text-stone-950">Most popular stylists</h2>
           <p className="mt-1 text-xs text-stone-500">By booking &amp; Instagram clicks</p>
-          {isRangeLoading ? <TopStylistsSkeleton /> : <TopStylistsList rows={analytics.topStylists} />}
+          {isRangeLoading ? <TopStylistsSkeleton /> : <TopStylistsList rows={analytics?.topStylists ?? []} />}
         </div>
       </div>
 
@@ -3502,7 +3448,7 @@ function AnalyticsPage({
           <p className="mt-1 text-xs text-stone-500">Most-used filter values across all visitors</p>
           {isRangeLoading ? (
             <FilterUsageSkeleton />
-          ) : analytics.filterUsage.length ? (
+          ) : analytics?.filterUsage.length ? (
             <div className="mt-5 grid grid-cols-2 gap-x-6 gap-y-6">
               {analytics.filterUsage.map((group) => (
                 <FilterUsageGroup key={group.label} label={group.label} rows={group.rows} />
@@ -3521,7 +3467,7 @@ function AnalyticsPage({
           {isRangeLoading ? (
             <ZeroResultSearchesSkeleton />
           ) : (
-            <ZeroResultSearchesList rows={analytics.zeroResultSearches} onOpen={() => onOpenView("discovery")} />
+            <ZeroResultSearchesList rows={analytics?.zeroResultSearches ?? []} onOpen={() => onOpenView("discovery")} />
           )}
         </div>
       </div>
@@ -3671,13 +3617,34 @@ function formatStatValue(value: number) {
   return new Intl.NumberFormat("en-GB", { notation: "compact", maximumFractionDigits: 1 }).format(value);
 }
 
-function OverviewStatCell({ label, value, onClick }: { label: string; value: number; onClick?: () => void }) {
-  const content = (
-    <>
-      <p className="text-[13px] text-stone-500">{label}</p>
+function OverviewStatCell({
+  label,
+  value,
+  onClick,
+  state = "loaded",
+}: {
+  label: string;
+  value: number;
+  onClick?: () => void;
+  state?: "loading" | "empty" | "loaded";
+}) {
+  const valueContent =
+    state === "loading" ? (
+      <span className="mt-2 block h-7 w-16 animate-pulse rounded-none bg-stone-200" />
+    ) : state === "empty" ? (
+      <SkeletonEmptyState label="No data">
+        <span className="mt-2 block h-7 w-20 rounded-none bg-stone-100" />
+      </SkeletonEmptyState>
+    ) : (
       <p className="mt-2 text-2xl font-semibold tracking-tight text-stone-950" title={value.toLocaleString("en-GB")}>
         {formatStatValue(value)}
       </p>
+    );
+
+  const content = (
+    <>
+      <p className="text-[13px] text-stone-500">{label}</p>
+      {valueContent}
     </>
   );
 
@@ -3697,8 +3664,8 @@ function OverviewStatCell({ label, value, onClick }: { label: string; value: num
   );
 }
 
-function VisitorsLineChartSkeleton() {
-  return <div className="mt-6 h-56 w-full animate-pulse rounded-none bg-stone-100" />;
+function VisitorsLineChartSkeleton({ pulse = true }: { pulse?: boolean }) {
+  return <div className={cn("mt-6 h-56 w-full rounded-none", pulse ? "animate-pulse bg-stone-200" : "bg-stone-100")} />;
 }
 
 function VisitorsLineChart({ bars, emptyLabel }: { bars: { label: string; value: number }[]; emptyLabel: string }) {
