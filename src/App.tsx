@@ -33,6 +33,7 @@ const categoryMap = {
   "colour-services": { label: "Colour", subcategories: ["all","Balayage","Full head colour","Highlights","Wig colouring / bundle colouring"] },
   "bridal-services": { label: "Bridal", subcategories: ["all","Bridal"] },
   "editorial-services": { label: "Editorial / Session styling", subcategories: ["all","Editorial / Session styling"] },
+  "kids-teens-services": { label: "Kids & teens styles", subcategories: ["all","Kids & teens styles"] },
   "extension-services": { label: "Extensions", subcategories: ["all","Clip ins (+ silk press)","K-tips / invisible strands","LA weave / microlinks wefts / braidless sew in","I-tips / microlinks strands","Tape ins"] },
   "locs-services": { label: "Locs", subcategories: ["all","Butterfly locs","Faux locs","Microlocs / sisterlocs","Retwist","Starter locs"] },
   "sew-in-weave": { label: "Sew in / weave", subcategories: ["all","Closure sew-in / closure behind the hairline","Flipover / Versatile sew-in","Frontal sew-in","Hybrid sew in (tapes + sew in)","Pixie wig / weave install","Quick weave","Sew-in take-down","Tracks (+ silk press) / partial / invisible sew-in","Traditional sew-in / leave out"] },
@@ -48,6 +49,7 @@ const categoryServiceMap = {
   "colour-services": ["Balayage","Full head colour","Highlights","Wig colouring / bundle colouring"],
   "bridal-services": ["Bridal"],
   "editorial-services": ["Editorial / Session styling"],
+  "kids-teens-services": ["Kids & teens styles"],
   "extension-services": ["Clip ins (+ silk press)","K-tips / invisible strands","LA weave / microlinks wefts / braidless sew in","I-tips / microlinks strands","Tape ins"],
   "locs-services": ["Butterfly locs","Faux locs","Microlocs / sisterlocs","Retwist","Starter locs"],
   "sew-in-weave": ["Closure sew-in / closure behind the hairline","Flipover / Versatile sew-in","Frontal sew-in","Hybrid sew in (tapes + sew in)","Pixie wig / weave install","Quick weave","Sew-in take-down","Tracks (+ silk press) / partial / invisible sew-in","Traditional sew-in / leave out"],
@@ -92,7 +94,6 @@ type SalonResult = {
   hijabiFriendly?: boolean;
   canBraidWithoutGel?: boolean;
   wheelchairAccessible?: boolean;
-  kidsFriendly?: boolean;
   customFilters?: Record<string, string[]>;
   priceBand?: PriceBand;
   servicePriceBand?: PriceBand;
@@ -175,6 +176,7 @@ const serviceSearchAliases: Record<string, string[]> = {
   "Stitch braids": ["stitch braids", "stitch"],
   "Scalp detox / treatments": ["scalp", "scalp care", "scalp therapy", "scalp treatment", "scalp scrub", "scalp detox"],
   "Trichology / scalp analysis": ["scalp", "scalp analysis", "scalp health", "trichology"],
+  "Kids & teens styles": ["kids", "kid", "teen", "teens", "children", "child"],
 };
 
 const sortedCategoryEntries = [
@@ -732,7 +734,6 @@ export default function App() {
   const [draftSelectedHijabiFriendly, setDraftSelectedHijabiFriendly] = useState(false);
   const [draftSelectedCanBraidWithoutGel, setDraftSelectedCanBraidWithoutGel] = useState(false);
   const [draftSelectedWheelchairAccessible, setDraftSelectedWheelchairAccessible] = useState(false);
-  const [draftSelectedKidsFriendly, setDraftSelectedKidsFriendly] = useState(false);
   const [draftSortOption, setDraftSortOption] = useState<SortOption>("default");
   const [visibleResultCount, setVisibleResultCount] = useState(RESULTS_BATCH_SIZE);
   const [isSearching, setIsSearching] = useState(false);
@@ -742,7 +743,6 @@ export default function App() {
   const [selectedHijabiFriendly, setSelectedHijabiFriendly] = useState(false);
   const [selectedCanBraidWithoutGel, setSelectedCanBraidWithoutGel] = useState(false);
   const [selectedWheelchairAccessible, setSelectedWheelchairAccessible] = useState(false);
-  const [selectedKidsFriendly, setSelectedKidsFriendly] = useState(false);
   const [selectedPriceBands, setSelectedPriceBands] = useState<PriceRangeFilterId[]>([]);
   const [isDesktopViewport, setIsDesktopViewport] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
@@ -758,7 +758,6 @@ export default function App() {
   const currentSelectedHijabiFriendly = isMobileModalEditing ? draftSelectedHijabiFriendly : selectedHijabiFriendly;
   const currentSelectedCanBraidWithoutGel = isMobileModalEditing ? draftSelectedCanBraidWithoutGel : selectedCanBraidWithoutGel;
   const currentSelectedWheelchairAccessible = isMobileModalEditing ? draftSelectedWheelchairAccessible : selectedWheelchairAccessible;
-  const currentSelectedKidsFriendly = isMobileModalEditing ? draftSelectedKidsFriendly : selectedKidsFriendly;
   const currentSelectedCustomFilters = isMobileModalEditing ? draftSelectedCustomFilters : selectedCustomFilters;
   const currentSortOption = isMobileModalEditing ? draftSortOption : sortOption;
 
@@ -783,7 +782,6 @@ export default function App() {
     setDraftSelectedHijabiFriendly(selectedHijabiFriendly);
     setDraftSelectedCanBraidWithoutGel(selectedCanBraidWithoutGel);
     setDraftSelectedWheelchairAccessible(selectedWheelchairAccessible);
-    setDraftSelectedKidsFriendly(selectedKidsFriendly);
     setDraftSelectedCustomFilters(selectedCustomFilters);
     setDraftSortOption(sortOption);
   }
@@ -807,7 +805,6 @@ export default function App() {
     setSelectedHijabiFriendly(draftSelectedHijabiFriendly);
     setSelectedCanBraidWithoutGel(draftSelectedCanBraidWithoutGel);
     setSelectedWheelchairAccessible(draftSelectedWheelchairAccessible);
-    setSelectedKidsFriendly(draftSelectedKidsFriendly);
     setSelectedCustomFilters(draftSelectedCustomFilters);
     setSortOption(draftSortOption);
     setVisibleResultCount(RESULTS_BATCH_SIZE);
@@ -879,15 +876,6 @@ export default function App() {
     }
 
     setSelectedWheelchairAccessible(updater);
-  }
-
-  function updateKidsFriendly(updater: boolean | ((current: boolean) => boolean)) {
-    if (isMobileModalEditing) {
-      setDraftSelectedKidsFriendly(updater);
-      return;
-    }
-
-    setSelectedKidsFriendly(updater);
   }
 
   function updateCustomFilters(updater: Record<string, string[]> | ((current: Record<string, string[]>) => Record<string, string[]>)) {
@@ -999,11 +987,10 @@ export default function App() {
       selected_services: currentSelectedCategories.length + currentSelectedSubcategories.length,
       selected_locations: currentSelectedRegions.filter((region) => region !== "all").length,
       selected_price_ranges: currentSelectedPriceBands.length,
-      selected_additional_needs: (currentSelectedHijabiFriendly ? 1 : 0) + (currentSelectedCanBraidWithoutGel ? 1 : 0) + (currentSelectedWheelchairAccessible ? 1 : 0) + (currentSelectedKidsFriendly ? 1 : 0),
+      selected_additional_needs: (currentSelectedHijabiFriendly ? 1 : 0) + (currentSelectedCanBraidWithoutGel ? 1 : 0) + (currentSelectedWheelchairAccessible ? 1 : 0),
       hijabi_friendly: currentSelectedHijabiFriendly,
       can_braid_without_gel: currentSelectedCanBraidWithoutGel,
       wheelchair_accessible: currentSelectedWheelchairAccessible,
-      kids_friendly: currentSelectedKidsFriendly,
     });
     updateCategories([]);
     updateSubcategories([]);
@@ -1012,7 +999,6 @@ export default function App() {
     updateHijabiFriendly(false);
     updateCanBraidWithoutGel(false);
     updateWheelchairAccessible(false);
-    updateKidsFriendly(false);
     updateCustomFilters({});
     updateSortOption("default");
   }
@@ -1118,13 +1104,6 @@ export default function App() {
 
   function toggleWheelchairAccessible() {
     updateWheelchairAccessible((current) => !current);
-  }
-
-  function toggleKidsFriendly() {
-    trackAnalyticsEvent("kids_friendly_toggle_changed", {
-      enabled: !currentSelectedKidsFriendly,
-    });
-    updateKidsFriendly((current) => !current);
   }
 
   function toggleCustomFilterOption(filterTypeId: string, optionId: string) {
@@ -1246,7 +1225,6 @@ export default function App() {
           hijabiFriendly: selectedHijabiFriendly,
           canBraidWithoutGel: selectedCanBraidWithoutGel,
           wheelchairAccessible: selectedWheelchairAccessible,
-          kidsFriendly: selectedKidsFriendly,
           customFilters: selectedCustomFilters,
         }),
       });
@@ -1277,7 +1255,6 @@ export default function App() {
         hijabi_friendly: selectedHijabiFriendly,
         no_gel: selectedCanBraidWithoutGel,
         wheelchair_accessible: selectedWheelchairAccessible,
-        kids_friendly: selectedKidsFriendly,
       });
 
       if (resultCount === 0) {
@@ -1287,7 +1264,6 @@ export default function App() {
           hijabi_friendly: selectedHijabiFriendly,
           no_gel: selectedCanBraidWithoutGel,
           wheelchair_accessible: selectedWheelchairAccessible,
-          kids_friendly: selectedKidsFriendly,
         });
       }
 
@@ -1306,7 +1282,7 @@ export default function App() {
 
   useEffect(() => {
     void handleSearch({ scroll: false });
-  }, [selectedCategories, selectedSubcategories, selectedRegions, selectedHijabiFriendly, selectedCanBraidWithoutGel, selectedWheelchairAccessible, selectedKidsFriendly, selectedCustomFilters]);
+  }, [selectedCategories, selectedSubcategories, selectedRegions, selectedHijabiFriendly, selectedCanBraidWithoutGel, selectedWheelchairAccessible, selectedCustomFilters]);
 
   useEffect(() => {
     fetch("/api/filters")
@@ -1388,7 +1364,6 @@ export default function App() {
     selectedHijabiFriendly ||
     selectedCanBraidWithoutGel ||
     selectedWheelchairAccessible ||
-    selectedKidsFriendly ||
     Object.values(selectedCustomFilters).some((values) => values.length > 0) ||
     selectedRegions.length !== 1 ||
     selectedRegions[0] !== "all";
@@ -1457,7 +1432,7 @@ export default function App() {
   const selectedLocationCount = currentSelectedRegions.filter((regionId) => regionId !== "all").length;
   const selectedPriceRangeCount = currentSelectedPriceBands.length;
   const selectedAdditionalNeedsCount =
-    (currentSelectedHijabiFriendly ? 1 : 0) + (currentSelectedCanBraidWithoutGel ? 1 : 0) + (currentSelectedWheelchairAccessible ? 1 : 0) + (currentSelectedKidsFriendly ? 1 : 0);
+    (currentSelectedHijabiFriendly ? 1 : 0) + (currentSelectedCanBraidWithoutGel ? 1 : 0) + (currentSelectedWheelchairAccessible ? 1 : 0);
   const selectedCustomFilterCounts = Object.fromEntries(
     customFilterTypes.map((filterType) => [filterType.id, (currentSelectedCustomFilters[filterType.id] ?? []).length]),
   );
@@ -1582,7 +1557,7 @@ export default function App() {
                                   </>
                                 ) : null}
                               </div>
-                              {(comparablePriceBand(result) || result.hijabiFriendly || result.canBraidWithoutGel || result.wheelchairAccessible || result.kidsFriendly || getResultCustomFilterLabels(result, customFilterTypes).length > 0) ? (
+                              {(comparablePriceBand(result) || result.hijabiFriendly || result.canBraidWithoutGel || result.wheelchairAccessible || getResultCustomFilterLabels(result, customFilterTypes).length > 0) ? (
                                 <div className="mt-1">
                                   <span className="inline-flex items-center rounded-none bg-stone-200 px-1.5 py-1 text-[11px] font-medium leading-none tracking-[0.03em] text-stone-700 dark:bg-stone-700 dark:text-stone-100">
                                     {[
@@ -1590,7 +1565,6 @@ export default function App() {
                                       result.wheelchairAccessible ? "wheelchair accessible" : null,
                                       result.hijabiFriendly ? "hijabi-friendly" : null,
                                       result.canBraidWithoutGel ? "can braid without gel" : null,
-                                      result.kidsFriendly ? "kids & teens styles" : null,
                                       ...getResultCustomFilterLabels(result, customFilterTypes),
                                     ].filter(Boolean).join(" · ")}
                                   </span>
@@ -2224,26 +2198,6 @@ export default function App() {
                       </span>
                       <span className="translate-y-[1.5px] text-[15px] text-stone-800 dark:text-stone-200">
                         Hijabi-friendly
-                      </span>
-                    </button>
-
-                    <button
-                      type="button"
-                      aria-pressed={currentSelectedKidsFriendly}
-                      onClick={toggleKidsFriendly}
-                      className="flex w-full cursor-pointer items-start gap-3 rounded-none px-2 py-2 text-left transition-colors hover:bg-stone-200 active:bg-stone-200 dark:hover:bg-stone-900 dark:active:bg-stone-900"
-                    >
-                      <span
-                        aria-hidden="true"
-                        className={cn(
-                          "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-none border border-stone-500 bg-white text-white transition dark:border-stone-500 dark:bg-stone-900",
-                          currentSelectedKidsFriendly && "border-stone-950 bg-stone-950 dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950",
-                        )}
-                      >
-                        {currentSelectedKidsFriendly ? <Check className="size-3.5" /> : null}
-                      </span>
-                      <span className="translate-y-[1.5px] text-[15px] text-stone-800 dark:text-stone-200">
-                        Kids & teens styles
                       </span>
                     </button>
 

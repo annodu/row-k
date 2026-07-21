@@ -80,7 +80,6 @@ type StylistDraft = {
   hijabiFriendly?: boolean;
   canBraidWithoutGel?: boolean;
   wheelchairAccessible?: boolean;
-  kidsFriendly?: boolean;
   customFilters?: Record<string, string[]>;
   priceBand?: PriceBand;
   servicePriceBand?: PriceBand;
@@ -145,7 +144,6 @@ type DraftForm = {
   hijabiFriendly: boolean;
   canBraidWithoutGel: boolean;
   wheelchairAccessible: boolean;
-  kidsFriendly: boolean;
   priceBand: PriceBand | "";
   servicePriceBand: PriceBand | "";
   packagePriceBand: PriceBand | "";
@@ -643,7 +641,6 @@ const emptyForm: DraftForm = {
   hijabiFriendly: false,
   canBraidWithoutGel: false,
   wheelchairAccessible: false,
-  kidsFriendly: false,
   priceBand: "",
   servicePriceBand: "",
   packagePriceBand: "",
@@ -661,6 +658,7 @@ const serviceGroups = [
   { label: "Colour", services: ["Balayage","Full head colour","Highlights","Wig colouring / bundle colouring"] },
   { label: "Bridal", services: ["Bridal"] },
   { label: "Editorial / Session styling", services: ["Editorial / Session styling"] },
+  { label: "Kids & teens styles", services: ["Kids & teens styles"] },
   { label: "Extensions", services: ["Clip ins (+ silk press)","K-tips / invisible strands","LA weave / microlinks wefts / braidless sew in","I-tips / microlinks strands","Tape ins"] },
   { label: "Locs", services: ["Butterfly locs","Faux locs","Microlocs / sisterlocs","Retwist","Starter locs"] },
   { label: "Sew in / weave", services: ["Closure sew-in / closure behind the hairline","Flipover / Versatile sew-in","Frontal sew-in","Hybrid sew in (tapes + sew in)","Pixie wig / weave install","Quick weave","Sew-in take-down","Tracks (+ silk press) / partial / invisible sew-in","Traditional sew-in / leave out"] },
@@ -2027,7 +2025,7 @@ function StylistsPage({
         const matchesCategory = categoryFilter === "all" || draftMatchesCategory(draft, categoryFilter, filterCategories);
         const matchesLocation = locationFilter === "all" || draftMatchesLocation(draft, locationFilter);
         const matchesPrice = priceFilter === "all" || (draft.priceBand || "not-listed") === priceFilter;
-        const matchesNeeds = needsFilter.every((need) => Boolean(draft[need as "hijabiFriendly" | "canBraidWithoutGel" | "wheelchairAccessible" | "kidsFriendly"]));
+        const matchesNeeds = needsFilter.every((need) => Boolean(draft[need as "hijabiFriendly" | "canBraidWithoutGel" | "wheelchairAccessible"]));
         return matchesCategory && matchesLocation && matchesPrice && matchesNeeds;
       }),
     [drafts, categoryFilter, locationFilter, priceFilter, needsFilter, filterCategories],
@@ -2334,7 +2332,6 @@ const stylistPriceFilterOptions = [
 const stylistNeedsFilterOptions = [
   { id: "canBraidWithoutGel", label: "Can braid without gel" },
   { id: "hijabiFriendly", label: "Hijabi-friendly" },
-  { id: "kidsFriendly", label: "Kids & teens styles" },
   { id: "wheelchairAccessible", label: "Wheelchair accessible" },
 ];
 
@@ -7293,7 +7290,6 @@ const additionalNeedsFieldMap: Record<string, keyof StylistDraft> = {
   hijabiFriendly: "hijabiFriendly",
   canBraidWithoutGel: "canBraidWithoutGel",
   "wheelchair-access": "wheelchairAccessible",
-  kidsFriendly: "kidsFriendly",
 };
 
 function DraftAdditionalNeeds({
@@ -7501,7 +7497,6 @@ function publishedSalonToDraft(salon: Partial<StylistDraft>): StylistDraft {
     hijabiFriendly: salon.hijabiFriendly === true,
     canBraidWithoutGel: salon.canBraidWithoutGel === true,
     wheelchairAccessible: salon.wheelchairAccessible === true,
-    kidsFriendly: salon.kidsFriendly === true,
     priceBand: salon.priceBand,
     servicePriceBand: salon.servicePriceBand,
     packagePriceBand: salon.packagePriceBand,

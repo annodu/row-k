@@ -38,6 +38,7 @@ const defaultCategoryMap = {
   "colour-services": ["Balayage","Full head colour","Highlights","Wig colouring / bundle colouring"],
   "bridal-services": ["Bridal"],
   "editorial-services": ["Editorial / Session styling"],
+  "kids-teens-services": ["Kids & teens styles"],
   "extension-services": ["Clip ins (+ silk press)","K-tips / invisible strands","LA weave / microlinks wefts / braidless sew in","I-tips / microlinks strands","Tape ins"],
   "locs-services": ["Butterfly locs","Faux locs","Microlocs / sisterlocs","Retwist","Starter locs"],
   "sew-in-weave": ["Closure sew-in / closure behind the hairline","Flipover / Versatile sew-in","Frontal sew-in","Hybrid sew in (tapes + sew in)","Pixie wig / weave install","Quick weave","Sew-in take-down","Tracks (+ silk press) / partial / invisible sew-in","Traditional sew-in / leave out"],
@@ -502,7 +503,6 @@ export async function searchSalons({
   hijabiFriendly = false,
   canBraidWithoutGel = false,
   wheelchairAccessible = false,
-  kidsFriendly = false,
   customFilters = {},
 } = {}) {
   const index = await readSalonIndex();
@@ -520,7 +520,6 @@ export async function searchSalons({
         matchesHijabiFriendly(salon, hijabiFriendly) &&
         matchesCanBraidWithoutGel(salon, canBraidWithoutGel) &&
         matchesWheelchairAccessible(salon, wheelchairAccessible) &&
-        matchesKidsFriendly(salon, kidsFriendly) &&
         matchesCustomFilters(salon, customFilters),
     )
     .sort(compareRecentlyAdded);
@@ -617,13 +616,6 @@ function matchesWheelchairAccessible(salon, wheelchairAccessible) {
   return salon.wheelchairAccessible === true;
 }
 
-function matchesKidsFriendly(salon, kidsFriendly) {
-  if (!kidsFriendly) {
-    return true;
-  }
-
-  return salon.kidsFriendly === true;
-}
 
 function matchesCustomFilters(salon, customFilters) {
   if (!customFilters || typeof customFilters !== "object") {

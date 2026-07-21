@@ -76,9 +76,9 @@
         "Knotless braids",
         "Fulani / lemonade braids",
         "Boho braids bob",
-        "Feed-in braids"
+        "Feed-in braids",
+        "Kids & teens styles"
       ],
-      "kidsFriendly": true,
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
       "evidence": [
@@ -159,7 +159,6 @@
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
       "wheelchairAccessible": false,
-      "kidsFriendly": false,
       "updatedAt": "2026-07-16"
     },
     {
@@ -1105,7 +1104,8 @@
         "Miracle knots",
         "Sleek ponytail / bun",
         "Updo",
-        "Boho braids bob"
+        "Boho braids bob",
+        "Kids & teens styles"
       ],
       "priceBand": "£",
       "servicePriceBand": "£",
@@ -1132,8 +1132,7 @@
       "source": "manual",
       "evidence": [
         "Submitted link: https://www.instagram.com/crownedbyshyuk/"
-      ],
-      "kidsFriendly": true
+      ]
     },
     {
       "id": "jan-franczak-hair",
@@ -1302,8 +1301,7 @@
       "canBraidWithoutGel": false,
       "wheelchairAccessible": false,
       "updatedAt": "2026-07-16",
-      "websiteUrl": "",
-      "kidsFriendly": false
+      "websiteUrl": ""
     },
     {
       "id": "athstudiosldn",
@@ -1397,7 +1395,8 @@
       "services": [
         "Trim / hair cut",
         "Relaxer / texturiser",
-        "Silk press"
+        "Silk press",
+        "Kids & teens styles"
       ],
       "priceBand": "£",
       "servicePriceBand": "£",
@@ -1424,8 +1423,7 @@
       "source": "manual",
       "evidence": [
         "Submitted link: https://www.instagram.com/_thehouseofplush/"
-      ],
-      "kidsFriendly": true
+      ]
     },
     {
       "id": "kimmie-cosmetics",
@@ -3128,7 +3126,8 @@
         "Knotless braids",
         "Wash & blowdry",
         "Stitch braids",
-        "Retwist"
+        "Retwist",
+        "Kids & teens styles"
       ],
       "priceBand": "££",
       "servicePriceBand": "",
@@ -3159,8 +3158,7 @@
       "canBraidWithoutGel": false,
       "updatedAt": "2026-06-06",
       "addedVia": "Admin tool",
-      "discoverySource": "Manual search",
-      "kidsFriendly": true
+      "discoverySource": "Manual search"
     },
     {
       "id": "dillanbstudios",
@@ -4731,7 +4729,8 @@
         "Wig install (frontal / closure)",
         "Texture release",
         "Feed-in braids",
-        "Half up half down"
+        "Half up half down",
+        "Kids & teens styles"
       ],
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
@@ -4758,8 +4757,7 @@
       "canBraidWithoutGel": false,
       "updatedAt": "2026-06-03",
       "addedVia": "Admin tool",
-      "discoverySource": "Manual search",
-      "kidsFriendly": true
+      "discoverySource": "Manual search"
     },
     {
       "id": "m-braidsstylist",
@@ -4785,7 +4783,8 @@
         "Butterfly locs",
         "Boho braids / goddess braids",
         "Fulani / lemonade braids",
-        "Wig cornrows"
+        "Wig cornrows",
+        "Kids & teens styles"
       ],
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
@@ -4812,8 +4811,7 @@
       "canBraidWithoutGel": false,
       "updatedAt": "2026-06-03",
       "addedVia": "Admin tool",
-      "discoverySource": "Manual search",
-      "kidsFriendly": true
+      "discoverySource": "Manual search"
     },
     {
       "id": "qhbeautys",
@@ -5183,7 +5181,8 @@
         "Quick weave",
         "Half braids, half sew-in",
         "Sleek ponytail / bun",
-        "Feed-in braids"
+        "Feed-in braids",
+        "Kids & teens styles"
       ],
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
@@ -5214,8 +5213,7 @@
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
       "addedVia": "Admin tool",
-      "discoverySource": "Manual search",
-      "kidsFriendly": true
+      "discoverySource": "Manual search"
     },
     {
       "id": "bychiluxe",
@@ -5290,7 +5288,8 @@
         "Closure sew-in / closure behind the hairline",
         "Microlinks",
         "U-part wig install",
-        "Boho braids bob"
+        "Boho braids bob",
+        "Kids & teens styles"
       ],
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
@@ -5313,8 +5312,7 @@
       "priceConfidence": "high",
       "priceUpdatedAt": "2026-06-04",
       "addedVia": "Admin tool",
-      "discoverySource": "Manual search",
-      "kidsFriendly": true
+      "discoverySource": "Manual search"
     },
     {
       "id": "hair-evolve-by-de",
@@ -5938,7 +5936,8 @@
         "French curl",
         "Boho braids / goddess braids",
         "Knotless braids",
-        "French curl bob"
+        "French curl bob",
+        "Kids & teens styles"
       ],
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
@@ -5961,8 +5960,7 @@
       "priceConfidence": "high",
       "priceUpdatedAt": "2026-06-03",
       "addedVia": "Admin tool",
-      "discoverySource": "Manual search",
-      "kidsFriendly": true
+      "discoverySource": "Manual search"
     },
     {
       "id": "bynickellecarey",
@@ -6967,7 +6965,8 @@
         "Wash & blowdry",
         "Trichology / scalp analysis",
         "Healthy hair plans & consultations",
-        "Full head colour"
+        "Full head colour",
+        "Kids & teens styles"
       ],
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
@@ -6990,8 +6989,7 @@
       "priceUpdatedAt": "2026-06-03",
       "priceConfidence": "high",
       "addedVia": "Admin tool",
-      "discoverySource": "Manual search",
-      "kidsFriendly": true
+      "discoverySource": "Manual search"
     },
     {
       "id": "naturallyimmaculate",
@@ -7788,7 +7786,8 @@
         "Wig colouring / bundle colouring",
         "Miracle knots",
         "Stitch braids",
-        "Boho braids bob"
+        "Boho braids bob",
+        "Kids & teens styles"
       ],
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
@@ -7813,8 +7812,7 @@
       "priceConfidence": "high",
       "priceUpdatedAt": "2026-06-03",
       "addedVia": "Admin tool",
-      "discoverySource": "Manual search",
-      "kidsFriendly": true
+      "discoverySource": "Manual search"
     },
     {
       "id": "ponytailclinic",
@@ -8029,7 +8027,8 @@
         "Quick weave",
         "Wig cornrows",
         "Twists (with extensions)",
-        "Miracle knots"
+        "Miracle knots",
+        "Kids & teens styles"
       ],
       "summary": "Manual entry added from your North West London braids, sew-in, quick weave, cornrow, and twists list.",
       "source": "manual",
@@ -8052,8 +8051,7 @@
       "priceConfidence": "high",
       "priceUpdatedAt": "2026-06-03",
       "addedVia": "Code edit",
-      "discoverySource": "Cowork scrape",
-      "kidsFriendly": true
+      "discoverySource": "Cowork scrape"
     },
     {
       "id": "cutzgalore",
@@ -8874,7 +8872,8 @@
         "Frontal ponytail / bun",
         "Updo",
         "Fulani / lemonade braids",
-        "Wig install (frontal / closure)"
+        "Wig install (frontal / closure)",
+        "Kids & teens styles"
       ],
       "priceBand": "££",
       "priceSource": "auto",
@@ -8892,8 +8891,7 @@
       "priceConfidence": "high",
       "priceUpdatedAt": "2026-06-04",
       "addedVia": "Code edit",
-      "discoverySource": "Cowork scrape",
-      "kidsFriendly": true
+      "discoverySource": "Cowork scrape"
     },
     {
       "summary": "Manual entry added from your bridal and editorial list.",
@@ -9064,7 +9062,8 @@
         "Traditional sew-in / leave out",
         "Closure sew-in / closure behind the hairline",
         "Crochet",
-        "Boho braids bob"
+        "Boho braids bob",
+        "Kids & teens styles"
       ],
       "canBraidWithoutGel": true,
       "priceBand": "£",
@@ -9091,8 +9090,7 @@
       "priceComparisonMode": "service-only",
       "updatedAt": "2026-06-10",
       "addedVia": "Code edit",
-      "discoverySource": "Cowork scrape",
-      "kidsFriendly": true
+      "discoverySource": "Cowork scrape"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -9272,7 +9270,8 @@
         "Box braids",
         "Knotless braids",
         "Feed-in braids",
-        "Boho braids bob"
+        "Boho braids bob",
+        "Kids & teens styles"
       ],
       "summary": "Manual entry added from your West London and mobile braids update batch.",
       "source": "manual",
@@ -9290,8 +9289,7 @@
       "priceConfidence": "manual",
       "updatedAt": "2026-06-04",
       "addedVia": "Code edit",
-      "discoverySource": "Cowork scrape",
-      "kidsFriendly": true
+      "discoverySource": "Cowork scrape"
     },
     {
       "id": "arewa-uk",
@@ -9499,7 +9497,8 @@
         "Stitch braids",
         "Twists (with extensions)",
         "Frontal ponytail / bun",
-        "Updo"
+        "Updo",
+        "Kids & teens styles"
       ],
       "tiktokUrl": "",
       "hijabiFriendly": false,
@@ -9521,8 +9520,7 @@
       "priceConfidence": "manual",
       "updatedAt": "2026-06-04",
       "addedVia": "Code edit",
-      "discoverySource": "Cowork scrape",
-      "kidsFriendly": true
+      "discoverySource": "Cowork scrape"
     },
     {
       "id": "ash-lounge",
@@ -10169,7 +10167,8 @@
         "Closure sew-in",
         "Frontal sew-in",
         "Custom wig",
-        "Flipover / Versatile sew-in"
+        "Flipover / Versatile sew-in",
+        "Kids & teens styles"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -10201,8 +10200,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-06-10",
-      "kidsFriendly": true
+      "updatedAt": "2026-06-10"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -10331,7 +10329,8 @@
         "Twists (with extensions)",
         "Traditional sew-in / leave out",
         "Closure sew-in / closure behind the hairline",
-        "Trichology / scalp analysis"
+        "Trichology / scalp analysis",
+        "Kids & teens styles"
       ],
       "priceBand": "££",
       "priceSource": "manual",
@@ -10349,8 +10348,7 @@
       "priceUpdatedAt": "2026-06-04",
       "priceConfidence": "manual",
       "addedVia": "Code edit",
-      "discoverySource": "Cowork scrape",
-      "kidsFriendly": true
+      "discoverySource": "Cowork scrape"
     },
     {
       "id": "bestbyjessica-salon",
@@ -10504,7 +10502,8 @@
         "Clip ins (+ silk press)",
         "Pixie wig / weave install",
         "Scalp detox / treatments",
-        "Custom wig"
+        "Custom wig",
+        "Kids & teens styles"
       ],
       "summary": "Manual entry added from your North London extensions, treatments, and braids list.",
       "source": "manual",
@@ -10528,8 +10527,7 @@
       "priceConfidence": "high",
       "addedVia": "Code edit",
       "discoverySource": "Cowork scrape",
-      "tiktokUrl": "https://www.tiktok.com/@xo_karrieee/video/7592032929845366019",
-      "kidsFriendly": true
+      "tiktokUrl": "https://www.tiktok.com/@xo_karrieee/video/7592032929845366019"
     },
     {
       "id": "bimmytouch",
@@ -10836,7 +10834,8 @@
         "Wig cornrows",
         "Stitch braids",
         "Half braids, half sew-in",
-        "Boho braids bob"
+        "Boho braids bob",
+        "Kids & teens styles"
       ],
       "priceBand": "£",
       "priceSource": "auto",
@@ -10862,8 +10861,7 @@
       "priceComparisonMode": "service-only",
       "updatedAt": "2026-06-08",
       "addedVia": "Code edit",
-      "discoverySource": "Cowork scrape",
-      "kidsFriendly": true
+      "discoverySource": "Cowork scrape"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -11089,7 +11087,8 @@
         "Retwist",
         "Creative braids",
         "Boho braids bob",
-        "French curl bob"
+        "French curl bob",
+        "Kids & teens styles"
       ],
       "canBraidWithoutGel": true,
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
@@ -11122,8 +11121,7 @@
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
       "updatedAt": "2026-06-11",
-      "websiteUrl": "",
-      "kidsFriendly": true
+      "websiteUrl": ""
     },
     {
       "id": "braidzbynadz",
@@ -13403,7 +13401,8 @@
         "Microlocs / sisterlocs",
         "K-18 treatment",
         "Closure sew-in",
-        "LA weave"
+        "LA weave",
+        "Kids & teens styles"
       ],
       "canBraidWithoutGel": true,
       "priceBand": "££",
@@ -13430,8 +13429,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-06-10",
-      "kidsFriendly": true
+      "updatedAt": "2026-06-10"
     },
     {
       "id": "di-locsmith",
@@ -14200,11 +14198,11 @@
         "Cornrows / Twists / Underwig cornrows",
         "Wash & blowdry",
         "Retwist",
-        "Starter locs"
+        "Starter locs",
+        "Kids & teens styles"
       ],
       "addedVia": "Code edit",
-      "discoverySource": "Cowork scrape",
-      "kidsFriendly": true
+      "discoverySource": "Cowork scrape"
     },
     {
       "id": "enhanced-by-hair",
@@ -15313,7 +15311,8 @@
         "Fulani / lemonade braids",
         "Closure sew-in / closure behind the hairline",
         "Custom wig",
-        "Wig install (frontal / closure)"
+        "Wig install (frontal / closure)",
+        "Kids & teens styles"
       ],
       "summary": "Manual entry added from your East London braids list.",
       "source": "manual",
@@ -15336,8 +15335,7 @@
       "priceConfidence": "high",
       "priceUpdatedAt": "2026-06-04",
       "addedVia": "Code edit",
-      "discoverySource": "Cowork scrape",
-      "kidsFriendly": true
+      "discoverySource": "Cowork scrape"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -16299,7 +16297,8 @@
         "Highlights",
         "Pixie cut / finger waves",
         "Wig cornrows",
-        "Crochet"
+        "Crochet",
+        "Kids & teens styles"
       ],
       "priceBand": "££",
       "priceSource": "auto",
@@ -16326,8 +16325,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-06-10",
-      "kidsFriendly": true
+      "updatedAt": "2026-06-10"
     },
     {
       "id": "hairbynoella",
@@ -16459,7 +16457,8 @@
         "Miracle knots",
         "Flipover / versatile sew-in",
         "Wig cornrows",
-        "Half braids, half sew-in"
+        "Half braids, half sew-in",
+        "Kids & teens styles"
       ],
       "tiktokUrl": "",
       "hijabiFriendly": false,
@@ -16481,8 +16480,7 @@
       "priceConfidence": "high",
       "updatedAt": "2026-06-03",
       "addedVia": "Code edit",
-      "discoverySource": "Cowork scrape",
-      "kidsFriendly": true
+      "discoverySource": "Cowork scrape"
     },
     {
       "id": "hair-by-resa",
@@ -16837,7 +16835,8 @@
         "Tracks (+ silk press) / partial / invisible sew-in",
         "Miracle knots",
         "Sew in / extensions blowdry",
-        "Boho braids bob"
+        "Boho braids bob",
+        "Kids & teens styles"
       ],
       "summary": "Manual entry added from your East London braids, extensions, sew-ins, and natural hair list.",
       "source": "manual",
@@ -16860,8 +16859,7 @@
       "priceConfidence": "high",
       "priceUpdatedAt": "2026-06-03",
       "addedVia": "Bulk import",
-      "discoverySource": "Cowork scrape",
-      "kidsFriendly": true
+      "discoverySource": "Cowork scrape"
     },
     {
       "id": "hairboyldn",
@@ -17120,7 +17118,8 @@
         "Butterfly locs",
         "French curl",
         "Twists (with extensions)",
-        "Boho braids bob"
+        "Boho braids bob",
+        "Kids & teens styles"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -17144,8 +17143,7 @@
       "priceConfidence": "high",
       "priceUpdatedAt": "2026-06-04",
       "addedVia": "Bulk import",
-      "discoverySource": "Cowork scrape",
-      "kidsFriendly": true
+      "discoverySource": "Cowork scrape"
     },
     {
       "id": "hairbymayldn",
@@ -17623,7 +17621,8 @@
         "Moisturising treatment",
         "Trim / hair cut",
         "Natural hair coaches / educators",
-        "Trichology / scalp analysis"
+        "Trichology / scalp analysis",
+        "Kids & teens styles"
       ],
       "priceBand": "£",
       "priceSource": "auto",
@@ -17643,8 +17642,7 @@
       "addedVia": "Code edit",
       "discoverySource": "Cowork scrape",
       "hijabiFriendly": false,
-      "wheelchairAccessible": false,
-      "kidsFriendly": true
+      "wheelchairAccessible": false
     },
     {
       "id": "helena-macris-salon",
@@ -18515,7 +18513,8 @@
         "Feed-in braids",
         "Half braids, half sew-in",
         "Fulani / lemonade braids",
-        "Stitch braids"
+        "Stitch braids",
+        "Kids & teens styles"
       ],
       "canBraidWithoutGel": true,
       "summary": "Manual entry added from your South West London braids list.",
@@ -18539,8 +18538,7 @@
       "priceConfidence": "high",
       "priceUpdatedAt": "2026-06-03",
       "addedVia": "Code edit",
-      "discoverySource": "Cowork scrape",
-      "kidsFriendly": true
+      "discoverySource": "Cowork scrape"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -19872,7 +19870,8 @@
         "Stitch braids",
         "Fulani / lemonade braids",
         "Half braids, half sew-in",
-        "Boho braids bob"
+        "Boho braids bob",
+        "Kids & teens styles"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -19895,8 +19894,7 @@
       "priceConfidence": "high",
       "priceUpdatedAt": "2026-06-04",
       "addedVia": "Bulk import",
-      "discoverySource": "Cowork scrape",
-      "kidsFriendly": true
+      "discoverySource": "Cowork scrape"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -20756,7 +20754,8 @@
         "Wash & blowdry",
         "Curly cut / wash & go / diffuse",
         "Tape ins",
-        "Boho braids bob"
+        "Boho braids bob",
+        "Kids & teens styles"
       ],
       "tiktokUrl": "",
       "hijabiFriendly": false,
@@ -20778,8 +20777,7 @@
       "priceConfidence": "high",
       "updatedAt": "2026-06-04",
       "addedVia": "Code edit",
-      "discoverySource": "Cowork scrape",
-      "kidsFriendly": true
+      "discoverySource": "Cowork scrape"
     },
     {
       "summary": "Manual entry added from your bridal and editorial list.",
@@ -21450,7 +21448,8 @@
         "Starter locs",
         "Retwist",
         "Boho braids bob",
-        "French curl bob"
+        "French curl bob",
+        "Kids & teens styles"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -21473,8 +21472,7 @@
       "priceConfidence": "high",
       "priceUpdatedAt": "2026-06-03",
       "addedVia": "Bulk import",
-      "discoverySource": "Cowork scrape",
-      "kidsFriendly": true
+      "discoverySource": "Cowork scrape"
     },
     {
       "id": "michaela-creates-ldn",
@@ -22554,11 +22552,11 @@
         "Fulani / lemonade braids",
         "Knotless braids",
         "Stitch braids",
-        "Miracle knots"
+        "Miracle knots",
+        "Kids & teens styles"
       ],
       "addedVia": "Code edit",
-      "discoverySource": "Cowork scrape",
-      "kidsFriendly": true
+      "discoverySource": "Cowork scrape"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -23017,7 +23015,8 @@
         "Balayage",
         "Faux locs",
         "Wig cornrows",
-        "Boho braids bob"
+        "Boho braids bob",
+        "Kids & teens styles"
       ],
       "summary": "Manual entry added from your North London braids, natural hair, and wigs list.",
       "source": "manual",
@@ -23044,8 +23043,7 @@
       "priceComparisonMode": "service-only",
       "updatedAt": "2026-06-08",
       "addedVia": "Bulk import",
-      "discoverySource": "Cowork scrape",
-      "kidsFriendly": true
+      "discoverySource": "Cowork scrape"
     },
     {
       "id": "oyinns-touch",
@@ -23371,7 +23369,8 @@
         "Moisturising treatment",
         "Wig cornrows",
         "Boho braids / goddess braids",
-        "Fulani / lemonade braids"
+        "Fulani / lemonade braids",
+        "Kids & teens styles"
       ],
       "summary": "Manual entry added from your latest salon update batch.",
       "source": "manual",
@@ -23395,8 +23394,7 @@
       "priceConfidence": "high",
       "priceUpdatedAt": "2026-06-03",
       "addedVia": "Code edit",
-      "discoverySource": "Cowork scrape",
-      "kidsFriendly": true
+      "discoverySource": "Cowork scrape"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -23430,7 +23428,8 @@
         "Tracks (+ silk press) / partial / invisible sew-in",
         "Trim / hair cut",
         "Faux locs",
-        "Relaxer / texturiser"
+        "Relaxer / texturiser",
+        "Kids & teens styles"
       ],
       "canBraidWithoutGel": true,
       "priceBand": "£",
@@ -23450,8 +23449,7 @@
       "priceUpdatedAt": "2026-06-04",
       "updatedAt": "2026-06-06",
       "addedVia": "Code edit",
-      "discoverySource": "Cowork scrape",
-      "kidsFriendly": true
+      "discoverySource": "Cowork scrape"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -23474,7 +23472,8 @@
         "Faux locs",
         "Microbraids / x-small braids",
         "Wash & blowdry",
-        "Boho braids / goddess braids"
+        "Boho braids / goddess braids",
+        "Kids & teens styles"
       ],
       "canBraidWithoutGel": false,
       "priceBand": "£",
@@ -23491,8 +23490,7 @@
       "priceComparisonMode": "service-only",
       "updatedAt": "2026-06-05",
       "addedVia": "Code edit",
-      "discoverySource": "Cowork scrape",
-      "kidsFriendly": true
+      "discoverySource": "Cowork scrape"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -23849,7 +23847,8 @@
         "Feed-in braids",
         "French curl",
         "Stitch braids",
-        "Boho braids bob"
+        "Boho braids bob",
+        "Kids & teens styles"
       ],
       "tiktokUrl": "",
       "hijabiFriendly": false,
@@ -23875,8 +23874,7 @@
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
       "addedVia": "Code edit",
-      "discoverySource": "Cowork scrape",
-      "kidsFriendly": true
+      "discoverySource": "Cowork scrape"
     },
     {
       "id": "pressed-linkss",
@@ -23955,7 +23953,8 @@
         "Bridal",
         "Twists (with extensions)",
         "Updo",
-        "Healthy hair plans & consultations"
+        "Healthy hair plans & consultations",
+        "Kids & teens styles"
       ],
       "priceBand": "£",
       "priceSource": "auto",
@@ -23982,8 +23981,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-06-10",
-      "kidsFriendly": true
+      "updatedAt": "2026-06-10"
     },
     {
       "id": "rachel-arike",
@@ -24293,7 +24291,8 @@
         "Full head colour",
         "Bridal",
         "Crochet",
-        "Trichology / scalp analysis"
+        "Trichology / scalp analysis",
+        "Kids & teens styles"
       ],
       "priceBand": "£",
       "priceSource": "auto",
@@ -24311,8 +24310,7 @@
       "priceConfidence": "high",
       "priceUpdatedAt": "2026-06-04",
       "addedVia": "Code edit",
-      "discoverySource": "Cowork scrape",
-      "kidsFriendly": true
+      "discoverySource": "Cowork scrape"
     },
     {
       "id": "remi-laide-hair",
@@ -24851,7 +24849,8 @@
         "Tracks (+ silk press) / partial / invisible sew-in",
         "Custom wig",
         "Bridal",
-        "Japanese head spa"
+        "Japanese head spa",
+        "Kids & teens styles"
       ],
       "tiktokUrl": "",
       "hijabiFriendly": false,
@@ -24873,8 +24872,7 @@
       "priceConfidence": "manual",
       "updatedAt": "2026-06-04",
       "addedVia": "Code edit",
-      "discoverySource": "Cowork scrape",
-      "kidsFriendly": true
+      "discoverySource": "Cowork scrape"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -25494,7 +25492,8 @@
         "U-part wig install",
         "Tracks (+ silk press) / partial / invisible sew-in",
         "Updo",
-        "Quick weave"
+        "Quick weave",
+        "Kids & teens styles"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -25519,8 +25518,7 @@
       "priceUpdatedAt": "2026-06-03",
       "addedVia": "Bulk import",
       "discoverySource": "Cowork scrape",
-      "tiktokUrl": "https://www.tiktok.com/@xo_karrieee/video/7592032929845366019",
-      "kidsFriendly": true
+      "tiktokUrl": "https://www.tiktok.com/@xo_karrieee/video/7592032929845366019"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -25977,7 +25975,8 @@
         "Traditional sew-in / leave out",
         "Wig cornrows",
         "Half braids, half sew-in",
-        "Boho braids bob"
+        "Boho braids bob",
+        "Kids & teens styles"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -26000,8 +25999,7 @@
       "priceConfidence": "high",
       "priceUpdatedAt": "2026-06-03",
       "addedVia": "Bulk import",
-      "discoverySource": "Cowork scrape",
-      "kidsFriendly": true
+      "discoverySource": "Cowork scrape"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -27027,7 +27025,8 @@
         "Crochet",
         "Curly cut / wash & go / diffuse",
         "Twists (with extensions)",
-        "Miracle knots"
+        "Miracle knots",
+        "Kids & teens styles"
       ],
       "priceBand": "££",
       "priceSource": "auto",
@@ -27049,8 +27048,7 @@
       "servicePriceBand": "££",
       "packagePriceBand": "",
       "priceIncludesHair": false,
-      "priceComparisonMode": "service-only",
-      "kidsFriendly": true
+      "priceComparisonMode": "service-only"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -27469,7 +27467,8 @@
         "Updo",
         "Starter locs",
         "Keratin treatment",
-        "LA weave"
+        "LA weave",
+        "Kids & teens styles"
       ],
       "summary": "Manual entry updated from the supplied Swish London service menu, covering removals, wash/treatments, tracks, clip-ins, quick weave, sew-ins, closure/hybrid weave, LA weave, K-tips, updos, pixie styling, silk press, ponytails, stitch/Fulani/boho/knotless braids, and cornrows.",
       "source": "manual",
@@ -27504,8 +27503,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-06-10",
-      "kidsFriendly": true
+      "updatedAt": "2026-06-10"
     },
     {
       "id": "taiwo-styles",
@@ -27844,7 +27842,8 @@
         "Tracks (+ silk press) / partial / invisible sew-in",
         "Healthy hair plans & consultations",
         "Boho braids bob",
-        "French curl bob"
+        "French curl bob",
+        "Kids & teens styles"
       ],
       "summary": "Manual entry added from your South East London sew-in and wig install list.",
       "source": "manual",
@@ -27875,8 +27874,7 @@
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
       "addedVia": "Bulk import",
-      "discoverySource": "Cowork scrape",
-      "kidsFriendly": true
+      "discoverySource": "Cowork scrape"
     },
     {
       "id": "the-curl-coach",
@@ -28052,7 +28050,8 @@
         "Texture release",
         "Closure sew-in / closure behind the hairline",
         "Flipover / Versatile sew-in",
-        "U-part wig install"
+        "U-part wig install",
+        "Kids & teens styles"
       ],
       "priceBand": "££",
       "priceSource": "auto",
@@ -28079,8 +28078,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-06-10",
-      "kidsFriendly": true
+      "updatedAt": "2026-06-10"
     },
     {
       "id": "the-hair-space",
@@ -28220,7 +28218,8 @@
         "Boho braids / goddess braids",
         "Butterfly locs",
         "Wig cornrows",
-        "Boho braids bob"
+        "Boho braids bob",
+        "Kids & teens styles"
       ],
       "canBraidWithoutGel": true,
       "priceBand": "£",
@@ -28247,8 +28246,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-06-10",
-      "kidsFriendly": true
+      "updatedAt": "2026-06-10"
     },
     {
       "id": "the-hct-studio",
@@ -28780,7 +28778,8 @@
         "Knotless braids",
         "Crochet",
         "Moisturising treatment",
-        "Boho braids bob"
+        "Boho braids bob",
+        "Kids & teens styles"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -28803,8 +28802,7 @@
       "priceConfidence": "high",
       "priceUpdatedAt": "2026-06-03",
       "addedVia": "Bulk import",
-      "discoverySource": "Cowork scrape",
-      "kidsFriendly": true
+      "discoverySource": "Cowork scrape"
     },
     {
       "id": "thecurlbarlondon",
@@ -29373,7 +29371,8 @@
         "Wash & blowdry",
         "U-part wig install",
         "Healthy hair plans & consultations",
-        "Sew in / extensions blowdry"
+        "Sew in / extensions blowdry",
+        "Kids & teens styles"
       ],
       "priceBand": "££",
       "priceSource": "auto",
@@ -29399,8 +29398,7 @@
       "priceComparisonMode": "service-only",
       "updatedAt": "2026-06-08",
       "addedVia": "Code edit",
-      "discoverySource": "Cowork scrape",
-      "kidsFriendly": true
+      "discoverySource": "Cowork scrape"
     },
     {
       "id": "tribalbraidsandbeautysalon",
@@ -29436,7 +29434,8 @@
         "Stitch braids",
         "Wig install (frontal / closure)",
         "U-part wig install",
-        "Traditional sew-in / leave out"
+        "Traditional sew-in / leave out",
+        "Kids & teens styles"
       ],
       "canBraidWithoutGel": true,
       "priceBand": "£",
@@ -29465,8 +29464,7 @@
       "wheelchairAccessible": false,
       "summary": "",
       "evidence": [],
-      "updatedAt": "2026-06-10",
-      "kidsFriendly": true
+      "updatedAt": "2026-06-10"
     },
     {
       "id": "tthairbarldn",
@@ -29733,7 +29731,8 @@
         "Boho braids / goddess braids",
         "Butterfly locs",
         "Retwist",
-        "Boho braids bob"
+        "Boho braids bob",
+        "Kids & teens styles"
       ],
       "summary": "Manual entry added from your North London braids list.",
       "source": "manual",
@@ -29756,8 +29755,7 @@
       "priceConfidence": "high",
       "priceUpdatedAt": "2026-06-03",
       "addedVia": "Code edit",
-      "discoverySource": "Cowork scrape",
-      "kidsFriendly": true
+      "discoverySource": "Cowork scrape"
     },
     {
       "id": "vstylsz",
@@ -30298,7 +30296,8 @@
         "I-tips / microlinks strands",
         "Closure sew-in / closure behind the hairline",
         "Sleek ponytail / bun",
-        "Trim / hair cut"
+        "Trim / hair cut",
+        "Kids & teens styles"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -30347,8 +30346,7 @@
           "sentiment": "neutral",
           "date": "2026-06-10"
         }
-      ],
-      "kidsFriendly": true
+      ]
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",

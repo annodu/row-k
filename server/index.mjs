@@ -87,11 +87,10 @@ app.post("/api/search", publicSearchRateLimit, async (req, res) => {
   const hijabiFriendly = req.body?.hijabiFriendly === true;
   const canBraidWithoutGel = req.body?.canBraidWithoutGel === true;
   const wheelchairAccessible = req.body?.wheelchairAccessible === true;
-  const kidsFriendly = req.body?.kidsFriendly === true;
   const customFilters = sanitizeCustomFilters(req.body?.customFilters);
 
   return res.json(
-    await searchSalons({ categories, subcategories, regions, hijabiFriendly, canBraidWithoutGel, wheelchairAccessible, kidsFriendly, customFilters }),
+    await searchSalons({ categories, subcategories, regions, hijabiFriendly, canBraidWithoutGel, wheelchairAccessible, customFilters }),
   );
 });
 

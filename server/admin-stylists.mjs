@@ -378,7 +378,6 @@ export function registerAdminStylistRoutes(app) {
       hijabiFriendly: update.hijabiFriendly === true,
       canBraidWithoutGel: update.canBraidWithoutGel === true,
       wheelchairAccessible: update.wheelchairAccessible === true,
-      kidsFriendly: update.kidsFriendly === true,
       customFilters: sanitizeCustomFilters(update.customFilters),
       summary: update.summary || currentSalon.summary || "",
       evidence: update.evidence?.length ? update.evidence : currentSalon.evidence || [],
@@ -6604,7 +6603,6 @@ function sanitizeDraftUpdate(input) {
     hijabiFriendly: input.hijabiFriendly === true,
     canBraidWithoutGel: input.canBraidWithoutGel === true,
     wheelchairAccessible: input.wheelchairAccessible === true,
-    kidsFriendly: input.kidsFriendly === true,
     customFilters: sanitizeCustomFilters(input.customFilters),
     priceBand: priceBand || servicePriceBand,
     servicePriceBand,
@@ -6803,7 +6801,6 @@ function publishedSalonToDraft(salon, fallbackDate = today()) {
     hijabiFriendly: salon.hijabiFriendly === true,
     canBraidWithoutGel: salon.canBraidWithoutGel === true,
     wheelchairAccessible: salon.wheelchairAccessible === true,
-    kidsFriendly: salon.kidsFriendly === true,
     customFilters: sanitizeCustomFilters(salon.customFilters),
     priceBand: sanitizePriceBand(salon.priceBand),
     priceSource: sanitizePriceSource(salon.priceSource),
@@ -6884,7 +6881,6 @@ function draftToSalon(draft, existingIds) {
     ...(draft.hijabiFriendly === true ? { hijabiFriendly: true } : {}),
     ...(draft.canBraidWithoutGel === true ? { canBraidWithoutGel: true } : {}),
     ...(draft.wheelchairAccessible === true ? { wheelchairAccessible: true } : {}),
-    ...(draft.kidsFriendly === true ? { kidsFriendly: true } : {}),
     ...(Object.keys(sanitizeCustomFilters(draft.customFilters)).length ? { customFilters: sanitizeCustomFilters(draft.customFilters) } : {}),
     ...(sanitizePriceBand(draft.priceBand)
       ? {

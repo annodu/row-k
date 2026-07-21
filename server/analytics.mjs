@@ -19,7 +19,6 @@ const FILTER_EVENT_GROUPS = [
   { event: "price_filter_selected", group: "Price", selectedProp: "selected", labelProp: "selection" },
   { event: "braiding_preference_selected", group: "Preferences", selectedProp: "selected", labelProp: "selection" },
   { event: "hijabi_toggle_changed", group: "Preferences", selectedProp: "enabled", fixedLabel: "Hijabi friendly" },
-  { event: "kids_friendly_toggle_changed", group: "Preferences", selectedProp: "enabled", fixedLabel: "Kids friendly" },
 ];
 
 const FILTER_GROUP_ORDER = ["Services", "Locations", "Price", "Preferences"];
@@ -162,24 +161,22 @@ async function fetchZeroResultSearches(preset) {
       properties.hijabi_friendly AS hijabi_friendly,
       properties.no_gel AS no_gel,
       properties.wheelchair_accessible AS wheelchair_accessible,
-      properties.kids_friendly AS kids_friendly,
       count() AS n,
       max(timestamp) AS last_seen
     FROM events
     WHERE event = 'search_zero_results' AND timestamp >= now() - INTERVAL ${preset.days} DAY
-    GROUP BY services, location, hijabi_friendly, no_gel, wheelchair_accessible, kids_friendly
+    GROUP BY services, location, hijabi_friendly, no_gel, wheelchair_accessible
     ORDER BY n DESC
     LIMIT ${ZERO_RESULT_LIMIT}
   `);
 
-  return rows.map(([services, location, hijabiFriendly, noGel, wheelchairAccessible, kidsFriendly, count, lastSeen]) => {
+  return rows.map(([services, location, hijabiFriendly, noGel, wheelchairAccessible, count, lastSeen]) => {
     const filters = [];
     if (services && services !== "none") filters.push(...String(services).split(", "));
     if (location && location !== "all") filters.push(...String(location).split(", "));
     if (isTruthy(hijabiFriendly)) filters.push("Hijabi friendly");
     if (isTruthy(noGel)) filters.push("Can braid without gel");
     if (isTruthy(wheelchairAccessible)) filters.push("Wheelchair accessible");
-    if (isTruthy(kidsFriendly)) filters.push("Kids friendly");
     return {
       filters,
       count: Number(count),
