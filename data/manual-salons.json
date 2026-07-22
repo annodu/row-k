@@ -1,7 +1,7 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-07-16",
+    "updatedAt": "2026-07-22",
     "count": 751,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
@@ -20697,11 +20697,10 @@
         "Wig cornrows",
         "Wig install (frontal / closure)",
         "Half up half down",
-        "Closure sew-in",
         "Flipover / Versatile sew-in"
       ],
-      "priceBand": "££££",
-      "priceSource": "auto",
+      "priceBand": "£",
+      "priceSource": "manual",
       "priceEvidence": [
         "Repair weave-on - £5000",
         "Wash & style wig caps - £3500",
@@ -20713,19 +20712,21 @@
         "undo weave-on - £1500"
       ],
       "priceCheckedAt": "2026-06-05",
-      "priceConfidence": "high",
-      "priceUpdatedAt": "2026-06-05",
+      "priceConfidence": "manual",
+      "priceUpdatedAt": "2026-07-22T23:49:51.996Z",
       "tiktokUrl": "https://www.tiktok.com/@naturaltolu/video/7613441062186568982?lang=en-GB",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
-      "updatedAt": "2026-06-10",
-      "servicePriceBand": "",
+      "updatedAt": "2026-07-22",
+      "servicePriceBand": "£",
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
       "addedVia": "Code edit",
       "discoverySource": "Cowork scrape",
-      "wheelchairAccessible": false
+      "wheelchairAccessible": false,
+      "websiteUrl": "",
+      "customFilters": {}
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
