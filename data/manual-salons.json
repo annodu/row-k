@@ -20718,7 +20718,7 @@
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
       "updatedAt": "2026-07-22",
-      "servicePriceBand": "£",
+      "servicePriceBand": "",
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
