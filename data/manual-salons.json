@@ -26054,7 +26054,7 @@
     },
     {
       "id": "morells-of-brockley",
-      "name": "Morells of Brockley",
+      "name": "Morells",
       "areaId": "south-east",
       "areaLabel": "South East",
       "neighbourhood": "South East London",
@@ -26064,7 +26064,7 @@
       "instagramUrl": "https://www.instagram.com/morellsofbrockley/",
       "services": [
         "Silk press",
-        "LA weave",
+        "LA weave / microlinks wefts / braidless sew in",
         "Wash & blowdry",
         "Trim / hair cut",
         "Traditional sew-in / leave out",
@@ -26106,7 +26106,17 @@
       "googleMatchConfidence": "low",
       "googleDisplayName": "Morells",
       "googleFormattedAddress": "10 Brockley Cross, London SE4 1BE, UK",
-      "googleCheckedAt": "2026-07-23T22:24:07.782Z"
+      "googleCheckedAt": "2026-07-23T22:24:07.782Z",
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "customFilters": {},
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "updatedAt": "2026-07-24"
     },
     {
       "summary": "Manual entry added from your bridal and editorial list.",
