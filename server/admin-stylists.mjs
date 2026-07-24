@@ -4,7 +4,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { assertSafeOutboundHttpUrl, createRateLimiter, requireTrustedOrigin } from "./security.mjs";
 import { fetchAllTimeSummary, fetchAnalyticsSummary } from "./analytics.mjs";
-import { extractPostcodeToken, matchSalonToGoogle } from "./google-match.mjs";
+import { extractPostcodeToken, getWheelchairAccessibleEntrance, loadGooglePlacesApiKey, matchSalonToGoogle } from "./google-match.mjs";
 import { getVerifiedReviewPlatform, matchVerifiedReviews } from "./verified-reviews.mjs";
 
 function today() {
@@ -458,6 +458,209 @@ export function registerAdminStylistRoutes(app) {
     }
 
     res.json({ ok: true, draft, id: req.params.id });
+  });
+
+  // Converts a normal single-location salon into a brand parent: its current
+  // location/booking/Google-match fields move onto a first `branches` entry,
+  // and the parent record keeps only what's brand-shared (name, services,
+  // Instagram, pricing, summary). Once a salon has a `branches` array (even
+  // empty), it's a parent — the admin UI shows a Branches tab instead of a
+  // single location for it.
+  app.post("/api/admin/stylists/published/:id/promote", requireAdmin, async (req, res) => {
+    const manualIndex = await readJson(manualIndexPath, { meta: { source: "manual" }, salons: [] });
+    const salonIndex = manualIndex.salons.findIndex((salon) => salon.id === req.params.id);
+    if (salonIndex === -1) {
+      return res.status(404).json({ ok: false, message: "Published salon not found." });
+    }
+
+    const salon = manualIndex.salons[salonIndex];
+    if (Array.isArray(salon.branches)) {
+      return res.status(400).json({ ok: false, message: "This salon already has branches." });
+    }
+
+    const branchLabel = salon.neighbourhood || salon.areaLabel || salon.name;
+    const branch = {
+      id: slugify(branchLabel),
+      branchLabel,
+      areaId: salon.areaId || "",
+      ...(Array.isArray(salon.areaIds) && salon.areaIds.length > 1 ? { areaIds: salon.areaIds } : {}),
+      areaLabel: salon.areaLabel || "",
+      neighbourhood: salon.neighbourhood || "",
+      postcode: salon.postcode || "",
+      bookingUrl: salon.bookingUrl || "",
+      ...(salon.wheelchairAccessible === true ? { wheelchairAccessible: true } : {}),
+      ...(salon.googlePlaceId
+        ? {
+            googlePlaceId: salon.googlePlaceId,
+            googleReviewCount: salon.googleReviewCount,
+            googleMapsUri: salon.googleMapsUri,
+            googleMatchConfidence: salon.googleMatchConfidence,
+            googleDisplayName: salon.googleDisplayName,
+            googleFormattedAddress: salon.googleFormattedAddress,
+            googleCheckedAt: salon.googleCheckedAt,
+          }
+        : {}),
+    };
+
+    const promoted = { ...salon, branches: [branch] };
+    for (const key of [
+      "areaId", "areaIds", "areaLabel", "neighbourhood", "postcode", "bookingUrl", "wheelchairAccessible",
+      "googlePlaceId", "googleReviewCount", "googleMapsUri", "googleMatchConfidence", "googleDisplayName",
+      "googleFormattedAddress", "googleCheckedAt",
+    ]) {
+      delete promoted[key];
+    }
+    const now = today();
+    promoted.updatedAt = now;
+
+    manualIndex.salons[salonIndex] = promoted;
+    manualIndex.meta = { ...manualIndex.meta, updatedAt: now, count: manualIndex.salons.length };
+    await persistManualIndex(manualIndex, `Promote ${salon.name} to a brand with branches`);
+
+    res.json({ ok: true, salon: publishedSalonToDraft(promoted, now) });
+  });
+
+  // Adds one branch to an existing brand parent, immediately looking it up on
+  // Google (query built from the parent's name + this branch's own postcode/
+  // neighbourhood) and — only for a high-confidence match — checking wheelchair
+  // access too, same as scripts/backfill-wheelchair-accessibility.mjs does in bulk.
+  app.post("/api/admin/stylists/published/:id/branches", requireAdmin, async (req, res) => {
+    const manualIndex = await readJson(manualIndexPath, { meta: { source: "manual" }, salons: [] });
+    const salonIndex = manualIndex.salons.findIndex((salon) => salon.id === req.params.id);
+    if (salonIndex === -1) {
+      return res.status(404).json({ ok: false, message: "Published salon not found." });
+    }
+
+    const salon = manualIndex.salons[salonIndex];
+    if (!Array.isArray(salon.branches)) {
+      return res.status(400).json({ ok: false, message: "This salon isn't set up for branches yet — promote it first." });
+    }
+
+    const branchLabel = cleanString(req.body?.branchLabel);
+    if (!branchLabel) {
+      return res.status(400).json({ ok: false, message: "Add a neighbourhood name for the branch." });
+    }
+
+    const areaIds = normalizeAreaIds(req.body?.areaIds?.length ? req.body.areaIds : req.body?.areaId ? [req.body.areaId] : []);
+    const areaLabel = areaLabelForIds(areaIds);
+    const branch = {
+      id: uniqueSlug(branchLabel, new Set(salon.branches.map((existing) => existing.id))),
+      branchLabel,
+      areaId: areaIds[0] || "",
+      ...(areaIds.length > 1 ? { areaIds } : {}),
+      areaLabel,
+      neighbourhood: cleanString(req.body?.neighbourhood) || branchLabel,
+      postcode: cleanString(req.body?.postcode),
+      bookingUrl: cleanString(req.body?.bookingUrl),
+    };
+
+    try {
+      Object.assign(branch, await matchBranchToGoogle(salon.name, branch));
+    } catch (error) {
+      branch.googleMatchError = error.message;
+    }
+
+    const now = today();
+    salon.branches = [...salon.branches, branch];
+    salon.updatedAt = now;
+    manualIndex.meta = { ...manualIndex.meta, updatedAt: now, count: manualIndex.salons.length };
+    await persistManualIndex(manualIndex, `Add ${branchLabel} branch to ${salon.name}`);
+
+    res.json({ ok: true, salon: publishedSalonToDraft(salon, now) });
+  });
+
+  // Edits one branch. Changing any location field (branchLabel/postcode/
+  // neighbourhood/area) re-runs the Google match automatically, since a stale
+  // match tied to the old location would otherwise be actively misleading.
+  // wheelchairAccessible can also be set directly, so an admin can override
+  // what Google reports if they know better.
+  app.patch("/api/admin/stylists/published/:id/branches/:branchId", requireAdmin, async (req, res) => {
+    const manualIndex = await readJson(manualIndexPath, { meta: { source: "manual" }, salons: [] });
+    const salonIndex = manualIndex.salons.findIndex((salon) => salon.id === req.params.id);
+    if (salonIndex === -1) {
+      return res.status(404).json({ ok: false, message: "Published salon not found." });
+    }
+
+    const salon = manualIndex.salons[salonIndex];
+    const branchIndex = Array.isArray(salon.branches) ? salon.branches.findIndex((branch) => branch.id === req.params.branchId) : -1;
+    if (branchIndex === -1) {
+      return res.status(404).json({ ok: false, message: "Branch not found." });
+    }
+
+    const currentBranch = salon.branches[branchIndex];
+    const body = req.body || {};
+    const areaIds = normalizeAreaIds(
+      body.areaIds?.length ? body.areaIds : body.areaId ? [body.areaId] : currentBranch.areaId ? [currentBranch.areaId] : [],
+    );
+    const branchLabel = body.branchLabel !== undefined ? cleanString(body.branchLabel) || currentBranch.branchLabel : currentBranch.branchLabel;
+    const postcode = body.postcode !== undefined ? cleanString(body.postcode) : currentBranch.postcode || "";
+    const neighbourhood = body.neighbourhood !== undefined ? cleanString(body.neighbourhood) || branchLabel : currentBranch.neighbourhood;
+    const bookingUrl = body.bookingUrl !== undefined ? cleanString(body.bookingUrl) : currentBranch.bookingUrl || "";
+    const locationChanged =
+      branchLabel !== currentBranch.branchLabel ||
+      postcode !== (currentBranch.postcode || "") ||
+      neighbourhood !== currentBranch.neighbourhood ||
+      (areaIds[0] || "") !== (currentBranch.areaId || "");
+
+    let nextBranch = {
+      ...currentBranch,
+      branchLabel,
+      areaId: areaIds[0] || "",
+      ...(areaIds.length > 1 ? { areaIds } : { areaIds: undefined }),
+      areaLabel: areaLabelForIds(areaIds) || currentBranch.areaLabel || "",
+      neighbourhood,
+      postcode,
+      bookingUrl,
+    };
+    if (!nextBranch.areaIds) {
+      delete nextBranch.areaIds;
+    }
+
+    if (locationChanged) {
+      try {
+        Object.assign(nextBranch, await matchBranchToGoogle(salon.name, nextBranch));
+      } catch (error) {
+        nextBranch.googleMatchError = error.message;
+      }
+    }
+
+    if (typeof body.wheelchairAccessible === "boolean") {
+      nextBranch.wheelchairAccessible = body.wheelchairAccessible;
+    }
+    if (typeof body.temporarilyClosed === "boolean") {
+      nextBranch.temporarilyClosed = body.temporarilyClosed;
+    }
+
+    const now = today();
+    salon.branches[branchIndex] = nextBranch;
+    salon.updatedAt = now;
+    manualIndex.meta = { ...manualIndex.meta, updatedAt: now, count: manualIndex.salons.length };
+    await persistManualIndex(manualIndex, `Update ${nextBranch.branchLabel} branch on ${salon.name}`);
+
+    res.json({ ok: true, salon: publishedSalonToDraft(salon, now) });
+  });
+
+  app.delete("/api/admin/stylists/published/:id/branches/:branchId", requireAdmin, async (req, res) => {
+    const manualIndex = await readJson(manualIndexPath, { meta: { source: "manual" }, salons: [] });
+    const salonIndex = manualIndex.salons.findIndex((salon) => salon.id === req.params.id);
+    if (salonIndex === -1) {
+      return res.status(404).json({ ok: false, message: "Published salon not found." });
+    }
+
+    const salon = manualIndex.salons[salonIndex];
+    const existingBranches = Array.isArray(salon.branches) ? salon.branches : [];
+    const nextBranches = existingBranches.filter((branch) => branch.id !== req.params.branchId);
+    if (nextBranches.length === existingBranches.length) {
+      return res.status(404).json({ ok: false, message: "Branch not found." });
+    }
+
+    const now = today();
+    salon.branches = nextBranches;
+    salon.updatedAt = now;
+    manualIndex.meta = { ...manualIndex.meta, updatedAt: now, count: manualIndex.salons.length };
+    await persistManualIndex(manualIndex, `Remove a branch from ${salon.name}`);
+
+    res.json({ ok: true, salon: publishedSalonToDraft(salon, now) });
   });
 
   app.get("/api/admin/dashboard", requireAdmin, async (_req, res) => {
@@ -1356,6 +1559,39 @@ async function enrichSalonWithReviews(salon) {
   }
 
   return summary;
+}
+
+// Same Google-match pipeline as matchSalonToGoogle, scoped to a single branch
+// of a brand parent: the query uses the brand's name (branches don't have
+// their own) plus the branch's own postcode/neighbourhood as the location
+// hint. Mirrors scripts/backfill-wheelchair-accessibility.mjs in only trusting
+// a high-confidence match enough to also check wheelchair access.
+async function matchBranchToGoogle(brandName, branch) {
+  const apiKey = await loadGooglePlacesApiKey();
+  const match = await matchSalonToGoogle(
+    { name: brandName, postcode: branch.postcode, neighbourhood: branch.neighbourhood, areaLabel: branch.areaLabel, bookingUrl: branch.bookingUrl },
+    { apiKey },
+  );
+  const { nameScore, ...googleFields } = match;
+  const result = { ...googleFields };
+
+  if (match.googlePlaceId && match.googleMatchConfidence === "high") {
+    try {
+      result.wheelchairAccessible = await getWheelchairAccessibleEntrance(match.googlePlaceId, apiKey);
+    } catch {
+      // leave wheelchairAccessible untouched if this secondary lookup fails
+    }
+  }
+
+  return result;
+}
+
+async function persistManualIndex(manualIndex, commitMessage) {
+  if (isGitHubJsonBacked()) {
+    await writeJsonFilesToGitHub([{ path: "data/manual-salons.json", payload: manualIndex }], commitMessage);
+  } else {
+    await writeJson(manualIndexPath, manualIndex);
+  }
 }
 
 function requireAdmin(req, res, next) {
@@ -6889,6 +7125,7 @@ function publishedSalonToDraft(salon, fallbackDate = today()) {
     id: salon.id,
     status: "approved",
     name: salon.name || "",
+    ...(Array.isArray(salon.branches) ? { branches: salon.branches } : {}),
     areaId: salon.areaId || "",
     areaIds: Array.isArray(salon.areaIds) ? salon.areaIds : salon.areaId ? [salon.areaId] : [],
     areaLabel: salon.areaLabel || "",

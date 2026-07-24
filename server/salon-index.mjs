@@ -544,9 +544,38 @@ export function computeReviewHealth(salons) {
   };
 }
 
+// Multi-branch brands (e.g. Blue Tit) are stored as one parent record holding
+// shared fields (services, Instagram, pricing) plus a `branches` array holding
+// only what's genuinely branch-specific (location, booking link, Google match,
+// wheelchair access). Search/filtering/rendering all operate on flat rows, so
+// each branch is expanded here into its own row carrying the parent's shared
+// fields — this is the only place that shape exists; everything downstream
+// (search, the public site's brand grouping) sees the same flat rows it always
+// has, tagged with brandId/brandName/branchLabel.
+function flattenBrandedSalons(salons) {
+  const flattened = [];
+  for (const salon of salons) {
+    if (Array.isArray(salon.branches) && salon.branches.length > 0) {
+      const { branches, ...sharedFields } = salon;
+      for (const branch of branches) {
+        flattened.push({
+          ...sharedFields,
+          ...branch,
+          id: `${salon.id}-${branch.id}`,
+          brandId: salon.id,
+          brandName: salon.name,
+        });
+      }
+    } else {
+      flattened.push(salon);
+    }
+  }
+  return flattened;
+}
+
 export async function readSalonIndex() {
   const manualIndex = await readIndexFile(manualIndexPath, "manual");
-  const normalizedSalons = manualIndex.salons
+  const normalizedSalons = flattenBrandedSalons(manualIndex.salons)
     .map((salon, addedIndex) => ({
       ...salon,
       addedIndex,

@@ -61,10 +61,32 @@ type RegionOption = {
   label: string;
 };
 
+type BranchDraft = {
+  id: string;
+  branchLabel: string;
+  areaId?: string;
+  areaIds?: string[];
+  areaLabel?: string;
+  neighbourhood?: string;
+  postcode?: string;
+  bookingUrl?: string;
+  wheelchairAccessible?: boolean;
+  temporarilyClosed?: boolean;
+  googlePlaceId?: string;
+  googleReviewCount?: number;
+  googleMapsUri?: string;
+  googleMatchConfidence?: "high" | "low" | "no-match" | "";
+  googleDisplayName?: string;
+  googleFormattedAddress?: string;
+  googleCheckedAt?: string;
+  googleMatchError?: string;
+};
+
 type StylistDraft = {
   id: string;
   status: string;
   name: string;
+  branches?: BranchDraft[];
   areaId: string;
   areaIds?: string[];
   areaLabel: string;
@@ -623,9 +645,12 @@ type AnalyticsSummary = {
   visitorsByDay: { date: string; count: number }[];
   bookingClicks: number;
   instagramClicks: number;
+  reviewsClicks: number;
+  reviewsClicksByPlatform: { platform: string; clicks: number }[];
   filterUsage: { label: string; rows: { label: string; count: number }[] }[];
   zeroResultSearches: { filters: string[]; count: number; lastSeenAt: string }[];
   topStylists: { name: string; areaLabel: string; clicks: number }[];
+  deviceBreakdown: { deviceType: string; visitors: number }[];
 };
 
 const ANALYTICS_RANGES = [
@@ -1279,6 +1304,95 @@ function AdminAppInner() {
     }
   }
 
+  async function promoteSalon(salonId: string) {
+    setMessage("");
+    setIsBusy(true);
+    try {
+      const response = await fetch(`/api/admin/stylists/published/${salonId}/promote`, { method: "POST", credentials: "include" });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok) {
+        notify(payload.message || "Could not set up branches.", "error");
+        return;
+      }
+      setPublishedStylists((current) => current.map((item) => (item.id === payload.salon.id ? payload.salon : item)));
+      notify("This salon can now have branches.");
+    } finally {
+      setIsBusy(false);
+    }
+  }
+
+  async function addBranchToSalon(salonId: string, fields: Partial<BranchDraft>) {
+    setMessage("");
+    setIsBusy(true);
+    try {
+      const response = await fetch(`/api/admin/stylists/published/${salonId}/branches`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify(fields),
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok) {
+        notify(payload.message || "Could not add branch.", "error");
+        return;
+      }
+      setPublishedStylists((current) => current.map((item) => (item.id === payload.salon.id ? payload.salon : item)));
+      notify("Branch added.");
+    } finally {
+      setIsBusy(false);
+    }
+  }
+
+  async function updateBranch(salonId: string, branchId: string, fields: Partial<BranchDraft>) {
+    setMessage("");
+    setIsBusy(true);
+    try {
+      const response = await fetch(`/api/admin/stylists/published/${salonId}/branches/${branchId}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify(fields),
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok) {
+        notify(payload.message || "Could not update branch.", "error");
+        return;
+      }
+      setPublishedStylists((current) => current.map((item) => (item.id === payload.salon.id ? payload.salon : item)));
+      notify("Branch updated.");
+    } finally {
+      setIsBusy(false);
+    }
+  }
+
+  async function deleteBranch(salonId: string, branchId: string) {
+    const confirmed = await confirm({
+      title: "Remove this branch?",
+      description: "It'll disappear from the live site immediately.",
+      confirmLabel: "Remove",
+      tone: "danger",
+    });
+    if (!confirmed) return;
+
+    setMessage("");
+    setIsBusy(true);
+    try {
+      const response = await fetch(`/api/admin/stylists/published/${salonId}/branches/${branchId}`, {
+        method: "DELETE",
+        credentials: "include",
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok) {
+        notify(payload.message || "Could not remove branch.", "error");
+        return;
+      }
+      setPublishedStylists((current) => current.map((item) => (item.id === payload.salon.id ? payload.salon : item)));
+      notify("Branch removed.");
+    } finally {
+      setIsBusy(false);
+    }
+  }
+
   async function runChecks(offset = 0, mode: "freshness" | "pricing" = "freshness") {
     setMessage("");
     const isFullRun = offset === 0;
@@ -1771,6 +1885,10 @@ function AdminAppInner() {
             onApproveDraft={() => selectedDraft ? approveDraft(selectedDraft) : undefined}
             onDeleteDraft={() => selectedDraft ? deleteStylist(selectedDraft) : undefined}
             onUnpublishDraft={() => selectedDraft ? unpublishStylist(selectedDraft) : undefined}
+            onPromoteSalon={() => selectedDraft ? promoteSalon(selectedDraft.id) : undefined}
+            onAddBranchToSalon={(fields) => selectedDraft ? addBranchToSalon(selectedDraft.id, fields) : undefined}
+            onUpdateBranch={(branchId, fields) => selectedDraft ? updateBranch(selectedDraft.id, branchId, fields) : undefined}
+            onDeleteBranch={(branchId) => selectedDraft ? deleteBranch(selectedDraft.id, branchId) : undefined}
           />
         ) : null}
 
@@ -1996,6 +2114,10 @@ function StylistsPage({
   onApproveDraft,
   onDeleteDraft,
   onUnpublishDraft,
+  onPromoteSalon,
+  onAddBranchToSalon,
+  onUpdateBranch,
+  onDeleteBranch,
 }: {
   drafts: StylistDraft[];
   stats: { total: number; draft: number; readyToPublish: number; published: number };
@@ -2017,6 +2139,10 @@ function StylistsPage({
   onApproveDraft: () => void;
   onDeleteDraft: () => void;
   onUnpublishDraft: () => void;
+  onPromoteSalon: () => void;
+  onAddBranchToSalon: (fields: Partial<BranchDraft>) => void;
+  onUpdateBranch: (branchId: string, fields: Partial<BranchDraft>) => void;
+  onDeleteBranch: (branchId: string) => void;
 }) {
   const [stylistSort, setStylistSort] = useState<StylistSort>(null);
   const [page, setPage] = useState(1);
@@ -2170,6 +2296,10 @@ function StylistsPage({
           onApprove={onApproveDraft}
           onDelete={onDeleteDraft}
           onUnpublish={onUnpublishDraft}
+          onPromoteSalon={onPromoteSalon}
+          onAddBranchToSalon={onAddBranchToSalon}
+          onUpdateBranch={onUpdateBranch}
+          onDeleteBranch={onDeleteBranch}
         />
       ) : null}
     </div>
@@ -2297,7 +2427,16 @@ function StylistTableRow({
       }}
       className="group cursor-pointer border-b border-stone-100 transition hover:bg-stone-50 focus:bg-stone-50 focus:outline-none last:border-b-0 dark:border-stone-900 dark:hover:bg-stone-900"
     >
-      <td className="max-w-[12rem] truncate px-4 py-3 font-medium text-stone-950 sm:max-w-none dark:text-stone-50">{draft.name || "Untitled stylist"}</td>
+      <td className="max-w-[12rem] px-4 py-3 sm:max-w-none">
+        <div className="flex min-w-0 flex-wrap items-center gap-x-2 gap-y-1">
+          <span className="truncate font-medium text-stone-950 dark:text-stone-50">{draft.name || "Untitled stylist"}</span>
+          {draft.branches ? (
+            <span className="inline-block shrink-0 rounded-none border border-stone-300 bg-stone-100 px-1.5 py-0.5 text-[11px] font-semibold leading-none tracking-[0.06em] text-stone-600 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-400">
+              {draft.branches.length} {draft.branches.length === 1 ? "branch" : "branches"}
+            </span>
+          ) : null}
+        </div>
+      </td>
       <td className="px-4 py-3">
         <DraftTableStatusBadge draft={draft} />
       </td>
@@ -2899,6 +3038,10 @@ function DraftEditorDrawer({
   onApprove,
   onDelete,
   onUnpublish,
+  onPromoteSalon,
+  onAddBranchToSalon,
+  onUpdateBranch,
+  onDeleteBranch,
 }: {
   draft: StylistDraft;
   regions: RegionOption[];
@@ -2912,15 +3055,21 @@ function DraftEditorDrawer({
   onApprove: () => void;
   onDelete: () => void;
   onUnpublish: () => void;
+  onPromoteSalon: () => void;
+  onAddBranchToSalon: (fields: Partial<BranchDraft>) => void;
+  onUpdateBranch: (branchId: string, fields: Partial<BranchDraft>) => void;
+  onDeleteBranch: (branchId: string) => void;
 }) {
   const isPublished = getDraftDisplayStatus(draft) === "published";
   const deleteLabel = isPublished ? "Delete published stylist" : "Delete draft";
   const displayStatus = getDraftDisplayStatus(draft);
   const [hasAttemptedPublish, setHasAttemptedPublish] = useState(false);
+  const [activeTab, setActiveTab] = useState<"details" | "branches">("details");
   const contentRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     setHasAttemptedPublish(false);
+    setActiveTab("details");
     contentRef.current?.scrollTo({ top: 0, left: 0 });
   }, [draft.id]);
 
@@ -2965,42 +3114,276 @@ function DraftEditorDrawer({
           </div>
         </div>
 
+        {isPublished ? (
+          <div className="shrink-0 border-b border-stone-200 px-8">
+            <div className="flex gap-6">
+              {(["details", "branches"] as const).map((tab) => (
+                <button
+                  key={tab}
+                  type="button"
+                  onClick={() => setActiveTab(tab)}
+                  className={cn(
+                    "border-b-2 py-3 text-sm font-medium capitalize transition-colors",
+                    activeTab === tab ? "border-stone-950 text-stone-950" : "border-transparent text-stone-500 hover:text-stone-800",
+                  )}
+                >
+                  {tab === "branches" && draft.branches ? `Branches (${draft.branches.length})` : tab}
+                </button>
+              ))}
+            </div>
+          </div>
+        ) : null}
+
         <div ref={contentRef} className="min-h-0 flex-1 overflow-y-auto px-8 pb-8 pt-8">
-          <DraftEditor
-            draft={draft}
-            regions={regions}
-            services={services}
-            filterCategories={filterCategories}
-            isBusy={isBusy}
-            onChange={onChange}
-            onChangeLocations={onChangeLocations}
-            onSave={onSave}
-            onApprove={onApprove}
-            onDelete={onDelete}
-            canDelete={!isPublished}
-            showWarnings={hasAttemptedPublish}
-            isEmbedded
-          />
+          {activeTab === "branches" && isPublished ? (
+            <BranchesTab
+              draft={draft}
+              regions={regions}
+              isBusy={isBusy}
+              onPromote={onPromoteSalon}
+              onAddBranch={onAddBranchToSalon}
+              onUpdateBranch={onUpdateBranch}
+              onDeleteBranch={onDeleteBranch}
+            />
+          ) : (
+            <DraftEditor
+              draft={draft}
+              regions={regions}
+              services={services}
+              filterCategories={filterCategories}
+              isBusy={isBusy}
+              onChange={onChange}
+              onChangeLocations={onChangeLocations}
+              onSave={onSave}
+              onApprove={onApprove}
+              onDelete={onDelete}
+              canDelete={!isPublished}
+              showWarnings={hasAttemptedPublish}
+              isEmbedded
+            />
+          )}
         </div>
 
-        <div className="shrink-0 border-t border-stone-200 bg-white px-8 py-5">
-          <div className="flex items-center justify-end gap-4">
-            {!isPublished ? (
-              <Button type="button" variant="outline" onClick={onSave} disabled={isBusy} className="h-11 rounded-none border-transparent bg-transparent px-3 text-sm text-stone-600 hover:bg-stone-50 hover:text-stone-950 focus-visible:border-stone-300">
-                Save changes
+        {activeTab === "details" || !isPublished ? (
+          <div className="shrink-0 border-t border-stone-200 bg-white px-8 py-5">
+            <div className="flex items-center justify-end gap-4">
+              {!isPublished ? (
+                <Button type="button" variant="outline" onClick={onSave} disabled={isBusy} className="h-11 rounded-none border-transparent bg-transparent px-3 text-sm text-stone-600 hover:bg-stone-50 hover:text-stone-950 focus-visible:border-stone-300">
+                  Save changes
+                </Button>
+              ) : null}
+              <Button
+                type="button"
+                onClick={isPublished ? onSave : publishDraft}
+                disabled={isBusy}
+                className="h-12 w-1/2 min-w-[220px] rounded-none bg-stone-950 px-6 text-base font-medium text-white hover:bg-stone-900"
+              >
+                {isPublished ? "Save changes" : "Publish"}
               </Button>
-            ) : null}
-            <Button
-              type="button"
-              onClick={isPublished ? onSave : publishDraft}
-              disabled={isBusy}
-              className="h-12 w-1/2 min-w-[220px] rounded-none bg-stone-950 px-6 text-base font-medium text-white hover:bg-stone-900"
-            >
-              {isPublished ? "Save changes" : "Publish"}
-            </Button>
+            </div>
           </div>
-        </div>
+        ) : null}
       </aside>
+    </div>
+  );
+}
+
+function BranchesTab({
+  draft,
+  regions,
+  isBusy,
+  onPromote,
+  onAddBranch,
+  onUpdateBranch,
+  onDeleteBranch,
+}: {
+  draft: StylistDraft;
+  regions: RegionOption[];
+  isBusy: boolean;
+  onPromote: () => void;
+  onAddBranch: (fields: Partial<BranchDraft>) => void;
+  onUpdateBranch: (branchId: string, fields: Partial<BranchDraft>) => void;
+  onDeleteBranch: (branchId: string) => void;
+}) {
+  if (!draft.branches) {
+    return (
+      <div className="flex flex-col items-center gap-4 py-16 text-center">
+        <p className="max-w-sm text-sm text-stone-600">
+          This is a single-location salon today. Turn it into a multi-branch salon to manage several locations under one entry — this one's own
+          location moves onto its first branch.
+        </p>
+        <Button type="button" onClick={onPromote} disabled={isBusy} className="h-11 rounded-none bg-stone-950 px-5 text-sm font-medium text-white hover:bg-stone-900">
+          Make this a multi-branch salon
+        </Button>
+      </div>
+    );
+  }
+
+  return (
+    <div className="space-y-6">
+      <div className="space-y-4">
+        {draft.branches.map((branch) => (
+          <BranchRow
+            key={branch.id}
+            branch={branch}
+            regions={regions}
+            isBusy={isBusy}
+            onSave={(fields) => onUpdateBranch(branch.id, fields)}
+            onDelete={() => onDeleteBranch(branch.id)}
+          />
+        ))}
+      </div>
+      <NewBranchForm regions={regions} isBusy={isBusy} onAdd={onAddBranch} />
+    </div>
+  );
+}
+
+function BranchRow({
+  branch,
+  regions,
+  isBusy,
+  onSave,
+  onDelete,
+}: {
+  branch: BranchDraft;
+  regions: RegionOption[];
+  isBusy: boolean;
+  onSave: (fields: Partial<BranchDraft>) => void;
+  onDelete: () => void;
+}) {
+  const [branchLabel, setBranchLabel] = useState(branch.branchLabel);
+  const [areaId, setAreaId] = useState(branch.areaId || "");
+  const [postcode, setPostcode] = useState(branch.postcode || "");
+  const [bookingUrl, setBookingUrl] = useState(branch.bookingUrl || "");
+  const [wheelchairAccessible, setWheelchairAccessible] = useState(branch.wheelchairAccessible === true);
+  const [temporarilyClosed, setTemporarilyClosed] = useState(branch.temporarilyClosed === true);
+
+  const isDirty =
+    branchLabel !== branch.branchLabel ||
+    areaId !== (branch.areaId || "") ||
+    postcode !== (branch.postcode || "") ||
+    bookingUrl !== (branch.bookingUrl || "") ||
+    wheelchairAccessible !== (branch.wheelchairAccessible === true) ||
+    temporarilyClosed !== (branch.temporarilyClosed === true);
+
+  const confidenceColor =
+    branch.googleMatchConfidence === "high"
+      ? "text-emerald-700"
+      : branch.googleMatchConfidence === "low"
+        ? "text-amber-700"
+        : "text-stone-500";
+
+  return (
+    <div className="space-y-4 border border-stone-200 p-4">
+      <div className="grid grid-cols-2 gap-3">
+        <Field label="Neighbourhood name">
+          <Input value={branchLabel} onChange={(event) => setBranchLabel(event.target.value)} className="h-11 rounded-none" />
+        </Field>
+        <Field label="Location">
+          <Select value={areaId} onChange={setAreaId}>
+            <option value="">Choose a location</option>
+            {regions.map((region) => (
+              <option key={region.id} value={region.id}>
+                {region.label}
+              </option>
+            ))}
+          </Select>
+        </Field>
+        <Field label="Postcode">
+          <Input value={postcode} onChange={(event) => setPostcode(event.target.value)} placeholder="e.g. SE8" className="h-11 rounded-none" />
+        </Field>
+        <Field label="Booking link">
+          <Input value={bookingUrl} onChange={(event) => setBookingUrl(event.target.value)} placeholder="https://…" className="h-11 rounded-none" />
+        </Field>
+      </div>
+
+      <DraftBooleanOption label="Wheelchair accessible entrance" checked={wheelchairAccessible} onToggle={setWheelchairAccessible} />
+      <DraftBooleanOption label="Temporarily closed" checked={temporarilyClosed} onToggle={setTemporarilyClosed} />
+
+      <div className="border-t border-stone-100 pt-3 text-xs text-stone-500">
+        {branch.googleDisplayName ? (
+          <p>
+            Matched to <span className="font-medium text-stone-700">{branch.googleDisplayName}</span> ·{" "}
+            <span className={confidenceColor}>{branch.googleMatchConfidence} confidence</span>
+            {typeof branch.googleReviewCount === "number" ? ` · ${branch.googleReviewCount} reviews` : ""}
+          </p>
+        ) : branch.googleMatchError ? (
+          <p className="text-red-700">Google match failed: {branch.googleMatchError}</p>
+        ) : (
+          <p>Not matched to Google yet — save with a postcode to look it up.</p>
+        )}
+      </div>
+
+      <div className="flex items-center justify-between gap-3">
+        <button
+          type="button"
+          onClick={onDelete}
+          disabled={isBusy}
+          className="text-xs font-semibold uppercase tracking-[0.1em] text-red-700 hover:text-red-900 disabled:cursor-not-allowed disabled:opacity-40"
+        >
+          Remove branch
+        </button>
+        <Button
+          type="button"
+          disabled={isBusy || !isDirty}
+          onClick={() => onSave({ branchLabel, areaId, postcode, bookingUrl, wheelchairAccessible, temporarilyClosed })}
+          className="h-10 rounded-none bg-stone-950 px-4 text-sm font-medium text-white hover:bg-stone-900 disabled:cursor-not-allowed disabled:opacity-40"
+        >
+          Save
+        </Button>
+      </div>
+    </div>
+  );
+}
+
+function NewBranchForm({ regions, isBusy, onAdd }: { regions: RegionOption[]; isBusy: boolean; onAdd: (fields: Partial<BranchDraft>) => void }) {
+  const [branchLabel, setBranchLabel] = useState("");
+  const [areaId, setAreaId] = useState("");
+  const [postcode, setPostcode] = useState("");
+  const [bookingUrl, setBookingUrl] = useState("");
+
+  function submit() {
+    if (!branchLabel.trim()) return;
+    onAdd({ branchLabel, areaId, postcode, bookingUrl });
+    setBranchLabel("");
+    setAreaId("");
+    setPostcode("");
+    setBookingUrl("");
+  }
+
+  return (
+    <div className="space-y-4 border border-dashed border-stone-300 p-4">
+      <p className="text-xs font-semibold uppercase tracking-[0.12em] text-stone-500">Add a branch</p>
+      <div className="grid grid-cols-2 gap-3">
+        <Field label="Neighbourhood name">
+          <Input value={branchLabel} onChange={(event) => setBranchLabel(event.target.value)} placeholder="e.g. Woolwich" className="h-11 rounded-none" />
+        </Field>
+        <Field label="Location">
+          <Select value={areaId} onChange={setAreaId}>
+            <option value="">Choose a location</option>
+            {regions.map((region) => (
+              <option key={region.id} value={region.id}>
+                {region.label}
+              </option>
+            ))}
+          </Select>
+        </Field>
+        <Field label="Postcode">
+          <Input value={postcode} onChange={(event) => setPostcode(event.target.value)} placeholder="e.g. SE18" className="h-11 rounded-none" />
+        </Field>
+        <Field label="Booking link">
+          <Input value={bookingUrl} onChange={(event) => setBookingUrl(event.target.value)} placeholder="https://…" className="h-11 rounded-none" />
+        </Field>
+      </div>
+      <p className="text-xs text-stone-500">Saving looks this branch up on Google automatically using the postcode above.</p>
+      <Button
+        type="button"
+        disabled={isBusy || !branchLabel.trim()}
+        onClick={submit}
+        className="h-11 rounded-none bg-stone-950 px-5 text-sm font-medium text-white hover:bg-stone-900 disabled:cursor-not-allowed disabled:opacity-40"
+      >
+        Add branch
+      </Button>
     </div>
   );
 }
@@ -3430,10 +3813,11 @@ function AnalyticsPage({ onOpenView }: { onOpenView: (view: AdminView) => void }
         </div>
       </section>
 
-      <div className="grid grid-cols-3 divide-x divide-stone-200 rounded-none border border-stone-200 bg-white">
+      <div className="grid grid-cols-2 divide-x divide-y divide-stone-200 rounded-none border border-stone-200 bg-white sm:grid-cols-4 sm:divide-y-0">
         <OverviewStatCell label="Unique visitors" value={totalVisitors} state={statState} />
         <OverviewStatCell label="Booking link clicks" value={analytics?.bookingClicks ?? 0} state={statState} />
         <OverviewStatCell label="Instagram link clicks" value={analytics?.instagramClicks ?? 0} state={statState} />
+        <OverviewStatCell label="Reviews link clicks" value={analytics?.reviewsClicks ?? 0} state={statState} />
       </div>
 
       <div className="grid gap-4 lg:grid-cols-3">
@@ -3492,6 +3876,40 @@ function AnalyticsPage({ onOpenView }: { onOpenView: (view: AdminView) => void }
             <ZeroResultSearchesSkeleton />
           ) : (
             <ZeroResultSearchesList rows={analytics?.zeroResultSearches ?? []} onOpen={() => onOpenView("discovery")} />
+          )}
+        </div>
+      </div>
+
+      <div className="grid gap-4 lg:grid-cols-3">
+        <div className="border border-stone-200 bg-white p-6">
+          <h2 className="text-sm font-semibold text-stone-950">Reviews clicks by platform</h2>
+          <p className="mt-1 text-xs text-stone-500">Which review source people click through to</p>
+          {isRangeLoading ? (
+            <FilterUsageSkeleton />
+          ) : analytics?.reviewsClicksByPlatform.length ? (
+            <div className="mt-5">
+              <FilterUsageGroup label="Platform" rows={analytics.reviewsClicksByPlatform.map((row) => ({ label: row.platform, count: row.clicks }))} />
+            </div>
+          ) : (
+            <SkeletonEmptyState label="No data">
+              <FilterUsageSkeleton pulse={false} />
+            </SkeletonEmptyState>
+          )}
+        </div>
+
+        <div className="border border-stone-200 bg-white p-6">
+          <h2 className="text-sm font-semibold text-stone-950">Visitors by device</h2>
+          <p className="mt-1 text-xs text-stone-500">Desktop vs mobile vs tablet</p>
+          {isRangeLoading ? (
+            <FilterUsageSkeleton />
+          ) : analytics?.deviceBreakdown.length ? (
+            <div className="mt-5">
+              <FilterUsageGroup label="Device" rows={analytics.deviceBreakdown.map((row) => ({ label: row.deviceType, count: row.visitors }))} />
+            </div>
+          ) : (
+            <SkeletonEmptyState label="No data">
+              <FilterUsageSkeleton pulse={false} />
+            </SkeletonEmptyState>
           )}
         </div>
       </div>

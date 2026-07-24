@@ -269,3 +269,20 @@ export async function matchSalonToGoogle(salon, { apiKey } = {}) {
     nameScore,
   };
 }
+
+// Shared by scripts/backfill-wheelchair-accessibility.mjs and the admin branch
+// endpoints — only meaningful once a place has been matched, since it's keyed
+// off the place ID rather than any of our own salon fields.
+export async function getWheelchairAccessibleEntrance(placeId, apiKey) {
+  const response = await fetch(`https://places.googleapis.com/v1/places/${placeId}`, {
+    headers: {
+      "X-Goog-Api-Key": apiKey,
+      "X-Goog-FieldMask": "accessibilityOptions",
+    },
+  });
+  if (!response.ok) {
+    throw new Error(`HTTP ${response.status}`);
+  }
+  const data = await response.json();
+  return data.accessibilityOptions?.wheelchairAccessibleEntrance === true;
+}

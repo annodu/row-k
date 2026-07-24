@@ -3,6 +3,7 @@ import posthog from "posthog-js";
 const apiKey = import.meta.env.VITE_POSTHOG_KEY as string | undefined;
 const apiHost = (import.meta.env.VITE_POSTHOG_HOST as string | undefined) || "https://us.i.posthog.com";
 const INTERNAL_VISITOR_KEY = "rowk_internal_visitor";
+const OPT_OUT_PARAM = "rk_owner";
 
 let initialized = false;
 
@@ -16,6 +17,20 @@ export function markAsInternalVisitor() {
     // localStorage may be unavailable (e.g. private browsing) — nothing to do.
   }
 }
+
+// Devices that never log into /admin (e.g. checking the live site on a phone) never get the
+// flag above set. Visiting the site once with ?rk_owner=1 bookmarked opts that device out too,
+// without needing an admin session. Runs once at module load, before the first pageview fires.
+(function applyOptOutParam() {
+  if (typeof window === "undefined") return;
+  const params = new URLSearchParams(window.location.search);
+  if (params.get(OPT_OUT_PARAM) !== "1") return;
+  markAsInternalVisitor();
+  params.delete(OPT_OUT_PARAM);
+  const query = params.toString();
+  const url = `${window.location.pathname}${query ? `?${query}` : ""}${window.location.hash}`;
+  window.history.replaceState(null, "", url);
+})();
 
 function isInternalVisitor() {
   if (window.location.pathname.startsWith("/admin")) return true;

@@ -19,12 +19,28 @@ const FILTER_EVENT_GROUPS = [
   { event: "price_filter_selected", group: "Price", selectedProp: "selected", labelProp: "selection" },
   { event: "braiding_preference_selected", group: "Preferences", selectedProp: "selected", labelProp: "selection" },
   { event: "hijabi_toggle_changed", group: "Preferences", selectedProp: "enabled", fixedLabel: "Hijabi friendly" },
+  { event: "verified_reviews_toggle_changed", group: "Preferences", selectedProp: "enabled", fixedLabel: "All reviews" },
+  { event: "google_reviews_only_toggle_changed", group: "Preferences", selectedProp: "enabled", fixedLabel: "Google reviews only" },
 ];
 
 const FILTER_GROUP_ORDER = ["Services", "Locations", "Price", "Preferences"];
 
 function isConfigured() {
   return Boolean(process.env.POSTHOG_PERSONAL_API_KEY && process.env.POSTHOG_PROJECT_ID);
+}
+
+// Excludes traffic from the site owner's own IP(s) so testing the live site doesn't skew
+// visitor numbers. Set via POSTHOG_INTERNAL_IPS (comma-separated) — this only affects the raw
+// HogQL queries below, not PostHog's own UI (its "Filter out internal and test users" project
+// setting is a separate, insight-level filter that doesn't apply to queries run via the API).
+function internalIpExclusionClause() {
+  const ips = (process.env.POSTHOG_INTERNAL_IPS || "")
+    .split(",")
+    .map((ip) => ip.trim())
+    .filter(Boolean);
+  if (!ips.length) return "";
+  const list = ips.map((ip) => `'${ip}'`).join(", ");
+  return ` AND (properties.$ip IS NULL OR properties.$ip NOT IN (${list}))`;
 }
 
 async function resolveRange(range) {
@@ -66,11 +82,12 @@ function isTruthy(value) {
 }
 
 async function fetchVisitorsSeries(preset) {
+  const internalIpExclusion = internalIpExclusionClause();
   if (preset.granularity === "hour") {
     const rows = await runHogQLQuery(`
       SELECT toStartOfHour(timestamp) AS bucket, count(DISTINCT person_id) AS visitors
       FROM events
-      WHERE event = '$pageview' AND timestamp >= now() - INTERVAL ${preset.days} DAY
+      WHERE event = '$pageview' AND timestamp >= now() - INTERVAL ${preset.days} DAY${internalIpExclusion}
       GROUP BY bucket
       ORDER BY bucket
     `);
@@ -90,7 +107,7 @@ async function fetchVisitorsSeries(preset) {
   const rows = await runHogQLQuery(`
     SELECT toDate(timestamp) AS day, count(DISTINCT person_id) AS visitors
     FROM events
-    WHERE event = '$pageview' AND timestamp >= now() - INTERVAL ${preset.days} DAY
+    WHERE event = '$pageview' AND timestamp >= now() - INTERVAL ${preset.days} DAY${internalIpExclusion}
     GROUP BY day
     ORDER BY day
   `);
@@ -110,12 +127,13 @@ async function fetchClickCounts(preset) {
   const rows = await runHogQLQuery(`
     SELECT
       countIf(event = 'book_click') AS booking_clicks,
-      countIf(event = 'instagram_click') AS instagram_clicks
+      countIf(event = 'instagram_click') AS instagram_clicks,
+      countIf(event = 'verified_reviews_click') AS reviews_clicks
     FROM events
-    WHERE event IN ('book_click', 'instagram_click') AND timestamp >= now() - INTERVAL ${preset.days} DAY
+    WHERE event IN ('book_click', 'instagram_click', 'verified_reviews_click') AND timestamp >= now() - INTERVAL ${preset.days} DAY${internalIpExclusionClause()}
   `);
-  const [bookingClicks, instagramClicks] = rows[0] ?? [0, 0];
-  return { bookingClicks: Number(bookingClicks) || 0, instagramClicks: Number(instagramClicks) || 0 };
+  const [bookingClicks, instagramClicks, reviewsClicks] = rows[0] ?? [0, 0, 0];
+  return { bookingClicks: Number(bookingClicks) || 0, instagramClicks: Number(instagramClicks) || 0, reviewsClicks: Number(reviewsClicks) || 0 };
 }
 
 async function fetchFilterUsage(preset) {
@@ -128,7 +146,7 @@ async function fetchFilterUsage(preset) {
       count() AS n
     FROM events
     WHERE event IN (${FILTER_EVENT_GROUPS.map((entry) => `'${entry.event}'`).join(", ")})
-      AND timestamp >= now() - INTERVAL ${preset.days} DAY
+      AND timestamp >= now() - INTERVAL ${preset.days} DAY${internalIpExclusionClause()}
     GROUP BY event, selection, selected, enabled
   `);
 
@@ -164,7 +182,7 @@ async function fetchZeroResultSearches(preset) {
       count() AS n,
       max(timestamp) AS last_seen
     FROM events
-    WHERE event = 'search_zero_results' AND timestamp >= now() - INTERVAL ${preset.days} DAY
+    WHERE event = 'search_zero_results' AND timestamp >= now() - INTERVAL ${preset.days} DAY${internalIpExclusionClause()}
     GROUP BY services, location, hijabi_friendly, no_gel, wheelchair_accessible
     ORDER BY n DESC
     LIMIT ${ZERO_RESULT_LIMIT}
@@ -191,7 +209,7 @@ async function fetchTopStylists(preset) {
   const rows = await runHogQLQuery(`
     SELECT properties.salon AS salon, any(properties.location) AS location, count() AS clicks
     FROM events
-    WHERE event IN ('book_click', 'instagram_click') AND timestamp >= now() - INTERVAL ${preset.days} DAY
+    WHERE event IN ('book_click', 'instagram_click') AND timestamp >= now() - INTERVAL ${preset.days} DAY${internalIpExclusionClause()}
     GROUP BY salon
     ORDER BY clicks DESC
     LIMIT ${TOP_STYLISTS_LIMIT}
@@ -206,12 +224,44 @@ async function fetchTopStylists(preset) {
     }));
 }
 
+async function fetchReviewsClicksByPlatform(preset) {
+  const rows = await runHogQLQuery(`
+    SELECT properties.platform AS platform, count() AS clicks
+    FROM events
+    WHERE event = 'verified_reviews_click' AND timestamp >= now() - INTERVAL ${preset.days} DAY${internalIpExclusionClause()}
+    GROUP BY platform
+    ORDER BY clicks DESC
+  `);
+
+  return rows
+    .filter(([platform]) => Boolean(platform))
+    .map(([platform, clicks]) => ({ platform: String(platform), clicks: Number(clicks) }));
+}
+
+async function fetchDeviceBreakdown(preset) {
+  // $device_type is auto-captured by posthog-js on every event (Desktop/Mobile/Tablet),
+  // no extra client-side tracking needed — same distinct-visitor methodology as fetchVisitorsSeries.
+  const rows = await runHogQLQuery(`
+    SELECT properties.$device_type AS device_type, count(DISTINCT person_id) AS visitors
+    FROM events
+    WHERE event = '$pageview' AND timestamp >= now() - INTERVAL ${preset.days} DAY${internalIpExclusionClause()}
+    GROUP BY device_type
+    ORDER BY visitors DESC
+  `);
+
+  return rows
+    .filter(([deviceType]) => Boolean(deviceType))
+    .map(([deviceType, visitors]) => ({ deviceType: String(deviceType), visitors: Number(visitors) }));
+}
+
 async function fetchAllTimeStats() {
+  const internalIpExclusion = internalIpExclusionClause();
   const [visitorRows, clickRows] = await Promise.all([
-    runHogQLQuery(`SELECT count(DISTINCT person_id) AS visitors FROM events WHERE event = '$pageview'`),
+    runHogQLQuery(`SELECT count(DISTINCT person_id) AS visitors FROM events WHERE event = '$pageview'${internalIpExclusion}`),
     runHogQLQuery(`
       SELECT countIf(event = 'book_click') AS booking_clicks, countIf(event = 'instagram_click') AS instagram_clicks
       FROM events
+      WHERE 1=1${internalIpExclusion}
     `),
   ]);
   const [visitors] = visitorRows[0] ?? [0];
@@ -239,12 +289,14 @@ export async function fetchAnalyticsSummary(range = "7d") {
 
   try {
     const preset = await resolveRange(range);
-    const [visitorsByDay, clicks, filterUsage, zeroResultSearches, topStylists] = await Promise.all([
+    const [visitorsByDay, clicks, filterUsage, zeroResultSearches, topStylists, reviewsClicksByPlatform, deviceBreakdown] = await Promise.all([
       fetchVisitorsSeries(preset),
       fetchClickCounts(preset),
       fetchFilterUsage(preset),
       fetchZeroResultSearches(preset),
       fetchTopStylists(preset),
+      fetchReviewsClicksByPlatform(preset),
+      fetchDeviceBreakdown(preset),
     ]);
 
     return {
@@ -252,9 +304,12 @@ export async function fetchAnalyticsSummary(range = "7d") {
       visitorsByDay,
       bookingClicks: clicks.bookingClicks,
       instagramClicks: clicks.instagramClicks,
+      reviewsClicks: clicks.reviewsClicks,
+      reviewsClicksByPlatform,
       filterUsage,
       zeroResultSearches,
       topStylists,
+      deviceBreakdown,
     };
   } catch (error) {
     console.error("PostHog analytics fetch failed", error);

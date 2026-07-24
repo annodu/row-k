@@ -50,7 +50,7 @@ async function main() {
   // Only check salons we've already confidently matched to a Google place, and
   // only where we don't already have this marked — we only ever add this signal,
   // never remove or contradict an existing admin-entered value.
-  const targets = initial.salons.filter((salon) => salon.googleMatchConfidence === "high" && salon.googlePlaceId && salon.wheelchairAccessible !== true);
+  const targets = initial.salons.filter((salon) => !salon.branches && salon.googleMatchConfidence === "high" && salon.googlePlaceId && salon.wheelchairAccessible !== true);
   console.log(`Checking wheelchair accessibility for ${targets.length} high-confidence Google matches.`);
 
   const results = new Map();

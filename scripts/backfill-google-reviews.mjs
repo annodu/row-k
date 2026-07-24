@@ -20,7 +20,7 @@ async function main() {
   const initial = JSON.parse(raw);
   // Check every salon against Google too (Google reviews take priority over a booking
   // platform's when both exist), skipping any already checked to avoid re-billing on re-runs.
-  let targets = initial.salons.filter((salon) => !salon.googleCheckedAt);
+  let targets = initial.salons.filter((salon) => !salon.googleCheckedAt && !salon.branches);
   const limit = Number(process.env.BACKFILL_LIMIT);
   if (limit > 0) targets = targets.slice(0, limit);
   console.log(`Checking Google for ${targets.length} salons without a confirmed booking-platform review.`);

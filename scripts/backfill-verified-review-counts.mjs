@@ -13,7 +13,7 @@ function sleep(ms) {
 async function main() {
   const raw = await fs.readFile(dataPath, "utf8");
   const initial = JSON.parse(raw);
-  const targets = initial.salons.filter((salon) => getVerifiedReviewPlatform(salon.bookingUrl));
+  const targets = initial.salons.filter((salon) => !salon.branches && getVerifiedReviewPlatform(salon.bookingUrl));
   console.log(`Found ${targets.length} salons on verified-review platforms.`);
 
   const results = new Map();

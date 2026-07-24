@@ -1,5 +1,5 @@
 import { Fragment, type ReactNode, useCallback, useEffect, useRef, useState } from "react";
-import { ArrowUpRight, Check, ChevronDown, Globe, Info, Search, X } from "lucide-react";
+import { ArrowUpRight, Check, ChevronDown, Globe, Search, X } from "lucide-react";
 
 import { Checkbox } from "@/components/ui/checkbox";
 import { AdminApp } from "@/AdminApp";
@@ -81,6 +81,9 @@ type SalonResult = {
   id: string;
   addedIndex?: number;
   name: string;
+  brandId?: string;
+  brandName?: string;
+  branchLabel?: string;
   areaId?: string;
   areaIds?: string[];
   areaLabel: string;
@@ -94,6 +97,7 @@ type SalonResult = {
   hijabiFriendly?: boolean;
   canBraidWithoutGel?: boolean;
   wheelchairAccessible?: boolean;
+  temporarilyClosed?: boolean;
   hasVerifiedReviews?: boolean;
   verifiedReviewCount?: number;
   googleMapsUri?: string;
@@ -438,6 +442,187 @@ function getLocationLabels(result: SalonResult) {
   }
 
   return locationLabels.map((label) => resultLocationLabelMap[label.toLowerCase().replace(/\s+/g, "-")] ?? label);
+}
+
+function BrandGroupCard({
+  brandBranches,
+  orderedServices,
+  customFilterTypes,
+}: {
+  brandBranches: SalonResult[];
+  orderedServices: string[];
+  customFilterTypes: CustomFilterType[];
+}) {
+  const [expanded, setExpanded] = useState(false);
+  const brand = brandBranches[0];
+  const brandName = brand.brandName ?? brand.name;
+  // Temporarily closed branches are hidden entirely — not worth showing a
+  // branch a customer can't currently visit.
+  const openBranches = brandBranches.filter((branch) => !branch.temporarilyClosed);
+  // Wheelchair access is branch-specific (shown per-row below); these other
+  // attributes live on the shared brand record, so they show once here,
+  // same position/style as the badge on a regular single-location card.
+  const attributeLabels = [
+    brand.hijabiFriendly ? "hijabi-friendly" : null,
+    brand.canBraidWithoutGel ? "can braid without gel" : null,
+    ...getResultCustomFilterLabels(brand, customFilterTypes),
+  ].filter((label): label is string => Boolean(label));
+
+  const setRef = useViewedOnce(() => {
+    trackAnalyticsEvent("stylist_viewed", { salon: brandName, location: "multiple", services: "brand-group" });
+  });
+
+  const areaLabels = [...new Set(openBranches.flatMap((branch) => getLocationLabels(branch)))];
+  const locationSummary = areaLabels.length > 1 ? "London" : (areaLabels[0] ?? "");
+  const priceSymbols = priceBandTiersCache
+    .map((tier) => tier.symbol)
+    .filter((symbol) => openBranches.some((branch) => comparablePriceBand(branch) === symbol));
+  const priceSummary = priceSymbols.length > 1 ? `${priceSymbols[0]} – ${priceSymbols[priceSymbols.length - 1]}` : (priceSymbols[0] ?? "");
+
+  const sortedBranches = [...openBranches].sort((left, right) =>
+    (left.branchLabel ?? left.name).localeCompare(right.branchLabel ?? right.name),
+  );
+  const visibleBranches = expanded ? sortedBranches : sortedBranches.slice(0, 5);
+  const hiddenCount = sortedBranches.length - visibleBranches.length;
+  // When every open branch books through the exact same link (e.g. a brand-wide
+  // booking page rather than a per-location one), showing "Book" on every row
+  // is just noise — show it once at the brand level instead.
+  const sharedBookingUrl =
+    openBranches.length > 0 && openBranches.every((branch) => branch.bookingUrl && branch.bookingUrl === openBranches[0].bookingUrl)
+      ? openBranches[0].bookingUrl
+      : null;
+
+  return (
+    <li
+      ref={setRef}
+      className="flex w-full flex-col items-start gap-3 border-b border-stone-300 px-0 py-5 text-left last:border-b-0 dark:border-stone-800"
+    >
+      <div className="flex w-full items-start justify-between gap-3">
+        <div className="min-w-0">
+          <div className="flex min-w-0 flex-wrap items-center gap-x-2 gap-y-1">
+            <h3 className="text-[17px] font-semibold text-stone-950 dark:text-stone-50">{brandName}</h3>
+            <span className="inline-block rounded-none border border-stone-300 bg-stone-100 px-1.5 py-1 text-[11px] font-semibold leading-none tracking-[0.06em] text-stone-600 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-400">
+              {openBranches.length} branches
+            </span>
+          </div>
+          {locationSummary || priceSummary ? (
+            <p className="mt-0.5 text-[13px] font-medium text-stone-500 dark:text-stone-400">
+              {locationSummary}
+              {locationSummary && priceSummary ? " · " : ""}
+              {priceSummary}
+            </p>
+          ) : null}
+        </div>
+        <div className="flex shrink-0 items-center gap-1">
+          {brand.instagramUrl ? (
+            <a
+              href={brand.instagramUrl}
+              target="_blank"
+              rel="noreferrer"
+              onClick={() => trackAnalyticsEvent("instagram_click", { salon: brandName, placement: "brand-group" })}
+              className="inline-flex min-h-[48px] shrink-0 items-center justify-center gap-2 rounded-none bg-transparent px-2 py-2 text-[14px] font-medium text-stone-950 transition-colors duration-150 hover:bg-stone-200 active:bg-stone-200 dark:bg-transparent dark:text-stone-100 dark:hover:bg-stone-800 dark:active:bg-stone-800 sm:min-h-[40px]"
+            >
+              <InstagramIcon className="size-4" />
+              <span className="sr-only">Go to {brandName} Instagram - opens in a new tab</span>
+            </a>
+          ) : null}
+          {sharedBookingUrl ? (
+            <a
+              href={sharedBookingUrl}
+              target="_blank"
+              rel="noreferrer"
+              onClick={() =>
+                trackAnalyticsEvent("book_click", {
+                  salon: brandName,
+                  platform: brand.bookingPlatform,
+                  location: "multiple",
+                  services: "none",
+                })
+              }
+              className="inline-flex min-h-[48px] shrink-0 items-center justify-center rounded-none bg-stone-950 px-4 py-2 text-[13px] font-medium text-stone-100 transition-colors duration-150 hover:bg-stone-800 active:bg-stone-800 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-stone-300 dark:active:bg-stone-300 sm:min-h-[40px]"
+            >
+              <span aria-hidden="true">Book</span>
+              <span className="sr-only">Book {brandName} - opens in a new tab</span>
+            </a>
+          ) : null}
+        </div>
+      </div>
+
+      {orderedServices.length > 0 ? (
+        <div className="w-full rounded-none border-l-4 border-stone-300 bg-stone-200/45 pl-2 pr-3 py-2 text-[12px] font-normal lowercase leading-[18px] tracking-[0.02em] text-stone-700 dark:border-stone-700 dark:bg-stone-900/48 dark:text-stone-300">
+          <ServicesSummary services={orderedServices} badgeLabel={attributeLabels.length > 0 ? attributeLabels.join(" · ") : null} />
+        </div>
+      ) : null}
+
+      <div className="w-full divide-y divide-stone-200 border border-stone-200 dark:divide-stone-800 dark:border-stone-800">
+        {visibleBranches.map((branch) => {
+          const reviewsBanner = getReviewsBannerInfo(branch);
+          const branchLocation = getLocationLabels(branch).join(" · ");
+          return (
+            <div key={branch.id} className="flex items-start justify-between gap-3 px-3 py-3">
+              <div className="min-w-0">
+                <p className="text-[15px] font-medium text-stone-950 dark:text-stone-50">{branch.branchLabel ?? branch.name}</p>
+                {branchLocation ? <p className="text-[13px] text-stone-500 dark:text-stone-400">{branchLocation}</p> : null}
+                {reviewsBanner ? (
+                  <a
+                    href={reviewsBanner.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={`${reviewsBanner.accessibleLabel} - opens in a new tab`}
+                    onClick={() =>
+                      trackAnalyticsEvent("verified_reviews_click", {
+                        salon: branch.name,
+                        platform: getVerifiedReviewsPlatform(branch) ?? "google",
+                      })
+                    }
+                    className="mt-0.5 inline-flex w-fit items-center gap-1 text-[13px] font-medium text-[oklch(0.45_0.11_255)] transition-colors hover:text-[oklch(0.38_0.11_255)] active:text-[oklch(0.38_0.11_255)] dark:text-[oklch(0.72_0.10_255)] dark:hover:text-[oklch(0.80_0.09_255)] dark:active:text-[oklch(0.80_0.09_255)]"
+                  >
+                    <span aria-hidden="true">{reviewsBanner.label}</span>
+                    <ArrowUpRight className="size-3.5 shrink-0" aria-hidden="true" />
+                  </a>
+                ) : null}
+                {branch.wheelchairAccessible ? (
+                  <span className="mt-2.5 block w-fit rounded-none border border-[oklch(0.72_0.07_86)]/35 bg-[oklch(0.94_0.025_92)] px-1.5 py-1 align-baseline text-[11px] font-semibold leading-none tracking-[0.06em] text-[oklch(0.44_0.08_80)] dark:bg-[oklch(0.44_0.08_80)] dark:text-[oklch(0.94_0.025_92)]">
+                    wheelchair access
+                  </span>
+                ) : null}
+              </div>
+              {!sharedBookingUrl && branch.bookingUrl ? (
+                <a
+                  href={branch.bookingUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  onClick={() =>
+                    trackAnalyticsEvent("book_click", {
+                      salon: branch.name,
+                      platform: branch.bookingPlatform,
+                      location: branch.areaLabel,
+                      services: "none",
+                    })
+                  }
+                  className="inline-flex min-h-[48px] shrink-0 items-center justify-center rounded-none bg-stone-950 px-4 py-2 text-[13px] font-medium text-stone-100 transition-colors duration-150 hover:bg-stone-800 active:bg-stone-800 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-stone-300 dark:active:bg-stone-300 sm:min-h-[40px]"
+                >
+                  <span aria-hidden="true">Book</span>
+                  <span className="sr-only">Book {branch.name} - opens in a new tab</span>
+                </a>
+              ) : null}
+            </div>
+          );
+        })}
+      </div>
+
+      {sortedBranches.length > 5 ? (
+        <button
+          type="button"
+          onClick={() => setExpanded((current) => !current)}
+          className="flex w-full items-center justify-center gap-1 rounded-none px-2 py-2 text-[13px] font-medium text-stone-600 transition-colors hover:bg-stone-200 hover:text-stone-950 active:bg-stone-200 dark:text-stone-400 dark:hover:bg-stone-900 dark:hover:text-stone-100 dark:active:bg-stone-900"
+        >
+          <span>{expanded ? "Show fewer branches" : `${hiddenCount} more branches`}</span>
+          <ChevronDown className={cn("size-4 transition-transform", expanded ? "rotate-180" : "")} aria-hidden="true" />
+        </button>
+      ) : null}
+    </li>
+  );
 }
 
 function orderServicesBySelection(
@@ -1652,8 +1837,7 @@ export default function App() {
             </div>
           </div>
 
-          <p className="mt-3 flex items-center gap-1.5 text-[12px] text-stone-500 dark:text-stone-400">
-            <Info className="size-3.5 shrink-0" aria-hidden="true" />
+          <p className="mt-3 text-[12px] text-stone-500 dark:text-stone-400">
             We don't vet, endorse, or take responsibility for any of the service providers listed
           </p>
 
@@ -1705,20 +1889,44 @@ export default function App() {
             </ul>
           ) : !searchError ? (
             <ul className="flex w-full list-none flex-col items-start">
-              {visibleResults.map((result) => {
-                const locationLabels = getLocationLabels(result);
-                const orderedServices = orderServicesBySelection(result.services, selectedCategories, selectedSubcategories, runtimeCategoryServiceMap);
+              {(() => {
+                const renderedBrandIds = new Set<string>();
+                return visibleResults.map((result) => {
+                  if (result.brandId) {
+                    if (renderedBrandIds.has(result.brandId)) return null;
+                    const brandBranches = results.filter((other) => other.brandId === result.brandId);
+                    if (brandBranches.length > 1) {
+                      renderedBrandIds.add(result.brandId);
+                      const brandOrderedServices = orderServicesBySelection(
+                        result.services,
+                        selectedCategories,
+                        selectedSubcategories,
+                        runtimeCategoryServiceMap,
+                      );
+                      return (
+                        <BrandGroupCard
+                          key={result.brandId}
+                          brandBranches={brandBranches}
+                          orderedServices={brandOrderedServices}
+                          customFilterTypes={customFilterTypes}
+                        />
+                      );
+                    }
+                  }
 
-                const activeServices = [...selectedCategories, ...selectedSubcategories].join(", ") || "none";
-                const reviewsBanner = getReviewsBannerInfo(result);
-                const attributeLabels = [
-                  result.wheelchairAccessible ? "wheelchair access" : null,
-                  result.hijabiFriendly ? "hijabi-friendly" : null,
-                  result.canBraidWithoutGel ? "can braid without gel" : null,
-                  ...getResultCustomFilterLabels(result, customFilterTypes),
-                ].filter((label): label is string => Boolean(label));
+                  const locationLabels = getLocationLabels(result);
+                  const orderedServices = orderServicesBySelection(result.services, selectedCategories, selectedSubcategories, runtimeCategoryServiceMap);
 
-                return (
+                  const activeServices = [...selectedCategories, ...selectedSubcategories].join(", ") || "none";
+                  const reviewsBanner = getReviewsBannerInfo(result);
+                  const attributeLabels = [
+                    result.wheelchairAccessible ? "wheelchair access" : null,
+                    result.hijabiFriendly ? "hijabi-friendly" : null,
+                    result.canBraidWithoutGel ? "can braid without gel" : null,
+                    ...getResultCustomFilterLabels(result, customFilterTypes),
+                  ].filter((label): label is string => Boolean(label));
+
+                  return (
                   <StylistCardWrapper key={result.id} result={result} services={activeServices}>
                     <article className="flex w-full flex-col gap-2.5 sm:grid sm:grid-cols-[minmax(0,1fr)_auto] sm:items-start sm:gap-x-4 sm:gap-y-2.5">
                       <div className="min-w-0">
@@ -1822,8 +2030,9 @@ export default function App() {
                       </div>
                     </article>
                   </StylistCardWrapper>
-                );
-              })}
+                  );
+                });
+              })()}
             </ul>
           ) : null}
 
@@ -2605,7 +2814,10 @@ export default function App() {
       <footer className="mt-auto border-t border-stone-300 px-6 pb-4 pt-8 dark:border-stone-800 sm:px-10">
         <div className="mx-auto w-full max-w-[1280px]">
           <p className="text-[13px] text-stone-700 dark:text-stone-300">
-            Row K is a directory, not a booking platform. We don't vet, endorse, or take responsibility for the service providers listed.
+            Row K is not a booking platform.
+          </p>
+          <p className="text-[13px] text-stone-700 dark:text-stone-300">
+            Row K does not vet, endorse, or take responsibility for the service providers listed.
           </p>
           <div className="mt-4 flex flex-col items-start gap-4 border-t border-stone-200 pt-4 dark:border-stone-800 sm:flex-row sm:items-center sm:justify-between">
             <span className="text-[14px] text-stone-700 dark:text-stone-300">ROW K 2026</span>
