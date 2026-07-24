@@ -1122,10 +1122,9 @@
     },
     {
       "id": "the-reign-spitalfields",
-      "name": "The Reign Spitalfields",
-      "areaId": "all-london",
+      "name": "The Reign",
+      "areaId": "central",
       "areaIds": [
-        "all-london",
         "central",
         "east"
       ],
@@ -1136,7 +1135,7 @@
       "bookingUrl": "https://app.acuityscheduling.com/schedule/1e352fe4?fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQPOTM2NjE5NzQzMzkyNDU5AAGn8Zjq7WFBPi2nN3fjNLxw1SMzRG8dXB4T-5tNEBwAT2svVsekrUhMYjT3koA_aem_QMp97BrF451FKtTfBNiPCA&utm_source=ig&utm_medium=social&utm_content=link_in_bio&utm_id=97760_v0_s00_e0_tv3",
       "instagramUrl": "https://www.instagram.com/the_reign_spitalfields/",
       "services": [
-        "Bouncy blowout / Round Brush Blow dry",
+        "Bouncy blowout / round brush blow dry",
         "Full head colour",
         "Highlights",
         "Keratin treatment",
@@ -1157,7 +1156,7 @@
         "Scalp detox / treatments"
       ],
       "priceBand": "££",
-      "servicePriceBand": "££",
+      "servicePriceBand": "",
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
@@ -1188,7 +1187,14 @@
       "googleMatchConfidence": "low",
       "googleDisplayName": "The Reign",
       "googleFormattedAddress": "41 Artillery Ln, London E1 7LP, UK",
-      "googleCheckedAt": "2026-07-23T22:17:50.229Z"
+      "googleCheckedAt": "2026-07-23T22:17:50.229Z",
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "customFilters": {},
+      "updatedAt": "2026-07-24"
     },
     {
       "id": "tressesandtravel",
