@@ -27,6 +27,7 @@ import {
   LogOut,
   MapPin,
   Menu,
+  Star,
   PanelLeftClose,
   PanelLeftOpen,
   Plus,
@@ -96,6 +97,11 @@ type StylistDraft = {
   evidence: string[];
   createdAt: string;
   updatedAt: string;
+  googleMapsUri?: string;
+  googleReviewCount?: number;
+  googleMatchConfidence?: "high" | "low" | "no-match" | "";
+  googleDisplayName?: string;
+  verifiedReviewCount?: number;
 };
 
 type PriceBand = string;
@@ -1185,7 +1191,7 @@ function AdminAppInner() {
       }
       setSelectedDraftId(null);
       setIsDraftEditorOpen(false);
-      notify(`${payload.salon.name} was added to the directory.`);
+      notify(`${payload.salon.name} was added to the directory.${describeGoogleMatch(payload.googleMatch)}`);
     } finally {
       setIsBusy(false);
     }
@@ -3155,6 +3161,27 @@ function getDraftDisplayStatus(draft: StylistDraft) {
   }
 
   return "draft";
+}
+
+type GoogleMatchSummary = {
+  attempted: boolean;
+  google: { confidence: string; displayName: string | null; formattedAddress: string | null; reviewCount: number } | null;
+  googleError: string | null;
+  verified: { reviewCount: number } | null;
+  verifiedError: string | null;
+} | null;
+
+function describeGoogleMatch(match: GoogleMatchSummary) {
+  if (!match || !match.attempted) return "";
+  if (match.google) {
+    const { confidence, displayName, formattedAddress, reviewCount } = match.google;
+    if (confidence === "no-match") return " No matching Google listing was found.";
+    const where = displayName ? ` "${displayName}"${formattedAddress ? ` (${formattedAddress})` : ""}` : "";
+    const confidenceNote = confidence === "high" ? "" : " — low confidence, worth double-checking";
+    return ` Google:${where}, ${reviewCount} reviews${confidenceNote}.`;
+  }
+  if (match.googleError) return ` Google lookup failed: ${match.googleError}`;
+  return "";
 }
 
 function getStylistStatusLabel(status: string) {
@@ -6721,6 +6748,24 @@ function DraftEditor({
           </div>
         </DraftPropertyRow>
 
+        {draft.googleMatchConfidence === "high" && Number(draft.googleReviewCount) > 0 && draft.googleMapsUri ? (
+          <DraftPropertyRow icon={<Star className="size-4" />} label="Google reviews">
+            <div className="flex items-center gap-2">
+              <Input
+                value={draft.googleMapsUri || ""}
+                onChange={(event) => onChange({ googleMapsUri: event.target.value })}
+                className="h-8 rounded-md border-transparent bg-transparent px-2 py-1 hover:bg-stone-100 focus-visible:border-stone-300"
+              />
+              <a href={draft.googleMapsUri} target="_blank" rel="noreferrer" className="inline-flex size-8 shrink-0 items-center justify-center rounded-md text-stone-400 transition hover:bg-stone-100 hover:text-stone-950" aria-label={`Google reviews for ${draft.name} available - opens in a new tab`}>
+                <ExternalLink className="size-4" />
+              </a>
+            </div>
+            <p className="mt-1 text-xs text-stone-500">
+              {draft.googleReviewCount} reviews{draft.googleDisplayName ? ` — matched to "${draft.googleDisplayName}"` : ""}
+            </p>
+          </DraftPropertyRow>
+        ) : null}
+
         <DraftPropertyRow icon={<CheckSquare className="size-4" />} label="Booking link is Instagram">
           <input
             type="checkbox"
@@ -7512,6 +7557,11 @@ function publishedSalonToDraft(salon: Partial<StylistDraft>): StylistDraft {
     evidence: Array.isArray(salon.evidence) ? salon.evidence : [],
     createdAt: salon.createdAt || fallbackDate,
     updatedAt: salon.updatedAt || fallbackDate,
+    googleMapsUri: salon.googleMapsUri || "",
+    googleReviewCount: salon.googleReviewCount,
+    googleMatchConfidence: salon.googleMatchConfidence || "",
+    googleDisplayName: salon.googleDisplayName || "",
+    verifiedReviewCount: salon.verifiedReviewCount,
   };
 }
 

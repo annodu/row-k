@@ -506,6 +506,44 @@ function salonHasVerifiedReviews(salon) {
   return hasVerifiedBookingPlatformReviews(salon) || hasVerifiedGoogleReviews(salon);
 }
 
+const staleCheckThresholdMs = 90 * 24 * 60 * 60 * 1000;
+
+// Fleet-wide review-data completeness, surfaced on /api/health so a gap (a
+// backfill script that never got run, or a batch of no-match/low-confidence
+// results) shows up passively instead of only being caught by someone eyeballing
+// the directory, as happened before this was added.
+export function computeReviewHealth(salons) {
+  const now = Date.now();
+  const health = { neverChecked: [], noMatch: [], lowConfidence: [], staleCheck: [] };
+
+  for (const salon of salons) {
+    if (!salon.googleCheckedAt) {
+      health.neverChecked.push(salon.id);
+      continue;
+    }
+    if (salon.googleMatchConfidence === "no-match") {
+      health.noMatch.push(salon.id);
+    } else if (salon.googleMatchConfidence === "low") {
+      health.lowConfidence.push(salon.id);
+    }
+    const checkedAt = Date.parse(salon.googleCheckedAt);
+    if (Number.isFinite(checkedAt) && now - checkedAt > staleCheckThresholdMs) {
+      health.staleCheck.push(salon.id);
+    }
+  }
+
+  return {
+    neverCheckedCount: health.neverChecked.length,
+    noMatchCount: health.noMatch.length,
+    lowConfidenceCount: health.lowConfidence.length,
+    staleCheckCount: health.staleCheck.length,
+    neverChecked: health.neverChecked,
+    noMatch: health.noMatch,
+    lowConfidence: health.lowConfidence,
+    staleCheck: health.staleCheck,
+  };
+}
+
 export async function readSalonIndex() {
   const manualIndex = await readIndexFile(manualIndexPath, "manual");
   const normalizedSalons = manualIndex.salons

@@ -4,6 +4,7 @@
 
 - Monitor `/api/health` from outside Vercel every 1-5 minutes.
 - Alert if it fails twice in a row or returns a non-2xx status.
+- `/api/health` also reports `reviewHealth` (`neverCheckedCount`, `noMatchCount`, `lowConfidenceCount`, `staleCheckCount`) — a fleet-wide count of salons missing or overdue on Google/verified-review matching. This isn't alertable on its own (counts rise as new stylists are added), but a sudden jump, or `staleCheckCount` climbing steadily, means the backfill scripts (`scripts/backfill-google-reviews.mjs`, `scripts/backfill-verified-review-counts.mjs`) need a manual run — there's no cron for them. Run `node scripts/validate-reviews.mjs` for the itemised list.
 
 ## Alerts
 

@@ -3,7 +3,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import express from "express";
-import { readSalonIndex, searchSalons, setNoStoreHeaders } from "./salon-index.mjs";
+import { computeReviewHealth, readSalonIndex, searchSalons, setNoStoreHeaders } from "./salon-index.mjs";
 import { registerAdminStylistRoutes, sanitizeCustomFilters } from "./admin-stylists.mjs";
 import { createRateLimiter, requestLogger } from "./security.mjs";
 
@@ -28,11 +28,13 @@ app.use(requestLogger);
 
 app.get("/api/health", async (_req, res) => {
   const index = await readSalonIndex();
+  const { neverCheckedCount, noMatchCount, lowConfidenceCount, staleCheckCount } = computeReviewHealth(index.salons);
   res.json({
     ok: true,
     configured: true,
     count: index.salons.length,
     updatedAt: index.meta.updatedAt,
+    reviewHealth: { neverCheckedCount, noMatchCount, lowConfidenceCount, staleCheckCount },
   });
 });
 

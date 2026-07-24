@@ -1,59 +1,10 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { assertSafeOutboundHttpUrl } from "../server/security.mjs";
+import { getVerifiedReviewPlatform, matchVerifiedReviews } from "../server/verified-reviews.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const dataPath = path.resolve(__dirname, "../data/manual-salons.json");
-
-const verifiedReviewHostnames = ["fresha.com", "treatwell.co.uk", "booksy.com", "vagaro.com", "styleseat.com", "setmore.com"];
-const userAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36";
-
-function getVerifiedReviewPlatform(bookingUrl) {
-  const url = (bookingUrl || "").toLowerCase();
-  return verifiedReviewHostnames.find((hostname) => url.includes(hostname)) ?? null;
-}
-
-function extractReviewCount(html) {
-  const scriptRe = /<script[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi;
-  let match;
-  while ((match = scriptRe.exec(html))) {
-    let parsed;
-    try {
-      parsed = JSON.parse(match[1]);
-    } catch {
-      continue;
-    }
-    const nodes = Array.isArray(parsed) ? parsed : Array.isArray(parsed["@graph"]) ? parsed["@graph"] : [parsed];
-    for (const node of nodes) {
-      const rating = node?.aggregateRating;
-      if (rating && typeof rating.reviewCount === "number") {
-        return rating.reviewCount;
-      }
-    }
-  }
-  return 0;
-}
-
-async function fetchReviewCount(bookingUrl) {
-  const safeUrl = await assertSafeOutboundHttpUrl(bookingUrl);
-  const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 15000);
-  try {
-    const response = await fetch(safeUrl, {
-      headers: { "User-Agent": userAgent, Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8" },
-      signal: controller.signal,
-      redirect: "follow",
-    });
-    if (!response.ok) {
-      return { ok: false, error: `HTTP ${response.status}` };
-    }
-    const html = await response.text();
-    return { ok: true, reviewCount: extractReviewCount(html) };
-  } finally {
-    clearTimeout(timeout);
-  }
-}
 
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -72,11 +23,11 @@ async function main() {
 
   for (const salon of targets) {
     try {
-      const result = await fetchReviewCount(salon.bookingUrl);
-      results.set(salon.id, { verifiedReviewCount: result.reviewCount, verifiedReviewCheckedAt: new Date().toISOString() });
+      const update = await matchVerifiedReviews(salon);
+      results.set(salon.id, update);
       checked += 1;
-      if (result.reviewCount > 0) withReviews += 1;
-      console.log(`OK   ${salon.name}: ${result.reviewCount} reviews`);
+      if (update.verifiedReviewCount > 0) withReviews += 1;
+      console.log(`OK   ${salon.name}: ${update.verifiedReviewCount} reviews`);
     } catch (error) {
       failed += 1;
       console.log(`FAIL ${salon.name}: ${error.message}`);

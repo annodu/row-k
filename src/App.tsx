@@ -1,5 +1,5 @@
 import { Fragment, type ReactNode, useCallback, useEffect, useRef, useState } from "react";
-import { ArrowUpRight, Check, ChevronDown, Globe, Search, X } from "lucide-react";
+import { ArrowUpRight, Check, ChevronDown, Globe, Info, Search, X } from "lucide-react";
 
 import { Checkbox } from "@/components/ui/checkbox";
 import { AdminApp } from "@/AdminApp";
@@ -289,14 +289,14 @@ function getVerifiedReviewsUrl(result: SalonResult): string {
   return bookingUrl;
 }
 
-function getReviewsBannerInfo(result: SalonResult): { label: string; url: string } | null {
+function getReviewsBannerInfo(result: SalonResult): { label: string; url: string; accessibleLabel: string } | null {
   if (result.googleMatchConfidence === "high" && Number(result.googleReviewCount) > 0 && result.googleMapsUri) {
-    return { label: "Google reviews available", url: result.googleMapsUri };
+    return { label: "Google reviews available", url: result.googleMapsUri, accessibleLabel: `Google reviews for ${result.name} available` };
   }
 
   const platform = getVerifiedReviewsPlatform(result);
   if (platform && Number(result.verifiedReviewCount) > 0) {
-    return { label: `Reviews on ${platform}`, url: getVerifiedReviewsUrl(result) };
+    return { label: `Reviews on ${platform}`, url: getVerifiedReviewsUrl(result), accessibleLabel: `Reviews for ${result.name} on ${platform}` };
   }
 
   return null;
@@ -629,7 +629,7 @@ function ServicesSummary({ services, badgeLabel }: { services: string[]; badgeLa
   const badgeElement = badgeLabel ? (
     <span
       ref={badgeMeasureRef}
-      className="mr-1.5 inline-block rounded-none bg-stone-300 px-1.5 py-1 align-baseline text-[11px] font-semibold leading-none tracking-[0.06em] text-stone-900 dark:bg-stone-700 dark:text-stone-300"
+      className="mr-1.5 inline-block rounded-none border border-[oklch(0.72_0.07_86)]/35 bg-[oklch(0.94_0.025_92)] px-1.5 py-1 align-baseline text-[11px] font-semibold leading-none tracking-[0.06em] text-[oklch(0.44_0.08_80)] dark:bg-[oklch(0.44_0.08_80)] dark:text-[oklch(0.94_0.025_92)]"
     >
       {badgeLabel}
     </span>
@@ -1652,6 +1652,11 @@ export default function App() {
             </div>
           </div>
 
+          <p className="mt-3 flex items-center gap-1.5 text-[12px] text-stone-500 dark:text-stone-400">
+            <Info className="size-3.5 shrink-0" aria-hidden="true" />
+            We don't vet, endorse, or take responsibility for any of the service providers listed
+          </p>
+
           {searchError ? (
             <div className="mt-4 bg-rose-100 px-4 py-6 text-left dark:bg-rose-950/30">
               <h3 className="text-[17px] font-semibold text-rose-900 dark:text-rose-200">Something went wrong</h3>
@@ -1737,15 +1742,16 @@ export default function App() {
                                   href={reviewsBanner.url}
                                   target="_blank"
                                   rel="noreferrer"
+                                  aria-label={`${reviewsBanner.accessibleLabel} - opens in a new tab`}
                                   onClick={() =>
                                     trackAnalyticsEvent("verified_reviews_click", {
                                       salon: result.name,
                                       platform: getVerifiedReviewsPlatform(result) ?? "google",
                                     })
                                   }
-                                  className="mt-1 inline-flex w-fit items-center gap-1 text-[13px] font-medium text-blue-600 transition-colors hover:text-blue-700 active:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 dark:active:text-blue-300"
+                                  className="mt-1 inline-flex w-fit items-center gap-1 text-[13px] font-medium text-[oklch(0.45_0.11_255)] transition-colors hover:text-[oklch(0.38_0.11_255)] active:text-[oklch(0.38_0.11_255)] dark:text-[oklch(0.72_0.10_255)] dark:hover:text-[oklch(0.80_0.09_255)] dark:active:text-[oklch(0.80_0.09_255)]"
                                 >
-                                  <span>{reviewsBanner.label}</span>
+                                  <span aria-hidden="true">{reviewsBanner.label}</span>
                                   <ArrowUpRight className="size-3.5 shrink-0" aria-hidden="true" />
                                 </a>
                               ) : null}
@@ -2596,18 +2602,24 @@ export default function App() {
         </aside>
       </div>
 
-      <footer className="mt-auto border-t border-stone-300 px-6 py-4 dark:border-stone-800 sm:px-10">
-        <div className="mx-auto flex w-full max-w-[1280px] flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
-          <span className="text-[14px] text-stone-700 dark:text-stone-300">ROW K 2026</span>
-          <a
-            href="https://tally.so/r/VLY10g"
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex min-h-11 items-center py-2 text-[14px] text-stone-500 transition hover:text-stone-800 dark:text-stone-400 dark:hover:text-stone-100"
-          >
-            Submit a stylist
-            <span className="sr-only"> - opens in a new tab</span>
-          </a>
+      <footer className="mt-auto border-t border-stone-300 px-6 pb-4 pt-8 dark:border-stone-800 sm:px-10">
+        <div className="mx-auto w-full max-w-[1280px]">
+          <p className="text-[13px] text-stone-700 dark:text-stone-300">
+            Row K is a directory, not a booking platform. We don't vet, endorse, or take responsibility for the service providers listed.
+          </p>
+          <div className="mt-4 flex flex-col items-start gap-4 border-t border-stone-200 pt-4 dark:border-stone-800 sm:flex-row sm:items-center sm:justify-between">
+            <span className="text-[14px] text-stone-700 dark:text-stone-300">ROW K 2026</span>
+            <a
+              href="https://tally.so/r/VLY10g"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex min-h-11 items-center gap-1 py-2 text-[14px] font-medium text-stone-700 transition-colors hover:text-stone-900 active:text-stone-900 dark:text-stone-300 dark:hover:text-stone-50 dark:active:text-stone-50"
+            >
+              Submit a stylist
+              <span className="sr-only"> - opens in a new tab</span>
+              <ArrowUpRight className="size-3.5 shrink-0" aria-hidden="true" />
+            </a>
+          </div>
         </div>
       </footer>
     </div>

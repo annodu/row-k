@@ -4,6 +4,8 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { assertSafeOutboundHttpUrl, createRateLimiter, requireTrustedOrigin } from "./security.mjs";
 import { fetchAllTimeSummary, fetchAnalyticsSummary } from "./analytics.mjs";
+import { extractPostcodeToken, matchSalonToGoogle } from "./google-match.mjs";
+import { getVerifiedReviewPlatform, matchVerifiedReviews } from "./verified-reviews.mjs";
 
 function today() {
   return new Date().toISOString().split("T")[0];
@@ -373,6 +375,7 @@ export function registerAdminStylistRoutes(app) {
       websiteUrl: update.websiteUrl || "",
       instagramUrl: update.instagramUrl || "",
       tiktokUrl: update.tiktokUrl || "",
+      googleMapsUri: update.googleMapsUri || currentSalon.googleMapsUri || "",
       addedVia: update.addedVia || currentSalon.addedVia || "",
       services: normalizeServices(update.services || []),
       hijabiFriendly: update.hijabiFriendly === true,
@@ -1281,6 +1284,7 @@ export function registerAdminStylistRoutes(app) {
     const manualIndex = await readJson(manualIndexPath, { meta: { source: "manual" }, salons: [] });
     const existingIds = new Set(manualIndex.salons.map((salon) => salon.id));
     const salon = draftToSalon(draft, existingIds);
+    const googleMatch = await enrichSalonWithReviews(salon);
     manualIndex.salons.unshift(salon);
     manualIndex.meta = {
       ...manualIndex.meta,
@@ -1302,7 +1306,7 @@ export function registerAdminStylistRoutes(app) {
       await writeDraftStore(store);
     }
 
-    res.json({ ok: true, salon });
+    res.json({ ok: true, salon, googleMatch });
   });
 
   app.delete("/api/admin/stylists/drafts/:id", requireAdmin, async (req, res) => {
@@ -1316,6 +1320,42 @@ export function registerAdminStylistRoutes(app) {
     await writeDraftStore(store);
     res.json({ ok: true });
   });
+}
+
+// Called synchronously when a draft is approved so a new stylist gets matched
+// to Google (and, where applicable, its verified-review-platform count) the
+// moment it's published, instead of waiting on the next manual backfill run.
+// Never throws — a failed lookup (no API key, network error, no match) just
+// means the fields stay unset, same as a brand-new record would look today;
+// the summary returned here lets the admin UI show what happened.
+async function enrichSalonWithReviews(salon) {
+  const summary = { attempted: true, google: null, googleError: null, verified: null, verifiedError: null };
+
+  try {
+    const googleUpdate = await matchSalonToGoogle(salon);
+    const { nameScore, ...fields } = googleUpdate;
+    Object.assign(salon, fields);
+    if (!salon.postcode && fields.googleFormattedAddress) {
+      salon.postcode = extractPostcodeToken(fields.googleFormattedAddress);
+    }
+    summary.google = { confidence: fields.googleMatchConfidence, displayName: fields.googleDisplayName || null, formattedAddress: fields.googleFormattedAddress || null, reviewCount: fields.googleReviewCount };
+  } catch (error) {
+    summary.googleError = error.message;
+  }
+
+  if (getVerifiedReviewPlatform(salon.bookingUrl)) {
+    try {
+      const verifiedUpdate = await matchVerifiedReviews(salon);
+      if (verifiedUpdate) {
+        Object.assign(salon, verifiedUpdate);
+        summary.verified = { reviewCount: verifiedUpdate.verifiedReviewCount };
+      }
+    } catch (error) {
+      summary.verifiedError = error.message;
+    }
+  }
+
+  return summary;
 }
 
 function requireAdmin(req, res, next) {
@@ -4998,7 +5038,24 @@ function extractRawPayloadPriceEntries(html = "") {
   while ((match = objectPriceRegex.exec(raw)) !== null) {
     const name = cleanPriceEvidenceText(match.groups?.name || "");
     const priceKey = match.groups?.priceKey || "";
-    const price = parsePayloadPrice(match.groups?.price, priceKey, match.groups?.middle || "");
+    let price = parsePayloadPrice(match.groups?.price, priceKey, match.groups?.middle || "");
+    // Some booking platforms (e.g. Tressly) store a flat deposit under the generic
+    // "price" key and the real full service price under a sibling "fullPrice" key —
+    // a plain "price" match is ambiguous between the two (this is how a £20 deposit
+    // ended up shown as every service's price). "fullPrice" is unambiguous, so prefer
+    // it when it appears immediately after "price" on the same object.
+    if (priceKey.toLowerCase() === "price") {
+      // Capture enough of the tail to also see a trailing "currency" field (it
+      // follows fullPrice in this schema) — parsePayloadPrice's minor-units-to-
+      // pounds heuristic needs that in view, or a pence value like 4000 gets kept
+      // as a literal £4000 instead of being divided down to £40.
+      const tail = raw.slice(objectPriceRegex.lastIndex, objectPriceRegex.lastIndex + 120);
+      const fullPriceMatch = tail.match(/^\s*,\s*"fullPrice"\s*:\s*"?([^",}\]]+)"?/i);
+      const fullPrice = fullPriceMatch ? parsePayloadPrice(fullPriceMatch[1], "fullPrice", tail) : Number.NaN;
+      if (Number.isFinite(fullPrice)) {
+        price = fullPrice;
+      }
+    }
     addRawPayloadPriceEntry(entries, name, price);
   }
 
@@ -5034,7 +5091,7 @@ function addRawPayloadPriceEntry(entries, label, price) {
 }
 
 function parsePayloadPrice(value, key = "", context = "") {
-  const rawValue = String(value || "").replace(/,/g, "");
+  const rawValue = normalizeNumericSeparators(value);
   const poundMatch = rawValue.match(/£\s*([0-9]{1,4}(?:\.[0-9]{1,2})?)/);
   const numberMatch = rawValue.match(/[0-9]{1,6}(?:\.[0-9]{1,2})?/);
   let price = poundMatch ? Number(poundMatch[1]) : numberMatch ? Number(numberMatch[0]) : Number.NaN;
@@ -5702,11 +5759,22 @@ function extractAcuityAppointments(business) {
     .filter((appointment) => appointment.active !== false && appointment.private !== true && (!appointment.type || appointment.type === "service"));
 }
 
+// A comma immediately followed by 1-2 digits and nothing else digit-wise (e.g. the
+// European decimal format "20,00") is a decimal separator, not a thousands grouping —
+// convert it to a period before stripping remaining commas. Blindly stripping every
+// comma (the previous behaviour) turned "20,00" into the integer 2000, a 100x price
+// inflation that showed up as real salons' sub-£100 services being priced at £2000+.
+function normalizeNumericSeparators(value) {
+  return String(value || "")
+    .replace(/(\d),(\d{1,2})(?!\d)/g, "$1.$2")
+    .replace(/,/g, "");
+}
+
 function parseAppointmentPrice(value) {
   if (typeof value === "number") {
     return value >= 10 && value <= 5000 ? value : Number.NaN;
   }
-  const match = String(value || "").replace(",", "").match(/[0-9]{1,4}(?:\.[0-9]{1,2})?/);
+  const match = normalizeNumericSeparators(value).match(/[0-9]{1,4}(?:\.[0-9]{1,2})?/);
   const price = match ? Number(match[0]) : Number.NaN;
   return Number.isFinite(price) && price >= 10 && price <= 5000 ? price : Number.NaN;
 }
@@ -5770,6 +5838,9 @@ function extractPriceEntries(text, { consultationFocused = false } = {}) {
         }
         const segText = segment.length > 120 ? `${segment.slice(0, 117)}...` : segment;
         const segPriceContext = getPriceClassificationContext(lines, index, segment, segContext);
+        if (isNonServicePriceLine(segPriceContext)) {
+          continue;
+        }
         entries.push({
           value: segValue,
           evidence: segContext ? `${segContext} - ${segText}` : segText,
@@ -5787,6 +5858,13 @@ function extractPriceEntries(text, { consultationFocused = false } = {}) {
     }
     const priceText = normalizedLine.length > 120 ? `${normalizedLine.slice(0, 117)}...` : normalizedLine;
     const priceContext = getPriceClassificationContext(lines, index, normalizedLine, context);
+    // A course/training category heading (e.g. "Classes (Training)") often sits a
+    // line or two above the item's own name and price, so it wouldn't show up when
+    // only the price line itself is checked — but it does show up in this wider
+    // classification context, so give it a second chance to catch the exclusion.
+    if (isNonServicePriceLine(priceContext)) {
+      continue;
+    }
     entries.push({
       value,
       evidence: context ? `${context} - ${priceText}` : priceText,
@@ -5807,6 +5885,18 @@ function getPriceClassificationContext(lines, priceLineIndex, priceLine = "", se
     serviceContext,
     priceLine,
   ];
+
+  // Category headings (e.g. "Classes (Training)") commonly sit a line or two above
+  // the item's own name, not right next to its price — pull in a short backward
+  // window too so a course/training section header still gets a chance to trip
+  // the non-service exclusion check below, even though it isn't the item's name.
+  for (let index = priceLineIndex - 1; index >= Math.max(0, priceLineIndex - 3); index -= 1) {
+    const line = cleanPriceEvidenceText(lines[index]);
+    if (!line || /£|&pound;|gbp|british pounds?/i.test(line)) {
+      break;
+    }
+    contextLines.push(line);
+  }
 
   for (let index = priceLineIndex + 1; index < Math.min(lines.length, priceLineIndex + 6); index += 1) {
     const line = cleanPriceEvidenceText(lines[index]);
@@ -5834,7 +5924,7 @@ function extractPriceValuesFromLine(line = "") {
     ...[...normalizedLine.matchAll(/£\s*([0-9]{1,4}(?:[,.][0-9]{1,2})?)/g)].map((match) => match[1]),
     ...[...normalizedLine.matchAll(/\b([0-9]{1,4}(?:[,.][0-9]{1,2})?)\s*(?:british\s+pounds?|pounds?)\b/gi)].map((match) => match[1]),
   ]
-    .map((value) => Number(String(value).replace(",", "")))
+    .map((value) => Number(normalizeNumericSeparators(value)))
     .filter((value) => Number.isFinite(value) && value >= 10 && value <= 5000);
 }
 
@@ -5913,6 +6003,15 @@ function isStandalonePriceLine(line) {
 function isNonServicePriceLine(line) {
   const normalized = String(line || "").replace(/&pound;/gi, "£").toLowerCase();
   return (
+    // Braiders and stylists commonly also sell training (teaching other stylists
+    // the technique) alongside client services — those course/class prices run far
+    // higher than the service itself and shouldn't be mixed into the service median
+    // (e.g. a "Standard Knotless Course" at £300 skewed a salon whose actual
+    // client-facing knotless service was ~£120-145 into a much higher price band).
+    /\b(?:1\s*(?:-|:|on)\s*1|one[\s-]?(?:on|to)[\s-]?one)\s+(?:course|class|training|trainig|session)\b/.test(normalized) ||
+    // "trainig" isn't a typo we're guessing at — it's the literal spelling seen in
+    // a real source page's own category heading ("Classes(Trainig)").
+    /\b(?:course|class(?:es)?|masterclass|train(?:ing|ig)|workshop|certification)\b/.test(normalized) ||
     /vagaro united kingdom pricing|deposit|patch test|cancellation|late fee|no show|booking fee|gift card|voucher|shipping|delivery|add[\s-]?on only|add on only|extra charge|surcharge|additional charge|service charge/.test(normalized) ||
     /(?:|\b\d+\s*mi\b).{0,80}£/.test(normalized) ||
     /\bper\s+(?:bundle|track|row|line|pack|packet|weft)\b/.test(normalized) ||
@@ -6600,6 +6699,7 @@ function sanitizeDraftUpdate(input) {
     websiteUrl: cleanString(input.websiteUrl) || inferred.websiteUrl,
     instagramUrl: cleanString(input.instagramUrl) || inferred.instagramUrl,
     tiktokUrl: cleanString(input.tiktokUrl) || inferred.tiktokUrl,
+    googleMapsUri: cleanString(input.googleMapsUri),
     addedVia: cleanString(input.addedVia),
     discoverySource: cleanString(input.discoverySource),
     services,
@@ -6817,6 +6917,11 @@ function publishedSalonToDraft(salon, fallbackDate = today()) {
     evidence: Array.isArray(salon.evidence) ? salon.evidence : [],
     createdAt: salon.createdAt || fallbackDate,
     updatedAt: salon.updatedAt || fallbackDate,
+    googleMapsUri: salon.googleMapsUri || "",
+    googleReviewCount: salon.googleReviewCount,
+    googleMatchConfidence: salon.googleMatchConfidence || "",
+    googleDisplayName: salon.googleDisplayName || "",
+    verifiedReviewCount: salon.verifiedReviewCount,
   };
 }
 

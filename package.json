@@ -8,7 +8,8 @@
     "build": "vite build",
     "preview": "vite preview",
     "server": "node server/index.mjs",
-    "validate": "node scripts/validate-services.mjs"
+    "validate": "node scripts/validate-services.mjs",
+    "validate:reviews": "node scripts/validate-reviews.mjs"
   },
   "devDependencies": {
     "@types/react": "^19.2.14",

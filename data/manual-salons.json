@@ -603,7 +603,7 @@
     },
     {
       "id": "hairbysarahsango",
-      "name": "Hairbysarahsango",
+      "name": "Sarah Sango",
       "areaId": "all-london",
       "areaLabel": "London",
       "neighbourhood": "London London",
@@ -628,7 +628,23 @@
       "googleMatchConfidence": "low",
       "googleDisplayName": "Santiago Figueroa London - Soho ✂",
       "googleFormattedAddress": "193 Wardour St, London W1F 8ZF, UK",
-      "googleCheckedAt": "2026-07-23T22:17:39.832Z"
+      "googleCheckedAt": "2026-07-23T22:17:39.832Z",
+      "websiteUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "customFilters": {},
+      "priceBand": "",
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "",
+      "priceSource": "",
+      "priceEvidence": [],
+      "priceCheckedAt": "",
+      "priceUpdatedAt": "",
+      "priceConfidence": "",
+      "updatedAt": "2026-07-24"
     },
     {
       "id": "selasie-a",
@@ -1068,11 +1084,7 @@
     {
       "id": "becrochetcreation",
       "name": "Becrochetcreation",
-      "areaId": "all-london",
-      "areaIds": [
-        "all-london",
-        "south-east"
-      ],
+      "areaId": "south-east",
       "areaLabel": "South east London",
       "neighbourhood": "South east London London",
       "postcode": "",
@@ -1118,7 +1130,8 @@
       "googleMatchConfidence": "low",
       "googleDisplayName": "Exquisite Beauty Afromobile Hairdreser and Beauty Makeover",
       "googleFormattedAddress": "Neville Cl, London SE15 5UF, UK",
-      "googleCheckedAt": "2026-07-23T22:17:49.334Z"
+      "googleCheckedAt": "2026-07-23T22:17:49.334Z",
+      "updatedAt": "2026-07-24"
     },
     {
       "id": "the-reign-spitalfields",
@@ -1184,10 +1197,10 @@
       "googlePlaceId": "ChIJKbjsegAddkgRV95r2tOtALQ",
       "googleReviewCount": 2,
       "googleMapsUri": "https://maps.google.com/?cid=12970558052241235543&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
-      "googleMatchConfidence": "low",
+      "googleMatchConfidence": "high",
       "googleDisplayName": "The Reign",
       "googleFormattedAddress": "41 Artillery Ln, London E1 7LP, UK",
-      "googleCheckedAt": "2026-07-23T22:17:50.229Z",
+      "googleCheckedAt": "2026-07-24T00:00:00.000Z",
       "websiteUrl": "",
       "tiktokUrl": "",
       "hijabiFriendly": false,
@@ -1256,12 +1269,8 @@
     },
     {
       "id": "taniabeautyse1",
-      "name": "Taniabeautyse1",
-      "areaId": "all-london",
-      "areaIds": [
-        "all-london",
-        "south-east"
-      ],
+      "name": "Tania's Unisex Salon",
+      "areaId": "south-east",
       "areaLabel": "South east London",
       "neighbourhood": "South east London London",
       "postcode": "",
@@ -1286,10 +1295,27 @@
       "googlePlaceId": "ChIJlTv9PkcDdkgRtTD7ubnvkDw",
       "googleReviewCount": 233,
       "googleMapsUri": "https://maps.google.com/?cid=4364251619890245813&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
-      "googleMatchConfidence": "low",
+      "googleMatchConfidence": "high",
       "googleDisplayName": "Tania's Unisex Salon",
       "googleFormattedAddress": "39 Dockhead, London SE1 2BS, UK",
-      "googleCheckedAt": "2026-07-23T22:17:51.846Z"
+      "googleCheckedAt": "2026-07-24T00:00:00.000Z",
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "customFilters": {},
+      "priceBand": "",
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "",
+      "priceSource": "",
+      "priceEvidence": [],
+      "priceCheckedAt": "",
+      "priceUpdatedAt": "",
+      "priceConfidence": "",
+      "updatedAt": "2026-07-24"
     },
     {
       "id": "nazsonmez",
@@ -1363,11 +1389,7 @@
     {
       "id": "crownedbyshyuk",
       "name": "Crownedbyshyuk",
-      "areaId": "all-london",
-      "areaIds": [
-        "all-london",
-        "south"
-      ],
+      "areaId": "south",
       "areaLabel": "South London",
       "neighbourhood": "South London London",
       "postcode": "",
@@ -1419,7 +1441,8 @@
       "googleMatchConfidence": "low",
       "googleDisplayName": "Crowned Locks LTD",
       "googleFormattedAddress": "23 paynes wharf, London SE8 3GG, UK",
-      "googleCheckedAt": "2026-07-23T22:17:53.499Z"
+      "googleCheckedAt": "2026-07-23T22:17:53.499Z",
+      "updatedAt": "2026-07-24"
     },
     {
       "id": "jan-franczak-hair",
@@ -1550,7 +1573,7 @@
     },
     {
       "id": "hairbykdouglas",
-      "name": "Hairbykdouglas",
+      "name": "Karen Douglas",
       "areaId": "east",
       "areaIds": [
         "east",
@@ -1624,11 +1647,7 @@
     {
       "id": "athstudiosldn",
       "name": "Athstudiosldn",
-      "areaId": "all-london",
-      "areaIds": [
-        "all-london",
-        "croydon"
-      ],
+      "areaId": "croydon",
       "areaLabel": "Croydon",
       "neighbourhood": "Croydon London",
       "postcode": "",
@@ -1653,7 +1672,8 @@
       "googleMatchConfidence": "low",
       "googleDisplayName": "ATH Studios London",
       "googleFormattedAddress": "141 Windmill Rd, Croydon CR0 2XH, UK",
-      "googleCheckedAt": "2026-07-23T22:17:56.817Z"
+      "googleCheckedAt": "2026-07-23T22:17:56.817Z",
+      "updatedAt": "2026-07-24"
     },
     {
       "id": "micanicolehairstylist",
@@ -1705,7 +1725,7 @@
     },
     {
       "id": "hairbymichellesultan",
-      "name": "Hairbymichellesultan",
+      "name": "Michelle Sultan",
       "areaId": "all-london",
       "areaLabel": "London",
       "neighbourhood": "London London",
@@ -1729,7 +1749,24 @@
       "googleMatchConfidence": "low",
       "googleDisplayName": "Michelle at Hackney Cowlick",
       "googleFormattedAddress": "Bldg 4, 92 White Post Ln, Schwartz Wharf, London E9 5EN, UK",
-      "googleCheckedAt": "2026-07-23T22:17:58.359Z"
+      "googleCheckedAt": "2026-07-23T22:17:58.359Z",
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "customFilters": {},
+      "priceBand": "",
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "",
+      "priceSource": "",
+      "priceEvidence": [],
+      "priceCheckedAt": "",
+      "priceUpdatedAt": "",
+      "priceConfidence": "",
+      "updatedAt": "2026-07-24"
     },
     {
       "id": "thehouseofplush",
@@ -1826,11 +1863,7 @@
     {
       "id": "nkslays",
       "name": "Nkslays",
-      "areaId": "all-london",
-      "areaIds": [
-        "all-london",
-        "south-east"
-      ],
+      "areaId": "south-east",
       "areaLabel": "South east London",
       "neighbourhood": "South east London London",
       "postcode": "",
@@ -1877,16 +1910,13 @@
       "googleMatchConfidence": "low",
       "googleDisplayName": "SheslaysLDN",
       "googleFormattedAddress": "Flat 2, 272 Queen's Rd, London SE14 5JN, UK",
-      "googleCheckedAt": "2026-07-23T22:18:00.553Z"
+      "googleCheckedAt": "2026-07-23T22:18:00.553Z",
+      "updatedAt": "2026-07-24"
     },
     {
       "id": "loveroots",
       "name": "Loveroots",
-      "areaId": "all-london",
-      "areaIds": [
-        "all-london",
-        "south-west"
-      ],
+      "areaId": "south-west",
       "areaLabel": "South west London",
       "neighbourhood": "South west London London",
       "postcode": "",
@@ -1936,32 +1966,32 @@
       "googleMatchConfidence": "low",
       "googleDisplayName": "Loveth Love Beauty &Hair Salon",
       "googleFormattedAddress": "152 Westferry Rd, London E14 3ED, UK",
-      "googleCheckedAt": "2026-07-23T22:18:01.317Z"
+      "googleCheckedAt": "2026-07-23T22:18:01.317Z",
+      "updatedAt": "2026-07-24"
     },
     {
       "id": "yinsbeautybar",
       "name": "Yinsbeautybar",
-      "areaId": "all-london",
+      "areaId": "essex",
       "areaIds": [
-        "all-london",
-        "east",
-        "essex"
+        "essex",
+        "east"
       ],
-      "areaLabel": "East London / Essex",
-      "neighbourhood": "East London and Essex London",
+      "areaLabel": "Essex / East London",
+      "neighbourhood": "Essex and East London London",
       "postcode": "",
       "bookingPlatform": "Acuity",
       "bookingUrl": "https://yinsbeautybar.as.me/schedule/e23d2db5",
       "instagramUrl": "https://www.instagram.com/yinsbeautybar/",
       "services": [
         "Traditional sew-in / leave out",
-        "Closure sew-in",
+        "Closure sew-in / closure behind the hairline",
         "Sleek ponytail / bun",
         "Quick weave",
         "Flipover / Versatile sew-in"
       ],
       "priceBand": "£",
-      "servicePriceBand": "£",
+      "servicePriceBand": "",
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
@@ -1992,16 +2022,19 @@
       "googleMatchConfidence": "low",
       "googleDisplayName": "Winnie's xyz Salon",
       "googleFormattedAddress": "232 Morning Ln, London E9 6RQ, UK",
-      "googleCheckedAt": "2026-07-23T22:18:02.119Z"
+      "googleCheckedAt": "2026-07-23T22:18:02.119Z",
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "customFilters": {},
+      "updatedAt": "2026-07-24"
     },
     {
       "id": "colouredbyad",
       "name": "Colouredbyad",
-      "areaId": "all-london",
-      "areaIds": [
-        "all-london",
-        "south-east"
-      ],
+      "areaId": "south-east",
       "areaLabel": "South east London",
       "neighbourhood": "South east London London",
       "postcode": "",
@@ -2043,7 +2076,8 @@
       "googleMatchConfidence": "low",
       "googleDisplayName": "ExtensionsByDlma",
       "googleFormattedAddress": "Peckham Rd, London SE5 7SB, UK",
-      "googleCheckedAt": "2026-07-23T22:18:03.072Z"
+      "googleCheckedAt": "2026-07-23T22:18:03.072Z",
+      "updatedAt": "2026-07-24"
     },
     {
       "id": "wdservices",
@@ -2147,11 +2181,7 @@
     {
       "id": "eksleek",
       "name": "Eksleek",
-      "areaId": "all-london",
-      "areaIds": [
-        "all-london",
-        "west"
-      ],
+      "areaId": "west",
       "areaLabel": "West London",
       "neighbourhood": "West London London",
       "postcode": "",
@@ -2161,14 +2191,15 @@
       "services": [
         "Sleek ponytail / bun",
         "Traditional sew-in / leave out",
-        "Closure sew-in",
+        "Closure sew-in / closure behind the hairline",
         "Half braids, half sew-in",
         "Half up half down",
         "Sew-in take-down",
-        "Flipover / Versatile sew-in"
+        "Flipover / Versatile sew-in",
+        "Wash & blowdry"
       ],
       "priceBand": "£",
-      "servicePriceBand": "£",
+      "servicePriceBand": "",
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
@@ -2199,16 +2230,19 @@
       "googleMatchConfidence": "low",
       "googleDisplayName": "ESHK Hair Shoreditch",
       "googleFormattedAddress": "47-49 Charlotte Rd, London EC2A 3QT, UK",
-      "googleCheckedAt": "2026-07-23T22:18:05.236Z"
+      "googleCheckedAt": "2026-07-23T22:18:05.236Z",
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "customFilters": {},
+      "updatedAt": "2026-07-24"
     },
     {
       "id": "hebehair",
       "name": "Hebehair",
-      "areaId": "all-london",
-      "areaIds": [
-        "all-london",
-        "central"
-      ],
+      "areaId": "central",
       "areaLabel": "Central London",
       "neighbourhood": "Central London London",
       "postcode": "",
@@ -2253,7 +2287,7 @@
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
       "wheelchairAccessible": true,
-      "updatedAt": "2026-06-09",
+      "updatedAt": "2026-07-24",
       "addedVia": "Admin tool",
       "discoverySource": "Manual search",
       "verifiedReviewCount": 2899,
@@ -2269,11 +2303,7 @@
     {
       "id": "andrewjosesalon",
       "name": "Andrew Jose",
-      "areaId": "all-london",
-      "areaIds": [
-        "all-london",
-        "central"
-      ],
+      "areaId": "central",
       "areaLabel": "Central London",
       "neighbourhood": "Central London London",
       "postcode": "",
@@ -2320,7 +2350,8 @@
       "googleMatchConfidence": "high",
       "googleDisplayName": "Andrew Jose",
       "googleFormattedAddress": "1 Charlotte St., London W1T 1RB, UK",
-      "googleCheckedAt": "2026-07-23T22:18:07.228Z"
+      "googleCheckedAt": "2026-07-23T22:18:07.228Z",
+      "updatedAt": "2026-07-24"
     },
     {
       "id": "mochasloungeuk",
@@ -2608,11 +2639,7 @@
     {
       "id": "heslayedthat",
       "name": "Heslayedthat",
-      "areaId": "all-london",
-      "areaIds": [
-        "all-london",
-        "south-east"
-      ],
+      "areaId": "south-east",
       "areaLabel": "South east London",
       "neighbourhood": "South east London London",
       "postcode": "",
@@ -2658,7 +2685,8 @@
       "googleMatchConfidence": "low",
       "googleDisplayName": "New Cross Hair and Beauty Salon",
       "googleFormattedAddress": "160 New Cross Rd, London SE14 5AA, UK",
-      "googleCheckedAt": "2026-07-23T22:18:12.370Z"
+      "googleCheckedAt": "2026-07-23T22:18:12.370Z",
+      "updatedAt": "2026-07-24"
     },
     {
       "id": "danielleigor",
@@ -2691,11 +2719,7 @@
     {
       "id": "hairmeoutx",
       "name": "Hairmeoutx",
-      "areaId": "all-london",
-      "areaIds": [
-        "all-london",
-        "north"
-      ],
+      "areaId": "north",
       "areaLabel": "North London",
       "neighbourhood": "North London London",
       "postcode": "",
@@ -2743,16 +2767,13 @@
       "googleMatchConfidence": "low",
       "googleDisplayName": "HUĒ",
       "googleFormattedAddress": "46 Topsfield Parade, Tottenham Ln, London N8 8PT, UK",
-      "googleCheckedAt": "2026-07-23T22:18:14.171Z"
+      "googleCheckedAt": "2026-07-23T22:18:14.171Z",
+      "updatedAt": "2026-07-24"
     },
     {
       "id": "bydiannn",
       "name": "Bydiannn",
-      "areaId": "all-london",
-      "areaIds": [
-        "all-london",
-        "east"
-      ],
+      "areaId": "east",
       "areaLabel": "East London",
       "neighbourhood": "East London London",
       "postcode": "",
@@ -2801,16 +2822,13 @@
       "googleMatchConfidence": "low",
       "googleDisplayName": "Maryam Hair & Beauty Salon",
       "googleFormattedAddress": "18 White Church Ln, London E1 7QR, UK",
-      "googleCheckedAt": "2026-07-23T22:18:14.925Z"
+      "googleCheckedAt": "2026-07-23T22:18:14.925Z",
+      "updatedAt": "2026-07-24"
     },
     {
       "id": "houseofzariuk",
-      "name": "Houseofzariuk",
-      "areaId": "all-london",
-      "areaIds": [
-        "all-london",
-        "north-west"
-      ],
+      "name": "HOUSE OF ZARI",
+      "areaId": "north-west",
       "areaLabel": "North west London",
       "neighbourhood": "North west London London",
       "postcode": "",
@@ -2822,7 +2840,7 @@
         "Wig install (frontal / closure)"
       ],
       "priceBand": "£",
-      "servicePriceBand": "£",
+      "servicePriceBand": "",
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
@@ -2851,16 +2869,19 @@
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleCheckedAt": "2026-07-23T22:18:15.826Z"
+      "googleCheckedAt": "2026-07-23T22:18:15.826Z",
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "customFilters": {},
+      "updatedAt": "2026-07-24"
     },
     {
       "id": "hairtherapyy",
       "name": "Hairtherapyy",
-      "areaId": "all-london",
-      "areaIds": [
-        "all-london",
-        "south-east"
-      ],
+      "areaId": "south-east",
       "areaLabel": "South east London",
       "neighbourhood": "South east London London",
       "postcode": "",
@@ -2907,7 +2928,8 @@
       "googleMatchConfidence": "low",
       "googleDisplayName": "The Hair Therapist",
       "googleFormattedAddress": "The Pump House, 30 Seagull Ln, London E16 1YP, UK",
-      "googleCheckedAt": "2026-07-23T22:18:16.849Z"
+      "googleCheckedAt": "2026-07-23T22:18:16.849Z",
+      "updatedAt": "2026-07-24"
     },
     {
       "id": "ctwigsuk",
@@ -3251,7 +3273,7 @@
     },
     {
       "id": "hairbycarlcampbell",
-      "name": "Hairbycarlcampbell",
+      "name": "Carl Campbell",
       "areaId": "all-london",
       "areaLabel": "London",
       "neighbourhood": "London London",
@@ -3275,7 +3297,24 @@
       "googleMatchConfidence": "low",
       "googleDisplayName": "BILLI CURRIE",
       "googleFormattedAddress": "47 Chiltern St, London W1U 6LX, UK",
-      "googleCheckedAt": "2026-07-23T22:18:23.514Z"
+      "googleCheckedAt": "2026-07-23T22:18:23.514Z",
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "customFilters": {},
+      "priceBand": "",
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "",
+      "priceSource": "",
+      "priceEvidence": [],
+      "priceCheckedAt": "",
+      "priceUpdatedAt": "",
+      "priceConfidence": "",
+      "updatedAt": "2026-07-24"
     },
     {
       "id": "jennierobertshair",
@@ -3325,11 +3364,7 @@
     {
       "id": "atstyledit",
       "name": "Atstyledit",
-      "areaId": "all-london",
-      "areaIds": [
-        "all-london",
-        "east"
-      ],
+      "areaId": "east",
       "areaLabel": "East London",
       "neighbourhood": "East London London",
       "postcode": "",
@@ -3388,7 +3423,7 @@
           "date": "2026-06-10"
         }
       ],
-      "updatedAt": "2026-06-10",
+      "updatedAt": "2026-07-24",
       "googlePlaceId": "ChIJfdIXO3sddkgR-IvXm3bvH5o",
       "googleReviewCount": 1304,
       "googleMapsUri": "https://maps.google.com/?cid=11105858498818706424&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
@@ -3399,7 +3434,7 @@
     },
     {
       "id": "marta-beautysalon",
-      "name": "Marta Beauty Salon",
+      "name": "Marta Beauty Salon & Academy",
       "areaId": "east",
       "areaLabel": "East London",
       "neighbourhood": "East London London",
@@ -3435,21 +3470,17 @@
       "googlePlaceId": "ChIJgbwLb59_X0gRY1viez0q93E",
       "googleReviewCount": 476,
       "googleMapsUri": "https://maps.google.com/?cid=8212078889093192547&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
-      "googleMatchConfidence": "low",
+      "googleMatchConfidence": "high",
       "googleDisplayName": "Marta Beauty Salon & Academy",
       "googleFormattedAddress": "9 Atlantis Ave, London E16 2UB, UK",
-      "googleCheckedAt": "2026-07-23T22:18:26.164Z",
+      "googleCheckedAt": "2026-07-24T00:00:00.000Z",
       "websiteUrl": "",
       "customFilters": {}
     },
     {
       "id": "hershesons",
       "name": "Hershesons",
-      "areaId": "all-london",
-      "areaIds": [
-        "all-london",
-        "central"
-      ],
+      "areaId": "central",
       "areaLabel": "Central London",
       "neighbourhood": "Central London London",
       "postcode": "",
@@ -3482,7 +3513,7 @@
       "tiktokUrl": "",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
-      "updatedAt": "2026-06-06",
+      "updatedAt": "2026-07-24",
       "addedVia": "Admin tool",
       "discoverySource": "Manual search",
       "googlePlaceId": "ChIJX-1E5agbdkgRkZ4Ff7Un3G8",
@@ -3496,7 +3527,7 @@
     {
       "id": "slayybychanny",
       "name": "Slayybychanny",
-      "areaId": "all-london",
+      "areaId": "south-west",
       "areaLabel": "South west London",
       "neighbourhood": "South west London London",
       "postcode": "",
@@ -3539,15 +3570,11 @@
       "evidence": [
         "Submitted link: https://www.instagram.com/slayybychanny/"
       ],
-      "areaIds": [
-        "all-london",
-        "south-west"
-      ],
       "tiktokUrl": "",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
       "wheelchairAccessible": false,
-      "updatedAt": "2026-06-09",
+      "updatedAt": "2026-07-24",
       "addedVia": "Admin tool",
       "discoverySource": "Manual search",
       "googlePlaceId": null,
@@ -3588,11 +3615,7 @@
     {
       "id": "theblowdryartist",
       "name": "The Blowdry Artist",
-      "areaId": "all-london",
-      "areaIds": [
-        "all-london",
-        "south-east"
-      ],
+      "areaId": "south-east",
       "areaLabel": "South east London",
       "neighbourhood": "South east London London",
       "postcode": "",
@@ -3638,7 +3661,7 @@
       "tiktokUrl": "",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
-      "updatedAt": "2026-06-06",
+      "updatedAt": "2026-07-24",
       "addedVia": "Admin tool",
       "discoverySource": "Manual search",
       "googlePlaceId": "ChIJ3fpOz1QBdkgRNETt5vUTCgE",
@@ -3652,11 +3675,7 @@
     {
       "id": "aaliyahsullivan-co",
       "name": "Aaliyahsullivan Co",
-      "areaId": "all-london",
-      "areaIds": [
-        "all-london",
-        "south-east"
-      ],
+      "areaId": "south-east",
       "areaLabel": "South east London",
       "neighbourhood": "South east London London",
       "postcode": "",
@@ -3702,7 +3721,7 @@
       "tiktokUrl": "",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
-      "updatedAt": "2026-06-07",
+      "updatedAt": "2026-07-24",
       "addedVia": "Admin tool",
       "discoverySource": "Manual search",
       "googlePlaceId": "ChIJPVrm_AOp2EcRjyUPsItg1D8",
@@ -3711,16 +3730,15 @@
       "googleMatchConfidence": "low",
       "googleDisplayName": "Aaliyah Naomi hair",
       "googleFormattedAddress": "415 Wick Ln, Fish Island, London E3 2JG, UK",
-      "googleCheckedAt": "2026-07-23T22:18:29.842Z"
+      "googleCheckedAt": "2026-07-23T22:18:29.842Z",
+      "websiteUrl": "",
+      "wheelchairAccessible": false,
+      "customFilters": {}
     },
     {
       "id": "hollylondon",
       "name": "Hollylondon",
-      "areaId": "all-london",
-      "areaIds": [
-        "all-london",
-        "south-east"
-      ],
+      "areaId": "south-east",
       "areaLabel": "South east London",
       "neighbourhood": "South east London London",
       "postcode": "",
@@ -3760,7 +3778,7 @@
       "tiktokUrl": "",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
-      "updatedAt": "2026-06-06",
+      "updatedAt": "2026-07-24",
       "addedVia": "Admin tool",
       "discoverySource": "Manual search",
       "googlePlaceId": "ChIJO8OfLJOh2EcRmwdgUPX1Rks",
@@ -3774,11 +3792,7 @@
     {
       "id": "elleschair",
       "name": "Elleschair",
-      "areaId": "all-london",
-      "areaIds": [
-        "all-london",
-        "south-east"
-      ],
+      "areaId": "south-east",
       "areaLabel": "South east London",
       "neighbourhood": "South east London London",
       "postcode": "",
@@ -3825,7 +3839,7 @@
       "tiktokUrl": "",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
-      "updatedAt": "2026-06-06",
+      "updatedAt": "2026-07-24",
       "addedVia": "Admin tool",
       "discoverySource": "Manual search",
       "googlePlaceId": "ChIJHZ6dmOIDdkgRBl-ZHRQddW4",
@@ -4092,11 +4106,7 @@
     {
       "id": "hairbymodia",
       "name": "Hairbymodia",
-      "areaId": "all-london",
-      "areaIds": [
-        "all-london",
-        "south-east"
-      ],
+      "areaId": "south-east",
       "areaLabel": "South east London",
       "neighbourhood": "South east London London",
       "postcode": "",
@@ -4127,7 +4137,8 @@
       "googleMatchConfidence": "high",
       "googleDisplayName": "hairbymodia",
       "googleFormattedAddress": "unit 31, Rye Lane Market, London SE15 5BY, UK",
-      "googleCheckedAt": "2026-07-23T22:18:36.381Z"
+      "googleCheckedAt": "2026-07-23T22:18:36.381Z",
+      "updatedAt": "2026-07-24"
     },
     {
       "id": "thedrybar",
@@ -4282,11 +4293,7 @@
     {
       "id": "touchedby-tg",
       "name": "Touchedby Tg",
-      "areaId": "all-london",
-      "areaIds": [
-        "all-london",
-        "croydon"
-      ],
+      "areaId": "croydon",
       "areaLabel": "Croydon",
       "neighbourhood": "Croydon London",
       "postcode": "",
@@ -4341,7 +4348,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-06-10",
+      "updatedAt": "2026-07-24",
       "googlePlaceId": "ChIJi0IQh6sBdkgRHw1xe_mMK1g",
       "googleReviewCount": 2,
       "googleMapsUri": "https://maps.google.com/?cid=6353326702481968415&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
@@ -4533,7 +4540,7 @@
     },
     {
       "id": "braidsnchill",
-      "name": "Braidsnchill",
+      "name": "BraidsNChill",
       "areaId": "south-east",
       "areaLabel": "South east London",
       "neighbourhood": "South east London London",
@@ -4580,14 +4587,16 @@
       "priceCheckedAt": "",
       "priceUpdatedAt": "",
       "priceConfidence": "",
-      "updatedAt": "2026-06-10",
+      "updatedAt": "2026-07-24",
       "googlePlaceId": "ChIJb2gQQLMDdkgRQCbdBVgx_3U",
       "googleReviewCount": 20,
       "googleMapsUri": "https://maps.google.com/?cid=8502568875624048192&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
       "googleMatchConfidence": "low",
       "googleDisplayName": "KD braider",
       "googleFormattedAddress": "668a Old Kent Road Divine, Touch Saloon ltd, London SE15 1JF, UK",
-      "googleCheckedAt": "2026-07-23T22:18:43.847Z"
+      "googleCheckedAt": "2026-07-23T22:18:43.847Z",
+      "websiteUrl": "",
+      "customFilters": {}
     },
     {
       "id": "styledbyroxii",
@@ -4706,10 +4715,10 @@
       "googlePlaceId": "ChIJe20zFJ8PdkgRzWrrvAbFIr4",
       "googleReviewCount": 146,
       "googleMapsUri": "https://maps.google.com/?cid=13700729649144490701&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
-      "googleMatchConfidence": "low",
+      "googleMatchConfidence": "high",
       "googleDisplayName": "Fulham Scalp and Hair Clinic",
       "googleFormattedAddress": "392 Lillie Rd, London SW6 7PE, UK",
-      "googleCheckedAt": "2026-07-23T22:18:45.808Z",
+      "googleCheckedAt": "2026-07-24T00:00:00.000Z",
       "websiteUrl": "",
       "wheelchairAccessible": false,
       "customFilters": {}
@@ -4830,7 +4839,7 @@
     },
     {
       "id": "thecurlsanctuaryheadspa",
-      "name": "The Curl Sanctuary - Head Spa",
+      "name": "The Curl Sanctuary Head Spa",
       "areaId": "east",
       "areaLabel": "East London",
       "neighbourhood": "East London London",
@@ -4860,10 +4869,10 @@
       "addedVia": "Bulk import",
       "discoverySource": "Cowork scrape",
       "googlePlaceId": null,
-      "googleReviewCount": 0,
-      "googleMapsUri": "",
-      "googleMatchConfidence": "no-match",
-      "googleCheckedAt": "2026-07-23T22:18:48.423Z",
+      "googleReviewCount": 54,
+      "googleMapsUri": "https://maps.google.com/?cid=16509054350362367386",
+      "googleMatchConfidence": "high",
+      "googleCheckedAt": "2026-07-24T00:00:00.000Z",
       "websiteUrl": "",
       "tiktokUrl": "",
       "hijabiFriendly": false,
@@ -4874,7 +4883,9 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-07-24"
+      "updatedAt": "2026-07-24",
+      "googleDisplayName": "The Curl Sanctuary Head Spa",
+      "googleFormattedAddress": "East London, UK"
     },
     {
       "id": "theheadspaedit",
@@ -4914,13 +4925,13 @@
       "priceConfidence": "medium",
       "addedVia": "Admin tool",
       "discoverySource": "Manual search",
-      "googlePlaceId": "ChIJoVuzhRobdkgRth3cxoGXgpw",
-      "googleReviewCount": 129,
-      "googleMapsUri": "https://maps.google.com/?cid=11277743000532032950&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
-      "googleMatchConfidence": "low",
-      "googleDisplayName": "Head Spa London",
-      "googleFormattedAddress": "321 Caledonian Rd, London N1 1DR, UK",
-      "googleCheckedAt": "2026-07-23T22:18:49.203Z",
+      "googlePlaceId": null,
+      "googleReviewCount": 50,
+      "googleMapsUri": "https://maps.google.com/?cid=2333854728089075531",
+      "googleMatchConfidence": "high",
+      "googleDisplayName": "The Headspa Edit",
+      "googleFormattedAddress": "Equity House, 138A High St, Edgware HA8 7EL, UK",
+      "googleCheckedAt": "2026-07-24T00:00:00.000Z",
       "websiteUrl": "",
       "tiktokUrl": "",
       "canBraidWithoutGel": false,
@@ -5041,11 +5052,7 @@
     {
       "id": "mystictouch",
       "name": "Mystictouch",
-      "areaId": "all-london",
-      "areaIds": [
-        "all-london",
-        "croydon"
-      ],
+      "areaId": "croydon",
       "areaLabel": "Croydon",
       "neighbourhood": "Croydon London",
       "postcode": "",
@@ -5099,7 +5106,8 @@
       "googleMatchConfidence": "low",
       "googleDisplayName": "Touched by the Goddess",
       "googleFormattedAddress": "22 Addiscombe Rd, Croydon CR0 5PE, UK",
-      "googleCheckedAt": "2026-07-23T22:18:51.937Z"
+      "googleCheckedAt": "2026-07-23T22:18:51.937Z",
+      "updatedAt": "2026-07-24"
     },
     {
       "id": "sevynpressed",
@@ -5164,11 +5172,7 @@
     {
       "id": "princessxlace",
       "name": "Princessxlace",
-      "areaId": "all-london",
-      "areaIds": [
-        "all-london",
-        "east"
-      ],
+      "areaId": "east",
       "areaLabel": "East London",
       "neighbourhood": "East London London",
       "postcode": "",
@@ -5195,7 +5199,7 @@
       "tiktokUrl": "",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
-      "updatedAt": "2026-06-02",
+      "updatedAt": "2026-07-24",
       "priceBand": "£",
       "priceSource": "auto",
       "priceEvidence": [
@@ -5279,13 +5283,9 @@
     {
       "id": "silkhoneyandscissors",
       "name": "SilkHoney&Scissors",
-      "areaId": "all-london",
-      "areaIds": [
-        "all-london",
-        "kent"
-      ],
-      "areaLabel": "London / Kent",
-      "neighbourhood": "London and Kent London",
+      "areaId": "kent",
+      "areaLabel": "Kent",
+      "neighbourhood": "Kent London",
       "postcode": "",
       "bookingPlatform": "Direct",
       "bookingUrl": "https://booksolo.co/silkhoneyandscissors/book/treatments",
@@ -5472,7 +5472,6 @@
       "areaId": "kent",
       "areaIds": [
         "kent",
-        "all-london",
         "south-east"
       ],
       "areaLabel": "Kent / South east London",
@@ -5509,7 +5508,7 @@
       "priceCheckedAt": "2026-06-05",
       "priceUpdatedAt": "2026-06-05",
       "priceConfidence": "manual",
-      "updatedAt": "2026-06-05",
+      "updatedAt": "2026-07-24",
       "addedVia": "Admin tool",
       "discoverySource": "Manual search",
       "googlePlaceId": "ChIJKRQyhYTafk4R1h3-fkdRzg8",
@@ -5523,11 +5522,7 @@
     {
       "id": "phebehair",
       "name": "Phebehair",
-      "areaId": "all-london",
-      "areaIds": [
-        "all-london",
-        "east"
-      ],
+      "areaId": "east",
       "areaLabel": "East London",
       "neighbourhood": "East London London",
       "postcode": "",
@@ -5574,7 +5569,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-06-10",
+      "updatedAt": "2026-07-24",
       "googlePlaceId": "ChIJZdHZaMqn2EcRLhe6H-d6We4",
       "googleReviewCount": 106,
       "googleMapsUri": "https://maps.google.com/?cid=17174893787042420526&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
@@ -5651,11 +5646,7 @@
     {
       "id": "houseofsoraiafurtado",
       "name": "House Of Soraia Furtado",
-      "areaId": "all-london",
-      "areaIds": [
-        "all-london",
-        "east"
-      ],
+      "areaId": "east",
       "areaLabel": "East London",
       "neighbourhood": "East London London",
       "postcode": "",
@@ -5678,7 +5669,8 @@
         "Sleek ponytail / bun",
         "Sew-in take-down",
         "Half braids, half sew-in",
-        "Miracle knots"
+        "Miracle knots",
+        "Braid take-down"
       ],
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
@@ -5688,22 +5680,22 @@
       "priceBand": "££",
       "priceSource": "auto",
       "priceEvidence": [
-        "Extra Small braids - £300",
-        "Boho braids + Sew in - £225",
+        "Extra Small braids - - Extra Small braids - £300",
+        "Boho braids + Sew in - - Boho braids + Sew in - £225",
         "Miracle knots - £145",
-        "Small Boho Knotless Braids - £250",
+        "Boho braids takedown - - Boho braids takedown - £40",
+        "Small Boho Knotless Braids - - Small Boho Knotless Braids - £250",
         "Bob with Bangs - £175",
-        "Locs Retwist - £85",
-        "Half Fulani braids w/natural hair - £25",
-        "Fulani Braids Re-Touch - £50"
+        "Locs Retwist - - Locs Retwist - £85",
+        "Half Fulani braids w/natural hair - - Half Fulani braids w/natural hair - £25"
       ],
-      "priceCheckedAt": "2026-06-24",
-      "priceConfidence": "high",
-      "priceUpdatedAt": "2026-06-24",
+      "priceCheckedAt": "2026-07-24T12:39:48.367Z",
+      "priceConfidence": "manual",
+      "priceUpdatedAt": "2026-07-24T12:39:48.367Z",
       "tiktokUrl": "",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
-      "updatedAt": "2026-06-03",
+      "updatedAt": "2026-07-24",
       "addedVia": "Admin tool",
       "discoverySource": "Manual search",
       "servicePriceBand": "££",
@@ -5716,7 +5708,10 @@
       "googleMatchConfidence": "high",
       "googleDisplayName": "House Of Soraia Furtado | LONDON BRAIDER",
       "googleFormattedAddress": "3B Peto St N, London E16 1DP, UK",
-      "googleCheckedAt": "2026-07-23T22:19:00.372Z"
+      "googleCheckedAt": "2026-07-23T22:19:00.372Z",
+      "websiteUrl": "",
+      "wheelchairAccessible": false,
+      "customFilters": {}
     },
     {
       "id": "hairbyblessings",
@@ -5814,11 +5809,7 @@
     {
       "id": "m-braidsstylist",
       "name": "M Braidsstylist",
-      "areaId": "all-london",
-      "areaIds": [
-        "all-london",
-        "south-east"
-      ],
+      "areaId": "south-east",
       "areaLabel": "South east London",
       "neighbourhood": "South east London London",
       "postcode": "",
@@ -5861,7 +5852,7 @@
       "tiktokUrl": "",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
-      "updatedAt": "2026-06-03",
+      "updatedAt": "2026-07-24",
       "addedVia": "Admin tool",
       "discoverySource": "Manual search",
       "verifiedReviewCount": 0,
@@ -5934,11 +5925,7 @@
     {
       "id": "lmabeauty",
       "name": "Lmabeauty",
-      "areaId": "all-london",
-      "areaIds": [
-        "all-london",
-        "north-west"
-      ],
+      "areaId": "north-west",
       "areaLabel": "North west London",
       "neighbourhood": "North west London London",
       "postcode": "",
@@ -5973,7 +5960,7 @@
       "priceCheckedAt": "2026-06-04",
       "priceUpdatedAt": "2026-06-04",
       "priceConfidence": "high",
-      "updatedAt": "2026-06-04",
+      "updatedAt": "2026-07-24",
       "addedVia": "Admin tool",
       "discoverySource": "Manual search",
       "googlePlaceId": "ChIJMTeFM7an2EcRrMfoLWsBQ_Y",
@@ -5986,7 +5973,7 @@
     },
     {
       "id": "hairbyadiam",
-      "name": "HairbyAdiam",
+      "name": "Hair by Adiam",
       "areaId": "north-west",
       "areaLabel": "North west London",
       "neighbourhood": "North west London London",
@@ -6052,7 +6039,6 @@
       "areaId": "essex",
       "areaIds": [
         "essex",
-        "all-london",
         "east"
       ],
       "areaLabel": "Essex / East London",
@@ -6100,7 +6086,7 @@
       "tiktokUrl": "",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
-      "updatedAt": "2026-06-02",
+      "updatedAt": "2026-07-24",
       "priceBand": "£",
       "priceSource": "auto",
       "priceEvidence": [
@@ -6293,11 +6279,7 @@
     {
       "id": "mmluxe-hair",
       "name": "Mmluxe Hair",
-      "areaId": "all-london",
-      "areaIds": [
-        "all-london",
-        "croydon"
-      ],
+      "areaId": "croydon",
       "areaLabel": "Croydon",
       "neighbourhood": "Croydon London",
       "postcode": "",
@@ -6326,26 +6308,26 @@
       "evidence": [
         "Submitted link: https://www.instagram.com/mmluxe.hair/"
       ],
-      "priceBand": "££££",
+      "priceBand": "£",
       "priceSource": "auto",
       "priceEvidence": [
-        "Twist - £2000",
-        "Kids Twist - £2000",
-        "Medium - Large Knotless Braids - £2000",
-        "Small Medium Knotless Braids - £2000",
-        "Small Knotless Braids - £2000",
-        "Extra Small Knotless Braids - £2000",
-        "Bohemian Knotless Braids - £2000",
-        "Goddess Braids - £2000"
+        "Cornrows - £40",
+        "Single Plaits - £50",
+        "Twist - £55",
+        "Dreadlocs Retwist - £60",
+        "Starter Dreadlocs - £80",
+        "Barrel twist - £60",
+        "Half up, half down - £50",
+        "Kids Cornrows - £35"
       ],
-      "priceCheckedAt": "2026-06-05",
+      "priceCheckedAt": "2026-07-24",
       "priceConfidence": "high",
-      "priceUpdatedAt": "2026-06-05",
+      "priceUpdatedAt": "2026-07-24",
       "tiktokUrl": "",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
-      "updatedAt": "2026-06-05",
-      "servicePriceBand": "££££",
+      "updatedAt": "2026-07-24",
+      "servicePriceBand": "£",
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
@@ -6362,11 +6344,7 @@
     {
       "id": "bychiluxe",
       "name": "Bychiluxe",
-      "areaId": "all-london",
-      "areaIds": [
-        "all-london",
-        "south-east"
-      ],
+      "areaId": "south-east",
       "areaLabel": "South east London",
       "neighbourhood": "South east London London",
       "postcode": "",
@@ -6411,16 +6389,13 @@
       "googleMatchConfidence": "low",
       "googleDisplayName": "Luxstudio",
       "googleFormattedAddress": "19 Page's Walk, London SE1 4SB, UK",
-      "googleCheckedAt": "2026-07-23T22:19:09.612Z"
+      "googleCheckedAt": "2026-07-23T22:19:09.612Z",
+      "updatedAt": "2026-07-24"
     },
     {
       "id": "ynd-hair-studio",
       "name": "Ynd Hair Studio",
-      "areaId": "all-london",
-      "areaIds": [
-        "all-london",
-        "east"
-      ],
+      "areaId": "east",
       "areaLabel": "East London",
       "neighbourhood": "East London London",
       "postcode": "",
@@ -6470,7 +6445,8 @@
       "googleMatchConfidence": "low",
       "googleDisplayName": "Vanity Hair and Beauty Studios",
       "googleFormattedAddress": "287 New Cross Rd, London SE14 6AS, UK",
-      "googleCheckedAt": "2026-07-23T22:19:10.508Z"
+      "googleCheckedAt": "2026-07-23T22:19:10.508Z",
+      "updatedAt": "2026-07-24"
     },
     {
       "id": "hair-evolve-by-de",
@@ -6548,13 +6524,9 @@
     {
       "id": "rchairandbeautyparlour",
       "name": "Rchairandbeautyparlour",
-      "areaId": "all-london",
-      "areaIds": [
-        "all-london",
-        "south-east"
-      ],
-      "areaLabel": "London / South east London",
-      "neighbourhood": "London and South east London London",
+      "areaId": "south-east",
+      "areaLabel": "South east London",
+      "neighbourhood": "South east London London",
       "postcode": "",
       "bookingPlatform": "Direct",
       "bookingUrl": "https://book.rchairsolution.com/booking/l8UUh4Ytj81RkNCgsQDI",
@@ -6587,7 +6559,7 @@
       "tiktokUrl": "",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
-      "updatedAt": "2026-06-10",
+      "updatedAt": "2026-07-24",
       "priceBand": "£",
       "priceSource": "auto",
       "priceEvidence": [
@@ -6792,7 +6764,7 @@
     },
     {
       "id": "signedbymai",
-      "name": "Signedbymai",
+      "name": "Signed By Mai",
       "areaId": "north",
       "areaLabel": "North London",
       "neighbourhood": "North London London",
@@ -6828,7 +6800,18 @@
       "googleMatchConfidence": "low",
       "googleDisplayName": "Samet Zili Hairdresser",
       "googleFormattedAddress": "7 Artillery Row, London SW1P 1RH, UK",
-      "googleCheckedAt": "2026-07-23T22:19:16.243Z"
+      "googleCheckedAt": "2026-07-23T22:19:16.243Z",
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "customFilters": {},
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "updatedAt": "2026-07-24"
     },
     {
       "id": "kashstylesuk",
@@ -7616,7 +7599,7 @@
     },
     {
       "id": "aureahairnco",
-      "name": "Aureahairnco",
+      "name": "AuréaHair&Co.",
       "areaId": "essex",
       "areaLabel": "Essex",
       "neighbourhood": "Essex London",
@@ -7659,7 +7642,18 @@
       "googleMatchConfidence": "low",
       "googleDisplayName": "AURA Beauty Salon Romford",
       "googleFormattedAddress": "32 London Rd, Romford RM7 9RB, UK",
-      "googleCheckedAt": "2026-07-23T22:19:29.082Z"
+      "googleCheckedAt": "2026-07-23T22:19:29.082Z",
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "customFilters": {},
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "updatedAt": "2026-07-24"
     },
     {
       "id": "shaistylesuk",
@@ -7911,7 +7905,7 @@
     },
     {
       "id": "riahbeauty",
-      "name": "Riahbeauty",
+      "name": "Riah Beauty",
       "areaId": "essex",
       "areaLabel": "Essex",
       "neighbourhood": "Essex London",
@@ -7920,7 +7914,7 @@
       "bookingUrl": "https://www.instagram.com/riahbeauty._/",
       "instagramUrl": "https://www.instagram.com/riahbeauty._/",
       "services": [
-        "Flipover / versatile sew-in",
+        "Flipover / Versatile sew-in",
         "Traditional sew-in / leave out",
         "Sew-in take-down"
       ],
@@ -7943,7 +7937,18 @@
       "googleMatchConfidence": "low",
       "googleDisplayName": "Ria London",
       "googleFormattedAddress": "Unit 25, Kingsland Shopping Centre, London E8 2LX, UK",
-      "googleCheckedAt": "2026-07-23T22:19:34.056Z"
+      "googleCheckedAt": "2026-07-23T22:19:34.056Z",
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "customFilters": {},
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "updatedAt": "2026-07-24"
     },
     {
       "id": "nzphair",
@@ -8235,7 +8240,7 @@
     },
     {
       "id": "hairbabelondon",
-      "name": "Hairbabelondon",
+      "name": "HairBabeLondon",
       "areaId": "north-west",
       "areaLabel": "North West London",
       "neighbourhood": "North West London London",
@@ -8254,14 +8259,12 @@
       "evidence": [
         "Submitted link: https://www.instagram.com/hairbabelondon/"
       ],
-      "priceBand": "££",
+      "priceBand": "",
       "priceSource": "manual",
-      "priceEvidence": [
-        "1-1 session with PRE-MADE WIG (recommended) 🔥 - £997"
-      ],
+      "priceEvidence": [],
       "priceCheckedAt": "2026-06-03",
-      "priceUpdatedAt": "2026-06-03",
-      "priceConfidence": "low",
+      "priceUpdatedAt": "2026-07-24",
+      "priceConfidence": "",
       "addedVia": "Admin tool",
       "discoverySource": "Manual search",
       "googlePlaceId": "ChIJk8smH4kddkgRuvvKuVx18lg",
@@ -8270,7 +8273,18 @@
       "googleMatchConfidence": "low",
       "googleDisplayName": "Enhanced by Hair, Formally Heroine Hair Salon",
       "googleFormattedAddress": "79 Stoke Newington High St, London N16 8EL, UK",
-      "googleCheckedAt": "2026-07-23T22:19:39.387Z"
+      "googleCheckedAt": "2026-07-23T22:19:39.387Z",
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "customFilters": {},
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "updatedAt": "2026-07-24"
     },
     {
       "id": "rathestylist",
@@ -8318,7 +8332,7 @@
     },
     {
       "id": "jhykesignaturee",
-      "name": "Jhykesignaturee",
+      "name": "Jhyke Signaturee",
       "areaId": "essex",
       "areaLabel": "Essex",
       "neighbourhood": "Essex London",
@@ -8331,7 +8345,7 @@
         "French curl",
         "Fulani / lemonade braids",
         "Stitch braids",
-        "Flipover / versatile sew-in",
+        "Flipover / Versatile sew-in",
         "Traditional sew-in / leave out",
         "Knotless braids",
         "Boho braids bob"
@@ -8341,21 +8355,20 @@
       "evidence": [
         "Submitted link: https://www.instagram.com/jhykesignaturee/"
       ],
-      "priceBand": "££",
+      "priceBand": "£££",
       "priceSource": "auto",
       "priceEvidence": [
         "Small boho bob - £175.50",
         "Smedium boho bob - £165.50",
         "Medium boho bob - £160.50",
-        "Small boho braids(without human hair) - £300.50",
-        "Smedium boho braids(without human hair) - £260.50",
-        "Medium boho braids(without human hair) - £235.50",
-        "Jhykesignature Braiding Essential Experience - £1000",
+        "Small boho braids(without human hair) - - Small boho braids(without human hair) - £300.50",
+        "Smedium boho braids(without human hair) - - Smedium boho braids(without human hair) - £260.50",
+        "Medium boho braids(without human hair) - - Medium boho braids(without human hair) - £235.50",
         "Small French curls - £200.50"
       ],
-      "priceCheckedAt": "2026-06-03",
-      "priceConfidence": "high",
-      "priceUpdatedAt": "2026-06-03",
+      "priceCheckedAt": "2026-07-24T09:58:28.224Z",
+      "priceConfidence": "manual",
+      "priceUpdatedAt": "2026-07-24",
       "addedVia": "Admin tool",
       "discoverySource": "Manual search",
       "googlePlaceId": "ChIJZ-j0hiADdkgRtpkmXZxf_eg",
@@ -8364,7 +8377,18 @@
       "googleMatchConfidence": "low",
       "googleDisplayName": "Jets hair and beauty salon Ltd",
       "googleFormattedAddress": "48,Rye lane Peckham, Unit 31 Rye Ln, market Peckham SE15 5BY, UK",
-      "googleCheckedAt": "2026-07-23T22:19:40.864Z"
+      "googleCheckedAt": "2026-07-23T22:19:40.864Z",
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "customFilters": {},
+      "servicePriceBand": "£££",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "updatedAt": "2026-07-24"
     },
     {
       "id": "beyondthebrushldn",
@@ -8640,7 +8664,7 @@
     },
     {
       "id": "hairgurulabldn",
-      "name": "Hairgurulabldn",
+      "name": "Hair Guru Lab Ldn",
       "areaId": "south-east",
       "areaLabel": "South East London",
       "neighbourhood": "South East London London",
@@ -8671,7 +8695,8 @@
         "Japanese head spa",
         "Closure sew-in / closure behind the hairline",
         "Sew in / extensions blowdry",
-        "Moisturising treatment"
+        "Moisturising treatment",
+        "Healthy hair plans & consultations"
       ],
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
@@ -8681,7 +8706,7 @@
       "tiktokUrl": "",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
-      "priceBand": "££",
+      "priceBand": "£",
       "priceSource": "auto",
       "priceEvidence": [
         "treatment relaxer - £85",
@@ -8693,11 +8718,11 @@
         "Standard Silk press - £85",
         "Hollywood silk press - £100"
       ],
-      "priceCheckedAt": "2026-06-04",
-      "priceUpdatedAt": "2026-06-04",
+      "priceCheckedAt": "2026-07-24T09:51:21.753Z",
+      "priceUpdatedAt": "2026-07-24T09:51:21.753Z",
       "priceConfidence": "high",
-      "updatedAt": "2026-06-05",
-      "servicePriceBand": "",
+      "updatedAt": "2026-07-24",
+      "servicePriceBand": "£",
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
@@ -8709,7 +8734,10 @@
       "googleMatchConfidence": "low",
       "googleDisplayName": "London Beauty Guru",
       "googleFormattedAddress": "14 Bournemouth Cl, London SE15 4UG, UK",
-      "googleCheckedAt": "2026-07-23T22:19:46.119Z"
+      "googleCheckedAt": "2026-07-23T22:19:46.119Z",
+      "websiteUrl": "",
+      "wheelchairAccessible": false,
+      "customFilters": {}
     },
     {
       "id": "ariela-london",
@@ -8776,7 +8804,7 @@
     },
     {
       "id": "rinsedpeckham",
-      "name": "Rinsedpeckham",
+      "name": "Rinsed",
       "areaId": "south-east",
       "areaLabel": "South East London",
       "neighbourhood": "South East London London",
@@ -8797,10 +8825,27 @@
       "googlePlaceId": "ChIJOStAoeYDdkgRhQhkJSoKpM0",
       "googleReviewCount": 17,
       "googleMapsUri": "https://maps.google.com/?cid=14817979850087991429&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
-      "googleMatchConfidence": "low",
+      "googleMatchConfidence": "high",
       "googleDisplayName": "Rinsed",
       "googleFormattedAddress": "133 Copeland Road, The, Bussey Building, The Office Club, London SE15 3SN, UK",
-      "googleCheckedAt": "2026-07-23T22:19:47.852Z"
+      "googleCheckedAt": "2026-07-24T00:00:00.000Z",
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "customFilters": {},
+      "priceBand": "",
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "",
+      "priceSource": "",
+      "priceEvidence": [],
+      "priceCheckedAt": "",
+      "priceUpdatedAt": "",
+      "priceConfidence": "",
+      "updatedAt": "2026-07-24"
     },
     {
       "id": "tresses-bytay",
@@ -8865,7 +8910,7 @@
     },
     {
       "id": "bleuribbonhair",
-      "name": "Bleuribbonhair",
+      "name": "Bléu Ribbon Hair Salon",
       "areaId": "south-east",
       "areaLabel": "South East London",
       "neighbourhood": "South East London London",
@@ -8908,10 +8953,20 @@
       "googlePlaceId": "ChIJuc1kzdkDdkgRbhpg2sHYg6o",
       "googleReviewCount": 105,
       "googleMapsUri": "https://maps.google.com/?cid=12286902535500864110&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
-      "googleMatchConfidence": "low",
+      "googleMatchConfidence": "high",
       "googleDisplayName": "Bleu Ribbon Hair & Beauty Lounge",
       "googleFormattedAddress": "683A Old Kent Rd, London SE15 1JS, UK",
-      "googleCheckedAt": "2026-07-23T22:19:49.319Z"
+      "googleCheckedAt": "2026-07-24T00:00:00.000Z",
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "customFilters": {},
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "updatedAt": "2026-07-24"
     },
     {
       "id": "taylor-taylor-london",
@@ -9079,7 +9134,7 @@
     },
     {
       "id": "enasalon",
-      "name": "Enasalon",
+      "name": "Ena Salon",
       "areaId": "central",
       "areaLabel": "Central London",
       "neighbourhood": "Central London",
@@ -9130,10 +9185,10 @@
       "googlePlaceId": "ChIJ6aua3jQbdkgRiIO-b0ifxyk",
       "googleReviewCount": 1737,
       "googleMapsUri": "https://maps.google.com/?cid=3010550009381684104&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
-      "googleMatchConfidence": "low",
+      "googleMatchConfidence": "high",
       "googleDisplayName": "Ena Salon",
       "googleFormattedAddress": "5 Great Queen St, London WC2B 5DG, UK",
-      "googleCheckedAt": "2026-07-23T22:19:53.529Z",
+      "googleCheckedAt": "2026-07-24T00:00:00.000Z",
       "websiteUrl": "",
       "wheelchairAccessible": false,
       "customFilters": {}
@@ -9184,10 +9239,10 @@
       "googlePlaceId": "ChIJoQUVPNwHdkgRirobQzv7wE4",
       "googleReviewCount": 21,
       "googleMapsUri": "https://maps.google.com/?cid=5674811762434357898&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
-      "googleMatchConfidence": "low",
+      "googleMatchConfidence": "high",
       "googleDisplayName": "Perfect Touch Hair Studio",
       "googleFormattedAddress": "Flat1, 73 Yorkshire Rd, Mitcham CR4 1PQ, UK",
-      "googleCheckedAt": "2026-07-23T22:19:54.268Z",
+      "googleCheckedAt": "2026-07-24T00:00:00.000Z",
       "websiteUrl": "",
       "tiktokUrl": "",
       "hijabiFriendly": false,
@@ -9253,7 +9308,7 @@
     },
     {
       "id": "amazonsalonuk",
-      "name": "Amazon Salon UK",
+      "name": "Amazon Salon",
       "areaId": "central",
       "areaLabel": "Central London",
       "neighbourhood": "Central London",
@@ -9303,10 +9358,10 @@
       "googlePlaceId": "ChIJ3eioDiQddkgRHeIOJFc9Abg",
       "googleReviewCount": 504,
       "googleMapsUri": "https://maps.google.com/?cid=13258946222431855133&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
-      "googleMatchConfidence": "low",
+      "googleMatchConfidence": "high",
       "googleDisplayName": "Amazon Salon",
       "googleFormattedAddress": "47 Brushfield St, London E1 6AA, UK",
-      "googleCheckedAt": "2026-07-23T22:19:55.885Z",
+      "googleCheckedAt": "2026-07-24T00:00:00.000Z",
       "websiteUrl": "",
       "tiktokUrl": "",
       "hijabiFriendly": false,
@@ -9487,7 +9542,7 @@
     },
     {
       "id": "3thirty-salon",
-      "name": "3thirty Salon",
+      "name": "3Thirty Curly Hair Salon London",
       "areaId": "central",
       "areaLabel": "Central",
       "neighbourhood": "Central London",
@@ -9508,7 +9563,8 @@
         "Scalp detox / treatments",
         "Full head colour",
         "Trim / hair cut",
-        "Wash & blowdry"
+        "Wash & blowdry",
+        "Bouncy blowout / round brush blow dry"
       ],
       "summary": "Manual entry added from your latest salon update batch.",
       "source": "manual",
@@ -9533,10 +9589,21 @@
       "googlePlaceId": "ChIJSeSbt7ocdkgR_aO-eYyMNLc",
       "googleReviewCount": 616,
       "googleMapsUri": "https://maps.google.com/?cid=13201330942695613437&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
-      "googleMatchConfidence": "low",
+      "googleMatchConfidence": "high",
       "googleDisplayName": "3Thirty Curly Hair Salon London",
       "googleFormattedAddress": "330 Old St, London EC1V 9DR, UK",
-      "googleCheckedAt": "2026-07-23T22:19:58.987Z"
+      "googleCheckedAt": "2026-07-24T00:00:00.000Z",
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "customFilters": {},
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "updatedAt": "2026-07-24"
     },
     {
       "id": "7styles",
@@ -9728,7 +9795,7 @@
     {
       "id": "cutzgalore",
       "name": "Cutzgalore",
-      "areaId": "all-london",
+      "areaId": "west",
       "areaLabel": "West London",
       "neighbourhood": "West London London",
       "postcode": "",
@@ -9771,14 +9838,10 @@
       "priceCheckedAt": "2026-06-03",
       "priceConfidence": "high",
       "priceUpdatedAt": "2026-06-03",
-      "areaIds": [
-        "all-london",
-        "west"
-      ],
       "tiktokUrl": "",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
-      "updatedAt": "2026-06-03",
+      "updatedAt": "2026-07-24",
       "addedVia": "Code edit",
       "discoverySource": "Cowork scrape",
       "googlePlaceId": "ChIJxXhm-nsNdkgR10TjBbH5CTM",
@@ -9975,7 +10038,7 @@
     },
     {
       "id": "hany-hair-salon",
-      "name": "Hany Hair Salon",
+      "name": "Camden Hair Care by Hany",
       "areaId": "north-west",
       "areaIds": [
         "north-west",
@@ -10016,10 +10079,21 @@
       "googlePlaceId": "ChIJG9_JcAAbdkgRYANuWiC76f8",
       "googleReviewCount": 3,
       "googleMapsUri": "https://maps.google.com/?cid=18440475896875713376&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
-      "googleMatchConfidence": "low",
+      "googleMatchConfidence": "high",
       "googleDisplayName": "Camden Hair Care by Hany",
       "googleFormattedAddress": "Pratt St., London NW1 0AB, UK",
-      "googleCheckedAt": "2026-07-23T22:20:06.740Z"
+      "googleCheckedAt": "2026-07-24T00:00:00.000Z",
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "customFilters": {},
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "updatedAt": "2026-07-24"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -10093,9 +10167,9 @@
       ],
       "id": "adeline-tresses",
       "name": "Adeline Tresses",
-      "areaId": "all-london",
-      "areaLabel": "London / North London",
-      "neighbourhood": "London and North London London",
+      "areaId": "north",
+      "areaLabel": "North London",
+      "neighbourhood": "North London London",
       "postcode": "",
       "bookingPlatform": "Acuity",
       "bookingUrl": "https://adelinetresses.as.me/schedule/f23a2530",
@@ -10134,14 +10208,10 @@
       "priceCheckedAt": "2026-06-03",
       "priceConfidence": "high",
       "priceUpdatedAt": "2026-06-03",
-      "areaIds": [
-        "all-london",
-        "north"
-      ],
       "tiktokUrl": "",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
-      "updatedAt": "2026-06-06",
+      "updatedAt": "2026-07-24",
       "servicePriceBand": "",
       "packagePriceBand": "",
       "priceIncludesHair": false,
@@ -10710,13 +10780,9 @@
       ],
       "id": "allure-house-bridal",
       "name": "Allure House Bridal",
-      "areaId": "all-london",
-      "areaIds": [
-        "all-london",
-        "mobile"
-      ],
-      "areaLabel": "London",
-      "neighbourhood": "London and Mobile",
+      "areaId": "mobile",
+      "areaLabel": "Mobile / home service",
+      "neighbourhood": "Mobile / home service London",
       "postcode": "",
       "bookingPlatform": "Instagram",
       "bookingUrl": "https://www.instagram.com/allurehousebridal/",
@@ -10732,7 +10798,8 @@
       "googleMatchConfidence": "low",
       "googleDisplayName": "Allure House",
       "googleFormattedAddress": "Allure, Nightingale House, Fulham High St, London SW6 3JH, UK",
-      "googleCheckedAt": "2026-07-23T22:20:16.939Z"
+      "googleCheckedAt": "2026-07-23T22:20:16.939Z",
+      "updatedAt": "2026-07-24"
     },
     {
       "id": "aluxebeauty-uk",
@@ -11000,7 +11067,7 @@
         "User-provided manual addition."
       ],
       "id": "andre-pierre-ltd",
-      "name": "Andre Pierre Ltd",
+      "name": "André Pierre",
       "areaId": "south-west",
       "areaLabel": "South West",
       "neighbourhood": "South West London",
@@ -11040,7 +11107,7 @@
       "priceCheckedAt": "2026-06-04",
       "priceUpdatedAt": "2026-06-04",
       "priceConfidence": "manual",
-      "updatedAt": "2026-06-10",
+      "updatedAt": "2026-07-24",
       "addedVia": "Code edit",
       "discoverySource": "Cowork scrape",
       "wheelchairAccessible": false,
@@ -11051,10 +11118,12 @@
       "googlePlaceId": "ChIJ9xwiu2gEdkgRKelxv5x0DO8",
       "googleReviewCount": 799,
       "googleMapsUri": "https://maps.google.com/?cid=17225270891360938281&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
-      "googleMatchConfidence": "low",
+      "googleMatchConfidence": "high",
       "googleDisplayName": "André Pierre",
       "googleFormattedAddress": "393 Coldharbour Ln, London SW9 8LQ, UK",
-      "googleCheckedAt": "2026-07-23T22:20:20.773Z"
+      "googleCheckedAt": "2026-07-24T00:00:00.000Z",
+      "websiteUrl": "",
+      "customFilters": {}
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -11342,21 +11411,17 @@
       "evidence": [
         "User-provided Instagram handle awaiting categorisation."
       ],
-      "priceBand": "£££",
+      "priceBand": "££",
       "priceSource": "auto",
       "priceEvidence": [
-        "Standard Knotless Course - - Standard Knotless Course - £300",
-        "Advanced Knotless Course - - Advanced Knotless Course - £400",
-        "Standard Stitch Course - £230",
-        "Advanced Stitch Course - £300",
         "Lemonade Braids - - Lemonade Braids - £120",
         "Standard Freestyle Fulani Braids (MEDUIM) - - Standard Freestyle Fulani Braids (MEDUIM) - £130",
         "Extreme Freestyle Fulani Braids (MEDIUM) - - Extreme Freestyle Fulani Braids (MEDIUM) - £145",
         "Fulani/ Tribal Braids (MEDUIM) - - Fulani/ Tribal Braids (MEDUIM) - £120"
       ],
-      "priceCheckedAt": "2026-07-24T00:16:55.509Z",
+      "priceCheckedAt": "2026-07-24T12:07:21.552Z",
       "priceConfidence": "manual",
-      "priceUpdatedAt": "2026-07-24T00:16:55.509Z",
+      "priceUpdatedAt": "2026-07-24",
       "addedVia": "Bulk import",
       "discoverySource": "Cowork scrape",
       "googlePlaceId": "ChIJeaBA790ddkgRIaz5FcEuwNA",
@@ -11372,7 +11437,7 @@
       "canBraidWithoutGel": false,
       "wheelchairAccessible": false,
       "customFilters": {},
-      "servicePriceBand": "£££",
+      "servicePriceBand": "££",
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
@@ -12087,7 +12152,6 @@
       "priceEvidence": [
         "Personal Make up 1-1 - £170",
         "Ponytail 1-1 (2 styles) - £600",
-        "MakeUp Tutorial 1-1 Class - £350",
         "Ponytail 1-1 (1 style) - £400",
         "Three part ponytail - £105",
         "Leave out sew in - £100",
@@ -12096,7 +12160,7 @@
       ],
       "priceCheckedAt": "2026-06-03",
       "priceConfidence": "high",
-      "priceUpdatedAt": "2026-06-03",
+      "priceUpdatedAt": "2026-07-24",
       "addedVia": "Code edit",
       "discoverySource": "Cowork scrape",
       "googlePlaceId": "ChIJzYUH8DIfdkgRHQwfMUETBK8",
@@ -12105,7 +12169,8 @@
       "googleMatchConfidence": "low",
       "googleDisplayName": "Solange Salons and Spa",
       "googleFormattedAddress": "45 Windmill Hill, Enfield EN2 7AE, UK",
-      "googleCheckedAt": "2026-07-23T22:20:36.973Z"
+      "googleCheckedAt": "2026-07-23T22:20:36.973Z",
+      "updatedAt": "2026-07-24"
     },
     {
       "id": "beauty-kulture-uk",
@@ -12561,7 +12626,7 @@
     },
     {
       "id": "beyond-glam",
-      "name": "Beyond Glam",
+      "name": "Beyond Glam Hair & Beauty Studio",
       "areaId": "north",
       "areaLabel": "North",
       "neighbourhood": "North London",
@@ -12570,7 +12635,7 @@
       "bookingUrl": "https://beyondglam.setmore.com",
       "instagramUrl": "https://www.instagram.com/beyondglam/",
       "services": [
-        "LA weave",
+        "LA weave / microlinks wefts / braidless sew in",
         "K-tips / invisible strands",
         "Texture release",
         "Silk press",
@@ -12581,19 +12646,26 @@
         "Knotless braids",
         "Box braids",
         "Tracks (+ silk press) / partial / invisible sew-in",
-        "Microlinks",
+        "I-tips / microlinks strands",
         "Crochet",
         "Traditional sew-in / leave out",
         "Closure sew-in / closure behind the hairline",
         "Wig colouring / bundle colouring",
         "Wig install (frontal / closure)",
         "Tape ins",
-        "Flipover / versatile sew-in",
+        "Flipover / Versatile sew-in",
         "Clip ins (+ silk press)",
         "Pixie wig / weave install",
         "Scalp detox / treatments",
         "Custom wig",
-        "Kids & teens styles"
+        "Kids & teens styles",
+        "Frontal sew-in",
+        "Wig cornrows",
+        "Wash & blowdry",
+        "Full head colour",
+        "Updo",
+        "Boho braids / goddess braids",
+        "Feed-in braids"
       ],
       "summary": "Manual entry added from your North London extensions, treatments, and braids list.",
       "source": "manual",
@@ -12604,17 +12676,17 @@
       "priceSource": "auto",
       "priceEvidence": [
         "Nano rings 200g (customers own hair) - £300",
-        "Silk Press Short Hair - £75",
-        "Take out braids - we charge £30 by an hour - £30",
-        "Cut and Style - £80",
-        "Micro Weft/ La Weave/ (for 16 Inches) - £400",
-        "Full head colour (long hair) - £150",
+        "Silk Press Short Hair - - Silk Press Short Hair - £85",
+        "Take out braids - we charge by an hour - - Take out braids - we charge £30 by an hour - £30",
+        "Cut and Style - - Cut and Style - £80",
+        "Micro Weft/ La Weave/ (for 16 Inches) - - Micro Weft/ La Weave/ (for 16 Inches) - £400",
+        "Full head colour (long hair) no bleach - - Full head colour (long hair) no bleach - £150",
         "Kids cornrows ( own hair) with design - £65",
-        "Box Braids ( Bra Length) - £150"
+        "Box Braids ( Bra Length) - - Box Braids ( Bra Length) - £150"
       ],
-      "priceCheckedAt": "2026-06-04",
-      "priceUpdatedAt": "2026-06-04",
-      "priceConfidence": "high",
+      "priceCheckedAt": "2026-07-24T09:33:14.595Z",
+      "priceUpdatedAt": "2026-07-24T09:33:14.595Z",
+      "priceConfidence": "manual",
       "addedVia": "Code edit",
       "discoverySource": "Cowork scrape",
       "tiktokUrl": "https://www.tiktok.com/@xo_karrieee/video/7592032929845366019",
@@ -12626,7 +12698,17 @@
       "googleMatchConfidence": "high",
       "googleDisplayName": "Beyond Glam Hair & Beauty Studio",
       "googleFormattedAddress": "32 Crouch Hill, Finsbury Park, London N4 4AU, UK",
-      "googleCheckedAt": "2026-07-23T22:20:43.811Z"
+      "googleCheckedAt": "2026-07-23T22:20:43.811Z",
+      "websiteUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "customFilters": {},
+      "servicePriceBand": "££",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "updatedAt": "2026-07-24"
     },
     {
       "id": "bimmytouch",
@@ -12900,11 +12982,11 @@
     },
     {
       "id": "braidbarldn",
-      "name": "Braidbarldn",
+      "name": "Braid Bar Ldn",
       "areaId": "south-east",
-      "areaLabel": "South East",
-      "neighbourhood": "South East London",
-      "postcode": "",
+      "areaLabel": "South East London / Kent",
+      "neighbourhood": "South East London / Kent",
+      "postcode": "BR2 0DQ",
       "bookingPlatform": "Direct website",
       "bookingUrl": "https://braidbarldn.com/pages/book-appointment",
       "instagramUrl": "https://www.instagram.com/braidbarldn/",
@@ -12915,7 +12997,8 @@
         "Stitch braids",
         "Half up half down",
         "Full head colour",
-        "Boho braids bob"
+        "Boho braids bob",
+        "Feed-in braids"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -12938,16 +13021,22 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-06-09",
+      "updatedAt": "2026-07-24",
       "addedVia": "Bulk import",
       "discoverySource": "Cowork scrape",
-      "googlePlaceId": "ChIJb2gQQLMDdkgRQCbdBVgx_3U",
-      "googleReviewCount": 20,
-      "googleMapsUri": "https://maps.google.com/?cid=8502568875624048192&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
-      "googleMatchConfidence": "low",
-      "googleDisplayName": "KD braider",
-      "googleFormattedAddress": "668a Old Kent Road Divine, Touch Saloon ltd, London SE15 1JF, UK",
-      "googleCheckedAt": "2026-07-23T22:20:48.917Z"
+      "googlePlaceId": null,
+      "googleReviewCount": 18,
+      "googleMapsUri": "https://maps.google.com/?cid=17333987212722374815",
+      "googleMatchConfidence": "high",
+      "googleDisplayName": "Braid Bar Ldn",
+      "googleFormattedAddress": "34 Beckenham Ln, Bromley BR2 0DQ, UK",
+      "googleCheckedAt": "2026-07-24T00:00:00.000Z",
+      "websiteUrl": "",
+      "customFilters": {},
+      "areaIds": [
+        "south-east",
+        "kent"
+      ]
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -13164,13 +13253,9 @@
     {
       "id": "braids-n-that",
       "name": "Braids N That",
-      "areaId": "all-london",
-      "areaIds": [
-        "all-london",
-        "mobile"
-      ],
-      "areaLabel": "London",
-      "neighbourhood": "London and Mobile",
+      "areaId": "mobile",
+      "areaLabel": "Mobile / home service",
+      "neighbourhood": "Mobile / home service London",
       "postcode": "",
       "bookingPlatform": "Instagram",
       "bookingUrl": "https://www.instagram.com/braidsnthat/?g=5",
@@ -13197,7 +13282,8 @@
       "googleMatchConfidence": "low",
       "googleDisplayName": "KD braider",
       "googleFormattedAddress": "668a Old Kent Road Divine, Touch Saloon ltd, London SE15 1JF, UK",
-      "googleCheckedAt": "2026-07-23T22:20:53.539Z"
+      "googleCheckedAt": "2026-07-23T22:20:53.539Z",
+      "updatedAt": "2026-07-24"
     },
     {
       "id": "braids-with-deee",
@@ -13282,13 +13368,9 @@
       "evidence": [
         "User-provided Instagram handle awaiting categorisation."
       ],
-      "priceBand": "£££",
+      "priceBand": "££",
       "priceSource": "auto",
       "priceEvidence": [
-        "1-1 braiding class - Knotless Braids - - 1-1 braiding class - Knotless Braids - £600",
-        "1-1 braiding class - 2 hairstyles - £750",
-        "1-1 braiding class - Butterfly Locs - - 1-1 braiding class - Butterfly Locs - £300",
-        "1-1 braiding class - Feed in Braids - - 1-1 braiding class - Feed in Braids - £450",
         "Boho Braids with sew in - medium - - Boho Braids with sew in - medium - £170",
         "Bob Length Boho Knotless Braids - Small - - Bob Length Boho Knotless Braids - Small - £160",
         "Shoulder Length/Long Bob Boho Knotless Braids - Small - - Shoulder Length/Long Bob Boho Knotless Braids - Small - £170",
@@ -13296,13 +13378,13 @@
       ],
       "priceCheckedAt": "2026-07-24T00:47:42.135Z",
       "priceConfidence": "manual",
-      "priceUpdatedAt": "2026-07-24T00:47:42.135Z",
+      "priceUpdatedAt": "2026-07-24",
       "addedVia": "Bulk import",
       "discoverySource": "Cowork scrape",
       "tiktokUrl": "https://www.tiktok.com/@braidsbyfels/video/7474015488121621782?lang=en-GB",
       "hijabiFriendly": false,
       "wheelchairAccessible": false,
-      "servicePriceBand": "£££",
+      "servicePriceBand": "££",
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
@@ -14455,17 +14537,17 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-06-06",
+      "updatedAt": "2026-07-24",
       "addedVia": "Code edit",
       "discoverySource": "Cowork scrape",
       "wheelchairAccessible": true,
       "googlePlaceId": "ChIJMX_5vRgQdkgRJhfeLxrjAHs",
       "googleReviewCount": 155,
       "googleMapsUri": "https://maps.google.com/?cid=8863333768276875046&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
-      "googleMatchConfidence": "low",
+      "googleMatchConfidence": "high",
       "googleDisplayName": "Hair Lounge",
       "googleFormattedAddress": "347 Portobello Rd, London W10 5SA, UK",
-      "googleCheckedAt": "2026-07-23T22:21:12.283Z"
+      "googleCheckedAt": "2026-07-24T00:00:00.000Z"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -14864,10 +14946,13 @@
       "addedVia": "Code edit",
       "discoverySource": "Cowork scrape",
       "googlePlaceId": null,
-      "googleReviewCount": 0,
-      "googleMapsUri": "",
-      "googleMatchConfidence": "no-match",
-      "googleCheckedAt": "2026-07-23T22:21:19.524Z"
+      "googleReviewCount": 4,
+      "googleMapsUri": "https://maps.google.com/?cid=15958184740281094839",
+      "googleMatchConfidence": "high",
+      "googleCheckedAt": "2026-07-24T00:00:00.000Z",
+      "googleDisplayName": "Cocoa's Touch Salon LTD",
+      "googleFormattedAddress": "London, UK",
+      "updatedAt": "2026-07-24"
     },
     {
       "id": "coiffedbywonita",
@@ -15753,13 +15838,9 @@
       ],
       "id": "deborah-lola-bridal",
       "name": "Deborah Lola Bridal",
-      "areaId": "all-london",
-      "areaIds": [
-        "all-london",
-        "mobile"
-      ],
-      "areaLabel": "London",
-      "neighbourhood": "London and Mobile",
+      "areaId": "mobile",
+      "areaLabel": "Mobile / home service",
+      "neighbourhood": "Mobile / home service London",
       "postcode": "",
       "bookingPlatform": "Direct website",
       "bookingUrl": "https://www.deborahlola.com/bookings",
@@ -15775,7 +15856,8 @@
       "googleMatchConfidence": "low",
       "googleDisplayName": "London Bridal Hair and Make-up",
       "googleFormattedAddress": "212 King's Rd, London SW3 3EF, UK",
-      "googleCheckedAt": "2026-07-23T22:21:32.850Z"
+      "googleCheckedAt": "2026-07-23T22:21:32.850Z",
+      "updatedAt": "2026-07-24"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -16828,13 +16910,13 @@
       "priceUpdatedAt": "2026-06-04",
       "addedVia": "Bulk import",
       "discoverySource": "Cowork scrape",
-      "googlePlaceId": "ChIJw1c-Ll4EdkgRFs1qTYIQ2Sg",
-      "googleReviewCount": 543,
-      "googleMapsUri": "https://maps.google.com/?cid=2943401983293967638&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
-      "googleMatchConfidence": "low",
-      "googleDisplayName": "Elite Hair Lounge (Stockwell)",
-      "googleFormattedAddress": "Sidney Store, 24 Sidney Rd, London SW9 0TS, UK",
-      "googleCheckedAt": "2026-07-23T22:21:48.281Z",
+      "googlePlaceId": null,
+      "googleReviewCount": 474,
+      "googleMapsUri": "https://maps.google.com/?cid=13304258015495737070",
+      "googleMatchConfidence": "high",
+      "googleDisplayName": "Elite Hair Lounge Lewisham",
+      "googleFormattedAddress": "288 Lee High Rd, London SE13 5PJ, UK",
+      "googleCheckedAt": "2026-07-24T00:00:00.000Z",
       "websiteUrl": "",
       "tiktokUrl": "",
       "canBraidWithoutGel": false,
@@ -17131,8 +17213,8 @@
     },
     {
       "id": "errold-douglas-ldn",
-      "name": "Errol Douglas LDN",
-      "areaId": "central",
+      "name": "Errol Douglas",
+      "areaId": "south-west",
       "areaIds": [
         "south-west",
         "central",
@@ -17179,10 +17261,21 @@
       "googlePlaceId": "ChIJeT_HijsFdkgRinDFd3JExeY",
       "googleReviewCount": 198,
       "googleMapsUri": "https://maps.google.com/?cid=16628772457561813130&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
-      "googleMatchConfidence": "low",
+      "googleMatchConfidence": "high",
       "googleDisplayName": "Errol Douglas",
       "googleFormattedAddress": "18 Motcomb St, London SW1X 8LB, UK",
-      "googleCheckedAt": "2026-07-23T22:21:53.033Z"
+      "googleCheckedAt": "2026-07-24T00:00:00.000Z",
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "customFilters": {},
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "updatedAt": "2026-07-24"
     },
     {
       "id": "es-lounge",
@@ -17480,13 +17573,9 @@
       ],
       "id": "eugenze",
       "name": "Eugenze",
-      "areaId": "all-london",
-      "areaIds": [
-        "all-london",
-        "mobile"
-      ],
-      "areaLabel": "London",
-      "neighbourhood": "London and Mobile",
+      "areaId": "mobile",
+      "areaLabel": "Mobile / home service",
+      "neighbourhood": "Mobile / home service London",
       "postcode": "",
       "bookingPlatform": "Setmore",
       "bookingUrl": "https://eugenze.setmore.com/",
@@ -17528,7 +17617,8 @@
       "googleMatchConfidence": "low",
       "googleDisplayName": "Eugenze Hair",
       "googleFormattedAddress": "22 Market Sq, London E14 6BU, UK",
-      "googleCheckedAt": "2026-07-23T22:21:57.717Z"
+      "googleCheckedAt": "2026-07-23T22:21:57.717Z",
+      "updatedAt": "2026-07-24"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -17792,13 +17882,9 @@
       ],
       "id": "forever-by-rs",
       "name": "Forever by RS",
-      "areaId": "all-london",
-      "areaIds": [
-        "all-london",
-        "mobile"
-      ],
-      "areaLabel": "London",
-      "neighbourhood": "London and Mobile",
+      "areaId": "mobile",
+      "areaLabel": "Mobile / home service",
+      "neighbourhood": "Mobile / home service London",
       "postcode": "",
       "bookingPlatform": "Direct website",
       "bookingUrl": "https://www.rshairuk.co.uk/bridal",
@@ -17830,7 +17916,8 @@
       "googleMatchConfidence": "low",
       "googleDisplayName": "Forever Us salon Hair, Nails & Beauty",
       "googleFormattedAddress": "5 Adam's Court, Off Old Broad St, London EC2N 1DX, UK",
-      "googleCheckedAt": "2026-07-23T22:22:02.602Z"
+      "googleCheckedAt": "2026-07-23T22:22:02.602Z",
+      "updatedAt": "2026-07-24"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -18299,10 +18386,9 @@
       "evidence": [
         "User-provided manual addition."
       ],
-      "priceBand": "££",
+      "priceBand": "£",
       "priceSource": "auto",
       "priceEvidence": [
-        "1:1 classes for beginners - £4500",
         "Crochet Braids - £90",
         "Crochet Weave - £100",
         "Dread re-loc - £100",
@@ -18313,7 +18399,7 @@
       ],
       "priceCheckedAt": "2026-06-04",
       "priceConfidence": "high",
-      "priceUpdatedAt": "2026-06-04",
+      "priceUpdatedAt": "2026-07-24",
       "addedVia": "Code edit",
       "discoverySource": "Cowork scrape",
       "googlePlaceId": "ChIJf5_zUPqn2EcR1zenSsMOpMk",
@@ -18322,7 +18408,8 @@
       "googleMatchConfidence": "low",
       "googleDisplayName": "Goddess dream",
       "googleFormattedAddress": "8 New Barn St, London E13 8JA, UK",
-      "googleCheckedAt": "2026-07-23T22:22:10.126Z"
+      "googleCheckedAt": "2026-07-23T22:22:10.126Z",
+      "updatedAt": "2026-07-24"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -18503,7 +18590,7 @@
         "User-provided manual addition."
       ],
       "id": "grants-hair-and-wellbeing",
-      "name": "Grant's Hair and Wellbeing",
+      "name": "Grant's Hair & Wellbeing",
       "areaId": "central",
       "areaIds": [
         "central",
@@ -18552,10 +18639,21 @@
       "googlePlaceId": "ChIJ_cQ9CwAbdkgRfTi417LcHFI",
       "googleReviewCount": 69,
       "googleMapsUri": "https://maps.google.com/?cid=5916846671139453053&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
-      "googleMatchConfidence": "low",
+      "googleMatchConfidence": "high",
       "googleDisplayName": "Grants Hair & Wellbeing",
       "googleFormattedAddress": "364a Goswell Rd., London EC1V 7LQ, UK",
-      "googleCheckedAt": "2026-07-23T22:22:13.964Z"
+      "googleCheckedAt": "2026-07-24T00:00:00.000Z",
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "customFilters": {},
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "updatedAt": "2026-07-24"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -19149,13 +19247,9 @@
       ],
       "id": "hair-by-chris-becks",
       "name": "Hair by Chris Becks",
-      "areaId": "all-london",
-      "areaIds": [
-        "all-london",
-        "mobile"
-      ],
-      "areaLabel": "London",
-      "neighbourhood": "London and Mobile",
+      "areaId": "mobile",
+      "areaLabel": "Mobile / home service",
+      "neighbourhood": "Mobile / home service London",
       "postcode": "",
       "bookingPlatform": "Instagram",
       "bookingUrl": "https://www.instagram.com/hairbychrisbecks/",
@@ -19171,7 +19265,8 @@
       "googleMatchConfidence": "low",
       "googleDisplayName": "Hair by chris becks salon",
       "googleFormattedAddress": "Camberwell Business Centre, 99-103 Lomond Grove, London, Green SE5 7HN, UK",
-      "googleCheckedAt": "2026-07-23T22:22:22.564Z"
+      "googleCheckedAt": "2026-07-23T22:22:22.564Z",
+      "updatedAt": "2026-07-24"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -20069,7 +20164,7 @@
       "evidence": [
         "User-provided manual addition."
       ],
-      "priceBand": "££",
+      "priceBand": "£",
       "priceSource": "auto",
       "priceEvidence": [
         "WASH AND BLOWDRY (round brush) - £40",
@@ -20078,12 +20173,11 @@
         "Kids cornrows - £40",
         "Miracle knots for bohobraids human hair bob style - £350",
         "Cornrows Under Wig - £25",
-        "8 EXTENSION METHOD TRAINING 1-1 - £1000",
         "Box braids bra length (Big Size) - £150"
       ],
       "priceCheckedAt": "2026-06-03",
       "priceConfidence": "high",
-      "priceUpdatedAt": "2026-06-03",
+      "priceUpdatedAt": "2026-07-24",
       "addedVia": "Bulk import",
       "discoverySource": "Cowork scrape",
       "verifiedReviewCount": 63,
@@ -20094,7 +20188,8 @@
       "googleMatchConfidence": "high",
       "googleDisplayName": "HairZonesuk Salon",
       "googleFormattedAddress": "74, Stratford Broadway, Stratford shopping centre, London E15 1NG, UK",
-      "googleCheckedAt": "2026-07-23T22:22:36.386Z"
+      "googleCheckedAt": "2026-07-23T22:22:36.386Z",
+      "updatedAt": "2026-07-24"
     },
     {
       "id": "hairboyldn",
@@ -20215,7 +20310,7 @@
     },
     {
       "id": "hairbyamandaniceandneat",
-      "name": "Amanda Nice and Neat",
+      "name": "Amanda Nice & Neat London",
       "areaId": "north",
       "areaLabel": "North",
       "neighbourhood": "North London",
@@ -20262,10 +20357,10 @@
       "googlePlaceId": "ChIJEfbER4IddkgRquGDKqrrQdU",
       "googleReviewCount": 20,
       "googleMapsUri": "https://maps.google.com/?cid=15366822519655096746&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
-      "googleMatchConfidence": "low",
+      "googleMatchConfidence": "high",
       "googleDisplayName": "Amanda Nice & Neat London",
       "googleFormattedAddress": "First floor, 3-4 Wells Terrace, Finsbury Park, London N4 3JU, UK",
-      "googleCheckedAt": "2026-07-23T22:22:38.910Z",
+      "googleCheckedAt": "2026-07-24T00:00:00.000Z",
       "websiteUrl": "",
       "tiktokUrl": "",
       "hijabiFriendly": false,
@@ -21118,7 +21213,7 @@
         "User-provided manual addition."
       ],
       "id": "helens-london",
-      "name": "Helens London",
+      "name": "Helen's London Hair and Beauty",
       "areaId": "west",
       "areaLabel": "West",
       "neighbourhood": "West London",
@@ -21145,8 +21240,8 @@
         "Trim / hair cut",
         "Japanese head spa",
         "Roller set",
-        "LA weave",
-        "Bouncy blowout / Round Brush Blow dry"
+        "LA weave / microlinks wefts / braidless sew in",
+        "Bouncy blowout / round brush blow dry"
       ],
       "priceBand": "£",
       "priceSource": "manual",
@@ -21170,17 +21265,19 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-06-10",
+      "updatedAt": "2026-07-24",
       "addedVia": "Code edit",
       "discoverySource": "Cowork scrape",
       "wheelchairAccessible": true,
       "googlePlaceId": "ChIJffntWs4PdkgReQ8d6Nd_hls",
       "googleReviewCount": 281,
       "googleMapsUri": "https://maps.google.com/?cid=6595099269619584889&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
-      "googleMatchConfidence": "low",
+      "googleMatchConfidence": "high",
       "googleDisplayName": "Helen's London Hair and Beauty",
       "googleFormattedAddress": "63-65 Goldhawk Rd, London W12 8EG, UK",
-      "googleCheckedAt": "2026-07-23T22:22:52.052Z"
+      "googleCheckedAt": "2026-07-24T00:00:00.000Z",
+      "websiteUrl": "",
+      "customFilters": {}
     },
     {
       "id": "herdefinition",
@@ -21256,7 +21353,7 @@
     },
     {
       "id": "hiikuss-hair",
-      "name": "Hiikuss Hair",
+      "name": "Hiikuss Afro Hair Salon London",
       "areaId": "south-east",
       "areaLabel": "South East",
       "neighbourhood": "South East London",
@@ -21308,10 +21405,21 @@
       "googlePlaceId": "ChIJ7eqhKX4DdkgRBf9QJWt2Bx8",
       "googleReviewCount": 327,
       "googleMapsUri": "https://maps.google.com/?cid=2235885942572384005&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
-      "googleMatchConfidence": "low",
+      "googleMatchConfidence": "high",
       "googleDisplayName": "Hiikuss Afro Hair Salon London",
       "googleFormattedAddress": "222 Camberwell Rd, London SE5 0ED, UK",
-      "googleCheckedAt": "2026-07-23T22:22:53.997Z"
+      "googleCheckedAt": "2026-07-24T00:00:00.000Z",
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "customFilters": {},
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "updatedAt": "2026-07-24"
     },
     {
       "id": "hilary-zita-hair",
@@ -21442,18 +21550,12 @@
       "priceBand": "££",
       "priceSource": "auto",
       "priceEvidence": [
-        "Full 1:1 Class (Hair Provided by me) - £650",
-        "½ day intensive course – Readymade wig - Intermediates - £400",
-        "Tape-In Extension 1:1 - £650",
-        "Tamara - £660",
-        "Ebony - £580",
-        "Ava - £580",
         "Weft-Installation (HAIR NOT FROM US) - £130",
         "Weft-Installation (HAIR FROM US) - £100"
       ],
       "priceCheckedAt": "2026-06-04",
       "priceConfidence": "high",
-      "priceUpdatedAt": "2026-06-04",
+      "priceUpdatedAt": "2026-07-24",
       "addedVia": "Bulk import",
       "discoverySource": "Cowork scrape",
       "googlePlaceId": "ChIJuRRX27YDdkgRl_Ecbi4WkWo",
@@ -21462,7 +21564,8 @@
       "googleMatchConfidence": "low",
       "googleDisplayName": "H Hairdressing",
       "googleFormattedAddress": "15 John Ruskin St, London SE5 0NS, UK",
-      "googleCheckedAt": "2026-07-23T22:22:56.526Z"
+      "googleCheckedAt": "2026-07-23T22:22:56.526Z",
+      "updatedAt": "2026-07-24"
     },
     {
       "id": "honey-hand",
@@ -22700,7 +22803,7 @@
     },
     {
       "id": "jennifer-cynthia-the-hairstylist",
-      "name": "Jennifer Cynthia The Hairstylist",
+      "name": "The Silky Satin - Hair Boutique",
       "areaId": "east",
       "areaLabel": "East",
       "neighbourhood": "East London",
@@ -22728,25 +22831,25 @@
       ],
       "hijabiFriendly": true,
       "tiktokUrl": "https://www.tiktok.com/@xo_karrieee/video/7592032929845366019?lang=en-GB",
-      "updatedAt": "2026-06-10",
-      "priceBand": "££",
+      "updatedAt": "2026-07-24",
+      "priceBand": "£££",
       "priceSource": "auto",
       "priceEvidence": [
-        "Silk Press – Maintenance - £120",
-        "Avlon Texture Release – New Roots Maintenance - £245",
-        "Relaxer – New Roots Maintenance - £207",
+        "Silk Press – Maintenance - - Silk Press – Maintenance - £120",
+        "Avlon Texture Release – New Roots Maintenance - - Avlon Texture Release – New Roots Maintenance - £245",
+        "Relaxer – New Roots Maintenance - - Relaxer – New Roots Maintenance - £207",
         "Roller Set - £175",
-        "Hydrating Twist Style - £185",
-        "Jennifer Cynthia’s Signature Tape Extensions – Full Service - £410",
-        "Jennifer Cynthia’s Signature Weave Sew in – Full Service - £395",
-        "Tape Extensions Maintenance - £150"
+        "Hydrating Twist Style - - Hydrating Twist Style - £185",
+        "Jennifer Cynthia’s Signature Tape Extensions – Full Service - - Jennifer Cynthia’s Signature Tape Extensions – Full Service - £410",
+        "Jennifer Cynthia’s Signature Weave Sew in – Full Service - - Jennifer Cynthia’s Signature Weave Sew in – Full Service - £395",
+        "Tape Extensions Maintenance - - Tape Extensions Maintenance - £150"
       ],
-      "priceCheckedAt": "2026-06-24",
-      "priceConfidence": "high",
-      "priceUpdatedAt": "2026-06-24",
+      "priceCheckedAt": "2026-07-24T10:19:05.803Z",
+      "priceConfidence": "manual",
+      "priceUpdatedAt": "2026-07-24T10:19:05.803Z",
       "canBraidWithoutGel": false,
       "wheelchairAccessible": false,
-      "servicePriceBand": "££",
+      "servicePriceBand": "£££",
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
@@ -22755,10 +22858,12 @@
       "googlePlaceId": "ChIJteAK4SQddkgRMQZsF69tFi8",
       "googleReviewCount": 75,
       "googleMapsUri": "https://maps.google.com/?cid=3393019968049907249&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
-      "googleMatchConfidence": "low",
+      "googleMatchConfidence": "high",
       "googleDisplayName": "The Silky Satin - Hair Boutique",
       "googleFormattedAddress": "Unit 1, Moore House, Millfields Rd, Lower Clapton, London E5 0DD, UK",
-      "googleCheckedAt": "2026-07-23T22:23:16.786Z"
+      "googleCheckedAt": "2026-07-24T00:00:00.000Z",
+      "websiteUrl": "",
+      "customFilters": {}
     },
     {
       "id": "jluxe-hair",
@@ -23068,7 +23173,7 @@
         "User-provided manual addition."
       ],
       "id": "kannis-beauty",
-      "name": "Kannis Beauty",
+      "name": "Kanni’s Beauty (KUB)",
       "areaId": "south-east",
       "areaLabel": "South East",
       "neighbourhood": "South East London",
@@ -23086,7 +23191,7 @@
         "Silk press",
         "Scalp detox / treatments",
         "Moisturising treatment",
-        "Flipover / versatile sew-in",
+        "Flipover / Versatile sew-in",
         "Traditional sew-in / leave out",
         "Closure sew-in / closure behind the hairline",
         "Half up half down",
@@ -23127,10 +23232,21 @@
       "googlePlaceId": "ChIJk0A27h8DdkgR02ac0n1JxSM",
       "googleReviewCount": 400,
       "googleMapsUri": "https://maps.google.com/?cid=2577547166492681939&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
-      "googleMatchConfidence": "low",
+      "googleMatchConfidence": "high",
       "googleDisplayName": "Kanni’s Beauty (KUB)",
       "googleFormattedAddress": "1F Rotherhithe Old Rd, London SE16 2PP, UK",
-      "googleCheckedAt": "2026-07-23T22:23:21.448Z"
+      "googleCheckedAt": "2026-07-24T00:00:00.000Z",
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "customFilters": {},
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "updatedAt": "2026-07-24"
     },
     {
       "id": "kaothar-beauty-care",
@@ -23450,7 +23566,7 @@
     },
     {
       "id": "kinson-by-kizzy",
-      "name": "Kinson by Kizzy",
+      "name": "Kinson Hair Studio",
       "areaId": "south-east",
       "areaLabel": "South East",
       "neighbourhood": "South East London",
@@ -23493,10 +23609,21 @@
       "googlePlaceId": "ChIJe7UimJqr2EcR-4QHpYCeJlo",
       "googleReviewCount": 278,
       "googleMapsUri": "https://maps.google.com/?cid=6496053787890255099&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
-      "googleMatchConfidence": "low",
+      "googleMatchConfidence": "high",
       "googleDisplayName": "Kinson Hair Studio",
       "googleFormattedAddress": "63 Beckenham Rd, Beckenham BR3 4PR, UK",
-      "googleCheckedAt": "2026-07-23T22:23:26.666Z"
+      "googleCheckedAt": "2026-07-24T00:00:00.000Z",
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "customFilters": {},
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "updatedAt": "2026-07-24"
     },
     {
       "id": "kintsubeauty",
@@ -23554,10 +23681,10 @@
       "googlePlaceId": "ChIJfbawkLkDdkgRNFnbtPOf5wE",
       "googleReviewCount": 39,
       "googleMapsUri": "https://maps.google.com/?cid=137254182718232884&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
-      "googleMatchConfidence": "low",
+      "googleMatchConfidence": "high",
       "googleDisplayName": "Kintsu Beauty Bar",
       "googleFormattedAddress": "Unit 4, Goldcrest House, 32-64 Lee High Rd, London SE13 5FH, UK",
-      "googleCheckedAt": "2026-07-23T22:23:27.484Z",
+      "googleCheckedAt": "2026-07-24T00:00:00.000Z",
       "websiteUrl": "",
       "tiktokUrl": "",
       "hijabiFriendly": false,
@@ -23573,12 +23700,12 @@
     {
       "id": "kiommi",
       "name": "Kiommi",
-      "areaId": "all-london",
-      "areaLabel": "London",
-      "neighbourhood": "London",
+      "areaId": "south-east",
+      "areaLabel": "South east London",
+      "neighbourhood": "South east London London",
       "postcode": "",
       "bookingPlatform": "Instagram",
-      "bookingUrl": "https://www.instagram.com/kiommi__/",
+      "bookingUrl": "https://kiommi.as.me/schedule/92751263",
       "instagramUrl": "https://www.instagram.com/kiommi__/",
       "services": [
         "Wig install (frontal / closure)",
@@ -23600,7 +23727,24 @@
       "googleMatchConfidence": "low",
       "googleDisplayName": "Kiommi Ltd",
       "googleFormattedAddress": "210/218 Trafalgar Rd, London SE10 9ER, UK",
-      "googleCheckedAt": "2026-07-23T22:23:28.250Z"
+      "googleCheckedAt": "2026-07-23T22:23:28.250Z",
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "customFilters": {},
+      "priceBand": "",
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "",
+      "priceSource": "",
+      "priceEvidence": [],
+      "priceCheckedAt": "",
+      "priceUpdatedAt": "",
+      "priceConfidence": "",
+      "updatedAt": "2026-07-24"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -23630,7 +23774,6 @@
       "priceBand": "££",
       "priceSource": "auto",
       "priceEvidence": [
-        "Pre Made Wig Install Class - £350",
         "Frontal Ponytail - £105",
         "Frontal Updo - £105",
         "Frontal Ponytail Low Bun - £105",
@@ -23641,7 +23784,7 @@
       ],
       "priceCheckedAt": "2026-06-03",
       "priceConfidence": "high",
-      "priceUpdatedAt": "2026-06-03",
+      "priceUpdatedAt": "2026-07-24",
       "addedVia": "Code edit",
       "discoverySource": "Cowork scrape",
       "googlePlaceId": "ChIJsVLkD8YDdkgRYIxQO_mfkHQ",
@@ -23650,7 +23793,8 @@
       "googleMatchConfidence": "low",
       "googleDisplayName": "Kink By Nature",
       "googleFormattedAddress": "5 Deptford Church St, London SE8 4RX, UK",
-      "googleCheckedAt": "2026-07-23T22:23:29.147Z"
+      "googleCheckedAt": "2026-07-23T22:23:29.147Z",
+      "updatedAt": "2026-07-24"
     },
     {
       "id": "kitokohairlounge",
@@ -24763,13 +24907,9 @@
       ],
       "id": "lyc-bridal",
       "name": "LYC Bridal",
-      "areaId": "all-london",
-      "areaIds": [
-        "all-london",
-        "mobile"
-      ],
-      "areaLabel": "London",
-      "neighbourhood": "London and Mobile",
+      "areaId": "mobile",
+      "areaLabel": "Mobile / home service",
+      "neighbourhood": "Mobile / home service London",
       "postcode": "",
       "bookingPlatform": "Instagram",
       "bookingUrl": "https://www.instagram.com/lyc.bridal/",
@@ -24785,7 +24925,8 @@
       "googleMatchConfidence": "low",
       "googleDisplayName": "Women’s Haircuts & Hairstyles by Larisa Reca | Appointments only | ex-Hoxton, now in Abbey Wood",
       "googleFormattedAddress": "51 Hoxton Square, London N1 6PB, UK",
-      "googleCheckedAt": "2026-07-23T22:23:47.059Z"
+      "googleCheckedAt": "2026-07-23T22:23:47.059Z",
+      "updatedAt": "2026-07-24"
     },
     {
       "id": "madouss-hair-studio",
@@ -25509,17 +25650,17 @@
       "googlePlaceId": "ChIJi5FS3kcbdkgRlQ-YeDxqkOg",
       "googleReviewCount": 463,
       "googleMapsUri": "https://maps.google.com/?cid=16758011021399429013&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
-      "googleMatchConfidence": "low",
+      "googleMatchConfidence": "high",
       "googleDisplayName": "Mebu Hair and Beauty",
       "googleFormattedAddress": "75 Stockwell Rd, London SW9 9PY, UK",
-      "googleCheckedAt": "2026-07-23T22:23:58.065Z",
+      "googleCheckedAt": "2026-07-24T00:00:00.000Z",
       "websiteUrl": "",
       "wheelchairAccessible": false,
       "customFilters": {}
     },
     {
       "id": "melsxbeautyhair",
-      "name": "Melsxbeautyhair",
+      "name": "Mels Hair & Beauty",
       "areaId": "south-east",
       "areaLabel": "South East",
       "neighbourhood": "South East London",
@@ -25571,7 +25712,18 @@
       "googleMatchConfidence": "low",
       "googleDisplayName": "Mels beauty",
       "googleFormattedAddress": "Admirals Way, London E14 9UF, UK",
-      "googleCheckedAt": "2026-07-23T22:23:58.830Z"
+      "googleCheckedAt": "2026-07-23T22:23:58.830Z",
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "customFilters": {},
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "updatedAt": "2026-07-24"
     },
     {
       "id": "michaela-creates-ldn",
@@ -25967,7 +26119,7 @@
       "evidence": [
         "User-provided manual addition."
       ],
-      "priceBand": "££££",
+      "priceBand": "£",
       "priceSource": "auto",
       "priceEvidence": [
         "Traditional sew in - £110",
@@ -25981,15 +26133,15 @@
       ],
       "priceCheckedAt": "2026-06-05",
       "priceConfidence": "high",
-      "priceUpdatedAt": "2026-06-05",
+      "priceUpdatedAt": "2026-07-24",
       "tiktokUrl": "https://www.tiktok.com/@xo_karrieee/video/7592032929845366019?lang=en-GB",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
-      "updatedAt": "2026-06-10",
-      "servicePriceBand": "",
-      "packagePriceBand": "",
-      "priceIncludesHair": false,
-      "priceComparisonMode": "service-only",
+      "updatedAt": "2026-07-24",
+      "servicePriceBand": "£",
+      "packagePriceBand": "££££",
+      "priceIncludesHair": true,
+      "priceComparisonMode": "mixed",
       "addedVia": "Code edit",
       "discoverySource": "Cowork scrape",
       "wheelchairAccessible": false,
@@ -26109,10 +26261,10 @@
       "googlePlaceId": "ChIJNbXwmlACdkgRb4ThiyoZDwU",
       "googleReviewCount": 183,
       "googleMapsUri": "https://maps.google.com/?cid=364537765366432879&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
-      "googleMatchConfidence": "low",
+      "googleMatchConfidence": "high",
       "googleDisplayName": "Morells",
       "googleFormattedAddress": "10 Brockley Cross, London SE4 1BE, UK",
-      "googleCheckedAt": "2026-07-23T22:24:07.782Z",
+      "googleCheckedAt": "2026-07-24T00:00:00.000Z",
       "websiteUrl": "",
       "tiktokUrl": "",
       "hijabiFriendly": false,
@@ -26132,13 +26284,9 @@
       ],
       "id": "mosh-bridal",
       "name": "Mosh Bridal",
-      "areaId": "all-london",
-      "areaIds": [
-        "all-london",
-        "mobile"
-      ],
-      "areaLabel": "London",
-      "neighbourhood": "London and Mobile",
+      "areaId": "mobile",
+      "areaLabel": "Mobile / home service",
+      "neighbourhood": "Mobile / home service London",
       "postcode": "",
       "bookingPlatform": "Instagram",
       "bookingUrl": "https://www.instagram.com/moshbridal/",
@@ -26154,12 +26302,13 @@
       "googleMatchConfidence": "low",
       "googleDisplayName": "MoshBeautyuk",
       "googleFormattedAddress": "3, Sandhurst Market, Sandhurst Rd, London SE6 1DL, UK",
-      "googleCheckedAt": "2026-07-23T22:24:08.556Z"
+      "googleCheckedAt": "2026-07-23T22:24:08.556Z",
+      "updatedAt": "2026-07-24"
     },
     {
       "id": "mulaaxhair",
       "name": "Mulaax Hair",
-      "areaId": "all-london",
+      "areaId": "south-west",
       "areaLabel": "South west London",
       "neighbourhood": "South west London London",
       "postcode": "",
@@ -26203,13 +26352,9 @@
       "priceCheckedAt": "2026-06-03",
       "priceConfidence": "high",
       "priceUpdatedAt": "2026-06-03",
-      "areaIds": [
-        "all-london",
-        "south-west"
-      ],
       "tiktokUrl": "",
       "canBraidWithoutGel": false,
-      "updatedAt": "2026-06-03",
+      "updatedAt": "2026-07-24",
       "addedVia": "Bulk import",
       "discoverySource": "Cowork scrape",
       "verifiedReviewCount": 0,
@@ -26629,7 +26774,7 @@
     },
     {
       "id": "noble-tiaras",
-      "name": "Noble Tiaras",
+      "name": "Noble Tiaras Virgin Hair Salon",
       "areaId": "south-east",
       "areaLabel": "South East",
       "neighbourhood": "South East London",
@@ -26661,30 +26806,41 @@
       "evidence": [
         "User-provided manual addition."
       ],
-      "priceBand": "£",
+      "priceBand": "££",
       "priceSource": "auto",
       "priceEvidence": [
-        "TRADITIONAL NATURAL LEAVE OUT SEWIN - £85",
-        "NEW 2 PART (MID & SIDE) VERSATILE WEAVE - £110",
-        "FLIP OVER SEW IN - £110",
-        "LACE CLOSURE SEW IN - £90",
-        "VERSATILE SEW IN - £90",
-        "STITCH BRAIDS HALF & WEAVE HALF DOWN - £105",
-        "10 stitch braids half & half weave - £120",
-        "HALF UP-HALF DOWN SEW IN - £90"
+        "TRADITIONAL NATURAL LEAVE OUT SEWIN - - TRADITIONAL NATURAL LEAVE OUT SEWIN - £85",
+        "NEW 2 PART (MID & SIDE) VERSATILE WEAVE - - NEW 2 PART (MID & SIDE) VERSATILE WEAVE - £110",
+        "FLIP OVER SEW IN - - FLIP OVER SEW IN - £110",
+        "LACE CLOSURE SEW IN - - LACE CLOSURE SEW IN - £90",
+        "VERSATILE SEW IN - - VERSATILE SEW IN - £90",
+        "STITCH BRAIDS HALF & WEAVE HALF DOWN - - STITCH BRAIDS HALF & WEAVE HALF DOWN - £105",
+        "10 stitch braids half & half weave - - 10 stitch braids half & half weave - £120",
+        "HALF UP-HALF DOWN SEW IN - - HALF UP-HALF DOWN SEW IN - £90"
       ],
-      "priceCheckedAt": "2026-06-03",
-      "priceConfidence": "high",
-      "priceUpdatedAt": "2026-06-03",
+      "priceCheckedAt": "2026-07-24T09:48:37.856Z",
+      "priceConfidence": "manual",
+      "priceUpdatedAt": "2026-07-24T09:48:37.856Z",
       "addedVia": "Bulk import",
       "discoverySource": "Cowork scrape",
       "googlePlaceId": "ChIJtTkP0gEDdkgREsMu17SB3js",
       "googleReviewCount": 107,
       "googleMapsUri": "https://maps.google.com/?cid=4314028106771776274&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
-      "googleMatchConfidence": "low",
+      "googleMatchConfidence": "high",
       "googleDisplayName": "Noble Tiaras Virgin Hair Salon",
       "googleFormattedAddress": "130c New Cross Rd, London SE14 5AT, UK",
-      "googleCheckedAt": "2026-07-23T22:24:16.855Z"
+      "googleCheckedAt": "2026-07-24T00:00:00.000Z",
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "customFilters": {},
+      "servicePriceBand": "££",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "updatedAt": "2026-07-24"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -28179,13 +28335,9 @@
       ],
       "id": "platinum-tresses-bridal",
       "name": "Platinum Tresses Bridal",
-      "areaId": "all-london",
-      "areaIds": [
-        "all-london",
-        "mobile"
-      ],
-      "areaLabel": "London",
-      "neighbourhood": "London and Mobile",
+      "areaId": "mobile",
+      "areaLabel": "Mobile / home service",
+      "neighbourhood": "Mobile / home service London",
       "postcode": "",
       "bookingPlatform": "Direct website",
       "bookingUrl": "https://www.platinumtressesandbeauty.com/destination-bridal-services",
@@ -28215,7 +28367,8 @@
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleCheckedAt": "2026-07-23T22:24:39.490Z"
+      "googleCheckedAt": "2026-07-23T22:24:39.490Z",
+      "updatedAt": "2026-07-24"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -28544,13 +28697,9 @@
       ],
       "id": "rachel-arike-bridal",
       "name": "Rachel Arike Bridal",
-      "areaId": "all-london",
-      "areaIds": [
-        "all-london",
-        "mobile"
-      ],
-      "areaLabel": "London",
-      "neighbourhood": "London and Mobile",
+      "areaId": "mobile",
+      "areaLabel": "Mobile / home service",
+      "neighbourhood": "Mobile / home service London",
       "postcode": "",
       "bookingPlatform": "Direct website",
       "bookingUrl": "https://www.rachelarike.com/booking-calendar/bridal-consultation",
@@ -28566,7 +28715,8 @@
       "googleMatchConfidence": "low",
       "googleDisplayName": "Women’s Haircuts & Hairstyles by Larisa Reca | Appointments only | ex-Hoxton, now in Abbey Wood",
       "googleFormattedAddress": "51 Hoxton Square, London N1 6PB, UK",
-      "googleCheckedAt": "2026-07-23T22:24:45.251Z"
+      "googleCheckedAt": "2026-07-23T22:24:45.251Z",
+      "updatedAt": "2026-07-24"
     },
     {
       "id": "rachel-braids",
@@ -28702,7 +28852,6 @@
       "priceBand": "£",
       "priceSource": "auto",
       "priceEvidence": [
-        "1-1 Readymade Wig Class - £500",
         "Custom Lace Frontal Unit - £130",
         "Custom Closure Unit (Mini-Frontal) - £115",
         "Readymade Frontal Wig - £100",
@@ -28713,7 +28862,7 @@
       ],
       "priceCheckedAt": "2026-06-03",
       "priceConfidence": "high",
-      "priceUpdatedAt": "2026-06-03",
+      "priceUpdatedAt": "2026-07-24",
       "addedVia": "Code edit",
       "discoverySource": "Cowork scrape",
       "googlePlaceId": "ChIJlx1haqUDdkgR37RPnmy8oPQ",
@@ -28722,7 +28871,8 @@
       "googleMatchConfidence": "low",
       "googleDisplayName": "R&B Salon",
       "googleFormattedAddress": "11 Lee High Rd, London SE13 5LD, UK",
-      "googleCheckedAt": "2026-07-23T22:24:47.600Z"
+      "googleCheckedAt": "2026-07-23T22:24:47.600Z",
+      "updatedAt": "2026-07-24"
     },
     {
       "id": "rd-hairstudio",
@@ -28986,13 +29136,9 @@
       ],
       "id": "renz-bridal-uk",
       "name": "Renz Bridal UK",
-      "areaId": "all-london",
-      "areaIds": [
-        "all-london",
-        "mobile"
-      ],
-      "areaLabel": "London",
-      "neighbourhood": "London and Mobile",
+      "areaId": "mobile",
+      "areaLabel": "Mobile / home service",
+      "neighbourhood": "Mobile / home service London",
       "postcode": "",
       "bookingPlatform": "Instagram",
       "bookingUrl": "https://www.instagram.com/renzbridaluk/",
@@ -29008,7 +29154,8 @@
       "googleMatchConfidence": "low",
       "googleDisplayName": "Women’s Haircuts & Hairstyles by Larisa Reca | Appointments only | ex-Hoxton, now in Abbey Wood",
       "googleFormattedAddress": "51 Hoxton Square, London N1 6PB, UK",
-      "googleCheckedAt": "2026-07-23T22:24:52.031Z"
+      "googleCheckedAt": "2026-07-23T22:24:52.031Z",
+      "updatedAt": "2026-07-24"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -30047,19 +30194,18 @@
       "services": [
         "Pixie cut / finger waves"
       ],
-      "priceBand": "££",
+      "priceBand": "£",
       "priceSource": "auto",
       "priceEvidence": [
         "Full Transformation Pixie Cut (Pincurls/ Finger Waves or any other Pixie Cut Styling) - £175",
         "Pixie Cut Retouch and Style - £95",
         "Pixie Cut Wash and Style - £80",
         "Pixie Cut Retouch, Style and Treatment - £100",
-        "Natural Cuts (Natural Low Cut and Treatment) - £120",
-        "1 to 1 Pixie Cut Training with Serenity Luxury Hair (Plus 3 days of shadowing in the Salon) Model Can be Provided - £750"
+        "Natural Cuts (Natural Low Cut and Treatment) - £120"
       ],
       "priceCheckedAt": "2026-06-03",
       "priceConfidence": "high",
-      "priceUpdatedAt": "2026-06-03",
+      "priceUpdatedAt": "2026-07-24",
       "addedVia": "Code edit",
       "discoverySource": "Cowork scrape",
       "googlePlaceId": "ChIJ151eDnTN2EcRrWlGngo__3U",
@@ -30068,7 +30214,8 @@
       "googleMatchConfidence": "low",
       "googleDisplayName": "Serenity Luxury Hair",
       "googleFormattedAddress": "136 Canterbury St, Gillingham ME7 5UH, UK",
-      "googleCheckedAt": "2026-07-23T22:25:09.250Z"
+      "googleCheckedAt": "2026-07-23T22:25:09.250Z",
+      "updatedAt": "2026-07-24"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -30362,10 +30509,9 @@
         "Bridal",
         "Tracks (+ silk press) / partial / invisible sew-in"
       ],
-      "priceBand": "££",
+      "priceBand": "£",
       "priceSource": "auto",
       "priceEvidence": [
-        "1:1 Class - £550",
         "Small Knotless Braids - £150",
         "Medium knotless Braids - £130",
         "Large knotless braids - £100",
@@ -30376,7 +30522,7 @@
       ],
       "priceCheckedAt": "2026-06-03",
       "priceConfidence": "high",
-      "priceUpdatedAt": "2026-06-03",
+      "priceUpdatedAt": "2026-07-24",
       "tiktokUrl": "",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
@@ -30384,7 +30530,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-06-06",
+      "updatedAt": "2026-07-24",
       "addedVia": "Code edit",
       "discoverySource": "Cowork scrape",
       "googlePlaceId": "ChIJQfImuo0cdkgRybYt4pVmZHI",
@@ -30925,12 +31071,11 @@
         "Maintenance Service (ONLY WIGS MADE OR CUSTOMISED BY ME) - £100",
         "Mini Frontal unit (4x4,5x5, 6x6, 7x7) - £150",
         "Frontal Ponytail - £160",
-        "Dream Wig Installation - £75",
-        "2 Day 1:1 Course - £1200"
+        "Dream Wig Installation - £75"
       ],
       "priceCheckedAt": "2026-06-03",
       "priceConfidence": "high",
-      "priceUpdatedAt": "2026-06-03",
+      "priceUpdatedAt": "2026-07-24",
       "addedVia": "Code edit",
       "discoverySource": "Cowork scrape",
       "googlePlaceId": "ChIJT9cdg9YDdkgRZ5wI3a26C0E",
@@ -30939,7 +31084,8 @@
       "googleMatchConfidence": "low",
       "googleDisplayName": "slayedbyki",
       "googleFormattedAddress": "84, 71 Loampit Vale, London SE13 7FP, UK",
-      "googleCheckedAt": "2026-07-23T22:25:23.570Z"
+      "googleCheckedAt": "2026-07-23T22:25:23.570Z",
+      "updatedAt": "2026-07-24"
     },
     {
       "id": "slayed-by-danielle",
@@ -31868,8 +32014,6 @@
       "priceBand": "£",
       "priceSource": "auto",
       "priceEvidence": [
-        "1 day wig customisation & installation course - £500",
-        "2 day in depth wig making and installation course - £650",
         "2 feedin braids - £50",
         "“Dess dior inspired braids” - £70",
         "Wig cornrows (14-18) - £20",
@@ -31879,7 +32023,7 @@
       ],
       "priceCheckedAt": "2026-06-03",
       "priceConfidence": "high",
-      "priceUpdatedAt": "2026-06-03",
+      "priceUpdatedAt": "2026-07-24",
       "addedVia": "Code edit",
       "discoverySource": "Cowork scrape",
       "googlePlaceId": "ChIJoysXWMKn2EcRcnT9nup6Quo",
@@ -31888,7 +32032,8 @@
       "googleMatchConfidence": "low",
       "googleDisplayName": "styledby_h8",
       "googleFormattedAddress": "1 Frank Bailey Walk, London E12 6JF, UK",
-      "googleCheckedAt": "2026-07-23T22:25:38.352Z"
+      "googleCheckedAt": "2026-07-23T22:25:38.352Z",
+      "updatedAt": "2026-07-24"
     },
     {
       "summary": "Manual Instagram-led entry updated from user-provided booking menu.",
@@ -32173,12 +32318,9 @@
       "tiktokUrl": "",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
-      "priceBand": "£",
+      "priceBand": "££",
       "priceSource": "auto",
       "priceEvidence": [
-        "Knotless braid 1-1 course - £550",
-        "Stitch braid 1-1 course - £450",
-        "Twists 1-1 course - £550",
         "medium short boho braids - £135",
         "small medium short boho braids - £155",
         "Small short boho knotless braids - £165",
@@ -32186,11 +32328,11 @@
         "small medium knotless braids touch up - £65"
       ],
       "priceCheckedAt": "2026-06-24",
-      "priceUpdatedAt": "2026-06-24",
+      "priceUpdatedAt": "2026-07-24",
       "priceConfidence": "high",
-      "updatedAt": "2026-06-09",
+      "updatedAt": "2026-07-24",
       "wheelchairAccessible": false,
-      "servicePriceBand": "£",
+      "servicePriceBand": "££",
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
@@ -32444,7 +32586,7 @@
       "priceCheckedAt": "",
       "priceUpdatedAt": "",
       "priceConfidence": "",
-      "updatedAt": "2026-07-23",
+      "updatedAt": "2026-07-24",
       "servicePriceBand": "",
       "packagePriceBand": "",
       "priceIncludesHair": false,
@@ -32455,10 +32597,10 @@
       "googlePlaceId": "ChIJ33pZzagddkgRXiQSy9NcMi0",
       "googleReviewCount": 73,
       "googleMapsUri": "https://maps.google.com/?cid=3256767545257108574&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
-      "googleMatchConfidence": "low",
+      "googleMatchConfidence": "high",
       "googleDisplayName": "Subrina Kidd Hair",
       "googleFormattedAddress": "34 Bentley Rd, London N1 4BY, UK",
-      "googleCheckedAt": "2026-07-23T22:25:46.147Z",
+      "googleCheckedAt": "2026-07-24T00:00:00.000Z",
       "websiteUrl": "",
       "customFilters": {}
     },
@@ -33547,7 +33689,6 @@
         "CUSTOM FRONTAL UNIT (GLUED) - £180",
         "GLUED CUSTOM LACE CLOSURE UNIT - £140",
         "GLUELESS CUSTOM LACE CLOSURE UNIT - £120",
-        "TAPE-INS 1:1 COURSE - £900",
         "PRE-MADE FRONTAL WIG INSTALL - £140",
         "TAPE INS INSTALL - £140",
         "CLOSURE SEWIN - £120",
@@ -33555,7 +33696,7 @@
       ],
       "priceCheckedAt": "2026-06-03",
       "priceConfidence": "high",
-      "priceUpdatedAt": "2026-06-03",
+      "priceUpdatedAt": "2026-07-24",
       "addedVia": "Code edit",
       "discoverySource": "Cowork scrape",
       "googlePlaceId": "ChIJs7u16ZQDdkgRtZInW9jWl2M",
@@ -33564,7 +33705,8 @@
       "googleMatchConfidence": "low",
       "googleDisplayName": "Five star London Braider",
       "googleFormattedAddress": "487a New Cross Road New Cross, Gate, London SE14 6TQ, UK",
-      "googleCheckedAt": "2026-07-23T22:26:02.747Z"
+      "googleCheckedAt": "2026-07-23T22:26:02.747Z",
+      "updatedAt": "2026-07-24"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -33648,13 +33790,11 @@
         "Pre-made 360 frontal Wig - £145",
         "Frontal wig made on head + installation - £150",
         "Closure wig made on head + installation - £135",
-        "COMPLETE SERVICE WITH STYLING - £180",
-        "Pre- bought Frontal wig 1-1 session - £595",
-        "Personal styling 1-1 class - £300"
+        "COMPLETE SERVICE WITH STYLING - £180"
       ],
       "priceCheckedAt": "2026-06-04",
       "priceConfidence": "high",
-      "priceUpdatedAt": "2026-06-04",
+      "priceUpdatedAt": "2026-07-24",
       "addedVia": "Code edit",
       "discoverySource": "Manual search",
       "googlePlaceId": "ChIJPfUcEpEPdkgRbgDxaMvM6lQ",
@@ -33663,7 +33803,8 @@
       "googleMatchConfidence": "low",
       "googleDisplayName": "A-List Lace Hair",
       "googleFormattedAddress": "203A North End Rd, London W14 9NL, UK",
-      "googleCheckedAt": "2026-07-23T22:26:04.409Z"
+      "googleCheckedAt": "2026-07-23T22:26:04.409Z",
+      "updatedAt": "2026-07-24"
     },
     {
       "id": "the-lush-lab-uk",
@@ -34126,7 +34267,7 @@
     },
     {
       "id": "thecurlbarlondon",
-      "name": "Thecurlbarlondon",
+      "name": "The Curl Bar London",
       "areaId": "north",
       "areaLabel": "North",
       "neighbourhood": "North London",
@@ -34165,14 +34306,23 @@
       "googlePlaceId": "ChIJnSsvsm8ZdkgRlmMT30X3qd0",
       "googleReviewCount": 530,
       "googleMapsUri": "https://maps.google.com/?cid=15972569432913568662&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
-      "googleMatchConfidence": "low",
+      "googleMatchConfidence": "high",
       "googleDisplayName": "The Curl Bar London - Bowes Park",
       "googleFormattedAddress": "79 Myddleton Rd, London N22 8NE, UK",
-      "googleCheckedAt": "2026-07-23T22:26:12.767Z"
+      "googleCheckedAt": "2026-07-24T00:00:00.000Z",
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "canBraidWithoutGel": false,
+      "customFilters": {},
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "updatedAt": "2026-07-24"
     },
     {
       "id": "thecurleditbymya",
-      "name": "Thecurleditbymya",
+      "name": "The Curl Edit by Mya",
       "areaId": "south-east",
       "areaLabel": "South East",
       "neighbourhood": "South East London",
@@ -34196,7 +34346,24 @@
       "googleMatchConfidence": "low",
       "googleDisplayName": "TrimmyB Hair salon",
       "googleFormattedAddress": "47 Shenley Rd, London SE5 8ND, UK",
-      "googleCheckedAt": "2026-07-23T22:26:13.618Z"
+      "googleCheckedAt": "2026-07-23T22:26:13.618Z",
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "customFilters": {},
+      "priceBand": "",
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "",
+      "priceSource": "",
+      "priceEvidence": [],
+      "priceCheckedAt": "",
+      "priceUpdatedAt": "",
+      "priceConfidence": "",
+      "updatedAt": "2026-07-24"
     },
     {
       "id": "theesbnuk",
@@ -34264,7 +34431,7 @@
     },
     {
       "id": "thegreenchair",
-      "name": "Thegreenchair",
+      "name": "The Green Chair",
       "areaId": "all-london",
       "areaLabel": "London",
       "neighbourhood": "London",
@@ -34297,7 +34464,18 @@
       "googleMatchConfidence": "low",
       "googleDisplayName": "The Chair Salon London",
       "googleFormattedAddress": "391 Queen's Rd, London SE14 5HD, UK",
-      "googleCheckedAt": "2026-07-23T22:26:15.147Z"
+      "googleCheckedAt": "2026-07-23T22:26:15.147Z",
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "customFilters": {},
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "updatedAt": "2026-07-24"
     },
     {
       "id": "theheaddress",
@@ -34915,7 +35093,7 @@
       ],
       "areaLabel": "South East London / Kent",
       "neighbourhood": "South East London / Kent",
-      "postcode": "",
+      "postcode": "DA16 3PA",
       "bookingPlatform": ".as.me",
       "bookingUrl": "https://tthairbarldn.as.me",
       "instagramUrl": "https://www.instagram.com/tthairbarldn/",
@@ -34956,13 +35134,14 @@
       "priceUpdatedAt": "2026-06-05",
       "addedVia": "Bulk import",
       "discoverySource": "Cowork scrape",
-      "googlePlaceId": "ChIJb2gQQLMDdkgRQCbdBVgx_3U",
-      "googleReviewCount": 20,
-      "googleMapsUri": "https://maps.google.com/?cid=8502568875624048192&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
-      "googleMatchConfidence": "low",
-      "googleDisplayName": "KD braider",
-      "googleFormattedAddress": "668a Old Kent Road Divine, Touch Saloon ltd, London SE15 1JF, UK",
-      "googleCheckedAt": "2026-07-23T22:26:25.522Z"
+      "googlePlaceId": null,
+      "googleReviewCount": 1,
+      "googleMapsUri": "https://maps.google.com/?cid=9692887190627019042",
+      "googleMatchConfidence": "high",
+      "googleDisplayName": "TTHAIRBARLDN",
+      "googleFormattedAddress": "17 Bellegrove Rd, Welling DA16 3PA, UK",
+      "googleCheckedAt": "2026-07-24T00:00:00.000Z",
+      "updatedAt": "2026-07-24"
     },
     {
       "id": "uni-tinas-saloon",
@@ -36562,7 +36741,7 @@
     },
     {
       "id": "moshhairlondon",
-      "name": "MoshHairlondon",
+      "name": "MoshBeautyuk",
       "areaId": "london",
       "areaLabel": "London",
       "neighbourhood": "London",
@@ -36625,10 +36804,10 @@
       "googlePlaceId": "ChIJj2GjqXkDdkgR4YbM04EL-Hs",
       "googleReviewCount": 11,
       "googleMapsUri": "https://maps.google.com/?cid=8932902513121461985&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
-      "googleMatchConfidence": "low",
+      "googleMatchConfidence": "high",
       "googleDisplayName": "MoshBeautyuk",
       "googleFormattedAddress": "3, Sandhurst Market, Sandhurst Rd, London SE6 1DL, UK",
-      "googleCheckedAt": "2026-07-23T22:26:50.644Z",
+      "googleCheckedAt": "2026-07-24T00:00:00.000Z",
       "websiteUrl": "",
       "wheelchairAccessible": false,
       "customFilters": {},
@@ -36640,7 +36819,7 @@
     {
       "id": "ccs-glamhousehair",
       "name": "Ccs Glamhousehair",
-      "areaId": "all-london",
+      "areaId": "south-east",
       "areaLabel": "South east London",
       "neighbourhood": "South east London London",
       "postcode": "",
@@ -36678,14 +36857,10 @@
       "priceCheckedAt": "2026-06-05",
       "priceConfidence": "high",
       "priceUpdatedAt": "2026-06-05",
-      "areaIds": [
-        "all-london",
-        "south-east"
-      ],
       "tiktokUrl": "",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
-      "updatedAt": "2026-06-03",
+      "updatedAt": "2026-07-24",
       "servicePriceBand": "££",
       "packagePriceBand": "",
       "priceIncludesHair": false,
@@ -37320,7 +37495,7 @@
     {
       "id": "ksleek",
       "name": "Ksleek",
-      "areaId": "all-london",
+      "areaId": "south-east",
       "areaLabel": "South east London",
       "neighbourhood": "South east London London",
       "postcode": "",
@@ -37364,10 +37539,6 @@
       "priceCheckedAt": "2026-06-03",
       "priceConfidence": "high",
       "priceUpdatedAt": "2026-06-03",
-      "areaIds": [
-        "all-london",
-        "south-east"
-      ],
       "tiktokUrl": "",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
@@ -37376,7 +37547,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-06-09",
+      "updatedAt": "2026-07-24",
       "addedVia": "Bulk import",
       "discoverySource": "Cowork scrape",
       "googlePlaceId": "ChIJw5JOrqEDdkgRIMpT2S0wIak",
@@ -37747,9 +37918,6 @@
       "priceBand": "£",
       "priceSource": "auto",
       "priceEvidence": [
-        "1:1 Class: Styling With The Stylist - £150",
-        "1:1 Client Class: Wig Install DIY - £159.99",
-        "1:1 Class: Custom Wig Unit - £450",
         "Custom colour: ombre 1b - £70",
         "Custom colour: Highlights + Tonal service - £140",
         "Custom colour: Balayage - £110",
@@ -37758,7 +37926,7 @@
       ],
       "priceCheckedAt": "2026-06-03",
       "priceConfidence": "high",
-      "priceUpdatedAt": "2026-06-03",
+      "priceUpdatedAt": "2026-07-24",
       "addedVia": "Bulk import",
       "discoverySource": "Cowork scrape",
       "googlePlaceId": "ChIJ9zxAMRkddkgR_RN8yCHr2vc",
@@ -37767,7 +37935,8 @@
       "googleMatchConfidence": "low",
       "googleDisplayName": "LOPE STUDIOS",
       "googleFormattedAddress": "76 De Beauvoir Cres, London N1 5SB, UK",
-      "googleCheckedAt": "2026-07-23T22:27:07.057Z"
+      "googleCheckedAt": "2026-07-23T22:27:07.057Z",
+      "updatedAt": "2026-07-24"
     },
     {
       "id": "dollytheeslickz",
@@ -40181,10 +40350,10 @@
       "googlePlaceId": "ChIJ93JOkeIRdkgRVeMy4hd49L0",
       "googleReviewCount": 4,
       "googleMapsUri": "https://maps.google.com/?cid=13687697211460346709&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
-      "googleMatchConfidence": "low",
+      "googleMatchConfidence": "high",
       "googleDisplayName": "The Hair & Scalp Clinic",
       "googleFormattedAddress": "9 Vivian Ave, London NW4 3UT, UK",
-      "googleCheckedAt": "2026-07-23T22:27:46.418Z",
+      "googleCheckedAt": "2026-07-24T00:00:00.000Z",
       "websiteUrl": "",
       "wheelchairAccessible": false,
       "customFilters": {},
