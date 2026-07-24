@@ -476,6 +476,36 @@ export const serviceAliases = {
   Sisterlocs: "Microlocs / sisterlocs",
 };
 
+// Platforms whose listing/booking page has a customer reviews section we can
+// reliably detect (server-rendered review count). None of these — including
+// Google — formally verify the reviewer had a real appointment, so the UI
+// deliberately doesn't claim "verified"; this is just "has reviews".
+const verifiedReviewHostnames = ["fresha.com", "treatwell.co.uk", "booksy.com", "vagaro.com", "styleseat.com", "setmore.com"];
+
+function hasVerifiedReviewPlatform(salon) {
+  const url = (salon.bookingUrl || "").toLowerCase();
+  return verifiedReviewHostnames.some((hostname) => url.includes(hostname));
+}
+
+// Being on a verified-review platform isn't enough on its own — a listing can be on
+// Fresha with zero reviews yet. Only count it once we've actually confirmed a positive
+// review count (see scripts/backfill-verified-review-counts.mjs). Unchecked salons
+// (verifiedReviewCount undefined) are treated as not-yet-verified, not verified.
+function hasVerifiedBookingPlatformReviews(salon) {
+  return hasVerifiedReviewPlatform(salon) && Number(salon.verifiedReviewCount) > 0;
+}
+
+// Google fills the gap for salons with no booking-platform reviews. Only trust it
+// when the match was high-confidence (see scripts/backfill-google-reviews.mjs) —
+// a low-confidence match could be an entirely different business.
+function hasVerifiedGoogleReviews(salon) {
+  return salon.googleMatchConfidence === "high" && Number(salon.googleReviewCount) > 0;
+}
+
+function salonHasVerifiedReviews(salon) {
+  return hasVerifiedBookingPlatformReviews(salon) || hasVerifiedGoogleReviews(salon);
+}
+
 export async function readSalonIndex() {
   const manualIndex = await readIndexFile(manualIndexPath, "manual");
   const normalizedSalons = manualIndex.salons
@@ -483,6 +513,7 @@ export async function readSalonIndex() {
       ...salon,
       addedIndex,
       services: normalizeServices(salon.services),
+      hasVerifiedReviews: salonHasVerifiedReviews(salon),
     }))
     .sort(compareRecentlyAdded);
 
@@ -503,6 +534,8 @@ export async function searchSalons({
   hijabiFriendly = false,
   canBraidWithoutGel = false,
   wheelchairAccessible = false,
+  hasVerifiedReviews = false,
+  googleReviewsOnly = false,
   customFilters = {},
 } = {}) {
   const index = await readSalonIndex();
@@ -520,6 +553,8 @@ export async function searchSalons({
         matchesHijabiFriendly(salon, hijabiFriendly) &&
         matchesCanBraidWithoutGel(salon, canBraidWithoutGel) &&
         matchesWheelchairAccessible(salon, wheelchairAccessible) &&
+        matchesHasVerifiedReviews(salon, hasVerifiedReviews) &&
+        matchesGoogleReviewsOnly(salon, googleReviewsOnly) &&
         matchesCustomFilters(salon, customFilters),
     )
     .sort(compareRecentlyAdded);
@@ -614,6 +649,22 @@ function matchesWheelchairAccessible(salon, wheelchairAccessible) {
   }
 
   return salon.wheelchairAccessible === true;
+}
+
+function matchesHasVerifiedReviews(salon, hasVerifiedReviews) {
+  if (!hasVerifiedReviews) {
+    return true;
+  }
+
+  return salonHasVerifiedReviews(salon) === true;
+}
+
+function matchesGoogleReviewsOnly(salon, googleReviewsOnly) {
+  if (!googleReviewsOnly) {
+    return true;
+  }
+
+  return hasVerifiedGoogleReviews(salon) === true;
 }
 
 

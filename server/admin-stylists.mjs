@@ -2908,7 +2908,11 @@ async function checkPricingFreshness(salon, dismissedRecommendation = {}) {
     };
   }
 
-  const autoUpdate = getAutoPricingUpdate(priceCheck);
+  // A manually-entered price is a deliberate admin override — never let a re-scrape
+  // silently replace it, even at "high confidence". The scraper can be confidently
+  // wrong (e.g. misreading a site's price format), so a manual price always requires
+  // a human to review and accept the change, not an auto-overwrite.
+  const autoUpdate = salon.priceSource === "manual" ? null : getAutoPricingUpdate(priceCheck);
   return {
     ...baseCheck,
     backfillStatus: autoUpdate ? "auto-applied" : "needs-review",

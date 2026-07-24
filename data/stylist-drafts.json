@@ -1,10 +1,60 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-07-17",
-    "count": 2
+    "updatedAt": "2026-07-23",
+    "count": 3
   },
   "drafts": [
+    {
+      "id": "lockonego",
+      "status": "ready_to_approve",
+      "name": "Lockonego",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london",
+        "south-west",
+        "west"
+      ],
+      "areaLabel": "South west London / West London",
+      "neighbourhood": "South west London and West London London",
+      "postcode": "",
+      "bookingPlatform": "Direct",
+      "bookingUrl": "https://s-iq.co/BookingPortal/dist/?salonid=7531f04e-98e4-4601-af96-f57bc70eb626&tab=book",
+      "instagramUrl": "https://www.instagram.com/lockonego/",
+      "tiktokUrl": "https://www.tiktok.com/@shantelrousseau/video/7232375062408547611",
+      "addedVia": "Admin tool",
+      "discoverySource": "Manual search",
+      "services": [
+        "Bouncy blowout / Round Brush Blow dry"
+      ],
+      "rawServices": [],
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": true,
+      "customFilters": {},
+      "priceBand": "£",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "1/2 Head Highlights - £120",
+        "3/4 Head Highlights - £140",
+        "All Over Colour - £90",
+        "Balayage Full Head - £150",
+        "Balayage Hairline - £115",
+        "Balayage Half Head - £135",
+        "Base Breaker - £35",
+        "Full Head Highlights - £150"
+      ],
+      "priceCheckedAt": "2026-06-24",
+      "priceUpdatedAt": "2026-06-24",
+      "priceConfidence": "high",
+      "summary": "Admin draft created from stylist intake.",
+      "warnings": [],
+      "evidence": [
+        "Submitted link: https://www.instagram.com/lockonego/"
+      ],
+      "createdAt": "2026-07-23",
+      "updatedAt": "2026-07-23"
+    },
     {
       "id": "hannurco",
       "status": "ready_to_approve",

@@ -1,5 +1,5 @@
 import { Fragment, type ReactNode, useCallback, useEffect, useRef, useState } from "react";
-import { Check, ChevronDown, Globe, Search, X } from "lucide-react";
+import { ArrowUpRight, Check, ChevronDown, Globe, Search, X } from "lucide-react";
 
 import { Checkbox } from "@/components/ui/checkbox";
 import { AdminApp } from "@/AdminApp";
@@ -94,6 +94,11 @@ type SalonResult = {
   hijabiFriendly?: boolean;
   canBraidWithoutGel?: boolean;
   wheelchairAccessible?: boolean;
+  hasVerifiedReviews?: boolean;
+  verifiedReviewCount?: number;
+  googleMapsUri?: string;
+  googleReviewCount?: number;
+  googleMatchConfidence?: "high" | "low" | "no-match";
   customFilters?: Record<string, string[]>;
   priceBand?: PriceBand;
   servicePriceBand?: PriceBand;
@@ -234,6 +239,67 @@ function getResultCustomFilterLabels(result: SalonResult, filterTypes: CustomFil
     const selectedIds = result.customFilters?.[filterType.id] ?? [];
     return filterType.options.filter((option) => selectedIds.includes(option.id)).map((option) => option.label);
   });
+}
+
+const verifiedReviewPlatformHostnames: [string, string][] = [
+  ["fresha.com", "Fresha"],
+  ["treatwell.co.uk", "Treatwell"],
+  ["booksy.com", "Booksy"],
+  ["vagaro.com", "Vagaro"],
+  ["styleseat.com", "StyleSeat"],
+  ["setmore.com", "Setmore"],
+];
+
+function getVerifiedReviewsPlatform(result: SalonResult): string | null {
+  const url = (result.bookingUrl || "").toLowerCase();
+  return verifiedReviewPlatformHostnames.find(([hostname]) => url.includes(hostname))?.[1] ?? null;
+}
+
+function getVerifiedReviewsUrl(result: SalonResult): string {
+  const bookingUrl = result.bookingUrl || "";
+  const platform = getVerifiedReviewsPlatform(result);
+  if (platform !== "Fresha" && platform !== "Treatwell" && platform !== "Setmore") {
+    return bookingUrl;
+  }
+
+  for (const candidate of [bookingUrl, `https://${bookingUrl}`]) {
+    try {
+      const url = new URL(candidate);
+      if (platform === "Fresha") {
+        url.searchParams.set("reviews", "true");
+      } else if (platform === "Setmore") {
+        // Setmore has a dedicated /reviews route off the booking page root.
+        url.pathname = `${url.pathname.replace(/\/+$/, "")}/reviews`;
+      } else {
+        // widget.treatwell.co.uk is a stripped-down booking embed with no reviews
+        // section at all; the same /place/{slug}/ path on the main site has one.
+        if (url.hostname === "widget.treatwell.co.uk") {
+          url.hostname = "www.treatwell.co.uk";
+        }
+        // Treatwell's reviews button just scrolls to this in-page section;
+        // there's no query param, so a fragment does the same thing.
+        url.hash = "reviews";
+      }
+      return url.toString();
+    } catch {
+      continue;
+    }
+  }
+
+  return bookingUrl;
+}
+
+function getReviewsBannerInfo(result: SalonResult): { label: string; url: string } | null {
+  if (result.googleMatchConfidence === "high" && Number(result.googleReviewCount) > 0 && result.googleMapsUri) {
+    return { label: "Google reviews available", url: result.googleMapsUri };
+  }
+
+  const platform = getVerifiedReviewsPlatform(result);
+  if (platform && Number(result.verifiedReviewCount) > 0) {
+    return { label: `Reviews on ${platform}`, url: getVerifiedReviewsUrl(result) };
+  }
+
+  return null;
 }
 
 function priceBandRank(result: SalonResult) {
@@ -462,9 +528,10 @@ function AnimatedCollapsible({
   );
 }
 
-function ServicesSummary({ services }: { services: string[] }) {
+function ServicesSummary({ services, badgeLabel }: { services: string[]; badgeLabel?: string | null }) {
   const lineRef = useRef<HTMLDivElement | null>(null);
   const separatorMeasureRef = useRef<HTMLSpanElement | null>(null);
+  const badgeMeasureRef = useRef<HTMLSpanElement | null>(null);
   const serviceMeasureRefs = useRef<(HTMLSpanElement | null)[]>([]);
   const suffixMeasureRefs = useRef<Record<number, HTMLSpanElement | null>>({});
   const [visibleCount, setVisibleCount] = useState(services.length);
@@ -507,6 +574,9 @@ function ServicesSummary({ services }: { services: string[] }) {
 
       const serviceWidths = services.map((_, index) => serviceMeasureRefs.current[index]?.offsetWidth ?? 0);
       const separatorWidth = separatorElement.offsetWidth;
+      // The badge is always shown, never part of the truncation count — its width
+      // (plus the gap before the first service) just eats into the line's budget.
+      const badgeWidth = badgeLabel ? (badgeMeasureRef.current?.offsetWidth ?? 0) + (services.length > 0 ? separatorWidth : 0) : 0;
 
       let nextVisibleCount = services.length;
 
@@ -517,7 +587,7 @@ function ServicesSummary({ services }: { services: string[] }) {
         const suffixWidth =
           hiddenCount > 0 ? (suffixMeasureRefs.current[hiddenCount]?.offsetWidth ?? 0) + (count > 0 ? separatorWidth : 0) : 0;
 
-        if (visibleServicesWidth + visibleSeparatorsWidth + suffixWidth <= availableWidth - safetyBuffer) {
+        if (badgeWidth + visibleServicesWidth + visibleSeparatorsWidth + suffixWidth <= availableWidth - safetyBuffer) {
           nextVisibleCount = count;
           break;
         }
@@ -537,7 +607,7 @@ function ServicesSummary({ services }: { services: string[] }) {
       resizeObserver?.disconnect();
       window.removeEventListener("resize", measure);
     };
-  }, [services]);
+  }, [services, badgeLabel]);
 
   useEffect(() => {
     setIsExpandedOnMobile(false);
@@ -551,12 +621,22 @@ function ServicesSummary({ services }: { services: string[] }) {
 
   const hiddenCount = Math.max(0, services.length - visibleCount);
   const fullServicesLabel = services.join(" · ");
+  const fullAriaLabel = badgeLabel ? `${badgeLabel} · ${fullServicesLabel}` : fullServicesLabel;
   const isExpandableOnMobile = isMobileViewport && hiddenCount > 0;
   const isExpandableOnDesktop = !isMobileViewport && hiddenCount > 0;
   const showExpandedList = isExpandableOnMobile && isExpandedOnMobile;
   const showExpandedOnDesktop = isExpandableOnDesktop && isHoveredOnDesktop;
+  const badgeElement = badgeLabel ? (
+    <span
+      ref={badgeMeasureRef}
+      className="mr-1.5 inline-block rounded-none bg-stone-300 px-1.5 py-1 align-baseline text-[11px] font-semibold leading-none tracking-[0.06em] text-stone-900 dark:bg-stone-700 dark:text-stone-300"
+    >
+      {badgeLabel}
+    </span>
+  ) : null;
   const collapsedSummary = (
     <>
+      {badgeElement}
       {services.slice(0, visibleCount).map((service, index) => (
         <Fragment key={`${service}-${index}`}>
           {index > 0 ? <span className="text-stone-500/70 dark:text-stone-500/80"> · </span> : null}
@@ -590,17 +670,18 @@ function ServicesSummary({ services }: { services: string[] }) {
           <div
             ref={lineRef}
             className={cn(showExpandedList ? "whitespace-normal" : "overflow-hidden whitespace-nowrap")}
-            aria-label={fullServicesLabel}
+            aria-label={fullAriaLabel}
           >
-            {showExpandedList ? fullServicesLabel : collapsedSummary}
+            {showExpandedList ? <>{badgeElement}{fullServicesLabel}</> : collapsedSummary}
           </div>
         </>
       ) : showExpandedOnDesktop ? (
-        <div ref={lineRef} className="whitespace-normal" aria-label={fullServicesLabel}>
+        <div ref={lineRef} className="whitespace-normal" aria-label={fullAriaLabel}>
+          {badgeElement}
           {fullServicesLabel}
         </div>
       ) : (
-        <div ref={lineRef} className="overflow-hidden whitespace-nowrap" aria-label={fullServicesLabel}>
+        <div ref={lineRef} className="overflow-hidden whitespace-nowrap" aria-label={fullAriaLabel}>
           {collapsedSummary}
         </div>
       )}
@@ -734,6 +815,8 @@ export default function App() {
   const [draftSelectedHijabiFriendly, setDraftSelectedHijabiFriendly] = useState(false);
   const [draftSelectedCanBraidWithoutGel, setDraftSelectedCanBraidWithoutGel] = useState(false);
   const [draftSelectedWheelchairAccessible, setDraftSelectedWheelchairAccessible] = useState(false);
+  const [draftSelectedHasVerifiedReviews, setDraftSelectedHasVerifiedReviews] = useState(false);
+  const [draftSelectedGoogleReviewsOnly, setDraftSelectedGoogleReviewsOnly] = useState(false);
   const [draftSortOption, setDraftSortOption] = useState<SortOption>("default");
   const [visibleResultCount, setVisibleResultCount] = useState(RESULTS_BATCH_SIZE);
   const [isSearching, setIsSearching] = useState(false);
@@ -743,12 +826,15 @@ export default function App() {
   const [selectedHijabiFriendly, setSelectedHijabiFriendly] = useState(false);
   const [selectedCanBraidWithoutGel, setSelectedCanBraidWithoutGel] = useState(false);
   const [selectedWheelchairAccessible, setSelectedWheelchairAccessible] = useState(false);
+  const [selectedHasVerifiedReviews, setSelectedHasVerifiedReviews] = useState(false);
+  const [selectedGoogleReviewsOnly, setSelectedGoogleReviewsOnly] = useState(false);
   const [selectedPriceBands, setSelectedPriceBands] = useState<PriceRangeFilterId[]>([]);
   const [isDesktopViewport, setIsDesktopViewport] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const [locationsOpen, setLocationsOpen] = useState(false);
   const [priceRangesOpen, setPriceRangesOpen] = useState(false);
   const [additionalNeedsOpen, setAdditionalNeedsOpen] = useState(false);
+  const [reviewsFilterOpen, setReviewsFilterOpen] = useState(false);
   const loadMoreRef = useRef<HTMLDivElement | null>(null);
   const isMobileModalEditing = mobileFiltersOpen && !isDesktopViewport;
   const currentSelectedRegions = isMobileModalEditing ? draftSelectedRegions : selectedRegions;
@@ -758,6 +844,8 @@ export default function App() {
   const currentSelectedHijabiFriendly = isMobileModalEditing ? draftSelectedHijabiFriendly : selectedHijabiFriendly;
   const currentSelectedCanBraidWithoutGel = isMobileModalEditing ? draftSelectedCanBraidWithoutGel : selectedCanBraidWithoutGel;
   const currentSelectedWheelchairAccessible = isMobileModalEditing ? draftSelectedWheelchairAccessible : selectedWheelchairAccessible;
+  const currentSelectedHasVerifiedReviews = isMobileModalEditing ? draftSelectedHasVerifiedReviews : selectedHasVerifiedReviews;
+  const currentSelectedGoogleReviewsOnly = isMobileModalEditing ? draftSelectedGoogleReviewsOnly : selectedGoogleReviewsOnly;
   const currentSelectedCustomFilters = isMobileModalEditing ? draftSelectedCustomFilters : selectedCustomFilters;
   const currentSortOption = isMobileModalEditing ? draftSortOption : sortOption;
 
@@ -782,6 +870,8 @@ export default function App() {
     setDraftSelectedHijabiFriendly(selectedHijabiFriendly);
     setDraftSelectedCanBraidWithoutGel(selectedCanBraidWithoutGel);
     setDraftSelectedWheelchairAccessible(selectedWheelchairAccessible);
+    setDraftSelectedHasVerifiedReviews(selectedHasVerifiedReviews);
+    setDraftSelectedGoogleReviewsOnly(selectedGoogleReviewsOnly);
     setDraftSelectedCustomFilters(selectedCustomFilters);
     setDraftSortOption(sortOption);
   }
@@ -805,6 +895,8 @@ export default function App() {
     setSelectedHijabiFriendly(draftSelectedHijabiFriendly);
     setSelectedCanBraidWithoutGel(draftSelectedCanBraidWithoutGel);
     setSelectedWheelchairAccessible(draftSelectedWheelchairAccessible);
+    setSelectedHasVerifiedReviews(draftSelectedHasVerifiedReviews);
+    setSelectedGoogleReviewsOnly(draftSelectedGoogleReviewsOnly);
     setSelectedCustomFilters(draftSelectedCustomFilters);
     setSortOption(draftSortOption);
     setVisibleResultCount(RESULTS_BATCH_SIZE);
@@ -878,6 +970,24 @@ export default function App() {
     setSelectedWheelchairAccessible(updater);
   }
 
+  function updateHasVerifiedReviews(updater: boolean | ((current: boolean) => boolean)) {
+    if (isMobileModalEditing) {
+      setDraftSelectedHasVerifiedReviews(updater);
+      return;
+    }
+
+    setSelectedHasVerifiedReviews(updater);
+  }
+
+  function updateGoogleReviewsOnly(updater: boolean | ((current: boolean) => boolean)) {
+    if (isMobileModalEditing) {
+      setDraftSelectedGoogleReviewsOnly(updater);
+      return;
+    }
+
+    setSelectedGoogleReviewsOnly(updater);
+  }
+
   function updateCustomFilters(updater: Record<string, string[]> | ((current: Record<string, string[]>) => Record<string, string[]>)) {
     if (isMobileModalEditing) {
       setDraftSelectedCustomFilters(updater);
@@ -904,6 +1014,7 @@ export default function App() {
         setLocationsOpen(false);
         setPriceRangesOpen(false);
         setAdditionalNeedsOpen(false);
+        setReviewsFilterOpen(false);
         setOpenCustomFilterTypeId(null);
       }
       trackAnalyticsEvent("filter_section_toggled", {
@@ -921,6 +1032,7 @@ export default function App() {
         setServicesOpen(false);
         setPriceRangesOpen(false);
         setAdditionalNeedsOpen(false);
+        setReviewsFilterOpen(false);
         setOpenCustomFilterTypeId(null);
       }
       trackAnalyticsEvent("filter_section_toggled", {
@@ -938,6 +1050,7 @@ export default function App() {
         setServicesOpen(false);
         setLocationsOpen(false);
         setAdditionalNeedsOpen(false);
+        setReviewsFilterOpen(false);
         setOpenCustomFilterTypeId(null);
       }
       trackAnalyticsEvent("filter_section_toggled", {
@@ -955,10 +1068,29 @@ export default function App() {
         setServicesOpen(false);
         setLocationsOpen(false);
         setPriceRangesOpen(false);
+        setReviewsFilterOpen(false);
         setOpenCustomFilterTypeId(null);
       }
       trackAnalyticsEvent("filter_section_toggled", {
         section: "additional_needs",
+        expanded: nextIsOpen,
+      });
+      return nextIsOpen;
+    });
+  }
+
+  function toggleReviewsFilterOpen() {
+    setReviewsFilterOpen((current) => {
+      const nextIsOpen = !current;
+      if (nextIsOpen) {
+        setServicesOpen(false);
+        setLocationsOpen(false);
+        setPriceRangesOpen(false);
+        setAdditionalNeedsOpen(false);
+        setOpenCustomFilterTypeId(null);
+      }
+      trackAnalyticsEvent("filter_section_toggled", {
+        section: "reviews",
         expanded: nextIsOpen,
       });
       return nextIsOpen;
@@ -973,6 +1105,7 @@ export default function App() {
         setLocationsOpen(false);
         setPriceRangesOpen(false);
         setAdditionalNeedsOpen(false);
+        setReviewsFilterOpen(false);
       }
       trackAnalyticsEvent("filter_section_toggled", {
         section: `custom_${filterTypeId}`,
@@ -991,6 +1124,8 @@ export default function App() {
       hijabi_friendly: currentSelectedHijabiFriendly,
       can_braid_without_gel: currentSelectedCanBraidWithoutGel,
       wheelchair_accessible: currentSelectedWheelchairAccessible,
+      has_verified_reviews: currentSelectedHasVerifiedReviews,
+      google_reviews_only: currentSelectedGoogleReviewsOnly,
     });
     updateCategories([]);
     updateSubcategories([]);
@@ -999,6 +1134,8 @@ export default function App() {
     updateHijabiFriendly(false);
     updateCanBraidWithoutGel(false);
     updateWheelchairAccessible(false);
+    updateHasVerifiedReviews(false);
+    updateGoogleReviewsOnly(false);
     updateCustomFilters({});
     updateSortOption("default");
   }
@@ -1104,6 +1241,27 @@ export default function App() {
 
   function toggleWheelchairAccessible() {
     updateWheelchairAccessible((current) => !current);
+  }
+
+  function toggleHasVerifiedReviews() {
+    const nextEnabled = !currentSelectedHasVerifiedReviews;
+    trackAnalyticsEvent("verified_reviews_toggle_changed", {
+      enabled: nextEnabled,
+    });
+    updateHasVerifiedReviews(nextEnabled);
+    // "Google reviews only" is nested under "All reviews" — hiding the parent
+    // clears the child so it can't stay active while hidden.
+    if (!nextEnabled) {
+      updateGoogleReviewsOnly(false);
+    }
+  }
+
+  function toggleGoogleReviewsOnly() {
+    const nextEnabled = !currentSelectedGoogleReviewsOnly;
+    trackAnalyticsEvent("google_reviews_only_toggle_changed", {
+      enabled: nextEnabled,
+    });
+    updateGoogleReviewsOnly(nextEnabled);
   }
 
   function toggleCustomFilterOption(filterTypeId: string, optionId: string) {
@@ -1225,6 +1383,8 @@ export default function App() {
           hijabiFriendly: selectedHijabiFriendly,
           canBraidWithoutGel: selectedCanBraidWithoutGel,
           wheelchairAccessible: selectedWheelchairAccessible,
+          hasVerifiedReviews: selectedHasVerifiedReviews,
+          googleReviewsOnly: selectedGoogleReviewsOnly,
           customFilters: selectedCustomFilters,
         }),
       });
@@ -1255,6 +1415,8 @@ export default function App() {
         hijabi_friendly: selectedHijabiFriendly,
         no_gel: selectedCanBraidWithoutGel,
         wheelchair_accessible: selectedWheelchairAccessible,
+        has_verified_reviews: selectedHasVerifiedReviews,
+        google_reviews_only: selectedGoogleReviewsOnly,
       });
 
       if (resultCount === 0) {
@@ -1264,6 +1426,8 @@ export default function App() {
           hijabi_friendly: selectedHijabiFriendly,
           no_gel: selectedCanBraidWithoutGel,
           wheelchair_accessible: selectedWheelchairAccessible,
+          has_verified_reviews: selectedHasVerifiedReviews,
+          google_reviews_only: selectedGoogleReviewsOnly,
         });
       }
 
@@ -1282,7 +1446,7 @@ export default function App() {
 
   useEffect(() => {
     void handleSearch({ scroll: false });
-  }, [selectedCategories, selectedSubcategories, selectedRegions, selectedHijabiFriendly, selectedCanBraidWithoutGel, selectedWheelchairAccessible, selectedCustomFilters]);
+  }, [selectedCategories, selectedSubcategories, selectedRegions, selectedHijabiFriendly, selectedCanBraidWithoutGel, selectedWheelchairAccessible, selectedHasVerifiedReviews, selectedGoogleReviewsOnly, selectedCustomFilters]);
 
   useEffect(() => {
     fetch("/api/filters")
@@ -1364,6 +1528,8 @@ export default function App() {
     selectedHijabiFriendly ||
     selectedCanBraidWithoutGel ||
     selectedWheelchairAccessible ||
+    selectedHasVerifiedReviews ||
+    selectedGoogleReviewsOnly ||
     Object.values(selectedCustomFilters).some((values) => values.length > 0) ||
     selectedRegions.length !== 1 ||
     selectedRegions[0] !== "all";
@@ -1433,6 +1599,7 @@ export default function App() {
   const selectedPriceRangeCount = currentSelectedPriceBands.length;
   const selectedAdditionalNeedsCount =
     (currentSelectedHijabiFriendly ? 1 : 0) + (currentSelectedCanBraidWithoutGel ? 1 : 0) + (currentSelectedWheelchairAccessible ? 1 : 0);
+  const selectedReviewsCount = currentSelectedHasVerifiedReviews || currentSelectedGoogleReviewsOnly ? 1 : 0;
   const selectedCustomFilterCounts = Object.fromEntries(
     customFilterTypes.map((filterType) => [filterType.id, (currentSelectedCustomFilters[filterType.id] ?? []).length]),
   );
@@ -1538,6 +1705,13 @@ export default function App() {
                 const orderedServices = orderServicesBySelection(result.services, selectedCategories, selectedSubcategories, runtimeCategoryServiceMap);
 
                 const activeServices = [...selectedCategories, ...selectedSubcategories].join(", ") || "none";
+                const reviewsBanner = getReviewsBannerInfo(result);
+                const attributeLabels = [
+                  result.wheelchairAccessible ? "wheelchair access" : null,
+                  result.hijabiFriendly ? "hijabi-friendly" : null,
+                  result.canBraidWithoutGel ? "can braid without gel" : null,
+                  ...getResultCustomFilterLabels(result, customFilterTypes),
+                ].filter((label): label is string => Boolean(label));
 
                 return (
                   <StylistCardWrapper key={result.id} result={result} services={activeServices}>
@@ -1546,29 +1720,34 @@ export default function App() {
                         <div className="min-w-0 grow">
                           <div className="flex items-start justify-between gap-3">
                             <div className="min-w-0">
-                              <div className="flex flex-col items-start sm:flex-row sm:flex-wrap sm:items-baseline sm:gap-x-2">
-                                <h3 className="text-[17px] font-semibold text-stone-950 dark:text-stone-50">{result.name}</h3>
-                                {locationLabels.length > 0 ? (
-                                  <>
-                                    <span aria-hidden="true" className="hidden text-[17px] font-semibold text-stone-400 dark:text-stone-500 sm:inline">·</span>
-                                    <span className="text-[15px] font-semibold text-stone-500 dark:text-stone-400 sm:text-[17px]">
-                                      {locationLabels.join(" · ")}
-                                    </span>
-                                  </>
-                                ) : null}
-                              </div>
-                              {(comparablePriceBand(result) || result.hijabiFriendly || result.canBraidWithoutGel || result.wheelchairAccessible || getResultCustomFilterLabels(result, customFilterTypes).length > 0) ? (
-                                <div className="mt-1">
-                                  <span className="inline-flex items-center rounded-none bg-stone-200 px-1.5 py-1 text-[11px] font-medium leading-none tracking-[0.03em] text-stone-700 dark:bg-stone-700 dark:text-stone-100">
-                                    {[
-                                      comparablePriceBand(result),
-                                      result.wheelchairAccessible ? "wheelchair accessible" : null,
-                                      result.hijabiFriendly ? "hijabi-friendly" : null,
-                                      result.canBraidWithoutGel ? "can braid without gel" : null,
-                                      ...getResultCustomFilterLabels(result, customFilterTypes),
-                                    ].filter(Boolean).join(" · ")}
-                                  </span>
+                              <h3 className="flex items-center gap-1 text-[17px] font-semibold text-stone-950 dark:text-stone-50">
+                                {result.name}
+                              </h3>
+                              {locationLabels.length > 0 || comparablePriceBand(result) ? (
+                                <div className="mt-0.5 flex flex-wrap items-center gap-x-1.5 text-[13px] font-medium text-stone-500 dark:text-stone-400">
+                                  {locationLabels.length > 0 ? <span>{locationLabels.join(" · ")}</span> : null}
+                                  {locationLabels.length > 0 && comparablePriceBand(result) ? (
+                                    <span aria-hidden="true" className="text-stone-400 dark:text-stone-500">·</span>
+                                  ) : null}
+                                  {comparablePriceBand(result) ? <span>{comparablePriceBand(result)}</span> : null}
                                 </div>
+                              ) : null}
+                              {reviewsBanner ? (
+                                <a
+                                  href={reviewsBanner.url}
+                                  target="_blank"
+                                  rel="noreferrer"
+                                  onClick={() =>
+                                    trackAnalyticsEvent("verified_reviews_click", {
+                                      salon: result.name,
+                                      platform: getVerifiedReviewsPlatform(result) ?? "google",
+                                    })
+                                  }
+                                  className="mt-1 inline-flex w-fit items-center gap-1 text-[13px] font-medium text-blue-600 transition-colors hover:text-blue-700 active:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 dark:active:text-blue-300"
+                                >
+                                  <span>{reviewsBanner.label}</span>
+                                  <ArrowUpRight className="size-3.5 shrink-0" aria-hidden="true" />
+                                </a>
                               ) : null}
                             </div>
                             {result.instagramUrl ? (
@@ -1594,10 +1773,10 @@ export default function App() {
                       </div>
 
                       <div className="order-2 my-1 w-full rounded-none border-l-4 border-stone-300 bg-stone-200/45 pl-2 pr-3 py-2 text-[12px] font-normal lowercase leading-[18px] tracking-[0.02em] text-stone-700 dark:border-stone-700 dark:bg-stone-900/48 dark:text-stone-300 sm:order-3 sm:col-span-2 sm:my-0 lg:mt-2">
-                        <ServicesSummary services={orderedServices} />
+                        <ServicesSummary services={orderedServices} badgeLabel={attributeLabels.length > 0 ? attributeLabels.join(" · ") : null} />
                       </div>
 
-                      <div className="order-3 mt-2 flex w-full shrink-0 items-center gap-2 sm:order-2 sm:mt-0 sm:h-full sm:w-auto sm:self-stretch sm:items-stretch sm:justify-self-end">
+                      <div className="order-3 mt-2 flex w-full shrink-0 items-center gap-2 sm:order-2 sm:mt-0 sm:w-auto sm:self-start sm:justify-self-end">
                         {result.instagramUrl ? (
                           <a
                             href={result.instagramUrl}
@@ -1609,7 +1788,7 @@ export default function App() {
                                 placement: "desktop",
                               })
                             }
-                            className="hidden min-h-[46px] items-center justify-center gap-2 rounded-none bg-transparent px-4 py-2 text-[14px] font-medium text-stone-950 transition-colors duration-150 hover:bg-stone-200 dark:bg-transparent dark:text-stone-100 dark:hover:bg-stone-800 sm:inline-flex sm:h-full sm:min-h-0"
+                            className="hidden min-h-[48px] items-center justify-center gap-2 rounded-none bg-transparent px-4 py-2 text-[14px] font-medium text-stone-950 transition-colors duration-150 hover:bg-stone-200 dark:bg-transparent dark:text-stone-100 dark:hover:bg-stone-800 sm:inline-flex sm:min-h-[40px]"
                           >
                             <InstagramIcon className="size-4" />
                             <span className="sr-only">Go to {result.name} Instagram - opens in a new tab</span>
@@ -1628,7 +1807,7 @@ export default function App() {
                                 services: [...selectedCategories, ...selectedSubcategories].join(", ") || "none",
                               })
                             }
-                            className="inline-flex min-h-[46px] flex-1 items-center justify-center rounded-none bg-stone-950 px-5 py-2 text-[14px] font-medium text-stone-100 transition-colors duration-150 hover:bg-stone-800 active:bg-stone-800 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-stone-300 dark:active:bg-stone-300 sm:h-full sm:min-h-0 sm:flex-none sm:px-6"
+                            className="inline-flex min-h-[48px] flex-1 items-center justify-center rounded-none bg-stone-950 px-5 py-2 text-[14px] font-medium text-stone-100 transition-colors duration-150 hover:bg-stone-800 active:bg-stone-800 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-stone-300 dark:active:bg-stone-300 sm:min-h-[40px] sm:flex-none sm:px-4"
                           >
                             <span aria-hidden="true">Book</span>
                             <span className="sr-only">Book {result.name} - opens in a new tab</span>
@@ -1756,6 +1935,7 @@ export default function App() {
                 </div>
               </div>
             </div>
+
 
               <div>
                 <div
@@ -2094,7 +2274,7 @@ export default function App() {
                 <AnimatedCollapsible open={priceRangesOpen}>
                   <div className="space-y-2 pt-3">
                     <p className="px-2 text-[12px] leading-4 text-stone-500 dark:text-stone-500">
-                      The median price for all services on their booking site. Some services may be more or less than this price range. Some providers do not list their prices online.
+                      The median price of all services on a booking site. Some services may be more or less than this price range. Some providers do not list their prices online.
                     </p>
                     {priceRangeOptions.map((option) => {
                       const isActive = currentSelectedPriceBands.includes(option.id);
@@ -2125,6 +2305,92 @@ export default function App() {
                   </div>
                 </AnimatedCollapsible>
               </div>
+
+            <div>
+              <div
+                className={cn(
+                  "bg-stone-100 pb-2 dark:bg-stone-950 lg:sticky lg:top-0 lg:z-10",
+                  reviewsFilterOpen && "border-b border-stone-300 dark:border-stone-800",
+                )}
+              >
+                <button
+                  type="button"
+                  aria-expanded={reviewsFilterOpen}
+                  onClick={toggleReviewsFilterOpen}
+                  className="group flex min-h-11 w-full items-center justify-between rounded-none bg-transparent px-0 py-2 text-left"
+                >
+                  <span className="text-[15px] font-medium text-stone-950 transition-colors group-hover:text-stone-500 group-active:text-stone-500 dark:text-stone-100 dark:group-hover:text-stone-500 dark:group-active:text-stone-500">Reviews</span>
+                  <span className="flex items-center gap-2">
+                    {selectedReviewsCount > 0 ? (
+                      <span className="inline-flex min-h-5 min-w-5 items-center justify-center rounded-full bg-stone-950 px-2 text-[11px] font-bold leading-none text-stone-100 transition-colors group-hover:bg-stone-500 dark:bg-stone-100 dark:text-stone-950 dark:group-hover:bg-stone-500">
+                        {selectedReviewsCount}
+                      </span>
+                    ) : null}
+                    <ChevronDown
+                      className={cn("size-4 text-stone-700 transition-colors transition-transform group-hover:text-stone-500 group-active:text-stone-500 dark:text-stone-200 dark:group-hover:text-stone-400 dark:group-active:text-stone-400", reviewsFilterOpen && "rotate-180")}
+                      aria-hidden="true"
+                    />
+                  </span>
+                </button>
+              </div>
+
+              <AnimatedCollapsible open={reviewsFilterOpen}>
+                <div className="space-y-2 pt-3">
+                  {(() => {
+                    const allReviewsLabelId = makeFilterLabelId("reviews", "all");
+                    const googleOnlyLabelId = makeFilterLabelId("reviews", "google-only");
+
+                    return (
+                      <>
+                        <div
+                          role="checkbox"
+                          tabIndex={0}
+                          aria-checked={currentSelectedHasVerifiedReviews}
+                          aria-labelledby={allReviewsLabelId}
+                          className="flex w-full cursor-pointer items-start gap-3 rounded-none px-2 py-2 text-left transition-colors hover:bg-stone-200 active:bg-stone-200 dark:hover:bg-stone-900 dark:active:bg-stone-900"
+                          onClick={toggleHasVerifiedReviews}
+                          onKeyDown={(event) => handleToggleKeyDown(event, toggleHasVerifiedReviews)}
+                        >
+                          <Checkbox
+                            checked={currentSelectedHasVerifiedReviews}
+                            aria-hidden="true"
+                            tabIndex={-1}
+                            className="pointer-events-none mt-0.5"
+                          />
+                          <span id={allReviewsLabelId} className="translate-y-[1.5px] text-[15px] text-stone-800 dark:text-stone-200">
+                            All reviews
+                          </span>
+                        </div>
+
+                        {currentSelectedHasVerifiedReviews ? (
+                          <div className="pl-8">
+                            <div
+                              role="checkbox"
+                              tabIndex={0}
+                              aria-checked={currentSelectedGoogleReviewsOnly}
+                              aria-labelledby={googleOnlyLabelId}
+                              className="flex w-full cursor-pointer items-start gap-3 rounded-none px-2 py-2 text-left transition-colors hover:bg-stone-200 active:bg-stone-200 dark:hover:bg-stone-900 dark:active:bg-stone-900"
+                              onClick={toggleGoogleReviewsOnly}
+                              onKeyDown={(event) => handleToggleKeyDown(event, toggleGoogleReviewsOnly)}
+                            >
+                              <Checkbox
+                                checked={currentSelectedGoogleReviewsOnly}
+                                aria-hidden="true"
+                                tabIndex={-1}
+                                className="pointer-events-none mt-0.5"
+                              />
+                              <span id={googleOnlyLabelId} className="translate-y-[1.5px] text-[15px] text-stone-800 dark:text-stone-200">
+                                Google reviews only
+                              </span>
+                            </div>
+                          </div>
+                        ) : null}
+                      </>
+                    );
+                  })()}
+                </div>
+              </AnimatedCollapsible>
+            </div>
 
               <div>
                 <div
@@ -2217,7 +2483,7 @@ export default function App() {
                         {currentSelectedWheelchairAccessible ? <Check className="size-3.5" /> : null}
                       </span>
                       <span className="translate-y-[1.5px] text-[15px] text-stone-800 dark:text-stone-200">
-                        Wheelchair accessible
+                        Wheelchair accessible entrance
                       </span>
                     </button>
                   </div>

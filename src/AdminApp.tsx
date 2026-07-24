@@ -2332,7 +2332,7 @@ const stylistPriceFilterOptions = [
 const stylistNeedsFilterOptions = [
   { id: "canBraidWithoutGel", label: "Can braid without gel" },
   { id: "hijabiFriendly", label: "Hijabi-friendly" },
-  { id: "wheelchairAccessible", label: "Wheelchair accessible" },
+  { id: "wheelchairAccessible", label: "Wheelchair accessible entrance" },
 ];
 
 const stylistStatusFilterOptions = [
@@ -4926,7 +4926,7 @@ function getAttributeRejectUpdate(field: AttributeSuggestion["field"]): Freshnes
 }
 
 function getAttributeActionLabel(field?: AttributeSuggestion["field"]) {
-  return field === "wheelchairAccessible" ? "Mark wheelchair accessible" : "Mark hijabi-friendly";
+  return field === "wheelchairAccessible" ? "Mark wheelchair accessible entrance" : "Mark hijabi-friendly";
 }
 
 function formatDetectedPrice(value: number) {
@@ -9672,10 +9672,10 @@ function getFreshnessUndoLabel(update: FreshnessUpdate) {
     return "ignored hijabi-friendly recommendation";
   }
   if (update.wheelchairAccessible === true) {
-    return "marked wheelchair accessible";
+    return "marked wheelchair accessible entrance";
   }
   if (update.rejectWheelchairAccessible === true) {
-    return "ignored wheelchair accessibility recommendation";
+    return "ignored wheelchair accessible entrance recommendation";
   }
   if (update.rejectPriceBand === true) {
     return "ignored price recommendation";

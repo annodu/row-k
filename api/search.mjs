@@ -34,6 +34,8 @@ export default async function handler(req, res) {
     const hijabiFriendly = req.body?.hijabiFriendly === true;
     const canBraidWithoutGel = req.body?.canBraidWithoutGel === true;
     const wheelchairAccessible = req.body?.wheelchairAccessible === true;
+    const hasVerifiedReviews = req.body?.hasVerifiedReviews === true;
+    const googleReviewsOnly = req.body?.googleReviewsOnly === true;
     const customFilters = sanitizeCustomFilters(req.body?.customFilters);
 
     const payload = await searchSalons({
@@ -43,6 +45,8 @@ export default async function handler(req, res) {
       hijabiFriendly,
       canBraidWithoutGel,
       wheelchairAccessible,
+      hasVerifiedReviews,
+      googleReviewsOnly,
       customFilters,
     });
     return res.status(200).json(payload);
