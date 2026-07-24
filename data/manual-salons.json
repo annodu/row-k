@@ -8452,7 +8452,7 @@
     },
     {
       "id": "blubanhair",
-      "name": "Blubanhair",
+      "name": "B. Luban Hair",
       "areaId": "essex",
       "areaLabel": "Essex",
       "neighbourhood": "Essex London",
@@ -8491,8 +8491,8 @@
       "tiktokUrl": "",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
-      "updatedAt": "2026-06-10",
-      "priceBand": "££",
+      "updatedAt": "2026-07-24",
+      "priceBand": "£",
       "priceSource": "auto",
       "priceEvidence": [
         "Bohemian KB - Extra small - £280",
@@ -8504,10 +8504,10 @@
         "Freestyle Bohemian KB - Medium - £175",
         "Bohemian KB take down & wash - £85"
       ],
-      "priceCheckedAt": "2026-06-05",
+      "priceCheckedAt": "2026-07-24T22:33:04.719Z",
       "priceConfidence": "high",
-      "priceUpdatedAt": "2026-06-05",
-      "servicePriceBand": "",
+      "priceUpdatedAt": "2026-07-24T22:33:04.719Z",
+      "servicePriceBand": "£",
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
@@ -8520,7 +8520,9 @@
       "googleMatchConfidence": "low",
       "googleDisplayName": "B.Luban Hair",
       "googleFormattedAddress": "74 Chigwell Rd, London E18 1NN, UK",
-      "googleCheckedAt": "2026-07-23T22:19:37.044Z"
+      "googleCheckedAt": "2026-07-23T22:19:37.044Z",
+      "websiteUrl": "",
+      "customFilters": {}
     },
     {
       "id": "her-ego",
