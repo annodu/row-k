@@ -1873,19 +1873,19 @@ export default function App() {
           {!disclaimerDismissed ? (
             <div
               ref={disclaimerRef}
-              className="relative mb-1 mt-0 flex w-full items-center border-b border-stone-150 bg-stone-50 text-[12px] leading-[1.4] text-stone-600 dark:border-stone-900 dark:text-stone-400"
+              className="relative mb-1 mt-0 flex w-full items-center border-b border-[oklch(0.93_0.003_55)] bg-[oklch(0.968_0.007_55)] text-[12px] leading-[1.4] text-[oklch(0.444_0.035_55)] dark:border-[oklch(0.216_0.006_55)] dark:text-[oklch(0.709_0.03_55)]"
             >
               <span aria-hidden="true" className="h-12 w-12 shrink-0 lg:h-10 lg:w-10" />
               <div className="mx-auto flex items-center gap-2">
-                <span>We don't vet, endorse, or take responsibility for any of the service providers listed</span>
+                <span className="font-medium">We don't vet, endorse, or take responsibility for any of the service providers listed</span>
               </div>
               <button
                 type="button"
                 onClick={dismissDisclaimer}
                 aria-label="Dismiss disclaimer"
-                className="flex h-12 w-12 shrink-0 items-center justify-center text-stone-400 transition hover:text-stone-700 dark:text-stone-700 dark:hover:text-stone-200 lg:h-10 lg:w-10"
+                className="flex h-12 w-12 shrink-0 items-center justify-center text-[oklch(0.444_0.035_55)] transition hover:text-[oklch(0.374_0.01_55)] dark:text-[oklch(0.709_0.03_55)] dark:hover:text-[oklch(0.923_0.003_55)] lg:h-10 lg:w-10"
               >
-                <X className="h-3.5 w-3.5" />
+                <X className="h-3.5 w-3.5" strokeWidth={2.75} />
               </button>
             </div>
           ) : null}
