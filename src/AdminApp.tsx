@@ -2215,8 +2215,18 @@ function StylistsPage({
               onChange={(event) => onSearchTermChange(event.target.value)}
               placeholder="Search name or location"
               aria-label="Search stylist entries"
-              className="h-10 rounded-none pl-9 text-sm"
+              className="h-10 rounded-none pl-9 pr-9 text-sm"
             />
+            {searchTerm ? (
+              <button
+                type="button"
+                onClick={() => onSearchTermChange("")}
+                className="absolute right-2 top-1/2 inline-flex size-7 -translate-y-1/2 items-center justify-center text-stone-400 transition hover:text-stone-900 dark:hover:text-stone-100"
+                aria-label="Clear stylist search"
+              >
+                <X className="size-4" />
+              </button>
+            ) : null}
           </div>
           <StylistFilterMenu
             statusValue={statusFilter}
@@ -4396,8 +4406,18 @@ function FreshnessPage({
             onChange={(event) => setFreshnessSearchTerm(event.target.value)}
             placeholder="Search stylist name"
             aria-label="Search health check entries"
-            className="h-10 rounded-none pl-9 text-sm"
+            className="h-10 rounded-none pl-9 pr-9 text-sm"
           />
+          {freshnessSearchTerm ? (
+            <button
+              type="button"
+              onClick={() => setFreshnessSearchTerm("")}
+              className="absolute right-2 top-1/2 inline-flex size-7 -translate-y-1/2 items-center justify-center text-stone-400 transition hover:text-stone-900 dark:hover:text-stone-100"
+              aria-label="Clear health check search"
+            >
+              <X className="size-4" />
+            </button>
+          ) : null}
         </div>
         <FreshnessFilterMenu value={freshnessFilter} onChange={setFreshnessFilter} />
       </div>
@@ -4700,8 +4720,18 @@ function PricingPage({
             onChange={(event) => setPricingSearchTerm(event.target.value)}
             placeholder="Search stylist name"
             aria-label="Search pricing check entries"
-            className="h-10 rounded-none pl-9 text-sm"
+            className="h-10 rounded-none pl-9 pr-9 text-sm"
           />
+          {pricingSearchTerm ? (
+            <button
+              type="button"
+              onClick={() => setPricingSearchTerm("")}
+              className="absolute right-2 top-1/2 inline-flex size-7 -translate-y-1/2 items-center justify-center text-stone-400 transition hover:text-stone-900 dark:hover:text-stone-100"
+              aria-label="Clear pricing check search"
+            >
+              <X className="size-4" />
+            </button>
+          ) : null}
         </div>
         <PricingFilterMenu value={pricingFilter} onChange={setPricingFilter} />
       </div>
@@ -8767,8 +8797,18 @@ function CustomFilterPanel({
           value={searchTerm}
           onChange={(event) => setSearchTerm(event.target.value)}
           placeholder="Search options..."
-          className="h-10 rounded-none pl-9 text-sm"
+          className="h-10 rounded-none pl-9 pr-9 text-sm"
         />
+        {searchTerm ? (
+          <button
+            type="button"
+            onClick={() => setSearchTerm("")}
+            className="absolute right-2 top-1/2 inline-flex size-7 -translate-y-1/2 items-center justify-center text-stone-400 transition hover:text-stone-900 dark:hover:text-stone-100"
+            aria-label="Clear options search"
+          >
+            <X className="size-4" />
+          </button>
+        ) : null}
       </div>
 
       <div className="divide-y divide-stone-100 border border-stone-200 bg-white">
@@ -8951,8 +8991,18 @@ function ServicesFilterPanel({
           value={searchTerm}
           onChange={(event) => setSearchTerm(event.target.value)}
           placeholder="Search groups and subcategories..."
-          className="h-10 rounded-none pl-9 text-sm"
+          className="h-10 rounded-none pl-9 pr-9 text-sm"
         />
+        {searchTerm ? (
+          <button
+            type="button"
+            onClick={() => setSearchTerm("")}
+            className="absolute right-2 top-1/2 inline-flex size-7 -translate-y-1/2 items-center justify-center text-stone-400 transition hover:text-stone-900 dark:hover:text-stone-100"
+            aria-label="Clear services search"
+          >
+            <X className="size-4" />
+          </button>
+        ) : null}
       </div>
 
       <div className="divide-y divide-stone-100 border border-stone-200 bg-white">
@@ -9267,8 +9317,18 @@ function LocationsFilterPanel({
           value={searchTerm}
           onChange={(event) => setSearchTerm(event.target.value)}
           placeholder="Search locations..."
-          className="h-10 rounded-none pl-9 text-sm"
+          className="h-10 rounded-none pl-9 pr-9 text-sm"
         />
+        {searchTerm ? (
+          <button
+            type="button"
+            onClick={() => setSearchTerm("")}
+            className="absolute right-2 top-1/2 inline-flex size-7 -translate-y-1/2 items-center justify-center text-stone-400 transition hover:text-stone-900 dark:hover:text-stone-100"
+            aria-label="Clear locations search"
+          >
+            <X className="size-4" />
+          </button>
+        ) : null}
       </div>
 
       <div className="divide-y divide-stone-100 border border-stone-200 bg-white">
@@ -9421,8 +9481,18 @@ function AdditionalNeedsFilterPanel({
           value={searchTerm}
           onChange={(event) => setSearchTerm(event.target.value)}
           placeholder="Search additional needs..."
-          className="h-10 rounded-none pl-9 text-sm"
+          className="h-10 rounded-none pl-9 pr-9 text-sm"
         />
+        {searchTerm ? (
+          <button
+            type="button"
+            onClick={() => setSearchTerm("")}
+            className="absolute right-2 top-1/2 inline-flex size-7 -translate-y-1/2 items-center justify-center text-stone-400 transition hover:text-stone-900 dark:hover:text-stone-100"
+            aria-label="Clear additional needs search"
+          >
+            <X className="size-4" />
+          </button>
+        ) : null}
       </div>
 
       <div className="divide-y divide-stone-100 border border-stone-200 bg-white">

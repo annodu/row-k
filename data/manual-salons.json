@@ -3246,7 +3246,7 @@
     },
     {
       "id": "jdv-hair",
-      "name": "Jdv Hair",
+      "name": "JDV Hair",
       "areaId": "south-west",
       "areaIds": [
         "south-west",
@@ -3302,7 +3302,7 @@
       "priceCheckedAt": "",
       "priceUpdatedAt": "",
       "priceConfidence": "",
-      "updatedAt": "2026-07-23",
+      "updatedAt": "2026-07-24",
       "websiteUrl": "",
       "customFilters": {},
       "googlePlaceId": "ChIJWajTqJgFdkgRSirhYyMf7ks",
@@ -22956,7 +22956,7 @@
     },
     {
       "id": "hurthe-stylist",
-      "name": "Hurthe Stylist",
+      "name": "Hur the Stylist",
       "areaId": "north-west",
       "areaLabel": "North West",
       "neighbourhood": "North West London",
@@ -22970,7 +22970,8 @@
         "Half up half down",
         "Quick weave",
         "Frontal ponytail / bun",
-        "Updo"
+        "Updo",
+        "Wig cornrows"
       ],
       "summary": "Manual entry added from your North London wigs and styling list.",
       "source": "manual",
@@ -23002,7 +23003,18 @@
       "googleMatchConfidence": "low",
       "googleDisplayName": "The Female Hairdresser",
       "googleFormattedAddress": "56 Springfield Mount, London NW9 0SB, UK",
-      "googleCheckedAt": "2026-07-23T22:23:02.992Z"
+      "googleCheckedAt": "2026-07-23T22:23:02.992Z",
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "customFilters": {},
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "updatedAt": "2026-07-24"
     },
     {
       "id": "hype-coiffure-uk",
