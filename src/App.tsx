@@ -1876,7 +1876,7 @@ export default function App() {
               className="relative mb-1 mt-0 flex w-full items-center border-b border-[oklch(0.93_0.003_55)] bg-[oklch(0.968_0.007_55)] text-[12px] leading-[1.4] text-[oklch(0.444_0.035_55)] dark:border-[oklch(0.216_0.006_55)] dark:text-[oklch(0.709_0.03_55)]"
             >
               <span aria-hidden="true" className="h-12 w-12 shrink-0 lg:h-10 lg:w-10" />
-              <div className="mx-auto flex items-center gap-2">
+              <div className="mx-auto flex items-center gap-2 text-center">
                 <span className="font-medium">We don't vet, endorse, or take responsibility for any of the service providers listed</span>
               </div>
               <button
