@@ -2,6 +2,25 @@
 // Requires POSTHOG_PERSONAL_API_KEY + POSTHOG_PROJECT_ID to be set; returns null otherwise
 // so the caller can fall back to placeholder data (see AnalyticsSummary in src/AdminApp.tsx).
 
+import fs from "node:fs/promises";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Session IDs from the pre-2026-07-17 Umami→PostHog import that hit localhost/127.0.0.1 (dev
+// testing), not the live site. The import stamped every event with the importer's own $ip and
+// re-derived GeoIP from it, wiping out each visitor's real IP/location — so unlike live traffic,
+// this historical batch can only be split into real-vs-dev by distinct_id (which the import
+// preserved as the original Umami session_id), not by IP. See data/umami-dev-sessions.json.
+let umamiDevSessionIds = [];
+try {
+  umamiDevSessionIds = JSON.parse(await fs.readFile(path.resolve(__dirname, "../data/umami-dev-sessions.json"), "utf8"));
+} catch {
+  umamiDevSessionIds = [];
+}
+
 const ZERO_RESULT_LIMIT = 5;
 const TOP_STYLISTS_LIMIT = 5;
 const ALL_TIME_MAX_DAYS = 1095; // cap "All time" at 3 years so the chart never grows unbounded
@@ -37,17 +56,29 @@ function parseInternalIps() {
     .filter(Boolean);
 }
 
-// Excludes traffic from the site owner's own IP(s) so testing the live site doesn't skew
-// visitor numbers. Set via POSTHOG_INTERNAL_IPS (comma-separated) — this only affects the raw
-// HogQL queries below, not PostHog's own UI (its "Filter out internal and test users" project
-// setting is a separate, insight-level filter that doesn't apply to queries run via the API).
+// Excludes traffic from the site owner's own IP(s) (live testing) and known dev-session
+// distinct_ids (the imported Umami history, see above) so neither skews visitor numbers. IPs
+// are set via POSTHOG_INTERNAL_IPS (comma-separated) — this only affects the raw HogQL queries
+// below, not PostHog's own UI (its "Filter out internal and test users" project setting is a
+// separate, insight-level filter that doesn't apply to queries run via the API).
 // Note: rows where $ip is null are always kept — if PostHog isn't capturing IPs (GeoIP/IP
-// capture disabled in project settings), this exclusion silently becomes a no-op.
-function internalIpExclusionClause() {
+// capture disabled in project settings), the IP half of this exclusion silently becomes a no-op.
+function internalTrafficExclusionClause() {
+  const clauses = [];
+
   const ips = parseInternalIps();
-  if (!ips.length) return "";
-  const list = ips.map((ip) => `'${ip}'`).join(", ");
-  return ` AND (properties.$ip IS NULL OR properties.$ip NOT IN (${list}))`;
+  if (ips.length) {
+    const list = ips.map((ip) => `'${ip}'`).join(", ");
+    clauses.push(`(properties.$ip IS NULL OR properties.$ip NOT IN (${list}))`);
+  }
+
+  if (umamiDevSessionIds.length) {
+    const list = umamiDevSessionIds.map((id) => `'${id}'`).join(", ");
+    clauses.push(`distinct_id NOT IN (${list})`);
+  }
+
+  if (!clauses.length) return "";
+  return ` AND ${clauses.join(" AND ")}`;
 }
 
 async function resolveRange(range) {
@@ -89,12 +120,12 @@ function isTruthy(value) {
 }
 
 async function fetchVisitorsSeries(preset) {
-  const internalIpExclusion = internalIpExclusionClause();
+  const internalTrafficExclusion = internalTrafficExclusionClause();
   if (preset.granularity === "hour") {
     const rows = await runHogQLQuery(`
       SELECT toStartOfHour(timestamp) AS bucket, count(DISTINCT person_id) AS visitors
       FROM events
-      WHERE event = '$pageview' AND timestamp >= now() - INTERVAL ${preset.days} DAY${internalIpExclusion}
+      WHERE event = '$pageview' AND timestamp >= now() - INTERVAL ${preset.days} DAY${internalTrafficExclusion}
       GROUP BY bucket
       ORDER BY bucket
     `);
@@ -114,7 +145,7 @@ async function fetchVisitorsSeries(preset) {
   const rows = await runHogQLQuery(`
     SELECT toDate(timestamp) AS day, count(DISTINCT person_id) AS visitors
     FROM events
-    WHERE event = '$pageview' AND timestamp >= now() - INTERVAL ${preset.days} DAY${internalIpExclusion}
+    WHERE event = '$pageview' AND timestamp >= now() - INTERVAL ${preset.days} DAY${internalTrafficExclusion}
     GROUP BY day
     ORDER BY day
   `);
@@ -137,7 +168,7 @@ async function fetchClickCounts(preset) {
       countIf(event = 'instagram_click') AS instagram_clicks,
       countIf(event = 'verified_reviews_click') AS reviews_clicks
     FROM events
-    WHERE event IN ('book_click', 'instagram_click', 'verified_reviews_click') AND timestamp >= now() - INTERVAL ${preset.days} DAY${internalIpExclusionClause()}
+    WHERE event IN ('book_click', 'instagram_click', 'verified_reviews_click') AND timestamp >= now() - INTERVAL ${preset.days} DAY${internalTrafficExclusionClause()}
   `);
   const [bookingClicks, instagramClicks, reviewsClicks] = rows[0] ?? [0, 0, 0];
   return { bookingClicks: Number(bookingClicks) || 0, instagramClicks: Number(instagramClicks) || 0, reviewsClicks: Number(reviewsClicks) || 0 };
@@ -153,7 +184,7 @@ async function fetchFilterUsage(preset) {
       count() AS n
     FROM events
     WHERE event IN (${FILTER_EVENT_GROUPS.map((entry) => `'${entry.event}'`).join(", ")})
-      AND timestamp >= now() - INTERVAL ${preset.days} DAY${internalIpExclusionClause()}
+      AND timestamp >= now() - INTERVAL ${preset.days} DAY${internalTrafficExclusionClause()}
     GROUP BY event, selection, selected, enabled
   `);
 
@@ -189,7 +220,7 @@ async function fetchZeroResultSearches(preset) {
       count() AS n,
       max(timestamp) AS last_seen
     FROM events
-    WHERE event = 'search_zero_results' AND timestamp >= now() - INTERVAL ${preset.days} DAY${internalIpExclusionClause()}
+    WHERE event = 'search_zero_results' AND timestamp >= now() - INTERVAL ${preset.days} DAY${internalTrafficExclusionClause()}
     GROUP BY services, location, hijabi_friendly, no_gel, wheelchair_accessible
     ORDER BY n DESC
     LIMIT ${ZERO_RESULT_LIMIT}
@@ -216,7 +247,7 @@ async function fetchTopStylists(preset) {
   const rows = await runHogQLQuery(`
     SELECT properties.salon AS salon, any(properties.location) AS location, count() AS clicks
     FROM events
-    WHERE event IN ('book_click', 'instagram_click') AND timestamp >= now() - INTERVAL ${preset.days} DAY${internalIpExclusionClause()}
+    WHERE event IN ('book_click', 'instagram_click') AND timestamp >= now() - INTERVAL ${preset.days} DAY${internalTrafficExclusionClause()}
     GROUP BY salon
     ORDER BY clicks DESC
     LIMIT ${TOP_STYLISTS_LIMIT}
@@ -235,7 +266,7 @@ async function fetchReviewsClicksByPlatform(preset) {
   const rows = await runHogQLQuery(`
     SELECT properties.platform AS platform, count() AS clicks
     FROM events
-    WHERE event = 'verified_reviews_click' AND timestamp >= now() - INTERVAL ${preset.days} DAY${internalIpExclusionClause()}
+    WHERE event = 'verified_reviews_click' AND timestamp >= now() - INTERVAL ${preset.days} DAY${internalTrafficExclusionClause()}
     GROUP BY platform
     ORDER BY clicks DESC
   `);
@@ -251,7 +282,7 @@ async function fetchDeviceBreakdown(preset) {
   const rows = await runHogQLQuery(`
     SELECT properties.$device_type AS device_type, count(DISTINCT person_id) AS visitors
     FROM events
-    WHERE event = '$pageview' AND timestamp >= now() - INTERVAL ${preset.days} DAY${internalIpExclusionClause()}
+    WHERE event = '$pageview' AND timestamp >= now() - INTERVAL ${preset.days} DAY${internalTrafficExclusionClause()}
     GROUP BY device_type
     ORDER BY visitors DESC
   `);
@@ -262,13 +293,13 @@ async function fetchDeviceBreakdown(preset) {
 }
 
 async function fetchAllTimeStats() {
-  const internalIpExclusion = internalIpExclusionClause();
+  const internalTrafficExclusion = internalTrafficExclusionClause();
   const [visitorRows, clickRows] = await Promise.all([
-    runHogQLQuery(`SELECT count(DISTINCT person_id) AS visitors FROM events WHERE event = '$pageview'${internalIpExclusion}`),
+    runHogQLQuery(`SELECT count(DISTINCT person_id) AS visitors FROM events WHERE event = '$pageview'${internalTrafficExclusion}`),
     runHogQLQuery(`
       SELECT countIf(event = 'book_click') AS booking_clicks, countIf(event = 'instagram_click') AS instagram_clicks
       FROM events
-      WHERE 1=1${internalIpExclusion}
+      WHERE 1=1${internalTrafficExclusion}
     `),
   ]);
   const [visitors] = visitorRows[0] ?? [0];
