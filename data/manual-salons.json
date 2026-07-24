@@ -1,8 +1,8 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-07-24",
-    "count": 748,
+    "updatedAt": "2026-07-16",
+    "count": 751,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
@@ -24649,28 +24649,19 @@
         "undo weave-on - £1500"
       ],
       "priceCheckedAt": "2026-06-05",
-      "priceConfidence": "manual",
-      "priceUpdatedAt": "2026-07-23T21:45:25.346Z",
+      "priceConfidence": "high",
+      "priceUpdatedAt": "2026-06-05",
       "tiktokUrl": "https://www.tiktok.com/@naturaltolu/video/7613441062186568982?lang=en-GB",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
-      "updatedAt": "2026-07-23",
-      "servicePriceBand": "£",
+      "updatedAt": "2026-06-10",
+      "servicePriceBand": "",
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
       "addedVia": "Code edit",
       "discoverySource": "Cowork scrape",
-      "wheelchairAccessible": false,
-      "websiteUrl": "",
-      "customFilters": {},
-      "googlePlaceId": "ChIJ0c1F2cEFdkgRnHXuVp5tP40",
-      "googleReviewCount": 3,
-      "googleMapsUri": "https://maps.google.com/?cid=10177974209711338908&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
-      "googleMatchConfidence": "high",
-      "googleDisplayName": "Loving Hair Care",
-      "googleFormattedAddress": "81 Norwood Rd, London SE24 9AA, UK",
-      "googleCheckedAt": "2026-07-23T22:23:44.765Z"
+      "wheelchairAccessible": false
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
