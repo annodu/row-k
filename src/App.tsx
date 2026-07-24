@@ -1873,7 +1873,7 @@ export default function App() {
           {!disclaimerDismissed ? (
             <div
               ref={disclaimerRef}
-              className="relative mb-1 mt-0 flex w-full items-center border-b border-accent-100 bg-accent-50 text-[12px] leading-[1.4] text-accent-700 dark:border-accent-900 dark:text-accent-400"
+              className="relative mb-1 mt-0 flex w-full items-center border-b border-stone-150 bg-stone-50 text-[12px] leading-[1.4] text-stone-600 dark:border-stone-900 dark:text-stone-400"
             >
               <span aria-hidden="true" className="h-12 w-12 shrink-0 lg:h-10 lg:w-10" />
               <div className="mx-auto flex items-center gap-2">
@@ -1883,7 +1883,7 @@ export default function App() {
                 type="button"
                 onClick={dismissDisclaimer}
                 aria-label="Dismiss disclaimer"
-                className="flex h-12 w-12 shrink-0 items-center justify-center text-accent-700 transition hover:text-accent-900 dark:text-accent-400 dark:hover:text-accent-200 lg:h-10 lg:w-10"
+                className="flex h-12 w-12 shrink-0 items-center justify-center text-stone-400 transition hover:text-stone-700 dark:text-stone-700 dark:hover:text-stone-200 lg:h-10 lg:w-10"
               >
                 <X className="h-3.5 w-3.5" />
               </button>
