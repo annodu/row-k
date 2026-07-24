@@ -5,6 +5,7 @@
 const ZERO_RESULT_LIMIT = 5;
 const TOP_STYLISTS_LIMIT = 5;
 const ALL_TIME_MAX_DAYS = 1095; // cap "All time" at 3 years so the chart never grows unbounded
+const RECENT_ACTIVITY_LIMIT = 50;
 
 export const RANGE_PRESETS = {
   "24h": { days: 1, granularity: "hour", buckets: 24 },
@@ -29,15 +30,21 @@ function isConfigured() {
   return Boolean(process.env.POSTHOG_PERSONAL_API_KEY && process.env.POSTHOG_PROJECT_ID);
 }
 
+function parseInternalIps() {
+  return (process.env.POSTHOG_INTERNAL_IPS || "")
+    .split(",")
+    .map((ip) => ip.trim())
+    .filter(Boolean);
+}
+
 // Excludes traffic from the site owner's own IP(s) so testing the live site doesn't skew
 // visitor numbers. Set via POSTHOG_INTERNAL_IPS (comma-separated) — this only affects the raw
 // HogQL queries below, not PostHog's own UI (its "Filter out internal and test users" project
 // setting is a separate, insight-level filter that doesn't apply to queries run via the API).
+// Note: rows where $ip is null are always kept — if PostHog isn't capturing IPs (GeoIP/IP
+// capture disabled in project settings), this exclusion silently becomes a no-op.
 function internalIpExclusionClause() {
-  const ips = (process.env.POSTHOG_INTERNAL_IPS || "")
-    .split(",")
-    .map((ip) => ip.trim())
-    .filter(Boolean);
+  const ips = parseInternalIps();
   if (!ips.length) return "";
   const list = ips.map((ip) => `'${ip}'`).join(", ");
   return ` AND (properties.$ip IS NULL OR properties.$ip NOT IN (${list}))`;
@@ -271,6 +278,35 @@ async function fetchAllTimeStats() {
     bookingClicks: Number(bookingClicks) || 0,
     instagramClicks: Number(instagramClicks) || 0,
   };
+}
+
+// Raw recent events, most-recent first — deliberately unfiltered by POSTHOG_INTERNAL_IPS (unlike
+// every query above) so the admin can see their own visits land and check the isInternal flag
+// against them, instead of the exclusion silently hiding the thing they're trying to verify.
+export async function fetchRecentActivity(limit = RECENT_ACTIVITY_LIMIT) {
+  if (!isConfigured()) return null;
+
+  try {
+    const internalIps = parseInternalIps();
+    const rows = await runHogQLQuery(`
+      SELECT timestamp, event, properties.$current_url AS url, properties.$device_type AS device_type, properties.$ip AS ip
+      FROM events
+      ORDER BY timestamp DESC
+      LIMIT ${limit}
+    `);
+
+    return rows.map(([timestamp, event, url, deviceType, ip]) => ({
+      timestamp: String(timestamp),
+      event: String(event),
+      url: url ? String(url) : null,
+      deviceType: deviceType ? String(deviceType) : null,
+      ip: ip ? String(ip) : null,
+      isInternal: Boolean(ip && internalIps.includes(String(ip))),
+    }));
+  } catch (error) {
+    console.error("PostHog recent activity fetch failed", error);
+    return null;
+  }
 }
 
 export async function fetchAllTimeSummary() {

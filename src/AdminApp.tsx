@@ -653,6 +653,15 @@ type AnalyticsSummary = {
   deviceBreakdown: { deviceType: string; visitors: number }[];
 };
 
+type ActivityEvent = {
+  timestamp: string;
+  event: string;
+  url: string | null;
+  deviceType: string | null;
+  ip: string | null;
+  isInternal: boolean;
+};
+
 const ANALYTICS_RANGES = [
   { key: "24h", label: "Last 24 hours" },
   { key: "7d", label: "Last 7 days" },
@@ -3770,6 +3779,8 @@ function AnalyticsPage({ onOpenView }: { onOpenView: (view: AdminView) => void }
   const [range, setRange] = useState<AnalyticsRangeKey>("7d");
   const [analytics, setAnalytics] = useState<AnalyticsSummary | null>(null);
   const [isRangeLoading, setIsRangeLoading] = useState(true);
+  const [activity, setActivity] = useState<ActivityEvent[] | null>(null);
+  const [isActivityLoading, setIsActivityLoading] = useState(true);
 
   useEffect(() => {
     let cancelled = false;
@@ -3790,6 +3801,24 @@ function AnalyticsPage({ onOpenView }: { onOpenView: (view: AdminView) => void }
       cancelled = true;
     };
   }, [range]);
+
+  const loadActivity = useCallback(() => {
+    setIsActivityLoading(true);
+    return fetch("/api/admin/analytics/activity", { credentials: "include" })
+      .then((response) => (response.ok ? response.json() : null))
+      .then((payload) => {
+        setActivity(payload?.activity ?? null);
+        setIsActivityLoading(false);
+      })
+      .catch(() => {
+        setActivity(null);
+        setIsActivityLoading(false);
+      });
+  }, []);
+
+  useEffect(() => {
+    loadActivity();
+  }, [loadActivity]);
 
   const statState = isRangeLoading ? "loading" : analytics ? "loaded" : "empty";
   const totalVisitors = analytics?.visitorsByDay.reduce((sum, bucket) => sum + bucket.count, 0) ?? 0;
@@ -3923,8 +3952,115 @@ function AnalyticsPage({ onOpenView }: { onOpenView: (view: AdminView) => void }
           )}
         </div>
       </div>
+
+      <div className="border border-stone-200 bg-white p-6">
+        <div className="flex flex-wrap items-start justify-between gap-4">
+          <div>
+            <h2 className="text-sm font-semibold text-stone-950">Recent activity</h2>
+            <p className="mt-1 text-xs text-stone-500">
+              Last {RECENT_ACTIVITY_LIMIT} raw events, most recent first — dimmed rows matched an IP in{" "}
+              <code className="text-[11px]">POSTHOG_INTERNAL_IPS</code>
+            </p>
+          </div>
+          <button
+            type="button"
+            onClick={() => loadActivity()}
+            disabled={isActivityLoading}
+            className="text-xs font-medium text-stone-600 underline underline-offset-2 transition hover:text-stone-950 disabled:opacity-50"
+          >
+            Refresh
+          </button>
+        </div>
+        {isActivityLoading ? (
+          <RecentActivitySkeleton />
+        ) : activity ? (
+          <RecentActivityList rows={activity} />
+        ) : (
+          <SkeletonEmptyState label="No data">
+            <RecentActivitySkeleton pulse={false} />
+          </SkeletonEmptyState>
+        )}
+      </div>
     </div>
   );
+}
+
+const RECENT_ACTIVITY_LIMIT = 50;
+
+function RecentActivitySkeleton({ pulse = true }: { pulse?: boolean }) {
+  const bar = pulse ? "animate-pulse bg-stone-200" : "bg-stone-100";
+  return (
+    <ul className="mt-5 space-y-3">
+      {[0, 1, 2, 3, 4].map((index) => (
+        <li key={index} className={cn("h-4 w-full rounded-none", bar)} />
+      ))}
+    </ul>
+  );
+}
+
+function RecentActivityList({ rows }: { rows: ActivityEvent[] }) {
+  if (!rows.length) {
+    return (
+      <SkeletonEmptyState label="No data">
+        <RecentActivitySkeleton pulse={false} />
+      </SkeletonEmptyState>
+    );
+  }
+
+  return (
+    <div className="mt-5 overflow-x-auto">
+      <table className="w-full min-w-[640px] text-left text-sm">
+        <thead>
+          <tr className="border-b border-stone-200 text-xs font-medium uppercase tracking-[0.1em] text-stone-400">
+            <th className="pb-2 pr-4 font-medium">Time</th>
+            <th className="pb-2 pr-4 font-medium">Event</th>
+            <th className="pb-2 pr-4 font-medium">Page</th>
+            <th className="pb-2 pr-4 font-medium">Device</th>
+            <th className="pb-2 pr-4 font-medium">IP</th>
+            <th className="pb-2 font-medium" />
+          </tr>
+        </thead>
+        <tbody className="divide-y divide-stone-100">
+          {rows.map((row, index) => (
+            <tr key={`${row.timestamp}-${index}`} className={row.isInternal ? "opacity-50" : undefined}>
+              <td className="whitespace-nowrap py-2 pr-4 text-stone-500">{formatDateTime(row.timestamp)}</td>
+              <td className="whitespace-nowrap py-2 pr-4 text-stone-900">{humanizeEventName(row.event)}</td>
+              <td className="max-w-[220px] truncate py-2 pr-4 text-stone-700">{getUrlPath(row.url)}</td>
+              <td className="whitespace-nowrap py-2 pr-4 text-stone-500">{row.deviceType ?? "—"}</td>
+              <td className="whitespace-nowrap py-2 pr-4 font-mono text-xs text-stone-500">{row.ip ?? "—"}</td>
+              <td className="whitespace-nowrap py-2">
+                {row.isInternal ? (
+                  <Badge variant="secondary" className="text-[11px]">
+                    Internal
+                  </Badge>
+                ) : null}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+function humanizeEventName(event: string) {
+  if (event === "$pageview") return "Pageview";
+  return event.replace(/_/g, " ").replace(/^./, (char) => char.toUpperCase());
+}
+
+function getUrlPath(url: string | null) {
+  if (!url) return "—";
+  try {
+    return new URL(url).pathname || "/";
+  } catch {
+    return url;
+  }
+}
+
+function formatDateTime(value: string) {
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return value;
+  return date.toLocaleString("en-GB", { day: "numeric", month: "short", hour: "numeric", minute: "2-digit" });
 }
 
 function FilterUsageGroup({ label, rows }: { label: string; rows: { label: string; count: number }[] }) {

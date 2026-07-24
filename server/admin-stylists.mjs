@@ -3,7 +3,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { assertSafeOutboundHttpUrl, createRateLimiter, requireTrustedOrigin } from "./security.mjs";
-import { fetchAllTimeSummary, fetchAnalyticsSummary } from "./analytics.mjs";
+import { fetchAllTimeSummary, fetchAnalyticsSummary, fetchRecentActivity } from "./analytics.mjs";
 import { extractPostcodeToken, getWheelchairAccessibleEntrance, loadGooglePlacesApiKey, matchSalonToGoogle } from "./google-match.mjs";
 import { getVerifiedReviewPlatform, matchVerifiedReviews } from "./verified-reviews.mjs";
 
@@ -705,6 +705,11 @@ export function registerAdminStylistRoutes(app) {
     const range = typeof req.query.range === "string" ? req.query.range : "7d";
     const analytics = await fetchAnalyticsSummary(range);
     res.json({ ok: true, analytics });
+  });
+
+  app.get("/api/admin/analytics/activity", requireAdmin, async (_req, res) => {
+    const activity = await fetchRecentActivity();
+    res.json({ ok: true, activity });
   });
 
   app.get("/api/admin/stylists/checks/saved", requireAdmin, async (_req, res) => {
