@@ -1,8 +1,8 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-07-16",
-    "count": 751,
+    "updatedAt": "2026-07-24",
+    "count": 748,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
@@ -25458,7 +25458,7 @@
     },
     {
       "id": "mebusalon",
-      "name": "Mebusalon",
+      "name": "Mebu Hair and Beauty",
       "areaId": "south-west",
       "areaLabel": "South West",
       "neighbourhood": "South West London",
@@ -25497,7 +25497,7 @@
       "priceCheckedAt": "",
       "priceUpdatedAt": "",
       "priceConfidence": "",
-      "updatedAt": "2026-06-06",
+      "updatedAt": "2026-07-24",
       "addedVia": "Bulk import",
       "discoverySource": "Cowork scrape",
       "googlePlaceId": "ChIJi5FS3kcbdkgRlQ-YeDxqkOg",
@@ -25506,7 +25506,10 @@
       "googleMatchConfidence": "low",
       "googleDisplayName": "Mebu Hair and Beauty",
       "googleFormattedAddress": "75 Stockwell Rd, London SW9 9PY, UK",
-      "googleCheckedAt": "2026-07-23T22:23:58.065Z"
+      "googleCheckedAt": "2026-07-23T22:23:58.065Z",
+      "websiteUrl": "",
+      "wheelchairAccessible": false,
+      "customFilters": {}
     },
     {
       "id": "melsxbeautyhair",
