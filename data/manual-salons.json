@@ -40130,7 +40130,7 @@
     },
     {
       "id": "shirley-mcdonald-trichologist",
-      "name": "Shirley McDonald Trichologist",
+      "name": "The Hair & Scalp Clinic",
       "areaId": "north-west",
       "areaLabel": "North West London",
       "neighbourhood": "North West London",
@@ -40139,7 +40139,8 @@
       "bookingUrl": "https://the-hair-and-scalp-clinic.uk1.cliniko.com/bookings?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQPOTM2NjE5NzQzMzkyNDU5AAGnZyHvDofiJdmzanOV01_3hEjRzaIHDhpCAkBBhG3MTA3cyqW69RfTV8s37Lw_aem_5LG0jXRs_bMM9AyYT01iww&utm_id=97760_v0_s00_e0_tv3#service",
       "instagramUrl": "https://www.instagram.com/shirleymcdonaldtrichologist/",
       "services": [
-        "Trichology / scalp analysis"
+        "Trichology / scalp analysis",
+        "K-18 treatment"
       ],
       "summary": "Manual trichology entry added from user-provided profile.",
       "source": "manual",
@@ -40150,13 +40151,15 @@
       "tiktokUrl": "",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
-      "priceBand": "",
-      "priceSource": "",
-      "priceEvidence": [],
-      "priceCheckedAt": "",
-      "priceUpdatedAt": "",
-      "priceConfidence": "",
-      "updatedAt": "2026-06-05",
+      "priceBand": "£",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "Treatment - Treatment £45.00 60mins"
+      ],
+      "priceCheckedAt": "2026-07-24T01:48:48.745Z",
+      "priceUpdatedAt": "2026-07-24T01:48:48.745Z",
+      "priceConfidence": "low",
+      "updatedAt": "2026-07-24",
       "addedVia": "Admin tool",
       "discoverySource": "Manual search",
       "googlePlaceId": "ChIJ93JOkeIRdkgRVeMy4hd49L0",
@@ -40165,7 +40168,14 @@
       "googleMatchConfidence": "low",
       "googleDisplayName": "The Hair & Scalp Clinic",
       "googleFormattedAddress": "9 Vivian Ave, London NW4 3UT, UK",
-      "googleCheckedAt": "2026-07-23T22:27:46.418Z"
+      "googleCheckedAt": "2026-07-23T22:27:46.418Z",
+      "websiteUrl": "",
+      "wheelchairAccessible": false,
+      "customFilters": {},
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only"
     },
     {
       "id": "shannel-watson",
