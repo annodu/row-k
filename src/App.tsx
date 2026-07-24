@@ -27,6 +27,8 @@ const defaultRegionParentGroups: RegionParentGroup[] = [
 ];
 const standaloneRegionIds = ["kent", "essex", "mobile"] as const;
 
+const DISCLAIMER_DISMISSED_KEY = "rowk_disclaimer_dismissed";
+
 const categoryMap = {
   all: { label: "All services", subcategories: ["all"] },
   "braiding-services": { label: "Braids", subcategories: ["all","Boho braids / goddess braids","Braid take-down","Box braids","Crochet","Creative braids","Feed-in braids","French curl","Fulani / lemonade braids","Half braids, half sew-in","Knotless braids","Miracle knots","Microbraids / x-small braids","Pre-parting","Stitch braids","Twists (with extensions)","Boho braids bob","French curl bob"] },
@@ -1008,6 +1010,37 @@ export default function App() {
   const [searchError, setSearchError] = useState<string | null>(null);
   const [hasSearched, setHasSearched] = useState(false);
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
+  const [disclaimerDismissed, setDisclaimerDismissed] = useState(() => {
+    try {
+      return localStorage.getItem(DISCLAIMER_DISMISSED_KEY) === "1";
+    } catch {
+      return false;
+    }
+  });
+  const dismissDisclaimer = useCallback(() => {
+    setDisclaimerDismissed(true);
+    try {
+      localStorage.setItem(DISCLAIMER_DISMISSED_KEY, "1");
+    } catch {
+      // localStorage may be unavailable (e.g. private browsing) — dismissal just won't persist.
+    }
+  }, []);
+  const disclaimerRef = useRef<HTMLDivElement | null>(null);
+  useEffect(() => {
+    if (disclaimerDismissed) return;
+    const node = disclaimerRef.current;
+    if (!node) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting && entry.boundingClientRect.top < 0) {
+          dismissDisclaimer();
+        }
+      },
+      { threshold: 0 }
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [disclaimerDismissed, dismissDisclaimer]);
   const [selectedHijabiFriendly, setSelectedHijabiFriendly] = useState(false);
   const [selectedCanBraidWithoutGel, setSelectedCanBraidWithoutGel] = useState(false);
   const [selectedWheelchairAccessible, setSelectedWheelchairAccessible] = useState(false);
@@ -1837,9 +1870,29 @@ export default function App() {
             </div>
           </div>
 
-          <p className="mt-3 text-[12px] text-stone-500 dark:text-stone-400">
-            We don't vet, endorse, or take responsibility for any of the service providers listed
-          </p>
+          {!disclaimerDismissed ? (
+            <div
+              ref={disclaimerRef}
+              className="relative mb-1 mt-0 flex w-full items-center gap-2 border-b border-stone-150 pl-3 text-[12px] leading-[1.4] text-stone-600 dark:border-stone-900 dark:text-stone-400"
+            >
+              <svg viewBox="0 0 20 20" fill="currentColor" className="h-3.5 w-3.5 shrink-0 text-[oklch(0.707_0.045_55)] dark:text-[oklch(0.809_0.03_55)]" aria-hidden="true">
+                <path
+                  fillRule="evenodd"
+                  d="M18 10A8 8 0 11 2 10a8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                  clipRule="evenodd"
+                />
+              </svg>
+              <span>We don't vet, endorse, or take responsibility for any of the service providers listed</span>
+              <button
+                type="button"
+                onClick={dismissDisclaimer}
+                aria-label="Dismiss disclaimer"
+                className="ml-auto flex h-10 w-10 shrink-0 items-center justify-center text-stone-400 transition hover:text-stone-700 dark:text-stone-700 dark:hover:text-stone-200"
+              >
+                <X className="h-3.5 w-3.5" />
+              </button>
+            </div>
+          ) : null}
 
           {searchError ? (
             <div className="mt-4 bg-rose-100 px-4 py-6 text-left dark:bg-rose-950/30">
