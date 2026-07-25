@@ -27,6 +27,29 @@ const defaultRegionParentGroups: RegionParentGroup[] = [
 ];
 const standaloneRegionIds = ["kent", "essex", "mobile"] as const;
 
+// Compass-direction regions get fixed Title Case display forms — "South east
+// London" (the canonical label used for matching/search) becomes "South East
+// London" in results, or "South East (SE)" in the filter list. Every other
+// region (Croydon, Kent, Essex, Mobile / home service, London) is left as-is.
+const compassRegionDisplay: Record<string, { short: string; full: string; abbr?: string }> = {
+  central: { short: "Central", full: "Central London" },
+  north: { short: "North", full: "North London", abbr: "N" },
+  "north-west": { short: "North West", full: "North West London", abbr: "NW" },
+  east: { short: "East", full: "East London", abbr: "E" },
+  "south-east": { short: "South East", full: "South East London", abbr: "SE" },
+  "south-west": { short: "South West", full: "South West London", abbr: "SW" },
+  west: { short: "West", full: "West London", abbr: "W" },
+};
+
+function getRegionDisplayLabel(regionId: string, fallbackLabel: string, { abbreviate = false }: { abbreviate?: boolean } = {}) {
+  const entry = compassRegionDisplay[regionId];
+  if (!entry) return fallbackLabel;
+  if (abbreviate) {
+    return entry.abbr ? `${entry.short} (${entry.abbr})` : entry.short;
+  }
+  return entry.full;
+}
+
 const DISCLAIMER_DISMISSED_KEY = "rowk_disclaimer_dismissed";
 
 const categoryMap = {
@@ -128,17 +151,6 @@ type SearchResponse = {
 };
 
 const regionLabelMap = Object.fromEntries(regions.map((region) => [region.id, region.label])) as Record<string, string>;
-const resultLocationLabelMap: Record<string, string> = {
-  "all-london": "London",
-  central: "Central London",
-  north: "North London",
-  "north-west": "North west London",
-  east: "East London",
-  "south-east": "South east London",
-  "south-west": "South west London",
-  west: "West London",
-  south: "South London",
-};
 
 const serviceDisplayNames: Record<string, string> = {
   "Wig cornrows": "Cornrows / Twists / Wig cornrows",
@@ -436,14 +448,14 @@ function getLocationLabels(result: SalonResult) {
     result.areaIds.includes("south-west");
 
   const locationLabels = isSouthUmbrella
-    ? [result.areaLabel || "South"]
-    : [...new Set(areaIds.map((areaId) => regionLabelMap[areaId]).filter(Boolean))];
+    ? ["South London"]
+    : [...new Set(areaIds.map((areaId) => regionLabelMap[areaId] && getRegionDisplayLabel(areaId, regionLabelMap[areaId])).filter(Boolean))];
 
   if (!locationLabels.length && result.areaLabel) {
     locationLabels.push(result.areaLabel);
   }
 
-  return locationLabels.map((label) => resultLocationLabelMap[label.toLowerCase().replace(/\s+/g, "-")] ?? label);
+  return locationLabels;
 }
 
 function BrandGroupCard({
@@ -2554,7 +2566,7 @@ export default function App() {
                                       className="pointer-events-none mt-0.5"
                                     />
                                     <span id={regionLabelId} className="translate-y-[1.5px] text-[15px] text-stone-800 dark:text-stone-200">
-                                      {item.label}
+                                      {getRegionDisplayLabel(item.id, item.label, { abbreviate: true })}
                                     </span>
                                   </div>
                                 );
