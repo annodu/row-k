@@ -38008,7 +38008,7 @@
     },
     {
       "id": "scalpish-uk",
-      "name": "Scalpish Uk",
+      "name": "Scalpish UK",
       "areaId": "south-east",
       "areaLabel": "South east London",
       "neighbourhood": "South east London London",
@@ -38023,7 +38023,9 @@
         "U-part wig install",
         "Wig colouring / bundle colouring",
         "Frontal ponytail / bun",
-        "Wig install (frontal / closure)"
+        "Wig install (frontal / closure)",
+        "Flipover / Versatile sew-in",
+        "Pixie wig / weave install"
       ],
       "summary": "Manual Instagram-led entry enriched from spreadsheet import.",
       "source": "manual",
@@ -38031,7 +38033,7 @@
         "Spreadsheet import: Stylists_Database.xlsx.",
         "Instagram source: https://www.instagram.com/scalpish.uk/"
       ],
-      "priceBand": "££",
+      "priceBand": "£",
       "priceSource": "auto",
       "priceEvidence": [
         "Flipover half wig/ u-part wig install - £140",
@@ -38040,16 +38042,16 @@
         "burgundy/ brown / ginger - £100",
         "toning 613 blonde - £80",
         "613 to a bright colour - £90",
-        "Slick back ponytail or bun (no swoops) - £80",
-        "All back frontal pony/bun - £190"
+        "Frontal/closure replacement and install - £155",
+        "Readymade wig install - £145"
       ],
-      "priceCheckedAt": "2026-06-03",
+      "priceCheckedAt": "2026-07-25T14:29:52.087Z",
       "priceConfidence": "high",
-      "priceUpdatedAt": "2026-06-03",
+      "priceUpdatedAt": "2026-07-25T14:29:52.087Z",
       "tiktokUrl": "",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
-      "updatedAt": "2026-06-03",
+      "updatedAt": "2026-07-25",
       "addedVia": "Bulk import",
       "discoverySource": "Cowork scrape",
       "googlePlaceId": "ChIJ7eqhKX4DdkgRBf9QJWt2Bx8",
@@ -38058,7 +38060,14 @@
       "googleMatchConfidence": "low",
       "googleDisplayName": "Hiikuss Afro Hair Salon London",
       "googleFormattedAddress": "222 Camberwell Rd, London SE5 0ED, UK",
-      "googleCheckedAt": "2026-07-23T22:26:49.889Z"
+      "googleCheckedAt": "2026-07-23T22:26:49.889Z",
+      "websiteUrl": "",
+      "wheelchairAccessible": false,
+      "customFilters": {},
+      "servicePriceBand": "£",
+      "packagePriceBand": "££££",
+      "priceIncludesHair": true,
+      "priceComparisonMode": "mixed"
     },
     {
       "id": "moshhairlondon",
