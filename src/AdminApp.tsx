@@ -651,6 +651,8 @@ type AnalyticsSummary = {
   zeroResultSearches: { filters: string[]; count: number; lastSeenAt: string }[];
   topStylists: { name: string; areaLabel: string; clicks: number }[];
   deviceBreakdown: { deviceType: string; visitors: number }[];
+  countryBreakdown: { country: string; visitors: number }[];
+  cityBreakdown: { city: string; visitors: number }[];
 };
 
 type ActivityEvent = {
@@ -3951,6 +3953,23 @@ function AnalyticsPage({ onOpenView }: { onOpenView: (view: AdminView) => void }
             </SkeletonEmptyState>
           )}
         </div>
+      </div>
+
+      <div className="border border-stone-200 bg-white p-6">
+        <h2 className="text-sm font-semibold text-stone-950">Visitors by location</h2>
+        <p className="mt-1 text-xs text-stone-500">Where visitors are browsing from</p>
+        {isRangeLoading ? (
+          <FilterUsageSkeleton />
+        ) : analytics?.countryBreakdown.length || analytics?.cityBreakdown.length ? (
+          <div className="mt-5 grid grid-cols-2 gap-x-6 gap-y-6">
+            <FilterUsageGroup label="Country" rows={(analytics?.countryBreakdown ?? []).map((row) => ({ label: row.country, count: row.visitors }))} />
+            <FilterUsageGroup label="City" rows={(analytics?.cityBreakdown ?? []).map((row) => ({ label: row.city, count: row.visitors }))} />
+          </div>
+        ) : (
+          <SkeletonEmptyState label="No data">
+            <FilterUsageSkeleton pulse={false} />
+          </SkeletonEmptyState>
+        )}
       </div>
 
       <div className="border border-stone-200 bg-white p-6">

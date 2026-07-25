@@ -21,6 +21,24 @@ try {
   umamiDevSessionIds = [];
 }
 
+// Per-session country/city for the same pre-2026-07-17 import, sourced from the original Umami
+// export rather than PostHog's $geoip_* properties — those are all derived from the single
+// fabricated $ip above (see internalTrafficExclusionClause), so every imported event resolves to
+// the importer's own city. Real visitors were geo-diverse; Umami captured that correctly before
+// the migration, PostHog just never got it. Only covers real (non-dev) sessions.
+let umamiSessionGeo = [];
+try {
+  umamiSessionGeo = JSON.parse(await fs.readFile(path.resolve(__dirname, "../data/umami-session-geo.json"), "utf8"));
+} catch {
+  umamiSessionGeo = [];
+}
+const countryNames = new Intl.DisplayNames(["en"], { type: "region" });
+
+// Every distinct_id that came from the historical import (real or dev) — used to exempt those
+// rows from IP matching below, since they all share one fabricated $ip regardless of who the
+// real visitor was (see umamiSessionGeo above). IP exclusion is only meaningful for live traffic.
+const umamiImportedSessionIds = [...umamiDevSessionIds, ...umamiSessionGeo.map((session) => session.sessionId)];
+
 const ZERO_RESULT_LIMIT = 5;
 const TOP_STYLISTS_LIMIT = 5;
 const ALL_TIME_MAX_DAYS = 1095; // cap "All time" at 3 years so the chart never grows unbounded
@@ -63,13 +81,20 @@ function parseInternalIps() {
 // separate, insight-level filter that doesn't apply to queries run via the API).
 // Note: rows where $ip is null are always kept — if PostHog isn't capturing IPs (GeoIP/IP
 // capture disabled in project settings), the IP half of this exclusion silently becomes a no-op.
+//
+// IP matching is skipped entirely for imported rows (distinct_id in umamiImportedSessionIds):
+// the whole historical batch shares one fabricated $ip, so applying an IP list to it would catch
+// real backfilled visitors along with dev ones. Those rows rely solely on the dev-session check
+// below instead; IP matching only ever applies to genuinely live traffic.
 function internalTrafficExclusionClause() {
   const clauses = [];
 
   const ips = parseInternalIps();
   if (ips.length) {
     const list = ips.map((ip) => `'${ip}'`).join(", ");
-    clauses.push(`(properties.$ip IS NULL OR properties.$ip NOT IN (${list}))`);
+    const importedList = umamiImportedSessionIds.map((id) => `'${id}'`).join(", ");
+    const importedExemption = importedList ? `distinct_id IN (${importedList}) OR ` : "";
+    clauses.push(`(${importedExemption}properties.$ip IS NULL OR properties.$ip NOT IN (${list}))`);
   }
 
   if (umamiDevSessionIds.length) {
@@ -292,6 +317,61 @@ async function fetchDeviceBreakdown(preset) {
     .map(([deviceType, visitors]) => ({ deviceType: String(deviceType), visitors: Number(visitors) }));
 }
 
+function countryName(code) {
+  if (!code) return null;
+  try {
+    return countryNames.of(code) ?? code;
+  } catch {
+    return code;
+  }
+}
+
+// Merges live PostHog geo (accurate, from real per-visitor $ip) with the CSV-sourced historical
+// geo (see umamiSessionGeo above) into one set of country/city breakdowns. The two sources never
+// overlap: imported sessions are excluded from the live query by distinct_id so their corrupted
+// $geoip_* properties can't leak in, and only get counted via the CSV mapping instead.
+async function fetchLocationBreakdown(preset) {
+  const cutoff = Date.now() - preset.days * 86400000;
+  const countryCounts = new Map();
+  const cityCounts = new Map();
+
+  for (const session of umamiSessionGeo) {
+    if (new Date(`${session.createdAt.replace(" ", "T")}Z`).getTime() < cutoff) continue;
+    if (session.countryCode) countryCounts.set(session.countryCode, (countryCounts.get(session.countryCode) ?? 0) + 1);
+    if (session.city) cityCounts.set(session.city, (cityCounts.get(session.city) ?? 0) + 1);
+  }
+
+  const mappedSessionIds = umamiSessionGeo.map((session) => `'${session.sessionId}'`).join(", ");
+  const excludeMapped = mappedSessionIds ? ` AND distinct_id NOT IN (${mappedSessionIds})` : "";
+
+  const rows = await runHogQLQuery(`
+    SELECT properties.$geoip_country_code AS country_code, properties.$geoip_city_name AS city, count(DISTINCT person_id) AS visitors
+    FROM events
+    WHERE event = '$pageview' AND timestamp >= now() - INTERVAL ${preset.days} DAY${internalTrafficExclusionClause()}${excludeMapped}
+    GROUP BY country_code, city
+  `);
+
+  for (const [countryCode, city, visitors] of rows) {
+    const n = Number(visitors) || 0;
+    if (countryCode) countryCounts.set(countryCode, (countryCounts.get(countryCode) ?? 0) + n);
+    if (city) cityCounts.set(city, (cityCounts.get(city) ?? 0) + n);
+  }
+
+  const toSortedList = (counts) =>
+    [...counts.entries()]
+      .map(([key, visitors]) => [key, visitors])
+      .sort((a, b) => b[1] - a[1]);
+
+  return {
+    countryBreakdown: toSortedList(countryCounts)
+      .slice(0, 10)
+      .map(([code, visitors]) => ({ country: countryName(code) ?? code, visitors })),
+    cityBreakdown: toSortedList(cityCounts)
+      .slice(0, 10)
+      .map(([city, visitors]) => ({ city, visitors })),
+  };
+}
+
 async function fetchAllTimeStats() {
   const internalTrafficExclusion = internalTrafficExclusionClause();
   const [visitorRows, clickRows] = await Promise.all([
@@ -356,15 +436,17 @@ export async function fetchAnalyticsSummary(range = "7d") {
 
   try {
     const preset = await resolveRange(range);
-    const [visitorsByDay, clicks, filterUsage, zeroResultSearches, topStylists, reviewsClicksByPlatform, deviceBreakdown] = await Promise.all([
-      fetchVisitorsSeries(preset),
-      fetchClickCounts(preset),
-      fetchFilterUsage(preset),
-      fetchZeroResultSearches(preset),
-      fetchTopStylists(preset),
-      fetchReviewsClicksByPlatform(preset),
-      fetchDeviceBreakdown(preset),
-    ]);
+    const [visitorsByDay, clicks, filterUsage, zeroResultSearches, topStylists, reviewsClicksByPlatform, deviceBreakdown, locationBreakdown] =
+      await Promise.all([
+        fetchVisitorsSeries(preset),
+        fetchClickCounts(preset),
+        fetchFilterUsage(preset),
+        fetchZeroResultSearches(preset),
+        fetchTopStylists(preset),
+        fetchReviewsClicksByPlatform(preset),
+        fetchDeviceBreakdown(preset),
+        fetchLocationBreakdown(preset),
+      ]);
 
     return {
       granularity: preset.granularity,
@@ -377,6 +459,8 @@ export async function fetchAnalyticsSummary(range = "7d") {
       zeroResultSearches,
       topStylists,
       deviceBreakdown,
+      countryBreakdown: locationBreakdown.countryBreakdown,
+      cityBreakdown: locationBreakdown.cityBreakdown,
     };
   } catch (error) {
     console.error("PostHog analytics fetch failed", error);
