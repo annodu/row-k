@@ -9516,7 +9516,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-07-24",
+      "updatedAt": "2026-07-25",
       "branches": [
         {
           "id": "south-east-london-and-south-west-london-london",
@@ -9584,7 +9584,8 @@
           "googleDisplayName": "Myla and Davis",
           "googleFormattedAddress": "431-433 Coldharbour Ln, London SW9 8LN, UK",
           "googleCheckedAt": "2026-07-24T15:43:54.471Z",
-          "wheelchairAccessible": true
+          "wheelchairAccessible": false,
+          "temporarilyClosed": false
         }
       ],
       "areaId": "",
