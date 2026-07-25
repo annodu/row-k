@@ -5216,7 +5216,8 @@
       "bookingUrl": "https://www.instagram.com/14beautylondon/",
       "instagramUrl": "https://www.instagram.com/14beautylondon/",
       "services": [
-        "Wash & blowdry"
+        "Wash & blowdry",
+        "Silk press"
       ],
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
@@ -5248,7 +5249,7 @@
       "priceCheckedAt": "",
       "priceUpdatedAt": "",
       "priceConfidence": "",
-      "updatedAt": "2026-07-24"
+      "updatedAt": "2026-07-25"
     },
     {
       "id": "mystictouch",
