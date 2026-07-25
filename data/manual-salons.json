@@ -4390,7 +4390,7 @@
       "tiktokUrl": "",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
-      "updatedAt": "2026-07-24",
+      "updatedAt": "2026-07-25",
       "addedVia": "Admin tool",
       "discoverySource": "Manual search",
       "websiteUrl": "",
@@ -4411,7 +4411,8 @@
           "googleDisplayName": "Duck & Dry, Mayfair",
           "googleFormattedAddress": "33 N Audley St, London W1K 6ZQ, UK",
           "googleCheckedAt": "2026-07-24T15:43:25.118Z",
-          "wheelchairAccessible": true
+          "wheelchairAccessible": false,
+          "temporarilyClosed": false
         },
         {
           "id": "knightsbridge",
@@ -35371,24 +35372,14 @@
       "priceConfidence": "manual",
       "addedVia": "Code edit",
       "discoverySource": "Cowork scrape",
-      "wheelchairAccessible": false,
+      "wheelchairAccessible": true,
       "googlePlaceId": "ChIJu8sooDao2EcR2EtiGCsu-Fc",
       "googleReviewCount": 168,
       "googleMapsUri": "https://maps.google.com/?cid=6338867238151539672&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
       "googleMatchConfidence": "high",
       "googleDisplayName": "The Standard Studio",
       "googleFormattedAddress": "156 Westcombe Hill, London SE3 7DH, UK",
-      "googleCheckedAt": "2026-07-23T22:26:10.264Z",
-      "websiteUrl": "",
-      "tiktokUrl": "",
-      "hijabiFriendly": false,
-      "canBraidWithoutGel": false,
-      "customFilters": {},
-      "servicePriceBand": "",
-      "packagePriceBand": "",
-      "priceIncludesHair": false,
-      "priceComparisonMode": "service-only",
-      "updatedAt": "2026-07-25"
+      "googleCheckedAt": "2026-07-23T22:26:10.264Z"
     },
     {
       "id": "the-studdio",
