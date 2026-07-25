@@ -13350,7 +13350,7 @@
       "evidence": [
         "User-provided manual addition."
       ],
-      "updatedAt": "2026-07-24",
+      "updatedAt": "2026-07-25",
       "branches": [
         {
           "id": "battersea",
@@ -13433,21 +13433,19 @@
           "id": "clapton",
           "branchLabel": "Clapton",
           "areaId": "east",
-          "areaIds": [
-            "east"
-          ],
           "areaLabel": "East London",
           "neighbourhood": "Clapton",
           "postcode": "E5",
           "bookingUrl": "https://booking.bluetitlondon.com/webstoreNew/services/63956420-1978-4e82-bdf4-811365867729",
-          "wheelchairAccessible": true,
+          "wheelchairAccessible": false,
           "googlePlaceId": "ChIJnWJ9qf4cdkgRTd-ecGT8wkc",
           "googleReviewCount": 956,
           "googleMapsUri": "https://maps.google.com/?cid=5170972830491139917&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
           "googleMatchConfidence": "high",
           "googleDisplayName": "Blue Tit Clapton",
           "googleFormattedAddress": "121 Lower Clapton Rd, Lower Clapton, London E5 0NP, UK",
-          "googleCheckedAt": "2026-07-24T14:00:00.000Z"
+          "googleCheckedAt": "2026-07-24T14:00:00.000Z",
+          "temporarilyClosed": false
         },
         {
           "id": "crouch-hill",
