@@ -10624,10 +10624,10 @@
       "priceCheckedAt": "",
       "priceUpdatedAt": "2026-06-04",
       "priceConfidence": "manual",
-      "updatedAt": "2026-06-10",
+      "updatedAt": "2026-07-25",
       "addedVia": "Code edit",
       "discoverySource": "Cowork scrape",
-      "wheelchairAccessible": true,
+      "wheelchairAccessible": false,
       "servicePriceBand": "",
       "packagePriceBand": "",
       "priceIncludesHair": false,
@@ -10638,7 +10638,9 @@
       "googleMatchConfidence": "high",
       "googleDisplayName": "Adeline Hair & Beauty",
       "googleFormattedAddress": "8 The Broadway, London N14 6PH, UK",
-      "googleCheckedAt": "2026-07-23T22:20:07.612Z"
+      "googleCheckedAt": "2026-07-23T22:20:07.612Z",
+      "websiteUrl": "",
+      "customFilters": {}
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
