@@ -4738,12 +4738,12 @@ function FreshnessInboxAvatar({ name, tone }: { name: string; tone: FreshnessRec
   const initial = name.trim().charAt(0).toUpperCase() || "?";
   const toneClass =
     tone === "critical"
-      ? "bg-red-100 text-red-700"
+      ? "bg-red-100 text-red-700 dark:bg-red-950/40 dark:text-red-400"
       : tone === "warning"
-        ? "bg-amber-100 text-amber-700"
+        ? "bg-amber-100 text-amber-700 dark:bg-amber-950/40 dark:text-amber-400"
         : tone === "info"
-          ? "bg-sky-100 text-sky-700"
-          : "bg-stone-100 text-stone-600";
+          ? "bg-sky-100 text-sky-700 dark:bg-sky-950/40 dark:text-sky-400"
+          : "bg-stone-150 text-stone-600 dark:bg-stone-800 dark:text-stone-300";
 
   return (
     <span className={cn("inline-flex size-10 shrink-0 items-center justify-center rounded-none text-sm font-semibold", toneClass)}>

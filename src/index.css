@@ -144,6 +144,10 @@ html.dark {
     background-color: rgb(41 37 36);
   }
 
+  html.dark .admin-ui .bg-stone-50\/40 {
+    background-color: rgb(41 37 36 / 0.5);
+  }
+
   html.dark .admin-ui .bg-stone-950,
   html.dark .admin-ui .bg-stone-900 {
     background-color: rgb(245 245 244);
@@ -214,7 +218,9 @@ html.dark {
     accent-color: rgb(245 245 244);
   }
 
-  html.dark .admin-ui .divide-stone-100 > :not([hidden]) ~ :not([hidden]) {
+  html.dark .admin-ui .divide-stone-50 > :not(:last-child),
+  html.dark .admin-ui .divide-stone-100 > :not(:last-child),
+  html.dark .admin-ui .divide-stone-200 > :not(:last-child) {
     border-color: rgb(41 37 36);
   }
 

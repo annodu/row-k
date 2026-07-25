@@ -1991,7 +1991,7 @@ export default function App() {
               <p className="mt-2 text-sm leading-7 text-rose-800 dark:text-rose-300">You can:</p>
               <ul className="mt-1 list-disc space-y-1 pl-5 text-sm leading-7 text-rose-800 dark:text-rose-300">
                 <li>
-                  Refresh or 
+                  Refresh or{" "}
                   <button
                     type="button"
                     onClick={() => window.location.reload()}
@@ -2206,10 +2206,11 @@ export default function App() {
                   href="https://tally.so/r/VLY10g"
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex min-h-11 items-center text-[14px] font-medium text-stone-950 underline underline-offset-4 transition-colors hover:text-stone-700 dark:text-stone-100 dark:hover:text-stone-300"
+                  className="inline-flex min-h-11 items-center gap-1 text-[14px] font-medium text-stone-950 underline underline-offset-4 transition-colors hover:text-stone-700 dark:text-stone-100 dark:hover:text-stone-300"
                 >
                   Submit a stylist
                   <span className="sr-only"> - opens in a new tab</span>
+                  <ArrowUpRight className="size-3.5 shrink-0" aria-hidden="true" />
                 </a>
                 </div>
               </div>
@@ -2956,10 +2957,10 @@ export default function App() {
       <footer className="mt-auto border-t border-stone-300 px-6 pb-4 pt-8 dark:border-stone-800 sm:px-10">
         <div className="mx-auto w-full max-w-[1280px]">
           <p className="text-[13px] text-stone-700 dark:text-stone-300">
-            Row K is not a booking platform.
+            Row K is a directory, not a booking platform.
           </p>
           <p className="text-[13px] text-stone-700 dark:text-stone-300">
-            Row K does not vet, endorse, or take responsibility for the service providers listed.
+            We don't vet, endorse, or take responsibility for the service providers listed.
           </p>
           <div className="mt-4 flex flex-col items-start gap-4 border-t border-stone-200 pt-4 dark:border-stone-800 sm:flex-row sm:items-center sm:justify-between">
             <span className="text-[14px] text-stone-700 dark:text-stone-300">ROW K 2026</span>

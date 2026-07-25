@@ -1785,7 +1785,7 @@
       "areaLabel": "London",
       "neighbourhood": "London London",
       "postcode": "",
-      "bookingPlatform": "Direct",
+      "bookingPlatform": "Instagram",
       "bookingUrl": "https://www.instagram.com/hairbymichellesultan/",
       "instagramUrl": "https://www.instagram.com/hairbymichellesultan/",
       "services": [
@@ -5216,7 +5216,8 @@
       "bookingUrl": "https://www.instagram.com/14beautylondon/",
       "instagramUrl": "https://www.instagram.com/14beautylondon/",
       "services": [
-        "Wash & blowdry"
+        "Wash & blowdry",
+        "Silk press"
       ],
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
@@ -5248,7 +5249,7 @@
       "priceCheckedAt": "",
       "priceUpdatedAt": "",
       "priceConfidence": "",
-      "updatedAt": "2026-07-24"
+      "updatedAt": "2026-07-25"
     },
     {
       "id": "mystictouch",
@@ -9849,7 +9850,8 @@
       "bookingUrl": "https://www.justcurlsessex.co.uk/booking.php",
       "instagramUrl": "https://www.instagram.com/justcurlsessex/",
       "services": [
-        "Curly cut / wash & go / diffuse"
+        "Curly cut / wash & go / diffuse",
+        "Trim / hair cut"
       ],
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
@@ -9890,7 +9892,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-07-24"
+      "updatedAt": "2026-07-25"
     },
     {
       "id": "hairby-mideyy",
@@ -13438,21 +13440,19 @@
           "id": "clapton",
           "branchLabel": "Clapton",
           "areaId": "east",
-          "areaIds": [
-            "east"
-          ],
           "areaLabel": "East London",
           "neighbourhood": "Clapton",
           "postcode": "E5",
           "bookingUrl": "https://booking.bluetitlondon.com/webstoreNew/services/63956420-1978-4e82-bdf4-811365867729",
-          "wheelchairAccessible": true,
+          "wheelchairAccessible": false,
           "googlePlaceId": "ChIJnWJ9qf4cdkgRTd-ecGT8wkc",
           "googleReviewCount": 956,
           "googleMapsUri": "https://maps.google.com/?cid=5170972830491139917&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
           "googleMatchConfidence": "high",
           "googleDisplayName": "Blue Tit Clapton",
           "googleFormattedAddress": "121 Lower Clapton Rd, Lower Clapton, London E5 0NP, UK",
-          "googleCheckedAt": "2026-07-24T14:00:00.000Z"
+          "googleCheckedAt": "2026-07-24T14:00:00.000Z",
+          "temporarilyClosed": false
         },
         {
           "id": "crouch-hill",
@@ -13612,21 +13612,19 @@
           "id": "peckham",
           "branchLabel": "Peckham",
           "areaId": "south-east",
-          "areaIds": [
-            "south-east"
-          ],
-          "areaLabel": "South East London",
+          "areaLabel": "South east London",
           "neighbourhood": "Peckham",
           "postcode": "SE15",
           "bookingUrl": "https://booking.bluetitlondon.com/webstoreNew/services/87e71f74-a213-43a7-b0b2-bb2f60457913",
-          "wheelchairAccessible": true,
+          "wheelchairAccessible": false,
           "googlePlaceId": "ChIJQ3x2r6MDdkgRJKujbTep9LI",
           "googleReviewCount": 1079,
           "googleMapsUri": "https://maps.google.com/?cid=12895117688596310820&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
           "googleMatchConfidence": "high",
           "googleDisplayName": "Blue Tit Peckham",
           "googleFormattedAddress": "26 Peckham Rye, London SE15 4JR, UK",
-          "googleCheckedAt": "2026-07-24T14:00:00.000Z"
+          "googleCheckedAt": "2026-07-24T14:00:00.000Z",
+          "temporarilyClosed": false
         },
         {
           "id": "portobello-notting-hill",
@@ -15380,17 +15378,19 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-07-24",
+      "updatedAt": "2026-07-25",
       "addedVia": "Code edit",
       "discoverySource": "Cowork scrape",
-      "wheelchairAccessible": true,
+      "wheelchairAccessible": false,
       "googlePlaceId": "ChIJMX_5vRgQdkgRJhfeLxrjAHs",
       "googleReviewCount": 155,
       "googleMapsUri": "https://maps.google.com/?cid=8863333768276875046&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
       "googleMatchConfidence": "high",
       "googleDisplayName": "Hair Lounge",
       "googleFormattedAddress": "347 Portobello Rd, London W10 5SA, UK",
-      "googleCheckedAt": "2026-07-24T00:00:00.000Z"
+      "googleCheckedAt": "2026-07-24T00:00:00.000Z",
+      "websiteUrl": "",
+      "customFilters": {}
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -17299,17 +17299,19 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-06-06",
+      "updatedAt": "2026-07-25",
       "addedVia": "Code edit",
       "discoverySource": "Cowork scrape",
-      "wheelchairAccessible": true,
+      "wheelchairAccessible": false,
       "googlePlaceId": "ChIJ062p9osEdkgR37Oj3IqWJvo",
       "googleReviewCount": 133,
       "googleMapsUri": "https://maps.google.com/?cid=18025260081748358111&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
       "googleMatchConfidence": "high",
       "googleDisplayName": "Dominican Hair Republic",
       "googleFormattedAddress": "86 Brixton Rd, London SW9 6BH, UK",
-      "googleCheckedAt": "2026-07-23T22:21:40.554Z"
+      "googleCheckedAt": "2026-07-23T22:21:40.554Z",
+      "websiteUrl": "",
+      "customFilters": {}
     },
     {
       "id": "drippin-styles-hair-studio",
@@ -25134,7 +25136,8 @@
       "bookingUrl": "https://ktystudios.as.me/schedule/e9bb622c",
       "instagramUrl": "https://www.instagram.com/ktystudios/",
       "services": [
-        "Traditional sew-in / leave out"
+        "Traditional sew-in / leave out",
+        "U-part wig install"
       ],
       "priceBand": "£",
       "priceSource": "auto",
@@ -25159,7 +25162,18 @@
       "googleMatchConfidence": "low",
       "googleDisplayName": "Vanity Hair and Beauty Studios",
       "googleFormattedAddress": "287 New Cross Rd, London SE14 6AS, UK",
-      "googleCheckedAt": "2026-07-23T22:23:32.848Z"
+      "googleCheckedAt": "2026-07-23T22:23:32.848Z",
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "customFilters": {},
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "updatedAt": "2026-07-25"
     },
     {
       "id": "kulture-hair",
@@ -29601,14 +29615,24 @@
       "priceConfidence": "manual",
       "addedVia": "Code edit",
       "discoverySource": "Cowork scrape",
-      "wheelchairAccessible": true,
+      "wheelchairAccessible": false,
       "googlePlaceId": "ChIJbbrpLrADdkgRtsJUr1OIGV8",
       "googleReviewCount": 125,
       "googleMapsUri": "https://maps.google.com/?cid=6852658201026151094&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
       "googleMatchConfidence": "high",
       "googleDisplayName": "Poshmina hair and beauty",
       "googleFormattedAddress": "67 East St, London SE17 2DJ, UK",
-      "googleCheckedAt": "2026-07-23T22:24:41.028Z"
+      "googleCheckedAt": "2026-07-23T22:24:41.028Z",
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "customFilters": {},
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "updatedAt": "2026-07-25"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -35375,14 +35399,24 @@
       "priceConfidence": "manual",
       "addedVia": "Code edit",
       "discoverySource": "Cowork scrape",
-      "wheelchairAccessible": true,
+      "wheelchairAccessible": false,
       "googlePlaceId": "ChIJu8sooDao2EcR2EtiGCsu-Fc",
       "googleReviewCount": 168,
       "googleMapsUri": "https://maps.google.com/?cid=6338867238151539672&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
       "googleMatchConfidence": "high",
       "googleDisplayName": "The Standard Studio",
       "googleFormattedAddress": "156 Westcombe Hill, London SE3 7DH, UK",
-      "googleCheckedAt": "2026-07-23T22:26:10.264Z"
+      "googleCheckedAt": "2026-07-23T22:26:10.264Z",
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "customFilters": {},
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "updatedAt": "2026-07-25"
     },
     {
       "id": "the-studdio",
@@ -35533,7 +35567,7 @@
       "priceConfidence": "manual",
       "addedVia": "Bulk import",
       "discoverySource": "Cowork scrape",
-      "wheelchairAccessible": true,
+      "wheelchairAccessible": false,
       "googlePlaceId": "ChIJnSsvsm8ZdkgRlmMT30X3qd0",
       "googleReviewCount": 530,
       "googleMapsUri": "https://maps.google.com/?cid=15972569432913568662&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
@@ -35549,7 +35583,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-07-24"
+      "updatedAt": "2026-07-25"
     },
     {
       "id": "thecurleditbymya",
