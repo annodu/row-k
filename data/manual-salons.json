@@ -20033,7 +20033,7 @@
         "Pixie cut / finger waves",
         "Retwist",
         "Silk press",
-        "LA weave"
+        "LA weave / microlinks wefts / braidless sew in"
       ],
       "summary": "Manual entry expanded from user-provided full service menu.",
       "source": "manual",
@@ -20052,7 +20052,7 @@
       "tiktokUrl": "",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
-      "updatedAt": "2026-06-07",
+      "updatedAt": "2026-07-25",
       "priceBand": "£",
       "priceSource": "manual",
       "priceEvidence": [
@@ -20076,14 +20076,16 @@
       "discoverySource": "Manual search",
       "verifiedReviewCount": 0,
       "verifiedReviewCheckedAt": "2026-07-22T20:53:34.380Z",
-      "wheelchairAccessible": true,
+      "wheelchairAccessible": false,
       "googlePlaceId": "ChIJLzjkrsMFdkgRmjayjk4tMEI",
       "googleReviewCount": 175,
       "googleMapsUri": "https://maps.google.com/?cid=4769361820810098330&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
       "googleMatchConfidence": "high",
       "googleDisplayName": "Hair 305 London ✂",
       "googleFormattedAddress": "31 Thurloe Pl, South Kensington, London SW7 2HQ, UK",
-      "googleCheckedAt": "2026-07-23T22:22:19.895Z"
+      "googleCheckedAt": "2026-07-23T22:22:19.895Z",
+      "websiteUrl": "",
+      "customFilters": {}
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
