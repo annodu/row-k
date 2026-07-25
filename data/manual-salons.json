@@ -24588,7 +24588,8 @@
         "Scalp detox / treatments",
         "K-18 treatment",
         "Keratin treatment",
-        "Relaxer / texturiser"
+        "Relaxer / texturiser",
+        "Tracks (+ silk press) / partial / invisible sew-in"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -24612,14 +24613,24 @@
       "priceConfidence": "manual",
       "addedVia": "Bulk import",
       "discoverySource": "Cowork scrape",
-      "wheelchairAccessible": true,
+      "wheelchairAccessible": false,
       "googlePlaceId": "ChIJsVLkD8YDdkgRYIxQO_mfkHQ",
       "googleReviewCount": 192,
       "googleMapsUri": "https://maps.google.com/?cid=8399389197836782688&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
       "googleMatchConfidence": "high",
       "googleDisplayName": "Kink By Nature",
       "googleFormattedAddress": "5 Deptford Church St, London SE8 4RX, UK",
-      "googleCheckedAt": "2026-07-23T22:23:25.801Z"
+      "googleCheckedAt": "2026-07-23T22:23:25.801Z",
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "customFilters": {},
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "updatedAt": "2026-07-25"
     },
     {
       "id": "kinson-by-kizzy",
