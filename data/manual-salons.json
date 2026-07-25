@@ -1,7 +1,7 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-07-24",
+    "updatedAt": "2026-07-25",
     "count": 748,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
@@ -5443,8 +5443,7 @@
       "bookingUrl": "https://covemedical.as.me/schedule/4c35439e",
       "instagramUrl": "https://www.instagram.com/covemedical/",
       "services": [
-        "Trichology / scalp analysis",
-        "Healthy hair plans & consultations"
+        "Trichology / scalp analysis"
       ],
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
@@ -5473,7 +5472,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-07-24",
+      "updatedAt": "2026-07-25",
       "addedVia": "Admin tool",
       "discoverySource": "Manual search",
       "googlePlaceId": "ChIJaapijmG_2EcRx5P6D4NWYBs",
