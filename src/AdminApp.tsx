@@ -972,7 +972,10 @@ function AdminAppInner() {
         update.services = mergeServices(selectedDraft.services, matchedServices);
       }
 
-      const pricingUpdate = buildDraftPricingUpdate(priceCheck, selectedDraft, "auto", { allowOverwriteManual: false });
+      // Pasting into the drawer is a deliberate admin action, so it should be
+      // allowed to overwrite a previously manually-set price band — unlike the
+      // silent background booking-URL auto-check below, which must not.
+      const pricingUpdate = buildDraftPricingUpdate(priceCheck, selectedDraft, "auto", { allowOverwriteManual: true });
       Object.assign(update, pricingUpdate);
 
       if (Object.keys(update).length) {
@@ -992,7 +995,7 @@ function AdminAppInner() {
 
     const timeout = window.setTimeout(async () => {
       const priceCheck = await parsePriceListText(selectedDraftPriceEvidence);
-      const pricingUpdate = buildDraftPricingUpdate(priceCheck, selectedDraft, "auto", { allowOverwriteManual: false });
+      const pricingUpdate = buildDraftPricingUpdate(priceCheck, selectedDraft, "auto", { allowOverwriteManual: true });
 
       if (Object.keys(pricingUpdate).length) {
         updateStylist(selectedDraft.id, pricingUpdate);

@@ -375,7 +375,7 @@ export function registerAdminStylistRoutes(app) {
       websiteUrl: update.websiteUrl || "",
       instagramUrl: update.instagramUrl || "",
       tiktokUrl: update.tiktokUrl || "",
-      googleMapsUri: update.googleMapsUri || currentSalon.googleMapsUri || "",
+      googleMapsUri: update.googleMapsUri || "",
       addedVia: update.addedVia || currentSalon.addedVia || "",
       services: normalizeServices(update.services || []),
       hijabiFriendly: update.hijabiFriendly === true,
@@ -5206,7 +5206,11 @@ function extractPriceCheckFromHtml(html, source, url = "") {
 function parseManualPriceText(text = "") {
   const normalizedText = String(text || "").replace(/&pound;/gi, "£").replace(/\bGBP\b/gi, "£");
   const consultationFocused = isConsultationFocusedPricePage(normalizedText, "");
-  const entries = extractPriceEntries(normalizedText, { consultationFocused });
+  // Unlike a scraped web page, this text was deliberately pasted by an admin as
+  // pricing evidence — a bare list of prices with no service name attached
+  // (e.g. "£50 £120 £80 £70") is still real signal here, not page noise, so
+  // don't apply the standalone-price rejection used for automatic scraping.
+  const entries = extractPriceEntries(normalizedText, { consultationFocused, allowStandalonePrices: true });
   const priceCheck = entries.length ? buildPriceCheckFromEntries(entries, "manual") : emptyPriceCheck("manual");
   return {
     ...priceCheck,
@@ -6069,7 +6073,7 @@ function cleanPriceEvidenceText(value) {
   return String(value || "").replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
 }
 
-function extractPriceEntries(text, { consultationFocused = false } = {}) {
+function extractPriceEntries(text, { consultationFocused = false, allowStandalonePrices = false } = {}) {
   const lines = String(text || "")
     .split(/\n|•|·|\|/)
     .map((line) => line.replace(/\s+/g, " ").trim())
@@ -6115,7 +6119,7 @@ function extractPriceEntries(text, { consultationFocused = false } = {}) {
         }
         const segValue = segPrices.length === 2 ? Math.round((segPrices[0] + segPrices[1]) / 2) : segPrices[0];
         const segContext = getInlinePriceServiceContext(segment) || getPriceServiceContext(lines, index);
-        if (!segContext && isStandalonePriceLine(segment)) {
+        if (!allowStandalonePrices && !segContext && isStandalonePriceLine(segment)) {
           continue;
         }
         const segText = segment.length > 120 ? `${segment.slice(0, 117)}...` : segment;
@@ -6135,7 +6139,7 @@ function extractPriceEntries(text, { consultationFocused = false } = {}) {
 
     const value = prices.length === 2 ? Math.round((prices[0] + prices[1]) / 2) : prices[0];
     const context = getInlinePriceServiceContext(normalizedLine) || getPriceServiceContext(lines, index);
-    if (!context && isStandalonePriceLine(normalizedLine)) {
+    if (!allowStandalonePrices && !context && isStandalonePriceLine(normalizedLine)) {
       continue;
     }
     const priceText = normalizedLine.length > 120 ? `${normalizedLine.slice(0, 117)}...` : normalizedLine;
