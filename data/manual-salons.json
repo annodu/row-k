@@ -25135,7 +25135,8 @@
       "bookingUrl": "https://ktystudios.as.me/schedule/e9bb622c",
       "instagramUrl": "https://www.instagram.com/ktystudios/",
       "services": [
-        "Traditional sew-in / leave out"
+        "Traditional sew-in / leave out",
+        "U-part wig install"
       ],
       "priceBand": "£",
       "priceSource": "auto",
@@ -25160,7 +25161,18 @@
       "googleMatchConfidence": "low",
       "googleDisplayName": "Vanity Hair and Beauty Studios",
       "googleFormattedAddress": "287 New Cross Rd, London SE14 6AS, UK",
-      "googleCheckedAt": "2026-07-23T22:23:32.848Z"
+      "googleCheckedAt": "2026-07-23T22:23:32.848Z",
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "customFilters": {},
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "updatedAt": "2026-07-25"
     },
     {
       "id": "kulture-hair",
