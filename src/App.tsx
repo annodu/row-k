@@ -552,7 +552,7 @@ function BrandGroupCard({
 
       {orderedServices.length > 0 ? (
         <div className="w-full rounded-none border-l-4 border-stone-300 bg-stone-200/45 pl-2 pr-3 py-2 text-[12px] font-normal lowercase leading-[18px] tracking-[0.02em] text-stone-700 dark:border-stone-700 dark:bg-stone-900/48 dark:text-stone-300">
-          <ServicesSummary services={orderedServices} badgeLabel={attributeLabels.length > 0 ? attributeLabels.join(" · ") : null} />
+          <ServicesSummary services={orderedServices} badgeLabels={attributeLabels} />
         </div>
       ) : null}
 
@@ -715,13 +715,17 @@ function AnimatedCollapsible({
   );
 }
 
-function ServicesSummary({ services, badgeLabel }: { services: string[]; badgeLabel?: string | null }) {
+function ServicesSummary({ services, badgeLabels }: { services: string[]; badgeLabels?: string[] | null }) {
+  const labels = badgeLabels ?? [];
   const lineRef = useRef<HTMLDivElement | null>(null);
   const separatorMeasureRef = useRef<HTMLSpanElement | null>(null);
-  const badgeMeasureRef = useRef<HTMLSpanElement | null>(null);
+  const badgeCandidateMeasureRefs = useRef<Record<number, HTMLSpanElement | null>>({});
   const serviceMeasureRefs = useRef<(HTMLSpanElement | null)[]>([]);
   const suffixMeasureRefs = useRef<Record<number, HTMLSpanElement | null>>({});
+  const shortSuffixMeasureRefs = useRef<Record<number, HTMLSpanElement | null>>({});
   const [visibleCount, setVisibleCount] = useState(services.length);
+  const [useShortSuffix, setUseShortSuffix] = useState(false);
+  const [badgeVisibleCount, setBadgeVisibleCount] = useState(labels.length);
   const [isMobileViewport, setIsMobileViewport] = useState(false);
   const [isExpandedOnMobile, setIsExpandedOnMobile] = useState(false);
   const [isHoveredOnDesktop, setIsHoveredOnDesktop] = useState(false);
@@ -761,26 +765,74 @@ function ServicesSummary({ services, badgeLabel }: { services: string[]; badgeLa
 
       const serviceWidths = services.map((_, index) => serviceMeasureRefs.current[index]?.offsetWidth ?? 0);
       const separatorWidth = separatorElement.offsetWidth;
-      // The badge is always shown, never part of the truncation count — its width
-      // (plus the gap before the first service) just eats into the line's budget.
-      const badgeWidth = badgeLabel ? (badgeMeasureRef.current?.offsetWidth ?? 0) + (services.length > 0 ? separatorWidth : 0) : 0;
+
+      // The badge is always shown, never part of the truncation count. But a long
+      // additional-needs badge (2+ items) shouldn't be allowed to eat the whole
+      // line and starve the services list of even a short "+N" indicator — so the
+      // badge itself only gets truncated (labels replaced with a trailing "+N")
+      // once it would otherwise leave no room for that minimal indicator.
+      const shortestServicesIndicatorWidth =
+        services.length > 0 ? (shortSuffixMeasureRefs.current[1]?.offsetWidth ?? 0) + separatorWidth : 0;
+      const maxBadgeWidth = Math.max(0, availableWidth - safetyBuffer - shortestServicesIndicatorWidth);
+
+      let nextBadgeVisibleCount = labels.length;
+      if (labels.length > 1) {
+        nextBadgeVisibleCount = 1;
+        for (let count = labels.length; count >= 1; count -= 1) {
+          const candidateWidth = badgeCandidateMeasureRefs.current[count]?.offsetWidth ?? 0;
+          if (candidateWidth <= maxBadgeWidth) {
+            nextBadgeVisibleCount = count;
+            break;
+          }
+        }
+      }
+      setBadgeVisibleCount(nextBadgeVisibleCount);
+
+      const badgeCandidateWidth = labels.length > 0 ? (badgeCandidateMeasureRefs.current[nextBadgeVisibleCount]?.offsetWidth ?? 0) : 0;
+      const badgeWidth = labels.length > 0 ? badgeCandidateWidth + (services.length > 0 ? separatorWidth : 0) : 0;
 
       let nextVisibleCount = services.length;
+      let nextUseShortSuffix = false;
 
-      for (let count = services.length; count >= 0; count -= 1) {
+      outer: for (let count = services.length; count >= 0; count -= 1) {
         const hiddenCount = services.length - count;
         const visibleServicesWidth = serviceWidths.slice(0, count).reduce((sum, width) => sum + width, 0);
         const visibleSeparatorsWidth = Math.max(0, count - 1) * separatorWidth;
-        const suffixWidth =
-          hiddenCount > 0 ? (suffixMeasureRefs.current[hiddenCount]?.offsetWidth ?? 0) + (count > 0 ? separatorWidth : 0) : 0;
+        const baseWidth = badgeWidth + visibleServicesWidth + visibleSeparatorsWidth;
 
-        if (badgeWidth + visibleServicesWidth + visibleSeparatorsWidth + suffixWidth <= availableWidth - safetyBuffer) {
+        if (hiddenCount === 0) {
+          if (baseWidth <= availableWidth - safetyBuffer) {
+            nextVisibleCount = count;
+            nextUseShortSuffix = false;
+            break outer;
+          }
+          continue;
+        }
+
+        const longSuffixWidth = (suffixMeasureRefs.current[hiddenCount]?.offsetWidth ?? 0) + (count > 0 ? separatorWidth : 0);
+        if (baseWidth + longSuffixWidth <= availableWidth - safetyBuffer) {
           nextVisibleCount = count;
-          break;
+          nextUseShortSuffix = false;
+          break outer;
+        }
+
+        const shortSuffixWidth = (shortSuffixMeasureRefs.current[hiddenCount]?.offsetWidth ?? 0) + (count > 0 ? separatorWidth : 0);
+        if (baseWidth + shortSuffixWidth <= availableWidth - safetyBuffer) {
+          nextVisibleCount = count;
+          nextUseShortSuffix = true;
+          break outer;
+        }
+
+        if (count === 0) {
+          // Nothing fits cleanly even with the compact suffix — best effort: show
+          // no services and the short indicator rather than clipping mid-word.
+          nextVisibleCount = 0;
+          nextUseShortSuffix = true;
         }
       }
 
       setVisibleCount(nextVisibleCount);
+      setUseShortSuffix(nextUseShortSuffix);
     };
 
     measure();
@@ -794,11 +846,11 @@ function ServicesSummary({ services, badgeLabel }: { services: string[]; badgeLa
       resizeObserver?.disconnect();
       window.removeEventListener("resize", measure);
     };
-  }, [services, badgeLabel]);
+  }, [services, labels.join(" · ")]);
 
   useEffect(() => {
     setIsExpandedOnMobile(false);
-  }, [services]);
+  }, [services, labels.join(" · ")]);
 
   useEffect(() => {
     if (isMobileViewport) {
@@ -807,23 +859,32 @@ function ServicesSummary({ services, badgeLabel }: { services: string[]; badgeLa
   }, [isMobileViewport]);
 
   const hiddenCount = Math.max(0, services.length - visibleCount);
+  const badgeHiddenCount = Math.max(0, labels.length - badgeVisibleCount);
+  const fullBadgeText = labels.length > 0 ? labels.join(" · ") : null;
+  const collapsedBadgeText =
+    labels.length === 0
+      ? null
+      : badgeHiddenCount > 0
+        ? `${labels.slice(0, badgeVisibleCount).join(" · ")} +${badgeHiddenCount}`
+        : fullBadgeText;
   const fullServicesLabel = services.join(" · ");
-  const fullAriaLabel = badgeLabel ? `${badgeLabel} · ${fullServicesLabel}` : fullServicesLabel;
+  const fullAriaLabel = fullBadgeText ? `${fullBadgeText} · ${fullServicesLabel}` : fullServicesLabel;
   const isExpandableOnMobile = isMobileViewport && hiddenCount > 0;
   const isExpandableOnDesktop = !isMobileViewport && hiddenCount > 0;
   const showExpandedList = isExpandableOnMobile && isExpandedOnMobile;
   const showExpandedOnDesktop = isExpandableOnDesktop && isHoveredOnDesktop;
-  const badgeElement = badgeLabel ? (
-    <span
-      ref={badgeMeasureRef}
-      className="mr-1.5 inline-block rounded-none border border-[oklch(0.72_0.07_86)]/35 bg-[oklch(0.94_0.025_92)] px-1.5 py-1 align-baseline text-[11px] font-semibold leading-none tracking-[0.06em] text-[oklch(0.44_0.08_80)] dark:bg-[oklch(0.44_0.08_80)] dark:text-[oklch(0.94_0.025_92)]"
-    >
-      {badgeLabel}
-    </span>
-  ) : null;
+  const badgeClassName =
+    "mr-1.5 inline-block rounded-none border border-[oklch(0.72_0.07_86)]/35 bg-[oklch(0.94_0.025_92)] px-1.5 py-1 align-baseline text-[11px] font-semibold leading-none tracking-[0.06em] text-[oklch(0.44_0.08_80)] dark:bg-[oklch(0.44_0.08_80)] dark:text-[oklch(0.94_0.025_92)]";
+  // The full, untruncated badge — used whenever the whole services line is
+  // expanded (tapped open on mobile, or hovered on desktop), same as it should
+  // normally behave.
+  const badgeElement = fullBadgeText ? <span className={badgeClassName}>{fullBadgeText}</span> : null;
+  // The collapsed badge may be shorter, with a trailing "+N" for any
+  // additional-needs labels that don't fit (e.g. a salon with 3+ needs).
+  const collapsedBadgeElement = collapsedBadgeText ? <span className={badgeClassName}>{collapsedBadgeText}</span> : null;
   const collapsedSummary = (
     <>
-      {badgeElement}
+      {collapsedBadgeElement}
       {services.slice(0, visibleCount).map((service, index) => (
         <Fragment key={`${service}-${index}`}>
           {index > 0 ? <span className="text-stone-500/70 dark:text-stone-500/80"> · </span> : null}
@@ -833,7 +894,9 @@ function ServicesSummary({ services, badgeLabel }: { services: string[]; badgeLa
       {hiddenCount > 0 ? (
         <>
           {visibleCount > 0 ? <span className="text-stone-500/70 dark:text-stone-500/80"> · </span> : null}
-          <span className="text-stone-600 dark:text-stone-400">+ {hiddenCount} {hiddenCount === 1 ? "service" : "services"}</span>
+          <span className="text-stone-600 dark:text-stone-400">
+            {useShortSuffix ? `+${hiddenCount}` : `+ ${hiddenCount} ${hiddenCount === 1 ? "service" : "services"}`}
+          </span>
         </>
       ) : null}
     </>
@@ -900,6 +963,38 @@ function ServicesSummary({ services, badgeLabel }: { services: string[]; badgeLa
               className="inline-block text-[12px] font-normal lowercase leading-[18px] tracking-[0.02em]"
             >
               + {count} {count === 1 ? "service" : "services"}
+            </span>
+          );
+        })}
+        {services.map((_, hiddenCountIndex) => {
+          const count = hiddenCountIndex + 1;
+
+          return (
+            <span
+              key={`short-suffix-${count}`}
+              ref={(element) => {
+                shortSuffixMeasureRefs.current[count] = element;
+              }}
+              className="inline-block text-[12px] font-normal lowercase leading-[18px] tracking-[0.02em]"
+            >
+              +{count}
+            </span>
+          );
+        })}
+        {labels.map((_, index) => {
+          const count = index + 1;
+          const hidden = labels.length - count;
+          const text = hidden > 0 ? `${labels.slice(0, count).join(" · ")} +${hidden}` : labels.join(" · ");
+
+          return (
+            <span
+              key={`badge-candidate-${count}`}
+              ref={(element) => {
+                badgeCandidateMeasureRefs.current[count] = element;
+              }}
+              className={badgeClassName}
+            >
+              {text}
             </span>
           );
         })}
@@ -1873,7 +1968,7 @@ export default function App() {
           {!disclaimerDismissed ? (
             <div
               ref={disclaimerRef}
-              className="relative mb-1 mt-0 flex w-full items-center border-b border-[oklch(0.93_0.003_55)] bg-[oklch(0.968_0.007_55)] text-[12px] leading-[1.4] text-[oklch(0.444_0.035_55)] dark:border-[oklch(0.216_0.006_55)] dark:text-[oklch(0.709_0.03_55)]"
+              className="relative mb-1 mt-0 flex w-full items-center border-b border-[oklch(0.93_0.003_55)] bg-[oklch(0.968_0.007_55)] text-[12px] leading-[1.4] text-[oklch(0.444_0.035_55)] dark:border-[oklch(0.22_0.02_55)] dark:bg-[oklch(0.26_0.025_55)] dark:text-[oklch(0.87_0.02_55)]"
             >
               <span aria-hidden="true" className="h-12 w-12 shrink-0 lg:h-10 lg:w-10" />
               <div className="mx-auto flex items-center gap-2 text-center">
@@ -1883,7 +1978,7 @@ export default function App() {
                 type="button"
                 onClick={dismissDisclaimer}
                 aria-label="Dismiss disclaimer"
-                className="flex h-12 w-12 shrink-0 items-center justify-center text-[oklch(0.444_0.035_55)] transition hover:text-[oklch(0.374_0.01_55)] dark:text-[oklch(0.709_0.03_55)] dark:hover:text-[oklch(0.923_0.003_55)] lg:h-10 lg:w-10"
+                className="flex h-12 w-12 shrink-0 items-center justify-center text-[oklch(0.444_0.035_55)] transition hover:text-[oklch(0.374_0.01_55)] dark:text-[oklch(0.87_0.02_55)] dark:hover:text-[oklch(0.78_0.02_55)] lg:h-10 lg:w-10"
               >
                 <X className="h-3.5 w-3.5" strokeWidth={2.75} />
               </button>
@@ -1986,13 +2081,11 @@ export default function App() {
                                 {result.name}
                               </h3>
                               {locationLabels.length > 0 || comparablePriceBand(result) ? (
-                                <div className="mt-0.5 flex flex-wrap items-center gap-x-1.5 text-[13px] font-medium text-stone-500 dark:text-stone-400">
-                                  {locationLabels.length > 0 ? <span>{locationLabels.join(" · ")}</span> : null}
-                                  {locationLabels.length > 0 && comparablePriceBand(result) ? (
-                                    <span aria-hidden="true" className="text-stone-400 dark:text-stone-500">·</span>
-                                  ) : null}
-                                  {comparablePriceBand(result) ? <span>{comparablePriceBand(result)}</span> : null}
-                                </div>
+                                <p className="mt-0.5 text-[13px] font-medium text-stone-500 dark:text-stone-400">
+                                  {locationLabels.join(" · ")}
+                                  {locationLabels.length > 0 && comparablePriceBand(result) ? " · " : ""}
+                                  {comparablePriceBand(result)}
+                                </p>
                               ) : null}
                               {reviewsBanner ? (
                                 <a
@@ -2036,7 +2129,7 @@ export default function App() {
                       </div>
 
                       <div className="order-2 my-1 w-full rounded-none border-l-4 border-stone-300 bg-stone-200/45 pl-2 pr-3 py-2 text-[12px] font-normal lowercase leading-[18px] tracking-[0.02em] text-stone-700 dark:border-stone-700 dark:bg-stone-900/48 dark:text-stone-300 sm:order-3 sm:col-span-2 sm:my-0 lg:mt-2">
-                        <ServicesSummary services={orderedServices} badgeLabel={attributeLabels.length > 0 ? attributeLabels.join(" · ") : null} />
+                        <ServicesSummary services={orderedServices} badgeLabels={attributeLabels} />
                       </div>
 
                       <div className="order-3 mt-2 flex w-full shrink-0 items-center gap-2 sm:order-2 sm:mt-0 sm:w-auto sm:self-start sm:justify-self-end">

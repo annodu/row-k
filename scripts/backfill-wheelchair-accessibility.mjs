@@ -4,6 +4,7 @@ import { fileURLToPath } from "node:url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const dataPath = path.resolve(__dirname, "../data/manual-salons.json");
+const freshnessChecksPath = path.resolve(__dirname, "../data/freshness-checks.json");
 const envPath = path.resolve(__dirname, "../.env");
 
 async function loadEnvFile() {
@@ -47,10 +48,30 @@ async function main() {
 
   const raw = await fs.readFile(dataPath, "utf8");
   const initial = JSON.parse(raw);
+
+  let dismissedRecommendations = {};
+  try {
+    const freshnessRaw = await fs.readFile(freshnessChecksPath, "utf8");
+    dismissedRecommendations = JSON.parse(freshnessRaw).dismissedRecommendations || {};
+  } catch {
+    // no freshness-checks file yet; nothing has been manually reviewed
+  }
+
   // Only check salons we've already confidently matched to a Google place, and
   // only where we don't already have this marked — we only ever add this signal,
-  // never remove or contradict an existing admin-entered value.
-  const targets = initial.salons.filter((salon) => !salon.branches && salon.googleMatchConfidence === "high" && salon.googlePlaceId && salon.wheelchairAccessible !== true);
+  // never remove or contradict an existing admin-entered value. A salon whose
+  // wheelchairAccessible was manually reviewed and rejected (e.g. an admin
+  // checked Street View and found the entrance isn't step-free) is recorded in
+  // freshness-checks.json's dismissedRecommendations and must never be
+  // re-derived from Google here.
+  const targets = initial.salons.filter(
+    (salon) =>
+      !salon.branches &&
+      salon.googleMatchConfidence === "high" &&
+      salon.googlePlaceId &&
+      salon.wheelchairAccessible !== true &&
+      dismissedRecommendations[salon.id]?.wheelchairAccessible !== true,
+  );
   console.log(`Checking wheelchair accessibility for ${targets.length} high-confidence Google matches.`);
 
   const results = new Map();

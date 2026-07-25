@@ -400,6 +400,10 @@ export function registerAdminStylistRoutes(app) {
     };
     await writeJson(manualIndexPath, manualIndex);
 
+    if (currentSalon.wheelchairAccessible === true && nextSalon.wheelchairAccessible === false) {
+      await markWheelchairAccessibleManuallyRejected(nextSalon.id);
+    }
+
     res.json({ ok: true, stylist: publishedSalonToDraft(nextSalon, manualIndex.meta.updatedAt) });
   });
 
@@ -618,7 +622,16 @@ export function registerAdminStylistRoutes(app) {
 
     if (locationChanged) {
       try {
-        Object.assign(nextBranch, await matchBranchToGoogle(salon.name, nextBranch));
+        const googleMatch = await matchBranchToGoogle(salon.name, nextBranch);
+        // Never let a fresh Google match silently override a wheelchairAccessible
+        // value that's already been reviewed by a human (e.g. an admin checked
+        // Street View and found the entrance isn't step-free) — only trust
+        // Google's signal for a branch that has never had this reviewed at all.
+        const { wheelchairAccessible: googleWheelchairAccessible, ...googleFields } = googleMatch;
+        Object.assign(nextBranch, googleFields);
+        if (typeof currentBranch.wheelchairAccessible !== "boolean" && typeof body.wheelchairAccessible !== "boolean" && googleWheelchairAccessible === true) {
+          nextBranch.wheelchairAccessible = true;
+        }
       } catch (error) {
         nextBranch.googleMatchError = error.message;
       }
@@ -2167,6 +2180,34 @@ async function tryWriteJson(filePath, payload) {
   } catch (error) {
     console.warn(`Could not persist ${path.basename(filePath)}. Returning in-memory results only.`, error);
     return false;
+  }
+}
+
+// When an admin manually turns wheelchairAccessible off for a salon (e.g. after
+// checking the entrance on Street View and finding it isn't step-free), record
+// that as a reviewed/rejected attribute so the health check's evidence scan
+// (buildAttributeSuggestions) and any Google-derived backfill never silently
+// re-suggest or re-apply it.
+async function markWheelchairAccessibleManuallyRejected(salonId) {
+  try {
+    const store = await readFreshnessStore({ meta: { source: "freshness-checks", updatedAt: null, count: 0 }, checks: [], dismissedRecommendations: {} });
+    const currentCheck = (store.checks || []).find((check) => check.id === salonId) || null;
+    const dismissedRecommendations = updateDismissedRecommendations(store.dismissedRecommendations || {}, salonId, {
+      rejectWheelchairAccessible: true,
+      currentCheck,
+    });
+    const checks = (store.checks || []).map((check) =>
+      check.id === salonId
+        ? { ...check, attributeSuggestions: (check.attributeSuggestions || []).filter((suggestion) => suggestion.field !== "wheelchairAccessible") }
+        : check,
+    );
+    await writeFreshnessStore({
+      meta: { ...(store.meta || {}), source: "freshness-checks", updatedAt: today(), count: checks.length },
+      dismissedRecommendations,
+      checks,
+    });
+  } catch (error) {
+    console.warn(`Could not record manual wheelchairAccessible rejection for ${salonId}.`, error);
   }
 }
 

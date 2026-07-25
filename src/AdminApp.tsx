@@ -7351,23 +7351,26 @@ function DraftEditor({
           </div>
         </DraftPropertyRow>
 
-        {draft.googleMatchConfidence === "high" && Number(draft.googleReviewCount) > 0 && draft.googleMapsUri ? (
-          <DraftPropertyRow icon={<Star className="size-4" />} label="Google reviews">
-            <div className="flex items-center gap-2">
-              <Input
-                value={draft.googleMapsUri || ""}
-                onChange={(event) => onChange({ googleMapsUri: event.target.value })}
-                className="h-8 rounded-md border-transparent bg-transparent px-2 py-1 hover:bg-stone-100 focus-visible:border-stone-300"
-              />
-              <a href={draft.googleMapsUri} target="_blank" rel="noreferrer" className="inline-flex size-8 shrink-0 items-center justify-center rounded-md text-stone-400 transition hover:bg-stone-100 hover:text-stone-950" aria-label={`Google reviews for ${draft.name} available - opens in a new tab`}>
+        <DraftPropertyRow icon={<Star className="size-4" />} label="Google Maps link">
+          <div className="flex items-center gap-2">
+            <Input
+              value={draft.googleMapsUri || ""}
+              onChange={(event) => onChange({ googleMapsUri: event.target.value })}
+              placeholder="https://maps.google.com/..."
+              className="h-8 rounded-md border-transparent bg-transparent px-2 py-1 hover:bg-stone-100 focus-visible:border-stone-300"
+            />
+            {draft.googleMapsUri ? (
+              <a href={draft.googleMapsUri} target="_blank" rel="noreferrer" className="inline-flex size-8 shrink-0 items-center justify-center rounded-md text-stone-400 transition hover:bg-stone-100 hover:text-stone-950" aria-label={`Google Maps link for ${draft.name} - opens in a new tab`}>
                 <ExternalLink className="size-4" />
               </a>
-            </div>
+            ) : null}
+          </div>
+          {draft.googleMatchConfidence === "high" && Number(draft.googleReviewCount) > 0 ? (
             <p className="mt-1 text-xs text-stone-500">
               {draft.googleReviewCount} reviews{draft.googleDisplayName ? ` — matched to "${draft.googleDisplayName}"` : ""}
             </p>
-          </DraftPropertyRow>
-        ) : null}
+          ) : null}
+        </DraftPropertyRow>
 
         <DraftPropertyRow icon={<CheckSquare className="size-4" />} label="Booking link is Instagram">
           <input
