@@ -9351,7 +9351,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-07-24",
+      "updatedAt": "2026-07-25",
       "addedVia": "Bulk import",
       "discoverySource": "Cowork scrape",
       "websiteUrl": "",
@@ -9365,14 +9365,15 @@
           "neighbourhood": "Shoreditch",
           "postcode": "E1",
           "bookingUrl": "https://s-iq.co/BookingPortal/dist/?salonid=44ba0890-dc29-485b-88ca-f1ce825fbacf&tab=book",
-          "wheelchairAccessible": true,
+          "wheelchairAccessible": false,
           "googlePlaceId": "ChIJ8c1Fo7YcdkgRvWWrhVHllLQ",
           "googleReviewCount": 542,
           "googleMapsUri": "https://maps.google.com/?cid=13012277361677919677&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
           "googleMatchConfidence": "high",
           "googleDisplayName": "Taylor Taylor London - Shoreditch (City Of London)",
           "googleFormattedAddress": "Shoreditch, 137 Commercial St, London E1 6BJ, UK",
-          "googleCheckedAt": "2026-07-24T15:43:25.951Z"
+          "googleCheckedAt": "2026-07-24T15:43:25.951Z",
+          "temporarilyClosed": false
         },
         {
           "id": "soho",
