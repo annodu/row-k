@@ -1,10 +1,41 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-07-24",
-    "count": 3
+    "updatedAt": "2026-07-27",
+    "count": 4
   },
   "drafts": [
+    {
+      "id": "new-stylist-ms3ljcu7",
+      "status": "needs_review",
+      "name": "New stylist",
+      "areaId": "",
+      "areaIds": [],
+      "areaLabel": "",
+      "neighbourhood": "",
+      "postcode": "",
+      "bookingPlatform": "",
+      "bookingUrl": "",
+      "instagramUrl": "",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Manual search",
+      "services": [],
+      "rawServices": [],
+      "summary": "Admin draft created from stylist intake.",
+      "confidence": 0.35,
+      "warnings": [
+        "No booking link identified yet.",
+        "No services matched yet."
+      ],
+      "evidence": [
+        "Created through ROW K admin intake."
+      ],
+      "source": "admin-draft",
+      "createdAt": "2026-07-27",
+      "updatedAt": "2026-07-27",
+      "lastCheckedAt": "2026-07-27"
+    },
     {
       "id": "lockonego",
       "status": "ready_to_approve",

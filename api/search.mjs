@@ -36,6 +36,7 @@ export default async function handler(req, res) {
     const wheelchairAccessible = req.body?.wheelchairAccessible === true;
     const hasVerifiedReviews = req.body?.hasVerifiedReviews === true;
     const googleReviewsOnly = req.body?.googleReviewsOnly === true;
+    const bookingSitesOnly = req.body?.bookingSitesOnly === true;
     const customFilters = sanitizeCustomFilters(req.body?.customFilters);
 
     const payload = await searchSalons({
@@ -47,6 +48,7 @@ export default async function handler(req, res) {
       wheelchairAccessible,
       hasVerifiedReviews,
       googleReviewsOnly,
+      bookingSitesOnly,
       customFilters,
     });
     return res.status(200).json(payload);

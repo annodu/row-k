@@ -91,10 +91,11 @@ app.post("/api/search", publicSearchRateLimit, async (req, res) => {
   const wheelchairAccessible = req.body?.wheelchairAccessible === true;
   const hasVerifiedReviews = req.body?.hasVerifiedReviews === true;
   const googleReviewsOnly = req.body?.googleReviewsOnly === true;
+  const bookingSitesOnly = req.body?.bookingSitesOnly === true;
   const customFilters = sanitizeCustomFilters(req.body?.customFilters);
 
   return res.json(
-    await searchSalons({ categories, subcategories, regions, hijabiFriendly, canBraidWithoutGel, wheelchairAccessible, hasVerifiedReviews, googleReviewsOnly, customFilters }),
+    await searchSalons({ categories, subcategories, regions, hijabiFriendly, canBraidWithoutGel, wheelchairAccessible, hasVerifiedReviews, googleReviewsOnly, bookingSitesOnly, customFilters }),
   );
 });
 

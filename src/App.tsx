@@ -1111,6 +1111,7 @@ export default function App() {
   const [draftSelectedWheelchairAccessible, setDraftSelectedWheelchairAccessible] = useState(false);
   const [draftSelectedHasVerifiedReviews, setDraftSelectedHasVerifiedReviews] = useState(false);
   const [draftSelectedGoogleReviewsOnly, setDraftSelectedGoogleReviewsOnly] = useState(false);
+  const [draftSelectedBookingSitesOnly, setDraftSelectedBookingSitesOnly] = useState(false);
   const [draftSortOption, setDraftSortOption] = useState<SortOption>("default");
   const [visibleResultCount, setVisibleResultCount] = useState(RESULTS_BATCH_SIZE);
   const [isSearching, setIsSearching] = useState(false);
@@ -1153,6 +1154,7 @@ export default function App() {
   const [selectedWheelchairAccessible, setSelectedWheelchairAccessible] = useState(false);
   const [selectedHasVerifiedReviews, setSelectedHasVerifiedReviews] = useState(false);
   const [selectedGoogleReviewsOnly, setSelectedGoogleReviewsOnly] = useState(false);
+  const [selectedBookingSitesOnly, setSelectedBookingSitesOnly] = useState(false);
   const [selectedPriceBands, setSelectedPriceBands] = useState<PriceRangeFilterId[]>([]);
   const [isDesktopViewport, setIsDesktopViewport] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
@@ -1171,6 +1173,7 @@ export default function App() {
   const currentSelectedWheelchairAccessible = isMobileModalEditing ? draftSelectedWheelchairAccessible : selectedWheelchairAccessible;
   const currentSelectedHasVerifiedReviews = isMobileModalEditing ? draftSelectedHasVerifiedReviews : selectedHasVerifiedReviews;
   const currentSelectedGoogleReviewsOnly = isMobileModalEditing ? draftSelectedGoogleReviewsOnly : selectedGoogleReviewsOnly;
+  const currentSelectedBookingSitesOnly = isMobileModalEditing ? draftSelectedBookingSitesOnly : selectedBookingSitesOnly;
   const currentSelectedCustomFilters = isMobileModalEditing ? draftSelectedCustomFilters : selectedCustomFilters;
   const currentSortOption = isMobileModalEditing ? draftSortOption : sortOption;
 
@@ -1197,6 +1200,7 @@ export default function App() {
     setDraftSelectedWheelchairAccessible(selectedWheelchairAccessible);
     setDraftSelectedHasVerifiedReviews(selectedHasVerifiedReviews);
     setDraftSelectedGoogleReviewsOnly(selectedGoogleReviewsOnly);
+    setDraftSelectedBookingSitesOnly(selectedBookingSitesOnly);
     setDraftSelectedCustomFilters(selectedCustomFilters);
     setDraftSortOption(sortOption);
   }
@@ -1222,6 +1226,7 @@ export default function App() {
     setSelectedWheelchairAccessible(draftSelectedWheelchairAccessible);
     setSelectedHasVerifiedReviews(draftSelectedHasVerifiedReviews);
     setSelectedGoogleReviewsOnly(draftSelectedGoogleReviewsOnly);
+    setSelectedBookingSitesOnly(draftSelectedBookingSitesOnly);
     setSelectedCustomFilters(draftSelectedCustomFilters);
     setSortOption(draftSortOption);
     setVisibleResultCount(RESULTS_BATCH_SIZE);
@@ -1311,6 +1316,15 @@ export default function App() {
     }
 
     setSelectedGoogleReviewsOnly(updater);
+  }
+
+  function updateBookingSitesOnly(updater: boolean | ((current: boolean) => boolean)) {
+    if (isMobileModalEditing) {
+      setDraftSelectedBookingSitesOnly(updater);
+      return;
+    }
+
+    setSelectedBookingSitesOnly(updater);
   }
 
   function updateCustomFilters(updater: Record<string, string[]> | ((current: Record<string, string[]>) => Record<string, string[]>)) {
@@ -1451,6 +1465,7 @@ export default function App() {
       wheelchair_accessible: currentSelectedWheelchairAccessible,
       has_verified_reviews: currentSelectedHasVerifiedReviews,
       google_reviews_only: currentSelectedGoogleReviewsOnly,
+      booking_sites_only: currentSelectedBookingSitesOnly,
     });
     updateCategories([]);
     updateSubcategories([]);
@@ -1461,6 +1476,7 @@ export default function App() {
     updateWheelchairAccessible(false);
     updateHasVerifiedReviews(false);
     updateGoogleReviewsOnly(false);
+    updateBookingSitesOnly(false);
     updateCustomFilters({});
     updateSortOption("default");
   }
@@ -1574,10 +1590,11 @@ export default function App() {
       enabled: nextEnabled,
     });
     updateHasVerifiedReviews(nextEnabled);
-    // "Google reviews only" is nested under "All reviews" — hiding the parent
-    // clears the child so it can't stay active while hidden.
+    // "Google" and "Booking sites" are nested under "All reviews" — hiding the
+    // parent clears the children so they can't stay active while hidden.
     if (!nextEnabled) {
       updateGoogleReviewsOnly(false);
+      updateBookingSitesOnly(false);
     }
   }
 
@@ -1587,6 +1604,14 @@ export default function App() {
       enabled: nextEnabled,
     });
     updateGoogleReviewsOnly(nextEnabled);
+  }
+
+  function toggleBookingSitesOnly() {
+    const nextEnabled = !currentSelectedBookingSitesOnly;
+    trackAnalyticsEvent("booking_sites_only_toggle_changed", {
+      enabled: nextEnabled,
+    });
+    updateBookingSitesOnly(nextEnabled);
   }
 
   function toggleCustomFilterOption(filterTypeId: string, optionId: string) {
@@ -1710,6 +1735,7 @@ export default function App() {
           wheelchairAccessible: selectedWheelchairAccessible,
           hasVerifiedReviews: selectedHasVerifiedReviews,
           googleReviewsOnly: selectedGoogleReviewsOnly,
+          bookingSitesOnly: selectedBookingSitesOnly,
           customFilters: selectedCustomFilters,
         }),
       });
@@ -1742,6 +1768,7 @@ export default function App() {
         wheelchair_accessible: selectedWheelchairAccessible,
         has_verified_reviews: selectedHasVerifiedReviews,
         google_reviews_only: selectedGoogleReviewsOnly,
+        booking_sites_only: selectedBookingSitesOnly,
       });
 
       if (resultCount === 0) {
@@ -1753,6 +1780,7 @@ export default function App() {
           wheelchair_accessible: selectedWheelchairAccessible,
           has_verified_reviews: selectedHasVerifiedReviews,
           google_reviews_only: selectedGoogleReviewsOnly,
+          booking_sites_only: selectedBookingSitesOnly,
         });
       }
 
@@ -1771,7 +1799,7 @@ export default function App() {
 
   useEffect(() => {
     void handleSearch({ scroll: false });
-  }, [selectedCategories, selectedSubcategories, selectedRegions, selectedHijabiFriendly, selectedCanBraidWithoutGel, selectedWheelchairAccessible, selectedHasVerifiedReviews, selectedGoogleReviewsOnly, selectedCustomFilters]);
+  }, [selectedCategories, selectedSubcategories, selectedRegions, selectedHijabiFriendly, selectedCanBraidWithoutGel, selectedWheelchairAccessible, selectedHasVerifiedReviews, selectedGoogleReviewsOnly, selectedBookingSitesOnly, selectedCustomFilters]);
 
   useEffect(() => {
     fetch("/api/filters")
@@ -1855,6 +1883,7 @@ export default function App() {
     selectedWheelchairAccessible ||
     selectedHasVerifiedReviews ||
     selectedGoogleReviewsOnly ||
+    selectedBookingSitesOnly ||
     Object.values(selectedCustomFilters).some((values) => values.length > 0) ||
     selectedRegions.length !== 1 ||
     selectedRegions[0] !== "all";
@@ -1924,7 +1953,7 @@ export default function App() {
   const selectedPriceRangeCount = currentSelectedPriceBands.length;
   const selectedAdditionalNeedsCount =
     (currentSelectedHijabiFriendly ? 1 : 0) + (currentSelectedCanBraidWithoutGel ? 1 : 0) + (currentSelectedWheelchairAccessible ? 1 : 0);
-  const selectedReviewsCount = currentSelectedHasVerifiedReviews || currentSelectedGoogleReviewsOnly ? 1 : 0;
+  const selectedReviewsCount = currentSelectedHasVerifiedReviews || currentSelectedGoogleReviewsOnly || currentSelectedBookingSitesOnly ? 1 : 0;
   const selectedCustomFilterCounts = Object.fromEntries(
     customFilterTypes.map((filterType) => [filterType.id, (currentSelectedCustomFilters[filterType.id] ?? []).length]),
   );
@@ -2709,6 +2738,7 @@ export default function App() {
                   {(() => {
                     const allReviewsLabelId = makeFilterLabelId("reviews", "all");
                     const googleOnlyLabelId = makeFilterLabelId("reviews", "google-only");
+                    const bookingSitesOnlyLabelId = makeFilterLabelId("reviews", "booking-sites-only");
 
                     return (
                       <>
@@ -2733,7 +2763,7 @@ export default function App() {
                         </div>
 
                         {currentSelectedHasVerifiedReviews ? (
-                          <div className="pl-8">
+                          <div className="space-y-2 pl-8">
                             <div
                               role="checkbox"
                               tabIndex={0}
@@ -2750,7 +2780,27 @@ export default function App() {
                                 className="pointer-events-none mt-0.5"
                               />
                               <span id={googleOnlyLabelId} className="translate-y-[1.5px] text-[15px] text-stone-800 dark:text-stone-200">
-                                Google reviews only
+                                Google
+                              </span>
+                            </div>
+
+                            <div
+                              role="checkbox"
+                              tabIndex={0}
+                              aria-checked={currentSelectedBookingSitesOnly}
+                              aria-labelledby={bookingSitesOnlyLabelId}
+                              className="flex w-full cursor-pointer items-start gap-3 rounded-none px-2 py-2 text-left transition-colors hover:bg-stone-200 active:bg-stone-200 dark:hover:bg-stone-900 dark:active:bg-stone-900"
+                              onClick={toggleBookingSitesOnly}
+                              onKeyDown={(event) => handleToggleKeyDown(event, toggleBookingSitesOnly)}
+                            >
+                              <Checkbox
+                                checked={currentSelectedBookingSitesOnly}
+                                aria-hidden="true"
+                                tabIndex={-1}
+                                className="pointer-events-none mt-0.5"
+                              />
+                              <span id={bookingSitesOnlyLabelId} className="translate-y-[1.5px] text-[15px] text-stone-800 dark:text-stone-200">
+                                Booking sites (e.g. Fresha, Treatwell)
                               </span>
                             </div>
                           </div>

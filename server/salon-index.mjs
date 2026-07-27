@@ -603,6 +603,7 @@ export async function searchSalons({
   wheelchairAccessible = false,
   hasVerifiedReviews = false,
   googleReviewsOnly = false,
+  bookingSitesOnly = false,
   customFilters = {},
 } = {}) {
   const index = await readSalonIndex();
@@ -622,6 +623,7 @@ export async function searchSalons({
         matchesWheelchairAccessible(salon, wheelchairAccessible) &&
         matchesHasVerifiedReviews(salon, hasVerifiedReviews) &&
         matchesGoogleReviewsOnly(salon, googleReviewsOnly) &&
+        matchesBookingSitesOnly(salon, bookingSitesOnly) &&
         matchesCustomFilters(salon, customFilters),
     )
     .sort(compareRecentlyAdded);
@@ -732,6 +734,14 @@ function matchesGoogleReviewsOnly(salon, googleReviewsOnly) {
   }
 
   return hasVerifiedGoogleReviews(salon) === true;
+}
+
+function matchesBookingSitesOnly(salon, bookingSitesOnly) {
+  if (!bookingSitesOnly) {
+    return true;
+  }
+
+  return hasVerifiedBookingPlatformReviews(salon) === true;
 }
 
 

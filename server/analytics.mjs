@@ -58,7 +58,8 @@ const FILTER_EVENT_GROUPS = [
   { event: "braiding_preference_selected", group: "Preferences", selectedProp: "selected", labelProp: "selection" },
   { event: "hijabi_toggle_changed", group: "Preferences", selectedProp: "enabled", fixedLabel: "Hijabi friendly" },
   { event: "verified_reviews_toggle_changed", group: "Preferences", selectedProp: "enabled", fixedLabel: "All reviews" },
-  { event: "google_reviews_only_toggle_changed", group: "Preferences", selectedProp: "enabled", fixedLabel: "Google reviews only" },
+  { event: "google_reviews_only_toggle_changed", group: "Preferences", selectedProp: "enabled", fixedLabel: "Google" },
+  { event: "booking_sites_only_toggle_changed", group: "Preferences", selectedProp: "enabled", fixedLabel: "Booking sites" },
 ];
 
 const FILTER_GROUP_ORDER = ["Services", "Locations", "Price", "Preferences"];
