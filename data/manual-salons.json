@@ -896,7 +896,7 @@
       "areaLabel": "London",
       "neighbourhood": "London London",
       "postcode": "",
-      "bookingPlatform": "Direct",
+      "bookingPlatform": "Instagram",
       "bookingUrl": "https://www.instagram.com/curluxe_/?hl=en-gb",
       "instagramUrl": "https://www.instagram.com/curluxe_/?hl=en-gb",
       "tiktokUrl": "",
@@ -1735,7 +1735,7 @@
       "areaLabel": "South west London",
       "neighbourhood": "South west London London",
       "postcode": "",
-      "bookingPlatform": "Direct",
+      "bookingPlatform": "Instagram",
       "bookingUrl": "https://www.instagram.com/micanicolehairstylist/",
       "instagramUrl": "https://www.instagram.com/micanicolehairstylist/",
       "services": [
@@ -2200,7 +2200,7 @@
       "areaLabel": "London",
       "neighbourhood": "London London",
       "postcode": "",
-      "bookingPlatform": "Direct",
+      "bookingPlatform": "Instagram",
       "bookingUrl": "https://www.instagram.com/wigsbyfoster",
       "instagramUrl": "https://www.instagram.com/wigsbyfoster",
       "services": [
@@ -18291,13 +18291,13 @@
       "priceUpdatedAt": "2026-06-03",
       "addedVia": "Code edit",
       "discoverySource": "Cowork scrape",
-      "googlePlaceId": "ChIJucvHZjwDdkgRwuxN5nbXvHc",
-      "googleReviewCount": 196,
-      "googleMapsUri": "https://maps.google.com/?cid=8628007891805007042&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
-      "googleMatchConfidence": "high",
-      "googleDisplayName": "Lounge Hair & Beauty Salon",
-      "googleFormattedAddress": "200 Jamaica Rd, London SE16 4RT, UK",
-      "googleCheckedAt": "2026-07-23T22:21:53.804Z"
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleDisplayName": null,
+      "googleFormattedAddress": null,
+      "googleCheckedAt": "2026-07-28T21:30:32.000Z"
     },
     {
       "id": "ess-belle-tresses",
