@@ -2,9 +2,40 @@
   "meta": {
     "source": "admin-drafts",
     "updatedAt": "2026-07-28",
-    "count": 164
+    "count": 165
   },
   "drafts": [
+    {
+      "id": "new-stylist-ms59gfkw",
+      "status": "needs_review",
+      "name": "New stylist",
+      "areaId": "",
+      "areaIds": [],
+      "areaLabel": "",
+      "neighbourhood": "",
+      "postcode": "",
+      "bookingPlatform": "",
+      "bookingUrl": "",
+      "instagramUrl": "",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Manual search",
+      "services": [],
+      "rawServices": [],
+      "summary": "Admin draft created from stylist intake.",
+      "confidence": 0.35,
+      "warnings": [
+        "No booking link identified yet.",
+        "No services matched yet."
+      ],
+      "evidence": [
+        "Created through ROW K admin intake."
+      ],
+      "source": "admin-draft",
+      "createdAt": "2026-07-28",
+      "updatedAt": "2026-07-28",
+      "lastCheckedAt": "2026-07-28"
+    },
     {
       "id": "new-stylist-ms3ljcu7",
       "status": "needs_review",
