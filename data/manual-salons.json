@@ -17748,7 +17748,7 @@
     },
     {
       "id": "elevate-399",
-      "name": "Elevate 399",
+      "name": "Elevate",
       "areaId": "south-west",
       "areaLabel": "South West",
       "neighbourhood": "South West London",
@@ -17781,19 +17781,13 @@
         "Uses one of the harder booking platforms the project focuses on."
       ],
       "priceBand": "££",
-      "priceSource": "manual",
+      "priceSource": "auto",
       "priceEvidence": [
-        "* Buzz Cut - * Buzz Cut from £40.00",
-        "* See info Tapered Cut (Natural Hair) - * See info Tapered Cut (Natural Hair) from £60.00",
-        "* See info Wash, Cut & Style (PIXIE/SHORT) - * See info Wash, Cut & Style (PIXIE/SHORT) from £80.00",
-        "* See info Wash & Style (PIXIE/SHORT) - * See info Wash & Style (PIXIE/SHORT) from £65.00",
-        "* See info Virgin Relaxer, Cut & Style (PIXIE/SHORT) - * See info Virgin Relaxer, Cut & Style (PIXIE/SHORT) from £160.00",
-        "* See info Virgin Texturizer, Cut & Style (PIXIE/SHORT) - * See info Virgin Texturizer, Cut & Style (PIXIE/SHORT) from £160.00",
-        "* See info Relaxer, Cut & Style (PIXIE/SHORT) - * See info Relaxer, Cut & Style (PIXIE/SHORT) from £130.00",
-        "* See info Relaxer & Style (PIXIE/SHORT) from £120.00"
+        "* Buzz Cut - * Buzz Cut - * Buzz Cut - * Buzz Cut - * Buzz Cut - * Buzz Cut - * Buzz Cut - * Buzz Cut - * Buzz Cut - * Buzz Cut - * Buzz Cut - * Buzz Cut - * Buzz Cut - * Buzz Cut - * Buzz Cut - * Buzz Cut from £40.00",
+        "* See info Wash & Style (PIXIE/SHORT) - * See info Wash & Style (PIXIE/SHORT) - * See info Wash & Style (PIXIE/SHORT)... - * See info Relaxer & Style (PIXIE/SHORT) from £120.00"
       ],
-      "priceCheckedAt": "2026-06-04",
-      "priceUpdatedAt": "2026-06-04",
+      "priceCheckedAt": "2026-07-28T21:28:40.368Z",
+      "priceUpdatedAt": "2026-07-28T21:28:40.368Z",
       "priceConfidence": "manual",
       "addedVia": "Code edit",
       "discoverySource": "Manual search",
@@ -17803,7 +17797,18 @@
       "googleMatchConfidence": "high",
       "googleDisplayName": "Elevate",
       "googleFormattedAddress": "61 Atlantic Rd, London SW9 8PU, UK",
-      "googleCheckedAt": "2026-07-23T22:21:47.297Z"
+      "googleCheckedAt": "2026-07-23T22:21:47.297Z",
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "customFilters": {},
+      "servicePriceBand": "££",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "updatedAt": "2026-07-28"
     },
     {
       "id": "elitehairlounge",
