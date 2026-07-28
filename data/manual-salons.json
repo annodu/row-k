@@ -8579,12 +8579,20 @@
       "evidence": [
         "Submitted link: https://www.instagram.com/hairbabelondon/"
       ],
-      "priceBand": "",
-      "priceSource": "manual",
-      "priceEvidence": [],
-      "priceCheckedAt": "2026-06-03",
-      "priceUpdatedAt": "2026-07-24",
-      "priceConfidence": "",
+      "priceBand": "££",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "Frontal replacement (wigs made/customised by me) - £130",
+        "Frontal replacement (wigs not made by me) - £140",
+        "COMPLETE WIG REVAMP+ reinstall\\ud83e\\ude84 - £150",
+        "Pre-made Wig install - £140",
+        "Full fringe cut - £15",
+        "Layers + curls/ blow out look - £15",
+        "UNDER WIG BRAIDS - £10"
+      ],
+      "priceCheckedAt": "2026-07-28T21:16:28.445Z",
+      "priceUpdatedAt": "2026-07-28T21:16:28.445Z",
+      "priceConfidence": "high",
       "addedVia": "Admin tool",
       "discoverySource": "Manual search",
       "googlePlaceId": "ChIJk8smH4kddkgRuvvKuVx18lg",
@@ -8600,11 +8608,11 @@
       "canBraidWithoutGel": false,
       "wheelchairAccessible": false,
       "customFilters": {},
-      "servicePriceBand": "",
+      "servicePriceBand": "££",
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-07-24"
+      "updatedAt": "2026-07-28"
     },
     {
       "id": "rathestylist",
