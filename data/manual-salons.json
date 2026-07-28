@@ -8579,20 +8579,12 @@
       "evidence": [
         "Submitted link: https://www.instagram.com/hairbabelondon/"
       ],
-      "priceBand": "££",
-      "priceSource": "auto",
-      "priceEvidence": [
-        "Frontal replacement (wigs made/customised by me) - £130",
-        "Frontal replacement (wigs not made by me) - £140",
-        "COMPLETE WIG REVAMP+ reinstall\\ud83e\\ude84 - £150",
-        "Pre-made Wig install - £140",
-        "Full fringe cut - £15",
-        "Layers + curls/ blow out look - £15",
-        "UNDER WIG BRAIDS - £10"
-      ],
-      "priceCheckedAt": "2026-07-28T21:16:28.445Z",
-      "priceUpdatedAt": "2026-07-28T21:16:28.445Z",
-      "priceConfidence": "high",
+      "priceBand": "",
+      "priceSource": "manual",
+      "priceEvidence": [],
+      "priceCheckedAt": "2026-06-03",
+      "priceUpdatedAt": "2026-07-24",
+      "priceConfidence": "",
       "addedVia": "Admin tool",
       "discoverySource": "Manual search",
       "googlePlaceId": "ChIJk8smH4kddkgRuvvKuVx18lg",
@@ -8608,11 +8600,11 @@
       "canBraidWithoutGel": false,
       "wheelchairAccessible": false,
       "customFilters": {},
-      "servicePriceBand": "££",
+      "servicePriceBand": "",
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-07-28"
+      "updatedAt": "2026-07-24"
     },
     {
       "id": "rathestylist",
@@ -28158,7 +28150,10 @@
         "Knotless braids",
         "Stitch braids",
         "Miracle knots",
-        "Kids & teens styles"
+        "Kids & teens styles",
+        "Microbraids / x-small braids",
+        "Traditional sew-in / leave out",
+        "Retwist"
       ],
       "addedVia": "Code edit",
       "discoverySource": "Cowork scrape",
@@ -28168,7 +28163,33 @@
       "googleMatchConfidence": "low",
       "googleDisplayName": "Nana's Hair Salon Croydon",
       "googleFormattedAddress": "187b London Rd, Croydon CR0 2RJ, UK",
-      "googleCheckedAt": "2026-07-23T22:24:19.000Z"
+      "googleCheckedAt": "2026-07-23T22:24:19.000Z",
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "customFilters": {},
+      "priceBand": "£££",
+      "servicePriceBand": "£££",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "BOHO Diva Braids - £325",
+        "BOHO Fulani Braids - £245",
+        "BOHO Small Knotless Braids - £315",
+        "BOHO Medium Knotless Braids - £255",
+        "BOHO Large Knotless Braids - £225",
+        "BOHO XS Knotless Braids - £385",
+        "BOHO Lemonade Fulani Braids - £275",
+        "BOHO S-medium Knotless Braids - £285"
+      ],
+      "priceCheckedAt": "2026-07-28T21:17:11.220Z",
+      "priceUpdatedAt": "2026-07-28T21:17:11.220Z",
+      "priceConfidence": "high",
+      "updatedAt": "2026-07-28"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
