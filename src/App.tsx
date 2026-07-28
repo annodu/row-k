@@ -307,13 +307,25 @@ function getVerifiedReviewsUrl(result: SalonResult): string {
   return bookingUrl;
 }
 
-function getReviewsBannerInfo(result: SalonResult): { label: string; url: string; accessibleLabel: string } | null {
-  if (result.googleMatchConfidence === "high" && Number(result.googleReviewCount) > 0 && result.googleMapsUri) {
+function getReviewsBannerInfo(
+  result: SalonResult,
+  options?: { preferBookingPlatform?: boolean },
+): { label: string; url: string; accessibleLabel: string } | null {
+  const hasGoogleReviews = result.googleMatchConfidence === "high" && Number(result.googleReviewCount) > 0 && result.googleMapsUri;
+  const platform = getVerifiedReviewsPlatform(result);
+  const hasBookingPlatformReviews = Boolean(platform) && Number(result.verifiedReviewCount) > 0;
+
+  // Google reviews win by default, but a user who's filtered to booking-site
+  // reviews specifically wants to see that link, not Google's, for salons with both.
+  if (options?.preferBookingPlatform && hasBookingPlatformReviews) {
+    return { label: `Reviews on ${platform}`, url: getVerifiedReviewsUrl(result), accessibleLabel: `Reviews for ${result.name} on ${platform}` };
+  }
+
+  if (hasGoogleReviews) {
     return { label: "Google reviews available", url: result.googleMapsUri, accessibleLabel: `Google reviews for ${result.name} available` };
   }
 
-  const platform = getVerifiedReviewsPlatform(result);
-  if (platform && Number(result.verifiedReviewCount) > 0) {
+  if (hasBookingPlatformReviews) {
     return { label: `Reviews on ${platform}`, url: getVerifiedReviewsUrl(result), accessibleLabel: `Reviews for ${result.name} on ${platform}` };
   }
 
@@ -462,10 +474,12 @@ function BrandGroupCard({
   brandBranches,
   orderedServices,
   customFilterTypes,
+  preferBookingPlatform,
 }: {
   brandBranches: SalonResult[];
   orderedServices: string[];
   customFilterTypes: CustomFilterType[];
+  preferBookingPlatform: boolean;
 }) {
   const [expanded, setExpanded] = useState(false);
   const brand = brandBranches[0];
@@ -570,7 +584,7 @@ function BrandGroupCard({
 
       <div className="w-full divide-y divide-stone-200 border border-stone-200 dark:divide-stone-800 dark:border-stone-800">
         {visibleBranches.map((branch) => {
-          const reviewsBanner = getReviewsBannerInfo(branch);
+          const reviewsBanner = getReviewsBannerInfo(branch, { preferBookingPlatform });
           const branchLocation = getLocationLabels(branch).join(" · ");
           return (
             <div key={branch.id} className="flex items-start justify-between gap-3 px-3 py-3">
@@ -1590,12 +1604,11 @@ export default function App() {
       enabled: nextEnabled,
     });
     updateHasVerifiedReviews(nextEnabled);
-    // "Google" and "Booking sites" are nested under "All reviews" — hiding the
-    // parent clears the children so they can't stay active while hidden.
-    if (!nextEnabled) {
-      updateGoogleReviewsOnly(false);
-      updateBookingSitesOnly(false);
-    }
+    // "Google" and "Booking sites" are nested under "All reviews", mirroring the
+    // location filter's parent/child groups: selecting the parent directly
+    // (either direction) always resets any specific-source selection.
+    updateGoogleReviewsOnly(false);
+    updateBookingSitesOnly(false);
   }
 
   function toggleGoogleReviewsOnly() {
@@ -1604,6 +1617,13 @@ export default function App() {
       enabled: nextEnabled,
     });
     updateGoogleReviewsOnly(nextEnabled);
+    if (nextEnabled) {
+      // Narrowing to a specific source deselects the "All reviews" parent.
+      updateHasVerifiedReviews(false);
+    } else if (!currentSelectedBookingSitesOnly) {
+      // No specific source remains selected — fall back to "All reviews".
+      updateHasVerifiedReviews(true);
+    }
   }
 
   function toggleBookingSitesOnly() {
@@ -1612,6 +1632,13 @@ export default function App() {
       enabled: nextEnabled,
     });
     updateBookingSitesOnly(nextEnabled);
+    if (nextEnabled) {
+      // Narrowing to a specific source deselects the "All reviews" parent.
+      updateHasVerifiedReviews(false);
+    } else if (!currentSelectedGoogleReviewsOnly) {
+      // No specific source remains selected — fall back to "All reviews".
+      updateHasVerifiedReviews(true);
+    }
   }
 
   function toggleCustomFilterOption(filterTypeId: string, optionId: string) {
@@ -2094,6 +2121,7 @@ export default function App() {
                           brandBranches={brandBranches}
                           orderedServices={brandOrderedServices}
                           customFilterTypes={customFilterTypes}
+                          preferBookingPlatform={currentSelectedBookingSitesOnly && !currentSelectedGoogleReviewsOnly}
                         />
                       );
                     }
@@ -2103,7 +2131,9 @@ export default function App() {
                   const orderedServices = orderServicesBySelection(result.services, selectedCategories, selectedSubcategories, runtimeCategoryServiceMap);
 
                   const activeServices = [...selectedCategories, ...selectedSubcategories].join(", ") || "none";
-                  const reviewsBanner = getReviewsBannerInfo(result);
+                  const reviewsBanner = getReviewsBannerInfo(result, {
+                    preferBookingPlatform: currentSelectedBookingSitesOnly && !currentSelectedGoogleReviewsOnly,
+                  });
                   const attributeLabels = [
                     result.wheelchairAccessible ? "wheelchair access" : null,
                     result.hijabiFriendly ? "hijabi-friendly" : null,
@@ -2762,7 +2792,7 @@ export default function App() {
                           </span>
                         </div>
 
-                        {currentSelectedHasVerifiedReviews ? (
+                        {currentSelectedHasVerifiedReviews || currentSelectedGoogleReviewsOnly || currentSelectedBookingSitesOnly ? (
                           <div className="space-y-2 pl-8">
                             <div
                               role="checkbox"
