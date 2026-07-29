@@ -1,12 +1,12 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-07-28",
-    "count": 164
+    "updatedAt": "2026-07-29",
+    "count": 165
   },
   "drafts": [
     {
-      "id": "new-stylist-ms3ljcu7",
+      "id": "new-stylist-ms6caq9y",
       "status": "needs_review",
       "name": "New stylist",
       "areaId": "",
@@ -32,9 +32,57 @@
         "Created through ROW K admin intake."
       ],
       "source": "admin-draft",
-      "createdAt": "2026-07-27",
-      "updatedAt": "2026-07-27",
-      "lastCheckedAt": "2026-07-27"
+      "createdAt": "2026-07-29",
+      "updatedAt": "2026-07-29",
+      "lastCheckedAt": "2026-07-29"
+    },
+    {
+      "id": "new-stylist-ms59h2z7",
+      "status": "needs_review",
+      "name": "Hair by Rose Essex",
+      "areaId": "essex",
+      "areaIds": [
+        "essex"
+      ],
+      "areaLabel": "Essex",
+      "neighbourhood": "Essex London",
+      "postcode": "",
+      "bookingPlatform": "",
+      "bookingUrl": "",
+      "instagramUrl": "https://www.instagram.com/hairbyroseessex/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Manual search",
+      "services": [],
+      "rawServices": [],
+      "summary": "Admin draft created from stylist intake.",
+      "confidence": 0.35,
+      "warnings": [
+        "No booking link identified yet.",
+        "No services matched yet."
+      ],
+      "evidence": [
+        "Created through ROW K admin intake."
+      ],
+      "source": "admin-draft",
+      "createdAt": "2026-07-28",
+      "updatedAt": "2026-07-28",
+      "lastCheckedAt": "2026-07-28",
+      "googleMapsUri": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "customFilters": {},
+      "priceBand": "",
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "",
+      "priceSource": "",
+      "priceEvidence": [],
+      "priceCheckedAt": "",
+      "priceUpdatedAt": "",
+      "priceConfidence": ""
     },
     {
       "id": "lockonego",
@@ -201,7 +249,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £45 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "damsstyledit-19faa1e96fd",
@@ -236,7 +292,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £45 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "houseeofdynasty-19faa1e96fe",
@@ -271,7 +335,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £55 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "theelaceillusion-19faa1e96ff",
@@ -306,7 +378,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £55 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "theehairsurgeonn-19faa1e9700",
@@ -341,7 +421,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £60 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "floulacediaries-19faa1e9701",
@@ -376,7 +464,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £60 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "slayedbysadee-19faa1e9702",
@@ -411,7 +507,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £65 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "26suite-19faa1e9703",
@@ -446,7 +550,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £65 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "thelacehouse-19faa1e9704",
@@ -481,7 +593,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £65 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "hdastyless-19faa1e9705",
@@ -516,7 +636,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £65 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "edslaysuk-19faa1e9706",
@@ -551,7 +679,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £65 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "shlacedit-19faa1e9707",
@@ -586,7 +722,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £65 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "dbh-loungeuk-19faa1e9708",
@@ -621,7 +765,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £65 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "cshairuk-19faa1e9709",
@@ -656,7 +808,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £65 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "styledbyak-19faa1e970a",
@@ -691,7 +851,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £70 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "styledbyauk-19faa1e970b",
@@ -726,7 +894,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £70 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "dkhairuk-19faa1e970c",
@@ -761,7 +937,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £70 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "dbxhairuk-19faa1e970d",
@@ -796,7 +980,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £70 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "herartistryy-19faa1e970e",
@@ -831,7 +1023,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £70 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "phirasallure-19faa1e970f",
@@ -866,7 +1066,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £70 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "msloungeuk-19faa1e9710",
@@ -901,7 +1109,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £70 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "oclounge-19faa1e9711",
@@ -936,7 +1152,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £70 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "kadstouch-19faa1e9712",
@@ -971,7 +1195,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £75 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "kayhairuk-19faa1e9713",
@@ -1006,7 +1238,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £75 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "aishhairuk-19faa1e9714",
@@ -1041,7 +1281,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £75 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "byestareuk-19faa1e9715",
@@ -1076,7 +1324,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £75 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "kaysbeautyparlour-19faa1e9716",
@@ -1111,7 +1367,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £75 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "thebeautysector-19faa1e9717",
@@ -1146,7 +1410,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £75 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "bkstouchh-19faa1e9718",
@@ -1181,7 +1453,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £75 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "marnzmade-19faa1e9719",
@@ -1216,7 +1496,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £75 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "amzhairuk-19faa1e971a",
@@ -1251,7 +1539,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £75 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "sksuite-19faa1e971b",
@@ -1286,7 +1582,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £80 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "lacedauk-19faa1e971c",
@@ -1321,7 +1625,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £80 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "ricaslays-19faa1e971d",
@@ -1356,7 +1668,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £80 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "byparishair-19faa1e971e",
@@ -1391,7 +1711,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £80 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "kemiahairuk-19faa1e971f",
@@ -1426,7 +1754,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £80 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "byshardaemarie-19faa1e9720",
@@ -1461,7 +1797,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £80 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "tamedbyfaye-19faa1e9721",
@@ -1496,7 +1840,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £80 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "rsparlour-19faa1e9722",
@@ -1531,7 +1883,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £80 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "sbblounge-19faa1e9723",
@@ -1566,7 +1926,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £80 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "vluxehair-19faa1e9724",
@@ -1601,7 +1969,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £80 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "tbeautelounge-19faa1e9725",
@@ -1636,7 +2012,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £80 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "dashdeptuk-19faa1e9726",
@@ -1671,7 +2055,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £80 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "ca-studioss-19faa1e9727",
@@ -1706,7 +2098,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £80 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "cz-beauty-19faa1e9728",
@@ -1741,7 +2141,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £80 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "sbeautyuk-19faa1e9729",
@@ -1776,7 +2184,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £80 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "ajstyles-uk-19faa1e972a",
@@ -1811,7 +2227,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £80 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "hairbyvii-19faa1e972b",
@@ -1846,7 +2270,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £80 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "thejenexperiencee-19faa1e972c",
@@ -1879,7 +2311,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £80 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "etl-lounge-19faa1e972d",
@@ -1914,7 +2354,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £85 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "slayedwithmonae-19faa1e972e",
@@ -1949,7 +2397,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £85 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "thencltouch-19faa1e972f",
@@ -1984,7 +2440,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £85 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "desiredlace-19faa1e9730",
@@ -2019,7 +2483,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £85 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "beautybythebankz-19faa1e9731",
@@ -2054,7 +2526,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £85 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "nelashairuk-19faa1e9732",
@@ -2089,7 +2569,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £85 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "gghairlounge-19faa1e9733",
@@ -2124,7 +2612,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £90 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "hairbyjakelyn-19faa1e9734",
@@ -2159,7 +2655,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £90 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "chiorahair-19faa1e9735",
@@ -2194,7 +2698,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £90 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "atbstylesuk-19faa1e9736",
@@ -2229,7 +2741,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £90 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "thelaceslayer-19faa1e9737",
@@ -2264,7 +2784,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £90 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "tifahstouch-19faa1e9738",
@@ -2299,7 +2827,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £90 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "rvthestylist-19faa1e9739",
@@ -2334,7 +2870,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £90 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "slayedbydz-19faa1e973a",
@@ -2369,7 +2913,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £90 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "themaneover-19faa1e973b",
@@ -2404,7 +2956,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £90 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "flo-hairlounge-19faa1e973c",
@@ -2439,7 +2999,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £90 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "rayshairhub-19faa1e973d",
@@ -2474,7 +3042,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £90 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "hairrbykayy-19faa1e973e",
@@ -2509,7 +3085,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £95 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "lacedbyshy-19faa1e973f",
@@ -2544,7 +3128,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £95 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "shanxslays-19faa1e9740",
@@ -2577,7 +3169,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £95 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "aslayeduk-19faa1e9741",
@@ -2612,7 +3212,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £95 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "hauseofhairr-19faa1e9742",
@@ -2647,7 +3255,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £95 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "slayedbydams-19faa1e9743",
@@ -2682,7 +3298,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £100 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "dbstyless-19faa1e9744",
@@ -2715,7 +3339,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "££",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £105 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "jaiistyleditt-19faa1e9745",
@@ -2750,7 +3382,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "££",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £110 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "akstylesuk-19faa1e9746",
@@ -2785,7 +3425,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "££",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £110 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "hairbysimmi-19faa1e9747",
@@ -2820,7 +3468,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "££",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £110 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "peloamouruk-19faa1e9748",
@@ -2855,7 +3511,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "££",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £110 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "knhairlounge-19faa1e9749",
@@ -2890,7 +3554,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "££",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £110 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "bynyaasika-19faa1e974a",
@@ -2925,7 +3597,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "££",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £110 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "lba-uk-19faa1e974b",
@@ -2960,7 +3640,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "££",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £115 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "lacedoutuk-19faa1e974c",
@@ -2995,7 +3683,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "££",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £120 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "tressologybydca-19faa1e974d",
@@ -3030,7 +3726,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "££",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £120 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "lhairuk-19faa1e974e",
@@ -3135,7 +3839,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £55 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "slaidbyt-19faa1e9751",
@@ -3170,7 +3882,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £60 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "jhairuk-19faa1e9752",
@@ -3205,7 +3925,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £65 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "dvhairuk-19faa1e9753",
@@ -3240,7 +3968,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £65 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "theeloungeuk-19faa1e9754",
@@ -3275,7 +4011,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £65 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "thejulztouch-19faa1e9755",
@@ -3310,7 +4054,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £70 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "jjkbeautyldn-19faa1e9756",
@@ -3345,7 +4097,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £70 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "donebydemz-19faa1e9757",
@@ -3380,7 +4140,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £70 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "jistyledit-19faa1e9758",
@@ -3415,7 +4183,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £75 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "slayedbyjessica-19faa1e9759",
@@ -3450,7 +4226,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £75 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "mirastyless-19faa1e975a",
@@ -3485,7 +4269,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £75 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "24lookss-19faa1e975b",
@@ -3520,7 +4312,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £75 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "skbeauty-uk-19faa1e975c",
@@ -3555,7 +4355,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £75 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "theehairparlour-19faa1e975d",
@@ -3590,7 +4398,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £75 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "theecksuite-19faa1e975e",
@@ -3625,7 +4441,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £75 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "jesslacedituk-19faa1e975f",
@@ -3660,7 +4484,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £75 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "animasallure-19faa1e9760",
@@ -3695,7 +4527,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £75 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "theelabniorr-19faa1e9761",
@@ -3730,7 +4570,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £75 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "theelaceroom-19faa1e9762",
@@ -3765,7 +4613,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £80 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "keiraslabel-19faa1e9763",
@@ -3800,7 +4656,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £80 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "tktresses-19faa1e9764",
@@ -3835,7 +4699,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £80 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "rxlaced-19faa1e9765",
@@ -3870,7 +4742,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £80 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "astylee-19faa1e9766",
@@ -3905,7 +4785,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £85 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "thelace-goddess-19faa1e9767",
@@ -3940,7 +4828,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £85 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "laceclinique-19faa1e9768",
@@ -3975,7 +4871,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £85 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "sleekparlour-19faa1e9769",
@@ -4010,7 +4914,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £85 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "bhloungee-19faa1e976a",
@@ -4045,7 +4957,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £85 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "hairbygiulia-19faa1e976b",
@@ -4080,7 +5000,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £85 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "debslaidit-19faa1e976c",
@@ -4115,7 +5043,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £85 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "hermshair-19faa1e976d",
@@ -4150,7 +5086,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £90 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "chihair-uk-19faa1e976e",
@@ -4185,7 +5129,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £90 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "herstyles-uk-19faa1e976f",
@@ -4220,7 +5172,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £90 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "danhislays-19faa1e9770",
@@ -4255,7 +5215,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £90 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "nwwiggs-19faa1e9771",
@@ -4290,7 +5258,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £90 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "thelacegeek-19faa1e9772",
@@ -4325,7 +5301,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £95 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "jnbhair-19faa1e9773",
@@ -4360,7 +5344,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £95 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "kutieshairuk-19faa1e9774",
@@ -4395,7 +5387,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £95 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "elizabethayouk-19faa1e9775",
@@ -4430,7 +5430,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £100 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "jplaceroom-19faa1e9776",
@@ -4465,7 +5473,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £100 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "stvcksstyles-19faa1e9777",
@@ -4500,7 +5516,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £100 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "fhairuk-19faa1e9778",
@@ -4535,7 +5559,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "££",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £110 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "vsivelour-19faa1e9779",
@@ -4570,7 +5602,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "££",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £115 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "precioushair-co-19faa1e977a",
@@ -4605,7 +5645,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "££",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £120 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "rshairuk-19faa1e977b",
@@ -4640,7 +5688,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "££",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £130 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "thetiataj-19faa1e977c",
@@ -4675,7 +5731,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "££",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £135 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "klhairuk-19faa1e977d",
@@ -4710,7 +5774,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £55 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "adeotistyles-19faa1e977e",
@@ -4745,7 +5817,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £65 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "hairby-jkay-19faa1e977f",
@@ -4780,7 +5860,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £65 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "marnshairuk-19faa1e9780",
@@ -4815,7 +5903,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £65 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "laidbydt-19faa1e9781",
@@ -4850,7 +5946,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £70 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "bbukkstheebrand-19faa1e9782",
@@ -4885,7 +5989,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £70 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "mainbeaute-19faa1e9783",
@@ -4920,7 +6032,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £75 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "bmthestylist-19faa1e9784",
@@ -4955,7 +6075,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £75 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "layere-19faa1e9785",
@@ -4990,7 +6118,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £75 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "josiestouch-19faa1e9786",
@@ -5025,7 +6161,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £85 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "lzlaced-19faa1e9787",
@@ -5060,7 +6204,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £85 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "hairbycc-19faa1e9788",
@@ -5095,7 +6247,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £90 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "abhairuk-19faa1e9789",
@@ -5130,7 +6290,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £90 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "prihairuk-19faa1e978a",
@@ -5165,7 +6333,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £95 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "bysephorauk-19faa1e978b",
@@ -5200,7 +6376,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £100 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "thelacedwayuk-19faa1e978c",
@@ -5235,7 +6419,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £100 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "kumikreates-19faa1e978d",
@@ -5270,7 +6462,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "££",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £110 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "mkk-lux-19faa1e978e",
@@ -5305,7 +6505,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "££",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £110 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "brwnhair-19faa1e978f",
@@ -5375,7 +6583,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £65 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "ab-parlour-19faa1e9791",
@@ -5410,7 +6626,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £75 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "veluxehair-19faa1e9792",
@@ -5445,7 +6669,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £80 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "laidbya-19faa1e9793",
@@ -5480,7 +6712,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £85 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "kymstouch-19faa1e9794",
@@ -5515,7 +6755,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £95 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "thedrueffect-19faa1e9795",
@@ -5550,7 +6798,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £95 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "her-lavish-19faa1e9796",
@@ -5585,7 +6841,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £100 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "belloroom-19faa1e9797",
@@ -5655,7 +6919,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "££",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £105 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "hershairsuite-19faa1e9799",
@@ -5688,7 +6960,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £65 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "cotildascreation-19faa1e979a",
@@ -5721,7 +7001,15 @@
       "source": "admin-draft",
       "createdAt": "2026-07-28",
       "updatedAt": "2026-07-28",
-      "lastCheckedAt": "2026-07-28"
+      "lastCheckedAt": "2026-07-28",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - £95 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-28",
+      "priceUpdatedAt": "2026-07-28",
+      "priceConfidence": "manual"
     },
     {
       "id": "fbthair-19faa1e979b",

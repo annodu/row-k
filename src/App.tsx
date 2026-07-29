@@ -5,6 +5,10 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { AdminApp } from "@/AdminApp";
 import { trackEvent as trackAnalyticsEvent } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
+import {
+  getVerifiedReviewsPlatform as getVerifiedReviewsPlatformForUrl,
+  getVerifiedReviewsUrl as getVerifiedReviewsUrlForBookingUrl,
+} from "@/lib/verifiedReviews";
 
 const regions = [
   { id: "all-london", label: "London" },
@@ -259,52 +263,12 @@ function getResultCustomFilterLabels(result: SalonResult, filterTypes: CustomFil
   });
 }
 
-const verifiedReviewPlatformHostnames: [string, string][] = [
-  ["fresha.com", "Fresha"],
-  ["treatwell.co.uk", "Treatwell"],
-  ["booksy.com", "Booksy"],
-  ["vagaro.com", "Vagaro"],
-  ["styleseat.com", "StyleSeat"],
-  ["setmore.com", "Setmore"],
-];
-
 function getVerifiedReviewsPlatform(result: SalonResult): string | null {
-  const url = (result.bookingUrl || "").toLowerCase();
-  return verifiedReviewPlatformHostnames.find(([hostname]) => url.includes(hostname))?.[1] ?? null;
+  return getVerifiedReviewsPlatformForUrl(result.bookingUrl);
 }
 
 function getVerifiedReviewsUrl(result: SalonResult): string {
-  const bookingUrl = result.bookingUrl || "";
-  const platform = getVerifiedReviewsPlatform(result);
-  if (platform !== "Fresha" && platform !== "Treatwell" && platform !== "Setmore") {
-    return bookingUrl;
-  }
-
-  for (const candidate of [bookingUrl, `https://${bookingUrl}`]) {
-    try {
-      const url = new URL(candidate);
-      if (platform === "Fresha") {
-        url.searchParams.set("reviews", "true");
-      } else if (platform === "Setmore") {
-        // Setmore has a dedicated /reviews route off the booking page root.
-        url.pathname = `${url.pathname.replace(/\/+$/, "")}/reviews`;
-      } else {
-        // widget.treatwell.co.uk is a stripped-down booking embed with no reviews
-        // section at all; the same /place/{slug}/ path on the main site has one.
-        if (url.hostname === "widget.treatwell.co.uk") {
-          url.hostname = "www.treatwell.co.uk";
-        }
-        // Treatwell's reviews button just scrolls to this in-page section;
-        // there's no query param, so a fragment does the same thing.
-        url.hash = "reviews";
-      }
-      return url.toString();
-    } catch {
-      continue;
-    }
-  }
-
-  return bookingUrl;
+  return getVerifiedReviewsUrlForBookingUrl(result.bookingUrl);
 }
 
 function getReviewsBannerInfo(

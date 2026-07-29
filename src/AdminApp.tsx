@@ -55,6 +55,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { markAsInternalVisitor } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
+import { getVerifiedReviewsPlatform, getVerifiedReviewsUrl } from "@/lib/verifiedReviews";
 
 type RegionOption = {
   id: string;
@@ -7354,7 +7355,34 @@ function DraftEditor({
           </div>
         </DraftPropertyRow>
 
-        <DraftPropertyRow icon={<Star className="size-4" />} label="Google Maps link">
+        <DraftPropertyRow icon={<Star className="size-4" />} label="Booking reviews">
+          {(() => {
+            const platform = getVerifiedReviewsPlatform(draft.bookingUrl);
+            const reviewsUrl = platform ? getVerifiedReviewsUrl(draft.bookingUrl) : null;
+            return (
+              <div className="flex items-center gap-2">
+                {platform ? (
+                  <a href={reviewsUrl!} target="_blank" rel="noreferrer" className="text-sm underline hover:text-stone-950">
+                    Reviews on {platform}
+                  </a>
+                ) : (
+                  <span className="text-sm text-stone-400">No supported booking platform detected</span>
+                )}
+                <Input
+                  type="number"
+                  min={0}
+                  value={draft.verifiedReviewCount ?? ""}
+                  onChange={(event) => onChange({ verifiedReviewCount: event.target.value === "" ? undefined : Math.max(0, Math.round(Number(event.target.value))) })}
+                  placeholder="0"
+                  className="h-8 w-20 rounded-md border-transparent bg-transparent px-2 py-1 hover:bg-stone-100 focus-visible:border-stone-300"
+                />
+                <span className="text-sm text-stone-500">reviews</span>
+              </div>
+            );
+          })()}
+        </DraftPropertyRow>
+
+        <DraftPropertyRow icon={<Star className="size-4" />} label="Google reviews">
           <div className="flex items-center gap-2">
             <Input
               value={draft.googleMapsUri || ""}
@@ -7368,11 +7396,17 @@ function DraftEditor({
               </a>
             ) : null}
           </div>
-          {draft.googleMatchConfidence === "high" && Number(draft.googleReviewCount) > 0 ? (
-            <p className="mt-1 text-xs text-stone-500">
-              {draft.googleReviewCount} reviews{draft.googleDisplayName ? ` — matched to "${draft.googleDisplayName}"` : ""}
-            </p>
-          ) : null}
+          <div className="mt-1 flex items-center gap-2 text-xs text-stone-500">
+            <Input
+              type="number"
+              min={0}
+              value={draft.googleReviewCount ?? ""}
+              onChange={(event) => onChange({ googleReviewCount: event.target.value === "" ? undefined : Math.max(0, Math.round(Number(event.target.value))) })}
+              placeholder="0"
+              className="h-6 w-20 rounded-md border-stone-200 bg-transparent px-2 py-0 text-xs"
+            />
+            <span>reviews{draft.googleDisplayName ? ` — matched to "${draft.googleDisplayName}"` : ""}</span>
+          </div>
         </DraftPropertyRow>
 
         <DraftPropertyRow icon={<CheckSquare className="size-4" />} label="Booking link is Instagram">

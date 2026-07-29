@@ -376,6 +376,11 @@ export function registerAdminStylistRoutes(app) {
       instagramUrl: update.instagramUrl || "",
       tiktokUrl: update.tiktokUrl || "",
       googleMapsUri: update.googleMapsUri || "",
+      googleReviewCount: update.googleReviewCount !== undefined ? update.googleReviewCount : currentSalon.googleReviewCount,
+      googleCheckedAt: update.googleReviewCount !== undefined && update.googleReviewCount !== currentSalon.googleReviewCount ? now : currentSalon.googleCheckedAt,
+      verifiedReviewCount: update.verifiedReviewCount !== undefined ? update.verifiedReviewCount : currentSalon.verifiedReviewCount,
+      verifiedReviewCheckedAt:
+        update.verifiedReviewCount !== undefined && update.verifiedReviewCount !== currentSalon.verifiedReviewCount ? now : currentSalon.verifiedReviewCheckedAt,
       addedVia: update.addedVia || currentSalon.addedVia || "",
       services: normalizeServices(update.services || []),
       hijabiFriendly: update.hijabiFriendly === true,
@@ -6954,6 +6959,12 @@ function normalizeDiscoveryKey(value) {
   return String(value || "").toLowerCase().replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "").trim();
 }
 
+function sanitizeReviewCount(value) {
+  if (value === undefined || value === null || value === "") return undefined;
+  const count = Math.round(Number(value));
+  return Number.isFinite(count) && count >= 0 ? count : undefined;
+}
+
 function sanitizeDraftUpdate(input) {
   const links = normalizeLines(input.links);
   const rawServices = normalizeLines(input.rawServices);
@@ -6986,6 +6997,8 @@ function sanitizeDraftUpdate(input) {
     instagramUrl: cleanString(input.instagramUrl) || inferred.instagramUrl,
     tiktokUrl: cleanString(input.tiktokUrl) || inferred.tiktokUrl,
     googleMapsUri: cleanString(input.googleMapsUri),
+    googleReviewCount: sanitizeReviewCount(input.googleReviewCount),
+    verifiedReviewCount: sanitizeReviewCount(input.verifiedReviewCount),
     addedVia: cleanString(input.addedVia),
     discoverySource: cleanString(input.discoverySource),
     services,
