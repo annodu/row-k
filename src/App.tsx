@@ -1,5 +1,5 @@
 import { Fragment, type ReactNode, useCallback, useEffect, useRef, useState } from "react";
-import { ArrowUpRight, Check, ChevronDown, Globe, Search, X } from "lucide-react";
+import { ArrowUpRight, Check, ChevronDown, Copy, Globe, Search, X } from "lucide-react";
 
 import { Checkbox } from "@/components/ui/checkbox";
 import { AdminApp } from "@/AdminApp";
@@ -68,7 +68,7 @@ const categoryMap = {
   "sew-in-weave": { label: "Sew in / weave", subcategories: ["all","Closure sew-in / closure behind the hairline","Flipover / Versatile sew-in","Frontal sew-in","Hybrid sew in (tapes + sew in)","Pixie wig / weave install","Quick weave","Sew-in take-down","Tracks (+ silk press) / partial / invisible sew-in","Traditional sew-in / leave out"] },
   "styling-services": { label: "Styling (sew in / frontal / relaxer)", subcategories: ["all","Sew in / extensions blowdry","Frontal ponytail / bun","Half up half down","Pixie cut / finger waves","Sleek ponytail / bun","Updo"] },
   "straightening-treatments": { label: "Treatments", subcategories: ["all","Hair botox","Japanese straightening","K-18 treatment","Keratin treatment","Moisturising treatment","Olaplex treatment","Relaxer / texturiser","Texture release"] },
-  "natural-hair-services": { label: "Natural hair washing & styling", subcategories: ["all","Wig cornrows","Curly cut / wash & go / diffuse","Silk press","Bouncy blowout / round brush blow dry","Trim / hair cut","Roller set","Twist out / flexi rod","Wash & blowdry","Japanese head spa","Scalp detox / treatments"] },
+  "natural-hair-services": { label: "Natural hair washing & styling", subcategories: ["all","Wig cornrows","Curly cut / wash & go / diffuse","Silk press","Bouncy blowout / round brush blow dry","Trim / hair cut","Roller set","Twist out / flexi rod","Bantu knots","Wash & blowdry","Japanese head spa","Scalp detox / treatments"] },
   "natural-hair-scalp-health": { label: "Natural hair health & trichology", subcategories: ["all","Healthy hair plans & consultations","Natural hair coaches / educators","Trichology / scalp analysis"] },
   "wig-services": { label: "Wigs", subcategories: ["all","Custom wig","Pixie wig / weave install","U-part wig install","Wig colouring / bundle colouring","Wig install (frontal / closure)","Wig blowdry"] },
 } as const;
@@ -84,7 +84,7 @@ const categoryServiceMap = {
   "sew-in-weave": ["Closure sew-in / closure behind the hairline","Flipover / Versatile sew-in","Frontal sew-in","Hybrid sew in (tapes + sew in)","Pixie wig / weave install","Quick weave","Sew-in take-down","Tracks (+ silk press) / partial / invisible sew-in","Traditional sew-in / leave out"],
   "styling-services": ["Sew in / extensions blowdry","Frontal ponytail / bun","Half up half down","Pixie cut / finger waves","Sleek ponytail / bun","Updo"],
   "straightening-treatments": ["Hair botox","Japanese straightening","K-18 treatment","Keratin treatment","Moisturising treatment","Olaplex treatment","Relaxer / texturiser","Texture release"],
-  "natural-hair-services": ["Wig cornrows","Curly cut / wash & go / diffuse","Silk press","Bouncy blowout / round brush blow dry","Trim / hair cut","Roller set","Twist out / flexi rod","Wash & blowdry","Japanese head spa","Scalp detox / treatments"],
+  "natural-hair-services": ["Wig cornrows","Curly cut / wash & go / diffuse","Silk press","Bouncy blowout / round brush blow dry","Trim / hair cut","Roller set","Twist out / flexi rod","Bantu knots","Wash & blowdry","Japanese head spa","Scalp detox / treatments"],
   "natural-hair-scalp-health": ["Healthy hair plans & consultations","Natural hair coaches / educators","Trichology / scalp analysis"],
   "wig-services": ["Custom wig","Pixie wig / weave install","U-part wig install","Wig colouring / bundle colouring","Wig install (frontal / closure)","Wig blowdry"],
 } as const satisfies Record<ServiceCategoryId, readonly string[]>;
@@ -126,6 +126,9 @@ type SalonResult = {
   hijabiFriendly?: boolean;
   canBraidWithoutGel?: boolean;
   wheelchairAccessible?: boolean;
+  senFriendly?: boolean;
+  lgbtqFriendly?: boolean;
+  parkingAvailable?: boolean;
   temporarilyClosed?: boolean;
   hasVerifiedReviews?: boolean;
   verifiedReviewCount?: number;
@@ -168,7 +171,11 @@ function normalizeServiceSearch(s: string) {
   return s.toLowerCase().replace(/[-–—]/g, " ").replace(/\s+/g, " ").trim();
 }
 
-const serviceSearchAliases: Record<string, string[]> = {
+// Fallback used until /api/filters responds with the server's searchAliases
+// (sourced from the same alias list the health check matcher uses server-side —
+// see admin-stylists.mjs's serviceNegationHints — so new synonyms added there
+// become searchable here too without a second copy to keep in sync).
+const defaultServiceSearchAliases: Record<string, string[]> = {
   "Balayage": ["balayage"],
   "Highlights": ["highlight", "highlights", "lowlights"],
   "Full head colour": ["colour", "color", "tint", "dye", "rooting"],
@@ -457,6 +464,9 @@ function BrandGroupCard({
   const attributeLabels = [
     brand.hijabiFriendly ? "hijabi-friendly" : null,
     brand.canBraidWithoutGel ? "can braid without gel" : null,
+    brand.senFriendly ? "sensory-safe / sen-friendly" : null,
+    brand.lgbtqFriendly ? "lgbtqia+-friendly" : null,
+    brand.parkingAvailable ? "parking nearby" : null,
     ...getResultCustomFilterLabels(brand, customFilterTypes),
   ].filter((label): label is string => Boolean(label));
 
@@ -579,7 +589,7 @@ function BrandGroupCard({
                   </span>
                 ) : null}
               </div>
-              {!sharedBookingUrl && branch.bookingUrl ? (
+              {!sharedBookingUrl && branch.bookingUrl && branch.bookingPlatform !== "Instagram" ? (
                 <a
                   href={branch.bookingUrl}
                   target="_blank"
@@ -1069,6 +1079,7 @@ export default function App() {
   const [selectedCategories, setSelectedCategories] = useState<ServiceCategoryId[]>([]);
   const [selectedSubcategories, setSelectedSubcategories] = useState<ServiceSubcategoryId[]>([]);
   const [serviceSearch, setServiceSearch] = useState("");
+  const [serviceSearchAliases, setServiceSearchAliases] = useState<Record<string, string[]>>(defaultServiceSearchAliases);
   const [results, setResults] = useState<SalonResult[]>([]);
   const [sortOption, setSortOption] = useState<SortOption>("default");
   const shuffleKeysRef = useRef<Map<string, number>>(new Map());
@@ -1087,6 +1098,9 @@ export default function App() {
   const [draftSelectedHijabiFriendly, setDraftSelectedHijabiFriendly] = useState(false);
   const [draftSelectedCanBraidWithoutGel, setDraftSelectedCanBraidWithoutGel] = useState(false);
   const [draftSelectedWheelchairAccessible, setDraftSelectedWheelchairAccessible] = useState(false);
+  const [draftSelectedSenFriendly, setDraftSelectedSenFriendly] = useState(false);
+  const [draftSelectedLgbtqFriendly, setDraftSelectedLgbtqFriendly] = useState(false);
+  const [draftSelectedParkingAvailable, setDraftSelectedParkingAvailable] = useState(false);
   const [draftSelectedHasVerifiedReviews, setDraftSelectedHasVerifiedReviews] = useState(false);
   const [draftSelectedGoogleReviewsOnly, setDraftSelectedGoogleReviewsOnly] = useState(false);
   const [draftSelectedBookingSitesOnly, setDraftSelectedBookingSitesOnly] = useState(false);
@@ -1096,6 +1110,7 @@ export default function App() {
   const [searchError, setSearchError] = useState<string | null>(null);
   const [hasSearched, setHasSearched] = useState(false);
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
+  const [emailCopied, setEmailCopied] = useState(false);
   const [disclaimerDismissed, setDisclaimerDismissed] = useState(() => {
     try {
       return localStorage.getItem(DISCLAIMER_DISMISSED_KEY) === "1";
@@ -1130,6 +1145,9 @@ export default function App() {
   const [selectedHijabiFriendly, setSelectedHijabiFriendly] = useState(false);
   const [selectedCanBraidWithoutGel, setSelectedCanBraidWithoutGel] = useState(false);
   const [selectedWheelchairAccessible, setSelectedWheelchairAccessible] = useState(false);
+  const [selectedSenFriendly, setSelectedSenFriendly] = useState(false);
+  const [selectedLgbtqFriendly, setSelectedLgbtqFriendly] = useState(false);
+  const [selectedParkingAvailable, setSelectedParkingAvailable] = useState(false);
   const [selectedHasVerifiedReviews, setSelectedHasVerifiedReviews] = useState(false);
   const [selectedGoogleReviewsOnly, setSelectedGoogleReviewsOnly] = useState(false);
   const [selectedBookingSitesOnly, setSelectedBookingSitesOnly] = useState(false);
@@ -1149,6 +1167,9 @@ export default function App() {
   const currentSelectedHijabiFriendly = isMobileModalEditing ? draftSelectedHijabiFriendly : selectedHijabiFriendly;
   const currentSelectedCanBraidWithoutGel = isMobileModalEditing ? draftSelectedCanBraidWithoutGel : selectedCanBraidWithoutGel;
   const currentSelectedWheelchairAccessible = isMobileModalEditing ? draftSelectedWheelchairAccessible : selectedWheelchairAccessible;
+  const currentSelectedSenFriendly = isMobileModalEditing ? draftSelectedSenFriendly : selectedSenFriendly;
+  const currentSelectedLgbtqFriendly = isMobileModalEditing ? draftSelectedLgbtqFriendly : selectedLgbtqFriendly;
+  const currentSelectedParkingAvailable = isMobileModalEditing ? draftSelectedParkingAvailable : selectedParkingAvailable;
   const currentSelectedHasVerifiedReviews = isMobileModalEditing ? draftSelectedHasVerifiedReviews : selectedHasVerifiedReviews;
   const currentSelectedGoogleReviewsOnly = isMobileModalEditing ? draftSelectedGoogleReviewsOnly : selectedGoogleReviewsOnly;
   const currentSelectedBookingSitesOnly = isMobileModalEditing ? draftSelectedBookingSitesOnly : selectedBookingSitesOnly;
@@ -1176,11 +1197,21 @@ export default function App() {
     setDraftSelectedHijabiFriendly(selectedHijabiFriendly);
     setDraftSelectedCanBraidWithoutGel(selectedCanBraidWithoutGel);
     setDraftSelectedWheelchairAccessible(selectedWheelchairAccessible);
+    setDraftSelectedSenFriendly(selectedSenFriendly);
+    setDraftSelectedLgbtqFriendly(selectedLgbtqFriendly);
+    setDraftSelectedParkingAvailable(selectedParkingAvailable);
     setDraftSelectedHasVerifiedReviews(selectedHasVerifiedReviews);
     setDraftSelectedGoogleReviewsOnly(selectedGoogleReviewsOnly);
     setDraftSelectedBookingSitesOnly(selectedBookingSitesOnly);
     setDraftSelectedCustomFilters(selectedCustomFilters);
     setDraftSortOption(sortOption);
+  }
+
+  function copyFooterEmail() {
+    navigator.clipboard.writeText("hello@row-k.london").then(() => {
+      setEmailCopied(true);
+      setTimeout(() => setEmailCopied(false), 2000);
+    });
   }
 
   function openMobileFilters() {
@@ -1202,6 +1233,9 @@ export default function App() {
     setSelectedHijabiFriendly(draftSelectedHijabiFriendly);
     setSelectedCanBraidWithoutGel(draftSelectedCanBraidWithoutGel);
     setSelectedWheelchairAccessible(draftSelectedWheelchairAccessible);
+    setSelectedSenFriendly(draftSelectedSenFriendly);
+    setSelectedLgbtqFriendly(draftSelectedLgbtqFriendly);
+    setSelectedParkingAvailable(draftSelectedParkingAvailable);
     setSelectedHasVerifiedReviews(draftSelectedHasVerifiedReviews);
     setSelectedGoogleReviewsOnly(draftSelectedGoogleReviewsOnly);
     setSelectedBookingSitesOnly(draftSelectedBookingSitesOnly);
@@ -1276,6 +1310,33 @@ export default function App() {
     }
 
     setSelectedWheelchairAccessible(updater);
+  }
+
+  function updateSenFriendly(updater: boolean | ((current: boolean) => boolean)) {
+    if (isMobileModalEditing) {
+      setDraftSelectedSenFriendly(updater);
+      return;
+    }
+
+    setSelectedSenFriendly(updater);
+  }
+
+  function updateLgbtqFriendly(updater: boolean | ((current: boolean) => boolean)) {
+    if (isMobileModalEditing) {
+      setDraftSelectedLgbtqFriendly(updater);
+      return;
+    }
+
+    setSelectedLgbtqFriendly(updater);
+  }
+
+  function updateParkingAvailable(updater: boolean | ((current: boolean) => boolean)) {
+    if (isMobileModalEditing) {
+      setDraftSelectedParkingAvailable(updater);
+      return;
+    }
+
+    setSelectedParkingAvailable(updater);
   }
 
   function updateHasVerifiedReviews(updater: boolean | ((current: boolean) => boolean)) {
@@ -1437,10 +1498,13 @@ export default function App() {
       selected_services: currentSelectedCategories.length + currentSelectedSubcategories.length,
       selected_locations: currentSelectedRegions.filter((region) => region !== "all").length,
       selected_price_ranges: currentSelectedPriceBands.length,
-      selected_additional_needs: (currentSelectedHijabiFriendly ? 1 : 0) + (currentSelectedCanBraidWithoutGel ? 1 : 0) + (currentSelectedWheelchairAccessible ? 1 : 0),
+      selected_additional_needs: (currentSelectedHijabiFriendly ? 1 : 0) + (currentSelectedCanBraidWithoutGel ? 1 : 0) + (currentSelectedWheelchairAccessible ? 1 : 0) + (currentSelectedSenFriendly ? 1 : 0) + (currentSelectedLgbtqFriendly ? 1 : 0) + (currentSelectedParkingAvailable ? 1 : 0),
       hijabi_friendly: currentSelectedHijabiFriendly,
       can_braid_without_gel: currentSelectedCanBraidWithoutGel,
       wheelchair_accessible: currentSelectedWheelchairAccessible,
+      sen_friendly: currentSelectedSenFriendly,
+      lgbtq_friendly: currentSelectedLgbtqFriendly,
+      parking_available: currentSelectedParkingAvailable,
       has_verified_reviews: currentSelectedHasVerifiedReviews,
       google_reviews_only: currentSelectedGoogleReviewsOnly,
       booking_sites_only: currentSelectedBookingSitesOnly,
@@ -1452,6 +1516,9 @@ export default function App() {
     updateHijabiFriendly(false);
     updateCanBraidWithoutGel(false);
     updateWheelchairAccessible(false);
+    updateSenFriendly(false);
+    updateLgbtqFriendly(false);
+    updateParkingAvailable(false);
     updateHasVerifiedReviews(false);
     updateGoogleReviewsOnly(false);
     updateBookingSitesOnly(false);
@@ -1560,6 +1627,27 @@ export default function App() {
 
   function toggleWheelchairAccessible() {
     updateWheelchairAccessible((current) => !current);
+  }
+
+  function toggleSenFriendly() {
+    trackAnalyticsEvent("sen_friendly_toggle_changed", {
+      enabled: !currentSelectedSenFriendly,
+    });
+    updateSenFriendly((current) => !current);
+  }
+
+  function toggleLgbtqFriendly() {
+    trackAnalyticsEvent("lgbtq_friendly_toggle_changed", {
+      enabled: !currentSelectedLgbtqFriendly,
+    });
+    updateLgbtqFriendly((current) => !current);
+  }
+
+  function toggleParkingAvailable() {
+    trackAnalyticsEvent("parking_available_toggle_changed", {
+      enabled: !currentSelectedParkingAvailable,
+    });
+    updateParkingAvailable((current) => !current);
   }
 
   function toggleHasVerifiedReviews() {
@@ -1724,6 +1812,9 @@ export default function App() {
           hijabiFriendly: selectedHijabiFriendly,
           canBraidWithoutGel: selectedCanBraidWithoutGel,
           wheelchairAccessible: selectedWheelchairAccessible,
+          senFriendly: selectedSenFriendly,
+          lgbtqFriendly: selectedLgbtqFriendly,
+          parkingAvailable: selectedParkingAvailable,
           hasVerifiedReviews: selectedHasVerifiedReviews,
           googleReviewsOnly: selectedGoogleReviewsOnly,
           bookingSitesOnly: selectedBookingSitesOnly,
@@ -1757,6 +1848,9 @@ export default function App() {
         hijabi_friendly: selectedHijabiFriendly,
         no_gel: selectedCanBraidWithoutGel,
         wheelchair_accessible: selectedWheelchairAccessible,
+        sen_friendly: selectedSenFriendly,
+        lgbtq_friendly: selectedLgbtqFriendly,
+        parking_available: selectedParkingAvailable,
         has_verified_reviews: selectedHasVerifiedReviews,
         google_reviews_only: selectedGoogleReviewsOnly,
         booking_sites_only: selectedBookingSitesOnly,
@@ -1769,6 +1863,9 @@ export default function App() {
           hijabi_friendly: selectedHijabiFriendly,
           no_gel: selectedCanBraidWithoutGel,
           wheelchair_accessible: selectedWheelchairAccessible,
+          sen_friendly: selectedSenFriendly,
+          lgbtq_friendly: selectedLgbtqFriendly,
+          parking_available: selectedParkingAvailable,
           has_verified_reviews: selectedHasVerifiedReviews,
           google_reviews_only: selectedGoogleReviewsOnly,
           booking_sites_only: selectedBookingSitesOnly,
@@ -1790,7 +1887,7 @@ export default function App() {
 
   useEffect(() => {
     void handleSearch({ scroll: false });
-  }, [selectedCategories, selectedSubcategories, selectedRegions, selectedHijabiFriendly, selectedCanBraidWithoutGel, selectedWheelchairAccessible, selectedHasVerifiedReviews, selectedGoogleReviewsOnly, selectedBookingSitesOnly, selectedCustomFilters]);
+  }, [selectedCategories, selectedSubcategories, selectedRegions, selectedHijabiFriendly, selectedCanBraidWithoutGel, selectedWheelchairAccessible, selectedSenFriendly, selectedLgbtqFriendly, selectedParkingAvailable, selectedHasVerifiedReviews, selectedGoogleReviewsOnly, selectedBookingSitesOnly, selectedCustomFilters]);
 
   useEffect(() => {
     fetch("/api/filters")
@@ -1805,6 +1902,9 @@ export default function App() {
         }
         if (data.ok && Array.isArray(data.customFilterTypes)) {
           setCustomFilterTypes(data.customFilterTypes);
+        }
+        if (data.ok && data.searchAliases && typeof data.searchAliases === "object") {
+          setServiceSearchAliases(data.searchAliases);
         }
       })
       .catch(() => {});
@@ -1872,6 +1972,9 @@ export default function App() {
     selectedHijabiFriendly ||
     selectedCanBraidWithoutGel ||
     selectedWheelchairAccessible ||
+    selectedSenFriendly ||
+    selectedLgbtqFriendly ||
+    selectedParkingAvailable ||
     selectedHasVerifiedReviews ||
     selectedGoogleReviewsOnly ||
     selectedBookingSitesOnly ||
@@ -1886,6 +1989,11 @@ export default function App() {
       )
     : results;
   const sortedResults = sortResults(priceFilteredResults, sortOption, hasActiveFilters, selectedCategories, selectedSubcategories, getShuffleKey);
+  // A multi-branch brand (e.g. Duck and Dry) contributes one flattened row per
+  // branch to `sortedResults`, but renders as a single card (see renderedBrandIds
+  // below) — so the count shown to visitors should count each brand once, not
+  // once per branch, or it overstates how many distinct businesses matched.
+  const distinctResultCount = new Set(sortedResults.map((result) => result.brandId ?? result.id)).size;
 
   useEffect(() => {
     const node = loadMoreRef.current;
@@ -1943,7 +2051,7 @@ export default function App() {
   const selectedLocationCount = currentSelectedRegions.filter((regionId) => regionId !== "all").length;
   const selectedPriceRangeCount = currentSelectedPriceBands.length;
   const selectedAdditionalNeedsCount =
-    (currentSelectedHijabiFriendly ? 1 : 0) + (currentSelectedCanBraidWithoutGel ? 1 : 0) + (currentSelectedWheelchairAccessible ? 1 : 0);
+    (currentSelectedHijabiFriendly ? 1 : 0) + (currentSelectedCanBraidWithoutGel ? 1 : 0) + (currentSelectedWheelchairAccessible ? 1 : 0) + (currentSelectedSenFriendly ? 1 : 0) + (currentSelectedLgbtqFriendly ? 1 : 0) + (currentSelectedParkingAvailable ? 1 : 0);
   const selectedReviewsCount = currentSelectedHasVerifiedReviews || currentSelectedGoogleReviewsOnly || currentSelectedBookingSitesOnly ? 1 : 0;
   const selectedCustomFilterCounts = Object.fromEntries(
     customFilterTypes.map((filterType) => [filterType.id, (currentSelectedCustomFilters[filterType.id] ?? []).length]),
@@ -1980,7 +2088,7 @@ export default function App() {
           <div className="sticky top-0 z-30 flex w-full items-center justify-between border-b border-stone-300 bg-stone-100 px-0 pb-3 pt-1 dark:border-stone-800 dark:bg-stone-950 lg:h-20 lg:items-end lg:pb-6 lg:pt-2">
             {hasSearched ? (
               <h2 className="text-[14px] font-medium leading-none text-stone-500 dark:text-stone-400">
-                {sortedResults.length} {sortedResults.length === 1 ? "result" : "results"}
+                {distinctResultCount} {distinctResultCount === 1 ? "result" : "results"}
               </h2>
             ) : (
               <h2 className="text-[14px] font-medium leading-none text-stone-500 dark:text-stone-400">Results</h2>
@@ -2102,6 +2210,9 @@ export default function App() {
                     result.wheelchairAccessible ? "wheelchair access" : null,
                     result.hijabiFriendly ? "hijabi-friendly" : null,
                     result.canBraidWithoutGel ? "can braid without gel" : null,
+                    result.senFriendly ? "sensory-safe / sen-friendly" : null,
+                    result.lgbtqFriendly ? "lgbtqia+-friendly" : null,
+                    result.parkingAvailable ? "parking nearby" : null,
                     ...getResultCustomFilterLabels(result, customFilterTypes),
                   ].filter((label): label is string => Boolean(label));
 
@@ -2900,6 +3011,66 @@ export default function App() {
                         Wheelchair accessible entrance
                       </span>
                     </button>
+
+                    <button
+                      type="button"
+                      aria-pressed={currentSelectedSenFriendly}
+                      onClick={toggleSenFriendly}
+                      className="flex w-full cursor-pointer items-start gap-3 rounded-none px-2 py-2 text-left transition-colors hover:bg-stone-200 active:bg-stone-200 dark:hover:bg-stone-900 dark:active:bg-stone-900"
+                    >
+                      <span
+                        aria-hidden="true"
+                        className={cn(
+                          "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-none border border-stone-500 bg-white text-white transition dark:border-stone-500 dark:bg-stone-900",
+                          currentSelectedSenFriendly && "border-stone-950 bg-stone-950 dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950",
+                        )}
+                      >
+                        {currentSelectedSenFriendly ? <Check className="size-3.5" /> : null}
+                      </span>
+                      <span className="translate-y-[1.5px] text-[15px] text-stone-800 dark:text-stone-200">
+                        Sensory-safe / SEN-friendly
+                      </span>
+                    </button>
+
+                    <button
+                      type="button"
+                      aria-pressed={currentSelectedLgbtqFriendly}
+                      onClick={toggleLgbtqFriendly}
+                      className="flex w-full cursor-pointer items-start gap-3 rounded-none px-2 py-2 text-left transition-colors hover:bg-stone-200 active:bg-stone-200 dark:hover:bg-stone-900 dark:active:bg-stone-900"
+                    >
+                      <span
+                        aria-hidden="true"
+                        className={cn(
+                          "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-none border border-stone-500 bg-white text-white transition dark:border-stone-500 dark:bg-stone-900",
+                          currentSelectedLgbtqFriendly && "border-stone-950 bg-stone-950 dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950",
+                        )}
+                      >
+                        {currentSelectedLgbtqFriendly ? <Check className="size-3.5" /> : null}
+                      </span>
+                      <span className="translate-y-[1.5px] text-[15px] text-stone-800 dark:text-stone-200">
+                        LGBTQIA+-friendly
+                      </span>
+                    </button>
+
+                    <button
+                      type="button"
+                      aria-pressed={currentSelectedParkingAvailable}
+                      onClick={toggleParkingAvailable}
+                      className="flex w-full cursor-pointer items-start gap-3 rounded-none px-2 py-2 text-left transition-colors hover:bg-stone-200 active:bg-stone-200 dark:hover:bg-stone-900 dark:active:bg-stone-900"
+                    >
+                      <span
+                        aria-hidden="true"
+                        className={cn(
+                          "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-none border border-stone-500 bg-white text-white transition dark:border-stone-500 dark:bg-stone-900",
+                          currentSelectedParkingAvailable && "border-stone-950 bg-stone-950 dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950",
+                        )}
+                      >
+                        {currentSelectedParkingAvailable ? <Check className="size-3.5" /> : null}
+                      </span>
+                      <span className="translate-y-[1.5px] text-[15px] text-stone-800 dark:text-stone-200">
+                        Parking nearby
+                      </span>
+                    </button>
                   </div>
                 </AnimatedCollapsible>
               </div>
@@ -2979,7 +3150,7 @@ export default function App() {
                                 key={option.id}
                                 onClick={() => toggleCustomFilterOption(filterType.id, option.id)}
                                 className={cn(
-                                  "rounded-full border px-3 py-1.5 text-[13px] font-medium transition-colors",
+                                  "rounded-none border px-3 py-1.5 text-[13px] font-medium transition-colors",
                                   isActive
                                     ? "border-stone-950 bg-stone-950 text-stone-100 dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950"
                                     : "border-stone-400 bg-white text-stone-700 hover:bg-stone-200 dark:border-stone-600 dark:bg-stone-900 dark:text-stone-200 dark:hover:bg-stone-800",
@@ -3010,26 +3181,46 @@ export default function App() {
         </aside>
       </div>
 
-      <footer className="mt-auto border-t border-stone-300 px-6 pb-4 pt-8 dark:border-stone-800 sm:px-10">
+      <footer className="mt-auto border-t border-stone-300 px-6 pb-4 pt-10 dark:border-stone-800 sm:px-10">
         <div className="mx-auto w-full max-w-[1280px]">
-          <p className="text-[13px] text-stone-700 dark:text-stone-300">
-            Row K is a directory, not a booking platform.
-          </p>
-          <p className="text-[13px] text-stone-700 dark:text-stone-300">
-            We don't vet, endorse, or take responsibility for the service providers listed.
-          </p>
-          <div className="mt-4 flex flex-col items-start gap-4 border-t border-stone-200 pt-4 dark:border-stone-800 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex flex-col gap-10 sm:flex-row sm:justify-between">
+            <div className="flex max-w-sm flex-col gap-4">
+              <img src="/icon.svg" alt="Row K" className="size-8 shrink-0 rounded-sm" />
+              <p className="text-[13px] text-stone-700 dark:text-stone-300">
+                Row K is a directory, not a booking platform.
+                <br />
+                We don't vet, endorse, or take responsibility for the service providers listed.
+              </p>
+            </div>
+            <div className="flex flex-col items-start gap-3.5">
+              <h3 className="text-[14px] font-semibold text-stone-950 dark:text-stone-50">Get in touch</h3>
+              <button
+                type="button"
+                onClick={copyFooterEmail}
+                className="inline-flex items-center gap-1.5 text-[14px] text-stone-700 transition-colors hover:text-stone-900 active:text-stone-900 dark:text-stone-300 dark:hover:text-stone-50 dark:active:text-stone-50"
+              >
+                hello@row-k.london
+                {emailCopied ? (
+                  <Check className="size-3.5 shrink-0" aria-hidden="true" />
+                ) : (
+                  <Copy className="size-3.5 shrink-0" aria-hidden="true" />
+                )}
+                <span className="sr-only">{emailCopied ? "Email copied to clipboard" : "Copy email to clipboard"}</span>
+              </button>
+              <a
+                href="https://tally.so/r/VLY10g"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-1 text-[14px] font-medium text-stone-700 transition-colors hover:text-stone-900 active:text-stone-900 dark:text-stone-300 dark:hover:text-stone-50 dark:active:text-stone-50"
+              >
+                Submit a stylist
+                <span className="sr-only"> - opens in a new tab</span>
+                <ArrowUpRight className="size-3.5 shrink-0" aria-hidden="true" />
+              </a>
+            </div>
+          </div>
+          <div className="mt-8">
             <span className="text-[14px] text-stone-700 dark:text-stone-300">ROW K 2026</span>
-            <a
-              href="https://tally.so/r/VLY10g"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex min-h-11 items-center gap-1 py-2 text-[14px] font-medium text-stone-700 transition-colors hover:text-stone-900 active:text-stone-900 dark:text-stone-300 dark:hover:text-stone-50 dark:active:text-stone-50"
-            >
-              Submit a stylist
-              <span className="sr-only"> - opens in a new tab</span>
-              <ArrowUpRight className="size-3.5 shrink-0" aria-hidden="true" />
-            </a>
           </div>
         </div>
       </footer>

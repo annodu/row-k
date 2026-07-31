@@ -11,6 +11,18 @@
     {
       "id": "wheelchair-access",
       "label": "Wheelchair accessible"
+    },
+    {
+      "id": "senFriendly",
+      "label": "Sensory-safe / SEN-friendly"
+    },
+    {
+      "id": "lgbtqFriendly",
+      "label": "LGBTQIA+-friendly"
+    },
+    {
+      "id": "parkingAvailable",
+      "label": "Parking nearby"
     }
   ]
 }

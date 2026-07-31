@@ -237,8 +237,10 @@ export async function matchSalonToGoogle(salon, { apiKey } = {}) {
 
   const place = await searchPlace(query, key);
 
+  const noMatch = { googlePlaceId: null, googleReviewCount: 0, googleMapsUri: "", googleMatchConfidence: "no-match", googleCheckedAt: new Date().toISOString() };
+
   if (!place) {
-    return { googlePlaceId: null, googleReviewCount: 0, googleMapsUri: "", googleMatchConfidence: "no-match", googleCheckedAt: new Date().toISOString() };
+    return noMatch;
   }
 
   const nameScore = nameSimilarity(salon.name, place.displayName?.text || "");
@@ -258,11 +260,22 @@ export async function matchSalonToGoogle(salon, { apiKey } = {}) {
   const nameThreshold = preciseAddressKnown ? 0.4 : 0.7;
   const highConfidence = addressKnown && nameScore >= nameThreshold && addressOk !== false;
 
+  // Anything short of high confidence doesn't get stored at all — every "low
+  // confidence" match shipped so far (a single shared word, a coincidental
+  // postcode, near-zero name overlap) turned out to be a different business.
+  // Rather than keep tuning heuristics to catch each new way that goes wrong,
+  // treat "not clearly right" as "no match": nothing about the wrong business
+  // (place ID, name, address, review count) is attached to our salon, so there's
+  // nothing for the admin tool, the app, or the database to surface by mistake.
+  if (!highConfidence) {
+    return noMatch;
+  }
+
   return {
     googlePlaceId: place.id,
     googleReviewCount: place.userRatingCount || 0,
     googleMapsUri: place.googleMapsUri || "",
-    googleMatchConfidence: highConfidence ? "high" : "low",
+    googleMatchConfidence: "high",
     googleDisplayName: place.displayName?.text || "",
     googleFormattedAddress: place.formattedAddress || "",
     googleCheckedAt: new Date().toISOString(),
@@ -285,4 +298,24 @@ export async function getWheelchairAccessibleEntrance(placeId, apiKey) {
   }
   const data = await response.json();
   return data.accessibilityOptions?.wheelchairAccessibleEntrance === true;
+}
+
+// Same shared/high-confidence-only pattern as getWheelchairAccessibleEntrance
+// above. Google's parkingOptions doesn't distinguish dedicated customer
+// parking from nearby paid street parking — any true sub-field just means
+// "some parking option exists near this place," so we treat it as "parking
+// nearby" rather than a guarantee of on-site or free parking.
+export async function getParkingAvailable(placeId, apiKey) {
+  const response = await fetch(`https://places.googleapis.com/v1/places/${placeId}`, {
+    headers: {
+      "X-Goog-Api-Key": apiKey,
+      "X-Goog-FieldMask": "parkingOptions",
+    },
+  });
+  if (!response.ok) {
+    throw new Error(`HTTP ${response.status}`);
+  }
+  const data = await response.json();
+  const options = data.parkingOptions || {};
+  return Object.values(options).some((value) => value === true);
 }

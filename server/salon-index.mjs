@@ -44,7 +44,7 @@ const defaultCategoryMap = {
   "sew-in-weave": ["Closure sew-in / closure behind the hairline","Flipover / Versatile sew-in","Frontal sew-in","Hybrid sew in (tapes + sew in)","Pixie wig / weave install","Quick weave","Sew-in take-down","Tracks (+ silk press) / partial / invisible sew-in","Traditional sew-in / leave out"],
   "styling-services": ["Sew in / extensions blowdry","Frontal ponytail / bun","Half up half down","Pixie cut / finger waves","Sleek ponytail / bun","Updo"],
   "straightening-treatments": ["Hair botox","Japanese straightening","K-18 treatment","Keratin treatment","Moisturising treatment","Olaplex treatment","Relaxer / texturiser","Texture release"],
-  "natural-hair-services": ["Wig cornrows","Curly cut / wash & go / diffuse","Silk press","Bouncy blowout / round brush blow dry","Trim / hair cut","Roller set","Twist out / flexi rod","Wash & blowdry","Japanese head spa","Scalp detox / treatments"],
+  "natural-hair-services": ["Wig cornrows","Curly cut / wash & go / diffuse","Silk press","Bouncy blowout / round brush blow dry","Trim / hair cut","Roller set","Twist out / flexi rod","Bantu knots","Wash & blowdry","Japanese head spa","Scalp detox / treatments"],
   "natural-hair-scalp-health": ["Healthy hair plans & consultations","Natural hair coaches / educators","Trichology / scalp analysis"],
   "wig-services": ["Custom wig","Pixie wig / weave install","U-part wig install","Wig colouring / bundle colouring","Wig install (frontal / closure)","Wig blowdry"],
 };
@@ -601,6 +601,9 @@ export async function searchSalons({
   hijabiFriendly = false,
   canBraidWithoutGel = false,
   wheelchairAccessible = false,
+  senFriendly = false,
+  lgbtqFriendly = false,
+  parkingAvailable = false,
   hasVerifiedReviews = false,
   googleReviewsOnly = false,
   bookingSitesOnly = false,
@@ -621,6 +624,9 @@ export async function searchSalons({
         matchesHijabiFriendly(salon, hijabiFriendly) &&
         matchesCanBraidWithoutGel(salon, canBraidWithoutGel) &&
         matchesWheelchairAccessible(salon, wheelchairAccessible) &&
+        matchesSenFriendly(salon, senFriendly) &&
+        matchesLgbtqFriendly(salon, lgbtqFriendly) &&
+        matchesParkingAvailable(salon, parkingAvailable) &&
         matchesHasVerifiedReviews(salon, hasVerifiedReviews) &&
         matchesGoogleReviewsOnly(salon, googleReviewsOnly) &&
         matchesBookingSitesOnly(salon, bookingSitesOnly) &&
@@ -710,6 +716,30 @@ function matchesCanBraidWithoutGel(salon, canBraidWithoutGel) {
   }
 
   return salon.canBraidWithoutGel === true;
+}
+
+function matchesSenFriendly(salon, senFriendly) {
+  if (!senFriendly) {
+    return true;
+  }
+
+  return salon.senFriendly === true;
+}
+
+function matchesLgbtqFriendly(salon, lgbtqFriendly) {
+  if (!lgbtqFriendly) {
+    return true;
+  }
+
+  return salon.lgbtqFriendly === true;
+}
+
+function matchesParkingAvailable(salon, parkingAvailable) {
+  if (!parkingAvailable) {
+    return true;
+  }
+
+  return salon.parkingAvailable === true;
 }
 
 function matchesWheelchairAccessible(salon, wheelchairAccessible) {

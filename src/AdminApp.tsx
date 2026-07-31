@@ -104,6 +104,9 @@ type StylistDraft = {
   hijabiFriendly?: boolean;
   canBraidWithoutGel?: boolean;
   wheelchairAccessible?: boolean;
+  senFriendly?: boolean;
+  lgbtqFriendly?: boolean;
+  parkingAvailable?: boolean;
   customFilters?: Record<string, string[]>;
   priceBand?: PriceBand;
   servicePriceBand?: PriceBand;
@@ -186,6 +189,8 @@ type DraftForm = {
 };
 
 type DraftEditorStep = "details" | "services" | "review";
+
+type DrawerTab = "basic" | "filters" | "reviews" | "branches";
 type StylistSortKey = "name" | "status" | "services" | "pricing" | "location" | "discoverySource";
 type StylistSortDirection = "asc" | "desc";
 type StylistSort = { key: StylistSortKey; direction: StylistSortDirection } | null;
@@ -459,6 +464,9 @@ type DirectoryCheck = {
   instagramUrl?: string;
   hijabiFriendly?: boolean;
   wheelchairAccessible?: boolean;
+  senFriendly?: boolean;
+  lgbtqFriendly?: boolean;
+  parkingAvailable?: boolean;
   priceBand?: PriceBand;
   servicePriceBand?: PriceBand;
   packagePriceBand?: PriceBand;
@@ -521,7 +529,7 @@ type BookingPreview = {
 };
 
 type AttributeSuggestion = {
-  field: "hijabiFriendly" | "wheelchairAccessible";
+  field: "hijabiFriendly" | "wheelchairAccessible" | "senFriendly" | "lgbtqFriendly" | "parkingAvailable";
   value: true;
   label: string;
   evidence: {
@@ -534,10 +542,14 @@ type FreshnessUpdate = {
   addServices?: string[];
   removeServices?: string[];
   bookingUrl?: string;
+  bookingPlatform?: string;
   instagramUrl?: string;
   websiteUrl?: string;
   hijabiFriendly?: boolean;
   wheelchairAccessible?: boolean;
+  senFriendly?: boolean;
+  lgbtqFriendly?: boolean;
+  parkingAvailable?: boolean;
   priceBand?: PriceBand;
   servicePriceBand?: PriceBand;
   packagePriceBand?: PriceBand;
@@ -551,11 +563,22 @@ type FreshnessUpdate = {
   rejectRemovedServices?: string[];
   rejectHijabiFriendly?: boolean;
   rejectWheelchairAccessible?: boolean;
+  rejectSenFriendly?: boolean;
+  rejectLgbtqFriendly?: boolean;
+  rejectParkingAvailable?: boolean;
   rejectPriceBand?: boolean;
   rejectLocation?: boolean;
   areaId?: string;
   areaIds?: string[];
   areaLabel?: string;
+  // Free-text explanation captured when ignoring suggestions, so patterns in
+  // *why* admins reject things can inform future matcher/heuristic fixes.
+  feedbackReason?: string;
+  feedbackContext?: string[];
+  // The exact evidence phrase(s) behind a rejected attribute or add-service
+  // suggestion — the server suppresses this same phrasing on every future
+  // check, for any salon, not just this one.
+  feedbackRejectedEvidence?: { kind: "attribute" | "add"; field: string; evidenceText: string }[];
 };
 
 type ManualPriceParseResult = {
@@ -582,6 +605,9 @@ type FreshnessUndoState = {
   previousServices: string[];
   previousHijabiFriendly?: boolean;
   previousWheelchairAccessible?: boolean;
+  previousSenFriendly?: boolean;
+  previousLgbtqFriendly?: boolean;
+  previousParkingAvailable?: boolean;
   update: FreshnessUpdate;
   label: string;
 };
@@ -707,7 +733,7 @@ const serviceGroups = [
   { label: "Sew in / weave", services: ["Closure sew-in / closure behind the hairline","Flipover / Versatile sew-in","Frontal sew-in","Hybrid sew in (tapes + sew in)","Pixie wig / weave install","Quick weave","Sew-in take-down","Tracks (+ silk press) / partial / invisible sew-in","Traditional sew-in / leave out"] },
   { label: "Styling (sew in / frontal / relaxer)", services: ["Sew in / extensions blowdry","Frontal ponytail / bun","Half up half down","Pixie cut / finger waves","Sleek ponytail / bun","Updo"] },
   { label: "Treatments", services: ["Hair botox","Japanese straightening","K-18 treatment","Keratin treatment","Moisturising treatment","Olaplex treatment","Relaxer / texturiser","Texture release"] },
-  { label: "Natural hair washing & styling", services: ["Wig cornrows","Curly cut / wash & go / diffuse","Silk press","Bouncy blowout / round brush blow dry","Trim / hair cut","Roller set","Twist out / flexi rod","Wash & blowdry","Japanese head spa","Scalp detox / treatments"] },
+  { label: "Natural hair washing & styling", services: ["Wig cornrows","Curly cut / wash & go / diffuse","Silk press","Bouncy blowout / round brush blow dry","Trim / hair cut","Roller set","Twist out / flexi rod","Bantu knots","Wash & blowdry","Japanese head spa","Scalp detox / treatments"] },
   { label: "Natural hair health & trichology", services: ["Healthy hair plans & consultations","Natural hair coaches / educators","Trichology / scalp analysis"] },
   { label: "Wigs", services: ["Custom wig","Pixie wig / weave install","U-part wig install","Wig colouring / bundle colouring","Wig install (frontal / closure)","Wig blowdry"] },
 ];
@@ -1650,6 +1676,9 @@ function AdminAppInner() {
       previousServices: [...check.currentServices],
       previousHijabiFriendly: check.hijabiFriendly === true,
       previousWheelchairAccessible: check.wheelchairAccessible === true,
+      previousSenFriendly: check.senFriendly === true,
+      previousLgbtqFriendly: check.lgbtqFriendly === true,
+      previousParkingAvailable: check.parkingAvailable === true,
       update,
       label: getFreshnessUndoLabel(update),
     };
@@ -1675,6 +1704,15 @@ function AdminAppInner() {
       }
       if (update.wheelchairAccessible === true) {
         setPublishedStylists((current) => current.map((item) => (item.id === check.id ? { ...item, wheelchairAccessible: true } : item)));
+      }
+      if (update.senFriendly === true) {
+        setPublishedStylists((current) => current.map((item) => (item.id === check.id ? { ...item, senFriendly: true } : item)));
+      }
+      if (update.lgbtqFriendly === true) {
+        setPublishedStylists((current) => current.map((item) => (item.id === check.id ? { ...item, lgbtqFriendly: true } : item)));
+      }
+      if (update.parkingAvailable === true) {
+        setPublishedStylists((current) => current.map((item) => (item.id === check.id ? { ...item, parkingAvailable: true } : item)));
       }
       if (update.priceBand) {
         setPublishedStylists((current) =>
@@ -1716,10 +1754,16 @@ function AdminAppInner() {
           previousServices: lastFreshnessUndo.previousServices,
           previousHijabiFriendly: lastFreshnessUndo.previousHijabiFriendly,
           previousWheelchairAccessible: lastFreshnessUndo.previousWheelchairAccessible,
+          previousSenFriendly: lastFreshnessUndo.previousSenFriendly,
+          previousLgbtqFriendly: lastFreshnessUndo.previousLgbtqFriendly,
+          previousParkingAvailable: lastFreshnessUndo.previousParkingAvailable,
           rejectAddedServices: lastFreshnessUndo.update.rejectAddedServices,
           rejectRemovedServices: lastFreshnessUndo.update.rejectRemovedServices,
           rejectHijabiFriendly: lastFreshnessUndo.update.rejectHijabiFriendly,
           rejectWheelchairAccessible: lastFreshnessUndo.update.rejectWheelchairAccessible,
+          rejectSenFriendly: lastFreshnessUndo.update.rejectSenFriendly,
+          rejectLgbtqFriendly: lastFreshnessUndo.update.rejectLgbtqFriendly,
+          rejectParkingAvailable: lastFreshnessUndo.update.rejectParkingAvailable,
           rejectPriceBand: lastFreshnessUndo.update.rejectPriceBand,
           rejectLocation: lastFreshnessUndo.update.rejectLocation,
         }),
@@ -2172,7 +2216,7 @@ function StylistsPage({
         const matchesCategory = categoryFilter === "all" || draftMatchesCategory(draft, categoryFilter, filterCategories);
         const matchesLocation = locationFilter === "all" || draftMatchesLocation(draft, locationFilter);
         const matchesPrice = priceFilter === "all" || (draft.priceBand || "not-listed") === priceFilter;
-        const matchesNeeds = needsFilter.every((need) => Boolean(draft[need as "hijabiFriendly" | "canBraidWithoutGel" | "wheelchairAccessible"]));
+        const matchesNeeds = needsFilter.every((need) => Boolean(draft[need as "hijabiFriendly" | "canBraidWithoutGel" | "wheelchairAccessible" | "senFriendly" | "lgbtqFriendly" | "parkingAvailable"]));
         return matchesCategory && matchesLocation && matchesPrice && matchesNeeds;
       }),
     [drafts, categoryFilter, locationFilter, priceFilter, needsFilter, filterCategories],
@@ -2214,10 +2258,25 @@ function StylistsPage({
         </div>
 
         <div className="grid grid-cols-2 divide-x divide-y divide-stone-200 rounded-none border border-stone-200 bg-white sm:grid-cols-4 sm:divide-y-0">
-          <StylistStatCell label="Draft" value={stats.draft} />
-          <StylistStatCell label="Complete" value={stats.readyToPublish} />
-          <StylistStatCell label="Published" value={stats.published} />
-          <StylistStatCell label="Total" value={stats.total} />
+          <StylistStatCell
+            label="Draft"
+            value={stats.draft}
+            active={statusFilter === "draft"}
+            onClick={() => onStatusFilterChange(statusFilter === "draft" ? "all" : "draft")}
+          />
+          <StylistStatCell
+            label="Complete"
+            value={stats.readyToPublish}
+            active={statusFilter === "ready_to_publish"}
+            onClick={() => onStatusFilterChange(statusFilter === "ready_to_publish" ? "all" : "ready_to_publish")}
+          />
+          <StylistStatCell
+            label="Published"
+            value={stats.published}
+            active={statusFilter === "published"}
+            onClick={() => onStatusFilterChange(statusFilter === "published" ? "all" : "published")}
+          />
+          <StylistStatCell label="Total" value={stats.total} active={statusFilter === "all"} onClick={() => onStatusFilterChange("all")} />
         </div>
       </section>
 
@@ -2331,12 +2390,36 @@ function StylistsPage({
   );
 }
 
-function StylistStatCell({ label, value }: { label: string; value: number }) {
+function StylistStatCell({
+  label,
+  value,
+  onClick,
+  active = false,
+}: {
+  label: string;
+  value: number;
+  onClick?: () => void;
+  active?: boolean;
+}) {
+  if (!onClick) {
+    return (
+      <div className="p-5">
+        <p className="text-[13px] text-stone-500">{label}</p>
+        <p className="mt-2 text-2xl font-semibold tracking-tight text-stone-950">{value}</p>
+      </div>
+    );
+  }
+
   return (
-    <div className="p-5">
+    <button
+      type="button"
+      onClick={onClick}
+      aria-pressed={active}
+      className={cn("p-5 text-left transition-colors hover:bg-stone-50", active && "bg-stone-100 hover:bg-stone-100")}
+    >
       <p className="text-[13px] text-stone-500">{label}</p>
       <p className="mt-2 text-2xl font-semibold tracking-tight text-stone-950">{value}</p>
-    </div>
+    </button>
   );
 }
 
@@ -2503,6 +2586,9 @@ const stylistNeedsFilterOptions = [
   { id: "canBraidWithoutGel", label: "Can braid without gel" },
   { id: "hijabiFriendly", label: "Hijabi-friendly" },
   { id: "wheelchairAccessible", label: "Wheelchair accessible entrance" },
+  { id: "senFriendly", label: "Sensory-safe / SEN-friendly" },
+  { id: "lgbtqFriendly", label: "LGBTQIA+-friendly" },
+  { id: "parkingAvailable", label: "Parking nearby" },
 ];
 
 const stylistStatusFilterOptions = [
@@ -3089,12 +3175,19 @@ function DraftEditorDrawer({
   const deleteLabel = isPublished ? "Delete published stylist" : "Delete draft";
   const displayStatus = getDraftDisplayStatus(draft);
   const [hasAttemptedPublish, setHasAttemptedPublish] = useState(false);
-  const [activeTab, setActiveTab] = useState<"details" | "branches">("details");
+  const [activeTab, setActiveTab] = useState<DrawerTab>("basic");
   const contentRef = useRef<HTMLDivElement | null>(null);
+  const drawerTabs: DrawerTab[] = ["basic", "filters", "reviews", ...(isPublished ? (["branches"] as const) : [])];
+  const drawerTabLabels: Record<DrawerTab, string> = {
+    basic: "Basic info",
+    filters: "Filters",
+    reviews: "Reviews and recommendations",
+    branches: draft.branches ? `Branches (${draft.branches.length})` : "Branches",
+  };
 
   useEffect(() => {
     setHasAttemptedPublish(false);
-    setActiveTab("details");
+    setActiveTab("basic");
     contentRef.current?.scrollTo({ top: 0, left: 0 });
   }, [draft.id]);
 
@@ -3107,7 +3200,7 @@ function DraftEditorDrawer({
     <div className="fixed inset-0 z-50 bg-stone-950/10">
       <button type="button" aria-label="Close editor" className="absolute inset-0 cursor-default" onClick={onClose} />
       <aside className="absolute inset-y-0 right-0 flex w-full max-w-[600px] flex-col overflow-hidden border-l border-stone-200 bg-white shadow-xl shadow-stone-950/10">
-        <div className="shrink-0 border-b border-stone-200 px-8 pb-2 pt-5">
+        <div className="shrink-0 px-8 pb-2 pt-5">
           <div className="flex items-center justify-between gap-4">
             <button type="button" onClick={onClose} className="inline-flex size-8 items-center justify-center rounded-md text-stone-500 hover:bg-stone-100 hover:text-stone-950" aria-label="Close editor" title="Close editor">
               <ChevronsRight className="size-4" />
@@ -3137,27 +3230,36 @@ function DraftEditorDrawer({
               </button>
             </div>
           </div>
+          <div className="space-y-3 pb-4 pt-3">
+            <Input
+              value={draft.name}
+              onChange={(event) => onChange({ name: event.target.value })}
+              placeholder="Untitled stylist"
+              className="h-auto rounded-none border-transparent bg-transparent px-0 py-0 text-[32px] font-semibold leading-tight tracking-normal text-stone-950 placeholder:text-stone-300 hover:bg-transparent focus-visible:border-transparent focus-visible:ring-0"
+            />
+            {hasAttemptedPublish && getVisibleDraftWarnings(draft).length ? (
+              <div className="rounded-none border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900">{getVisibleDraftWarnings(draft).join(" ")}</div>
+            ) : null}
+          </div>
         </div>
 
-        {isPublished ? (
-          <div className="shrink-0 border-b border-stone-200 px-8">
-            <div className="flex gap-6">
-              {(["details", "branches"] as const).map((tab) => (
-                <button
-                  key={tab}
-                  type="button"
-                  onClick={() => setActiveTab(tab)}
-                  className={cn(
-                    "border-b-2 py-3 text-sm font-medium capitalize transition-colors",
-                    activeTab === tab ? "border-stone-950 text-stone-950" : "border-transparent text-stone-500 hover:text-stone-800",
-                  )}
-                >
-                  {tab === "branches" && draft.branches ? `Branches (${draft.branches.length})` : tab}
-                </button>
-              ))}
-            </div>
+        <div className="shrink-0 border-b border-stone-200 px-8">
+          <div className="flex gap-6">
+            {drawerTabs.map((tab) => (
+              <button
+                key={tab}
+                type="button"
+                onClick={() => setActiveTab(tab)}
+                className={cn(
+                  "border-b-2 py-3 text-sm font-medium transition-colors",
+                  activeTab === tab ? "border-stone-950 text-stone-950" : "border-transparent text-stone-500 hover:text-stone-800",
+                )}
+              >
+                {drawerTabLabels[tab]}
+              </button>
+            ))}
           </div>
-        ) : null}
+        </div>
 
         <div ref={contentRef} className="min-h-0 flex-1 overflow-y-auto px-8 pb-8 pt-8">
           {activeTab === "branches" && isPublished ? (
@@ -3185,15 +3287,16 @@ function DraftEditorDrawer({
               canDelete={!isPublished}
               showWarnings={hasAttemptedPublish}
               isEmbedded
+              embeddedSection={activeTab === "branches" ? "basic" : activeTab}
             />
           )}
         </div>
 
-        {activeTab === "details" || !isPublished ? (
+        {activeTab !== "branches" ? (
           <div className="shrink-0 border-t border-stone-200 bg-white px-8 py-5">
             <div className="flex items-center justify-end gap-4">
               {!isPublished ? (
-                <Button type="button" variant="outline" onClick={onSave} disabled={isBusy} className="h-11 rounded-none border-transparent bg-transparent px-3 text-sm text-stone-600 hover:bg-stone-50 hover:text-stone-950 focus-visible:border-stone-300">
+                <Button type="button" variant="outline" onClick={onSave} disabled={isBusy} className="h-12 w-1/2 min-w-[220px] rounded-none border-stone-950 bg-white px-6 text-base font-medium text-stone-950 hover:bg-stone-50">
                   Save changes
                 </Button>
               ) : null}
@@ -3534,14 +3637,6 @@ function InstagramIcon({ className }: { className?: string }) {
       <rect x="3" y="3" width="18" height="18" rx="5" />
       <circle cx="12" cy="12" r="4" />
       <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
-    </svg>
-  );
-}
-
-function TikTokIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
-      <path d="M14.7 3h2.7c.2 1.3.8 2.4 1.7 3.2.7.6 1.6 1.1 2.6 1.2v2.8a7.1 7.1 0 0 1-4.2-1.4v6.4c0 3.3-2.5 5.8-5.8 5.8a5.6 5.6 0 0 1-5.8-5.6c0-3.2 2.6-5.7 5.8-5.7.4 0 .8 0 1.2.1v2.9a3 3 0 0 0-1.2-.2 2.8 2.8 0 1 0 2.9 2.8V3Z" />
     </svg>
   );
 }
@@ -4988,15 +5083,28 @@ function FreshnessRecommendationBody({
   const [instagramUrl, setInstagramUrl] = useState(row.instagramUrl || "");
   const [linkSaveState, setLinkSaveState] = useState<"idle" | "saving" | "saved">("idle");
   const [selectedIndexes, setSelectedIndexes] = useState<Set<number>>(new Set());
+  const [ignoreReasonPrompt, setIgnoreReasonPrompt] = useState(false);
+  const [ignoreReason, setIgnoreReason] = useState("");
   const hasLinkIssues = row.details.some((d) => d.kind === "fix" || d.kind === "manual");
   const selectableIndexes = row.details.map((_, index) => index).filter((index) => isDetailBulkSelectable(row.details[index], row));
   const allSelected = selectableIndexes.length > 0 && selectableIndexes.every((index) => selectedIndexes.has(index));
   const someSelected = selectableIndexes.some((index) => selectedIndexes.has(index));
+  // Same "default to Instagram as the booking link" escape hatch the stylist
+  // drafts drawer offers (toggleBookingSameAsInstagram) — useful here when a
+  // salon's real booking link has gone dead and Instagram is the best fallback.
+  const bookingLinkMatchesInstagram = !hasWebsiteLinkIssue && urlsMatch(primaryLinkUrl, instagramUrl);
+
+  function toggleUseInstagramAsBooking(checked: boolean) {
+    setPrimaryLinkUrl(checked ? instagramUrl : bookingLinkMatchesInstagram ? "" : primaryLinkUrl);
+  }
 
   async function handleSaveLinks() {
     setLinkSaveState("saving");
     try {
-      const linkUpdate: FreshnessUpdate = { bookingUrl: primaryLinkUrl };
+      const linkUpdate: FreshnessUpdate = {
+        bookingUrl: primaryLinkUrl,
+        ...(bookingLinkMatchesInstagram ? { bookingPlatform: "Instagram" } : {}),
+      };
       await Promise.resolve(onApply(row.check, { ...linkUpdate, instagramUrl }));
       setLinkSaveState("saved");
       setTimeout(() => setLinkSaveState("idle"), 2500);
@@ -5021,8 +5129,41 @@ function FreshnessRecommendationBody({
     if (!merged) {
       return;
     }
-    await Promise.resolve(onApply(row.check, merged));
+    const reason = ignoreReason.trim();
+    // Attribute evidence strings are prefixed "Booking: ..." / "Website: ..." /
+    // "Instagram: ..." for display — strip that back off so it matches the raw
+    // text the server's evidence-finders produced. Add-service evidence is
+    // already raw (no prefix). Remove/price/location rejections aren't
+    // included here — see loadLearnedExclusions() server-side for why those
+    // need a different kind of learning than "ignore this evidence phrase".
+    const rejectedEvidence = selectedDetails.flatMap((detail) => {
+      if (detail.kind === "attribute" && detail.attributeField) {
+        return (detail.evidence || []).map((line) => ({
+          kind: "attribute" as const,
+          field: detail.attributeField as string,
+          evidenceText: line.replace(/^[A-Za-z]+:\s*/, ""),
+        }));
+      }
+      if (detail.kind === "add" && detail.service) {
+        return (detail.evidence || []).map((line) => ({
+          kind: "add" as const,
+          field: detail.service as string,
+          evidenceText: line,
+        }));
+      }
+      return [];
+    });
+    await Promise.resolve(onApply(row.check, {
+      ...merged,
+      ...(reason ? {
+        feedbackReason: reason,
+        feedbackContext: selectedDetails.map((detail) => detail.label),
+        ...(rejectedEvidence.length ? { feedbackRejectedEvidence: rejectedEvidence } : {}),
+      } : {}),
+    }));
     setSelectedIndexes(new Set());
+    setIgnoreReasonPrompt(false);
+    setIgnoreReason("");
   }
 
   function toggleSelected(index: number) {
@@ -5076,7 +5217,47 @@ function FreshnessRecommendationBody({
           </tbody>
         </table>
       </div>
-      {someSelected ? (
+      {someSelected && ignoreReasonPrompt ? (
+        <div className="sticky bottom-4 z-10 flex justify-center">
+          <div className="inline-flex items-center gap-3 rounded-none bg-stone-950 px-5 py-3 text-sm font-medium text-white shadow-lg">
+            <span className="whitespace-nowrap text-stone-300">Why? (optional)</span>
+            <input
+              type="text"
+              autoFocus
+              value={ignoreReason}
+              onChange={(event) => setIgnoreReason(event.target.value)}
+              onKeyDown={(event) => {
+                if (event.key === "Enter") handleBulkIgnore();
+                if (event.key === "Escape") setIgnoreReasonPrompt(false);
+              }}
+              placeholder="e.g. it's still on their booking page as..."
+              className="h-8 w-64 rounded-none border border-stone-700 bg-stone-900 px-2 text-sm text-white placeholder:text-stone-500 focus:border-stone-400 focus:outline-none"
+            />
+            <span className="h-4 w-px bg-white/20" />
+            <button
+              type="button"
+              disabled={isBusy}
+              onClick={handleBulkIgnore}
+              className="inline-flex items-center gap-1.5 whitespace-nowrap transition hover:text-red-300 disabled:cursor-not-allowed disabled:opacity-40"
+            >
+              <Ban className="size-4" />
+              Confirm ignore
+            </button>
+            <span className="h-4 w-px bg-white/20" />
+            <button
+              type="button"
+              onClick={() => {
+                setIgnoreReasonPrompt(false);
+                setIgnoreReason("");
+              }}
+              aria-label="Cancel"
+              className="inline-flex items-center justify-center text-stone-300 transition hover:text-white"
+            >
+              <X className="size-4" />
+            </button>
+          </div>
+        </div>
+      ) : someSelected ? (
         <div className="sticky bottom-4 z-10 flex justify-center">
           <div className="inline-flex items-center gap-4 rounded-none bg-stone-950 px-5 py-3 text-sm font-medium text-white shadow-lg">
             <span className="inline-flex items-center gap-2">
@@ -5097,7 +5278,7 @@ function FreshnessRecommendationBody({
             <button
               type="button"
               disabled={isBusy}
-              onClick={handleBulkIgnore}
+              onClick={() => setIgnoreReasonPrompt(true)}
               className="inline-flex items-center gap-1.5 transition hover:text-red-300 disabled:cursor-not-allowed disabled:opacity-40"
             >
               <Ban className="size-4" />
@@ -5148,6 +5329,18 @@ function FreshnessRecommendationBody({
               <Input value={instagramUrl} onChange={(event) => setInstagramUrl(event.target.value)} placeholder="https://www.instagram.com/..." className="h-9 rounded-none" />
             </Field>
           </div>
+          {!hasWebsiteLinkIssue ? (
+            <label className="flex items-center gap-2 text-sm font-medium text-stone-700">
+              <input
+                type="checkbox"
+                checked={bookingLinkMatchesInstagram}
+                disabled={!instagramUrl}
+                onChange={(event) => toggleUseInstagramAsBooking(event.target.checked)}
+                className="size-3.5 rounded-none border-stone-300 accent-stone-950 disabled:opacity-40"
+              />
+              Use Instagram as booking link
+            </label>
+          ) : null}
         </div>
       ) : null}
     </div>
@@ -5197,7 +5390,7 @@ function FreshnessRecommendationTableRow({
           <Checkbox checked={isSelected} onCheckedChange={onToggleSelected} disabled={!selectable || isBusy} aria-label={`Select ${detail.label}`} />
         </td>
         <td className="w-28 px-4 py-4">
-          <span className={cn("inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold", visual.pillClass)}>
+          <span className={cn("inline-flex items-center rounded-none px-3 py-1 text-xs font-semibold", visual.pillClass)}>
             {visual.label}
           </span>
         </td>
@@ -5494,6 +5687,15 @@ function mergeFreshnessAcceptUpdates(details: FreshnessRecommendationDetail[], r
     if (update.wheelchairAccessible) {
       merged.wheelchairAccessible = true;
     }
+    if (update.senFriendly) {
+      merged.senFriendly = true;
+    }
+    if (update.lgbtqFriendly) {
+      merged.lgbtqFriendly = true;
+    }
+    if (update.parkingAvailable) {
+      merged.parkingAvailable = true;
+    }
     if (update.areaId) {
       merged.areaId = update.areaId;
       merged.areaIds = update.areaIds;
@@ -5541,6 +5743,15 @@ function mergeFreshnessRejectUpdates(details: FreshnessRecommendationDetail[], r
     if (update.rejectWheelchairAccessible) {
       merged.rejectWheelchairAccessible = true;
     }
+    if (update.rejectSenFriendly) {
+      merged.rejectSenFriendly = true;
+    }
+    if (update.rejectLgbtqFriendly) {
+      merged.rejectLgbtqFriendly = true;
+    }
+    if (update.rejectParkingAvailable) {
+      merged.rejectParkingAvailable = true;
+    }
     if (update.rejectLocation) {
       merged.rejectLocation = true;
     }
@@ -5551,16 +5762,24 @@ function mergeFreshnessRejectUpdates(details: FreshnessRecommendationDetail[], r
   return Object.keys(merged).length ? merged : undefined;
 }
 
+const attributeFieldConfig: Record<AttributeSuggestion["field"], { acceptUpdate: FreshnessUpdate; rejectUpdate: FreshnessUpdate; actionLabel: string }> = {
+  hijabiFriendly: { acceptUpdate: { hijabiFriendly: true }, rejectUpdate: { rejectHijabiFriendly: true }, actionLabel: "Mark hijabi-friendly" },
+  wheelchairAccessible: { acceptUpdate: { wheelchairAccessible: true }, rejectUpdate: { rejectWheelchairAccessible: true }, actionLabel: "Mark wheelchair accessible entrance" },
+  senFriendly: { acceptUpdate: { senFriendly: true }, rejectUpdate: { rejectSenFriendly: true }, actionLabel: "Mark sensory-safe / SEN-friendly" },
+  lgbtqFriendly: { acceptUpdate: { lgbtqFriendly: true }, rejectUpdate: { rejectLgbtqFriendly: true }, actionLabel: "Mark LGBTQIA+-friendly" },
+  parkingAvailable: { acceptUpdate: { parkingAvailable: true }, rejectUpdate: { rejectParkingAvailable: true }, actionLabel: "Mark parking nearby" },
+};
+
 function getAttributeAcceptUpdate(field: AttributeSuggestion["field"]): FreshnessUpdate {
-  return field === "wheelchairAccessible" ? { wheelchairAccessible: true } : { hijabiFriendly: true };
+  return attributeFieldConfig[field]?.acceptUpdate ?? {};
 }
 
 function getAttributeRejectUpdate(field: AttributeSuggestion["field"]): FreshnessUpdate {
-  return field === "wheelchairAccessible" ? { rejectWheelchairAccessible: true } : { rejectHijabiFriendly: true };
+  return attributeFieldConfig[field]?.rejectUpdate ?? {};
 }
 
 function getAttributeActionLabel(field?: AttributeSuggestion["field"]) {
-  return field === "wheelchairAccessible" ? "Mark wheelchair accessible entrance" : "Mark hijabi-friendly";
+  return field ? attributeFieldConfig[field]?.actionLabel ?? "" : "";
 }
 
 function formatDetectedPrice(value: number) {
@@ -5753,8 +5972,8 @@ function buildFreshnessRecommendationGroups(checks: DirectoryCheck[]): Freshness
       })),
       ...attributeSuggestions.map((suggestion) => ({
         kind: "attribute" as const,
-        label: "Mark hijabi-friendly",
-        description: "Explicit hijabi-friendly wording found",
+        label: getAttributeActionLabel(suggestion.field),
+        description: `Explicit ${suggestion.label.toLowerCase()} wording found`,
         attributeField: suggestion.field,
         evidence: suggestion.evidence.map((item) => `${titleCase(item.source)}: ${item.text}`),
       })),
@@ -5796,16 +6015,16 @@ function buildFreshnessRecommendationGroups(checks: DirectoryCheck[]): Freshness
     }
 
     const hasServiceRecommendations = addedServices.length > 0 || removedServices.length > 0;
-    const hasHijabiFriendlyRecommendation = attributeSuggestions.some((suggestion) => suggestion.field === "hijabiFriendly");
-    const hasWheelchairAccessibleRecommendation = attributeSuggestions.some((suggestion) => suggestion.field === "wheelchairAccessible");
-    const hasAttributeRecommendations = hasHijabiFriendlyRecommendation || hasWheelchairAccessibleRecommendation;
+    const recommendedAttributeFields = [...new Set(attributeSuggestions.map((suggestion) => suggestion.field))];
+    const hasAttributeRecommendations = recommendedAttributeFields.length > 0;
+    const attributeAcceptUpdate = recommendedAttributeFields.reduce((acc, field) => ({ ...acc, ...getAttributeAcceptUpdate(field) }), {});
+    const attributeRejectUpdate = recommendedAttributeFields.reduce((acc, field) => ({ ...acc, ...getAttributeRejectUpdate(field) }), {});
     const linkDismissUpdate = getLinkDismissUpdate(check);
     const acceptUpdate = hasServiceRecommendations || hasAttributeRecommendations || hasPriceRecommendation
       ? {
           ...(addedServices.length ? { addServices: addedServices } : {}),
           ...(removedServices.length ? { removeServices: removedServices } : {}),
-          ...(hasHijabiFriendlyRecommendation ? { hijabiFriendly: true } : {}),
-          ...(hasWheelchairAccessibleRecommendation ? { wheelchairAccessible: true } : {}),
+          ...attributeAcceptUpdate,
           ...(hasPriceRecommendation && priceCheck?.priceBand ? {
             priceBand: priceCheck.priceBand,
             servicePriceBand: priceCheck.servicePriceBand || priceCheck.priceBand,
@@ -5823,8 +6042,7 @@ function buildFreshnessRecommendationGroups(checks: DirectoryCheck[]): Freshness
       ? {
           ...(addedServices.length ? { rejectAddedServices: addedServices } : {}),
           ...(removedServices.length ? { rejectRemovedServices: removedServices } : {}),
-          ...(hasHijabiFriendlyRecommendation ? { rejectHijabiFriendly: true } : {}),
-          ...(hasWheelchairAccessibleRecommendation ? { rejectWheelchairAccessible: true } : {}),
+          ...attributeRejectUpdate,
           ...(hasPriceRecommendation ? { rejectPriceBand: true } : {}),
           ...linkDismissUpdate,
         }
@@ -6954,6 +7172,7 @@ function DraftEditor({
   activeStep = "details",
   showWarnings = true,
   isEmbedded = false,
+  embeddedSection = "basic",
 }: {
   draft: StylistDraft;
   regions: RegionOption[];
@@ -6969,6 +7188,7 @@ function DraftEditor({
   activeStep?: DraftEditorStep;
   showWarnings?: boolean;
   isEmbedded?: boolean;
+  embeddedSection?: "basic" | "filters" | "reviews";
 }) {
   const bookingMatchesInstagram = urlsMatch(draft.bookingUrl, draft.instagramUrl);
   const visibleWarnings = showWarnings ? getVisibleDraftWarnings(draft) : [];
@@ -7280,86 +7500,211 @@ function DraftEditor({
     })
     .map((option) => option.label);
 
-  const embeddedContent = (
-    <div className="space-y-7">
-      <div className="space-y-3">
-        <Input
-          value={draft.name}
-          onChange={(event) => onChange({ name: event.target.value })}
-          placeholder="Untitled stylist"
-          className="h-auto rounded-none border-transparent bg-transparent px-0 py-0 text-[32px] font-semibold leading-tight tracking-normal text-stone-950 placeholder:text-stone-300 hover:bg-transparent focus-visible:border-transparent focus-visible:ring-0"
+  function renderFilterChip(key: string, label: string, isSelected: boolean, onToggle: () => void) {
+    return (
+      <button
+        key={key}
+        type="button"
+        onClick={onToggle}
+        aria-pressed={isSelected}
+        className={cn(
+          "rounded-none border px-2.5 py-1 text-xs font-medium transition",
+          isSelected ? "border-stone-950 bg-stone-950 text-white" : "border-stone-200 bg-white text-stone-600 hover:bg-stone-50",
+        )}
+      >
+        {label}
+      </button>
+    );
+  }
+
+  const embeddedBasicContent = (
+    <div className="bg-white">
+      <DraftPropertyRow label="Status">
+        <DraftStatusPill status={getDraftDisplayStatus(draft)} />
+      </DraftPropertyRow>
+
+      <DraftPropertyRow label="Discovery source">
+        <Select value={draft.discoverySource || "Manual search"} onChange={(discoverySource) => onChange({ discoverySource })}>
+          {[...new Set([...discoverySourceOptions, ...(draft.discoverySource ? [draft.discoverySource] : [])])].map((option) => (
+            <option key={option} value={option}>
+              {option}
+            </option>
+          ))}
+        </Select>
+      </DraftPropertyRow>
+
+      <DraftPropertyRow label="Added via">
+        <Select value={draft.addedVia || "Code edit"} onChange={(addedVia) => onChange({ addedVia })}>
+          {[...new Set([...addedViaOptions, ...(draft.addedVia ? [draft.addedVia] : [])])].map((option) => (
+            <option key={option} value={option}>
+              {option}
+            </option>
+          ))}
+        </Select>
+      </DraftPropertyRow>
+
+      <DraftPropertyRow label="Instagram">
+        <div className="flex items-center gap-2">
+          <Input
+            value={draft.instagramUrl}
+            onChange={(event) => updateInstagramUrl(event.target.value)}
+            onBlur={autofillNameFromInstagram}
+            placeholder="Enter Instagram URL"
+            className="h-8 rounded-none border border-stone-300 bg-stone-50 px-2 py-1 hover:border-stone-400 focus-visible:border-stone-950"
+          />
+          {draft.instagramUrl ? (
+            <a href={draft.instagramUrl} target="_blank" rel="noreferrer" className="inline-flex size-8 shrink-0 items-center justify-center rounded-md text-stone-400 transition hover:bg-stone-100 hover:text-stone-950" aria-label="Open Instagram">
+              <ExternalLink className="size-4" />
+            </a>
+          ) : null}
+        </div>
+      </DraftPropertyRow>
+
+      <DraftPropertyRow label="Booking URL">
+        <div className="flex items-center gap-2">
+          <Input value={draft.bookingUrl} onChange={(event) => onChange({ bookingUrl: event.target.value })} placeholder="https://..." className="h-8 rounded-none border border-stone-300 bg-stone-50 px-2 py-1 hover:border-stone-400 focus-visible:border-stone-950" />
+          {draft.bookingUrl ? (
+            <a href={draft.bookingUrl} target="_blank" rel="noreferrer" className="inline-flex size-8 shrink-0 items-center justify-center rounded-md text-stone-400 transition hover:bg-stone-100 hover:text-stone-950" aria-label="Open booking URL">
+              <ExternalLink className="size-4" />
+            </a>
+          ) : null}
+        </div>
+      </DraftPropertyRow>
+
+      <DraftPropertyRow label="Booking link is Instagram">
+        <input
+          type="checkbox"
+          checked={bookingMatchesInstagram}
+          disabled={!draft.instagramUrl}
+          onChange={(event) => toggleBookingSameAsInstagram(event.target.checked)}
+          className="ml-2 size-4 rounded border-stone-300 accent-stone-500 disabled:opacity-40"
         />
-        {warningsContent}
-      </div>
-      <div className="bg-white">
-        <DraftPropertyRow icon={<ClockAlert className="size-4" />} label="Status">
-          <DraftStatusPill status={getDraftDisplayStatus(draft)} />
-        </DraftPropertyRow>
+      </DraftPropertyRow>
+    </div>
+  );
 
-        <DraftPropertyRow icon={<Search className="size-4" />} label="Discovery source">
-          <Select value={draft.discoverySource || "Manual search"} onChange={(discoverySource) => onChange({ discoverySource })}>
-            {[...new Set([...discoverySourceOptions, ...(draft.discoverySource ? [draft.discoverySource] : [])])].map((option) => (
-              <option key={option} value={option}>
-                {option}
-              </option>
-            ))}
-          </Select>
-        </DraftPropertyRow>
+  const embeddedFiltersContent = (
+    <div className="bg-white">
+      <DraftPropertyRow label="Services">
+        <div className="flex items-start gap-1.5">
+          <div className="min-w-0 flex-1">
+            <ServicePicker services={services} filterCategories={filterCategories} selected={draft.services} onChange={(next) => onChange({ services: next })} label={null} />
+          </div>
+          <SourceNotesButton
+            isOpen={openSourcePanel === "services"}
+            label="raw service notes"
+            count={draft.rawServices?.length || 0}
+            onClick={() => setOpenSourcePanel((current) => (current === "services" ? null : "services"))}
+          />
+        </div>
+      </DraftPropertyRow>
 
-        <DraftPropertyRow icon={<Plus className="size-4" />} label="Added via">
-          <Select value={draft.addedVia || "Code edit"} onChange={(addedVia) => onChange({ addedVia })}>
-            {[...new Set([...addedViaOptions, ...(draft.addedVia ? [draft.addedVia] : [])])].map((option) => (
-              <option key={option} value={option}>
-                {option}
-              </option>
-            ))}
-          </Select>
-        </DraftPropertyRow>
-
-        <DraftPropertyRow icon={<InstagramIcon className="size-4" />} label="Instagram">
-          <div className="flex items-center gap-2">
-            <Input
-              value={draft.instagramUrl}
-              onChange={(event) => updateInstagramUrl(event.target.value)}
-              onBlur={autofillNameFromInstagram}
-              placeholder="Enter Instagram URL"
-              className="h-8 rounded-md border-transparent bg-transparent px-2 py-1 hover:bg-stone-100 focus-visible:border-stone-300"
+      {openSourcePanel === "services" ? (
+        <DraftPropertyRow label="Raw service notes">
+          <SourceNotesPanel>
+            <Textarea
+              value={(draft.rawServices || []).join("\n")}
+              onChange={(value) => onChange({ rawServices: splitNoteLines(value) })}
+              placeholder="Paste service list, booking menu text, or notes"
             />
-            {draft.instagramUrl ? (
-              <a href={draft.instagramUrl} target="_blank" rel="noreferrer" className="inline-flex size-8 shrink-0 items-center justify-center rounded-md text-stone-400 transition hover:bg-stone-100 hover:text-stone-950" aria-label="Open Instagram">
-                <ExternalLink className="size-4" />
-              </a>
-            ) : null}
-          </div>
+          </SourceNotesPanel>
         </DraftPropertyRow>
+      ) : null}
 
-        <DraftPropertyRow icon={<TikTokIcon className="size-4" />} label="TikTok recommendation">
-          <div className="flex items-center gap-2">
-            <Input value={draft.tiktokUrl || ""} onChange={(event) => onChange({ tiktokUrl: event.target.value })} placeholder="Enter TikTok URL" className="h-8 rounded-md border-transparent bg-transparent px-2 py-1 hover:bg-stone-100 focus-visible:border-stone-300" />
-            {draft.tiktokUrl ? (
-              <a href={draft.tiktokUrl} target="_blank" rel="noreferrer" className="inline-flex size-8 shrink-0 items-center justify-center rounded-md text-stone-400 transition hover:bg-stone-100 hover:text-stone-950" aria-label="Open TikTok">
-                <ExternalLink className="size-4" />
-              </a>
-            ) : null}
-          </div>
+      <DraftPropertyRow label="Locations">
+        <DraftLocationSelector draft={draft} regions={regions} onChange={onChangeLocations} hideLabel />
+      </DraftPropertyRow>
+
+      <DraftPropertyRow label="Pricing">
+        <div className="flex items-center gap-1.5">
+          <Select
+            value={draft.priceBand || ""}
+            onChange={(value) =>
+              onChange({
+                priceBand: (value as "" | PriceBand) || undefined,
+                servicePriceBand: (value as "" | PriceBand) || "",
+                packagePriceBand: value ? draft.packagePriceBand || "" : "",
+                priceIncludesHair: value ? draft.priceIncludesHair === true : false,
+                priceComparisonMode: value ? draft.priceComparisonMode || "service-only" : "",
+                priceSource: value ? "manual" : "",
+                priceConfidence: value ? "manual" : "",
+                priceUpdatedAt: value ? new Date().toISOString() : "",
+                ...(!value ? { priceEvidence: [], priceCheckedAt: "" } : {}),
+              })
+            }
+          >
+            {priceBandOptions.map((option) => (
+              <option key={option.value || "unset"} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </Select>
+          <SourceNotesButton
+            isOpen={openSourcePanel === "pricing"}
+            label="raw pricing notes"
+            count={draft.priceEvidence?.length || 0}
+            onClick={() => setOpenSourcePanel((current) => (current === "pricing" ? null : "pricing"))}
+          />
+        </div>
+      </DraftPropertyRow>
+
+      {openSourcePanel === "pricing" ? (
+        <DraftPropertyRow label="Raw pricing notes">
+          <SourceNotesPanel>
+            <Textarea
+              value={(draft.priceEvidence || []).join("\n")}
+              onChange={(value) => onChange({ priceEvidence: splitNoteLines(value) })}
+              placeholder="Paste pricing notes, menu text, or evidence"
+            />
+          </SourceNotesPanel>
         </DraftPropertyRow>
+      ) : null}
 
-        <DraftPropertyRow icon={<Globe className="size-4" />} label="Booking URL">
-          <div className="flex items-center gap-2">
-            <Input value={draft.bookingUrl} onChange={(event) => onChange({ bookingUrl: event.target.value })} placeholder="https://..." className="h-8 rounded-md border-transparent bg-transparent px-2 py-1 hover:bg-stone-100 focus-visible:border-stone-300" />
-            {draft.bookingUrl ? (
-              <a href={draft.bookingUrl} target="_blank" rel="noreferrer" className="inline-flex size-8 shrink-0 items-center justify-center rounded-md text-stone-400 transition hover:bg-stone-100 hover:text-stone-950" aria-label="Open booking URL">
-                <ExternalLink className="size-4" />
-              </a>
-            ) : null}
-          </div>
-        </DraftPropertyRow>
+      <DraftPropertyRow label="Additional needs">
+        <div className="flex flex-wrap gap-1.5 py-1">
+          {additionalNeedsOptions.map((option) => {
+            const field = additionalNeedsFieldMap[option.id];
+            if (!field) return null;
+            const isSelected = draft[field] === true;
+            return renderFilterChip(option.id, option.label, isSelected, () => onChange({ [field]: !isSelected }));
+          })}
+        </div>
+      </DraftPropertyRow>
 
-        <DraftPropertyRow icon={<Star className="size-4" />} label="Booking reviews">
-          {(() => {
-            const platform = getVerifiedReviewsPlatform(draft.bookingUrl);
-            const reviewsUrl = platform ? getVerifiedReviewsUrl(draft.bookingUrl) : null;
-            return (
+      {customFilterTypes.map((filterType) => {
+        const selected = draft.customFilters?.[filterType.id] ?? [];
+        return (
+          <DraftPropertyRow key={filterType.id} label={filterType.label}>
+            <div className={cn("flex gap-1.5 py-1", filterType.behavior === "toggle-group" ? "flex-col items-start" : "flex-wrap")}>
+              {filterType.options.map((option) =>
+                renderFilterChip(option.id, option.label, selected.includes(option.id), () => toggleCustomFilterValue(filterType.id, option.id)),
+              )}
+            </div>
+          </DraftPropertyRow>
+        );
+      })}
+    </div>
+  );
+
+  const embeddedReviewsContent = (
+    <div className="bg-white">
+      <DraftPropertyRow label="TikTok recommendation">
+        <div className="flex items-center gap-2">
+          <Input value={draft.tiktokUrl || ""} onChange={(event) => onChange({ tiktokUrl: event.target.value })} placeholder="Enter TikTok URL" className="h-8 rounded-none border border-stone-300 bg-stone-50 px-2 py-1 hover:border-stone-400 focus-visible:border-stone-950" />
+          {draft.tiktokUrl ? (
+            <a href={draft.tiktokUrl} target="_blank" rel="noreferrer" className="inline-flex size-8 shrink-0 items-center justify-center rounded-md text-stone-400 transition hover:bg-stone-100 hover:text-stone-950" aria-label="Open TikTok">
+              <ExternalLink className="size-4" />
+            </a>
+          ) : null}
+        </div>
+      </DraftPropertyRow>
+
+      <DraftPropertyRow label="Booking reviews">
+        {(() => {
+          const platform = getVerifiedReviewsPlatform(draft.bookingUrl);
+          const reviewsUrl = platform ? getVerifiedReviewsUrl(draft.bookingUrl) : null;
+          return (
+            <>
               <div className="flex items-center gap-2">
                 {platform ? (
                   <a href={reviewsUrl!} target="_blank" rel="noreferrer" className="text-sm underline hover:text-stone-950">
@@ -7368,191 +7713,53 @@ function DraftEditor({
                 ) : (
                   <span className="text-sm text-stone-400">No supported booking platform detected</span>
                 )}
+              </div>
+              <div className="mt-1 flex items-center gap-2 text-xs text-stone-500">
                 <Input
                   type="number"
                   min={0}
                   value={draft.verifiedReviewCount ?? ""}
                   onChange={(event) => onChange({ verifiedReviewCount: event.target.value === "" ? undefined : Math.max(0, Math.round(Number(event.target.value))) })}
                   placeholder="0"
-                  className="h-8 w-20 rounded-md border-transparent bg-transparent px-2 py-1 hover:bg-stone-100 focus-visible:border-stone-300"
+                  className="h-6 w-20 rounded-none border border-stone-300 bg-stone-50 px-2 py-0 text-xs"
                 />
-                <span className="text-sm text-stone-500">reviews</span>
+                <span>reviews</span>
               </div>
-            );
-          })()}
-        </DraftPropertyRow>
+            </>
+          );
+        })()}
+      </DraftPropertyRow>
 
-        <DraftPropertyRow icon={<Star className="size-4" />} label="Google reviews">
-          <div className="flex items-center gap-2">
-            <Input
-              value={draft.googleMapsUri || ""}
-              onChange={(event) => onChange({ googleMapsUri: event.target.value })}
-              placeholder="https://maps.google.com/..."
-              className="h-8 rounded-md border-transparent bg-transparent px-2 py-1 hover:bg-stone-100 focus-visible:border-stone-300"
-            />
-            {draft.googleMapsUri ? (
-              <a href={draft.googleMapsUri} target="_blank" rel="noreferrer" className="inline-flex size-8 shrink-0 items-center justify-center rounded-md text-stone-400 transition hover:bg-stone-100 hover:text-stone-950" aria-label={`Google Maps link for ${draft.name} - opens in a new tab`}>
-                <ExternalLink className="size-4" />
-              </a>
-            ) : null}
-          </div>
-          <div className="mt-1 flex items-center gap-2 text-xs text-stone-500">
-            <Input
-              type="number"
-              min={0}
-              value={draft.googleReviewCount ?? ""}
-              onChange={(event) => onChange({ googleReviewCount: event.target.value === "" ? undefined : Math.max(0, Math.round(Number(event.target.value))) })}
-              placeholder="0"
-              className="h-6 w-20 rounded-md border-stone-200 bg-transparent px-2 py-0 text-xs"
-            />
-            <span>reviews{draft.googleDisplayName ? ` — matched to "${draft.googleDisplayName}"` : ""}</span>
-          </div>
-        </DraftPropertyRow>
-
-        <DraftPropertyRow icon={<CheckSquare className="size-4" />} label="Booking link is Instagram">
-          <input
-            type="checkbox"
-            checked={bookingMatchesInstagram}
-            disabled={!draft.instagramUrl}
-            onChange={(event) => toggleBookingSameAsInstagram(event.target.checked)}
-            className="ml-2 size-4 rounded border-stone-300 accent-stone-500 disabled:opacity-40"
+      <DraftPropertyRow label="Google reviews">
+        <div className="flex items-center gap-2">
+          <Input
+            value={draft.googleMapsUri || ""}
+            onChange={(event) => onChange({ googleMapsUri: event.target.value })}
+            placeholder="https://maps.google.com/..."
+            className="h-8 rounded-none border border-stone-300 bg-stone-50 px-2 py-1 hover:border-stone-400 focus-visible:border-stone-950"
           />
-        </DraftPropertyRow>
-
-        <DraftPropertyRow icon={<MapPin className="size-4" />} label="Locations">
-          <DraftLocationSelector draft={draft} regions={regions} onChange={onChangeLocations} hideLabel />
-        </DraftPropertyRow>
-
-        {additionalNeedsOptions.map((option) => {
-          const field = additionalNeedsFieldMap[option.id];
-          if (!field) return null;
-          return (
-            <DraftPropertyRow key={option.id} icon={<CheckSquare className="size-4" />} label={option.label}>
-              <input
-                type="checkbox"
-                checked={draft[field] === true}
-                onChange={(event) => onChange({ [field]: event.target.checked })}
-                className="ml-2 size-4 rounded border-stone-300 accent-stone-500"
-              />
-            </DraftPropertyRow>
-          );
-        })}
-
-        {customFilterTypes.map((filterType) => {
-          const selected = draft.customFilters?.[filterType.id] ?? [];
-          return (
-            <DraftPropertyRow key={filterType.id} icon={<Tag className="size-4" />} label={filterType.label}>
-              {filterType.behavior === "toggle-group" ? (
-                <div className="flex flex-col gap-1.5 py-1">
-                  {filterType.options.map((option) => (
-                    <label key={option.id} className="flex items-center gap-2 text-sm text-stone-700">
-                      <input
-                        type="checkbox"
-                        checked={selected.includes(option.id)}
-                        onChange={() => toggleCustomFilterValue(filterType.id, option.id)}
-                        className="size-4 rounded border-stone-300 accent-stone-500"
-                      />
-                      {option.label}
-                    </label>
-                  ))}
-                </div>
-              ) : (
-                <div className="flex flex-wrap gap-1.5 py-1">
-                  {filterType.options.map((option) => {
-                    const isSelected = selected.includes(option.id);
-                    return (
-                      <button
-                        key={option.id}
-                        type="button"
-                        onClick={() => toggleCustomFilterValue(filterType.id, option.id)}
-                        className={cn(
-                          "rounded-full border px-2.5 py-1 text-xs font-medium transition",
-                          isSelected ? "border-stone-950 bg-stone-950 text-white" : "border-stone-200 bg-white text-stone-600 hover:bg-stone-50",
-                        )}
-                      >
-                        {option.label}
-                      </button>
-                    );
-                  })}
-                </div>
-              )}
-            </DraftPropertyRow>
-          );
-        })}
-
-        <DraftPropertyRow icon={<PoundSterling className="size-4" />} label="Pricing">
-          <div className="flex items-center gap-1.5">
-            <Select
-              value={draft.priceBand || ""}
-              onChange={(value) =>
-                onChange({
-                  priceBand: (value as "" | PriceBand) || undefined,
-                  servicePriceBand: (value as "" | PriceBand) || "",
-                  packagePriceBand: value ? draft.packagePriceBand || "" : "",
-                  priceIncludesHair: value ? draft.priceIncludesHair === true : false,
-                  priceComparisonMode: value ? draft.priceComparisonMode || "service-only" : "",
-                  priceSource: value ? "manual" : "",
-                  priceConfidence: value ? "manual" : "",
-                  priceUpdatedAt: value ? new Date().toISOString() : "",
-                  ...(!value ? { priceEvidence: [], priceCheckedAt: "" } : {}),
-                })
-              }
-            >
-              {priceBandOptions.map((option) => (
-                <option key={option.value || "unset"} value={option.value}>
-                  {option.label}
-                </option>
-              ))}
-            </Select>
-            <SourceNotesButton
-              isOpen={openSourcePanel === "pricing"}
-              label="raw pricing notes"
-              count={draft.priceEvidence?.length || 0}
-              onClick={() => setOpenSourcePanel((current) => (current === "pricing" ? null : "pricing"))}
-            />
-          </div>
-        </DraftPropertyRow>
-
-        {openSourcePanel === "pricing" ? (
-          <DraftPropertyRow icon={<Pencil className="size-4" />} label="Raw pricing notes">
-            <SourceNotesPanel>
-              <Textarea
-                value={(draft.priceEvidence || []).join("\n")}
-                onChange={(value) => onChange({ priceEvidence: splitNoteLines(value) })}
-                placeholder="Paste pricing notes, menu text, or evidence"
-              />
-            </SourceNotesPanel>
-          </DraftPropertyRow>
-        ) : null}
-
-        <DraftPropertyRow icon={<List className="size-4" />} label="Services">
-          <div className="flex items-start gap-1.5">
-            <div className="min-w-0 flex-1">
-              <ServicePicker services={services} filterCategories={filterCategories} selected={draft.services} onChange={(next) => onChange({ services: next })} label={null} />
-            </div>
-            <SourceNotesButton
-              isOpen={openSourcePanel === "services"}
-              label="raw service notes"
-              count={draft.rawServices?.length || 0}
-              onClick={() => setOpenSourcePanel((current) => (current === "services" ? null : "services"))}
-            />
-          </div>
-        </DraftPropertyRow>
-
-        {openSourcePanel === "services" ? (
-          <DraftPropertyRow icon={<Pencil className="size-4" />} label="Raw service notes">
-            <SourceNotesPanel>
-              <Textarea
-                value={(draft.rawServices || []).join("\n")}
-                onChange={(value) => onChange({ rawServices: splitNoteLines(value) })}
-                placeholder="Paste service list, booking menu text, or notes"
-              />
-            </SourceNotesPanel>
-          </DraftPropertyRow>
-        ) : null}
-      </div>
+          {draft.googleMapsUri ? (
+            <a href={draft.googleMapsUri} target="_blank" rel="noreferrer" className="inline-flex size-8 shrink-0 items-center justify-center rounded-md text-stone-400 transition hover:bg-stone-100 hover:text-stone-950" aria-label={`Google Maps link for ${draft.name} - opens in a new tab`}>
+              <ExternalLink className="size-4" />
+            </a>
+          ) : null}
+        </div>
+        <div className="mt-1 flex items-center gap-2 text-xs text-stone-500">
+          <Input
+            type="number"
+            min={0}
+            value={draft.googleReviewCount ?? ""}
+            onChange={(event) => onChange({ googleReviewCount: event.target.value === "" ? undefined : Math.max(0, Math.round(Number(event.target.value))) })}
+            placeholder="0"
+            className="h-6 w-20 rounded-none border border-stone-300 bg-stone-50 px-2 py-0 text-xs"
+          />
+          <span>reviews{draft.googleDisplayName ? ` — matched to "${draft.googleDisplayName}"` : ""}</span>
+        </div>
+      </DraftPropertyRow>
     </div>
   );
+
+  const embeddedContent = embeddedSection === "filters" ? embeddedFiltersContent : embeddedSection === "reviews" ? embeddedReviewsContent : embeddedBasicContent;
 
   const stepContent = activeStep === "details" ? detailsContent : activeStep === "services" ? servicesContent : reviewContent;
   const content = (
@@ -7627,18 +7834,15 @@ function SourceNotesPanel({ children }: { children: React.ReactNode }) {
 }
 
 function DraftPropertyRow({
-  icon,
   label,
   children,
 }: {
-  icon: React.ReactNode;
   label: string;
   children: React.ReactNode;
 }) {
   return (
     <div className="grid gap-1 py-2 sm:grid-cols-[210px_minmax(0,1fr)] sm:gap-8">
-      <div className="flex min-h-8 items-start gap-3 pt-1 text-[15px] font-medium text-stone-500">
-        <span className="flex size-5 shrink-0 items-center justify-center text-stone-400">{icon}</span>
+      <div className="flex min-h-8 items-start pt-1 text-[15px] font-medium text-stone-500">
         <span>{label}</span>
       </div>
       <div className="min-w-0">{children}</div>
@@ -7686,7 +7890,7 @@ function DraftLinkField({
           onChange={(event) => onChange(event.target.value)}
           onBlur={onBlur}
           placeholder={placeholder}
-          className="h-8 rounded-md border-transparent bg-transparent px-2 py-1 hover:bg-stone-100 focus-visible:border-stone-300"
+          className="h-8 rounded-none border border-stone-300 bg-stone-50 px-2 py-1 hover:border-stone-400 focus-visible:border-stone-950"
         />
         {href ? (
           <a
@@ -7707,9 +7911,19 @@ function DraftLinkField({
   );
 }
 
+// Admin-only pseudo-region: lets whoever's triaging a draft say "definitely
+// south London, but the stylist never said which side" without guessing.
+// Deliberately not part of the shared `regions` list (data/locations.json) that
+// also feeds the public site's region filter — visitors never see "South
+// London" as an option. matchesRegion() on the server already treats an
+// areaId of "south" as satisfying both south-east and south-west filters, so
+// a salon tagged this way still surfaces correctly either way a visitor
+// searches; only the ambiguity itself stays admin-side.
+const southLondonRegion: RegionOption = { id: "south", label: "South London" };
+
 function DraftLocationSelector({
   draft,
-  regions,
+  regions: regionsProp,
   onChange,
   hideLabel = false,
 }: {
@@ -7718,6 +7932,10 @@ function DraftLocationSelector({
   onChange: (areaIds: string[]) => void;
   hideLabel?: boolean;
 }) {
+  const regions = useMemo(
+    () => (regionsProp.some((region) => region.id === "south") ? regionsProp : [...regionsProp, southLondonRegion]),
+    [regionsProp],
+  );
   const selectedAreaIds = getDraftAreaIds(draft);
   const selectedAreaSet = useMemo(() => new Set(selectedAreaIds), [selectedAreaIds]);
   const [query, setQuery] = useState("");
@@ -7834,16 +8052,16 @@ function DraftLocationSelector({
             type="button"
             onClick={() => setIsOpen((current) => !current)}
             aria-expanded={isOpen}
-            className="min-h-8 w-full rounded-md border border-transparent bg-transparent px-2 py-1 text-left outline-none transition hover:bg-stone-100 focus:border-stone-300"
+            className="min-h-8 w-full rounded-none border border-stone-300 bg-stone-50 px-2 py-1 text-left outline-none transition hover:border-stone-400 focus:border-stone-950"
           >
             {selectedLocationLabels.length ? (
               <span className="flex flex-wrap gap-1">
                 {visibleSelected.map((label) => (
-                  <span key={label} className="max-w-full truncate rounded-md bg-stone-100 px-1.5 py-0.5 text-[12px] font-medium text-stone-800">
+                  <span key={label} className="max-w-full truncate rounded-none bg-stone-100 px-1.5 py-0.5 text-[12px] font-medium text-stone-800">
                     {label}
                   </span>
                 ))}
-                {hiddenSelectedCount ? <span className="rounded-md bg-stone-100 px-1.5 py-0.5 text-[12px] font-medium text-stone-500">+{hiddenSelectedCount}</span> : null}
+                {hiddenSelectedCount ? <span className="rounded-none bg-stone-100 px-1.5 py-0.5 text-[12px] font-medium text-stone-500">+{hiddenSelectedCount}</span> : null}
               </span>
             ) : (
               <span className="text-[13px] text-stone-400">Select locations</span>
@@ -7978,6 +8196,9 @@ const additionalNeedsFieldMap: Record<string, keyof StylistDraft> = {
   hijabiFriendly: "hijabiFriendly",
   canBraidWithoutGel: "canBraidWithoutGel",
   "wheelchair-access": "wheelchairAccessible",
+  senFriendly: "senFriendly",
+  lgbtqFriendly: "lgbtqFriendly",
+  parkingAvailable: "parkingAvailable",
 };
 
 function DraftAdditionalNeeds({
@@ -8057,7 +8278,7 @@ function DraftCustomFilters({
                       type="button"
                       onClick={() => toggle(filterType.id, option.id)}
                       className={cn(
-                        "rounded-full border px-2.5 py-1 text-xs font-medium transition",
+                        "rounded-none border px-2.5 py-1 text-xs font-medium transition",
                         isSelected ? "border-stone-950 bg-stone-950 text-white" : "border-stone-200 bg-white text-stone-600 hover:bg-stone-50",
                       )}
                     >
@@ -8185,6 +8406,9 @@ function publishedSalonToDraft(salon: Partial<StylistDraft>): StylistDraft {
     hijabiFriendly: salon.hijabiFriendly === true,
     canBraidWithoutGel: salon.canBraidWithoutGel === true,
     wheelchairAccessible: salon.wheelchairAccessible === true,
+    senFriendly: salon.senFriendly === true,
+    lgbtqFriendly: salon.lgbtqFriendly === true,
+    parkingAvailable: salon.parkingAvailable === true,
     priceBand: salon.priceBand,
     servicePriceBand: salon.servicePriceBand,
     packagePriceBand: salon.packagePriceBand,
@@ -10055,16 +10279,16 @@ function ServicePickerTrigger({
       type="button"
       onClick={onToggle}
       aria-expanded={isOpen}
-      className="min-h-8 w-full rounded-md border border-transparent bg-transparent px-2 py-1 text-left outline-none transition hover:bg-stone-100 focus:border-stone-300"
+      className="min-h-8 w-full rounded-none border border-stone-300 bg-stone-50 px-2 py-1 text-left outline-none transition hover:border-stone-400 focus:border-stone-950"
     >
       {selected.length ? (
         <span className="flex flex-wrap gap-1">
           {visibleSelected.map((service) => (
-            <span key={service} className="max-w-full truncate rounded-md bg-stone-100 px-1.5 py-0.5 text-[12px] font-medium text-stone-800">
+            <span key={service} className="max-w-full truncate rounded-none bg-stone-100 px-1.5 py-0.5 text-[12px] font-medium text-stone-800">
               {service}
             </span>
           ))}
-          {hiddenSelectedCount ? <span className="rounded-md bg-stone-100 px-1.5 py-0.5 text-[12px] font-medium text-stone-500">+{hiddenSelectedCount}</span> : null}
+          {hiddenSelectedCount ? <span className="rounded-none bg-stone-100 px-1.5 py-0.5 text-[12px] font-medium text-stone-500">+{hiddenSelectedCount}</span> : null}
         </span>
       ) : (
         <span className="text-[13px] text-stone-400">Select services</span>
@@ -10210,7 +10434,7 @@ function Textarea({ value, onChange, placeholder }: { value: string; onChange: (
       value={value}
       onChange={(event) => onChange(event.target.value)}
       placeholder={placeholder}
-      className="min-h-20 w-full rounded-none border border-transparent bg-transparent px-2 py-1.5 text-[13px] outline-none placeholder:text-stone-400 transition hover:bg-stone-50 focus:border-stone-300"
+      className="min-h-20 w-full rounded-none border border-stone-300 bg-stone-50 px-2 py-1.5 text-[13px] outline-none placeholder:text-stone-400 transition hover:border-stone-400 focus:border-stone-950"
     />
   );
 }
@@ -10222,7 +10446,7 @@ function Select({ value, onChange, children }: { value: string; onChange: (value
         value={value}
         onChange={(event) => onChange(event.target.value)}
         style={{ appearance: "none", WebkitAppearance: "none", MozAppearance: "none" }}
-        className="h-8 w-full appearance-none rounded-md border border-transparent bg-transparent pl-2 pr-10 text-[15px] outline-none transition hover:bg-stone-100 focus:border-stone-300"
+        className="h-8 w-full appearance-none rounded-none border border-stone-300 bg-stone-50 pl-2 pr-10 text-[15px] outline-none transition hover:border-stone-400 focus:border-stone-950"
       >
         {children}
       </select>
@@ -10322,6 +10546,15 @@ function removeReviewedAttributeSuggestions(current: AttributeSuggestion[] = [],
     if (suggestion.field === "wheelchairAccessible") {
       return update.wheelchairAccessible !== true && update.rejectWheelchairAccessible !== true;
     }
+    if (suggestion.field === "senFriendly") {
+      return update.senFriendly !== true && update.rejectSenFriendly !== true;
+    }
+    if (suggestion.field === "lgbtqFriendly") {
+      return update.lgbtqFriendly !== true && update.rejectLgbtqFriendly !== true;
+    }
+    if (suggestion.field === "parkingAvailable") {
+      return update.parkingAvailable !== true && update.rejectParkingAvailable !== true;
+    }
     return true;
   });
 }
@@ -10373,6 +10606,9 @@ function updateChecksAfterFreshnessAction(
           locationReviewIgnored: update.rejectLocation === true ? true : item.locationReviewIgnored,
           hijabiFriendly: update.hijabiFriendly === true ? true : item.hijabiFriendly,
           wheelchairAccessible: update.wheelchairAccessible === true ? true : item.wheelchairAccessible,
+          senFriendly: update.senFriendly === true ? true : item.senFriendly,
+          lgbtqFriendly: update.lgbtqFriendly === true ? true : item.lgbtqFriendly,
+          parkingAvailable: update.parkingAvailable === true ? true : item.parkingAvailable,
           priceCheck: update.priceBand || update.rejectPriceBand ? undefined : item.priceCheck,
           currentServices: salon?.services ?? item.currentServices,
           addedServices: removeReviewedServices(item.addedServices, [...(update.addServices ?? []), ...(update.rejectAddedServices ?? [])]),
@@ -10409,6 +10645,24 @@ function getFreshnessUndoLabel(update: FreshnessUpdate) {
   }
   if (update.rejectWheelchairAccessible === true) {
     return "ignored wheelchair accessible entrance recommendation";
+  }
+  if (update.senFriendly === true) {
+    return "marked sensory-safe / SEN-friendly";
+  }
+  if (update.rejectSenFriendly === true) {
+    return "ignored sensory-safe / SEN-friendly recommendation";
+  }
+  if (update.lgbtqFriendly === true) {
+    return "marked LGBTQIA+-friendly";
+  }
+  if (update.rejectLgbtqFriendly === true) {
+    return "ignored LGBTQIA+-friendly recommendation";
+  }
+  if (update.parkingAvailable === true) {
+    return "marked parking nearby";
+  }
+  if (update.rejectParkingAvailable === true) {
+    return "ignored parking nearby recommendation";
   }
   if (update.rejectPriceBand === true) {
     return "ignored price recommendation";

@@ -4,7 +4,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import express from "express";
 import { computeReviewHealth, readSalonIndex, searchSalons, setNoStoreHeaders } from "./salon-index.mjs";
-import { registerAdminStylistRoutes, sanitizeCustomFilters } from "./admin-stylists.mjs";
+import { registerAdminStylistRoutes, sanitizeCustomFilters, serviceNegationHints } from "./admin-stylists.mjs";
 import { createRateLimiter, requestLogger } from "./security.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -66,6 +66,7 @@ app.get("/api/filters", async (_req, res) => {
       additionalNeeds: additionalNeedsRaw ? JSON.parse(additionalNeedsRaw).options : null,
       customFilterTypes: customFilterTypesRaw ? JSON.parse(customFilterTypesRaw).filterTypes : null,
       priceBands: priceBandsRaw ? JSON.parse(priceBandsRaw).bands : null,
+      searchAliases: serviceNegationHints,
     });
   } catch {
     res.status(500).json({ ok: false });
@@ -89,13 +90,16 @@ app.post("/api/search", publicSearchRateLimit, async (req, res) => {
   const hijabiFriendly = req.body?.hijabiFriendly === true;
   const canBraidWithoutGel = req.body?.canBraidWithoutGel === true;
   const wheelchairAccessible = req.body?.wheelchairAccessible === true;
+  const senFriendly = req.body?.senFriendly === true;
+  const lgbtqFriendly = req.body?.lgbtqFriendly === true;
+  const parkingAvailable = req.body?.parkingAvailable === true;
   const hasVerifiedReviews = req.body?.hasVerifiedReviews === true;
   const googleReviewsOnly = req.body?.googleReviewsOnly === true;
   const bookingSitesOnly = req.body?.bookingSitesOnly === true;
   const customFilters = sanitizeCustomFilters(req.body?.customFilters);
 
   return res.json(
-    await searchSalons({ categories, subcategories, regions, hijabiFriendly, canBraidWithoutGel, wheelchairAccessible, hasVerifiedReviews, googleReviewsOnly, bookingSitesOnly, customFilters }),
+    await searchSalons({ categories, subcategories, regions, hijabiFriendly, canBraidWithoutGel, wheelchairAccessible, senFriendly, lgbtqFriendly, parkingAvailable, hasVerifiedReviews, googleReviewsOnly, bookingSitesOnly, customFilters }),
   );
 });
 

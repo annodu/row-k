@@ -1,0 +1,7 @@
+{
+  "meta": {
+    "source": "health-check-feedback",
+    "notes": "Free-text reasons admins gave when ignoring health check suggestions. Reviewed periodically to spot patterns worth fixing in the matcher/detection rules."
+  },
+  "entries": []
+}
