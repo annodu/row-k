@@ -34,6 +34,9 @@ export default async function handler(req, res) {
     const hijabiFriendly = req.body?.hijabiFriendly === true;
     const canBraidWithoutGel = req.body?.canBraidWithoutGel === true;
     const wheelchairAccessible = req.body?.wheelchairAccessible === true;
+    const senFriendly = req.body?.senFriendly === true;
+    const lgbtqFriendly = req.body?.lgbtqFriendly === true;
+    const parkingAvailable = req.body?.parkingAvailable === true;
     const hasVerifiedReviews = req.body?.hasVerifiedReviews === true;
     const googleReviewsOnly = req.body?.googleReviewsOnly === true;
     const bookingSitesOnly = req.body?.bookingSitesOnly === true;
@@ -46,6 +49,9 @@ export default async function handler(req, res) {
       hijabiFriendly,
       canBraidWithoutGel,
       wheelchairAccessible,
+      senFriendly,
+      lgbtqFriendly,
+      parkingAvailable,
       hasVerifiedReviews,
       googleReviewsOnly,
       bookingSitesOnly,
