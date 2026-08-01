@@ -3,5 +3,360 @@
     "source": "health-check-feedback",
     "notes": "Free-text reasons admins gave when ignoring health check suggestions. Reviewed periodically to spot patterns worth fixing in the matcher/detection rules."
   },
-  "entries": []
+  "entries": [
+    {
+      "salonId": "yayslickeditt",
+      "salonName": "yay slicked itt",
+      "reason": "says parking is limited",
+      "context": [
+        "Mark parking nearby"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "attribute",
+          "field": "parkingAvailable",
+          "evidenceText": "Parking is limited"
+        }
+      ],
+      "createdAt": "2026-08-01T22:03:27.709Z"
+    },
+    {
+      "salonId": "tapes-n-co-ldn",
+      "salonName": "Tapes N Co LDN",
+      "reason": "u-part wig install is different to frontal or closure wig install",
+      "context": [
+        "Wig install (frontal / closure)"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Wig install (frontal / closure)",
+          "evidenceText": "U-Part Wig Installation"
+        }
+      ],
+      "createdAt": "2026-08-01T22:04:05.426Z"
+    },
+    {
+      "salonId": "taiwo-styles",
+      "salonName": "Taiwo Styles",
+      "reason": "it's using the verb \"send\" not SEND - Special Educational Needs & Disability",
+      "context": [
+        "Mark sensory-safe / SEN-friendly"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "attribute",
+          "field": "senFriendly",
+          "evidenceText": "YOU WILL NEED TO SEND YOUR FRONTAL AT LEAST 7 DAYS PRIOR"
+        }
+      ],
+      "createdAt": "2026-08-01T22:14:24.109Z"
+    },
+    {
+      "salonId": "sisters-spa-london",
+      "salonName": "Sisters Spa London",
+      "reason": "they have a service called \"Wash and blow dry\"",
+      "context": [
+        "Wash & blowdry"
+      ],
+      "rejectedEvidence": [],
+      "createdAt": "2026-08-01T22:19:54.956Z"
+    },
+    {
+      "salonId": "shannel-watson",
+      "salonName": "Shannel Watson",
+      "reason": "she is a trichologist that does clinical trichology",
+      "context": [
+        "Scalp detox / treatments"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Scalp detox / treatments",
+          "evidenceText": "In-clinic hair and scalp assessments"
+        },
+        {
+          "kind": "add",
+          "field": "Scalp detox / treatments",
+          "evidenceText": "Online hair and scalp assessments"
+        },
+        {
+          "kind": "add",
+          "field": "Scalp detox / treatments",
+          "evidenceText": "Hair and scalp assessments with a clinical trichologist"
+        },
+        {
+          "kind": "add",
+          "field": "Scalp detox / treatments",
+          "evidenceText": "Hair and scalp examination"
+        }
+      ],
+      "createdAt": "2026-08-01T22:20:24.644Z"
+    },
+    {
+      "salonId": "remolabeauty",
+      "salonName": "Remola Beauty",
+      "reason": "\"u-part wig install\" is not a frontal or closure install",
+      "context": [
+        "Wig install (frontal / closure)"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Wig install (frontal / closure)",
+          "evidenceText": "U-Part Wig Installation"
+        }
+      ],
+      "createdAt": "2026-08-01T22:21:41.784Z"
+    },
+    {
+      "salonId": "moniquecharleshair",
+      "salonName": "Monique Charles Hair",
+      "reason": "does custom wigs",
+      "context": [
+        "Custom wig"
+      ],
+      "rejectedEvidence": [],
+      "createdAt": "2026-08-01T22:25:15.602Z"
+    },
+    {
+      "salonId": "melsxbeautyhair",
+      "salonName": "Mels Hair & Beauty",
+      "reason": "say \"parking is limited... you may have to park far away\"",
+      "context": [
+        "Mark parking nearby"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "attribute",
+          "field": "parkingAvailable",
+          "evidenceText": "Parking is limited, you may have to park far, only free packing after certain hours"
+        }
+      ],
+      "createdAt": "2026-08-01T22:25:54.207Z"
+    },
+    {
+      "salonId": "mane-li-studios",
+      "salonName": "Mane Li Studios",
+      "reason": "says pixie cut, not normal cut and trim",
+      "context": [
+        "Trim / hair cut"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Trim / hair cut",
+          "evidenceText": "Pixie Haircut"
+        },
+        {
+          "kind": "add",
+          "field": "Trim / hair cut",
+          "evidenceText": "Hair Classes"
+        }
+      ],
+      "createdAt": "2026-08-01T22:26:15.612Z"
+    },
+    {
+      "salonId": "mane-li-studios",
+      "salonName": "Mane Li Studios",
+      "reason": "says parking is limited",
+      "context": [
+        "Mark parking nearby"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "attribute",
+          "field": "parkingAvailable",
+          "evidenceText": "PARKING"
+        },
+        {
+          "kind": "attribute",
+          "field": "parkingAvailable",
+          "evidenceText": "Parking is limited"
+        },
+        {
+          "kind": "attribute",
+          "field": "parkingAvailable",
+          "evidenceText": "PARKING"
+        },
+        {
+          "kind": "attribute",
+          "field": "parkingAvailable",
+          "evidenceText": "Parking is limited"
+        }
+      ],
+      "createdAt": "2026-08-01T22:26:30.582Z"
+    },
+    {
+      "salonId": "london-sensory-hair-care",
+      "salonName": "London sensory hair care",
+      "reason": "no mention of this",
+      "context": [
+        "Healthy hair plans & consultations"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Healthy hair plans & consultations",
+          "evidenceText": "Boys Hair cut"
+        },
+        {
+          "kind": "add",
+          "field": "Healthy hair plans & consultations",
+          "evidenceText": "Girls Haircut"
+        },
+        {
+          "kind": "add",
+          "field": "Healthy hair plans & consultations",
+          "evidenceText": "Tangled hair / Hair matting treatment"
+        },
+        {
+          "kind": "add",
+          "field": "Healthy hair plans & consultations",
+          "evidenceText": "Children's First Haircut/Hairstyling"
+        }
+      ],
+      "createdAt": "2026-08-01T22:28:48.546Z"
+    },
+    {
+      "salonId": "ksleek",
+      "salonName": "Ksleek",
+      "reason": "just mentions parking, doesn't say if there's parking available or nearby",
+      "context": [
+        "Mark parking nearby"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "attribute",
+          "field": "parkingAvailable",
+          "evidenceText": "Please try to arrive to your appointment 10mins Early to find parking (As you will be responsible for your own lateness)"
+        }
+      ],
+      "createdAt": "2026-08-01T22:29:36.812Z"
+    },
+    {
+      "salonId": "kimmie-cosmetics",
+      "salonName": "Kimmie Cosmetics",
+      "reason": "it's taking about \"send\" the verb",
+      "context": [
+        "Mark sensory-safe / SEN-friendly"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "attribute",
+          "field": "senFriendly",
+          "evidenceText": "We'll send your stylist to you — so we need your address and contact info"
+        },
+        {
+          "kind": "attribute",
+          "field": "senFriendly",
+          "evidenceText": "We'll send your stylist to you — so we need your address and contact info"
+        }
+      ],
+      "createdAt": "2026-08-01T22:29:54.418Z"
+    },
+    {
+      "salonId": "kimmie-cosmetics",
+      "salonName": "Kimmie Cosmetics",
+      "reason": "they are a mobile stylist asking the customer if they have parking in their home",
+      "context": [
+        "Mark parking nearby"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "attribute",
+          "field": "parkingAvailable",
+          "evidenceText": "Do you have parking available? (we do not cover parking costs)"
+        },
+        {
+          "kind": "attribute",
+          "field": "parkingAvailable",
+          "evidenceText": "Please confirm if parking is available"
+        },
+        {
+          "kind": "attribute",
+          "field": "parkingAvailable",
+          "evidenceText": "Parking"
+        },
+        {
+          "kind": "attribute",
+          "field": "parkingAvailable",
+          "evidenceText": "We do not cover parking costs"
+        },
+        {
+          "kind": "attribute",
+          "field": "parkingAvailable",
+          "evidenceText": "Do you have parking available? (we do not cover parking costs)"
+        },
+        {
+          "kind": "attribute",
+          "field": "parkingAvailable",
+          "evidenceText": "Please confirm if parking is available"
+        }
+      ],
+      "createdAt": "2026-08-01T22:30:19.796Z"
+    },
+    {
+      "salonId": "Yairoby Hair & Beauty",
+      "salonName": "Yairoby Hair & Beauty",
+      "reason": "mentions highlights",
+      "context": [
+        "Highlights"
+      ],
+      "rejectedEvidence": [],
+      "createdAt": "2026-08-01T22:53:03.093Z"
+    },
+    {
+      "salonId": "hairkemistry",
+      "salonName": "Hair Kemistry",
+      "reason": "it says custom wig on the site",
+      "context": [
+        "Custom wig"
+      ],
+      "rejectedEvidence": [],
+      "createdAt": "2026-08-01T22:55:37.890Z"
+    },
+    {
+      "salonId": "fulhamscalphair",
+      "salonName": "Fulham Scalp & Hair Clinic",
+      "reason": "using the verb send, not what we mean",
+      "context": [
+        "Mark sensory-safe / SEN-friendly"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "attribute",
+          "field": "senFriendly",
+          "evidenceText": "Our clients send us a bunch of smiles for our services and we just love them!"
+        }
+      ],
+      "createdAt": "2026-08-01T22:57:33.652Z"
+    },
+    {
+      "salonId": "byslaythebrand",
+      "salonName": "BySlayTheBrand",
+      "reason": "custom frontal is enough evidence",
+      "context": [
+        "Custom wig"
+      ],
+      "rejectedEvidence": [],
+      "createdAt": "2026-08-01T22:58:29.124Z"
+    },
+    {
+      "salonId": "ak-styles-uk",
+      "salonName": "AK Styles UK",
+      "reason": "using the verb 'send' not what we mean",
+      "context": [
+        "Mark sensory-safe / SEN-friendly"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "attribute",
+          "field": "senFriendly",
+          "evidenceText": "Clients are required to send pictures of their desired colour before booking"
+        }
+      ],
+      "createdAt": "2026-08-01T23:00:46.833Z"
+    }
+  ]
 }
