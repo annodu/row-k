@@ -2239,7 +2239,7 @@ function StylistsPage({
 
   useEffect(() => {
     setPage(1);
-  }, [drafts, pageSize, categoryFilter, locationFilter, priceFilter, needsFilter]);
+  }, [pageSize, categoryFilter, locationFilter, priceFilter, needsFilter]);
 
   return (
     <div className="mx-auto max-w-7xl space-y-4 px-5 py-12">
