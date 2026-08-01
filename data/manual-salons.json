@@ -36233,7 +36233,8 @@
         "Wig install (frontal / closure)",
         "Custom wig",
         "U-part wig install",
-        "Flipover / Versatile sew-in"
+        "Flipover / Versatile sew-in",
+        "Editorial / Session styling"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -36254,11 +36255,11 @@
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
       "wheelchairAccessible": false,
-      "servicePriceBand": "£",
+      "servicePriceBand": "",
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-07-31",
+      "updatedAt": "2026-08-01",
       "verifiedReviewCount": 3,
       "verifiedReviewCheckedAt": "2026-07-29T16:31:13.824Z",
       "googlePlaceId": null,

@@ -1,6 +1,14 @@
 {
   "options": [
     {
+      "id": "parkingAvailable",
+      "label": "Parking nearby"
+    },
+    {
+      "id": "wheelchair-access",
+      "label": "Wheelchair accessible"
+    },
+    {
       "id": "canBraidWithoutGel",
       "label": "Can braid without gel"
     },
@@ -9,20 +17,12 @@
       "label": "Hijabi-friendly"
     },
     {
-      "id": "wheelchair-access",
-      "label": "Wheelchair accessible"
-    },
-    {
       "id": "senFriendly",
       "label": "Sensory-safe / SEN-friendly"
     },
     {
       "id": "lgbtqFriendly",
       "label": "LGBTQIA+-friendly"
-    },
-    {
-      "id": "parkingAvailable",
-      "label": "Parking nearby"
     }
   ]
 }

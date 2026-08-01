@@ -2583,12 +2583,12 @@ const stylistPriceFilterOptions = [
 ];
 
 const stylistNeedsFilterOptions = [
+  { id: "parkingAvailable", label: "Parking nearby" },
+  { id: "wheelchairAccessible", label: "Wheelchair accessible entrance" },
   { id: "canBraidWithoutGel", label: "Can braid without gel" },
   { id: "hijabiFriendly", label: "Hijabi-friendly" },
-  { id: "wheelchairAccessible", label: "Wheelchair accessible entrance" },
   { id: "senFriendly", label: "Sensory-safe / SEN-friendly" },
   { id: "lgbtqFriendly", label: "LGBTQIA+-friendly" },
-  { id: "parkingAvailable", label: "Parking nearby" },
 ];
 
 const stylistStatusFilterOptions = [

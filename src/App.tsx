@@ -2954,6 +2954,46 @@ export default function App() {
                     </p>
                     <button
                       type="button"
+                      aria-pressed={currentSelectedParkingAvailable}
+                      onClick={toggleParkingAvailable}
+                      className="flex w-full cursor-pointer items-start gap-3 rounded-none px-2 py-2 text-left transition-colors hover:bg-stone-200 active:bg-stone-200 dark:hover:bg-stone-900 dark:active:bg-stone-900"
+                    >
+                      <span
+                        aria-hidden="true"
+                        className={cn(
+                          "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-none border border-stone-500 bg-white text-white transition dark:border-stone-500 dark:bg-stone-900",
+                          currentSelectedParkingAvailable && "border-stone-950 bg-stone-950 dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950",
+                        )}
+                      >
+                        {currentSelectedParkingAvailable ? <Check className="size-3.5" /> : null}
+                      </span>
+                      <span className="translate-y-[1.5px] text-[15px] text-stone-800 dark:text-stone-200">
+                        Parking nearby
+                      </span>
+                    </button>
+
+                    <button
+                      type="button"
+                      aria-pressed={currentSelectedWheelchairAccessible}
+                      onClick={toggleWheelchairAccessible}
+                      className="flex w-full cursor-pointer items-start gap-3 rounded-none px-2 py-2 text-left transition-colors hover:bg-stone-200 active:bg-stone-200 dark:hover:bg-stone-900 dark:active:bg-stone-900"
+                    >
+                      <span
+                        aria-hidden="true"
+                        className={cn(
+                          "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-none border border-stone-500 bg-white text-white transition dark:border-stone-500 dark:bg-stone-900",
+                          currentSelectedWheelchairAccessible && "border-stone-950 bg-stone-950 dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950",
+                        )}
+                      >
+                        {currentSelectedWheelchairAccessible ? <Check className="size-3.5" /> : null}
+                      </span>
+                      <span className="translate-y-[1.5px] text-[15px] text-stone-800 dark:text-stone-200">
+                        Wheelchair accessible entrance
+                      </span>
+                    </button>
+
+                    <button
+                      type="button"
                       aria-pressed={currentSelectedCanBraidWithoutGel}
                       onClick={toggleCanBraidWithoutGel}
                       className="flex w-full cursor-pointer items-start gap-3 rounded-none px-2 py-2 text-left transition-colors hover:bg-stone-200 active:bg-stone-200 dark:hover:bg-stone-900 dark:active:bg-stone-900"
@@ -2994,26 +3034,6 @@ export default function App() {
 
                     <button
                       type="button"
-                      aria-pressed={currentSelectedWheelchairAccessible}
-                      onClick={toggleWheelchairAccessible}
-                      className="flex w-full cursor-pointer items-start gap-3 rounded-none px-2 py-2 text-left transition-colors hover:bg-stone-200 active:bg-stone-200 dark:hover:bg-stone-900 dark:active:bg-stone-900"
-                    >
-                      <span
-                        aria-hidden="true"
-                        className={cn(
-                          "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-none border border-stone-500 bg-white text-white transition dark:border-stone-500 dark:bg-stone-900",
-                          currentSelectedWheelchairAccessible && "border-stone-950 bg-stone-950 dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950",
-                        )}
-                      >
-                        {currentSelectedWheelchairAccessible ? <Check className="size-3.5" /> : null}
-                      </span>
-                      <span className="translate-y-[1.5px] text-[15px] text-stone-800 dark:text-stone-200">
-                        Wheelchair accessible entrance
-                      </span>
-                    </button>
-
-                    <button
-                      type="button"
                       aria-pressed={currentSelectedSenFriendly}
                       onClick={toggleSenFriendly}
                       className="flex w-full cursor-pointer items-start gap-3 rounded-none px-2 py-2 text-left transition-colors hover:bg-stone-200 active:bg-stone-200 dark:hover:bg-stone-900 dark:active:bg-stone-900"
@@ -3049,26 +3069,6 @@ export default function App() {
                       </span>
                       <span className="translate-y-[1.5px] text-[15px] text-stone-800 dark:text-stone-200">
                         LGBTQIA+-friendly
-                      </span>
-                    </button>
-
-                    <button
-                      type="button"
-                      aria-pressed={currentSelectedParkingAvailable}
-                      onClick={toggleParkingAvailable}
-                      className="flex w-full cursor-pointer items-start gap-3 rounded-none px-2 py-2 text-left transition-colors hover:bg-stone-200 active:bg-stone-200 dark:hover:bg-stone-900 dark:active:bg-stone-900"
-                    >
-                      <span
-                        aria-hidden="true"
-                        className={cn(
-                          "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-none border border-stone-500 bg-white text-white transition dark:border-stone-500 dark:bg-stone-900",
-                          currentSelectedParkingAvailable && "border-stone-950 bg-stone-950 dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950",
-                        )}
-                      >
-                        {currentSelectedParkingAvailable ? <Check className="size-3.5" /> : null}
-                      </span>
-                      <span className="translate-y-[1.5px] text-[15px] text-stone-800 dark:text-stone-200">
-                        Parking nearby
                       </span>
                     </button>
                   </div>
