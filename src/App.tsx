@@ -3185,7 +3185,7 @@ export default function App() {
         <div className="mx-auto w-full max-w-[1280px]">
           <div className="flex flex-col gap-10 sm:flex-row sm:justify-between">
             <div className="flex max-w-sm flex-col gap-4">
-              <img src="/icon.svg" alt="Row K" className="size-8 shrink-0 rounded-sm" />
+              <img src="/icon.svg" alt="Row K" className="size-8 shrink-0" />
               <p className="text-[13px] text-stone-700 dark:text-stone-300">
                 Row K is a directory, not a booking platform.
                 <br />
