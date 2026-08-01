@@ -31773,7 +31773,9 @@
         "Faux locs",
         "Crochet",
         "Trim / hair cut",
-        "Boho braids bob"
+        "Boho braids bob",
+        "Updo",
+        "Microbraids / x-small braids"
       ],
       "priceBand": "£",
       "priceSource": "auto",
@@ -31798,7 +31800,21 @@
       "googleMatchConfidence": "no-match",
       "googleDisplayName": null,
       "googleFormattedAddress": null,
-      "googleCheckedAt": "2026-07-29T00:00:00.000Z"
+      "googleCheckedAt": "2026-07-29T00:00:00.000Z",
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": true,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "customFilters": {},
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "updatedAt": "2026-08-01"
     },
     {
       "id": "keratin-by-anais",
@@ -37423,7 +37439,8 @@
         "Custom wig",
         "Sleek ponytail / bun",
         "Half up half down",
-        "Frontal ponytail / bun"
+        "Frontal ponytail / bun",
+        "Traditional sew-in / leave out"
       ],
       "summary": "Manual entry updated from your East London wig install, custom wig, ponytail, and half up half down list.",
       "source": "manual",
@@ -37454,8 +37471,20 @@
       "googleDisplayName": null,
       "googleFormattedAddress": null,
       "googleCheckedAt": "2026-07-29T00:00:00.000Z",
-      "updatedAt": "2026-07-24",
-      "parkingAvailable": true
+      "updatedAt": "2026-08-01",
+      "parkingAvailable": false,
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": true,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "customFilters": {},
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only"
     },
     {
       "id": "rd-hairstudio",

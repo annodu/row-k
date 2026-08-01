@@ -1,7 +1,7 @@
 {
   "meta": {
     "source": "freshness-checks",
-    "updatedAt": "2026-07-31",
+    "updatedAt": "2026-08-01",
     "count": 404,
     "checkedCount": 897,
     "total": 897,
@@ -10637,6 +10637,16 @@
         "service-remove:natural hair coaches / educators",
         "service-add:wig colouring / bundle colouring|weave with leave- out (up to 3 bundles) from £85"
       ]
+    },
+    "rb-styles-uk": {
+      "addedServices": [],
+      "removedServices": [],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {},
+      "handledFingerprints": [
+        "issue:possible new services found"
+      ],
+      "parkingAvailable": true
     }
   },
   "checks": [
