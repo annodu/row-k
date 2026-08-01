@@ -11042,12 +11042,12 @@
         "Kids & teens styles",
         "Healthy hair plans & consultations"
       ],
-      "priceBand": "£££",
-      "servicePriceBand": "£££",
+      "priceBand": "££",
+      "servicePriceBand": "££",
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "priceSource": "auto",
+      "priceSource": "manual",
       "priceEvidence": [
         "Bubble Braids - - Bubble Braids - £220",
         "Crochet - £160",
@@ -11059,7 +11059,7 @@
         "Signature Locs - - Signature Locs - £290"
       ],
       "priceCheckedAt": "2026-07-24T21:54:08.079Z",
-      "priceUpdatedAt": "2026-07-24T21:54:08.079Z",
+      "priceUpdatedAt": "2026-08-01T08:42:48.477Z",
       "priceConfidence": "manual",
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
@@ -11069,7 +11069,7 @@
       "tiktokUrl": "",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
-      "updatedAt": "2026-07-24",
+      "updatedAt": "2026-08-01",
       "addedVia": "Admin tool",
       "discoverySource": "Manual search",
       "googlePlaceId": null,
@@ -11081,7 +11081,10 @@
       "googleCheckedAt": "2026-07-29T00:00:00.000Z",
       "websiteUrl": "",
       "wheelchairAccessible": false,
-      "customFilters": {}
+      "customFilters": {},
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false
     },
     {
       "id": "dillanbstudios",
@@ -12397,7 +12400,11 @@
         "Silk press",
         "Relaxer / texturiser",
         "Traditional sew-in / leave out",
-        "Wash & blowdry"
+        "Wash & blowdry",
+        "Scalp detox / treatments",
+        "Sleek ponytail / bun",
+        "Wig install (frontal / closure)",
+        "Kids & teens styles"
       ],
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
@@ -12428,7 +12435,7 @@
       "googleDisplayName": null,
       "googleFormattedAddress": null,
       "googleCheckedAt": "2026-07-29T00:00:00.000Z",
-      "updatedAt": "2026-07-31",
+      "updatedAt": "2026-08-01",
       "websiteUrl": "",
       "tiktokUrl": "",
       "hijabiFriendly": false,
@@ -12436,9 +12443,9 @@
       "wheelchairAccessible": false,
       "senFriendly": false,
       "lgbtqFriendly": false,
-      "parkingAvailable": false,
+      "parkingAvailable": true,
       "customFilters": {},
-      "servicePriceBand": "£££",
+      "servicePriceBand": "",
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only"
@@ -42830,14 +42837,14 @@
       "evidence": [
         "User-provided manual addition."
       ],
-      "priceBand": "£££",
-      "priceSource": "auto",
+      "priceBand": "££",
+      "priceSource": "manual",
       "priceEvidence": [
         "sew in deal - £250 sew in deal"
       ],
       "priceCheckedAt": "2026-07-31T20:57:13.090Z",
       "priceConfidence": "manual",
-      "priceUpdatedAt": "2026-07-31T20:57:13.090Z",
+      "priceUpdatedAt": "2026-08-01T08:41:02.541Z",
       "addedVia": "Code edit",
       "discoverySource": "Cowork scrape",
       "googlePlaceId": null,
@@ -42856,11 +42863,11 @@
       "lgbtqFriendly": false,
       "parkingAvailable": false,
       "customFilters": {},
-      "servicePriceBand": "",
+      "servicePriceBand": "££",
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-07-31"
+      "updatedAt": "2026-08-01"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -48155,7 +48162,7 @@
         "User-provided manual addition."
       ],
       "id": "zateesha-hairstylist",
-      "name": "Zateesha Hairstylist",
+      "name": "Zateesha Barbour",
       "areaId": "central",
       "areaIds": [
         "central",
@@ -48178,7 +48185,7 @@
       "tiktokUrl": "",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
-      "updatedAt": "2026-07-29",
+      "updatedAt": "2026-08-01",
       "salonId": "salt-salon-london",
       "priceBand": "£££",
       "priceSource": "manual",
@@ -48201,7 +48208,10 @@
       "googleFormattedAddress": null,
       "googleCheckedAt": "2026-07-29T00:00:00.000Z",
       "websiteUrl": "",
-      "customFilters": {}
+      "customFilters": {},
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false
     },
     {
       "id": "cg-hair",
