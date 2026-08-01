@@ -20,6 +20,7 @@ import {
   FileText,
   Globe,
   Heart,
+  Info,
   LayoutDashboard,
   Link2,
   List,
@@ -95,6 +96,7 @@ type StylistDraft = {
   postcode: string;
   bookingPlatform: string;
   bookingUrl: string;
+  websiteUrl?: string;
   instagramUrl: string;
   tiktokUrl?: string;
   addedVia?: string;
@@ -7313,6 +7315,14 @@ function DraftEditor({
             Same as Instagram
           </label>
         </DraftLinkField>
+        <DraftLinkField
+          label={<WebsiteFieldLabel />}
+          icon={<Link2 className="size-4" />}
+          value={draft.websiteUrl || ""}
+          onChange={(websiteUrl) => onChange({ websiteUrl })}
+          placeholder="https://..."
+          href={draft.websiteUrl}
+        />
       </div>
 
       <DraftLocationSelector draft={draft} regions={regions} onChange={onChangeLocations} />
@@ -7580,6 +7590,22 @@ function DraftEditor({
           className="ml-2 size-4 rounded border-stone-300 accent-stone-500 disabled:opacity-40"
         />
       </DraftPropertyRow>
+
+      <DraftPropertyRow label={<WebsiteFieldLabel />}>
+        <div className="flex items-center gap-2">
+          <Input
+            value={draft.websiteUrl || ""}
+            onChange={(event) => onChange({ websiteUrl: event.target.value })}
+            placeholder="https://..."
+            className="h-8 rounded-none border border-stone-300 bg-stone-50 px-2 py-1 hover:border-stone-400 focus-visible:border-stone-950"
+          />
+          {draft.websiteUrl ? (
+            <a href={draft.websiteUrl} target="_blank" rel="noreferrer" className="inline-flex size-8 shrink-0 items-center justify-center rounded-md text-stone-400 transition hover:bg-stone-100 hover:text-stone-950" aria-label="Open website">
+              <ExternalLink className="size-4" />
+            </a>
+          ) : null}
+        </div>
+      </DraftPropertyRow>
     </div>
   );
 
@@ -7833,11 +7859,22 @@ function SourceNotesPanel({ children }: { children: React.ReactNode }) {
   return <div className="rounded-md bg-stone-50 p-2">{children}</div>;
 }
 
+function WebsiteFieldLabel() {
+  return (
+    <span className="inline-flex items-center gap-1">
+      Website
+      <span title="Used by freshness checks for richer info — not shown to visitors.">
+        <Info className="size-3.5 shrink-0 text-stone-400" />
+      </span>
+    </span>
+  );
+}
+
 function DraftPropertyRow({
   label,
   children,
 }: {
-  label: string;
+  label: React.ReactNode;
   children: React.ReactNode;
 }) {
   return (
@@ -7869,7 +7906,7 @@ function DraftLinkField({
   href,
   children,
 }: {
-  label: string;
+  label: React.ReactNode;
   icon: React.ReactNode;
   value: string;
   onChange: (value: string) => void;
@@ -8397,6 +8434,7 @@ function publishedSalonToDraft(salon: Partial<StylistDraft>): StylistDraft {
     postcode: salon.postcode || "",
     bookingPlatform: salon.bookingPlatform || "",
     bookingUrl: salon.bookingUrl || "",
+    websiteUrl: salon.websiteUrl || "",
     instagramUrl: salon.instagramUrl || "",
     tiktokUrl: salon.tiktokUrl || "",
     addedVia: salon.addedVia || "",
