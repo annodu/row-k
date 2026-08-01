@@ -1,7 +1,7 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-07-31",
+    "updatedAt": "2026-08-01",
     "count": 897,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
@@ -536,7 +536,8 @@
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleCheckedAt": "2026-07-31T15:44:54.718Z"
+      "googleCheckedAt": "2026-07-31T15:44:54.718Z",
+      "parkingAvailable": true
     },
     {
       "id": "hairbycc",
@@ -2154,7 +2155,8 @@
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleCheckedAt": "2026-07-31T15:20:12.769Z"
+      "googleCheckedAt": "2026-07-31T15:20:12.769Z",
+      "parkingAvailable": true
     },
     {
       "id": "jesslacedituk",
@@ -3108,7 +3110,8 @@
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleCheckedAt": "2026-07-31T11:54:05.620Z"
+      "googleCheckedAt": "2026-07-31T11:54:05.620Z",
+      "parkingAvailable": true
     },
     {
       "id": "peloamouruk",
@@ -3255,7 +3258,8 @@
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleCheckedAt": "2026-07-31T11:51:48.269Z"
+      "googleCheckedAt": "2026-07-31T11:51:48.269Z",
+      "parkingAvailable": true
     },
     {
       "id": "db-styless",
@@ -3711,7 +3715,8 @@
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleCheckedAt": "2026-07-31T11:45:21.723Z"
+      "googleCheckedAt": "2026-07-31T11:45:21.723Z",
+      "parkingAvailable": true
     },
     {
       "id": "rv-the-stylist",
@@ -4061,7 +4066,8 @@
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleCheckedAt": "2026-07-31T11:36:21.292Z"
+      "googleCheckedAt": "2026-07-31T11:36:21.292Z",
+      "parkingAvailable": true
     },
     {
       "id": "beauty-by-the-bankz",
@@ -4501,7 +4507,8 @@
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleCheckedAt": "2026-07-31T11:28:04.300Z"
+      "googleCheckedAt": "2026-07-31T11:28:04.300Z",
+      "parkingAvailable": true
     },
     {
       "id": "ca-studioss",
@@ -5485,7 +5492,7 @@
       "wheelchairAccessible": false,
       "senFriendly": false,
       "lgbtqFriendly": false,
-      "parkingAvailable": false,
+      "parkingAvailable": true,
       "customFilters": {},
       "updatedAt": "2026-07-31"
     },
@@ -7090,7 +7097,8 @@
       "canBraidWithoutGel": false,
       "wheelchairAccessible": false,
       "customFilters": {},
-      "updatedAt": "2026-07-24"
+      "updatedAt": "2026-07-24",
+      "parkingAvailable": true
     },
     {
       "id": "evolutionhairandbeautyw7",
@@ -9117,7 +9125,8 @@
       "googleDisplayName": null,
       "googleFormattedAddress": null,
       "googleCheckedAt": "2026-07-29T00:00:00.000Z",
-      "updatedAt": "2026-07-24"
+      "updatedAt": "2026-07-24",
+      "parkingAvailable": true
     },
     {
       "id": "yinsbeautybar",
@@ -9579,7 +9588,8 @@
       "canBraidWithoutGel": false,
       "wheelchairAccessible": false,
       "customFilters": {},
-      "updatedAt": "2026-07-24"
+      "updatedAt": "2026-07-24",
+      "parkingAvailable": true
     },
     {
       "id": "jaealexxishair",
@@ -10793,7 +10803,8 @@
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-07-23T22:18:27.540Z",
       "websiteUrl": "",
-      "customFilters": {}
+      "customFilters": {},
+      "parkingAvailable": true
     },
     {
       "id": "strandsbyangels",
@@ -12490,7 +12501,8 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-07-24"
+      "updatedAt": "2026-07-24",
+      "parkingAvailable": true
     },
     {
       "id": "princessxlace",
@@ -15331,7 +15343,8 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-07-24"
+      "updatedAt": "2026-07-24",
+      "parkingAvailable": true
     },
     {
       "id": "klacebar",
@@ -15698,7 +15711,8 @@
       "googleFormattedAddress": null,
       "googleCheckedAt": "2026-07-29T00:00:00.000Z",
       "websiteUrl": "",
-      "customFilters": {}
+      "customFilters": {},
+      "parkingAvailable": true
     },
     {
       "id": "her-ego",
@@ -15900,7 +15914,8 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-07-24"
+      "updatedAt": "2026-07-24",
+      "parkingAvailable": true
     },
     {
       "id": "beyondthebrushldn",
@@ -18446,7 +18461,8 @@
       "googleMatchConfidence": "no-match",
       "googleDisplayName": null,
       "googleFormattedAddress": null,
-      "googleCheckedAt": "2026-07-29T00:00:00.000Z"
+      "googleCheckedAt": "2026-07-29T00:00:00.000Z",
+      "parkingAvailable": true
     },
     {
       "summary": "Manual entry added from your bridal and editorial list.",
@@ -19447,7 +19463,8 @@
       "googleMatchConfidence": "high",
       "googleDisplayName": "B Versatile",
       "googleFormattedAddress": "189 Philip Ln, London N15 4HQ, UK",
-      "googleCheckedAt": "2026-07-23T22:20:30.520Z"
+      "googleCheckedAt": "2026-07-23T22:20:30.520Z",
+      "parkingAvailable": true
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -21128,7 +21145,8 @@
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleCheckedAt": "2026-07-23T22:20:49.667Z"
+      "googleCheckedAt": "2026-07-23T22:20:49.667Z",
+      "parkingAvailable": true
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -21749,7 +21767,8 @@
       "googleMatchConfidence": "no-match",
       "googleDisplayName": null,
       "googleFormattedAddress": null,
-      "googleCheckedAt": "2026-07-29T00:00:00.000Z"
+      "googleCheckedAt": "2026-07-29T00:00:00.000Z",
+      "parkingAvailable": true
     },
     {
       "id": "by-mil-made",
@@ -21820,8 +21839,8 @@
       "id": "by-zainab-ola",
       "name": "By Zainab Ola",
       "areaId": "south-east",
-      "areaLabel": "South east London / Kent",
-      "neighbourhood": "South east London and Kent London",
+      "areaLabel": "South east London",
+      "neighbourhood": "South east London London",
       "postcode": "",
       "bookingPlatform": "Direct website",
       "bookingUrl": "https://byzainabola.as.me/schedule/9accf39b",
@@ -21829,7 +21848,7 @@
       "services": [
         "Traditional sew-in / leave out",
         "Half up half down",
-        "Flipover / versatile sew-in",
+        "Flipover / Versatile sew-in",
         "Closure sew-in / closure behind the hairline",
         "Custom wig",
         "Wig install (frontal / closure)",
@@ -21852,10 +21871,6 @@
       "priceCheckedAt": "2026-06-03",
       "priceConfidence": "high",
       "priceUpdatedAt": "2026-06-03",
-      "areaIds": [
-        "south-east",
-        "kent"
-      ],
       "tiktokUrl": "https://www.tiktok.com/@xo_karrieee/video/7592032929845366019",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
@@ -21863,7 +21878,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-06-05",
+      "updatedAt": "2026-08-01",
       "addedVia": "Code edit",
       "discoverySource": "Cowork scrape",
       "googlePlaceId": null,
@@ -21872,7 +21887,13 @@
       "googleMatchConfidence": "no-match",
       "googleDisplayName": null,
       "googleFormattedAddress": null,
-      "googleCheckedAt": "2026-07-29T00:00:00.000Z"
+      "googleCheckedAt": "2026-07-29T00:00:00.000Z",
+      "websiteUrl": "",
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": true,
+      "customFilters": {}
     },
     {
       "id": "bybrittss",
@@ -22039,7 +22060,8 @@
       "googleMatchConfidence": "no-match",
       "googleDisplayName": null,
       "googleFormattedAddress": null,
-      "googleCheckedAt": "2026-07-29T00:00:00.000Z"
+      "googleCheckedAt": "2026-07-29T00:00:00.000Z",
+      "parkingAvailable": true
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -22412,7 +22434,8 @@
       "googleMatchConfidence": "no-match",
       "googleDisplayName": null,
       "googleFormattedAddress": null,
-      "googleCheckedAt": "2026-07-29T00:00:00.000Z"
+      "googleCheckedAt": "2026-07-29T00:00:00.000Z",
+      "parkingAvailable": true
     },
     {
       "summary": "Manual entry added from your bridal and editorial list.",
@@ -24936,7 +24959,8 @@
       "googleMatchConfidence": "no-match",
       "googleDisplayName": null,
       "googleFormattedAddress": null,
-      "googleCheckedAt": "2026-07-29T00:00:00.000Z"
+      "googleCheckedAt": "2026-07-29T00:00:00.000Z",
+      "parkingAvailable": true
     },
     {
       "id": "elevate-399",
@@ -25946,7 +25970,7 @@
       "wheelchairAccessible": false,
       "senFriendly": false,
       "lgbtqFriendly": false,
-      "parkingAvailable": false,
+      "parkingAvailable": true,
       "customFilters": {},
       "servicePriceBand": "",
       "packagePriceBand": "",
@@ -27132,7 +27156,8 @@
       "googleMatchConfidence": "no-match",
       "googleDisplayName": null,
       "googleFormattedAddress": null,
-      "googleCheckedAt": "2026-07-29T00:00:00.000Z"
+      "googleCheckedAt": "2026-07-29T00:00:00.000Z",
+      "parkingAvailable": true
     },
     {
       "id": "h-hair",
@@ -28138,7 +28163,8 @@
       "googleMatchConfidence": "no-match",
       "googleDisplayName": null,
       "googleFormattedAddress": null,
-      "googleCheckedAt": "2026-07-29T00:00:00.000Z"
+      "googleCheckedAt": "2026-07-29T00:00:00.000Z",
+      "parkingAvailable": true
     },
     {
       "id": "hair-by-temiii",
@@ -28288,7 +28314,7 @@
       "googleDisplayName": "HairCupidLondon",
       "googleFormattedAddress": "107-117 Morning Ln, London E9 6ND, UK",
       "googleCheckedAt": "2026-07-23T22:22:33.928Z",
-      "parkingAvailable": false
+      "parkingAvailable": true
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -28940,7 +28966,8 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-07-24"
+      "updatedAt": "2026-07-24",
+      "parkingAvailable": true
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -30043,7 +30070,7 @@
       "googleDisplayName": "HOUSEOFSISTERS",
       "googleFormattedAddress": "19-21 Chapel Rd, Norwood, London SE27 0TY, UK",
       "googleCheckedAt": "2026-07-23T22:22:59.078Z",
-      "parkingAvailable": false
+      "parkingAvailable": true
     },
     {
       "id": "houseoffaux",
@@ -30323,7 +30350,8 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-07-24"
+      "updatedAt": "2026-07-24",
+      "parkingAvailable": true
     },
     {
       "id": "hype-coiffure-uk",
@@ -30448,7 +30476,8 @@
       "googleFormattedAddress": null,
       "googleCheckedAt": "2026-07-29T00:00:00.000Z",
       "websiteUrl": "",
-      "customFilters": {}
+      "customFilters": {},
+      "parkingAvailable": true
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -31285,7 +31314,8 @@
       "googleMatchConfidence": "high",
       "googleDisplayName": "JLuxehair",
       "googleFormattedAddress": "148A Trafalgar Rd, London SE10 9TZ, UK",
-      "googleCheckedAt": "2026-07-23T22:23:17.474Z"
+      "googleCheckedAt": "2026-07-23T22:23:17.474Z",
+      "parkingAvailable": true
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -32534,7 +32564,8 @@
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleCheckedAt": "2026-07-23T22:23:33.592Z"
+      "googleCheckedAt": "2026-07-23T22:23:33.592Z",
+      "parkingAvailable": true
     },
     {
       "id": "kumba-secka",
@@ -32627,7 +32658,8 @@
       "googleMatchConfidence": "high",
       "googleDisplayName": "Lamin label",
       "googleFormattedAddress": "Grosvenor Way, London E5 9ND, UK",
-      "googleCheckedAt": "2026-07-23T22:23:35.058Z"
+      "googleCheckedAt": "2026-07-23T22:23:35.058Z",
+      "parkingAvailable": true
     },
     {
       "id": "lael-london",
@@ -35312,7 +35344,7 @@
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
       "updatedAt": "2026-07-24",
-      "parkingAvailable": false
+      "parkingAvailable": true
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -35505,7 +35537,8 @@
       "priceCheckedAt": "2026-07-28T21:17:11.220Z",
       "priceUpdatedAt": "2026-07-28T21:17:11.220Z",
       "priceConfidence": "high",
-      "updatedAt": "2026-07-28"
+      "updatedAt": "2026-07-28",
+      "parkingAvailable": true
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -35886,7 +35919,8 @@
       "googleMatchConfidence": "no-match",
       "googleDisplayName": null,
       "googleFormattedAddress": null,
-      "googleCheckedAt": "2026-07-29T00:00:00.000Z"
+      "googleCheckedAt": "2026-07-29T00:00:00.000Z",
+      "parkingAvailable": true
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -36509,7 +36543,8 @@
       "googleMatchConfidence": "no-match",
       "googleDisplayName": null,
       "googleFormattedAddress": null,
-      "googleCheckedAt": "2026-07-29T00:00:00.000Z"
+      "googleCheckedAt": "2026-07-29T00:00:00.000Z",
+      "parkingAvailable": true
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -37118,7 +37153,8 @@
       "googleMatchConfidence": "no-match",
       "googleDisplayName": null,
       "googleFormattedAddress": null,
-      "googleCheckedAt": "2026-07-29T00:00:00.000Z"
+      "googleCheckedAt": "2026-07-29T00:00:00.000Z",
+      "parkingAvailable": true
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -37418,7 +37454,8 @@
       "googleDisplayName": null,
       "googleFormattedAddress": null,
       "googleCheckedAt": "2026-07-29T00:00:00.000Z",
-      "updatedAt": "2026-07-24"
+      "updatedAt": "2026-07-24",
+      "parkingAvailable": true
     },
     {
       "id": "rd-hairstudio",
@@ -37780,7 +37817,8 @@
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleCheckedAt": "2026-07-23T22:24:52.888Z"
+      "googleCheckedAt": "2026-07-23T22:24:52.888Z",
+      "parkingAvailable": true
     },
     {
       "id": "rg-wigs",
@@ -37873,7 +37911,8 @@
       "googleMatchConfidence": "no-match",
       "googleDisplayName": null,
       "googleFormattedAddress": null,
-      "googleCheckedAt": "2026-07-29T00:00:00.000Z"
+      "googleCheckedAt": "2026-07-29T00:00:00.000Z",
+      "parkingAvailable": true
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -38608,7 +38647,8 @@
       "googleMatchConfidence": "no-match",
       "googleDisplayName": null,
       "googleFormattedAddress": null,
-      "googleCheckedAt": "2026-07-29T00:00:00.000Z"
+      "googleCheckedAt": "2026-07-29T00:00:00.000Z",
+      "parkingAvailable": true
     },
     {
       "id": "sc-braided-her",
@@ -39256,7 +39296,8 @@
       "googleMatchConfidence": "no-match",
       "googleDisplayName": null,
       "googleFormattedAddress": null,
-      "googleCheckedAt": "2026-07-29T00:00:00.000Z"
+      "googleCheckedAt": "2026-07-29T00:00:00.000Z",
+      "parkingAvailable": true
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -39590,7 +39631,8 @@
       "googleMatchConfidence": "high",
       "googleDisplayName": "SIXXX HAIR & BEAUTY",
       "googleFormattedAddress": "Norwood, London SE27 9NR, UK",
-      "googleCheckedAt": "2026-07-23T22:25:20.953Z"
+      "googleCheckedAt": "2026-07-23T22:25:20.953Z",
+      "parkingAvailable": true
     },
     {
       "id": "sk-beauty-ldn",
@@ -39901,7 +39943,8 @@
       "googleMatchConfidence": "no-match",
       "googleDisplayName": null,
       "googleFormattedAddress": null,
-      "googleCheckedAt": "2026-07-29T00:00:00.000Z"
+      "googleCheckedAt": "2026-07-29T00:00:00.000Z",
+      "parkingAvailable": true
     },
     {
       "id": "slayedbyl",
@@ -40572,7 +40615,8 @@
       "googleMatchConfidence": "no-match",
       "googleDisplayName": null,
       "googleFormattedAddress": null,
-      "googleCheckedAt": "2026-07-29T00:00:00.000Z"
+      "googleCheckedAt": "2026-07-29T00:00:00.000Z",
+      "parkingAvailable": true
     },
     {
       "id": "stephanie-lebby-hair-limited",
@@ -41512,7 +41556,8 @@
       "googleMatchConfidence": "no-match",
       "googleDisplayName": null,
       "googleFormattedAddress": null,
-      "googleCheckedAt": "2026-07-29T00:00:00.000Z"
+      "googleCheckedAt": "2026-07-29T00:00:00.000Z",
+      "parkingAvailable": true
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -41888,7 +41933,8 @@
       "googleMatchConfidence": "high",
       "googleDisplayName": "The Chair Salon London",
       "googleFormattedAddress": "391 Queen's Rd, London SE14 5HD, UK",
-      "googleCheckedAt": "2026-07-23T22:25:54.177Z"
+      "googleCheckedAt": "2026-07-23T22:25:54.177Z",
+      "parkingAvailable": true
     },
     {
       "id": "the-curl-coach",
@@ -42520,7 +42566,8 @@
       "googleDisplayName": null,
       "googleFormattedAddress": null,
       "googleCheckedAt": "2026-07-29T00:00:00.000Z",
-      "updatedAt": "2026-07-24"
+      "updatedAt": "2026-07-24",
+      "parkingAvailable": true
     },
     {
       "id": "the-lush-lab-uk",
@@ -43872,12 +43919,12 @@
       "evidence": [
         "User-provided Instagram handle awaiting categorisation."
       ],
-      "priceBand": "££££",
-      "servicePriceBand": "££££",
+      "priceBand": "£££",
+      "servicePriceBand": "£££",
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "priceSource": "auto",
+      "priceSource": "manual",
       "priceEvidence": [
         "BOB LENGTH- Boho Knotless Braids - - BOB LENGTH- Boho Knotless Braids - £465",
         "WAIST LENGTH- Boho Knotless Braids - - WAIST LENGTH- Boho Knotless Braids - £515",
@@ -43890,7 +43937,7 @@
       ],
       "priceCheckedAt": "2026-07-31T17:32:31.176Z",
       "priceConfidence": "manual",
-      "priceUpdatedAt": "2026-07-31T17:32:31.176Z",
+      "priceUpdatedAt": "2026-08-01T01:47:25.219Z",
       "addedVia": "Bulk import",
       "discoverySource": "Cowork scrape",
       "googlePlaceId": null,
@@ -43900,7 +43947,7 @@
       "googleDisplayName": "TTHAIRBARLDN",
       "googleFormattedAddress": "17 Bellegrove Rd, Welling DA16 3PA, UK",
       "googleCheckedAt": "2026-07-24T00:00:00.000Z",
-      "updatedAt": "2026-07-31",
+      "updatedAt": "2026-08-01",
       "websiteUrl": "",
       "tiktokUrl": "",
       "hijabiFriendly": false,
@@ -44490,7 +44537,8 @@
       "googleMatchConfidence": "no-match",
       "googleDisplayName": null,
       "googleFormattedAddress": null,
-      "googleCheckedAt": "2026-07-29T00:00:00.000Z"
+      "googleCheckedAt": "2026-07-29T00:00:00.000Z",
+      "parkingAvailable": true
     },
     {
       "id": "xtra-beauty",
@@ -45383,7 +45431,8 @@
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleCheckedAt": "2026-07-23T22:26:47.288Z"
+      "googleCheckedAt": "2026-07-23T22:26:47.288Z",
+      "parkingAvailable": true
     },
     {
       "id": "allseezn",
@@ -46380,7 +46429,8 @@
       "googleMatchConfidence": "no-match",
       "googleDisplayName": null,
       "googleFormattedAddress": null,
-      "googleCheckedAt": "2026-07-29T00:00:00.000Z"
+      "googleCheckedAt": "2026-07-29T00:00:00.000Z",
+      "parkingAvailable": true
     },
     {
       "id": "ksleek",
@@ -46670,7 +46720,7 @@
       "wheelchairAccessible": false,
       "senFriendly": false,
       "lgbtqFriendly": false,
-      "parkingAvailable": false,
+      "parkingAvailable": true,
       "customFilters": {},
       "servicePriceBand": "",
       "packagePriceBand": "",
@@ -46727,7 +46777,8 @@
       "googleMatchConfidence": "no-match",
       "googleDisplayName": null,
       "googleFormattedAddress": null,
-      "googleCheckedAt": "2026-07-29T00:00:00.000Z"
+      "googleCheckedAt": "2026-07-29T00:00:00.000Z",
+      "parkingAvailable": true
     },
     {
       "id": "diosa-london",
@@ -48692,7 +48743,8 @@
       "googleMatchConfidence": "no-match",
       "googleDisplayName": null,
       "googleFormattedAddress": null,
-      "googleCheckedAt": "2026-07-29T00:00:00.000Z"
+      "googleCheckedAt": "2026-07-29T00:00:00.000Z",
+      "parkingAvailable": true
     },
     {
       "id": "crown-signed",
@@ -48802,7 +48854,8 @@
       "googleMatchConfidence": "no-match",
       "googleDisplayName": null,
       "googleFormattedAddress": null,
-      "googleCheckedAt": "2026-07-29T00:00:00.000Z"
+      "googleCheckedAt": "2026-07-29T00:00:00.000Z",
+      "parkingAvailable": true
     },
     {
       "id": "alternativee-hair",
