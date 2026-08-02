@@ -26155,7 +26155,9 @@
         "Updo",
         "Fulani / lemonade braids",
         "Stitch braids",
-        "Boho braids bob"
+        "Boho braids bob",
+        "Flipover / Versatile sew-in",
+        "Traditional sew-in / leave out"
       ],
       "summary": "Manual entry added from your Croydon braids and styling list.",
       "source": "manual",
@@ -26164,10 +26166,10 @@
         "Restored Updo service from historical standalone-updo commit de619f9."
       ],
       "priceBand": "£££",
-      "servicePriceBand": "£££",
-      "packagePriceBand": "££££",
-      "priceIncludesHair": true,
-      "priceComparisonMode": "mixed",
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
       "priceSource": "auto",
       "priceEvidence": [
         "MEDIUM FULANI BRAIDS - £260",
@@ -26194,7 +26196,16 @@
       "googleDisplayName": null,
       "googleFormattedAddress": null,
       "googleCheckedAt": "2026-07-29T00:00:00.000Z",
-      "websiteUrl": "https://e-stylish-store.myshopify.com/"
+      "websiteUrl": "https://e-stylish-store.myshopify.com/",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": true,
+      "customFilters": {},
+      "updatedAt": "2026-08-02"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
