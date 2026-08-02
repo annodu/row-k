@@ -34625,7 +34625,9 @@
       "priceCheckedAt": "",
       "priceUpdatedAt": "",
       "priceConfidence": "",
-      "updatedAt": "2026-08-01"
+      "updatedAt": "2026-08-01",
+      "verifiedReviewCount": 18,
+      "verifiedReviewCheckedAt": "2026-08-02T00:27:37.780Z"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -48401,7 +48403,9 @@
       "customFilters": {},
       "senFriendly": false,
       "lgbtqFriendly": false,
-      "parkingAvailable": false
+      "parkingAvailable": false,
+      "verifiedReviewCount": 38,
+      "verifiedReviewCheckedAt": "2026-08-02T00:27:35.026Z"
     },
     {
       "id": "cg-hair",
