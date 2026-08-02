@@ -6,6 +6,7 @@ import { assertSafeOutboundHttpUrl, createRateLimiter, requireTrustedOrigin } fr
 import { fetchAllTimeSummary, fetchAnalyticsSummary, fetchRecentActivity } from "./analytics.mjs";
 import { extractPostcodeToken, getParkingAvailable, getWheelchairAccessibleEntrance, loadGooglePlacesApiKey, matchSalonToGoogle } from "./google-match.mjs";
 import { getVerifiedReviewPlatform, matchVerifiedReviews } from "./verified-reviews.mjs";
+import { createWorker } from "tesseract.js";
 
 function today() {
   return new Date().toISOString().split("T")[0];
@@ -997,6 +998,11 @@ export function registerAdminStylistRoutes(app) {
       });
     }
 
+    const acuityImageUrl = [urls.bookingUrl, ...embeddedBookingSources.map((source) => source.url)].find(
+      (candidate) => isAcuityBookingUrl(candidate),
+    );
+    const imageTextCheck = acuityImageUrl ? await extractBookingImageTextQuotes(acuityImageUrl).catch(() => null) : null;
+
     res.json({
       ok: true,
       linkChecks: [
@@ -1006,6 +1012,7 @@ export function registerAdminStylistRoutes(app) {
       ].filter(Boolean).map(stripLinkCheckResponseText),
       serviceCheck,
       priceCheck,
+      imageTextCheck,
     });
   });
 
@@ -5356,6 +5363,91 @@ async function getPriceCheckBrowser() {
       });
   }
   return priceCheckBrowserPromise;
+}
+
+let ocrWorkerPromise = null;
+async function getOcrWorker() {
+  if (!ocrWorkerPromise) {
+    ocrWorkerPromise = createWorker("eng").catch((error) => {
+      ocrWorkerPromise = null;
+      throw error;
+    });
+  }
+  return ocrWorkerPromise;
+}
+
+// Many as.me / Acuity booking pages put their real policy text (parking, access
+// notes, deposits) inside a single tall banner image rather than DOM text, so
+// the price/service scrapers above never see it — it's pixels, not text. This
+// screenshots content-sized images on the page and OCRs them locally (same
+// engine as the manual price-list upload flow) to surface a verbatim quote for
+// an admin to review. It's a suggestion only: OCR can misread, so this never
+// sets parkingAvailable/wheelchairAccessible itself.
+const OCR_MIN_IMAGE_WIDTH = 280;
+const OCR_MIN_IMAGE_HEIGHT = 180;
+const OCR_MAX_IMAGES = 5;
+const OCR_KEYWORD_PATTERNS = {
+  parking: /\bparking\b/i,
+  stepFreeAccess: /\b(step[- ]free|wheelchair|accessib\w*)\b/i,
+};
+
+function isAcuityBookingUrl(url = "") {
+  const host = safeHost(url);
+  return host.endsWith(".as.me") || host.endsWith("acuityscheduling.com");
+}
+
+function findOcrKeywordQuotes(text, pattern) {
+  const lines = text.split(/(?<=[.!?])\s+|\n+/).map((line) => line.trim()).filter(Boolean);
+  return lines.filter((line) => pattern.test(line));
+}
+
+async function findOcrContentImages(page) {
+  const handles = await page.locator("img").elementHandles();
+  const boxed = [];
+  for (const handle of handles) {
+    const box = await handle.boundingBox().catch(() => null);
+    if (box && box.width >= OCR_MIN_IMAGE_WIDTH && box.height >= OCR_MIN_IMAGE_HEIGHT) {
+      boxed.push({ handle, box });
+    }
+  }
+  boxed.sort((left, right) => right.box.width * right.box.height - left.box.width * left.box.height);
+  return boxed.slice(0, OCR_MAX_IMAGES).map((entry) => entry.handle);
+}
+
+async function extractBookingImageTextQuotes(url) {
+  const browser = await getPriceCheckBrowser();
+  const page = await browser.newPage({
+    userAgent: browserUserAgent,
+    viewport: { width: 1365, height: 900 },
+    deviceScaleFactor: 3,
+  });
+  const parkingQuotes = [];
+  const stepFreeAccessQuotes = [];
+  try {
+    await page.goto(url, { waitUntil: "domcontentloaded", timeout: 20_000 });
+    await page.waitForLoadState("networkidle", { timeout: 8_000 }).catch(() => {});
+
+    const images = await findOcrContentImages(page);
+    if (images.length) {
+      const worker = await getOcrWorker();
+      for (const handle of images) {
+        const buffer = await handle.screenshot({ type: "png" }).catch(() => null);
+        if (!buffer) continue;
+        const { data } = await worker.recognize(buffer).catch(() => ({ data: { text: "" } }));
+        const transcript = (data.text || "").trim();
+        if (!transcript) continue;
+        parkingQuotes.push(...findOcrKeywordQuotes(transcript, OCR_KEYWORD_PATTERNS.parking));
+        stepFreeAccessQuotes.push(...findOcrKeywordQuotes(transcript, OCR_KEYWORD_PATTERNS.stepFreeAccess));
+      }
+    }
+  } finally {
+    await page.close().catch(() => {});
+  }
+
+  return {
+    parkingQuotes: [...new Set(parkingQuotes)],
+    stepFreeAccessQuotes: [...new Set(stepFreeAccessQuotes)],
+  };
 }
 
 function combineBookingHtml(primaryHtml = "", embeddedSources = []) {

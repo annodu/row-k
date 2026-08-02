@@ -528,6 +528,10 @@ type AdminPriceCheck = NonNullable<DirectoryCheck["priceCheck"]> & {
 type BookingPreview = {
   serviceCheck?: DirectoryCheck["serviceCheck"];
   priceCheck?: AdminPriceCheck;
+  imageTextCheck?: {
+    parkingQuotes: string[];
+    stepFreeAccessQuotes: string[];
+  } | null;
 };
 
 type AttributeSuggestion = {
@@ -903,6 +907,7 @@ function AdminAppInner() {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
   const lastBookingPreviewKeyRef = useRef("");
+  const [bookingImageTextCheck, setBookingImageTextCheck] = useState<BookingPreview["imageTextCheck"]>(null);
 
 	  function updateDraftLocations(draft: StylistDraft, nextAreaIds: string[]) {
 	    const normalizedAreaIds = normalizeAreaIds(nextAreaIds);
@@ -1035,6 +1040,10 @@ function AdminAppInner() {
   }, [selectedDraft?.id, selectedDraftPriceEvidence, isAuthed]);
 
   useEffect(() => {
+    setBookingImageTextCheck(null);
+  }, [selectedDraft?.id]);
+
+  useEffect(() => {
     if (!isAuthed || !selectedDraft) {
       return;
     }
@@ -1056,6 +1065,8 @@ function AdminAppInner() {
       if (!preview) {
         return;
       }
+
+      setBookingImageTextCheck(preview.imageTextCheck ?? null);
 
       const update: Partial<StylistDraft> = {};
       const rawServices = preview.serviceCheck?.rawServices || [];
@@ -1929,6 +1940,7 @@ function AdminAppInner() {
             searchTerm={stylistSearchTerm}
             isBusy={isBusy}
             selectedDraft={isDraftEditorOpen ? selectedDraft : null}
+            bookingImageTextCheck={bookingImageTextCheck}
             regions={regions}
             services={services}
             filterCategories={filterCategories}
@@ -2161,6 +2173,7 @@ function StylistsPage({
   searchTerm,
   isBusy,
   selectedDraft,
+  bookingImageTextCheck,
   regions,
   services,
   filterCategories,
@@ -2186,6 +2199,7 @@ function StylistsPage({
   searchTerm: string;
   isBusy: boolean;
   selectedDraft: StylistDraft | null;
+  bookingImageTextCheck?: BookingPreview["imageTextCheck"];
   regions: RegionOption[];
   services: string[];
   filterCategories: { id: string; label: string; subcategories: string[] }[];
@@ -2375,6 +2389,7 @@ function StylistsPage({
           services={services}
           filterCategories={filterCategories}
           isBusy={isBusy}
+          bookingImageTextCheck={bookingImageTextCheck}
           onClose={onCloseEditor}
           onChange={onChangeDraft}
           onChangeLocations={onChangeDraftLocations}
@@ -3144,6 +3159,7 @@ function DraftEditorDrawer({
   services,
   filterCategories,
   isBusy,
+  bookingImageTextCheck,
   onClose,
   onChange,
   onChangeLocations,
@@ -3161,6 +3177,7 @@ function DraftEditorDrawer({
   services: string[];
   filterCategories: { id: string; label: string; subcategories: string[] }[];
   isBusy: boolean;
+  bookingImageTextCheck?: BookingPreview["imageTextCheck"];
   onClose: () => void;
   onChange: (update: Partial<StylistDraft>) => void;
   onChangeLocations: (areaIds: string[]) => void;
@@ -3281,6 +3298,7 @@ function DraftEditorDrawer({
               services={services}
               filterCategories={filterCategories}
               isBusy={isBusy}
+              bookingImageTextCheck={bookingImageTextCheck}
               onChange={onChange}
               onChangeLocations={onChangeLocations}
               onSave={onSave}
@@ -7165,6 +7183,7 @@ function DraftEditor({
   services,
   filterCategories,
   isBusy,
+  bookingImageTextCheck,
   onChange,
   onChangeLocations,
   onSave,
@@ -7181,6 +7200,7 @@ function DraftEditor({
   services: string[];
   filterCategories?: { id: string; label: string; subcategories: string[] }[];
   isBusy: boolean;
+  bookingImageTextCheck?: BookingPreview["imageTextCheck"];
   onChange: (update: Partial<StylistDraft>) => void;
   onChangeLocations: (areaIds: string[]) => void;
   onSave: () => void;
@@ -7579,6 +7599,7 @@ function DraftEditor({
             </a>
           ) : null}
         </div>
+        <BookingImageTextNotice imageTextCheck={bookingImageTextCheck} />
       </DraftPropertyRow>
 
       <DraftPropertyRow label="Booking link is Instagram">
@@ -10505,6 +10526,22 @@ function splitNoteLines(value: string) {
     .split(/\n/)
     .map((line) => line.trim())
     .filter(Boolean);
+}
+
+function BookingImageTextNotice({ imageTextCheck }: { imageTextCheck: BookingPreview["imageTextCheck"] }) {
+  if (!imageTextCheck || (!imageTextCheck.parkingQuotes.length && !imageTextCheck.stepFreeAccessQuotes.length)) {
+    return null;
+  }
+  return (
+    <div className="mt-1.5 space-y-1 rounded-none border border-amber-200 bg-amber-50 p-3 text-xs text-amber-900">
+      {imageTextCheck.parkingQuotes.length ? (
+        <p>Booking page image mentions parking: &ldquo;{imageTextCheck.parkingQuotes[0]}&rdquo; — review and toggle &ldquo;Parking nearby&rdquo; if accurate.</p>
+      ) : null}
+      {imageTextCheck.stepFreeAccessQuotes.length ? (
+        <p>Booking page image mentions access: &ldquo;{imageTextCheck.stepFreeAccessQuotes[0]}&rdquo; — review and toggle &ldquo;Wheelchair accessible entrance&rdquo; if accurate.</p>
+      ) : null}
+    </div>
+  );
 }
 
 function mergeLines(current: string[] = [], next: string[] = []) {
