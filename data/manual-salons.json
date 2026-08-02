@@ -1,11 +1,67 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-08-01",
-    "count": 895,
+    "updatedAt": "2026-08-02",
+    "count": 897,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "sharon-robinson",
+      "name": "Sharon Robinson",
+      "areaId": "all-london",
+      "areaLabel": "London",
+      "neighbourhood": "London London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/sharonrobinsonhair/",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/sharonrobinsonhair/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Manual search",
+      "services": [
+        "Editorial / Session styling"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Created through ROW K admin intake."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-08-02T00:12:15.578Z"
+    },
+    {
+      "id": "shamara-roper",
+      "name": "Shamara Roper",
+      "areaId": "all-london",
+      "areaLabel": "London",
+      "neighbourhood": "London London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/shamara_roper/",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/shamara_roper/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Manual search",
+      "services": [
+        "Editorial / Session styling"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Created through ROW K admin intake."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-08-02T00:08:43.751Z"
+    },
     {
       "id": "hairbyflo-x",
       "name": "Hairbyflo X",
