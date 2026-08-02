@@ -2,59 +2,9 @@
   "meta": {
     "source": "admin-drafts",
     "updatedAt": "2026-08-02",
-    "count": 12
+    "count": 9
   },
   "drafts": [
-    {
-      "id": "new-stylist-msb0s8ln",
-      "status": "ready_to_approve",
-      "name": "Karen Messam",
-      "areaId": "all-london",
-      "areaIds": [
-        "all-london"
-      ],
-      "areaLabel": "London",
-      "neighbourhood": "London London",
-      "postcode": "",
-      "bookingPlatform": "Instagram",
-      "bookingUrl": "https://www.instagram.com/karenmessam/",
-      "instagramUrl": "https://www.instagram.com/karenmessam/",
-      "tiktokUrl": "",
-      "addedVia": "Admin tool",
-      "discoverySource": "Manual search",
-      "services": [
-        "Editorial / Session styling"
-      ],
-      "rawServices": [],
-      "summary": "Admin draft created from stylist intake.",
-      "confidence": 0.35,
-      "warnings": [],
-      "evidence": [
-        "Created through ROW K admin intake."
-      ],
-      "source": "admin-draft",
-      "createdAt": "2026-08-01",
-      "updatedAt": "2026-08-01",
-      "lastCheckedAt": "2026-08-01",
-      "googleMapsUri": "",
-      "hijabiFriendly": false,
-      "canBraidWithoutGel": false,
-      "wheelchairAccessible": false,
-      "senFriendly": false,
-      "lgbtqFriendly": false,
-      "parkingAvailable": false,
-      "customFilters": {},
-      "priceBand": "",
-      "servicePriceBand": "",
-      "packagePriceBand": "",
-      "priceIncludesHair": false,
-      "priceComparisonMode": "",
-      "priceSource": "",
-      "priceEvidence": [],
-      "priceCheckedAt": "",
-      "priceUpdatedAt": "",
-      "priceConfidence": ""
-    },
     {
       "id": "new-stylist-msb0rbdx",
       "status": "needs_review",
@@ -127,56 +77,6 @@
         "No booking link identified yet.",
         "No services matched yet."
       ],
-      "evidence": [
-        "Created through ROW K admin intake."
-      ],
-      "source": "admin-draft",
-      "createdAt": "2026-08-01",
-      "updatedAt": "2026-08-01",
-      "lastCheckedAt": "2026-08-01",
-      "googleMapsUri": "",
-      "hijabiFriendly": false,
-      "canBraidWithoutGel": false,
-      "wheelchairAccessible": false,
-      "senFriendly": false,
-      "lgbtqFriendly": false,
-      "parkingAvailable": false,
-      "customFilters": {},
-      "priceBand": "",
-      "servicePriceBand": "",
-      "packagePriceBand": "",
-      "priceIncludesHair": false,
-      "priceComparisonMode": "",
-      "priceSource": "",
-      "priceEvidence": [],
-      "priceCheckedAt": "",
-      "priceUpdatedAt": "",
-      "priceConfidence": ""
-    },
-    {
-      "id": "new-stylist-msb0p5ju",
-      "status": "ready_to_approve",
-      "name": "Nicola Harrowell",
-      "areaId": "all-london",
-      "areaIds": [
-        "all-london"
-      ],
-      "areaLabel": "London",
-      "neighbourhood": "London London",
-      "postcode": "",
-      "bookingPlatform": "Instagram",
-      "bookingUrl": "https://www.instagram.com/nicola_harrowell/",
-      "instagramUrl": "https://www.instagram.com/nicola_harrowell/",
-      "tiktokUrl": "",
-      "addedVia": "Admin tool",
-      "discoverySource": "Manual search",
-      "services": [
-        "Editorial / Session styling"
-      ],
-      "rawServices": [],
-      "summary": "Admin draft created from stylist intake.",
-      "confidence": 0.35,
-      "warnings": [],
       "evidence": [
         "Created through ROW K admin intake."
       ],
@@ -277,56 +177,6 @@
       "googleReviewCount": 7,
       "googleMatchConfidence": "high",
       "googleDisplayName": "Ledon"
-    },
-    {
-      "id": "new-stylist-msb0mbvx",
-      "status": "ready_to_approve",
-      "name": "Louis Souvestre",
-      "areaId": "all-london",
-      "areaIds": [
-        "all-london"
-      ],
-      "areaLabel": "London",
-      "neighbourhood": "London London",
-      "postcode": "",
-      "bookingPlatform": "Instagram",
-      "bookingUrl": "https://www.instagram.com/louissouvestre/",
-      "instagramUrl": "https://www.instagram.com/louissouvestre/",
-      "tiktokUrl": "",
-      "addedVia": "Admin tool",
-      "discoverySource": "Manual search",
-      "services": [
-        "Editorial / Session styling"
-      ],
-      "rawServices": [],
-      "summary": "Admin draft created from stylist intake.",
-      "confidence": 0.35,
-      "warnings": [],
-      "evidence": [
-        "Created through ROW K admin intake."
-      ],
-      "source": "admin-draft",
-      "createdAt": "2026-08-01",
-      "updatedAt": "2026-08-01",
-      "lastCheckedAt": "2026-08-01",
-      "googleMapsUri": "",
-      "hijabiFriendly": false,
-      "canBraidWithoutGel": false,
-      "wheelchairAccessible": false,
-      "senFriendly": false,
-      "lgbtqFriendly": false,
-      "parkingAvailable": false,
-      "customFilters": {},
-      "priceBand": "",
-      "servicePriceBand": "",
-      "packagePriceBand": "",
-      "priceIncludesHair": false,
-      "priceComparisonMode": "",
-      "priceSource": "",
-      "priceEvidence": [],
-      "priceCheckedAt": "",
-      "priceUpdatedAt": "",
-      "priceConfidence": ""
     },
     {
       "id": "new-stylist-msb0b2k4",
