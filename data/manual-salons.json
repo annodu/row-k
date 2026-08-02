@@ -24794,8 +24794,7 @@
         "Closure sew-in / closure behind the hairline",
         "Tracks (+ silk press) / partial / invisible sew-in",
         "Full head colour",
-        "Trim / hair cut",
-        "Boho braids bob"
+        "Trim / hair cut"
       ],
       "summary": "Manual entry added from your Essex braids list.",
       "source": "manual",
@@ -24820,7 +24819,7 @@
       "priceCheckedAt": "2026-06-04",
       "priceUpdatedAt": "2026-06-04",
       "priceConfidence": "manual",
-      "updatedAt": "2026-06-04",
+      "updatedAt": "2026-08-02",
       "addedVia": "Code edit",
       "discoverySource": "Cowork scrape",
       "googlePlaceId": "ChIJayEQh4un2EcRSyK2YWL9org",
@@ -24829,7 +24828,16 @@
       "googleMatchConfidence": "high",
       "googleDisplayName": "Dunny's Touch uk",
       "googleFormattedAddress": "294 Ripple Rd, Barking IG11 7RW, UK",
-      "googleCheckedAt": "2026-07-31T21:26:29.204Z"
+      "googleCheckedAt": "2026-07-31T21:26:29.204Z",
+      "websiteUrl": "",
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "parkingAvailable": false,
+      "customFilters": {},
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only"
     },
     {
       "id": "dvh-salon",
