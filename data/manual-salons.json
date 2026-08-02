@@ -6758,7 +6758,7 @@
       "neighbourhood": "East London London",
       "postcode": "E2 9EZ",
       "bookingPlatform": "Instagram",
-      "bookingUrl": "https://www.instagram.com/rhehab_hair/",
+      "bookingUrl": "https://www.phorest.com/salon/rehabhairstudio",
       "instagramUrl": "https://www.instagram.com/rhehab_hair/",
       "tiktokUrl": "",
       "addedVia": "Admin tool",
@@ -6804,7 +6804,8 @@
       "wheelchairAccessible": false,
       "senFriendly": false,
       "customFilters": {},
-      "updatedAt": "2026-07-30"
+      "updatedAt": "2026-08-02",
+      "parkingAvailable": false
     },
     {
       "id": "kaay-long",
