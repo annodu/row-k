@@ -27,10 +27,11 @@
         "Flipover / Versatile sew-in",
         "Wig install (frontal / closure)",
         "Custom wig",
-        "Bridal"
+        "Bridal",
+        "Editorial / Session styling"
       ],
       "priceBand": "££",
-      "servicePriceBand": "££",
+      "servicePriceBand": "",
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
@@ -57,7 +58,15 @@
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleCheckedAt": "2026-08-02T00:31:49.316Z"
+      "googleCheckedAt": "2026-08-02T00:31:49.316Z",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "customFilters": {},
+      "updatedAt": "2026-08-02"
     },
     {
       "id": "louis-souvestre",
