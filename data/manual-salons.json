@@ -2,10 +2,63 @@
   "meta": {
     "source": "manual",
     "updatedAt": "2026-08-02",
-    "count": 900,
+    "count": 901,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "kumi-kreates",
+      "name": "Kumi Kreates",
+      "areaId": "north",
+      "areaLabel": "North London",
+      "neighbourhood": "North London London",
+      "postcode": "",
+      "bookingPlatform": "Direct website",
+      "bookingUrl": "https://kumikreates.as.me/schedule/031b886e",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/kumikreates/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Manual search",
+      "services": [
+        "Frontal ponytail / bun",
+        "Traditional sew-in / leave out",
+        "Closure sew-in / closure behind the hairline",
+        "Flipover / Versatile sew-in",
+        "Wig install (frontal / closure)",
+        "Custom wig",
+        "Bridal"
+      ],
+      "priceBand": "££",
+      "servicePriceBand": "££",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "FRONTAL PONYTAIL - £140",
+        "TRADITIONAL SEW IN - £110",
+        "2X6 SEW IN - £150",
+        "CLOSURE SEW-IN - £140",
+        "VERSATILE SEW IN - £110",
+        "STYLING ONLY - £60",
+        "REGLUE (Our Work) - £80",
+        "REGLUE (Other people's work) - £95"
+      ],
+      "priceCheckedAt": "2026-08-02T00:31:30.666Z",
+      "priceUpdatedAt": "2026-08-02T00:31:30.666Z",
+      "priceConfidence": "high",
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Created through ROW K admin intake."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-08-02T00:31:49.316Z"
+    },
     {
       "id": "louis-souvestre",
       "name": "Louis Souvestre",
