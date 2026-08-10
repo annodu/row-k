@@ -23732,7 +23732,10 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-07-24"
+      "updatedAt": "2026-08-10",
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false
     },
     {
       "id": "crystal-simone-hair",
