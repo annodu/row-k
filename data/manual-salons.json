@@ -1,7 +1,7 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-08-02",
+    "updatedAt": "2026-08-10",
     "count": 903,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
@@ -30506,7 +30506,8 @@
       "instagramUrl": "https://www.instagram.com/houseoffaux_/",
       "services": [
         "Faux locs",
-        "Butterfly locs"
+        "Butterfly locs",
+        "Miracle knots"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -30527,7 +30528,21 @@
       "googleMatchConfidence": "no-match",
       "googleDisplayName": null,
       "googleFormattedAddress": null,
-      "googleCheckedAt": "2026-07-29T00:00:00.000Z"
+      "googleCheckedAt": "2026-07-29T00:00:00.000Z",
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "customFilters": {},
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "updatedAt": "2026-08-10"
     },
     {
       "id": "houseofhairuk",
