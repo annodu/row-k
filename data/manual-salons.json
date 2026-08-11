@@ -2,7 +2,7 @@
   "meta": {
     "source": "manual",
     "updatedAt": "2026-08-11",
-    "count": 907,
+    "count": 908,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
@@ -266,7 +266,14 @@
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-08-11",
       "verifiedReviewCount": 256,
-      "verifiedReviewCheckedAt": "2026-08-11T18:19:02.034Z"
+      "verifiedReviewCheckedAt": "2026-08-11T18:19:02.034Z",
+      "hijabiFriendly": "__MISSING__",
+      "canBraidWithoutGel": "__MISSING__",
+      "wheelchairAccessible": "__MISSING__",
+      "customFilters": "__MISSING__",
+      "updatedAt": "__MISSING__",
+      "googleDisplayName": "__MISSING__",
+      "googleFormattedAddress": "__MISSING__"
     },
     {
       "id": "by-the-kway",
@@ -433,6 +440,54 @@
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-08-11"
+    },
+    {
+      "id": "elysia-beauty",
+      "name": "Elysia Beauty",
+      "areaId": "mobile",
+      "areaLabel": "Mobile / home service",
+      "neighbourhood": "Mobile / home service London",
+      "postcode": "",
+      "bookingPlatform": "Direct website",
+      "bookingUrl": "https://app.acuityscheduling.com/schedule/df6ae628",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/elysiabeauty_/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Manual search",
+      "services": [
+        "Fulani / lemonade braids",
+        "Knotless braids",
+        "Boho braids / goddess braids",
+        "Faux locs",
+        "Boho braids bob",
+        "Feed-in braids",
+        "French curl",
+        "Starter locs",
+        "Retwist",
+        "Stitch braids",
+        "Half braids, half sew-in"
+      ],
+      "priceBand": "££",
+      "servicePriceBand": "££",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "manual",
+      "priceEvidence": [],
+      "priceCheckedAt": "",
+      "priceUpdatedAt": "2026-08-10T14:28:39.032Z",
+      "priceConfidence": "manual",
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Created through ROW K admin intake."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-08-10T14:28:49.633Z"
     },
     {
       "id": "sandra-webb",
@@ -24153,7 +24208,10 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-07-24"
+      "updatedAt": "2026-08-10",
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false
     },
     {
       "id": "crystal-simone-hair",
@@ -26589,7 +26647,9 @@
         "Updo",
         "Fulani / lemonade braids",
         "Stitch braids",
-        "Boho braids bob"
+        "Boho braids bob",
+        "Flipover / Versatile sew-in",
+        "Traditional sew-in / leave out"
       ],
       "summary": "Manual entry added from your Croydon braids and styling list.",
       "source": "manual",
@@ -26598,10 +26658,10 @@
         "Restored Updo service from historical standalone-updo commit de619f9."
       ],
       "priceBand": "£££",
-      "servicePriceBand": "£££",
-      "packagePriceBand": "££££",
-      "priceIncludesHair": true,
-      "priceComparisonMode": "mixed",
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
       "priceSource": "auto",
       "priceEvidence": [
         "MEDIUM FULANI BRAIDS - £260",
@@ -26630,7 +26690,16 @@
       "googleCheckedAt": "2026-07-29",
       "websiteUrl": "https://e-stylish-store.myshopify.com/",
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://e-stylish-store.myshopify.com/collections/all"
+      "hairShopUrl": "https://e-stylish-store.myshopify.com/collections/all",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": true,
+      "customFilters": {},
+      "updatedAt": "2026-08-02"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -30899,7 +30968,8 @@
       "instagramUrl": "https://www.instagram.com/houseoffaux_/",
       "services": [
         "Faux locs",
-        "Butterfly locs"
+        "Butterfly locs",
+        "Miracle knots"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -30920,7 +30990,21 @@
       "googleMatchConfidence": "no-match",
       "googleDisplayName": null,
       "googleFormattedAddress": null,
-      "googleCheckedAt": "2026-07-29"
+      "googleCheckedAt": "2026-07-29",
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "customFilters": {},
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "updatedAt": "2026-08-10"
     },
     {
       "id": "houseofhairuk",
@@ -44599,7 +44683,7 @@
         "Butterfly locs",
         "Faux locs",
         "Retwist",
-        "Flipover / versatile sew-in",
+        "Flipover / Versatile sew-in",
         "Sew-in take-down",
         "Tracks (+ silk press) / partial / invisible sew-in",
         "Traditional sew-in / leave out",
@@ -44644,7 +44728,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-06-08",
+      "updatedAt": "2026-08-10",
       "addedVia": "Code edit",
       "discoverySource": "Cowork scrape",
       "googlePlaceId": "ChIJI14R_40DdkgR20aT4GzcMa8",
@@ -44654,7 +44738,12 @@
       "googleDisplayName": "Tressly Studios",
       "googleFormattedAddress": "Unit 68, Lewisham Shopping Centre, 33A Molesworth St, London SE13 7HB, UK",
       "googleCheckedAt": "2026-07-23",
-      "websiteUrl": "https://www.tresslystudios.com/"
+      "websiteUrl": "https://www.tresslystudios.com/",
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": true,
+      "customFilters": {}
     },
     {
       "id": "tribalbraidsandbeautysalon",
@@ -45863,7 +45952,12 @@
         "Keratin treatment",
         "Relaxer / texturiser",
         "Twist out / flexi rod",
-        "Sew in / extensions blowdry"
+        "Sew in / extensions blowdry",
+        "Full head colour",
+        "Scalp detox / treatments",
+        "Highlights",
+        "Balayage",
+        "Bouncy blowout / round brush blow dry"
       ],
       "summary": "Manual entry added from your latest salon update batch.",
       "source": "manual",
@@ -45897,7 +45991,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-07-22",
+      "updatedAt": "2026-08-10",
       "verifiedReviewCount": 206,
       "verifiedReviewCheckedAt": "2026-07-22T20:54:28.275Z",
       "googlePlaceId": "ChIJy2DlNCUbdkgR5vbOP1EwijY",
@@ -45907,7 +46001,8 @@
       "googleDisplayName": "Zulu Bonita",
       "googleFormattedAddress": "114 Clerkenwell Rd, London EC1M 5SA, UK",
       "googleCheckedAt": "2026-07-23",
-      "lgbtqFriendly": true
+      "lgbtqFriendly": true,
+      "senFriendly": false
     },
     {
       "id": "zurihairstudio",
