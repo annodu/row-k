@@ -2,10 +2,51 @@
   "meta": {
     "source": "manual",
     "updatedAt": "2026-08-11",
-    "count": 908,
+    "count": 909,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "gbemi-hair",
+      "name": "Gbemi hair",
+      "areaId": "east",
+      "areaLabel": "East London",
+      "neighbourhood": "East London London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/gbemihair_/",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/gbemihair_/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Manual search",
+      "services": [
+        "U-part wig install",
+        "Wig install (frontal / closure)",
+        "Wig colouring / bundle colouring",
+        "Custom wig"
+      ],
+      "priceBand": "£",
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "manual",
+      "priceEvidence": [],
+      "priceCheckedAt": "",
+      "priceUpdatedAt": "2026-08-11T18:42:38.590Z",
+      "priceConfidence": "manual",
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Created through ROW K admin intake."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-08-11T18:42:50.668Z"
+    },
     {
       "id": "tjslayedit",
       "name": "Tjslayedit",
