@@ -1,10 +1,75 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-08-02",
-    "count": 6
+    "updatedAt": "2026-08-11",
+    "count": 7
   },
   "drafts": [
+    {
+      "id": "get-inkzpired",
+      "status": "ready_to_approve",
+      "name": "Get Inkzpired",
+      "areaId": "mobile",
+      "areaIds": [
+        "mobile"
+      ],
+      "areaLabel": "Mobile",
+      "neighbourhood": "Mobile",
+      "postcode": "",
+      "bookingPlatform": "Direct website",
+      "bookingUrl": "https://getinkzpired.as.me/schedule/523a1cde",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/get_inkzpired/",
+      "tiktokUrl": "",
+      "addedVia": "Code edit",
+      "discoverySource": "Cowork scrape",
+      "services": [
+        "Boho braids / goddess braids",
+        "Knotless braids",
+        "Half braids, half sew-in",
+        "Feed-in braids",
+        "French curl",
+        "Fulani / lemonade braids",
+        "Crochet",
+        "Miracle knots",
+        "Boho braids bob",
+        "French curl bob"
+      ],
+      "rawServices": [],
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "customFilters": {},
+      "priceBand": "££",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "Small Boho Braided Bob - £200",
+        "Small Boho Knotless Braids - £240",
+        "Smedium Boho Knotless braids - £230",
+        "Medium Boho Knotless Braids - £220",
+        "Small Fulani Braids with Boho affect - £180",
+        "Medium Fulani Braids with Boho affect - £170",
+        "Small Boho Braided Bob - £300",
+        "Small Boho Knotless Braids - £350"
+      ],
+      "priceCheckedAt": "2026-06-03",
+      "priceUpdatedAt": "2026-06-03",
+      "priceConfidence": "high",
+      "summary": "Manual entry added from your latest salon update batch.",
+      "warnings": [],
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "createdAt": "2026-08-11",
+      "updatedAt": "2026-08-11",
+      "googleMapsUri": "",
+      "googleReviewCount": 0,
+      "googleMatchConfidence": "no-match",
+      "googleDisplayName": ""
+    },
     {
       "id": "new-stylist-msb0rbdx",
       "status": "needs_review",
