@@ -604,6 +604,9 @@ export async function searchSalons({
   senFriendly = false,
   lgbtqFriendly = false,
   parkingAvailable = false,
+  sellingHairAny = false,
+  priceIncludesHair = false,
+  sellsHairSeparately = false,
   hasVerifiedReviews = false,
   googleReviewsOnly = false,
   bookingSitesOnly = false,
@@ -627,6 +630,9 @@ export async function searchSalons({
         matchesSenFriendly(salon, senFriendly) &&
         matchesLgbtqFriendly(salon, lgbtqFriendly) &&
         matchesParkingAvailable(salon, parkingAvailable) &&
+        matchesSellingHairAny(salon, sellingHairAny) &&
+        matchesPriceIncludesHair(salon, priceIncludesHair) &&
+        matchesSellsHairSeparately(salon, sellsHairSeparately) &&
         matchesHasVerifiedReviews(salon, hasVerifiedReviews) &&
         matchesGoogleReviewsOnly(salon, googleReviewsOnly) &&
         matchesBookingSitesOnly(salon, bookingSitesOnly) &&
@@ -740,6 +746,30 @@ function matchesParkingAvailable(salon, parkingAvailable) {
   }
 
   return salon.parkingAvailable === true;
+}
+
+function matchesSellingHairAny(salon, sellingHairAny) {
+  if (!sellingHairAny) {
+    return true;
+  }
+
+  return salon.priceIncludesHair === true || salon.sellsHairSeparately === true;
+}
+
+function matchesPriceIncludesHair(salon, priceIncludesHair) {
+  if (!priceIncludesHair) {
+    return true;
+  }
+
+  return salon.priceIncludesHair === true;
+}
+
+function matchesSellsHairSeparately(salon, sellsHairSeparately) {
+  if (!sellsHairSeparately) {
+    return true;
+  }
+
+  return salon.sellsHairSeparately === true;
 }
 
 function matchesWheelchairAccessible(salon, wheelchairAccessible) {

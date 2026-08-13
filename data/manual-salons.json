@@ -1,11 +1,251 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-08-11",
-    "count": 910,
+    "updatedAt": "2026-08-13",
+    "count": 912,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "temi-hairstylist",
+      "name": "Temi Hairstylist",
+      "areaId": "south-east",
+      "areaLabel": "South east London",
+      "neighbourhood": "South east London London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/temihairstylist/",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/temihairstylist/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Manual search",
+      "services": [
+        "Boho braids / goddess braids",
+        "Box braids",
+        "Feed-in braids",
+        "Fulani / lemonade braids",
+        "French curl",
+        "Creative braids",
+        "Knotless braids",
+        "Wig cornrows"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Created through ROW K admin intake."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-08-11T21:49:40.872Z"
+    },
+    {
+      "id": "the-braider-uk",
+      "name": "The Braider UK",
+      "areaId": "north",
+      "areaLabel": "North London",
+      "neighbourhood": "North London London",
+      "postcode": "",
+      "bookingPlatform": "Direct website",
+      "bookingUrl": "https://thebraideruk.as.me/schedule/7e7e307b",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/thebraideruk/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Manual search",
+      "services": [
+        "Fulani / lemonade braids",
+        "Wig cornrows",
+        "Boho braids / goddess braids",
+        "Stitch braids",
+        "Boho braids bob",
+        "Knotless braids",
+        "Miracle knots",
+        "French curl",
+        "Half braids, half sew-in"
+      ],
+      "priceBand": "££",
+      "servicePriceBand": "££",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "manual",
+      "priceEvidence": [],
+      "priceCheckedAt": "",
+      "priceUpdatedAt": "2026-08-11T21:34:15.857Z",
+      "priceConfidence": "manual",
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Created through ROW K admin intake."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-08-11T21:36:41.617Z",
+      "sellsHairSeparately": true,
+      "hairShopUrl": "https://www.instagram.com/thebraideruk/",
+      "vendorId": "bohemebundles"
+    },
+    {
+      "id": "butterfly-fingaz",
+      "name": "Butterfly Fingaz",
+      "areaId": "east",
+      "areaIds": [
+        "east",
+        "mobile",
+        "south-east"
+      ],
+      "areaLabel": "East London / Mobile / home service / South east London",
+      "neighbourhood": "East London and Mobile / home service and South east London London",
+      "postcode": "",
+      "bookingPlatform": "Direct website",
+      "bookingUrl": "https://butterfly-fingaz-studio.square.site/s/appointments",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/butterflyfingaz/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Manual search",
+      "services": [
+        "Wig cornrows",
+        "Twists (with extensions)",
+        "Miracle knots",
+        "Retwist",
+        "Creative braids",
+        "Knotless braids",
+        "Fulani / lemonade braids",
+        "Stitch braids",
+        "Feed-in braids",
+        "Boho braids / goddess braids",
+        "French curl",
+        "Crochet",
+        "Faux locs",
+        "Updo",
+        "Microbraids / x-small braids",
+        "Half braids, half sew-in"
+      ],
+      "priceBand": "£",
+      "servicePriceBand": "£",
+      "packagePriceBand": "££",
+      "priceIncludesHair": true,
+      "priceComparisonMode": "mixed",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "Wig Braid Down",
+        "£30",
+        "45 mins",
+        "Passion Twist",
+        "Hair inlcuded Size Medium/Small",
+        "150",
+        "4 hrs 30 mins",
+        "Miracle Knots",
+        "Hair not included You will need the correct crochet hair for miracle knots 4-8 packs depending on fullness",
+        "£100",
+        "4 hrs 30 mins",
+        "Microfine Maintenance",
+        "£90",
+        "2 hrs+",
+        "Microfine Curl Installation",
+        "150",
+        "3 hrs",
+        "Loc style",
+        "No wash or retwist included",
+        "£30",
+        "1 hr+",
+        "Loc Retwist: Palm Roll 70 - 109 Locs Only",
+        "£95",
+        "2 hrs 30 mins",
+        "Loc Retwist: Palm Roll 45 - 69 Locs Only",
+        "£85",
+        "2 hrs",
+        "Loc Retwist: Palm Roll 140 - 199 Locs Only",
+        "£120",
+        "3 hrs",
+        "Loc Retwist: Palm Roll 110 - 139 Locs Only",
+        "£110",
+        "2 hrs 45 mins",
+        "Loc Retwist: Palm Roll 10 - 44 Locs Only",
+        "Your Locs will be counted. 10-44 Locs only Wash & Loc Detox at Nottm & Lewisham Locations only",
+        "£75",
+        "1 hr 15 mins",
+        "Loc Retwist: Interlock",
+        "£70",
+        "1 hr+",
+        "Koroba Braids",
+        "8-13 creative braids with rolled ends sewn in",
+        "£80",
+        "3 hrs 30 mins",
+        "Knotless: Small/Medium",
+        "Hair included",
+        "£150",
+        "4 hrs 30 mins",
+        "Knotless: Medium/Large",
+        "Hair included",
+        "£120",
+        "3 hrs 30 mins",
+        "Half Head Fulani Half Sew In",
+        "This style includes simple stitch braids at the front & sew in at the back",
+        "you will need:",
+        "2 packs of human hair bundles",
+        "1-2 packs of pre stretched xpression/human hair",
+        "£80",
+        "4 hrs 30 mins",
+        "Half Head Fulani Half Feed In Braids",
+        "Small/Medium feed ins at the back",
+        "small braid creative style at the front",
+        "2-3 packs boho curly/burmese curl/french curl braiding hair",
+        "£150",
+        "30 mins+",
+        "Feed In Braids: Cornrows",
+        "For 2 Feed In Braids",
+        "1 pack of pre stretched",
+        "£40",
+        "1 hr+",
+        "Crochet Faux Locs",
+        "Braid down method",
+        "£150",
+        "2 hrs",
+        "Cainrows: Own Hair",
+        "Any style available",
+        "With or without gel.",
+        "Blow dry is included,",
+        "Arrive pre washed & blow dried",
+        "if you’d like a faster service.",
+        "Option to have mousse & oil to seal.",
+        "£25",
+        "1 hr+",
+        "Braided Ponytail",
+        "£200",
+        "3 hrs+",
+        "Braided Patewo Up Do",
+        "Small braids",
+        "£140",
+        "3 hrs 30 mins+",
+        "Blow Dry",
+        "£45",
+        "1 hr",
+        "8-10 Creative Cornrow",
+        "Own hair",
+        "£60",
+        "2 hrs 30 mins+"
+      ],
+      "priceCheckedAt": "2026-08-11T19:05:42.075Z",
+      "priceUpdatedAt": "2026-08-11T19:05:42.075Z",
+      "priceConfidence": "manual",
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Created through ROW K admin intake."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-08-11T19:07:58.933Z"
+    },
     {
       "id": "ymk-hairr",
       "name": "YMK Hairr",
@@ -391,10 +631,11 @@
         "Relaxer / texturiser",
         "Pixie cut / finger waves",
         "Trim / hair cut",
-        "Full head colour"
+        "Full head colour",
+        "Custom wig"
       ],
       "priceBand": "££",
-      "servicePriceBand": "££",
+      "servicePriceBand": "",
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
@@ -414,7 +655,16 @@
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-08-11",
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://jembomb.com/collections/frontpage"
+      "hairShopUrl": "https://jembomb.com/collections/frontpage",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "customFilters": {},
+      "updatedAt": "2026-08-11",
+      "vendorId": "jembomb"
     },
     {
       "id": "diosa-london-2",
@@ -877,7 +1127,9 @@
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-07-31",
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://www.hairbyflo.co.uk/"
+      "hairShopUrl": "https://www.hairbyflo.co.uk/category/all-products",
+      "priceIncludesHair": true,
+      "vendorId": "hairbyflo-x"
     },
     {
       "id": "hershairsuite",
@@ -1929,7 +2181,7 @@
       "priceBand": "££",
       "servicePriceBand": "££",
       "packagePriceBand": "",
-      "priceIncludesHair": false,
+      "priceIncludesHair": true,
       "priceComparisonMode": "service-only",
       "priceSource": "auto",
       "priceEvidence": [
@@ -1959,7 +2211,8 @@
       "customFilters": {},
       "updatedAt": "2026-07-31",
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://www.rshairuk.co.uk/"
+      "hairShopUrl": "https://www.rshairuk.co.uk/",
+      "vendorId": "rshairuk"
     },
     {
       "id": "precioushair-co",
@@ -2018,7 +2271,8 @@
       "googleCheckedAt": "2026-07-31",
       "websiteUrl": "https://precioushaircompany.com/",
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://precioushaircompany.com/collections"
+      "hairShopUrl": "https://precioushaircompany.com/collections",
+      "vendorId": "precioushair-co"
     },
     {
       "id": "fhairuk",
@@ -3781,7 +4035,8 @@
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-07-31",
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://tressologybydca.com/collections/all"
+      "hairShopUrl": "https://tressologybydca.com/collections/all",
+      "vendorId": "tressology-by-dca"
     },
     {
       "id": "laced-out-uk",
@@ -8162,7 +8417,7 @@
       "priceBand": "££",
       "servicePriceBand": "££",
       "packagePriceBand": "",
-      "priceIncludesHair": false,
+      "priceIncludesHair": true,
       "priceComparisonMode": "service-only",
       "priceSource": "auto",
       "priceEvidence": [
@@ -8196,7 +8451,8 @@
       "googleFormattedAddress": null,
       "googleCheckedAt": "2026-07-29",
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://www.instagram.com/kluxecollection_/"
+      "hairShopUrl": "https://www.instagram.com/kluxecollection_/",
+      "vendorId": "theeklparlour"
     },
     {
       "id": "hairpalaceldn",
@@ -10061,8 +10317,7 @@
       "bookingUrl": "https://www.colouredbyad.com/contact",
       "instagramUrl": "https://www.instagram.com/colouredbyad/",
       "services": [
-        "Wig colouring / bundle colouring",
-        "Full head colour"
+        "Wig colouring / bundle colouring"
       ],
       "priceBand": "££",
       "servicePriceBand": "",
@@ -10097,7 +10352,7 @@
       "googleDisplayName": null,
       "googleFormattedAddress": null,
       "googleCheckedAt": "2026-07-29",
-      "updatedAt": "2026-07-31",
+      "updatedAt": "2026-08-11",
       "websiteUrl": "https://www.colouredbyad.com",
       "tiktokUrl": "",
       "hijabiFriendly": false,
@@ -10160,7 +10415,10 @@
       "canBraidWithoutGel": false,
       "wheelchairAccessible": false,
       "customFilters": {},
-      "updatedAt": "2026-07-24"
+      "updatedAt": "2026-07-24",
+      "sellsHairSeparately": true,
+      "hairShopUrl": "https://www.instagram.com/_wdservices/",
+      "vendorId": "wdservices"
     },
     {
       "id": "wigsbyfoster",
@@ -12065,7 +12323,8 @@
       "customFilters": {},
       "updatedAt": "2026-07-24",
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://www.crownedbeauty22.com/"
+      "hairShopUrl": "https://www.crownedbeauty22.com/blank",
+      "vendorId": "crowned-beauty"
     },
     {
       "id": "maluwanichole",
@@ -13847,7 +14106,7 @@
       "wheelchairAccessible": true,
       "servicePriceBand": "",
       "packagePriceBand": "",
-      "priceIncludesHair": false,
+      "priceIncludesHair": true,
       "priceComparisonMode": "service-only",
       "updatedAt": "2026-06-09",
       "addedVia": "Admin tool",
@@ -13862,7 +14121,8 @@
       "googleFormattedAddress": "415 Wick Ln, Fish Island, London E3 2JG, UK",
       "googleCheckedAt": "2026-07-23",
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://aaliyahnaomihair.squarespace.com/"
+      "hairShopUrl": "https://aaliyahnaomihair.squarespace.com/shophair-jBpgO",
+      "vendorId": "aaliyah-naomi-hair"
     },
     {
       "id": "houseofsoraiafurtado",
@@ -14346,13 +14606,14 @@
       "customFilters": {},
       "servicePriceBand": "",
       "packagePriceBand": "",
-      "priceIncludesHair": false,
+      "priceIncludesHair": true,
       "priceComparisonMode": "service-only",
       "senFriendly": false,
       "lgbtqFriendly": false,
       "parkingAvailable": true,
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://houseoffbl.com/"
+      "hairShopUrl": "https://houseoffbl.com/shop-page/",
+      "vendorId": "house-of-fbl"
     },
     {
       "id": "wearmodule",
@@ -15562,7 +15823,8 @@
       "priceComparisonMode": "service-only",
       "updatedAt": "2026-07-24",
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://www.hairkemistry.com/collections/all"
+      "hairShopUrl": "https://www.hairkemistry.com/collections/all",
+      "vendorId": "hair-kemistry"
     },
     {
       "id": "bynickellecarey",
@@ -15622,7 +15884,8 @@
       "priceComparisonMode": "service-only",
       "updatedAt": "2026-07-24",
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://www.instagram.com/lushcheveuxltd/"
+      "hairShopUrl": "https://www.instagram.com/lushcheveuxltd/",
+      "vendorId": "lushcheveuxltd"
     },
     {
       "id": "penggirlshair",
@@ -16446,7 +16709,7 @@
       "wheelchairAccessible": false,
       "servicePriceBand": "",
       "packagePriceBand": "",
-      "priceIncludesHair": false,
+      "priceIncludesHair": true,
       "priceComparisonMode": "service-only",
       "updatedAt": "2026-07-31",
       "googlePlaceId": "ChIJ2ZnETE0FdkgRjbWrW9I855w",
@@ -16462,7 +16725,8 @@
       "parkingAvailable": false,
       "customFilters": {},
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://ajahsbeautybase.com/collections/all"
+      "hairShopUrl": "https://ajahsbeautybase.com/collections/all",
+      "vendorId": "ajahs-beauty-base"
     },
     {
       "id": "hott-uk",
@@ -17238,7 +17502,9 @@
       "googleCheckedAt": "2026-07-29",
       "websiteUrl": "https://www.arielalondon.com",
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://www.arielahairandbeauty.com/"
+      "hairShopUrl": "https://www.arielahairandbeauty.com/hair",
+      "priceIncludesHair": true,
+      "vendorId": "ariela-london"
     },
     {
       "id": "rinsedpeckham",
@@ -17984,69 +18250,6 @@
       "updatedAt": "2026-07-25"
     },
     {
-      "id": "hairby-mideyy",
-      "name": "Hairby Mideyy",
-      "areaId": "all-london",
-      "areaLabel": "London",
-      "neighbourhood": "London",
-      "postcode": "",
-      "bookingPlatform": "Direct website",
-      "bookingUrl": "https://hairbymideyy.as.me/schedule/50e2a05d",
-      "instagramUrl": "https://www.instagram.com/hairby_mideyy/",
-      "services": [
-        "Feed-in braids",
-        "Sleek ponytail / bun",
-        "Fulani / lemonade braids",
-        "Knotless braids",
-        "Box braids",
-        "Retwist",
-        "Frontal ponytail / bun",
-        "Traditional sew-in / leave out",
-        "Closure sew-in / closure behind the hairline",
-        "Frontal sew-in",
-        "Flipover / Versatile sew-in",
-        "U-part wig install",
-        "Custom wig",
-        "Wig install (frontal / closure)",
-        "Wig colouring / bundle colouring",
-        "Miracle knots",
-        "Stitch braids",
-        "Boho braids bob",
-        "Kids & teens styles"
-      ],
-      "summary": "Admin draft created from stylist intake.",
-      "source": "manual",
-      "evidence": [
-        "Submitted link: https://www.instagram.com/hairby_mideyy/",
-        "Submitted link: https://hairbymideyy.as.me/schedule/50e2a05d",
-        "Raw services provided during admin intake."
-      ],
-      "priceBand": "£",
-      "priceSource": "auto",
-      "priceEvidence": [
-        "4 FEEDIN BRAIDS - £50",
-        "6 FEEDIN BRAIDS - £60",
-        "8 FEEDIN BRAIDS - £70",
-        "10-12 FEEDIN BRAIDS - £80",
-        "14-16 FEEDIN BRAIDS - £100",
-        "18-20 FEEDIN BRAIDS - £120",
-        "22-26 FEEDIN BRAIDS - £140",
-        "MEDUSA BRAIDS - £90"
-      ],
-      "priceCheckedAt": "2026-06-03",
-      "priceConfidence": "high",
-      "priceUpdatedAt": "2026-06-03",
-      "addedVia": "Admin tool",
-      "discoverySource": "Manual search",
-      "googlePlaceId": null,
-      "googleReviewCount": 0,
-      "googleMapsUri": "",
-      "googleMatchConfidence": "no-match",
-      "googleDisplayName": null,
-      "googleFormattedAddress": null,
-      "googleCheckedAt": "2026-07-29"
-    },
-    {
       "id": "ponytailclinic",
       "name": "Ponytail Clinic",
       "areaId": "east",
@@ -18233,7 +18436,7 @@
       "wheelchairAccessible": false,
       "servicePriceBand": "",
       "packagePriceBand": "",
-      "priceIncludesHair": false,
+      "priceIncludesHair": true,
       "priceComparisonMode": "service-only",
       "updatedAt": "2026-06-24",
       "googlePlaceId": null,
@@ -18244,7 +18447,8 @@
       "googleFormattedAddress": null,
       "googleCheckedAt": "2026-07-29",
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://www.7styles.co.uk/shop/"
+      "hairShopUrl": "https://www.7styles.co.uk/shop/",
+      "vendorId": "7styles"
     },
     {
       "id": "kayy-didd-thatt",
@@ -18853,7 +19057,8 @@
       "websiteUrl": "https://www.adornedbyanj.co.uk",
       "sellsHairSeparately": true,
       "hairShopUrl": "https://daleyascollection.co.uk/",
-      "priceIncludesHair": true
+      "priceIncludesHair": true,
+      "vendorId": "adorned-by-anj"
     },
     {
       "id": "adysa-studio",
@@ -19297,7 +19502,10 @@
       "googleDisplayName": null,
       "googleFormattedAddress": null,
       "googleCheckedAt": "2026-07-29",
-      "parkingAvailable": true
+      "parkingAvailable": true,
+      "websiteUrl": "https://www.allurehouse.co.uk/",
+      "sellsHairSeparately": false,
+      "hairShopUrl": "https://www.allurehouse.co.uk/haircollection"
     },
     {
       "summary": "Manual entry added from your bridal and editorial list.",
@@ -19312,8 +19520,8 @@
       "neighbourhood": "Mobile / home service London",
       "postcode": "",
       "bookingPlatform": "Instagram",
-      "bookingUrl": "https://www.instagram.com/allurehousebridal/",
-      "instagramUrl": "https://www.instagram.com/allurehousebridal/",
+      "bookingUrl": "https://www.instagram.com/allurehouseuk/",
+      "instagramUrl": "https://www.instagram.com/allurehouseuk/",
       "services": [
         "Bridal"
       ],
@@ -19328,8 +19536,8 @@
       "googleCheckedAt": "2026-07-29",
       "updatedAt": "2026-07-24",
       "websiteUrl": "https://www.allurehouse.co.uk/",
-      "sellsHairSeparately": true,
-      "hairShopUrl": "https://www.allurehouse.co.uk/haircollection"
+      "sellsHairSeparately": false,
+      "hairShopUrl": ""
     },
     {
       "id": "aluxebeauty-uk",
@@ -19906,7 +20114,7 @@
       "discoverySource": "Cowork scrape",
       "servicePriceBand": "£",
       "packagePriceBand": "",
-      "priceIncludesHair": false,
+      "priceIncludesHair": true,
       "priceComparisonMode": "service-only",
       "googlePlaceId": null,
       "googleReviewCount": 0,
@@ -19917,7 +20125,8 @@
       "googleCheckedAt": "2026-07-29",
       "websiteUrl": "https://www.ariyohair.com/",
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://www.ariyohair.com/shop"
+      "hairShopUrl": "https://www.ariyohair.com/shop",
+      "vendorId": "ariyo-hair"
     },
     {
       "id": "artistrybyserena",
@@ -20630,7 +20839,8 @@
       "googleFormattedAddress": null,
       "googleCheckedAt": "2026-07-29",
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://beautebybrenda.com/collections/bulk-hair-bundles"
+      "hairShopUrl": "https://beautebybrenda.com/collections/bulk-hair-bundles",
+      "vendorId": "beaute-by-brenda"
     },
     {
       "id": "beauty-by-shakyra",
@@ -21104,7 +21314,8 @@
       "wheelchairAccessible": false,
       "customFilters": {},
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://www.bestbyjessica.co.uk/"
+      "hairShopUrl": "https://www.bestbyjessica.co.uk/category/hair-bundles",
+      "vendorId": "b-e-s-t-by-jessica"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -21182,7 +21393,8 @@
       "googleFormattedAddress": "Essex, Shop 1, 17 Ripple Rd, Barking IG11 7NN, UK",
       "googleCheckedAt": "2026-07-23",
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://www.bettysunisexhairstudio.com/shop"
+      "hairShopUrl": "https://www.bettysunisexhairstudio.com/shop",
+      "vendorId": "bettys-unisex-hair-studio"
     },
     {
       "id": "beyond-glam",
@@ -21266,11 +21478,12 @@
       "customFilters": {},
       "servicePriceBand": "££",
       "packagePriceBand": "",
-      "priceIncludesHair": false,
+      "priceIncludesHair": true,
       "priceComparisonMode": "service-only",
       "updatedAt": "2026-07-24",
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://beyondglamhair.com/collections/frontpage"
+      "hairShopUrl": "https://beyondglamhair.com/collections/frontpage",
+      "vendorId": "beyond-glam-hair-beauty-studio"
     },
     {
       "id": "bimmytouch",
@@ -21949,7 +22162,8 @@
         "kent"
       ],
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://se7venhair.com/"
+      "hairShopUrl": "https://se7venhair.com/",
+      "vendorId": "braid-bar-ldn"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -22308,11 +22522,11 @@
       "tiktokUrl": "https://www.tiktok.com/@braidsbyfels/video/7474015488121621782?lang=en-GB",
       "hijabiFriendly": false,
       "wheelchairAccessible": false,
-      "servicePriceBand": "££",
+      "servicePriceBand": "",
       "packagePriceBand": "",
-      "priceIncludesHair": true,
+      "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-07-24",
+      "updatedAt": "2026-08-12",
       "websiteUrl": "",
       "googlePlaceId": null,
       "googleReviewCount": 0,
@@ -22323,7 +22537,11 @@
       "googleCheckedAt": "2026-07-29",
       "customFilters": {},
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://braidsbyfels.com/collections/all"
+      "hairShopUrl": "https://braidsbyfels.com/collections/all",
+      "vendorId": "braidsbyfels",
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": true
     },
     {
       "id": "braidzbynadz",
@@ -22928,7 +23146,8 @@
       "googleCheckedAt": "2026-07-29",
       "parkingAvailable": true,
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://www.byrhiistudios.com/category/all-products"
+      "hairShopUrl": "https://www.byrhiistudios.com/category/all-products",
+      "vendorId": "byrhii-studios"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -22981,7 +23200,9 @@
       "googleFormattedAddress": null,
       "googleCheckedAt": "2026-07-29",
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://regalstrand.com"
+      "hairShopUrl": "https://regalstrand.com",
+      "priceIncludesHair": true,
+      "vendorId": "cabelo-beau"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -23093,7 +23314,8 @@
       "googleCheckedAt": "2026-07-29",
       "websiteUrl": "https://www.capitaolondon.com",
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://www.capitaolondon.com/bundles"
+      "hairShopUrl": "https://www.capitaolondon.com/bundles",
+      "vendorId": "capitaolondon"
     },
     {
       "id": "carvedbeautyspa",
@@ -23370,7 +23592,8 @@
       "googleFormattedAddress": null,
       "googleCheckedAt": "2026-07-29",
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://ceohairlondon.com/collections"
+      "hairShopUrl": "https://ceohairlondon.com/collections",
+      "vendorId": "ceo-hair-london"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -23881,7 +24104,8 @@
       "googleFormattedAddress": null,
       "googleCheckedAt": "2026-07-29",
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://cilkyhair.com/"
+      "hairShopUrl": "https://cilkyhair.com/",
+      "vendorId": "cm-hair-uk"
     },
     {
       "id": "cocoas-touch",
@@ -23938,7 +24162,8 @@
       "updatedAt": "2026-07-24",
       "websiteUrl": "https://www.cocoastouch.co.uk/",
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://www.cocoastouch.co.uk/human-hair-braiding"
+      "hairShopUrl": "https://www.cocoastouch.co.uk/human-hair-braiding",
+      "vendorId": "cocoa-s-touch"
     },
     {
       "id": "coiffedbywonita",
@@ -24664,7 +24889,9 @@
       "googleFormattedAddress": null,
       "googleCheckedAt": "2026-07-29",
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://thebundlebae.co.uk/"
+      "hairShopUrl": "https://thebundlebae.co.uk/",
+      "priceIncludesHair": true,
+      "vendorId": "danis-dolls"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -24771,7 +24998,8 @@
       "googleCheckedAt": "2026-07-23",
       "websiteUrl": "https://www.dbphair.com",
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://www.dbphair.com/dbp-hair-shop"
+      "hairShopUrl": "https://www.dbphair.com/dbp-hair-shop",
+      "vendorId": "dbp-hair"
     },
     {
       "id": "ddhairofficial",
@@ -25501,7 +25729,8 @@
       "googleCheckedAt": "2026-07-23",
       "parkingAvailable": false,
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://drippinstylescollection.myshopify.com/"
+      "hairShopUrl": "https://drippinstylescollection.myshopify.com/",
+      "vendorId": "drippin-styles-hair-studio"
     },
     {
       "id": "dsrhair",
@@ -25703,7 +25932,8 @@
       "priceComparisonMode": "service-only",
       "updatedAt": "2026-07-31",
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://dvhextensions.com"
+      "hairShopUrl": "https://dvhextensions.com",
+      "vendorId": "dvh-salon"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -25774,14 +26004,17 @@
       "neighbourhood": "North West London",
       "postcode": "",
       "bookingPlatform": "Instagram",
-      "bookingUrl": "https://www.instagram.com/eda.lnd/",
+      "bookingUrl": "https://layers777.lovable.app/booking",
       "instagramUrl": "https://www.instagram.com/eda.lnd/",
       "services": [
         "Traditional sew-in / leave out",
         "Half braids, half sew-in",
-        "Flipover / versatile sew-in",
+        "Flipover / Versatile sew-in",
         "French curl",
-        "Fulani / lemonade braids"
+        "Fulani / lemonade braids",
+        "Miracle knots",
+        "Hybrid sew in (tapes + sew in)",
+        "Closure sew-in / closure behind the hairline"
       ],
       "summary": "Manual entry added from your North West London salon update batch.",
       "source": "manual",
@@ -25790,19 +26023,19 @@
       ],
       "canBraidWithoutGel": true,
       "priceBand": "£",
-      "priceSource": "manual",
+      "priceSource": "auto",
       "priceEvidence": [
-        "Big Braids Sew In - Big Braids £30 Sew In £35",
-        "Medium Braids Cornrows - Medium Braids £45 Cornrows £30",
-        "Small Braids Faux Locs - Small Braids £65 Faux Locs £50",
-        "Micro Braids Crochet - Micro Braids £80 Crochet £30",
-        "Braid Removal (any style) Braid Removal (any style) - BABY GIRL PACK ( £100) PRINCESS PACK ( £150)",
-        "Braid Removal (any style) - LUXPACK (£230) EXTRA",
-        "Natta) HAE Mask Braid Wash + Refresh - Natta) HAE Mask Braid Wash + Refresh £50",
-        "Hair Detox/Hot Oil Treatment Cornrows/ twists (+ + - Hair Detox/Hot Oil Treatment Cornrows/ twists (+ £10 +"
+        "Big Braids Sew In - Big Braids Sew In - Big Braids Sew In - Big Braids £30 Sew In £35",
+        "Medium Braids Cornrows - Medium Braids Cornrows - Medium Braids Cornrows - Medium Braids £45 Cornrows £30",
+        "Small Braids Faux Locs - Small Braids Faux Locs - Small Braids Faux Locs - Small Braids £65 Faux Locs £50",
+        "Micro Braids Crochet - Micro Braids Crochet - Micro Braids Crochet - Micro Braids £80 Crochet £30",
+        "Braid Removal (any style) Braid Removal (any style) - BABY GIRL PACK ( ) PRINCESS PACK ( ) - Braid Removal (any style) Braid Removal (any style) - BABY GIRL PACK ( £100) PRINCESS PACK ( £150)",
+        "Braid Removal (any style) - LUXPACK ( ) EXTRA - Braid Removal (any style) - LUXPACK (£230) EXTRA",
+        "Natta) HAE Mask Braid Wash + Refresh - Natta) HAE Mask Braid Wash + Refresh - Natta) HAE Mask Braid Wash + Refresh - Natta) HAE Mask Braid Wash + Refresh £50",
+        "Hair Detox/Hot Oil Treatment Cornrows/ twists (+ + - Hair Detox/Hot Oil Treatment Cornrows/ twists (+ + - Hair Detox/Hot Oil Treatment Cornrows/ twists (+ + - Hair Detox/Hot Oil Treatment Cornrows/ twists (+ £10 +"
       ],
-      "priceCheckedAt": "2026-06-04",
-      "priceUpdatedAt": "2026-06-04",
+      "priceCheckedAt": "2026-08-11T22:46:07.143Z",
+      "priceUpdatedAt": "2026-08-11T22:46:07.143Z",
       "priceConfidence": "manual",
       "addedVia": "Code edit",
       "discoverySource": "Cowork scrape",
@@ -25814,7 +26047,21 @@
       "googleFormattedAddress": null,
       "googleCheckedAt": "2026-07-29",
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://layers777.lovable.app/shop"
+      "hairShopUrl": "https://layers777.lovable.app/shop",
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "customFilters": {},
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": true,
+      "priceComparisonMode": "service-only",
+      "updatedAt": "2026-08-11",
+      "vendorId": "eda-lnd"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -26283,7 +26530,7 @@
       "wheelchairAccessible": false,
       "servicePriceBand": "",
       "packagePriceBand": "",
-      "priceIncludesHair": false,
+      "priceIncludesHair": true,
       "priceComparisonMode": "service-only",
       "updatedAt": "2026-06-10",
       "googlePlaceId": null,
@@ -26294,7 +26541,8 @@
       "googleFormattedAddress": null,
       "googleCheckedAt": "2026-07-29",
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://heroinehaircollection.com/collections"
+      "hairShopUrl": "https://heroinehaircollection.com/collections",
+      "vendorId": "enhanced-by-hair"
     },
     {
       "id": "entwined-curls",
@@ -26682,7 +26930,7 @@
       "priceBand": "£££",
       "servicePriceBand": "",
       "packagePriceBand": "",
-      "priceIncludesHair": false,
+      "priceIncludesHair": true,
       "priceComparisonMode": "service-only",
       "priceSource": "auto",
       "priceEvidence": [
@@ -26721,7 +26969,8 @@
       "lgbtqFriendly": false,
       "parkingAvailable": true,
       "customFilters": {},
-      "updatedAt": "2026-08-02"
+      "updatedAt": "2026-08-02",
+      "vendorId": "estylish"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -26779,7 +27028,8 @@
       "googleCheckedAt": "2026-07-29",
       "updatedAt": "2026-07-24",
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://eugenzehair.com/shop/"
+      "hairShopUrl": "https://eugenzehair.com/shop/",
+      "vendorId": "eugenze"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -27375,7 +27625,8 @@
       "googleFormattedAddress": null,
       "googleCheckedAt": "2026-07-29",
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://www.giashairsalon.com/"
+      "hairShopUrl": "https://www.giashairsalon.com/",
+      "vendorId": "gias-hair-salon"
     },
     {
       "id": "glaysson-carvalho-hair-studio",
@@ -28112,7 +28363,8 @@
       "customFilters": {},
       "updatedAt": "2026-07-29",
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://hhair.co/shop"
+      "hairShopUrl": "https://hhair.co/shop",
+      "vendorId": "h-hair"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -28544,7 +28796,8 @@
       "websiteUrl": "https://www.hairbyesther.uk",
       "sellsHairSeparately": true,
       "hairShopUrl": "https://www.hairbyesther.uk/shop",
-      "priceIncludesHair": false
+      "priceIncludesHair": false,
+      "vendorId": "hair-by-esther"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -28671,7 +28924,9 @@
       "googleFormattedAddress": null,
       "googleCheckedAt": "2026-07-29",
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://by-kuks.myshopify.com/"
+      "hairShopUrl": "https://by-kuks.myshopify.com/",
+      "priceIncludesHair": true,
+      "vendorId": "hair-by-kuks"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -28854,7 +29109,9 @@
       "googleFormattedAddress": null,
       "googleCheckedAt": "2026-07-29",
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://www.opehairandbeauty.com/collections/all"
+      "hairShopUrl": "https://www.opehairandbeauty.com/collections/all",
+      "priceIncludesHair": true,
+      "vendorId": "hair-by-opee"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -29058,7 +29315,9 @@
       "googleCheckedAt": "2026-07-29",
       "parkingAvailable": true,
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://shophairbysb.com/"
+      "hairShopUrl": "https://shophairbysb.com/",
+      "priceIncludesHair": true,
+      "vendorId": "hair-by-ssb"
     },
     {
       "id": "hair-by-temiii",
@@ -29451,10 +29710,10 @@
         "User-provided Instagram handle and service list."
       ],
       "id": "hairby-fiera",
-      "name": "Hairby Fiera",
+      "name": "Hair by Fiera",
       "areaId": "mobile",
-      "areaLabel": "Mobile",
-      "neighbourhood": "Mobile",
+      "areaLabel": "Mobile / home service / London",
+      "neighbourhood": "Mobile / home service and London London",
       "postcode": "",
       "bookingPlatform": "Instagram",
       "bookingUrl": "https://www.instagram.com/hairby.fiera/",
@@ -29473,22 +29732,33 @@
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
       "wheelchairAccessible": false,
-      "priceBand": "",
-      "servicePriceBand": "",
+      "priceBand": "£",
+      "servicePriceBand": "£",
       "packagePriceBand": "",
       "priceIncludesHair": false,
-      "priceComparisonMode": "",
-      "priceSource": "",
+      "priceComparisonMode": "service-only",
+      "priceSource": "manual",
       "priceEvidence": [],
       "priceCheckedAt": "",
-      "priceUpdatedAt": "",
-      "priceConfidence": "",
-      "updatedAt": "2026-06-10",
+      "priceUpdatedAt": "2026-08-12T01:22:07.710Z",
+      "priceConfidence": "manual",
+      "updatedAt": "2026-08-12",
       "googlePlaceId": null,
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleCheckedAt": "2026-07-23"
+      "googleCheckedAt": "2026-07-23",
+      "sellsHairSeparately": false,
+      "hairShopUrl": "",
+      "areaIds": [
+        "mobile",
+        "all-london"
+      ],
+      "websiteUrl": "",
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "customFilters": {}
     },
     {
       "id": "hairbyamandaniceandneat",
@@ -29864,7 +30134,8 @@
       "updatedAt": "2026-07-24",
       "parkingAvailable": true,
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://www.instagram.com/wig.mania"
+      "hairShopUrl": "https://www.shopwigmania.com/",
+      "vendorId": "hair-by-mf"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -30827,7 +31098,9 @@
       "updatedAt": "2026-07-24",
       "websiteUrl": "https://hm-hair.com",
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://hm-hair.com/collections"
+      "hairShopUrl": "https://hm-hair.com/collections",
+      "priceIncludesHair": true,
+      "vendorId": "hm-hair"
     },
     {
       "id": "honey-hand",
@@ -31077,7 +31350,7 @@
       "canBraidWithoutGel": false,
       "servicePriceBand": "",
       "packagePriceBand": "",
-      "priceIncludesHair": false,
+      "priceIncludesHair": true,
       "priceComparisonMode": "service-only",
       "updatedAt": "2026-06-05",
       "addedVia": "Bulk import",
@@ -31095,7 +31368,8 @@
       "lgbtqFriendly": false,
       "parkingAvailable": false,
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://www.houseofhairuk.com/pages/collections-landing"
+      "hairShopUrl": "https://www.houseofhairuk.com/pages/collections-landing",
+      "vendorId": "house-of-hair-uk"
     },
     {
       "id": "houseofiye",
@@ -31207,7 +31481,7 @@
       "priceUpdatedAt": "2026-06-05",
       "servicePriceBand": "",
       "packagePriceBand": "",
-      "priceIncludesHair": false,
+      "priceIncludesHair": true,
       "priceComparisonMode": "service-only",
       "addedVia": "Bulk import",
       "discoverySource": "Cowork scrape",
@@ -31229,7 +31503,8 @@
       "customFilters": {},
       "updatedAt": "2026-08-02",
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://www.houseoflocsshop.com/"
+      "hairShopUrl": "https://www.houseoflocsshop.com/collections/all",
+      "vendorId": "house-of-locs-uk"
     },
     {
       "id": "hurthe-stylist",
@@ -32024,7 +32299,8 @@
       "googleFormattedAddress": null,
       "googleCheckedAt": "2026-07-29",
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://www.instagram.com/themainelabel_/"
+      "hairShopUrl": "https://www.instagram.com/themainelabel_/",
+      "vendorId": "jazzy-thee-hair-artist"
     },
     {
       "id": "jbs-hairr",
@@ -32597,7 +32873,8 @@
       "lgbtqFriendly": false,
       "parkingAvailable": true,
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://www.kannisbeauty.com/collections"
+      "hairShopUrl": "https://www.kannisbeauty.com/collections",
+      "vendorId": "kanni-s-beauty-kub"
     },
     {
       "id": "kaothar-beauty-care",
@@ -33690,7 +33967,8 @@
       "googleCheckedAt": "2026-07-23",
       "websiteUrl": "https://laellondon.com",
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://laellondon.com/collections"
+      "hairShopUrl": "https://laellondon.com/collections",
+      "vendorId": "lael-london"
     },
     {
       "id": "laid-by-j-hair",
@@ -34447,7 +34725,8 @@
       "parkingAvailable": false,
       "websiteUrl": "https://madousshairstudio.com/",
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://madousshairstudio.com/collections/all"
+      "hairShopUrl": "https://madousshairstudio.com/collections/all",
+      "vendorId": "madouss-hair-studio"
     },
     {
       "id": "maggies-hair",
@@ -34635,7 +34914,8 @@
       "googleCheckedAt": "2026-07-23",
       "websiteUrl": "https://maisonstyle.co.uk",
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://maisonstore.co.uk/"
+      "hairShopUrl": "https://maisonstore.co.uk/",
+      "vendorId": "maison-style"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -34691,7 +34971,9 @@
       "googleCheckedAt": "2026-07-29",
       "websiteUrl": "https://majestikstyles.co.uk",
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://majestikstyles.co.uk/collections/all"
+      "hairShopUrl": "https://majestikstyles.co.uk/collections/all",
+      "priceIncludesHair": true,
+      "vendorId": "majestik-styles"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -34900,7 +35182,8 @@
       "googleFormattedAddress": null,
       "googleCheckedAt": "2026-07-29",
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://www.marievhair.co.uk/shop"
+      "hairShopUrl": "https://www.marievhair.co.uk/shop",
+      "vendorId": "marie-v-hair"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -35547,9 +35830,7 @@
       "googleMatchConfidence": "no-match",
       "googleDisplayName": null,
       "googleFormattedAddress": null,
-      "googleCheckedAt": "2026-07-29",
-      "sellsHairSeparately": true,
-      "hairShopUrl": "https://www.instagram.com/mklacedit/"
+      "googleCheckedAt": "2026-07-29"
     },
     {
       "id": "mk-suite",
@@ -35607,7 +35888,8 @@
       "googleCheckedAt": "2026-07-29",
       "websiteUrl": "https://bymakia.com",
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://bymakia.com/"
+      "hairShopUrl": "https://bymakia.com/",
+      "vendorId": "by-makia"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -36099,7 +36381,8 @@
       "parkingAvailable": false,
       "customFilters": {},
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://www.naysahnyhair.com/category/all-products"
+      "hairShopUrl": "https://www.naysahnyhair.com/category/all-products",
+      "vendorId": "naysahny-hair"
     },
     {
       "id": "ney-hairs",
@@ -36196,7 +36479,8 @@
       "googleFormattedAddress": null,
       "googleCheckedAt": "2026-07-29",
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://amorellehair.com/"
+      "hairShopUrl": "https://amorellehair.com/",
+      "vendorId": "nhanced-hair"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -36321,7 +36605,8 @@
       "updatedAt": "2026-07-24",
       "parkingAvailable": true,
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://www.nobletiaras.com/collections"
+      "hairShopUrl": "https://www.nobletiaras.com/collections",
+      "vendorId": "noble-tiaras-virgin-hair-salon"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -36454,7 +36739,8 @@
       "googleCheckedAt": "2026-07-29",
       "websiteUrl": "https://www.novatress.com/",
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://www.novatress.com/collections/all"
+      "hairShopUrl": "https://www.novatress.com/collections/all",
+      "vendorId": "novatress-uk"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -36625,7 +36911,8 @@
       "googleFormattedAddress": "Snell's Park, Angel yard, London N18 2FD, UK",
       "googleCheckedAt": "2026-07-23",
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://www.ososnatched.com"
+      "hairShopUrl": "https://www.ososnatched.com",
+      "vendorId": "o-so-snatched"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -36967,7 +37254,8 @@
       "googleFormattedAddress": null,
       "googleCheckedAt": "2026-07-29",
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://oshair.co.uk/collections/all"
+      "hairShopUrl": "https://oshair.co.uk/collections/all",
+      "vendorId": "os-hair"
     },
     {
       "id": "ourahhairsalon",
@@ -37106,7 +37394,8 @@
       "googleCheckedAt": "2026-07-23",
       "websiteUrl": "https://ovieyalondon.co.uk/",
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://ovieyalondon.co.uk/shop"
+      "hairShopUrl": "https://ovieyalondon.co.uk/shop",
+      "vendorId": "ovieya-london-ltd"
     },
     {
       "id": "oyinns-touch",
@@ -37188,7 +37477,9 @@
       "updatedAt": "2026-07-24",
       "websiteUrl": "https://www.oyinnstouch.co.uk/",
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://www.oyinnstouch.co.uk/category/all-products"
+      "hairShopUrl": "https://www.oyinnstouch.co.uk/category/all-products",
+      "priceIncludesHair": true,
+      "vendorId": "oyinn-s-touch"
     },
     {
       "id": "paintedbykrystel",
@@ -37308,7 +37599,8 @@
       "googleCheckedAt": "2026-07-23",
       "websiteUrl": "https://www.papachichistyle.com",
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://www.papachichistyle.com/collections/all"
+      "hairShopUrl": "https://www.papachichistyle.com/collections/all",
+      "vendorId": "papachichi-style"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -38060,17 +38352,18 @@
       "services": [
         "Boho braids / goddess braids",
         "Knotless braids",
-        "Miracle knots",
         "Box braids",
         "Retwist",
         "Starter locs",
         "Fulani / lemonade braids",
-        "Twists (with extensions)",
         "Feed-in braids",
-        "French curl",
-        "Stitch braids",
-        "Boho braids bob",
-        "Kids & teens styles"
+        "Wig install (frontal / closure)",
+        "Wig colouring / bundle colouring",
+        "Custom wig",
+        "Wig cornrows",
+        "Traditional sew-in / leave out",
+        "Closure sew-in / closure behind the hairline",
+        "Half up half down"
       ],
       "tiktokUrl": "",
       "hijabiFriendly": false,
@@ -38090,10 +38383,10 @@
       "priceCheckedAt": "2026-06-05",
       "priceUpdatedAt": "2026-06-05",
       "priceConfidence": "manual",
-      "updatedAt": "2026-06-05",
+      "updatedAt": "2026-08-11",
       "servicePriceBand": "",
       "packagePriceBand": "",
-      "priceIncludesHair": false,
+      "priceIncludesHair": true,
       "priceComparisonMode": "service-only",
       "addedVia": "Code edit",
       "discoverySource": "Cowork scrape",
@@ -38106,7 +38399,13 @@
       "googleCheckedAt": "2026-07-29",
       "websiteUrl": "https://www.precisionn.co.uk",
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://www.precisionn.co.uk/category/all-products"
+      "hairShopUrl": "https://www.precisionn.co.uk/category/all-products",
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "customFilters": {},
+      "vendorId": "precision-n-hair-and-beauty"
     },
     {
       "id": "pressed-linkss",
@@ -38159,7 +38458,8 @@
       "googleCheckedAt": "2026-07-29",
       "parkingAvailable": true,
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://pressedandlinks.com/collections"
+      "hairShopUrl": "https://pressedandlinks.com/collections",
+      "vendorId": "pressed-linkss"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -38418,7 +38718,8 @@
       "googleCheckedAt": "2026-07-23",
       "websiteUrl": "https://rawmantichair.com/",
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://rawmantichair.com/collections"
+      "hairShopUrl": "https://rawmantichair.com/collections",
+      "vendorId": "rawmantic-hair"
     },
     {
       "id": "rb-styles-uk",
@@ -38767,7 +39068,8 @@
       "googleCheckedAt": "2026-07-29",
       "websiteUrl": "https://www.renstouch.co.uk",
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://www.renstouch.co.uk/collections/shop"
+      "hairShopUrl": "https://www.renstouch.co.uk/collections/shop",
+      "vendorId": "ren-s-touch"
     },
     {
       "summary": "Manual entry added from your bridal and editorial list.",
@@ -38943,7 +39245,8 @@
       "googleCheckedAt": "2026-07-29",
       "parkingAvailable": true,
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://riasbeauty.co/collections/all"
+      "hairShopUrl": "https://riasbeauty.co/collections/all",
+      "vendorId": "rias-beauty-studio"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -39079,13 +39382,14 @@
       "canBraidWithoutGel": false,
       "servicePriceBand": "",
       "packagePriceBand": "",
-      "priceIncludesHair": false,
+      "priceIncludesHair": true,
       "priceComparisonMode": "service-only",
       "updatedAt": "2026-06-05",
       "addedVia": "Code edit",
       "discoverySource": "Cowork scrape",
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://rpcbeautykollection.com/"
+      "hairShopUrl": "https://rpcbeautykollection.com/",
+      "vendorId": "rpc-beauty-kollection"
     },
     {
       "id": "rs-hairandbeauty",
@@ -39269,7 +39573,8 @@
       "googleCheckedAt": "2026-07-23",
       "websiteUrl": "https://sahiyaslays.com",
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://www.sahiyaslays.com"
+      "hairShopUrl": "https://www.sahiyaslays.com",
+      "vendorId": "sahiya-slays"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -39461,7 +39766,8 @@
       "googleCheckedAt": "2026-07-29",
       "websiteUrl": "https://sasheamari.com/",
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://sasheamari.com/collections/human-hair"
+      "hairShopUrl": "https://sasheamari.com/collections/human-hair",
+      "vendorId": "sashe-amari"
     },
     {
       "id": "savsstyles",
@@ -39622,7 +39928,8 @@
       "googleCheckedAt": "2026-07-29",
       "parkingAvailable": true,
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://strnds.uk/"
+      "hairShopUrl": "https://strnds.uk/",
+      "vendorId": "sbeks-hair"
     },
     {
       "id": "sc-braided-her",
@@ -40225,7 +40532,8 @@
       "googleFormattedAddress": null,
       "googleCheckedAt": "2026-07-29",
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://sihairco.com/"
+      "hairShopUrl": "https://sihairco.com/",
+      "vendorId": "si-hair-uk"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -40341,8 +40649,8 @@
       "areaLabel": "South East",
       "neighbourhood": "South East London",
       "postcode": "",
-      "bookingPlatform": "Instagram",
-      "bookingUrl": "https://www.instagram.com/silonesensei_/",
+      "bookingPlatform": "Direct website",
+      "bookingUrl": "https://www.silonesrange.com/book-online",
       "instagramUrl": "https://www.instagram.com/silonesensei_/",
       "services": [
         "Knotless braids",
@@ -40350,7 +40658,8 @@
         "Twists (with extensions)",
         "Fulani / lemonade braids",
         "Faux locs",
-        "Kids & teens styles"
+        "Kids & teens styles",
+        "Wig cornrows"
       ],
       "addedVia": "Code edit",
       "discoverySource": "Cowork scrape",
@@ -40377,7 +40686,9 @@
       "priceCheckedAt": "",
       "priceUpdatedAt": "",
       "priceConfidence": "",
-      "updatedAt": "2026-07-30"
+      "updatedAt": "2026-08-11",
+      "lgbtqFriendly": false,
+      "parkingAvailable": false
     },
     {
       "id": "simply-g-hair",
@@ -40716,7 +41027,8 @@
       "updatedAt": "2026-07-24",
       "websiteUrl": "https://slayedbybailey.com/",
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://slayedbybailey.com/"
+      "hairShopUrl": "https://slayedbybailey.com/",
+      "vendorId": "slayed-by-bailey"
     },
     {
       "id": "slayed-by-danielle",
@@ -41605,7 +41917,8 @@
       "googleCheckedAt": "2026-07-23",
       "websiteUrl": "https://stephanielebbyhair.com/",
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://stephanielebbyhair.com/collections"
+      "hairShopUrl": "https://stephanielebbyhair.com/collections/all-products",
+      "vendorId": "stephanie-lebby-hair-limited"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -42116,7 +42429,7 @@
       "priceConfidence": "manual",
       "servicePriceBand": "££££",
       "packagePriceBand": "",
-      "priceIncludesHair": false,
+      "priceIncludesHair": true,
       "priceComparisonMode": "service-only",
       "addedVia": "Bulk import",
       "discoverySource": "Cowork scrape",
@@ -42138,7 +42451,8 @@
       "customFilters": {},
       "updatedAt": "2026-07-31",
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://pearlmajesty.com/"
+      "hairShopUrl": "https://pearlmajesty.com/",
+      "vendorId": "styles-by-farah-pearl"
     },
     {
       "id": "stylesbyfola",
@@ -42240,7 +42554,8 @@
       "priceComparisonMode": "mixed",
       "updatedAt": "2026-07-24",
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://currentwigs.com/collections/hair-bundles/hair-bundles"
+      "hairShopUrl": "https://currentwigs.com/collections/hair-bundles/hair-bundles",
+      "vendorId": "stylesbyfola"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -42432,7 +42747,8 @@
       "googleCheckedAt": "2026-07-29",
       "websiteUrl": "https://www.swishldn.com/",
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://www.swishldn.com/products"
+      "hairShopUrl": "https://www.swishldn.com/products",
+      "vendorId": "swish-london"
     },
     {
       "id": "taiwo-styles",
@@ -42859,7 +43175,7 @@
       "priceUpdatedAt": "2026-06-05",
       "servicePriceBand": "£",
       "packagePriceBand": "",
-      "priceIncludesHair": false,
+      "priceIncludesHair": true,
       "priceComparisonMode": "service-only",
       "addedVia": "Bulk import",
       "discoverySource": "Cowork scrape",
@@ -42872,7 +43188,8 @@
       "googleCheckedAt": "2026-07-23",
       "parkingAvailable": true,
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://www.thechairsalon.co.uk/"
+      "hairShopUrl": "https://www.thechairsalon.co.uk/shop",
+      "vendorId": "the-chair-salon"
     },
     {
       "id": "the-curl-coach",
@@ -43823,7 +44140,9 @@
       "googleCheckedAt": "2026-07-29",
       "websiteUrl": "https://coilemuse.com",
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://coilemuse.com/"
+      "hairShopUrl": "https://coilemuse.com/",
+      "priceIncludesHair": true,
+      "vendorId": "the-sewn-muse"
     },
     {
       "id": "the-standard-studio",
@@ -44393,11 +44712,12 @@
       "customFilters": {},
       "servicePriceBand": "",
       "packagePriceBand": "",
-      "priceIncludesHair": false,
+      "priceIncludesHair": true,
       "priceComparisonMode": "service-only",
       "updatedAt": "2026-07-24",
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://silqmist.com/"
+      "hairShopUrl": "https://silqmist.com/",
+      "vendorId": "silqmist-salon"
     },
     {
       "id": "tinatailss",
@@ -44878,7 +45198,7 @@
       "priceBand": "£££",
       "servicePriceBand": "£££",
       "packagePriceBand": "",
-      "priceIncludesHair": false,
+      "priceIncludesHair": true,
       "priceComparisonMode": "service-only",
       "priceSource": "manual",
       "priceEvidence": [
@@ -44914,7 +45234,8 @@
       "parkingAvailable": false,
       "customFilters": {},
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://thathairltd.com/"
+      "hairShopUrl": "https://thathairltd.com/",
+      "vendorId": "tthairbarldn"
     },
     {
       "id": "uni-tinas-saloon",
@@ -45331,7 +45652,8 @@
       "googleFormattedAddress": null,
       "googleCheckedAt": "2026-07-29",
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://peoniahair.com/"
+      "hairShopUrl": "https://peoniahair.com/collections",
+      "vendorId": "walvan-hair"
     },
     {
       "id": "wendis-room",
@@ -45436,7 +45758,9 @@
       "googleFormattedAddress": null,
       "googleCheckedAt": "2026-07-29",
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://www.instagram.com/wenlaceunits/"
+      "hairShopUrl": "https://www.instagram.com/wenlaceunits/",
+      "priceIncludesHair": true,
+      "vendorId": "wen-hair-ldn"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -45818,7 +46142,8 @@
       "googleFormattedAddress": null,
       "googleCheckedAt": "2026-07-29",
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://zawigs.com"
+      "hairShopUrl": "https://zawigs.com",
+      "vendorId": "za-wigs"
     },
     {
       "id": "zantibloom",
@@ -46089,7 +46414,8 @@
       "googleFormattedAddress": "102 Norwood High St, Norwood, London SE27 9NH, UK",
       "googleCheckedAt": "2026-07-23",
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://bohotress.com/"
+      "hairShopUrl": "https://bohotress.com/",
+      "vendorId": "zuri-hair-studio"
     },
     {
       "id": "bkay-thestylist",
@@ -46585,14 +46911,15 @@
       "priceIncludesHair": true,
       "priceComparisonMode": "mixed",
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://www.instagram.com/scalpishco/"
+      "hairShopUrl": "https://www.instagram.com/scalpishco/",
+      "vendorId": "scalpish-uk"
     },
     {
       "id": "moshhairlondon",
       "name": "MoshBeautyUK",
-      "areaId": "london",
-      "areaLabel": "London",
-      "neighbourhood": "London",
+      "areaId": "south-east",
+      "areaLabel": "London / South east London",
+      "neighbourhood": "London and South east London London",
       "postcode": "",
       "bookingPlatform": "Direct website",
       "bookingUrl": "https://www.moshhairlondon.co.uk",
@@ -46631,7 +46958,7 @@
       "tiktokUrl": "",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
-      "updatedAt": "2026-07-31",
+      "updatedAt": "2026-08-12",
       "priceBand": "£",
       "priceSource": "auto",
       "priceEvidence": [
@@ -46667,7 +46994,8 @@
       "lgbtqFriendly": false,
       "parkingAvailable": false,
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://www.moshhairlondon.co.uk/collections/frontpage"
+      "hairShopUrl": "https://www.moshhairlondon.co.uk/collections/frontpage",
+      "vendorId": "moshbeautyuk"
     },
     {
       "id": "ccs-glamhousehair",
@@ -46839,7 +47167,8 @@
       "googleFormattedAddress": null,
       "googleCheckedAt": "2026-07-29",
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://www.miswigs.com/"
+      "hairShopUrl": "https://www.miswigs.com/",
+      "vendorId": "miswigs"
     },
     {
       "id": "andrellastouch",
@@ -47138,9 +47467,9 @@
     {
       "id": "tcolourshair",
       "name": "Tcolourshair",
-      "areaId": "london",
-      "areaLabel": "London",
-      "neighbourhood": "London",
+      "areaId": "south-east",
+      "areaLabel": "London / South east London",
+      "neighbourhood": "London and South east London London",
       "postcode": "",
       "bookingPlatform": "Direct website",
       "bookingUrl": "https://tcolourshair.as.me",
@@ -47170,7 +47499,7 @@
       "priceCheckedAt": "2026-06-05",
       "priceConfidence": "high",
       "priceUpdatedAt": "2026-06-05",
-      "servicePriceBand": "££",
+      "servicePriceBand": "",
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
@@ -47182,7 +47511,20 @@
       "googleMatchConfidence": "no-match",
       "googleDisplayName": null,
       "googleFormattedAddress": null,
-      "googleCheckedAt": "2026-07-29"
+      "googleCheckedAt": "2026-07-29",
+      "sellsHairSeparately": true,
+      "hairShopUrl": "https://www.instagram.com/tcolourshair/",
+      "vendorId": "tcolourshair",
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "customFilters": {},
+      "updatedAt": "2026-08-13"
     },
     {
       "id": "veehairlab",
@@ -47821,7 +48163,8 @@
       "googleCheckedAt": "2026-07-29",
       "websiteUrl": "https://www.diosalondon.com",
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://www.diosalondon.com/shop"
+      "hairShopUrl": "https://www.diosalondon.com/shop",
+      "vendorId": "diosa-london"
     },
     {
       "id": "larostudios",
@@ -48434,7 +48777,8 @@
       "googleFormattedAddress": null,
       "googleCheckedAt": "2026-07-29",
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://www.instagram.com/aluxehair.uk/"
+      "hairShopUrl": "https://www.instagram.com/aluxehair.uk/",
+      "vendorId": "aluxe-uk"
     },
     {
       "id": "thehairtresser",
@@ -48650,41 +48994,6 @@
       "googleDisplayName": null,
       "googleFormattedAddress": null,
       "googleCheckedAt": "2026-07-29"
-    },
-    {
-      "id": "chrissybales",
-      "name": "Chrissy Bales",
-      "areaId": "north-west",
-      "areaLabel": "North West",
-      "neighbourhood": "North West London",
-      "postcode": "",
-      "bookingPlatform": "Direct website",
-      "bookingUrl": "https://chrissybales.com/products/wig-consultation",
-      "instagramUrl": "https://www.instagram.com/chrissybales/",
-      "services": [
-        "Custom wig"
-      ],
-      "summary": "Manual Instagram-led entry added from user-provided link and filter.",
-      "source": "manual",
-      "evidence": [
-        "User-provided manual addition on 2026-05-13.",
-        "Instagram source: https://www.instagram.com/chrissybales/",
-        "Booking source: https://chrissybales.com/products/wig-consultation",
-        "User-provided location: NW.",
-        "User-provided filter: custom wig."
-      ],
-      "addedVia": "Code edit",
-      "discoverySource": "Manual search",
-      "googlePlaceId": "ChIJyfrtSZIbdkgRcV4yW2b9txg",
-      "googleReviewCount": 11,
-      "googleMapsUri": "https://maps.google.com/?cid=1781170793706839665&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
-      "googleMatchConfidence": "high",
-      "googleDisplayName": "Chrissy Bales",
-      "googleFormattedAddress": "3 Nugent Terrace, London NW8 9QB, UK",
-      "googleCheckedAt": "2026-07-23",
-      "websiteUrl": "https://chrissybales.com",
-      "sellsHairSeparately": true,
-      "hairShopUrl": "https://chrissybales.com/"
     },
     {
       "id": "wondersbeautybar",
@@ -49043,7 +49352,8 @@
       "googleCheckedAt": "2026-07-23",
       "websiteUrl": "https://www.thebosslook.com",
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://www.thebosslook.com/bossy-units-hair-extentions"
+      "hairShopUrl": "https://www.thebosslook.com/bossy-units-hair-extentions",
+      "vendorId": "the-boss-look"
     },
     {
       "id": "maisondecheveuxldn",
@@ -49228,7 +49538,9 @@
       "googleFormattedAddress": null,
       "googleCheckedAt": "2026-07-29",
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://cghairco.com/collections/all"
+      "hairShopUrl": "https://cghairco.com/collections/all",
+      "priceIncludesHair": true,
+      "vendorId": "cg-hair"
     },
     {
       "id": "bylextee",
@@ -49636,7 +49948,8 @@
       "googleFormattedAddress": null,
       "googleCheckedAt": "2026-07-29",
       "sellsHairSeparately": true,
-      "hairShopUrl": "https://www.instagram.com/hirayahair_/"
+      "hairShopUrl": "https://hirayahair.com/",
+      "vendorId": "hairtology-uk"
     },
     {
       "id": "hairology-by-christiana-e",
@@ -50476,6 +50789,35 @@
       "googleDisplayName": null,
       "googleFormattedAddress": null,
       "googleCheckedAt": "2026-07-29"
+    },
+    {
+      "id": "cdcolourist",
+      "name": "Cdcolourist",
+      "areaId": "all-london",
+      "areaLabel": "London",
+      "neighbourhood": "",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/cdcolourist/",
+      "websiteUrl": "https://www.cdcolourist.com",
+      "instagramUrl": "https://www.instagram.com/cdcolourist/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Manual search",
+      "services": [
+        "Wig colouring / bundle colouring"
+      ],
+      "summary": "Colourist specialising in wig and bundle colouring, by appointment/quote via Instagram.",
+      "source": "manual",
+      "evidence": [
+        "User confirmed: offers wig and bundle colouring services.",
+        "Instagram bio: \"colour services | custom units\"."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-08-12"
     }
   ]
 }

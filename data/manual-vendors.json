@@ -1,0 +1,2793 @@
+{
+  "meta": {
+    "source": "manual",
+    "updatedAt": "2026-08-12",
+    "count": 147,
+    "notes": "London-based hair vendors. Separate from the stylist/salon directory. productTypes and fulfilment are placeholders pending review."
+  },
+  "vendors": [
+    {
+      "id": "tch-collection",
+      "name": "Tch Collection",
+      "productTypes": [
+        "Bundles (wefts)",
+        "Wigs"
+      ],
+      "fulfilment": [
+        "Next-day delivery",
+        "Can collect in person / at appointment"
+      ],
+      "instagramUrl": "https://www.instagram.com/tch.collection/",
+      "source": "manual",
+      "summary": "Manual entry pending product/fulfilment detail.",
+      "evidence": [
+        "User-provided vendor link."
+      ],
+      "websiteUrl": "https://tchcollection.com/"
+    },
+    {
+      "id": "chansluxe-uk",
+      "name": "Chansluxe",
+      "productTypes": [
+        "Wigs",
+        "Bundles (wefts)",
+        "Frontals / closures"
+      ],
+      "fulfilment": [],
+      "instagramUrl": "https://www.instagram.com/chansluxe.uk/",
+      "source": "manual",
+      "summary": "Manual entry pending product/fulfilment detail.",
+      "evidence": [
+        "User-provided vendor link."
+      ]
+    },
+    {
+      "id": "matchmehair",
+      "name": "Matchmehair",
+      "productTypes": [
+        "Braiding hair (colour mix)",
+        "Bulk braiding hair"
+      ],
+      "fulfilment": [],
+      "instagramUrl": "https://www.instagram.com/matchmehair/",
+      "source": "manual",
+      "summary": "Manual entry pending product/fulfilment detail.",
+      "evidence": [
+        "User-provided vendor link."
+      ],
+      "websiteUrl": "https://matchmehair.co.uk/"
+    },
+    {
+      "id": "color-beast",
+      "name": "Color Beast",
+      "productTypes": [
+        "Wigs",
+        "Bundles (wefts)",
+        "Custom colour bundles"
+      ],
+      "fulfilment": [],
+      "instagramUrl": "https://www.instagram.com/color.beast/",
+      "source": "manual",
+      "summary": "Manual entry pending product/fulfilment detail.",
+      "evidence": [
+        "User-provided vendor link."
+      ]
+    },
+    {
+      "id": "thebundlecabin-co-uk",
+      "name": "Thebundlecabin Co",
+      "productTypes": [
+        "Bundles (wefts)",
+        "Wigs"
+      ],
+      "fulfilment": [],
+      "websiteUrl": "https://www.thebundlecabin.co.uk/",
+      "source": "manual",
+      "summary": "Manual entry pending product/fulfilment detail.",
+      "evidence": [
+        "User-provided vendor link."
+      ]
+    },
+    {
+      "id": "sbeautycollection",
+      "name": "Sbeautycollection",
+      "productTypes": [
+        "Bundles (wefts)",
+        "Custom colour bundles",
+        "Wigs",
+        "Frontals / closures"
+      ],
+      "fulfilment": [],
+      "instagramUrl": "https://www.instagram.com/sbeautycollection/",
+      "source": "manual",
+      "summary": "Manual entry pending product/fulfilment detail.",
+      "evidence": [
+        "User-provided vendor link."
+      ]
+    },
+    {
+      "id": "girlhavenuk",
+      "name": "Girlhavenuk",
+      "productTypes": [
+        "Bundles (wefts)"
+      ],
+      "fulfilment": [],
+      "instagramUrl": "https://www.instagram.com/girlhavenuk/",
+      "source": "manual",
+      "summary": "Manual entry pending product/fulfilment detail.",
+      "evidence": [
+        "User-provided vendor link."
+      ],
+      "websiteUrl": "https://girlhavenuk.com/"
+    },
+    {
+      "id": "shoriree",
+      "name": "Shoriree",
+      "productTypes": [
+        "Bundles (wefts)",
+        "Wigs",
+        "Tape-ins",
+        "Bulk braiding hair"
+      ],
+      "fulfilment": [],
+      "instagramUrl": "https://www.instagram.com/shoriree/",
+      "source": "manual",
+      "summary": "Manual entry pending product/fulfilment detail.",
+      "evidence": [
+        "User-provided vendor link."
+      ],
+      "websiteUrl": "https://www.shorire.com/"
+    },
+    {
+      "id": "hairvirginity",
+      "name": "Hairvirginity",
+      "productTypes": [
+        "Bundles (wefts)",
+        "Wigs",
+        "I-tips",
+        "Tape-ins"
+      ],
+      "fulfilment": [
+        "Next-day delivery"
+      ],
+      "instagramUrl": "https://www.instagram.com/hairvirginity/",
+      "source": "manual",
+      "summary": "Manual entry pending product/fulfilment detail.",
+      "evidence": [
+        "User-provided vendor link."
+      ],
+      "websiteUrl": "https://hairvirginity.com/"
+    },
+    {
+      "id": "sylktresses",
+      "name": "Sylktresses",
+      "productTypes": [
+        "Bundles (wefts)",
+        "Wigs"
+      ],
+      "fulfilment": [],
+      "instagramUrl": "https://www.instagram.com/sylktresses_/",
+      "source": "manual",
+      "summary": "Manual entry pending product/fulfilment detail.",
+      "evidence": [
+        "User-provided vendor link."
+      ]
+    },
+    {
+      "id": "minkandmane-co",
+      "name": "Minkandmane",
+      "productTypes": [
+        "Bundles (wefts)",
+        "Half wigs / Upart wigs / headband wigs"
+      ],
+      "fulfilment": [],
+      "instagramUrl": "https://www.instagram.com/minkandmane.co/",
+      "source": "manual",
+      "summary": "Manual entry pending product/fulfilment detail.",
+      "evidence": [
+        "User-provided vendor link."
+      ],
+      "websiteUrl": "https://www.shopminkandmane.co/shop"
+    },
+    {
+      "id": "silkensupply",
+      "name": "Silkensupply",
+      "productTypes": [
+        "Bundles (wefts)",
+        "Wigs"
+      ],
+      "fulfilment": [
+        "Next-day delivery"
+      ],
+      "instagramUrl": "https://www.instagram.com/silkensupply/",
+      "source": "manual",
+      "summary": "Manual entry pending product/fulfilment detail.",
+      "evidence": [
+        "User-provided vendor link."
+      ],
+      "websiteUrl": "https://silkensupply.com/en-us"
+    },
+    {
+      "id": "hersilkhair",
+      "name": "Hersilkhair",
+      "productTypes": [
+        "Bundles (wefts)"
+      ],
+      "fulfilment": [],
+      "instagramUrl": "https://www.instagram.com/hersilkhair/",
+      "source": "manual",
+      "summary": "Manual entry pending product/fulfilment detail.",
+      "evidence": [
+        "User-provided vendor link."
+      ]
+    },
+    {
+      "id": "charmurself",
+      "name": "Charmurself",
+      "productTypes": [
+        "Bundles (wefts)",
+        "Wigs"
+      ],
+      "fulfilment": [],
+      "instagramUrl": "https://www.instagram.com/charmurself/",
+      "source": "manual",
+      "summary": "Manual entry pending product/fulfilment detail.",
+      "evidence": [
+        "User-provided vendor link."
+      ],
+      "websiteUrl": "https://charmurself.com/"
+    },
+    {
+      "id": "themonalabel",
+      "name": "Themonalabel",
+      "productTypes": [
+        "Bundles (wefts)",
+        "Wigs",
+        "Tape-ins"
+      ],
+      "fulfilment": [],
+      "instagramUrl": "https://www.instagram.com/themonalabel/",
+      "source": "manual",
+      "summary": "Manual entry pending product/fulfilment detail.",
+      "evidence": [
+        "User-provided vendor link."
+      ]
+    },
+    {
+      "id": "hairbykm-co",
+      "name": "Hairbykm",
+      "productTypes": [
+        "Bundles (wefts)",
+        "Wigs"
+      ],
+      "fulfilment": [],
+      "instagramUrl": "https://www.instagram.com/hairbykm.co/",
+      "source": "manual",
+      "summary": "Manual entry pending product/fulfilment detail.",
+      "evidence": [
+        "User-provided vendor link."
+      ],
+      "websiteUrl": "https://www.hairbykm.com/"
+    },
+    {
+      "id": "hairtrunkcompany",
+      "name": "Hairtrunkcompany",
+      "productTypes": [
+        "Bundles (wefts)",
+        "Frontals / closures",
+        "Wigs",
+        "Tape-ins"
+      ],
+      "fulfilment": [
+        "Next-day delivery",
+        "Can collect in person / at appointment"
+      ],
+      "instagramUrl": "https://www.instagram.com/hairtrunkcompany/",
+      "source": "manual",
+      "summary": "Manual entry pending product/fulfilment detail.",
+      "evidence": [
+        "User-provided vendor link."
+      ],
+      "websiteUrl": "https://www.hairtrunk.co.uk/",
+      "googlePlaceId": "ChIJC8E0Yfmx2EcRd5CPIX8FyN8",
+      "googleMapsUri": "https://maps.google.com/?cid=16125144509382103159&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
+      "googleReviewCount": 46,
+      "areaId": "kent",
+      "areaLabel": "Kent"
+    },
+    {
+      "id": "thelabhairfactory",
+      "name": "Thelabhairfactory",
+      "productTypes": [
+        "Wigs",
+        "Bundles (wefts)"
+      ],
+      "fulfilment": [],
+      "instagramUrl": "https://www.instagram.com/thelabhairfactory/",
+      "source": "manual",
+      "summary": "Manual entry pending product/fulfilment detail.",
+      "evidence": [
+        "User-provided vendor link."
+      ]
+    },
+    {
+      "id": "yaabrownofficial",
+      "name": "Yaabrownofficial",
+      "productTypes": [
+        "Bundles (wefts)"
+      ],
+      "fulfilment": [],
+      "instagramUrl": "https://www.instagram.com/yaabrownofficial/",
+      "source": "manual",
+      "summary": "Manual entry pending product/fulfilment detail.",
+      "evidence": [
+        "User-provided vendor link."
+      ]
+    },
+    {
+      "id": "bohemebundles",
+      "name": "Bohemebundles",
+      "productTypes": [
+        "Bulk braiding hair"
+      ],
+      "fulfilment": [],
+      "instagramUrl": "https://www.instagram.com/bohemebundles/",
+      "linkedSalonId": "the-braider-uk",
+      "source": "manual",
+      "summary": "Manual entry pending product/fulfilment detail.",
+      "evidence": [
+        "User-provided vendor link."
+      ]
+    },
+    {
+      "id": "libralocks",
+      "name": "Libralocks",
+      "productTypes": [
+        "Bundles (wefts)"
+      ],
+      "fulfilment": [],
+      "instagramUrl": "https://www.instagram.com/libralocks/",
+      "source": "manual",
+      "summary": "Manual entry pending product/fulfilment detail.",
+      "evidence": [
+        "User-provided vendor link."
+      ],
+      "websiteUrl": "https://libralocks.com/"
+    },
+    {
+      "id": "epstudiosofficial",
+      "name": "Epstudiosofficial",
+      "productTypes": [
+        "Bundles (wefts)"
+      ],
+      "fulfilment": [
+        "Next-day delivery"
+      ],
+      "instagramUrl": "https://www.instagram.com/epstudiosofficial/",
+      "source": "manual",
+      "summary": "Manual entry pending product/fulfilment detail.",
+      "evidence": [
+        "User-provided vendor link."
+      ],
+      "websiteUrl": "https://epstudios.co/"
+    },
+    {
+      "id": "onewayhairuk",
+      "name": "Onewayhairuk",
+      "productTypes": [
+        "Bundles (wefts)"
+      ],
+      "fulfilment": [],
+      "instagramUrl": "https://www.instagram.com/onewayhairuk/",
+      "source": "manual",
+      "summary": "Manual entry pending product/fulfilment detail.",
+      "evidence": [
+        "User-provided vendor link."
+      ]
+    },
+    {
+      "id": "missbvndles",
+      "name": "Missbvndles",
+      "productTypes": [
+        "Bundles (wefts)",
+        "Frontals / closures",
+        "Wigs"
+      ],
+      "fulfilment": [],
+      "instagramUrl": "https://www.instagram.com/missbvndles/",
+      "source": "manual",
+      "summary": "Manual entry pending product/fulfilment detail.",
+      "evidence": [
+        "User-provided vendor link."
+      ]
+    },
+    {
+      "id": "thehaircollectiveltd",
+      "name": "Thehaircollectiveltd",
+      "productTypes": [
+        "Bundles (wefts)",
+        "Wigs",
+        "Tape-ins"
+      ],
+      "fulfilment": [],
+      "instagramUrl": "https://www.instagram.com/thehaircollectiveltd/",
+      "source": "manual",
+      "summary": "Manual entry pending product/fulfilment detail.",
+      "evidence": [
+        "User-provided vendor link."
+      ]
+    },
+    {
+      "id": "hauseofamara",
+      "name": "Hauseofamara",
+      "productTypes": [
+        "Bundles (wefts)",
+        "Frontals / closures",
+        "Custom colour bundles"
+      ],
+      "fulfilment": [],
+      "instagramUrl": "https://www.instagram.com/hauseofamara_/",
+      "source": "manual",
+      "summary": "Manual entry pending product/fulfilment detail.",
+      "evidence": [
+        "User-provided vendor link."
+      ]
+    },
+    {
+      "id": "cappn",
+      "name": "Cappn",
+      "productTypes": [
+        "Wigs",
+        "Bundles (wefts)"
+      ],
+      "fulfilment": [],
+      "instagramUrl": "https://www.instagram.com/cappn__/",
+      "source": "manual",
+      "summary": "Manual entry pending product/fulfilment detail.",
+      "evidence": [
+        "User-provided vendor link."
+      ],
+      "websiteUrl": "https://www.cappn.co.uk/"
+    },
+    {
+      "id": "sbd-collection",
+      "name": "Sbd Collection",
+      "productTypes": [
+        "Wigs",
+        "Bundles (wefts)",
+        "Tape-ins"
+      ],
+      "fulfilment": [],
+      "instagramUrl": "https://www.instagram.com/sbd.collection/",
+      "source": "manual",
+      "summary": "Manual entry pending product/fulfilment detail.",
+      "evidence": [
+        "User-provided vendor link."
+      ],
+      "websiteUrl": "https://sbdcollection.com/"
+    },
+    {
+      "id": "scalp-d",
+      "name": "Scalp D",
+      "productTypes": [
+        "Frontals / closures",
+        "Wigs",
+        "Bundles (wefts)",
+        "Tape-ins"
+      ],
+      "fulfilment": [],
+      "instagramUrl": "https://www.instagram.com/scalp.d/",
+      "source": "manual",
+      "summary": "Manual entry pending product/fulfilment detail.",
+      "evidence": [
+        "User-provided vendor link."
+      ]
+    },
+    {
+      "id": "loveandgracehair",
+      "name": "Loveandgracehair",
+      "productTypes": [
+        "Bundles (wefts)",
+        "Wigs"
+      ],
+      "fulfilment": [],
+      "instagramUrl": "https://www.instagram.com/loveandgracehair/",
+      "source": "manual",
+      "summary": "Manual entry pending product/fulfilment detail.",
+      "evidence": [
+        "User-provided vendor link."
+      ]
+    },
+    {
+      "id": "aurakluxe",
+      "name": "Aurakluxe",
+      "productTypes": [
+        "Bundles (wefts)",
+        "Frontals / closures"
+      ],
+      "fulfilment": [],
+      "instagramUrl": "https://www.instagram.com/aurakluxe/",
+      "source": "manual",
+      "summary": "Manual entry pending product/fulfilment detail.",
+      "evidence": [
+        "User-provided vendor link."
+      ],
+      "websiteUrl": "https://www.aurakluxe.com/"
+    },
+    {
+      "id": "quayscurls",
+      "name": "Quayscurls",
+      "productTypes": [
+        "Bundles (wefts)",
+        "Half wigs / Upart wigs / headband wigs",
+        "Frontals / closures",
+        "Clip-ins",
+        "Crochet (Miracle knots)"
+      ],
+      "fulfilment": [
+        "Can collect in person / at appointment"
+      ],
+      "instagramUrl": "https://www.instagram.com/quayscurls/",
+      "source": "manual",
+      "summary": "Manual entry pending product/fulfilment detail.",
+      "evidence": [
+        "User-provided vendor link."
+      ],
+      "websiteUrl": "https://www.quayscurls.com/shop"
+    },
+    {
+      "id": "jcextensionss",
+      "name": "Jcextensionss",
+      "productTypes": [
+        "Bundles (wefts)"
+      ],
+      "fulfilment": [],
+      "instagramUrl": "https://www.instagram.com/jcextensionss/",
+      "source": "manual",
+      "summary": "Manual entry pending product/fulfilment detail.",
+      "evidence": [
+        "User-provided vendor link."
+      ]
+    },
+    {
+      "id": "vbrawhair",
+      "name": "Vbrawhair",
+      "productTypes": [
+        "Bundles (wefts)"
+      ],
+      "fulfilment": [],
+      "instagramUrl": "https://www.instagram.com/vbrawhair/",
+      "source": "manual",
+      "summary": "Manual entry pending product/fulfilment detail.",
+      "evidence": [
+        "User-provided vendor link."
+      ]
+    },
+    {
+      "id": "heraura",
+      "name": "Heraura",
+      "productTypes": [
+        "Bundles (wefts)",
+        "Wigs"
+      ],
+      "fulfilment": [],
+      "instagramUrl": "https://www.instagram.com/heraura_/",
+      "source": "manual",
+      "summary": "Manual entry pending product/fulfilment detail.",
+      "evidence": [
+        "User-provided vendor link."
+      ],
+      "websiteUrl": "https://her-aura.co.uk/"
+    },
+    {
+      "id": "maraluxe-hair",
+      "name": "Maraluxe Hair",
+      "productTypes": [
+        "Bundles (wefts)",
+        "Wigs"
+      ],
+      "fulfilment": [],
+      "instagramUrl": "https://www.instagram.com/maraluxe.hair/",
+      "source": "manual",
+      "summary": "Manual entry pending product/fulfilment detail.",
+      "evidence": [
+        "User-provided vendor link."
+      ],
+      "websiteUrl": "https://maraluxehair.com/"
+    },
+    {
+      "id": "envraihair",
+      "name": "Envraihair",
+      "productTypes": [
+        "Bundles (wefts)",
+        "Wigs"
+      ],
+      "fulfilment": [],
+      "instagramUrl": "https://www.instagram.com/envraihair/",
+      "source": "manual",
+      "summary": "Manual entry pending product/fulfilment detail.",
+      "evidence": [
+        "User-provided vendor link."
+      ],
+      "websiteUrl": "https://www.shopenvraihair.com/"
+    },
+    {
+      "id": "lushcheveuxltd",
+      "name": "Lushcheveuxltd",
+      "productTypes": [
+        "Bundles (wefts)"
+      ],
+      "fulfilment": [],
+      "instagramUrl": "https://www.instagram.com/lushcheveuxltd/",
+      "linkedSalonId": "bynickellecarey",
+      "source": "manual",
+      "summary": "Manual entry pending product/fulfilment detail.",
+      "evidence": [
+        "User-provided vendor link."
+      ]
+    },
+    {
+      "id": "cbkhairlab",
+      "name": "Cbkhairlab",
+      "productTypes": [
+        "Bundles (wefts)"
+      ],
+      "fulfilment": [],
+      "instagramUrl": "https://www.instagram.com/cbkhairlab/",
+      "source": "manual",
+      "summary": "Manual entry pending product/fulfilment detail.",
+      "evidence": [
+        "User-provided vendor link."
+      ]
+    },
+    {
+      "id": "motionhairextensions",
+      "name": "Motionhairextensions",
+      "productTypes": [
+        "Bundles (wefts)",
+        "Tape-ins",
+        "K-tips"
+      ],
+      "fulfilment": [],
+      "instagramUrl": "https://www.instagram.com/motionhairextensions/",
+      "source": "manual",
+      "summary": "Manual entry pending product/fulfilment detail.",
+      "evidence": [
+        "User-provided vendor link."
+      ],
+      "websiteUrl": "https://motionhairextensions.com/"
+    },
+    {
+      "id": "therawhairuk",
+      "name": "Therawhairuk",
+      "productTypes": [
+        "Bundles (wefts)",
+        "Frontals / closures",
+        "Custom colour bundles",
+        "Wigs"
+      ],
+      "fulfilment": [],
+      "instagramUrl": "https://www.instagram.com/therawhairuk/",
+      "source": "manual",
+      "summary": "Manual entry pending product/fulfilment detail.",
+      "evidence": [
+        "User-provided vendor link."
+      ],
+      "websiteUrl": "https://therawhairuk.com/"
+    },
+    {
+      "id": "shancabelo",
+      "name": "Shancabelo",
+      "productTypes": [
+        "Bundles (wefts)",
+        "Wigs"
+      ],
+      "fulfilment": [],
+      "instagramUrl": "https://www.instagram.com/shancabelo/",
+      "source": "manual",
+      "summary": "Manual entry pending product/fulfilment detail.",
+      "evidence": [
+        "User-provided vendor link."
+      ],
+      "websiteUrl": "https://www.shancabelo.com/"
+    },
+    {
+      "id": "destinationbty",
+      "name": "Destinationbty",
+      "productTypes": [
+        "Bundles (wefts)",
+        "Wigs"
+      ],
+      "fulfilment": [
+        "Next-day delivery",
+        "Can collect in person / at appointment"
+      ],
+      "instagramUrl": "https://www.instagram.com/destinationbty/",
+      "source": "manual",
+      "summary": "Manual entry pending product/fulfilment detail.",
+      "evidence": [
+        "User-provided vendor link."
+      ],
+      "websiteUrl": "https://destinationbty.com/",
+      "areaId": "east",
+      "areaLabel": "East London"
+    },
+    {
+      "id": "dollsartistrycollection",
+      "name": "Dollsartistrycollection",
+      "productTypes": [
+        "Bundles (wefts)",
+        "Wigs"
+      ],
+      "fulfilment": [],
+      "instagramUrl": "https://www.instagram.com/dollsartistrycollection/",
+      "source": "manual",
+      "summary": "Manual entry pending product/fulfilment detail.",
+      "evidence": [
+        "User-provided vendor link."
+      ],
+      "websiteUrl": "https://www.dollsartistrycollection.com/"
+    },
+    {
+      "id": "ebihair-co",
+      "name": "Ebihair",
+      "productTypes": [
+        "Braiding hair (colour mix)",
+        "French curl braiding hair",
+        "Bulk braiding hair",
+        "Bone Straight (synthetic)"
+      ],
+      "fulfilment": [],
+      "instagramUrl": "https://www.instagram.com/ebihair.co/",
+      "source": "manual",
+      "summary": "Manual entry pending product/fulfilment detail.",
+      "evidence": [
+        "User-provided vendor link."
+      ]
+    },
+    {
+      "id": "braidup-ldn",
+      "name": "Braidup Ldn",
+      "productTypes": [
+        "French curl braiding hair",
+        "Braiding hair (colour mix)"
+      ],
+      "fulfilment": [],
+      "instagramUrl": "https://www.instagram.com/braidup.ldn/",
+      "source": "manual",
+      "summary": "Manual entry pending product/fulfilment detail.",
+      "evidence": [
+        "User-provided vendor link."
+      ]
+    },
+    {
+      "id": "knotthair",
+      "name": "Knotthair",
+      "productTypes": [
+        "French curl braiding hair"
+      ],
+      "fulfilment": [],
+      "instagramUrl": "https://www.instagram.com/knotthair/",
+      "source": "manual",
+      "summary": "Manual entry pending product/fulfilment detail.",
+      "evidence": [
+        "User-provided vendor link."
+      ]
+    },
+    {
+      "id": "rukahair",
+      "name": "Rukahair",
+      "productTypes": [
+        "Bundles (wefts)",
+        "Wigs",
+        "Ponytails",
+        "Clip-ins",
+        "Custom colour bundles",
+        "Braiding hair (colour mix)",
+        "Bone Straight (synthetic)"
+      ],
+      "fulfilment": [],
+      "instagramUrl": "https://www.instagram.com/rukahair/",
+      "source": "manual",
+      "summary": "Manual entry pending product/fulfilment detail.",
+      "evidence": [
+        "User-provided vendor link."
+      ],
+      "websiteUrl": "https://rukahair.com/"
+    },
+    {
+      "id": "rawhairlab",
+      "name": "Rawhairlab",
+      "productTypes": [
+        "Bundles (wefts)",
+        "Frontals / closures"
+      ],
+      "fulfilment": [],
+      "instagramUrl": "https://www.instagram.com/rawhairlab_/",
+      "source": "manual",
+      "summary": "Manual entry pending product/fulfilment detail.",
+      "evidence": [
+        "User-provided vendor link."
+      ],
+      "websiteUrl": "https://therawhairlab.com/"
+    },
+    {
+      "id": "tresorbellehair",
+      "name": "Tresorbellehair",
+      "productTypes": [
+        "Wigs",
+        "Bundles (wefts)",
+        "Custom colour bundles"
+      ],
+      "fulfilment": [],
+      "instagramUrl": "https://www.instagram.com/tresorbellehair/",
+      "source": "manual",
+      "summary": "Manual entry pending product/fulfilment detail.",
+      "evidence": [
+        "User-provided vendor link."
+      ],
+      "websiteUrl": "https://www.shoptresorbelle.com"
+    },
+    {
+      "id": "lopelocks-uk",
+      "name": "Lopelocks Uk",
+      "productTypes": [
+        "French curl braiding hair",
+        "Bundles (wefts)",
+        "Custom colour bundles",
+        "Bone Straight (synthetic)",
+        "Frontals / closures"
+      ],
+      "fulfilment": [],
+      "instagramUrl": "https://www.instagram.com/lopelocks_uk/",
+      "source": "manual",
+      "summary": "Manual entry pending product/fulfilment detail.",
+      "evidence": [
+        "User-provided vendor link."
+      ],
+      "websiteUrl": "https://lopelocks.shop/"
+    },
+    {
+      "id": "charlizehair",
+      "name": "Charlizehair",
+      "productTypes": [
+        "Bundles (wefts)",
+        "Frontals / closures",
+        "Wigs",
+        "Bone Straight (synthetic)",
+        "Bulk braiding hair",
+        "French curl braiding hair"
+      ],
+      "fulfilment": [
+        "Next-day delivery"
+      ],
+      "instagramUrl": "https://www.instagram.com/charlizehair/",
+      "source": "manual",
+      "summary": "Manual entry pending product/fulfilment detail.",
+      "evidence": [
+        "User-provided vendor link."
+      ],
+      "websiteUrl": "https://charlizehair.com/"
+    },
+    {
+      "id": "chrissy-bales",
+      "name": "Chrissy Bales",
+      "productTypes": [
+        "Wigs"
+      ],
+      "fulfilment": [],
+      "websiteUrl": "https://chrissybales.com",
+      "instagramUrl": "https://www.instagram.com/chrissybales/",
+      "areaId": "north-west",
+      "areaLabel": "North West",
+      "source": "manual",
+      "summary": "Wig maker, moved from the stylist/salon directory.",
+      "evidence": [
+        "Previously listed as a salon/stylist; reclassified as a hair vendor (wig maker)."
+      ]
+    },
+    {
+      "id": "jembomb",
+      "name": "Jembomb",
+      "productTypes": [
+        "Bundles (wefts)"
+      ],
+      "fulfilment": [],
+      "areaId": "south-west",
+      "areaLabel": "South west London",
+      "websiteUrl": "https://jembomb.com/",
+      "hairShopUrl": "https://jembomb.com/collections/frontpage",
+      "instagramUrl": "https://www.instagram.com/jembomb/",
+      "linkedSalonId": "jembomb",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (jembomb)."
+      ]
+    },
+    {
+      "id": "hairbyflo-x",
+      "name": "Hairbyflo X",
+      "productTypes": [
+        "Tape-ins",
+        "I-tips"
+      ],
+      "fulfilment": [],
+      "areaId": "north",
+      "areaLabel": "North London",
+      "hairShopUrl": "https://www.hairbyflo.co.uk/category/all-products",
+      "instagramUrl": "https://www.instagram.com/hairbyflo_x/",
+      "linkedSalonId": "hairbyflo-x",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (hairbyflo-x)."
+      ]
+    },
+    {
+      "id": "rshairuk",
+      "name": "RSHairUK",
+      "productTypes": [
+        "Wigs",
+        "Frontals / closures",
+        "Bundles (wefts)"
+      ],
+      "fulfilment": [],
+      "areaId": "east",
+      "areaLabel": "East London",
+      "websiteUrl": "https://www.rshairuk.co.uk",
+      "hairShopUrl": "https://www.rshairuk.co.uk/",
+      "instagramUrl": "https://www.instagram.com/rshairuk_/",
+      "linkedSalonId": "rshairuk",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (rshairuk)."
+      ]
+    },
+    {
+      "id": "precioushair-co",
+      "name": "Precioushair Co",
+      "productTypes": [
+        "Bundles (wefts)",
+        "Frontals / closures",
+        "Wigs",
+        "Custom colour bundles"
+      ],
+      "fulfilment": [],
+      "areaId": "east",
+      "areaLabel": "East London",
+      "websiteUrl": "https://precioushaircompany.com/",
+      "hairShopUrl": "https://precioushaircompany.com/collections",
+      "instagramUrl": "https://www.instagram.com/precioushair.co/",
+      "linkedSalonId": "precioushair-co",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (precioushair-co)."
+      ]
+    },
+    {
+      "id": "tressology-by-dca",
+      "name": "Tressology by DCA",
+      "productTypes": [
+        "Frontals / closures",
+        "Bundles (wefts)",
+        "Wigs",
+        "Custom colour bundles"
+      ],
+      "fulfilment": [],
+      "areaId": "south-east",
+      "areaLabel": "South east London",
+      "hairShopUrl": "https://tressologybydca.com/collections/all",
+      "instagramUrl": "https://www.instagram.com/tressologybydca/",
+      "linkedSalonId": "tressology-by-dca",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (tressology-by-dca)."
+      ]
+    },
+    {
+      "id": "theeklparlour",
+      "name": "Kluxecollection",
+      "productTypes": [
+        "Bundles (wefts)",
+        "Bulk braiding hair",
+        "Frontals / closures"
+      ],
+      "fulfilment": [],
+      "areaId": "east",
+      "areaLabel": "East London",
+      "hairShopUrl": "https://www.instagram.com/kluxecollection_/",
+      "instagramUrl": "https://www.instagram.com/theeklparlour/",
+      "linkedSalonId": "theeklparlour",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (theeklparlour)."
+      ]
+    },
+    {
+      "id": "crowned-beauty",
+      "name": "Crowned beauty",
+      "productTypes": [
+        "Wigs"
+      ],
+      "fulfilment": [],
+      "areaId": "essex",
+      "areaLabel": "Essex",
+      "websiteUrl": "https://www.crownedbeauty22.com",
+      "hairShopUrl": "https://www.crownedbeauty22.com/blank",
+      "instagramUrl": "https://www.instagram.com/crownedbeauty_22/",
+      "linkedSalonId": "crownedbeauty-22",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (crownedbeauty-22)."
+      ]
+    },
+    {
+      "id": "aaliyah-naomi-hair",
+      "name": "Aaliyah Naomi hair",
+      "productTypes": [
+        "Bundles (wefts)"
+      ],
+      "fulfilment": [],
+      "areaId": "east",
+      "areaLabel": "East London",
+      "hairShopUrl": "https://aaliyahnaomihair.squarespace.com/shophair-jBpgO",
+      "instagramUrl": "https://www.instagram.com/aaliyahnaomihair/",
+      "linkedSalonId": "aaliyahnaomihair",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (aaliyahnaomihair)."
+      ]
+    },
+    {
+      "id": "house-of-fbl",
+      "name": "House of FBL",
+      "productTypes": [
+        "Bundles (wefts)",
+        "Tape-ins",
+        "I-tips",
+        "K-tips",
+        "Wigs",
+        "Frontals / closures"
+      ],
+      "fulfilment": [
+        "Next-day delivery"
+      ],
+      "areaId": "essex",
+      "areaLabel": "Essex / East London",
+      "hairShopUrl": "https://houseoffbl.com/shop-page/",
+      "instagramUrl": "https://www.instagram.com/houseoffbl/",
+      "linkedSalonId": "houseoffbl",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (houseoffbl)."
+      ]
+    },
+    {
+      "id": "hair-kemistry",
+      "name": "Hair Kemistry",
+      "productTypes": [
+        "Bundles (wefts)"
+      ],
+      "fulfilment": [],
+      "areaId": "essex",
+      "areaLabel": "Essex",
+      "hairShopUrl": "https://www.hairkemistry.com/collections/all",
+      "instagramUrl": "https://www.instagram.com/shophairkemistry/",
+      "linkedSalonId": "hairkemistry",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (hairkemistry)."
+      ]
+    },
+    {
+      "id": "ajahs-beauty-base",
+      "name": "Ajahs Beauty Base",
+      "productTypes": [
+        "Braiding hair (colour mix)",
+        "Bundles (wefts)",
+        "Bone Straight (synthetic)"
+      ],
+      "fulfilment": [],
+      "areaId": "south-west",
+      "areaLabel": "South West London",
+      "websiteUrl": "https://ajahsbeautybase.com",
+      "hairShopUrl": "https://ajahsbeautybase.com/collections/all",
+      "instagramUrl": "https://www.instagram.com/ajahsbeautybase/",
+      "linkedSalonId": "ajahsbeautybase",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (ajahsbeautybase)."
+      ]
+    },
+    {
+      "id": "ariela-london",
+      "name": "Ariela Hair and Beauty",
+      "productTypes": [
+        "Bundles (wefts)",
+        "I-tips",
+        "K-tips",
+        "Custom colour bundles"
+      ],
+      "fulfilment": [],
+      "areaId": "south-west",
+      "areaLabel": "South West London",
+      "websiteUrl": "https://www.arielalondon.com",
+      "hairShopUrl": "https://www.arielahairandbeauty.com/hair",
+      "instagramUrl": "https://www.instagram.com/ariela_london/",
+      "linkedSalonId": "ariela-london",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (ariela-london)."
+      ]
+    },
+    {
+      "id": "7styles",
+      "name": "7styles",
+      "productTypes": [
+        "Bundles (wefts)",
+        "Frontals / closures",
+        "Wigs"
+      ],
+      "fulfilment": [
+        "Can collect in person / at appointment"
+      ],
+      "areaId": "south",
+      "areaLabel": "South",
+      "websiteUrl": "https://www.7styles.co.uk",
+      "hairShopUrl": "https://www.7styles.co.uk/shop/",
+      "instagramUrl": "https://www.instagram.com/7styles___/",
+      "linkedSalonId": "7styles",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (7styles)."
+      ]
+    },
+    {
+      "id": "adorned-by-anj",
+      "name": "Daleyas Collection",
+      "productTypes": [
+        "Bundles (wefts)",
+        "Frontals / closures",
+        "Custom colour bundles"
+      ],
+      "fulfilment": [
+        "Can collect in person / at appointment"
+      ],
+      "areaId": "east",
+      "areaLabel": "East",
+      "websiteUrl": "https://www.adornedbyanj.co.uk",
+      "hairShopUrl": "https://daleyascollection.co.uk/",
+      "instagramUrl": "https://www.instagram.com/adornedbyanj/",
+      "linkedSalonId": "adornedbyanj",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (adornedbyanj)."
+      ]
+    },
+    {
+      "id": "ariyo-hair",
+      "name": "Ariyo Hair",
+      "productTypes": [
+        "Wigs",
+        "Frontals / closures",
+        "Bundles (wefts)"
+      ],
+      "fulfilment": [],
+      "areaId": "east",
+      "areaLabel": "East",
+      "websiteUrl": "https://www.ariyohair.com/",
+      "hairShopUrl": "https://www.ariyohair.com/shop",
+      "instagramUrl": "https://www.instagram.com/ariyohairr/",
+      "linkedSalonId": "ariyo-hair",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (ariyo-hair)."
+      ]
+    },
+    {
+      "id": "beaute-by-brenda",
+      "name": "Beaute by Brenda",
+      "productTypes": [
+        "Bulk braiding hair"
+      ],
+      "fulfilment": [],
+      "areaId": "essex",
+      "areaLabel": "Essex",
+      "hairShopUrl": "https://beautebybrenda.com/collections/bulk-hair-bundles",
+      "instagramUrl": "https://www.instagram.com/beaute.by.brenda/",
+      "linkedSalonId": "beaute-brenda",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (beaute-brenda)."
+      ]
+    },
+    {
+      "id": "b-e-s-t-by-jessica",
+      "name": "B.E.S.T by Jessica",
+      "productTypes": [
+        "Bundles (wefts)",
+        "Wigs",
+        "Bulk braiding hair"
+      ],
+      "fulfilment": [],
+      "areaId": "south-east",
+      "areaLabel": "South East",
+      "websiteUrl": "https://www.bestbyjessica.co.uk",
+      "hairShopUrl": "https://www.bestbyjessica.co.uk/category/hair-bundles",
+      "instagramUrl": "https://www.instagram.com/bestbyjessica_salon/",
+      "linkedSalonId": "bestbyjessica-salon",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (bestbyjessica-salon)."
+      ]
+    },
+    {
+      "id": "bettys-unisex-hair-studio",
+      "name": "Bettys Unisex Hair Studio",
+      "productTypes": [
+        "Wigs",
+        "Bundles (wefts)",
+        "Frontals / closures",
+        "Custom colour bundles"
+      ],
+      "fulfilment": [],
+      "areaId": "east",
+      "areaLabel": "East",
+      "hairShopUrl": "https://www.bettysunisexhairstudio.com/shop",
+      "instagramUrl": "https://www.instagram.com/bettysunisexhairstudio/",
+      "linkedSalonId": "bettys-unisex-hair-studio",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (bettys-unisex-hair-studio)."
+      ]
+    },
+    {
+      "id": "beyond-glam-hair-beauty-studio",
+      "name": "Beyond Glam Hair & Beauty Studio",
+      "productTypes": [
+        "Bundles (wefts)",
+        "Frontals / closures",
+        "I-tips",
+        "Tape-ins"
+      ],
+      "fulfilment": [],
+      "areaId": "north",
+      "areaLabel": "North",
+      "hairShopUrl": "https://beyondglamhair.com/collections/frontpage",
+      "instagramUrl": "https://www.instagram.com/beyondglam/",
+      "linkedSalonId": "beyond-glam",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (beyond-glam)."
+      ]
+    },
+    {
+      "id": "braid-bar-ldn",
+      "name": "Se7venhair",
+      "productTypes": [
+        "Bulk braiding hair",
+        "Bundles (wefts)",
+        "Crochet (Miracle knots)",
+        "Clip-ins"
+      ],
+      "fulfilment": [
+        "Can collect in person / at appointment"
+      ],
+      "areaId": "south-east",
+      "areaLabel": "South East London / Kent",
+      "websiteUrl": "https://braidbarldn.com",
+      "hairShopUrl": "https://se7venhair.com/",
+      "instagramUrl": "https://www.instagram.com/braidbarldn/",
+      "linkedSalonId": "braidbarldn",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (braidbarldn)."
+      ]
+    },
+    {
+      "id": "braidsbyfels",
+      "name": "BraidsByFels",
+      "productTypes": [
+        "Bulk braiding hair",
+        "Crochet (Miracle knots)",
+        "Bundles (wefts)"
+      ],
+      "fulfilment": [],
+      "areaId": "north",
+      "areaLabel": "North",
+      "hairShopUrl": "https://braidsbyfels.com/collections/all",
+      "instagramUrl": "https://www.instagram.com/braidsbyfels/",
+      "linkedSalonId": "braidsbyfels",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (braidsbyfels)."
+      ]
+    },
+    {
+      "id": "byrhii-studios",
+      "name": "Byrhii Studios",
+      "productTypes": [
+        "Bundles (wefts)",
+        "Custom colour bundles"
+      ],
+      "fulfilment": [],
+      "areaId": "south-west",
+      "areaLabel": "South West",
+      "hairShopUrl": "https://www.byrhiistudios.com/category/all-products",
+      "instagramUrl": "https://www.instagram.com/byrhii.studios/",
+      "linkedSalonId": "byrhii-studios",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (byrhii-studios)."
+      ]
+    },
+    {
+      "id": "cabelo-beau",
+      "name": "Regal Strand",
+      "productTypes": [
+        "Bundles (wefts)"
+      ],
+      "fulfilment": [],
+      "areaId": "south-east",
+      "areaLabel": "South East",
+      "hairShopUrl": "https://regalstrand.com",
+      "instagramUrl": "https://www.instagram.com/cabelobeau/",
+      "linkedSalonId": "cabelobeau",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (cabelobeau)."
+      ]
+    },
+    {
+      "id": "capitaolondon",
+      "name": "Capitaolondon",
+      "productTypes": [
+        "Wigs",
+        "Bundles (wefts)",
+        "Custom colour bundles",
+        "Frontals / closures"
+      ],
+      "fulfilment": [],
+      "areaId": "east",
+      "areaLabel": "East",
+      "websiteUrl": "https://www.capitaolondon.com",
+      "hairShopUrl": "https://www.capitaolondon.com/bundles",
+      "instagramUrl": "https://www.instagram.com/capitaolondon/",
+      "linkedSalonId": "capitaolondon",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (capitaolondon)."
+      ]
+    },
+    {
+      "id": "ceo-hair-london",
+      "name": "CEO Hair London",
+      "productTypes": [
+        "Frontals / closures",
+        "Bundles (wefts)",
+        "Wigs"
+      ],
+      "fulfilment": [],
+      "areaId": "south-east",
+      "areaLabel": "South East",
+      "hairShopUrl": "https://ceohairlondon.com/collections",
+      "instagramUrl": "https://www.instagram.com/ceohairlondon/",
+      "linkedSalonId": "ceo-hair-london",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (ceo-hair-london)."
+      ]
+    },
+    {
+      "id": "cm-hair-uk",
+      "name": "Cilky Hair",
+      "productTypes": [
+        "Bundles (wefts)",
+        "Frontals / closures",
+        "Custom colour bundles"
+      ],
+      "fulfilment": [],
+      "areaId": "south-west",
+      "areaLabel": "South West",
+      "hairShopUrl": "https://cilkyhair.com/",
+      "instagramUrl": "https://www.instagram.com/cmhairuk/",
+      "linkedSalonId": "cm-hair-uk",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (cm-hair-uk)."
+      ]
+    },
+    {
+      "id": "cocoa-s-touch",
+      "name": "Cocoa's Touch",
+      "productTypes": [
+        "Bulk braiding hair"
+      ],
+      "fulfilment": [],
+      "areaId": "east",
+      "areaLabel": "East",
+      "websiteUrl": "https://www.cocoastouch.co.uk/",
+      "hairShopUrl": "https://www.cocoastouch.co.uk/human-hair-braiding",
+      "instagramUrl": "https://www.instagram.com/cocoastouch/",
+      "linkedSalonId": "cocoas-touch",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (cocoas-touch)."
+      ]
+    },
+    {
+      "id": "danis-dolls",
+      "name": "Danis Dolls",
+      "productTypes": [
+        "Bundles (wefts)",
+        "Custom colour bundles"
+      ],
+      "fulfilment": [],
+      "areaId": "east",
+      "areaLabel": "East",
+      "hairShopUrl": "https://thebundlebae.co.uk/",
+      "instagramUrl": "https://www.instagram.com/thebundlebae.co/",
+      "linkedSalonId": "danis-dolls",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (danis-dolls)."
+      ]
+    },
+    {
+      "id": "dbp-hair",
+      "name": "DBP Hair",
+      "productTypes": [
+        "Frontals / closures",
+        "Bundles (wefts)",
+        "Wigs"
+      ],
+      "fulfilment": [],
+      "areaId": "essex",
+      "areaLabel": "Essex",
+      "websiteUrl": "https://www.dbphair.com",
+      "hairShopUrl": "https://www.dbphair.com/dbp-hair-shop",
+      "instagramUrl": "https://www.instagram.com/dbphair/",
+      "linkedSalonId": "dbp-hair",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (dbp-hair)."
+      ]
+    },
+    {
+      "id": "drippin-styles-hair-studio",
+      "name": "Drippin Styles Hair Studio",
+      "productTypes": [
+        "Wigs",
+        "Bundles (wefts)",
+        "Clip-ins",
+        "Ponytails",
+        "Tape-ins",
+        "Bone Straight (synthetic)",
+        "Bulk braiding hair"
+      ],
+      "fulfilment": [],
+      "areaId": "north-west",
+      "areaLabel": "North West",
+      "hairShopUrl": "https://drippinstylescollection.myshopify.com/",
+      "instagramUrl": "https://www.instagram.com/drippinstyleshairstudio/",
+      "linkedSalonId": "drippin-styles-hair-studio",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (drippin-styles-hair-studio)."
+      ]
+    },
+    {
+      "id": "dvh-salon",
+      "name": "DVH Salon",
+      "productTypes": [
+        "Bundles (wefts)",
+        "Tape-ins",
+        "Frontals / closures",
+        "Wigs",
+        "Ponytails",
+        "Custom colour bundles",
+        "Clip-ins"
+      ],
+      "fulfilment": [
+        "Can collect in person / at appointment"
+      ],
+      "areaId": "east",
+      "areaLabel": "East",
+      "websiteUrl": "https://dvhextensions.com",
+      "hairShopUrl": "https://dvhextensions.com",
+      "instagramUrl": "https://www.instagram.com/dvh_salon/",
+      "linkedSalonId": "dvh-salon",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (dvh-salon)."
+      ]
+    },
+    {
+      "id": "eda-lnd",
+      "name": "Eda LND",
+      "productTypes": [
+        "Bundles (wefts)",
+        "Custom colour bundles"
+      ],
+      "fulfilment": [],
+      "areaId": "north-west",
+      "areaLabel": "North West",
+      "hairShopUrl": "https://layers777.lovable.app/shop",
+      "instagramUrl": "https://www.instagram.com/eda.lnd/",
+      "linkedSalonId": "eda-lnd",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (eda-lnd)."
+      ]
+    },
+    {
+      "id": "enhanced-by-hair",
+      "name": "Heroinehaircollection",
+      "productTypes": [
+        "Bundles (wefts)"
+      ],
+      "fulfilment": [],
+      "areaId": "north",
+      "areaLabel": "North",
+      "hairShopUrl": "https://heroinehaircollection.com/collections",
+      "instagramUrl": "https://www.instagram.com/enhancedbyhair/",
+      "linkedSalonId": "enhanced-by-hair",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (enhanced-by-hair)."
+      ]
+    },
+    {
+      "id": "estylish",
+      "name": "Estylish",
+      "productTypes": [
+        "Bulk braiding hair"
+      ],
+      "fulfilment": [
+        "Can collect in person / at appointment"
+      ],
+      "areaId": "croydon",
+      "areaLabel": "Croydon",
+      "websiteUrl": "https://e-stylish-store.myshopify.com/",
+      "hairShopUrl": "https://e-stylish-store.myshopify.com/collections/all",
+      "instagramUrl": "https://www.instagram.com/e_stylish1/",
+      "linkedSalonId": "estylish",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (estylish)."
+      ]
+    },
+    {
+      "id": "eugenze",
+      "name": "Eugenze",
+      "productTypes": [
+        "Wigs",
+        "Frontals / closures",
+        "Custom colour bundles",
+        "Bundles (wefts)"
+      ],
+      "fulfilment": [],
+      "areaId": "mobile",
+      "areaLabel": "Mobile / home service",
+      "hairShopUrl": "https://eugenzehair.com/shop/",
+      "instagramUrl": "https://www.instagram.com/eugenze/",
+      "linkedSalonId": "eugenze",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (eugenze)."
+      ]
+    },
+    {
+      "id": "gias-hair-salon",
+      "name": "Gias Hair Salon",
+      "productTypes": [
+        "Bundles (wefts)",
+        "Custom colour bundles"
+      ],
+      "fulfilment": [
+        "Next-day delivery"
+      ],
+      "areaId": "south-west",
+      "areaLabel": "South West",
+      "hairShopUrl": "https://www.giashairsalon.com/",
+      "instagramUrl": "https://www.instagram.com/giashairsalon/",
+      "linkedSalonId": "gias-hair-salon",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (gias-hair-salon)."
+      ]
+    },
+    {
+      "id": "h-hair",
+      "name": "H Hair",
+      "productTypes": [
+        "Bulk braiding hair",
+        "Bundles (wefts)"
+      ],
+      "fulfilment": [],
+      "areaId": "east",
+      "areaLabel": "East",
+      "websiteUrl": "https://hhair.co",
+      "hairShopUrl": "https://hhair.co/shop",
+      "instagramUrl": "https://www.instagram.com/hhairco/",
+      "linkedSalonId": "h-hair",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (h-hair)."
+      ]
+    },
+    {
+      "id": "hair-by-esther",
+      "name": "Hair by Esther",
+      "productTypes": [
+        "Bundles (wefts)",
+        "Frontals / closures"
+      ],
+      "fulfilment": [
+        "Can collect in person / at appointment"
+      ],
+      "areaId": "south-east",
+      "areaLabel": "South East",
+      "websiteUrl": "https://www.hairbyesther.uk",
+      "hairShopUrl": "https://www.hairbyesther.uk/shop",
+      "instagramUrl": "https://www.instagram.com/_hair.by.esther/",
+      "linkedSalonId": "hair-by-esther",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (hair-by-esther)."
+      ]
+    },
+    {
+      "id": "hair-by-kuks",
+      "name": "Hair by Kuks",
+      "productTypes": [
+        "French curl braiding hair"
+      ],
+      "fulfilment": [],
+      "areaId": "south-east",
+      "areaLabel": "South East",
+      "hairShopUrl": "https://by-kuks.myshopify.com/",
+      "instagramUrl": "https://www.instagram.com/hair.bykuks/",
+      "linkedSalonId": "hair-by-kuks",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (hair-by-kuks)."
+      ]
+    },
+    {
+      "id": "hair-by-opee",
+      "name": "Hair by Opee",
+      "productTypes": [
+        "Frontals / closures",
+        "Bundles (wefts)",
+        "Bulk braiding hair",
+        "Custom colour bundles",
+        "Wigs"
+      ],
+      "fulfilment": [],
+      "areaId": "east",
+      "areaLabel": "East London / Essex",
+      "hairShopUrl": "https://www.opehairandbeauty.com/collections/all",
+      "instagramUrl": "https://www.instagram.com/hairbyopee/",
+      "linkedSalonId": "hair-by-opee",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (hair-by-opee)."
+      ]
+    },
+    {
+      "id": "hair-by-ssb",
+      "name": "Hair by SSB",
+      "productTypes": [
+        "Bulk braiding hair"
+      ],
+      "fulfilment": [],
+      "areaId": "north",
+      "areaLabel": "North",
+      "hairShopUrl": "https://shophairbysb.com/",
+      "instagramUrl": "https://www.instagram.com/hairbysb8/",
+      "linkedSalonId": "hair-by-ssb",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (hair-by-ssb)."
+      ]
+    },
+    {
+      "id": "hair-by-mf",
+      "name": "Wig Mania",
+      "productTypes": [
+        "Wigs",
+        "Frontals / closures",
+        "Bundles (wefts)",
+        "Custom colour bundles",
+        "Half wigs / Upart wigs / headband wigs"
+      ],
+      "fulfilment": [
+        "Can collect in person / at appointment"
+      ],
+      "areaId": "east",
+      "areaLabel": "East",
+      "hairShopUrl": "https://www.shopwigmania.com/",
+      "instagramUrl": "https://www.instagram.com/wig.mania/",
+      "linkedSalonId": "hairbymf",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (hairbymf)."
+      ]
+    },
+    {
+      "id": "hm-hair",
+      "name": "HM Hair",
+      "productTypes": [
+        "Frontals / closures",
+        "Bundles (wefts)",
+        "Tape-ins",
+        "Wigs"
+      ],
+      "fulfilment": [],
+      "areaId": "south-east",
+      "areaLabel": "South East",
+      "websiteUrl": "https://hm-hair.com",
+      "hairShopUrl": "https://hm-hair.com/collections",
+      "instagramUrl": "https://www.instagram.com/hmhairuk/",
+      "linkedSalonId": "hm-hair",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (hm-hair)."
+      ]
+    },
+    {
+      "id": "house-of-hair-uk",
+      "name": "House of Hair UK",
+      "productTypes": [
+        "Bundles (wefts)",
+        "I-tips",
+        "K-tips"
+      ],
+      "fulfilment": [
+        "Can collect in person / at appointment"
+      ],
+      "areaId": "west",
+      "areaLabel": "West",
+      "websiteUrl": "https://www.houseofhairuk.com/",
+      "hairShopUrl": "https://www.houseofhairuk.com/pages/collections-landing",
+      "instagramUrl": "https://www.instagram.com/houseofhairuk/",
+      "linkedSalonId": "houseofhairuk",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (houseofhairuk)."
+      ]
+    },
+    {
+      "id": "house-of-locs-uk",
+      "name": "House of Locs UK",
+      "productTypes": [
+        "Wigs"
+      ],
+      "fulfilment": [],
+      "areaId": "south-west",
+      "areaLabel": "South West",
+      "websiteUrl": "https://www.houseoflocsshop.com/",
+      "hairShopUrl": "https://www.houseoflocsshop.com/collections/all",
+      "instagramUrl": "https://www.instagram.com/houseoflocsuk/",
+      "linkedSalonId": "houseoflocsuk",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (houseoflocsuk)."
+      ]
+    },
+    {
+      "id": "jazzy-thee-hair-artist",
+      "name": "The Maine Label",
+      "productTypes": [
+        "Bundles (wefts)",
+        "Wigs",
+        "Half wigs / Upart wigs / headband wigs"
+      ],
+      "fulfilment": [],
+      "areaId": "north-west",
+      "areaLabel": "North West",
+      "hairShopUrl": "https://www.instagram.com/themainelabel_/",
+      "instagramUrl": "https://www.instagram.com/jazzytheehairartist/",
+      "linkedSalonId": "jazzy-thee-hair-artist",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (jazzy-thee-hair-artist)."
+      ]
+    },
+    {
+      "id": "kanni-s-beauty-kub",
+      "name": "Kanni’s Beauty (KUB)",
+      "productTypes": [
+        "Bundles (wefts)",
+        "Wigs"
+      ],
+      "fulfilment": [],
+      "areaId": "south-east",
+      "areaLabel": "South East",
+      "websiteUrl": "https://www.kannisbeauty.com/",
+      "hairShopUrl": "https://www.kannisbeauty.com/collections",
+      "instagramUrl": "https://www.instagram.com/kannisbeauty",
+      "linkedSalonId": "kannis-beauty",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (kannis-beauty)."
+      ]
+    },
+    {
+      "id": "lael-london",
+      "name": "Lael London",
+      "productTypes": [
+        "Bundles (wefts)",
+        "Wigs"
+      ],
+      "fulfilment": [],
+      "areaId": "south-west",
+      "areaLabel": "South West",
+      "websiteUrl": "https://laellondon.com",
+      "hairShopUrl": "https://laellondon.com/collections",
+      "instagramUrl": "https://www.instagram.com/lael.london/",
+      "linkedSalonId": "lael-london",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (lael-london)."
+      ]
+    },
+    {
+      "id": "madouss-hair-studio",
+      "name": "Madouss Hair Studio",
+      "productTypes": [
+        "Bundles (wefts)",
+        "K-tips"
+      ],
+      "fulfilment": [],
+      "areaId": "south-west",
+      "areaLabel": "South West",
+      "websiteUrl": "https://madousshairstudio.com/",
+      "hairShopUrl": "https://madousshairstudio.com/collections/all",
+      "instagramUrl": "https://www.instagram.com/madousshairstudio/",
+      "linkedSalonId": "madouss-hair-studio",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (madouss-hair-studio)."
+      ]
+    },
+    {
+      "id": "maison-style",
+      "name": "Maison Style",
+      "productTypes": [
+        "Wigs",
+        "Bundles (wefts)"
+      ],
+      "fulfilment": [],
+      "areaId": "south-west",
+      "areaLabel": "South West",
+      "websiteUrl": "https://maisonstyle.co.uk",
+      "hairShopUrl": "https://maisonstore.co.uk/",
+      "instagramUrl": "https://www.instagram.com/maisonstylehair/",
+      "linkedSalonId": "maisonstylehair",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (maisonstylehair)."
+      ]
+    },
+    {
+      "id": "majestik-styles",
+      "name": "Majestik Styles",
+      "productTypes": [
+        "Bundles (wefts)",
+        "Wigs"
+      ],
+      "fulfilment": [],
+      "areaId": "north-west",
+      "areaLabel": "North West",
+      "websiteUrl": "https://majestikstyles.co.uk",
+      "hairShopUrl": "https://majestikstyles.co.uk/collections/all",
+      "instagramUrl": "https://www.instagram.com/majestikstyles/",
+      "linkedSalonId": "majestik-styles",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (majestik-styles)."
+      ]
+    },
+    {
+      "id": "marie-v-hair",
+      "name": "Marie V Hair",
+      "productTypes": [
+        "Bundles (wefts)"
+      ],
+      "fulfilment": [],
+      "areaId": "east",
+      "areaLabel": "East",
+      "hairShopUrl": "https://www.marievhair.co.uk/shop",
+      "instagramUrl": "https://www.instagram.com/marievhair/",
+      "linkedSalonId": "marievhair",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (marievhair)."
+      ]
+    },
+    {
+      "id": "by-makia",
+      "name": "By Makia",
+      "productTypes": [
+        "Bundles (wefts)"
+      ],
+      "fulfilment": [
+        "Can collect in person / at appointment"
+      ],
+      "areaId": "south-east",
+      "areaLabel": "South East",
+      "websiteUrl": "https://bymakia.com",
+      "hairShopUrl": "https://bymakia.com/",
+      "instagramUrl": "https://www.instagram.com/bymakiauk/",
+      "linkedSalonId": "mk-suite",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (mk-suite)."
+      ]
+    },
+    {
+      "id": "naysahny-hair",
+      "name": "Naysahny Hair",
+      "productTypes": [
+        "Bundles (wefts)",
+        "Clip-ins",
+        "Frontals / closures",
+        "Custom colour bundles"
+      ],
+      "fulfilment": [],
+      "areaId": "south-east",
+      "areaLabel": "South East",
+      "websiteUrl": "https://www.naysahnyhair.com",
+      "hairShopUrl": "https://www.naysahnyhair.com/category/all-products",
+      "instagramUrl": "https://www.instagram.com/naysahnyhair/",
+      "linkedSalonId": "naysahny-hair",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (naysahny-hair)."
+      ]
+    },
+    {
+      "id": "nhanced-hair",
+      "name": "Nhanced Hair",
+      "productTypes": [
+        "Tape-ins",
+        "Bundles (wefts)"
+      ],
+      "fulfilment": [],
+      "areaId": "london",
+      "areaLabel": "London",
+      "hairShopUrl": "https://amorellehair.com/",
+      "instagramUrl": "https://www.instagram.com/nhancedhair/",
+      "linkedSalonId": "nhanced-hair",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (nhanced-hair)."
+      ]
+    },
+    {
+      "id": "noble-tiaras-virgin-hair-salon",
+      "name": "Noble Tiaras Virgin Hair Salon",
+      "productTypes": [
+        "Bundles (wefts)",
+        "Wigs"
+      ],
+      "fulfilment": [
+        "Can collect in person / at appointment"
+      ],
+      "areaId": "south-east",
+      "areaLabel": "South East",
+      "websiteUrl": "https://www.nobletiaras.com/",
+      "hairShopUrl": "https://www.nobletiaras.com/collections",
+      "instagramUrl": "https://www.instagram.com/nobletiaras/",
+      "linkedSalonId": "noble-tiaras",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (noble-tiaras)."
+      ]
+    },
+    {
+      "id": "novatress-uk",
+      "name": "Novatress UK",
+      "productTypes": [
+        "Bundles (wefts)"
+      ],
+      "fulfilment": [],
+      "areaId": "south-east",
+      "areaLabel": "South East",
+      "websiteUrl": "https://www.novatress.com/",
+      "hairShopUrl": "https://www.novatress.com/collections/all",
+      "instagramUrl": "https://www.instagram.com/novatressuk/",
+      "linkedSalonId": "novatress-uk",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (novatress-uk)."
+      ]
+    },
+    {
+      "id": "o-so-snatched",
+      "name": "O'so Snatched",
+      "productTypes": [
+        "Wigs"
+      ],
+      "fulfilment": [],
+      "areaId": "north",
+      "areaLabel": "North",
+      "hairShopUrl": "https://www.ososnatched.com",
+      "instagramUrl": "https://www.instagram.com/ososnatched/",
+      "linkedSalonId": "o-so-snatched",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (o-so-snatched)."
+      ]
+    },
+    {
+      "id": "os-hair",
+      "name": "OS Hair",
+      "productTypes": [
+        "Bundles (wefts)",
+        "Wigs"
+      ],
+      "fulfilment": [],
+      "areaId": "north",
+      "areaLabel": "North",
+      "hairShopUrl": "https://oshair.co.uk/collections/all",
+      "instagramUrl": "https://www.instagram.com/oshairr/",
+      "linkedSalonId": "os-hair",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (os-hair)."
+      ]
+    },
+    {
+      "id": "ovieya-london-ltd",
+      "name": "Ovieya London Ltd",
+      "productTypes": [
+        "Bundles (wefts)"
+      ],
+      "fulfilment": [
+        "Can collect in person / at appointment"
+      ],
+      "areaId": "north",
+      "areaLabel": "North",
+      "websiteUrl": "https://ovieyalondon.co.uk/",
+      "hairShopUrl": "https://ovieyalondon.co.uk/shop",
+      "instagramUrl": "https://www.instagram.com/ovieyalondon/",
+      "linkedSalonId": "ovieya-london-ltd",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (ovieya-london-ltd)."
+      ]
+    },
+    {
+      "id": "oyinn-s-touch",
+      "name": "Oyinn's Touch",
+      "productTypes": [],
+      "fulfilment": [],
+      "websiteUrl": "https://www.oyinnstouch.co.uk/",
+      "hairShopUrl": "https://www.oyinnstouch.co.uk/category/all-products",
+      "instagramUrl": "https://www.instagram.com/oyinnstouch/",
+      "linkedSalonId": "oyinns-touch",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (oyinns-touch)."
+      ]
+    },
+    {
+      "id": "papachichi-style",
+      "name": "Papachichi Style",
+      "productTypes": [
+        "Bundles (wefts)",
+        "Wigs"
+      ],
+      "fulfilment": [],
+      "areaId": "london",
+      "areaLabel": "London",
+      "websiteUrl": "https://www.papachichistyle.com",
+      "hairShopUrl": "https://www.papachichistyle.com/collections/all",
+      "instagramUrl": "https://www.instagram.com/papachichistyle/",
+      "linkedSalonId": "papachichi-style",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (papachichi-style)."
+      ]
+    },
+    {
+      "id": "precision-n-hair-and-beauty",
+      "name": "Precision N Hair and Beauty",
+      "productTypes": [],
+      "fulfilment": [],
+      "areaId": "west",
+      "areaLabel": "West",
+      "websiteUrl": "https://www.precisionn.co.uk",
+      "hairShopUrl": "https://www.precisionn.co.uk/category/all-products",
+      "instagramUrl": "https://www.instagram.com/precisionnhairandbeauty/",
+      "linkedSalonId": "precision-n-hair-and-beauty",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (precision-n-hair-and-beauty)."
+      ]
+    },
+    {
+      "id": "pressed-linkss",
+      "name": "Pressed & Linkss",
+      "productTypes": [
+        "Bundles (wefts)",
+        "Tape-ins"
+      ],
+      "fulfilment": [
+        "Can collect in person / at appointment"
+      ],
+      "areaId": "south-east",
+      "areaLabel": "South East",
+      "hairShopUrl": "https://pressedandlinks.com/collections",
+      "instagramUrl": "https://www.instagram.com/pressedandlinkss/",
+      "linkedSalonId": "pressed-linkss",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (pressed-linkss)."
+      ]
+    },
+    {
+      "id": "rawmantic-hair",
+      "name": "Rawmantic Hair",
+      "productTypes": [
+        "Wigs",
+        "Bundles (wefts)"
+      ],
+      "fulfilment": [],
+      "areaId": "west",
+      "areaLabel": "West",
+      "websiteUrl": "https://rawmantichair.com/",
+      "hairShopUrl": "https://rawmantichair.com/collections",
+      "instagramUrl": "https://www.instagram.com/rawmantic_hair/",
+      "linkedSalonId": "rawmantic-hair",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (rawmantic-hair)."
+      ]
+    },
+    {
+      "id": "ren-s-touch",
+      "name": "Ren's Touch",
+      "productTypes": [],
+      "fulfilment": [],
+      "areaId": "south-east",
+      "areaLabel": "South East",
+      "websiteUrl": "https://www.renstouch.co.uk",
+      "hairShopUrl": "https://www.renstouch.co.uk/collections/shop",
+      "instagramUrl": "https://www.instagram.com/renstouch/",
+      "linkedSalonId": "rens-touch",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (rens-touch)."
+      ]
+    },
+    {
+      "id": "rias-beauty-studio",
+      "name": "Rias Beauty Studio",
+      "productTypes": [
+        "Bundles (wefts)",
+        "Tape-ins"
+      ],
+      "fulfilment": [],
+      "areaId": "croydon",
+      "areaLabel": "Croydon",
+      "hairShopUrl": "https://riasbeauty.co/collections/all",
+      "instagramUrl": "https://www.instagram.com/riasbeautystudio/",
+      "linkedSalonId": "rias-beauty-studio",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (rias-beauty-studio)."
+      ]
+    },
+    {
+      "id": "rpc-beauty-kollection",
+      "name": "RPC Beauty Kollection",
+      "productTypes": [
+        "Bulk braiding hair",
+        "Bundles (wefts)"
+      ],
+      "fulfilment": [],
+      "areaId": "south-east",
+      "areaLabel": "South East",
+      "hairShopUrl": "https://rpcbeautykollection.com/",
+      "instagramUrl": "https://www.instagram.com/rpcbeautykollection/",
+      "linkedSalonId": "rpc-beauty-kollection",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (rpc-beauty-kollection)."
+      ]
+    },
+    {
+      "id": "sahiya-slays",
+      "name": "Sahiya Slays",
+      "productTypes": [],
+      "fulfilment": [],
+      "areaId": "east",
+      "areaLabel": "East",
+      "websiteUrl": "https://sahiyaslays.com",
+      "hairShopUrl": "https://www.sahiyaslays.com",
+      "instagramUrl": "https://www.instagram.com/sahiyaslays",
+      "linkedSalonId": "sahiya-slays",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (sahiya-slays)."
+      ]
+    },
+    {
+      "id": "sashe-amari",
+      "name": "Sashe Amari",
+      "productTypes": [
+        "Bulk braiding hair",
+        "Bundles (wefts)"
+      ],
+      "fulfilment": [],
+      "areaId": "south-east",
+      "areaLabel": "South East",
+      "websiteUrl": "https://sasheamari.com/",
+      "hairShopUrl": "https://sasheamari.com/collections/human-hair",
+      "instagramUrl": "https://www.instagram.com/sasheamari/?g=5",
+      "linkedSalonId": "sashe-amari",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (sashe-amari)."
+      ]
+    },
+    {
+      "id": "sbeks-hair",
+      "name": "Strnds",
+      "productTypes": [
+        "Bundles (wefts)",
+        "Tape-ins"
+      ],
+      "fulfilment": [
+        "Can collect in person / at appointment"
+      ],
+      "areaId": "south-east",
+      "areaLabel": "South East",
+      "hairShopUrl": "https://strnds.uk/",
+      "instagramUrl": "https://www.instagram.com/sbekshair/",
+      "linkedSalonId": "sbeks-hair",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (sbeks-hair)."
+      ]
+    },
+    {
+      "id": "si-hair-uk",
+      "name": "SI Hair UK",
+      "productTypes": [
+        "Bundles (wefts)",
+        "Wigs",
+        "Bulk braiding hair"
+      ],
+      "fulfilment": [],
+      "areaId": "south-east",
+      "areaLabel": "South East",
+      "hairShopUrl": "https://sihairco.com/",
+      "instagramUrl": "https://www.instagram.com/sihairuk/",
+      "linkedSalonId": "si-hair-uk",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (si-hair-uk)."
+      ]
+    },
+    {
+      "id": "slayed-by-bailey",
+      "name": "Slayed by Bailey",
+      "productTypes": [
+        "Wigs",
+        "Bundles (wefts)"
+      ],
+      "fulfilment": [
+        "Can collect in person / at appointment"
+      ],
+      "areaId": "south-east",
+      "areaLabel": "South East",
+      "websiteUrl": "https://slayedbybailey.com/",
+      "hairShopUrl": "https://slayedbybailey.com/",
+      "instagramUrl": "https://www.instagram.com/slayedbybailey/",
+      "linkedSalonId": "slayed-by-bailey",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (slayed-by-bailey)."
+      ]
+    },
+    {
+      "id": "stephanie-lebby-hair-limited",
+      "name": "Stephanie Lebby Hair Limited",
+      "productTypes": [
+        "Bundles (wefts)",
+        "Tape-ins",
+        "Wigs"
+      ],
+      "fulfilment": [],
+      "areaId": "south-east",
+      "areaLabel": "South East",
+      "websiteUrl": "https://stephanielebbyhair.com/",
+      "hairShopUrl": "https://stephanielebbyhair.com/collections/all-products",
+      "instagramUrl": "https://www.instagram.com/stephanielebbyhair/",
+      "linkedSalonId": "stephanie-lebby-hair-limited",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (stephanie-lebby-hair-limited)."
+      ]
+    },
+    {
+      "id": "styles-by-farah-pearl",
+      "name": "Pearl Majesty",
+      "productTypes": [
+        "Bundles (wefts)",
+        "Tape-ins",
+        "I-tips",
+        "K-tips"
+      ],
+      "fulfilment": [
+        "Next-day delivery"
+      ],
+      "areaId": "south-east",
+      "areaLabel": "South East",
+      "hairShopUrl": "https://pearlmajesty.com/",
+      "instagramUrl": "https://www.instagram.com/stylesbyfarahpearl/",
+      "linkedSalonId": "stylesbyfarahpearl",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (stylesbyfarahpearl)."
+      ]
+    },
+    {
+      "id": "stylesbyfola",
+      "name": "Currentwigs",
+      "productTypes": [
+        "Bundles (wefts)",
+        "Wigs",
+        "Bulk braiding hair"
+      ],
+      "fulfilment": [
+        "Next-day delivery"
+      ],
+      "areaId": "east",
+      "areaLabel": "East",
+      "hairShopUrl": "https://currentwigs.com/collections/hair-bundles/hair-bundles",
+      "instagramUrl": "https://www.instagram.com/stylesbyfola/",
+      "linkedSalonId": "stylesbyfola",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (stylesbyfola)."
+      ]
+    },
+    {
+      "id": "swish-london",
+      "name": "Swish London",
+      "productTypes": [
+        "Wigs",
+        "Bundles (wefts)",
+        "Half wigs / Upart wigs / headband wigs"
+      ],
+      "fulfilment": [],
+      "areaId": "east",
+      "areaLabel": "East",
+      "websiteUrl": "https://www.swishldn.com/",
+      "hairShopUrl": "https://www.swishldn.com/products",
+      "instagramUrl": "https://www.instagram.com/swish_london/",
+      "linkedSalonId": "swish-london",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (swish-london)."
+      ]
+    },
+    {
+      "id": "the-chair-salon",
+      "name": "The Chair salon",
+      "productTypes": [
+        "Bundles (wefts)",
+        "Bulk braiding hair"
+      ],
+      "fulfilment": [
+        "Can collect in person / at appointment"
+      ],
+      "areaId": "south-east",
+      "areaLabel": "South East",
+      "hairShopUrl": "https://www.thechairsalon.co.uk/shop",
+      "instagramUrl": "https://www.instagram.com/thechair.salon/",
+      "linkedSalonId": "the-chair",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (the-chair)."
+      ]
+    },
+    {
+      "id": "the-sewn-muse",
+      "name": "Coile Muse",
+      "productTypes": [
+        "Bundles (wefts)"
+      ],
+      "fulfilment": [
+        "Can collect in person / at appointment"
+      ],
+      "areaId": "east",
+      "areaLabel": "East",
+      "websiteUrl": "https://coilemuse.com",
+      "hairShopUrl": "https://coilemuse.com/",
+      "instagramUrl": "https://www.instagram.com/thesewnmuse/",
+      "linkedSalonId": "the-sewn-muse",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (the-sewn-muse)."
+      ]
+    },
+    {
+      "id": "silqmist-salon",
+      "name": "SILQMIST SALON",
+      "productTypes": [
+        "Bundles (wefts)",
+        "Wigs",
+        "Tape-ins"
+      ],
+      "fulfilment": [],
+      "areaId": "kent",
+      "areaLabel": "Kent",
+      "hairShopUrl": "https://silqmist.com/",
+      "instagramUrl": "https://www.instagram.com/thesilqmistsalon/",
+      "linkedSalonId": "thesilqmistsalon",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (thesilqmistsalon)."
+      ]
+    },
+    {
+      "id": "tthairbarldn",
+      "name": "That Hair Ltd",
+      "productTypes": [
+        "Crochet (Miracle knots)",
+        "Bundles (wefts)",
+        "Bulk braiding hair"
+      ],
+      "fulfilment": [],
+      "areaId": "south-east",
+      "areaLabel": "South East London / Kent",
+      "hairShopUrl": "https://thathairltd.com/",
+      "instagramUrl": "https://www.instagram.com/tthairbarldn/",
+      "linkedSalonId": "tthairbarldn",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (tthairbarldn)."
+      ]
+    },
+    {
+      "id": "walvan-hair",
+      "name": "Peonia Hair",
+      "productTypes": [
+        "Bundles (wefts)",
+        "Wigs"
+      ],
+      "fulfilment": [
+        "Can collect in person / at appointment"
+      ],
+      "areaId": "east",
+      "areaLabel": "East",
+      "hairShopUrl": "https://peoniahair.com/collections",
+      "instagramUrl": "https://www.instagram.com/walvanhair/",
+      "linkedSalonId": "walvan-hair",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (walvan-hair)."
+      ]
+    },
+    {
+      "id": "wen-hair-ldn",
+      "name": "Wenlaceunits",
+      "productTypes": [],
+      "fulfilment": [
+        "Can collect in person / at appointment"
+      ],
+      "areaId": "south-east",
+      "areaLabel": "South East",
+      "hairShopUrl": "https://www.instagram.com/wenlaceunits/",
+      "instagramUrl": "https://www.instagram.com/wenhairldn/",
+      "linkedSalonId": "wen-hair-ldn",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (wen-hair-ldn)."
+      ]
+    },
+    {
+      "id": "za-wigs",
+      "name": "ZA Wigs",
+      "productTypes": [
+        "Wigs",
+        "Bundles (wefts)"
+      ],
+      "fulfilment": [],
+      "areaId": "south-east",
+      "areaLabel": "South East",
+      "hairShopUrl": "https://zawigs.com",
+      "instagramUrl": "https://www.instagram.com/zawigs/",
+      "linkedSalonId": "za-wigs",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (za-wigs)."
+      ]
+    },
+    {
+      "id": "zuri-hair-studio",
+      "name": "Zuri Hair Studio",
+      "productTypes": [
+        "Bulk braiding hair"
+      ],
+      "fulfilment": [],
+      "areaId": "south-east",
+      "areaLabel": "South East",
+      "hairShopUrl": "https://bohotress.com/",
+      "instagramUrl": "https://www.instagram.com/zurihairstudio/",
+      "linkedSalonId": "zurihairstudio",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (zurihairstudio)."
+      ]
+    },
+    {
+      "id": "scalpish-uk",
+      "name": "Scalpish Co",
+      "productTypes": [
+        "Bundles (wefts)",
+        "Wigs",
+        "Tape-ins",
+        "Clip-ins",
+        "Frontals / closures"
+      ],
+      "fulfilment": [],
+      "areaId": "south-east",
+      "areaLabel": "South east London",
+      "hairShopUrl": "https://www.instagram.com/scalpishco/",
+      "instagramUrl": "https://www.instagram.com/scalpish.uk/",
+      "linkedSalonId": "scalpish-uk",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (scalpish-uk)."
+      ]
+    },
+    {
+      "id": "moshbeautyuk",
+      "name": "MoshBeautyUK",
+      "productTypes": [
+        "Bundles (wefts)"
+      ],
+      "fulfilment": [],
+      "areaId": "london",
+      "areaLabel": "London",
+      "websiteUrl": "https://www.moshhairlondon.co.uk",
+      "hairShopUrl": "https://www.moshhairlondon.co.uk/collections/frontpage",
+      "instagramUrl": "https://www.instagram.com/moshhairlondon/",
+      "linkedSalonId": "moshhairlondon",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (moshhairlondon)."
+      ]
+    },
+    {
+      "id": "miswigs",
+      "name": "Miswigs",
+      "productTypes": [
+        "Wigs",
+        "Bundles (wefts)"
+      ],
+      "fulfilment": [],
+      "areaId": "north",
+      "areaLabel": "North",
+      "hairShopUrl": "https://www.miswigs.com/",
+      "instagramUrl": "https://www.instagram.com/miswigs/",
+      "linkedSalonId": "miswigs",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (miswigs)."
+      ]
+    },
+    {
+      "id": "diosa-london",
+      "name": "Diosa London",
+      "productTypes": [
+        "Wigs",
+        "Bundles (wefts)"
+      ],
+      "fulfilment": [],
+      "areaId": "london",
+      "areaLabel": "London",
+      "websiteUrl": "https://www.diosalondon.com",
+      "hairShopUrl": "https://www.diosalondon.com/shop",
+      "instagramUrl": "https://www.instagram.com/diosa.london/",
+      "linkedSalonId": "diosa-london",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (diosa-london)."
+      ]
+    },
+    {
+      "id": "aluxe-uk",
+      "name": "ALUXE COLLECTION",
+      "productTypes": [],
+      "fulfilment": [],
+      "areaId": "north-west",
+      "areaLabel": "North West",
+      "hairShopUrl": "https://www.instagram.com/aluxehair.uk/",
+      "instagramUrl": "https://www.instagram.com/aluxeuk_/",
+      "linkedSalonId": "aluxeuk",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (aluxeuk)."
+      ]
+    },
+    {
+      "id": "the-boss-look",
+      "name": "The Boss Look",
+      "productTypes": [
+        "Bundles (wefts)"
+      ],
+      "fulfilment": [
+        "Can collect in person / at appointment"
+      ],
+      "areaId": "south-east",
+      "areaLabel": "South East",
+      "websiteUrl": "https://www.thebosslook.com",
+      "hairShopUrl": "https://www.thebosslook.com/bossy-units-hair-extentions",
+      "instagramUrl": "https://www.instagram.com/thebosslook/",
+      "linkedSalonId": "thebosslook",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (thebosslook)."
+      ]
+    },
+    {
+      "id": "cg-hair",
+      "name": "CG Hair",
+      "productTypes": [
+        "Bundles (wefts)"
+      ],
+      "fulfilment": [],
+      "areaId": "north",
+      "areaLabel": "North",
+      "hairShopUrl": "https://cghairco.com/collections/all",
+      "instagramUrl": "https://www.instagram.com/cghairr/",
+      "linkedSalonId": "cg-hair",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (cg-hair)."
+      ]
+    },
+    {
+      "id": "hairtology-uk",
+      "name": "Hairtology UK",
+      "productTypes": [
+        "Bundles (wefts)"
+      ],
+      "fulfilment": [],
+      "areaId": "south-east",
+      "areaLabel": "South East",
+      "hairShopUrl": "https://hirayahair.com/",
+      "instagramUrl": "https://www.instagram.com/hairtology_uk/",
+      "linkedSalonId": "hairtology-uk",
+      "source": "manual",
+      "summary": "Hair shop for an existing ROW K stylist/salon listing.",
+      "evidence": [
+        "Derived from linked stylist/salon record (hairtology-uk)."
+      ]
+    },
+    {
+      "id": "badbeezstudio",
+      "name": "Bad Beez Hair Studio",
+      "productTypes": [
+        "Bundles (wefts)",
+        "Frontals / closures",
+        "Custom colour bundles"
+      ],
+      "fulfilment": [
+        "Can collect in person / at appointment"
+      ],
+      "areaId": "south-east",
+      "areaLabel": "Woolwich, South East London",
+      "instagramUrl": "https://www.instagram.com/badbeezstudio/",
+      "googleMapsUri": "https://maps.google.com/?cid=17354588196882533305&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
+      "source": "manual",
+      "summary": "Human hair extension studio with a walk-in shop in Woolwich.",
+      "evidence": [
+        "Instagram bio: \"Londons widest range of human hair extensions\".",
+        "Google Maps listing: Bad Beez Hair Studio ~ Timi LDN, Woolwich."
+      ],
+      "googlePlaceId": "ChIJR5dJsOyo2EcRucteOgTi1_A",
+      "googleReviewCount": 23
+    }
+  ]
+}

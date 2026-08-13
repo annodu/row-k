@@ -4,6 +4,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import express from "express";
 import { computeReviewHealth, readSalonIndex, searchSalons, setNoStoreHeaders } from "./salon-index.mjs";
+import { getVendorFilterOptions, searchVendors } from "./vendor-index.mjs";
 import { registerAdminStylistRoutes, sanitizeCustomFilters, serviceNegationHints } from "./admin-stylists.mjs";
 import { createRateLimiter, requestLogger } from "./security.mjs";
 
@@ -52,12 +53,13 @@ app.get("/api/filters", async (_req, res) => {
     const additionalNeedsPath = path.resolve(__dirname, "../data/additional-needs.json");
     const customFilterTypesPath = path.resolve(__dirname, "../data/custom-filter-types.json");
     const priceBandsPath = path.resolve(__dirname, "../data/price-bands.json");
-    const [filtersRaw, locationsRaw, additionalNeedsRaw, customFilterTypesRaw, priceBandsRaw] = await Promise.all([
+    const [filtersRaw, locationsRaw, additionalNeedsRaw, customFilterTypesRaw, priceBandsRaw, vendorFilterOptions] = await Promise.all([
       fs.promises.readFile(filtersPath, "utf8").catch(() => null),
       fs.promises.readFile(locationsPath, "utf8").catch(() => null),
       fs.promises.readFile(additionalNeedsPath, "utf8").catch(() => null),
       fs.promises.readFile(customFilterTypesPath, "utf8").catch(() => null),
       fs.promises.readFile(priceBandsPath, "utf8").catch(() => null),
+      getVendorFilterOptions(),
     ]);
     res.json({
       ok: true,
@@ -67,6 +69,7 @@ app.get("/api/filters", async (_req, res) => {
       customFilterTypes: customFilterTypesRaw ? JSON.parse(customFilterTypesRaw).filterTypes : null,
       priceBands: priceBandsRaw ? JSON.parse(priceBandsRaw).bands : null,
       searchAliases: serviceNegationHints,
+      vendorFilterOptions,
     });
   } catch {
     res.status(500).json({ ok: false });
@@ -93,14 +96,32 @@ app.post("/api/search", publicSearchRateLimit, async (req, res) => {
   const senFriendly = req.body?.senFriendly === true;
   const lgbtqFriendly = req.body?.lgbtqFriendly === true;
   const parkingAvailable = req.body?.parkingAvailable === true;
+  const sellingHairAny = req.body?.sellingHairAny === true;
+  const priceIncludesHair = req.body?.priceIncludesHair === true;
+  const sellsHairSeparately = req.body?.sellsHairSeparately === true;
   const hasVerifiedReviews = req.body?.hasVerifiedReviews === true;
   const googleReviewsOnly = req.body?.googleReviewsOnly === true;
   const bookingSitesOnly = req.body?.bookingSitesOnly === true;
   const customFilters = sanitizeCustomFilters(req.body?.customFilters);
 
   return res.json(
-    await searchSalons({ categories, subcategories, regions, hijabiFriendly, canBraidWithoutGel, wheelchairAccessible, senFriendly, lgbtqFriendly, parkingAvailable, hasVerifiedReviews, googleReviewsOnly, bookingSitesOnly, customFilters }),
+    await searchSalons({ categories, subcategories, regions, hijabiFriendly, canBraidWithoutGel, wheelchairAccessible, senFriendly, lgbtqFriendly, parkingAvailable, sellingHairAny, priceIncludesHair, sellsHairSeparately, hasVerifiedReviews, googleReviewsOnly, bookingSitesOnly, customFilters }),
   );
+});
+
+app.post("/api/vendors", publicSearchRateLimit, async (req, res) => {
+  const productTypeGroups = Array.isArray(req.body?.productTypeGroups)
+    ? req.body.productTypeGroups.map((group) => String(group)).filter(Boolean)
+    : [];
+  const productTypes = Array.isArray(req.body?.productTypes)
+    ? req.body.productTypes.map((productType) => String(productType)).filter(Boolean)
+    : [];
+  const fulfilment = Array.isArray(req.body?.fulfilment)
+    ? req.body.fulfilment.map((fulfilmentOption) => String(fulfilmentOption)).filter(Boolean)
+    : [];
+  const hairstylistOwned = req.body?.hairstylistOwned === true;
+
+  return res.json(await searchVendors({ productTypeGroups, productTypes, fulfilment, hairstylistOwned }));
 });
 
 const server = http.createServer(app);

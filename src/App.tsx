@@ -10,6 +10,31 @@ import {
   getVerifiedReviewsUrl as getVerifiedReviewsUrlForBookingUrl,
 } from "@/lib/verifiedReviews";
 
+const vendorProductTypeGroups: { label: string; options: string[] }[] = [
+  {
+    label: "Braiding hair",
+    options: [
+      "Bulk braiding hair",
+      "Bone Straight (synthetic)",
+      "Braiding hair (colour mix)",
+      "Crochet (Miracle knots)",
+      "French curl braiding hair",
+    ],
+  },
+  {
+    label: "Extensions",
+    options: ["I-tips", "K-tips", "Tape-ins", "Clip-ins", "Ponytails"],
+  },
+  {
+    label: "Wigs",
+    options: ["Wigs", "Half wigs / Upart wigs / headband wigs"],
+  },
+  {
+    label: "Bundles & lace systems",
+    options: ["Bundles (wefts)", "Custom colour bundles", "Frontals / closures"],
+  },
+];
+
 const regions = [
   { id: "all-london", label: "London" },
   { id: "central", label: "Central London" },
@@ -121,6 +146,8 @@ type SalonResult = {
   bookingPlatform: string;
   bookingUrl: string;
   instagramUrl?: string;
+  websiteUrl?: string;
+  hairShopUrl?: string;
 
   services: string[];
   hijabiFriendly?: boolean;
@@ -129,6 +156,7 @@ type SalonResult = {
   senFriendly?: boolean;
   lgbtqFriendly?: boolean;
   parkingAvailable?: boolean;
+  sellsHairSeparately?: boolean;
   temporarilyClosed?: boolean;
   hasVerifiedReviews?: boolean;
   verifiedReviewCount?: number;
@@ -154,6 +182,40 @@ type SearchResponse = {
     source?: string;
     count?: number;
   };
+  message?: string;
+};
+
+type DirectoryMode = "stylists" | "vendors";
+
+const VENDOR_MODE_ENABLED = false;
+
+type LinkedStylistBranch = {
+  id: string;
+  label: string;
+  areaLabel?: string | null;
+  bookingUrl?: string | null;
+  bookingPlatform?: string | null;
+};
+
+type VendorResult = {
+  id: string;
+  name: string;
+  productTypes: string[];
+  fulfilment: string[];
+  areaId?: string;
+  areaLabel?: string;
+  instagramUrl?: string;
+  websiteUrl?: string;
+  hairShopUrl?: string;
+  linkedSalonId?: string;
+  linkedStylist?: { name: string; instagramUrl?: string | null; priceIncludesHair?: boolean; branches: LinkedStylistBranch[] } | null;
+  summary?: string;
+};
+
+type VendorSearchResponse = {
+  ok: boolean;
+  results: VendorResult[];
+  total: number;
   message?: string;
 };
 
@@ -301,6 +363,23 @@ function getReviewsBannerInfo(
   }
 
   return null;
+}
+
+function getHairShopLinkInfo(result: SalonResult): { label: string; url: string; accessibleLabel: string } | null {
+  if (!result.sellsHairSeparately) {
+    return null;
+  }
+
+  const url = result.hairShopUrl || result.websiteUrl;
+  if (!url) {
+    return null;
+  }
+
+  return { label: "Hair sold separately", url, accessibleLabel: `Hair shop for ${result.name}` };
+}
+
+function isInstagramUrl(url: string) {
+  return /(^|\/\/)(www\.)?instagram\.com\//i.test(url);
 }
 
 function priceBandRank(result: SalonResult) {
@@ -461,12 +540,14 @@ function BrandGroupCard({
   // Wheelchair access is branch-specific (shown per-row below); these other
   // attributes live on the shared brand record, so they show once here,
   // same position/style as the badge on a regular single-location card.
+  const hairShopLink = getHairShopLinkInfo(brand);
   const attributeLabels = [
     brand.hijabiFriendly ? "hijabi-friendly" : null,
     brand.canBraidWithoutGel ? "can braid without gel" : null,
     brand.senFriendly ? "sensory-safe / sen-friendly" : null,
     brand.lgbtqFriendly ? "lgbtqia+-friendly" : null,
-    brand.parkingAvailable ? "parking nearby" : null,
+    brand.priceIncludesHair ? "hair-inclusive packages" : null,
+    !hairShopLink && brand.sellsHairSeparately ? "hair sold separately" : null,
     ...getResultCustomFilterLabels(brand, customFilterTypes),
   ].filter((label): label is string => Boolean(label));
 
@@ -514,6 +595,19 @@ function BrandGroupCard({
               {priceSummary}
             </p>
           ) : null}
+          {hairShopLink ? (
+            <a
+              href={hairShopLink.url}
+              target="_blank"
+              rel="noreferrer"
+              aria-label={`${hairShopLink.accessibleLabel} - opens in a new tab`}
+              onClick={() => trackAnalyticsEvent("hair_shop_click", { salon: brandName, location: "multiple" })}
+              className="mt-1 inline-flex w-fit items-center gap-1 text-[13px] font-semibold text-[oklch(0.45_0.05_255)] transition-colors hover:text-[oklch(0.38_0.06_255)] active:text-[oklch(0.38_0.06_255)] dark:text-[oklch(0.72_0.05_255)] dark:hover:text-[oklch(0.80_0.06_255)] dark:active:text-[oklch(0.80_0.06_255)]"
+            >
+              <span aria-hidden="true">{hairShopLink.label}</span>
+              <ArrowUpRight className="size-3.5 shrink-0" aria-hidden="true" />
+            </a>
+          ) : null}
         </div>
         <div className="flex shrink-0 items-center gap-1">
           {brand.instagramUrl ? (
@@ -522,7 +616,7 @@ function BrandGroupCard({
               target="_blank"
               rel="noreferrer"
               onClick={() => trackAnalyticsEvent("instagram_click", { salon: brandName, placement: "brand-group" })}
-              className="inline-flex min-h-[48px] shrink-0 items-center justify-center gap-2 rounded-none bg-transparent px-2 py-2 text-[14px] font-medium text-stone-950 transition-colors duration-150 hover:bg-stone-200 active:bg-stone-200 dark:bg-transparent dark:text-stone-100 dark:hover:bg-stone-800 dark:active:bg-stone-800 sm:min-h-[40px]"
+              className="inline-flex min-h-[48px] min-w-[40px] shrink-0 items-center justify-center gap-2 rounded-none bg-transparent px-2 py-2 text-[14px] font-medium text-stone-950 transition-colors duration-150 hover:bg-stone-200 active:bg-stone-200 dark:bg-transparent dark:text-stone-100 dark:hover:bg-stone-800 dark:active:bg-stone-800 sm:min-h-[40px]"
             >
               <InstagramIcon className="size-4" />
               <span className="sr-only">Go to {brandName} Instagram - opens in a new tab</span>
@@ -577,7 +671,7 @@ function BrandGroupCard({
                         platform: getVerifiedReviewsPlatform(branch) ?? "google",
                       })
                     }
-                    className="mt-0.5 inline-flex w-fit items-center gap-1 text-[13px] font-medium text-[oklch(0.45_0.11_255)] transition-colors hover:text-[oklch(0.38_0.11_255)] active:text-[oklch(0.38_0.11_255)] dark:text-[oklch(0.72_0.10_255)] dark:hover:text-[oklch(0.80_0.09_255)] dark:active:text-[oklch(0.80_0.09_255)]"
+                    className="mt-0.5 inline-flex w-fit items-center gap-1 text-[13px] font-semibold text-[oklch(0.45_0.05_255)] transition-colors hover:text-[oklch(0.38_0.06_255)] active:text-[oklch(0.38_0.06_255)] dark:text-[oklch(0.72_0.05_255)] dark:hover:text-[oklch(0.80_0.06_255)] dark:active:text-[oklch(0.80_0.06_255)]"
                   >
                     <span aria-hidden="true">{reviewsBanner.label}</span>
                     <ArrowUpRight className="size-3.5 shrink-0" aria-hidden="true" />
@@ -1063,6 +1157,211 @@ const defaultFilterConfig: RuntimeFilterConfig = {
   regions: regions.map((r) => ({ id: r.id, label: r.label })),
 };
 
+function VendorCard({ vendor }: { vendor: VendorResult }) {
+  const browseUrl = vendor.hairShopUrl || vendor.websiteUrl;
+  const browseUrlIsInstagram = Boolean(browseUrl && isInstagramUrl(browseUrl));
+  const linkedStylist = vendor.linkedStylist;
+
+  return (
+    <li className="flex w-full flex-col items-start gap-2 border-b border-stone-300 px-0 py-5 text-left last:border-b-0 dark:border-stone-800">
+      <article className="flex w-full flex-col gap-2.5 sm:flex-row sm:items-start sm:justify-between">
+        <div className="min-w-0 grow">
+          <div className="flex min-w-0 flex-wrap items-center gap-x-2 gap-y-1">
+            <h3 className="text-[17px] font-semibold text-stone-950 dark:text-stone-50">{vendor.name}</h3>
+            {linkedStylist ? (
+              <span className="inline-block rounded-none border border-stone-300 bg-stone-100 px-1.5 py-1 text-[11px] font-semibold leading-none tracking-[0.06em] text-stone-600 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-400">
+                Hairstylist-owned
+              </span>
+            ) : null}
+          </div>
+          {vendor.areaLabel && vendor.fulfilment.includes("Can collect in person / at appointment") ? (
+            <p className="mt-0.5 text-[13px] font-medium text-stone-500 dark:text-stone-400">{vendor.areaLabel}</p>
+          ) : null}
+        </div>
+
+        <div className="flex shrink-0 items-center gap-2">
+          {vendor.instagramUrl && !browseUrlIsInstagram ? (
+            <a
+              href={vendor.instagramUrl}
+              target="_blank"
+              rel="noreferrer"
+              onClick={() => trackAnalyticsEvent("vendor_instagram_click", { vendor: vendor.name })}
+              className="inline-flex min-h-11 min-w-[40px] shrink-0 items-center justify-center gap-2 rounded-none bg-transparent px-2 py-2 text-[14px] font-medium text-stone-950 transition-colors duration-150 hover:bg-stone-200 active:bg-stone-200 dark:bg-transparent dark:text-stone-100 dark:hover:bg-stone-800 dark:active:bg-stone-800"
+            >
+              <InstagramIcon className="size-4" />
+              <span className="sr-only">Go to {vendor.name} Instagram - opens in a new tab</span>
+            </a>
+          ) : null}
+          {browseUrl && browseUrlIsInstagram ? (
+            <a
+              href={browseUrl}
+              target="_blank"
+              rel="noreferrer"
+              onClick={() => trackAnalyticsEvent("vendor_instagram_click", { vendor: vendor.name, source: "hair-shop-link" })}
+              className="inline-flex min-h-11 min-w-[40px] shrink-0 items-center justify-center gap-2 rounded-none bg-transparent px-2 py-2 text-[14px] font-medium text-stone-950 transition-colors duration-150 hover:bg-stone-200 active:bg-stone-200 dark:bg-transparent dark:text-stone-100 dark:hover:bg-stone-800 dark:active:bg-stone-800"
+            >
+              <InstagramIcon className="size-4" />
+              <span className="sr-only">Go to {vendor.name} hair shop on Instagram - opens in a new tab</span>
+            </a>
+          ) : browseUrl ? (
+            <a
+              href={browseUrl}
+              target="_blank"
+              rel="noreferrer"
+              onClick={() => trackAnalyticsEvent("vendor_link_click", { vendor: vendor.name, label: "Browse" })}
+              className="inline-flex min-h-[40px] items-center justify-center gap-1 rounded-none bg-stone-950 px-4 py-2 text-[14px] font-medium text-stone-100 transition-colors duration-150 hover:bg-stone-800 active:bg-stone-800 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-stone-300 dark:active:bg-stone-300"
+            >
+              <span aria-hidden="true">Browse</span>
+              <span className="sr-only"> - opens in a new tab</span>
+            </a>
+          ) : null}
+        </div>
+      </article>
+
+      {vendor.productTypes.length > 0 || vendor.fulfilment.length > 0 ? (
+        <div className="w-full rounded-none border-l-4 border-stone-300 bg-stone-200/45 pl-2 pr-3 py-2 text-[12px] font-normal lowercase leading-[18px] tracking-[0.02em] text-stone-700 dark:border-stone-700 dark:bg-stone-900/48 dark:text-stone-300">
+          <ServicesSummary services={vendor.productTypes} badgeLabels={vendor.fulfilment} />
+        </div>
+      ) : null}
+
+      {linkedStylist ? (
+        <div className="w-full">
+          <div className="w-full divide-y divide-stone-200 border border-stone-200 dark:divide-stone-800 dark:border-stone-800">
+            {linkedStylist.branches.map((branch) => {
+              const stylistInstagramUrl = linkedStylist.instagramUrl || null;
+              return (
+                <div key={branch.id} className="flex items-start justify-between gap-3 px-3 py-3">
+                  <div className="min-w-0">
+                    <p className="text-[15px] font-medium text-stone-950 dark:text-stone-50">{branch.label}</p>
+                    {branch.areaLabel ? <p className="text-[13px] text-stone-500 dark:text-stone-400">{branch.areaLabel}</p> : null}
+                    {linkedStylist.priceIncludesHair ? (
+                      <span className="mt-2.5 block w-fit rounded-none border border-[oklch(0.72_0.07_86)]/35 bg-[oklch(0.94_0.025_92)] px-1.5 py-1 align-baseline text-[11px] font-semibold leading-none tracking-[0.06em] text-[oklch(0.44_0.08_80)] dark:bg-[oklch(0.44_0.08_80)] dark:text-[oklch(0.94_0.025_92)]">
+                        hair-inclusive packages
+                      </span>
+                    ) : null}
+                  </div>
+                  <div className="flex shrink-0 items-center gap-2">
+                    {stylistInstagramUrl ? (
+                      <a
+                        href={stylistInstagramUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        onClick={() => trackAnalyticsEvent("instagram_click", { salon: branch.label, placement: "linked-stylist" })}
+                        className="inline-flex min-h-[48px] min-w-[40px] shrink-0 items-center justify-center gap-2 rounded-none bg-transparent px-2 py-2 text-[14px] font-medium text-stone-950 transition-colors duration-150 hover:bg-stone-200 active:bg-stone-200 dark:bg-transparent dark:text-stone-100 dark:hover:bg-stone-800 dark:active:bg-stone-800 sm:min-h-[40px]"
+                      >
+                        <InstagramIcon className="size-4" />
+                        <span className="sr-only">Go to {branch.label} Instagram - opens in a new tab</span>
+                      </a>
+                    ) : null}
+                    {branch.bookingUrl && branch.bookingPlatform !== "Instagram" ? (
+                      <a
+                        href={branch.bookingUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        onClick={() =>
+                          trackAnalyticsEvent("book_click", {
+                            salon: branch.label,
+                            platform: branch.bookingPlatform ?? undefined,
+                            location: branch.areaLabel ?? undefined,
+                            services: "none",
+                          })
+                        }
+                        className="inline-flex min-h-[48px] shrink-0 items-center justify-center rounded-none border border-stone-400 bg-transparent px-4 py-2 text-[13px] font-medium text-stone-800 transition-colors duration-150 hover:bg-stone-200 active:bg-stone-200 dark:border-stone-600 dark:bg-transparent dark:text-stone-200 dark:hover:bg-stone-800 dark:active:bg-stone-800 sm:min-h-[40px]"
+                      >
+                        <span aria-hidden="true">Book</span>
+                        <span className="sr-only">Book {branch.label} - opens in a new tab</span>
+                      </a>
+                    ) : null}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      ) : null}
+    </li>
+  );
+}
+
+function VendorResultsList({
+  vendors,
+  isSearching,
+  searchError,
+  hasSearched,
+  onResetFilters,
+}: {
+  vendors: VendorResult[];
+  isSearching: boolean;
+  searchError: string | null;
+  hasSearched: boolean;
+  onResetFilters: () => void;
+}) {
+  return (
+    <>
+      {searchError ? (
+        <div className="mt-4 bg-rose-100 px-4 py-6 text-left dark:bg-rose-950/30">
+          <h3 className="text-[17px] font-semibold text-rose-900 dark:text-rose-200">Something went wrong</h3>
+          <p className="mt-2 text-sm leading-7 text-rose-800 dark:text-rose-300">You can:</p>
+          <ul className="mt-1 list-disc space-y-1 pl-5 text-sm leading-7 text-rose-800 dark:text-rose-300">
+            <li>
+              Refresh or{" "}
+              <button
+                type="button"
+                onClick={() => window.location.reload()}
+                className="inline text-rose-900 underline decoration-current underline-offset-4 transition-colors hover:text-rose-700 dark:text-rose-100 dark:hover:text-rose-200"
+              >
+                Try again
+              </button>
+            </li>
+          </ul>
+        </div>
+      ) : null}
+
+      {isSearching ? (
+        <ul className="flex w-full list-none flex-col items-start" aria-hidden="true">
+          {Array.from({ length: RESULTS_SKELETON_COUNT }, (_, index) => (
+            <li
+              key={`vendor-skeleton-${index}`}
+              className="flex w-full flex-col items-start gap-2 border-b border-stone-300 px-0 py-5 text-left last:border-b-0 dark:border-stone-800"
+            >
+              <div className="h-6 w-48 animate-pulse rounded-[4px] bg-stone-300/70 dark:bg-stone-800/70" />
+              <div className="mt-2 flex flex-wrap gap-2">
+                <span className="h-6 w-24 animate-pulse rounded-[4px] bg-stone-200/70 dark:bg-stone-900/70" />
+                <span className="h-6 w-20 animate-pulse rounded-[4px] bg-stone-200/70 dark:bg-stone-900/70" />
+              </div>
+            </li>
+          ))}
+        </ul>
+      ) : !searchError ? (
+        <ul className="flex w-full list-none flex-col items-start">
+          {vendors.map((vendor) => (
+            <VendorCard key={vendor.id} vendor={vendor} />
+          ))}
+        </ul>
+      ) : null}
+
+      {!isSearching && !searchError && hasSearched && vendors.length === 0 ? (
+        <div className="mt-4 bg-stone-200 px-4 py-6 text-left dark:bg-stone-900/60">
+          <h3 className="text-[17px] font-semibold text-stone-950 dark:text-stone-50">No hair vendors found</h3>
+          <p className="mt-2 text-sm leading-7 text-stone-700 dark:text-stone-300">You can:</p>
+          <ul className="mt-1 list-disc space-y-1 pl-5 text-sm leading-7 text-stone-700 dark:text-stone-300">
+            <li>
+              Change your filters, or{" "}
+              <button
+                type="button"
+                onClick={onResetFilters}
+                className="inline text-stone-950 underline underline-offset-4 transition-colors hover:text-stone-700 dark:text-stone-100 dark:hover:text-stone-300"
+              >
+                reset
+              </button>
+            </li>
+          </ul>
+        </div>
+      ) : null}
+    </>
+  );
+}
+
 export default function App() {
   if (window.location.pathname.startsWith("/admin/stylists")) {
     return <AdminApp />;
@@ -1101,6 +1400,13 @@ export default function App() {
   const [draftSelectedSenFriendly, setDraftSelectedSenFriendly] = useState(false);
   const [draftSelectedLgbtqFriendly, setDraftSelectedLgbtqFriendly] = useState(false);
   const [draftSelectedParkingAvailable, setDraftSelectedParkingAvailable] = useState(false);
+  const [draftSelectedSellingHair, setDraftSelectedSellingHair] = useState(false);
+  const [draftSelectedPriceIncludesHair, setDraftSelectedPriceIncludesHair] = useState(false);
+  const [draftSelectedSellsHairSeparately, setDraftSelectedSellsHairSeparately] = useState(false);
+  const [draftSelectedVendorProductTypeGroups, setDraftSelectedVendorProductTypeGroups] = useState<string[]>([]);
+  const [draftSelectedVendorProductTypes, setDraftSelectedVendorProductTypes] = useState<string[]>([]);
+  const [draftSelectedVendorFulfilment, setDraftSelectedVendorFulfilment] = useState<string[]>([]);
+  const [draftSelectedHairstylistOwned, setDraftSelectedHairstylistOwned] = useState(false);
   const [draftSelectedHasVerifiedReviews, setDraftSelectedHasVerifiedReviews] = useState(false);
   const [draftSelectedGoogleReviewsOnly, setDraftSelectedGoogleReviewsOnly] = useState(false);
   const [draftSelectedBookingSitesOnly, setDraftSelectedBookingSitesOnly] = useState(false);
@@ -1148,6 +1454,13 @@ export default function App() {
   const [selectedSenFriendly, setSelectedSenFriendly] = useState(false);
   const [selectedLgbtqFriendly, setSelectedLgbtqFriendly] = useState(false);
   const [selectedParkingAvailable, setSelectedParkingAvailable] = useState(false);
+  const [selectedSellingHair, setSelectedSellingHair] = useState(false);
+  const [selectedPriceIncludesHair, setSelectedPriceIncludesHair] = useState(false);
+  const [selectedSellsHairSeparately, setSelectedSellsHairSeparately] = useState(false);
+  const [selectedVendorProductTypeGroups, setSelectedVendorProductTypeGroups] = useState<string[]>([]);
+  const [selectedVendorProductTypes, setSelectedVendorProductTypes] = useState<string[]>([]);
+  const [selectedVendorFulfilment, setSelectedVendorFulfilment] = useState<string[]>([]);
+  const [selectedHairstylistOwned, setSelectedHairstylistOwned] = useState(false);
   const [selectedHasVerifiedReviews, setSelectedHasVerifiedReviews] = useState(false);
   const [selectedGoogleReviewsOnly, setSelectedGoogleReviewsOnly] = useState(false);
   const [selectedBookingSitesOnly, setSelectedBookingSitesOnly] = useState(false);
@@ -1158,6 +1471,17 @@ export default function App() {
   const [priceRangesOpen, setPriceRangesOpen] = useState(false);
   const [additionalNeedsOpen, setAdditionalNeedsOpen] = useState(false);
   const [reviewsFilterOpen, setReviewsFilterOpen] = useState(false);
+  const [directoryMode, setDirectoryMode] = useState<DirectoryMode>("stylists");
+  const [vendorFilterOptions, setVendorFilterOptions] = useState<{ productTypes: string[]; fulfilment: string[] }>({
+    productTypes: [],
+    fulfilment: [],
+  });
+  const [vendorResults, setVendorResults] = useState<VendorResult[]>([]);
+  const [isSearchingVendors, setIsSearchingVendors] = useState(false);
+  const [vendorSearchError, setVendorSearchError] = useState<string | null>(null);
+  const [hasSearchedVendors, setHasSearchedVendors] = useState(false);
+  const [vendorProductTypesOpen, setVendorProductTypesOpen] = useState(false);
+  const [vendorFulfilmentOpen, setVendorFulfilmentOpen] = useState(false);
   const loadMoreRef = useRef<HTMLDivElement | null>(null);
   const isMobileModalEditing = mobileFiltersOpen && !isDesktopViewport;
   const currentSelectedRegions = isMobileModalEditing ? draftSelectedRegions : selectedRegions;
@@ -1170,6 +1494,14 @@ export default function App() {
   const currentSelectedSenFriendly = isMobileModalEditing ? draftSelectedSenFriendly : selectedSenFriendly;
   const currentSelectedLgbtqFriendly = isMobileModalEditing ? draftSelectedLgbtqFriendly : selectedLgbtqFriendly;
   const currentSelectedParkingAvailable = isMobileModalEditing ? draftSelectedParkingAvailable : selectedParkingAvailable;
+  const currentSelectedSellingHair = isMobileModalEditing ? draftSelectedSellingHair : selectedSellingHair;
+  const currentSelectedPriceIncludesHair = isMobileModalEditing ? draftSelectedPriceIncludesHair : selectedPriceIncludesHair;
+  const currentSelectedSellsHairSeparately = isMobileModalEditing ? draftSelectedSellsHairSeparately : selectedSellsHairSeparately;
+  const showSellingHairSubfilters = currentSelectedSellingHair || currentSelectedPriceIncludesHair || currentSelectedSellsHairSeparately;
+  const currentSelectedVendorProductTypeGroups = isMobileModalEditing ? draftSelectedVendorProductTypeGroups : selectedVendorProductTypeGroups;
+  const currentSelectedVendorProductTypes = isMobileModalEditing ? draftSelectedVendorProductTypes : selectedVendorProductTypes;
+  const currentSelectedVendorFulfilment = isMobileModalEditing ? draftSelectedVendorFulfilment : selectedVendorFulfilment;
+  const currentSelectedHairstylistOwned = isMobileModalEditing ? draftSelectedHairstylistOwned : selectedHairstylistOwned;
   const currentSelectedHasVerifiedReviews = isMobileModalEditing ? draftSelectedHasVerifiedReviews : selectedHasVerifiedReviews;
   const currentSelectedGoogleReviewsOnly = isMobileModalEditing ? draftSelectedGoogleReviewsOnly : selectedGoogleReviewsOnly;
   const currentSelectedBookingSitesOnly = isMobileModalEditing ? draftSelectedBookingSitesOnly : selectedBookingSitesOnly;
@@ -1200,6 +1532,13 @@ export default function App() {
     setDraftSelectedSenFriendly(selectedSenFriendly);
     setDraftSelectedLgbtqFriendly(selectedLgbtqFriendly);
     setDraftSelectedParkingAvailable(selectedParkingAvailable);
+    setDraftSelectedSellingHair(selectedSellingHair);
+    setDraftSelectedPriceIncludesHair(selectedPriceIncludesHair);
+    setDraftSelectedSellsHairSeparately(selectedSellsHairSeparately);
+    setDraftSelectedVendorProductTypeGroups(selectedVendorProductTypeGroups);
+    setDraftSelectedVendorProductTypes(selectedVendorProductTypes);
+    setDraftSelectedVendorFulfilment(selectedVendorFulfilment);
+    setDraftSelectedHairstylistOwned(selectedHairstylistOwned);
     setDraftSelectedHasVerifiedReviews(selectedHasVerifiedReviews);
     setDraftSelectedGoogleReviewsOnly(selectedGoogleReviewsOnly);
     setDraftSelectedBookingSitesOnly(selectedBookingSitesOnly);
@@ -1236,6 +1575,13 @@ export default function App() {
     setSelectedSenFriendly(draftSelectedSenFriendly);
     setSelectedLgbtqFriendly(draftSelectedLgbtqFriendly);
     setSelectedParkingAvailable(draftSelectedParkingAvailable);
+    setSelectedSellingHair(draftSelectedSellingHair);
+    setSelectedPriceIncludesHair(draftSelectedPriceIncludesHair);
+    setSelectedSellsHairSeparately(draftSelectedSellsHairSeparately);
+    setSelectedVendorProductTypeGroups(draftSelectedVendorProductTypeGroups);
+    setSelectedVendorProductTypes(draftSelectedVendorProductTypes);
+    setSelectedVendorFulfilment(draftSelectedVendorFulfilment);
+    setSelectedHairstylistOwned(draftSelectedHairstylistOwned);
     setSelectedHasVerifiedReviews(draftSelectedHasVerifiedReviews);
     setSelectedGoogleReviewsOnly(draftSelectedGoogleReviewsOnly);
     setSelectedBookingSitesOnly(draftSelectedBookingSitesOnly);
@@ -1337,6 +1683,154 @@ export default function App() {
     }
 
     setSelectedParkingAvailable(updater);
+  }
+
+  function updateSellingHair(updater: boolean | ((current: boolean) => boolean)) {
+    if (isMobileModalEditing) {
+      setDraftSelectedSellingHair(updater);
+      return;
+    }
+
+    setSelectedSellingHair(updater);
+  }
+
+  function updatePriceIncludesHair(updater: boolean | ((current: boolean) => boolean)) {
+    if (isMobileModalEditing) {
+      setDraftSelectedPriceIncludesHair(updater);
+      return;
+    }
+
+    setSelectedPriceIncludesHair(updater);
+  }
+
+  function updateSellsHairSeparately(updater: boolean | ((current: boolean) => boolean)) {
+    if (isMobileModalEditing) {
+      setDraftSelectedSellsHairSeparately(updater);
+      return;
+    }
+
+    setSelectedSellsHairSeparately(updater);
+  }
+
+  function updateVendorProductTypeGroups(updater: string[] | ((current: string[]) => string[])) {
+    if (isMobileModalEditing) {
+      setDraftSelectedVendorProductTypeGroups(updater);
+      return;
+    }
+
+    setSelectedVendorProductTypeGroups(updater);
+  }
+
+  function updateVendorProductTypes(updater: string[] | ((current: string[]) => string[])) {
+    if (isMobileModalEditing) {
+      setDraftSelectedVendorProductTypes(updater);
+      return;
+    }
+
+    setSelectedVendorProductTypes(updater);
+  }
+
+  function updateVendorFulfilment(updater: string[] | ((current: string[]) => string[])) {
+    if (isMobileModalEditing) {
+      setDraftSelectedVendorFulfilment(updater);
+      return;
+    }
+
+    setSelectedVendorFulfilment(updater);
+  }
+
+  function getVendorProductTypeGroupOptions(groupLabel: string): string[] {
+    return vendorProductTypeGroupsEffective.find((group) => group.label === groupLabel)?.options ?? [];
+  }
+
+  function getVendorProductTypeGroupForOption(productType: string): string | undefined {
+    return vendorProductTypeGroupsEffective.find((group) => group.options.includes(productType))?.label;
+  }
+
+  function isVendorProductTypeGroupSelected(groupLabel: string) {
+    return currentSelectedVendorProductTypeGroups.includes(groupLabel);
+  }
+
+  function vendorProductTypeGroupHasSelectedTypes(groupLabel: string) {
+    return getVendorProductTypeGroupOptions(groupLabel).some((option) => currentSelectedVendorProductTypes.includes(option));
+  }
+
+  function toggleVendorProductTypeGroup(groupLabel: string) {
+    const isCurrentlyActive = currentSelectedVendorProductTypeGroups.includes(groupLabel);
+    trackAnalyticsEvent("vendor_product_type_selected", { product_type: groupLabel, selected: !isCurrentlyActive, type: "group" });
+
+    updateVendorProductTypeGroups((currentGroups) => {
+      const groupOptions = new Set(getVendorProductTypeGroupOptions(groupLabel));
+
+      updateVendorProductTypes((currentTypes) => currentTypes.filter((type) => !groupOptions.has(type)));
+
+      const isActive = currentGroups.includes(groupLabel);
+      if (isActive) {
+        return currentGroups.filter((label) => label !== groupLabel);
+      }
+      return [...currentGroups, groupLabel];
+    });
+    setVisibleResultCount(RESULTS_BATCH_SIZE);
+  }
+
+  function toggleVendorProductType(productType: string) {
+    const nextSelected = !currentSelectedVendorProductTypes.includes(productType);
+    trackAnalyticsEvent("vendor_product_type_selected", { product_type: productType, selected: nextSelected, type: "option" });
+
+    const parentGroup = getVendorProductTypeGroupForOption(productType);
+
+    updateVendorProductTypes((currentTypes) => {
+      const isCurrentlySelected = currentTypes.includes(productType);
+      const nextTypes = isCurrentlySelected
+        ? currentTypes.filter((type) => type !== productType)
+        : [...currentTypes, productType];
+
+      if (parentGroup) {
+        const parentOptions = getVendorProductTypeGroupOptions(parentGroup);
+        const hasSelectedSibling = parentOptions.some((option) => nextTypes.includes(option));
+
+        updateVendorProductTypeGroups((currentGroups) => {
+          const groupsWithoutParent = currentGroups.filter((label) => label !== parentGroup);
+          if (hasSelectedSibling) return groupsWithoutParent;
+          return [...groupsWithoutParent, parentGroup];
+        });
+      }
+
+      return nextTypes;
+    });
+    setVisibleResultCount(RESULTS_BATCH_SIZE);
+  }
+
+  function toggleVendorFulfilment(fulfilmentOption: string) {
+    const current = currentSelectedVendorFulfilment;
+    const nextSelected = !current.includes(fulfilmentOption);
+    trackAnalyticsEvent("vendor_fulfilment_selected", { fulfilment: fulfilmentOption, selected: nextSelected });
+    updateVendorFulfilment((currentValues) =>
+      currentValues.includes(fulfilmentOption) ? currentValues.filter((value) => value !== fulfilmentOption) : [...currentValues, fulfilmentOption],
+    );
+    setVisibleResultCount(RESULTS_BATCH_SIZE);
+  }
+
+  function updateHairstylistOwned(updater: boolean | ((current: boolean) => boolean)) {
+    if (isMobileModalEditing) {
+      setDraftSelectedHairstylistOwned(updater);
+      return;
+    }
+
+    setSelectedHairstylistOwned(updater);
+  }
+
+  function toggleHairstylistOwned() {
+    const nextEnabled = !currentSelectedHairstylistOwned;
+    trackAnalyticsEvent("vendor_hairstylist_owned_toggle_changed", { enabled: nextEnabled });
+    updateHairstylistOwned(nextEnabled);
+    setVisibleResultCount(RESULTS_BATCH_SIZE);
+  }
+
+  function selectDirectoryMode(mode: DirectoryMode) {
+    if (mode === directoryMode) return;
+    trackAnalyticsEvent("directory_mode_changed", { mode });
+    setDirectoryMode(mode);
   }
 
   function updateHasVerifiedReviews(updater: boolean | ((current: boolean) => boolean)) {
@@ -1498,13 +1992,16 @@ export default function App() {
       selected_services: currentSelectedCategories.length + currentSelectedSubcategories.length,
       selected_locations: currentSelectedRegions.filter((region) => region !== "all").length,
       selected_price_ranges: currentSelectedPriceBands.length,
-      selected_additional_needs: (currentSelectedHijabiFriendly ? 1 : 0) + (currentSelectedCanBraidWithoutGel ? 1 : 0) + (currentSelectedWheelchairAccessible ? 1 : 0) + (currentSelectedSenFriendly ? 1 : 0) + (currentSelectedLgbtqFriendly ? 1 : 0) + (currentSelectedParkingAvailable ? 1 : 0),
+      selected_additional_needs: (currentSelectedHijabiFriendly ? 1 : 0) + (currentSelectedCanBraidWithoutGel ? 1 : 0) + (currentSelectedWheelchairAccessible ? 1 : 0) + (currentSelectedSenFriendly ? 1 : 0) + (currentSelectedLgbtqFriendly ? 1 : 0) + (currentSelectedParkingAvailable ? 1 : 0) + (currentSelectedSellingHair ? 1 : 0) + (currentSelectedPriceIncludesHair ? 1 : 0) + (currentSelectedSellsHairSeparately ? 1 : 0),
       hijabi_friendly: currentSelectedHijabiFriendly,
       can_braid_without_gel: currentSelectedCanBraidWithoutGel,
       wheelchair_accessible: currentSelectedWheelchairAccessible,
       sen_friendly: currentSelectedSenFriendly,
       lgbtq_friendly: currentSelectedLgbtqFriendly,
       parking_available: currentSelectedParkingAvailable,
+      selling_hair: currentSelectedSellingHair,
+      price_includes_hair: currentSelectedPriceIncludesHair,
+      sells_hair_separately: currentSelectedSellsHairSeparately,
       has_verified_reviews: currentSelectedHasVerifiedReviews,
       google_reviews_only: currentSelectedGoogleReviewsOnly,
       booking_sites_only: currentSelectedBookingSitesOnly,
@@ -1519,6 +2016,13 @@ export default function App() {
     updateSenFriendly(false);
     updateLgbtqFriendly(false);
     updateParkingAvailable(false);
+    updateSellingHair(false);
+    updatePriceIncludesHair(false);
+    updateSellsHairSeparately(false);
+    updateVendorProductTypeGroups([]);
+    updateVendorProductTypes([]);
+    updateVendorFulfilment([]);
+    updateHairstylistOwned(false);
     updateHasVerifiedReviews(false);
     updateGoogleReviewsOnly(false);
     updateBookingSitesOnly(false);
@@ -1648,6 +2152,35 @@ export default function App() {
       enabled: !currentSelectedParkingAvailable,
     });
     updateParkingAvailable((current) => !current);
+  }
+
+  function toggleSellingHair() {
+    const nextEnabled = !currentSelectedSellingHair;
+    trackAnalyticsEvent("selling_hair_toggle_changed", {
+      enabled: nextEnabled,
+    });
+    updateSellingHair(nextEnabled);
+    if (!nextEnabled) {
+      // Closing the group clears its subfilters too, so it doesn't stay
+      // active-but-hidden behind a collapsed parent — mirrors unchecking a
+      // service category clearing its selected subcategories.
+      updatePriceIncludesHair(false);
+      updateSellsHairSeparately(false);
+    }
+  }
+
+  function togglePriceIncludesHair() {
+    trackAnalyticsEvent("price_includes_hair_toggle_changed", {
+      enabled: !currentSelectedPriceIncludesHair,
+    });
+    updatePriceIncludesHair((current) => !current);
+  }
+
+  function toggleSellsHairSeparately() {
+    trackAnalyticsEvent("sells_hair_separately_toggle_changed", {
+      enabled: !currentSelectedSellsHairSeparately,
+    });
+    updateSellsHairSeparately((current) => !current);
   }
 
   function toggleHasVerifiedReviews() {
@@ -1815,6 +2348,9 @@ export default function App() {
           senFriendly: selectedSenFriendly,
           lgbtqFriendly: selectedLgbtqFriendly,
           parkingAvailable: selectedParkingAvailable,
+          sellingHairAny: selectedSellingHair,
+          priceIncludesHair: selectedPriceIncludesHair,
+          sellsHairSeparately: selectedSellsHairSeparately,
           hasVerifiedReviews: selectedHasVerifiedReviews,
           googleReviewsOnly: selectedGoogleReviewsOnly,
           bookingSitesOnly: selectedBookingSitesOnly,
@@ -1851,6 +2387,9 @@ export default function App() {
         sen_friendly: selectedSenFriendly,
         lgbtq_friendly: selectedLgbtqFriendly,
         parking_available: selectedParkingAvailable,
+        selling_hair: selectedSellingHair,
+        price_includes_hair: selectedPriceIncludesHair,
+        sells_hair_separately: selectedSellsHairSeparately,
         has_verified_reviews: selectedHasVerifiedReviews,
         google_reviews_only: selectedGoogleReviewsOnly,
         booking_sites_only: selectedBookingSitesOnly,
@@ -1866,6 +2405,9 @@ export default function App() {
           sen_friendly: selectedSenFriendly,
           lgbtq_friendly: selectedLgbtqFriendly,
           parking_available: selectedParkingAvailable,
+          selling_hair: selectedSellingHair,
+          price_includes_hair: selectedPriceIncludesHair,
+          sells_hair_separately: selectedSellsHairSeparately,
           has_verified_reviews: selectedHasVerifiedReviews,
           google_reviews_only: selectedGoogleReviewsOnly,
           booking_sites_only: selectedBookingSitesOnly,
@@ -1885,9 +2427,72 @@ export default function App() {
     }
   }
 
+  async function handleVendorSearch(options?: { scroll?: boolean }) {
+    setIsSearchingVendors(true);
+    setVendorSearchError(null);
+    setHasSearchedVendors(true);
+
+    try {
+      const response = await fetch("/api/vendors", {
+        method: "POST",
+        cache: "no-store",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          productTypeGroups: selectedVendorProductTypeGroups,
+          productTypes: selectedVendorProductTypes,
+          fulfilment: selectedVendorFulfilment,
+          hairstylistOwned: selectedHairstylistOwned,
+        }),
+      });
+
+      const contentType = response.headers.get("content-type") ?? "";
+      if (!contentType.includes("application/json")) {
+        const rawResponse = await response.text();
+        const summary = rawResponse.replace(/\s+/g, " ").trim().slice(0, 140);
+        throw new Error(
+          summary
+            ? `Vendor search API returned HTML instead of JSON: ${summary}`
+            : "Vendor search API returned HTML instead of JSON.",
+        );
+      }
+
+      const payload = (await response.json()) as VendorSearchResponse;
+      if (!response.ok || !payload.ok) {
+        throw new Error(payload.message || "Search failed.");
+      }
+
+      const resultCount = (payload.results ?? []).length;
+      trackAnalyticsEvent("vendor_search_performed", {
+        product_type_groups: selectedVendorProductTypeGroups.join(", ") || "none",
+        product_types: selectedVendorProductTypes.join(", ") || "none",
+        fulfilment: selectedVendorFulfilment.join(", ") || "none",
+        hairstylist_owned: selectedHairstylistOwned,
+        result_count: resultCount,
+      });
+
+      setVendorResults(payload.results ?? []);
+      if (options?.scroll !== false) {
+        document.getElementById("live-results")?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    } catch (error) {
+      setVendorResults([]);
+      setVendorSearchError(error instanceof Error ? error.message : "Search failed.");
+    } finally {
+      setIsSearchingVendors(false);
+    }
+  }
+
   useEffect(() => {
+    if (directoryMode !== "stylists") return;
     void handleSearch({ scroll: false });
-  }, [selectedCategories, selectedSubcategories, selectedRegions, selectedHijabiFriendly, selectedCanBraidWithoutGel, selectedWheelchairAccessible, selectedSenFriendly, selectedLgbtqFriendly, selectedParkingAvailable, selectedHasVerifiedReviews, selectedGoogleReviewsOnly, selectedBookingSitesOnly, selectedCustomFilters]);
+  }, [directoryMode, selectedCategories, selectedSubcategories, selectedRegions, selectedHijabiFriendly, selectedCanBraidWithoutGel, selectedWheelchairAccessible, selectedSenFriendly, selectedLgbtqFriendly, selectedParkingAvailable, selectedSellingHair, selectedPriceIncludesHair, selectedSellsHairSeparately, selectedHasVerifiedReviews, selectedGoogleReviewsOnly, selectedBookingSitesOnly, selectedCustomFilters]);
+
+  useEffect(() => {
+    if (directoryMode !== "vendors") return;
+    void handleVendorSearch({ scroll: false });
+  }, [directoryMode, selectedVendorProductTypeGroups, selectedVendorProductTypes, selectedVendorFulfilment, selectedHairstylistOwned]);
 
   useEffect(() => {
     fetch("/api/filters")
@@ -1905,6 +2510,12 @@ export default function App() {
         }
         if (data.ok && data.searchAliases && typeof data.searchAliases === "object") {
           setServiceSearchAliases(data.searchAliases);
+        }
+        if (data.ok && data.vendorFilterOptions && typeof data.vendorFilterOptions === "object") {
+          setVendorFilterOptions({
+            productTypes: Array.isArray(data.vendorFilterOptions.productTypes) ? data.vendorFilterOptions.productTypes : [],
+            fulfilment: Array.isArray(data.vendorFilterOptions.fulfilment) ? data.vendorFilterOptions.fulfilment : [],
+          });
         }
       })
       .catch(() => {});
@@ -1975,6 +2586,9 @@ export default function App() {
     selectedSenFriendly ||
     selectedLgbtqFriendly ||
     selectedParkingAvailable ||
+    selectedSellingHair ||
+    selectedPriceIncludesHair ||
+    selectedSellsHairSeparately ||
     selectedHasVerifiedReviews ||
     selectedGoogleReviewsOnly ||
     selectedBookingSitesOnly ||
@@ -2051,11 +2665,34 @@ export default function App() {
   const selectedLocationCount = currentSelectedRegions.filter((regionId) => regionId !== "all").length;
   const selectedPriceRangeCount = currentSelectedPriceBands.length;
   const selectedAdditionalNeedsCount =
-    (currentSelectedHijabiFriendly ? 1 : 0) + (currentSelectedCanBraidWithoutGel ? 1 : 0) + (currentSelectedWheelchairAccessible ? 1 : 0) + (currentSelectedSenFriendly ? 1 : 0) + (currentSelectedLgbtqFriendly ? 1 : 0) + (currentSelectedParkingAvailable ? 1 : 0);
+    (currentSelectedHijabiFriendly ? 1 : 0) + (currentSelectedCanBraidWithoutGel ? 1 : 0) + (currentSelectedWheelchairAccessible ? 1 : 0) + (currentSelectedSenFriendly ? 1 : 0) + (currentSelectedLgbtqFriendly ? 1 : 0) + (currentSelectedParkingAvailable ? 1 : 0) + (currentSelectedSellingHair ? 1 : 0);
   const selectedReviewsCount = currentSelectedHasVerifiedReviews || currentSelectedGoogleReviewsOnly || currentSelectedBookingSitesOnly ? 1 : 0;
   const selectedCustomFilterCounts = Object.fromEntries(
     customFilterTypes.map((filterType) => [filterType.id, (currentSelectedCustomFilters[filterType.id] ?? []).length]),
   );
+  const vendorProductTypeGroupsEffective = (() => {
+    const availableProductTypes = new Set(vendorFilterOptions.productTypes);
+    const grouped = new Set<string>();
+    const groups = vendorProductTypeGroups
+      .map((group) => {
+        const options = group.options.filter((option) => availableProductTypes.has(option));
+        options.forEach((option) => grouped.add(option));
+        return { label: group.label, options };
+      })
+      .filter((group) => group.options.length > 0);
+    const ungrouped = vendorFilterOptions.productTypes.filter((option) => !grouped.has(option));
+    if (ungrouped.length > 0) {
+      groups.push({ label: "Other", options: ungrouped });
+    }
+    return groups;
+  })();
+  const selectedVendorProductTypeCount = vendorProductTypeGroupsEffective.reduce((count, group) => {
+    return isVendorProductTypeGroupSelected(group.label) || vendorProductTypeGroupHasSelectedTypes(group.label) ? count + 1 : count;
+  }, 0);
+  const selectedVendorFulfilmentCount = currentSelectedVendorFulfilment.length;
+  const vendorResultCount = vendorResults.length;
+  const hasActiveVendorFilters =
+    selectedVendorProductTypeGroups.length > 0 || selectedVendorProductTypes.length > 0 || selectedVendorFulfilment.length > 0;
 
   return (
     <div className="min-h-screen bg-stone-100 text-left dark:bg-stone-950">
@@ -2086,7 +2723,15 @@ export default function App() {
         {mobileFiltersOpen ? <div className="fixed inset-0 z-40 bg-stone-100 dark:bg-stone-950 lg:hidden" aria-hidden="true" /> : null}
         <section id="live-results" className="min-w-0 flex-1 pb-6 pt-4 lg:pb-6 lg:pr-8 lg:pt-0">
           <div className="sticky top-0 z-30 flex w-full items-center justify-between border-b border-stone-300 bg-stone-100 px-0 pb-3 pt-1 dark:border-stone-800 dark:bg-stone-950 lg:h-20 lg:items-end lg:pb-6 lg:pt-2">
-            {hasSearched ? (
+            {directoryMode === "vendors" ? (
+              hasSearchedVendors ? (
+                <h2 className="text-[14px] font-medium leading-none text-stone-500 dark:text-stone-400">
+                  {vendorResultCount} {vendorResultCount === 1 ? "result" : "results"}
+                </h2>
+              ) : (
+                <h2 className="text-[14px] font-medium leading-none text-stone-500 dark:text-stone-400">Results</h2>
+              )
+            ) : hasSearched ? (
               <h2 className="text-[14px] font-medium leading-none text-stone-500 dark:text-stone-400">
                 {distinctResultCount} {distinctResultCount === 1 ? "result" : "results"}
               </h2>
@@ -2125,6 +2770,16 @@ export default function App() {
             </div>
           ) : null}
 
+          {directoryMode === "vendors" ? (
+            <VendorResultsList
+              vendors={vendorResults}
+              isSearching={isSearchingVendors}
+              searchError={vendorSearchError}
+              hasSearched={hasSearchedVendors}
+              onResetFilters={clearFilters}
+            />
+          ) : (
+          <>
           {searchError ? (
             <div className="mt-4 bg-rose-100 px-4 py-6 text-left dark:bg-rose-950/30">
               <h3 className="text-[17px] font-semibold text-rose-900 dark:text-rose-200">Something went wrong</h3>
@@ -2206,13 +2861,15 @@ export default function App() {
                   const reviewsBanner = getReviewsBannerInfo(result, {
                     preferBookingPlatform: currentSelectedBookingSitesOnly && !currentSelectedGoogleReviewsOnly,
                   });
+                  const hairShopLink = getHairShopLinkInfo(result);
                   const attributeLabels = [
                     result.wheelchairAccessible ? "wheelchair access" : null,
                     result.hijabiFriendly ? "hijabi-friendly" : null,
                     result.canBraidWithoutGel ? "can braid without gel" : null,
                     result.senFriendly ? "sensory-safe / sen-friendly" : null,
                     result.lgbtqFriendly ? "lgbtqia+-friendly" : null,
-                    result.parkingAvailable ? "parking nearby" : null,
+                    result.priceIncludesHair ? "hair-inclusive packages" : null,
+                    !hairShopLink && result.sellsHairSeparately ? "hair sold separately" : null,
                     ...getResultCustomFilterLabels(result, customFilterTypes),
                   ].filter((label): label is string => Boolean(label));
 
@@ -2233,6 +2890,8 @@ export default function App() {
                                   {comparablePriceBand(result)}
                                 </p>
                               ) : null}
+                              {reviewsBanner || hairShopLink ? (
+                              <div className="mt-1.5 flex flex-col items-start gap-2">
                               {reviewsBanner ? (
                                 <a
                                   href={reviewsBanner.url}
@@ -2245,11 +2904,26 @@ export default function App() {
                                       platform: getVerifiedReviewsPlatform(result) ?? "google",
                                     })
                                   }
-                                  className="mt-1 inline-flex w-fit items-center gap-1 text-[13px] font-medium text-[oklch(0.45_0.11_255)] transition-colors hover:text-[oklch(0.38_0.11_255)] active:text-[oklch(0.38_0.11_255)] dark:text-[oklch(0.72_0.10_255)] dark:hover:text-[oklch(0.80_0.09_255)] dark:active:text-[oklch(0.80_0.09_255)]"
+                                  className="inline-flex w-fit items-center gap-1 text-[13px] font-semibold text-[oklch(0.45_0.05_255)] transition-colors hover:text-[oklch(0.38_0.06_255)] active:text-[oklch(0.38_0.06_255)] dark:text-[oklch(0.72_0.05_255)] dark:hover:text-[oklch(0.80_0.06_255)] dark:active:text-[oklch(0.80_0.06_255)]"
                                 >
                                   <span aria-hidden="true">{reviewsBanner.label}</span>
                                   <ArrowUpRight className="size-3.5 shrink-0" aria-hidden="true" />
                                 </a>
+                              ) : null}
+                              {hairShopLink ? (
+                                <a
+                                  href={hairShopLink.url}
+                                  target="_blank"
+                                  rel="noreferrer"
+                                  aria-label={`${hairShopLink.accessibleLabel} - opens in a new tab`}
+                                  onClick={() => trackAnalyticsEvent("hair_shop_click", { salon: result.name })}
+                                  className="inline-flex w-fit items-center gap-1 text-[13px] font-semibold text-[oklch(0.45_0.05_255)] transition-colors hover:text-[oklch(0.38_0.06_255)] active:text-[oklch(0.38_0.06_255)] dark:text-[oklch(0.72_0.05_255)] dark:hover:text-[oklch(0.80_0.06_255)] dark:active:text-[oklch(0.80_0.06_255)]"
+                                >
+                                  <span aria-hidden="true">{hairShopLink.label}</span>
+                                  <ArrowUpRight className="size-3.5 shrink-0" aria-hidden="true" />
+                                </a>
+                              ) : null}
+                              </div>
                               ) : null}
                             </div>
                             {result.instagramUrl ? (
@@ -2362,6 +3036,8 @@ export default function App() {
               </div>
             </div>
           ) : null}
+          </>
+          )}
         </section>
 
         <aside
@@ -2409,6 +3085,230 @@ export default function App() {
             aria-label="Filter options"
             className="mt-0 min-h-0 flex-1 space-y-6 overflow-y-auto px-0 pt-0 pb-6 [scrollbar-gutter:stable_both-edges] lg:min-h-0 lg:flex-1 lg:space-y-6 lg:overflow-y-scroll lg:px-0 lg:pt-0 lg:pb-6"
           >
+            {VENDOR_MODE_ENABLED ? (
+              <div className="pt-6">
+                <div
+                  role="tablist"
+                  aria-label="Directory mode"
+                  className="flex w-full gap-1 rounded-none bg-stone-200 p-1 dark:bg-stone-900"
+                >
+                  <button
+                    type="button"
+                    role="tab"
+                    aria-selected={directoryMode === "stylists"}
+                    onClick={() => selectDirectoryMode("stylists")}
+                    className={cn(
+                      "min-h-9 flex-1 rounded-none px-4 py-1.5 text-[14px] font-medium transition-colors",
+                      directoryMode === "stylists"
+                        ? "bg-white text-stone-950 dark:bg-stone-700 dark:text-stone-50"
+                        : "bg-transparent text-stone-500 hover:text-stone-800 dark:text-stone-400 dark:hover:text-stone-100",
+                    )}
+                  >
+                    Stylists
+                  </button>
+                  <button
+                    type="button"
+                    role="tab"
+                    aria-selected={directoryMode === "vendors"}
+                    onClick={() => selectDirectoryMode("vendors")}
+                    className={cn(
+                      "min-h-9 flex-1 rounded-none px-4 py-1.5 text-[14px] font-medium transition-colors",
+                      directoryMode === "vendors"
+                        ? "bg-white text-stone-950 dark:bg-stone-700 dark:text-stone-50"
+                        : "bg-transparent text-stone-500 hover:text-stone-800 dark:text-stone-400 dark:hover:text-stone-100",
+                    )}
+                  >
+                    Vendors
+                  </button>
+                </div>
+              </div>
+            ) : null}
+
+            {directoryMode === "vendors" ? (
+              <>
+                <div>
+                  <div
+                    className={cn(
+                      "bg-stone-100 pb-2 dark:bg-stone-950 lg:sticky lg:top-0 lg:z-10",
+                      vendorProductTypesOpen && "border-b border-stone-300 dark:border-stone-800",
+                    )}
+                  >
+                    <button
+                      type="button"
+                      aria-expanded={vendorProductTypesOpen}
+                      onClick={() => setVendorProductTypesOpen((current) => !current)}
+                      className="group flex min-h-11 w-full items-center justify-between rounded-none bg-transparent px-0 py-2 text-left"
+                    >
+                      <span className="text-[15px] font-medium text-stone-950 transition-colors group-hover:text-stone-500 group-active:text-stone-500 dark:text-stone-100 dark:group-hover:text-stone-500 dark:group-active:text-stone-500">
+                        Product type
+                      </span>
+                      <span className="flex items-center gap-2">
+                        {selectedVendorProductTypeCount > 0 ? (
+                          <span className="inline-flex min-h-5 min-w-5 items-center justify-center rounded-full bg-stone-950 px-2 text-[11px] font-bold leading-none text-stone-100 transition-colors group-hover:bg-stone-500 dark:bg-stone-100 dark:text-stone-950 dark:group-hover:bg-stone-500">
+                            {selectedVendorProductTypeCount}
+                          </span>
+                        ) : null}
+                        <ChevronDown
+                          className={cn(
+                            "size-4 text-stone-700 transition-colors transition-transform group-hover:text-stone-500 group-active:text-stone-500 dark:text-stone-200 dark:group-hover:text-stone-500 dark:group-active:text-stone-500",
+                            vendorProductTypesOpen && "rotate-180",
+                          )}
+                          aria-hidden="true"
+                        />
+                      </span>
+                    </button>
+                  </div>
+
+                  <AnimatedCollapsible open={vendorProductTypesOpen}>
+                    <div className="space-y-2 pt-3">
+                      {vendorProductTypeGroupsEffective.map((group) => {
+                        const isGroupActive = isVendorProductTypeGroupSelected(group.label);
+                        const showTypes = isGroupActive || vendorProductTypeGroupHasSelectedTypes(group.label);
+
+                        return (
+                          <div key={group.label} className="space-y-2">
+                            <button
+                              type="button"
+                              aria-pressed={isGroupActive}
+                              onClick={() => toggleVendorProductTypeGroup(group.label)}
+                              className="flex w-full cursor-pointer items-start gap-3 rounded-none px-2 py-2 text-left transition-colors hover:bg-stone-200 active:bg-stone-200 dark:hover:bg-stone-900 dark:active:bg-stone-900"
+                            >
+                              <span
+                                aria-hidden="true"
+                                className={cn(
+                                  "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-none border border-stone-500 bg-white text-white transition dark:border-stone-500 dark:bg-stone-900",
+                                  isGroupActive && "border-stone-950 bg-stone-950 dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950",
+                                )}
+                              >
+                                {isGroupActive ? <Check className="size-3.5" /> : null}
+                              </span>
+                              <span className="translate-y-[1.5px] text-[15px] text-stone-800 dark:text-stone-200">
+                                {group.label}
+                              </span>
+                            </button>
+
+                            {showTypes && group.options.length > 0 ? (
+                              <div className="space-y-2 pl-8">
+                                {group.options.map((productType) => {
+                                  const isActive = currentSelectedVendorProductTypes.includes(productType);
+                                  return (
+                                    <button
+                                      type="button"
+                                      aria-pressed={isActive}
+                                      key={productType}
+                                      onClick={() => toggleVendorProductType(productType)}
+                                      className="flex w-full cursor-pointer items-start gap-3 rounded-none px-2 py-2 text-left transition-colors hover:bg-stone-200 active:bg-stone-200 dark:hover:bg-stone-900 dark:active:bg-stone-900"
+                                    >
+                                      <span
+                                        aria-hidden="true"
+                                        className={cn(
+                                          "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-none border border-stone-500 bg-white text-white transition dark:border-stone-500 dark:bg-stone-900",
+                                          isActive && "border-stone-950 bg-stone-950 dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950",
+                                        )}
+                                      >
+                                        {isActive ? <Check className="size-3.5" /> : null}
+                                      </span>
+                                      <span className="translate-y-[1.5px] text-[15px] text-stone-800 dark:text-stone-200">
+                                        {productType}
+                                      </span>
+                                    </button>
+                                  );
+                                })}
+                              </div>
+                            ) : null}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </AnimatedCollapsible>
+                </div>
+
+                <div>
+                  <div
+                    className={cn(
+                      "bg-stone-100 pb-2 dark:bg-stone-950 lg:sticky lg:top-0 lg:z-10",
+                      vendorFulfilmentOpen && "border-b border-stone-300 dark:border-stone-800",
+                    )}
+                  >
+                    <button
+                      type="button"
+                      aria-expanded={vendorFulfilmentOpen}
+                      onClick={() => setVendorFulfilmentOpen((current) => !current)}
+                      className="group flex min-h-11 w-full items-center justify-between rounded-none bg-transparent px-0 py-2 text-left"
+                    >
+                      <span className="text-[15px] font-medium text-stone-950 transition-colors group-hover:text-stone-500 group-active:text-stone-500 dark:text-stone-100 dark:group-hover:text-stone-500 dark:group-active:text-stone-500">
+                        Fulfilment
+                      </span>
+                      <span className="flex items-center gap-2">
+                        {selectedVendorFulfilmentCount > 0 ? (
+                          <span className="inline-flex min-h-5 min-w-5 items-center justify-center rounded-full bg-stone-950 px-2 text-[11px] font-bold leading-none text-stone-100 transition-colors group-hover:bg-stone-500 dark:bg-stone-100 dark:text-stone-950 dark:group-hover:bg-stone-500">
+                            {selectedVendorFulfilmentCount}
+                          </span>
+                        ) : null}
+                        <ChevronDown
+                          className={cn(
+                            "size-4 text-stone-700 transition-colors transition-transform group-hover:text-stone-500 group-active:text-stone-500 dark:text-stone-200 dark:group-hover:text-stone-500 dark:group-active:text-stone-500",
+                            vendorFulfilmentOpen && "rotate-180",
+                          )}
+                          aria-hidden="true"
+                        />
+                      </span>
+                    </button>
+                  </div>
+
+                  <AnimatedCollapsible open={vendorFulfilmentOpen}>
+                    <div className="space-y-2 pt-3">
+                      {vendorFilterOptions.fulfilment.map((fulfilmentOption) => {
+                        const isActive = currentSelectedVendorFulfilment.includes(fulfilmentOption);
+                        return (
+                          <button
+                            type="button"
+                            aria-pressed={isActive}
+                            key={fulfilmentOption}
+                            onClick={() => toggleVendorFulfilment(fulfilmentOption)}
+                            className="flex w-full cursor-pointer items-start gap-3 rounded-none px-2 py-2 text-left transition-colors hover:bg-stone-200 active:bg-stone-200 dark:hover:bg-stone-900 dark:active:bg-stone-900"
+                          >
+                            <span
+                              aria-hidden="true"
+                              className={cn(
+                                "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-none border border-stone-500 bg-white text-white transition dark:border-stone-500 dark:bg-stone-900",
+                                isActive && "border-stone-950 bg-stone-950 dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950",
+                              )}
+                            >
+                              {isActive ? <Check className="size-3.5" /> : null}
+                            </span>
+                            <span className="translate-y-[1.5px] text-[15px] text-stone-800 dark:text-stone-200">
+                              {fulfilmentOption}
+                            </span>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </AnimatedCollapsible>
+                </div>
+
+                <button
+                  type="button"
+                  aria-pressed={currentSelectedHairstylistOwned}
+                  onClick={toggleHairstylistOwned}
+                  className="flex w-full cursor-pointer items-start gap-3 rounded-none px-2 py-2 text-left transition-colors hover:bg-stone-200 active:bg-stone-200 dark:hover:bg-stone-900 dark:active:bg-stone-900"
+                >
+                  <span
+                    aria-hidden="true"
+                    className={cn(
+                      "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-none border border-stone-500 bg-white text-white transition dark:border-stone-500 dark:bg-stone-900",
+                      currentSelectedHairstylistOwned && "border-stone-950 bg-stone-950 dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950",
+                    )}
+                  >
+                    {currentSelectedHairstylistOwned ? <Check className="size-3.5" /> : null}
+                  </span>
+                  <span className="translate-y-[1.5px] text-[15px] text-stone-800 dark:text-stone-200">
+                    Hairstylist-owned
+                  </span>
+                </button>
+              </>
+            ) : (
+              <>
             <div className="pt-6">
               <div className="space-y-2">
                 <label htmlFor="sort-results" className="sr-only">
@@ -2952,25 +3852,72 @@ export default function App() {
                     <p className="px-2 text-[12px] leading-4 text-stone-500 dark:text-stone-500">
                       You may need to double-check with the salon or stylist beforehand to confirm the following
                     </p>
-                    <button
-                      type="button"
-                      aria-pressed={currentSelectedParkingAvailable}
-                      onClick={toggleParkingAvailable}
-                      className="flex w-full cursor-pointer items-start gap-3 rounded-none px-2 py-2 text-left transition-colors hover:bg-stone-200 active:bg-stone-200 dark:hover:bg-stone-900 dark:active:bg-stone-900"
-                    >
-                      <span
-                        aria-hidden="true"
-                        className={cn(
-                          "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-none border border-stone-500 bg-white text-white transition dark:border-stone-500 dark:bg-stone-900",
-                          currentSelectedParkingAvailable && "border-stone-950 bg-stone-950 dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950",
-                        )}
+
+                    <div className="space-y-2">
+                      <button
+                        type="button"
+                        aria-pressed={currentSelectedSellingHair}
+                        onClick={toggleSellingHair}
+                        className="flex w-full cursor-pointer items-start gap-3 rounded-none px-2 py-2 text-left transition-colors hover:bg-stone-200 active:bg-stone-200 dark:hover:bg-stone-900 dark:active:bg-stone-900"
                       >
-                        {currentSelectedParkingAvailable ? <Check className="size-3.5" /> : null}
-                      </span>
-                      <span className="translate-y-[1.5px] text-[15px] text-stone-800 dark:text-stone-200">
-                        Parking nearby
-                      </span>
-                    </button>
+                        <span
+                          aria-hidden="true"
+                          className={cn(
+                            "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-none border border-stone-500 bg-white text-white transition dark:border-stone-500 dark:bg-stone-900",
+                            currentSelectedSellingHair && "border-stone-950 bg-stone-950 dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950",
+                          )}
+                        >
+                          {currentSelectedSellingHair ? <Check className="size-3.5" /> : null}
+                        </span>
+                        <span className="translate-y-[1.5px] text-[15px] text-stone-800 dark:text-stone-200">
+                          Sells hair
+                        </span>
+                      </button>
+
+                      {showSellingHairSubfilters ? (
+                      <div className="space-y-2 pl-8">
+                        <button
+                          type="button"
+                          aria-pressed={currentSelectedPriceIncludesHair}
+                          onClick={togglePriceIncludesHair}
+                          className="flex w-full cursor-pointer items-start gap-3 rounded-none px-2 py-2 text-left transition-colors hover:bg-stone-200 active:bg-stone-200 dark:hover:bg-stone-900 dark:active:bg-stone-900"
+                        >
+                          <span
+                            aria-hidden="true"
+                            className={cn(
+                              "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-none border border-stone-500 bg-white text-white transition dark:border-stone-500 dark:bg-stone-900",
+                              currentSelectedPriceIncludesHair && "border-stone-950 bg-stone-950 dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950",
+                            )}
+                          >
+                            {currentSelectedPriceIncludesHair ? <Check className="size-3.5" /> : null}
+                          </span>
+                          <span className="translate-y-[1.5px] text-[15px] text-stone-800 dark:text-stone-200">
+                            Hair-inclusive packages available
+                          </span>
+                        </button>
+
+                        <button
+                          type="button"
+                          aria-pressed={currentSelectedSellsHairSeparately}
+                          onClick={toggleSellsHairSeparately}
+                          className="flex w-full cursor-pointer items-start gap-3 rounded-none px-2 py-2 text-left transition-colors hover:bg-stone-200 active:bg-stone-200 dark:hover:bg-stone-900 dark:active:bg-stone-900"
+                        >
+                          <span
+                            aria-hidden="true"
+                            className={cn(
+                              "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-none border border-stone-500 bg-white text-white transition dark:border-stone-500 dark:bg-stone-900",
+                              currentSelectedSellsHairSeparately && "border-stone-950 bg-stone-950 dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950",
+                            )}
+                          >
+                            {currentSelectedSellsHairSeparately ? <Check className="size-3.5" /> : null}
+                          </span>
+                          <span className="translate-y-[1.5px] text-[15px] text-stone-800 dark:text-stone-200">
+                            Hair sold separately
+                          </span>
+                        </button>
+                      </div>
+                      ) : null}
+                    </div>
 
                     <button
                       type="button"
@@ -3166,6 +4113,8 @@ export default function App() {
                   </div>
                 );
               })}
+              </>
+            )}
           </section>
           {mobileFiltersOpen ? (
             <div className="shrink-0 border-t border-stone-300 bg-stone-100 px-4 pb-[max(1rem,env(safe-area-inset-bottom))] pt-3 dark:border-stone-800 dark:bg-stone-950 sm:px-6 lg:hidden">

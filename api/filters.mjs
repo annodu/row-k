@@ -2,6 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { setNoStoreHeaders } from "../server/salon-index.mjs";
+import { getVendorFilterOptions } from "../server/vendor-index.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -14,12 +15,13 @@ export default async function handler(_req, res) {
     const additionalNeedsPath = path.resolve(__dirname, "../data/additional-needs.json");
     const customFilterTypesPath = path.resolve(__dirname, "../data/custom-filter-types.json");
     const priceBandsPath = path.resolve(__dirname, "../data/price-bands.json");
-    const [filtersRaw, locationsRaw, additionalNeedsRaw, customFilterTypesRaw, priceBandsRaw] = await Promise.all([
+    const [filtersRaw, locationsRaw, additionalNeedsRaw, customFilterTypesRaw, priceBandsRaw, vendorFilterOptions] = await Promise.all([
       fs.promises.readFile(filtersPath, "utf8").catch(() => null),
       fs.promises.readFile(locationsPath, "utf8").catch(() => null),
       fs.promises.readFile(additionalNeedsPath, "utf8").catch(() => null),
       fs.promises.readFile(customFilterTypesPath, "utf8").catch(() => null),
       fs.promises.readFile(priceBandsPath, "utf8").catch(() => null),
+      getVendorFilterOptions(),
     ]);
     return res.status(200).json({
       ok: true,
@@ -28,6 +30,7 @@ export default async function handler(_req, res) {
       additionalNeeds: additionalNeedsRaw ? JSON.parse(additionalNeedsRaw).options : null,
       customFilterTypes: customFilterTypesRaw ? JSON.parse(customFilterTypesRaw).filterTypes : null,
       priceBands: priceBandsRaw ? JSON.parse(priceBandsRaw).bands : null,
+      vendorFilterOptions,
     });
   } catch (error) {
     console.error("Filters API failed", error);
