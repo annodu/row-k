@@ -1,8 +1,8 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-08-11",
-    "count": 9
+    "updatedAt": "2026-08-19",
+    "count": 8
   },
   "drafts": [
     {
@@ -80,37 +80,6 @@
       "googleReviewCount": 0,
       "googleMatchConfidence": "no-match",
       "googleDisplayName": ""
-    },
-    {
-      "id": "new-stylist-msp7x673",
-      "status": "needs_review",
-      "name": "New stylist",
-      "areaId": "",
-      "areaIds": [],
-      "areaLabel": "",
-      "neighbourhood": "",
-      "postcode": "",
-      "bookingPlatform": "",
-      "bookingUrl": "",
-      "instagramUrl": "",
-      "tiktokUrl": "",
-      "addedVia": "Admin tool",
-      "discoverySource": "Manual search",
-      "services": [],
-      "rawServices": [],
-      "summary": "Admin draft created from stylist intake.",
-      "confidence": 0.35,
-      "warnings": [
-        "No booking link identified yet.",
-        "No services matched yet."
-      ],
-      "evidence": [
-        "Created through ROW K admin intake."
-      ],
-      "source": "admin-draft",
-      "createdAt": "2026-08-11",
-      "updatedAt": "2026-08-11",
-      "lastCheckedAt": "2026-08-11"
     },
     {
       "id": "get-inkzpired",

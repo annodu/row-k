@@ -97,6 +97,7 @@ type StylistDraft = {
   bookingPlatform: string;
   bookingUrl: string;
   websiteUrl?: string;
+  hairShopUrl?: string;
   instagramUrl: string;
   tiktokUrl?: string;
   addedVia?: string;
@@ -114,6 +115,7 @@ type StylistDraft = {
   servicePriceBand?: PriceBand;
   packagePriceBand?: PriceBand;
   priceIncludesHair?: boolean;
+  sellsHairSeparately?: boolean;
   priceComparisonMode?: PriceComparisonMode | "";
   priceSource?: "auto" | "manual" | "";
   priceEvidence?: string[];
@@ -2232,7 +2234,9 @@ function StylistsPage({
         const matchesCategory = categoryFilter === "all" || draftMatchesCategory(draft, categoryFilter, filterCategories);
         const matchesLocation = locationFilter === "all" || draftMatchesLocation(draft, locationFilter);
         const matchesPrice = priceFilter === "all" || (draft.priceBand || "not-listed") === priceFilter;
-        const matchesNeeds = needsFilter.every((need) => Boolean(draft[need as "hijabiFriendly" | "canBraidWithoutGel" | "wheelchairAccessible" | "senFriendly" | "lgbtqFriendly" | "parkingAvailable"]));
+        const matchesNeeds = needsFilter.every((need) =>
+          Boolean(draft[need as "hijabiFriendly" | "canBraidWithoutGel" | "wheelchairAccessible" | "senFriendly" | "lgbtqFriendly" | "parkingAvailable" | "priceIncludesHair" | "sellsHairSeparately"]),
+        );
         return matchesCategory && matchesLocation && matchesPrice && matchesNeeds;
       }),
     [drafts, categoryFilter, locationFilter, priceFilter, needsFilter, filterCategories],
@@ -2606,6 +2610,8 @@ const stylistNeedsFilterOptions = [
   { id: "canBraidWithoutGel", label: "Can braid without gel" },
   { id: "lgbtqFriendly", label: "LGBTQIA+-friendly" },
   { id: "senFriendly", label: "Sensory-safe / SEN-friendly" },
+  { id: "priceIncludesHair", label: "Hair-inclusive packages available" },
+  { id: "sellsHairSeparately", label: "Hair sold separately" },
 ];
 
 const stylistStatusFilterOptions = [
@@ -7343,6 +7349,14 @@ function DraftEditor({
           placeholder="https://..."
           href={draft.websiteUrl}
         />
+        <DraftLinkField
+          label={<HairShopUrlFieldLabel />}
+          icon={<Link2 className="size-4" />}
+          value={draft.hairShopUrl || ""}
+          onChange={(hairShopUrl) => onChange({ hairShopUrl })}
+          placeholder="https://..."
+          href={draft.hairShopUrl}
+        />
       </div>
 
       <DraftLocationSelector draft={draft} regions={regions} onChange={onChangeLocations} />
@@ -7627,6 +7641,22 @@ function DraftEditor({
           ) : null}
         </div>
       </DraftPropertyRow>
+
+      <DraftPropertyRow label={<HairShopUrlFieldLabel />}>
+        <div className="flex items-center gap-2">
+          <Input
+            value={draft.hairShopUrl || ""}
+            onChange={(event) => onChange({ hairShopUrl: event.target.value })}
+            placeholder="https://..."
+            className="h-8 rounded-none border border-stone-300 bg-stone-50 px-2 py-1 hover:border-stone-400 focus-visible:border-stone-950"
+          />
+          {draft.hairShopUrl ? (
+            <a href={draft.hairShopUrl} target="_blank" rel="noreferrer" className="inline-flex size-8 shrink-0 items-center justify-center rounded-md text-stone-400 transition hover:bg-stone-100 hover:text-stone-950" aria-label="Open hair shop">
+              <ExternalLink className="size-4" />
+            </a>
+          ) : null}
+        </div>
+      </DraftPropertyRow>
     </div>
   );
 
@@ -7885,6 +7915,17 @@ function WebsiteFieldLabel() {
     <span className="inline-flex items-center gap-1">
       Website
       <span title="Used by freshness checks for richer info — not shown to visitors.">
+        <Info className="size-3.5 shrink-0 text-stone-400" />
+      </span>
+    </span>
+  );
+}
+
+function HairShopUrlFieldLabel() {
+  return (
+    <span className="inline-flex items-center gap-1">
+      Hair shop URL
+      <span title="Where visitors buy hair separately. Only shown when 'Sells hair separately' is on — falls back to Website if left blank.">
         <Info className="size-3.5 shrink-0 text-stone-400" />
       </span>
     </span>
@@ -8255,6 +8296,8 @@ const additionalNeedsFieldMap: Record<string, keyof StylistDraft> = {
   canBraidWithoutGel: "canBraidWithoutGel",
   "wheelchair-access": "wheelchairAccessible",
   senFriendly: "senFriendly",
+  sellsHairSeparately: "sellsHairSeparately",
+  priceIncludesHair: "priceIncludesHair",
   lgbtqFriendly: "lgbtqFriendly",
   parkingAvailable: "parkingAvailable",
 };
@@ -8456,6 +8499,7 @@ function publishedSalonToDraft(salon: Partial<StylistDraft>): StylistDraft {
     bookingPlatform: salon.bookingPlatform || "",
     bookingUrl: salon.bookingUrl || "",
     websiteUrl: salon.websiteUrl || "",
+    hairShopUrl: salon.hairShopUrl || "",
     instagramUrl: salon.instagramUrl || "",
     tiktokUrl: salon.tiktokUrl || "",
     addedVia: salon.addedVia || "",
@@ -8472,6 +8516,7 @@ function publishedSalonToDraft(salon: Partial<StylistDraft>): StylistDraft {
     servicePriceBand: salon.servicePriceBand,
     packagePriceBand: salon.packagePriceBand,
     priceIncludesHair: salon.priceIncludesHair === true,
+    sellsHairSeparately: salon.sellsHairSeparately === true,
     priceComparisonMode: salon.priceComparisonMode || "",
     priceSource: salon.priceSource || "",
     priceEvidence: Array.isArray(salon.priceEvidence) ? salon.priceEvidence : [],

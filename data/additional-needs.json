@@ -23,6 +23,14 @@
     {
       "id": "senFriendly",
       "label": "Sensory-safe / SEN-friendly"
+    },
+    {
+      "id": "sellsHairSeparately",
+      "label": "Sells hair separately"
+    },
+    {
+      "id": "priceIncludesHair",
+      "label": "Hair-inclusive packages available"
     }
   ]
 }

@@ -1,11 +1,46 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-08-13",
-    "count": 912,
+    "updatedAt": "2026-08-19",
+    "count": 913,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "cachos-rubinathy",
+      "name": "Cachos Rubinathy",
+      "areaId": "south-east",
+      "areaLabel": "South east London",
+      "neighbourhood": "South east London London",
+      "postcode": "",
+      "bookingPlatform": "Direct website",
+      "bookingUrl": "https://rubinathy.simplybook.it/v2/",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/cachosrubinathy/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Manual search",
+      "services": [
+        "Curly cut / wash & go / diffuse",
+        "Kids & teens styles",
+        "Moisturising treatment",
+        "Balayage",
+        "Full head colour",
+        "Highlights",
+        "Trim / hair cut"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Created through ROW K admin intake."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-08-19T16:45:56.952Z"
+    },
     {
       "id": "temi-hairstylist",
       "name": "Temi Hairstylist",
@@ -42984,11 +43019,16 @@
       "canBraidWithoutGel": false,
       "wheelchairAccessible": false,
       "customFilters": {},
-      "servicePriceBand": "£",
+      "servicePriceBand": "",
       "packagePriceBand": "",
-      "priceIncludesHair": false,
-      "priceComparisonMode": "service-only",
-      "updatedAt": "2026-07-28"
+      "priceIncludesHair": true,
+      "priceComparisonMode": "",
+      "updatedAt": "2026-08-18",
+      "hairShopUrl": "https://www.instagram.com/texturedhairbyfloria/",
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": true
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
