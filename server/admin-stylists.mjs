@@ -12,6 +12,14 @@ function today() {
   return new Date().toISOString().split("T")[0];
 }
 
+function mimeTypeForImageFilename(filename) {
+  const ext = filename.split(".").pop()?.toLowerCase();
+  if (ext === "png") return "image/png";
+  if (ext === "gif") return "image/gif";
+  if (ext === "webp") return "image/webp";
+  return "image/jpeg";
+}
+
 import { categoryMap, normalizeServices, serviceAliases, setCategoryMapCache, setRegionParentGroupsCache } from "./salon-index.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -27,6 +35,11 @@ const customFilterTypesPath = path.resolve(__dirname, "../data/custom-filter-typ
 const priceBandsPath = path.resolve(__dirname, "../data/price-bands.json");
 const manualIndexPath = path.resolve(__dirname, "../data/manual-salons.json");
 const healthCheckFeedbackPath = path.resolve(__dirname, "../data/health-check-feedback.json");
+const portfolioReviewPath = path.resolve(__dirname, "../data/portfolio-photo-review.json");
+const portfolioReviewPhotosDir = path.resolve(__dirname, "../data/portfolio-review-photos");
+const portfolioPhotosPublicDir = path.resolve(__dirname, "../public/portfolio-photos");
+const portfolioCorrectionsPath = path.resolve(__dirname, "../data/portfolio-photo-corrections.json");
+const portfolioCorrectionsPhotosDir = path.resolve(__dirname, "../data/portfolio-photo-corrections-photos");
 const sessionCookieName = "rowk_admin_session";
 const sessionMaxAgeSeconds = 60 * 60 * 12;
 const repositoryRoot = path.resolve(__dirname, "..");
@@ -714,6 +727,107 @@ export function registerAdminStylistRoutes(app) {
     const store = await readJson(healthCheckFeedbackPath, { meta: { source: "health-check-feedback" }, entries: [] });
     const entries = Array.isArray(store.entries) ? store.entries : [];
     res.json({ ok: true, entries: [...entries].reverse() });
+  });
+
+  // Rejected candidate photos from scripts/backfill-portfolio-photos.mjs, held here
+  // for manual review since the vision classifier's rejections are heuristic
+  // judgment calls and some will be wrong (as several were during development —
+  // an editorial hairstyle photo, in particular, got misclassified as product
+  // marketing until the prompt was corrected). Local-filesystem only: the
+  // candidate images never leave this machine unless approved, so this doesn't
+  // work against the hosted/Vercel admin — only via `npm run dev` locally.
+  app.get("/api/admin/portfolio-review", requireAdmin, async (_req, res) => {
+    const store = await readJson(portfolioReviewPath, { meta: {}, candidates: [] });
+    res.json({ ok: true, candidates: Array.isArray(store.candidates) ? store.candidates : [] });
+  });
+
+  app.get("/api/admin/portfolio-review/photo/:id", requireAdmin, async (req, res) => {
+    const store = await readJson(portfolioReviewPath, { meta: {}, candidates: [] });
+    const candidate = (store.candidates || []).find((c) => c.id === req.params.id);
+    if (!candidate) {
+      return res.status(404).end();
+    }
+    try {
+      const buffer = await fs.readFile(path.join(portfolioReviewPhotosDir, candidate.filename));
+      res.setHeader("Content-Type", mimeTypeForImageFilename(candidate.filename));
+      res.setHeader("Cache-Control", "private, max-age=3600");
+      res.send(buffer);
+    } catch {
+      res.status(404).end();
+    }
+  });
+
+  app.post("/api/admin/portfolio-review/:id/approve", requireAdmin, async (req, res) => {
+    const store = await readJson(portfolioReviewPath, { meta: {}, candidates: [] });
+    const candidates = Array.isArray(store.candidates) ? store.candidates : [];
+    const index = candidates.findIndex((c) => c.id === req.params.id);
+    if (index === -1) {
+      return res.status(404).json({ ok: false, message: "Candidate not found." });
+    }
+    const candidate = candidates[index];
+
+    const manualIndex = await readJson(manualIndexPath, { meta: { source: "manual" }, salons: [] });
+    const salon = manualIndex.salons.find((s) => s.id === candidate.salonId);
+    if (!salon) {
+      return res.status(404).json({ ok: false, message: "Salon not found." });
+    }
+
+    const ext = path.extname(candidate.filename) || ".jpg";
+    const nextIndex = (salon.portfolioPhotos?.length || 0) + 1;
+    const newFilename = `${salon.id}-${nextIndex}${ext}`;
+    await fs.mkdir(portfolioPhotosPublicDir, { recursive: true });
+    await fs.copyFile(path.join(portfolioReviewPhotosDir, candidate.filename), path.join(portfolioPhotosPublicDir, newFilename));
+
+    // Keep a copy plus the classifier's original (wrong) verdict as a
+    // human-confirmed correction — scripts/backfill-portfolio-photos.mjs feeds
+    // a rotating sample of these back into future classification calls as
+    // reference examples, so the same kind of mistake shows up less often
+    // instead of just being fixed one photo at a time.
+    await fs.mkdir(portfolioCorrectionsPhotosDir, { recursive: true });
+    const correctionFilename = `${candidate.id}${ext}`;
+    await fs.copyFile(path.join(portfolioReviewPhotosDir, candidate.filename), path.join(portfolioCorrectionsPhotosDir, correctionFilename));
+    const corrections = await readJson(portfolioCorrectionsPath, { corrections: [] });
+    corrections.corrections = [
+      ...(corrections.corrections || []),
+      {
+        id: candidate.id,
+        filename: correctionFilename,
+        category: candidate.category,
+        quality: candidate.quality,
+        reason: candidate.reason,
+        correctedAt: today(),
+      },
+    ];
+    await writeJson(portfolioCorrectionsPath, corrections);
+
+    await fs.unlink(path.join(portfolioReviewPhotosDir, candidate.filename)).catch(() => {});
+
+    salon.portfolioPhotos = [
+      ...(salon.portfolioPhotos || []),
+      { id: `${salon.id}-portfolio-photo-${nextIndex - 1}`, url: `/portfolio-photos/${newFilename}`, source: candidate.source },
+    ];
+    await writeJson(manualIndexPath, manualIndex);
+
+    candidates.splice(index, 1);
+    store.candidates = candidates;
+    await writeJson(portfolioReviewPath, store);
+
+    res.json({ ok: true });
+  });
+
+  app.post("/api/admin/portfolio-review/:id/dismiss", requireAdmin, async (req, res) => {
+    const store = await readJson(portfolioReviewPath, { meta: {}, candidates: [] });
+    const candidates = Array.isArray(store.candidates) ? store.candidates : [];
+    const index = candidates.findIndex((c) => c.id === req.params.id);
+    if (index === -1) {
+      return res.status(404).json({ ok: false, message: "Candidate not found." });
+    }
+    const candidate = candidates[index];
+    await fs.unlink(path.join(portfolioReviewPhotosDir, candidate.filename)).catch(() => {});
+    candidates.splice(index, 1);
+    store.candidates = candidates;
+    await writeJson(portfolioReviewPath, store);
+    res.json({ ok: true });
   });
 
   app.get("/api/admin/dashboard", requireAdmin, async (_req, res) => {

@@ -20,6 +20,7 @@ import {
   FileText,
   Globe,
   Heart,
+  Image as ImageIcon,
   Info,
   LayoutDashboard,
   Link2,
@@ -140,7 +141,7 @@ type CustomFilterBehavior = "toggle-group" | "tag-multiselect";
 type CustomFilterOption = { id: string; label: string };
 type CustomFilterType = { id: string; label: string; description: string; behavior: CustomFilterBehavior; options: CustomFilterOption[] };
 type PriceBandTier = { symbol: string; label: string; maxAmount: number | null };
-type AdminView = "overview" | "analytics" | "drafts" | "freshness" | "pricing" | "keyword" | "discovery" | "filters";
+type AdminView = "overview" | "analytics" | "drafts" | "freshness" | "pricing" | "keyword" | "discovery" | "filters" | "photo-review";
 
 type AdminNavItem = { id: AdminView; label: string; icon: ComponentType<{ className?: string }> };
 
@@ -163,6 +164,7 @@ const ADMIN_NAV_GROUPS: { label?: string; items: AdminNavItem[] }[] = [
     items: [
       { id: "freshness", label: "Health", icon: Activity },
       { id: "pricing", label: "Pricing", icon: PoundSterling },
+      { id: "photo-review", label: "Photo review", icon: ImageIcon },
     ],
   },
   {
@@ -1933,6 +1935,8 @@ function AdminAppInner() {
         {activeView === "analytics" ? (
           <AnalyticsPage onOpenView={setActiveView} />
         ) : null}
+
+        {activeView === "photo-review" ? <PortfolioReviewPage /> : null}
 
         {activeView === "drafts" ? (
           <StylistsPage
@@ -3898,6 +3902,140 @@ function DashboardOverview({
           )}
         </div>
       </div>
+    </div>
+  );
+}
+
+type PortfolioReviewCandidate = {
+  id: string;
+  filename: string;
+  salonId: string;
+  salonName: string;
+  source: string;
+  category: string;
+  quality: number;
+  reason: string;
+  rejectedAt: string;
+};
+
+function PortfolioReviewPage() {
+  const [candidates, setCandidates] = useState<PortfolioReviewCandidate[] | null>(null);
+  const [error, setError] = useState("");
+  const [actioningId, setActioningId] = useState<string | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    fetch("/api/admin/portfolio-review", { credentials: "include" })
+      .then((response) => response.json())
+      .then((payload) => {
+        if (cancelled) return;
+        if (!payload.ok) {
+          setError(payload.message || "Could not load review queue.");
+          return;
+        }
+        setCandidates(payload.candidates);
+      })
+      .catch(() => {
+        if (!cancelled) setError("Could not load review queue.");
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  async function act(id: string, action: "approve" | "dismiss") {
+    setActioningId(id);
+    try {
+      const response = await fetch(`/api/admin/portfolio-review/${id}/${action}`, {
+        method: "POST",
+        credentials: "include",
+      });
+      if (!response.ok) {
+        const payload = await response.json().catch(() => null);
+        setError(payload?.message || `Could not ${action} this photo.`);
+        return;
+      }
+      setCandidates((current) => (current ? current.filter((c) => c.id !== id) : current));
+    } catch {
+      setError(`Could not ${action} this photo.`);
+    } finally {
+      setActioningId(null);
+    }
+  }
+
+  const grouped = useMemo(() => {
+    const bySalon = new Map<string, { salonName: string; items: PortfolioReviewCandidate[] }>();
+    for (const candidate of candidates ?? []) {
+      const entry = bySalon.get(candidate.salonId) ?? { salonName: candidate.salonName, items: [] };
+      entry.items.push(candidate);
+      bySalon.set(candidate.salonId, entry);
+    }
+    return [...bySalon.entries()];
+  }, [candidates]);
+
+  return (
+    <div className="space-y-6">
+      <div>
+        <h1 className="text-lg font-semibold text-stone-950">Photo review</h1>
+        <p className="mt-1 text-sm text-stone-500">
+          Photos the portfolio-photos backfill rejected, held here in case the classifier judged one wrong. Approving adds it
+          straight to that salon's listing; dismissing deletes it for good. Only available when running the admin tool locally
+          (candidate images live on disk, not in the repo).
+        </p>
+      </div>
+
+      {error ? <p className="text-sm text-red-600">{error}</p> : null}
+
+      {candidates === null ? (
+        <p className="text-sm text-stone-500">Loading…</p>
+      ) : candidates.length === 0 ? (
+        <p className="text-sm text-stone-500">Nothing waiting for review.</p>
+      ) : (
+        <div className="space-y-8">
+          {grouped.map(([salonId, { salonName, items }]) => (
+            <div key={salonId}>
+              <h2 className="text-sm font-semibold text-stone-950">{salonName}</h2>
+              <div className="mt-2 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+                {items.map((candidate) => (
+                  <div key={candidate.id} className="border border-stone-200 bg-white">
+                    <img
+                      src={`/api/admin/portfolio-review/photo/${candidate.id}`}
+                      alt=""
+                      className="aspect-square w-full object-cover"
+                    />
+                    <div className="space-y-1 p-2">
+                      <p className="text-xs font-medium text-stone-700">
+                        {candidate.category} · quality {candidate.quality} · {candidate.source}
+                      </p>
+                      <p className="truncate text-xs text-stone-500" title={candidate.reason}>
+                        {candidate.reason}
+                      </p>
+                      <div className="flex gap-2 pt-1">
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          disabled={actioningId === candidate.id}
+                          onClick={() => act(candidate.id, "approve")}
+                        >
+                          Approve
+                        </Button>
+                        <Button
+                          size="sm"
+                          variant="ghost"
+                          disabled={actioningId === candidate.id}
+                          onClick={() => act(candidate.id, "dismiss")}
+                        >
+                          Dismiss
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

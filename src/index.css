@@ -2,6 +2,15 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+@keyframes services-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
 @theme {
   --font-sans: "Figtree", ui-sans-serif, system-ui, sans-serif;
   --breakpoint-sm: 48.0625rem;

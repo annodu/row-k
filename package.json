@@ -9,7 +9,8 @@
     "preview": "vite preview",
     "server": "node server/index.mjs",
     "validate": "node scripts/validate-services.mjs",
-    "validate:reviews": "node scripts/validate-reviews.mjs"
+    "validate:reviews": "node scripts/validate-reviews.mjs",
+    "backfill:portfolio-photos": "node scripts/backfill-portfolio-photos.mjs"
   },
   "devDependencies": {
     "@types/react": "^19.2.14",
@@ -31,6 +32,7 @@
     "posthog-js": "^1.404.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
+    "sharp": "^0.35.3",
     "tailwind-merge": "^3.5.0",
     "tailwindcss": "^4.2.2",
     "tesseract.js": "^7.0.0"

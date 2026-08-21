@@ -1,5 +1,5 @@
 import { Fragment, type ReactNode, useCallback, useEffect, useRef, useState } from "react";
-import { ArrowUpRight, Check, ChevronDown, Copy, Globe, Search, X } from "lucide-react";
+import { ArrowUpRight, Check, ChevronDown, ChevronLeft, ChevronRight, Copy, Globe, Search, X } from "lucide-react";
 
 import { Checkbox } from "@/components/ui/checkbox";
 import { AdminApp } from "@/AdminApp";
@@ -163,6 +163,7 @@ type SalonResult = {
   googleMapsUri?: string;
   googleReviewCount?: number;
   googleMatchConfidence?: "high" | "low" | "no-match";
+  portfolioPhotos?: PortfolioPhoto[];
   customFilters?: Record<string, string[]>;
   priceBand?: PriceBand;
   servicePriceBand?: PriceBand;
@@ -171,6 +172,12 @@ type SalonResult = {
   priceComparisonMode?: "service-only" | "mixed" | "package-only";
   summary: string;
   source: string;
+};
+
+type PortfolioPhoto = {
+  id: string;
+  url: string;
+  source?: string;
 };
 
 type SearchResponse = {
@@ -382,6 +389,100 @@ function isInstagramUrl(url: string) {
   return /(^|\/\/)(www\.)?instagram\.com\//i.test(url);
 }
 
+function getPortfolioPhotos(result: SalonResult): PortfolioPhoto[] {
+  return result.portfolioPhotos?.slice(0, 3) ?? [];
+}
+
+// Placeholder for salons without portfolio photos yet — up to the first two
+// significant words' initials, e.g. "Aluxe Beauty UK" -> "AB".
+function getSalonInitials(name: string) {
+  const words = name.trim().split(/\s+/).filter(Boolean);
+  return words
+    .slice(0, 2)
+    .map((word) => word[0]?.toUpperCase())
+    .join("");
+}
+
+function PortfolioPhotoCarousel({
+  result,
+  photos,
+  className,
+}: {
+  result: SalonResult;
+  photos: PortfolioPhoto[];
+  className?: string;
+}) {
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  if (photos.length === 0) return null;
+
+  const activePhoto = photos[activeIndex] ?? photos[0];
+  const hasMultiplePhotos = photos.length > 1;
+  const goToPhoto = (nextIndex: number) => {
+    setActiveIndex((nextIndex + photos.length) % photos.length);
+  };
+
+  return (
+    <div className={cn("w-full", className)}>
+      <div className="relative aspect-[3/2] overflow-hidden rounded-none border border-stone-300/60 bg-stone-200 dark:border-stone-700/60 dark:bg-stone-900 sm:aspect-[4/3]">
+        <img
+          src={activePhoto.url}
+          alt=""
+          loading="lazy"
+          className="h-full w-full object-cover"
+        />
+
+        {hasMultiplePhotos ? (
+          <>
+            <button
+              type="button"
+              aria-label={`Show previous photo for ${result.name}`}
+              onClick={(event) => {
+                event.preventDefault();
+                goToPhoto(activeIndex - 1);
+              }}
+              className="absolute left-2 top-1/2 hidden size-8 -translate-y-1/2 items-center justify-center rounded-none bg-white/95 text-stone-950 shadow-sm ring-1 ring-stone-950/10 transition hover:bg-white sm:flex"
+            >
+              <ChevronLeft className="size-4" aria-hidden="true" />
+            </button>
+            <button
+              type="button"
+              aria-label={`Show next photo for ${result.name}`}
+              onClick={(event) => {
+                event.preventDefault();
+                goToPhoto(activeIndex + 1);
+              }}
+              className="absolute right-2 top-1/2 hidden size-8 -translate-y-1/2 items-center justify-center rounded-none bg-white/95 text-stone-950 shadow-sm ring-1 ring-stone-950/10 transition hover:bg-white sm:flex"
+            >
+              <ChevronRight className="size-4" aria-hidden="true" />
+            </button>
+            <div className="absolute bottom-2 left-2 flex items-center gap-1.5">
+              {photos.map((photo, index) => (
+                <button
+                  key={photo.id}
+                  type="button"
+                  aria-label={`Show photo ${index + 1} for ${result.name}`}
+                  aria-pressed={index === activeIndex}
+                  onClick={(event) => {
+                    event.preventDefault();
+                    goToPhoto(index);
+                  }}
+                  className="size-1.5 rounded-none bg-white/70 shadow-[0_0_0_1px_rgba(0,0,0,0.18)] transition hover:bg-white"
+                />
+              ))}
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute left-0 size-1.5 rounded-none bg-white shadow-[0_0_0_1px_rgba(0,0,0,0.18)] transition-transform duration-300 ease-out"
+                style={{ transform: `translateX(${activeIndex * 12}px)` }}
+              />
+            </div>
+          </>
+        ) : null}
+      </div>
+    </div>
+  );
+}
+
 function priceBandRank(result: SalonResult) {
   const priceBand = comparablePriceBand(result);
   if (!priceBand) return Number.POSITIVE_INFINITY;
@@ -550,6 +651,8 @@ function BrandGroupCard({
     !hairShopLink && brand.sellsHairSeparately ? "hair sold separately" : null,
     ...getResultCustomFilterLabels(brand, customFilterTypes),
   ].filter((label): label is string => Boolean(label));
+  const portfolioPhotos = getPortfolioPhotos(brand);
+  const hasPortfolioPhotos = portfolioPhotos.length > 0;
 
   const setRef = useViewedOnce(() => {
     trackAnalyticsEvent("stylist_viewed", { salon: brandName, location: "multiple", services: "brand-group" });
@@ -580,8 +683,17 @@ function BrandGroupCard({
       ref={setRef}
       className="flex w-full flex-col items-start gap-3 border-b border-stone-300 px-0 py-5 text-left last:border-b-0 dark:border-stone-800"
     >
-      <div className="flex w-full items-start justify-between gap-3">
-        <div className="min-w-0">
+      <div className="flex w-full flex-col gap-2.5 sm:grid sm:items-start sm:gap-x-4 sm:gap-y-2.5 sm:grid-cols-[220px_minmax(0,1fr)_auto] lg:grid-cols-[240px_minmax(0,1fr)_auto]">
+        {hasPortfolioPhotos ? (
+          <PortfolioPhotoCarousel result={brand} photos={portfolioPhotos} className="order-1 mb-1 sm:row-span-2 sm:mb-0" />
+        ) : (
+          <div className="order-1 mb-1 hidden w-full sm:row-span-2 sm:mb-0 sm:block" aria-hidden="true">
+            <div className="flex aspect-[3/2] w-full items-center justify-center overflow-hidden rounded-none border border-stone-300/60 bg-stone-100 dark:border-stone-700/60 dark:bg-stone-900/40 sm:aspect-[4/3]">
+              <span className="text-lg font-semibold tracking-wide text-stone-400 dark:text-stone-600">{getSalonInitials(brandName)}</span>
+            </div>
+          </div>
+        )}
+        <div className="min-w-0 order-2">
           <div className="flex min-w-0 flex-wrap items-center gap-x-2 gap-y-1">
             <h3 className="text-[17px] font-semibold text-stone-950 dark:text-stone-50">{brandName}</h3>
             <span className="inline-block rounded-none border border-stone-300 bg-stone-100 px-1.5 py-1 text-[11px] font-semibold leading-none tracking-[0.06em] text-stone-600 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-400">
@@ -609,7 +721,7 @@ function BrandGroupCard({
             </a>
           ) : null}
         </div>
-        <div className="flex shrink-0 items-center gap-1">
+        <div className="order-3 flex shrink-0 items-center gap-1 sm:justify-self-end">
           {brand.instagramUrl ? (
             <a
               href={brand.instagramUrl}
@@ -642,13 +754,29 @@ function BrandGroupCard({
             </a>
           ) : null}
         </div>
-      </div>
 
-      {orderedServices.length > 0 ? (
-        <div className="w-full rounded-none border-l-4 border-stone-300 bg-stone-200/45 pl-2 pr-3 py-2 text-[12px] font-normal lowercase leading-[18px] tracking-[0.02em] text-stone-700 dark:border-stone-700 dark:bg-stone-900/48 dark:text-stone-300">
-          <ServicesSummary services={orderedServices} badgeLabels={attributeLabels} />
-        </div>
-      ) : null}
+        {attributeLabels.length > 0 || orderedServices.length > 0 ? (
+          <div className="order-4 mt-2 w-full sm:order-3 sm:col-span-2 sm:self-end lg:mt-2">
+            {attributeLabels.length > 0 ? (
+              <div className="mb-2 flex flex-wrap gap-1">
+                {attributeLabels.map((label) => (
+                  <span
+                    key={label}
+                    className="inline-block w-fit rounded-none border border-[oklch(0.72_0.07_86)]/35 bg-[oklch(0.94_0.025_92)] px-1.5 py-1 align-baseline text-[11px] font-semibold leading-none tracking-[0.06em] text-[oklch(0.44_0.08_80)] dark:bg-[oklch(0.44_0.08_80)] dark:text-[oklch(0.94_0.025_92)]"
+                  >
+                    {label}
+                  </span>
+                ))}
+              </div>
+            ) : null}
+            {orderedServices.length > 0 ? (
+              <p className="border-l-2 border-stone-300 pl-2 text-[12px] font-normal lowercase leading-[18px] tracking-[0.02em] text-stone-700 dark:border-stone-700 dark:text-stone-300">
+                {orderedServices.map((service) => getServiceDisplayName(service)).join(" · ")}
+              </p>
+            ) : null}
+          </div>
+        ) : null}
+      </div>
 
       <div className="w-full divide-y divide-stone-200 border border-stone-200 dark:divide-stone-800 dark:border-stone-800">
         {visibleBranches.map((branch) => {
@@ -823,6 +951,8 @@ function ServicesSummary({ services, badgeLabels }: { services: string[]; badgeL
   const [isMobileViewport, setIsMobileViewport] = useState(false);
   const [isExpandedOnMobile, setIsExpandedOnMobile] = useState(false);
   const [isHoveredOnDesktop, setIsHoveredOnDesktop] = useState(false);
+  const marqueeCopyRef = useRef<HTMLSpanElement | null>(null);
+  const [marqueeSeconds, setMarqueeSeconds] = useState(8);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(max-width: 768px)");
@@ -952,6 +1082,15 @@ function ServicesSummary({ services, badgeLabels }: { services: string[]; badgeL
     }
   }, [isMobileViewport]);
 
+  useEffect(() => {
+    if (!isHoveredOnDesktop || isMobileViewport || services.length - visibleCount <= 0) return;
+    const copyWidth = marqueeCopyRef.current?.scrollWidth ?? 0;
+    const pixelsPerSecond = 55;
+    if (copyWidth > 0) {
+      setMarqueeSeconds(Math.max(4, copyWidth / pixelsPerSecond));
+    }
+  }, [isHoveredOnDesktop, isMobileViewport, services.length, visibleCount]);
+
   const hiddenCount = Math.max(0, services.length - visibleCount);
   const badgeHiddenCount = Math.max(0, labels.length - badgeVisibleCount);
   const fullBadgeText = labels.length > 0 ? labels.join(" · ") : null;
@@ -1020,9 +1159,17 @@ function ServicesSummary({ services, badgeLabels }: { services: string[]; badgeL
           </div>
         </>
       ) : showExpandedOnDesktop ? (
-        <div ref={lineRef} className="whitespace-normal" aria-label={fullAriaLabel}>
-          {badgeElement}
-          {fullServicesLabel}
+        <div ref={lineRef} className="overflow-hidden whitespace-nowrap" aria-label={fullAriaLabel}>
+          <div className="inline-flex whitespace-nowrap" style={{ animation: `services-marquee ${marqueeSeconds}s linear infinite` }}>
+            <span ref={marqueeCopyRef} className="inline-flex items-center pr-8">
+              {badgeElement}
+              {fullServicesLabel}
+            </span>
+            <span aria-hidden="true" className="inline-flex items-center pr-8">
+              {badgeElement}
+              {fullServicesLabel}
+            </span>
+          </div>
         </div>
       ) : (
         <div ref={lineRef} className="overflow-hidden whitespace-nowrap" aria-label={fullAriaLabel}>
@@ -2872,11 +3019,29 @@ export default function App() {
                     !hairShopLink && result.sellsHairSeparately ? "hair sold separately" : null,
                     ...getResultCustomFilterLabels(result, customFilterTypes),
                   ].filter((label): label is string => Boolean(label));
+                  const portfolioPhotos = getPortfolioPhotos(result);
+                  const hasPortfolioPhotos = portfolioPhotos.length > 0;
 
                   return (
                   <StylistCardWrapper key={result.id} result={result} services={activeServices}>
-                    <article className="flex w-full flex-col gap-2.5 sm:grid sm:grid-cols-[minmax(0,1fr)_auto] sm:items-start sm:gap-x-4 sm:gap-y-2.5">
-                      <div className="min-w-0">
+                    <article
+                      className="flex w-full flex-col gap-2.5 sm:grid sm:items-start sm:gap-x-4 sm:gap-y-2.5 sm:grid-cols-[220px_minmax(0,1fr)_auto] lg:grid-cols-[240px_minmax(0,1fr)_auto]"
+                    >
+                      {hasPortfolioPhotos ? (
+                        <PortfolioPhotoCarousel
+                          result={result}
+                          photos={portfolioPhotos}
+                          className="order-1 mb-1 sm:row-span-2 sm:mb-0"
+                        />
+                      ) : (
+                        <div className="order-1 mb-1 hidden w-full sm:row-span-2 sm:mb-0 sm:block" aria-hidden="true">
+                          <div className="flex aspect-[3/2] w-full items-center justify-center overflow-hidden rounded-none border border-stone-300/60 bg-stone-100 dark:border-stone-700/60 dark:bg-stone-900/40 sm:aspect-[4/3]">
+                            <span className="text-lg font-semibold tracking-wide text-stone-400 dark:text-stone-600">{getSalonInitials(result.name)}</span>
+                          </div>
+                        </div>
+                      )}
+
+                      <div className="min-w-0 order-2">
                         <div className="min-w-0 grow">
                           <div className="flex items-start justify-between gap-3">
                             <div className="min-w-0">
@@ -2948,10 +3113,6 @@ export default function App() {
 
                       </div>
 
-                      <div className="order-2 my-1 w-full rounded-none border-l-4 border-stone-300 bg-stone-200/45 pl-2 pr-3 py-2 text-[12px] font-normal lowercase leading-[18px] tracking-[0.02em] text-stone-700 dark:border-stone-700 dark:bg-stone-900/48 dark:text-stone-300 sm:order-3 sm:col-span-2 sm:my-0 lg:mt-2">
-                        <ServicesSummary services={orderedServices} badgeLabels={attributeLabels} />
-                      </div>
-
                       <div className="order-3 mt-2 flex w-full shrink-0 items-center gap-2 sm:order-2 sm:mt-0 sm:w-auto sm:self-start sm:justify-self-end">
                         {result.instagramUrl ? (
                           <a
@@ -2990,6 +3151,28 @@ export default function App() {
                           </a>
                         ) : null}
                       </div>
+
+                      {attributeLabels.length > 0 || orderedServices.length > 0 ? (
+                        <div className="order-4 mt-2 w-full sm:order-3 sm:col-span-2 sm:self-end lg:mt-2">
+                          {attributeLabels.length > 0 ? (
+                            <div className="mb-2 flex flex-wrap gap-1">
+                              {attributeLabels.map((label) => (
+                                <span
+                                  key={label}
+                                  className="inline-block w-fit rounded-none border border-[oklch(0.72_0.07_86)]/35 bg-[oklch(0.94_0.025_92)] px-1.5 py-1 align-baseline text-[11px] font-semibold leading-none tracking-[0.06em] text-[oklch(0.44_0.08_80)] dark:bg-[oklch(0.44_0.08_80)] dark:text-[oklch(0.94_0.025_92)]"
+                                >
+                                  {label}
+                                </span>
+                              ))}
+                            </div>
+                          ) : null}
+                          {orderedServices.length > 0 ? (
+                            <p className="border-l-2 border-stone-300 pl-2 text-[12px] font-normal lowercase leading-[18px] tracking-[0.02em] text-stone-700 dark:border-stone-700 dark:text-stone-300">
+                              {orderedServices.map((service) => getServiceDisplayName(service)).join(" · ")}
+                            </p>
+                          ) : null}
+                        </div>
+                      ) : null}
                     </article>
                   </StylistCardWrapper>
                   );

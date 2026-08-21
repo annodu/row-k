@@ -5,3 +5,7 @@ dist
 .vercel
 .claude/
 *.traineddata
+data/portfolio-photo-review.json
+data/portfolio-review-photos/
+data/portfolio-photo-corrections.json
+data/portfolio-photo-corrections-photos/

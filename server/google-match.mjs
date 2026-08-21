@@ -300,6 +300,42 @@ export async function getWheelchairAccessibleEntrance(placeId, apiKey) {
   return data.accessibilityOptions?.wheelchairAccessibleEntrance === true;
 }
 
+// Returns metadata for a place's Google-hosted photos (customer/owner uploads
+// via Google Maps/Business Profile) — same shared, high-confidence-only
+// pattern as getWheelchairAccessibleEntrance above. Actual image bytes are a
+// separate request per photo, see fetchPlacePhotoMedia.
+export async function getPlacePhotos(placeId, apiKey) {
+  const response = await fetch(`https://places.googleapis.com/v1/places/${placeId}`, {
+    headers: {
+      "X-Goog-Api-Key": apiKey,
+      "X-Goog-FieldMask": "photos",
+    },
+  });
+  if (!response.ok) {
+    throw new Error(`HTTP ${response.status}`);
+  }
+  const data = await response.json();
+  return (data.photos || []).map((photo) => ({
+    name: photo.name,
+    authorName: photo.authorAttributions?.[0]?.displayName || "",
+    authorUrl: photo.authorAttributions?.[0]?.uri || "",
+    googleMapsUri: photo.googleMapsUri || "",
+  }));
+}
+
+// Downloads the actual JPEG bytes for one photo resource name (e.g.
+// "places/PLACE_ID/photos/PHOTO_REF"), following Google's redirect to the CDN.
+export async function fetchPlacePhotoMedia(photoName, apiKey, { maxWidthPx = 800 } = {}) {
+  const response = await fetch(
+    `https://places.googleapis.com/v1/${photoName}/media?maxWidthPx=${maxWidthPx}&key=${apiKey}`,
+    { redirect: "follow" },
+  );
+  if (!response.ok) {
+    throw new Error(`HTTP ${response.status}`);
+  }
+  return Buffer.from(await response.arrayBuffer());
+}
+
 // Same shared/high-confidence-only pattern as getWheelchairAccessibleEntrance
 // above. Google's parkingOptions doesn't distinguish dedicated customer
 // parking from nearby paid street parking — any true sub-field just means

@@ -1,8 +1,8 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-08-12",
-    "count": 147,
+    "updatedAt": "2026-08-20",
+    "count": 149,
     "notes": "London-based hair vendors. Separate from the stylist/salon directory. productTypes and fulfilment are placeholders pending review."
   },
   "vendors": [
@@ -2788,6 +2788,40 @@
       ],
       "googlePlaceId": "ChIJR5dJsOyo2EcRucteOgTi1_A",
       "googleReviewCount": 23
+    },
+    {
+      "id": "tres-jolie-beauty-lounge",
+      "name": "Tres Jolie Beauty Lounge",
+      "productTypes": [
+        "Wigs",
+        "Bundles (wefts)",
+        "Frontals / closures"
+      ],
+      "fulfilment": [],
+      "instagramUrl": "https://www.instagram.com/tresjoliebeautylounge/",
+      "websiteUrl": "https://tresjoliebeautylounge.com/",
+      "source": "manual",
+      "summary": "Manual entry pending product/fulfilment detail.",
+      "evidence": [
+        "User-provided vendor link."
+      ]
+    },
+    {
+      "id": "phelux-bundles",
+      "name": "Phelux Bundles",
+      "productTypes": [
+        "Bundles (wefts)",
+        "Custom colour bundles",
+        "Tape-ins"
+      ],
+      "fulfilment": [],
+      "instagramUrl": "https://www.instagram.com/pheluxebundles/",
+      "websiteUrl": "https://www.pheluxebundles.com/shop",
+      "source": "manual",
+      "summary": "Manual entry pending product/fulfilment detail.",
+      "evidence": [
+        "User-provided vendor link."
+      ]
     }
   ]
 }
