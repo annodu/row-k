@@ -34,7 +34,7 @@ export function setRegionParentGroupsCache(groups) {
 const filtersPath = path.resolve(__dirname, "../data/filters.json");
 
 const defaultCategoryMap = {
-  "braiding-services": ["Boho braids / goddess braids","Braid take-down","Box braids","Crochet","Creative braids","Feed-in braids","French curl","Fulani / lemonade braids","Half braids, half sew-in","Knotless braids","Miracle knots","Microbraids / x-small braids","Pre-parting","Stitch braids","Twists (with extensions)","Boho braids bob","French curl bob"],
+  "braiding-services": ["Boho braids / goddess braids","Braid take-down","Box braids","Crochet","Creative braids","Feed-in braids","French curl","Fulani / lemonade braids","Half braids, half sew-in","Knotless braids","Miracle knots","Microbraids / x-small braids","Pre-parting","Stitch braids","Twists (with extensions)","Boho braids bob","French curl bob","Men's braids","Wig cornrows"],
   "colour-services": ["Balayage","Full head colour","Highlights","Wig colouring / bundle colouring"],
   "bridal-services": ["Bridal"],
   "editorial-services": ["Editorial / Session styling"],
@@ -44,9 +44,9 @@ const defaultCategoryMap = {
   "sew-in-weave": ["Closure sew-in / closure behind the hairline","Flipover / Versatile sew-in","Frontal sew-in","Hybrid sew in (tapes + sew in)","Pixie wig / weave install","Quick weave","Sew-in take-down","Tracks (+ silk press) / partial / invisible sew-in","Traditional sew-in / leave out"],
   "styling-services": ["Sew in / extensions blowdry","Frontal ponytail / bun","Half up half down","Pixie cut / finger waves","Sleek ponytail / bun","Updo"],
   "straightening-treatments": ["Hair botox","Japanese straightening","K-18 treatment","Keratin treatment","Moisturising treatment","Olaplex treatment","Relaxer / texturiser","Texture release"],
-  "natural-hair-services": ["Wig cornrows","Curly cut / wash & go / diffuse","Silk press","Bouncy blowout / round brush blow dry","Trim / hair cut","Roller set","Twist out / flexi rod","Bantu knots","Wash & blowdry","Japanese head spa","Scalp detox / treatments"],
+  "natural-hair-services": ["Wig cornrows","Curly cut / wash & go / diffuse","Silk press","Bouncy blowout / round brush blow dry","Trim / hair cut","Roller set","Twist out / flexi rod","Bantu knots","Wash & blowdry","Japanese head spa","Scalp detox / treatments","Men's braids"],
   "natural-hair-scalp-health": ["Healthy hair plans & consultations","Natural hair coaches / educators","Trichology / scalp analysis"],
-  "wig-services": ["Custom wig","Pixie wig / weave install","U-part wig install","Wig colouring / bundle colouring","Wig install (frontal / closure)","Wig blowdry"],
+  "wig-services": ["Custom wig","Pixie wig / weave install","U-part wig install","Wig colouring / bundle colouring","Wig install (frontal / closure)","Wig blowdry","Wig laundry"],
 };
 export let categoryMap = defaultCategoryMap;
 

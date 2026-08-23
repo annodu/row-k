@@ -1,10 +1,65 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-08-20",
-    "count": 6
+    "updatedAt": "2026-08-23",
+    "count": 7
   },
   "drafts": [
+    {
+      "id": "ebuni-ajiduah-hair",
+      "status": "ready_to_approve",
+      "name": "Untype",
+      "areaId": "south-east",
+      "areaIds": [
+        "south-east"
+      ],
+      "areaLabel": "South East",
+      "neighbourhood": "South East London",
+      "postcode": "",
+      "bookingPlatform": "Direct website",
+      "bookingUrl": "https://www.untypeyourhair.com/appointments",
+      "websiteUrl": "https://www.untypeyourhair.com",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/untypeyourhair/",
+      "tiktokUrl": "",
+      "addedVia": "Code edit",
+      "discoverySource": "Cowork scrape",
+      "services": [
+        "Curly cut / wash & go / diffuse",
+        "Trim / hair cut",
+        "Scalp detox / treatments",
+        "Natural hair coaches / educators",
+        "Cornrows / Twists / Underwig cornrows",
+        "Trichology / scalp analysis"
+      ],
+      "rawServices": [],
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": true,
+      "parkingAvailable": false,
+      "customFilters": {},
+      "sellsHairSeparately": false,
+      "priceBand": "",
+      "priceSource": "",
+      "priceEvidence": [],
+      "priceCheckedAt": "",
+      "priceUpdatedAt": "",
+      "priceConfidence": "",
+      "summary": "Manual entry added from your latest salon update batch.",
+      "warnings": [],
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "createdAt": "2026-08-23",
+      "updatedAt": "2026-08-23",
+      "googleMapsUri": "https://maps.google.com/?cid=11997119857356189437&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
+      "googleReviewCount": 276,
+      "googleMatchConfidence": "high",
+      "googleDisplayName": "Untype",
+      "portfolioPhotos": []
+    },
     {
       "id": "new-stylist-mt26kuw9",
       "status": "ready_to_approve",

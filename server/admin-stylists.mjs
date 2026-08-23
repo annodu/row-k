@@ -6,6 +6,7 @@ import { assertSafeOutboundHttpUrl, createRateLimiter, requireTrustedOrigin } fr
 import { fetchAllTimeSummary, fetchAnalyticsSummary, fetchRecentActivity } from "./analytics.mjs";
 import { extractPostcodeToken, getParkingAvailable, getWheelchairAccessibleEntrance, loadGooglePlacesApiKey, matchSalonToGoogle } from "./google-match.mjs";
 import { getVerifiedReviewPlatform, matchVerifiedReviews } from "./verified-reviews.mjs";
+import { cropCollagePanel } from "../scripts/lib/photo-candidates.mjs";
 import { createWorker } from "tesseract.js";
 
 function today() {
@@ -723,6 +724,147 @@ export function registerAdminStylistRoutes(app) {
     res.json({ ok: true, salon: publishedSalonToDraft(salon, now) });
   });
 
+  // Saves the stylist drawer's Photos tab: every approved photo stays on the
+  // salon regardless of count (nothing here ever deletes an approval), but
+  // the ORDER of this array is what decides which ones actually show on the
+  // public card — see getPortfolioPhotos in App.tsx, which slices to the
+  // first 3. A photo dropped from the submitted list (the admin removed it in
+  // the drawer) has its file deleted for good, same as a portfolio-review
+  // dismiss.
+  app.post("/api/admin/stylists/published/:id/portfolio-photos", requireAdmin, async (req, res) => {
+    const manualIndex = await readJson(manualIndexPath, { meta: { source: "manual" }, salons: [] });
+    const salonIndex = manualIndex.salons.findIndex((salon) => salon.id === req.params.id);
+    if (salonIndex === -1) {
+      return res.status(404).json({ ok: false, message: "Published salon not found." });
+    }
+    const salon = manualIndex.salons[salonIndex];
+
+    const submitted = Array.isArray(req.body?.photos) ? req.body.photos : null;
+    if (!submitted) {
+      return res.status(400).json({ ok: false, message: "Invalid payload." });
+    }
+
+    const existingPhotos = Array.isArray(salon.portfolioPhotos) ? salon.portfolioPhotos : [];
+    const existingById = new Map(existingPhotos.map((photo) => [photo.id, photo]));
+    const submittedIds = new Set();
+    const nextPhotos = [];
+    for (const item of submitted) {
+      const id = cleanString(item?.id);
+      const existing = id ? existingById.get(id) : null;
+      if (!existing) continue; // only reordering/removing known photos here, not adding new ones
+      submittedIds.add(id);
+      nextPhotos.push(existing);
+    }
+
+    // Any existing photo not present in the submitted list was removed in the
+    // drawer — delete its file, it's gone for good.
+    for (const photo of existingPhotos) {
+      if (submittedIds.has(photo.id)) continue;
+      const filename = photo.url?.split("/").pop();
+      if (filename) await fs.unlink(path.join(portfolioPhotosPublicDir, filename)).catch(() => {});
+    }
+
+    const now = today();
+    salon.portfolioPhotos = nextPhotos;
+    salon.updatedAt = now;
+    manualIndex.meta = { ...manualIndex.meta, updatedAt: now, count: manualIndex.salons.length };
+    await persistManualIndex(manualIndex, `Update portfolio photo shortlist for ${salon.name}`);
+
+    res.json({ ok: true, salon: publishedSalonToDraft(salon, now) });
+  });
+
+  // Same manual-crop tool as the portfolio-review queue, but for a photo
+  // that's already approved onto the profile — lets an admin fix a messy
+  // crop (caption bleed, UI chrome) in place from the Photos tab without
+  // needing to remove it and re-approve a fresh copy from Photo review.
+  app.post("/api/admin/stylists/published/:id/portfolio-photos/:photoId/crop", requireAdmin, async (req, res) => {
+    const manualIndex = await readJson(manualIndexPath, { meta: { source: "manual" }, salons: [] });
+    const salonIndex = manualIndex.salons.findIndex((salon) => salon.id === req.params.id);
+    if (salonIndex === -1) {
+      return res.status(404).json({ ok: false, message: "Published salon not found." });
+    }
+    const salon = manualIndex.salons[salonIndex];
+    const photos = Array.isArray(salon.portfolioPhotos) ? salon.portfolioPhotos : [];
+    const photoIndex = photos.findIndex((photo) => photo.id === req.params.photoId);
+    if (photoIndex === -1) {
+      return res.status(404).json({ ok: false, message: "Photo not found." });
+    }
+    const photo = photos[photoIndex];
+
+    const panel = {
+      x: Number(req.body?.x),
+      y: Number(req.body?.y),
+      width: Number(req.body?.width),
+      height: Number(req.body?.height),
+    };
+    if (![panel.x, panel.y, panel.width, panel.height].every((n) => Number.isFinite(n) && n >= 0 && n <= 1) || panel.width <= 0 || panel.height <= 0) {
+      return res.status(400).json({ ok: false, message: "Invalid crop region." });
+    }
+    const rotation = Number(req.body?.rotation) || 0;
+    if (![0, 90, 180, 270].includes(((Math.round(rotation) % 360) + 360) % 360)) {
+      return res.status(400).json({ ok: false, message: "Invalid rotation." });
+    }
+
+    try {
+      const oldFilename = photo.url.split("/").pop();
+      const originalBuffer = await fs.readFile(path.join(portfolioPhotosPublicDir, oldFilename));
+      const croppedBuffer = await cropCollagePanel(originalBuffer, panel, rotation);
+      const newFilename = `${salon.id}-${crypto.randomUUID()}.jpg`;
+      await fs.writeFile(path.join(portfolioPhotosPublicDir, newFilename), croppedBuffer);
+      await fs.unlink(path.join(portfolioPhotosPublicDir, oldFilename)).catch(() => {});
+      photos[photoIndex] = { ...photo, url: `/portfolio-photos/${newFilename}` };
+
+      const now = today();
+      salon.portfolioPhotos = photos;
+      salon.updatedAt = now;
+      manualIndex.meta = { ...manualIndex.meta, updatedAt: now, count: manualIndex.salons.length };
+      await persistManualIndex(manualIndex, `Crop a portfolio photo for ${salon.name}`);
+
+      res.json({ ok: true, salon: publishedSalonToDraft(salon, now) });
+    } catch (error) {
+      res.status(400).json({ ok: false, message: error.message || "Could not crop that region." });
+    }
+  });
+
+  // Lets an admin add a photo straight from their own machine — a stylist's
+  // own submission, a photo the scraper never found, etc. Sent as a base64
+  // data URL rather than multipart, so it rides the same JSON body parser as
+  // everything else on this API (see the 20mb limit in server/index.mjs).
+  app.post("/api/admin/stylists/published/:id/portfolio-photos/upload", requireAdmin, async (req, res) => {
+    const manualIndex = await readJson(manualIndexPath, { meta: { source: "manual" }, salons: [] });
+    const salonIndex = manualIndex.salons.findIndex((salon) => salon.id === req.params.id);
+    if (salonIndex === -1) {
+      return res.status(404).json({ ok: false, message: "Published salon not found." });
+    }
+    const salon = manualIndex.salons[salonIndex];
+
+    const dataUrl = cleanString(req.body?.image);
+    const match = dataUrl.match(/^data:image\/(png|jpe?g|webp|gif);base64,(.+)$/);
+    if (!match) {
+      return res.status(400).json({ ok: false, message: "Upload a PNG, JPEG, WEBP, or GIF image." });
+    }
+    const ext = match[1] === "jpeg" ? "jpg" : match[1];
+    const buffer = Buffer.from(match[2], "base64");
+    if (buffer.length === 0) {
+      return res.status(400).json({ ok: false, message: "That file looks empty." });
+    }
+
+    await fs.mkdir(portfolioPhotosPublicDir, { recursive: true });
+    const filename = `${salon.id}-${crypto.randomUUID()}.${ext}`;
+    await fs.writeFile(path.join(portfolioPhotosPublicDir, filename), buffer);
+
+    const now = today();
+    salon.portfolioPhotos = [
+      ...(salon.portfolioPhotos || []),
+      { id: `${salon.id}-portfolio-photo-${crypto.randomUUID()}`, url: `/portfolio-photos/${filename}`, source: "manual" },
+    ];
+    salon.updatedAt = now;
+    manualIndex.meta = { ...manualIndex.meta, updatedAt: now, count: manualIndex.salons.length };
+    await persistManualIndex(manualIndex, `Upload a portfolio photo for ${salon.name}`);
+
+    res.json({ ok: true, salon: publishedSalonToDraft(salon, now) });
+  });
+
   app.get("/api/admin/health-check-feedback", requireAdmin, async (_req, res) => {
     const store = await readJson(healthCheckFeedbackPath, { meta: { source: "health-check-feedback" }, entries: [] });
     const entries = Array.isArray(store.entries) ? store.entries : [];
@@ -757,6 +899,50 @@ export function registerAdminStylistRoutes(app) {
     }
   });
 
+  // Lets an admin draw their own crop over a review candidate — e.g. an
+  // Instagram-style collage the automated panel-cropper bled into (caption
+  // text, "like" icons, a phone-mockup bezel), where a human eye can pick a
+  // cleaner rectangle than the vision model's own coordinate estimate.
+  // Replaces the candidate's file in place with the cropped result, so the
+  // same candidate can then just be approved normally.
+  app.post("/api/admin/portfolio-review/:id/crop", requireAdmin, async (req, res) => {
+    const store = await readJson(portfolioReviewPath, { meta: {}, candidates: [] });
+    const candidates = Array.isArray(store.candidates) ? store.candidates : [];
+    const index = candidates.findIndex((c) => c.id === req.params.id);
+    if (index === -1) {
+      return res.status(404).json({ ok: false, message: "Candidate not found." });
+    }
+    const candidate = candidates[index];
+
+    const panel = {
+      x: Number(req.body?.x),
+      y: Number(req.body?.y),
+      width: Number(req.body?.width),
+      height: Number(req.body?.height),
+    };
+    if (![panel.x, panel.y, panel.width, panel.height].every((n) => Number.isFinite(n) && n >= 0 && n <= 1) || panel.width <= 0 || panel.height <= 0) {
+      return res.status(400).json({ ok: false, message: "Invalid crop region." });
+    }
+    const rotation = Number(req.body?.rotation) || 0;
+    if (![0, 90, 180, 270].includes(((Math.round(rotation) % 360) + 360) % 360)) {
+      return res.status(400).json({ ok: false, message: "Invalid rotation." });
+    }
+
+    try {
+      const originalBuffer = await fs.readFile(path.join(portfolioReviewPhotosDir, candidate.filename));
+      const croppedBuffer = await cropCollagePanel(originalBuffer, panel, rotation);
+      const newFilename = `${candidate.id}-crop-${Date.now()}.jpg`;
+      await fs.writeFile(path.join(portfolioReviewPhotosDir, newFilename), croppedBuffer);
+      await fs.unlink(path.join(portfolioReviewPhotosDir, candidate.filename)).catch(() => {});
+      candidate.filename = newFilename;
+      store.candidates = candidates;
+      await writeJson(portfolioReviewPath, store);
+      res.json({ ok: true, candidate });
+    } catch (error) {
+      res.status(400).json({ ok: false, message: error.message || "Could not crop that region." });
+    }
+  });
+
   app.post("/api/admin/portfolio-review/:id/approve", requireAdmin, async (req, res) => {
     const store = await readJson(portfolioReviewPath, { meta: {}, candidates: [] });
     const candidates = Array.isArray(store.candidates) ? store.candidates : [];
@@ -772,11 +958,20 @@ export function registerAdminStylistRoutes(app) {
       return res.status(404).json({ ok: false, message: "Salon not found." });
     }
 
+    // Every approved photo is kept on the profile, however many there are —
+    // the public site only ever shows the first 3, and which ones those are
+    // is decided separately in the stylist drawer's Photos tab (shortlisted
+    // and reordered there), not capped at approval time.
+    const existingPhotos = salon.portfolioPhotos || [];
     const ext = path.extname(candidate.filename) || ".jpg";
-    const nextIndex = (salon.portfolioPhotos?.length || 0) + 1;
-    const newFilename = `${salon.id}-${nextIndex}${ext}`;
     await fs.mkdir(portfolioPhotosPublicDir, { recursive: true });
+
+    const newFilename = `${salon.id}-${crypto.randomUUID()}${ext}`;
     await fs.copyFile(path.join(portfolioReviewPhotosDir, candidate.filename), path.join(portfolioPhotosPublicDir, newFilename));
+    const updatedPhotos = [
+      ...existingPhotos,
+      { id: `${salon.id}-portfolio-photo-${crypto.randomUUID()}`, url: `/portfolio-photos/${newFilename}`, source: candidate.source },
+    ];
 
     // Keep a copy plus the classifier's original (wrong) verdict as a
     // human-confirmed correction — scripts/backfill-portfolio-photos.mjs feeds
@@ -802,10 +997,7 @@ export function registerAdminStylistRoutes(app) {
 
     await fs.unlink(path.join(portfolioReviewPhotosDir, candidate.filename)).catch(() => {});
 
-    salon.portfolioPhotos = [
-      ...(salon.portfolioPhotos || []),
-      { id: `${salon.id}-portfolio-photo-${nextIndex - 1}`, url: `/portfolio-photos/${newFilename}`, source: candidate.source },
-    ];
+    salon.portfolioPhotos = updatedPhotos;
     await writeJson(manualIndexPath, manualIndex);
 
     candidates.splice(index, 1);
@@ -7810,6 +8002,7 @@ function publishedSalonToDraft(salon, fallbackDate = today()) {
     googleMatchConfidence: salon.googleMatchConfidence || "",
     googleDisplayName: salon.googleDisplayName || "",
     verifiedReviewCount: salon.verifiedReviewCount,
+    portfolioPhotos: Array.isArray(salon.portfolioPhotos) ? salon.portfolioPhotos : [],
   };
 }
 

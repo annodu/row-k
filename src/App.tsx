@@ -83,7 +83,7 @@ const DISCLAIMER_DISMISSED_KEY = "rowk_disclaimer_dismissed";
 
 const categoryMap = {
   all: { label: "All services", subcategories: ["all"] },
-  "braiding-services": { label: "Braids", subcategories: ["all","Boho braids / goddess braids","Braid take-down","Box braids","Crochet","Creative braids","Feed-in braids","French curl","Fulani / lemonade braids","Half braids, half sew-in","Knotless braids","Miracle knots","Microbraids / x-small braids","Pre-parting","Stitch braids","Twists (with extensions)","Boho braids bob","French curl bob"] },
+  "braiding-services": { label: "Braids", subcategories: ["all","Boho braids / goddess braids","Braid take-down","Box braids","Crochet","Creative braids","Feed-in braids","French curl","Fulani / lemonade braids","Half braids, half sew-in","Knotless braids","Miracle knots","Microbraids / x-small braids","Pre-parting","Stitch braids","Twists (with extensions)","Boho braids bob","French curl bob","Men's braids","Wig cornrows"] },
   "colour-services": { label: "Colour", subcategories: ["all","Balayage","Full head colour","Highlights","Wig colouring / bundle colouring"] },
   "bridal-services": { label: "Bridal", subcategories: ["all","Bridal"] },
   "editorial-services": { label: "Editorial / Session styling", subcategories: ["all","Editorial / Session styling"] },
@@ -93,13 +93,13 @@ const categoryMap = {
   "sew-in-weave": { label: "Sew in / weave", subcategories: ["all","Closure sew-in / closure behind the hairline","Flipover / Versatile sew-in","Frontal sew-in","Hybrid sew in (tapes + sew in)","Pixie wig / weave install","Quick weave","Sew-in take-down","Tracks (+ silk press) / partial / invisible sew-in","Traditional sew-in / leave out"] },
   "styling-services": { label: "Styling (sew in / frontal / relaxer)", subcategories: ["all","Sew in / extensions blowdry","Frontal ponytail / bun","Half up half down","Pixie cut / finger waves","Sleek ponytail / bun","Updo"] },
   "straightening-treatments": { label: "Treatments", subcategories: ["all","Hair botox","Japanese straightening","K-18 treatment","Keratin treatment","Moisturising treatment","Olaplex treatment","Relaxer / texturiser","Texture release"] },
-  "natural-hair-services": { label: "Natural hair washing & styling", subcategories: ["all","Wig cornrows","Curly cut / wash & go / diffuse","Silk press","Bouncy blowout / round brush blow dry","Trim / hair cut","Roller set","Twist out / flexi rod","Bantu knots","Wash & blowdry","Japanese head spa","Scalp detox / treatments"] },
+  "natural-hair-services": { label: "Natural hair washing & styling", subcategories: ["all","Wig cornrows","Curly cut / wash & go / diffuse","Silk press","Bouncy blowout / round brush blow dry","Trim / hair cut","Roller set","Twist out / flexi rod","Bantu knots","Wash & blowdry","Japanese head spa","Scalp detox / treatments","Men's braids"] },
   "natural-hair-scalp-health": { label: "Natural hair health & trichology", subcategories: ["all","Healthy hair plans & consultations","Natural hair coaches / educators","Trichology / scalp analysis"] },
-  "wig-services": { label: "Wigs", subcategories: ["all","Custom wig","Pixie wig / weave install","U-part wig install","Wig colouring / bundle colouring","Wig install (frontal / closure)","Wig blowdry"] },
+  "wig-services": { label: "Wigs", subcategories: ["all","Custom wig","Pixie wig / weave install","U-part wig install","Wig colouring / bundle colouring","Wig install (frontal / closure)","Wig blowdry","Wig laundry"] },
 } as const;
 
 const categoryServiceMap = {
-  "braiding-services": ["Boho braids / goddess braids","Braid take-down","Box braids","Crochet","Creative braids","Feed-in braids","French curl","Fulani / lemonade braids","Half braids, half sew-in","Knotless braids","Miracle knots","Microbraids / x-small braids","Pre-parting","Stitch braids","Twists (with extensions)","Boho braids bob","French curl bob"],
+  "braiding-services": ["Boho braids / goddess braids","Braid take-down","Box braids","Crochet","Creative braids","Feed-in braids","French curl","Fulani / lemonade braids","Half braids, half sew-in","Knotless braids","Miracle knots","Microbraids / x-small braids","Pre-parting","Stitch braids","Twists (with extensions)","Boho braids bob","French curl bob","Men's braids","Wig cornrows"],
   "colour-services": ["Balayage","Full head colour","Highlights","Wig colouring / bundle colouring"],
   "bridal-services": ["Bridal"],
   "editorial-services": ["Editorial / Session styling"],
@@ -109,9 +109,9 @@ const categoryServiceMap = {
   "sew-in-weave": ["Closure sew-in / closure behind the hairline","Flipover / Versatile sew-in","Frontal sew-in","Hybrid sew in (tapes + sew in)","Pixie wig / weave install","Quick weave","Sew-in take-down","Tracks (+ silk press) / partial / invisible sew-in","Traditional sew-in / leave out"],
   "styling-services": ["Sew in / extensions blowdry","Frontal ponytail / bun","Half up half down","Pixie cut / finger waves","Sleek ponytail / bun","Updo"],
   "straightening-treatments": ["Hair botox","Japanese straightening","K-18 treatment","Keratin treatment","Moisturising treatment","Olaplex treatment","Relaxer / texturiser","Texture release"],
-  "natural-hair-services": ["Wig cornrows","Curly cut / wash & go / diffuse","Silk press","Bouncy blowout / round brush blow dry","Trim / hair cut","Roller set","Twist out / flexi rod","Bantu knots","Wash & blowdry","Japanese head spa","Scalp detox / treatments"],
+  "natural-hair-services": ["Wig cornrows","Curly cut / wash & go / diffuse","Silk press","Bouncy blowout / round brush blow dry","Trim / hair cut","Roller set","Twist out / flexi rod","Bantu knots","Wash & blowdry","Japanese head spa","Scalp detox / treatments","Men's braids"],
   "natural-hair-scalp-health": ["Healthy hair plans & consultations","Natural hair coaches / educators","Trichology / scalp analysis"],
-  "wig-services": ["Custom wig","Pixie wig / weave install","U-part wig install","Wig colouring / bundle colouring","Wig install (frontal / closure)","Wig blowdry"],
+  "wig-services": ["Custom wig","Pixie wig / weave install","U-part wig install","Wig colouring / bundle colouring","Wig install (frontal / closure)","Wig blowdry","Wig laundry"],
 } as const satisfies Record<ServiceCategoryId, readonly string[]>;
 
 type RegionId = (typeof regions)[number]["id"];
@@ -407,10 +407,16 @@ function PortfolioPhotoCarousel({
   result,
   photos,
   className,
+  expandedHeightPx,
 }: {
   result: SalonResult;
   photos: PortfolioPhoto[];
   className?: string;
+  // Set only once the sibling services text's post-expand height has actually
+  // been measured — driving this off a real pixel value (rather than a CSS
+  // percentage stretch) avoids feeding back into the grid's own row-sizing pass,
+  // which was inflating the row above it instead of leaving it fixed.
+  expandedHeightPx?: number | null;
 }) {
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -424,7 +430,13 @@ function PortfolioPhotoCarousel({
 
   return (
     <div className={cn("w-full", className)}>
-      <div className="relative aspect-[3/2] overflow-hidden rounded-none border border-stone-300/60 bg-stone-200 dark:border-stone-700/60 dark:bg-stone-900 sm:aspect-[4/3]">
+      <div
+        className={cn(
+          "relative overflow-hidden rounded-none border border-stone-300/60 bg-stone-200 dark:border-stone-700/60 dark:bg-stone-900 transition-[height] duration-300",
+          expandedHeightPx == null && "aspect-[3/2] sm:aspect-[4/3]",
+        )}
+        style={expandedHeightPx != null ? { height: expandedHeightPx } : undefined}
+      >
         <img
           src={activePhoto.url}
           alt=""
@@ -441,7 +453,7 @@ function PortfolioPhotoCarousel({
                 event.preventDefault();
                 goToPhoto(activeIndex - 1);
               }}
-              className="absolute left-2 top-1/2 hidden size-8 -translate-y-1/2 items-center justify-center rounded-none bg-white/95 text-stone-950 shadow-sm ring-1 ring-stone-950/10 transition hover:bg-white sm:flex"
+              className="absolute left-2 top-1/2 hidden size-8 -translate-y-1/2 items-center justify-center rounded-none bg-white/95 text-stone-950 shadow-sm ring-1 ring-stone-950/10 transition hover:bg-white dark:bg-stone-950/80 dark:text-stone-100 dark:ring-stone-100/15 dark:hover:bg-stone-900 sm:flex"
             >
               <ChevronLeft className="size-4" aria-hidden="true" />
             </button>
@@ -452,7 +464,7 @@ function PortfolioPhotoCarousel({
                 event.preventDefault();
                 goToPhoto(activeIndex + 1);
               }}
-              className="absolute right-2 top-1/2 hidden size-8 -translate-y-1/2 items-center justify-center rounded-none bg-white/95 text-stone-950 shadow-sm ring-1 ring-stone-950/10 transition hover:bg-white sm:flex"
+              className="absolute right-2 top-1/2 hidden size-8 -translate-y-1/2 items-center justify-center rounded-none bg-white/95 text-stone-950 shadow-sm ring-1 ring-stone-950/10 transition hover:bg-white dark:bg-stone-950/80 dark:text-stone-100 dark:ring-stone-100/15 dark:hover:bg-stone-900 sm:flex"
             >
               <ChevronRight className="size-4" aria-hidden="true" />
             </button>
@@ -633,6 +645,21 @@ function BrandGroupCard({
   preferBookingPlatform: boolean;
 }) {
   const [expanded, setExpanded] = useState(false);
+  // Mirrors SalonResultCard's fix: the photo's height always matches the
+  // right-hand column's actual content height (row 1 + gap + services),
+  // rather than a fixed aspect ratio, and the services block sits flush
+  // against the card's bottom via a measured margin-top (not align-self:
+  // end) — frozen once expansion starts so only the block's bottom grows.
+  const [isServicesExpanded, setIsServicesExpanded] = useState(false);
+  const [servicesMarginTopPx, setServicesMarginTopPx] = useState<number | null>(null);
+  const [photoHeightPx, setPhotoHeightPx] = useState<number | null>(null);
+  const nameInfoRef = useRef<HTMLDivElement | null>(null);
+  const buttonRowRef = useRef<HTMLDivElement | null>(null);
+  const servicesBlockRef = useRef<HTMLDivElement | null>(null);
+  // See SalonResultCard's identical refs for why growth while expanded is
+  // added on top of this frozen baseline rather than recomputed fresh.
+  const baselinePhotoHeightRef = useRef<number>(MIN_PHOTO_HEIGHT_PX);
+  const baselineServicesHeightRef = useRef<number>(0);
   const brand = brandBranches[0];
   const brandName = brand.brandName ?? brand.name;
   // Temporarily closed branches are hidden entirely — not worth showing a
@@ -678,22 +705,85 @@ function BrandGroupCard({
       ? openBranches[0].bookingUrl
       : null;
 
+  useEffect(() => {
+    // Both values below are derived from the same measurement pass — see
+    // SalonResultCard's identical effect for why that matters.
+    const measure = () => {
+      const isSmUp = typeof window !== "undefined" && window.matchMedia("(min-width: 640px)").matches;
+      if (!isSmUp) {
+        setPhotoHeightPx(null);
+        setServicesMarginTopPx(null);
+        return;
+      }
+
+      const row1Height = Math.max(
+        nameInfoRef.current?.getBoundingClientRect().height ?? 0,
+        buttonRowRef.current?.getBoundingClientRect().height ?? 0,
+      );
+      const servicesHeight = servicesBlockRef.current?.getBoundingClientRect().height ?? 0;
+      const rowGapPx = 10; // matches the grid's sm:gap-y-2.5
+
+      if (!isServicesExpanded) {
+        const contentNeededHeight = row1Height + rowGapPx + servicesHeight;
+        const nextPhotoHeight = Math.max(contentNeededHeight, MIN_PHOTO_HEIGHT_PX);
+        setPhotoHeightPx(nextPhotoHeight);
+        const row2TrackPx = nextPhotoHeight - row1Height - rowGapPx;
+        setServicesMarginTopPx(Math.max(0, row2TrackPx - servicesHeight));
+        baselinePhotoHeightRef.current = nextPhotoHeight;
+        baselineServicesHeightRef.current = servicesHeight;
+      } else {
+        const growthPx = Math.max(0, servicesHeight - baselineServicesHeightRef.current);
+        setPhotoHeightPx(baselinePhotoHeightRef.current + growthPx);
+      }
+    };
+
+    const raf = requestAnimationFrame(measure);
+    let cancelled = false;
+    document.fonts?.ready?.then(() => {
+      if (!cancelled) measure();
+    });
+    // Only watch row 1 here, not the services block — see SalonResultCard's
+    // identical effect for why observing the services block's own resize
+    // races with the isServicesExpanded state update and un-freezes the
+    // margin mid-hover.
+    const resizeObserver = typeof ResizeObserver !== "undefined" ? new ResizeObserver(measure) : null;
+    if (nameInfoRef.current) resizeObserver?.observe(nameInfoRef.current);
+    window.addEventListener("resize", measure);
+    return () => {
+      cancelled = true;
+      cancelAnimationFrame(raf);
+      resizeObserver?.disconnect();
+      window.removeEventListener("resize", measure);
+    };
+  }, [isServicesExpanded, orderedServices]);
+
   return (
     <li
       ref={setRef}
       className="flex w-full flex-col items-start gap-3 border-b border-stone-300 px-0 py-5 text-left last:border-b-0 dark:border-stone-800"
     >
-      <div className="flex w-full flex-col gap-2.5 sm:grid sm:items-start sm:gap-x-4 sm:gap-y-2.5 sm:grid-cols-[220px_minmax(0,1fr)_auto] lg:grid-cols-[240px_minmax(0,1fr)_auto]">
+      <div className="flex w-full flex-col gap-2.5 sm:grid sm:items-start sm:gap-x-4 sm:gap-y-2.5 sm:grid-cols-[220px_minmax(0,1fr)_auto] sm:grid-rows-[min-content_1fr] lg:grid-cols-[240px_minmax(0,1fr)_auto]">
         {hasPortfolioPhotos ? (
-          <PortfolioPhotoCarousel result={brand} photos={portfolioPhotos} className="order-1 mb-1 sm:row-span-2 sm:mb-0" />
+          <PortfolioPhotoCarousel
+            result={brand}
+            photos={portfolioPhotos}
+            className="order-1 mb-1 sm:row-span-2 sm:mb-0"
+            expandedHeightPx={photoHeightPx}
+          />
         ) : (
           <div className="order-1 mb-1 hidden w-full sm:row-span-2 sm:mb-0 sm:block" aria-hidden="true">
-            <div className="flex aspect-[3/2] w-full items-center justify-center overflow-hidden rounded-none border border-stone-300/60 bg-stone-100 dark:border-stone-700/60 dark:bg-stone-900/40 sm:aspect-[4/3]">
+            <div
+              className={cn(
+                "flex w-full items-center justify-center overflow-hidden rounded-none border border-stone-300/60 bg-stone-100 dark:border-stone-700/60 dark:bg-stone-900/40 transition-[height] duration-300",
+                photoHeightPx == null && "aspect-[3/2] sm:aspect-[4/3]",
+              )}
+              style={photoHeightPx != null ? { height: photoHeightPx } : undefined}
+            >
               <span className="text-lg font-semibold tracking-wide text-stone-400 dark:text-stone-600">{getSalonInitials(brandName)}</span>
             </div>
           </div>
         )}
-        <div className="min-w-0 order-2">
+        <div className="min-w-0 order-2" ref={nameInfoRef}>
           <div className="flex min-w-0 flex-wrap items-center gap-x-2 gap-y-1">
             <h3 className="text-[17px] font-semibold text-stone-950 dark:text-stone-50">{brandName}</h3>
             <span className="inline-block rounded-none border border-stone-300 bg-stone-100 px-1.5 py-1 text-[11px] font-semibold leading-none tracking-[0.06em] text-stone-600 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-400">
@@ -720,8 +810,20 @@ function BrandGroupCard({
               <ArrowUpRight className="size-3.5 shrink-0" aria-hidden="true" />
             </a>
           ) : null}
+          {attributeLabels.length > 0 ? (
+            <div className="mt-1.5 flex flex-wrap gap-1">
+              {attributeLabels.map((label) => (
+                <span
+                  key={label}
+                  className="inline-block w-fit rounded-none border border-[oklch(0.72_0.07_86)]/35 bg-[oklch(0.94_0.025_92)] px-1.5 py-1 align-baseline text-[11px] font-semibold leading-none tracking-[0.06em] text-[oklch(0.44_0.08_80)] dark:bg-[oklch(0.44_0.08_80)] dark:text-[oklch(0.94_0.025_92)]"
+                >
+                  {label}
+                </span>
+              ))}
+            </div>
+          ) : null}
         </div>
-        <div className="order-3 flex shrink-0 items-center gap-1 sm:justify-self-end">
+        <div className="order-4 flex shrink-0 items-center gap-1 sm:order-3 sm:justify-self-end" ref={buttonRowRef}>
           {brand.instagramUrl ? (
             <a
               href={brand.instagramUrl}
@@ -755,25 +857,15 @@ function BrandGroupCard({
           ) : null}
         </div>
 
-        {attributeLabels.length > 0 || orderedServices.length > 0 ? (
-          <div className="order-4 mt-2 w-full sm:order-3 sm:col-span-2 sm:self-end lg:mt-2">
-            {attributeLabels.length > 0 ? (
-              <div className="mb-2 flex flex-wrap gap-1">
-                {attributeLabels.map((label) => (
-                  <span
-                    key={label}
-                    className="inline-block w-fit rounded-none border border-[oklch(0.72_0.07_86)]/35 bg-[oklch(0.94_0.025_92)] px-1.5 py-1 align-baseline text-[11px] font-semibold leading-none tracking-[0.06em] text-[oklch(0.44_0.08_80)] dark:bg-[oklch(0.44_0.08_80)] dark:text-[oklch(0.94_0.025_92)]"
-                  >
-                    {label}
-                  </span>
-                ))}
-              </div>
-            ) : null}
-            {orderedServices.length > 0 ? (
-              <p className="border-l-2 border-stone-300 pl-2 text-[12px] font-normal lowercase leading-[18px] tracking-[0.02em] text-stone-700 dark:border-stone-700 dark:text-stone-300">
-                {orderedServices.map((service) => getServiceDisplayName(service)).join(" · ")}
-              </p>
-            ) : null}
+        {orderedServices.length > 0 ? (
+          <div
+            className="order-3 mt-2 w-full sm:order-3 sm:col-span-2 sm:mt-0 sm:self-start lg:mt-0"
+            style={servicesMarginTopPx != null ? { marginTop: servicesMarginTopPx } : undefined}
+            ref={servicesBlockRef}
+          >
+            <div className="border-l-2 border-stone-300 pl-2 text-[12px] font-normal lowercase leading-[18px] tracking-[0.02em] text-stone-700 dark:border-stone-700 dark:text-stone-300">
+              <ServicesSummary services={orderedServices} maxLines={2} onExpandedChange={setIsServicesExpanded} />
+            </div>
           </div>
         ) : null}
       </div>
@@ -846,6 +938,298 @@ function BrandGroupCard({
         </button>
       ) : null}
     </li>
+  );
+}
+
+function SalonResultCard({
+  result,
+  locationLabels,
+  orderedServices,
+  activeServices,
+  reviewsBanner,
+  hairShopLink,
+  attributeLabels,
+  portfolioPhotos,
+  hasPortfolioPhotos,
+}: {
+  result: SalonResult;
+  locationLabels: string[];
+  orderedServices: string[];
+  activeServices: string;
+  reviewsBanner: ReturnType<typeof getReviewsBannerInfo>;
+  hairShopLink: ReturnType<typeof getHairShopLinkInfo>;
+  attributeLabels: string[];
+  portfolioPhotos: PortfolioPhoto[];
+  hasPortfolioPhotos: boolean;
+}) {
+  // The photo's height always tracks whichever is taller: its own normal
+  // aspect ratio, or the actual combined height of the name/info + button row
+  // + services text beside it — so a card whose right-hand content (multiple
+  // links, pills, etc.) runs taller than the photo's usual crop doesn't leave
+  // the photo looking short next to it, even before any hover happens. Once
+  // the services text expands on hover, the same calculation naturally grows
+  // the photo further to keep matching. Driven off a measured pixel height
+  // (not a CSS percentage stretch) — feeding a stretch/h-full back into the
+  // grid's own row-sizing pass was inflating the row above it instead of
+  // leaving its top fixed.
+  const [isServicesExpanded, setIsServicesExpanded] = useState(false);
+  const [photoHeightPx, setPhotoHeightPx] = useState<number | null>(null);
+  // While collapsed, the services block sits flush against the bottom of the
+  // card via a measured margin-top (not align-self: end) — that way, once it
+  // starts expanding, freezing this same margin keeps its top fixed in place
+  // and only its bottom grows, instead of align-self recomputing the top
+  // upward every time the content gets taller.
+  const [servicesMarginTopPx, setServicesMarginTopPx] = useState<number | null>(null);
+  const nameInfoRef = useRef<HTMLDivElement | null>(null);
+  const buttonRowRef = useRef<HTMLDivElement | null>(null);
+  const servicesBlockRef = useRef<HTMLDivElement | null>(null);
+  // The resting (collapsed) photo height and services height, captured the
+  // instant expansion starts — growth while expanded is added on top of this
+  // frozen baseline rather than recomputed fresh from Math.max(content, floor)
+  // each time. That fresh recompute was wrong whenever the floor exceeded the
+  // collapsed content need: the floor doesn't know about the (also frozen)
+  // margin already tuned to sit the text flush against that floor, so it let
+  // the growing text overshoot past the photo's bottom instead of taking the
+  // photo with it.
+  const baselinePhotoHeightRef = useRef<number>(MIN_PHOTO_HEIGHT_PX);
+  const baselineServicesHeightRef = useRef<number>(0);
+
+  useEffect(() => {
+    // Both values below are derived from the same measurement pass — reading
+    // the margin back from the grid's own computed row sizes in a separate
+    // effect meant it could run against last render's (still-hovered) grid
+    // dimensions before this render's photo-height update had applied,
+    // producing a one-frame mismatch that snapped visibly on unhover.
+    const measure = () => {
+      const isSmUp = typeof window !== "undefined" && window.matchMedia("(min-width: 640px)").matches;
+      if (!isSmUp) {
+        setPhotoHeightPx(null);
+        setServicesMarginTopPx(null);
+        return;
+      }
+
+      const row1Height = Math.max(
+        nameInfoRef.current?.getBoundingClientRect().height ?? 0,
+        buttonRowRef.current?.getBoundingClientRect().height ?? 0,
+      );
+      const servicesHeight = servicesBlockRef.current?.getBoundingClientRect().height ?? 0;
+      const rowGapPx = 10; // matches the article's sm:gap-y-2.5
+
+      if (!isServicesExpanded) {
+        // Collapsed: recompute the resting height fresh every time, matching
+        // the right-hand column's content directly — not the photo's own
+        // aspect ratio — so the photo's bottom always lands exactly at the
+        // services block's bottom. A flat floor (rather than the aspect-ratio
+        // height) keeps sparse cards from looking squished.
+        const contentNeededHeight = row1Height + rowGapPx + servicesHeight;
+        const nextPhotoHeight = Math.max(contentNeededHeight, MIN_PHOTO_HEIGHT_PX);
+        setPhotoHeightPx(nextPhotoHeight);
+        const row2TrackPx = nextPhotoHeight - row1Height - rowGapPx;
+        setServicesMarginTopPx(Math.max(0, row2TrackPx - servicesHeight));
+        baselinePhotoHeightRef.current = nextPhotoHeight;
+        baselineServicesHeightRef.current = servicesHeight;
+      } else {
+        // Expanded: grow the frozen baseline photo height by exactly however
+        // much the services block has grown past its frozen baseline height —
+        // margin-top is left untouched (frozen), so the block's top doesn't
+        // move; only its bottom does, and the photo grows in lockstep with it.
+        const growthPx = Math.max(0, servicesHeight - baselineServicesHeightRef.current);
+        setPhotoHeightPx(baselinePhotoHeightRef.current + growthPx);
+      }
+    };
+
+    const raf = requestAnimationFrame(measure);
+    // Web fonts finishing their load after this first pass can reflow row 1's
+    // text (changing its wrapping/height) without a resize event firing.
+    // Re-measure once fonts settle to catch that.
+    let cancelled = false;
+    document.fonts?.ready?.then(() => {
+      if (!cancelled) measure();
+    });
+    // Only watch row 1 (name/info) for its own late reflows here — NOT the
+    // services block. Observing the services block's own size caused a race:
+    // ServicesSummary grows its own height as soon as the mouse enters, which
+    // fires this observer with the *previous* render's isServicesExpanded
+    // still false (React hasn't propagated the state change yet), so it
+    // recalculated the margin as if still collapsed instead of leaving it
+    // frozen — shrinking it to fit the taller text within the same total,
+    // which is exactly the "top moves instead of bottom" bug this is meant
+    // to prevent. The isServicesExpanded/orderedServices deps below already
+    // trigger a fresh measurement once the state genuinely changes.
+    const resizeObserver = typeof ResizeObserver !== "undefined" ? new ResizeObserver(measure) : null;
+    if (nameInfoRef.current) resizeObserver?.observe(nameInfoRef.current);
+    window.addEventListener("resize", measure);
+    return () => {
+      cancelled = true;
+      cancelAnimationFrame(raf);
+      resizeObserver?.disconnect();
+      window.removeEventListener("resize", measure);
+    };
+  }, [isServicesExpanded, orderedServices]);
+
+  return (
+    <StylistCardWrapper result={result} services={activeServices}>
+      <article className="flex w-full flex-col gap-2.5 sm:grid sm:items-start sm:gap-x-4 sm:gap-y-2.5 sm:grid-cols-[220px_minmax(0,1fr)_auto] sm:grid-rows-[min-content_1fr] lg:grid-cols-[240px_minmax(0,1fr)_auto]">
+        {hasPortfolioPhotos ? (
+          <PortfolioPhotoCarousel
+            result={result}
+            photos={portfolioPhotos}
+            className="order-1 mb-1 sm:row-span-2 sm:mb-0"
+            expandedHeightPx={photoHeightPx}
+          />
+        ) : (
+          <div className="order-1 mb-1 hidden w-full sm:row-span-2 sm:mb-0 sm:block" aria-hidden="true">
+            <div
+              className={cn(
+                "flex w-full items-center justify-center overflow-hidden rounded-none border border-stone-300/60 bg-stone-100 dark:border-stone-700/60 dark:bg-stone-900/40 transition-[height] duration-300",
+                photoHeightPx == null && "aspect-[3/2] sm:aspect-[4/3]",
+              )}
+              style={photoHeightPx != null ? { height: photoHeightPx } : undefined}
+            >
+              <span className="text-lg font-semibold tracking-wide text-stone-400 dark:text-stone-600">{getSalonInitials(result.name)}</span>
+            </div>
+          </div>
+        )}
+
+        <div className="min-w-0 order-2" ref={nameInfoRef}>
+          <div className="min-w-0 grow">
+            <div className="flex items-start justify-between gap-3">
+              <div className="min-w-0">
+                <h3 className="flex items-center gap-1 text-[17px] font-semibold text-stone-950 dark:text-stone-50">
+                  {result.name}
+                </h3>
+                {locationLabels.length > 0 || comparablePriceBand(result) ? (
+                  <p className="mt-0.5 text-[13px] font-medium text-stone-500 dark:text-stone-400">
+                    {locationLabels.join(" · ")}
+                    {locationLabels.length > 0 && comparablePriceBand(result) ? " · " : ""}
+                    {comparablePriceBand(result)}
+                  </p>
+                ) : null}
+                {reviewsBanner || hairShopLink || attributeLabels.length > 0 ? (
+                <div className="mt-1.5 flex flex-col items-start gap-2">
+                {reviewsBanner ? (
+                  <a
+                    href={reviewsBanner.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={`${reviewsBanner.accessibleLabel} - opens in a new tab`}
+                    onClick={() =>
+                      trackAnalyticsEvent("verified_reviews_click", {
+                        salon: result.name,
+                        platform: getVerifiedReviewsPlatform(result) ?? "google",
+                      })
+                    }
+                    className="inline-flex w-fit items-center gap-1 text-[13px] font-semibold text-[oklch(0.45_0.05_255)] transition-colors hover:text-[oklch(0.38_0.06_255)] active:text-[oklch(0.38_0.06_255)] dark:text-[oklch(0.72_0.05_255)] dark:hover:text-[oklch(0.80_0.06_255)] dark:active:text-[oklch(0.80_0.06_255)]"
+                  >
+                    <span aria-hidden="true">{reviewsBanner.label}</span>
+                    <ArrowUpRight className="size-3.5 shrink-0" aria-hidden="true" />
+                  </a>
+                ) : null}
+                {hairShopLink ? (
+                  <a
+                    href={hairShopLink.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={`${hairShopLink.accessibleLabel} - opens in a new tab`}
+                    onClick={() => trackAnalyticsEvent("hair_shop_click", { salon: result.name })}
+                    className="inline-flex w-fit items-center gap-1 text-[13px] font-semibold text-[oklch(0.45_0.05_255)] transition-colors hover:text-[oklch(0.38_0.06_255)] active:text-[oklch(0.38_0.06_255)] dark:text-[oklch(0.72_0.05_255)] dark:hover:text-[oklch(0.80_0.06_255)] dark:active:text-[oklch(0.80_0.06_255)]"
+                  >
+                    <span aria-hidden="true">{hairShopLink.label}</span>
+                    <ArrowUpRight className="size-3.5 shrink-0" aria-hidden="true" />
+                  </a>
+                ) : null}
+                {attributeLabels.length > 0 ? (
+                  <div className="flex flex-wrap gap-1">
+                    {attributeLabels.map((label) => (
+                      <span
+                        key={label}
+                        className="inline-block w-fit rounded-none border border-[oklch(0.72_0.07_86)]/35 bg-[oklch(0.94_0.025_92)] px-1.5 py-1 align-baseline text-[11px] font-semibold leading-none tracking-[0.06em] text-[oklch(0.44_0.08_80)] dark:bg-[oklch(0.44_0.08_80)] dark:text-[oklch(0.94_0.025_92)]"
+                      >
+                        {label}
+                      </span>
+                    ))}
+                  </div>
+                ) : null}
+                </div>
+                ) : null}
+              </div>
+              {result.instagramUrl ? (
+                <a
+                  href={result.instagramUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  onClick={() =>
+                    trackAnalyticsEvent("instagram_click", {
+                      salon: result.name,
+                      placement: "mobile",
+                    })
+                  }
+                  className="inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-none bg-transparent px-4 py-2 text-[14px] font-medium text-stone-950 transition-colors duration-150 hover:bg-stone-200 active:bg-stone-200 dark:bg-transparent dark:text-stone-100 dark:hover:bg-stone-800 dark:active:bg-stone-800 sm:hidden"
+                >
+                  <InstagramIcon className="size-4" />
+                  <span className="sr-only">Go to {result.name} Instagram - opens in a new tab</span>
+                </a>
+              ) : null}
+            </div>
+          </div>
+
+        </div>
+
+        <div
+          className="order-4 mt-2 flex w-full shrink-0 items-center gap-2 sm:order-2 sm:mt-0 sm:w-auto sm:self-start sm:justify-self-end"
+          ref={buttonRowRef}
+        >
+          {result.instagramUrl ? (
+            <a
+              href={result.instagramUrl}
+              target="_blank"
+              rel="noreferrer"
+              onClick={() =>
+                trackAnalyticsEvent("instagram_click", {
+                  salon: result.name,
+                  placement: "desktop",
+                })
+              }
+              className="hidden min-h-[48px] items-center justify-center gap-2 rounded-none bg-transparent px-4 py-2 text-[14px] font-medium text-stone-950 transition-colors duration-150 hover:bg-stone-200 dark:bg-transparent dark:text-stone-100 dark:hover:bg-stone-800 sm:inline-flex sm:min-h-[40px]"
+            >
+              <InstagramIcon className="size-4" />
+              <span className="sr-only">Go to {result.name} Instagram - opens in a new tab</span>
+            </a>
+          ) : null}
+          {result.bookingPlatform !== "Instagram" ? (
+            <a
+              href={result.bookingUrl}
+              target="_blank"
+              rel="noreferrer"
+              onClick={() =>
+                trackAnalyticsEvent("book_click", {
+                  salon: result.name,
+                  platform: result.bookingPlatform,
+                  location: result.areaLabel,
+                  services: activeServices,
+                })
+              }
+              className="inline-flex min-h-[48px] flex-1 items-center justify-center rounded-none bg-stone-950 px-5 py-2 text-[14px] font-medium text-stone-100 transition-colors duration-150 hover:bg-stone-800 active:bg-stone-800 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-stone-300 dark:active:bg-stone-300 sm:min-h-[40px] sm:flex-none sm:px-4"
+            >
+              <span aria-hidden="true">Book</span>
+              <span className="sr-only">Book {result.name} - opens in a new tab</span>
+            </a>
+          ) : null}
+        </div>
+
+        {orderedServices.length > 0 ? (
+          <div
+            className="order-3 mt-2 w-full sm:order-3 sm:col-span-2 sm:mt-0 sm:self-start lg:mt-0"
+            style={servicesMarginTopPx != null ? { marginTop: servicesMarginTopPx } : undefined}
+            ref={servicesBlockRef}
+          >
+            <div className="border-l-2 border-stone-300 pl-2 text-[12px] font-normal lowercase leading-[18px] tracking-[0.02em] text-stone-700 dark:border-stone-700 dark:text-stone-300">
+              <ServicesSummary services={orderedServices} maxLines={2} onExpandedChange={setIsServicesExpanded} />
+            </div>
+          </div>
+        ) : null}
+      </article>
+    </StylistCardWrapper>
   );
 }
 
@@ -937,8 +1321,28 @@ function AnimatedCollapsible({
   );
 }
 
-function ServicesSummary({ services, badgeLabels }: { services: string[]; badgeLabels?: string[] | null }) {
+// Matches the text-[12px] leading-[18px] typography every ServicesSummary caller uses.
+const SERVICES_SUMMARY_LINE_HEIGHT_PX = 18;
+
+// Floor for the portfolio photo/placeholder height on a listing card — the
+// photo otherwise always matches the right-hand column's actual content
+// height, but sparse cards (short name, no links/pills, short service list)
+// would render an oddly short photo without this minimum.
+const MIN_PHOTO_HEIGHT_PX = 160;
+
+function ServicesSummary({
+  services,
+  badgeLabels,
+  maxLines = 1,
+  onExpandedChange,
+}: {
+  services: string[];
+  badgeLabels?: string[] | null;
+  maxLines?: number;
+  onExpandedChange?: (expanded: boolean) => void;
+}) {
   const labels = badgeLabels ?? [];
+  const isMultiLine = maxLines > 1;
   const lineRef = useRef<HTMLDivElement | null>(null);
   const separatorMeasureRef = useRef<HTMLSpanElement | null>(null);
   const badgeCandidateMeasureRefs = useRef<Record<number, HTMLSpanElement | null>>({});
@@ -1015,17 +1419,51 @@ function ServicesSummary({ services, badgeLabels }: { services: string[]; badgeL
       const badgeCandidateWidth = labels.length > 0 ? (badgeCandidateMeasureRefs.current[nextBadgeVisibleCount]?.offsetWidth ?? 0) : 0;
       const badgeWidth = labels.length > 0 ? badgeCandidateWidth + (services.length > 0 ? separatorWidth : 0) : 0;
 
+      // Multi-line callers don't actually get more horizontal room per line, just
+      // more lines to wrap into — so simulate real greedy line-wrapping (each
+      // segment either joins the current line or starts a new one) rather than
+      // just comparing total width against a multiplied budget, which let items
+      // get cut off mid-word right at a line boundary.
+      const lineCapacity = Math.max(1, availableWidth - safetyBuffer);
+      const buildSegments = (count: number, hiddenCount: number, useShort: boolean): number[] => {
+        const segments: number[] = [];
+        if (badgeWidth > 0) segments.push(badgeWidth);
+        for (let index = 0; index < count; index += 1) {
+          segments.push(serviceWidths[index] + (segments.length > 0 ? separatorWidth : 0));
+        }
+        if (hiddenCount > 0) {
+          const suffixWidth = useShort
+            ? (shortSuffixMeasureRefs.current[hiddenCount]?.offsetWidth ?? 0)
+            : (suffixMeasureRefs.current[hiddenCount]?.offsetWidth ?? 0);
+          segments.push(suffixWidth + (segments.length > 0 ? separatorWidth : 0));
+        }
+        return segments;
+      };
+      const fitsInLines = (segments: number[]): boolean => {
+        let linesUsed = 1;
+        let currentLineWidth = 0;
+        for (const width of segments) {
+          if (currentLineWidth === 0) {
+            currentLineWidth = width;
+          } else if (currentLineWidth + width <= lineCapacity) {
+            currentLineWidth += width;
+          } else {
+            linesUsed += 1;
+            if (linesUsed > maxLines) return false;
+            currentLineWidth = width;
+          }
+        }
+        return true;
+      };
+
       let nextVisibleCount = services.length;
       let nextUseShortSuffix = false;
 
       outer: for (let count = services.length; count >= 0; count -= 1) {
         const hiddenCount = services.length - count;
-        const visibleServicesWidth = serviceWidths.slice(0, count).reduce((sum, width) => sum + width, 0);
-        const visibleSeparatorsWidth = Math.max(0, count - 1) * separatorWidth;
-        const baseWidth = badgeWidth + visibleServicesWidth + visibleSeparatorsWidth;
 
         if (hiddenCount === 0) {
-          if (baseWidth <= availableWidth - safetyBuffer) {
+          if (fitsInLines(buildSegments(count, 0, false))) {
             nextVisibleCount = count;
             nextUseShortSuffix = false;
             break outer;
@@ -1033,15 +1471,13 @@ function ServicesSummary({ services, badgeLabels }: { services: string[]; badgeL
           continue;
         }
 
-        const longSuffixWidth = (suffixMeasureRefs.current[hiddenCount]?.offsetWidth ?? 0) + (count > 0 ? separatorWidth : 0);
-        if (baseWidth + longSuffixWidth <= availableWidth - safetyBuffer) {
+        if (fitsInLines(buildSegments(count, hiddenCount, false))) {
           nextVisibleCount = count;
           nextUseShortSuffix = false;
           break outer;
         }
 
-        const shortSuffixWidth = (shortSuffixMeasureRefs.current[hiddenCount]?.offsetWidth ?? 0) + (count > 0 ? separatorWidth : 0);
-        if (baseWidth + shortSuffixWidth <= availableWidth - safetyBuffer) {
+        if (fitsInLines(buildSegments(count, hiddenCount, true))) {
           nextVisibleCount = count;
           nextUseShortSuffix = true;
           break outer;
@@ -1070,7 +1506,7 @@ function ServicesSummary({ services, badgeLabels }: { services: string[]; badgeL
       resizeObserver?.disconnect();
       window.removeEventListener("resize", measure);
     };
-  }, [services, labels.join(" · ")]);
+  }, [services, labels.join(" · "), maxLines]);
 
   useEffect(() => {
     setIsExpandedOnMobile(false);
@@ -1083,7 +1519,7 @@ function ServicesSummary({ services, badgeLabels }: { services: string[]; badgeL
   }, [isMobileViewport]);
 
   useEffect(() => {
-    if (!isHoveredOnDesktop || isMobileViewport || services.length - visibleCount <= 0) return;
+    if (!isHoveredOnDesktop || isMobileViewport || isMultiLine || services.length - visibleCount <= 0) return;
     const copyWidth = marqueeCopyRef.current?.scrollWidth ?? 0;
     const pixelsPerSecond = 55;
     if (copyWidth > 0) {
@@ -1106,6 +1542,11 @@ function ServicesSummary({ services, badgeLabels }: { services: string[]; badgeL
   const isExpandableOnDesktop = !isMobileViewport && hiddenCount > 0;
   const showExpandedList = isExpandableOnMobile && isExpandedOnMobile;
   const showExpandedOnDesktop = isExpandableOnDesktop && isHoveredOnDesktop;
+
+  useEffect(() => {
+    onExpandedChange?.(isMultiLine && showExpandedOnDesktop);
+  }, [isMultiLine, showExpandedOnDesktop, onExpandedChange]);
+
   const badgeClassName =
     "mr-1.5 inline-block rounded-none border border-[oklch(0.72_0.07_86)]/35 bg-[oklch(0.94_0.025_92)] px-1.5 py-1 align-baseline text-[11px] font-semibold leading-none tracking-[0.06em] text-[oklch(0.44_0.08_80)] dark:bg-[oklch(0.44_0.08_80)] dark:text-[oklch(0.94_0.025_92)]";
   // The full, untruncated badge — used whenever the whole services line is
@@ -1152,12 +1593,24 @@ function ServicesSummary({ services, badgeLabels }: { services: string[]; badgeL
           />
           <div
             ref={lineRef}
-            className={cn(showExpandedList ? "whitespace-normal" : "overflow-hidden whitespace-nowrap")}
+            className={cn(
+              showExpandedList
+                ? "whitespace-normal"
+                : isMultiLine
+                  ? "overflow-hidden whitespace-normal"
+                  : "overflow-hidden whitespace-nowrap",
+            )}
+            style={!showExpandedList && isMultiLine ? { maxHeight: SERVICES_SUMMARY_LINE_HEIGHT_PX * maxLines } : undefined}
             aria-label={fullAriaLabel}
           >
             {showExpandedList ? <>{badgeElement}{fullServicesLabel}</> : collapsedSummary}
           </div>
         </>
+      ) : showExpandedOnDesktop && isMultiLine ? (
+        <div ref={lineRef} className="whitespace-normal" aria-label={fullAriaLabel}>
+          {badgeElement}
+          {fullServicesLabel}
+        </div>
       ) : showExpandedOnDesktop ? (
         <div ref={lineRef} className="overflow-hidden whitespace-nowrap" aria-label={fullAriaLabel}>
           <div className="inline-flex whitespace-nowrap" style={{ animation: `services-marquee ${marqueeSeconds}s linear infinite` }}>
@@ -1172,7 +1625,12 @@ function ServicesSummary({ services, badgeLabels }: { services: string[]; badgeL
           </div>
         </div>
       ) : (
-        <div ref={lineRef} className="overflow-hidden whitespace-nowrap" aria-label={fullAriaLabel}>
+        <div
+          ref={lineRef}
+          className={cn(isMultiLine ? "overflow-hidden whitespace-normal" : "overflow-hidden whitespace-nowrap")}
+          style={isMultiLine ? { maxHeight: SERVICES_SUMMARY_LINE_HEIGHT_PX * maxLines } : undefined}
+          aria-label={fullAriaLabel}
+        >
           {collapsedSummary}
         </div>
       )}
@@ -3023,158 +3481,18 @@ export default function App() {
                   const hasPortfolioPhotos = portfolioPhotos.length > 0;
 
                   return (
-                  <StylistCardWrapper key={result.id} result={result} services={activeServices}>
-                    <article
-                      className="flex w-full flex-col gap-2.5 sm:grid sm:items-start sm:gap-x-4 sm:gap-y-2.5 sm:grid-cols-[220px_minmax(0,1fr)_auto] lg:grid-cols-[240px_minmax(0,1fr)_auto]"
-                    >
-                      {hasPortfolioPhotos ? (
-                        <PortfolioPhotoCarousel
-                          result={result}
-                          photos={portfolioPhotos}
-                          className="order-1 mb-1 sm:row-span-2 sm:mb-0"
-                        />
-                      ) : (
-                        <div className="order-1 mb-1 hidden w-full sm:row-span-2 sm:mb-0 sm:block" aria-hidden="true">
-                          <div className="flex aspect-[3/2] w-full items-center justify-center overflow-hidden rounded-none border border-stone-300/60 bg-stone-100 dark:border-stone-700/60 dark:bg-stone-900/40 sm:aspect-[4/3]">
-                            <span className="text-lg font-semibold tracking-wide text-stone-400 dark:text-stone-600">{getSalonInitials(result.name)}</span>
-                          </div>
-                        </div>
-                      )}
-
-                      <div className="min-w-0 order-2">
-                        <div className="min-w-0 grow">
-                          <div className="flex items-start justify-between gap-3">
-                            <div className="min-w-0">
-                              <h3 className="flex items-center gap-1 text-[17px] font-semibold text-stone-950 dark:text-stone-50">
-                                {result.name}
-                              </h3>
-                              {locationLabels.length > 0 || comparablePriceBand(result) ? (
-                                <p className="mt-0.5 text-[13px] font-medium text-stone-500 dark:text-stone-400">
-                                  {locationLabels.join(" · ")}
-                                  {locationLabels.length > 0 && comparablePriceBand(result) ? " · " : ""}
-                                  {comparablePriceBand(result)}
-                                </p>
-                              ) : null}
-                              {reviewsBanner || hairShopLink ? (
-                              <div className="mt-1.5 flex flex-col items-start gap-2">
-                              {reviewsBanner ? (
-                                <a
-                                  href={reviewsBanner.url}
-                                  target="_blank"
-                                  rel="noreferrer"
-                                  aria-label={`${reviewsBanner.accessibleLabel} - opens in a new tab`}
-                                  onClick={() =>
-                                    trackAnalyticsEvent("verified_reviews_click", {
-                                      salon: result.name,
-                                      platform: getVerifiedReviewsPlatform(result) ?? "google",
-                                    })
-                                  }
-                                  className="inline-flex w-fit items-center gap-1 text-[13px] font-semibold text-[oklch(0.45_0.05_255)] transition-colors hover:text-[oklch(0.38_0.06_255)] active:text-[oklch(0.38_0.06_255)] dark:text-[oklch(0.72_0.05_255)] dark:hover:text-[oklch(0.80_0.06_255)] dark:active:text-[oklch(0.80_0.06_255)]"
-                                >
-                                  <span aria-hidden="true">{reviewsBanner.label}</span>
-                                  <ArrowUpRight className="size-3.5 shrink-0" aria-hidden="true" />
-                                </a>
-                              ) : null}
-                              {hairShopLink ? (
-                                <a
-                                  href={hairShopLink.url}
-                                  target="_blank"
-                                  rel="noreferrer"
-                                  aria-label={`${hairShopLink.accessibleLabel} - opens in a new tab`}
-                                  onClick={() => trackAnalyticsEvent("hair_shop_click", { salon: result.name })}
-                                  className="inline-flex w-fit items-center gap-1 text-[13px] font-semibold text-[oklch(0.45_0.05_255)] transition-colors hover:text-[oklch(0.38_0.06_255)] active:text-[oklch(0.38_0.06_255)] dark:text-[oklch(0.72_0.05_255)] dark:hover:text-[oklch(0.80_0.06_255)] dark:active:text-[oklch(0.80_0.06_255)]"
-                                >
-                                  <span aria-hidden="true">{hairShopLink.label}</span>
-                                  <ArrowUpRight className="size-3.5 shrink-0" aria-hidden="true" />
-                                </a>
-                              ) : null}
-                              </div>
-                              ) : null}
-                            </div>
-                            {result.instagramUrl ? (
-                              <a
-                                href={result.instagramUrl}
-                                target="_blank"
-                                rel="noreferrer"
-                                onClick={() =>
-                                  trackAnalyticsEvent("instagram_click", {
-                                    salon: result.name,
-                                    placement: "mobile",
-                                  })
-                                }
-                                className="inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-none bg-transparent px-4 py-2 text-[14px] font-medium text-stone-950 transition-colors duration-150 hover:bg-stone-200 active:bg-stone-200 dark:bg-transparent dark:text-stone-100 dark:hover:bg-stone-800 dark:active:bg-stone-800 sm:hidden"
-                              >
-                                <InstagramIcon className="size-4" />
-                                <span className="sr-only">Go to {result.name} Instagram - opens in a new tab</span>
-                              </a>
-                            ) : null}
-                          </div>
-                        </div>
-
-                      </div>
-
-                      <div className="order-3 mt-2 flex w-full shrink-0 items-center gap-2 sm:order-2 sm:mt-0 sm:w-auto sm:self-start sm:justify-self-end">
-                        {result.instagramUrl ? (
-                          <a
-                            href={result.instagramUrl}
-                            target="_blank"
-                            rel="noreferrer"
-                            onClick={() =>
-                              trackAnalyticsEvent("instagram_click", {
-                                salon: result.name,
-                                placement: "desktop",
-                              })
-                            }
-                            className="hidden min-h-[48px] items-center justify-center gap-2 rounded-none bg-transparent px-4 py-2 text-[14px] font-medium text-stone-950 transition-colors duration-150 hover:bg-stone-200 dark:bg-transparent dark:text-stone-100 dark:hover:bg-stone-800 sm:inline-flex sm:min-h-[40px]"
-                          >
-                            <InstagramIcon className="size-4" />
-                            <span className="sr-only">Go to {result.name} Instagram - opens in a new tab</span>
-                          </a>
-                        ) : null}
-                        {result.bookingPlatform !== "Instagram" ? (
-                          <a
-                            href={result.bookingUrl}
-                            target="_blank"
-                            rel="noreferrer"
-                            onClick={() =>
-                              trackAnalyticsEvent("book_click", {
-                                salon: result.name,
-                                platform: result.bookingPlatform,
-                                location: result.areaLabel,
-                                services: [...selectedCategories, ...selectedSubcategories].join(", ") || "none",
-                              })
-                            }
-                            className="inline-flex min-h-[48px] flex-1 items-center justify-center rounded-none bg-stone-950 px-5 py-2 text-[14px] font-medium text-stone-100 transition-colors duration-150 hover:bg-stone-800 active:bg-stone-800 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-stone-300 dark:active:bg-stone-300 sm:min-h-[40px] sm:flex-none sm:px-4"
-                          >
-                            <span aria-hidden="true">Book</span>
-                            <span className="sr-only">Book {result.name} - opens in a new tab</span>
-                          </a>
-                        ) : null}
-                      </div>
-
-                      {attributeLabels.length > 0 || orderedServices.length > 0 ? (
-                        <div className="order-4 mt-2 w-full sm:order-3 sm:col-span-2 sm:self-end lg:mt-2">
-                          {attributeLabels.length > 0 ? (
-                            <div className="mb-2 flex flex-wrap gap-1">
-                              {attributeLabels.map((label) => (
-                                <span
-                                  key={label}
-                                  className="inline-block w-fit rounded-none border border-[oklch(0.72_0.07_86)]/35 bg-[oklch(0.94_0.025_92)] px-1.5 py-1 align-baseline text-[11px] font-semibold leading-none tracking-[0.06em] text-[oklch(0.44_0.08_80)] dark:bg-[oklch(0.44_0.08_80)] dark:text-[oklch(0.94_0.025_92)]"
-                                >
-                                  {label}
-                                </span>
-                              ))}
-                            </div>
-                          ) : null}
-                          {orderedServices.length > 0 ? (
-                            <p className="border-l-2 border-stone-300 pl-2 text-[12px] font-normal lowercase leading-[18px] tracking-[0.02em] text-stone-700 dark:border-stone-700 dark:text-stone-300">
-                              {orderedServices.map((service) => getServiceDisplayName(service)).join(" · ")}
-                            </p>
-                          ) : null}
-                        </div>
-                      ) : null}
-                    </article>
-                  </StylistCardWrapper>
+                    <SalonResultCard
+                      key={result.id}
+                      result={result}
+                      locationLabels={locationLabels}
+                      orderedServices={orderedServices}
+                      activeServices={activeServices}
+                      reviewsBanner={reviewsBanner}
+                      hairShopLink={hairShopLink}
+                      attributeLabels={attributeLabels}
+                      portfolioPhotos={portfolioPhotos}
+                      hasPortfolioPhotos={hasPortfolioPhotos}
+                    />
                   );
                 });
               })()}
@@ -4317,12 +4635,12 @@ export default function App() {
         <div className="mx-auto w-full max-w-[1280px]">
           <div className="flex flex-col gap-10 sm:flex-row sm:justify-between">
             <div className="flex max-w-sm flex-col gap-4">
-              <img src="/icon.svg" alt="Row K" className="size-8 shrink-0" />
-              <p className="text-[13px] text-stone-700 dark:text-stone-300">
-                Row K is a directory, not a booking platform.
-                <br />
-                We don't vet, endorse, or take responsibility for the service providers listed.
-              </p>
+              <img src="/icon.svg" alt="" className="size-8 shrink-0" />
+              <div className="flex flex-col gap-2.5 text-[13px] text-stone-700 dark:text-stone-300">
+                <p>Row K is a directory, not a booking platform.</p>
+                <p>We don't vet, endorse, or take responsibility for the service providers listed.</p>
+                <p>We don't claim ownership of any photos shown. To request removal, contact us.</p>
+              </div>
             </div>
             <div className="flex flex-col items-start gap-3.5">
               <h3 className="text-[14px] font-semibold text-stone-950 dark:text-stone-50">Get in touch</h3>

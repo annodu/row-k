@@ -20,7 +20,9 @@ const publicSearchRateLimit = createRateLimiter({
   message: "Too many searches. Please try again shortly.",
 });
 
-app.use(express.json({ limit: "1mb" }));
+// 20mb covers a manually-uploaded portfolio photo sent as base64 JSON (the
+// admin drawer's upload button) — everything else on this API is tiny.
+app.use(express.json({ limit: "20mb" }));
 app.use((_, res, next) => {
   setNoStoreHeaders(res);
   next();

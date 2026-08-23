@@ -54,8 +54,6 @@ async function loadReferenceExamples() {
   return examples;
 }
 
-const MAX_PHOTOS_PER_SALON = 3;
-
 const KNOWN_BOOKING_PLATFORM_HOSTS = [
   "instagram.com",
   "phorest.com",
@@ -303,21 +301,25 @@ async function main() {
         }
 
         kept.sort((a, b) => b.quality - a.quality);
-        const chosen = kept.slice(0, MAX_PHOTOS_PER_SALON);
+        const existingPhotos = salon.portfolioPhotos || [];
 
         checked += 1;
 
-        if (hadClassifyError && chosen.length === 0) {
+        if (hadClassifyError && kept.length === 0) {
           console.log(`SKIP  ${salon.name} (classify errors, will retry later; ${rawCandidates.length} candidates found)`);
-        } else if (chosen.length === 0) {
+        } else if (kept.length === 0) {
           results.set(salon.id, { portfolioPhotosCheckedAt: today() });
           console.log(`NONE  ${salon.name} (${rawCandidates.length} candidates checked)`);
         } else {
-          const portfolioPhotos = [];
-          chosen.forEach((photo, index) => {
-            const filename = `${salon.id}-${index + 1}.${imageExtension(photo.buffer)}`;
+          // Every classifier-approved candidate gets added — no cap here.
+          // Which 3 actually show publicly is decided later, by a human, in
+          // the stylist drawer's Photos tab (see getPortfolioPhotos in
+          // App.tsx, which slices to the first 3).
+          const portfolioPhotos = [...existingPhotos];
+          kept.forEach((photo) => {
+            const filename = `${salon.id}-${crypto.randomUUID()}.${imageExtension(photo.buffer)}`;
             portfolioPhotos.push({
-              id: `${salon.id}-portfolio-photo-${index}`,
+              id: `${salon.id}-portfolio-photo-${crypto.randomUUID()}`,
               url: `/portfolio-photos/${filename}`,
               source: photo.source,
             });
@@ -326,7 +328,7 @@ async function main() {
           withPhotos += 1;
           results.set(salon.id, { portfolioPhotos, portfolioPhotosCheckedAt: today() });
           console.log(
-            `OK    ${salon.name} -> ${chosen.length} photo(s) from [${chosen.map((c) => c.source).join(", ")}] (${rawCandidates.length} candidates checked)`,
+            `OK    ${salon.name} -> ${kept.length} new photo(s) from [${kept.map((c) => c.source).join(", ")}] (${rawCandidates.length} candidates checked)`,
           );
         }
       } catch (error) {

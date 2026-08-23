@@ -1,4 +1,6 @@
 import { FormEvent, KeyboardEvent, type ComponentType, type ReactNode, createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
+import ReactCrop, { type Crop, type PercentCrop } from "react-image-crop";
+import "react-image-crop/dist/ReactCrop.css";
 import {
   Activity,
   AlertTriangle,
@@ -16,6 +18,7 @@ import {
   ChevronsUpDown,
   ClockAlert,
   CreditCard,
+  Crop as CropIcon,
   ExternalLink,
   FileText,
   Globe,
@@ -36,6 +39,8 @@ import {
   PoundSterling,
   Pencil,
   RefreshCw,
+  RotateCcw,
+  RotateCw,
   Save,
   Search,
   SearchCheck,
@@ -133,7 +138,10 @@ type StylistDraft = {
   googleMatchConfidence?: "high" | "low" | "no-match" | "";
   googleDisplayName?: string;
   verifiedReviewCount?: number;
+  portfolioPhotos?: PortfolioPhotoAdmin[];
 };
+
+type PortfolioPhotoAdmin = { id: string; url: string; source?: string };
 
 type PriceBand = string;
 type PriceComparisonMode = "service-only" | "mixed" | "package-only";
@@ -196,7 +204,7 @@ type DraftForm = {
 
 type DraftEditorStep = "details" | "services" | "review";
 
-type DrawerTab = "basic" | "filters" | "reviews" | "branches";
+type DrawerTab = "basic" | "filters" | "reviews" | "branches" | "photos";
 type StylistSortKey = "name" | "status" | "services" | "pricing" | "location" | "discoverySource";
 type StylistSortDirection = "asc" | "desc";
 type StylistSort = { key: StylistSortKey; direction: StylistSortDirection } | null;
@@ -733,7 +741,7 @@ const emptyForm: DraftForm = {
 };
 
 const serviceGroups = [
-  { label: "Braids", services: ["Boho braids / goddess braids","Braid take-down","Box braids","Crochet","Creative braids","Feed-in braids","French curl","Fulani / lemonade braids","Half braids, half sew-in","Knotless braids","Miracle knots","Microbraids / x-small braids","Pre-parting","Stitch braids","Twists (with extensions)","Boho braids bob","French curl bob"] },
+  { label: "Braids", services: ["Boho braids / goddess braids","Braid take-down","Box braids","Crochet","Creative braids","Feed-in braids","French curl","Fulani / lemonade braids","Half braids, half sew-in","Knotless braids","Miracle knots","Microbraids / x-small braids","Pre-parting","Stitch braids","Twists (with extensions)","Boho braids bob","French curl bob","Men's braids","Wig cornrows"] },
   { label: "Colour", services: ["Balayage","Full head colour","Highlights","Wig colouring / bundle colouring"] },
   { label: "Bridal", services: ["Bridal"] },
   { label: "Editorial / Session styling", services: ["Editorial / Session styling"] },
@@ -743,9 +751,9 @@ const serviceGroups = [
   { label: "Sew in / weave", services: ["Closure sew-in / closure behind the hairline","Flipover / Versatile sew-in","Frontal sew-in","Hybrid sew in (tapes + sew in)","Pixie wig / weave install","Quick weave","Sew-in take-down","Tracks (+ silk press) / partial / invisible sew-in","Traditional sew-in / leave out"] },
   { label: "Styling (sew in / frontal / relaxer)", services: ["Sew in / extensions blowdry","Frontal ponytail / bun","Half up half down","Pixie cut / finger waves","Sleek ponytail / bun","Updo"] },
   { label: "Treatments", services: ["Hair botox","Japanese straightening","K-18 treatment","Keratin treatment","Moisturising treatment","Olaplex treatment","Relaxer / texturiser","Texture release"] },
-  { label: "Natural hair washing & styling", services: ["Wig cornrows","Curly cut / wash & go / diffuse","Silk press","Bouncy blowout / round brush blow dry","Trim / hair cut","Roller set","Twist out / flexi rod","Bantu knots","Wash & blowdry","Japanese head spa","Scalp detox / treatments"] },
+  { label: "Natural hair washing & styling", services: ["Wig cornrows","Curly cut / wash & go / diffuse","Silk press","Bouncy blowout / round brush blow dry","Trim / hair cut","Roller set","Twist out / flexi rod","Bantu knots","Wash & blowdry","Japanese head spa","Scalp detox / treatments","Men's braids"] },
   { label: "Natural hair health & trichology", services: ["Healthy hair plans & consultations","Natural hair coaches / educators","Trichology / scalp analysis"] },
-  { label: "Wigs", services: ["Custom wig","Pixie wig / weave install","U-part wig install","Wig colouring / bundle colouring","Wig install (frontal / closure)","Wig blowdry"] },
+  { label: "Wigs", services: ["Custom wig","Pixie wig / weave install","U-part wig install","Wig colouring / bundle colouring","Wig install (frontal / closure)","Wig blowdry","Wig laundry"] },
 ];
 
 type ConfirmOptions = {
@@ -1451,6 +1459,85 @@ function AdminAppInner() {
     }
   }
 
+  async function savePortfolioPhotos(salonId: string, photos: PortfolioPhotoAdmin[]) {
+    setMessage("");
+    setIsBusy(true);
+    try {
+      const response = await fetch(`/api/admin/stylists/published/${salonId}/portfolio-photos`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({ photos }),
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok) {
+        notify(payload.message || "Could not save photo shortlist.", "error");
+        return;
+      }
+      setPublishedStylists((current) => current.map((item) => (item.id === payload.salon.id ? payload.salon : item)));
+      notify("Photo shortlist saved.");
+    } finally {
+      setIsBusy(false);
+    }
+  }
+
+  async function cropPortfolioPhoto(
+    salonId: string,
+    photoId: string,
+    region: { x: number; y: number; width: number; height: number; rotation: number },
+  ): Promise<{ ok: boolean; message?: string }> {
+    setIsBusy(true);
+    try {
+      const response = await fetch(`/api/admin/stylists/published/${salonId}/portfolio-photos/${photoId}/crop`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify(region),
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok) {
+        return { ok: false, message: payload.message || "Could not crop that photo." };
+      }
+      setPublishedStylists((current) => current.map((item) => (item.id === payload.salon.id ? payload.salon : item)));
+      return { ok: true };
+    } catch {
+      return { ok: false, message: "Could not crop that photo." };
+    } finally {
+      setIsBusy(false);
+    }
+  }
+
+  async function uploadPortfolioPhoto(salonId: string, file: File): Promise<{ ok: boolean; message?: string }> {
+    if (!file.type.startsWith("image/")) {
+      return { ok: false, message: "Choose an image file." };
+    }
+    setIsBusy(true);
+    try {
+      const image = await new Promise<string>((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result as string);
+        reader.onerror = () => reject(new Error("Could not read that file."));
+        reader.readAsDataURL(file);
+      });
+      const response = await fetch(`/api/admin/stylists/published/${salonId}/portfolio-photos/upload`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({ image }),
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok) {
+        return { ok: false, message: payload.message || "Could not upload that photo." };
+      }
+      setPublishedStylists((current) => current.map((item) => (item.id === payload.salon.id ? payload.salon : item)));
+      return { ok: true };
+    } catch {
+      return { ok: false, message: "Could not upload that photo." };
+    } finally {
+      setIsBusy(false);
+    }
+  }
+
   async function runChecks(offset = 0, mode: "freshness" | "pricing" = "freshness") {
     setMessage("");
     const isFullRun = offset === 0;
@@ -1968,6 +2055,9 @@ function AdminAppInner() {
             onAddBranchToSalon={(fields) => selectedDraft ? addBranchToSalon(selectedDraft.id, fields) : undefined}
             onUpdateBranch={(branchId, fields) => selectedDraft ? updateBranch(selectedDraft.id, branchId, fields) : undefined}
             onDeleteBranch={(branchId) => selectedDraft ? deleteBranch(selectedDraft.id, branchId) : undefined}
+            onSavePortfolioPhotos={(photos) => selectedDraft ? savePortfolioPhotos(selectedDraft.id, photos) : undefined}
+            onCropPortfolioPhoto={(photoId, region) => selectedDraft ? cropPortfolioPhoto(selectedDraft.id, photoId, region) : Promise.resolve({ ok: false })}
+            onUploadPortfolioPhoto={(file) => selectedDraft ? uploadPortfolioPhoto(selectedDraft.id, file) : Promise.resolve({ ok: false })}
           />
         ) : null}
 
@@ -2198,6 +2288,9 @@ function StylistsPage({
   onAddBranchToSalon,
   onUpdateBranch,
   onDeleteBranch,
+  onSavePortfolioPhotos,
+  onCropPortfolioPhoto,
+  onUploadPortfolioPhoto,
 }: {
   drafts: StylistDraft[];
   stats: { total: number; draft: number; readyToPublish: number; published: number };
@@ -2224,6 +2317,9 @@ function StylistsPage({
   onAddBranchToSalon: (fields: Partial<BranchDraft>) => void;
   onUpdateBranch: (branchId: string, fields: Partial<BranchDraft>) => void;
   onDeleteBranch: (branchId: string) => void;
+  onSavePortfolioPhotos: (photos: PortfolioPhotoAdmin[]) => void;
+  onCropPortfolioPhoto: (photoId: string, region: { x: number; y: number; width: number; height: number; rotation: number }) => Promise<{ ok: boolean; message?: string }>;
+  onUploadPortfolioPhoto: (file: File) => Promise<{ ok: boolean; message?: string }>;
 }) {
   const [stylistSort, setStylistSort] = useState<StylistSort>(null);
   const [page, setPage] = useState(1);
@@ -2409,6 +2505,9 @@ function StylistsPage({
           onAddBranchToSalon={onAddBranchToSalon}
           onUpdateBranch={onUpdateBranch}
           onDeleteBranch={onDeleteBranch}
+          onSavePortfolioPhotos={onSavePortfolioPhotos}
+          onCropPortfolioPhoto={onCropPortfolioPhoto}
+          onUploadPortfolioPhoto={onUploadPortfolioPhoto}
         />
       ) : null}
     </div>
@@ -3181,6 +3280,9 @@ function DraftEditorDrawer({
   onAddBranchToSalon,
   onUpdateBranch,
   onDeleteBranch,
+  onSavePortfolioPhotos,
+  onCropPortfolioPhoto,
+  onUploadPortfolioPhoto,
 }: {
   draft: StylistDraft;
   regions: RegionOption[];
@@ -3199,6 +3301,9 @@ function DraftEditorDrawer({
   onAddBranchToSalon: (fields: Partial<BranchDraft>) => void;
   onUpdateBranch: (branchId: string, fields: Partial<BranchDraft>) => void;
   onDeleteBranch: (branchId: string) => void;
+  onSavePortfolioPhotos: (photos: PortfolioPhotoAdmin[]) => void;
+  onCropPortfolioPhoto: (photoId: string, region: { x: number; y: number; width: number; height: number; rotation: number }) => Promise<{ ok: boolean; message?: string }>;
+  onUploadPortfolioPhoto: (file: File) => Promise<{ ok: boolean; message?: string }>;
 }) {
   const isPublished = getDraftDisplayStatus(draft) === "published";
   const deleteLabel = isPublished ? "Delete published stylist" : "Delete draft";
@@ -3206,12 +3311,19 @@ function DraftEditorDrawer({
   const [hasAttemptedPublish, setHasAttemptedPublish] = useState(false);
   const [activeTab, setActiveTab] = useState<DrawerTab>("basic");
   const contentRef = useRef<HTMLDivElement | null>(null);
-  const drawerTabs: DrawerTab[] = ["basic", "filters", "reviews", ...(isPublished ? (["branches"] as const) : [])];
+  const drawerTabs: DrawerTab[] = [
+    "basic",
+    "filters",
+    "reviews",
+    ...(isPublished ? (["branches"] as const) : []),
+    ...(isPublished ? (["photos"] as const) : []),
+  ];
   const drawerTabLabels: Record<DrawerTab, string> = {
     basic: "Basic info",
     filters: "Filters",
     reviews: "Reviews and recommendations",
     branches: draft.branches ? `Branches (${draft.branches.length})` : "Branches",
+    photos: draft.portfolioPhotos?.length ? `Photos (${draft.portfolioPhotos.length})` : "Photos",
   };
 
   useEffect(() => {
@@ -3301,6 +3413,14 @@ function DraftEditorDrawer({
               onUpdateBranch={onUpdateBranch}
               onDeleteBranch={onDeleteBranch}
             />
+          ) : activeTab === "photos" && isPublished ? (
+            <PortfolioPhotosTab
+              draft={draft}
+              isBusy={isBusy}
+              onSave={onSavePortfolioPhotos}
+              onCropPhoto={onCropPortfolioPhoto}
+              onUploadPhoto={onUploadPortfolioPhoto}
+            />
           ) : (
             <DraftEditor
               draft={draft}
@@ -3317,12 +3437,12 @@ function DraftEditorDrawer({
               canDelete={!isPublished}
               showWarnings={hasAttemptedPublish}
               isEmbedded
-              embeddedSection={activeTab === "branches" ? "basic" : activeTab}
+              embeddedSection={activeTab === "branches" || activeTab === "photos" ? "basic" : activeTab}
             />
           )}
         </div>
 
-        {activeTab !== "branches" ? (
+        {activeTab !== "branches" && activeTab !== "photos" ? (
           <div className="shrink-0 border-t border-stone-200 bg-white px-8 py-5">
             <div className="flex items-center justify-end gap-4">
               {!isPublished ? (
@@ -3542,6 +3662,201 @@ function NewBranchForm({ regions, isBusy, onAdd }: { regions: RegionOption[]; is
       >
         Add branch
       </Button>
+    </div>
+  );
+}
+
+const PORTFOLIO_SHOWN_COUNT = 3;
+
+function PortfolioPhotosTab({
+  draft,
+  isBusy,
+  onSave,
+  onCropPhoto,
+  onUploadPhoto,
+}: {
+  draft: StylistDraft;
+  isBusy: boolean;
+  onSave: (photos: PortfolioPhotoAdmin[]) => void;
+  onCropPhoto: (photoId: string, region: { x: number; y: number; width: number; height: number; rotation: number }) => Promise<{ ok: boolean; message?: string }>;
+  onUploadPhoto: (file: File) => Promise<{ ok: boolean; message?: string }>;
+}) {
+  const [photos, setPhotos] = useState<PortfolioPhotoAdmin[]>(draft.portfolioPhotos ?? []);
+  const [cropTarget, setCropTarget] = useState<PortfolioPhotoAdmin | null>(null);
+  const [isUploading, setIsUploading] = useState(false);
+  const [uploadError, setUploadError] = useState("");
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const confirm = useConfirm();
+
+  async function handleFileSelected(event: React.ChangeEvent<HTMLInputElement>) {
+    const file = event.target.files?.[0];
+    event.target.value = "";
+    if (!file) return;
+    setIsUploading(true);
+    setUploadError("");
+    const result = await onUploadPhoto(file);
+    if (!result.ok) setUploadError(result.message || "Could not upload that photo.");
+    setIsUploading(false);
+  }
+
+  useEffect(() => {
+    setPhotos(draft.portfolioPhotos ?? []);
+  }, [draft.id, draft.portfolioPhotos]);
+
+  const isDirty = useMemo(() => {
+    const original = draft.portfolioPhotos ?? [];
+    return original.length !== photos.length || original.some((photo, index) => photo.id !== photos[index]?.id);
+  }, [draft.portfolioPhotos, photos]);
+
+  function moveUp(index: number) {
+    if (index === 0) return;
+    setPhotos((current) => {
+      const next = [...current];
+      [next[index - 1], next[index]] = [next[index], next[index - 1]];
+      return next;
+    });
+  }
+
+  function moveDown(index: number) {
+    setPhotos((current) => {
+      if (index >= current.length - 1) return current;
+      const next = [...current];
+      [next[index], next[index + 1]] = [next[index + 1], next[index]];
+      return next;
+    });
+  }
+
+  async function removePhoto(index: number) {
+    const confirmed = await confirm({
+      title: "Remove this photo?",
+      description: "It's deleted for good, not just hidden — you'd need to re-approve it from Photo review to bring it back.",
+      confirmLabel: "Remove",
+      tone: "danger",
+    });
+    if (!confirmed) return;
+    setPhotos((current) => current.filter((_, i) => i !== index));
+  }
+
+  return (
+    <div className="space-y-6">
+      <div className="flex items-start justify-between gap-4">
+        <div>
+          <h2 className="text-sm font-semibold text-stone-950">Portfolio photos</h2>
+          <p className="mt-1 text-sm text-stone-500">
+            Every approved photo stays here, however many there are. The first {PORTFOLIO_SHOWN_COUNT} below are what actually
+            shows on the public listing — reorder to change the shortlist, or remove a photo for good.
+          </p>
+        </div>
+        <div className="shrink-0">
+          <input ref={fileInputRef} type="file" accept="image/*" className="hidden" onChange={handleFileSelected} />
+          <Button
+            type="button"
+            size="sm"
+            variant="outline"
+            disabled={isBusy || isUploading}
+            onClick={() => fileInputRef.current?.click()}
+          >
+            {isUploading ? "Uploading…" : "Upload photo"}
+          </Button>
+        </div>
+      </div>
+      {uploadError ? <p className="text-sm text-red-600">{uploadError}</p> : null}
+
+      {photos.length === 0 ? (
+        <p className="text-sm text-stone-500">
+          No approved photos yet — approve some from the Photo review page, or upload one directly above.
+        </p>
+      ) : (
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
+          {photos.map((photo, index) => {
+            const isShown = index < PORTFOLIO_SHOWN_COUNT;
+            return (
+              <div key={photo.id} className="border border-stone-200 bg-white">
+                <div className="relative">
+                  <img src={photo.url} alt="" className="aspect-square w-full object-cover" />
+                  <span
+                    className={cn(
+                      "absolute left-2 top-2 rounded-md px-2 py-0.5 text-xs font-medium",
+                      isShown ? "bg-emerald-600 text-white" : "bg-stone-900/70 text-white",
+                    )}
+                  >
+                    {isShown ? "Shown" : "Hidden"}
+                  </span>
+                </div>
+                <div className="space-y-2 p-2">
+                  <p className="truncate text-xs text-stone-500">{photo.source || "unknown source"}</p>
+                  <div className="flex items-center gap-1">
+                    <button
+                      type="button"
+                      disabled={index === 0}
+                      onClick={() => moveUp(index)}
+                      className="inline-flex size-7 items-center justify-center rounded-md text-stone-600 hover:bg-stone-100 disabled:cursor-not-allowed disabled:opacity-30"
+                      aria-label="Move up"
+                      title="Move up"
+                    >
+                      <ChevronUp className="size-4" />
+                    </button>
+                    <button
+                      type="button"
+                      disabled={index === photos.length - 1}
+                      onClick={() => moveDown(index)}
+                      className="inline-flex size-7 items-center justify-center rounded-md text-stone-600 hover:bg-stone-100 disabled:cursor-not-allowed disabled:opacity-30"
+                      aria-label="Move down"
+                      title="Move down"
+                    >
+                      <ChevronDown className="size-4" />
+                    </button>
+                    <button
+                      type="button"
+                      disabled={isDirty}
+                      onClick={() => setCropTarget(photo)}
+                      className="inline-flex size-7 items-center justify-center rounded-md text-stone-600 hover:bg-stone-100 disabled:cursor-not-allowed disabled:opacity-30"
+                      aria-label="Crop photo"
+                      title={isDirty ? "Save your reorder first" : "Crop photo"}
+                    >
+                      <CropIcon className="size-4" />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => removePhoto(index)}
+                      className="ml-auto inline-flex size-7 items-center justify-center rounded-md text-red-700 hover:bg-red-50"
+                      aria-label="Remove photo"
+                      title="Remove photo"
+                    >
+                      <Trash2 className="size-4" />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      )}
+
+      <div className="flex items-center justify-end gap-3 border-t border-stone-200 pt-4">
+        {isDirty ? <p className="mr-auto text-xs font-medium text-amber-700">Unsaved changes</p> : null}
+        <Button
+          type="button"
+          disabled={isBusy || !isDirty}
+          onClick={() => onSave(photos)}
+          className="h-11 rounded-none bg-stone-950 px-5 text-sm font-medium text-white hover:bg-stone-900 disabled:cursor-not-allowed disabled:opacity-40"
+        >
+          Save order
+        </Button>
+      </div>
+
+      {cropTarget ? (
+        <ImageCropModal
+          key={cropTarget.id}
+          imageUrl={cropTarget.url}
+          onClose={() => setCropTarget(null)}
+          onSave={async (region) => {
+            const result = await onCropPhoto(cropTarget.id, region);
+            if (result.ok) setCropTarget(null);
+            return result;
+          }}
+        />
+      ) : null}
     </div>
   );
 }
@@ -3922,8 +4237,10 @@ function PortfolioReviewPage() {
   const [candidates, setCandidates] = useState<PortfolioReviewCandidate[] | null>(null);
   const [error, setError] = useState("");
   const [actioningId, setActioningId] = useState<string | null>(null);
+  const [cropTarget, setCropTarget] = useState<PortfolioReviewCandidate | null>(null);
+  const [imageNonce, setImageNonce] = useState(0);
 
-  useEffect(() => {
+  const loadCandidates = useCallback(() => {
     let cancelled = false;
     fetch("/api/admin/portfolio-review", { credentials: "include" })
       .then((response) => response.json())
@@ -3942,6 +4259,8 @@ function PortfolioReviewPage() {
       cancelled = true;
     };
   }, []);
+
+  useEffect(() => loadCandidates(), [loadCandidates]);
 
   async function act(id: string, action: "approve" | "dismiss") {
     setActioningId(id);
@@ -3978,9 +4297,10 @@ function PortfolioReviewPage() {
       <div>
         <h1 className="text-lg font-semibold text-stone-950">Photo review</h1>
         <p className="mt-1 text-sm text-stone-500">
-          Photos the portfolio-photos backfill rejected, held here in case the classifier judged one wrong. Approving adds it
-          straight to that salon's listing; dismissing deletes it for good. Only available when running the admin tool locally
-          (candidate images live on disk, not in the repo).
+          Photos the portfolio-photos backfill rejected, held here in case the classifier judged one wrong. Approving adds it to
+          that salon's approved photo pool — pick which ones actually show in the stylist drawer's Photos tab. Dismissing
+          deletes it for good. Only available when running the admin tool locally (candidate images live on disk, not in the
+          repo).
         </p>
       </div>
 
@@ -3999,7 +4319,7 @@ function PortfolioReviewPage() {
                 {items.map((candidate) => (
                   <div key={candidate.id} className="border border-stone-200 bg-white">
                     <img
-                      src={`/api/admin/portfolio-review/photo/${candidate.id}`}
+                      src={`/api/admin/portfolio-review/photo/${candidate.id}${imageNonce ? `?v=${imageNonce}` : ""}`}
                       alt=""
                       className="aspect-square w-full object-cover"
                     />
@@ -4010,7 +4330,7 @@ function PortfolioReviewPage() {
                       <p className="truncate text-xs text-stone-500" title={candidate.reason}>
                         {candidate.reason}
                       </p>
-                      <div className="flex gap-2 pt-1">
+                      <div className="flex flex-wrap gap-2 pt-1">
                         <Button
                           size="sm"
                           variant="outline"
@@ -4018,6 +4338,14 @@ function PortfolioReviewPage() {
                           onClick={() => act(candidate.id, "approve")}
                         >
                           Approve
+                        </Button>
+                        <Button
+                          size="sm"
+                          variant="ghost"
+                          disabled={actioningId === candidate.id}
+                          onClick={() => setCropTarget(candidate)}
+                        >
+                          Crop
                         </Button>
                         <Button
                           size="sm"
@@ -4036,6 +4364,177 @@ function PortfolioReviewPage() {
           ))}
         </div>
       )}
+
+      {cropTarget ? (
+        <ImageCropModal
+          key={cropTarget.id}
+          imageUrl={`/api/admin/portfolio-review/photo/${cropTarget.id}`}
+          onClose={() => setCropTarget(null)}
+          onSave={async (region) => {
+            const response = await fetch(`/api/admin/portfolio-review/${cropTarget.id}/crop`, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              credentials: "include",
+              body: JSON.stringify(region),
+            });
+            const payload = await response.json().catch(() => ({}));
+            if (!response.ok) return { ok: false, message: payload.message };
+            setCropTarget(null);
+            setImageNonce((current) => current + 1);
+            return { ok: true };
+          }}
+        />
+      ) : null}
+    </div>
+  );
+}
+
+// Shared by the Photo review queue and the stylist drawer's Photos tab —
+// both just need "show this image, let the admin drag a crop rectangle, POST
+// the fractional region somewhere." What differs is only the image URL and
+// what the save callback does with the result.
+function ImageCropModal({
+  imageUrl,
+  onClose,
+  onSave,
+}: {
+  imageUrl: string;
+  onClose: () => void;
+  onSave: (region: { x: number; y: number; width: number; height: number; rotation: number }) => Promise<{ ok: boolean; message?: string }>;
+}) {
+  const [crop, setCrop] = useState<Crop>();
+  const [percentCrop, setPercentCrop] = useState<PercentCrop | null>(null);
+  const [isSaving, setIsSaving] = useState(false);
+  const [error, setError] = useState("");
+  // react-image-crop has no native concept of rotation, so rotating the
+  // source image into a fresh preview (via canvas) — rather than CSS-
+  // transforming the <img> react-image-crop is measuring — is what keeps the
+  // drawn crop rectangle lined up with what's visually shown. The server
+  // then rotates the original full-quality file by this same angle before
+  // cropping, so this canvas render is only ever used for on-screen preview.
+  const [rotation, setRotation] = useState(0);
+  const [rotatedSrc, setRotatedSrc] = useState(imageUrl);
+  const [isRotating, setIsRotating] = useState(false);
+
+  useEffect(() => {
+    if (rotation === 0) {
+      setRotatedSrc(imageUrl);
+      return;
+    }
+    let cancelled = false;
+    setIsRotating(true);
+    const img = new window.Image();
+    img.onload = () => {
+      if (cancelled) return;
+      const swap = rotation === 90 || rotation === 270;
+      const canvas = document.createElement("canvas");
+      canvas.width = swap ? img.naturalHeight : img.naturalWidth;
+      canvas.height = swap ? img.naturalWidth : img.naturalHeight;
+      const ctx = canvas.getContext("2d");
+      if (!ctx) {
+        setIsRotating(false);
+        return;
+      }
+      ctx.translate(canvas.width / 2, canvas.height / 2);
+      ctx.rotate((rotation * Math.PI) / 180);
+      ctx.drawImage(img, -img.naturalWidth / 2, -img.naturalHeight / 2);
+      setRotatedSrc(canvas.toDataURL("image/jpeg", 0.92));
+      setIsRotating(false);
+    };
+    img.onerror = () => {
+      if (!cancelled) setIsRotating(false);
+    };
+    img.src = imageUrl;
+    return () => {
+      cancelled = true;
+    };
+  }, [imageUrl, rotation]);
+
+  function rotateBy(delta: number) {
+    setRotation((current) => (((current + delta) % 360) + 360) % 360);
+    setCrop(undefined);
+    setPercentCrop(null);
+  }
+
+  async function saveCrop() {
+    if (!percentCrop || percentCrop.width <= 0 || percentCrop.height <= 0) {
+      setError("Drag out a crop area on the photo first.");
+      return;
+    }
+    setIsSaving(true);
+    setError("");
+    try {
+      const result = await onSave({
+        x: percentCrop.x / 100,
+        y: percentCrop.y / 100,
+        width: percentCrop.width / 100,
+        height: percentCrop.height / 100,
+        rotation,
+      });
+      if (!result.ok) {
+        setError(result.message || "Could not save that crop.");
+      }
+    } catch {
+      setError("Could not save that crop.");
+    } finally {
+      setIsSaving(false);
+    }
+  }
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-stone-950/60 p-4">
+      <div className="w-full max-w-2xl space-y-4 bg-white p-5">
+        <div className="flex items-start justify-between gap-3">
+          <div>
+            <h2 className="text-sm font-semibold text-stone-950">Crop this photo</h2>
+            <p className="mt-1 text-sm text-stone-500">
+              Drag out just the real photo — leave out any caption text, "like"/comment icons, or a phone-mockup bezel.
+            </p>
+          </div>
+          <div className="flex shrink-0 items-center gap-1">
+            <button
+              type="button"
+              onClick={() => rotateBy(-90)}
+              disabled={isRotating}
+              aria-label="Rotate left"
+              title="Rotate left"
+              className="flex size-9 items-center justify-center rounded-none border border-stone-300 text-stone-600 hover:bg-stone-100 disabled:cursor-not-allowed disabled:opacity-40"
+            >
+              <RotateCcw className="size-4" />
+            </button>
+            <button
+              type="button"
+              onClick={() => rotateBy(90)}
+              disabled={isRotating}
+              aria-label="Rotate right"
+              title="Rotate right"
+              className="flex size-9 items-center justify-center rounded-none border border-stone-300 text-stone-600 hover:bg-stone-100 disabled:cursor-not-allowed disabled:opacity-40"
+            >
+              <RotateCw className="size-4" />
+            </button>
+          </div>
+        </div>
+        <div className="flex justify-center bg-stone-100">
+          <ReactCrop
+            crop={crop}
+            onChange={(pixelCrop, nextPercentCrop) => {
+              setCrop(pixelCrop);
+              setPercentCrop(nextPercentCrop);
+            }}
+          >
+            <img src={rotatedSrc} alt="" style={{ maxHeight: "65vh", width: "auto" }} />
+          </ReactCrop>
+        </div>
+        {error ? <p className="text-sm text-red-600">{error}</p> : null}
+        <div className="flex justify-end gap-2">
+          <Button size="sm" variant="ghost" onClick={onClose} disabled={isSaving}>
+            Cancel
+          </Button>
+          <Button size="sm" onClick={saveCrop} disabled={isSaving || isRotating}>
+            {isSaving ? "Saving…" : "Save crop"}
+          </Button>
+        </div>
+      </div>
     </div>
   );
 }

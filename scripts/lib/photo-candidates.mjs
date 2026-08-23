@@ -220,7 +220,27 @@ export async function downloadImage(url) {
   if (!contentType.startsWith("image/") && contentType !== "application/octet-stream" && !looksLikeImageUrl) {
     throw new Error(`Not an image: ${contentType}`);
   }
-  return Buffer.from(await response.arrayBuffer());
+  const buffer = Buffer.from(await response.arrayBuffer());
+  return flattenAnimatedImage(buffer);
+}
+
+// A portfolio "photo" that's actually a looping Boomerang/animation (saved as
+// a scraped Instagram/booking-page GIF) doesn't belong in a static directory
+// listing — flatten it to its first frame as a still JPEG so nothing
+// animated ever reaches the candidate pool in the first place.
+async function flattenAnimatedImage(buffer) {
+  let metadata;
+  try {
+    metadata = await sharp(buffer).metadata();
+  } catch {
+    return buffer; // not readable by sharp at all; let downstream handling deal with it
+  }
+  if (!metadata.pages || metadata.pages <= 1) return buffer;
+  try {
+    return await sharp(buffer, { animated: false }).jpeg().toBuffer();
+  } catch {
+    return buffer;
+  }
 }
 
 // OCR runs on every candidate as advisory context for the vision model, never
@@ -258,8 +278,16 @@ export async function getOcrSignal(buffer) {
 // classifier reports each panel's location as fractional (0-1) coordinates;
 // this crops one out as its own image buffer so it can be re-classified on
 // its own merits instead of being thrown away with the rest of the collage.
-export async function cropCollagePanel(buffer, panel) {
-  const image = sharp(buffer);
+export async function cropCollagePanel(buffer, panel, rotationDegrees = 0) {
+  // Rotate to a real buffer first (rather than chaining .rotate() straight
+  // into the same pipeline) so the metadata read below reflects the actual
+  // post-rotation dimensions — needed since a 90/270 rotation swaps width
+  // and height, and the panel fractions are always relative to what's
+  // currently on screen, i.e. post-rotation.
+  const normalizedRotation = ((Math.round(rotationDegrees) % 360) + 360) % 360;
+  const workingBuffer = normalizedRotation ? await sharp(buffer).rotate(normalizedRotation).toBuffer() : buffer;
+
+  const image = sharp(workingBuffer);
   const { width, height } = await image.metadata();
   if (!width || !height) throw new Error("Could not read image dimensions");
 
