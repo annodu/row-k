@@ -1,6 +1,4 @@
 import { FormEvent, KeyboardEvent, type ComponentType, type ReactNode, createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
-import ReactCrop, { type Crop, type PercentCrop } from "react-image-crop";
-import "react-image-crop/dist/ReactCrop.css";
 import {
   Activity,
   AlertTriangle,
@@ -18,12 +16,12 @@ import {
   ChevronsUpDown,
   ClockAlert,
   CreditCard,
-  Crop as CropIcon,
   ExternalLink,
   FileText,
   Globe,
   Heart,
   Image as ImageIcon,
+  ImagePlus,
   Info,
   LayoutDashboard,
   Link2,
@@ -39,8 +37,6 @@ import {
   PoundSterling,
   Pencil,
   RefreshCw,
-  RotateCcw,
-  RotateCw,
   Save,
   Search,
   SearchCheck,
@@ -133,10 +129,12 @@ type StylistDraft = {
   evidence: string[];
   createdAt: string;
   updatedAt: string;
+  googlePlaceId?: string;
   googleMapsUri?: string;
   googleReviewCount?: number;
   googleMatchConfidence?: "high" | "low" | "no-match" | "";
   googleDisplayName?: string;
+  googleFormattedAddress?: string;
   verifiedReviewCount?: number;
   portfolioPhotos?: PortfolioPhotoAdmin[];
 };
@@ -149,7 +147,7 @@ type CustomFilterBehavior = "toggle-group" | "tag-multiselect";
 type CustomFilterOption = { id: string; label: string };
 type CustomFilterType = { id: string; label: string; description: string; behavior: CustomFilterBehavior; options: CustomFilterOption[] };
 type PriceBandTier = { symbol: string; label: string; maxAmount: number | null };
-type AdminView = "overview" | "analytics" | "drafts" | "freshness" | "pricing" | "keyword" | "discovery" | "filters" | "photo-review";
+type AdminView = "overview" | "analytics" | "drafts" | "freshness" | "pricing" | "keyword" | "discovery" | "filters" | "photo-review" | "photo-search";
 
 type AdminNavItem = { id: AdminView; label: string; icon: ComponentType<{ className?: string }> };
 
@@ -173,6 +171,7 @@ const ADMIN_NAV_GROUPS: { label?: string; items: AdminNavItem[] }[] = [
       { id: "freshness", label: "Health", icon: Activity },
       { id: "pricing", label: "Pricing", icon: PoundSterling },
       { id: "photo-review", label: "Photo review", icon: ImageIcon },
+      { id: "photo-search", label: "Photo search", icon: ImagePlus },
     ],
   },
   {
@@ -2025,6 +2024,8 @@ function AdminAppInner() {
 
         {activeView === "photo-review" ? <PortfolioReviewPage /> : null}
 
+        {activeView === "photo-search" ? <PhotoSearchPage /> : null}
+
         {activeView === "drafts" ? (
           <StylistsPage
             drafts={filteredStylists}
@@ -3682,7 +3683,6 @@ function PortfolioPhotosTab({
   onUploadPhoto: (file: File) => Promise<{ ok: boolean; message?: string }>;
 }) {
   const [photos, setPhotos] = useState<PortfolioPhotoAdmin[]>(draft.portfolioPhotos ?? []);
-  const [cropTarget, setCropTarget] = useState<PortfolioPhotoAdmin | null>(null);
   const [isUploading, setIsUploading] = useState(false);
   const [uploadError, setUploadError] = useState("");
   const fileInputRef = useRef<HTMLInputElement | null>(null);
@@ -3773,10 +3773,15 @@ function PortfolioPhotosTab({
             return (
               <div key={photo.id} className="border border-stone-200 bg-white">
                 <div className="relative">
-                  <img src={photo.url} alt="" className="aspect-square w-full object-cover" />
+                  <RepositionableImage
+                    src={photo.url}
+                    disabled={isDirty}
+                    disabledTitle="Save your reorder first"
+                    onCommit={(region) => onCropPhoto(photo.id, { ...region, rotation: 0 })}
+                  />
                   <span
                     className={cn(
-                      "absolute left-2 top-2 rounded-md px-2 py-0.5 text-xs font-medium",
+                      "pointer-events-none absolute left-2 top-2 rounded-md px-2 py-0.5 text-xs font-medium",
                       isShown ? "bg-emerald-600 text-white" : "bg-stone-900/70 text-white",
                     )}
                   >
@@ -3808,16 +3813,6 @@ function PortfolioPhotosTab({
                     </button>
                     <button
                       type="button"
-                      disabled={isDirty}
-                      onClick={() => setCropTarget(photo)}
-                      className="inline-flex size-7 items-center justify-center rounded-md text-stone-600 hover:bg-stone-100 disabled:cursor-not-allowed disabled:opacity-30"
-                      aria-label="Crop photo"
-                      title={isDirty ? "Save your reorder first" : "Crop photo"}
-                    >
-                      <CropIcon className="size-4" />
-                    </button>
-                    <button
-                      type="button"
                       onClick={() => removePhoto(index)}
                       className="ml-auto inline-flex size-7 items-center justify-center rounded-md text-red-700 hover:bg-red-50"
                       aria-label="Remove photo"
@@ -3844,19 +3839,6 @@ function PortfolioPhotosTab({
           Save order
         </Button>
       </div>
-
-      {cropTarget ? (
-        <ImageCropModal
-          key={cropTarget.id}
-          imageUrl={cropTarget.url}
-          onClose={() => setCropTarget(null)}
-          onSave={async (region) => {
-            const result = await onCropPhoto(cropTarget.id, region);
-            if (result.ok) setCropTarget(null);
-            return result;
-          }}
-        />
-      ) : null}
     </div>
   );
 }
@@ -4237,8 +4219,20 @@ function PortfolioReviewPage() {
   const [candidates, setCandidates] = useState<PortfolioReviewCandidate[] | null>(null);
   const [error, setError] = useState("");
   const [actioningId, setActioningId] = useState<string | null>(null);
-  const [cropTarget, setCropTarget] = useState<PortfolioReviewCandidate | null>(null);
   const [imageNonce, setImageNonce] = useState(0);
+
+  async function repositionCandidate(candidateId: string, region: { x: number; y: number; width: number; height: number }) {
+    const response = await fetch(`/api/admin/portfolio-review/${candidateId}/crop`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+      body: JSON.stringify({ ...region, rotation: 0 }),
+    });
+    const payload = await response.json().catch(() => ({}));
+    if (!response.ok) return { ok: false, message: payload.message };
+    setImageNonce((current) => current + 1);
+    return { ok: true };
+  }
 
   const loadCandidates = useCallback(() => {
     let cancelled = false;
@@ -4318,10 +4312,10 @@ function PortfolioReviewPage() {
               <div className="mt-2 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
                 {items.map((candidate) => (
                   <div key={candidate.id} className="border border-stone-200 bg-white">
-                    <img
+                    <RepositionableImage
+                      key={`${candidate.id}-${imageNonce}`}
                       src={`/api/admin/portfolio-review/photo/${candidate.id}${imageNonce ? `?v=${imageNonce}` : ""}`}
-                      alt=""
-                      className="aspect-square w-full object-cover"
+                      onCommit={(region) => repositionCandidate(candidate.id, region)}
                     />
                     <div className="space-y-1 p-2">
                       <p className="text-xs font-medium text-stone-700">
@@ -4343,14 +4337,6 @@ function PortfolioReviewPage() {
                           size="sm"
                           variant="ghost"
                           disabled={actioningId === candidate.id}
-                          onClick={() => setCropTarget(candidate)}
-                        >
-                          Crop
-                        </Button>
-                        <Button
-                          size="sm"
-                          variant="ghost"
-                          disabled={actioningId === candidate.id}
                           onClick={() => act(candidate.id, "dismiss")}
                         >
                           Dismiss
@@ -4364,177 +4350,370 @@ function PortfolioReviewPage() {
           ))}
         </div>
       )}
-
-      {cropTarget ? (
-        <ImageCropModal
-          key={cropTarget.id}
-          imageUrl={`/api/admin/portfolio-review/photo/${cropTarget.id}`}
-          onClose={() => setCropTarget(null)}
-          onSave={async (region) => {
-            const response = await fetch(`/api/admin/portfolio-review/${cropTarget.id}/crop`, {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              credentials: "include",
-              body: JSON.stringify(region),
-            });
-            const payload = await response.json().catch(() => ({}));
-            if (!response.ok) return { ok: false, message: payload.message };
-            setCropTarget(null);
-            setImageNonce((current) => current + 1);
-            return { ok: true };
-          }}
-        />
-      ) : null}
     </div>
   );
 }
 
-// Shared by the Photo review queue and the stylist drawer's Photos tab —
-// both just need "show this image, let the admin drag a crop rectangle, POST
-// the fractional region somewhere." What differs is only the image URL and
-// what the save callback does with the result.
-function ImageCropModal({
-  imageUrl,
-  onClose,
-  onSave,
-}: {
+type PhotoSearchQueueSalon = {
+  id: string;
+  name: string;
+  neighbourhood?: string;
+  postcode?: string;
+  areaLabel?: string;
+  websiteUrl?: string;
+  instagramUrl?: string;
+  googleFormattedAddress?: string;
+};
+
+type PhotoSearchResult = {
   imageUrl: string;
-  onClose: () => void;
-  onSave: (region: { x: number; y: number; width: number; height: number; rotation: number }) => Promise<{ ok: boolean; message?: string }>;
-}) {
-  const [crop, setCrop] = useState<Crop>();
-  const [percentCrop, setPercentCrop] = useState<PercentCrop | null>(null);
-  const [isSaving, setIsSaving] = useState(false);
-  const [error, setError] = useState("");
-  // react-image-crop has no native concept of rotation, so rotating the
-  // source image into a fresh preview (via canvas) — rather than CSS-
-  // transforming the <img> react-image-crop is measuring — is what keeps the
-  // drawn crop rectangle lined up with what's visually shown. The server
-  // then rotates the original full-quality file by this same angle before
-  // cropping, so this canvas render is only ever used for on-screen preview.
-  const [rotation, setRotation] = useState(0);
-  const [rotatedSrc, setRotatedSrc] = useState(imageUrl);
-  const [isRotating, setIsRotating] = useState(false);
+  thumbnailUrl: string;
+  contextUrl?: string;
+  width?: number;
+  height?: number;
+  title?: string;
+};
+
+function PhotoSearchPage() {
+  const [queue, setQueue] = useState<PhotoSearchQueueSalon[] | null>(null);
+  const [total, setTotal] = useState(0);
+  const [offset, setOffset] = useState(0);
+  const [results, setResults] = useState<PhotoSearchResult[] | null>(null);
+  const [searchError, setSearchError] = useState("");
+  const [queueError, setQueueError] = useState("");
+  const [actioning, setActioning] = useState(false);
+  const [approvedUrls, setApprovedUrls] = useState<Set<string>>(new Set());
+
+  const loadQueuePage = useCallback((newOffset: number) => {
+    fetch(`/api/admin/photo-search-queue?offset=${newOffset}&limit=20`, { credentials: "include" })
+      .then((response) => response.json())
+      .then((payload) => {
+        if (!payload.ok) {
+          setQueueError(payload.message || "Could not load the photo search queue.");
+          return;
+        }
+        setQueue(payload.salons);
+        setTotal(payload.total);
+        setOffset(newOffset);
+      })
+      .catch(() => setQueueError("Could not load the photo search queue."));
+  }, []);
+
+  useEffect(() => loadQueuePage(0), [loadQueuePage]);
+
+  const current = queue?.[0] ?? null;
 
   useEffect(() => {
-    if (rotation === 0) {
-      setRotatedSrc(imageUrl);
+    if (!current) {
+      setResults(null);
       return;
     }
     let cancelled = false;
-    setIsRotating(true);
-    const img = new window.Image();
-    img.onload = () => {
-      if (cancelled) return;
-      const swap = rotation === 90 || rotation === 270;
-      const canvas = document.createElement("canvas");
-      canvas.width = swap ? img.naturalHeight : img.naturalWidth;
-      canvas.height = swap ? img.naturalWidth : img.naturalHeight;
-      const ctx = canvas.getContext("2d");
-      if (!ctx) {
-        setIsRotating(false);
-        return;
-      }
-      ctx.translate(canvas.width / 2, canvas.height / 2);
-      ctx.rotate((rotation * Math.PI) / 180);
-      ctx.drawImage(img, -img.naturalWidth / 2, -img.naturalHeight / 2);
-      setRotatedSrc(canvas.toDataURL("image/jpeg", 0.92));
-      setIsRotating(false);
-    };
-    img.onerror = () => {
-      if (!cancelled) setIsRotating(false);
-    };
-    img.src = imageUrl;
+    setResults(null);
+    setSearchError("");
+    setApprovedUrls(new Set());
+    fetch(`/api/admin/photo-search/${current.id}`, { credentials: "include" })
+      .then((response) => response.json())
+      .then((payload) => {
+        if (cancelled) return;
+        if (!payload.ok) {
+          setSearchError(payload.message || "Image search failed.");
+          return;
+        }
+        setResults(payload.results);
+      })
+      .catch(() => {
+        if (!cancelled) setSearchError("Image search failed.");
+      });
     return () => {
       cancelled = true;
     };
-  }, [imageUrl, rotation]);
+  }, [current?.id]);
 
-  function rotateBy(delta: number) {
-    setRotation((current) => (((current + delta) % 360) + 360) % 360);
-    setCrop(undefined);
-    setPercentCrop(null);
+  function advance() {
+    setTotal((existingTotal) => Math.max(0, existingTotal - 1));
+    setQueue((existingQueue) => {
+      const next = (existingQueue ?? []).slice(1);
+      if (next.length === 0) loadQueuePage(offset + 20);
+      return next;
+    });
   }
 
-  async function saveCrop() {
-    if (!percentCrop || percentCrop.width <= 0 || percentCrop.height <= 0) {
-      setError("Drag out a crop area on the photo first.");
-      return;
+  async function approve(result: PhotoSearchResult, crop?: { x: number; y: number; width: number; height: number }, rotation?: number) {
+    if (!current) return { ok: false, message: "No salon selected." };
+    setActioning(true);
+    try {
+      const response = await fetch(`/api/admin/photo-search/${current.id}/approve`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({ imageUrl: result.imageUrl, thumbnailUrl: result.thumbnailUrl, crop, rotation }),
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok || !payload.ok) {
+        const message = payload?.message || "Could not approve this photo.";
+        setSearchError(message);
+        return { ok: false, message };
+      }
+      setApprovedUrls((current) => new Set(current).add(result.imageUrl));
+      return { ok: true };
+    } catch {
+      setSearchError("Could not approve this photo.");
+      return { ok: false, message: "Could not approve this photo." };
+    } finally {
+      setActioning(false);
     }
+  }
+
+  async function skip() {
+    if (!current) return;
+    setActioning(true);
+    try {
+      await fetch(`/api/admin/photo-search/${current.id}/skip`, { method: "POST", credentials: "include" });
+      advance();
+    } catch {
+      setSearchError("Could not skip this salon.");
+    } finally {
+      setActioning(false);
+    }
+  }
+
+  return (
+    <div className="flex h-full flex-col gap-2">
+      <div className="flex items-baseline justify-between gap-4">
+        <h1 className="text-lg font-semibold text-stone-950">Photo search</h1>
+        <p className="truncate text-xs text-stone-500">
+          Salons the automated backfill found no photos for — approve a thumbnail to add it, or skip.
+        </p>
+      </div>
+
+      {queueError ? <p className="text-sm text-red-600">{queueError}</p> : null}
+
+      {queue === null ? (
+        <p className="text-sm text-stone-500">Loading…</p>
+      ) : !current ? (
+        <p className="text-sm text-stone-500">Nothing left in the queue.</p>
+      ) : (
+        <div className="flex min-h-0 flex-1 flex-col gap-2">
+          <div className="flex shrink-0 items-center justify-between gap-4 border border-stone-200 bg-white px-3 py-2">
+            <div className="flex min-w-0 flex-wrap items-baseline gap-x-2 gap-y-0.5">
+              <h2 className="text-sm font-semibold text-stone-950">{current.name}</h2>
+              <span className="truncate text-xs text-stone-500">
+                {[current.neighbourhood, current.postcode].filter(Boolean).join(" · ") || current.areaLabel || "No location on file"}
+              </span>
+              {current.websiteUrl ? (
+                <a href={current.websiteUrl} target="_blank" rel="noreferrer" className="shrink-0 text-xs text-stone-700 underline">
+                  Website
+                </a>
+              ) : null}
+              {current.instagramUrl ? (
+                <a href={current.instagramUrl} target="_blank" rel="noreferrer" className="shrink-0 text-xs text-stone-700 underline">
+                  Instagram
+                </a>
+              ) : null}
+            </div>
+            <div className="flex shrink-0 items-center gap-3">
+              {approvedUrls.size > 0 ? (
+                <span className="text-xs font-medium text-emerald-700 dark:text-emerald-400">
+                  {approvedUrls.size} approved
+                </span>
+              ) : null}
+              <span className="text-xs text-stone-500">{total} left</span>
+              <button
+                type="button"
+                disabled={actioning}
+                onClick={advance}
+                className="border border-stone-300 bg-white px-3 py-1.5 text-xs font-semibold text-stone-700 transition hover:bg-stone-100 disabled:opacity-50 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-200"
+              >
+                Next salon
+              </button>
+              <button
+                type="button"
+                disabled={actioning}
+                onClick={skip}
+                className="border border-rose-300 bg-rose-50 px-3 py-1.5 text-xs font-semibold text-rose-700 transition hover:bg-rose-100 disabled:opacity-50 dark:border-rose-900 dark:bg-rose-950/40 dark:text-rose-300"
+              >
+                Dismiss salon
+              </button>
+            </div>
+          </div>
+
+          {searchError ? <p className="text-sm text-red-600">{searchError}</p> : null}
+
+          {results === null && !searchError ? (
+            <p className="text-sm text-stone-500">Searching…</p>
+          ) : results && results.length === 0 ? (
+            <p className="text-sm text-stone-500">No image results for this salon.</p>
+          ) : results ? (
+            <div className="grid grid-cols-4 gap-2 sm:grid-cols-6 lg:grid-cols-8">
+              {results.map((result, index) => {
+                const isApproved = approvedUrls.has(result.imageUrl);
+                return (
+                  <div
+                    key={`${result.imageUrl}-${index}`}
+                    className={cn(
+                      "flex flex-col border bg-white",
+                      isApproved ? "border-emerald-500" : "border-stone-200"
+                    )}
+                  >
+                    <RepositionableImage
+                      src={result.thumbnailUrl}
+                      disabled={isApproved}
+                      disabledTitle="Already approved"
+                      className={isApproved ? "opacity-60" : undefined}
+                      onCommit={(region) => approve(result, region)}
+                    />
+                    {isApproved ? (
+                      <div className="flex items-center justify-center gap-1 bg-emerald-600 px-1 py-1.5 text-[12px] font-bold text-white">
+                        <Check className="size-3.5" aria-hidden="true" />
+                        Approved
+                      </div>
+                    ) : (
+                      <button
+                        type="button"
+                        disabled={actioning}
+                        onClick={() => approve(result)}
+                        className="w-full bg-emerald-600 px-1 py-1.5 text-[12px] font-bold text-white transition hover:bg-emerald-500 disabled:opacity-50"
+                      >
+                        Approve
+                      </button>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          ) : null}
+        </div>
+      )}
+    </div>
+  );
+}
+
+// The public site shows portfolio photos in a box that's `object-cover`'d to
+// this same ratio — mirroring it here means what the admin drags is exactly
+// what a visitor will see, not an approximation of it.
+const PORTFOLIO_PHOTO_RATIO = 3 / 2;
+
+// Mirrors what CSS `object-fit: cover` + `object-position: x% y%` computes
+// internally, so the fractional crop rectangle sent to the server exactly
+// matches the live preview the admin was just dragging.
+function computeCoverCropRegion(naturalWidth: number, naturalHeight: number, targetRatio: number, positionXPercent: number, positionYPercent: number) {
+  const sourceRatio = naturalWidth / naturalHeight;
+  const width = sourceRatio > targetRatio ? (naturalHeight * targetRatio) / naturalWidth : 1;
+  const height = sourceRatio > targetRatio ? 1 : (naturalWidth / targetRatio) / naturalHeight;
+  const x = (1 - width) * (positionXPercent / 100);
+  const y = (1 - height) * (positionYPercent / 100);
+  return { x, y, width, height };
+}
+
+// Shared by Photo search, Photo review, and the stylist drawer's Photos tab:
+// shows the photo already boxed at the site's real display ratio, and lets
+// the admin drag directly on it (grab-and-move-the-photo, not draw-a-box) to
+// shift what's in frame — releasing auto-saves through whatever the caller's
+// onCommit does with the resulting fractional region. A plain click with no
+// real drag movement is a no-op, so this can sit on every thumbnail without
+// requiring a separate crop mode to opt into.
+function RepositionableImage({
+  src,
+  alt = "",
+  className,
+  targetRatio = PORTFOLIO_PHOTO_RATIO,
+  disabled = false,
+  disabledTitle,
+  onCommit,
+}: {
+  src: string;
+  alt?: string;
+  className?: string;
+  targetRatio?: number;
+  disabled?: boolean;
+  disabledTitle?: string;
+  onCommit: (region: { x: number; y: number; width: number; height: number }) => Promise<{ ok: boolean; message?: string }>;
+}) {
+  const imgRef = useRef<HTMLImageElement | null>(null);
+  const dragRef = useRef<{ startX: number; startY: number; startPos: { x: number; y: number }; moved: boolean } | null>(null);
+  const [position, setPosition] = useState({ x: 50, y: 50 });
+  const [isDragging, setIsDragging] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
+  const [error, setError] = useState("");
+
+  function handlePointerDown(event: React.PointerEvent<HTMLImageElement>) {
+    if (disabled) return;
+    event.currentTarget.setPointerCapture(event.pointerId);
+    dragRef.current = { startX: event.clientX, startY: event.clientY, startPos: position, moved: false };
+    setIsDragging(true);
+  }
+
+  function handlePointerMove(event: React.PointerEvent<HTMLImageElement>) {
+    const drag = dragRef.current;
+    const img = imgRef.current;
+    if (!drag || !img?.naturalWidth || !img.naturalHeight) return;
+
+    const rect = img.getBoundingClientRect();
+    const sourceRatio = img.naturalWidth / img.naturalHeight;
+    const boxRatio = rect.width / rect.height;
+    const renderedWidth = sourceRatio > boxRatio ? rect.height * sourceRatio : rect.width;
+    const renderedHeight = sourceRatio > boxRatio ? rect.height : rect.width / sourceRatio;
+    const excessX = renderedWidth - rect.width;
+    const excessY = renderedHeight - rect.height;
+
+    const dx = event.clientX - drag.startX;
+    const dy = event.clientY - drag.startY;
+    if (Math.abs(dx) > 2 || Math.abs(dy) > 2) drag.moved = true;
+
+    setPosition({
+      x: excessX > 0 ? Math.min(100, Math.max(0, drag.startPos.x - (dx / excessX) * 100)) : 50,
+      y: excessY > 0 ? Math.min(100, Math.max(0, drag.startPos.y - (dy / excessY) * 100)) : 50,
+    });
+  }
+
+  async function handlePointerUp() {
+    setIsDragging(false);
+    const moved = dragRef.current?.moved;
+    dragRef.current = null;
+    const img = imgRef.current;
+    if (!moved || !img?.naturalWidth || !img.naturalHeight) return;
+
+    const region = computeCoverCropRegion(img.naturalWidth, img.naturalHeight, targetRatio, position.x, position.y);
     setIsSaving(true);
     setError("");
     try {
-      const result = await onSave({
-        x: percentCrop.x / 100,
-        y: percentCrop.y / 100,
-        width: percentCrop.width / 100,
-        height: percentCrop.height / 100,
-        rotation,
-      });
-      if (!result.ok) {
-        setError(result.message || "Could not save that crop.");
-      }
+      const result = await onCommit(region);
+      if (!result.ok) setError(result.message || "Could not save that framing.");
     } catch {
-      setError("Could not save that crop.");
+      setError("Could not save that framing.");
     } finally {
       setIsSaving(false);
     }
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-stone-950/60 p-4">
-      <div className="w-full max-w-2xl space-y-4 bg-white p-5">
-        <div className="flex items-start justify-between gap-3">
-          <div>
-            <h2 className="text-sm font-semibold text-stone-950">Crop this photo</h2>
-            <p className="mt-1 text-sm text-stone-500">
-              Drag out just the real photo — leave out any caption text, "like"/comment icons, or a phone-mockup bezel.
-            </p>
-          </div>
-          <div className="flex shrink-0 items-center gap-1">
-            <button
-              type="button"
-              onClick={() => rotateBy(-90)}
-              disabled={isRotating}
-              aria-label="Rotate left"
-              title="Rotate left"
-              className="flex size-9 items-center justify-center rounded-none border border-stone-300 text-stone-600 hover:bg-stone-100 disabled:cursor-not-allowed disabled:opacity-40"
-            >
-              <RotateCcw className="size-4" />
-            </button>
-            <button
-              type="button"
-              onClick={() => rotateBy(90)}
-              disabled={isRotating}
-              aria-label="Rotate right"
-              title="Rotate right"
-              className="flex size-9 items-center justify-center rounded-none border border-stone-300 text-stone-600 hover:bg-stone-100 disabled:cursor-not-allowed disabled:opacity-40"
-            >
-              <RotateCw className="size-4" />
-            </button>
-          </div>
+    <div className={cn("relative touch-none overflow-hidden", className)} style={{ aspectRatio: String(targetRatio) }}>
+      <img
+        ref={imgRef}
+        src={src}
+        alt={alt}
+        title={disabled ? disabledTitle : undefined}
+        draggable={false}
+        onPointerDown={handlePointerDown}
+        onPointerMove={isDragging ? handlePointerMove : undefined}
+        onPointerUp={handlePointerUp}
+        className="size-full select-none object-cover"
+        style={{
+          objectPosition: `${position.x}% ${position.y}%`,
+          cursor: disabled ? "not-allowed" : isDragging ? "grabbing" : "grab",
+        }}
+      />
+      {isSaving ? (
+        <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-stone-950/40 text-xs font-medium text-white">
+          Saving…
         </div>
-        <div className="flex justify-center bg-stone-100">
-          <ReactCrop
-            crop={crop}
-            onChange={(pixelCrop, nextPercentCrop) => {
-              setCrop(pixelCrop);
-              setPercentCrop(nextPercentCrop);
-            }}
-          >
-            <img src={rotatedSrc} alt="" style={{ maxHeight: "65vh", width: "auto" }} />
-          </ReactCrop>
+      ) : null}
+      {error ? (
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-red-600/90 px-1.5 py-1 text-[11px] font-medium text-white">
+          {error}
         </div>
-        {error ? <p className="text-sm text-red-600">{error}</p> : null}
-        <div className="flex justify-end gap-2">
-          <Button size="sm" variant="ghost" onClick={onClose} disabled={isSaving}>
-            Cancel
-          </Button>
-          <Button size="sm" onClick={saveCrop} disabled={isSaving || isRotating}>
-            {isSaving ? "Saving…" : "Save crop"}
-          </Button>
-        </div>
-      </div>
+      ) : null}
     </div>
   );
 }
@@ -8468,6 +8647,24 @@ function DraftEditor({
             className="h-6 w-20 rounded-none border border-stone-300 bg-stone-50 px-2 py-0 text-xs"
           />
           <span>reviews{draft.googleDisplayName ? ` — matched to "${draft.googleDisplayName}"` : ""}</span>
+          {draft.googlePlaceId || draft.googleDisplayName || draft.googleMapsUri || draft.googleMatchConfidence === "high" || draft.googleMatchConfidence === "low" ? (
+            <button
+              type="button"
+              onClick={() =>
+                onChange({
+                  googlePlaceId: "",
+                  googleMapsUri: "",
+                  googleReviewCount: 0,
+                  googleMatchConfidence: "no-match",
+                  googleDisplayName: "",
+                  googleFormattedAddress: "",
+                })
+              }
+              className="text-xs text-stone-400 underline hover:text-stone-700"
+            >
+              Clear match
+            </button>
+          ) : null}
         </div>
       </DraftPropertyRow>
     </div>
@@ -9165,10 +9362,12 @@ function publishedSalonToDraft(salon: Partial<StylistDraft>): StylistDraft {
     evidence: Array.isArray(salon.evidence) ? salon.evidence : [],
     createdAt: salon.createdAt || fallbackDate,
     updatedAt: salon.updatedAt || fallbackDate,
+    googlePlaceId: salon.googlePlaceId || "",
     googleMapsUri: salon.googleMapsUri || "",
     googleReviewCount: salon.googleReviewCount,
     googleMatchConfidence: salon.googleMatchConfidence || "",
     googleDisplayName: salon.googleDisplayName || "",
+    googleFormattedAddress: salon.googleFormattedAddress || "",
     verifiedReviewCount: salon.verifiedReviewCount,
   };
 }

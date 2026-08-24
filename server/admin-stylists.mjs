@@ -2,12 +2,14 @@ import crypto from "node:crypto";
 import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { assertSafeOutboundHttpUrl, createRateLimiter, requireTrustedOrigin } from "./security.mjs";
+import { assertSafeOutboundHttpUrl, createRateLimiter, requireTrustedOrigin, sanitizeErrorMessage } from "./security.mjs";
 import { fetchAllTimeSummary, fetchAnalyticsSummary, fetchRecentActivity } from "./analytics.mjs";
 import { extractPostcodeToken, getParkingAvailable, getWheelchairAccessibleEntrance, loadGooglePlacesApiKey, matchSalonToGoogle } from "./google-match.mjs";
 import { getVerifiedReviewPlatform, matchVerifiedReviews } from "./verified-reviews.mjs";
-import { cropCollagePanel } from "../scripts/lib/photo-candidates.mjs";
+import { searchSalonImages } from "./image-search.mjs";
+import { cropCollagePanel, downloadImage } from "../scripts/lib/photo-candidates.mjs";
 import { createWorker } from "tesseract.js";
+import sharp from "sharp";
 
 function today() {
   return new Date().toISOString().split("T")[0];
@@ -157,6 +159,12 @@ const adminExpensiveRateLimit = createRateLimiter({
   max: 20,
   keyPrefix: "admin-expensive",
   message: "Too many admin requests. Please slow down and try again shortly.",
+});
+const photoSearchRateLimit = createRateLimiter({
+  windowMs: 5 * 60 * 1000,
+  max: 100,
+  keyPrefix: "photo-search",
+  message: "Too many photo search requests. Please slow down and try again shortly.",
 });
 
 const intakeServiceAliases = {
@@ -412,8 +420,12 @@ export function registerAdminStylistRoutes(app) {
       hairShopUrl: update.hairShopUrl || "",
       instagramUrl: update.instagramUrl || "",
       tiktokUrl: update.tiktokUrl || "",
+      googlePlaceId: update.googlePlaceId || null,
       googleMapsUri: update.googleMapsUri || "",
       googleReviewCount: update.googleReviewCount !== undefined ? update.googleReviewCount : currentSalon.googleReviewCount,
+      googleMatchConfidence: update.googleMatchConfidence || currentSalon.googleMatchConfidence || "",
+      googleDisplayName: update.googleDisplayName || "",
+      googleFormattedAddress: update.googleFormattedAddress || "",
       googleCheckedAt: update.googleReviewCount !== undefined && update.googleReviewCount !== currentSalon.googleReviewCount ? now : currentSalon.googleCheckedAt,
       verifiedReviewCount: update.verifiedReviewCount !== undefined ? update.verifiedReviewCount : currentSalon.verifiedReviewCount,
       verifiedReviewCheckedAt:
@@ -1019,6 +1031,125 @@ export function registerAdminStylistRoutes(app) {
     candidates.splice(index, 1);
     store.candidates = candidates;
     await writeJson(portfolioReviewPath, store);
+    res.json({ ok: true });
+  });
+
+  // Manual-assist tool for the ~700+ salons the automated pipeline
+  // (website/Acuity scrape + Places photos + vision classification) already
+  // ran on and found nothing for. Queries Google Programmable Search Engine's
+  // image mode per salon (lazily, one at a time, not pre-fetched for the
+  // whole queue) and lets an admin approve a thumbnail directly instead of
+  // hand-downloading and re-uploading it.
+  app.get("/api/admin/photo-search-queue", requireAdmin, async (req, res) => {
+    const manualIndex = await readJson(manualIndexPath, { meta: { source: "manual" }, salons: [] });
+    const offset = Math.max(0, Number(req.query.offset) || 0);
+    const limit = Math.min(50, Math.max(1, Number(req.query.limit) || 20));
+    const eligible = manualIndex.salons.filter(
+      (salon) => !salon.branches && (salon.portfolioPhotos || []).length === 0 && !salon.photoSearchSkippedAt
+    );
+    const page = eligible.slice(offset, offset + limit).map((salon) => ({
+      id: salon.id,
+      name: salon.name,
+      neighbourhood: salon.neighbourhood,
+      postcode: salon.postcode,
+      areaLabel: salon.areaLabel,
+      websiteUrl: salon.websiteUrl,
+      instagramUrl: salon.instagramUrl,
+      googleFormattedAddress: salon.googleFormattedAddress,
+    }));
+    res.json({ ok: true, total: eligible.length, offset, limit, salons: page });
+  });
+
+  app.get("/api/admin/photo-search/:salonId", requireAdmin, photoSearchRateLimit, async (req, res) => {
+    const manualIndex = await readJson(manualIndexPath, { meta: { source: "manual" }, salons: [] });
+    const salon = manualIndex.salons.find((s) => s.id === req.params.salonId);
+    if (!salon) {
+      return res.status(404).json({ ok: false, message: "Salon not found." });
+    }
+    try {
+      const results = await searchSalonImages(salon);
+      res.json({ ok: true, results });
+    } catch (error) {
+      res.status(502).json({ ok: false, message: sanitizeErrorMessage(error, "Image search failed.") });
+    }
+  });
+
+  app.post("/api/admin/photo-search/:salonId/approve", requireAdmin, async (req, res) => {
+    const imageUrl = String(req.body?.imageUrl || "");
+    const thumbnailUrl = String(req.body?.thumbnailUrl || "");
+    if (!imageUrl) {
+      return res.status(400).json({ ok: false, message: "imageUrl is required." });
+    }
+
+    const manualIndex = await readJson(manualIndexPath, { meta: { source: "manual" }, salons: [] });
+    const salon = manualIndex.salons.find((s) => s.id === req.params.salonId);
+    if (!salon) {
+      return res.status(404).json({ ok: false, message: "Salon not found." });
+    }
+
+    // Some sources (Instagram's Google-facing "lookaside" widget URLs in
+    // particular) 302-redirect a plain server-side fetch to an HTML page
+    // instead of serving the image — fall back to the thumbnail Google
+    // already cached (the exact image the admin saw and approved) rather
+    // than failing outright.
+    let buffer;
+    try {
+      const safeUrl = await assertSafeOutboundHttpUrl(imageUrl);
+      buffer = await downloadImage(safeUrl);
+    } catch (primaryError) {
+      if (!thumbnailUrl) {
+        return res.status(400).json({ ok: false, message: sanitizeErrorMessage(primaryError, "Could not download that image.") });
+      }
+      try {
+        const safeThumbnailUrl = await assertSafeOutboundHttpUrl(thumbnailUrl);
+        buffer = await downloadImage(safeThumbnailUrl);
+      } catch (fallbackError) {
+        return res.status(400).json({ ok: false, message: sanitizeErrorMessage(fallbackError, "Could not download that image.") });
+      }
+    }
+
+    try {
+      const panel = {
+        x: Number(req.body?.crop?.x),
+        y: Number(req.body?.crop?.y),
+        width: Number(req.body?.crop?.width),
+        height: Number(req.body?.crop?.height),
+      };
+      const hasCrop = [panel.x, panel.y, panel.width, panel.height].every((n) => Number.isFinite(n) && n >= 0 && n <= 1) && panel.width > 0 && panel.height > 0;
+      if (hasCrop) {
+        const rotation = Number(req.body?.rotation) || 0;
+        buffer = await cropCollagePanel(buffer, panel, rotation);
+      } else {
+        // Search-result URLs come from arbitrary hosts, so their extension
+        // (if any) can't be trusted the way an uploaded data: URL's declared
+        // mime type can — re-encode to a known format instead of guessing.
+        buffer = await sharp(buffer).jpeg().toBuffer();
+      }
+    } catch (error) {
+      return res.status(400).json({ ok: false, message: sanitizeErrorMessage(error, "Could not process that image.") });
+    }
+
+    await fs.mkdir(portfolioPhotosPublicDir, { recursive: true });
+    const filename = `${salon.id}-${crypto.randomUUID()}.jpg`;
+    await fs.writeFile(path.join(portfolioPhotosPublicDir, filename), buffer);
+
+    const existingPhotos = salon.portfolioPhotos || [];
+    const photo = { id: `${salon.id}-portfolio-photo-${crypto.randomUUID()}`, url: `/portfolio-photos/${filename}`, source: "google-image-search" };
+    salon.portfolioPhotos = [...existingPhotos, photo];
+    delete salon.photoSearchSkippedAt;
+
+    await persistManualIndex(manualIndex, `Add photo-search photo for ${salon.name}`);
+    res.json({ ok: true, photo });
+  });
+
+  app.post("/api/admin/photo-search/:salonId/skip", requireAdmin, async (req, res) => {
+    const manualIndex = await readJson(manualIndexPath, { meta: { source: "manual" }, salons: [] });
+    const salon = manualIndex.salons.find((s) => s.id === req.params.salonId);
+    if (!salon) {
+      return res.status(404).json({ ok: false, message: "Salon not found." });
+    }
+    salon.photoSearchSkippedAt = new Date().toISOString();
+    await persistManualIndex(manualIndex, `Skip photo search for ${salon.name}`);
     res.json({ ok: true });
   });
 
@@ -7766,8 +7897,12 @@ function sanitizeDraftUpdate(input) {
     hairShopUrl: cleanString(input.hairShopUrl),
     instagramUrl: cleanString(input.instagramUrl) || inferred.instagramUrl,
     tiktokUrl: cleanString(input.tiktokUrl) || inferred.tiktokUrl,
+    googlePlaceId: cleanString(input.googlePlaceId),
     googleMapsUri: cleanString(input.googleMapsUri),
     googleReviewCount: sanitizeReviewCount(input.googleReviewCount),
+    googleMatchConfidence: cleanString(input.googleMatchConfidence),
+    googleDisplayName: cleanString(input.googleDisplayName),
+    googleFormattedAddress: cleanString(input.googleFormattedAddress),
     verifiedReviewCount: sanitizeReviewCount(input.verifiedReviewCount),
     addedVia: cleanString(input.addedVia),
     discoverySource: cleanString(input.discoverySource),

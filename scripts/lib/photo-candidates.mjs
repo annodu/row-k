@@ -210,7 +210,17 @@ export async function findCandidateImageUrls(pageUrl) {
 }
 
 export async function downloadImage(url) {
-  const response = await fetch(url, { redirect: "follow" });
+  // Some CDNs (Instagram's included) serve a bot-check/interstitial HTML
+  // page instead of the actual image bytes to requests with no browser-like
+  // headers — a real User-Agent (and an Accept header favoring images) is
+  // enough to get the real response most of the time.
+  const response = await fetch(url, {
+    redirect: "follow",
+    headers: {
+      "User-Agent": browserUserAgent,
+      Accept: "image/avif,image/webp,image/apng,image/*,*/*;q=0.8",
+    },
+  });
   if (!response.ok) throw new Error(`HTTP ${response.status}`);
   const contentType = response.headers.get("content-type") || "";
   // Some CDNs (Acuity's included) serve real images as application/octet-stream —

@@ -1,11 +1,521 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-08-23",
-    "count": 924,
+    "updatedAt": "2026-08-24",
+    "count": 930,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "38styles",
+      "name": "38styles",
+      "areaId": "east",
+      "areaLabel": "East London",
+      "neighbourhood": "East London London",
+      "postcode": "",
+      "bookingPlatform": "Direct website",
+      "bookingUrl": "https://38styless.as.me/schedule/20a436e7",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/38styles/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Manual search",
+      "services": [
+        "Men's braids",
+        "Boho braids / goddess braids",
+        "Stitch braids",
+        "Fulani / lemonade braids",
+        "Knotless braids",
+        "Box braids",
+        "Twists (with extensions)",
+        "Crochet",
+        "Retwist",
+        "Microlocs / sisterlocs",
+        "Faux locs",
+        "Starter locs",
+        "Wig cornrows"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Created through ROW K admin intake."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-08-23T23:37:23.685Z",
+      "portfolioPhotos": [
+        {
+          "id": "38styles-portfolio-photo-6ad666b4-69a6-4c1a-9fe7-8d6b13408461",
+          "url": "/portfolio-photos/38styles-44c76247-247e-4863-a0a0-8da536afb25f.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "38styles-portfolio-photo-6a431e71-003d-4c88-a5ca-e1c53528ebb5",
+          "url": "/portfolio-photos/38styles-a9e3e49c-efa5-4779-9f5f-fad382f014f9.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "38styles-portfolio-photo-04e5e479-ecbc-424f-9c40-d04dc2523a91",
+          "url": "/portfolio-photos/38styles-3f499cc4-f55d-4100-9570-555873b420a3.jpg",
+          "source": "google-image-search"
+        }
+      ]
+    },
+    {
+      "id": "regan-did-that",
+      "name": "Regan did That",
+      "areaId": "south",
+      "areaLabel": "South London",
+      "neighbourhood": "South London London",
+      "postcode": "",
+      "bookingPlatform": "Direct website",
+      "bookingUrl": "https://www.instagram.com/regandid.that/",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/regandid.that/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Manual search",
+      "services": [
+        "Men's braids",
+        "Stitch braids",
+        "Knotless braids",
+        "Boho braids / goddess braids",
+        "Fulani / lemonade braids"
+      ],
+      "canBraidWithoutGel": true,
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Created through ROW K admin intake."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-08-23T23:35:41.293Z",
+      "portfolioPhotos": [
+        {
+          "id": "regan-did-that-portfolio-photo-3309378b-0a77-4392-a2db-32d7cf9a9aba",
+          "url": "/portfolio-photos/regan-did-that-7ad4a35a-b14c-4555-8525-08e47341eac6.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "regan-did-that-portfolio-photo-387a8d70-8258-469a-b868-08877f946dec",
+          "url": "/portfolio-photos/regan-did-that-9c99cbb0-f46d-40bc-8965-09e97b696828.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "regan-did-that-portfolio-photo-f6949bca-89e2-4d41-bc56-076a333255c2",
+          "url": "/portfolio-photos/regan-did-that-2edf00f1-02e1-4427-8f0e-b16505afd499.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "regan-did-that-portfolio-photo-576c6d63-f49b-4ec2-9201-5702f156f946",
+          "url": "/portfolio-photos/regan-did-that-0139f140-1170-4159-a7ad-7be87ed273e7.jpg",
+          "source": "google-image-search"
+        }
+      ]
+    },
+    {
+      "id": "kture-hair",
+      "name": "Kture hair",
+      "areaId": "croydon",
+      "areaLabel": "Croydon",
+      "neighbourhood": "Croydon London",
+      "postcode": "",
+      "bookingPlatform": "Direct website",
+      "bookingUrl": "https://kturehair.as.me/schedule/cb5788f4",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/kturehair/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Manual search",
+      "services": [
+        "Men's braids",
+        "Wig install (frontal / closure)",
+        "Custom wig",
+        "Knotless braids",
+        "Boho braids / goddess braids",
+        "Boho braids bob",
+        "Traditional sew-in / leave out",
+        "Fulani / lemonade braids",
+        "Flipover / Versatile sew-in",
+        "Retwist",
+        "Faux locs",
+        "Butterfly locs",
+        "Starter locs",
+        "Wig cornrows",
+        "Sleek ponytail / bun",
+        "Frontal ponytail / bun",
+        "Updo",
+        "Half up half down",
+        "Quick weave",
+        "Closure sew-in / closure behind the hairline"
+      ],
+      "priceBand": "£",
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "Daily - £45",
+        "Weekly - £90",
+        "Factory Made Frontal Wig Install - £65",
+        "Factory Made Closure Wig Install - £60",
+        "Custom Wig Install - £85",
+        "Wig Styling - £30",
+        "Wig & Install Combo ( 24’’ - 26’’ ) - £185",
+        "Wig & Install Combo ( 28’’ - 30’’ ) - £225"
+      ],
+      "priceCheckedAt": "2026-08-23T23:24:25.110Z",
+      "priceUpdatedAt": "2026-08-23T23:24:25.110Z",
+      "priceConfidence": "high",
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Created through ROW K admin intake."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-08-23T23:25:34.416Z",
+      "portfolioPhotos": [
+        {
+          "id": "kture-hair-portfolio-photo-6467c0d8-0593-40eb-9427-c4ea86a33537",
+          "url": "/portfolio-photos/kture-hair-4ec33292-ef29-4a4b-9c36-67c689ad2163.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "kture-hair-portfolio-photo-05504ee0-3c58-49d5-9ddf-02bcd37f1497",
+          "url": "/portfolio-photos/kture-hair-6d5d7bbc-6ab5-4bc2-b9a9-b257291872dc.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "kture-hair-portfolio-photo-5f42c6d0-cc47-49ec-8fef-bc2c7eaf21fd",
+          "url": "/portfolio-photos/kture-hair-ebbae253-26cd-4e06-b1a1-ea33eefdb3ff.jpg",
+          "source": "google-image-search"
+        }
+      ]
+    },
+    {
+      "id": "sstyles",
+      "name": "Sstyles",
+      "areaId": "south-east",
+      "areaIds": [
+        "south-east",
+        "kent"
+      ],
+      "areaLabel": "South east London / Kent",
+      "neighbourhood": "South east London and Kent London",
+      "postcode": "SE8 3PR",
+      "bookingPlatform": "Direct website",
+      "bookingUrl": "https://famoushairandbeauty.setmore.com/sstyles",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/sstyles__/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Manual search",
+      "services": [
+        "Men's braids",
+        "Stitch braids",
+        "Fulani / lemonade braids",
+        "Boho braids / goddess braids",
+        "Knotless braids",
+        "Starter locs",
+        "Retwist",
+        "Sleek ponytail / bun"
+      ],
+      "priceBand": "£",
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "manual",
+      "priceEvidence": [],
+      "priceCheckedAt": "",
+      "priceUpdatedAt": "2026-08-23T23:22:12.159Z",
+      "priceConfidence": "manual",
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Created through ROW K admin intake."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-08-23T23:22:30.862Z",
+      "verifiedReviewCount": 0,
+      "verifiedReviewCheckedAt": "2026-08-23T23:22:31.488Z",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": false,
+      "customFilters": {},
+      "updatedAt": "2026-08-23",
+      "portfolioPhotos": [
+        {
+          "id": "sstyles-portfolio-photo-90cbb70e-ff3c-4811-92a9-e7d633945555",
+          "url": "/portfolio-photos/sstyles-a5369922-d0c2-4810-81a9-0c5c6c2cb811.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "sstyles-portfolio-photo-7665a3f4-4f93-4bf7-bbf8-21dc4a6fceb4",
+          "url": "/portfolio-photos/sstyles-3a17c82d-f1e2-4b65-b4b9-3b7dcbf958e9.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "sstyles-portfolio-photo-0a4ddef5-e955-480e-a1fb-ae1dd4507149",
+          "url": "/portfolio-photos/sstyles-21ed55d4-749d-4220-9618-04763681ec3c.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "sstyles-portfolio-photo-8657de69-fca0-4084-b8fe-aedce1fa5c30",
+          "url": "/portfolio-photos/sstyles-e5b16d96-3bc8-4bbd-8fb0-3605591e003f.jpg",
+          "source": "google-image-search"
+        }
+      ]
+    },
+    {
+      "id": "parted-by-jem",
+      "name": "Parted by Jem",
+      "areaId": "east",
+      "areaLabel": "East London",
+      "neighbourhood": "East London London",
+      "postcode": "",
+      "bookingPlatform": "Direct website",
+      "bookingUrl": "https://partedbyjemx.setmore.com/partedbyjem",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/partedbyjem/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Manual search",
+      "services": [
+        "Men's braids",
+        "Starter locs",
+        "Retwist",
+        "Fulani / lemonade braids"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Created through ROW K admin intake."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-08-23T23:21:01.054Z",
+      "verifiedReviewCount": 0,
+      "verifiedReviewCheckedAt": "2026-08-23T23:21:01.471Z"
+    },
+    {
+      "id": "hair-by-vanaa",
+      "name": "Hair by Vanaa",
+      "areaId": "north-west",
+      "areaLabel": "North west London",
+      "neighbourhood": "North west London London",
+      "postcode": "",
+      "bookingPlatform": "Direct website",
+      "bookingUrl": "https://hairbyvana.as.me/schedule/099a7459",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/hairbyvanaa_/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Manual search",
+      "services": [
+        "Men's braids",
+        "Wig cornrows",
+        "Stitch braids",
+        "Fulani / lemonade braids",
+        "Knotless braids",
+        "Feed-in braids",
+        "Butterfly locs",
+        "Boho braids / goddess braids",
+        "Faux locs",
+        "Twists (with extensions)",
+        "Microlocs / sisterlocs",
+        "Starter locs",
+        "Retwist",
+        "Sleek ponytail / bun",
+        "Braid take-down",
+        "Sew-in take-down",
+        "Flipover / Versatile sew-in",
+        "Traditional sew-in / leave out",
+        "Wig install (frontal / closure)",
+        "Closure sew-in / closure behind the hairline",
+        "Half up half down",
+        "Quick weave",
+        "Custom wig",
+        "Tape ins",
+        "Half braids, half sew-in"
+      ],
+      "priceBand": "£",
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "manual",
+      "priceEvidence": [],
+      "priceCheckedAt": "",
+      "priceUpdatedAt": "2026-08-23T23:15:16.274Z",
+      "priceConfidence": "manual",
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Created through ROW K admin intake."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-08-23T23:15:30.421Z"
+    },
+    {
+      "id": "by-mae-studio",
+      "name": "By Mae Studio",
+      "areaId": "south-east",
+      "areaLabel": "South east London",
+      "neighbourhood": "South east London London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/bymaesstudio/",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/bymaesstudio/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Manual search",
+      "services": [
+        "Men's braids",
+        "Traditional sew-in / leave out",
+        "Half up half down"
+      ],
+      "priceBand": "£",
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "manual",
+      "priceEvidence": [],
+      "priceCheckedAt": "",
+      "priceUpdatedAt": "2026-08-23T21:45:50.034Z",
+      "priceConfidence": "manual",
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Created through ROW K admin intake."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-08-23T21:46:15.605Z",
+      "portfolioPhotos": [],
+      "updatedAt": "2026-08-24"
+    },
+    {
+      "id": "k-lux-hair",
+      "name": "KLuxHair",
+      "areaId": "croydon",
+      "areaLabel": "Croydon",
+      "neighbourhood": "Croydon London",
+      "postcode": "",
+      "bookingPlatform": "Direct website",
+      "bookingUrl": "https://kluxehairr.as.me/schedule/e4940998",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/kluxhair/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Manual search",
+      "services": [
+        "Men's braids",
+        "Fulani / lemonade braids",
+        "Boho braids / goddess braids",
+        "Box braids",
+        "Faux locs",
+        "Knotless braids",
+        "Wig cornrows",
+        "Sleek ponytail / bun",
+        "Traditional sew-in / leave out",
+        "Stitch braids",
+        "Wig install (frontal / closure)"
+      ],
+      "priceBand": "£",
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "Small Alicia keys braids - £85",
+        "Smedium Alicia keys braids - £80",
+        "Medium Alicia keys braids - £75",
+        "Large Alicia keys braids - £70",
+        "Small Bohemian twist - £85",
+        "Smedium bohemian twist - £80",
+        "Medium bohemian twist - £75",
+        "Large bohemian twist - £70"
+      ],
+      "priceCheckedAt": "2026-08-23T21:43:59.090Z",
+      "priceUpdatedAt": "2026-08-23T21:43:59.090Z",
+      "priceConfidence": "high",
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Created through ROW K admin intake."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-08-23T21:44:20.460Z",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": false,
+      "customFilters": {},
+      "updatedAt": "2026-08-23",
+      "portfolioPhotos": [
+        {
+          "id": "k-lux-hair-portfolio-photo-53f5d5df-6ae9-4e58-8ee7-381afa4616ef",
+          "url": "/portfolio-photos/k-lux-hair-2eebb6e0-588d-4422-8b55-70e48463254d.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "k-lux-hair-portfolio-photo-b9079580-6351-4343-8a69-fd8b99e790df",
+          "url": "/portfolio-photos/k-lux-hair-3ff9ed7d-b520-40c9-82b2-1e8911cfd886.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "k-lux-hair-portfolio-photo-60cefbac-03a0-4548-bae1-02c549fb2274",
+          "url": "/portfolio-photos/k-lux-hair-c01dd16e-6804-4115-8cec-4a07d1054aa9.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "k-lux-hair-portfolio-photo-a6b0475c-3a2c-4030-a1ac-c0b19fe24d41",
+          "url": "/portfolio-photos/k-lux-hair-f0b1e7e7-151f-4002-8662-be7e0fe67b55.jpg",
+          "source": "google-image-search"
+        }
+      ]
+    },
     {
       "id": "lockonego",
       "name": "Lockonego",
@@ -62,7 +572,8 @@
       "googleCheckedAt": "2026-08-20T17:19:44.869Z",
       "portfolioPhotosCheckedAt": "2026-08-20T18:09:34.555Z",
       "portfolioPhotos": [],
-      "updatedAt": "2026-08-22"
+      "updatedAt": "2026-08-22",
+      "photoSearchSkippedAt": "2026-08-23T22:22:58.606Z"
     },
     {
       "id": "michelle-monae-hair-studio",
@@ -94,7 +605,24 @@
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-08-20T17:16:35.009Z",
-      "portfolioPhotosCheckedAt": "2026-08-20T18:09:34.857Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T18:09:34.857Z",
+      "portfolioPhotos": [
+        {
+          "id": "michelle-monae-hair-studio-portfolio-photo-f6c38777-1c6a-4bf4-af4f-829fb6a9c045",
+          "url": "/portfolio-photos/michelle-monae-hair-studio-6eb851a1-0906-4eeb-a640-c438d71af5d1.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "michelle-monae-hair-studio-portfolio-photo-d00c61f2-a863-43b8-a43f-4808e29fff77",
+          "url": "/portfolio-photos/michelle-monae-hair-studio-455dc9de-75fd-4458-a98a-3d139809aaa7.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "michelle-monae-hair-studio-portfolio-photo-66c06334-e297-4b6c-9e4e-e303b1ba48b9",
+          "url": "/portfolio-photos/michelle-monae-hair-studio-2220f986-f1ae-4133-a889-a70b8338d7bc.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "hair-by-maya-uk",
@@ -119,7 +647,7 @@
         "Half up half down"
       ],
       "priceBand": "£",
-      "servicePriceBand": "£",
+      "servicePriceBand": "",
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
@@ -138,7 +666,19 @@
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-08-20T17:14:26.780Z",
-      "portfolioPhotosCheckedAt": "2026-08-20T18:09:35.158Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T18:09:35.158Z",
+      "portfolioPhotos": [],
+      "updatedAt": "2026-08-23",
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": false,
+      "customFilters": {}
     },
     {
       "id": "bbn-salon",
@@ -240,7 +780,8 @@
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-08-20T10:30:48.485Z",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:02:16.240Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:02:16.240Z",
+      "photoSearchSkippedAt": "2026-08-23T22:25:20.678Z"
     },
     {
       "id": "kimoy-s-unisex-hair-and-beauty",
@@ -335,7 +876,8 @@
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-08-20T10:23:09.521Z",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:02:34.985Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:02:34.985Z",
+      "photoSearchSkippedAt": "2026-08-23T22:25:34.777Z"
     },
     {
       "id": "pink-scissors-salon",
@@ -430,7 +972,14 @@
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-08-20T10:17:51.354Z",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:02:57.120Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:02:57.120Z",
+      "portfolioPhotos": [
+        {
+          "id": "braided-by-nicks-portfolio-photo-79c3216f-ecb8-4e36-a3c6-46bee35a2430",
+          "url": "/portfolio-photos/braided-by-nicks-c38f930b-8129-4d2a-850e-3f0ce066b626.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "dominique-s-beautique",
@@ -473,7 +1022,8 @@
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-08-20T10:14:00.134Z",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:02:57.421Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:02:57.421Z",
+      "photoSearchSkippedAt": "2026-08-23T22:27:30.301Z"
     },
     {
       "id": "adwoas-lounge-uk",
@@ -509,7 +1059,8 @@
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-08-20T10:10:23.796Z",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:02:57.722Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:02:57.722Z",
+      "photoSearchSkippedAt": "2026-08-23T22:27:32.930Z"
     },
     {
       "id": "the-bee-effect",
@@ -555,7 +1106,8 @@
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-08-20T10:06:18.546Z",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:02:58.023Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:02:58.023Z",
+      "photoSearchSkippedAt": "2026-08-23T22:27:36.304Z"
     },
     {
       "id": "adoravel-hair",
@@ -587,7 +1139,8 @@
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-08-20T10:03:11.729Z",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:02:58.325Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:02:58.325Z",
+      "photoSearchSkippedAt": "2026-08-23T22:27:37.708Z"
     },
     {
       "id": "cachos-rubinathy",
@@ -623,7 +1176,24 @@
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-08-19T16:45:56.952Z",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:02:58.669Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:02:58.669Z",
+      "portfolioPhotos": [
+        {
+          "id": "cachos-rubinathy-portfolio-photo-d426a675-d5c7-4419-bdc0-042f592c0662",
+          "url": "/portfolio-photos/cachos-rubinathy-94850a33-cca1-4854-b617-9cebd9c420be.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "cachos-rubinathy-portfolio-photo-102172ea-ad1f-44d1-9ed8-62a824c4ac71",
+          "url": "/portfolio-photos/cachos-rubinathy-866686e5-7d2b-4291-9df1-e85eead9e7e4.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "cachos-rubinathy-portfolio-photo-ce1e6db2-09a0-41ec-a8bb-88c780df38d8",
+          "url": "/portfolio-photos/cachos-rubinathy-f9b71fef-dadf-418b-bd63-e0b3159c9ce5.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "temi-hairstylist",
@@ -659,15 +1229,16 @@
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-08-11T21:49:40.872Z",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:02:58.972Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:02:58.972Z",
+      "photoSearchSkippedAt": "2026-08-23T22:28:11.537Z"
     },
     {
       "id": "the-braider-uk",
       "name": "The Braider UK",
       "areaId": "north",
       "areaLabel": "North London",
-      "neighbourhood": "North London London",
-      "postcode": "",
+      "neighbourhood": "Enfield",
+      "postcode": "EN3",
       "bookingPlatform": "Direct website",
       "bookingUrl": "https://thebraideruk.as.me/schedule/7e7e307b",
       "websiteUrl": "",
@@ -684,7 +1255,8 @@
         "Knotless braids",
         "Miracle knots",
         "French curl",
-        "Half braids, half sew-in"
+        "Half braids, half sew-in",
+        "Men's braids"
       ],
       "priceBand": "££",
       "servicePriceBand": "££",
@@ -709,7 +1281,24 @@
       "sellsHairSeparately": true,
       "hairShopUrl": "https://www.instagram.com/thebraideruk/",
       "vendorId": "bohemebundles",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:03:35.837Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:03:35.837Z",
+      "portfolioPhotos": [
+        {
+          "id": "the-braider-uk-portfolio-photo-814a019d-a049-409e-ab17-ddf05d25a41a",
+          "url": "/portfolio-photos/the-braider-uk-e9bb1977-4421-4200-b49c-2ae2ea65cc1e.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "the-braider-uk-portfolio-photo-68e5e860-f1c1-4707-a2de-cd47182d8379",
+          "url": "/portfolio-photos/the-braider-uk-f5d29957-e4f9-4113-946b-1aba479bd5c0.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "the-braider-uk-portfolio-photo-5bde1efe-9fbf-4edb-b752-f662323298e0",
+          "url": "/portfolio-photos/the-braider-uk-008e701c-d60b-4dee-b404-90d46e90f721.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "butterfly-fingaz",
@@ -866,7 +1455,8 @@
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-08-11T19:07:58.933Z",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:03:36.140Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:03:36.140Z",
+      "photoSearchSkippedAt": "2026-08-23T22:29:28.610Z"
     },
     {
       "id": "ymk-hairr",
@@ -898,7 +1488,7 @@
         "Sew-in take-down"
       ],
       "priceBand": "£",
-      "servicePriceBand": "£",
+      "servicePriceBand": "",
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
@@ -926,7 +1516,36 @@
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-08-11T18:50:59.840Z",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:03:44.676Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:03:44.676Z",
+      "portfolioPhotos": [
+        {
+          "id": "ymk-hairr-portfolio-photo-999f0640-8ed2-4226-8f80-59c663d92127",
+          "url": "/portfolio-photos/ymk-hairr-bbb0118f-ddb6-4524-94a2-ea1fa234b523.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "ymk-hairr-portfolio-photo-bf845107-0a75-41da-8545-fab5df4e9d89",
+          "url": "/portfolio-photos/ymk-hairr-d6571e44-ca68-4f90-baae-9ae6a49dc725.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "ymk-hairr-portfolio-photo-614f4b2f-e52f-4ba8-92b3-3c77c4cf2aa5",
+          "url": "/portfolio-photos/ymk-hairr-313302a4-4591-4138-b586-cda3fbacbbe3.jpg",
+          "source": "google-image-search"
+        }
+      ],
+      "updatedAt": "2026-08-24",
+      "hairShopUrl": "",
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": false,
+      "customFilters": {}
     },
     {
       "id": "gbemi-hair",
@@ -968,7 +1587,14 @@
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-08-11T18:42:50.668Z",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:03:44.977Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:03:44.977Z",
+      "portfolioPhotos": [
+        {
+          "id": "gbemi-hair-portfolio-photo-3cfb160c-7388-41a2-ba2a-ea094218edf6",
+          "url": "/portfolio-photos/gbemi-hair-c71cbe08-f3c5-4edd-83b8-4dbdf5cddb03.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "tjslayedit",
@@ -1025,7 +1651,24 @@
       "parkingAvailable": false,
       "customFilters": {},
       "updatedAt": "2026-08-11",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:03:57.972Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:03:57.972Z",
+      "portfolioPhotos": [
+        {
+          "id": "tjslayedit-portfolio-photo-79074e3f-2b42-4053-b430-22d6584a94ed",
+          "url": "/portfolio-photos/tjslayedit-06a4d156-cf63-4e62-8b90-ca649ba34ba0.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "tjslayedit-portfolio-photo-0a64a0b0-6ad3-409b-a6e7-42a9cc545c36",
+          "url": "/portfolio-photos/tjslayedit-c862db2a-19b3-4992-a9ca-80a08b282860.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "tjslayedit-portfolio-photo-4ef18153-d67e-4be0-9731-5b3e7cebd7c7",
+          "url": "/portfolio-photos/tjslayedit-63b2ab2a-ce9b-4403-8963-6c36aca30104.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "milkeys-parlour",
@@ -1176,11 +1819,27 @@
       "canBraidWithoutGel": false,
       "wheelchairAccessible": false,
       "customFilters": {},
-      "updatedAt": "2026-08-22",
+      "updatedAt": "2026-08-24",
       "googleDisplayName": "__MISSING__",
       "googleFormattedAddress": "__MISSING__",
       "portfolioPhotosCheckedAt": "2026-08-21",
-      "portfolioPhotos": [],
+      "portfolioPhotos": [
+        {
+          "id": "hair-by-jazz-dalila-portfolio-photo-86a52000-d118-43a9-9552-8942da9a2d21",
+          "url": "/portfolio-photos/hair-by-jazz-dalila-ed334194-2385-4096-9623-de16ed1de151.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "hair-by-jazz-dalila-portfolio-photo-2dcbe5fe-0222-46e3-8503-074e3ab2cc30",
+          "url": "/portfolio-photos/hair-by-jazz-dalila-4ba1d968-a1ef-4065-807b-0b4caeef6afc.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "hair-by-jazz-dalila-portfolio-photo-c74d3887-04ae-44b6-9809-4226090f6e8a",
+          "url": "/portfolio-photos/hair-by-jazz-dalila-1798fe84-71b0-4280-99c2-c5d519935f12.jpg",
+          "source": "google-image-search"
+        }
+      ],
       "hairShopUrl": "",
       "senFriendly": false,
       "lgbtqFriendly": false,
@@ -1202,11 +1861,11 @@
       "addedVia": "Admin tool",
       "discoverySource": "Manual search",
       "services": [
-        "Wig install (frontal / closure)",
-        "Wig colouring / bundle colouring"
+        "Wig colouring / bundle colouring",
+        "Custom wig"
       ],
       "priceBand": "£",
-      "servicePriceBand": "£",
+      "servicePriceBand": "",
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
@@ -1225,7 +1884,24 @@
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-08-11",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:04:45.614Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:04:45.614Z",
+      "hairShopUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": false,
+      "customFilters": {},
+      "updatedAt": "2026-08-23",
+      "portfolioPhotos": [
+        {
+          "id": "by-the-kway-portfolio-photo-d0733ca6-f8cf-4ce1-a839-33f2bf36f5c9",
+          "url": "/portfolio-photos/by-the-kway-ada3ab71-ba62-46d7-8004-3cc821fa0e06.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "moiselle-de-pinto-moreira",
@@ -1515,7 +2191,7 @@
         "Tracks (+ silk press) / partial / invisible sew-in"
       ],
       "priceBand": "£",
-      "servicePriceBand": "£",
+      "servicePriceBand": "",
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
@@ -1538,12 +2214,12 @@
       "evidence": [
         "Created through ROW K admin intake."
       ],
-      "googlePlaceId": "ChIJG7QmrSwBdkgRBtZNNhppuuY",
+      "googlePlaceId": null,
       "googleReviewCount": 7,
       "googleMapsUri": "https://maps.google.com/?cid=16625716535692744198&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
       "googleMatchConfidence": "high",
       "googleDisplayName": "Ledon",
-      "googleFormattedAddress": "343 Whitehorse Rd, Thornton Heath, Croydon CR0 2HS, UK",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-08-02",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
@@ -1552,21 +2228,50 @@
       "lgbtqFriendly": false,
       "parkingAvailable": false,
       "customFilters": {},
-      "updatedAt": "2026-08-02",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:07:40.468Z"
+      "updatedAt": "2026-08-24",
+      "portfolioPhotosCheckedAt": "2026-08-20T17:07:40.468Z",
+      "portfolioPhotos": [
+        {
+          "id": "le-don-salon-portfolio-photo-597c0b02-5426-4a44-8df5-9f4d9ae7ea15",
+          "url": "/portfolio-photos/le-don-salon-c74ae692-1a54-4b4c-aee8-f298a0df6e99.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "le-don-salon-portfolio-photo-db67b0b6-586d-4602-8891-1654e2f438dd",
+          "url": "/portfolio-photos/le-don-salon-9a893619-07be-4856-83c2-0a2a6428e799.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "le-don-salon-portfolio-photo-2c743645-424d-4c8a-ba1d-b180282cb9e2",
+          "url": "/portfolio-photos/le-don-salon-525df88d-8c4e-442c-a9bd-70596f506f29.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "le-don-salon-portfolio-photo-73607922-3dd7-4afb-b97e-33bb10495075",
+          "url": "/portfolio-photos/le-don-salon-b25afbc3-ff37-439d-8ca0-44ae0b691af7.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "le-don-salon-portfolio-photo-cf8cb4a1-d9c4-40d8-a395-03df7cb88e30",
+          "url": "/portfolio-photos/le-don-salon-22cca762-700e-4b27-b361-e4b72c5d3186.jpg",
+          "source": "google-image-search"
+        }
+      ],
+      "hairShopUrl": "",
+      "sellsHairSeparately": false
     },
     {
       "id": "kumi-kreates",
       "name": "Kumi Kreates",
       "areaId": "north",
       "areaLabel": "North London",
-      "neighbourhood": "North London London",
+      "neighbourhood": "Islington",
       "postcode": "",
       "bookingPlatform": "Direct website",
       "bookingUrl": "https://kumikreates.as.me/schedule/031b886e",
       "websiteUrl": "",
       "instagramUrl": "https://www.instagram.com/kumikreates/",
-      "tiktokUrl": "",
+      "tiktokUrl": "https://www.tiktok.com/@ihsginaa/video/7667238290973576470",
       "addedVia": "Admin tool",
       "discoverySource": "Manual search",
       "services": [
@@ -1601,7 +2306,9 @@
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
       "evidence": [
-        "Created through ROW K admin intake."
+        "Created through ROW K admin intake.",
+        "Submitted link: https://www.instagram.com/kumikreates/",
+        "Source: https://www.tiktok.com/@ihsginaa/video/7667238290973576470 (£110, Islington)"
       ],
       "googlePlaceId": null,
       "googleReviewCount": 0,
@@ -1616,7 +2323,44 @@
       "parkingAvailable": false,
       "customFilters": {},
       "updatedAt": "2026-08-02",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:08:49.793Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:08:49.793Z",
+      "portfolioPhotos": [
+        {
+          "id": "kumi-kreates-portfolio-photo-9a543689-4f6a-46ab-8fff-59b19b68f129",
+          "url": "/portfolio-photos/kumi-kreates-d3e84580-a8ea-49e5-b49d-bc2a27240c21.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "kumi-kreates-portfolio-photo-e906d3dd-e2b9-4a7f-baa0-2e87f2473ac3",
+          "url": "/portfolio-photos/kumi-kreates-b4b85448-0525-4b16-acf8-8080bda13034.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "kumikreates-portfolio-photo-ab67a817-95f7-4460-a8fe-a2f3e3b9c87b",
+          "url": "/portfolio-photos/kumikreates-a1a24cf0-9cbd-4e57-8cea-f98a5c3413f7.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "kumikreates-portfolio-photo-90100ed4-6aeb-4789-b28f-9ef9c730d1fb",
+          "url": "/portfolio-photos/kumikreates-7a744e0e-1009-48c4-8061-ebfaa6e6e599.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "kumikreates-portfolio-photo-d6134c48-15aa-4488-be91-7ccff5fed6a6",
+          "url": "/portfolio-photos/kumikreates-2d0ae454-a202-4846-84bc-927cffaf7ba4.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "kumikreates-portfolio-photo-299015e6-47b7-45cf-afe3-187e098d44e6",
+          "url": "/portfolio-photos/kumikreates-4a0bc08c-5d32-4a88-b7c6-5f3714fe92b7.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "kumi-kreates-portfolio-photo-b681048e-0bc3-43fc-b4f8-6b816271699a",
+          "url": "/portfolio-photos/kumi-kreates-b758f7dc-7d4c-4d20-b5d7-91582772c185.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "louis-souvestre",
@@ -1645,36 +2389,29 @@
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-08-02",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:08:50.096Z"
-    },
-    {
-      "id": "karen-messam",
-      "name": "Karen Messam",
-      "areaId": "all-london",
-      "areaLabel": "London",
-      "neighbourhood": "London London",
-      "postcode": "",
-      "bookingPlatform": "Instagram",
-      "bookingUrl": "https://www.instagram.com/karenmessam/",
-      "websiteUrl": "",
-      "instagramUrl": "https://www.instagram.com/karenmessam/",
-      "tiktokUrl": "",
-      "addedVia": "Admin tool",
-      "discoverySource": "Manual search",
-      "services": [
-        "Editorial / Session styling"
-      ],
-      "summary": "Admin draft created from stylist intake.",
-      "source": "manual",
-      "evidence": [
-        "Created through ROW K admin intake."
-      ],
-      "googlePlaceId": null,
-      "googleReviewCount": 0,
-      "googleMapsUri": "",
-      "googleMatchConfidence": "no-match",
-      "googleCheckedAt": "2026-08-02",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:08:50.397Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:08:50.096Z",
+      "portfolioPhotos": [
+        {
+          "id": "louis-souvestre-portfolio-photo-b6883682-de6b-439d-bfe6-9e3be0420ce6",
+          "url": "/portfolio-photos/louis-souvestre-9002f922-f274-4d58-9860-610db9be82db.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "louis-souvestre-portfolio-photo-fbaf97fa-5b61-41b8-9675-64842c8b0530",
+          "url": "/portfolio-photos/louis-souvestre-2579b978-1811-483f-9bcc-db3860222501.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "louis-souvestre-portfolio-photo-9824b260-40ed-4833-a7b9-2c2137dd6347",
+          "url": "/portfolio-photos/louis-souvestre-bf8dc2b8-94ef-4c99-bde2-49fad4c0eb95.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "louis-souvestre-portfolio-photo-c1216bf0-6ed3-47b3-a0e1-f486071250b3",
+          "url": "/portfolio-photos/louis-souvestre-a3d56578-c561-40a7-ad1d-64b0b546aea8.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "nicola-harrowell",
@@ -1703,7 +2440,8 @@
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-08-02",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:08:50.698Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:08:50.698Z",
+      "photoSearchSkippedAt": "2026-08-23T23:34:07.078Z"
     },
     {
       "id": "sharon-robinson",
@@ -1732,7 +2470,19 @@
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-08-02",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:08:51.051Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:08:51.051Z",
+      "portfolioPhotos": [
+        {
+          "id": "sharon-robinson-portfolio-photo-8fa98385-e4cc-4b43-bd0b-8d012b94bb17",
+          "url": "/portfolio-photos/sharon-robinson-8be87f26-cc3d-48d5-8ccb-1b597de5846a.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "sharon-robinson-portfolio-photo-2d00c7ee-e78a-4b49-8b79-1fadda25145e",
+          "url": "/portfolio-photos/sharon-robinson-7a5ac984-8c65-49df-9fc6-e91fa08c88c7.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "shamara-roper",
@@ -1761,7 +2511,29 @@
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-08-02",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:08:51.353Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:08:51.353Z",
+      "portfolioPhotos": [
+        {
+          "id": "shamara-roper-portfolio-photo-4854e572-e9ae-4a70-af79-ab3d3efa16c4",
+          "url": "/portfolio-photos/shamara-roper-7e4bae0f-a282-4d2a-8a0c-35a5019a080f.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "shamara-roper-portfolio-photo-4eac5c54-e14f-48bc-b5e3-c2cb08131f31",
+          "url": "/portfolio-photos/shamara-roper-2a6010b1-2366-4c2e-baea-1cead48f4a6b.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "shamara-roper-portfolio-photo-9c13592f-0703-47a5-87eb-dee7c068a758",
+          "url": "/portfolio-photos/shamara-roper-90638eb7-5dfb-4829-b353-e482b2c9dfd8.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "shamara-roper-portfolio-photo-6261b2db-6671-4362-a47f-42fb6b15c376",
+          "url": "/portfolio-photos/shamara-roper-94f6eac2-3dee-42b6-b057-1c5e85567f46.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "hairbyflo-x",
@@ -1794,7 +2566,8 @@
       "hairShopUrl": "https://www.hairbyflo.co.uk/category/all-products",
       "priceIncludesHair": true,
       "vendorId": "hairbyflo-x",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:08:51.653Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:08:51.653Z",
+      "photoSearchSkippedAt": "2026-08-23T23:41:38.994Z"
     },
     {
       "id": "hershairsuite",
@@ -1836,7 +2609,19 @@
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-07-31",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:09:27.128Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:09:27.128Z",
+      "portfolioPhotos": [
+        {
+          "id": "hershairsuite-portfolio-photo-a9f085b8-ba97-48a1-b3c2-90bf4152f1e0",
+          "url": "/portfolio-photos/hershairsuite-ca279859-1dc4-4a5b-a3e7-e9fe2ffa82d4.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "hershairsuite-portfolio-photo-71584e8a-c86a-4db2-b97d-c5c6cd55e779",
+          "url": "/portfolio-photos/hershairsuite-371ab850-6294-439d-81f6-97c4376e9a0f.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "cotildascreation",
@@ -1892,7 +2677,28 @@
       "parkingAvailable": false,
       "customFilters": {},
       "updatedAt": "2026-08-22",
-      "portfolioPhotos": [],
+      "portfolioPhotos": [
+        {
+          "id": "cotildascreation-portfolio-photo-ae4a6ce1-4c9d-406e-be04-ed85251bb5ca",
+          "url": "/portfolio-photos/cotildascreation-60fda083-5429-4d59-a506-365969adc261.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "cotildascreation-portfolio-photo-b70b36e0-7097-4652-91ee-59969034c611",
+          "url": "/portfolio-photos/cotildascreation-65c58b5f-e5cb-4a33-9918-4588ba0a475e.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "cotildascreation-portfolio-photo-5d8b18e8-7f25-46c1-b017-7c807705ce8f",
+          "url": "/portfolio-photos/cotildascreation-5d74506d-528d-4743-9057-cc2a7e827054.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "cotildascreation-portfolio-photo-9dade456-9dc7-46c8-be9e-ff0b5d8e4a4c",
+          "url": "/portfolio-photos/cotildascreation-bd897fa9-945d-4df0-92e4-824f8cf277c8.jpg",
+          "source": "google-image-search"
+        }
+      ],
       "portfolioPhotosCheckedAt": "2026-08-20T17:10:32.708Z",
       "hairShopUrl": "https://cotildascreation.squarespace.com/shop",
       "sellsHairSeparately": true
@@ -2008,7 +2814,14 @@
       "parkingAvailable": false,
       "customFilters": {},
       "updatedAt": "2026-07-31",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:11:26.259Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:11:26.259Z",
+      "portfolioPhotos": [
+        {
+          "id": "ab-parlour-portfolio-photo-16e0cd65-e72e-49dc-888c-e9a9d944957e",
+          "url": "/portfolio-photos/ab-parlour-7f32fb6c-087d-45bb-a21a-1a5ad24a3d11.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "paulasparlourr",
@@ -2098,53 +2911,24 @@
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-07-31",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:11:53.369Z"
-    },
-    {
-      "id": "kumikreates",
-      "name": "KumiKreates",
-      "areaId": "north",
-      "areaLabel": "North London",
-      "neighbourhood": "North London London",
-      "postcode": "",
-      "bookingPlatform": "Direct website",
-      "bookingUrl": "https://kumikreates.as.me/schedule/031b886e",
-      "instagramUrl": "https://www.instagram.com/kumikreates/",
-      "tiktokUrl": "https://www.tiktok.com/@ihsginaa/video/7667238290973576470",
-      "addedVia": "Manual discovery",
-      "discoverySource": "Manual search",
-      "services": [
-        "Wig install (frontal / closure)",
-        "Frontal ponytail / bun",
-        "Traditional sew-in / leave out",
-        "Closure sew-in / closure behind the hairline",
-        "Flipover / Versatile sew-in",
-        "Custom wig"
-      ],
-      "priceBand": "££",
-      "servicePriceBand": "££",
-      "packagePriceBand": "",
-      "priceIncludesHair": false,
-      "priceComparisonMode": "service-only",
-      "priceSource": "auto",
-      "priceEvidence": [
-        "Wig install (frontal / closure) - (per wig install stylist roundup video) - Wig install (frontal / closure) - £110 (per wig install stylist roundup video)"
-      ],
-      "priceCheckedAt": "2026-07-31T16:08:25.315Z",
-      "priceUpdatedAt": "2026-07-31T16:08:25.315Z",
-      "priceConfidence": "manual",
-      "summary": "Admin draft created from stylist intake.",
-      "source": "manual",
-      "evidence": [
-        "Submitted link: https://www.instagram.com/kumikreates/",
-        "Source: https://www.tiktok.com/@ihsginaa/video/7667238290973576470 (£110, Islington)"
-      ],
-      "googlePlaceId": null,
-      "googleReviewCount": 0,
-      "googleMapsUri": "",
-      "googleMatchConfidence": "no-match",
-      "googleCheckedAt": "2026-07-31",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:12:59.724Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:11:53.369Z",
+      "portfolioPhotos": [
+        {
+          "id": "mkk-lux-portfolio-photo-63599584-3629-434d-8611-da0b64a0e454",
+          "url": "/portfolio-photos/mkk-lux-b0623491-79c3-48de-ad28-f61d447e2c5b.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "mkk-lux-portfolio-photo-504a635b-014d-4346-8a24-a5e1f2cd51be",
+          "url": "/portfolio-photos/mkk-lux-fc4ff069-6570-4501-9475-6542667987f9.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "mkk-lux-portfolio-photo-a04ba04d-4606-47f9-8f9f-f3d11f521c47",
+          "url": "/portfolio-photos/mkk-lux-25b01e10-32c7-425a-9611-11ecfdd82595.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "thelacedwayuk",
@@ -2186,7 +2970,20 @@
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-07-31",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:14:01.428Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:14:01.428Z",
+      "portfolioPhotos": [
+        {
+          "id": "thelacedwayuk-portfolio-photo-50a49ed8-a3fd-46b7-846d-5263a2a5a346",
+          "url": "/portfolio-photos/thelacedwayuk-c738a0be-6ae3-4eb1-9c0f-64c4241b4246.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "thelacedwayuk-portfolio-photo-679197d0-057c-44ec-b371-655e98b1afc1",
+          "url": "/portfolio-photos/thelacedwayuk-5bcb0298-d1d6-405f-8ed1-1c086b100623.jpg",
+          "source": "google-image-search"
+        }
+      ],
+      "updatedAt": "2026-08-23"
     },
     {
       "id": "bysephorauk",
@@ -2228,7 +3025,25 @@
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-07-31",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:14:05.657Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:14:05.657Z",
+      "portfolioPhotos": [
+        {
+          "id": "bysephorauk-portfolio-photo-5f1a97b3-0e9c-47c9-b066-e25be842d61f",
+          "url": "/portfolio-photos/bysephorauk-d6334251-23ac-4bfc-8bfd-68b00018bec6.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "bysephorauk-portfolio-photo-f93e38b6-0022-45c0-a7b2-b4f1062fc75c",
+          "url": "/portfolio-photos/bysephorauk-3031bfed-da39-412f-b80b-58422bb7fe63.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "bysephorauk-portfolio-photo-cc43cfd8-723d-4bc4-8781-b0d56fc53c89",
+          "url": "/portfolio-photos/bysephorauk-f8f09bb4-d653-4ec6-81cc-ee92abc3c81b.jpg",
+          "source": "google-image-search"
+        }
+      ],
+      "updatedAt": "2026-08-23"
     },
     {
       "id": "prihairuk",
@@ -2270,7 +3085,24 @@
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-07-31",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:14:09.781Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:14:09.781Z",
+      "portfolioPhotos": [
+        {
+          "id": "prihairuk-portfolio-photo-e83429ad-7d18-4d17-a284-42b22988409a",
+          "url": "/portfolio-photos/prihairuk-99d5c51c-3ac5-4008-8d5b-a26455cf7044.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "prihairuk-portfolio-photo-90112627-b58d-4b76-8b39-0fa1a660ebd8",
+          "url": "/portfolio-photos/prihairuk-2966dc75-fc86-4746-8f56-666317ae676a.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "prihairuk-portfolio-photo-9283ef54-0524-48aa-90b1-14bb8f3933a8",
+          "url": "/portfolio-photos/prihairuk-27453a74-495c-41ea-95df-2d2f4e242f8d.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "abhairuk",
@@ -2314,7 +3146,30 @@
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-07-31",
       "parkingAvailable": true,
-      "portfolioPhotosCheckedAt": "2026-08-20T17:14:27.591Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:14:27.591Z",
+      "portfolioPhotos": [
+        {
+          "id": "abhairuk-portfolio-photo-8ddf6629-8dee-4e35-af35-cb17ed7b69e5",
+          "url": "/portfolio-photos/abhairuk-52238f04-3a74-4f61-9504-16edea4322a0.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "abhairuk-portfolio-photo-c0a7afb5-8dbc-4bbf-8764-06816fdb1e04",
+          "url": "/portfolio-photos/abhairuk-6443a6cc-ab4b-430c-822f-6beaaac37f95.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "abhairuk-portfolio-photo-df50bb86-3aa2-471e-932a-75b61eecfef5",
+          "url": "/portfolio-photos/abhairuk-5d7ada21-d206-49b4-afda-91f9d027d3af.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "abhairuk-portfolio-photo-ab372c02-37e5-438c-a6b8-19b08e62d16c",
+          "url": "/portfolio-photos/abhairuk-fcabff91-9531-4dfe-8e14-ba2726d05059.jpg",
+          "source": "google-image-search"
+        }
+      ],
+      "updatedAt": "2026-08-24"
     },
     {
       "id": "hairbycc",
@@ -2357,7 +3212,24 @@
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-07-31",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:15:39.484Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:15:39.484Z",
+      "portfolioPhotos": [
+        {
+          "id": "hairbycc-portfolio-photo-84ce1df3-5c16-45f4-85f3-ce34434b29c8",
+          "url": "/portfolio-photos/hairbycc-d084384f-8a66-4c34-82b6-b6cbc524569c.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "hairbycc-portfolio-photo-da3b85df-b103-424d-85a3-c409f12d2eaa",
+          "url": "/portfolio-photos/hairbycc-fabffbb4-b2c5-4d9c-acda-e4dd7af2e4b5.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "hairbycc-portfolio-photo-795fdf18-3d00-441e-be06-2b0d559510c1",
+          "url": "/portfolio-photos/hairbycc-39cf5807-337b-4b0a-842a-b7ba3a1bce33.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "lzlaced",
@@ -2409,7 +3281,13 @@
       "parkingAvailable": false,
       "customFilters": {},
       "updatedAt": "2026-08-22",
-      "portfolioPhotos": [],
+      "portfolioPhotos": [
+        {
+          "id": "lzlaced-portfolio-photo-a2f37fd6-f81e-4811-b3fc-028057e41f53",
+          "url": "/portfolio-photos/lzlaced-a7c90a7d-0884-4fde-b1cc-61813f5cc7c9.jpg",
+          "source": "google-image-search"
+        }
+      ],
       "portfolioPhotosCheckedAt": "2026-08-20T17:16:10.311Z"
     },
     {
@@ -2453,7 +3331,24 @@
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-07-31",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:17:05.821Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:17:05.821Z",
+      "portfolioPhotos": [
+        {
+          "id": "josiestouch-portfolio-photo-384fc552-6bfb-4170-ab88-a47f5322af25",
+          "url": "/portfolio-photos/josiestouch-02f4360c-b9a2-4acd-9aea-0edb645e2890.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "josiestouch-portfolio-photo-0f2ffa38-a3b2-4846-91fe-66f50be52900",
+          "url": "/portfolio-photos/josiestouch-0a436783-3438-4176-8d6d-a0466b707e92.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "josiestouch-portfolio-photo-2373354c-8f63-4173-8416-af2085012c0e",
+          "url": "/portfolio-photos/josiestouch-70a35627-88c0-45c9-9b7f-eceeaa68708e.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "layere",
@@ -2497,7 +3392,24 @@
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-07-31",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:17:13.527Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:17:13.527Z",
+      "portfolioPhotos": [
+        {
+          "id": "layere-portfolio-photo-f300c0a8-2207-49e3-98ef-d7d633f9a754",
+          "url": "/portfolio-photos/layere-d6e324f0-e848-4e41-8d0f-cc575da8adb1.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "layere-portfolio-photo-60e99219-4e7c-4541-b44f-b7d5c5d85ac4",
+          "url": "/portfolio-photos/layere-b95ab684-4a45-4980-81af-7d11b176ff85.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "layere-portfolio-photo-d859aafc-b1a9-48eb-ad8d-0fbf6d7b5ff7",
+          "url": "/portfolio-photos/layere-97745e57-7db1-41ba-8216-d15c43df6213.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "bm-the-stylist",
@@ -2539,7 +3451,19 @@
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-07-31",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:18:04.018Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:18:04.018Z",
+      "portfolioPhotos": [
+        {
+          "id": "bm-the-stylist-portfolio-photo-4ebcdad9-c01f-4d19-8da7-dd80f65076e5",
+          "url": "/portfolio-photos/bm-the-stylist-27e1ca29-067e-4413-96f6-90f2d76b4ac3.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "bm-the-stylist-portfolio-photo-1ef74ee6-1a0d-42be-82d8-6b4ff033754a",
+          "url": "/portfolio-photos/bm-the-stylist-df6fccf7-c9a9-44c5-a836-d5d8c1a8d9d8.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "bbukkstheebrand",
@@ -2624,7 +3548,14 @@
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-07-31",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:18:55.747Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:18:55.747Z",
+      "portfolioPhotos": [
+        {
+          "id": "laidbydt-portfolio-photo-1ef7a7d5-0c3c-47f8-9fb9-9d0a150cde9e",
+          "url": "/portfolio-photos/laidbydt-8ad652a9-9f8e-4fd7-86f7-3e70f8e3a27c.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "marnshairuk",
@@ -2666,7 +3597,24 @@
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-07-31",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:20:04.080Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:20:04.080Z",
+      "portfolioPhotos": [
+        {
+          "id": "marnshairuk-portfolio-photo-278f1548-eabe-4907-8542-6c49ef64098d",
+          "url": "/portfolio-photos/marnshairuk-bcb5d16f-10aa-4ee5-93b1-fc6e3cb46ec2.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "marnshairuk-portfolio-photo-98521cc7-84f7-438d-ba17-f013601b664f",
+          "url": "/portfolio-photos/marnshairuk-fa796f4a-efde-4f2d-b250-0d6b546822bf.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "marnshairuk-portfolio-photo-371062a7-927f-4919-9fac-de3c2f96e07d",
+          "url": "/portfolio-photos/marnshairuk-f4f9c6ba-2bf6-44ab-a9ac-965630049d9c.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "hair-by-jkay",
@@ -2721,7 +3669,24 @@
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-07-31",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:20:39.639Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:20:39.639Z",
+      "portfolioPhotos": [
+        {
+          "id": "hair-by-jkay-portfolio-photo-62ac0dd3-7081-4784-bad8-c90f55854528",
+          "url": "/portfolio-photos/hair-by-jkay-3f627ffb-7f4c-4ff6-ae2a-390e0170936d.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "hair-by-jkay-portfolio-photo-d3e67ca5-a7b6-426d-899f-50cfaa0b3031",
+          "url": "/portfolio-photos/hair-by-jkay-768568d8-27ca-4dbc-9198-c2b87ddc1c8c.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "hair-by-jkay-portfolio-photo-4f40d3b2-dd09-40b1-ac12-a8b737956666",
+          "url": "/portfolio-photos/hair-by-jkay-c2c2a079-82c4-4ee4-a7d5-1b38aaeb2baf.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "adeotistyles",
@@ -2851,7 +3816,34 @@
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-07-31",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:21:38.606Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:21:38.606Z",
+      "portfolioPhotos": [
+        {
+          "id": "the-tia-taj-portfolio-photo-11b6951d-d3c7-4c97-bfc8-8f850d262c9c",
+          "url": "/portfolio-photos/the-tia-taj-4a5d5418-dfeb-41e3-9c21-0da9737c0f41.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "the-tia-taj-portfolio-photo-3e1796da-2c64-4782-b9b4-9a9bcb11f200",
+          "url": "/portfolio-photos/the-tia-taj-f94d9335-c95e-4903-bf69-7d168a181b95.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "the-tia-taj-portfolio-photo-5217b6fe-f458-46f3-8e5f-159477598311",
+          "url": "/portfolio-photos/the-tia-taj-cadf599c-fd5a-4c78-8022-a1501c6b089a.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "the-tia-taj-portfolio-photo-caf1c28e-f31b-4994-a9d0-91518349f056",
+          "url": "/portfolio-photos/the-tia-taj-88ff19c3-fb8c-4a26-8fdf-8e02a4577d37.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "the-tia-taj-portfolio-photo-120b6078-0cf9-4ca3-a616-838059e659ce",
+          "url": "/portfolio-photos/the-tia-taj-c0a2046d-c96a-4d11-b2f7-b3174776d277.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "rshairuk",
@@ -2872,9 +3864,9 @@
         "Custom wig"
       ],
       "priceBand": "££",
-      "servicePriceBand": "££",
+      "servicePriceBand": "",
       "packagePriceBand": "",
-      "priceIncludesHair": true,
+      "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
       "priceSource": "auto",
       "priceEvidence": [
@@ -2902,14 +3894,14 @@
       "lgbtqFriendly": false,
       "parkingAvailable": false,
       "customFilters": {},
-      "updatedAt": "2026-07-31",
+      "updatedAt": "2026-08-24",
       "sellsHairSeparately": true,
       "hairShopUrl": "https://www.rshairuk.co.uk/",
       "vendorId": "rshairuk",
       "portfolioPhotos": [
         {
           "id": "rshairuk-portfolio-photo-0",
-          "url": "/portfolio-photos/rshairuk-1.jpg",
+          "url": "/portfolio-photos/rshairuk-75ac8cb8-c473-4d4d-b5b0-b6eee77b0e03.jpg",
           "source": "website"
         },
         {
@@ -2918,7 +3910,9 @@
           "source": "website"
         }
       ],
-      "portfolioPhotosCheckedAt": "2026-08-20T17:22:25.499Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:22:25.499Z",
+      "googleDisplayName": "",
+      "googleFormattedAddress": ""
     },
     {
       "id": "precioushair-co",
@@ -2979,7 +3973,44 @@
       "sellsHairSeparately": true,
       "hairShopUrl": "https://precioushaircompany.com/collections",
       "vendorId": "precioushair-co",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:23:26.459Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:23:26.459Z",
+      "portfolioPhotos": [
+        {
+          "id": "precioushair-co-portfolio-photo-08c7e873-c4e5-461a-9c69-d9f9580b2c10",
+          "url": "/portfolio-photos/precioushair-co-1671f60b-b44c-4223-9996-49176c1d1b95.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "precioushair-co-portfolio-photo-a944e19c-70ac-4184-9b3e-e3783013613a",
+          "url": "/portfolio-photos/precioushair-co-0bf4ccde-9835-45e1-a090-eb32de4ee925.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "precioushair-co-portfolio-photo-27671faa-9404-43e2-b81c-da502ee6d38d",
+          "url": "/portfolio-photos/precioushair-co-fe75e0ac-e249-4176-9229-307fab17cd90.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "precioushair-co-portfolio-photo-efa3019c-7a4a-4cd4-9b5f-826de094a34c",
+          "url": "/portfolio-photos/precioushair-co-976c35ac-362d-470b-bc67-95e6379617a6.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "precioushair-co-portfolio-photo-e78c8cd1-5541-435d-b4bd-6311f935db67",
+          "url": "/portfolio-photos/precioushair-co-c9abc1ad-f647-4fd9-82f5-18b2371da6a5.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "precioushair-co-portfolio-photo-a4e14171-3cb8-4b71-9a51-8475478cfadf",
+          "url": "/portfolio-photos/precioushair-co-754fa20b-0dea-4dbc-bd10-8ac59da2f9f3.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "precioushair-co-portfolio-photo-43e0c52b-ffe8-4348-b14b-df9b6783308e",
+          "url": "/portfolio-photos/precioushair-co-0a26363b-a427-4d7a-9999-fa91607e99d4.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "fhairuk",
@@ -3024,7 +4055,24 @@
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-07-31",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:23:44.287Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:23:44.287Z",
+      "portfolioPhotos": [
+        {
+          "id": "fhairuk-portfolio-photo-f580bb06-14a3-4006-8733-f2eb3af37e12",
+          "url": "/portfolio-photos/fhairuk-0e40a521-39d9-44ff-9098-b3d12ce5b8c9.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "fhairuk-portfolio-photo-40071c20-bd3c-4a5c-b8ca-9a4fc4310c51",
+          "url": "/portfolio-photos/fhairuk-1f5bf394-81b9-439e-8571-0594500559ed.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "fhairuk-portfolio-photo-7af85da7-fcd4-4090-9239-307078109af9",
+          "url": "/portfolio-photos/fhairuk-420b134c-bc29-44bb-a254-290597892e1e.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "stvcksstyles",
@@ -3073,7 +4121,19 @@
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-07-31",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:23:56.478Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:23:56.478Z",
+      "portfolioPhotos": [
+        {
+          "id": "stvcksstyles-portfolio-photo-db784f38-b3b6-4b74-9750-61f722d4ecce",
+          "url": "/portfolio-photos/stvcksstyles-bfcf0007-69ed-4d36-a42d-410611646184.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "stvcksstyles-portfolio-photo-02356735-db6d-4151-be05-f01465f67084",
+          "url": "/portfolio-photos/stvcksstyles-34bf0f7b-bcfb-4c33-a641-492373864a65.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "jplaceroom",
@@ -3220,7 +4280,24 @@
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-07-31",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:24:43.337Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:24:43.337Z",
+      "portfolioPhotos": [
+        {
+          "id": "kutieshairuk-portfolio-photo-1584abda-931a-4b45-958f-2e35407484be",
+          "url": "/portfolio-photos/kutieshairuk-4f29671a-a01c-43f6-827f-7b03b6face3f.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "kutieshairuk-portfolio-photo-9dec73eb-fa86-4625-8c09-8315b34b6474",
+          "url": "/portfolio-photos/kutieshairuk-7cd61b6a-95e9-4804-84ad-4ff23c9a407f.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "kutieshairuk-portfolio-photo-f41eb130-cbb8-4b7c-bd7a-f563d7a48d62",
+          "url": "/portfolio-photos/kutieshairuk-3d685170-8b7a-44ec-8e01-06c78401ae2c.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "jnb-hair",
@@ -3268,7 +4345,25 @@
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-07-31",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:24:51.290Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:24:51.290Z",
+      "portfolioPhotos": [
+        {
+          "id": "jnb-hair-portfolio-photo-aed96e8f-80d2-4f58-89b6-28ba9c44e481",
+          "url": "/portfolio-photos/jnb-hair-f25df3c8-1ff3-4957-95f9-7bb12a0a5170.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "jnb-hair-portfolio-photo-a44631c7-4305-4dd6-8807-2fe4e49de50a",
+          "url": "/portfolio-photos/jnb-hair-9ba4b7aa-7ff9-4238-912c-e9de873316fe.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "jnb-hair-portfolio-photo-7c389d4b-8928-45fc-8e35-9e325e2ce556",
+          "url": "/portfolio-photos/jnb-hair-1ac8620f-1fe1-47d9-b41b-eb3b1a31472b.jpg",
+          "source": "google-image-search"
+        }
+      ],
+      "updatedAt": "2026-08-24"
     },
     {
       "id": "thelacegeek",
@@ -3316,7 +4411,24 @@
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-07-31",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:25:42.316Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:25:42.316Z",
+      "portfolioPhotos": [
+        {
+          "id": "thelacegeek-portfolio-photo-696f3b94-8a87-4337-a6f3-f1d3b2f1349e",
+          "url": "/portfolio-photos/thelacegeek-9f2bc8c7-645a-42a5-92bb-795c8c40d241.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "thelacegeek-portfolio-photo-8ff6e25d-e27a-4319-a597-ef4e9616d53b",
+          "url": "/portfolio-photos/thelacegeek-9e223df2-80fb-4e12-bd31-21d2656a803c.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "thelacegeek-portfolio-photo-edee0f73-a49e-4514-a657-aae45b65a086",
+          "url": "/portfolio-photos/thelacegeek-7ed45f50-bac3-4223-b957-d2850e67d7fd.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "nwwiggs",
@@ -3403,7 +4515,24 @@
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-07-31",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:26:36.278Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:26:36.278Z",
+      "portfolioPhotos": [
+        {
+          "id": "danhislays-portfolio-photo-d5904afe-f622-4fe3-8e3c-19e509663a8b",
+          "url": "/portfolio-photos/danhislays-abf98eda-1182-43e7-85a2-0a4f7ffeeeaf.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "danhislays-portfolio-photo-9f7abbd0-1539-42a1-8eea-353697b555b8",
+          "url": "/portfolio-photos/danhislays-a8018864-f0a2-471d-8e23-02a652c76892.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "danhislays-portfolio-photo-36c5d4cf-dd4f-40f8-90b6-cc307c010af2",
+          "url": "/portfolio-photos/danhislays-df7e5607-2115-4597-892a-563e233ed7a7.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "herstyles-uk",
@@ -3492,7 +4621,24 @@
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-07-31",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:26:52.819Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:26:52.819Z",
+      "portfolioPhotos": [
+        {
+          "id": "chihair-uk-portfolio-photo-ea427820-f924-4817-9dd7-81aa1f5b3fa2",
+          "url": "/portfolio-photos/chihair-uk-6eb09931-ba05-45ed-a40e-1a5f7b9e8c8c.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "chihair-uk-portfolio-photo-9e048054-4b4a-4276-aa35-db8079d2e46a",
+          "url": "/portfolio-photos/chihair-uk-ec0f8aa6-ad64-47d2-9170-0d9835652fb6.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "chihair-uk-portfolio-photo-17f630db-65be-4721-854f-c35e22289104",
+          "url": "/portfolio-photos/chihair-uk-a74143f1-5dcf-4c8b-b28a-5f441286aecc.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "hermshair",
@@ -3515,10 +4661,10 @@
         "Frontal ponytail / bun"
       ],
       "priceBand": "£",
-      "servicePriceBand": "£",
+      "servicePriceBand": "",
       "packagePriceBand": "",
-      "priceIncludesHair": false,
-      "priceComparisonMode": "service-only",
+      "priceIncludesHair": true,
+      "priceComparisonMode": "",
       "priceSource": "auto",
       "priceEvidence": [
         "Wig install (frontal / closure) - (per wig install stylist roundup video) - Wig install (frontal / closure) - £90 (per wig install stylist roundup video)"
@@ -3537,7 +4683,37 @@
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-07-31",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:27:07.781Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:27:07.781Z",
+      "portfolioPhotos": [
+        {
+          "id": "hermshair-portfolio-photo-7bc32f61-7a4c-4eb7-a661-10c917b3a555",
+          "url": "/portfolio-photos/hermshair-d89856ce-2a78-416a-928b-29e9adf74cf5.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "hermshair-portfolio-photo-ca23258f-34f9-4e61-9824-155f959577e7",
+          "url": "/portfolio-photos/hermshair-063f29f9-5cb0-427a-a79f-ddaa494ecf71.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "hermshair-portfolio-photo-89b20aae-c8ae-4f7d-aabb-39bd62b29f05",
+          "url": "/portfolio-photos/hermshair-42a6bcbf-889c-4799-8ebb-f6cb579f25a3.jpg",
+          "source": "google-image-search"
+        }
+      ],
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": false,
+      "customFilters": {},
+      "updatedAt": "2026-08-24"
     },
     {
       "id": "debslaidit",
@@ -3579,7 +4755,19 @@
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-07-31",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:27:30.861Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:27:30.861Z",
+      "portfolioPhotos": [
+        {
+          "id": "debslaidit-portfolio-photo-d4607420-70cf-4515-b02e-b4b31ec89be4",
+          "url": "/portfolio-photos/debslaidit-ee89c77e-2779-46b7-8284-b8722bb2ae8a.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "debslaidit-portfolio-photo-3bfbb36b-05b9-4fbf-a0f6-78ee414c0b36",
+          "url": "/portfolio-photos/debslaidit-d82187cf-987c-4e31-868d-e865dea3043f.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "bhloungee",
@@ -3722,7 +4910,25 @@
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-07-31",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:29:57.553Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:29:57.553Z",
+      "portfolioPhotos": [
+        {
+          "id": "lace-clinique-portfolio-photo-9815ebb6-8e43-4848-88e3-30c623713257",
+          "url": "/portfolio-photos/lace-clinique-45354a0c-8260-4040-b252-c89aa80f3a85.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "lace-clinique-portfolio-photo-f97683e0-83d5-4976-9aad-f72996a24071",
+          "url": "/portfolio-photos/lace-clinique-54283bf7-c1e1-4b2f-862d-dacd5af5674a.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "lace-clinique-portfolio-photo-76034c6c-f1da-4582-92bc-e7293ed5e202",
+          "url": "/portfolio-photos/lace-clinique-df66a3bb-7224-495f-95be-2099ed02c9dd.jpg",
+          "source": "google-image-search"
+        }
+      ],
+      "updatedAt": "2026-08-24"
     },
     {
       "id": "the-lace-goddess",
@@ -3809,7 +5015,24 @@
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-07-31",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:30:16.758Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:30:16.758Z",
+      "portfolioPhotos": [
+        {
+          "id": "rxlaced-portfolio-photo-7c48b92b-c469-49bd-8a7e-f1417ad042f9",
+          "url": "/portfolio-photos/rxlaced-e6e583c9-347d-49a3-a2fa-c3bb795feb09.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "rxlaced-portfolio-photo-cb8d946b-7aa0-44b0-98b7-652af4259883",
+          "url": "/portfolio-photos/rxlaced-61609155-5432-486e-bb56-6b91e16d039b.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "rxlaced-portfolio-photo-ca2716e4-28e3-414d-b622-5519ec85a124",
+          "url": "/portfolio-photos/rxlaced-6b7e11bd-94fc-4b8f-bb0a-107d0b53627a.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "tk-tresses",
@@ -3854,7 +5077,24 @@
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-07-31",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:30:17.061Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:30:17.061Z",
+      "portfolioPhotos": [
+        {
+          "id": "tk-tresses-portfolio-photo-e2111782-fae1-4eb8-a6e9-6278ee142cd3",
+          "url": "/portfolio-photos/tk-tresses-1ac5dab8-51be-4052-9791-8686b30035bf.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "tk-tresses-portfolio-photo-514be6b1-740b-48e2-992f-1a0377924647",
+          "url": "/portfolio-photos/tk-tresses-16fa8aeb-8ed4-4253-a1f9-c2c4c454050e.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "tk-tresses-portfolio-photo-360e9f1b-fd31-479e-b66d-18885bae01b0",
+          "url": "/portfolio-photos/tk-tresses-0b6b3c88-f883-4050-89ca-1d83c4e66c07.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "keira-s-label",
@@ -3898,7 +5138,24 @@
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-07-31",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:30:34.039Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:30:34.039Z",
+      "portfolioPhotos": [
+        {
+          "id": "keira-s-label-portfolio-photo-7846d923-e029-48af-9b6d-574003b87e03",
+          "url": "/portfolio-photos/keira-s-label-8461878b-f46e-4aa1-96d2-3b7f5466366d.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "keira-s-label-portfolio-photo-2933d7b0-c383-4ddf-8985-2799eb0a9d5a",
+          "url": "/portfolio-photos/keira-s-label-de4ae3ad-a279-43d4-a100-97f2a97d4225.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "keira-s-label-portfolio-photo-2f148fa4-0e0f-40c4-852c-7db7d7ac54f9",
+          "url": "/portfolio-photos/keira-s-label-3e9c4e6b-32fa-40e8-81f1-b3c6993a0786.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "theelaceroom",
@@ -3946,7 +5203,24 @@
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-07-31",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:31:16.239Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:31:16.239Z",
+      "portfolioPhotos": [
+        {
+          "id": "theelaceroom-portfolio-photo-992ea983-4038-4710-b823-27bb624e9d78",
+          "url": "/portfolio-photos/theelaceroom-556e88b2-dde9-4d64-ae30-a895601905bf.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "theelaceroom-portfolio-photo-ff4479eb-307e-45da-8fd7-db435b16bcd9",
+          "url": "/portfolio-photos/theelaceroom-c1173a38-b09d-415e-b110-f749452b7144.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "theelaceroom-portfolio-photo-9a9b9c56-c1b0-4879-b6ea-f3c2e3c828eb",
+          "url": "/portfolio-photos/theelaceroom-53f0b181-258f-44ed-b2af-afa5f14fcf80.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "animasallure",
@@ -3989,7 +5263,25 @@
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-07-31",
       "parkingAvailable": true,
-      "portfolioPhotosCheckedAt": "2026-08-20T17:31:24.719Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:31:24.719Z",
+      "portfolioPhotos": [
+        {
+          "id": "animasallure-portfolio-photo-3a1ea340-5908-4775-ba5d-2cc106a76237",
+          "url": "/portfolio-photos/animasallure-ba2f2fcd-c3af-427a-8e2c-4494f799b66f.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "animasallure-portfolio-photo-ec70ea16-279c-4657-a1ff-0ed12d8a66eb",
+          "url": "/portfolio-photos/animasallure-d77bbfe1-3223-4042-9992-ea597f505d4c.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "animasallure-portfolio-photo-9f708934-7910-415f-b350-0afa5389141e",
+          "url": "/portfolio-photos/animasallure-13424455-3136-402a-a993-5d0e385327e2.jpg",
+          "source": "google-image-search"
+        }
+      ],
+      "updatedAt": "2026-08-24"
     },
     {
       "id": "jesslacedituk",
@@ -4077,7 +5369,19 @@
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-07-31",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:31:56.475Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:31:56.475Z",
+      "portfolioPhotos": [
+        {
+          "id": "thee-ck-suite-portfolio-photo-3c3a2b0a-8e96-4694-995a-2897cab3d7e0",
+          "url": "/portfolio-photos/thee-ck-suite-25fcfccc-273f-46aa-ba2e-3be03564fd8d.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "thee-ck-suite-portfolio-photo-a3e8b91e-75fd-44af-9720-658aecbd52d6",
+          "url": "/portfolio-photos/thee-ck-suite-ec6072f0-f44d-43fb-ac41-86d846010f46.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "skbeauty-uk",
@@ -4135,7 +5439,14 @@
       "parkingAvailable": false,
       "customFilters": {},
       "updatedAt": "2026-07-31",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:32:36.549Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:32:36.549Z",
+      "portfolioPhotos": [
+        {
+          "id": "skbeauty-uk-portfolio-photo-7b388e7c-3a01-41af-9cdb-a33412a70c71",
+          "url": "/portfolio-photos/skbeauty-uk-3736321e-c2ff-43d9-a810-bb4e48d67702.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "24lookss",
@@ -4179,7 +5490,39 @@
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-07-31",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:33:21.825Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:33:21.825Z",
+      "portfolioPhotos": [
+        {
+          "id": "24lookss-portfolio-photo-603639f3-0277-4e9f-8f7b-1fe1f525586b",
+          "url": "/portfolio-photos/24lookss-85862171-e596-49ac-b06a-bb56c55a574f.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "24lookss-portfolio-photo-6bc9fc5f-69d2-4dfa-a9df-62cf070c06b2",
+          "url": "/portfolio-photos/24lookss-5a253192-9a86-4966-b2ec-1b7427dd570d.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "24lookss-portfolio-photo-d1f2718a-8b68-4539-a4cc-719122d14b8f",
+          "url": "/portfolio-photos/24lookss-eacc58ae-02e3-494d-8121-e9a552f934ae.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "24lookss-portfolio-photo-09af512a-43d8-4a15-9207-48f7f27aa194",
+          "url": "/portfolio-photos/24lookss-6ee489e2-342f-4897-a291-33681b1165d0.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "24lookss-portfolio-photo-ea63dda2-ecfa-46e5-9d7d-e27dc1116040",
+          "url": "/portfolio-photos/24lookss-7e4c8ac1-6416-43b4-bc6e-2088adf65854.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "24lookss-portfolio-photo-af5f4bea-145a-43d8-922f-57ab835f9362",
+          "url": "/portfolio-photos/24lookss-4d8338b5-9ae0-41b3-a03e-557e0ae34dfa.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "mira-styless",
@@ -4223,7 +5566,24 @@
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-07-31",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:33:46.843Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:33:46.843Z",
+      "portfolioPhotos": [
+        {
+          "id": "mira-styless-portfolio-photo-ee23daed-f628-41a0-b38b-1668d22abaef",
+          "url": "/portfolio-photos/mira-styless-136f6be2-ca86-472e-a70f-a62f0136e6c9.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "mira-styless-portfolio-photo-2d704021-6eed-4d93-beaa-7bf566a10184",
+          "url": "/portfolio-photos/mira-styless-30127322-7235-4536-9d85-7db44a1a413d.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "mira-styless-portfolio-photo-e54fa646-28fa-4d87-856b-bfee1c9b0eae",
+          "url": "/portfolio-photos/mira-styless-1bf3eae7-d550-41d6-b6a2-ca15ed3edef6.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "ji-styledit",
@@ -4316,7 +5676,24 @@
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-07-31",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:34:58.785Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:34:58.785Z",
+      "portfolioPhotos": [
+        {
+          "id": "donebydemz-portfolio-photo-064b6e76-9abe-47f5-9e1f-684cf62d5be9",
+          "url": "/portfolio-photos/donebydemz-193384c6-d838-410a-9606-5428f816ffde.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "donebydemz-portfolio-photo-b576cbbe-263a-4a09-adad-f90c1db1fadc",
+          "url": "/portfolio-photos/donebydemz-fbcc7909-5890-461b-91e3-16377907ea2c.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "donebydemz-portfolio-photo-eb68e65c-5a48-49cc-ad91-b5875b3941e1",
+          "url": "/portfolio-photos/donebydemz-94901708-ee73-4b47-a242-9c7db390a6ef.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "jjkbeautyldn",
@@ -4430,7 +5807,14 @@
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-07-31",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:36:48.450Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:36:48.450Z",
+      "portfolioPhotos": [
+        {
+          "id": "thejulztouch-portfolio-photo-9480c3a0-70b4-4a1b-b55c-c48c1ae43d52",
+          "url": "/portfolio-photos/thejulztouch-3847b860-ee71-4cbc-9c91-a45d66ad05e4.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "theeloungeuk",
@@ -4584,7 +5968,24 @@
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-07-31",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:38:02.209Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:38:02.209Z",
+      "portfolioPhotos": [
+        {
+          "id": "j-hair-uk-portfolio-photo-abee2b01-6247-4eb6-834d-f130a9784350",
+          "url": "/portfolio-photos/j-hair-uk-dd490ad5-3b57-4553-81ed-6f4ebf0cfeb5.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "j-hair-uk-portfolio-photo-9a010e85-d999-4d20-9b0c-15858c912209",
+          "url": "/portfolio-photos/j-hair-uk-24841743-00c0-42f8-83f5-d13902b00b41.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "j-hair-uk-portfolio-photo-a4d606b5-b540-4a04-b601-c6ba435c33e3",
+          "url": "/portfolio-photos/j-hair-uk-27377c64-5d06-49d1-bbcd-01ac2b150ebe.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "slaid-by-t",
@@ -4754,7 +6155,24 @@
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-07-31",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:39:17.228Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:39:17.228Z",
+      "portfolioPhotos": [
+        {
+          "id": "lhair-uk-portfolio-photo-a838bb3a-1e0a-405a-a888-9ad2b8192c58",
+          "url": "/portfolio-photos/lhair-uk-36a213ab-9903-4456-ac46-7c1debcf333f.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "lhair-uk-portfolio-photo-12c5ab79-bc83-49a3-a9b9-5abccf86a533",
+          "url": "/portfolio-photos/lhair-uk-ffa49826-01cd-450b-b622-24883f5d47f7.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "lhair-uk-portfolio-photo-4b08d258-2f21-4d0b-b677-952dd3f07cdc",
+          "url": "/portfolio-photos/lhair-uk-fdf8eeab-66fc-4f92-af2e-940e34056dbc.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "tressology-by-dca",
@@ -4799,7 +6217,24 @@
       "sellsHairSeparately": true,
       "hairShopUrl": "https://tressologybydca.com/collections/all",
       "vendorId": "tressology-by-dca",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:40:27.989Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:40:27.989Z",
+      "portfolioPhotos": [
+        {
+          "id": "tressology-by-dca-portfolio-photo-19e8dfe3-a202-47c8-81c0-b8dd35bdb567",
+          "url": "/portfolio-photos/tressology-by-dca-7059adf4-a465-4c2e-aab7-547c34ac2cf1.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "tressology-by-dca-portfolio-photo-ea00a097-e3cb-4545-a436-0bfd37ce2779",
+          "url": "/portfolio-photos/tressology-by-dca-428e2384-c937-4d72-aa77-91a3eb78d512.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "tressology-by-dca-portfolio-photo-b1a50037-5d1c-48c1-bf83-42c652b90c4f",
+          "url": "/portfolio-photos/tressology-by-dca-aba2e351-fabe-4db6-bf42-499bb6fe86ce.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "laced-out-uk",
@@ -4841,7 +6276,15 @@
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-07-31",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:40:30.458Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:40:30.458Z",
+      "portfolioPhotos": [
+        {
+          "id": "laced-out-uk-portfolio-photo-94f5e236-db5e-40c3-84c2-7d50144376a1",
+          "url": "/portfolio-photos/laced-out-uk-1d58a4bd-56d8-47e3-8677-ca87c832dc19.jpg",
+          "source": "google-image-search"
+        }
+      ],
+      "updatedAt": "2026-08-24"
     },
     {
       "id": "lba-uk",
@@ -4939,7 +6382,24 @@
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-07-31",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:41:00.257Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:41:00.257Z",
+      "portfolioPhotos": [
+        {
+          "id": "by-nya-asika-portfolio-photo-20ba9d19-e3a0-4efd-b2fa-0025c0821d2e",
+          "url": "/portfolio-photos/by-nya-asika-06c36774-adb9-4d7c-8b40-2c060dcf3f5a.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "by-nya-asika-portfolio-photo-91194abb-62be-49e3-969e-5b060ac86010",
+          "url": "/portfolio-photos/by-nya-asika-d96fcbd6-ade9-4e6e-9449-b6cc3b3c3cb5.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "by-nya-asika-portfolio-photo-ab5dd271-ffd5-4445-8032-a68aba3332f1",
+          "url": "/portfolio-photos/by-nya-asika-9a788c91-6855-4736-bf3c-cc2dcee601cc.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "kn-hair-lounge",
@@ -4985,7 +6445,14 @@
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-07-31",
       "parkingAvailable": true,
-      "portfolioPhotosCheckedAt": "2026-08-20T17:41:19.038Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:41:19.038Z",
+      "portfolioPhotos": [
+        {
+          "id": "kn-hair-lounge-portfolio-photo-85297f69-dd97-439e-9e77-2460fdbf9ae0",
+          "url": "/portfolio-photos/kn-hair-lounge-856454c9-65d2-4b33-938d-5b6b583951e7.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "peloamouruk",
@@ -5047,7 +6514,24 @@
       "parkingAvailable": false,
       "customFilters": {},
       "updatedAt": "2026-07-31",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:41:34.449Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:41:34.449Z",
+      "portfolioPhotos": [
+        {
+          "id": "peloamouruk-portfolio-photo-c366d7b1-3882-4495-83b1-deacd803bc11",
+          "url": "/portfolio-photos/peloamouruk-971a04c3-62c2-48d4-b166-4e3ef616f067.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "peloamouruk-portfolio-photo-00e223c0-9600-49d0-ad8a-520207fa0f54",
+          "url": "/portfolio-photos/peloamouruk-b937d85a-5bd4-410f-b07a-1c734006ad7a.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "peloamouruk-portfolio-photo-369230f5-dcd2-42d4-aefa-b9dae5d64714",
+          "url": "/portfolio-photos/peloamouruk-26d10020-c446-45fc-97c1-852815ac20d4.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "hair-by-simmi",
@@ -5090,7 +6574,19 @@
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-07-31",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:41:39.660Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:41:39.660Z",
+      "portfolioPhotos": [
+        {
+          "id": "hair-by-simmi-portfolio-photo-42848f04-006e-4ad5-b3e9-985ad9be8f92",
+          "url": "/portfolio-photos/hair-by-simmi-37bf2821-d722-4dc4-9063-83a95d1a3a89.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "hair-by-simmi-portfolio-photo-fc5ccd70-9354-42dd-8a57-68dadb02d475",
+          "url": "/portfolio-photos/hair-by-simmi-2659bc1a-f88b-4cd7-ae6f-739ddd525786.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "ak-styles-uk",
@@ -5136,7 +6632,24 @@
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-07-31",
       "parkingAvailable": true,
-      "portfolioPhotosCheckedAt": "2026-08-20T17:41:44.776Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:41:44.776Z",
+      "portfolioPhotos": [
+        {
+          "id": "ak-styles-uk-portfolio-photo-e7b4d5e5-e944-4c86-ba21-73204b56938f",
+          "url": "/portfolio-photos/ak-styles-uk-2546e6cf-8e7f-4fea-ac2b-ac4b9d20241f.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "ak-styles-uk-portfolio-photo-0276b3c9-e927-46d5-9199-b4428643fc6d",
+          "url": "/portfolio-photos/ak-styles-uk-e52c6978-c182-4325-bd69-d85f08a69515.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "ak-styles-uk-portfolio-photo-5fe41150-1afc-4c15-8a91-9ede3a71e572",
+          "url": "/portfolio-photos/ak-styles-uk-0dcc6447-3d22-42aa-b29f-ddeae1e710bb.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "db-styless",
@@ -5185,7 +6698,24 @@
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-07-31",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:42:21.348Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:42:21.348Z",
+      "portfolioPhotos": [
+        {
+          "id": "db-styless-portfolio-photo-f645d65b-7dd6-415b-9f31-c1cca7ce3622",
+          "url": "/portfolio-photos/db-styless-f73201c8-70f9-445f-a0f1-10ab63d83c67.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "db-styless-portfolio-photo-70239fba-a9ab-4f2c-9308-0d9e117a4bb0",
+          "url": "/portfolio-photos/db-styless-01c54465-c3df-42e3-8dc4-ef1cd9245995.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "db-styless-portfolio-photo-16990de4-49d8-4d18-aa8d-ffe47078f30f",
+          "url": "/portfolio-photos/db-styless-d780bade-9420-4472-8233-7de9c41954e0.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "slayed-by-dams",
@@ -5227,7 +6757,24 @@
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-07-31",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:43:17.926Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:43:17.926Z",
+      "portfolioPhotos": [
+        {
+          "id": "slayed-by-dams-portfolio-photo-4948f586-8790-4840-9b50-252ef8fd2bca",
+          "url": "/portfolio-photos/slayed-by-dams-e55d372a-a9a1-4916-a055-efd14257c4b3.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "slayed-by-dams-portfolio-photo-2f92001b-cf2d-46e2-b921-98eb0b15e862",
+          "url": "/portfolio-photos/slayed-by-dams-a15ed00e-f8f6-4546-bc4e-50dc2810390c.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "slayed-by-dams-portfolio-photo-590e5bd8-9336-43b3-917d-b6ae87ce06e1",
+          "url": "/portfolio-photos/slayed-by-dams-eeed3950-562a-4f31-a9d8-111e852775db.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "hause-of-hairr",
@@ -5286,8 +6833,30 @@
       "lgbtqFriendly": false,
       "parkingAvailable": false,
       "customFilters": {},
-      "updatedAt": "2026-07-31",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:43:39.273Z"
+      "updatedAt": "2026-08-24",
+      "portfolioPhotosCheckedAt": "2026-08-20T17:43:39.273Z",
+      "portfolioPhotos": [
+        {
+          "id": "hause-of-hairr-portfolio-photo-9cea1e0b-86ab-4e2d-927b-3d5ee184ea2d",
+          "url": "/portfolio-photos/hause-of-hairr-c4a6632d-1cf8-4a0e-afed-0b0b9fae5fb3.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "hause-of-hairr-portfolio-photo-635f06f1-b03e-4649-9587-a9e7c1cc73b7",
+          "url": "/portfolio-photos/hause-of-hairr-5f4c5091-bcbf-4997-8f64-4294d9e5ab22.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "hause-of-hairr-portfolio-photo-6591972d-f3c4-43ec-ac4a-308c585ced01",
+          "url": "/portfolio-photos/hause-of-hairr-06ad3255-5da0-469f-a6b6-67ab66109e85.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "hause-of-hairr-portfolio-photo-825ca2b1-c6a2-4097-9633-799d38e39217",
+          "url": "/portfolio-photos/hause-of-hairr-6bfcf289-9207-437b-a41c-23f82f0d2396.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "aslayed-uk",
@@ -5331,7 +6900,24 @@
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-07-31",
       "parkingAvailable": true,
-      "portfolioPhotosCheckedAt": "2026-08-20T17:43:42.030Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:43:42.030Z",
+      "portfolioPhotos": [
+        {
+          "id": "aslayed-uk-portfolio-photo-15cb181f-5a3e-48a6-954a-47c07e870c3d",
+          "url": "/portfolio-photos/aslayed-uk-b4a41d28-7e4d-4ba3-b0e2-8d2cafb069e9.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "aslayed-uk-portfolio-photo-6d0e571c-b078-4c2a-bf16-b72abedeaf54",
+          "url": "/portfolio-photos/aslayed-uk-94026e07-55c3-409a-851f-a13b7f3bf793.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "aslayed-uk-portfolio-photo-7fbaadcd-61e0-42b0-b0c5-ecf3007d5468",
+          "url": "/portfolio-photos/aslayed-uk-e6860ede-330f-4153-bba4-c367c47d7874.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "shanxslays",
@@ -5376,7 +6962,24 @@
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-07-31",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:44:27.572Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:44:27.572Z",
+      "portfolioPhotos": [
+        {
+          "id": "shanxslays-portfolio-photo-bbdef802-7113-442a-9c98-0f1894301133",
+          "url": "/portfolio-photos/shanxslays-012b0f2a-ca8e-4440-af5a-98809b753243.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "shanxslays-portfolio-photo-92769091-3479-44f9-9046-816f1fdfce7f",
+          "url": "/portfolio-photos/shanxslays-d02ad1e1-13b8-4899-b553-8d0ff4e34945.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "shanxslays-portfolio-photo-dee419e5-6ca8-4a99-b75d-9d8faec14e1f",
+          "url": "/portfolio-photos/shanxslays-5b042ccc-286b-418a-a554-b7cc23c535a6.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "laced-by-shy",
@@ -5417,7 +7020,19 @@
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-07-31",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:44:59.922Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:44:59.922Z",
+      "portfolioPhotos": [
+        {
+          "id": "laced-by-shy-portfolio-photo-f27a2864-5802-46ed-93b1-6c2b1f5252cc",
+          "url": "/portfolio-photos/laced-by-shy-d944fa6e-a9c3-4052-89be-9e8211505623.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "laced-by-shy-portfolio-photo-27845af2-6be0-41cc-a208-0d414bab3905",
+          "url": "/portfolio-photos/laced-by-shy-9b189543-2ebc-4979-81da-9d1e846a318d.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "hairrbykayy",
@@ -5468,7 +7083,24 @@
       "parkingAvailable": false,
       "customFilters": {},
       "updatedAt": "2026-07-31",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:45:04.165Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:45:04.165Z",
+      "portfolioPhotos": [
+        {
+          "id": "hairrbykayy-portfolio-photo-22504c9d-10a3-4cae-ac03-6cbaca416f75",
+          "url": "/portfolio-photos/hairrbykayy-8d0c692d-f15d-4841-b05f-1f865f358a3c.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "hairrbykayy-portfolio-photo-381e819b-104b-4f8c-b335-1e0cc60805e4",
+          "url": "/portfolio-photos/hairrbykayy-12231620-7798-4168-9176-e6c2ef7c5672.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "hairrbykayy-portfolio-photo-86afeee6-f0f9-47ea-9e9f-859533f449b6",
+          "url": "/portfolio-photos/hairrbykayy-a9877918-2d97-4ddd-bd72-f9089cb32a4b.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "flo-hairlounge",
@@ -5510,7 +7142,24 @@
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-07-31",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:45:08.114Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:45:08.114Z",
+      "portfolioPhotos": [
+        {
+          "id": "flo-hairlounge-portfolio-photo-f49ac668-6e3d-46cc-bf14-1ebeb94ee060",
+          "url": "/portfolio-photos/flo-hairlounge-5c182ba1-4dab-499e-a302-9d3de4e33a8a.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "flo-hairlounge-portfolio-photo-c5935bbf-4182-4ce0-b383-8cdf4d9e04b7",
+          "url": "/portfolio-photos/flo-hairlounge-b5d103f9-2a12-4d5b-81dc-ff66f84549da.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "flo-hairlounge-portfolio-photo-5fa89d45-adc0-45d1-a339-03e7cb106f32",
+          "url": "/portfolio-photos/flo-hairlounge-dd78d9f2-bfca-4ffb-8cb2-7ac868c14668.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "the-maneover",
@@ -5552,7 +7201,24 @@
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-07-31",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:45:26.245Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:45:26.245Z",
+      "portfolioPhotos": [
+        {
+          "id": "the-maneover-portfolio-photo-aafb10fa-7a2b-4494-b75e-57f00a9e30aa",
+          "url": "/portfolio-photos/the-maneover-452f0d3d-f1b6-4e26-b23f-cbe0b29fddb0.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "the-maneover-portfolio-photo-1ddd35be-0794-4ca9-bea7-81f8e10f1a78",
+          "url": "/portfolio-photos/the-maneover-c6c3a062-bb3a-450e-87d9-6968f678ab7b.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "the-maneover-portfolio-photo-112102d1-12c7-4928-8694-0e8a204e4105",
+          "url": "/portfolio-photos/the-maneover-ef5d0ff0-f4af-4245-936e-d30c6acb6e98.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "slayed-by-dz",
@@ -5604,7 +7270,25 @@
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-07-31",
       "parkingAvailable": true,
-      "portfolioPhotosCheckedAt": "2026-08-20T17:45:35.187Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:45:35.187Z",
+      "portfolioPhotos": [
+        {
+          "id": "slayed-by-dz-portfolio-photo-e896c2c3-1f3c-4d3b-b9c3-2f95b3417fb0",
+          "url": "/portfolio-photos/slayed-by-dz-3ccd2f7e-5284-451d-a13c-aad41777ef43.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "slayed-by-dz-portfolio-photo-490cb85e-a686-490b-852d-26ee89906c90",
+          "url": "/portfolio-photos/slayed-by-dz-4ce40aa2-c7d4-40b9-8c8f-7b3fd5593f48.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "slayed-by-dz-portfolio-photo-e2fa9e4d-213f-4bb0-ac52-7cd5a4615d61",
+          "url": "/portfolio-photos/slayed-by-dz-b0c89984-2e66-4db6-b17a-fa2777811fbe.jpg",
+          "source": "google-image-search"
+        }
+      ],
+      "updatedAt": "2026-08-24"
     },
     {
       "id": "rv-the-stylist",
@@ -5654,7 +7338,24 @@
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-07-31",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:46:01.817Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:46:01.817Z",
+      "portfolioPhotos": [
+        {
+          "id": "rv-the-stylist-portfolio-photo-0ce91dda-51d7-4b10-9e9d-979acc8b4561",
+          "url": "/portfolio-photos/rv-the-stylist-5e8b2f00-dc35-48ba-a983-f17018497828.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "rv-the-stylist-portfolio-photo-bcdf9fd6-3425-4ef5-b1aa-0b175794ab17",
+          "url": "/portfolio-photos/rv-the-stylist-33136c86-9a17-4d16-a988-e6df759fe257.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "rv-the-stylist-portfolio-photo-6cd9c1b0-8df2-4541-b920-3a879e7614b2",
+          "url": "/portfolio-photos/rv-the-stylist-d0b0e044-b330-4fc2-80e2-fcbb7fe6c610.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "tifah-s-touch",
@@ -5697,7 +7398,24 @@
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-07-31",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:46:15.689Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:46:15.689Z",
+      "portfolioPhotos": [
+        {
+          "id": "tifah-s-touch-portfolio-photo-3db37b9a-05c4-4704-b15c-dfee637a466d",
+          "url": "/portfolio-photos/tifah-s-touch-15cbfd1d-e2bd-42a5-88e8-33eb2365848a.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "tifah-s-touch-portfolio-photo-c10a74c5-c19d-41a6-9838-402e86d1f9e8",
+          "url": "/portfolio-photos/tifah-s-touch-ed68dc0e-a311-4f7b-a1bc-3eced8784aac.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "tifah-s-touch-portfolio-photo-9973ea61-05bd-4ad1-a727-02a3e6b27448",
+          "url": "/portfolio-photos/tifah-s-touch-fe6afb9c-27c9-4c65-871b-9035db71cf7a.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "the-lace-slayer",
@@ -5739,7 +7457,24 @@
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-07-31",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:46:26.825Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:46:26.825Z",
+      "portfolioPhotos": [
+        {
+          "id": "the-lace-slayer-portfolio-photo-441340c6-9605-4abc-8817-551c49d43db4",
+          "url": "/portfolio-photos/the-lace-slayer-c4bfe30a-0b79-4187-a40c-4054ebb29380.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "the-lace-slayer-portfolio-photo-09876e0f-fe14-4e84-9d35-8a54bb42559c",
+          "url": "/portfolio-photos/the-lace-slayer-ce7c16a9-01c1-48e1-aab7-f1f6d0277a80.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "the-lace-slayer-portfolio-photo-5cf40fc4-9b30-4fd3-8062-84196f31a91c",
+          "url": "/portfolio-photos/the-lace-slayer-756543a7-b520-4d09-834f-3a39b4eea416.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "atbstylesuk",
@@ -5788,7 +7523,19 @@
       "googleDisplayName": "atbstylesuk",
       "googleFormattedAddress": "101 Evans Rd, London SE6 1QH, UK",
       "googleCheckedAt": "2026-07-31",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:46:27.279Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:46:27.279Z",
+      "portfolioPhotos": [
+        {
+          "id": "atbstylesuk-portfolio-photo-83a01633-8e4c-493f-91e3-59b389c8ad26",
+          "url": "/portfolio-photos/atbstylesuk-4d1751ea-c932-49bd-a8c0-1c377d646b8f.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "atbstylesuk-portfolio-photo-939860ae-514b-4416-b0b9-722f6f23080e",
+          "url": "/portfolio-photos/atbstylesuk-d95c8cbe-c473-4821-8730-0a346b7e36a9.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "chiorahair",
@@ -5829,7 +7576,14 @@
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-07-31",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:46:32.513Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:46:32.513Z",
+      "portfolioPhotos": [
+        {
+          "id": "chiorahair-portfolio-photo-b8e87a1b-e0bd-4064-a78c-d283cca00939",
+          "url": "/portfolio-photos/chiorahair-798d6ad3-3024-427c-b33b-bd2c28231d8a.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "hair-by-jakelyn",
@@ -5871,7 +7625,29 @@
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-07-31",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:47:07.043Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:47:07.043Z",
+      "portfolioPhotos": [
+        {
+          "id": "hair-by-jakelyn-portfolio-photo-c4cd18eb-0199-4f09-8cab-eaca0f23bdd8",
+          "url": "/portfolio-photos/hair-by-jakelyn-665f2e5d-7842-4e29-b43c-3cd9ab95cb7e.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "hair-by-jakelyn-portfolio-photo-5aa3d9c9-ea7d-4ee5-96a8-d9f907beaddd",
+          "url": "/portfolio-photos/hair-by-jakelyn-5aa10d3b-0c5c-4e50-b778-157bb0490460.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "hair-by-jakelyn-portfolio-photo-73656b4b-74e9-4964-a3b1-15b7ade9ba85",
+          "url": "/portfolio-photos/hair-by-jakelyn-88670f82-f9ab-4207-b7e4-aeec9d7e03cf.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "hair-by-jakelyn-portfolio-photo-0262948d-b97c-4572-ad61-a16058eed121",
+          "url": "/portfolio-photos/hair-by-jakelyn-826d8464-77a2-44cd-9ba3-fa10a037a0f5.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "gg-hair-lounge",
@@ -5963,7 +7739,24 @@
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-07-31",
       "parkingAvailable": true,
-      "portfolioPhotosCheckedAt": "2026-08-20T17:48:21.285Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:48:21.285Z",
+      "portfolioPhotos": [
+        {
+          "id": "nelas-hair-uk-portfolio-photo-ecf04a9d-9061-4c14-852a-4ab28b7e9e66",
+          "url": "/portfolio-photos/nelas-hair-uk-198631fa-7ee4-46dc-bfa9-bfa25244a595.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "nelas-hair-uk-portfolio-photo-89e6af70-97df-47d3-9f12-dc460f17dc95",
+          "url": "/portfolio-photos/nelas-hair-uk-cdb39ee9-1951-4f0f-851d-62d7f142bc52.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "nelas-hair-uk-portfolio-photo-ddfa379b-66f4-4c89-91b6-617277e3bc98",
+          "url": "/portfolio-photos/nelas-hair-uk-241725cb-6397-43a9-9e57-ba2b5af5dfe0.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "beauty-by-the-bankz",
@@ -6148,7 +7941,24 @@
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-07-31",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:51:05.584Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:51:05.584Z",
+      "portfolioPhotos": [
+        {
+          "id": "the-ncl-touch-portfolio-photo-d11d9754-73d5-49d6-8b2d-cc5a43f88617",
+          "url": "/portfolio-photos/the-ncl-touch-60bc82da-8027-46b3-b59b-298057b576f5.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "the-ncl-touch-portfolio-photo-d847b68a-5deb-4406-af8c-99b2527bf42b",
+          "url": "/portfolio-photos/the-ncl-touch-b305f8f1-3f0c-41c0-b3c5-3fd797b9ff3c.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "the-ncl-touch-portfolio-photo-a0153274-878b-4b19-9e26-255071161ae9",
+          "url": "/portfolio-photos/the-ncl-touch-bdd33e07-3e59-48b3-87f6-b90b0272c4ee.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "etl-lounge",
@@ -6191,7 +8001,14 @@
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-07-31",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:51:31.367Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:51:31.367Z",
+      "portfolioPhotos": [
+        {
+          "id": "etl-lounge-portfolio-photo-efd294e4-9886-4c22-87e8-4c010e4dd283",
+          "url": "/portfolio-photos/etl-lounge-655ab45d-81c4-4849-8a97-dcca0f47c6df.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "thejen-experiencee",
@@ -6792,7 +8609,24 @@
       "parkingAvailable": false,
       "customFilters": {},
       "updatedAt": "2026-07-31",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:55:24.536Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:55:24.536Z",
+      "portfolioPhotos": [
+        {
+          "id": "byshardaemarie-portfolio-photo-81d5e40b-753b-4176-81a0-274d4d014ffb",
+          "url": "/portfolio-photos/byshardaemarie-24748867-9e78-4f0d-b0bf-6beb2aff57f4.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "byshardaemarie-portfolio-photo-f9a07ab9-8412-4a6b-a88c-334fe2f3f777",
+          "url": "/portfolio-photos/byshardaemarie-d25f2165-aa9b-47a0-be95-9ef5bb2588d0.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "byshardaemarie-portfolio-photo-f9a45a00-a24b-44cb-a29e-d35b60dcbae5",
+          "url": "/portfolio-photos/byshardaemarie-bc352e67-bdc1-4e16-9b21-8950bf8315eb.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "kemiahair-uk",
@@ -6940,7 +8774,24 @@
       "parkingAvailable": false,
       "customFilters": {},
       "updatedAt": "2026-07-31",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:55:40.940Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:55:40.940Z",
+      "portfolioPhotos": [
+        {
+          "id": "lacedauk-portfolio-photo-770d16ba-3c3f-44e7-909b-c025ecdd79af",
+          "url": "/portfolio-photos/lacedauk-c67119aa-5cec-4b44-976a-867ffdf5465a.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "lacedauk-portfolio-photo-cc4f6c1b-54c0-4ced-b2ef-65241218c8f7",
+          "url": "/portfolio-photos/lacedauk-5751e2af-4ce1-4a1a-af8e-26263a03e344.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "lacedauk-portfolio-photo-6c52792e-f603-4a92-ba07-1a736422307e",
+          "url": "/portfolio-photos/lacedauk-2bd6da4f-5bd5-42b5-b49b-365211072bd0.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "amz-hair-uk",
@@ -6990,8 +8841,15 @@
       "lgbtqFriendly": false,
       "parkingAvailable": false,
       "customFilters": {},
-      "updatedAt": "2026-07-31",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:55:55.286Z"
+      "updatedAt": "2026-08-24",
+      "portfolioPhotosCheckedAt": "2026-08-20T17:55:55.286Z",
+      "portfolioPhotos": [
+        {
+          "id": "amz-hair-uk-portfolio-photo-9877a772-5b99-4b41-9c11-840fb6abb540",
+          "url": "/portfolio-photos/amz-hair-uk-8807319f-cc36-45ec-b014-3ab0d959bec9.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "marnz-made",
@@ -7037,7 +8895,15 @@
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-07-31",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:56:40.391Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:56:40.391Z",
+      "portfolioPhotos": [
+        {
+          "id": "marnz-made-portfolio-photo-c84dca78-7f8e-4d3f-8c0f-6055eab8db7f",
+          "url": "/portfolio-photos/marnz-made-8ffd92a1-3139-49f6-9933-e014fa64e6d9.jpg",
+          "source": "google-image-search"
+        }
+      ],
+      "updatedAt": "2026-08-24"
     },
     {
       "id": "the-beauty-sector",
@@ -7147,7 +9013,7 @@
         "Closure sew-in / closure behind the hairline"
       ],
       "priceBand": "£",
-      "servicePriceBand": "£",
+      "servicePriceBand": "",
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
@@ -7169,7 +9035,27 @@
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-07-31",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:56:58.514Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:56:58.514Z",
+      "portfolioPhotos": [
+        {
+          "id": "aish-hair-uk-portfolio-photo-01387ae1-f52a-4bb9-bae0-dbde335c8288",
+          "url": "/portfolio-photos/aish-hair-uk-be6071d7-0c98-46b8-a9f4-764756996e30.jpg",
+          "source": "manual"
+        }
+      ],
+      "updatedAt": "2026-08-24",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": false,
+      "customFilters": {}
     },
     {
       "id": "kayhairuk",
@@ -7229,7 +9115,19 @@
       "parkingAvailable": false,
       "customFilters": {},
       "updatedAt": "2026-07-31",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:57:22.855Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:57:22.855Z",
+      "portfolioPhotos": [
+        {
+          "id": "kayhairuk-portfolio-photo-9d36f8ff-3d58-40d3-a289-1c63e72ff571",
+          "url": "/portfolio-photos/kayhairuk-613b0198-0d58-4c75-ae18-765d08d37fce.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "kayhairuk-portfolio-photo-f2e940ed-f011-414b-91b9-989696fdca84",
+          "url": "/portfolio-photos/kayhairuk-87e31c0f-4050-43f4-9329-31981b6a8d62.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "oclounge",
@@ -7284,7 +9182,19 @@
       "parkingAvailable": false,
       "customFilters": {},
       "updatedAt": "2026-07-31",
-      "portfolioPhotosCheckedAt": "2026-08-20T17:58:55.129Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T17:58:55.129Z",
+      "portfolioPhotos": [
+        {
+          "id": "oclounge-portfolio-photo-c152273b-7f0f-4a3a-a4dc-47a522793871",
+          "url": "/portfolio-photos/oclounge-d430e142-58ad-4aa4-906a-35e43462d441.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "oclounge-portfolio-photo-24b7f452-c898-496f-9c6b-9a580b606fa8",
+          "url": "/portfolio-photos/oclounge-446d276b-8e7e-4acd-9548-45485ed14908.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "msloungeuk",
@@ -7340,7 +9250,14 @@
       "parkingAvailable": false,
       "customFilters": {},
       "updatedAt": "2026-07-31",
-      "portfolioPhotosCheckedAt": "2026-08-20T18:00:01.407Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T18:00:01.407Z",
+      "portfolioPhotos": [
+        {
+          "id": "msloungeuk-portfolio-photo-eada1838-b1c2-4b7d-b231-f90f239203e0",
+          "url": "/portfolio-photos/msloungeuk-b9ee439d-f295-485c-becc-e1cf056362cb.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "phirasallure",
@@ -7393,7 +9310,14 @@
       "parkingAvailable": false,
       "customFilters": {},
       "updatedAt": "2026-07-31",
-      "portfolioPhotosCheckedAt": "2026-08-20T18:00:41.526Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T18:00:41.526Z",
+      "portfolioPhotos": [
+        {
+          "id": "phirasallure-portfolio-photo-7e6fadc2-c3e0-4b22-990e-a42848a224f9",
+          "url": "/portfolio-photos/phirasallure-34cca6da-d555-4301-a7c1-9a23c870e64a.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "herartistryy",
@@ -7447,7 +9371,13 @@
       "parkingAvailable": true,
       "customFilters": {},
       "updatedAt": "2026-08-23",
-      "portfolioPhotos": [],
+      "portfolioPhotos": [
+        {
+          "id": "herartistryy-portfolio-photo-e46c73e3-b805-4470-af5c-249785608ffc",
+          "url": "/portfolio-photos/herartistryy-a01aae0b-f30e-4f58-a9b4-8dbc5d5fd567.jpg",
+          "source": "google-image-search"
+        }
+      ],
       "portfolioPhotosCheckedAt": "2026-08-20T18:01:34.545Z"
     },
     {
@@ -7504,7 +9434,24 @@
       "parkingAvailable": false,
       "customFilters": {},
       "updatedAt": "2026-07-31",
-      "portfolioPhotosCheckedAt": "2026-08-20T18:01:34.854Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T18:01:34.854Z",
+      "portfolioPhotos": [
+        {
+          "id": "dbxhairuk-portfolio-photo-30535bbb-db7f-411c-aca7-a7d8c3eb4c3d",
+          "url": "/portfolio-photos/dbxhairuk-935e663c-be39-49f5-b56f-404ddadc7d8d.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "dbxhairuk-portfolio-photo-6a9787da-b552-4579-ae17-a869a02b1d07",
+          "url": "/portfolio-photos/dbxhairuk-37d1e10e-0c54-4b84-8769-9ecd2bd78990.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "dbxhairuk-portfolio-photo-dfcaf288-c226-4423-88a1-3304d907be17",
+          "url": "/portfolio-photos/dbxhairuk-56c268bf-39bd-4f27-a2b4-129a9b919ac8.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "dkhairuk",
@@ -7559,7 +9506,24 @@
       "parkingAvailable": false,
       "customFilters": {},
       "updatedAt": "2026-07-31",
-      "portfolioPhotosCheckedAt": "2026-08-20T18:01:35.156Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T18:01:35.156Z",
+      "portfolioPhotos": [
+        {
+          "id": "dkhairuk-portfolio-photo-a1065053-8612-45a8-a7c9-6506a412755d",
+          "url": "/portfolio-photos/dkhairuk-18343965-6e39-478d-aad0-d6787e73f9d4.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "dkhairuk-portfolio-photo-9a3e1c2e-48c0-462a-8150-5db1f3b2ff8d",
+          "url": "/portfolio-photos/dkhairuk-45ac1f3b-3d36-4364-abc1-75b7d2c50cbb.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "dkhairuk-portfolio-photo-90cc469e-17fc-4be0-83b9-a6173f617a77",
+          "url": "/portfolio-photos/dkhairuk-7d114e3f-f771-42e6-930b-74c01085cf06.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "cshairuk",
@@ -7619,7 +9583,29 @@
       "parkingAvailable": false,
       "customFilters": {},
       "updatedAt": "2026-07-31",
-      "portfolioPhotosCheckedAt": "2026-08-20T18:01:35.458Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T18:01:35.458Z",
+      "portfolioPhotos": [
+        {
+          "id": "cshairuk-portfolio-photo-9c5b39d9-dd33-43cb-ab5d-3f14c1b9e7f4",
+          "url": "/portfolio-photos/cshairuk-842a5b48-627c-45d3-b68c-1a70646bd700.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "cshairuk-portfolio-photo-2b811c4c-b617-4f12-8e71-423b75fd4d33",
+          "url": "/portfolio-photos/cshairuk-b33107ba-be26-4a44-972d-eee90b31cc2e.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "cshairuk-portfolio-photo-54806fbf-fd10-4121-898e-6d575ba12ddb",
+          "url": "/portfolio-photos/cshairuk-f1d1a875-9097-4a41-93a6-d296148933cc.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "cshairuk-portfolio-photo-6868793f-f53a-4d77-a925-7b7459a5d22a",
+          "url": "/portfolio-photos/cshairuk-597b07bb-cb47-41ca-8370-1f4099148d3f.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "dbh-loungeuk",
@@ -7671,7 +9657,24 @@
       "parkingAvailable": false,
       "customFilters": {},
       "updatedAt": "2026-07-31",
-      "portfolioPhotosCheckedAt": "2026-08-20T18:01:35.761Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T18:01:35.761Z",
+      "portfolioPhotos": [
+        {
+          "id": "dbh-loungeuk-portfolio-photo-e8aa6742-1543-4cb1-bb3e-24d7d684d8c3",
+          "url": "/portfolio-photos/dbh-loungeuk-2b10b1de-55a1-4ac6-826c-5a1433242e5b.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "dbh-loungeuk-portfolio-photo-865d8445-461a-4acc-a089-d0f984358396",
+          "url": "/portfolio-photos/dbh-loungeuk-5943e159-e8be-42f7-9373-fdfd91c56219.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "dbh-loungeuk-portfolio-photo-f74ae753-ef72-48e4-bfa6-15960a6ed376",
+          "url": "/portfolio-photos/dbh-loungeuk-3a25ec80-114c-476e-9180-d87f52cc284b.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "edslaysuk",
@@ -7726,7 +9729,24 @@
       "parkingAvailable": false,
       "customFilters": {},
       "updatedAt": "2026-07-31",
-      "portfolioPhotosCheckedAt": "2026-08-20T18:01:36.063Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T18:01:36.063Z",
+      "portfolioPhotos": [
+        {
+          "id": "edslaysuk-portfolio-photo-0b7cb4c9-87a7-48a6-aceb-1044dd965d00",
+          "url": "/portfolio-photos/edslaysuk-35c93850-8244-4323-9d4c-fdba4ac50f9c.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "edslaysuk-portfolio-photo-7ef9f264-5d9a-4ce3-95e4-d92ff94f4e1c",
+          "url": "/portfolio-photos/edslaysuk-11f607f3-94bd-4f0c-a898-4128032cbb70.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "edslaysuk-portfolio-photo-ba667688-88c8-4539-a521-79cfef581a47",
+          "url": "/portfolio-photos/edslaysuk-7b2f77b8-fb85-447d-8f9d-1d74abd0f405.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "hdastyless",
@@ -7781,7 +9801,19 @@
       "parkingAvailable": false,
       "customFilters": {},
       "updatedAt": "2026-07-31",
-      "portfolioPhotosCheckedAt": "2026-08-20T18:01:36.366Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T18:01:36.366Z",
+      "portfolioPhotos": [
+        {
+          "id": "hdastyless-portfolio-photo-bc51f502-0a39-48c5-bab9-a8ddb3a77d25",
+          "url": "/portfolio-photos/hdastyless-a02fb176-268e-4e2b-9e8a-d8a9ea48a709.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "hdastyless-portfolio-photo-ec5b8bcc-f147-450a-8e89-1f432d604920",
+          "url": "/portfolio-photos/hdastyless-130cc5ed-9595-4f8e-a506-41544aaaf935.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "26suite",
@@ -7826,7 +9858,19 @@
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-07-31",
-      "portfolioPhotosCheckedAt": "2026-08-20T18:01:36.668Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T18:01:36.668Z",
+      "portfolioPhotos": [
+        {
+          "id": "26suite-portfolio-photo-47bf73db-5b08-49b7-9ef4-6216416d00f1",
+          "url": "/portfolio-photos/26suite-dd48c5f6-a840-42f9-99df-3859fcfa9801.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "26suite-portfolio-photo-28473e9e-a741-4ab6-a484-2bb34d92add8",
+          "url": "/portfolio-photos/26suite-773b3371-5fd5-4069-9950-d7f63bca3137.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "flou-lace-diaries",
@@ -8306,7 +10350,24 @@
       "googleDisplayName": "New York Hair Design",
       "googleFormattedAddress": "2, Langham Parade, Duckett's Green, London N15 3ND, UK",
       "googleCheckedAt": "2026-07-31",
-      "portfolioPhotosCheckedAt": "2026-08-20T18:22:40.790Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T18:22:40.790Z",
+      "portfolioPhotos": [
+        {
+          "id": "new-york-hair-design-portfolio-photo-1f3c426a-2247-41c5-ba0b-af5fbfba0e37",
+          "url": "/portfolio-photos/new-york-hair-design-331cd0c7-534d-470c-986e-0c2b9cc9c1e2.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "new-york-hair-design-portfolio-photo-196fcb27-1514-45ee-b36b-3c3c53abd69d",
+          "url": "/portfolio-photos/new-york-hair-design-cf6f7818-ab01-4137-bea5-4609abee4ee7.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "new-york-hair-design-portfolio-photo-5b960e98-48a8-4c28-932d-0aae4834f6dd",
+          "url": "/portfolio-photos/new-york-hair-design-adaf5d4a-e1db-4ecb-80d5-6a2f8194b503.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "housee-of-dynasty",
@@ -8392,7 +10453,24 @@
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-07-31",
-      "portfolioPhotosCheckedAt": "2026-08-20T18:22:52.457Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T18:22:52.457Z",
+      "portfolioPhotos": [
+        {
+          "id": "laidbya-portfolio-photo-d2cb9acc-b014-4ff2-a330-f56a455d687c",
+          "url": "/portfolio-photos/laidbya-05f0256c-81b5-4d5a-82fd-681f72096dfd.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "laidbya-portfolio-photo-c6282db8-fe1c-4521-a765-76c93455e36d",
+          "url": "/portfolio-photos/laidbya-977d79ec-6bcd-449f-9fe6-b5e16ef0c95b.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "laidbya-portfolio-photo-f9d7b887-c5d4-4e74-99b0-e74c2840e4ed",
+          "url": "/portfolio-photos/laidbya-a04b5b28-bde2-4d83-8bae-4f14953582f2.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "kymstouch",
@@ -8437,7 +10515,24 @@
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-07-31",
-      "portfolioPhotosCheckedAt": "2026-08-20T18:23:22.774Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T18:23:22.774Z",
+      "portfolioPhotos": [
+        {
+          "id": "kymstouch-portfolio-photo-26b32779-b215-42ae-a992-3a41e1af4441",
+          "url": "/portfolio-photos/kymstouch-b0262c0e-ab2c-409c-9878-c965d7a82ba8.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "kymstouch-portfolio-photo-f6b4e17c-7f00-4aa2-9581-fcffb7375eea",
+          "url": "/portfolio-photos/kymstouch-f36a2f6d-c661-4302-9d9d-2fa6057eeed5.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "kymstouch-portfolio-photo-1e15f734-21e6-40c4-a4ee-2a7b5001bf6d",
+          "url": "/portfolio-photos/kymstouch-f08f51b0-e8a5-48e0-9d5e-2b3eb75588e4.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "thedrueffect",
@@ -8688,7 +10783,7 @@
       "wheelchairAccessible": false,
       "senFriendly": false,
       "customFilters": {},
-      "updatedAt": "2026-08-22",
+      "updatedAt": "2026-08-23",
       "portfolioPhotos": [
         {
           "id": "lionessluxestudio-portfolio-photo-0",
@@ -9091,7 +11186,8 @@
         "Kids & teens styles",
         "Crochet",
         "Scalp detox / treatments",
-        "Knotless braids"
+        "Knotless braids",
+        "Men's braids"
       ],
       "priceBand": "£",
       "servicePriceBand": "",
@@ -9132,7 +11228,7 @@
       "lgbtqFriendly": false,
       "parkingAvailable": false,
       "customFilters": {},
-      "updatedAt": "2026-07-31",
+      "updatedAt": "2026-08-23",
       "portfolioPhotos": [
         {
           "id": "rooted-bytee-portfolio-photo-0",
@@ -9175,7 +11271,9 @@
           "source": "google"
         }
       ],
-      "portfolioPhotosCheckedAt": "2026-08-21"
+      "portfolioPhotosCheckedAt": "2026-08-21",
+      "hairShopUrl": "",
+      "sellsHairSeparately": false
     },
     {
       "id": "braidnaturelle",
@@ -9284,7 +11382,7 @@
       "priceCheckedAt": "",
       "priceUpdatedAt": "",
       "priceConfidence": "",
-      "updatedAt": "2026-08-22",
+      "updatedAt": "2026-08-24",
       "googlePlaceId": "ChIJU9xciHsNdkgR2Gs80xnfy44",
       "googleReviewCount": 46,
       "googleMapsUri": "https://maps.google.com/?cid=10289563075669158872&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
@@ -9293,13 +11391,7 @@
       "googleFormattedAddress": "7 Broadway, London W7 3SS, UK",
       "googleCheckedAt": "2026-07-23",
       "portfolioPhotosCheckedAt": "2026-08-20T18:34:37.087Z",
-      "portfolioPhotos": [
-        {
-          "id": "evolutionhairandbeautyw7-portfolio-photo-1",
-          "url": "/portfolio-photos/evolutionhairandbeautyw7-2.jpg",
-          "source": "google"
-        }
-      ]
+      "portfolioPhotos": []
     },
     {
       "id": "claudiaq-qualitytimehair",
@@ -9527,7 +11619,24 @@
       "sellsHairSeparately": true,
       "hairShopUrl": "https://www.instagram.com/kluxecollection_/",
       "vendorId": "theeklparlour",
-      "portfolioPhotosCheckedAt": "2026-08-20T18:34:56.850Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T18:34:56.850Z",
+      "portfolioPhotos": [
+        {
+          "id": "theeklparlour-portfolio-photo-6ee08f09-9f29-4e3d-9427-12d8f4976e79",
+          "url": "/portfolio-photos/theeklparlour-3ce0860a-697a-40c5-b93e-949e9a34373f.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "theeklparlour-portfolio-photo-ead44b13-5e89-4b58-a0b4-952887028586",
+          "url": "/portfolio-photos/theeklparlour-87462dbc-933c-4ace-9297-05495d25303d.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "theeklparlour-portfolio-photo-1d987789-6c85-4daf-8484-e52202a18c1e",
+          "url": "/portfolio-photos/theeklparlour-59c32da5-bf2f-470a-91b9-9505e7e67165.jpg",
+          "source": "google-image-search"
+        }
+      ]
     },
     {
       "id": "hairpalaceldn",
@@ -10019,7 +12128,25 @@
       "googleDisplayName": null,
       "googleFormattedAddress": null,
       "googleCheckedAt": "2026-07-29",
-      "portfolioPhotosCheckedAt": "2026-08-20T18:37:16.379Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T18:37:16.379Z",
+      "portfolioPhotos": [
+        {
+          "id": "selasie-a-portfolio-photo-92912045-cbed-41c2-9919-138c445576f3",
+          "url": "/portfolio-photos/selasie-a-99e7ac56-30bf-4d59-b852-165064cb4900.jpg",
+          "source": "manual"
+        },
+        {
+          "id": "selasie-a-portfolio-photo-fa991b17-71c9-41e3-9e47-0f2ca5442d95",
+          "url": "/portfolio-photos/selasie-a-6dab4758-d5c1-4a59-ba04-2685aaf585f6.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "selasie-a-portfolio-photo-a7fbc540-9dee-4506-a316-543bb0ebb13a",
+          "url": "/portfolio-photos/selasie-a-be125f27-3cb9-4c29-8731-0f5b753bab7b.jpg",
+          "source": "google-image-search"
+        }
+      ],
+      "updatedAt": "2026-08-24"
     },
     {
       "id": "britlaced",
@@ -13507,10 +15634,11 @@
         "Stitch braids",
         "Retwist",
         "Kids & teens styles",
-        "Healthy hair plans & consultations"
+        "Healthy hair plans & consultations",
+        "Men's braids"
       ],
       "priceBand": "££",
-      "servicePriceBand": "££",
+      "servicePriceBand": "",
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
@@ -13536,7 +15664,7 @@
       "tiktokUrl": "",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
-      "updatedAt": "2026-08-01",
+      "updatedAt": "2026-08-23",
       "addedVia": "Admin tool",
       "discoverySource": "Manual search",
       "googlePlaceId": null,
@@ -13552,7 +15680,9 @@
       "senFriendly": false,
       "lgbtqFriendly": false,
       "parkingAvailable": false,
-      "portfolioPhotosCheckedAt": "2026-08-20T18:53:09.680Z"
+      "portfolioPhotosCheckedAt": "2026-08-20T18:53:09.680Z",
+      "hairShopUrl": "",
+      "sellsHairSeparately": false
     },
     {
       "id": "dillanbstudios",
@@ -13834,7 +15964,8 @@
         "French curl",
         "Faux locs",
         "Stitch braids",
-        "Boho braids bob"
+        "Boho braids bob",
+        "Men's braids"
       ],
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
@@ -13850,8 +15981,29 @@
       "googleDisplayName": "hairbymodia",
       "googleFormattedAddress": "unit 31, Rye Lane Market, London SE15 5BY, UK",
       "googleCheckedAt": "2026-07-23",
-      "updatedAt": "2026-07-24",
-      "portfolioPhotosCheckedAt": "2026-08-20T18:53:59.963Z"
+      "updatedAt": "2026-08-23",
+      "portfolioPhotosCheckedAt": "2026-08-20T18:53:59.963Z",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": false,
+      "customFilters": {},
+      "priceBand": "",
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "",
+      "priceSource": "",
+      "priceEvidence": [],
+      "priceCheckedAt": "",
+      "priceUpdatedAt": "",
+      "priceConfidence": ""
     },
     {
       "id": "thedrybar",
@@ -14230,13 +16382,7 @@
       "googleFormattedAddress": null,
       "googleCheckedAt": "2026-07-29",
       "portfolioPhotosCheckedAt": "2026-08-21",
-      "portfolioPhotos": [
-        {
-          "id": "ohnohair-portfolio-photo-0",
-          "url": "/portfolio-photos/ohnohair-1.jpg",
-          "source": "website"
-        }
-      ],
+      "portfolioPhotos": [],
       "hairShopUrl": "",
       "senFriendly": false,
       "lgbtqFriendly": false,
@@ -19221,18 +21367,12 @@
       "priceCheckedAt": "",
       "priceUpdatedAt": "",
       "priceConfidence": "",
-      "updatedAt": "2026-07-31",
+      "updatedAt": "2026-08-23",
       "senFriendly": false,
       "lgbtqFriendly": true,
       "parkingAvailable": false,
       "portfolioPhotosCheckedAt": "2026-08-20T19:21:18.582Z",
-      "portfolioPhotos": [
-        {
-          "id": "rinsedpeckham-portfolio-photo-0",
-          "url": "/portfolio-photos/rinsedpeckham-1.jpg",
-          "source": "google"
-        }
-      ]
+      "portfolioPhotos": []
     },
     {
       "id": "tresses-bytay",
@@ -20014,8 +22154,8 @@
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleDisplayName": null,
-      "googleFormattedAddress": null,
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-07-29",
       "websiteUrl": "https://theponytailclinic.jena.site/",
       "tiktokUrl": "",
@@ -20026,7 +22166,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-07-24",
+      "updatedAt": "2026-08-24",
       "senFriendly": false,
       "lgbtqFriendly": false,
       "parkingAvailable": false,
@@ -20038,17 +22178,12 @@
         },
         {
           "id": "ponytailclinic-portfolio-photo-1",
-          "url": "/portfolio-photos/ponytailclinic-2.jpg",
-          "source": "website"
-        },
-        {
-          "id": "ponytailclinic-portfolio-photo-2",
-          "url": "/portfolio-photos/ponytailclinic-3.jpg",
+          "url": "/portfolio-photos/ponytailclinic-7ea680c6-4af9-4c9c-8597-0ed85c77861a.jpg",
           "source": "website"
         },
         {
           "id": "ponytailclinic-portfolio-photo-3",
-          "url": "/portfolio-photos/ponytailclinic-4.jpg",
+          "url": "/portfolio-photos/ponytailclinic-ff5dd8ef-1a1a-4a23-b2de-d4927c80e12b.jpg",
           "source": "website"
         },
         {
@@ -20082,7 +22217,9 @@
           "source": "website"
         }
       ],
-      "portfolioPhotosCheckedAt": "2026-08-21"
+      "portfolioPhotosCheckedAt": "2026-08-21",
+      "hairShopUrl": "",
+      "sellsHairSeparately": false
     },
     {
       "id": "3thirty-salon",
@@ -20394,6 +22531,11 @@
       "websiteUrl": "https://marlamaehair.com",
       "portfolioPhotos": [
         {
+          "id": "marla-mae-hair-portfolio-photo-78dca356-3372-4a44-8376-d03545938a88",
+          "url": "/portfolio-photos/marla-mae-hair-41d3fff5-8b5f-454e-ac37-325e2bad4a48.webp",
+          "source": "website"
+        },
+        {
           "id": "marla-mae-hair-portfolio-photo-2",
           "url": "/portfolio-photos/marla-mae-hair-3.webp",
           "source": "website"
@@ -20402,15 +22544,10 @@
           "id": "marla-mae-hair-portfolio-photo-26462e1f-744b-4be9-bf12-ece14f0fb876",
           "url": "/portfolio-photos/marla-mae-hair-a29a3ecf-8b78-44e7-bb55-235503e92c6e.webp",
           "source": "website"
-        },
-        {
-          "id": "marla-mae-hair-portfolio-photo-78dca356-3372-4a44-8376-d03545938a88",
-          "url": "/portfolio-photos/marla-mae-hair-41d3fff5-8b5f-454e-ac37-325e2bad4a48.webp",
-          "source": "website"
         }
       ],
       "portfolioPhotosCheckedAt": "2026-08-21",
-      "updatedAt": "2026-08-23"
+      "updatedAt": "2026-08-24"
     },
     {
       "id": "by-tayjah-lei",
@@ -20835,32 +22972,32 @@
       "priceCheckedAt": "2026-06-04",
       "priceUpdatedAt": "2026-06-04",
       "priceConfidence": "medium",
-      "updatedAt": "2026-08-22",
+      "updatedAt": "2026-08-24",
       "addedVia": "Code edit",
       "discoverySource": "Cowork scrape",
       "googlePlaceId": null,
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleDisplayName": null,
-      "googleFormattedAddress": null,
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-07-29",
       "websiteUrl": "https://adonaihairldn.jena.site/",
       "portfolioPhotosCheckedAt": "2026-08-21T00:15:54.017Z",
       "portfolioPhotos": [
         {
           "id": "adonai-hair-ldn-portfolio-photo-8c64eb3e-7528-466b-a6d2-788ef95c1479",
-          "url": "/portfolio-photos/adonai-hair-ldn-d374f4d9-b4d9-4cff-913e-3cd93aab7829.jpg",
+          "url": "/portfolio-photos/adonai-hair-ldn-586470e7-9586-4da7-998a-3eaa14e8fa67.jpg",
           "source": "manual"
         },
         {
           "id": "adonai-hair-ldn-portfolio-photo-dce0b98a-5b52-44af-ac63-cfc1d5baabc0",
-          "url": "/portfolio-photos/adonai-hair-ldn-6890b5e5-0eca-4e36-a099-829a2a487d58.jpg",
+          "url": "/portfolio-photos/adonai-hair-ldn-2becf2fa-af73-4043-8159-43ec953963ca.jpg",
           "source": "manual"
         },
         {
           "id": "adonai-hair-ldn-portfolio-photo-084877d3-d53d-4dc6-9c8c-42db2897fc32",
-          "url": "/portfolio-photos/adonai-hair-ldn-7f5c237d-59e3-42da-a743-b987af6f8322.jpg",
+          "url": "/portfolio-photos/adonai-hair-ldn-f5d12a92-f112-472d-992d-bc84efd7e82b.jpg",
           "source": "manual"
         }
       ],
@@ -21364,7 +23501,7 @@
         "Restored Updo service from historical standalone-updo commit de619f9."
       ],
       "id": "allure-by-ec",
-      "name": "Allure by EC",
+      "name": "Allure House",
       "areaId": "central",
       "areaLabel": "Central",
       "neighbourhood": "Central London",
@@ -21392,7 +23529,8 @@
         "Updo",
         "Fulani / lemonade braids",
         "Wig install (frontal / closure)",
-        "Kids & teens styles"
+        "Kids & teens styles",
+        "Men's braids"
       ],
       "priceBand": "££",
       "priceSource": "auto",
@@ -21445,7 +23583,18 @@
         }
       ],
       "portfolioPhotosCheckedAt": "2026-08-20T23:59:10.461Z",
-      "updatedAt": "2026-08-21"
+      "updatedAt": "2026-08-23",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "customFilters": {},
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only"
     },
     {
       "summary": "Manual entry added from your bridal and editorial list.",
@@ -21566,7 +23715,7 @@
         "Retwist",
         "Silk press",
         "Braid take-down",
-        "Flipover / versatile sew-in",
+        "Flipover / Versatile sew-in",
         "Traditional sew-in / leave out",
         "Twists (with extensions)",
         "Relaxer / texturiser",
@@ -21580,7 +23729,8 @@
         "U-part wig install",
         "Texture release",
         "Boho braids / goddess braids",
-        "Boho braids bob"
+        "Boho braids bob",
+        "Men's braids"
       ],
       "canBraidWithoutGel": true,
       "summary": "Manual entry added from your latest salon update batch.",
@@ -21602,7 +23752,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-21",
+      "updatedAt": "2026-08-23",
       "addedVia": "Code edit",
       "discoverySource": "Cowork scrape",
       "wheelchairAccessible": true,
@@ -21614,7 +23764,14 @@
       "googleFormattedAddress": "26 St Ann's Rd, London N15 6DT, UK",
       "googleCheckedAt": "2026-07-23",
       "portfolioPhotos": [],
-      "portfolioPhotosCheckedAt": "2026-08-21"
+      "portfolioPhotosCheckedAt": "2026-08-21",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": false,
+      "customFilters": {}
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -22252,7 +24409,8 @@
         "Twists (with extensions)",
         "Frontal ponytail / bun",
         "Updo",
-        "Kids & teens styles"
+        "Kids & teens styles",
+        "Men's braids"
       ],
       "tiktokUrl": "",
       "hijabiFriendly": false,
@@ -22272,7 +24430,7 @@
       "priceCheckedAt": "2026-06-04",
       "priceUpdatedAt": "2026-06-04",
       "priceConfidence": "manual",
-      "updatedAt": "2026-06-04",
+      "updatedAt": "2026-08-23",
       "addedVia": "Code edit",
       "discoverySource": "Cowork scrape",
       "googlePlaceId": null,
@@ -22282,7 +24440,18 @@
       "googleDisplayName": null,
       "googleFormattedAddress": null,
       "googleCheckedAt": "2026-07-29",
-      "portfolioPhotosCheckedAt": "2026-08-21T00:24:36.618Z"
+      "portfolioPhotosCheckedAt": "2026-08-21T00:24:36.618Z",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "wheelchairAccessible": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": false,
+      "customFilters": {},
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only"
     },
     {
       "id": "ash-lounge",
@@ -23023,7 +25192,8 @@
         "Box braids",
         "Boho braids / goddess braids",
         "Fulani / lemonade braids",
-        "Stitch braids"
+        "Stitch braids",
+        "Men's braids"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -23039,7 +25209,29 @@
       "googleDisplayName": null,
       "googleFormattedAddress": null,
       "googleCheckedAt": "2026-07-29",
-      "portfolioPhotosCheckedAt": "2026-08-21"
+      "portfolioPhotosCheckedAt": "2026-08-21",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": false,
+      "customFilters": {},
+      "priceBand": "",
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "",
+      "priceSource": "",
+      "priceEvidence": [],
+      "priceCheckedAt": "",
+      "priceUpdatedAt": "",
+      "priceConfidence": "",
+      "updatedAt": "2026-08-23"
     },
     {
       "id": "beauty-by-solange",
@@ -28453,7 +30645,8 @@
         "Half up half down",
         "Sew-in take-down",
         "Moisturising treatment",
-        "Knotless braids"
+        "Knotless braids",
+        "Men's braids"
       ],
       "summary": "Manual entry added from your North West London wigs, sew-ins, extensions, braids, silk press, ponytail, and locs list.",
       "source": "manual",
@@ -28496,7 +30689,20 @@
           "url": "/portfolio-photos/drippin-styles-hair-studio-1.jpg",
           "source": "google"
         }
-      ]
+      ],
+      "websiteUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "customFilters": {},
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "updatedAt": "2026-08-23"
     },
     {
       "id": "dsrhair",
@@ -28576,11 +30782,33 @@
       "instagramUrl": "https://www.instagram.com/dunnys_touch_uk/",
       "services": [
         "Wash & blowdry",
+        "Full head colour",
+        "Moisturising treatment",
+        "Keratin treatment",
+        "Trim / hair cut",
+        "Knotless braids",
+        "Box braids",
+        "Fulani / lemonade braids",
+        "Boho braids / goddess braids",
+        "Twists (with extensions)",
+        "Tracks (+ silk press) / partial / invisible sew-in",
         "Traditional sew-in / leave out",
         "Closure sew-in / closure behind the hairline",
-        "Tracks (+ silk press) / partial / invisible sew-in",
-        "Full head colour",
-        "Trim / hair cut"
+        "Sleek ponytail / bun",
+        "Half up half down",
+        "Half braids, half sew-in",
+        "Butterfly locs",
+        "Faux locs",
+        "Crochet",
+        "Miracle knots",
+        "Wig cornrows",
+        "Microbraids / x-small braids",
+        "Retwist",
+        "Starter locs",
+        "Men's braids",
+        "Stitch braids",
+        "French curl",
+        "Feed-in braids"
       ],
       "summary": "Manual entry added from your Essex braids list.",
       "source": "manual",
@@ -28593,19 +30821,19 @@
       "priceBand": "££",
       "priceSource": "manual",
       "priceEvidence": [
-        "Wash and blow dry - £40.00",
-        "Takeout/wash and blowdry - £25.00",
-        "This service is the deep wash and conditioning of the hair - £50.00",
-        "oil treatment - £50.00",
-        "Hair steaming with preferred treatment - £45.00",
-        "Keratin treatment (Brazilian blowout) - £50.00",
-        "Deep conditioning and hair mask treatment - £85.00",
-        "Protein treatment - £50.00"
+        "Wash and blow dry - £25.00",
+        "Takeout/wash and blowdry - £50.00",
+        "Keratin treatment (Brazilian blowout) - £85.00",
+        "Protein treatment - £65.00",
+        "Small Knotless/Box Braids - £110.00",
+        "Small passion twists - £100.00",
+        "Closure sew-in - £75.00",
+        "Medium French curls - £120.00"
       ],
-      "priceCheckedAt": "2026-06-04",
-      "priceUpdatedAt": "2026-06-04",
+      "priceCheckedAt": "2026-08-24",
+      "priceUpdatedAt": "2026-08-24",
       "priceConfidence": "manual",
-      "updatedAt": "2026-08-22",
+      "updatedAt": "2026-08-24",
       "addedVia": "Code edit",
       "discoverySource": "Cowork scrape",
       "googlePlaceId": "ChIJayEQh4un2EcRSyK2YWL9org",
@@ -29218,7 +31446,8 @@
         "Twists (with extensions)",
         "Faux locs",
         "Traditional sew-in / leave out",
-        "Stitch braids"
+        "Stitch braids",
+        "Men's braids"
       ],
       "priceBand": "££",
       "priceSource": "auto",
@@ -29244,7 +31473,23 @@
       "googleDisplayName": null,
       "googleFormattedAddress": null,
       "googleCheckedAt": "2026-07-29",
-      "portfolioPhotosCheckedAt": "2026-08-21"
+      "portfolioPhotosCheckedAt": "2026-08-21",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": false,
+      "customFilters": {},
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "updatedAt": "2026-08-23"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -29758,7 +32003,8 @@
         "Half braids, half sew-in",
         "Half up half down",
         "Editorial / Session styling",
-        "Creative braids"
+        "Creative braids",
+        "Men's braids"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -29799,7 +32045,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-22",
+      "updatedAt": "2026-08-23",
       "portfolioPhotos": [
         {
           "id": "estheticshair-portfolio-photo-0",
@@ -31934,17 +34180,17 @@
       "portfolioPhotosCheckedAt": "2026-08-21",
       "portfolioPhotos": [
         {
-          "id": "hair-by-esther-portfolio-photo-0",
-          "url": "/portfolio-photos/hair-by-esther-51788d02-04f1-4b20-8eba-27bf36ba7ba9.jpg",
-          "source": "website"
-        },
-        {
           "id": "hair-by-esther-portfolio-photo-2",
           "url": "/portfolio-photos/hair-by-esther-24ad25bf-8095-4631-8f57-2b9795e8f167.jpg",
           "source": "website"
+        },
+        {
+          "id": "hair-by-esther-portfolio-photo-0",
+          "url": "/portfolio-photos/hair-by-esther-51788d02-04f1-4b20-8eba-27bf36ba7ba9.jpg",
+          "source": "website"
         }
       ],
-      "updatedAt": "2026-08-22",
+      "updatedAt": "2026-08-24",
       "tiktokUrl": "",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
@@ -32605,9 +34851,9 @@
       ],
       "id": "hair-by-wynn",
       "name": "Hair by Wynn",
-      "areaId": "south-east",
-      "areaLabel": "South East",
-      "neighbourhood": "South East London",
+      "areaId": "east",
+      "areaLabel": "East London",
+      "neighbourhood": "Clapton",
       "postcode": "",
       "bookingPlatform": "Direct website",
       "bookingUrl": "https://hairbywynn.as.me/schedule/e36fe2d8",
@@ -33707,9 +35953,9 @@
         "Faux locs",
         "Butterfly locs",
         "Retwist",
-        "Closure sew-in",
         "Wig cornrows",
-        "French curl bob"
+        "French curl bob",
+        "Men's braids"
       ],
       "summary": "Manual entry added from your latest salon update batch.",
       "source": "manual",
@@ -33739,7 +35985,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-06-09",
+      "updatedAt": "2026-08-23",
       "addedVia": "Code edit",
       "discoverySource": "Cowork scrape",
       "googlePlaceId": null,
@@ -33749,7 +35995,14 @@
       "googleDisplayName": null,
       "googleFormattedAddress": null,
       "googleCheckedAt": "2026-07-29",
-      "portfolioPhotosCheckedAt": "2026-08-21"
+      "portfolioPhotosCheckedAt": "2026-08-21",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": false,
+      "customFilters": {}
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -34585,17 +36838,17 @@
       "portfolioPhotos": [
         {
           "id": "honey-hand-portfolio-photo-e45c7dac-4b9f-4f1e-a30c-aa6fec66d32f",
-          "url": "/portfolio-photos/honey-hand-8a107296-5f51-41e4-a203-f368779a7644.webp",
-          "source": "manual"
-        },
-        {
-          "id": "honey-hand-portfolio-photo-d4a52c91-e903-4214-8de6-2c37590d72b9",
-          "url": "/portfolio-photos/honey-hand-ee532dc8-a7bb-482f-bba9-ef248cf76c94.webp",
+          "url": "/portfolio-photos/honey-hand-230444d0-546d-4775-8fd8-4bfe0ffb50b9.jpg",
           "source": "manual"
         },
         {
           "id": "honey-hand-portfolio-photo-133bcdca-0d39-4444-93eb-a46d700e1292",
-          "url": "/portfolio-photos/honey-hand-520447de-ebce-4c10-9323-fd274d25056c.webp",
+          "url": "/portfolio-photos/honey-hand-37710612-c34f-415d-9337-78b101cf588b.jpg",
+          "source": "manual"
+        },
+        {
+          "id": "honey-hand-portfolio-photo-d4a52c91-e903-4214-8de6-2c37590d72b9",
+          "url": "/portfolio-photos/honey-hand-d8f23eed-92b8-464f-be33-d566c168b931.jpg",
           "source": "manual"
         }
       ],
@@ -35523,7 +37776,9 @@
         "Crochet",
         "Tracks (+ silk press) / partial / invisible sew-in",
         "Keratin treatment",
-        "Boho braids bob"
+        "Boho braids bob",
+        "Highlights",
+        "Men's braids"
       ],
       "priceBand": "£",
       "priceSource": "auto",
@@ -35553,7 +37808,21 @@
       "googleCheckedAt": "2026-07-23",
       "portfolioPhotos": [],
       "portfolioPhotosCheckedAt": "2026-08-21",
-      "updatedAt": "2026-08-23"
+      "updatedAt": "2026-08-23",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "sellsHairSeparately": false,
+      "customFilters": {},
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -36603,7 +38872,10 @@
         "Silk press",
         "Keratin treatment",
         "Tracks (+ silk press) / partial / invisible sew-in",
-        "Boho braids bob"
+        "Boho braids bob",
+        "Full head colour",
+        "Trim / hair cut",
+        "Men's braids"
       ],
       "canBraidWithoutGel": true,
       "summary": "Manual entry added from your Kent list covering braids, sew-ins, locs, natural hair, and treatments.",
@@ -36635,7 +38907,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-21",
+      "updatedAt": "2026-08-23",
       "googlePlaceId": null,
       "googleReviewCount": 0,
       "googleMapsUri": "",
@@ -36691,7 +38963,13 @@
           "source": "website"
         }
       ],
-      "portfolioPhotosCheckedAt": "2026-08-21"
+      "portfolioPhotosCheckedAt": "2026-08-21",
+      "hairShopUrl": "",
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": false,
+      "customFilters": {}
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -38910,29 +41188,29 @@
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleDisplayName": null,
-      "googleFormattedAddress": null,
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-07-29",
       "websiteUrl": "https://www.manelistudios.com",
       "portfolioPhotos": [
         {
           "id": "mane-li-studios-portfolio-photo-0",
-          "url": "/portfolio-photos/mane-li-studios-1.jpg",
+          "url": "/portfolio-photos/mane-li-studios-9e8f2dd2-1ebb-4027-8050-e0ed5babeacf.jpg",
           "source": "website"
         },
         {
           "id": "mane-li-studios-portfolio-photo-15475b76-bcf4-4de0-85e0-5d7f878b4641",
-          "url": "/portfolio-photos/mane-li-studios-f9869917-8aa8-43e2-8821-2a0a674d351f.jpg",
-          "source": "website"
-        },
-        {
-          "id": "mane-li-studios-portfolio-photo-c9db3621-4a57-45eb-ada6-8223eabc59d4",
-          "url": "/portfolio-photos/mane-li-studios-c7965512-1801-420e-b0aa-f53ea1e67ca4.jpg",
+          "url": "/portfolio-photos/mane-li-studios-fb4e2e2d-0a0b-4f42-843f-897aaf41e1b1.jpg",
           "source": "website"
         },
         {
           "id": "mane-li-studios-portfolio-photo-a31ef61f-bcba-40a1-acb6-bd014e22bf38",
-          "url": "/portfolio-photos/mane-li-studios-9eb9740b-6ca4-48ff-a6cd-253dfdab0cf2.jpg",
+          "url": "/portfolio-photos/mane-li-studios-25178297-981c-4a38-9dd1-96c413ce2adf.jpg",
+          "source": "website"
+        },
+        {
+          "id": "mane-li-studios-portfolio-photo-c9db3621-4a57-45eb-ada6-8223eabc59d4",
+          "url": "/portfolio-photos/mane-li-studios-5fa75829-c8ec-4127-a0a6-5b5488c6f882.jpg",
           "source": "website"
         },
         {
@@ -38947,7 +41225,21 @@
         }
       ],
       "portfolioPhotosCheckedAt": "2026-08-21",
-      "updatedAt": "2026-08-22"
+      "updatedAt": "2026-08-24",
+      "hairShopUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": false,
+      "customFilters": {},
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only"
     },
     {
       "id": "maos-abencoadas",
@@ -40007,79 +42299,19 @@
       "parkingAvailable": true,
       "portfolioPhotos": [
         {
-          "id": "momos-hair-portfolio-photo-0",
-          "url": "/portfolio-photos/momos-hair-1.jpg",
-          "source": "acuity"
+          "id": "momos-hair-portfolio-photo-db0a5ef8-e617-4b0b-9ace-1175e212f1b9",
+          "url": "/portfolio-photos/momos-hair-db0a5ef8-e617-4b0b-9ace-1175e212f1b9.jpg",
+          "source": "manual"
         },
         {
-          "id": "momos-hair-portfolio-photo-1",
-          "url": "/portfolio-photos/momos-hair-2.jpg",
-          "source": "acuity"
+          "id": "momos-hair-portfolio-photo-7a4a2f19-8126-48f0-b9b4-43ae1577df82",
+          "url": "/portfolio-photos/momos-hair-7a4a2f19-8126-48f0-b9b4-43ae1577df82.jpg",
+          "source": "manual"
         },
         {
-          "id": "momos-hair-portfolio-photo-2",
-          "url": "/portfolio-photos/momos-hair-3.jpg",
-          "source": "acuity"
-        },
-        {
-          "id": "momos-hair-portfolio-photo-918c6142-8bc5-49e3-b483-9f0011fd24fa",
-          "url": "/portfolio-photos/momos-hair-abb4dd42-f9ae-4791-b76c-6f11ae3ab5ce.jpg",
-          "source": "acuity"
-        },
-        {
-          "id": "momos-hair-portfolio-photo-cc4ddc1b-a139-4744-b153-b8484feb1171",
-          "url": "/portfolio-photos/momos-hair-308b1503-8ab5-471e-a219-eb8c55b4f383.jpg",
-          "source": "acuity"
-        },
-        {
-          "id": "momos-hair-portfolio-photo-2e5dc05f-f407-4b21-8a93-b1181db0961c",
-          "url": "/portfolio-photos/momos-hair-112b84ac-a1db-4d94-a6a0-fc9476738b9f.jpg",
-          "source": "acuity"
-        },
-        {
-          "id": "momos-hair-portfolio-photo-dfdb2b2e-1921-4089-bb9c-be0f8b675542",
-          "url": "/portfolio-photos/momos-hair-bda62172-3544-4d26-82e1-f8409c2dc1c1.jpg",
-          "source": "acuity"
-        },
-        {
-          "id": "momos-hair-portfolio-photo-477feab4-eb3c-46e2-bd72-fff2bc4fc7f4",
-          "url": "/portfolio-photos/momos-hair-bec9c1a8-6f28-4dab-bb3e-02becc079280.jpg",
-          "source": "acuity"
-        },
-        {
-          "id": "momos-hair-portfolio-photo-75a40101-0589-4d66-9d2f-0d01df89a415",
-          "url": "/portfolio-photos/momos-hair-3456b8ca-a597-4957-ba73-7361a23087f6.jpg",
-          "source": "acuity"
-        },
-        {
-          "id": "momos-hair-portfolio-photo-17f43785-9ca5-4c44-b9d7-c9e8ea3c9af3",
-          "url": "/portfolio-photos/momos-hair-4127b342-3c2b-42b5-82be-1cfb556d97a5.jpg",
-          "source": "acuity"
-        },
-        {
-          "id": "momos-hair-portfolio-photo-36527e9b-4d5f-4c8e-b6cb-2337c3c5ae38",
-          "url": "/portfolio-photos/momos-hair-35a404df-45ea-4a88-bcd2-88caedee610f.jpg",
-          "source": "acuity"
-        },
-        {
-          "id": "momos-hair-portfolio-photo-d7cd800f-27cc-46a8-982b-c884d2f0d11d",
-          "url": "/portfolio-photos/momos-hair-4a3a12a9-b164-40bf-9b68-e664dcb3f3b2.jpg",
-          "source": "acuity"
-        },
-        {
-          "id": "momos-hair-portfolio-photo-632761c7-5650-4c30-8606-fbaf3a56f7a5",
-          "url": "/portfolio-photos/momos-hair-787c5fa6-4086-474d-b113-b57016562300.jpg",
-          "source": "acuity"
-        },
-        {
-          "id": "momos-hair-portfolio-photo-660ed96e-ef11-4c07-82ee-c7b15d51fd1d",
-          "url": "/portfolio-photos/momos-hair-6d14d859-fe71-4b90-9dd3-7a584cbf663b.jpg",
-          "source": "acuity"
-        },
-        {
-          "id": "momos-hair-portfolio-photo-dbc6c3f4-c10c-486d-a273-b20775f560b1",
-          "url": "/portfolio-photos/momos-hair-a1859ff5-5f9e-4d84-b3ea-0646ac2d6e3f.jpg",
-          "source": "acuity"
+          "id": "momos-hair-portfolio-photo-24601e6c-a32a-440c-b4e0-5f416bf21503",
+          "url": "/portfolio-photos/momos-hair-24601e6c-a32a-440c-b4e0-5f416bf21503.jpg",
+          "source": "manual"
         }
       ],
       "portfolioPhotosCheckedAt": "2026-08-23",
@@ -41799,7 +44031,8 @@
         "Keratin treatment",
         "Trim / hair cut",
         "Tracks (+ silk press) / partial / invisible sew-in",
-        "Frontal ponytail / bun"
+        "Frontal ponytail / bun",
+        "Men's braids"
       ],
       "summary": "Starter verified entry for a South East London salon the project identified as relevant for textured-hair clients looking for smoothing and care services.",
       "source": "manual",
@@ -41854,12 +44087,29 @@
           "wheelchairAccessible": false
         }
       ],
-      "updatedAt": "2026-07-24",
+      "updatedAt": "2026-08-23",
       "websiteUrl": "https://www.oyinnstouch.co.uk/",
       "sellsHairSeparately": true,
       "hairShopUrl": "https://www.oyinnstouch.co.uk/category/all-products",
-      "priceIncludesHair": true,
-      "vendorId": "oyinn-s-touch"
+      "priceIncludesHair": false,
+      "vendorId": "oyinn-s-touch",
+      "areaId": "",
+      "areaLabel": "",
+      "neighbourhood": "",
+      "postcode": "",
+      "bookingUrl": "",
+      "tiktokUrl": "",
+      "googleMapsUri": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "customFilters": {},
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceComparisonMode": "service-only"
     },
     {
       "id": "paintedbykrystel",
@@ -42765,54 +45015,8 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-07-25",
-      "portfolioPhotos": [
-        {
-          "id": "poshmina-hair-portfolio-photo-0",
-          "url": "/portfolio-photos/poshmina-hair-1.jpg",
-          "source": "website"
-        },
-        {
-          "id": "poshmina-hair-portfolio-photo-1",
-          "url": "/portfolio-photos/poshmina-hair-2.jpg",
-          "source": "website"
-        },
-        {
-          "id": "poshmina-hair-portfolio-photo-2",
-          "url": "/portfolio-photos/poshmina-hair-3.jpg",
-          "source": "website"
-        },
-        {
-          "id": "poshmina-hair-portfolio-photo-8c21b093-81b0-4c62-bd65-78094a07edf0",
-          "url": "/portfolio-photos/poshmina-hair-cf11da6f-e19a-4efb-9903-e0c8fd386736.jpg",
-          "source": "google"
-        },
-        {
-          "id": "poshmina-hair-portfolio-photo-5a2e87ab-454c-46f8-9a88-f146c8852597",
-          "url": "/portfolio-photos/poshmina-hair-f10fb8e1-9cdd-463c-8bfb-24cde3337070.jpg",
-          "source": "google"
-        },
-        {
-          "id": "poshmina-hair-portfolio-photo-8ead7c1a-ee12-4546-9d52-23b050938342",
-          "url": "/portfolio-photos/poshmina-hair-a92ac134-fcae-49a4-be6a-5c49fed3da50.jpg",
-          "source": "google"
-        },
-        {
-          "id": "poshmina-hair-portfolio-photo-0028ba86-45f9-440b-bd17-de868bc55ec2",
-          "url": "/portfolio-photos/poshmina-hair-ee63eccb-9461-4352-95dc-37e69381dcab.jpg",
-          "source": "google"
-        },
-        {
-          "id": "poshmina-hair-portfolio-photo-346af925-aa88-4f10-9e66-8e61791b5761",
-          "url": "/portfolio-photos/poshmina-hair-63f04b6f-db94-482a-b759-d7dd33155629.jpg",
-          "source": "website"
-        },
-        {
-          "id": "poshmina-hair-portfolio-photo-e5d6876a-f8ac-423e-a803-0c00149d833e",
-          "url": "/portfolio-photos/poshmina-hair-7199e08d-33c7-4cec-8fe4-ef78756e01b9.jpg",
-          "source": "website"
-        }
-      ],
+      "updatedAt": "2026-08-24",
+      "portfolioPhotos": [],
       "portfolioPhotosCheckedAt": "2026-08-21"
     },
     {
@@ -43625,14 +45829,14 @@
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleDisplayName": null,
-      "googleFormattedAddress": null,
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-07-29",
       "portfolioPhotosCheckedAt": "2026-08-21",
       "portfolioPhotos": [
         {
-          "id": "remi-laide-hair-portfolio-photo-83c46c03-1a53-4314-858d-cec9178ba326",
-          "url": "/portfolio-photos/remi-laide-hair-b460d12c-acc6-43cb-bfa6-7eab3f6d54a7.jpg",
+          "id": "remi-laide-hair-portfolio-photo-594aac7c-b7b5-43d0-9a91-d42c6f5d0fe3",
+          "url": "/portfolio-photos/remi-laide-hair-232ab2ed-8075-42d9-a65e-a5df7d024b6d.jpg",
           "source": "acuity"
         },
         {
@@ -43641,11 +45845,27 @@
           "source": "acuity"
         },
         {
-          "id": "remi-laide-hair-portfolio-photo-594aac7c-b7b5-43d0-9a91-d42c6f5d0fe3",
-          "url": "/portfolio-photos/remi-laide-hair-232ab2ed-8075-42d9-a65e-a5df7d024b6d.jpg",
+          "id": "remi-laide-hair-portfolio-photo-83c46c03-1a53-4314-858d-cec9178ba326",
+          "url": "/portfolio-photos/remi-laide-hair-47e80dad-6984-46ec-b879-a0e4e0010396.jpg",
           "source": "acuity"
         }
-      ]
+      ],
+      "updatedAt": "2026-08-24",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": false,
+      "customFilters": {},
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only"
     },
     {
       "id": "rens-touch",
@@ -45102,12 +47322,13 @@
         "Knotless braids",
         "Fulani / lemonade braids",
         "Traditional sew-in / leave out",
-        "Wash & blowdry"
+        "Wash & blowdry",
+        "Men's braids"
       ],
       "tiktokUrl": "",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
-      "updatedAt": "2026-05-31",
+      "updatedAt": "2026-08-23",
       "addedVia": "Code edit",
       "discoverySource": "Cowork scrape",
       "googlePlaceId": null,
@@ -45117,7 +47338,25 @@
       "googleDisplayName": null,
       "googleFormattedAddress": null,
       "googleCheckedAt": "2026-07-29",
-      "portfolioPhotosCheckedAt": "2026-08-21"
+      "portfolioPhotosCheckedAt": "2026-08-21",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": false,
+      "customFilters": {},
+      "priceBand": "",
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "",
+      "priceSource": "",
+      "priceEvidence": [],
+      "priceCheckedAt": "",
+      "priceUpdatedAt": "",
+      "priceConfidence": ""
     },
     {
       "id": "shanslaysss",
@@ -45232,7 +47471,8 @@
         "Starter locs",
         "Half braids, half sew-in",
         "Faux locs",
-        "Stitch braids"
+        "Stitch braids",
+        "Men's braids"
       ],
       "priceBand": "£",
       "priceSource": "auto",
@@ -45559,7 +47799,7 @@
     },
     {
       "id": "simply-g-hair",
-      "name": "Simply G Hair",
+      "name": "Simply Gorgeous",
       "areaId": "north-west",
       "areaLabel": "North West",
       "neighbourhood": "North West London",
@@ -45571,7 +47811,8 @@
         "Knotless braids",
         "Relaxer / texturiser",
         "Full head colour",
-        "Wash & blowdry"
+        "Wash & blowdry",
+        "Wig cornrows"
       ],
       "summary": "Manual entry added from your latest salon update batch.",
       "source": "manual",
@@ -45596,15 +47837,15 @@
       "priceCheckedAt": "2026-06-05",
       "priceUpdatedAt": "2026-06-05",
       "priceConfidence": "medium",
-      "updatedAt": "2026-08-23",
+      "updatedAt": "2026-08-24",
       "addedVia": "Code edit",
       "discoverySource": "Cowork scrape",
       "googlePlaceId": null,
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleDisplayName": null,
-      "googleFormattedAddress": null,
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-07-29",
       "websiteUrl": "https://www.simplyghair.com",
       "portfolioPhotos": [
@@ -45624,7 +47865,18 @@
           "source": "website"
         }
       ],
-      "portfolioPhotosCheckedAt": "2026-08-23"
+      "portfolioPhotosCheckedAt": "2026-08-23",
+      "hairShopUrl": "",
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": false,
+      "customFilters": {},
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only"
     },
     {
       "id": "sisters-spa-london",
@@ -46147,7 +48399,8 @@
         "Wig install (frontal / closure)",
         "Quick weave",
         "Wig cornrows",
-        "Feed-in braids"
+        "Feed-in braids",
+        "Men's braids"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -46188,8 +48441,13 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-07-24",
-      "portfolioPhotosCheckedAt": "2026-08-21"
+      "updatedAt": "2026-08-23",
+      "portfolioPhotosCheckedAt": "2026-08-21",
+      "hairShopUrl": "",
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": false
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -47306,7 +49564,8 @@
         "French curl bob",
         "Sleek ponytail / bun",
         "Half up half down",
-        "Flipover / Versatile sew-in"
+        "Flipover / Versatile sew-in",
+        "Men's braids"
       ],
       "summary": "Manual Instagram-led entry added from your latest salon update batch.",
       "source": "manual",
@@ -49333,38 +51592,7 @@
       "hairShopUrl": "https://coilemuse.com/",
       "priceIncludesHair": false,
       "vendorId": "the-sewn-muse",
-      "portfolioPhotos": [
-        {
-          "id": "the-sewn-muse-portfolio-photo-0",
-          "url": "/portfolio-photos/the-sewn-muse-1.png",
-          "source": "website"
-        },
-        {
-          "id": "the-sewn-muse-portfolio-photo-9fb7e578-2d51-4319-bb87-56c66a18d1d7",
-          "url": "/portfolio-photos/the-sewn-muse-1922594b-3746-4556-b72d-089d8fe58fae.png",
-          "source": "website"
-        },
-        {
-          "id": "the-sewn-muse-portfolio-photo-18b95c7a-2ea6-425c-89f6-9de306708294",
-          "url": "/portfolio-photos/the-sewn-muse-81162ebf-b9fa-4b48-a931-8197d3d6953d.jpg",
-          "source": "website"
-        },
-        {
-          "id": "the-sewn-muse-portfolio-photo-bc7eb9a5-5cec-42aa-9f14-adc8c1427cb3",
-          "url": "/portfolio-photos/the-sewn-muse-e5a22224-5be9-41a0-9b03-3ccbe39c95ee.jpg",
-          "source": "website"
-        },
-        {
-          "id": "the-sewn-muse-portfolio-photo-e0783a33-9fb2-4347-91bf-643f75b1ffd7",
-          "url": "/portfolio-photos/the-sewn-muse-45f7814a-f942-41cd-83d9-3c23bb8892b3.jpg",
-          "source": "website"
-        },
-        {
-          "id": "the-sewn-muse-portfolio-photo-a8201289-ea3b-4b30-af47-1a1195779089",
-          "url": "/portfolio-photos/the-sewn-muse-3a4a9a16-6104-401f-9d33-a54e5689b9f5.jpg",
-          "source": "website"
-        }
-      ],
+      "portfolioPhotos": [],
       "portfolioPhotosCheckedAt": "2026-08-21",
       "tiktokUrl": "",
       "hijabiFriendly": false,
@@ -49719,7 +51947,8 @@
         "Half braids, half sew-in",
         "Miracle knots",
         "Starter locs",
-        "Frontal ponytail / bun"
+        "Frontal ponytail / bun",
+        "Men's braids"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -49755,13 +51984,18 @@
       "canBraidWithoutGel": false,
       "wheelchairAccessible": false,
       "customFilters": {},
-      "servicePriceBand": "££",
+      "servicePriceBand": "",
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-07-24",
+      "updatedAt": "2026-08-23",
       "portfolioPhotosCheckedAt": "2026-08-21",
-      "portfolioPhotos": []
+      "portfolioPhotos": [],
+      "hairShopUrl": "",
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": false
     },
     {
       "id": "thegreenchair",
@@ -50390,15 +52624,15 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-23",
+      "updatedAt": "2026-08-24",
       "addedVia": "Code edit",
       "discoverySource": "Cowork scrape",
-      "googlePlaceId": "ChIJI14R_40DdkgR20aT4GzcMa8",
+      "googlePlaceId": null,
       "googleReviewCount": 7,
       "googleMapsUri": "https://maps.google.com/?cid=12624113590678537947&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
       "googleMatchConfidence": "high",
       "googleDisplayName": "Tressly Studios",
-      "googleFormattedAddress": "Unit 68, Lewisham Shopping Centre, 33A Molesworth St, London SE13 7HB, UK",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-07-23",
       "websiteUrl": "https://www.tresslystudios.com/",
       "wheelchairAccessible": false,
@@ -50409,11 +52643,13 @@
       "portfolioPhotos": [
         {
           "id": "tressly-studios-portfolio-photo-e1f592f8-f945-4b91-a01b-4084f45e4a9e",
-          "url": "/portfolio-photos/tressly-studios-6c6c015e-664e-43f2-b084-c81f8f2f5342.jpg",
+          "url": "/portfolio-photos/tressly-studios-59cfe6d4-b003-4afc-b40c-4283d918af1d.jpg",
           "source": "website"
         }
       ],
-      "portfolioPhotosCheckedAt": "2026-08-21"
+      "portfolioPhotosCheckedAt": "2026-08-21",
+      "hairShopUrl": "",
+      "sellsHairSeparately": false
     },
     {
       "id": "tribalbraidsandbeautysalon",
@@ -50451,7 +52687,8 @@
         "U-part wig install",
         "Traditional sew-in / leave out",
         "Kids & teens styles",
-        "Trim / hair cut"
+        "Trim / hair cut",
+        "Men's braids"
       ],
       "canBraidWithoutGel": true,
       "priceBand": "£",
@@ -50480,7 +52717,7 @@
       "wheelchairAccessible": false,
       "summary": "",
       "evidence": [],
-      "updatedAt": "2026-06-10",
+      "updatedAt": "2026-08-23",
       "googlePlaceId": "ChIJhbf-2x8ZdkgRZjmjpwY2LmQ",
       "googleReviewCount": 32,
       "googleMapsUri": "https://maps.google.com/?cid=7218766654931679590&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
@@ -50489,7 +52726,13 @@
       "googleFormattedAddress": "363 High Rd, London N22 8JA, UK",
       "googleCheckedAt": "2026-07-23",
       "websiteUrl": "https://www.tribalbraidsandbeauty.com/",
-      "portfolioPhotosCheckedAt": "2026-08-21"
+      "portfolioPhotosCheckedAt": "2026-08-21",
+      "hairShopUrl": "",
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": false,
+      "customFilters": {}
     },
     {
       "id": "tthairbarldn",
@@ -50644,15 +52887,15 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-23",
+      "updatedAt": "2026-08-24",
       "verifiedReviewCount": 181,
       "verifiedReviewCheckedAt": "2026-07-22T20:54:18.753Z",
       "googlePlaceId": null,
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleDisplayName": null,
-      "googleFormattedAddress": null,
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-07-29",
       "senFriendly": false,
       "lgbtqFriendly": false,
@@ -50660,17 +52903,17 @@
       "portfolioPhotos": [
         {
           "id": "uni-tinas-saloon-portfolio-photo-0",
-          "url": "/portfolio-photos/uni-tinas-saloon-1.jpg",
+          "url": "/portfolio-photos/uni-tinas-saloon-c420151a-a1f9-4920-bf7d-6443721a055b.jpg",
           "source": "website"
         },
         {
           "id": "uni-tinas-saloon-portfolio-photo-1",
-          "url": "/portfolio-photos/uni-tinas-saloon-2.jpg",
+          "url": "/portfolio-photos/uni-tinas-saloon-831377f8-7454-432b-b459-c62fc658aa3a.jpg",
           "source": "website"
         },
         {
           "id": "uni-tinas-saloon-portfolio-photo-7e0dbb96-0f98-4e93-8c66-ad4119972c90",
-          "url": "/portfolio-photos/uni-tinas-saloon-ff8436e7-01f0-454e-9285-0ccd918e1195.jpg",
+          "url": "/portfolio-photos/uni-tinas-saloon-9e886557-aa03-404e-ac82-e62b640e37af.jpg",
           "source": "website"
         },
         {
@@ -50743,28 +52986,43 @@
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleDisplayName": null,
-      "googleFormattedAddress": null,
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-07-29",
       "portfolioPhotos": [
         {
           "id": "updo-london-portfolio-photo-882bba08-140f-40d7-89a2-074426fe0c0b",
-          "url": "/portfolio-photos/updo-london-2cdbd424-5c7b-4fed-8d91-104cd31168b1.jpg",
+          "url": "/portfolio-photos/updo-london-a3538701-182a-44e3-98b3-3dd0e8672483.jpg",
           "source": "acuity"
         },
         {
           "id": "updo-london-portfolio-photo-3f12db8b-bd72-4788-aa56-f7f4d6ca988f",
-          "url": "/portfolio-photos/updo-london-1b9c3135-12ea-4e87-90f5-61292fa53b36.jpg",
+          "url": "/portfolio-photos/updo-london-6c9cd76e-2e5e-45e8-b599-b5051f23cf9c.jpg",
           "source": "acuity"
         },
         {
           "id": "updo-london-portfolio-photo-b02aa851-322b-4be8-9f2a-028688e34fdb",
-          "url": "/portfolio-photos/updo-london-8d60eabe-c9b3-4f63-b676-7361b43d9fe8.jpg",
+          "url": "/portfolio-photos/updo-london-2e2c319d-aad5-4058-9af4-6db7b7bda96a.jpg",
           "source": "acuity"
         }
       ],
       "portfolioPhotosCheckedAt": "2026-08-21",
-      "updatedAt": "2026-08-23"
+      "updatedAt": "2026-08-24",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": false,
+      "customFilters": {},
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only"
     },
     {
       "id": "vanity-hair-and-beauty-studios",
@@ -50782,11 +53040,11 @@
         "Relaxer / texturiser",
         "Tape ins",
         "Traditional sew-in / leave out",
-        "Microlinks",
-        "Flipover / versatile sew-in",
+        "I-tips / microlinks strands",
+        "Flipover / Versatile sew-in",
         "Half braids, half sew-in",
         "Half up half down",
-        "LA weave",
+        "LA weave / microlinks wefts / braidless sew in",
         "Feed-in braids",
         "Knotless braids",
         "Boho braids / goddess braids",
@@ -50824,12 +53082,12 @@
       "priceConfidence": "high",
       "addedVia": "Code edit",
       "discoverySource": "Cowork scrape",
-      "googlePlaceId": "ChIJPTmgh84DdkgRatr-YNuIeBg",
+      "googlePlaceId": null,
       "googleReviewCount": 77,
       "googleMapsUri": "https://maps.google.com/?cid=1763309729922079338&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
       "googleMatchConfidence": "high",
       "googleDisplayName": "Vanity Hair and Beauty Studios",
-      "googleFormattedAddress": "287 New Cross Rd, London SE14 6AS, UK",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-07-23",
       "portfolioPhotos": [
         {
@@ -50839,12 +53097,12 @@
         },
         {
           "id": "vanity-hair-and-beauty-studios-portfolio-photo-ae51da18-9693-47e7-a8f8-aad35a0fe0f2",
-          "url": "/portfolio-photos/vanity-hair-and-beauty-studios-3cbf3f4b-61ba-4f7b-aebc-78c42563eb04.jpg",
+          "url": "/portfolio-photos/vanity-hair-and-beauty-studios-e369f10f-626e-46c8-98f6-e1ec2ae65b17.jpg",
           "source": "google"
         },
         {
           "id": "vanity-hair-and-beauty-studios-portfolio-photo-c29608b4-815d-4fc1-8e00-571769d1ad63",
-          "url": "/portfolio-photos/vanity-hair-and-beauty-studios-4b07cec5-b799-4bf0-9c4e-a3ee6f68a7ba.jpg",
+          "url": "/portfolio-photos/vanity-hair-and-beauty-studios-e8c51086-9645-444d-b4a8-f71df93197a0.jpg",
           "source": "google"
         },
         {
@@ -50854,7 +53112,22 @@
         }
       ],
       "portfolioPhotosCheckedAt": "2026-08-21",
-      "updatedAt": "2026-08-23"
+      "updatedAt": "2026-08-24",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": false,
+      "customFilters": {},
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only"
     },
     {
       "id": "vhudzi-hair-by-alicia-pearl",
@@ -55100,7 +57373,7 @@
       "tiktokUrl": "",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
-      "updatedAt": "2026-08-21",
+      "updatedAt": "2026-08-24",
       "salonId": "salt-salon-london",
       "priceBand": "£££",
       "priceSource": "manual",
@@ -55119,8 +57392,8 @@
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleDisplayName": null,
-      "googleFormattedAddress": null,
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-07-29",
       "websiteUrl": "https://www.zateeshabarbour.com",
       "customFilters": {},
@@ -55137,12 +57410,12 @@
         },
         {
           "id": "zateesha-hairstylist-portfolio-photo-f83026ce-5e4d-46e6-b5fb-b48a24676635",
-          "url": "/portfolio-photos/zateesha-hairstylist-e25ba17c-3d5a-4c19-9fd9-b05d4055387a.webp",
+          "url": "/portfolio-photos/zateesha-hairstylist-77c7260e-959f-470e-9daf-6206945d562b.jpg",
           "source": "manual"
         },
         {
           "id": "zateesha-hairstylist-portfolio-photo-6",
-          "url": "/portfolio-photos/zateesha-hairstylist-7.webp",
+          "url": "/portfolio-photos/zateesha-hairstylist-518aa3f4-bc8b-43bc-b465-6e1f6c6d07a6.jpg",
           "source": "website"
         },
         {
@@ -55161,7 +57434,9 @@
           "source": "website"
         }
       ],
-      "portfolioPhotosCheckedAt": "2026-08-21"
+      "portfolioPhotosCheckedAt": "2026-08-21",
+      "hairShopUrl": "",
+      "sellsHairSeparately": false
     },
     {
       "id": "cg-hair",
