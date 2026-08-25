@@ -870,6 +870,8 @@ export function registerAdminStylistRoutes(app) {
       ...(salon.portfolioPhotos || []),
       { id: `${salon.id}-portfolio-photo-${crypto.randomUUID()}`, url: `/portfolio-photos/${filename}`, source: "manual" },
     ];
+    delete salon.photoSearchSkippedAt;
+    delete salon.photoSearchSkippedReason;
     salon.updatedAt = now;
     manualIndex.meta = { ...manualIndex.meta, updatedAt: now, count: manualIndex.salons.length };
     await persistManualIndex(manualIndex, `Upload a portfolio photo for ${salon.name}`);
@@ -1044,9 +1046,55 @@ export function registerAdminStylistRoutes(app) {
     const manualIndex = await readJson(manualIndexPath, { meta: { source: "manual" }, salons: [] });
     const offset = Math.max(0, Number(req.query.offset) || 0);
     const limit = Math.min(50, Math.max(1, Number(req.query.limit) || 20));
-    const eligible = manualIndex.salons.filter(
-      (salon) => !salon.branches && (salon.portfolioPhotos || []).length === 0 && !salon.photoSearchSkippedAt
-    );
+
+    // A custom `ids` list lets an admin re-run photo search on a hand-picked
+    // set of stylists (e.g. ones that already have photos but could use
+    // better ones) instead of only the automated zero-photos backfill queue.
+    const requestedIds = String(req.query.ids || "")
+      .split(",")
+      .map((id) => id.trim())
+      .filter(Boolean);
+    // `?includeDismissed=1` widens the default zero-photos backfill queue to
+    // also include stylists already dismissed (manually, or auto-skipped for
+    // no Instagram photo results) — meant to pair with `includeReels=1` on
+    // the search itself, since a dismissed-for-no-photos stylist is exactly
+    // who a Reel-cover fallback search is for.
+    const includeDismissed = req.query.includeDismissed === "1";
+
+    let eligible;
+    if (requestedIds.length > 0 || includeDismissed) {
+      // A named list and the auto-computed dismissed/zero-photos set can run
+      // together in one queue (e.g. "these specific stylists, plus everyone
+      // else already dismissed") — union them, named ones first since those
+      // were asked for explicitly. photoSearchReviewedAt (set on every
+      // approve/skip) is what lets a page refresh pick up where the admin
+      // left off, since neither set can rely on photo count alone.
+      const byId = new Map(manualIndex.salons.map((salon) => [salon.id, salon]));
+      const seen = new Set();
+      const combined = [];
+      for (const id of requestedIds) {
+        const salon = byId.get(id);
+        if (salon && !salon.photoSearchReviewedAt && !seen.has(id)) {
+          seen.add(id);
+          combined.push(salon);
+        }
+      }
+      if (includeDismissed) {
+        for (const salon of manualIndex.salons) {
+          if (salon.photoSearchReviewedAt || seen.has(salon.id)) continue;
+          if ((salon.portfolioPhotos || []).length === 0 || !!salon.photoSearchSkippedAt) {
+            seen.add(salon.id);
+            combined.push(salon);
+          }
+        }
+      }
+      eligible = combined;
+    } else {
+      // Multi-location salons store one shared instagramUrl/portfolioPhotos
+      // on the parent record, so photo search works on them exactly like any
+      // other salon — nothing here depends on a salon being branch-free.
+      eligible = manualIndex.salons.filter((salon) => (salon.portfolioPhotos || []).length === 0 && !salon.photoSearchSkippedAt);
+    }
     const page = eligible.slice(offset, offset + limit).map((salon) => ({
       id: salon.id,
       name: salon.name,
@@ -1067,7 +1115,31 @@ export function registerAdminStylistRoutes(app) {
       return res.status(404).json({ ok: false, message: "Salon not found." });
     }
     try {
-      const results = await searchSalonImages(salon);
+      // Reel-cover mode is opt-in (via ?includeReels=1) rather than the
+      // default, since reel covers run more mixed (text-overlay title
+      // cards, "GRWM" slides) than real photo posts — a deliberate second
+      // pass for stylists the normal photo-only search already dismissed,
+      // not a blanket search-everything change.
+      const includeReels = req.query.includeReels === "1";
+      const results = await searchSalonImages(salon, includeReels ? { num: 30, includeReels: true } : undefined);
+      // A salon whose Instagram has nothing to show will never return
+      // results on a future lookup either — mark it skipped immediately so
+      // it drops out of the queue instead of burning image-search credits
+      // on every future page load (including this page's own prefetch).
+      // Re-read + write under the lock (rather than reusing the `manualIndex`
+      // read above) since several of these prefetches run concurrently and
+      // may race an admin's own approve/skip on the current salon.
+      if (results.length === 0) {
+        await withManualIndexLock(async () => {
+          const freshIndex = await readJson(manualIndexPath, { meta: { source: "manual" }, salons: [] });
+          const freshSalon = freshIndex.salons.find((s) => s.id === req.params.salonId);
+          if (freshSalon && !freshSalon.photoSearchSkippedAt) {
+            freshSalon.photoSearchSkippedAt = today();
+            freshSalon.photoSearchSkippedReason = "no-instagram-results";
+            await persistManualIndex(freshIndex, `Auto-skip photo search for ${freshSalon.name} (no Instagram results)`);
+          }
+        });
+      }
       res.json({ ok: true, results });
     } catch (error) {
       res.status(502).json({ ok: false, message: sanitizeErrorMessage(error, "Image search failed.") });
@@ -1133,24 +1205,77 @@ export function registerAdminStylistRoutes(app) {
     const filename = `${salon.id}-${crypto.randomUUID()}.jpg`;
     await fs.writeFile(path.join(portfolioPhotosPublicDir, filename), buffer);
 
-    const existingPhotos = salon.portfolioPhotos || [];
-    const photo = { id: `${salon.id}-portfolio-photo-${crypto.randomUUID()}`, url: `/portfolio-photos/${filename}`, source: "google-image-search" };
-    salon.portfolioPhotos = [...existingPhotos, photo];
-    delete salon.photoSearchSkippedAt;
-
-    await persistManualIndex(manualIndex, `Add photo-search photo for ${salon.name}`);
+    // Re-read + write under the lock instead of reusing the `manualIndex`
+    // read from before the (potentially slow) download/crop above — another
+    // request could have written the file in the meantime, and this could
+    // race a concurrent prefetch's auto-skip write for the same salon.
+    const isReel = req.body?.isReel === true;
+    const photo = {
+      id: `${salon.id}-portfolio-photo-${crypto.randomUUID()}`,
+      url: `/portfolio-photos/${filename}`,
+      source: isReel ? "instagram-reel-thumbnail" : "google-image-search",
+    };
+    await withManualIndexLock(async () => {
+      const freshIndex = await readJson(manualIndexPath, { meta: { source: "manual" }, salons: [] });
+      const freshSalon = freshIndex.salons.find((s) => s.id === req.params.salonId);
+      if (!freshSalon) return;
+      const existingPhotos = freshSalon.portfolioPhotos || [];
+      // Photo-search approvals are sourced to look better than what's
+      // already on file, so they lead the gallery instead of trailing it.
+      freshSalon.portfolioPhotos = [photo, ...existingPhotos];
+      delete freshSalon.photoSearchSkippedAt;
+      delete freshSalon.photoSearchSkippedReason;
+      // A custom `ids` queue (re-running search on hand-picked stylists that
+      // may already have photos) can't rely on "zero photos" to know a
+      // stylist is done — mark it explicitly so a page refresh doesn't
+      // re-show the whole list from scratch.
+      freshSalon.photoSearchReviewedAt = today();
+      await persistManualIndex(freshIndex, `Add photo-search photo for ${freshSalon.name}`);
+    });
     res.json({ ok: true, photo });
   });
 
   app.post("/api/admin/photo-search/:salonId/skip", requireAdmin, async (req, res) => {
-    const manualIndex = await readJson(manualIndexPath, { meta: { source: "manual" }, salons: [] });
-    const salon = manualIndex.salons.find((s) => s.id === req.params.salonId);
-    if (!salon) {
+    const found = await withManualIndexLock(async () => {
+      const manualIndex = await readJson(manualIndexPath, { meta: { source: "manual" }, salons: [] });
+      const salon = manualIndex.salons.find((s) => s.id === req.params.salonId);
+      if (!salon) return false;
+      salon.photoSearchSkippedAt = today();
+      salon.photoSearchSkippedReason = "manual";
+      salon.photoSearchReviewedAt = today();
+      await persistManualIndex(manualIndex, `Skip photo search for ${salon.name}`);
+      return true;
+    });
+    if (!found) {
       return res.status(404).json({ ok: false, message: "Salon not found." });
     }
-    salon.photoSearchSkippedAt = new Date().toISOString();
-    await persistManualIndex(manualIndex, `Skip photo search for ${salon.name}`);
     res.json({ ok: true });
+  });
+
+  // Salons dismissed from Photo search (auto-skipped for having no Instagram
+  // results, or manually dismissed) without ever getting a photo approved —
+  // surfaced here so an admin can source and upload one by hand via the
+  // existing Stylists portfolio-photo upload endpoint.
+  app.get("/api/admin/photo-search-backlog", requireAdmin, async (req, res) => {
+    const manualIndex = await readJson(manualIndexPath, { meta: { source: "manual" }, salons: [] });
+    const offset = Math.max(0, Number(req.query.offset) || 0);
+    const limit = Math.min(50, Math.max(1, Number(req.query.limit) || 20));
+    const backlog = manualIndex.salons.filter(
+      (salon) => !salon.branches && (salon.portfolioPhotos || []).length === 0 && !!salon.photoSearchSkippedAt
+    );
+    const page = backlog.slice(offset, offset + limit).map((salon) => ({
+      id: salon.id,
+      name: salon.name,
+      neighbourhood: salon.neighbourhood,
+      postcode: salon.postcode,
+      areaLabel: salon.areaLabel,
+      websiteUrl: salon.websiteUrl,
+      instagramUrl: salon.instagramUrl,
+      googleFormattedAddress: salon.googleFormattedAddress,
+      photoSearchSkippedAt: salon.photoSearchSkippedAt,
+      photoSearchSkippedReason: salon.photoSearchSkippedReason || "manual",
+    }));
+    res.json({ ok: true, total: backlog.length, offset, limit, salons: page });
   });
 
   app.get("/api/admin/dashboard", requireAdmin, async (_req, res) => {
@@ -2142,6 +2267,26 @@ async function matchBranchToGoogle(brandName, branch) {
   return result;
 }
 
+// Photo search prefetches results for the next few salons in the queue while
+// an admin is still reviewing the current one (see PhotoSearchPage's
+// upcomingSalonIds effect), and each of those lookups can write a skip flag
+// to manual-salons.json on a zero-result search. Without serializing those
+// writes against the current salon's own approve/skip, two concurrent
+// read-modify-write cycles on the same file race: whichever finishes last
+// wins and silently drops the other's change, so a skipped salon can
+// reappear in the queue on the next page load and burn another search
+// credit. This queue forces every manual-index read-modify-write from the
+// photo search endpoints to happen one at a time.
+let manualIndexLockQueue = Promise.resolve();
+function withManualIndexLock(task) {
+  const result = manualIndexLockQueue.then(task, task);
+  manualIndexLockQueue = result.then(
+    () => {},
+    () => {}
+  );
+  return result;
+}
+
 async function persistManualIndex(manualIndex, commitMessage) {
   if (isGitHubJsonBacked()) {
     await writeJsonFilesToGitHub([{ path: "data/manual-salons.json", payload: manualIndex }], commitMessage);
@@ -2565,7 +2710,7 @@ async function logHealthCheckFeedback({ salonId, salonName, reason, context, rej
     reason,
     context,
     rejectedEvidence: Array.isArray(rejectedEvidence) ? rejectedEvidence : [],
-    createdAt: new Date().toISOString(),
+    createdAt: today(),
   });
   await writeJson(healthCheckFeedbackPath, { ...store, entries });
 }

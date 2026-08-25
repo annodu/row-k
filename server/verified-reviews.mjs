@@ -4,6 +4,10 @@ export const verifiedReviewHostnames = ["fresha.com", "treatwell.co.uk", "booksy
 
 const userAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36";
 
+function today() {
+  return new Date().toISOString().split("T")[0];
+}
+
 export function getVerifiedReviewPlatform(bookingUrl) {
   const url = (bookingUrl || "").toLowerCase();
   return verifiedReviewHostnames.find((hostname) => url.includes(hostname)) ?? null;
@@ -59,5 +63,5 @@ export async function matchVerifiedReviews(salon) {
   if (!result.ok) {
     throw new Error(result.error);
   }
-  return { verifiedReviewCount: result.reviewCount, verifiedReviewCheckedAt: new Date().toISOString() };
+  return { verifiedReviewCount: result.reviewCount, verifiedReviewCheckedAt: today() };
 }

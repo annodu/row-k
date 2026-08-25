@@ -147,7 +147,7 @@ type CustomFilterBehavior = "toggle-group" | "tag-multiselect";
 type CustomFilterOption = { id: string; label: string };
 type CustomFilterType = { id: string; label: string; description: string; behavior: CustomFilterBehavior; options: CustomFilterOption[] };
 type PriceBandTier = { symbol: string; label: string; maxAmount: number | null };
-type AdminView = "overview" | "analytics" | "drafts" | "freshness" | "pricing" | "keyword" | "discovery" | "filters" | "photo-review" | "photo-search";
+type AdminView = "overview" | "analytics" | "drafts" | "freshness" | "pricing" | "keyword" | "discovery" | "filters" | "photo-review" | "photo-search" | "photo-backlog";
 
 type AdminNavItem = { id: AdminView; label: string; icon: ComponentType<{ className?: string }> };
 
@@ -172,6 +172,7 @@ const ADMIN_NAV_GROUPS: { label?: string; items: AdminNavItem[] }[] = [
       { id: "pricing", label: "Pricing", icon: PoundSterling },
       { id: "photo-review", label: "Photo review", icon: ImageIcon },
       { id: "photo-search", label: "Photo search", icon: ImagePlus },
+      { id: "photo-backlog", label: "Photo backlog", icon: UploadCloud },
     ],
   },
   {
@@ -2025,6 +2026,7 @@ function AdminAppInner() {
         {activeView === "photo-review" ? <PortfolioReviewPage /> : null}
 
         {activeView === "photo-search" ? <PhotoSearchPage /> : null}
+        {activeView === "photo-backlog" ? <PhotoBacklogPage /> : null}
 
         {activeView === "drafts" ? (
           <StylistsPage
@@ -4372,6 +4374,7 @@ type PhotoSearchResult = {
   width?: number;
   height?: number;
   title?: string;
+  isReel?: boolean;
 };
 
 function PhotoSearchPage() {
@@ -4384,20 +4387,72 @@ function PhotoSearchPage() {
   const [actioning, setActioning] = useState(false);
   const [approvedUrls, setApprovedUrls] = useState<Set<string>>(new Set());
 
-  const loadQueuePage = useCallback((newOffset: number) => {
-    fetch(`/api/admin/photo-search-queue?offset=${newOffset}&limit=20`, { credentials: "include" })
-      .then((response) => response.json())
-      .then((payload) => {
-        if (!payload.ok) {
-          setQueueError(payload.message || "Could not load the photo search queue.");
-          return;
-        }
-        setQueue(payload.salons);
-        setTotal(payload.total);
-        setOffset(newOffset);
-      })
-      .catch(() => setQueueError("Could not load the photo search queue."));
-  }, []);
+  // Photo searches take several seconds each; prefetching the next queue
+  // item while the admin reviews the current one hides that latency behind
+  // review time instead of making every "next" click wait on the network.
+  const resultsCacheRef = useRef(new Map<string, Promise<{ ok: boolean; results?: PhotoSearchResult[]; message?: string }>>());
+
+  // A `?ids=a,b,c` query param on the admin URL switches this page to a
+  // hand-picked list of stylists (e.g. re-running search for better photos
+  // on ones that already have some) instead of the automated zero-photos
+  // backfill queue.
+  const customIds = useMemo(() => new URLSearchParams(window.location.search).get("ids") || "", []);
+
+  // includeReels/includeDismissed are toggles, not a one-off list like `ids`
+  // — reading them only from the URL bit an admin every time they navigated
+  // within the app (Overview, then back to Photo search) without a real page
+  // reload: this component unmounts/remounts on every nav, but the browser's
+  // actual URL never changes, so a `useMemo(..., [])` re-read the *original*
+  // tab URL and silently dropped back to the empty default queue. Backing
+  // these with sessionStorage (seeded from the URL on first load, so a
+  // shared link still works) survives that remount within the same tab.
+  const [includeReels, setIncludeReels] = useState(
+    () => sessionStorage.getItem("photoSearchIncludeReels") === "1" || new URLSearchParams(window.location.search).get("includeReels") === "1"
+  );
+  const [includeDismissed, setIncludeDismissed] = useState(
+    () =>
+      sessionStorage.getItem("photoSearchIncludeDismissed") === "1" ||
+      new URLSearchParams(window.location.search).get("includeDismissed") === "1"
+  );
+  useEffect(() => {
+    sessionStorage.setItem("photoSearchIncludeReels", includeReels ? "1" : "0");
+  }, [includeReels]);
+  useEffect(() => {
+    sessionStorage.setItem("photoSearchIncludeDismissed", includeDismissed ? "1" : "0");
+  }, [includeDismissed]);
+
+  const fetchPhotoSearch = useCallback(
+    (salonId: string) => {
+      let cached = resultsCacheRef.current.get(salonId);
+      if (!cached) {
+        const reelsParam = includeReels ? "?includeReels=1" : "";
+        cached = fetch(`/api/admin/photo-search/${salonId}${reelsParam}`, { credentials: "include" }).then((response) => response.json());
+        resultsCacheRef.current.set(salonId, cached);
+      }
+      return cached;
+    },
+    [includeReels]
+  );
+
+  const loadQueuePage = useCallback(
+    (newOffset: number) => {
+      const idsParam = customIds ? `&ids=${encodeURIComponent(customIds)}` : "";
+      const dismissedParam = includeDismissed ? "&includeDismissed=1" : "";
+      fetch(`/api/admin/photo-search-queue?offset=${newOffset}&limit=20${idsParam}${dismissedParam}`, { credentials: "include" })
+        .then((response) => response.json())
+        .then((payload) => {
+          if (!payload.ok) {
+            setQueueError(payload.message || "Could not load the photo search queue.");
+            return;
+          }
+          setQueue(payload.salons);
+          setTotal(payload.total);
+          setOffset(newOffset);
+        })
+        .catch(() => setQueueError("Could not load the photo search queue."));
+    },
+    [customIds, includeDismissed]
+  );
 
   useEffect(() => loadQueuePage(0), [loadQueuePage]);
 
@@ -4412,15 +4467,14 @@ function PhotoSearchPage() {
     setResults(null);
     setSearchError("");
     setApprovedUrls(new Set());
-    fetch(`/api/admin/photo-search/${current.id}`, { credentials: "include" })
-      .then((response) => response.json())
+    fetchPhotoSearch(current.id)
       .then((payload) => {
         if (cancelled) return;
         if (!payload.ok) {
           setSearchError(payload.message || "Image search failed.");
           return;
         }
-        setResults(payload.results);
+        setResults(payload.results ?? []);
       })
       .catch(() => {
         if (!cancelled) setSearchError("Image search failed.");
@@ -4428,7 +4482,23 @@ function PhotoSearchPage() {
     return () => {
       cancelled = true;
     };
-  }, [current?.id]);
+  }, [current?.id, fetchPhotoSearch]);
+
+  // Keep a few salons' worth of buffer ahead, not just the very next one —
+  // if the admin moves through the queue faster than a single search takes,
+  // one-ahead prefetching can't keep up and every click waits on the network
+  // again. Credits are cheap enough (~$0.002/salon) that over-prefetching a
+  // few salons the admin might skip past isn't worth optimizing away.
+  const upcomingSalonIds = (queue ?? []).slice(1, 4).map((salon) => salon.id);
+  const upcomingSalonIdsKey = upcomingSalonIds.join(",");
+  useEffect(() => {
+    for (const salonId of upcomingSalonIdsKey ? upcomingSalonIdsKey.split(",") : []) {
+      fetchPhotoSearch(salonId).catch(() => {
+        // Swallow prefetch errors — the foreground fetch when this salon
+        // becomes current will surface the error normally.
+      });
+    }
+  }, [upcomingSalonIdsKey, fetchPhotoSearch]);
 
   function advance() {
     setTotal((existingTotal) => Math.max(0, existingTotal - 1));
@@ -4447,7 +4517,7 @@ function PhotoSearchPage() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
-        body: JSON.stringify({ imageUrl: result.imageUrl, thumbnailUrl: result.thumbnailUrl, crop, rotation }),
+        body: JSON.stringify({ imageUrl: result.imageUrl, thumbnailUrl: result.thumbnailUrl, crop, rotation, isReel: result.isReel }),
       });
       const payload = await response.json().catch(() => ({}));
       if (!response.ok || !payload.ok) {
@@ -4469,7 +4539,11 @@ function PhotoSearchPage() {
     if (!current) return;
     setActioning(true);
     try {
-      await fetch(`/api/admin/photo-search/${current.id}/skip`, { method: "POST", credentials: "include" });
+      const response = await fetch(`/api/admin/photo-search/${current.id}/skip`, { method: "POST", credentials: "include" });
+      if (!response.ok) {
+        setSearchError("Could not skip this salon.");
+        return;
+      }
       advance();
     } catch {
       setSearchError("Could not skip this salon.");
@@ -4483,8 +4557,36 @@ function PhotoSearchPage() {
       <div className="flex items-baseline justify-between gap-4">
         <h1 className="text-lg font-semibold text-stone-950">Photo search</h1>
         <p className="truncate text-xs text-stone-500">
-          Salons the automated backfill found no photos for — approve a thumbnail to add it, or skip.
+          {includeReels
+            ? "Reel-cover mode — pulling in Reel thumbnails too, not just photo posts."
+            : customIds
+              ? "Custom list — approve a thumbnail to add it above the existing photos, or skip."
+              : "Salons the automated backfill found no photos for — approve a thumbnail to add it, or skip."}
         </p>
+      </div>
+
+      <div className="flex shrink-0 items-center gap-4">
+        <label className="flex items-center gap-1.5 text-xs text-stone-700 dark:text-stone-300">
+          <input
+            type="checkbox"
+            checked={includeReels}
+            onChange={(event) => {
+              resultsCacheRef.current.clear();
+              setIncludeReels(event.target.checked);
+            }}
+          />
+          Include Reel covers
+        </label>
+        {!customIds ? (
+          <label className="flex items-center gap-1.5 text-xs text-stone-700 dark:text-stone-300">
+            <input
+              type="checkbox"
+              checked={includeDismissed}
+              onChange={(event) => setIncludeDismissed(event.target.checked)}
+            />
+            Include previously dismissed
+          </label>
+        ) : null}
       </div>
 
       {queueError ? <p className="text-sm text-red-600">{queueError}</p> : null}
@@ -4552,10 +4654,15 @@ function PhotoSearchPage() {
                   <div
                     key={`${result.imageUrl}-${index}`}
                     className={cn(
-                      "flex flex-col border bg-white",
+                      "relative flex flex-col border bg-white",
                       isApproved ? "border-emerald-500" : "border-stone-200"
                     )}
                   >
+                    {result.isReel ? (
+                      <span className="absolute left-1 top-1 z-10 bg-stone-950/80 px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-white">
+                        Reel
+                      </span>
+                    ) : null}
                     <RepositionableImage
                       src={result.thumbnailUrl}
                       disabled={isApproved}
@@ -4583,6 +4690,158 @@ function PhotoSearchPage() {
               })}
             </div>
           ) : null}
+        </div>
+      )}
+    </div>
+  );
+}
+
+type PhotoBacklogSalon = PhotoSearchQueueSalon & {
+  photoSearchSkippedAt?: string;
+  photoSearchSkippedReason?: string;
+};
+
+// Salons Photo search dismissed without an approved photo (either
+// auto-skipped for having nothing on Instagram, or manually dismissed) land
+// here for a human to source and upload a photo by hand.
+function PhotoBacklogPage() {
+  const [salons, setSalons] = useState<PhotoBacklogSalon[] | null>(null);
+  const [total, setTotal] = useState(0);
+  const [offset, setOffset] = useState(0);
+  const [loadError, setLoadError] = useState("");
+  const [uploadingId, setUploadingId] = useState<string | null>(null);
+  const [uploadError, setUploadError] = useState("");
+
+  const loadPage = useCallback((newOffset: number) => {
+    fetch(`/api/admin/photo-search-backlog?offset=${newOffset}&limit=20`, { credentials: "include" })
+      .then((response) => response.json())
+      .then((payload) => {
+        if (!payload.ok) {
+          setLoadError(payload.message || "Could not load the photo backlog.");
+          return;
+        }
+        setSalons(payload.salons);
+        setTotal(payload.total);
+        setOffset(newOffset);
+      })
+      .catch(() => setLoadError("Could not load the photo backlog."));
+  }, []);
+
+  useEffect(() => loadPage(0), [loadPage]);
+
+  async function upload(salonId: string, file: File) {
+    if (!file.type.startsWith("image/")) {
+      setUploadError("Choose an image file.");
+      return;
+    }
+    setUploadingId(salonId);
+    setUploadError("");
+    try {
+      const image = await new Promise<string>((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result as string);
+        reader.onerror = () => reject(new Error("Could not read that file."));
+        reader.readAsDataURL(file);
+      });
+      const response = await fetch(`/api/admin/stylists/published/${salonId}/portfolio-photos/upload`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({ image }),
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok || !payload.ok) {
+        setUploadError(payload.message || "Could not upload that photo.");
+        return;
+      }
+      setSalons((current) => (current ?? []).filter((salon) => salon.id !== salonId));
+      setTotal((current) => Math.max(0, current - 1));
+    } catch {
+      setUploadError("Could not upload that photo.");
+    } finally {
+      setUploadingId(null);
+    }
+  }
+
+  return (
+    <div className="flex h-full flex-col gap-2">
+      <div className="flex items-baseline justify-between gap-4">
+        <h1 className="text-lg font-semibold text-stone-950">Photo backlog</h1>
+        <p className="truncate text-xs text-stone-500">
+          Salons skipped from Photo search with no approved photo — upload one by hand.
+        </p>
+      </div>
+
+      {loadError ? <p className="text-sm text-red-600">{loadError}</p> : null}
+      {uploadError ? <p className="text-sm text-red-600">{uploadError}</p> : null}
+
+      {salons === null ? (
+        <p className="text-sm text-stone-500">Loading…</p>
+      ) : salons.length === 0 ? (
+        <p className="text-sm text-stone-500">Nothing in the backlog.</p>
+      ) : (
+        <div className="flex min-h-0 flex-1 flex-col gap-2 overflow-y-auto">
+          <p className="text-xs text-stone-500">
+            {total} salon{total === 1 ? "" : "s"} need a photo
+          </p>
+          {salons.map((salon) => (
+            <div
+              key={salon.id}
+              className="flex items-center justify-between gap-4 border border-stone-200 bg-white px-3 py-2 dark:border-stone-800 dark:bg-stone-900"
+            >
+              <div className="flex min-w-0 flex-wrap items-baseline gap-x-2 gap-y-0.5">
+                <span className="text-sm font-semibold text-stone-950 dark:text-stone-100">{salon.name}</span>
+                <span className="truncate text-xs text-stone-500">
+                  {[salon.neighbourhood, salon.postcode].filter(Boolean).join(" · ") || salon.areaLabel || "No location on file"}
+                </span>
+                {salon.instagramUrl ? (
+                  <a
+                    href={salon.instagramUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="shrink-0 text-xs text-stone-700 underline dark:text-stone-300"
+                  >
+                    Instagram
+                  </a>
+                ) : null}
+                <span className="shrink-0 text-xs text-stone-400">
+                  {salon.photoSearchSkippedReason === "no-instagram-results" ? "No Instagram results" : "Manually dismissed"}
+                </span>
+              </div>
+              <label className="shrink-0 cursor-pointer border border-stone-300 bg-white px-3 py-1.5 text-xs font-semibold text-stone-700 transition hover:bg-stone-100 has-[:disabled]:opacity-50 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-200">
+                {uploadingId === salon.id ? "Uploading…" : "Upload photo"}
+                <input
+                  type="file"
+                  accept="image/*"
+                  className="hidden"
+                  disabled={uploadingId === salon.id}
+                  onChange={(event) => {
+                    const file = event.target.files?.[0];
+                    event.target.value = "";
+                    if (file) upload(salon.id, file);
+                  }}
+                />
+              </label>
+            </div>
+          ))}
+          <div className="flex items-center gap-2 pt-2">
+            <button
+              type="button"
+              disabled={offset === 0}
+              onClick={() => loadPage(Math.max(0, offset - 20))}
+              className="border border-stone-300 bg-white px-3 py-1.5 text-xs font-semibold text-stone-700 transition hover:bg-stone-100 disabled:opacity-50 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-200"
+            >
+              Previous
+            </button>
+            <button
+              type="button"
+              disabled={offset + 20 >= total}
+              onClick={() => loadPage(offset + 20)}
+              className="border border-stone-300 bg-white px-3 py-1.5 text-xs font-semibold text-stone-700 transition hover:bg-stone-100 disabled:opacity-50 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-200"
+            >
+              Next
+            </button>
+          </div>
         </div>
       )}
     </div>

@@ -376,7 +376,11 @@ async function fetchLocationBreakdown(preset) {
 async function fetchAllTimeStats() {
   const internalTrafficExclusion = internalTrafficExclusionClause();
   const [visitorRows, clickRows] = await Promise.all([
-    runHogQLQuery(`SELECT count(DISTINCT person_id) AS visitors FROM events WHERE event = '$pageview'${internalTrafficExclusion}`),
+    // uniq() (HyperLogLog-based approximate distinct count) instead of the
+    // exact count(DISTINCT ...) — the exact form was scanning the entire
+    // unbounded events table and regularly hitting PostHog's max execution
+    // time as the table grew.
+    runHogQLQuery(`SELECT uniq(person_id) AS visitors FROM events WHERE event = '$pageview'${internalTrafficExclusion}`),
     runHogQLQuery(`
       SELECT countIf(event = 'book_click') AS booking_clicks, countIf(event = 'instagram_click') AS instagram_clicks
       FROM events
@@ -421,14 +425,28 @@ export async function fetchRecentActivity(limit = RECENT_ACTIVITY_LIMIT) {
   }
 }
 
+// The dashboard endpoint calls this on every admin page load — even with
+// uniq() instead of an exact count, a live PostHog query is still slow
+// enough (and occasionally times out) that it shouldn't block every load.
+// Cache the last successful result for a few minutes, and on failure fall
+// back to that stale-but-known-good value instead of surfacing an error.
+const ALL_TIME_CACHE_TTL_MS = 5 * 60 * 1000;
+let allTimeCache = { value: null, fetchedAt: 0 };
+
 export async function fetchAllTimeSummary() {
   if (!isConfigured()) return null;
 
+  if (Date.now() - allTimeCache.fetchedAt < ALL_TIME_CACHE_TTL_MS) {
+    return allTimeCache.value;
+  }
+
   try {
-    return await fetchAllTimeStats();
+    const value = await fetchAllTimeStats();
+    allTimeCache = { value, fetchedAt: Date.now() };
+    return value;
   } catch (error) {
     console.error("PostHog all-time analytics fetch failed", error);
-    return null;
+    return allTimeCache.value;
   }
 }
 

@@ -8,6 +8,10 @@ const envPath = path.resolve(__dirname, "../.env");
 
 const userAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36";
 
+function today() {
+  return new Date().toISOString().split("T")[0];
+}
+
 export async function loadGooglePlacesApiKey() {
   if (process.env.GOOGLE_PLACES_API_KEY) return process.env.GOOGLE_PLACES_API_KEY;
   try {
@@ -237,7 +241,7 @@ export async function matchSalonToGoogle(salon, { apiKey } = {}) {
 
   const place = await searchPlace(query, key);
 
-  const noMatch = { googlePlaceId: null, googleReviewCount: 0, googleMapsUri: "", googleMatchConfidence: "no-match", googleCheckedAt: new Date().toISOString() };
+  const noMatch = { googlePlaceId: null, googleReviewCount: 0, googleMapsUri: "", googleMatchConfidence: "no-match", googleCheckedAt: today() };
 
   if (!place) {
     return noMatch;
@@ -278,7 +282,7 @@ export async function matchSalonToGoogle(salon, { apiKey } = {}) {
     googleMatchConfidence: "high",
     googleDisplayName: place.displayName?.text || "",
     googleFormattedAddress: place.formattedAddress || "",
-    googleCheckedAt: new Date().toISOString(),
+    googleCheckedAt: today(),
     nameScore,
   };
 }
