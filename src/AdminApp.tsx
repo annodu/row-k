@@ -3,6 +3,7 @@ import {
   Activity,
   AlertTriangle,
   ArrowRight,
+  ArrowUpDown,
   Ban,
   BarChart3,
   Check,
@@ -147,7 +148,20 @@ type CustomFilterBehavior = "toggle-group" | "tag-multiselect";
 type CustomFilterOption = { id: string; label: string };
 type CustomFilterType = { id: string; label: string; description: string; behavior: CustomFilterBehavior; options: CustomFilterOption[] };
 type PriceBandTier = { symbol: string; label: string; maxAmount: number | null };
-type AdminView = "overview" | "analytics" | "drafts" | "freshness" | "pricing" | "keyword" | "discovery" | "filters" | "photo-review" | "photo-search" | "photo-backlog";
+type AdminView =
+  | "overview"
+  | "analytics"
+  | "drafts"
+  | "freshness"
+  | "pricing"
+  | "keyword"
+  | "discovery"
+  | "filters"
+  | "photo-review"
+  | "photo-search"
+  | "photo-backlog"
+  | "link-backlog"
+  | "photo-order";
 
 type AdminNavItem = { id: AdminView; label: string; icon: ComponentType<{ className?: string }> };
 
@@ -173,6 +187,8 @@ const ADMIN_NAV_GROUPS: { label?: string; items: AdminNavItem[] }[] = [
       { id: "photo-review", label: "Photo review", icon: ImageIcon },
       { id: "photo-search", label: "Photo search", icon: ImagePlus },
       { id: "photo-backlog", label: "Photo backlog", icon: UploadCloud },
+      { id: "link-backlog", label: "Link backlog", icon: Link2 },
+      { id: "photo-order", label: "Photo order", icon: ArrowUpDown },
     ],
   },
   {
@@ -256,6 +272,10 @@ const defaultRegionParentGroups: RegionParentGroup[] = [
 ];
 let regionParentGroupsCache: RegionParentGroup[] = defaultRegionParentGroups;
 const regionParentGroupsListeners = new Set<(groups: RegionParentGroup[]) => void>();
+
+function today(): string {
+  return new Date().toISOString().split("T")[0];
+}
 
 function setRegionParentGroupsCache(groups: RegionParentGroup[]) {
   regionParentGroupsCache = groups;
@@ -1573,7 +1593,7 @@ function AdminAppInner() {
 
         const batchChecks = payload.checks ?? [];
         totalUpdates += batchChecks.length;
-        lastCheckedAt = payload.checkedAt || lastCheckedAt || new Date().toISOString();
+        lastCheckedAt = payload.checkedAt || lastCheckedAt || today();
         completedChecks = batchOffset === 0 ? batchChecks : [...completedChecks, ...batchChecks];
         setChecks(completedChecks);
         setChecksLoadedAt(lastCheckedAt);
@@ -1600,7 +1620,7 @@ function AdminAppInner() {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             checks: completedChecks,
-            checkedAt: lastCheckedAt || new Date().toISOString(),
+            checkedAt: lastCheckedAt || today(),
             checkedCount: completedCount,
             total: totalCount,
           }),
@@ -1827,8 +1847,8 @@ function AdminAppInner() {
                   priceBand: update.priceBand,
                   priceSource: update.priceSource || "auto",
                   priceEvidence: update.priceEvidence || [],
-                  priceCheckedAt: update.priceCheckedAt || new Date().toISOString(),
-                  priceUpdatedAt: new Date().toISOString(),
+                  priceCheckedAt: update.priceCheckedAt || today(),
+                  priceUpdatedAt: today(),
                   priceConfidence: update.priceConfidence || "medium",
                 }
               : item,
@@ -2027,6 +2047,8 @@ function AdminAppInner() {
 
         {activeView === "photo-search" ? <PhotoSearchPage /> : null}
         {activeView === "photo-backlog" ? <PhotoBacklogPage /> : null}
+        {activeView === "link-backlog" ? <LinkBacklogPage /> : null}
+        {activeView === "photo-order" ? <PhotoOrderQueuePage /> : null}
 
         {activeView === "drafts" ? (
           <StylistsPage
@@ -3671,44 +3693,38 @@ function NewBranchForm({ regions, isBusy, onAdd }: { regions: RegionOption[]; is
 
 const PORTFOLIO_SHOWN_COUNT = 3;
 
-function PortfolioPhotosTab({
-  draft,
+// Shared by the stylist drawer's Photos tab and the Photo order batch queue:
+// reorder (bumping a photo above/below the shown-top-{PORTFOLIO_SHOWN_COUNT}
+// line), reposition/crop, and remove — everything except the upload control,
+// which only the drawer needs. `resetKey` mirrors what used to be a
+// `draft.id` dependency: the internal draft only re-syncs from `photos` when
+// this changes (switching stylists), not on every re-render of the same one.
+function PortfolioPhotoReorderGrid({
+  resetKey,
+  photos: photosProp,
   isBusy,
   onSave,
   onCropPhoto,
-  onUploadPhoto,
+  emptyMessage = "No approved photos yet.",
 }: {
-  draft: StylistDraft;
+  resetKey: string;
+  photos: PortfolioPhotoAdmin[];
   isBusy: boolean;
   onSave: (photos: PortfolioPhotoAdmin[]) => void;
   onCropPhoto: (photoId: string, region: { x: number; y: number; width: number; height: number; rotation: number }) => Promise<{ ok: boolean; message?: string }>;
-  onUploadPhoto: (file: File) => Promise<{ ok: boolean; message?: string }>;
+  emptyMessage?: string;
 }) {
-  const [photos, setPhotos] = useState<PortfolioPhotoAdmin[]>(draft.portfolioPhotos ?? []);
-  const [isUploading, setIsUploading] = useState(false);
-  const [uploadError, setUploadError] = useState("");
-  const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const [photos, setPhotos] = useState<PortfolioPhotoAdmin[]>(photosProp);
   const confirm = useConfirm();
 
-  async function handleFileSelected(event: React.ChangeEvent<HTMLInputElement>) {
-    const file = event.target.files?.[0];
-    event.target.value = "";
-    if (!file) return;
-    setIsUploading(true);
-    setUploadError("");
-    const result = await onUploadPhoto(file);
-    if (!result.ok) setUploadError(result.message || "Could not upload that photo.");
-    setIsUploading(false);
-  }
-
   useEffect(() => {
-    setPhotos(draft.portfolioPhotos ?? []);
-  }, [draft.id, draft.portfolioPhotos]);
+    setPhotos(photosProp);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [resetKey, photosProp]);
 
   const isDirty = useMemo(() => {
-    const original = draft.portfolioPhotos ?? [];
-    return original.length !== photos.length || original.some((photo, index) => photo.id !== photos[index]?.id);
-  }, [draft.portfolioPhotos, photos]);
+    return photosProp.length !== photos.length || photosProp.some((photo, index) => photo.id !== photos[index]?.id);
+  }, [photosProp, photos]);
 
   function moveUp(index: number) {
     if (index === 0) return;
@@ -3740,34 +3756,9 @@ function PortfolioPhotosTab({
   }
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-start justify-between gap-4">
-        <div>
-          <h2 className="text-sm font-semibold text-stone-950">Portfolio photos</h2>
-          <p className="mt-1 text-sm text-stone-500">
-            Every approved photo stays here, however many there are. The first {PORTFOLIO_SHOWN_COUNT} below are what actually
-            shows on the public listing — reorder to change the shortlist, or remove a photo for good.
-          </p>
-        </div>
-        <div className="shrink-0">
-          <input ref={fileInputRef} type="file" accept="image/*" className="hidden" onChange={handleFileSelected} />
-          <Button
-            type="button"
-            size="sm"
-            variant="outline"
-            disabled={isBusy || isUploading}
-            onClick={() => fileInputRef.current?.click()}
-          >
-            {isUploading ? "Uploading…" : "Upload photo"}
-          </Button>
-        </div>
-      </div>
-      {uploadError ? <p className="text-sm text-red-600">{uploadError}</p> : null}
-
+    <div className="space-y-4">
       {photos.length === 0 ? (
-        <p className="text-sm text-stone-500">
-          No approved photos yet — approve some from the Photo review page, or upload one directly above.
-        </p>
+        <p className="text-sm text-stone-500">{emptyMessage}</p>
       ) : (
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
           {photos.map((photo, index) => {
@@ -3841,6 +3832,71 @@ function PortfolioPhotosTab({
           Save order
         </Button>
       </div>
+    </div>
+  );
+}
+
+function PortfolioPhotosTab({
+  draft,
+  isBusy,
+  onSave,
+  onCropPhoto,
+  onUploadPhoto,
+}: {
+  draft: StylistDraft;
+  isBusy: boolean;
+  onSave: (photos: PortfolioPhotoAdmin[]) => void;
+  onCropPhoto: (photoId: string, region: { x: number; y: number; width: number; height: number; rotation: number }) => Promise<{ ok: boolean; message?: string }>;
+  onUploadPhoto: (file: File) => Promise<{ ok: boolean; message?: string }>;
+}) {
+  const [isUploading, setIsUploading] = useState(false);
+  const [uploadError, setUploadError] = useState("");
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
+
+  async function handleFileSelected(event: React.ChangeEvent<HTMLInputElement>) {
+    const file = event.target.files?.[0];
+    event.target.value = "";
+    if (!file) return;
+    setIsUploading(true);
+    setUploadError("");
+    const result = await onUploadPhoto(file);
+    if (!result.ok) setUploadError(result.message || "Could not upload that photo.");
+    setIsUploading(false);
+  }
+
+  return (
+    <div className="space-y-6">
+      <div className="flex items-start justify-between gap-4">
+        <div>
+          <h2 className="text-sm font-semibold text-stone-950">Portfolio photos</h2>
+          <p className="mt-1 text-sm text-stone-500">
+            Every approved photo stays here, however many there are. The first {PORTFOLIO_SHOWN_COUNT} below are what actually
+            shows on the public listing — reorder to change the shortlist, or remove a photo for good.
+          </p>
+        </div>
+        <div className="shrink-0">
+          <input ref={fileInputRef} type="file" accept="image/*" className="hidden" onChange={handleFileSelected} />
+          <Button
+            type="button"
+            size="sm"
+            variant="outline"
+            disabled={isBusy || isUploading}
+            onClick={() => fileInputRef.current?.click()}
+          >
+            {isUploading ? "Uploading…" : "Upload photo"}
+          </Button>
+        </div>
+      </div>
+      {uploadError ? <p className="text-sm text-red-600">{uploadError}</p> : null}
+
+      <PortfolioPhotoReorderGrid
+        resetKey={draft.id}
+        photos={draft.portfolioPhotos ?? []}
+        isBusy={isBusy}
+        onSave={onSave}
+        onCropPhoto={onCropPhoto}
+        emptyMessage="No approved photos yet — approve some from the Photo review page, or upload one directly above."
+      />
     </div>
   );
 }
@@ -4647,51 +4703,71 @@ function PhotoSearchPage() {
           ) : results && results.length === 0 ? (
             <p className="text-sm text-stone-500">No image results for this salon.</p>
           ) : results ? (
-            <div className="grid grid-cols-4 gap-2 sm:grid-cols-6 lg:grid-cols-8">
-              {results.map((result, index) => {
-                const isApproved = approvedUrls.has(result.imageUrl);
-                return (
-                  <div
-                    key={`${result.imageUrl}-${index}`}
-                    className={cn(
-                      "relative flex flex-col border bg-white",
-                      isApproved ? "border-emerald-500" : "border-stone-200"
-                    )}
-                  >
-                    {result.isReel ? (
-                      <span className="absolute left-1 top-1 z-10 bg-stone-950/80 px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-white">
-                        Reel
-                      </span>
-                    ) : null}
-                    <RepositionableImage
-                      src={result.thumbnailUrl}
-                      disabled={isApproved}
-                      disabledTitle="Already approved"
-                      className={isApproved ? "opacity-60" : undefined}
-                      onCommit={(region) => approve(result, region)}
-                    />
-                    {isApproved ? (
-                      <div className="flex items-center justify-center gap-1 bg-emerald-600 px-1 py-1.5 text-[12px] font-bold text-white">
-                        <Check className="size-3.5" aria-hidden="true" />
-                        Approved
-                      </div>
-                    ) : (
-                      <button
-                        type="button"
-                        disabled={actioning}
-                        onClick={() => approve(result)}
-                        className="w-full bg-emerald-600 px-1 py-1.5 text-[12px] font-bold text-white transition hover:bg-emerald-500 disabled:opacity-50"
-                      >
-                        Approve
-                      </button>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
+            <PhotoResultGrid results={results} approvedUrls={approvedUrls} actioning={actioning} onApprove={approve} />
           ) : null}
         </div>
       )}
+    </div>
+  );
+}
+
+// Shared by Photo search and the Link backlog tool: a grid of fetched
+// thumbnails, each with drag-to-reposition-then-approve (via
+// RepositionableImage) or a plain Approve button for a straight approve with
+// no crop.
+function PhotoResultGrid({
+  results,
+  approvedUrls,
+  actioning,
+  onApprove,
+}: {
+  results: PhotoSearchResult[];
+  approvedUrls: Set<string>;
+  actioning: boolean;
+  onApprove: (result: PhotoSearchResult, crop?: { x: number; y: number; width: number; height: number }) => Promise<{ ok: boolean; message?: string }>;
+}) {
+  return (
+    <div className="grid grid-cols-4 gap-2 sm:grid-cols-6 lg:grid-cols-8">
+      {results.map((result, index) => {
+        const isApproved = approvedUrls.has(result.imageUrl);
+        return (
+          <div
+            key={`${result.imageUrl}-${index}`}
+            className={cn(
+              "relative flex flex-col border bg-white",
+              isApproved ? "border-emerald-500" : "border-stone-200"
+            )}
+          >
+            {result.isReel ? (
+              <span className="absolute left-1 top-1 z-10 bg-stone-950/80 px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-white">
+                Reel
+              </span>
+            ) : null}
+            <RepositionableImage
+              src={result.thumbnailUrl}
+              disabled={isApproved}
+              disabledTitle="Already approved"
+              className={isApproved ? "opacity-60" : undefined}
+              onCommit={(region) => onApprove(result, region)}
+            />
+            {isApproved ? (
+              <div className="flex items-center justify-center gap-1 bg-emerald-600 px-1 py-1.5 text-[12px] font-bold text-white">
+                <Check className="size-3.5" aria-hidden="true" />
+                Approved
+              </div>
+            ) : (
+              <button
+                type="button"
+                disabled={actioning}
+                onClick={() => onApprove(result)}
+                className="w-full bg-emerald-600 px-1 py-1.5 text-[12px] font-bold text-white transition hover:bg-emerald-500 disabled:opacity-50"
+              >
+                Approve
+              </button>
+            )}
+          </div>
+        );
+      })}
     </div>
   );
 }
@@ -4842,6 +4918,596 @@ function PhotoBacklogPage() {
               Next
             </button>
           </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+type LinkBacklogEntry = {
+  salonId: string;
+  name: string;
+  neighbourhood?: string;
+  postcode?: string;
+  areaLabel?: string;
+  instagramUrl?: string;
+  postUrls: string[];
+  addedAt?: string;
+};
+
+// A personal worklist: search the directory to add a stylist, paste post/
+// reel links hand-picked from their real Instagram, then fetch just those —
+// distinct from Photo search's automated whole-account crawl above it in the
+// nav. Approving a fetched photo reuses Photo search's own approve endpoint,
+// so it lands on the profile exactly the same way (source-agnostic).
+function LinkBacklogPage() {
+  const [entries, setEntries] = useState<LinkBacklogEntry[] | null>(null);
+  const [loadError, setLoadError] = useState("");
+  const [stylists, setStylists] = useState<StylistDraft[] | null>(null);
+  const [query, setQuery] = useState("");
+  const [addError, setAddError] = useState("");
+  const [runningAll, setRunningAll] = useState(false);
+  const rowRunRef = useRef(new Map<string, () => Promise<void>>());
+
+  const loadEntries = useCallback(() => {
+    fetch("/api/admin/photo-link-backlog", { credentials: "include" })
+      .then((response) => response.json())
+      .then((payload) => {
+        if (!payload.ok) {
+          setLoadError(payload.message || "Could not load the link backlog.");
+          return;
+        }
+        setEntries(payload.entries);
+      })
+      .catch(() => setLoadError("Could not load the link backlog."));
+  }, []);
+
+  useEffect(() => loadEntries(), [loadEntries]);
+
+  useEffect(() => {
+    fetch("/api/admin/stylists/published", { credentials: "include" })
+      .then((response) => response.json())
+      .then((payload) => {
+        if (payload.ok) setStylists(payload.stylists);
+      })
+      .catch(() => {});
+  }, []);
+
+  const existingIds = useMemo(() => new Set((entries ?? []).map((entry) => entry.salonId)), [entries]);
+
+  const matches = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    if (!q || !stylists) return [];
+    return stylists
+      .filter((stylist) => !existingIds.has(stylist.id))
+      .filter((stylist) => stylist.name.toLowerCase().includes(q) || (stylist.instagramUrl || "").toLowerCase().includes(q))
+      .slice(0, 8);
+  }, [query, stylists, existingIds]);
+
+  async function addToBacklog(salonId: string) {
+    setAddError("");
+    try {
+      const response = await fetch("/api/admin/photo-link-backlog", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({ salonId }),
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok || !payload.ok) {
+        setAddError(payload.message || "Could not add that stylist.");
+        return;
+      }
+      setQuery("");
+      loadEntries();
+    } catch {
+      setAddError("Could not add that stylist.");
+    }
+  }
+
+  async function removeFromBacklog(salonId: string) {
+    await fetch(`/api/admin/photo-link-backlog/${salonId}`, { method: "DELETE", credentials: "include" }).catch(() => {});
+    setEntries((current) => (current ?? []).filter((entry) => entry.salonId !== salonId));
+    rowRunRef.current.delete(salonId);
+  }
+
+  const registerRun = useCallback((salonId: string, run: () => Promise<void>) => {
+    rowRunRef.current.set(salonId, run);
+  }, []);
+
+  async function runAll() {
+    setRunningAll(true);
+    for (const entry of entries ?? []) {
+      if (entry.postUrls.length === 0) continue;
+      const run = rowRunRef.current.get(entry.salonId);
+      if (run) await run();
+    }
+    setRunningAll(false);
+  }
+
+  return (
+    <div className="flex h-full flex-col gap-3">
+      <div className="flex items-baseline justify-between gap-4">
+        <h1 className="text-lg font-semibold text-stone-950">Link backlog</h1>
+        <p className="truncate text-xs text-stone-500">
+          Paste post/reel links you've hand-picked from a stylist's Instagram, then fetch just those.
+        </p>
+      </div>
+
+      <div className="flex shrink-0 flex-col gap-1">
+        <div className="relative">
+          <Search className="pointer-events-none absolute left-2.5 top-1/2 size-4 -translate-y-1/2 text-stone-400" />
+          <Input
+            value={query}
+            onChange={(event) => setQuery(event.target.value)}
+            placeholder="Search stylists by name or Instagram handle to add…"
+            className="pl-8"
+          />
+        </div>
+        {addError ? <p className="text-sm text-red-600">{addError}</p> : null}
+        {query.trim() && matches.length > 0 ? (
+          <div className="flex flex-col border border-stone-200 bg-white">
+            {matches.map((stylist) => (
+              <button
+                key={stylist.id}
+                type="button"
+                onClick={() => addToBacklog(stylist.id)}
+                className="flex items-center justify-between gap-4 px-3 py-2 text-left text-sm hover:bg-stone-50"
+              >
+                <span className="truncate">
+                  {stylist.name}
+                  <span className="ml-2 text-xs text-stone-500">{stylist.instagramUrl || "No Instagram on file"}</span>
+                </span>
+                <Plus className="size-4 shrink-0 text-stone-400" />
+              </button>
+            ))}
+          </div>
+        ) : null}
+      </div>
+
+      {loadError ? <p className="text-sm text-red-600">{loadError}</p> : null}
+
+      {entries === null ? (
+        <p className="text-sm text-stone-500">Loading…</p>
+      ) : entries.length === 0 ? (
+        <p className="text-sm text-stone-500">Nothing in the backlog yet — search above to add a stylist.</p>
+      ) : (
+        <div className="flex min-h-0 flex-1 flex-col gap-3 overflow-y-auto">
+          <div className="flex shrink-0 items-center justify-between">
+            <p className="text-xs text-stone-500">
+              {entries.length} stylist{entries.length === 1 ? "" : "s"} in the backlog
+            </p>
+            <Button type="button" size="sm" variant="outline" disabled={runningAll} onClick={runAll}>
+              {runningAll ? "Running…" : "Run all"}
+            </Button>
+          </div>
+          {entries.map((entry) => (
+            <LinkBacklogRow key={entry.salonId} entry={entry} onRemove={() => removeFromBacklog(entry.salonId)} registerRun={registerRun} />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function LinkBacklogRow({
+  entry,
+  onRemove,
+  registerRun,
+}: {
+  entry: LinkBacklogEntry;
+  onRemove: () => void;
+  registerRun: (salonId: string, run: () => Promise<void>) => void;
+}) {
+  const [linksText, setLinksText] = useState(entry.postUrls.join("\n"));
+  const [savingLinks, setSavingLinks] = useState(false);
+  const [linksError, setLinksError] = useState("");
+  const [results, setResults] = useState<PhotoSearchResult[] | null>(null);
+  const [fetching, setFetching] = useState(false);
+  const [fetchError, setFetchError] = useState("");
+  const [approvedUrls, setApprovedUrls] = useState<Set<string>>(new Set());
+  const [failedUrls, setFailedUrls] = useState<Set<string>>(new Set());
+  const [fetchingProfilePicture, setFetchingProfilePicture] = useState(false);
+
+  async function saveLinks(nextText: string): Promise<boolean> {
+    const postUrls = nextText
+      .split("\n")
+      .map((line) => line.trim())
+      .filter(Boolean);
+    setSavingLinks(true);
+    setLinksError("");
+    try {
+      const response = await fetch(`/api/admin/photo-link-backlog/${entry.salonId}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({ postUrls }),
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok || !payload.ok) {
+        setLinksError(payload.message || "Could not save those links.");
+        return false;
+      }
+      return true;
+    } catch {
+      setLinksError("Could not save those links.");
+      return false;
+    } finally {
+      setSavingLinks(false);
+    }
+  }
+
+  // A link the admin pasted here is already a deliberate pick (they browsed
+  // the real Instagram themselves) — unlike Photo search's raw account-wide
+  // results, there's nothing left to review, so every fetched photo is
+  // approved automatically instead of waiting on a per-photo click.
+  async function approveResult(result: PhotoSearchResult): Promise<boolean> {
+    try {
+      const response = await fetch(`/api/admin/photo-search/${entry.salonId}/approve`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({ imageUrl: result.imageUrl, thumbnailUrl: result.thumbnailUrl, isReel: result.isReel }),
+      });
+      const payload = await response.json().catch(() => ({}));
+      return response.ok && !!payload.ok;
+    } catch {
+      return false;
+    }
+  }
+
+  async function fetchProfilePicture() {
+    setFetchingProfilePicture(true);
+    setFetchError("");
+    try {
+      const response = await fetch(`/api/admin/photo-link-backlog/${entry.salonId}/fetch-profile-picture`, {
+        method: "POST",
+        credentials: "include",
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok || !payload.ok) {
+        setFetchError(payload.message || "Could not fetch the profile picture.");
+        return;
+      }
+      const result: PhotoSearchResult | null = payload.result ?? null;
+      if (!result) {
+        setFetchError("No profile picture found.");
+        return;
+      }
+      const ok = await approveResult(result);
+      setResults((current) => [...(current ?? []), result]);
+      if (ok) setApprovedUrls((current) => new Set(current).add(result.imageUrl));
+      else {
+        setFailedUrls((current) => new Set(current).add(result.imageUrl));
+        setFetchError("Could not approve the profile picture.");
+      }
+    } catch {
+      setFetchError("Could not fetch the profile picture.");
+    } finally {
+      setFetchingProfilePicture(false);
+    }
+  }
+
+  const runFetch = useCallback(async () => {
+    setFetching(true);
+    setFetchError("");
+    setResults(null);
+    setApprovedUrls(new Set());
+    setFailedUrls(new Set());
+    const saved = await saveLinks(linksText);
+    if (!saved) {
+      setFetching(false);
+      return;
+    }
+    try {
+      const response = await fetch(`/api/admin/photo-link-backlog/${entry.salonId}/run`, { method: "POST", credentials: "include" });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok || !payload.ok) {
+        setFetchError(payload.message || "Could not fetch those posts.");
+        return;
+      }
+      const fetched: PhotoSearchResult[] = payload.results ?? [];
+      const approved = new Set<string>();
+      const failed = new Set<string>();
+      for (const result of fetched) {
+        const ok = await approveResult(result);
+        if (ok) approved.add(result.imageUrl);
+        else failed.add(result.imageUrl);
+      }
+      setResults(fetched);
+      setApprovedUrls(approved);
+      setFailedUrls(failed);
+      if (failed.size > 0) {
+        setFetchError(`${failed.size} of ${fetched.length} photo${fetched.length === 1 ? "" : "s"} could not be approved.`);
+      }
+    } catch {
+      setFetchError("Could not fetch those posts.");
+    } finally {
+      setFetching(false);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [entry.salonId, linksText]);
+
+  useEffect(() => {
+    registerRun(entry.salonId, runFetch);
+  }, [registerRun, entry.salonId, runFetch]);
+
+  const linkCount = linksText
+    .split("\n")
+    .map((line) => line.trim())
+    .filter(Boolean).length;
+
+  return (
+    <div className="flex flex-col gap-2 border border-stone-200 bg-white px-3 py-2">
+      <div className="flex flex-wrap items-center justify-between gap-2">
+        <div className="flex min-w-0 flex-wrap items-baseline gap-x-2 gap-y-0.5">
+          <span className="text-sm font-semibold text-stone-950 dark:text-stone-100">{entry.name}</span>
+          <span className="truncate text-xs text-stone-500">
+            {[entry.neighbourhood, entry.postcode].filter(Boolean).join(" · ") || entry.areaLabel || "No location on file"}
+          </span>
+          {entry.instagramUrl ? (
+            <a href={entry.instagramUrl} target="_blank" rel="noreferrer" className="shrink-0 text-xs text-stone-700 underline dark:text-stone-300">
+              Instagram
+            </a>
+          ) : null}
+        </div>
+        <button type="button" onClick={onRemove} className="shrink-0 text-xs text-red-700 hover:underline">
+          Remove
+        </button>
+      </div>
+
+      <textarea
+        value={linksText}
+        onChange={(event) => setLinksText(event.target.value)}
+        onBlur={() => saveLinks(linksText)}
+        placeholder="Paste Instagram post/reel links, one per line…"
+        rows={2}
+        className="w-full resize-y border border-stone-200 px-2 py-1.5 text-xs text-stone-800 focus:border-stone-400 focus:outline-none"
+      />
+      <div className="flex items-center gap-2">
+        <span className="text-xs text-stone-500">{savingLinks ? "Saving…" : `${linkCount} link${linkCount === 1 ? "" : "s"}`}</span>
+        {linksError ? <span className="text-xs text-red-600">{linksError}</span> : null}
+        <Button
+          type="button"
+          size="sm"
+          variant="outline"
+          className="ml-auto"
+          disabled={fetchingProfilePicture || !entry.instagramUrl}
+          onClick={fetchProfilePicture}
+        >
+          {fetchingProfilePicture ? "Fetching…" : "Fetch profile picture"}
+        </Button>
+        <Button type="button" size="sm" variant="outline" disabled={fetching || linkCount === 0} onClick={runFetch}>
+          {fetching ? "Fetching…" : "Fetch"}
+        </Button>
+      </div>
+
+      {fetchError ? <p className="text-xs text-red-600">{fetchError}</p> : null}
+      {results && results.length === 0 && !fetchError ? (
+        <p className="text-xs text-stone-500">No usable image found in those links.</p>
+      ) : results && results.length > 0 ? (
+        <div className="grid grid-cols-4 gap-2 sm:grid-cols-6 lg:grid-cols-8">
+          {results.map((result, index) => {
+            const failed = failedUrls.has(result.imageUrl);
+            const approved = approvedUrls.has(result.imageUrl);
+            return (
+              <div
+                key={`${result.imageUrl}-${index}`}
+                className={cn("flex flex-col border bg-white", failed ? "border-red-400" : "border-emerald-500")}
+              >
+                <img src={result.thumbnailUrl} alt="" className="aspect-[3/2] w-full object-cover" />
+                <div
+                  className={cn(
+                    "flex items-center justify-center gap-1 px-1 py-1.5 text-[12px] font-bold text-white",
+                    failed ? "bg-red-600" : "bg-emerald-600"
+                  )}
+                >
+                  {failed ? (
+                    "Failed"
+                  ) : approved ? (
+                    <>
+                      <Check className="size-3.5" aria-hidden="true" />
+                      Approved
+                    </>
+                  ) : (
+                    "Approving…"
+                  )}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      ) : null}
+    </div>
+  );
+}
+
+type PhotoOrderSalon = {
+  id: string;
+  name: string;
+  neighbourhood?: string;
+  postcode?: string;
+  areaLabel?: string;
+  portfolioPhotos: PortfolioPhotoAdmin[];
+};
+
+// Sweeps through every stylist with enough photos that the shown-top-
+// {PORTFOLIO_SHOWN_COUNT} vs hidden-rest split is an actual decision, so the
+// admin can fix up order across the whole directory in one place instead of
+// one stylist at a time in the drawer's Photos tab. Reuses the exact same
+// reorder grid and the drawer's own save/crop endpoints.
+function PhotoOrderQueuePage() {
+  const PAGE_SIZE = 12;
+  const [salons, setSalons] = useState<PhotoOrderSalon[]>([]);
+  const [total, setTotal] = useState(0);
+  const [loadError, setLoadError] = useState("");
+  const [loadingMore, setLoadingMore] = useState(false);
+  const [hasMore, setHasMore] = useState(true);
+  const [busySalonId, setBusySalonId] = useState<string | null>(null);
+  const [rowError, setRowError] = useState<{ id: string; message: string } | null>(null);
+  const offsetRef = useRef(0);
+  const loadingRef = useRef(false);
+  const sentinelObserverRef = useRef<IntersectionObserver | null>(null);
+
+  const loadMore = useCallback(() => {
+    if (loadingRef.current) return;
+    loadingRef.current = true;
+    setLoadingMore(true);
+    setLoadError("");
+    fetch(`/api/admin/photo-order-queue?offset=${offsetRef.current}&limit=${PAGE_SIZE}`, { credentials: "include" })
+      .then((response) => response.json())
+      .then((payload) => {
+        if (!payload.ok) {
+          setLoadError(payload.message || "Could not load the photo order queue.");
+          setHasMore(false);
+          return;
+        }
+        offsetRef.current += payload.salons.length;
+        setTotal(payload.total);
+        setSalons((current) => [...current, ...payload.salons]);
+        if (payload.salons.length === 0 || offsetRef.current >= payload.total) {
+          setHasMore(false);
+        }
+      })
+      .catch(() => {
+        setLoadError("Could not load the photo order queue.");
+        setHasMore(false);
+      })
+      .finally(() => {
+        loadingRef.current = false;
+        setLoadingMore(false);
+      });
+  }, []);
+
+  // Fires once on mount (empty scrollable list can't intersect anything
+  // yet), then again every time the sentinel scrolls into view — no
+  // Previous/Next, the list just keeps growing until `hasMore` goes false.
+  useEffect(() => {
+    loadMore();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // A plain ref only fires once at mount, but the sentinel div doesn't exist
+  // yet then — the list still shows "Loading…" until the first page lands.
+  // A callback ref fires exactly when the node actually mounts/unmounts
+  // (e.g. once the first page renders it, and again if it's ever removed
+  // when hasMore goes false), so the observer always attaches to a real node.
+  const sentinelCallbackRef = useCallback(
+    (node: HTMLDivElement | null) => {
+      sentinelObserverRef.current?.disconnect();
+      sentinelObserverRef.current = null;
+      if (!node) return;
+      const observer = new IntersectionObserver(
+        (entries) => {
+          if (entries[0]?.isIntersecting) loadMore();
+        },
+        { rootMargin: "800px" }
+      );
+      observer.observe(node);
+      sentinelObserverRef.current = observer;
+    },
+    [loadMore]
+  );
+
+  async function saveOrder(salonId: string, photos: PortfolioPhotoAdmin[]) {
+    setBusySalonId(salonId);
+    setRowError(null);
+    try {
+      const response = await fetch(`/api/admin/stylists/published/${salonId}/portfolio-photos`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({ photos: photos.map((photo) => ({ id: photo.id })) }),
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok || !payload.ok) {
+        setRowError({ id: salonId, message: payload.message || "Could not save that order." });
+        return;
+      }
+      setSalons((current) =>
+        (current ?? []).map((salon) => (salon.id === salonId ? { ...salon, portfolioPhotos: payload.salon.portfolioPhotos } : salon))
+      );
+    } catch {
+      setRowError({ id: salonId, message: "Could not save that order." });
+    } finally {
+      setBusySalonId(null);
+    }
+  }
+
+  async function cropPhoto(
+    salonId: string,
+    photoId: string,
+    region: { x: number; y: number; width: number; height: number; rotation: number }
+  ) {
+    try {
+      const response = await fetch(`/api/admin/stylists/published/${salonId}/portfolio-photos/${photoId}/crop`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify(region),
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok || !payload.ok) {
+        return { ok: false, message: payload.message || "Could not crop that photo." };
+      }
+      setSalons((current) =>
+        (current ?? []).map((salon) => (salon.id === salonId ? { ...salon, portfolioPhotos: payload.salon.portfolioPhotos } : salon))
+      );
+      return { ok: true };
+    } catch {
+      return { ok: false, message: "Could not crop that photo." };
+    }
+  }
+
+  return (
+    <div className="flex h-full flex-col gap-2">
+      <div className="flex items-baseline justify-between gap-4">
+        <h1 className="text-lg font-semibold text-stone-950">Photo order</h1>
+        <p className="truncate text-xs text-stone-500">
+          Stylists with 2+ photos — reorder to change which {PORTFOLIO_SHOWN_COUNT} show on the public card.
+        </p>
+      </div>
+
+      {loadError ? <p className="text-sm text-red-600">{loadError}</p> : null}
+
+      {salons.length === 0 && loadingMore ? (
+        <p className="text-sm text-stone-500">Loading…</p>
+      ) : salons.length === 0 ? (
+        <p className="text-sm text-stone-500">Nothing to reorder.</p>
+      ) : (
+        <div className="flex min-h-0 flex-1 flex-col gap-4 overflow-y-auto">
+          <p className="text-xs text-stone-500">
+            {total} stylist{total === 1 ? "" : "s"} with 2+ photos
+          </p>
+          {salons.map((salon) => (
+            <div key={salon.id} className="border border-stone-200 bg-white p-3">
+              <div className="mb-2 flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
+                <span className="text-sm font-semibold text-stone-950">{salon.name}</span>
+                <span className="truncate text-xs text-stone-500">
+                  {[salon.neighbourhood, salon.postcode].filter(Boolean).join(" · ") || salon.areaLabel || "No location on file"}
+                </span>
+              </div>
+              {rowError?.id === salon.id ? <p className="mb-2 text-xs text-red-600">{rowError.message}</p> : null}
+              <PortfolioPhotoReorderGrid
+                resetKey={salon.id}
+                photos={salon.portfolioPhotos}
+                isBusy={busySalonId === salon.id}
+                onSave={(photos) => saveOrder(salon.id, photos)}
+                onCropPhoto={(photoId, region) => cropPhoto(salon.id, photoId, region)}
+              />
+            </div>
+          ))}
+          {/* Rendered whenever more could still load — scrolling this into
+              view (800px early, via the observer's rootMargin) triggers the
+              next page fetch. Removed once hasMore goes false, replaced by
+              the end-of-list message below. */}
+          {hasMore ? (
+            <div ref={sentinelCallbackRef} className="py-4 text-center text-xs text-stone-500">
+              {loadingMore ? "Loading more…" : ""}
+            </div>
+          ) : (
+            <p className="py-4 text-center text-xs text-stone-400">That's every stylist with 2+ photos.</p>
+          )}
         </div>
       )}
     </div>
@@ -8454,7 +9120,7 @@ function DraftEditor({
                 priceComparisonMode: value ? draft.priceComparisonMode || "service-only" : "",
                 priceSource: value ? "manual" : "",
                 priceConfidence: value ? "manual" : "",
-                priceUpdatedAt: value ? new Date().toISOString() : "",
+                priceUpdatedAt: value ? today() : "",
                 ...(!value ? { priceEvidence: [], priceCheckedAt: "" } : {}),
               })
             }
@@ -8519,7 +9185,7 @@ function DraftEditor({
           initialText={(draft.priceEvidence || []).join("\n")}
           selectedPriceBand={draft.priceBand || ""}
           onSelectedPriceBandChange={(priceBand) => {
-            const now = new Date().toISOString();
+            const now = today();
             onChange({
               priceBand: priceBand || undefined,
               servicePriceBand: priceBand || "",
@@ -8537,7 +9203,7 @@ function DraftEditor({
             if (!result?.priceBand) {
               return;
             }
-            const now = new Date().toISOString();
+            const now = today();
             onChange({
               priceBand: result.priceBand,
               servicePriceBand: result.servicePriceBand || result.priceBand,
@@ -8780,7 +9446,7 @@ function DraftEditor({
                 priceComparisonMode: value ? draft.priceComparisonMode || "service-only" : "",
                 priceSource: value ? "manual" : "",
                 priceConfidence: value ? "manual" : "",
-                priceUpdatedAt: value ? new Date().toISOString() : "",
+                priceUpdatedAt: value ? today() : "",
                 ...(!value ? { priceEvidence: [], priceCheckedAt: "" } : {}),
               })
             }
@@ -9579,7 +10245,7 @@ function normalizeAreaIds(areaIds: string[], latestAreaId?: string) {
 }
 
 function publishedSalonToDraft(salon: Partial<StylistDraft>): StylistDraft {
-  const fallbackDate = new Date().toISOString();
+  const fallbackDate = today();
   return {
     id: salon.id || "",
     status: "approved",
@@ -11734,7 +12400,7 @@ function buildDraftPricingUpdate(
     return {};
   }
 
-  const checkedAt = new Date().toISOString();
+  const checkedAt = today();
   return {
     priceBand: priceCheck.priceBand,
     servicePriceBand: priceCheck.servicePriceBand || priceCheck.priceBand,

@@ -1,5 +1,5 @@
 import { Fragment, type ReactNode, useCallback, useEffect, useRef, useState } from "react";
-import { ArrowUpRight, Check, ChevronDown, ChevronLeft, ChevronRight, Copy, Globe, Search, X } from "lucide-react";
+import { ArrowUp, ArrowUpRight, Check, ChevronDown, ChevronLeft, ChevronRight, Copy, Globe, Search, X } from "lucide-react";
 
 import { Checkbox } from "@/components/ui/checkbox";
 import { AdminApp } from "@/AdminApp";
@@ -2022,6 +2022,7 @@ export default function App() {
   const [hasSearched, setHasSearched] = useState(false);
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   const [emailCopied, setEmailCopied] = useState(false);
+  const [showBackToTop, setShowBackToTop] = useState(false);
   const [disclaimerDismissed, setDisclaimerDismissed] = useState(() => {
     try {
       return localStorage.getItem(DISCLAIMER_DISMISSED_KEY) === "1";
@@ -2038,6 +2039,42 @@ export default function App() {
     }
   }, []);
   const disclaimerRef = useRef<HTMLDivElement | null>(null);
+  useEffect(() => {
+    // Push the button up from the bottom while the visitor is scrolling back
+    // up (the moment they'd want a shortcut to the top) and hide it again the
+    // instant they resume scrolling down, rather than leaving it pinned the
+    // whole time they're reading further down the list.
+    let lastScrollY = window.scrollY;
+    // Momentum/inertial scrolling (trackpads, mobile) commonly overshoots and
+    // settles back up by a few pixels right as a downward scroll ends — a
+    // naive "any upward delta" check would misread that as the visitor
+    // scrolling up and reveal the button right after they scrolled down.
+    // Requiring a small sustained upward distance (reset on every downward
+    // tick) filters that out while still reacting immediately to a real
+    // scroll-up gesture.
+    let upwardDistance = 0;
+    const BACK_TO_TOP_REVEAL_THRESHOLD = 400;
+    const MIN_SUSTAINED_UPWARD_SCROLL = 24;
+    function handleScroll() {
+      const currentScrollY = window.scrollY;
+      const delta = currentScrollY - lastScrollY;
+      if (currentScrollY <= BACK_TO_TOP_REVEAL_THRESHOLD) {
+        setShowBackToTop(false);
+        upwardDistance = 0;
+      } else if (delta < 0) {
+        upwardDistance -= delta;
+        if (upwardDistance >= MIN_SUSTAINED_UPWARD_SCROLL) {
+          setShowBackToTop(true);
+        }
+      } else if (delta > 0) {
+        upwardDistance = 0;
+        setShowBackToTop(false);
+      }
+      lastScrollY = currentScrollY;
+    }
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
   useEffect(() => {
     if (disclaimerDismissed) return;
     const node = disclaimerRef.current;
@@ -4674,6 +4711,34 @@ export default function App() {
           </div>
         </div>
       </footer>
+
+      <div
+        className={cn(
+          // An explicit height (matching the button) plus a fixed pixel
+          // offset — rather than translate-y-full — sidesteps any ambiguity
+          // in resolving a percentage translate against an auto-height fixed
+          // box: this guarantees the button clears the viewport completely
+          // while hidden instead of merely peeking in at the bottom edge.
+          "pointer-events-none fixed inset-x-0 bottom-6 z-40 h-11 transition-transform duration-300 ease-out",
+          showBackToTop ? "translate-y-0" : "translate-y-24",
+        )}
+      >
+        <div className="mx-auto flex w-full max-w-[1120px] px-4 sm:px-6 lg:px-10">
+          <div className="flex flex-1 justify-center lg:pr-8">
+            <button
+              type="button"
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              aria-label="Back to top"
+              aria-hidden={!showBackToTop}
+              tabIndex={showBackToTop ? 0 : -1}
+              className="pointer-events-auto inline-flex size-11 items-center justify-center rounded-none bg-white/95 text-stone-950 shadow-sm ring-1 ring-stone-950/10 transition hover:bg-white dark:bg-stone-950/80 dark:text-stone-100 dark:ring-stone-100/15 dark:hover:bg-stone-900"
+            >
+              <ArrowUp className="size-4" aria-hidden="true" />
+            </button>
+          </div>
+          <div className="hidden w-72 flex-none lg:block" aria-hidden="true" />
+        </div>
+      </div>
     </div>
   );
 }

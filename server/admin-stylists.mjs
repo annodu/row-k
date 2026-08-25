@@ -6,7 +6,7 @@ import { assertSafeOutboundHttpUrl, createRateLimiter, requireTrustedOrigin, san
 import { fetchAllTimeSummary, fetchAnalyticsSummary, fetchRecentActivity } from "./analytics.mjs";
 import { extractPostcodeToken, getParkingAvailable, getWheelchairAccessibleEntrance, loadGooglePlacesApiKey, matchSalonToGoogle } from "./google-match.mjs";
 import { getVerifiedReviewPlatform, matchVerifiedReviews } from "./verified-reviews.mjs";
-import { searchSalonImages } from "./image-search.mjs";
+import { fetchInstagramPostImage, fetchInstagramProfilePicture, searchSalonImages } from "./image-search.mjs";
 import { cropCollagePanel, downloadImage } from "../scripts/lib/photo-candidates.mjs";
 import { createWorker } from "tesseract.js";
 import sharp from "sharp";
@@ -43,6 +43,7 @@ const portfolioReviewPhotosDir = path.resolve(__dirname, "../data/portfolio-revi
 const portfolioPhotosPublicDir = path.resolve(__dirname, "../public/portfolio-photos");
 const portfolioCorrectionsPath = path.resolve(__dirname, "../data/portfolio-photo-corrections.json");
 const portfolioCorrectionsPhotosDir = path.resolve(__dirname, "../data/portfolio-photo-corrections-photos");
+const photoLinkBacklogPath = path.resolve(__dirname, "../data/photo-link-backlog.json");
 const sessionCookieName = "rowk_admin_session";
 const sessionMaxAgeSeconds = 60 * 60 * 12;
 const repositoryRoot = path.resolve(__dirname, "..");
@@ -58,6 +59,7 @@ const githubBackedJsonPaths = new Set([
   "data/custom-filter-types.json",
   "data/price-bands.json",
   "data/health-check-feedback.json",
+  "data/photo-link-backlog.json",
 ]);
 
 const regionOptions = [
@@ -1276,6 +1278,152 @@ export function registerAdminStylistRoutes(app) {
       photoSearchSkippedReason: salon.photoSearchSkippedReason || "manual",
     }));
     res.json({ ok: true, total: backlog.length, offset, limit, salons: page });
+  });
+
+  // A personal, persistent worklist: the admin browses a stylist's own
+  // Instagram themselves, hand-picks specific post URLs worth pulling in,
+  // and pastes them here — separate from (and higher-trust than) Photo
+  // search's automated whole-account crawl above. Running a row just
+  // fetches; the admin's own pick already *is* the review, so the frontend
+  // auto-approves every fetched photo (via Photo search's approve endpoint)
+  // instead of asking for a second click.
+  const validInstagramPostUrl = (value) => /^https:\/\/(www\.)?instagram\.com\/(p|reel)\/[^/?#]+\/?/.test(value);
+
+  app.get("/api/admin/photo-link-backlog", requireAdmin, async (_req, res) => {
+    const [manualIndex, store] = await Promise.all([
+      readJson(manualIndexPath, { meta: { source: "manual" }, salons: [] }),
+      readJson(photoLinkBacklogPath, { meta: {}, entries: [] }),
+    ]);
+    const byId = new Map(manualIndex.salons.map((salon) => [salon.id, salon]));
+    const entries = (Array.isArray(store.entries) ? store.entries : [])
+      .map((entry) => {
+        const salon = byId.get(entry.salonId);
+        if (!salon) return null;
+        return {
+          salonId: salon.id,
+          name: salon.name,
+          neighbourhood: salon.neighbourhood,
+          postcode: salon.postcode,
+          areaLabel: salon.areaLabel,
+          instagramUrl: salon.instagramUrl,
+          postUrls: Array.isArray(entry.postUrls) ? entry.postUrls : [],
+          addedAt: entry.addedAt,
+        };
+      })
+      .filter(Boolean);
+    res.json({ ok: true, entries });
+  });
+
+  app.post("/api/admin/photo-link-backlog", requireAdmin, async (req, res) => {
+    const salonId = cleanString(req.body?.salonId);
+    if (!salonId) {
+      return res.status(400).json({ ok: false, message: "salonId is required." });
+    }
+    const manualIndex = await readJson(manualIndexPath, { meta: { source: "manual" }, salons: [] });
+    if (!manualIndex.salons.some((salon) => salon.id === salonId)) {
+      return res.status(404).json({ ok: false, message: "Stylist not found." });
+    }
+    const store = await readJson(photoLinkBacklogPath, { meta: {}, entries: [] });
+    const entries = Array.isArray(store.entries) ? store.entries : [];
+    if (!entries.some((entry) => entry.salonId === salonId)) {
+      entries.push({ salonId, postUrls: [], addedAt: today() });
+    }
+    await writeJson(photoLinkBacklogPath, { meta: { updatedAt: today() }, entries });
+    res.json({ ok: true });
+  });
+
+  app.patch("/api/admin/photo-link-backlog/:salonId", requireAdmin, async (req, res) => {
+    const submitted = Array.isArray(req.body?.postUrls) ? req.body.postUrls : null;
+    if (!submitted) {
+      return res.status(400).json({ ok: false, message: "postUrls must be an array." });
+    }
+    const postUrls = [...new Set(submitted.map((url) => cleanString(url)).filter(Boolean))];
+    const invalid = postUrls.find((url) => !validInstagramPostUrl(url));
+    if (invalid) {
+      return res.status(400).json({ ok: false, message: `Not an Instagram post/reel URL: ${invalid}` });
+    }
+
+    const store = await readJson(photoLinkBacklogPath, { meta: {}, entries: [] });
+    const entries = Array.isArray(store.entries) ? store.entries : [];
+    const entry = entries.find((item) => item.salonId === req.params.salonId);
+    if (!entry) {
+      return res.status(404).json({ ok: false, message: "Not in the backlog." });
+    }
+    entry.postUrls = postUrls;
+    await writeJson(photoLinkBacklogPath, { meta: { updatedAt: today() }, entries });
+    res.json({ ok: true });
+  });
+
+  app.delete("/api/admin/photo-link-backlog/:salonId", requireAdmin, async (req, res) => {
+    const store = await readJson(photoLinkBacklogPath, { meta: {}, entries: [] });
+    const entries = (Array.isArray(store.entries) ? store.entries : []).filter((entry) => entry.salonId !== req.params.salonId);
+    await writeJson(photoLinkBacklogPath, { meta: { updatedAt: today() }, entries });
+    res.json({ ok: true });
+  });
+
+  app.post("/api/admin/photo-link-backlog/:salonId/run", requireAdmin, photoSearchRateLimit, async (req, res) => {
+    const store = await readJson(photoLinkBacklogPath, { meta: {}, entries: [] });
+    const entries = Array.isArray(store.entries) ? store.entries : [];
+    const entry = entries.find((item) => item.salonId === req.params.salonId);
+    if (!entry) {
+      return res.status(404).json({ ok: false, message: "Not in the backlog." });
+    }
+    const postUrls = Array.isArray(entry.postUrls) ? entry.postUrls : [];
+    if (postUrls.length === 0) {
+      return res.json({ ok: true, results: [] });
+    }
+
+    const results = [];
+    for (const postUrl of postUrls) {
+      try {
+        const result = await fetchInstagramPostImage(postUrl);
+        if (result) results.push(result);
+      } catch (error) {
+        return res.status(502).json({ ok: false, message: sanitizeErrorMessage(error, `Could not fetch ${postUrl}.`) });
+      }
+    }
+    res.json({ ok: true, results });
+  });
+
+  // Fetches a stylist's Instagram avatar — same worklist, but sourced from
+  // the profile picture rather than a pasted post link. Not tied to
+  // anything on the backlog entry itself (no postUrls needed), so this
+  // works for any salon with an Instagram URL on file.
+  app.post("/api/admin/photo-link-backlog/:salonId/fetch-profile-picture", requireAdmin, photoSearchRateLimit, async (req, res) => {
+    const manualIndex = await readJson(manualIndexPath, { meta: { source: "manual" }, salons: [] });
+    const salon = manualIndex.salons.find((s) => s.id === req.params.salonId);
+    if (!salon) {
+      return res.status(404).json({ ok: false, message: "Stylist not found." });
+    }
+    if (!salon.instagramUrl) {
+      return res.status(400).json({ ok: false, message: "This stylist has no Instagram URL on file." });
+    }
+    try {
+      const result = await fetchInstagramProfilePicture(salon.instagramUrl);
+      res.json({ ok: true, result });
+    } catch (error) {
+      res.status(502).json({ ok: false, message: sanitizeErrorMessage(error, "Could not fetch the profile picture.") });
+    }
+  });
+
+  // Stylists with enough photos that the shown-top-3 vs hidden-rest split is
+  // actually a decision (below 2, everything already shows) — lets an admin
+  // sweep through re-picking/reordering the top 3 for many stylists in one
+  // place instead of one at a time in the drawer's Photos tab.
+  app.get("/api/admin/photo-order-queue", requireAdmin, async (req, res) => {
+    const manualIndex = await readJson(manualIndexPath, { meta: { source: "manual" }, salons: [] });
+    const offset = Math.max(0, Number(req.query.offset) || 0);
+    const limit = Math.min(20, Math.max(1, Number(req.query.limit) || 8));
+    const eligible = manualIndex.salons.filter((salon) => !salon.branches && (salon.portfolioPhotos || []).length >= 2);
+    const page = eligible.slice(offset, offset + limit).map((salon) => ({
+      id: salon.id,
+      name: salon.name,
+      neighbourhood: salon.neighbourhood,
+      postcode: salon.postcode,
+      areaLabel: salon.areaLabel,
+      portfolioPhotos: salon.portfolioPhotos || [],
+    }));
+    res.json({ ok: true, total: eligible.length, offset, limit, salons: page });
   });
 
   app.get("/api/admin/dashboard", requireAdmin, async (_req, res) => {

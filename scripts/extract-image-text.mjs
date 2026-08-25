@@ -175,7 +175,7 @@ async function runAll({ limit } = {}) {
   }
 
   const reportPath = path.resolve(__dirname, "../data/vision-ocr-report.json");
-  await fs.writeFile(reportPath, JSON.stringify({ generatedAt: new Date().toISOString(), report }, null, 2) + "\n", "utf8");
+  await fs.writeFile(reportPath, JSON.stringify({ generatedAt: new Date().toISOString().split("T")[0], report }, null, 2) + "\n", "utf8");
   const parkingHits = report.filter((entry) => entry.images?.some((image) => image.parkingQuotes?.length));
   console.log(
     `\nWrote report to ${reportPath}. ${parkingHits.length} salon(s) had a parking mention. Nothing was applied to manual-salons.json — review and apply manually.`,

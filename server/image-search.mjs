@@ -1,6 +1,7 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { assertSafeOutboundHttpUrl } from "./security.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const envPath = path.resolve(__dirname, "../.env");
@@ -132,4 +133,101 @@ export async function searchSalonImages(salon, { num = 24, includeReels = false 
   }
 
   return results.slice(0, num);
+}
+
+// The admin sometimes already knows exactly which posts they want (browsed
+// the account themselves and picked good ones) rather than trusting
+// whichever photos searchSalonImages' account-wide crawl happens to surface
+// — this fetches one specific post/reel by its URL instead of paginating an
+// entire account. instagram.post only returns the post's single cover
+// image (displayUrl), not every image in a carousel, so a multi-photo
+// carousel post only yields its first photo this way.
+export async function fetchInstagramPostImage(postUrl) {
+  const apiKey = await loadAnyApiKey();
+  if (!apiKey) {
+    throw new Error("AnyAPI is not configured (ANYAPI_KEY).");
+  }
+
+  const payload = await anyApiPost("/v1/run/instagram.post", { url: postUrl }, apiKey);
+  // Real shape is nested under `output` (confirmed against a live call):
+  // { output: { found, data: { displayUrl, ... } } }. `payload.found` is
+  // always undefined — checking it directly (as an earlier version of this
+  // function did) made every successful fetch look like a miss.
+  const output = payload.output ?? payload;
+  const data = output.data;
+  if (output.found && data?.displayUrl) {
+    return {
+      imageUrl: data.displayUrl,
+      thumbnailUrl: data.displayUrl,
+      contextUrl: postUrl,
+      title: data.shortcode || undefined,
+      isReel: typeof data.type === "string" && data.type.toLowerCase().includes("video"),
+    };
+  }
+
+  // AnyAPI can report `found: true` with an empty displayUrl/videoUrl —
+  // observed on posts where the actual slide is a video (a video-in-carousel
+  // item, in every case checked). There used to be an og:image fallback
+  // here for this case, but it was removed: Instagram's own og:image for
+  // this exact kind of post is a social-share preview with a play-button
+  // icon baked into the pixels (confirmed live, 4/4 samples) — indistinguishable
+  // from a clean photo by URL/metadata alone, so it was silently shipping
+  // broken thumbnails onto real stylist profiles. Better to report nothing
+  // usable than a wrong one.
+  return null;
+}
+
+// A profile page's og:image is its avatar (confirmed live), same trick as
+// the post fallback above — used both as the primary path when AnyAPI isn't
+// configured at all, and as a fallback if instagram.profile fails or comes
+// back without an avatarUrl.
+export async function fetchInstagramProfilePicture(instagramUrl) {
+  const handle = extractInstagramHandle(instagramUrl);
+  if (!handle) {
+    throw new Error("No Instagram handle to fetch a profile picture for.");
+  }
+
+  const apiKey = await loadAnyApiKey();
+  if (apiKey) {
+    try {
+      const payload = await anyApiPost("/v1/run/instagram.profile", { handle }, apiKey);
+      const output = payload.output ?? payload;
+      const avatarUrl = output.data?.avatarUrl;
+      if (output.found && avatarUrl) {
+        return { imageUrl: avatarUrl, thumbnailUrl: avatarUrl, contextUrl: instagramUrl, isReel: false };
+      }
+    } catch {
+      // Fall through to the free public-page fallback below rather than
+      // failing outright — a rate limit or a transient AnyAPI error
+      // shouldn't block the free path from still working.
+    }
+  }
+
+  return fetchOgImage(instagramUrl);
+}
+
+async function fetchOgImage(pageUrl) {
+  const safeUrl = await assertSafeOutboundHttpUrl(pageUrl);
+  const response = await fetch(safeUrl, {
+    headers: { "User-Agent": "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)" },
+  });
+  if (!response.ok) return null;
+
+  const html = await response.text();
+  const match = html.match(/<meta property="og:image" content="([^"]+)"/);
+  if (!match) return null;
+
+  const imageUrl = decodeHtmlEntities(match[1]);
+  return { imageUrl, thumbnailUrl: imageUrl, contextUrl: pageUrl, isReel: false };
+}
+
+function decodeHtmlEntities(value = "") {
+  return String(value || "")
+    .replace(/&amp;/gi, "&")
+    .replace(/&quot;/gi, "\"")
+    .replace(/&#34;/g, "\"")
+    .replace(/&#39;/g, "'")
+    .replace(/&apos;/gi, "'")
+    .replace(/&lt;/gi, "<")
+    .replace(/&gt;/gi, ">");
 }
