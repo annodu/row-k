@@ -462,6 +462,12 @@ function PortfolioPhotoCarousel({
 }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const isSlowConnection = useIsSlowConnection();
+  // Read via a ref rather than as an effect dependency below — the Network Information
+  // API's effectiveType can legitimately downgrade mid-session as the page's own image
+  // loading saturates the connection, and we only want that to affect photos we haven't
+  // started loading yet, not retroactively yank ones that already loaded fine.
+  const isSlowConnectionRef = useRef(isSlowConnection);
+  isSlowConnectionRef.current = isSlowConnection;
   const [photoState, setPhotoState] = useState<"loading" | "loaded" | "failed">(
     isSlowConnection ? "failed" : "loading",
   );
@@ -498,15 +504,19 @@ function PortfolioPhotoCarousel({
 
   useEffect(() => {
     if (!activePhoto || !isNearViewport) return;
-    setPhotoState(isSlowConnection ? "failed" : "loading");
-    if (isSlowConnection) return;
+    const slow = isSlowConnectionRef.current;
+    setPhotoState(slow ? "failed" : "loading");
+    if (slow) return;
     // A photo that hasn't finished loading after this long once we've started
     // fetching it is treated as failed — catches stalled/broken requests on every
     // browser, not just the ones the Network Information API can flag (Chromium/
-    // Android only).
-    const timeoutId = window.setTimeout(() => setPhotoState("failed"), 10000);
+    // Android only). Guarded on "loading" so a photo that already resolved via
+    // onLoad/onError isn't clobbered once the timer eventually fires.
+    const timeoutId = window.setTimeout(() => {
+      setPhotoState((current) => (current === "loading" ? "failed" : current));
+    }, 10000);
     return () => window.clearTimeout(timeoutId);
-  }, [activePhoto?.url, isSlowConnection, isNearViewport]);
+  }, [activePhoto?.url, isNearViewport]);
 
   if (photos.length === 0 || !activePhoto) return null;
 
