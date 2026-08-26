@@ -5,7 +5,8 @@ import { fileURLToPath } from "node:url";
 import express from "express";
 import { computeReviewHealth, readSalonIndex, searchSalons, setNoStoreHeaders } from "./salon-index.mjs";
 import { getVendorFilterOptions, searchVendors } from "./vendor-index.mjs";
-import { registerAdminStylistRoutes, sanitizeCustomFilters, serviceNegationHints } from "./admin-stylists.mjs";
+import { registerAdminStylistRoutes, serviceNegationHints } from "./admin-stylists.mjs";
+import { sanitizeCustomFilters } from "./custom-filters.mjs";
 import { createRateLimiter, requestLogger } from "./security.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));

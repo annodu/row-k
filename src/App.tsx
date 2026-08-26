@@ -4,6 +4,7 @@ import { ArrowUp, ArrowUpRight, Check, ChevronDown, ChevronLeft, ChevronRight, C
 import { Checkbox } from "@/components/ui/checkbox";
 import { AdminApp } from "@/AdminApp";
 import { trackEvent as trackAnalyticsEvent } from "@/lib/analytics";
+import { useIsSlowConnection } from "@/lib/connectionQuality";
 import { cn } from "@/lib/utils";
 import {
   getVerifiedReviewsPlatform as getVerifiedReviewsPlatformForUrl,
@@ -460,13 +461,90 @@ function PortfolioPhotoCarousel({
   expandedHeightPx?: number | null;
 }) {
   const [activeIndex, setActiveIndex] = useState(0);
+  const isSlowConnection = useIsSlowConnection();
+  const [photoState, setPhotoState] = useState<"loading" | "loaded" | "failed">(
+    isSlowConnection ? "failed" : "loading",
+  );
+  const touchStartRef = useRef<{ x: number; y: number } | null>(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  // We drive visibility ourselves (rather than the img's native loading="lazy") so the
+  // stall timeout below starts at the same moment the fetch actually starts. With
+  // potentially hundreds of cards on one results page, the browser's own lazy-load
+  // heuristic defers many images well past our own visibility check, and racing two
+  // uncoordinated "is it visible" signals flags perfectly healthy, not-yet-requested
+  // photos as failed.
+  const [isNearViewport, setIsNearViewport] = useState(false);
 
-  if (photos.length === 0) return null;
+  const activePhoto = photos[0] ? (photos[activeIndex] ?? photos[0]) : null;
 
-  const activePhoto = photos[activeIndex] ?? photos[0];
+  useEffect(() => {
+    const node = containerRef.current;
+    if (!node || typeof IntersectionObserver === "undefined") {
+      setIsNearViewport(true);
+      return;
+    }
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsNearViewport(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "300px" },
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!activePhoto || !isNearViewport) return;
+    setPhotoState(isSlowConnection ? "failed" : "loading");
+    if (isSlowConnection) return;
+    // A photo that hasn't finished loading after this long once we've started
+    // fetching it is treated as failed — catches stalled/broken requests on every
+    // browser, not just the ones the Network Information API can flag (Chromium/
+    // Android only).
+    const timeoutId = window.setTimeout(() => setPhotoState("failed"), 10000);
+    return () => window.clearTimeout(timeoutId);
+  }, [activePhoto?.url, isSlowConnection, isNearViewport]);
+
+  if (photos.length === 0 || !activePhoto) return null;
+
   const hasMultiplePhotos = photos.length > 1;
   const goToPhoto = (nextIndex: number) => {
     setActiveIndex((nextIndex + photos.length) % photos.length);
+  };
+
+  const SWIPE_THRESHOLD_PX = 45;
+  const TAP_MOVEMENT_TOLERANCE_PX = 10;
+
+  const handleTouchStart = (event: React.TouchEvent<HTMLDivElement>) => {
+    const touch = event.touches[0];
+    touchStartRef.current = touch ? { x: touch.clientX, y: touch.clientY } : null;
+  };
+
+  const handleTouchEnd = (event: React.TouchEvent<HTMLDivElement>) => {
+    const start = touchStartRef.current;
+    touchStartRef.current = null;
+    if (!start || !hasMultiplePhotos) return;
+    const touch = event.changedTouches[0];
+    if (!touch) return;
+    const deltaX = touch.clientX - start.x;
+    const deltaY = touch.clientY - start.y;
+
+    if (Math.abs(deltaX) >= SWIPE_THRESHOLD_PX && Math.abs(deltaX) > Math.abs(deltaY)) {
+      goToPhoto(activeIndex + (deltaX < 0 ? 1 : -1));
+      return;
+    }
+    if (
+      Math.abs(deltaX) < TAP_MOVEMENT_TOLERANCE_PX &&
+      Math.abs(deltaY) < TAP_MOVEMENT_TOLERANCE_PX &&
+      !(event.target instanceof HTMLElement && event.target.closest("button"))
+    ) {
+      const rect = event.currentTarget.getBoundingClientRect();
+      const tappedRight = touch.clientX - rect.left > rect.width / 2;
+      goToPhoto(activeIndex + (tappedRight ? 1 : -1));
+    }
   };
 
   return (
@@ -477,13 +555,21 @@ function PortfolioPhotoCarousel({
           expandedHeightPx == null && "aspect-[3/2] sm:aspect-[4/3]",
         )}
         style={expandedHeightPx != null ? { height: expandedHeightPx } : undefined}
+        ref={containerRef}
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
       >
-        <img
-          src={activePhoto.url}
-          alt=""
-          loading="lazy"
-          className="h-full w-full object-cover"
-        />
+        {!isNearViewport ? null : photoState === "failed" ? (
+          <PortfolioPlaceholderIcon className="h-full w-full text-stone-100 dark:text-stone-950" />
+        ) : (
+          <img
+            src={activePhoto.url}
+            alt=""
+            className="h-full w-full object-cover"
+            onLoad={() => setPhotoState("loaded")}
+            onError={() => setPhotoState("failed")}
+          />
+        )}
 
         {hasMultiplePhotos ? (
           // The photos themselves are decorative (alt=""), so scrubbing

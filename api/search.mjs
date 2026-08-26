@@ -1,6 +1,6 @@
 import { searchSalons, setNoStoreHeaders } from "../server/salon-index.mjs";
 import { enforceRateLimit } from "../server/security.mjs";
-import { sanitizeCustomFilters } from "../server/admin-stylists.mjs";
+import { sanitizeCustomFilters } from "../server/custom-filters.mjs";
 
 export default async function handler(req, res) {
   setNoStoreHeaders(res);
