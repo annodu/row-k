@@ -63100,7 +63100,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-24",
+      "updatedAt": "2026-08-26",
       "addedVia": "Code edit",
       "discoverySource": "Cowork scrape",
       "googlePlaceId": null,
@@ -63114,13 +63114,13 @@
       "portfolioPhotosCheckedAt": "2026-08-21",
       "portfolioPhotos": [
         {
-          "id": "silk-and-sage-portfolio-photo-d8de32e2-5c65-475c-8203-9a142127f503",
-          "url": "/portfolio-photos/silk-and-sage-60463677-6ffc-4e56-8442-70edaf7ea82f.jpg",
+          "id": "silk-and-sage-portfolio-photo-aa3c3941-b161-4a49-b17b-a6dde189df0c",
+          "url": "/portfolio-photos/silk-and-sage-b4943b4b-a863-4fdf-b418-39dcc837c3d1.jpg",
           "source": "instagram-reel-thumbnail"
         },
         {
-          "id": "silk-and-sage-portfolio-photo-aa3c3941-b161-4a49-b17b-a6dde189df0c",
-          "url": "/portfolio-photos/silk-and-sage-b4943b4b-a863-4fdf-b418-39dcc837c3d1.jpg",
+          "id": "silk-and-sage-portfolio-photo-d8de32e2-5c65-475c-8203-9a142127f503",
+          "url": "/portfolio-photos/silk-and-sage-db0a5716-85b7-4bb9-b0dd-55f6fa281f70.jpg",
           "source": "instagram-reel-thumbnail"
         },
         {

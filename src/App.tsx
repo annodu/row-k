@@ -644,7 +644,7 @@ function StylistCardWrapper({
   return (
     <li
       ref={setRef}
-      className="flex w-full flex-col items-start gap-2 border-b border-stone-300 px-0 py-5 text-left last:border-b-0 dark:border-stone-800"
+      className="flex w-full flex-col items-start gap-2 border-b border-stone-300 px-0 py-6 text-left last:border-b-0 dark:border-stone-800"
     >
       {children}
     </li>
@@ -805,7 +805,7 @@ function BrandGroupCard({
   return (
     <li
       ref={setRef}
-      className="flex w-full flex-col items-start gap-3 border-b border-stone-300 px-0 py-5 text-left last:border-b-0 dark:border-stone-800"
+      className="flex w-full flex-col items-start gap-3 border-b border-stone-300 px-0 py-6 text-left last:border-b-0 dark:border-stone-800"
     >
       <div className="flex w-full flex-col gap-2.5 sm:grid sm:items-start sm:gap-x-4 sm:gap-y-2.5 sm:grid-cols-[220px_minmax(0,1fr)_auto] sm:grid-rows-[min-content_1fr] lg:grid-cols-[240px_minmax(0,1fr)_auto]">
         {hasPortfolioPhotos ? (
@@ -1851,7 +1851,7 @@ function VendorCard({ vendor }: { vendor: VendorResult }) {
   const linkedStylist = vendor.linkedStylist;
 
   return (
-    <li className="flex w-full flex-col items-start gap-2 border-b border-stone-300 px-0 py-5 text-left last:border-b-0 dark:border-stone-800">
+    <li className="flex w-full flex-col items-start gap-2 border-b border-stone-300 px-0 py-6 text-left last:border-b-0 dark:border-stone-800">
       <article className="flex w-full flex-col gap-2.5 sm:flex-row sm:items-start sm:justify-between">
         <div className="min-w-0 grow">
           <div className="flex min-w-0 flex-wrap items-center gap-x-2 gap-y-1">
@@ -2010,7 +2010,7 @@ function VendorResultsList({
           {Array.from({ length: RESULTS_SKELETON_COUNT }, (_, index) => (
             <li
               key={`vendor-skeleton-${index}`}
-              className="flex w-full flex-col items-start gap-2 border-b border-stone-300 px-0 py-5 text-left last:border-b-0 dark:border-stone-800"
+              className="flex w-full flex-col items-start gap-2 border-b border-stone-300 px-0 py-6 text-left last:border-b-0 dark:border-stone-800"
             >
               <div className="h-6 w-48 animate-pulse rounded-[4px] bg-stone-300/70 dark:bg-stone-800/70" />
               <div className="mt-2 flex flex-wrap gap-2">
@@ -3566,7 +3566,7 @@ export default function App() {
               {Array.from({ length: RESULTS_SKELETON_COUNT }, (_, index) => (
                 <li
                   key={`skeleton-${index}`}
-                  className="flex w-full flex-col items-start gap-2 border-b border-stone-300 px-0 py-5 text-left last:border-b-0 dark:border-stone-800"
+                  className="flex w-full flex-col items-start gap-2 border-b border-stone-300 px-0 py-6 text-left last:border-b-0 dark:border-stone-800"
                 >
                   <article className="flex w-full flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                     <div className="min-w-0 grow">
