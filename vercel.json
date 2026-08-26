@@ -31,5 +31,10 @@
       "source": "/(.*)",
       "destination": "/index.html"
     }
-  ]
+  ],
+  "functions": {
+    "api/admin.js": {
+      "excludeFiles": "public/portfolio-photos/**"
+    }
+  }
 }
