@@ -210,7 +210,6 @@
         "Starter locs / instant locs",
         "Retwist / interlocking",
         "Loc styling",
-        "Loc extensions (permanent)",
         "Microlocs / sisterlocs",
         "Highlights",
         "Full head colour",
@@ -258,7 +257,19 @@
         }
       ],
       "photoSearchReviewedAt": "2026-08-26",
-      "photoOrderBumpedAt": 298
+      "photoOrderBumpedAt": 298,
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": false,
+      "sameDayEmergency": false,
+      "customFilters": {},
+      "updatedAt": "2026-08-26"
     },
     {
       "id": "dlocs-surgery-uk",
