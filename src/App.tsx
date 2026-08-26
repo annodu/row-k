@@ -1,4 +1,4 @@
-import { Fragment, type ReactNode, useCallback, useEffect, useRef, useState } from "react";
+import { Fragment, type ReactNode, useCallback, useEffect, useId, useRef, useState } from "react";
 import { ArrowUp, ArrowUpRight, Check, ChevronDown, ChevronLeft, ChevronRight, Copy, Globe, Search, X } from "lucide-react";
 
 import { Checkbox } from "@/components/ui/checkbox";
@@ -372,6 +372,20 @@ function getReviewsBannerInfo(
   return null;
 }
 
+// Loose enough to treat "instagram.com/x", "www.instagram.com/x/" and
+// "https://instagram.com/x?igsh=..." as the same destination, without
+// misjudging a genuinely different link (e.g. a specific shop/product post)
+// as a duplicate of the profile URL.
+function normalizeUrlForComparison(url: string) {
+  return url
+    .trim()
+    .toLowerCase()
+    .replace(/^https?:\/\//, "")
+    .replace(/^www\./, "")
+    .replace(/[?#].*$/, "")
+    .replace(/\/+$/, "");
+}
+
 function getHairShopLinkInfo(result: SalonResult): { label: string; url: string; accessibleLabel: string } | null {
   if (!result.sellsHairSeparately) {
     return null;
@@ -379,6 +393,15 @@ function getHairShopLinkInfo(result: SalonResult): { label: string; url: string;
 
   const url = result.hairShopUrl || result.websiteUrl;
   if (!url) {
+    return null;
+  }
+
+  // Some stylists only sell hair through their Instagram, so the "shop"
+  // link on file is the exact same destination as the Instagram icon
+  // already shown for this card — a second link to it would just be the
+  // same URL twice, so fall through to the plain (non-link) attribute
+  // badge instead.
+  if (result.instagramUrl && normalizeUrlForComparison(url) === normalizeUrlForComparison(result.instagramUrl)) {
     return null;
   }
 
@@ -393,14 +416,32 @@ function getPortfolioPhotos(result: SalonResult): PortfolioPhoto[] {
   return result.portfolioPhotos?.slice(0, 3) ?? [];
 }
 
-// Placeholder for salons without portfolio photos yet — up to the first two
-// significant words' initials, e.g. "Aluxe Beauty UK" -> "AB".
-function getSalonInitials(name: string) {
-  const words = name.trim().split(/\s+/).filter(Boolean);
-  return words
-    .slice(0, 2)
-    .map((word) => word[0]?.toUpperCase())
-    .join("");
+// Placeholder for salons without portfolio photos yet — the site's wide
+// wordmark mark, greyed out via currentColor rather than its usual
+// dark/light brand fill.
+function PortfolioPlaceholderIcon({ className }: { className?: string }) {
+  const clipId = useId();
+  return (
+    <svg
+      viewBox="0 0 263 180"
+      preserveAspectRatio="xMidYMid slice"
+      className={className}
+      fill="none"
+      aria-hidden="true"
+    >
+      <g clipPath={`url(#${clipId})`}>
+        <path
+          d="M-52 288V-152H121.582C153.563 -152 181.967 -145.714 206.794 -133.143C231.622 -120.99 250.979 -103.809 264.865 -81.6C279.173 -59.8095 286.326 -34.6667 286.326 -6.17142C286.326 22.3238 279.173 47.6762 264.865 69.8857C250.558 92.0952 230.78 109.486 205.532 122.057C180.704 134.21 152.09 140.286 119.688 140.286H49.6241V288H-52ZM187.858 288L88.1277 113.257L164.504 57.3143L304 288H187.858ZM49.6241 47.2571H118.426C130.208 47.2571 140.728 44.9524 149.986 40.3429C159.243 35.7333 166.397 29.4476 171.447 21.4857C176.917 13.1048 179.652 3.88571 179.652 -6.17142C179.652 -21.6762 173.761 -34.4571 161.979 -44.5143C150.617 -54.5714 135.468 -59.6 116.532 -59.6H49.6241V47.2571Z"
+          fill="currentColor"
+        />
+      </g>
+      <defs>
+        <clipPath id={clipId}>
+          <rect width="263" height="180" />
+        </clipPath>
+      </defs>
+    </svg>
+  );
 }
 
 function PortfolioPhotoCarousel({
@@ -445,36 +486,41 @@ function PortfolioPhotoCarousel({
         />
 
         {hasMultiplePhotos ? (
-          <>
+          // The photos themselves are decorative (alt=""), so scrubbing
+          // through them carries no information — these controls are hidden
+          // from the accessibility tree and pulled out of the tab order
+          // entirely rather than making every stylist card contribute several
+          // extra stops (prev/next + one dot per photo) to keyboard/screen
+          // reader navigation of a list that can run into the hundreds.
+          <div aria-hidden="true">
             <button
               type="button"
-              aria-label={`Show previous photo for ${result.name}`}
+              tabIndex={-1}
               onClick={(event) => {
                 event.preventDefault();
                 goToPhoto(activeIndex - 1);
               }}
               className="absolute left-2 top-1/2 hidden size-8 -translate-y-1/2 items-center justify-center rounded-none bg-white/95 text-stone-950 shadow-sm ring-1 ring-stone-950/10 transition hover:bg-white dark:bg-stone-950/80 dark:text-stone-100 dark:ring-stone-100/15 dark:hover:bg-stone-900 sm:flex"
             >
-              <ChevronLeft className="size-4" aria-hidden="true" />
+              <ChevronLeft className="size-4" />
             </button>
             <button
               type="button"
-              aria-label={`Show next photo for ${result.name}`}
+              tabIndex={-1}
               onClick={(event) => {
                 event.preventDefault();
                 goToPhoto(activeIndex + 1);
               }}
               className="absolute right-2 top-1/2 hidden size-8 -translate-y-1/2 items-center justify-center rounded-none bg-white/95 text-stone-950 shadow-sm ring-1 ring-stone-950/10 transition hover:bg-white dark:bg-stone-950/80 dark:text-stone-100 dark:ring-stone-100/15 dark:hover:bg-stone-900 sm:flex"
             >
-              <ChevronRight className="size-4" aria-hidden="true" />
+              <ChevronRight className="size-4" />
             </button>
             <div className="absolute bottom-2 left-2 flex items-center gap-1.5">
               {photos.map((photo, index) => (
                 <button
                   key={photo.id}
                   type="button"
-                  aria-label={`Show photo ${index + 1} for ${result.name}`}
-                  aria-pressed={index === activeIndex}
+                  tabIndex={-1}
                   onClick={(event) => {
                     event.preventDefault();
                     goToPhoto(index);
@@ -483,12 +529,11 @@ function PortfolioPhotoCarousel({
                 />
               ))}
               <div
-                aria-hidden="true"
                 className="pointer-events-none absolute left-0 size-1.5 rounded-none bg-white shadow-[0_0_0_1px_rgba(0,0,0,0.18)] transition-transform duration-300 ease-out"
                 style={{ transform: `translateX(${activeIndex * 12}px)` }}
               />
             </div>
-          </>
+          </div>
         ) : null}
       </div>
     </div>
@@ -774,12 +819,12 @@ function BrandGroupCard({
           <div className="order-1 mb-1 hidden w-full sm:row-span-2 sm:mb-0 sm:block" aria-hidden="true">
             <div
               className={cn(
-                "flex w-full items-center justify-center overflow-hidden rounded-none border border-stone-300/60 bg-stone-100 dark:border-stone-700/60 dark:bg-stone-900/40 transition-[height] duration-300",
+                "flex w-full items-center justify-center overflow-hidden rounded-none border border-stone-300/60 bg-stone-300 dark:border-stone-700/60 dark:bg-stone-700 transition-[height] duration-300",
                 photoHeightPx == null && "aspect-[3/2] sm:aspect-[4/3]",
               )}
               style={photoHeightPx != null ? { height: photoHeightPx } : undefined}
             >
-              <span className="text-lg font-semibold tracking-wide text-stone-400 dark:text-stone-600">{getSalonInitials(brandName)}</span>
+              <PortfolioPlaceholderIcon className="h-full w-full text-stone-100 dark:text-stone-950" />
             </div>
           </div>
         )}
@@ -994,6 +1039,32 @@ function SalonResultCard({
   const baselinePhotoHeightRef = useRef<number>(MIN_PHOTO_HEIGHT_PX);
   const baselineServicesHeightRef = useRef<number>(0);
 
+  // The Instagram link is duplicated below — once inline next to the name
+  // (mobile) and once in the button row (desktop) — because the two spots
+  // are genuinely different layout positions, not just different styling of
+  // the same spot, so a single element can't occupy both. The `sm:hidden` /
+  // `hidden sm:inline-flex` pair already keeps only one on screen (and out
+  // of the accessibility tree, since a real display:none is excluded from
+  // it) at any given viewport, but a static/DOM-level audit that doesn't
+  // evaluate media queries still sees two links with an identical accessible
+  // name. Mirroring that same breakpoint here as real aria-hidden/tabIndex
+  // state (not just a CSS class) means only one ever carries the "Go to X
+  // Instagram" name at the attribute level too, satisfying that kind of
+  // check as well as a live one.
+  const [isSmUp, setIsSmUp] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(min-width: 640px)");
+    const syncIsSmUp = (event: MediaQueryList | MediaQueryListEvent) => setIsSmUp(event.matches);
+    syncIsSmUp(mediaQuery);
+    if (typeof mediaQuery.addEventListener === "function") {
+      mediaQuery.addEventListener("change", syncIsSmUp);
+      return () => mediaQuery.removeEventListener("change", syncIsSmUp);
+    }
+    mediaQuery.addListener(syncIsSmUp);
+    return () => mediaQuery.removeListener(syncIsSmUp);
+  }, []);
+
   useEffect(() => {
     // Both values below are derived from the same measurement pass — reading
     // the margin back from the grid's own computed row sizes in a separate
@@ -1081,12 +1152,12 @@ function SalonResultCard({
           <div className="order-1 mb-1 hidden w-full sm:row-span-2 sm:mb-0 sm:block" aria-hidden="true">
             <div
               className={cn(
-                "flex w-full items-center justify-center overflow-hidden rounded-none border border-stone-300/60 bg-stone-100 dark:border-stone-700/60 dark:bg-stone-900/40 transition-[height] duration-300",
+                "flex w-full items-center justify-center overflow-hidden rounded-none border border-stone-300/60 bg-stone-300 dark:border-stone-700/60 dark:bg-stone-700 transition-[height] duration-300",
                 photoHeightPx == null && "aspect-[3/2] sm:aspect-[4/3]",
               )}
               style={photoHeightPx != null ? { height: photoHeightPx } : undefined}
             >
-              <span className="text-lg font-semibold tracking-wide text-stone-400 dark:text-stone-600">{getSalonInitials(result.name)}</span>
+              <PortfolioPlaceholderIcon className="h-full w-full text-stone-100 dark:text-stone-950" />
             </div>
           </div>
         )}
@@ -1164,6 +1235,8 @@ function SalonResultCard({
                       placement: "mobile",
                     })
                   }
+                  aria-hidden={isSmUp}
+                  tabIndex={isSmUp ? -1 : 0}
                   className="inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-none bg-transparent px-4 py-2 text-[14px] font-medium text-stone-950 transition-colors duration-150 hover:bg-stone-200 active:bg-stone-200 dark:bg-transparent dark:text-stone-100 dark:hover:bg-stone-800 dark:active:bg-stone-800 sm:hidden"
                 >
                   <InstagramIcon className="size-4" />
@@ -1190,6 +1263,8 @@ function SalonResultCard({
                   placement: "desktop",
                 })
               }
+              aria-hidden={!isSmUp}
+              tabIndex={isSmUp ? 0 : -1}
               className="hidden min-h-[48px] items-center justify-center gap-2 rounded-none bg-transparent px-4 py-2 text-[14px] font-medium text-stone-950 transition-colors duration-150 hover:bg-stone-200 dark:bg-transparent dark:text-stone-100 dark:hover:bg-stone-800 sm:inline-flex sm:min-h-[40px]"
             >
               <InstagramIcon className="size-4" />
@@ -1536,7 +1611,7 @@ function ServicesSummary({
       : badgeHiddenCount > 0
         ? `${labels.slice(0, badgeVisibleCount).join(" · ")} +${badgeHiddenCount}`
         : fullBadgeText;
-  const fullServicesLabel = services.join(" · ");
+  const fullServicesLabel = services.map((service) => getServiceDisplayName(service)).join(" · ");
   const fullAriaLabel = fullBadgeText ? `${fullBadgeText} · ${fullServicesLabel}` : fullServicesLabel;
   const isExpandableOnMobile = isMobileViewport && hiddenCount > 0;
   const isExpandableOnDesktop = !isMobileViewport && hiddenCount > 0;
@@ -1582,6 +1657,13 @@ function ServicesSummary({
       onMouseEnter={isExpandableOnDesktop ? () => setIsHoveredOnDesktop(true) : undefined}
       onMouseLeave={isExpandableOnDesktop ? () => setIsHoveredOnDesktop(false) : undefined}
     >
+      {/* aria-label on a plain, non-widget div isn't reliably announced by
+          every screen reader when sweeping through page content (NVDA's
+          browse mode in particular still reads the div's own visible text,
+          "+N services" included) — so the truncated/marquee visuals below
+          are hidden from the accessibility tree outright, and the real,
+          untruncated list is exposed as ordinary (visually hidden) text
+          instead, which every screen reader reads the same way. */}
       {isExpandableOnMobile ? (
         <>
           <button
@@ -1593,6 +1675,7 @@ function ServicesSummary({
           />
           <div
             ref={lineRef}
+            aria-hidden="true"
             className={cn(
               showExpandedList
                 ? "whitespace-normal"
@@ -1601,18 +1684,17 @@ function ServicesSummary({
                   : "overflow-hidden whitespace-nowrap",
             )}
             style={!showExpandedList && isMultiLine ? { maxHeight: SERVICES_SUMMARY_LINE_HEIGHT_PX * maxLines } : undefined}
-            aria-label={fullAriaLabel}
           >
             {showExpandedList ? <>{badgeElement}{fullServicesLabel}</> : collapsedSummary}
           </div>
         </>
       ) : showExpandedOnDesktop && isMultiLine ? (
-        <div ref={lineRef} className="whitespace-normal" aria-label={fullAriaLabel}>
+        <div ref={lineRef} aria-hidden="true" className="whitespace-normal">
           {badgeElement}
           {fullServicesLabel}
         </div>
       ) : showExpandedOnDesktop ? (
-        <div ref={lineRef} className="overflow-hidden whitespace-nowrap" aria-label={fullAriaLabel}>
+        <div ref={lineRef} aria-hidden="true" className="overflow-hidden whitespace-nowrap">
           <div className="inline-flex whitespace-nowrap" style={{ animation: `services-marquee ${marqueeSeconds}s linear infinite` }}>
             <span ref={marqueeCopyRef} className="inline-flex items-center pr-8">
               {badgeElement}
@@ -1627,13 +1709,14 @@ function ServicesSummary({
       ) : (
         <div
           ref={lineRef}
+          aria-hidden="true"
           className={cn(isMultiLine ? "overflow-hidden whitespace-normal" : "overflow-hidden whitespace-nowrap")}
           style={isMultiLine ? { maxHeight: SERVICES_SUMMARY_LINE_HEIGHT_PX * maxLines } : undefined}
-          aria-label={fullAriaLabel}
         >
           {collapsedSummary}
         </div>
       )}
+      <span className="sr-only">{fullAriaLabel}</span>
 
       <div className="pointer-events-none absolute left-0 top-0 -z-10 opacity-0" aria-hidden="true">
         <span ref={separatorMeasureRef} className="text-[12px] font-normal lowercase leading-[18px] tracking-[0.02em]">
@@ -3361,6 +3444,42 @@ export default function App() {
         </div>
       </header>
 
+      {/* DOM position matters here, not just visual placement: this is a
+          `position: fixed` button, so moving it doesn't move it on screen —
+          but with a results list that can run into the hundreds of cards
+          (each contributing several tab stops of its own), leaving it after
+          the list in source order would bury it at the very end of the
+          page's tab sequence. Placed right after the header instead, it's
+          reachable in a couple of tabs from page load once scrolled state
+          makes it focusable, regardless of how far into the list that is. */}
+      <div
+        className={cn(
+          // An explicit height (matching the button) plus a fixed pixel
+          // offset — rather than translate-y-full — sidesteps any ambiguity
+          // in resolving a percentage translate against an auto-height fixed
+          // box: this guarantees the button clears the viewport completely
+          // while hidden instead of merely peeking in at the bottom edge.
+          "pointer-events-none fixed inset-x-0 bottom-6 z-40 h-11 transition-transform duration-300 ease-out",
+          showBackToTop ? "translate-y-0" : "translate-y-24",
+        )}
+      >
+        <div className="mx-auto flex w-full max-w-[1120px] px-4 sm:px-6 lg:px-10">
+          <div className="flex flex-1 justify-center lg:pr-8">
+            <button
+              type="button"
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              aria-label="Back to top"
+              aria-hidden={!showBackToTop}
+              tabIndex={showBackToTop ? 0 : -1}
+              className="pointer-events-auto inline-flex size-11 items-center justify-center rounded-none bg-white/95 text-stone-950 shadow-sm ring-1 ring-stone-950/10 transition hover:bg-white dark:bg-stone-950/80 dark:text-stone-100 dark:ring-stone-100/15 dark:hover:bg-stone-900"
+            >
+              <ArrowUp className="size-4" aria-hidden="true" />
+            </button>
+          </div>
+          <div className="hidden w-72 flex-none lg:block" aria-hidden="true" />
+        </div>
+      </div>
+
       <div className="mx-auto flex w-full max-w-[1120px] flex-col px-4 sm:px-6 lg:flex-row lg:items-start lg:px-10">
         {mobileFiltersOpen ? <div className="fixed inset-0 z-40 bg-stone-100 dark:bg-stone-950 lg:hidden" aria-hidden="true" /> : null}
         <section id="live-results" className="min-w-0 flex-1 pb-6 pt-4 lg:pb-6 lg:pr-8 lg:pt-0">
@@ -4711,34 +4830,6 @@ export default function App() {
           </div>
         </div>
       </footer>
-
-      <div
-        className={cn(
-          // An explicit height (matching the button) plus a fixed pixel
-          // offset — rather than translate-y-full — sidesteps any ambiguity
-          // in resolving a percentage translate against an auto-height fixed
-          // box: this guarantees the button clears the viewport completely
-          // while hidden instead of merely peeking in at the bottom edge.
-          "pointer-events-none fixed inset-x-0 bottom-6 z-40 h-11 transition-transform duration-300 ease-out",
-          showBackToTop ? "translate-y-0" : "translate-y-24",
-        )}
-      >
-        <div className="mx-auto flex w-full max-w-[1120px] px-4 sm:px-6 lg:px-10">
-          <div className="flex flex-1 justify-center lg:pr-8">
-            <button
-              type="button"
-              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-              aria-label="Back to top"
-              aria-hidden={!showBackToTop}
-              tabIndex={showBackToTop ? 0 : -1}
-              className="pointer-events-auto inline-flex size-11 items-center justify-center rounded-none bg-white/95 text-stone-950 shadow-sm ring-1 ring-stone-950/10 transition hover:bg-white dark:bg-stone-950/80 dark:text-stone-100 dark:ring-stone-100/15 dark:hover:bg-stone-900"
-            >
-              <ArrowUp className="size-4" aria-hidden="true" />
-            </button>
-          </div>
-          <div className="hidden w-72 flex-none lg:block" aria-hidden="true" />
-        </div>
-      </div>
     </div>
   );
 }

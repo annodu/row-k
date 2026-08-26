@@ -135,13 +135,59 @@ export async function searchSalonImages(salon, { num = 24, includeReels = false 
   return results.slice(0, num);
 }
 
+function extractShortcode(postUrl) {
+  const match = postUrl.match(/\/(?:p|reel)\/([^/?#]+)/);
+  return match ? match[1] : "";
+}
+
+// instagram.post's own pagination can't be pointed at a specific post, so a
+// carousel fallback (below) has to paginate the account's whole feed same as
+// searchSalonImages — capped because an old post can sit many pages deep (one
+// observed real case needed 21 pages, 252 posts, on a frequently-posting
+// account) but the account could have far more still.
+const MAX_CAROUSEL_FALLBACK_PAGES = 40;
+
+// instagram.post's found:true-but-empty response (see below) still includes
+// `owner`, so when it fires this re-finds the same post via the account-wide
+// crawl endpoint — which does return real per-slide media — and takes
+// whichever slide is first, photo or video-cover-frame alike.
+async function findPostFirstSlide(handle, shortcode, apiKey) {
+  let cursor;
+  for (let page = 0; page < MAX_CAROUSEL_FALLBACK_PAGES; page += 1) {
+    const payload = await anyApiPost("/v1/run/instagram.user_posts", { handle, cursor }, apiKey);
+    const data = payload.output?.data ?? payload;
+    const posts = Array.isArray(data) ? data : data.posts || [];
+    if (posts.length === 0) return null;
+
+    const match = posts.find((post) => typeof post.url === "string" && post.url.includes(shortcode));
+    if (match) {
+      const media = match.media?.[0];
+      if (!media?.url) return null;
+      return {
+        imageUrl: media.url,
+        thumbnailUrl: media.url,
+        contextUrl: match.url,
+        title: shortcode,
+        isReel: media.type === "video",
+      };
+    }
+
+    cursor = data.nextCursor;
+    if (!cursor) return null;
+  }
+  return null;
+}
+
 // The admin sometimes already knows exactly which posts they want (browsed
 // the account themselves and picked good ones) rather than trusting
 // whichever photos searchSalonImages' account-wide crawl happens to surface
 // — this fetches one specific post/reel by its URL instead of paginating an
-// entire account. instagram.post only returns the post's single cover
-// image (displayUrl), not every image in a carousel, so a multi-photo
-// carousel post only yields its first photo this way.
+// entire account. instagram.post only resolves single-media posts (a photo,
+// a single video, a Reel) — for a carousel it reports found:true but with
+// displayUrl/type/videoUrl all blank, confirmed live on both a photo-first
+// and a video-first carousel, so slide type isn't the deciding factor,
+// carousel-vs-not is. findPostFirstSlide below re-fetches that case through
+// the account crawl to still get its first slide.
 export async function fetchInstagramPostImage(postUrl) {
   const apiKey = await loadAnyApiKey();
   if (!apiKey) {
@@ -165,15 +211,18 @@ export async function fetchInstagramPostImage(postUrl) {
     };
   }
 
-  // AnyAPI can report `found: true` with an empty displayUrl/videoUrl —
-  // observed on posts where the actual slide is a video (a video-in-carousel
-  // item, in every case checked). There used to be an og:image fallback
-  // here for this case, but it was removed: Instagram's own og:image for
-  // this exact kind of post is a social-share preview with a play-button
-  // icon baked into the pixels (confirmed live, 4/4 samples) — indistinguishable
-  // from a clean photo by URL/metadata alone, so it was silently shipping
-  // broken thumbnails onto real stylist profiles. Better to report nothing
-  // usable than a wrong one.
+  // AnyAPI can report `found: true` with an empty displayUrl/videoUrl for a
+  // carousel post (see comment above). There used to be an og:image
+  // fallback here for this case, but it was removed: Instagram's own
+  // og:image for this exact kind of post is a social-share preview with a
+  // play-button icon baked into the pixels (confirmed live, 4/4 samples) —
+  // indistinguishable from a clean photo by URL/metadata alone, so it was
+  // silently shipping broken thumbnails onto real stylist profiles. The
+  // account-crawl fallback below replaces that with the real first slide.
+  const shortcode = extractShortcode(postUrl);
+  if (output.found && data?.owner && shortcode) {
+    return findPostFirstSlide(data.owner, shortcode, apiKey);
+  }
   return null;
 }
 

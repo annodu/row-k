@@ -1,37 +1,106 @@
 {
   "meta": {
-    "updatedAt": "2026-08-25"
+    "updatedAt": "2026-08-26"
   },
   "entries": [
     {
-      "salonId": "hiikuss-hair",
-      "postUrls": [],
+      "salonId": "celine-styles",
+      "postUrls": [
+        "https://www.instagram.com/p/DcLqiMcsCym/"
+      ],
       "addedAt": "2026-08-25"
     },
     {
-      "salonId": "the-standard-studio",
-      "postUrls": [],
-      "addedAt": "2026-08-25"
+      "salonId": "kumi-kreates",
+      "postUrls": [
+        "https://www.instagram.com/p/Db3f_GZMnHH/",
+        "https://www.instagram.com/p/DZsevUOIMm2/",
+        "https://www.instagram.com/p/DX928oxt4lU/",
+        "https://www.instagram.com/p/DVbu0R4Dfys/"
+      ],
+      "addedAt": "2026-08-26"
     },
     {
-      "salonId": "cachos-rubinathy",
-      "postUrls": [],
-      "addedAt": "2026-08-25"
+      "salonId": "naturallyimmaculate",
+      "postUrls": [
+        "https://www.instagram.com/p/DEQ2Op8NjfA/",
+        "https://www.instagram.com/p/Dbq_uinu36Y/",
+        "https://www.instagram.com/p/DOyniBdjd-H/",
+        "https://www.instagram.com/p/DMJPE1ntc1A/"
+      ],
+      "addedAt": "2026-08-26"
     },
     {
-      "salonId": "pheliamarie",
-      "postUrls": [],
-      "addedAt": "2026-08-25"
+      "salonId": "curls-eccentric",
+      "postUrls": [
+        "https://www.instagram.com/p/DaKr2pxuxMG/",
+        "https://www.instagram.com/p/DZs9prPNGNj/"
+      ],
+      "addedAt": "2026-08-26"
     },
     {
-      "salonId": "hair-design-studio",
-      "postUrls": [],
-      "addedAt": "2026-08-25"
+      "salonId": "forever-braids-uk",
+      "postUrls": [
+        "https://www.instagram.com/p/DXqlTtCMmkA/",
+        "https://www.instagram.com/p/DXMFeEmMbC7/"
+      ],
+      "addedAt": "2026-08-26"
     },
     {
-      "salonId": "hair-by-rosie-grace",
-      "postUrls": [],
-      "addedAt": "2026-08-25"
+      "salonId": "thee-lace-parlour",
+      "postUrls": [
+        "https://www.instagram.com/p/DZ7tU5EsVQY/",
+        "https://www.instagram.com/p/DWb9zhUDPWv/",
+        "https://www.instagram.com/p/DSDdlvfDBig/"
+      ],
+      "addedAt": "2026-08-26"
+    },
+    {
+      "salonId": "riestylez",
+      "postUrls": [
+        "https://www.instagram.com/p/DXefOwLjHtS/",
+        "https://www.instagram.com/p/DMLWBKesqTM/",
+        "https://www.instagram.com/p/DMLSkr2M2U8/"
+      ],
+      "addedAt": "2026-08-26"
+    },
+    {
+      "salonId": "slayed-by-zayxx",
+      "postUrls": [
+        "https://www.instagram.com/p/DPGjUExjMYv/",
+        "https://www.instagram.com/p/DbiUDpWupQ0/",
+        "https://www.instagram.com/p/DYrZ6LUuiYY/"
+      ],
+      "addedAt": "2026-08-26"
+    },
+    {
+      "salonId": "papachichi-style",
+      "postUrls": [
+        "https://www.instagram.com/p/DakaWh-Nm0Y/",
+        "https://www.instagram.com/p/DUBBoBtjeNh/",
+        "https://www.instagram.com/p/DUyikzbDXAE/?img_index=1"
+      ],
+      "addedAt": "2026-08-26"
+    },
+    {
+      "salonId": "styled-by-barros",
+      "postUrls": [
+        "https://www.instagram.com/p/DJkpHQ9ihwq/",
+        "https://www.instagram.com/p/DaVxD0eshRE/",
+        "https://www.instagram.com/p/DZzrpgpshX4/",
+        "https://www.instagram.com/p/DR-sd8fDI-g/"
+      ],
+      "addedAt": "2026-08-26"
+    },
+    {
+      "salonId": "novatress-uk",
+      "postUrls": [
+        "https://www.instagram.com/p/DRB_UD8jG1b/",
+        "https://www.instagram.com/p/Da-O_9PsX6C/",
+        "https://www.instagram.com/p/DaqTPInMYjK/",
+        "https://www.instagram.com/p/DYczm6VskNZ/"
+      ],
+      "addedAt": "2026-08-26"
     }
   ]
 }
