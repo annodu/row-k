@@ -57682,7 +57682,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-24",
+      "updatedAt": "2026-08-26",
       "googlePlaceId": null,
       "googleReviewCount": 0,
       "googleMapsUri": "",
@@ -57697,6 +57697,11 @@
       "portfolioPhotosCheckedAt": "2026-08-21",
       "portfolioPhotos": [
         {
+          "id": "novatress-uk-portfolio-photo-55811fee-3d30-4814-9f2a-20da825712ef",
+          "url": "/portfolio-photos/novatress-uk-b2137418-6d65-4a19-96c6-bb73aa441628.jpg",
+          "source": "google-image-search"
+        },
+        {
           "id": "novatress-uk-portfolio-photo-ecd92ce9-cb0b-4199-a30c-6f5a5e5ff734",
           "url": "/portfolio-photos/novatress-uk-9edcb037-b8e2-466d-9043-aeaf1264bfb3.jpg",
           "source": "google-image-search"
@@ -57704,11 +57709,6 @@
         {
           "id": "novatress-uk-portfolio-photo-3452be53-24ba-471b-ab92-5cfe29003a52",
           "url": "/portfolio-photos/novatress-uk-e4acb153-0004-4959-a5d8-887e50f94419.jpg",
-          "source": "google-image-search"
-        },
-        {
-          "id": "novatress-uk-portfolio-photo-55811fee-3d30-4814-9f2a-20da825712ef",
-          "url": "/portfolio-photos/novatress-uk-b2137418-6d65-4a19-96c6-bb73aa441628.jpg",
           "source": "google-image-search"
         },
         {
@@ -58928,16 +58928,6 @@
       "portfolioPhotosCheckedAt": "2026-08-21",
       "portfolioPhotos": [
         {
-          "id": "papachichi-style-portfolio-photo-624b219e-0c5d-4acb-abb4-24223282354d",
-          "url": "/portfolio-photos/papachichi-style-98030359-fafb-44c2-99b1-6c7b9aa410f9.jpg",
-          "source": "google-image-search"
-        },
-        {
-          "id": "papachichi-style-portfolio-photo-1f3a6201-a943-49cc-8283-54a5009e33b5",
-          "url": "/portfolio-photos/papachichi-style-e9ed45fa-b0c9-415b-acfb-2e495a3c0940.jpg",
-          "source": "google-image-search"
-        },
-        {
           "id": "papachichi-style-portfolio-photo-34b22ca6-9a30-493d-b790-33efb32a2a93",
           "url": "/portfolio-photos/papachichi-style-5b4ee877-7032-4924-a8a1-e1c1ae0efbbc.jpg",
           "source": "google-image-search"
@@ -58945,6 +58935,16 @@
         {
           "id": "papachichi-style-portfolio-photo-5364fd5f-b319-4010-9cd0-96dac73025c2",
           "url": "/portfolio-photos/papachichi-style-672f08f2-f5c1-482b-bb6b-0a5b95d04c44.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "papachichi-style-portfolio-photo-1f3a6201-a943-49cc-8283-54a5009e33b5",
+          "url": "/portfolio-photos/papachichi-style-63914aea-c80d-483e-9465-49453e6bc4e3.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "papachichi-style-portfolio-photo-624b219e-0c5d-4acb-abb4-24223282354d",
+          "url": "/portfolio-photos/papachichi-style-6f23fbcb-b992-424d-9340-abd1e8b378a9.jpg",
           "source": "google-image-search"
         }
       ],
