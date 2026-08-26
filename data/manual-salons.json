@@ -24483,7 +24483,7 @@
       "canBraidWithoutGel": false,
       "wheelchairAccessible": true,
       "customFilters": {},
-      "updatedAt": "2026-07-22",
+      "updatedAt": "2026-08-26",
       "verifiedReviewCount": 163,
       "verifiedReviewCheckedAt": "2026-07-22",
       "googlePlaceId": null,
@@ -24497,13 +24497,13 @@
       "portfolioPhotosCheckedAt": "2026-08-21",
       "portfolioPhotos": [
         {
-          "id": "mourhairldn-portfolio-photo-f3b9a608-c6af-4ecc-b38f-6854b89623ef",
-          "url": "/portfolio-photos/mourhairldn-52211893-0ca7-4d11-86c0-eec6d6c65897.jpg",
+          "id": "mourhairldn-portfolio-photo-625d920b-ca7c-471a-9a31-1abfe5dcba7b",
+          "url": "/portfolio-photos/mourhairldn-eb53eb54-00ba-43e1-aa4a-1729f2b29631.jpg",
           "source": "google-image-search"
         },
         {
-          "id": "mourhairldn-portfolio-photo-625d920b-ca7c-471a-9a31-1abfe5dcba7b",
-          "url": "/portfolio-photos/mourhairldn-eb53eb54-00ba-43e1-aa4a-1729f2b29631.jpg",
+          "id": "mourhairldn-portfolio-photo-f3b9a608-c6af-4ecc-b38f-6854b89623ef",
+          "url": "/portfolio-photos/mourhairldn-103c633f-e097-4454-89ef-2bd3a2c3e3c0.jpg",
           "source": "google-image-search"
         },
         {
@@ -45685,7 +45685,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-25",
+      "updatedAt": "2026-08-26",
       "websiteUrl": "",
       "googlePlaceId": null,
       "googleReviewCount": 0,
@@ -45696,11 +45696,6 @@
       "googleCheckedAt": "2026-07-29",
       "portfolioPhotosCheckedAt": "2026-08-21",
       "portfolioPhotos": [
-        {
-          "id": "groath-hair-portfolio-photo-0c16d9dd-2a9f-4763-b591-1b1b1bca6025",
-          "url": "/portfolio-photos/groath-hair-6e0a7160-629b-4df3-bb3b-e27fa300daec.jpg",
-          "source": "google-image-search"
-        },
         {
           "id": "groath-hair-portfolio-photo-a0939fad-151c-4ee8-8ccf-32097e3c857d",
           "url": "/portfolio-photos/groath-hair-4df62a69-1854-44e5-99ea-e0b9e091cd2b.jpg",
@@ -69102,11 +69097,28 @@
       "portfolioPhotosCheckedAt": "2026-08-21",
       "portfolioPhotos": [
         {
+          "id": "tress-studios-portfolio-photo-a7adda21-71d4-4264-b40f-d5c19466e58b",
+          "url": "/portfolio-photos/tress-studios-4fcd2751-e92d-4de3-bd83-69c0f134cf49.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "tress-studios-portfolio-photo-974d6c5c-8280-4dc9-a714-e7468279c869",
+          "url": "/portfolio-photos/tress-studios-cc4d3159-1db6-4038-8bf1-6e86049f706a.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "tress-studios-portfolio-photo-81b76b60-15bc-4b58-99a0-1c72371f45c8",
+          "url": "/portfolio-photos/tress-studios-32f56a99-3fa2-4e30-9a96-88aebba0d6d0.jpg",
+          "source": "google-image-search"
+        },
+        {
           "id": "tress-studios-portfolio-photo-9e4c7d81-04c9-4ca1-a2ab-ac65482f38e7",
           "url": "/portfolio-photos/tress-studios-10dedd79-db3c-47b3-8133-5137dea02125.jpg",
           "source": "google-image-search"
         }
-      ]
+      ],
+      "photoSearchReviewedAt": "2026-08-26",
+      "updatedAt": "2026-08-26"
     },
     {
       "id": "tressavenue",
@@ -76299,16 +76311,16 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-24",
+      "updatedAt": "2026-08-26",
       "portfolioPhotos": [
         {
-          "id": "dkuk-salon-portfolio-photo-792738aa-f25f-4851-aefc-320475580176",
-          "url": "/portfolio-photos/dkuk-salon-7ed0edcc-a977-4133-b146-605b3c96dcd9.jpg",
+          "id": "dkuk-salon-portfolio-photo-f160066e-6f5b-4646-9f2e-299a4332fcde",
+          "url": "/portfolio-photos/dkuk-salon-f909303a-5ac4-4906-8d4e-927b3f5cbedb.jpg",
           "source": "google-image-search"
         },
         {
-          "id": "dkuk-salon-portfolio-photo-f160066e-6f5b-4646-9f2e-299a4332fcde",
-          "url": "/portfolio-photos/dkuk-salon-38d202ea-b630-4872-8e3f-753a43e32d2c.jpg",
+          "id": "dkuk-salon-portfolio-photo-792738aa-f25f-4851-aefc-320475580176",
+          "url": "/portfolio-photos/dkuk-salon-7ed0edcc-a977-4133-b146-605b3c96dcd9.jpg",
           "source": "google-image-search"
         }
       ],

@@ -120,6 +120,15 @@
       "salonId": "hairboyldn",
       "postUrls": [],
       "addedAt": "2026-08-26"
+    },
+    {
+      "salonId": "tress-studios",
+      "postUrls": [
+        "https://www.instagram.com/p/DGBl5lvMChI/",
+        "https://www.instagram.com/p/DbI1HLUuHfB/",
+        "https://www.instagram.com/p/DUYkNGfDYQu/"
+      ],
+      "addedAt": "2026-08-26"
     }
   ]
 }
