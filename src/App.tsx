@@ -90,7 +90,7 @@ const categoryMap = {
   "editorial-services": { label: "Editorial / Session styling", subcategories: ["all","Editorial / Session styling"] },
   "kids-teens-services": { label: "Kids & teens styles", subcategories: ["all","Kids & teens styles"] },
   "extension-services": { label: "Extensions", subcategories: ["all","Clip ins (+ silk press)","K-tips / invisible strands","LA weave / microlinks wefts / braidless sew in","I-tips / microlinks strands","Tape ins"] },
-  "locs-services": { label: "Locs (permanent)", subcategories: ["all","Starter locs / instant locs","Retwist / interlocking","Loc styling","Microlocs / sisterlocs","Loc extensions (permanent)"] },
+  "locs-services": { label: "Locs", subcategories: ["all","Starter locs / instant locs","Retwist / interlocking","Loc styling","Microlocs / sisterlocs","Loc extensions (permanent)"] },
   "faux-locs-services": { label: "Faux locs", subcategories: ["all","Soft locs","Crochet faux locs / invisible locs","Butterfly locs"] },
   "sew-in-weave": { label: "Sew in / weave", subcategories: ["all","Closure sew-in / closure behind the hairline","Flipover / Versatile sew-in","Frontal sew-in","Hybrid sew in (tapes + sew in)","Pixie wig / weave install","Quick weave","Sew-in take-down","Tracks (+ silk press) / partial / invisible sew-in","Traditional sew-in / leave out"] },
   "styling-services": { label: "Styling (sew in / frontal / relaxer)", subcategories: ["all","Sew in / extensions blowdry","Frontal ponytail / bun","Half up half down","Pixie cut / finger waves","Sleek ponytail / bun","Updo"] },
@@ -601,7 +601,7 @@ function PortfolioPhotoCarousel({
                 event.preventDefault();
                 goToPhoto(activeIndex - 1);
               }}
-              className="absolute left-2 top-1/2 hidden size-8 -translate-y-1/2 items-center justify-center rounded-none bg-white/95 text-stone-950 opacity-0 shadow-sm ring-1 ring-stone-950/10 transition hover:bg-white hover:opacity-100 dark:bg-stone-950/80 dark:text-stone-100 dark:ring-stone-100/15 dark:hover:bg-stone-900 sm:flex"
+              className="absolute left-2 top-1/2 hidden size-8 -translate-y-1/2 items-center justify-center rounded-none border border-white/40 bg-white/20 text-stone-900 opacity-0 shadow-[0_2px_8px_rgba(0,0,0,0.12),inset_0_1px_0_rgba(255,255,255,0.25)] backdrop-blur-md backdrop-saturate-150 transition hover:bg-white/35 hover:opacity-100 dark:border-white/15 dark:bg-white/10 dark:text-white dark:shadow-[0_2px_8px_rgba(0,0,0,0.35),inset_0_1px_0_rgba(255,255,255,0.08)] dark:hover:bg-white/20 sm:flex"
             >
               <ChevronLeft className="size-4" />
             </button>
@@ -612,7 +612,7 @@ function PortfolioPhotoCarousel({
                 event.preventDefault();
                 goToPhoto(activeIndex + 1);
               }}
-              className="absolute right-2 top-1/2 hidden size-8 -translate-y-1/2 items-center justify-center rounded-none bg-white/95 text-stone-950 opacity-0 shadow-sm ring-1 ring-stone-950/10 transition hover:bg-white hover:opacity-100 dark:bg-stone-950/80 dark:text-stone-100 dark:ring-stone-100/15 dark:hover:bg-stone-900 sm:flex"
+              className="absolute right-2 top-1/2 hidden size-8 -translate-y-1/2 items-center justify-center rounded-none border border-white/40 bg-white/20 text-stone-900 opacity-0 shadow-[0_2px_8px_rgba(0,0,0,0.12),inset_0_1px_0_rgba(255,255,255,0.25)] backdrop-blur-md backdrop-saturate-150 transition hover:bg-white/35 hover:opacity-100 dark:border-white/15 dark:bg-white/10 dark:text-white dark:shadow-[0_2px_8px_rgba(0,0,0,0.35),inset_0_1px_0_rgba(255,255,255,0.08)] dark:hover:bg-white/20 sm:flex"
             >
               <ChevronRight className="size-4" />
             </button>
@@ -3640,7 +3640,7 @@ export default function App() {
               aria-label="Back to top"
               aria-hidden={!showBackToTop}
               tabIndex={showBackToTop ? 0 : -1}
-              className="pointer-events-auto inline-flex size-11 items-center justify-center rounded-none bg-white/95 text-stone-950 shadow-sm ring-1 ring-stone-950/10 transition hover:bg-white dark:bg-stone-950/80 dark:text-stone-100 dark:ring-stone-100/15 dark:hover:bg-stone-900"
+              className="pointer-events-auto inline-flex size-11 items-center justify-center rounded-none border border-white/40 bg-white/20 text-stone-900 shadow-[0_4px_16px_rgba(0,0,0,0.15),inset_0_1px_0_rgba(255,255,255,0.25)] backdrop-blur-md backdrop-saturate-150 transition hover:bg-white/35 dark:border-white/15 dark:bg-white/10 dark:text-white dark:shadow-[0_4px_16px_rgba(0,0,0,0.4),inset_0_1px_0_rgba(255,255,255,0.08)] dark:hover:bg-white/20"
             >
               <ArrowUp className="size-4" aria-hidden="true" />
             </button>
