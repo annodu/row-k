@@ -2,10 +2,39 @@
   "meta": {
     "source": "manual",
     "updatedAt": "2026-08-26",
-    "count": 1019,
+    "count": 1020,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "ana-veronica",
+      "name": "Ana Veronica",
+      "areaId": "all-london",
+      "areaLabel": "London",
+      "neighbourhood": "London London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/iamanaveronica/",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/iamanaveronica/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Manual search",
+      "services": [
+        "Editorial / Session styling"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Created through ROW K admin intake."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-08-26"
+    },
     {
       "id": "beautywise-uk",
       "name": "Beautywise UK",
@@ -48105,7 +48134,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-06-10",
+      "updatedAt": "2026-08-26",
       "googlePlaceId": null,
       "googleReviewCount": 0,
       "googleMapsUri": "",
@@ -48115,21 +48144,6 @@
       "googleCheckedAt": "2026-07-29",
       "portfolioPhotosCheckedAt": "2026-08-21",
       "portfolioPhotos": [
-        {
-          "id": "gripped-it-portfolio-photo-c647d621-7756-47cb-a2d4-09273e2850ce",
-          "url": "/portfolio-photos/gripped-it-e2096c8a-146d-42ee-bd3e-59b2fbbcc863.jpg",
-          "source": "instagram-reel-thumbnail"
-        },
-        {
-          "id": "gripped-it-portfolio-photo-f1516dce-94bb-4841-b4c3-c2e53489d86a",
-          "url": "/portfolio-photos/gripped-it-ae5ce6bf-31b5-4b4a-8fe0-3999af8e077f.jpg",
-          "source": "instagram-reel-thumbnail"
-        },
-        {
-          "id": "gripped-it-portfolio-photo-8d7344b3-4645-449e-9563-1730f772a10d",
-          "url": "/portfolio-photos/gripped-it-610de1bf-b039-47fc-82c3-0c91cb622b0a.jpg",
-          "source": "instagram-reel-thumbnail"
-        },
         {
           "id": "gripped-it-portfolio-photo-fa3c1d82-9f97-4f39-8a98-8376684a2132",
           "url": "/portfolio-photos/gripped-it-a9a3e252-6f0c-4133-85f5-3cd892a4f22c.jpg",
@@ -49140,13 +49154,13 @@
           "source": "google-image-search"
         },
         {
-          "id": "hair-by-esther-portfolio-photo-4cab89d4-c972-4bd3-94cc-739c272e80e0",
-          "url": "/portfolio-photos/hair-by-esther-7fc3aa3f-bb6f-4b40-8b57-6e18c04cd1e8.jpg",
-          "source": "google-image-search"
+          "id": "hair-by-esther-portfolio-photo-0",
+          "url": "/portfolio-photos/hair-by-esther-51788d02-04f1-4b20-8eba-27bf36ba7ba9.jpg",
+          "source": "website"
         },
         {
-          "id": "hair-by-esther-portfolio-photo-12ad01fe-04d0-488a-93a3-8e57c219636e",
-          "url": "/portfolio-photos/hair-by-esther-1b728cd0-bbbb-4f12-9d8f-00ab5890af6a.jpg",
+          "id": "hair-by-esther-portfolio-photo-4cab89d4-c972-4bd3-94cc-739c272e80e0",
+          "url": "/portfolio-photos/hair-by-esther-7fc3aa3f-bb6f-4b40-8b57-6e18c04cd1e8.jpg",
           "source": "google-image-search"
         },
         {
@@ -49155,9 +49169,9 @@
           "source": "google-image-search"
         },
         {
-          "id": "hair-by-esther-portfolio-photo-0",
-          "url": "/portfolio-photos/hair-by-esther-51788d02-04f1-4b20-8eba-27bf36ba7ba9.jpg",
-          "source": "website"
+          "id": "hair-by-esther-portfolio-photo-12ad01fe-04d0-488a-93a3-8e57c219636e",
+          "url": "/portfolio-photos/hair-by-esther-1b728cd0-bbbb-4f12-9d8f-00ab5890af6a.jpg",
+          "source": "google-image-search"
         }
       ],
       "updatedAt": "2026-08-26",
@@ -64921,7 +64935,7 @@
       "priceCheckedAt": "",
       "priceUpdatedAt": "2026-06-04",
       "priceConfidence": "manual",
-      "updatedAt": "2026-08-25",
+      "updatedAt": "2026-08-26",
       "servicePriceBand": "",
       "packagePriceBand": "",
       "priceIncludesHair": false,
@@ -64969,27 +64983,36 @@
       "websiteUrl": "https://www.saltsalonlondon.com/",
       "portfolioPhotos": [
         {
+          "id": "salt-salon-london-portfolio-photo-44434705-2282-415f-a388-f3262a7f39bf",
+          "url": "/portfolio-photos/salt-salon-london-b20e090d-075f-4240-aa93-04a8d64786cd.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "salt-salon-london-portfolio-photo-e5dd3e1b-8ef5-4829-a87b-634383da7bb5",
+          "url": "/portfolio-photos/salt-salon-london-eb41c29a-f817-4cde-9286-77f50c79159e.jpg",
+          "source": "google-image-search"
+        },
+        {
           "id": "salt-salon-london-portfolio-photo-4950d0dc-93f5-48d8-bf1e-1306e7d9c2e8",
           "url": "/portfolio-photos/salt-salon-london-0d9dbff8-8182-412a-ae6f-cf88ad16e068.jpg",
           "source": "google-image-search"
         },
         {
+          "id": "salt-salon-london-portfolio-photo-de19dfaa-9337-4902-89b3-d45ab48e782b",
+          "url": "/portfolio-photos/salt-salon-london-4ad11f17-2040-4326-a7e9-fa7ad5c21693.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "salt-salon-london-portfolio-photo-d822c6cc-46c9-441b-8387-04270caf7ef2",
+          "url": "/portfolio-photos/salt-salon-london-3a50fbc0-69fb-4e2a-a3d0-3fe66ac3bdc3.jpg",
+          "source": "instagram-reel-thumbnail"
+        },
+        {
           "id": "salt-salon-london-portfolio-photo-0351925a-ab31-4483-91fc-60340a0e59e8",
           "url": "/portfolio-photos/salt-salon-london-99872407-3af3-467c-9cdb-9d09a44ca846.jpg",
           "source": "google-image-search"
-        },
-        {
-          "id": "salt-salon-london-portfolio-photo-ad44a384-d9cd-4d2b-a55a-13defa02866e",
-          "url": "/portfolio-photos/salt-salon-london-e18050a3-00cc-4a28-b9f2-31edf80e31cb.jpg",
-          "source": "google-image-search"
-        },
-        {
-          "id": "salt-salon-london-portfolio-photo-8a43133b-3814-4ddd-92f4-834297787de7",
-          "url": "/portfolio-photos/salt-salon-london-955f6c65-dfec-4d78-ab35-7e984bd9c921.jpg",
-          "source": "google-image-search"
         }
       ],
-      "photoSearchReviewedAt": "2026-08-25",
       "areaId": "",
       "areaLabel": "",
       "neighbourhood": "",
@@ -65006,7 +65029,9 @@
       "lgbtqFriendly": true,
       "parkingAvailable": false,
       "sellsHairSeparately": false,
-      "customFilters": {}
+      "customFilters": {},
+      "photoSearchReviewedAt": "2026-08-26",
+      "photoOrderBumpedAt": 384
     },
     {
       "id": "sashe-amari",
@@ -67227,7 +67252,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-24",
+      "updatedAt": "2026-08-26",
       "portfolioPhotosCheckedAt": "2026-08-21",
       "hairShopUrl": "",
       "senFriendly": false,
@@ -67247,7 +67272,7 @@
         },
         {
           "id": "slayedbyl-portfolio-photo-b7ffe816-cd66-4900-8153-a43dfa852957",
-          "url": "/portfolio-photos/slayedbyl-86412bbf-e782-4871-89d8-9dca1b803905.jpg",
+          "url": "/portfolio-photos/slayedbyl-b88753a3-b1fa-47ca-a5fb-25adf702bdda.jpg",
           "source": "instagram-reel-thumbnail"
         },
         {
@@ -78134,8 +78159,8 @@
       "googleCheckedAt": "2026-07-29",
       "portfolioPhotos": [
         {
-          "id": "wondersbeautybar-portfolio-photo-7dac6f11-c467-4c6a-b95f-7a0462927807",
-          "url": "/portfolio-photos/wondersbeautybar-a0f7e1a6-2d52-4b24-aa59-39164daf720f.jpg",
+          "id": "wondersbeautybar-portfolio-photo-e57e4b79-a354-4302-9399-fb0d8851b216",
+          "url": "/portfolio-photos/wondersbeautybar-4c36ef5a-cd00-45c1-87d6-4124b4b7b39e.jpg",
           "source": "google-image-search"
         },
         {
@@ -78159,11 +78184,6 @@
           "source": "google-image-search"
         },
         {
-          "id": "wondersbeautybar-portfolio-photo-e57e4b79-a354-4302-9399-fb0d8851b216",
-          "url": "/portfolio-photos/wondersbeautybar-4c36ef5a-cd00-45c1-87d6-4124b4b7b39e.jpg",
-          "source": "google-image-search"
-        },
-        {
           "id": "wondersbeautybar-portfolio-photo-3463a544-3e4b-41ad-974a-d3a6cd39a8e0",
           "url": "/portfolio-photos/wondersbeautybar-17d25833-7902-4de9-8e4c-606c27104d8b.jpg",
           "source": "instagram-reel-thumbnail"
@@ -78184,7 +78204,8 @@
           "source": "instagram-reel-thumbnail"
         }
       ],
-      "photoSearchReviewedAt": "2026-08-26"
+      "photoSearchReviewedAt": "2026-08-26",
+      "updatedAt": "2026-08-26"
     },
     {
       "id": "laurslounge",
