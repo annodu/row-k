@@ -102,13 +102,14 @@ app.post("/api/search", publicSearchRateLimit, async (req, res) => {
   const sellingHairAny = req.body?.sellingHairAny === true;
   const priceIncludesHair = req.body?.priceIncludesHair === true;
   const sellsHairSeparately = req.body?.sellsHairSeparately === true;
+  const sameDayEmergency = req.body?.sameDayEmergency === true;
   const hasVerifiedReviews = req.body?.hasVerifiedReviews === true;
   const googleReviewsOnly = req.body?.googleReviewsOnly === true;
   const bookingSitesOnly = req.body?.bookingSitesOnly === true;
   const customFilters = sanitizeCustomFilters(req.body?.customFilters);
 
   return res.json(
-    await searchSalons({ categories, subcategories, regions, hijabiFriendly, canBraidWithoutGel, wheelchairAccessible, senFriendly, lgbtqFriendly, parkingAvailable, sellingHairAny, priceIncludesHair, sellsHairSeparately, hasVerifiedReviews, googleReviewsOnly, bookingSitesOnly, customFilters }),
+    await searchSalons({ categories, subcategories, regions, hijabiFriendly, canBraidWithoutGel, wheelchairAccessible, senFriendly, lgbtqFriendly, parkingAvailable, sellingHairAny, priceIncludesHair, sellsHairSeparately, sameDayEmergency, hasVerifiedReviews, googleReviewsOnly, bookingSitesOnly, customFilters }),
   );
 });
 

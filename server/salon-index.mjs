@@ -40,13 +40,14 @@ const defaultCategoryMap = {
   "editorial-services": ["Editorial / Session styling"],
   "kids-teens-services": ["Kids & teens styles"],
   "extension-services": ["Clip ins (+ silk press)","K-tips / invisible strands","LA weave / microlinks wefts / braidless sew in","I-tips / microlinks strands","Tape ins"],
-  "locs-services": ["Butterfly locs","Faux locs","Microlocs / sisterlocs","Retwist","Starter locs"],
+  "locs-services": ["Starter locs / instant locs","Retwist / interlocking","Loc styling","Microlocs / sisterlocs","Loc extensions (permanent)"],
+  "faux-locs-services": ["Soft locs","Crochet faux locs / invisible locs","Butterfly locs"],
   "sew-in-weave": ["Closure sew-in / closure behind the hairline","Flipover / Versatile sew-in","Frontal sew-in","Hybrid sew in (tapes + sew in)","Pixie wig / weave install","Quick weave","Sew-in take-down","Tracks (+ silk press) / partial / invisible sew-in","Traditional sew-in / leave out"],
   "styling-services": ["Sew in / extensions blowdry","Frontal ponytail / bun","Half up half down","Pixie cut / finger waves","Sleek ponytail / bun","Updo"],
-  "straightening-treatments": ["Hair botox","Japanese straightening","K-18 treatment","Keratin treatment","Moisturising treatment","Olaplex treatment","Relaxer / texturiser","Texture release"],
+  "straightening-treatments": ["Hair botox","Japanese straightening","K-18 treatment","Keratin treatment / Brazilian blowdry","Moisturising treatment","Olaplex treatment","Relaxer / texturiser","Texture release"],
   "natural-hair-services": ["Wig cornrows","Curly cut / wash & go / diffuse","Silk press","Bouncy blowout / round brush blow dry","Trim / hair cut","Roller set","Twist out / flexi rod","Bantu knots","Wash & blowdry","Japanese head spa","Scalp detox / treatments","Men's braids"],
   "natural-hair-scalp-health": ["Healthy hair plans & consultations","Natural hair coaches / educators","Trichology / scalp analysis"],
-  "wig-services": ["Custom wig","Pixie wig / weave install","U-part wig install","Wig colouring / bundle colouring","Wig install (frontal / closure)","Wig blowdry","Wig laundry"],
+  "wig-services": ["Custom wig","Pixie wig / weave install","U-Part / Half wig install","Wig colouring / bundle colouring","Wig install (frontal / closure)","Wig blowdry","Wig laundry"],
 };
 export let categoryMap = defaultCategoryMap;
 
@@ -73,6 +74,8 @@ export function setCategoryMapCache(categories) {
 })();
 
 export const serviceAliases = {
+  "Keratin treatment": "Keratin treatment / Brazilian blowdry",
+  "U-part wig install": "U-Part / Half wig install",
   "Boho bob": "Boho braids bob",
   "Closure sew-in": "Closure sew-in / closure behind the hairline",
   "Curly cut / wash & go": "Curly cut / wash & go / diffuse",
@@ -435,20 +438,20 @@ export const serviceAliases = {
   "Closure Unit Install": "Wig install (frontal / closure)",
   "Closure unit install": "Wig install (frontal / closure)",
   "closure unit install": "Wig install (frontal / closure)",
-  "U-Part wig install": "U-part wig install",
-  "U Part Wig": "U-part wig install",
-  "U-Part Wig": "U-part wig install",
-  "U-Part wig": "U-part wig install",
-  "U-part wig": "U-part wig install",
-  "U-Part": "U-part wig install",
-  "U-part": "U-part wig install",
-  "u-part": "U-part wig install",
-  Upart: "U-part wig install",
-  upart: "U-part wig install",
-  "U part": "U-part wig install",
-  "u part": "U-part wig install",
-  "Middle part U part": "U-part wig install",
-  "Side part Upart": "U-part wig install",
+  "U-Part wig install": "U-Part / Half wig install",
+  "U Part Wig": "U-Part / Half wig install",
+  "U-Part Wig": "U-Part / Half wig install",
+  "U-Part wig": "U-Part / Half wig install",
+  "U-part wig": "U-Part / Half wig install",
+  "U-Part": "U-Part / Half wig install",
+  "U-part": "U-Part / Half wig install",
+  "u-part": "U-Part / Half wig install",
+  Upart: "U-Part / Half wig install",
+  upart: "U-Part / Half wig install",
+  "U part": "U-Part / Half wig install",
+  "u part": "U-Part / Half wig install",
+  "Middle part U part": "U-Part / Half wig install",
+  "Side part Upart": "U-Part / Half wig install",
   "Pixie wig install": "Pixie wig / weave install",
   "Pixie weave install": "Pixie wig / weave install",
   "PIXIE CUT WIG MAKING & STYLING": "Pixie wig / weave install",
@@ -463,17 +466,23 @@ export const serviceAliases = {
   Editorial: "Editorial / Session styling",
   "Session styling": "Editorial / Session styling",
   "Microlocs / Sisterlocs": "Microlocs / sisterlocs",
-  "Invisible locs": "Faux locs",
-  "Invisible Locs": "Faux locs",
-  "Soft locs": "Faux locs",
-  "Soft Locs": "Faux locs",
-  "Soft loc": "Faux locs",
-  "Soft Loc": "Faux locs",
-  "soft locs": "Faux locs",
-  "soft loc": "Faux locs",
+  "Invisible locs": "Crochet faux locs / invisible locs",
+  "Invisible Locs": "Crochet faux locs / invisible locs",
+  "Faux locs": "Soft locs",
+  "faux locs": "Soft locs",
+  "Crochet locs": "Crochet faux locs / invisible locs",
+  "crochet locs": "Crochet faux locs / invisible locs",
+  "Crochet faux locs": "Crochet faux locs / invisible locs",
+  "Faux locs crochet": "Crochet faux locs / invisible locs",
   "Micro locs": "Microlocs / sisterlocs",
   Microlocs: "Microlocs / sisterlocs",
   Sisterlocs: "Microlocs / sisterlocs",
+  "Starter locs": "Starter locs / instant locs",
+  "Instant locs": "Starter locs / instant locs",
+  Retwist: "Retwist / interlocking",
+  Interlocking: "Retwist / interlocking",
+  "Barrel twists / locs styling": "Loc styling",
+  "Loc extensions": "Loc extensions (permanent)",
 };
 
 // Platforms whose listing/booking page has a customer reviews section we can
@@ -607,6 +616,7 @@ export async function searchSalons({
   sellingHairAny = false,
   priceIncludesHair = false,
   sellsHairSeparately = false,
+  sameDayEmergency = false,
   hasVerifiedReviews = false,
   googleReviewsOnly = false,
   bookingSitesOnly = false,
@@ -633,6 +643,7 @@ export async function searchSalons({
         matchesSellingHairAny(salon, sellingHairAny) &&
         matchesPriceIncludesHair(salon, priceIncludesHair) &&
         matchesSellsHairSeparately(salon, sellsHairSeparately) &&
+        matchesSameDayEmergency(salon, sameDayEmergency) &&
         matchesHasVerifiedReviews(salon, hasVerifiedReviews) &&
         matchesGoogleReviewsOnly(salon, googleReviewsOnly) &&
         matchesBookingSitesOnly(salon, bookingSitesOnly) &&
@@ -770,6 +781,14 @@ function matchesSellsHairSeparately(salon, sellsHairSeparately) {
   }
 
   return salon.sellsHairSeparately === true;
+}
+
+function matchesSameDayEmergency(salon, sameDayEmergency) {
+  if (!sameDayEmergency) {
+    return true;
+  }
+
+  return salon.sameDayEmergency === true;
 }
 
 function matchesWheelchairAccessible(salon, wheelchairAccessible) {

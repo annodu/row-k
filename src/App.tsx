@@ -90,13 +90,14 @@ const categoryMap = {
   "editorial-services": { label: "Editorial / Session styling", subcategories: ["all","Editorial / Session styling"] },
   "kids-teens-services": { label: "Kids & teens styles", subcategories: ["all","Kids & teens styles"] },
   "extension-services": { label: "Extensions", subcategories: ["all","Clip ins (+ silk press)","K-tips / invisible strands","LA weave / microlinks wefts / braidless sew in","I-tips / microlinks strands","Tape ins"] },
-  "locs-services": { label: "Locs", subcategories: ["all","Butterfly locs","Faux locs","Microlocs / sisterlocs","Retwist","Starter locs"] },
+  "locs-services": { label: "Locs (permanent)", subcategories: ["all","Starter locs / instant locs","Retwist / interlocking","Loc styling","Microlocs / sisterlocs","Loc extensions (permanent)"] },
+  "faux-locs-services": { label: "Faux locs", subcategories: ["all","Soft locs","Crochet faux locs / invisible locs","Butterfly locs"] },
   "sew-in-weave": { label: "Sew in / weave", subcategories: ["all","Closure sew-in / closure behind the hairline","Flipover / Versatile sew-in","Frontal sew-in","Hybrid sew in (tapes + sew in)","Pixie wig / weave install","Quick weave","Sew-in take-down","Tracks (+ silk press) / partial / invisible sew-in","Traditional sew-in / leave out"] },
   "styling-services": { label: "Styling (sew in / frontal / relaxer)", subcategories: ["all","Sew in / extensions blowdry","Frontal ponytail / bun","Half up half down","Pixie cut / finger waves","Sleek ponytail / bun","Updo"] },
-  "straightening-treatments": { label: "Treatments", subcategories: ["all","Hair botox","Japanese straightening","K-18 treatment","Keratin treatment","Moisturising treatment","Olaplex treatment","Relaxer / texturiser","Texture release"] },
+  "straightening-treatments": { label: "Treatments", subcategories: ["all","Hair botox","Japanese straightening","K-18 treatment","Keratin treatment / Brazilian blowdry","Moisturising treatment","Olaplex treatment","Relaxer / texturiser","Texture release"] },
   "natural-hair-services": { label: "Natural hair washing & styling", subcategories: ["all","Wig cornrows","Curly cut / wash & go / diffuse","Silk press","Bouncy blowout / round brush blow dry","Trim / hair cut","Roller set","Twist out / flexi rod","Bantu knots","Wash & blowdry","Japanese head spa","Scalp detox / treatments","Men's braids"] },
   "natural-hair-scalp-health": { label: "Natural hair health & trichology", subcategories: ["all","Healthy hair plans & consultations","Natural hair coaches / educators","Trichology / scalp analysis"] },
-  "wig-services": { label: "Wigs", subcategories: ["all","Custom wig","Pixie wig / weave install","U-part wig install","Wig colouring / bundle colouring","Wig install (frontal / closure)","Wig blowdry","Wig laundry"] },
+  "wig-services": { label: "Wigs", subcategories: ["all","Custom wig","Pixie wig / weave install","U-Part / Half wig install","Wig colouring / bundle colouring","Wig install (frontal / closure)","Wig blowdry","Wig laundry"] },
 } as const;
 
 const categoryServiceMap = {
@@ -106,13 +107,14 @@ const categoryServiceMap = {
   "editorial-services": ["Editorial / Session styling"],
   "kids-teens-services": ["Kids & teens styles"],
   "extension-services": ["Clip ins (+ silk press)","K-tips / invisible strands","LA weave / microlinks wefts / braidless sew in","I-tips / microlinks strands","Tape ins"],
-  "locs-services": ["Butterfly locs","Faux locs","Microlocs / sisterlocs","Retwist","Starter locs"],
+  "locs-services": ["Starter locs / instant locs","Retwist / interlocking","Loc styling","Microlocs / sisterlocs","Loc extensions (permanent)"],
+  "faux-locs-services": ["Soft locs","Crochet faux locs / invisible locs","Butterfly locs"],
   "sew-in-weave": ["Closure sew-in / closure behind the hairline","Flipover / Versatile sew-in","Frontal sew-in","Hybrid sew in (tapes + sew in)","Pixie wig / weave install","Quick weave","Sew-in take-down","Tracks (+ silk press) / partial / invisible sew-in","Traditional sew-in / leave out"],
   "styling-services": ["Sew in / extensions blowdry","Frontal ponytail / bun","Half up half down","Pixie cut / finger waves","Sleek ponytail / bun","Updo"],
-  "straightening-treatments": ["Hair botox","Japanese straightening","K-18 treatment","Keratin treatment","Moisturising treatment","Olaplex treatment","Relaxer / texturiser","Texture release"],
+  "straightening-treatments": ["Hair botox","Japanese straightening","K-18 treatment","Keratin treatment / Brazilian blowdry","Moisturising treatment","Olaplex treatment","Relaxer / texturiser","Texture release"],
   "natural-hair-services": ["Wig cornrows","Curly cut / wash & go / diffuse","Silk press","Bouncy blowout / round brush blow dry","Trim / hair cut","Roller set","Twist out / flexi rod","Bantu knots","Wash & blowdry","Japanese head spa","Scalp detox / treatments","Men's braids"],
   "natural-hair-scalp-health": ["Healthy hair plans & consultations","Natural hair coaches / educators","Trichology / scalp analysis"],
-  "wig-services": ["Custom wig","Pixie wig / weave install","U-part wig install","Wig colouring / bundle colouring","Wig install (frontal / closure)","Wig blowdry","Wig laundry"],
+  "wig-services": ["Custom wig","Pixie wig / weave install","U-Part / Half wig install","Wig colouring / bundle colouring","Wig install (frontal / closure)","Wig blowdry","Wig laundry"],
 } as const satisfies Record<ServiceCategoryId, readonly string[]>;
 
 type RegionId = (typeof regions)[number]["id"];
@@ -158,6 +160,7 @@ type SalonResult = {
   lgbtqFriendly?: boolean;
   parkingAvailable?: boolean;
   sellsHairSeparately?: boolean;
+  sameDayEmergency?: boolean;
   temporarilyClosed?: boolean;
   hasVerifiedReviews?: boolean;
   verifiedReviewCount?: number;
@@ -257,7 +260,7 @@ const defaultServiceSearchAliases: Record<string, string[]> = {
   "Fulani / lemonade braids": ["fulani", "lemonade", "alicia keys braids"],
   "K-tips / invisible strands": ["k tips", "k-tips", "keratin tip", "keratin tips", "keratin bonds", "invisible strands"],
   "Frontal ponytail / bun": ["frontal ponytail", "frontal pony", "frontal bun", "frontal updo"],
-  "U-part wig install": ["u part", "upart", "u-part", "u part wig", "u-part wig", "v part", "vpart", "v-part"],
+  "U-Part / Half wig install": ["u part", "upart", "u-part", "u part wig", "u-part wig", "v part", "vpart", "v-part", "half wig"],
   "Custom wig": ["custom wig", "bespoke wig", "custom lace", "custom unit", "wig making", "wig construction"],
   "Wig install (frontal / closure)": ["wig install", "wig installation", "wig application", "wig fitting", "glueless wig", "lace wig", "frontal wig", "closure wig", "frontal unit install", "closure unit install"],
   "Pixie wig / weave install": ["pixie wig", "pixie weave", "pixie install", "pixie sew in", "pixie sew-in"],
@@ -272,8 +275,10 @@ const defaultServiceSearchAliases: Record<string, string[]> = {
   "Updo": ["updo", "up do", "pin up", "french roll"],
   "Wig cornrows": ["under wig", "wig cornrows", "cornrows for wig", "cornrows"],
   "Butterfly locs": ["butterfly locs"],
-  "Faux locs": ["faux locs", "invisible locs", "soft locs"],
-  "Starter locs": ["starter locs", "start locs", "loc start"],
+  "Soft locs": ["faux locs", "soft locs"],
+  "Crochet faux locs / invisible locs": ["crochet locs", "crochet faux locs", "invisible locs", "faux locs crochet"],
+  "Starter locs / instant locs": ["starter locs", "start locs", "loc start", "instant locs"],
+  "Retwist / interlocking": ["retwist", "re twist", "interlocking", "inter locking"],
   "Half braids, half sew-in": ["boho braids sew in", "boho braid sew in", "boho sew in", "fulani braids sew in", "fulani braid sew in", "fulani sew in"],
   "Braid take-down": ["braids removal", "braid removal", "braids takedown", "braid takedown"],
   "Sew-in take-down": ["sew in removal", "sewin removal", "sew-in removal", "weave removal", "weave takedown", "sew in takedown", "sewin takedown"],
@@ -596,7 +601,7 @@ function PortfolioPhotoCarousel({
                 event.preventDefault();
                 goToPhoto(activeIndex - 1);
               }}
-              className="absolute left-2 top-1/2 hidden size-8 -translate-y-1/2 items-center justify-center rounded-none bg-white/95 text-stone-950 shadow-sm ring-1 ring-stone-950/10 transition hover:bg-white dark:bg-stone-950/80 dark:text-stone-100 dark:ring-stone-100/15 dark:hover:bg-stone-900 sm:flex"
+              className="absolute left-2 top-1/2 hidden size-8 -translate-y-1/2 items-center justify-center rounded-none bg-white/95 text-stone-950 opacity-0 shadow-sm ring-1 ring-stone-950/10 transition hover:bg-white hover:opacity-100 dark:bg-stone-950/80 dark:text-stone-100 dark:ring-stone-100/15 dark:hover:bg-stone-900 sm:flex"
             >
               <ChevronLeft className="size-4" />
             </button>
@@ -607,7 +612,7 @@ function PortfolioPhotoCarousel({
                 event.preventDefault();
                 goToPhoto(activeIndex + 1);
               }}
-              className="absolute right-2 top-1/2 hidden size-8 -translate-y-1/2 items-center justify-center rounded-none bg-white/95 text-stone-950 shadow-sm ring-1 ring-stone-950/10 transition hover:bg-white dark:bg-stone-950/80 dark:text-stone-100 dark:ring-stone-100/15 dark:hover:bg-stone-900 sm:flex"
+              className="absolute right-2 top-1/2 hidden size-8 -translate-y-1/2 items-center justify-center rounded-none bg-white/95 text-stone-950 opacity-0 shadow-sm ring-1 ring-stone-950/10 transition hover:bg-white hover:opacity-100 dark:bg-stone-950/80 dark:text-stone-100 dark:ring-stone-100/15 dark:hover:bg-stone-900 sm:flex"
             >
               <ChevronRight className="size-4" />
             </button>
@@ -794,6 +799,12 @@ function BrandGroupCard({
   const [isServicesExpanded, setIsServicesExpanded] = useState(false);
   const [servicesMarginTopPx, setServicesMarginTopPx] = useState<number | null>(null);
   const [photoHeightPx, setPhotoHeightPx] = useState<number | null>(null);
+  // Mirrors SalonResultCard's identical state: the Instagram link is
+  // duplicated below — once inline next to the name (mobile) and once in
+  // the button row (desktop) — so aria-hidden/tabIndex track the real
+  // breakpoint rather than just hiding one via CSS, keeping only one
+  // "Go to X Instagram" name in the accessibility tree at a time.
+  const [isSmUp, setIsSmUp] = useState(false);
   const nameInfoRef = useRef<HTMLDivElement | null>(null);
   const buttonRowRef = useRef<HTMLDivElement | null>(null);
   const servicesBlockRef = useRef<HTMLDivElement | null>(null);
@@ -817,6 +828,7 @@ function BrandGroupCard({
     brand.lgbtqFriendly ? "lgbtqia+-friendly" : null,
     brand.priceIncludesHair ? "hair-inclusive packages" : null,
     !hairShopLink && brand.sellsHairSeparately ? "hair sold separately" : null,
+    brand.sameDayEmergency ? "same-day appointments" : null,
     ...getResultCustomFilterLabels(brand, customFilterTypes),
   ].filter((label): label is string => Boolean(label));
   const portfolioPhotos = getPortfolioPhotos(brand);
@@ -845,6 +857,18 @@ function BrandGroupCard({
     openBranches.length > 0 && openBranches.every((branch) => branch.bookingUrl && branch.bookingUrl === openBranches[0].bookingUrl)
       ? openBranches[0].bookingUrl
       : null;
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(min-width: 640px)");
+    const syncIsSmUp = (event: MediaQueryList | MediaQueryListEvent) => setIsSmUp(event.matches);
+    syncIsSmUp(mediaQuery);
+    if (typeof mediaQuery.addEventListener === "function") {
+      mediaQuery.addEventListener("change", syncIsSmUp);
+      return () => mediaQuery.removeEventListener("change", syncIsSmUp);
+    }
+    mediaQuery.addListener(syncIsSmUp);
+    return () => mediaQuery.removeListener(syncIsSmUp);
+  }, []);
 
   useEffect(() => {
     // Both values below are derived from the same measurement pass — see
@@ -925,53 +949,76 @@ function BrandGroupCard({
           </div>
         )}
         <div className="min-w-0 order-2" ref={nameInfoRef}>
-          <div className="flex min-w-0 flex-wrap items-center gap-x-2 gap-y-1">
-            <h3 className="text-[17px] font-semibold text-stone-950 dark:text-stone-50">{brandName}</h3>
-            <span className="inline-block rounded-none border border-stone-300 bg-stone-100 px-1.5 py-1 text-[11px] font-semibold leading-none tracking-[0.06em] text-stone-600 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-400">
-              {openBranches.length} branches
-            </span>
-          </div>
-          {locationSummary || priceSummary ? (
-            <p className="mt-0.5 text-[13px] font-medium text-stone-500 dark:text-stone-400">
-              {locationSummary}
-              {locationSummary && priceSummary ? " · " : ""}
-              {priceSummary}
-            </p>
-          ) : null}
-          {hairShopLink ? (
-            <a
-              href={hairShopLink.url}
-              target="_blank"
-              rel="noreferrer"
-              aria-label={`${hairShopLink.accessibleLabel} - opens in a new tab`}
-              onClick={() => trackAnalyticsEvent("hair_shop_click", { salon: brandName, location: "multiple" })}
-              className="mt-1 inline-flex w-fit items-center gap-1 text-[13px] font-semibold text-[oklch(0.45_0.05_255)] transition-colors hover:text-[oklch(0.38_0.06_255)] active:text-[oklch(0.38_0.06_255)] dark:text-[oklch(0.72_0.05_255)] dark:hover:text-[oklch(0.80_0.06_255)] dark:active:text-[oklch(0.80_0.06_255)]"
-            >
-              <span aria-hidden="true">{hairShopLink.label}</span>
-              <ArrowUpRight className="size-3.5 shrink-0" aria-hidden="true" />
-            </a>
-          ) : null}
-          {attributeLabels.length > 0 ? (
-            <div className="mt-1.5 flex flex-wrap gap-1">
-              {attributeLabels.map((label) => (
-                <span
-                  key={label}
-                  className="inline-block w-fit rounded-none border border-[oklch(0.72_0.07_86)]/35 bg-[oklch(0.94_0.025_92)] px-1.5 py-1 align-baseline text-[11px] font-semibold leading-none tracking-[0.06em] text-[oklch(0.44_0.08_80)] dark:bg-[oklch(0.44_0.08_80)] dark:text-[oklch(0.94_0.025_92)]"
-                >
-                  {label}
+          <div className="flex items-start justify-between gap-3">
+            <div className="min-w-0">
+              <div className="flex min-w-0 flex-wrap items-center gap-x-2 gap-y-1">
+                <h3 className="text-[17px] font-semibold text-stone-950 dark:text-stone-50">{brandName}</h3>
+                <span className="inline-block rounded-none border border-stone-300 bg-stone-100 px-1.5 py-1 text-[11px] font-semibold leading-none tracking-[0.06em] text-stone-600 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-400">
+                  {openBranches.length} branches
                 </span>
-              ))}
+              </div>
+              {locationSummary || priceSummary ? (
+                <p className="mt-0.5 text-[13px] font-medium text-stone-500 dark:text-stone-400">
+                  {locationSummary}
+                  {locationSummary && priceSummary ? " · " : ""}
+                  {priceSummary}
+                </p>
+              ) : null}
+              {hairShopLink ? (
+                <a
+                  href={hairShopLink.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={`${hairShopLink.accessibleLabel} - opens in a new tab`}
+                  onClick={() => trackAnalyticsEvent("hair_shop_click", { salon: brandName, location: "multiple" })}
+                  className="mt-1 inline-flex w-fit items-center gap-1 text-[13px] font-semibold text-[oklch(0.45_0.05_255)] transition-colors hover:text-[oklch(0.38_0.06_255)] active:text-[oklch(0.38_0.06_255)] dark:text-[oklch(0.72_0.05_255)] dark:hover:text-[oklch(0.80_0.06_255)] dark:active:text-[oklch(0.80_0.06_255)]"
+                >
+                  <span aria-hidden="true">{hairShopLink.label}</span>
+                  <ArrowUpRight className="size-3.5 shrink-0" aria-hidden="true" />
+                </a>
+              ) : null}
+              {attributeLabels.length > 0 ? (
+                <div className="mt-1.5 flex flex-wrap gap-1">
+                  {attributeLabels.map((label) => (
+                    <span
+                      key={label}
+                      className="inline-block w-fit rounded-none border border-[oklch(0.72_0.07_86)]/35 bg-[oklch(0.94_0.025_92)] px-1.5 py-1 align-baseline text-[11px] font-semibold leading-none tracking-[0.06em] text-[oklch(0.44_0.08_80)] dark:bg-[oklch(0.44_0.08_80)] dark:text-[oklch(0.94_0.025_92)]"
+                    >
+                      {label}
+                    </span>
+                  ))}
+                </div>
+              ) : null}
             </div>
-          ) : null}
+            {brand.instagramUrl ? (
+              <a
+                href={brand.instagramUrl}
+                target="_blank"
+                rel="noreferrer"
+                onClick={() => trackAnalyticsEvent("instagram_click", { salon: brandName, placement: "brand-group-mobile" })}
+                aria-hidden={isSmUp}
+                tabIndex={isSmUp ? -1 : 0}
+                className="inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-none bg-transparent px-4 py-2 text-[14px] font-medium text-stone-950 transition-colors duration-150 hover:bg-stone-200 active:bg-stone-200 dark:bg-transparent dark:text-stone-100 dark:hover:bg-stone-800 dark:active:bg-stone-800 sm:hidden"
+              >
+                <InstagramIcon className="size-4" />
+                <span className="sr-only">Go to {brandName} Instagram - opens in a new tab</span>
+              </a>
+            ) : null}
+          </div>
         </div>
-        <div className="order-4 flex shrink-0 items-center gap-1 sm:order-3 sm:justify-self-end" ref={buttonRowRef}>
+        <div
+          className="order-4 mt-2 flex w-full shrink-0 items-center gap-2 sm:order-3 sm:mt-0 sm:w-auto sm:justify-self-end"
+          ref={buttonRowRef}
+        >
           {brand.instagramUrl ? (
             <a
               href={brand.instagramUrl}
               target="_blank"
               rel="noreferrer"
               onClick={() => trackAnalyticsEvent("instagram_click", { salon: brandName, placement: "brand-group" })}
-              className="inline-flex min-h-[48px] min-w-[40px] shrink-0 items-center justify-center gap-2 rounded-none bg-transparent px-2 py-2 text-[14px] font-medium text-stone-950 transition-colors duration-150 hover:bg-stone-200 active:bg-stone-200 dark:bg-transparent dark:text-stone-100 dark:hover:bg-stone-800 dark:active:bg-stone-800 sm:min-h-[40px]"
+              aria-hidden={!isSmUp}
+              tabIndex={isSmUp ? 0 : -1}
+              className="hidden min-h-[48px] min-w-[40px] shrink-0 items-center justify-center gap-2 rounded-none bg-transparent px-2 py-2 text-[14px] font-medium text-stone-950 transition-colors duration-150 hover:bg-stone-200 active:bg-stone-200 dark:bg-transparent dark:text-stone-100 dark:hover:bg-stone-800 dark:active:bg-stone-800 sm:inline-flex sm:min-h-[40px]"
             >
               <InstagramIcon className="size-4" />
               <span className="sr-only">Go to {brandName} Instagram - opens in a new tab</span>
@@ -990,7 +1037,7 @@ function BrandGroupCard({
                   services: "none",
                 })
               }
-              className="inline-flex min-h-[48px] shrink-0 items-center justify-center rounded-none bg-stone-950 px-4 py-2 text-[13px] font-medium text-stone-100 transition-colors duration-150 hover:bg-stone-800 active:bg-stone-800 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-stone-300 dark:active:bg-stone-300 sm:min-h-[40px]"
+              className="inline-flex min-h-[48px] flex-1 shrink-0 items-center justify-center rounded-none bg-stone-950 px-4 py-2 text-[13px] font-medium text-stone-100 transition-colors duration-150 hover:bg-stone-800 active:bg-stone-800 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-stone-300 dark:active:bg-stone-300 sm:min-h-[40px] sm:flex-none"
             >
               <span aria-hidden="true">Book</span>
               <span className="sr-only">Book {brandName} - opens in a new tab</span>
@@ -2187,6 +2234,7 @@ export default function App() {
   const [draftSelectedSellingHair, setDraftSelectedSellingHair] = useState(false);
   const [draftSelectedPriceIncludesHair, setDraftSelectedPriceIncludesHair] = useState(false);
   const [draftSelectedSellsHairSeparately, setDraftSelectedSellsHairSeparately] = useState(false);
+  const [draftSelectedSameDayEmergency, setDraftSelectedSameDayEmergency] = useState(false);
   const [draftSelectedVendorProductTypeGroups, setDraftSelectedVendorProductTypeGroups] = useState<string[]>([]);
   const [draftSelectedVendorProductTypes, setDraftSelectedVendorProductTypes] = useState<string[]>([]);
   const [draftSelectedVendorFulfilment, setDraftSelectedVendorFulfilment] = useState<string[]>([]);
@@ -2278,6 +2326,7 @@ export default function App() {
   const [selectedSellingHair, setSelectedSellingHair] = useState(false);
   const [selectedPriceIncludesHair, setSelectedPriceIncludesHair] = useState(false);
   const [selectedSellsHairSeparately, setSelectedSellsHairSeparately] = useState(false);
+  const [selectedSameDayEmergency, setSelectedSameDayEmergency] = useState(false);
   const [selectedVendorProductTypeGroups, setSelectedVendorProductTypeGroups] = useState<string[]>([]);
   const [selectedVendorProductTypes, setSelectedVendorProductTypes] = useState<string[]>([]);
   const [selectedVendorFulfilment, setSelectedVendorFulfilment] = useState<string[]>([]);
@@ -2318,6 +2367,7 @@ export default function App() {
   const currentSelectedSellingHair = isMobileModalEditing ? draftSelectedSellingHair : selectedSellingHair;
   const currentSelectedPriceIncludesHair = isMobileModalEditing ? draftSelectedPriceIncludesHair : selectedPriceIncludesHair;
   const currentSelectedSellsHairSeparately = isMobileModalEditing ? draftSelectedSellsHairSeparately : selectedSellsHairSeparately;
+  const currentSelectedSameDayEmergency = isMobileModalEditing ? draftSelectedSameDayEmergency : selectedSameDayEmergency;
   const showSellingHairSubfilters = currentSelectedSellingHair || currentSelectedPriceIncludesHair || currentSelectedSellsHairSeparately;
   const currentSelectedVendorProductTypeGroups = isMobileModalEditing ? draftSelectedVendorProductTypeGroups : selectedVendorProductTypeGroups;
   const currentSelectedVendorProductTypes = isMobileModalEditing ? draftSelectedVendorProductTypes : selectedVendorProductTypes;
@@ -2356,6 +2406,7 @@ export default function App() {
     setDraftSelectedSellingHair(selectedSellingHair);
     setDraftSelectedPriceIncludesHair(selectedPriceIncludesHair);
     setDraftSelectedSellsHairSeparately(selectedSellsHairSeparately);
+    setDraftSelectedSameDayEmergency(selectedSameDayEmergency);
     setDraftSelectedVendorProductTypeGroups(selectedVendorProductTypeGroups);
     setDraftSelectedVendorProductTypes(selectedVendorProductTypes);
     setDraftSelectedVendorFulfilment(selectedVendorFulfilment);
@@ -2399,6 +2450,7 @@ export default function App() {
     setSelectedSellingHair(draftSelectedSellingHair);
     setSelectedPriceIncludesHair(draftSelectedPriceIncludesHair);
     setSelectedSellsHairSeparately(draftSelectedSellsHairSeparately);
+    setSelectedSameDayEmergency(draftSelectedSameDayEmergency);
     setSelectedVendorProductTypeGroups(draftSelectedVendorProductTypeGroups);
     setSelectedVendorProductTypes(draftSelectedVendorProductTypes);
     setSelectedVendorFulfilment(draftSelectedVendorFulfilment);
@@ -2531,6 +2583,15 @@ export default function App() {
     }
 
     setSelectedSellsHairSeparately(updater);
+  }
+
+  function updateSameDayEmergency(updater: boolean | ((current: boolean) => boolean)) {
+    if (isMobileModalEditing) {
+      setDraftSelectedSameDayEmergency(updater);
+      return;
+    }
+
+    setSelectedSameDayEmergency(updater);
   }
 
   function updateVendorProductTypeGroups(updater: string[] | ((current: string[]) => string[])) {
@@ -2813,7 +2874,7 @@ export default function App() {
       selected_services: currentSelectedCategories.length + currentSelectedSubcategories.length,
       selected_locations: currentSelectedRegions.filter((region) => region !== "all").length,
       selected_price_ranges: currentSelectedPriceBands.length,
-      selected_additional_needs: (currentSelectedHijabiFriendly ? 1 : 0) + (currentSelectedCanBraidWithoutGel ? 1 : 0) + (currentSelectedWheelchairAccessible ? 1 : 0) + (currentSelectedSenFriendly ? 1 : 0) + (currentSelectedLgbtqFriendly ? 1 : 0) + (currentSelectedParkingAvailable ? 1 : 0) + (currentSelectedSellingHair ? 1 : 0) + (currentSelectedPriceIncludesHair ? 1 : 0) + (currentSelectedSellsHairSeparately ? 1 : 0),
+      selected_additional_needs: (currentSelectedHijabiFriendly ? 1 : 0) + (currentSelectedCanBraidWithoutGel ? 1 : 0) + (currentSelectedWheelchairAccessible ? 1 : 0) + (currentSelectedSenFriendly ? 1 : 0) + (currentSelectedLgbtqFriendly ? 1 : 0) + (currentSelectedParkingAvailable ? 1 : 0) + (currentSelectedSellingHair ? 1 : 0) + (currentSelectedPriceIncludesHair ? 1 : 0) + (currentSelectedSellsHairSeparately ? 1 : 0) + (currentSelectedSameDayEmergency ? 1 : 0),
       hijabi_friendly: currentSelectedHijabiFriendly,
       can_braid_without_gel: currentSelectedCanBraidWithoutGel,
       wheelchair_accessible: currentSelectedWheelchairAccessible,
@@ -2823,6 +2884,7 @@ export default function App() {
       selling_hair: currentSelectedSellingHair,
       price_includes_hair: currentSelectedPriceIncludesHair,
       sells_hair_separately: currentSelectedSellsHairSeparately,
+      same_day_emergency: currentSelectedSameDayEmergency,
       has_verified_reviews: currentSelectedHasVerifiedReviews,
       google_reviews_only: currentSelectedGoogleReviewsOnly,
       booking_sites_only: currentSelectedBookingSitesOnly,
@@ -2840,6 +2902,7 @@ export default function App() {
     updateSellingHair(false);
     updatePriceIncludesHair(false);
     updateSellsHairSeparately(false);
+    updateSameDayEmergency(false);
     updateVendorProductTypeGroups([]);
     updateVendorProductTypes([]);
     updateVendorFulfilment([]);
@@ -3002,6 +3065,13 @@ export default function App() {
       enabled: !currentSelectedSellsHairSeparately,
     });
     updateSellsHairSeparately((current) => !current);
+  }
+
+  function toggleSameDayEmergency() {
+    trackAnalyticsEvent("same_day_emergency_toggle_changed", {
+      enabled: !currentSelectedSameDayEmergency,
+    });
+    updateSameDayEmergency((current) => !current);
   }
 
   function toggleHasVerifiedReviews() {
@@ -3172,6 +3242,7 @@ export default function App() {
           sellingHairAny: selectedSellingHair,
           priceIncludesHair: selectedPriceIncludesHair,
           sellsHairSeparately: selectedSellsHairSeparately,
+          sameDayEmergency: selectedSameDayEmergency,
           hasVerifiedReviews: selectedHasVerifiedReviews,
           googleReviewsOnly: selectedGoogleReviewsOnly,
           bookingSitesOnly: selectedBookingSitesOnly,
@@ -3211,6 +3282,7 @@ export default function App() {
         selling_hair: selectedSellingHair,
         price_includes_hair: selectedPriceIncludesHair,
         sells_hair_separately: selectedSellsHairSeparately,
+        same_day_emergency: selectedSameDayEmergency,
         has_verified_reviews: selectedHasVerifiedReviews,
         google_reviews_only: selectedGoogleReviewsOnly,
         booking_sites_only: selectedBookingSitesOnly,
@@ -3308,7 +3380,7 @@ export default function App() {
   useEffect(() => {
     if (directoryMode !== "stylists") return;
     void handleSearch({ scroll: false });
-  }, [directoryMode, selectedCategories, selectedSubcategories, selectedRegions, selectedHijabiFriendly, selectedCanBraidWithoutGel, selectedWheelchairAccessible, selectedSenFriendly, selectedLgbtqFriendly, selectedParkingAvailable, selectedSellingHair, selectedPriceIncludesHair, selectedSellsHairSeparately, selectedHasVerifiedReviews, selectedGoogleReviewsOnly, selectedBookingSitesOnly, selectedCustomFilters]);
+  }, [directoryMode, selectedCategories, selectedSubcategories, selectedRegions, selectedHijabiFriendly, selectedCanBraidWithoutGel, selectedWheelchairAccessible, selectedSenFriendly, selectedLgbtqFriendly, selectedParkingAvailable, selectedSellingHair, selectedPriceIncludesHair, selectedSellsHairSeparately, selectedSameDayEmergency, selectedHasVerifiedReviews, selectedGoogleReviewsOnly, selectedBookingSitesOnly, selectedCustomFilters]);
 
   useEffect(() => {
     if (directoryMode !== "vendors") return;
@@ -3410,6 +3482,7 @@ export default function App() {
     selectedSellingHair ||
     selectedPriceIncludesHair ||
     selectedSellsHairSeparately ||
+    selectedSameDayEmergency ||
     selectedHasVerifiedReviews ||
     selectedGoogleReviewsOnly ||
     selectedBookingSitesOnly ||
@@ -3486,7 +3559,7 @@ export default function App() {
   const selectedLocationCount = currentSelectedRegions.filter((regionId) => regionId !== "all").length;
   const selectedPriceRangeCount = currentSelectedPriceBands.length;
   const selectedAdditionalNeedsCount =
-    (currentSelectedHijabiFriendly ? 1 : 0) + (currentSelectedCanBraidWithoutGel ? 1 : 0) + (currentSelectedWheelchairAccessible ? 1 : 0) + (currentSelectedSenFriendly ? 1 : 0) + (currentSelectedLgbtqFriendly ? 1 : 0) + (currentSelectedParkingAvailable ? 1 : 0) + (currentSelectedSellingHair ? 1 : 0);
+    (currentSelectedHijabiFriendly ? 1 : 0) + (currentSelectedCanBraidWithoutGel ? 1 : 0) + (currentSelectedWheelchairAccessible ? 1 : 0) + (currentSelectedSenFriendly ? 1 : 0) + (currentSelectedLgbtqFriendly ? 1 : 0) + (currentSelectedParkingAvailable ? 1 : 0) + (currentSelectedSellingHair ? 1 : 0) + (currentSelectedSameDayEmergency ? 1 : 0);
   const selectedReviewsCount = currentSelectedHasVerifiedReviews || currentSelectedGoogleReviewsOnly || currentSelectedBookingSitesOnly ? 1 : 0;
   const selectedCustomFilterCounts = Object.fromEntries(
     customFilterTypes.map((filterType) => [filterType.id, (currentSelectedCustomFilters[filterType.id] ?? []).length]),
@@ -3727,6 +3800,7 @@ export default function App() {
                     result.lgbtqFriendly ? "lgbtqia+-friendly" : null,
                     result.priceIncludesHair ? "hair-inclusive packages" : null,
                     !hairShopLink && result.sellsHairSeparately ? "hair sold separately" : null,
+                    result.sameDayEmergency ? "same-day appointments" : null,
                     ...getResultCustomFilterLabels(result, customFilterTypes),
                   ].filter((label): label is string => Boolean(label));
                   const portfolioPhotos = getPortfolioPhotos(result);
@@ -4714,21 +4788,21 @@ export default function App() {
 
                     <button
                       type="button"
-                      aria-pressed={currentSelectedCanBraidWithoutGel}
-                      onClick={toggleCanBraidWithoutGel}
+                      aria-pressed={currentSelectedSameDayEmergency}
+                      onClick={toggleSameDayEmergency}
                       className="flex w-full cursor-pointer items-start gap-3 rounded-none px-2 py-2 text-left transition-colors hover:bg-stone-200 active:bg-stone-200 dark:hover:bg-stone-900 dark:active:bg-stone-900"
                     >
                       <span
                         aria-hidden="true"
                         className={cn(
                           "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-none border border-stone-500 bg-white text-white transition dark:border-stone-500 dark:bg-stone-900",
-                          currentSelectedCanBraidWithoutGel && "border-stone-950 bg-stone-950 dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950",
+                          currentSelectedSameDayEmergency && "border-stone-950 bg-stone-950 dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950",
                         )}
                       >
-                        {currentSelectedCanBraidWithoutGel ? <Check className="size-3.5" /> : null}
+                        {currentSelectedSameDayEmergency ? <Check className="size-3.5" /> : null}
                       </span>
                       <span className="translate-y-[1.5px] text-[15px] text-stone-800 dark:text-stone-200">
-                        Can braid without gel
+                        Same-day appointments
                       </span>
                     </button>
 
@@ -4749,6 +4823,26 @@ export default function App() {
                       </span>
                       <span className="translate-y-[1.5px] text-[15px] text-stone-800 dark:text-stone-200">
                         LGBTQIA+-friendly
+                      </span>
+                    </button>
+
+                    <button
+                      type="button"
+                      aria-pressed={currentSelectedCanBraidWithoutGel}
+                      onClick={toggleCanBraidWithoutGel}
+                      className="flex w-full cursor-pointer items-start gap-3 rounded-none px-2 py-2 text-left transition-colors hover:bg-stone-200 active:bg-stone-200 dark:hover:bg-stone-900 dark:active:bg-stone-900"
+                    >
+                      <span
+                        aria-hidden="true"
+                        className={cn(
+                          "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-none border border-stone-500 bg-white text-white transition dark:border-stone-500 dark:bg-stone-900",
+                          currentSelectedCanBraidWithoutGel && "border-stone-950 bg-stone-950 dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950",
+                        )}
+                      >
+                        {currentSelectedCanBraidWithoutGel ? <Check className="size-3.5" /> : null}
+                      </span>
+                      <span className="translate-y-[1.5px] text-[15px] text-stone-800 dark:text-stone-200">
+                        Can braid without gel
                       </span>
                     </button>
 

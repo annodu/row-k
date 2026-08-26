@@ -41,7 +41,15 @@ function extractInstagramHandle(instagramUrl) {
 const MAX_ANYAPI_REQUESTS_PER_PROCESS = 2000;
 let anyApiRequestCount = 0;
 
-async function anyApiPost(path, body, apiKey) {
+// 502/503/504 are the gateway/upstream-overload statuses — seen live as a
+// one-off blip on an otherwise-working account (a multi-page search makes
+// several of these back to back, so the odds of hitting one climb with page
+// count). Worth one retry before surfacing it as a real failure; 402/429
+// aren't retried since those are "stop asking" signals, not blips.
+const TRANSIENT_ANYAPI_STATUSES = new Set([502, 503, 504]);
+const ANYAPI_RETRY_DELAY_MS = 800;
+
+async function anyApiPost(path, body, apiKey, attempt = 1) {
   if (anyApiRequestCount >= MAX_ANYAPI_REQUESTS_PER_PROCESS) {
     throw new Error(`AnyAPI request budget (${MAX_ANYAPI_REQUESTS_PER_PROCESS}) exhausted for this server run — restart to reset.`);
   }
@@ -60,6 +68,10 @@ async function anyApiPost(path, body, apiKey) {
   }
   if (response.status === 429) {
     throw new Error("AnyAPI rate limit exceeded.");
+  }
+  if (TRANSIENT_ANYAPI_STATUSES.has(response.status) && attempt < 2) {
+    await new Promise((resolve) => setTimeout(resolve, ANYAPI_RETRY_DELAY_MS));
+    return anyApiPost(path, body, apiKey, attempt + 1);
   }
   if (!response.ok) {
     throw new Error(`AnyAPI error: HTTP ${response.status}`);
@@ -87,7 +99,12 @@ function toResult(post, media) {
 // only guess from a name/location query, which risks matching a
 // similarly-named salon elsewhere. Fetching the salon's own confirmed
 // Instagram account directly guarantees every photo is actually theirs.
-export async function searchSalonImages(salon, { num = 24, includeReels = false } = {}) {
+// Returns { results, nextCursor } rather than just an array — `nextCursor`
+// is what "request more posts" (a fresh call with `cursor: nextCursor`)
+// resumes from, so a second request doesn't re-walk pages already seen.
+// `nextCursor: null` means the account's post history is actually
+// exhausted, not just that this call stopped early to save cost.
+export async function searchSalonImages(salon, { num = 24, includeReels = false, cursor: startCursor } = {}) {
   const apiKey = await loadAnyApiKey();
   if (!apiKey) {
     throw new Error("AnyAPI is not configured (ANYAPI_KEY).");
@@ -105,34 +122,64 @@ export async function searchSalonImages(salon, { num = 24, includeReels = false 
   const MAX_PAGES = 6;
 
   const results = [];
-  let cursor;
+  let cursor = startCursor;
   let page = 0;
+  let exhausted = false;
+  // A single empty page used to stop the whole search — but a real account
+  // (confirmed live) can post several Reels in a row and still have photos
+  // a page or two later, so one quiet page isn't proof the rest is the
+  // same. Two *consecutive* empty pages is: MAX_PAGES already bounds the
+  // worst case (a fully-video account) at 6 requests either way, and
+  // "request more posts" is the deliberate override for an admin who wants
+  // to push past this heuristic on a specific account.
+  let consecutiveEmptyPages = 0;
   while (results.length < num && page < MAX_PAGES) {
-    const payload = await anyApiPost("/v1/run/instagram.user_posts", { handle, cursor }, apiKey);
+    let payload;
+    try {
+      payload = await anyApiPost("/v1/run/instagram.user_posts", { handle, cursor }, apiKey);
+    } catch (error) {
+      // The first page failing means there's nothing to salvage — surface
+      // it. A later page failing (already-retried once in anyApiPost, so
+      // this is a second miss) means earlier pages already found real
+      // photos; returning those beats losing them all to one bad page.
+      if (page === 0) throw error;
+      break;
+    }
     const data = payload.output?.data ?? payload;
     const posts = Array.isArray(data) ? data : data.posts || [];
     page += 1;
-    if (posts.length === 0) break;
+    if (posts.length === 0) {
+      exhausted = true;
+      break;
+    }
 
     const resultsBeforePage = results.length;
     for (const post of posts) {
-      for (const media of post.media ?? []) {
-        if (media.type === "video" && !includeReels) continue;
-        results.push(toResult(post, media));
-        if (results.length >= num) break;
-      }
+      // Only the first usable slide of each post, not every slide in a
+      // carousel — a single 10-photo carousel post used to fill most of the
+      // grid with one outfit/session, crowding out the rest of the account.
+      // One result per post keeps the grid spread across many different
+      // posts instead.
+      const media = (post.media ?? []).find((item) => includeReels || item.type !== "video");
+      if (!media) continue;
+      results.push(toResult(post, media));
       if (results.length >= num) break;
     }
-    // A page with zero usable photos (all video/Reels) means the rest of
-    // this account is likely the same — stop instead of paying for more
-    // pages chasing a target that isn't there.
-    if (results.length === resultsBeforePage) break;
+    if (results.length === resultsBeforePage) {
+      consecutiveEmptyPages += 1;
+      if (consecutiveEmptyPages >= 2) break;
+    } else {
+      consecutiveEmptyPages = 0;
+    }
 
     cursor = data.nextCursor;
-    if (!cursor) break;
+    if (!cursor) {
+      exhausted = true;
+      break;
+    }
   }
 
-  return results.slice(0, num);
+  return { results: results.slice(0, num), nextCursor: exhausted ? null : cursor };
 }
 
 function extractShortcode(postUrl) {

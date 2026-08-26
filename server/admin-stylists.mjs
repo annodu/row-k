@@ -45,6 +45,7 @@ const portfolioPhotosPublicDir = path.resolve(__dirname, "../public/portfolio-ph
 const portfolioCorrectionsPath = path.resolve(__dirname, "../data/portfolio-photo-corrections.json");
 const portfolioCorrectionsPhotosDir = path.resolve(__dirname, "../data/portfolio-photo-corrections-photos");
 const photoLinkBacklogPath = path.resolve(__dirname, "../data/photo-link-backlog.json");
+const photoSearchPicksPath = path.resolve(__dirname, "../data/photo-search-picks.json");
 const sessionCookieName = "rowk_admin_session";
 const sessionMaxAgeSeconds = 60 * 60 * 12;
 const repositoryRoot = path.resolve(__dirname, "..");
@@ -61,6 +62,7 @@ const githubBackedJsonPaths = new Set([
   "data/price-bands.json",
   "data/health-check-feedback.json",
   "data/photo-link-backlog.json",
+  "data/photo-search-picks.json",
 ]);
 
 const regionOptions = [
@@ -191,7 +193,7 @@ const serviceRuleMatchers = [
   ["Frontal ponytail / bun", [/\bfrontal\b.*\b(pony|ponytail|bun)\b/, /\b(pony|ponytail|bun)\b.*\bfrontal\b/]],
   ["Half braids, half sew-in", [/\bhalf\b.*\b(braid|braids|feed\s*in|feed-in|cornrows?)\b.*\b(weave|sew[\s-]*in|sewin)\b/, /\bhalf\b.*\b(weave|sew[\s-]*in|sewin)\b.*\b(braid|braids|feed\s*in|feed-in|cornrows?)\b/, /\bhalf\s+braid\b/, /\bhalf\s+weave\b/]],
   ["Wig install (frontal / closure)", [/\bwig\b.*\b(install|instal|installation|application|fit|fitting)\b/, /\b(glueless|lace)\s+wig\b/, /\bfrontal\s+wig\b/, /\bclosure\s+wig\b/, /\b(frontal|closure|ready[\s-]*made)\s+unit\b/, /\bunit\b.*\b(install|instal|installation|application|fit|fitting)\b/, /\b(lace\s+)?frontal\s+installation\b/, /\b(lace\s+)?closure\s+installation\b/, /\bwigs?$/, /\b(frontal|closure)$/]],
-  ["U-part wig install", [/\b(u[\s-]*part|v[\s-]*part|u[\s/-]*v[\s-]*part|uvpart)\b.*\b(wig|install|installation)\b/, /\b(wig|install|installation)\b.*\b(u[\s-]*part|v[\s-]*part|u[\s/-]*v[\s-]*part|uvpart)\b/]],
+  ["U-Part / Half wig install", [/\b(u[\s-]*part|v[\s-]*part|u[\s/-]*v[\s-]*part|uvpart)\b.*\b(wig|install|installation)\b/, /\b(wig|install|installation)\b.*\b(u[\s-]*part|v[\s-]*part|u[\s/-]*v[\s-]*part|uvpart)\b/, /\bhalf\s+wig\b/]],
   ["Custom wig", [/\bcustom\b.*\bwig\b/, /\bbespoke\b.*\bwig\b/, /\bcustom\s+handmade\s+wigs?\b/, /\bwig\b.*\b(custom|bespoke|handmade|made|making|construction|unit)\b/, /\bunit\b.*\bcustomi[sz](ing|ation)\b/, /\bcustomi[sz](ing|ation)\b.*\bunit\b/, /\bcustom(?:\s+made)?\b.*\b(frontal|closure)\s+unit\b/, /\bcustom\b.*\bfrontal\s+closure\s+units?\b/, /\bwig\s+(making|construction|customi[sz](ing|ation))\b/, /\bconstruction\s+of\s+(the\s+)?wig\b/, /\bconstruction\b.*\bcustomi[sz](ing|ation)\b/, /\bcustomi[sz](ing|ation)\b.*\bconstruction\b/, /\b(frontal|closure)\b.*\bcustomi[sz](ing|ation)\b/, /\bcustomi[sz](ing|ation)\b.*\b(frontal|closure|wig)\b/, /\b(frontal|closure|wig)\b.*\b(hand[\s-]*made|handmade)\b/, /\b(hand[\s-]*made|handmade)\b.*\b(frontal|closure|wig)\b/]],
   ["Pixie wig / weave install", [/\bpixie\b.*\b(wig|weave|sew\s*in|sewin|install|making)\b/, /\b(wig|weave|sew\s*in|sewin|making)\b.*\bpixie\b/]],
   ["Closure sew-in", [/\bclosure\b.*\b(sew\s*in|sewin|weave)\b/, /\b(sew\s*in|sewin|weave)\b.*\bclosure\b/, /\bweave\b.*\b(lace\s+)?closure\b/, /\bclosure\b.*\bbehind\s+the\s+hairline\b/]],
@@ -225,9 +227,10 @@ const serviceRuleMatchers = [
   ["Stitch braids", [/\bstitch\b/]],
   ["Twists (with extensions)", [/\btwists?\b.*\b(extension|extensions|hair added)\b/, /\b(extension|extensions|hair added)\b.*\btwists?\b/, /\b(passion|marley|senegalese|island|kinky|rope)\s+twists?\b/, /\blarge\s+twists?\b/]],
   ["Braid take-down", [/\bbraids?\b.*\b(take\s*down|takedown|removal|remove)\b/, /\b(take\s*down|takedown|removal|remove)\b.*\bbraids?\b/]],
-  ["Starter locs", [/\bstarter\s+locs?\b/, /\bstart\s+locs?\b/, /\bstarting\s+locs?\b/, /\bloc\s+start\b/]],
-  ["Retwist", [/\bretwist\b/, /\bre\s*twist\b/]],
-  ["Faux locs", [/\bfaux\s+locs?\b/, /\binvisible\s+locs?\b/, /\bsoft\s+locs?\b/]],
+  ["Starter locs / instant locs", [/\bstarter\s+locs?\b/, /\bstart\s+locs?\b/, /\bstarting\s+locs?\b/, /\bloc\s+start\b/, /\binstant\s+locs?\b/]],
+  ["Retwist / interlocking", [/\bretwist\b/, /\bre\s*twist\b/, /\binterlocking\b/, /\binter\s*locking\b/]],
+  ["Soft locs", [/\bfaux\s+locs?\b/, /\bsoft\s+locs?\b/]],
+  ["Crochet faux locs / invisible locs", [/\bcrochet\s+(faux\s+)?locs?\b/, /\bfaux\s+locs?\s+crochet\b/, /\binvisible\s+locs?\b/]],
   ["Butterfly locs", [/\bbutterfly\s+locs?\b/]],
   ["Microlocs / sisterlocs", [/\bmicro\s*locs?\b/, /\bmicrolocs?\b/, /\bsister\s*locs?\b/, /\bsisterlocs?\b/]],
   ["Balayage", [/\bbalayage\b/]],
@@ -235,7 +238,7 @@ const serviceRuleMatchers = [
   ["Full head colour", [/\bfull\s+head\b.*\bcolou?r\b/, /\bpermanent\s+(colou?r|tint)\b/, /\b(colou?r|dye|tint)\b/]],
   ["Bridal", [/\bbridal\b/, /\bwedding\b/]],
   ["Editorial / Session styling", [/\beditorial\b/, /\bsession\s+styling\b/, /\bphotoshoot\b/]],
-  ["Keratin treatment", [/\bkeratin\b/, /\bbrazilian\s*(blow\s*dry|blowdry|blow\s*out|blowout)\b/]],
+  ["Keratin treatment / Brazilian blowdry", [/\bkeratin\b/, /\bbrazilian\s*(blow\s*dry|blowdry|blow\s*out|blowout)\b/]],
   ["Relaxer / texturiser", [/\brelaxer\b/, /\btexturi[sz]er\b/, /\btexturi[sz]ing\b/]],
   ["Texture release", [/\btexture\s+release\b/]],
   ["Japanese straightening", [/\bjapanese\b.*\bstraight(en|ening)\b/, /\bmomoko\b(?:.*\bstraight(en|ening)\b)?/]],
@@ -288,7 +291,8 @@ export const serviceNegationHints = {
   "Crochet": ["crochet"],
   "Curly cut / wash & go": ["curly cut", "wash go", "wash and go"],
   "Custom wig": ["custom wig", "bespoke wig", "custom handmade wig", "custom handmade wigs", "custom made frontal unit", "custom made closure unit", "customised closure unit", "customized closure unit", "custom mini frontal unit", "unit customisation", "unit customization", "wig making", "wig construction", "construction of wig", "construction of the wig", "wig customising", "wig customisation", "wig customization", "construction and customisation", "construction and customization"],
-  "Faux locs": ["faux locs", "soft locs"],
+  "Soft locs": ["faux locs", "soft locs"],
+  "Crochet faux locs / invisible locs": ["crochet locs", "crochet faux locs", "invisible locs", "faux locs crochet"],
   "Feed-in braids": ["feed in", "feed in braids", "all back", "braids going back", "cornrows incl extensions", "cornrows including extensions", "cornrows with extensions", "20 cornrows"],
   "Flipover / versatile sew-in": ["flipover", "flip over", "versatile sew in", "versatile sewin", "versatile weave"],
   "French curl": ["french curl"],
@@ -306,7 +310,7 @@ export const serviceNegationHints = {
   "Japanese straightening": ["japanese straightening"],
   "K-18 treatment": ["k 18", "k18"],
   "K-tips / invisible strands": ["k tips", "invisible strands", "keratin tip", "keratin tips", "keratin bonds"],
-  "Keratin treatment": ["keratin", "brazilian blow dry", "brazilian blowdry", "brazilian blow out", "brazilian blowout"],
+  "Keratin treatment / Brazilian blowdry": ["keratin", "brazilian blow dry", "brazilian blowdry", "brazilian blow out", "brazilian blowout"],
   "Knotless braids": ["knotless"],
   "LA weave": ["la weave"],
   "Microbraids / x-small braids": ["micro braids", "microbraids", "x small braids", "xs braids"],
@@ -322,12 +326,12 @@ export const serviceNegationHints = {
   "Pre-parting": ["pre parting", "pre part"],
   "Quick weave": ["quick weave", "quickweave"],
   "Relaxer / texturiser": ["relaxer", "texturiser", "texturizer", "texturising", "texturizing"],
-  "Retwist": ["retwist", "re twist"],
+  "Retwist / interlocking": ["retwist", "re twist", "interlocking"],
   "Scalp detox / treatments": ["scalp", "scalp care", "scalp therapy", "scalp treatment", "scalp treatments", "scalp scrub", "scalp detox", "scalp rejuvenation", "scalp renewal", "exfoliating scalp salt scrub"],
   "Sew-in take-down": ["sew in take down", "sew in takedown", "sew in removal", "weave removal", "remove sew in"],
   "Silk press": ["silk press", "silkpress", "press and curl"],
   "Sleek ponytail / bun": ["sleek ponytail", "sleek pony", "sleek bun", "ponytail", "pony tail"],
-  "Starter locs": ["starter locs", "start locs", "starting locs", "loc start"],
+  "Starter locs / instant locs": ["starter locs", "start locs", "starting locs", "loc start", "instant locs"],
   "Stitch braids": ["stitch"],
   "Tape ins": ["tape ins", "tape in", "tapes", "tape extensions"],
   "Texture release": ["texture release"],
@@ -337,7 +341,7 @@ export const serviceNegationHints = {
   "Roller set": ["roller set", "roller sets", "wet set", "wet roller set", "perm rod set", "rod set", "curlformers"],
   "Twist out / flexi rod": ["twist out", "flexi rod", "perm rod"],
   "Twists (with extensions)": ["twists with extensions", "passion twists", "marley twists", "senegalese twists", "kinky twists", "rope twists", "island twists", "island twist", "large twist", "large twists"],
-  "U-part wig install": ["u part", "u-part", "upart", "u part wig", "u-part wig", "upart wig", "v part", "v-part", "vpart", "v part wig", "v-part wig", "vpart wig", "u vpart", "uvpart", "half wig"],
+  "U-Part / Half wig install": ["u part", "u-part", "upart", "u part wig", "u-part wig", "upart wig", "v part", "v-part", "vpart", "v part wig", "v-part wig", "vpart wig", "u vpart", "uvpart", "half wig"],
   "Updo": ["updo", "up do", "pin up", "french roll up", "french roll"],
   "Wash & blowdry": ["wash blowdry", "wash blow dry", "wash and blowdry", "wash and blow dry", "washing blow drying", "washing and blow drying", "shampoo blowdry", "shampoo blow dry", "shampoo and blowdry", "shampoo and blow dry"],
   "Japanese head spa": ["japanese head spa", "head spa", "headspa"],
@@ -442,6 +446,7 @@ export function registerAdminStylistRoutes(app) {
       lgbtqFriendly: update.lgbtqFriendly === true,
       parkingAvailable: update.parkingAvailable === true,
       sellsHairSeparately: update.sellsHairSeparately === true,
+      sameDayEmergency: update.sameDayEmergency === true,
       customFilters: sanitizeCustomFilters(update.customFilters),
       summary: update.summary || currentSalon.summary || "",
       evidence: update.evidence?.length ? update.evidence : currentSalon.evidence || [],
@@ -1039,6 +1044,17 @@ export function registerAdminStylistRoutes(app) {
     res.json({ ok: true });
   });
 
+  // Shared by the manual "pick a stylist" action below and by draft
+  // approval (a freshly published stylist is queued for a photo pass
+  // automatically) — a no-op if the salon is already picked.
+  async function addSalonIdToPhotoSearchPicks(salonId) {
+    const store = await readJson(photoSearchPicksPath, { meta: {}, salonIds: [] });
+    const salonIds = Array.isArray(store.salonIds) ? store.salonIds : [];
+    if (salonIds.includes(salonId)) return;
+    salonIds.push(salonId);
+    await writeJson(photoSearchPicksPath, { meta: { updatedAt: today() }, salonIds });
+  }
+
   // Manual-assist tool for the ~700+ salons the automated pipeline
   // (website/Acuity scrape + Places photos + vision classification) already
   // ran on and found nothing for. Queries Google Programmable Search Engine's
@@ -1111,6 +1127,82 @@ export function registerAdminStylistRoutes(app) {
     res.json({ ok: true, total: eligible.length, offset, limit, salons: page });
   });
 
+  // A persistent, hand-picked worklist for Photo search — mirrors the Link
+  // backlog's search-and-add pattern, but feeds the `ids` queue above
+  // instead of pasted post links. Entries aren't removed automatically once
+  // reviewed (same as Link backlog) — the queue itself already skips
+  // anything with photoSearchReviewedAt set, so a completed pick just stops
+  // coming up without needing to be cleaned out of this list.
+  app.get("/api/admin/photo-search-picks", requireAdmin, async (_req, res) => {
+    const [manualIndex, store] = await Promise.all([
+      readJson(manualIndexPath, { meta: { source: "manual" }, salons: [] }),
+      readJson(photoSearchPicksPath, { meta: {}, salonIds: [] }),
+    ]);
+    const byId = new Map(manualIndex.salons.map((salon) => [salon.id, salon]));
+    const salonIds = Array.isArray(store.salonIds) ? store.salonIds : [];
+    const picks = salonIds
+      .map((salonId) => {
+        const salon = byId.get(salonId);
+        if (!salon) return null;
+        return {
+          id: salon.id,
+          name: salon.name,
+          neighbourhood: salon.neighbourhood,
+          postcode: salon.postcode,
+          areaLabel: salon.areaLabel,
+          instagramUrl: salon.instagramUrl,
+          reviewed: !!salon.photoSearchReviewedAt,
+        };
+      })
+      .filter(Boolean);
+    res.json({ ok: true, picks });
+  });
+
+  app.post("/api/admin/photo-search-picks", requireAdmin, async (req, res) => {
+    const salonId = cleanString(req.body?.salonId);
+    if (!salonId) {
+      return res.status(400).json({ ok: false, message: "salonId is required." });
+    }
+    // Picking a stylist is a deliberate "search this one again" — the queue
+    // below excludes anything with photoSearchReviewedAt set (that's what
+    // lets a mid-run page refresh resume instead of restarting from the
+    // top), which would otherwise silently make an already-reviewed pick a
+    // permanent no-op. Clearing it here is what makes a pick actually work
+    // for its stated purpose: re-running search on stylists that already
+    // have some photos, not just ones that have never been touched.
+    const found = await withManualIndexLock(async () => {
+      const manualIndex = await readJson(manualIndexPath, { meta: { source: "manual" }, salons: [] });
+      const salon = manualIndex.salons.find((s) => s.id === salonId);
+      if (!salon) return false;
+      delete salon.photoSearchReviewedAt;
+      delete salon.photoSearchSkippedAt;
+      delete salon.photoSearchSkippedReason;
+      await persistManualIndex(manualIndex, `Pick ${salon.name} for photo search`);
+      return true;
+    });
+    if (!found) {
+      return res.status(404).json({ ok: false, message: "Stylist not found." });
+    }
+    await addSalonIdToPhotoSearchPicks(salonId);
+    res.json({ ok: true });
+  });
+
+  app.delete("/api/admin/photo-search-picks/:salonId", requireAdmin, async (req, res) => {
+    const store = await readJson(photoSearchPicksPath, { meta: {}, salonIds: [] });
+    const salonIds = (Array.isArray(store.salonIds) ? store.salonIds : []).filter((id) => id !== req.params.salonId);
+    await writeJson(photoSearchPicksPath, { meta: { updatedAt: today() }, salonIds });
+    res.json({ ok: true });
+  });
+
+  // Bulk-clears the hand-picked worklist in one action rather than removing
+  // chips one at a time — doesn't touch photoSearchReviewedAt/SkippedAt on
+  // the salons themselves, so anything cleared here is still exactly where
+  // it was in the automated zero-photos queue.
+  app.delete("/api/admin/photo-search-picks", requireAdmin, async (_req, res) => {
+    await writeJson(photoSearchPicksPath, { meta: { updatedAt: today() }, salonIds: [] });
+    res.json({ ok: true });
+  });
+
   app.get("/api/admin/photo-search/:salonId", requireAdmin, photoSearchRateLimit, async (req, res) => {
     const manualIndex = await readJson(manualIndexPath, { meta: { source: "manual" }, salons: [] });
     const salon = manualIndex.salons.find((s) => s.id === req.params.salonId);
@@ -1124,15 +1216,22 @@ export function registerAdminStylistRoutes(app) {
       // pass for stylists the normal photo-only search already dismissed,
       // not a blanket search-everything change.
       const includeReels = req.query.includeReels === "1";
-      const results = await searchSalonImages(salon, includeReels ? { num: 30, includeReels: true } : undefined);
+      // `?cursor=` is "request more posts" continuing a previous search
+      // instead of a fresh one — set by the "More posts" button when the
+      // admin doesn't like anything in the first batch.
+      const cursor = typeof req.query.cursor === "string" && req.query.cursor ? req.query.cursor : undefined;
+      const { results, nextCursor } = await searchSalonImages(salon, {
+        ...(includeReels ? { num: 30, includeReels: true } : {}),
+        cursor,
+      });
       // A salon whose Instagram has nothing to show will never return
       // results on a future lookup either — mark it skipped immediately so
       // it drops out of the queue instead of burning image-search credits
       // on every future page load (including this page's own prefetch).
-      // Re-read + write under the lock (rather than reusing the `manualIndex`
-      // read above) since several of these prefetches run concurrently and
-      // may race an admin's own approve/skip on the current salon.
-      if (results.length === 0) {
+      // Only on a fresh (no-cursor) search: zero results from "more posts"
+      // just means this account's history is exhausted, not that the
+      // original search found nothing.
+      if (results.length === 0 && !cursor) {
         await withManualIndexLock(async () => {
           const freshIndex = await readJson(manualIndexPath, { meta: { source: "manual" }, salons: [] });
           const freshSalon = freshIndex.salons.find((s) => s.id === req.params.salonId);
@@ -1143,7 +1242,7 @@ export function registerAdminStylistRoutes(app) {
           }
         });
       }
-      res.json({ ok: true, results });
+      res.json({ ok: true, results, nextCursor });
     } catch (error) {
       res.status(502).json({ ok: false, message: sanitizeErrorMessage(error, "Image search failed.") });
     }
@@ -1233,6 +1332,12 @@ export function registerAdminStylistRoutes(app) {
       // stylist is done — mark it explicitly so a page refresh doesn't
       // re-show the whole list from scratch.
       freshSalon.photoSearchReviewedAt = today();
+      // A plain ordinal, not a date — the Photo order queue sorts on this to
+      // float a just-approved stylist straight to the top, and a same-day
+      // approval still needs to outrank an earlier one from the same day for
+      // that. See photoOrderBumpedAt's use in the queue endpoint below.
+      const maxBump = freshIndex.salons.reduce((max, s) => Math.max(max, s.photoOrderBumpedAt || 0), 0);
+      freshSalon.photoOrderBumpedAt = maxBump + 1;
       await persistManualIndex(freshIndex, `Add photo-search photo for ${freshSalon.name}`);
     });
     res.json({ ok: true, photo });
@@ -1415,16 +1520,53 @@ export function registerAdminStylistRoutes(app) {
     const manualIndex = await readJson(manualIndexPath, { meta: { source: "manual" }, salons: [] });
     const offset = Math.max(0, Number(req.query.offset) || 0);
     const limit = Math.min(20, Math.max(1, Number(req.query.limit) || 8));
-    const eligible = manualIndex.salons.filter((salon) => !salon.branches && (salon.portfolioPhotos || []).length >= 2);
+    // Comma-separated so an admin can pull up several named stylists at
+    // once (OR match) instead of one shared search box requiring every
+    // word to hit the same stylist.
+    const searchTerms = String(req.query.search || "")
+      .split(",")
+      .map((term) => term.trim().toLowerCase())
+      .filter(Boolean);
+    let eligible = manualIndex.salons.filter((salon) => !salon.branches && (salon.portfolioPhotos || []).length >= 2);
+    if (searchTerms.length) {
+      eligible = eligible.filter((salon) => {
+        const name = (salon.name || "").toLowerCase();
+        return searchTerms.some((term) => name.includes(term));
+      });
+    }
+    // A stylist a photo was just approved for (photoOrderBumpedAt, set in
+    // the approve endpoint) needs re-picking of the shown top 3 — surface
+    // them first instead of leaving the admin to scroll and find them.
+    // Array.sort is stable, so untouched salons (both 0) keep their
+    // existing relative order.
+    eligible.sort((a, b) => (b.photoOrderBumpedAt || 0) - (a.photoOrderBumpedAt || 0));
     const page = eligible.slice(offset, offset + limit).map((salon) => ({
       id: salon.id,
       name: salon.name,
       neighbourhood: salon.neighbourhood,
       postcode: salon.postcode,
       areaLabel: salon.areaLabel,
+      instagramUrl: salon.instagramUrl,
       portfolioPhotos: salon.portfolioPhotos || [],
     }));
     res.json({ ok: true, total: eligible.length, offset, limit, salons: page });
+  });
+
+  // Backs the photo order search box's autocomplete dropdown — scoped to
+  // the same eligible set (2+ photos, no branches) so a suggested name is
+  // guaranteed to actually appear once tagged.
+  app.get("/api/admin/photo-order-queue/suggest", requireAdmin, async (req, res) => {
+    const manualIndex = await readJson(manualIndexPath, { meta: { source: "manual" }, salons: [] });
+    const q = String(req.query.q || "").trim().toLowerCase();
+    if (!q) {
+      return res.json({ ok: true, suggestions: [] });
+    }
+    const suggestions = manualIndex.salons
+      .filter((salon) => !salon.branches && (salon.portfolioPhotos || []).length >= 2)
+      .filter((salon) => (salon.name || "").toLowerCase().includes(q))
+      .slice(0, 8)
+      .map((salon) => ({ id: salon.id, name: salon.name }));
+    res.json({ ok: true, suggestions });
   });
 
   app.get("/api/admin/dashboard", requireAdmin, async (_req, res) => {
@@ -1740,7 +1882,17 @@ export function registerAdminStylistRoutes(app) {
     const index = await readAdminSalonIndex();
     const offset = Math.max(Number(req.body?.offset || 0), 0);
     const limit = Math.min(Math.max(Number(req.body?.limit || 30), 1), 50);
-    const salons = index.salons || [];
+    // Optional narrowing to salons already known to offer one of these
+    // services — lets an admin scope a search (e.g. "who offers X" among
+    // "salons that already do Y") instead of scanning the entire directory
+    // page by page.
+    const serviceFilter = (Array.isArray(req.body?.serviceFilter) ? req.body.serviceFilter : [])
+      .map((service) => normalizeSelectedKeywordService(service))
+      .filter(Boolean);
+    const allSalons = index.salons || [];
+    const salons = serviceFilter.length
+      ? allSalons.filter((salon) => normalizeServices(salon.services || []).some((service) => serviceFilter.includes(service)))
+      : allSalons;
     const batchSalons = salons.slice(offset, offset + limit);
     const checkedAt = today();
     const checks = await mapWithConcurrency(batchSalons, isHostedRuntime() ? 2 : 10, (salon) => withTimeout(
@@ -2329,6 +2481,12 @@ export function registerAdminStylistRoutes(app) {
       await writeJson(manualIndexPath, manualIndex);
       await writeDraftStore(store);
     }
+
+    // A newly published stylist goes straight onto the Photo search picks
+    // worklist — not just the automated zero-photos queue — so it's visible
+    // there even if it already has some photos and needs a proper review
+    // pass rather than only showing up if it happens to have none.
+    await addSalonIdToPhotoSearchPicks(salon.id);
 
     res.json({ ok: true, salon, googleMatch });
   });
@@ -4505,7 +4663,7 @@ function serviceFamilyFor(service) {
   if (["Full head colour", "Balayage", "Highlights", "Wig colouring / bundle colouring"].includes(service)) {
     return "colour";
   }
-  if (["Custom wig", "Wig install (frontal / closure)", "U-part wig install", "Pixie wig / weave install"].includes(service)) {
+  if (["Custom wig", "Wig install (frontal / closure)", "U-Part / Half wig install", "Pixie wig / weave install"].includes(service)) {
     return "wig";
   }
   return "";
@@ -8209,6 +8367,7 @@ function sanitizeDraftUpdate(input) {
     lgbtqFriendly: input.lgbtqFriendly === true,
     parkingAvailable: input.parkingAvailable === true,
     sellsHairSeparately: input.sellsHairSeparately === true,
+    sameDayEmergency: input.sameDayEmergency === true,
     customFilters: sanitizeCustomFilters(input.customFilters),
     priceBand: priceBand || servicePriceBand,
     servicePriceBand,
@@ -8415,7 +8574,12 @@ function publishedSalonToDraft(salon, fallbackDate = today()) {
     parkingAvailable: salon.parkingAvailable === true,
     customFilters: sanitizeCustomFilters(salon.customFilters),
     sellsHairSeparately: salon.sellsHairSeparately === true,
+    sameDayEmergency: salon.sameDayEmergency === true,
     priceBand: sanitizePriceBand(salon.priceBand),
+    servicePriceBand: sanitizePriceBand(salon.servicePriceBand),
+    packagePriceBand: sanitizePriceBand(salon.packagePriceBand),
+    priceIncludesHair: salon.priceIncludesHair === true,
+    priceComparisonMode: sanitizePriceComparisonMode(salon.priceComparisonMode),
     priceSource: sanitizePriceSource(salon.priceSource),
     priceEvidence: toArray(salon.priceEvidence),
     priceCheckedAt: cleanString(salon.priceCheckedAt),
@@ -8506,6 +8670,7 @@ function draftToSalon(draft, existingIds) {
     ...(draft.lgbtqFriendly === true ? { lgbtqFriendly: true } : {}),
     ...(draft.parkingAvailable === true ? { parkingAvailable: true } : {}),
     ...(draft.sellsHairSeparately === true ? { sellsHairSeparately: true } : {}),
+    ...(draft.sameDayEmergency === true ? { sameDayEmergency: true } : {}),
     ...(Object.keys(sanitizeCustomFilters(draft.customFilters)).length ? { customFilters: sanitizeCustomFilters(draft.customFilters) } : {}),
     ...(sanitizePriceBand(draft.priceBand)
       ? {
@@ -8801,7 +8966,7 @@ function shouldSuppressStitchBraidsForBohoKnotlessContext(service, context) {
 }
 
 function shouldSuppressLocSubtypeForStarterContext(service, context) {
-  if (service !== "Butterfly locs" && service !== "Faux locs") {
+  if (service !== "Butterfly locs" && service !== "Soft locs" && service !== "Crochet faux locs / invisible locs") {
     return false;
   }
 
@@ -8817,7 +8982,7 @@ function shouldSuppressTwistsForGenericExtensionsContext(service, context) {
 }
 
 function shouldSuppressKeratinTreatmentForTipContext(service, context) {
-  if (service !== "Keratin treatment") {
+  if (service !== "Keratin treatment / Brazilian blowdry") {
     return false;
   }
 

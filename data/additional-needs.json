@@ -31,6 +31,10 @@
     {
       "id": "priceIncludesHair",
       "label": "Hair-inclusive packages available"
+    },
+    {
+      "id": "sameDayEmergency",
+      "label": "Same-day appointments"
     }
   ]
 }

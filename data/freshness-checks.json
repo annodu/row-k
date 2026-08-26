@@ -1,7 +1,7 @@
 {
   "meta": {
     "source": "freshness-checks",
-    "updatedAt": "2026-08-02",
+    "updatedAt": "2026-08-26",
     "count": 427,
     "checkedCount": 895,
     "total": 895,
@@ -11291,6 +11291,14 @@
         "attribute:parkingavailable|true|booking:free parking"
       ],
       "parkingAvailable": true
+    },
+    "sandra-webb": {
+      "addedServices": [],
+      "removedServices": [],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {},
+      "handledFingerprints": [],
+      "wheelchairAccessible": true
     }
   },
   "checks": [

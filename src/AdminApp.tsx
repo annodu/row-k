@@ -119,6 +119,7 @@ type StylistDraft = {
   packagePriceBand?: PriceBand;
   priceIncludesHair?: boolean;
   sellsHairSeparately?: boolean;
+  sameDayEmergency?: boolean;
   priceComparisonMode?: PriceComparisonMode | "";
   priceSource?: "auto" | "manual" | "";
   priceEvidence?: string[];
@@ -767,13 +768,14 @@ const serviceGroups = [
   { label: "Editorial / Session styling", services: ["Editorial / Session styling"] },
   { label: "Kids & teens styles", services: ["Kids & teens styles"] },
   { label: "Extensions", services: ["Clip ins (+ silk press)","K-tips / invisible strands","LA weave / microlinks wefts / braidless sew in","I-tips / microlinks strands","Tape ins"] },
-  { label: "Locs", services: ["Butterfly locs","Faux locs","Microlocs / sisterlocs","Retwist","Starter locs"] },
+  { label: "Locs (permanent)", services: ["Starter locs / instant locs","Retwist / interlocking","Loc styling","Microlocs / sisterlocs","Loc extensions (permanent)"] },
+  { label: "Faux locs", services: ["Soft locs","Crochet faux locs / invisible locs","Butterfly locs"] },
   { label: "Sew in / weave", services: ["Closure sew-in / closure behind the hairline","Flipover / Versatile sew-in","Frontal sew-in","Hybrid sew in (tapes + sew in)","Pixie wig / weave install","Quick weave","Sew-in take-down","Tracks (+ silk press) / partial / invisible sew-in","Traditional sew-in / leave out"] },
   { label: "Styling (sew in / frontal / relaxer)", services: ["Sew in / extensions blowdry","Frontal ponytail / bun","Half up half down","Pixie cut / finger waves","Sleek ponytail / bun","Updo"] },
-  { label: "Treatments", services: ["Hair botox","Japanese straightening","K-18 treatment","Keratin treatment","Moisturising treatment","Olaplex treatment","Relaxer / texturiser","Texture release"] },
+  { label: "Treatments", services: ["Hair botox","Japanese straightening","K-18 treatment","Keratin treatment / Brazilian blowdry","Moisturising treatment","Olaplex treatment","Relaxer / texturiser","Texture release"] },
   { label: "Natural hair washing & styling", services: ["Wig cornrows","Curly cut / wash & go / diffuse","Silk press","Bouncy blowout / round brush blow dry","Trim / hair cut","Roller set","Twist out / flexi rod","Bantu knots","Wash & blowdry","Japanese head spa","Scalp detox / treatments","Men's braids"] },
   { label: "Natural hair health & trichology", services: ["Healthy hair plans & consultations","Natural hair coaches / educators","Trichology / scalp analysis"] },
-  { label: "Wigs", services: ["Custom wig","Pixie wig / weave install","U-part wig install","Wig colouring / bundle colouring","Wig install (frontal / closure)","Wig blowdry","Wig laundry"] },
+  { label: "Wigs", services: ["Custom wig","Pixie wig / weave install","U-Part / Half wig install","Wig colouring / bundle colouring","Wig install (frontal / closure)","Wig blowdry","Wig laundry"] },
 ];
 
 type ConfirmOptions = {
@@ -2360,7 +2362,7 @@ function StylistsPage({
         const matchesLocation = locationFilter === "all" || draftMatchesLocation(draft, locationFilter);
         const matchesPrice = priceFilter === "all" || (draft.priceBand || "not-listed") === priceFilter;
         const matchesNeeds = needsFilter.every((need) =>
-          Boolean(draft[need as "hijabiFriendly" | "canBraidWithoutGel" | "wheelchairAccessible" | "senFriendly" | "lgbtqFriendly" | "parkingAvailable" | "priceIncludesHair" | "sellsHairSeparately"]),
+          Boolean(draft[need as "hijabiFriendly" | "canBraidWithoutGel" | "wheelchairAccessible" | "senFriendly" | "lgbtqFriendly" | "parkingAvailable" | "priceIncludesHair" | "sellsHairSeparately" | "sameDayEmergency"]),
         );
         return matchesCategory && matchesLocation && matchesPrice && matchesNeeds;
       }),
@@ -2740,6 +2742,7 @@ const stylistNeedsFilterOptions = [
   { id: "senFriendly", label: "Sensory-safe / SEN-friendly" },
   { id: "priceIncludesHair", label: "Hair-inclusive packages available" },
   { id: "sellsHairSeparately", label: "Hair sold separately" },
+  { id: "sameDayEmergency", label: "Same-day appointments" },
 ];
 
 const stylistStatusFilterOptions = [
@@ -4433,26 +4436,70 @@ type PhotoSearchResult = {
   isReel?: boolean;
 };
 
+type PhotoSearchPick = {
+  id: string;
+  name: string;
+  neighbourhood?: string;
+  postcode?: string;
+  areaLabel?: string;
+  instagramUrl?: string;
+  reviewed: boolean;
+};
+
 function PhotoSearchPage() {
   const [queue, setQueue] = useState<PhotoSearchQueueSalon[] | null>(null);
   const [total, setTotal] = useState(0);
   const [offset, setOffset] = useState(0);
   const [results, setResults] = useState<PhotoSearchResult[] | null>(null);
+  // What a "More posts" click resumes from — set from the initial search's
+  // own response, so a second request continues past what's already been
+  // seen instead of re-walking the same pages. Null once the account's post
+  // history is actually exhausted (distinct from just not having fetched
+  // yet — see nextCursor's meaning in searchSalonImages).
+  const [nextCursor, setNextCursor] = useState<string | null>(null);
+  const [loadingMore, setLoadingMore] = useState(false);
   const [searchError, setSearchError] = useState("");
   const [queueError, setQueueError] = useState("");
   const [actioning, setActioning] = useState(false);
   const [approvedUrls, setApprovedUrls] = useState<Set<string>>(new Set());
+  // Automated search sometimes just doesn't find much (Reels-heavy account,
+  // sparse feed) — this hands the salon straight to Link backlog so the
+  // admin can hand-pick specific posts instead, without leaving this page.
+  const [sendingToBacklog, setSendingToBacklog] = useState(false);
+  const [sentToBacklogIds, setSentToBacklogIds] = useState<Set<string>>(new Set());
 
   // Photo searches take several seconds each; prefetching the next queue
   // item while the admin reviews the current one hides that latency behind
   // review time instead of making every "next" click wait on the network.
-  const resultsCacheRef = useRef(new Map<string, Promise<{ ok: boolean; results?: PhotoSearchResult[]; message?: string }>>());
+  const resultsCacheRef = useRef(
+    new Map<string, Promise<{ ok: boolean; results?: PhotoSearchResult[]; nextCursor?: string | null; message?: string }>>()
+  );
 
   // A `?ids=a,b,c` query param on the admin URL switches this page to a
   // hand-picked list of stylists (e.g. re-running search for better photos
   // on ones that already have some) instead of the automated zero-photos
-  // backfill queue.
-  const customIds = useMemo(() => new URLSearchParams(window.location.search).get("ids") || "", []);
+  // backfill queue. An explicit URL list is a deliberate deep link (e.g.
+  // shared with someone else) and wins over the persisted picks below.
+  const urlIds = useMemo(() => new URLSearchParams(window.location.search).get("ids") || "", []);
+
+  // The persisted, interactive version of the same `ids` mechanism — see
+  // PhotoSearchPicks below. Loaded once on mount; `picksLoaded` gates the
+  // very first queue fetch so it doesn't briefly load the automated queue
+  // and then immediately swap to the picks-driven one once they arrive.
+  const [picks, setPicks] = useState<PhotoSearchPick[]>([]);
+  const [picksLoaded, setPicksLoaded] = useState(false);
+  const loadPicks = useCallback(() => {
+    fetch("/api/admin/photo-search-picks", { credentials: "include" })
+      .then((response) => response.json())
+      .then((payload) => {
+        if (payload.ok) setPicks(payload.picks ?? []);
+      })
+      .catch(() => {})
+      .finally(() => setPicksLoaded(true));
+  }, []);
+  useEffect(() => loadPicks(), [loadPicks]);
+  const picksIds = useMemo(() => picks.map((pick) => pick.id).join(","), [picks]);
+  const customIds = urlIds || picksIds;
 
   // includeReels/includeDismissed are toggles, not a one-off list like `ids`
   // — reading them only from the URL bit an admin every time they navigated
@@ -4510,17 +4557,21 @@ function PhotoSearchPage() {
     [customIds, includeDismissed]
   );
 
-  useEffect(() => loadQueuePage(0), [loadQueuePage]);
+  useEffect(() => {
+    if (urlIds || picksLoaded) loadQueuePage(0);
+  }, [loadQueuePage, urlIds, picksLoaded]);
 
   const current = queue?.[0] ?? null;
 
   useEffect(() => {
     if (!current) {
       setResults(null);
+      setNextCursor(null);
       return;
     }
     let cancelled = false;
     setResults(null);
+    setNextCursor(null);
     setSearchError("");
     setApprovedUrls(new Set());
     fetchPhotoSearch(current.id)
@@ -4531,6 +4582,7 @@ function PhotoSearchPage() {
           return;
         }
         setResults(payload.results ?? []);
+        setNextCursor(payload.nextCursor ?? null);
       })
       .catch(() => {
         if (!cancelled) setSearchError("Image search failed.");
@@ -4563,6 +4615,9 @@ function PhotoSearchPage() {
       if (next.length === 0) loadQueuePage(offset + 20);
       return next;
     });
+    // Keeps a picked stylist's chip showing "reviewed" as soon as it's
+    // actually done, instead of only after a full page reload.
+    if (picksIds) loadPicks();
   }
 
   async function approve(result: PhotoSearchResult, crop?: { x: number; y: number; width: number; height: number }, rotation?: number) {
@@ -4608,6 +4663,76 @@ function PhotoSearchPage() {
     }
   }
 
+  async function addPick(salonId: string) {
+    const response = await fetch("/api/admin/photo-search-picks", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+      body: JSON.stringify({ salonId }),
+    }).catch(() => null);
+    if (response?.ok) loadPicks();
+  }
+
+  async function removePick(salonId: string) {
+    setPicks((current) => current.filter((pick) => pick.id !== salonId));
+    await fetch(`/api/admin/photo-search-picks/${salonId}`, { method: "DELETE", credentials: "include" }).catch(() => {});
+  }
+
+  async function clearAllPicks() {
+    setPicks([]);
+    await fetch("/api/admin/photo-search-picks", { method: "DELETE", credentials: "include" }).catch(() => {});
+  }
+
+  async function sendToLinkBacklog() {
+    if (!current) return;
+    setSendingToBacklog(true);
+    try {
+      const response = await fetch("/api/admin/photo-link-backlog", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({ salonId: current.id }),
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok || !payload.ok) {
+        setSearchError(payload.message || "Could not send to link backlog.");
+        return;
+      }
+      setSentToBacklogIds((existing) => new Set(existing).add(current.id));
+    } catch {
+      setSearchError("Could not send to link backlog.");
+    } finally {
+      setSendingToBacklog(false);
+    }
+  }
+
+  // Resumes from nextCursor rather than re-running the initial search with a
+  // bigger `num` — that would re-walk (and re-pay for) pages already seen.
+  // Deliberately bypasses resultsCacheRef: that cache holds each salon's
+  // first-batch prefetch, not a growing "more" tail, so this always hits the
+  // network for whichever salon is current.
+  async function loadMorePhotos() {
+    if (!current || !nextCursor) return;
+    setLoadingMore(true);
+    setSearchError("");
+    try {
+      const params = new URLSearchParams({ cursor: nextCursor });
+      if (includeReels) params.set("includeReels", "1");
+      const response = await fetch(`/api/admin/photo-search/${current.id}?${params.toString()}`, { credentials: "include" });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok || !payload.ok) {
+        setSearchError(payload.message || "Could not load more posts.");
+        return;
+      }
+      setResults((existing) => [...(existing ?? []), ...(payload.results ?? [])]);
+      setNextCursor(payload.nextCursor ?? null);
+    } catch {
+      setSearchError("Could not load more posts.");
+    } finally {
+      setLoadingMore(false);
+    }
+  }
+
   return (
     <div className="flex h-full flex-col gap-2">
       <div className="flex items-baseline justify-between gap-4">
@@ -4615,11 +4740,15 @@ function PhotoSearchPage() {
         <p className="truncate text-xs text-stone-500">
           {includeReels
             ? "Reel-cover mode — pulling in Reel thumbnails too, not just photo posts."
-            : customIds
+            : urlIds
               ? "Custom list — approve a thumbnail to add it above the existing photos, or skip."
-              : "Salons the automated backfill found no photos for — approve a thumbnail to add it, or skip."}
+              : picksIds
+                ? "Picked stylists — approve a thumbnail to add it above the existing photos, or skip."
+                : "Salons the automated backfill found no photos for — approve a thumbnail to add it, or skip."}
         </p>
       </div>
+
+      {!urlIds ? <PhotoSearchPicksBar picks={picks} onAdd={addPick} onRemove={removePick} onClearAll={clearAllPicks} /> : null}
 
       <div className="flex shrink-0 items-center gap-4">
         <label className="flex items-center gap-1.5 text-xs text-stone-700 dark:text-stone-300">
@@ -4679,6 +4808,14 @@ function PhotoSearchPage() {
               <span className="text-xs text-stone-500">{total} left</span>
               <button
                 type="button"
+                disabled={sendingToBacklog || sentToBacklogIds.has(current.id)}
+                onClick={sendToLinkBacklog}
+                className="border border-stone-300 bg-white px-3 py-1.5 text-xs font-semibold text-stone-700 transition hover:bg-stone-100 disabled:opacity-50 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-200"
+              >
+                {sentToBacklogIds.has(current.id) ? "Sent to link backlog" : sendingToBacklog ? "Sending…" : "Send to link backlog"}
+              </button>
+              <button
+                type="button"
                 disabled={actioning}
                 onClick={advance}
                 className="border border-stone-300 bg-white px-3 py-1.5 text-xs font-semibold text-stone-700 transition hover:bg-stone-100 disabled:opacity-50 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-200"
@@ -4705,7 +4842,136 @@ function PhotoSearchPage() {
           ) : results ? (
             <PhotoResultGrid results={results} approvedUrls={approvedUrls} actioning={actioning} onApprove={approve} />
           ) : null}
+
+          {results !== null && nextCursor ? (
+            <button
+              type="button"
+              disabled={loadingMore}
+              onClick={loadMorePhotos}
+              className="self-start border border-stone-300 bg-white px-3 py-1.5 text-xs font-semibold text-stone-700 transition hover:bg-stone-100 disabled:opacity-50 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-200"
+            >
+              {loadingMore ? "Loading more…" : "More posts"}
+            </button>
+          ) : null}
         </div>
+      )}
+    </div>
+  );
+}
+
+// A persistent, hand-picked worklist for Photo search — mirrors the Link
+// backlog's own search-and-add pattern (fetch every published stylist once,
+// filter client-side, click "+" to add) but the pick just switches Photo
+// search's queue to those specific stylists instead of storing pasted links.
+function PhotoSearchPicksBar({
+  picks,
+  onAdd,
+  onRemove,
+  onClearAll,
+}: {
+  picks: PhotoSearchPick[];
+  onAdd: (salonId: string) => void;
+  onRemove: (salonId: string) => void;
+  onClearAll: () => void;
+}) {
+  const [stylists, setStylists] = useState<StylistDraft[] | null>(null);
+  const [query, setQuery] = useState("");
+  const confirm = useConfirm();
+
+  async function clearAll() {
+    const confirmed = await confirm({
+      title: "Clear all picks?",
+      description: `Removes all ${picks.length} stylist${picks.length === 1 ? "" : "s"} from this worklist. They'll still show up in the automated queue if they have no photos.`,
+      confirmLabel: "Clear all",
+      tone: "danger",
+    });
+    if (!confirmed) return;
+    onClearAll();
+  }
+
+  useEffect(() => {
+    fetch("/api/admin/stylists/published", { credentials: "include" })
+      .then((response) => response.json())
+      .then((payload) => {
+        if (payload.ok) setStylists(payload.stylists);
+      })
+      .catch(() => {});
+  }, []);
+
+  const pickedIds = useMemo(() => new Set(picks.map((pick) => pick.id)), [picks]);
+
+  const matches = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    if (!q || !stylists) return [];
+    return stylists
+      .filter((stylist) => !pickedIds.has(stylist.id))
+      .filter((stylist) => stylist.name.toLowerCase().includes(q) || (stylist.instagramUrl || "").toLowerCase().includes(q))
+      .slice(0, 8);
+  }, [query, stylists, pickedIds]);
+
+  return (
+    <div className="flex shrink-0 flex-col gap-1.5 border border-stone-200 bg-white px-3 py-2">
+      <div className="relative">
+        <Search className="pointer-events-none absolute left-2.5 top-1/2 size-4 -translate-y-1/2 text-stone-400" />
+        <Input
+          value={query}
+          onChange={(event) => setQuery(event.target.value)}
+          placeholder="Search stylists by name or Instagram handle to pick…"
+          className="h-8 pl-8 text-xs"
+        />
+      </div>
+      {query.trim() && matches.length > 0 ? (
+        <div className="flex flex-col border border-stone-200">
+          {matches.map((stylist) => (
+            <button
+              key={stylist.id}
+              type="button"
+              onClick={() => {
+                onAdd(stylist.id);
+                setQuery("");
+              }}
+              className="flex items-center justify-between gap-4 px-3 py-2 text-left text-xs hover:bg-stone-50"
+            >
+              <span className="truncate">
+                {stylist.name}
+                <span className="ml-2 text-stone-500">{stylist.instagramUrl || "No Instagram on file"}</span>
+              </span>
+              <Plus className="size-3.5 shrink-0 text-stone-400" />
+            </button>
+          ))}
+        </div>
+      ) : null}
+      {picks.length > 0 ? (
+        <>
+          <div className="flex items-center justify-between">
+            <p className="text-xs text-stone-500">
+              {picks.length} stylist{picks.length === 1 ? "" : "s"} picked
+            </p>
+            <button type="button" onClick={clearAll} className="text-xs font-medium text-stone-500 hover:text-stone-950">
+              Clear all
+            </button>
+          </div>
+          <div className="flex flex-wrap gap-1.5">
+            {picks.map((pick) => (
+              <span
+                key={pick.id}
+                className={cn(
+                  "inline-flex items-center gap-1.5 border px-2 py-1 text-xs font-medium",
+                  pick.reviewed ? "border-stone-200 bg-stone-50 text-stone-400" : "border-stone-300 bg-stone-50 text-stone-700"
+                )}
+                title={pick.reviewed ? "Already reviewed — won't come up again in this queue" : undefined}
+              >
+                {pick.name}
+                {pick.reviewed ? <Check className="size-3" aria-hidden="true" /> : null}
+                <button type="button" onClick={() => onRemove(pick.id)} aria-label={`Remove ${pick.name} from picks`} className="text-stone-400 hover:text-stone-950">
+                  <X className="size-3" />
+                </button>
+              </span>
+            ))}
+          </div>
+        </>
+      ) : (
+        <p className="text-xs text-stone-500">No stylists picked — search above to limit the queue to specific stylists.</p>
       )}
     </div>
   );
@@ -5328,6 +5594,7 @@ type PhotoOrderSalon = {
   neighbourhood?: string;
   postcode?: string;
   areaLabel?: string;
+  instagramUrl?: string;
   portfolioPhotos: PortfolioPhotoAdmin[];
 };
 
@@ -5345,18 +5612,35 @@ function PhotoOrderQueuePage() {
   const [hasMore, setHasMore] = useState(true);
   const [busySalonId, setBusySalonId] = useState<string | null>(null);
   const [rowError, setRowError] = useState<{ id: string; message: string } | null>(null);
+  const [searchTags, setSearchTags] = useState<string[]>([]);
+  // Committed on Enter/comma/suggestion click, not per keystroke — so the
+  // applied filter (searchTerm) only changes when a tag is actually added
+  // or removed, no debounce needed for it.
+  const searchTerm = useMemo(() => searchTags.join(","), [searchTags]);
   const offsetRef = useRef(0);
   const loadingRef = useRef(false);
+  // Bumped on every load so a slow response from an outdated search term
+  // (or a stale pagination call raced by a search reset) can be told apart
+  // from the request that's actually current and silently dropped.
+  const requestIdRef = useRef(0);
   const sentinelObserverRef = useRef<IntersectionObserver | null>(null);
 
-  const loadMore = useCallback(() => {
-    if (loadingRef.current) return;
+  // `reset` calls (mount, new search term) always start a fresh request,
+  // even if a previous one is still in flight — its result gets discarded
+  // when it lands. Sentinel-triggered pagination calls still dedupe via
+  // loadingRef so scrolling doesn't fire overlapping page fetches.
+  const loadMore = useCallback((search: string, options?: { reset?: boolean }) => {
+    if (loadingRef.current && !options?.reset) return;
+    const requestId = ++requestIdRef.current;
     loadingRef.current = true;
     setLoadingMore(true);
     setLoadError("");
-    fetch(`/api/admin/photo-order-queue?offset=${offsetRef.current}&limit=${PAGE_SIZE}`, { credentials: "include" })
+    const params = new URLSearchParams({ offset: String(offsetRef.current), limit: String(PAGE_SIZE) });
+    if (search) params.set("search", search);
+    fetch(`/api/admin/photo-order-queue?${params.toString()}`, { credentials: "include" })
       .then((response) => response.json())
       .then((payload) => {
+        if (requestIdRef.current !== requestId) return;
         if (!payload.ok) {
           setLoadError(payload.message || "Could not load the photo order queue.");
           setHasMore(false);
@@ -5370,22 +5654,37 @@ function PhotoOrderQueuePage() {
         }
       })
       .catch(() => {
+        if (requestIdRef.current !== requestId) return;
         setLoadError("Could not load the photo order queue.");
         setHasMore(false);
       })
       .finally(() => {
+        if (requestIdRef.current !== requestId) return;
         loadingRef.current = false;
         setLoadingMore(false);
       });
   }, []);
 
-  // Fires once on mount (empty scrollable list can't intersect anything
-  // yet), then again every time the sentinel scrolls into view — no
-  // Previous/Next, the list just keeps growing until `hasMore` goes false.
+  // Fires once on mount and again whenever the (debounced) search term
+  // changes — resets pagination first so the fetch that follows starts
+  // from offset 0 against the new filter instead of appending to it.
   useEffect(() => {
-    loadMore();
+    offsetRef.current = 0;
+    setSalons([]);
+    setHasMore(true);
+    loadMore(searchTerm, { reset: true });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [searchTerm]);
+
+  function addSearchTag(name: string) {
+    const trimmed = name.trim();
+    if (!trimmed) return;
+    setSearchTags((current) => (current.some((tag) => tag.toLowerCase() === trimmed.toLowerCase()) ? current : [...current, trimmed]));
+  }
+
+  function removeSearchTag(name: string) {
+    setSearchTags((current) => current.filter((tag) => tag !== name));
+  }
 
   // A plain ref only fires once at mount, but the sentinel div doesn't exist
   // yet then — the list still shows "Loading…" until the first page lands.
@@ -5399,14 +5698,14 @@ function PhotoOrderQueuePage() {
       if (!node) return;
       const observer = new IntersectionObserver(
         (entries) => {
-          if (entries[0]?.isIntersecting) loadMore();
+          if (entries[0]?.isIntersecting) loadMore(searchTerm);
         },
         { rootMargin: "800px" }
       );
       observer.observe(node);
       sentinelObserverRef.current = observer;
     },
-    [loadMore]
+    [loadMore, searchTerm]
   );
 
   async function saveOrder(salonId: string, photos: PortfolioPhotoAdmin[]) {
@@ -5459,6 +5758,15 @@ function PhotoOrderQueuePage() {
     }
   }
 
+  // The approve endpoint behind PhotoOrderLinkFetch only returns the one
+  // new photo (not the full salon), and prepends it server-side — mirror
+  // that ordering here so the reorder grid picks it up without a refetch.
+  function addApprovedPhoto(salonId: string, photo: PortfolioPhotoAdmin) {
+    setSalons((current) =>
+      current.map((salon) => (salon.id === salonId ? { ...salon, portfolioPhotos: [photo, ...salon.portfolioPhotos] } : salon))
+    );
+  }
+
   return (
     <div className="flex h-full flex-col gap-2">
       <div className="flex items-baseline justify-between gap-4">
@@ -5468,16 +5776,18 @@ function PhotoOrderQueuePage() {
         </p>
       </div>
 
+      <PhotoOrderSearchBox tags={searchTags} onAddTag={addSearchTag} onRemoveTag={removeSearchTag} />
+
       {loadError ? <p className="text-sm text-red-600">{loadError}</p> : null}
 
       {salons.length === 0 && loadingMore ? (
         <p className="text-sm text-stone-500">Loading…</p>
       ) : salons.length === 0 ? (
-        <p className="text-sm text-stone-500">Nothing to reorder.</p>
+        <p className="text-sm text-stone-500">{searchTerm ? "No stylists match that search." : "Nothing to reorder."}</p>
       ) : (
         <div className="flex min-h-0 flex-1 flex-col gap-4 overflow-y-auto">
           <p className="text-xs text-stone-500">
-            {total} stylist{total === 1 ? "" : "s"} with 2+ photos
+            {total} stylist{total === 1 ? "" : "s"} with 2+ photos{searchTerm ? " matching search" : ""}
           </p>
           {salons.map((salon) => (
             <div key={salon.id} className="border border-stone-200 bg-white p-3">
@@ -5486,6 +5796,16 @@ function PhotoOrderQueuePage() {
                 <span className="truncate text-xs text-stone-500">
                   {[salon.neighbourhood, salon.postcode].filter(Boolean).join(" · ") || salon.areaLabel || "No location on file"}
                 </span>
+                {salon.instagramUrl ? (
+                  <a
+                    href={salon.instagramUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="shrink-0 text-xs text-stone-700 underline dark:text-stone-300"
+                  >
+                    Instagram
+                  </a>
+                ) : null}
               </div>
               {rowError?.id === salon.id ? <p className="mb-2 text-xs text-red-600">{rowError.message}</p> : null}
               <PortfolioPhotoReorderGrid
@@ -5494,6 +5814,11 @@ function PhotoOrderQueuePage() {
                 isBusy={busySalonId === salon.id}
                 onSave={(photos) => saveOrder(salon.id, photos)}
                 onCropPhoto={(photoId, region) => cropPhoto(salon.id, photoId, region)}
+              />
+              <PhotoOrderLinkFetch
+                salonId={salon.id}
+                instagramUrl={salon.instagramUrl}
+                onPhotoApproved={(photo) => addApprovedPhoto(salon.id, photo)}
               />
             </div>
           ))}
@@ -5506,10 +5831,374 @@ function PhotoOrderQueuePage() {
               {loadingMore ? "Loading more…" : ""}
             </div>
           ) : (
-            <p className="py-4 text-center text-xs text-stone-400">That's every stylist with 2+ photos.</p>
+            <p className="py-4 text-center text-xs text-stone-400">
+              {searchTerm ? "That's every match." : "That's every stylist with 2+ photos."}
+            </p>
           )}
         </div>
       )}
+    </div>
+  );
+}
+
+// Collapsed by default (833+ of these would otherwise all mount a textarea
+// and result grid at once) — lets an admin fetch a stylist's Instagram
+// posts straight from the reorder queue instead of switching to the
+// separate Link backlog page. Shares the backlog's own endpoints, so links
+// pasted here are saved there too; unlike LinkBacklogRow this salon may not
+// already have a backlog entry, so a POST ensures one exists (idempotent)
+// before the PATCH/run calls that require it.
+function PhotoOrderLinkFetch({
+  salonId,
+  instagramUrl,
+  onPhotoApproved,
+}: {
+  salonId: string;
+  instagramUrl?: string;
+  onPhotoApproved: (photo: PortfolioPhotoAdmin) => void;
+}) {
+  const [isOpen, setIsOpen] = useState(false);
+  const [linksText, setLinksText] = useState("");
+  const [fetching, setFetching] = useState(false);
+  const [fetchingProfilePicture, setFetchingProfilePicture] = useState(false);
+  const [fetchError, setFetchError] = useState("");
+  const [results, setResults] = useState<PhotoSearchResult[] | null>(null);
+  const [approvedUrls, setApprovedUrls] = useState<Set<string>>(new Set());
+  const [failedUrls, setFailedUrls] = useState<Set<string>>(new Set());
+
+  // Search-result photos wait for a manual pick; a link pasted here was
+  // already a deliberate one (the admin browsed the real Instagram
+  // themselves), so every fetched photo is approved automatically instead —
+  // same tradeoff as LinkBacklogRow's identical helper.
+  async function approveResult(result: PhotoSearchResult): Promise<PortfolioPhotoAdmin | null> {
+    try {
+      const response = await fetch(`/api/admin/photo-search/${salonId}/approve`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({ imageUrl: result.imageUrl, thumbnailUrl: result.thumbnailUrl, isReel: result.isReel }),
+      });
+      const payload = await response.json().catch(() => ({}));
+      return response.ok && payload.ok && payload.photo ? payload.photo : null;
+    } catch {
+      return null;
+    }
+  }
+
+  async function fetchProfilePicture() {
+    setFetchingProfilePicture(true);
+    setFetchError("");
+    try {
+      const response = await fetch(`/api/admin/photo-link-backlog/${salonId}/fetch-profile-picture`, {
+        method: "POST",
+        credentials: "include",
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok || !payload.ok) {
+        setFetchError(payload.message || "Could not fetch the profile picture.");
+        return;
+      }
+      const result: PhotoSearchResult | null = payload.result ?? null;
+      if (!result) {
+        setFetchError("No profile picture found.");
+        return;
+      }
+      const photo = await approveResult(result);
+      setResults((current) => [...(current ?? []), result]);
+      if (photo) {
+        setApprovedUrls((current) => new Set(current).add(result.imageUrl));
+        onPhotoApproved(photo);
+      } else {
+        setFailedUrls((current) => new Set(current).add(result.imageUrl));
+        setFetchError("Could not approve the profile picture.");
+      }
+    } catch {
+      setFetchError("Could not fetch the profile picture.");
+    } finally {
+      setFetchingProfilePicture(false);
+    }
+  }
+
+  async function runFetch() {
+    const postUrls = linksText
+      .split("\n")
+      .map((line) => line.trim())
+      .filter(Boolean);
+    if (postUrls.length === 0) return;
+    setFetching(true);
+    setFetchError("");
+    setResults(null);
+    setApprovedUrls(new Set());
+    setFailedUrls(new Set());
+    try {
+      // This stylist may never have been added to the Link backlog before —
+      // ensure an entry exists (a no-op if one already does) so the PATCH
+      // and run calls below, which 404 without one, have something to hit.
+      await fetch("/api/admin/photo-link-backlog", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({ salonId }),
+      });
+      const saveResponse = await fetch(`/api/admin/photo-link-backlog/${salonId}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({ postUrls }),
+      });
+      const savePayload = await saveResponse.json().catch(() => ({}));
+      if (!saveResponse.ok || !savePayload.ok) {
+        setFetchError(savePayload.message || "Could not save those links.");
+        return;
+      }
+      const response = await fetch(`/api/admin/photo-link-backlog/${salonId}/run`, { method: "POST", credentials: "include" });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok || !payload.ok) {
+        setFetchError(payload.message || "Could not fetch those posts.");
+        return;
+      }
+      const fetched: PhotoSearchResult[] = payload.results ?? [];
+      const approved = new Set<string>();
+      const failed = new Set<string>();
+      for (const result of fetched) {
+        const photo = await approveResult(result);
+        if (photo) {
+          approved.add(result.imageUrl);
+          onPhotoApproved(photo);
+        } else {
+          failed.add(result.imageUrl);
+        }
+      }
+      setResults(fetched);
+      setApprovedUrls(approved);
+      setFailedUrls(failed);
+      if (failed.size > 0) {
+        setFetchError(`${failed.size} of ${fetched.length} photo${fetched.length === 1 ? "" : "s"} could not be approved.`);
+      }
+    } catch {
+      setFetchError("Could not fetch those posts.");
+    } finally {
+      setFetching(false);
+    }
+  }
+
+  const linkCount = linksText
+    .split("\n")
+    .map((line) => line.trim())
+    .filter(Boolean).length;
+
+  return (
+    <div className="mt-3 border-t border-stone-200 pt-2">
+      <button
+        type="button"
+        onClick={() => setIsOpen((current) => !current)}
+        className="text-xs font-medium text-stone-600 hover:text-stone-950"
+      >
+        {isOpen ? "Hide link fetch" : "Link fetch"}
+      </button>
+      {isOpen ? (
+        <div className="mt-2 flex flex-col gap-2">
+          <textarea
+            value={linksText}
+            onChange={(event) => setLinksText(event.target.value)}
+            placeholder="Paste Instagram post/reel links, one per line…"
+            rows={2}
+            className="w-full resize-y border border-stone-200 px-2 py-1.5 text-xs text-stone-800 focus:border-stone-400 focus:outline-none"
+          />
+          <div className="flex items-center gap-2">
+            <span className="text-xs text-stone-500">
+              {linkCount} link{linkCount === 1 ? "" : "s"}
+            </span>
+            <Button
+              type="button"
+              size="sm"
+              variant="outline"
+              className="ml-auto"
+              disabled={fetchingProfilePicture || !instagramUrl}
+              onClick={fetchProfilePicture}
+            >
+              {fetchingProfilePicture ? "Fetching…" : "Fetch profile picture"}
+            </Button>
+            <Button type="button" size="sm" variant="outline" disabled={fetching || linkCount === 0} onClick={runFetch}>
+              {fetching ? "Fetching…" : "Fetch"}
+            </Button>
+          </div>
+          {fetchError ? <p className="text-xs text-red-600">{fetchError}</p> : null}
+          {results && results.length === 0 && !fetchError ? (
+            <p className="text-xs text-stone-500">No usable image found in those links.</p>
+          ) : results && results.length > 0 ? (
+            <div className="grid grid-cols-4 gap-2 sm:grid-cols-6 lg:grid-cols-8">
+              {results.map((result, index) => {
+                const failed = failedUrls.has(result.imageUrl);
+                const approved = approvedUrls.has(result.imageUrl);
+                return (
+                  <div
+                    key={`${result.imageUrl}-${index}`}
+                    className={cn("flex flex-col border bg-white", failed ? "border-red-400" : "border-emerald-500")}
+                  >
+                    <img src={result.thumbnailUrl} alt="" className="aspect-[3/2] w-full object-cover" />
+                    <div
+                      className={cn(
+                        "flex items-center justify-center gap-1 px-1 py-1.5 text-[12px] font-bold text-white",
+                        failed ? "bg-red-600" : "bg-emerald-600"
+                      )}
+                    >
+                      {failed ? (
+                        "Failed"
+                      ) : approved ? (
+                        <>
+                          <Check className="size-3.5" aria-hidden="true" />
+                          Approved
+                        </>
+                      ) : (
+                        "Approving…"
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          ) : null}
+        </div>
+      ) : null}
+    </div>
+  );
+}
+
+type PhotoOrderSuggestion = { id: string; name: string };
+
+// Tagged, suggestion-backed search box for the photo order queue — typing
+// hits the /suggest endpoint (scoped to the same 2+-photos eligible set as
+// the queue itself, so a suggested name is never a dead end), and each pick
+// becomes a removable chip. Multiple chips OR together server-side, so an
+// admin can pull up several named stylists in one pass instead of scrolling.
+function PhotoOrderSearchBox({
+  tags,
+  onAddTag,
+  onRemoveTag,
+}: {
+  tags: string[];
+  onAddTag: (name: string) => void;
+  onRemoveTag: (name: string) => void;
+}) {
+  const [queryInput, setQueryInput] = useState("");
+  const [suggestions, setSuggestions] = useState<PhotoOrderSuggestion[]>([]);
+  const [isOpen, setIsOpen] = useState(false);
+  const [highlightedIndex, setHighlightedIndex] = useState(-1);
+  const requestIdRef = useRef(0);
+
+  useEffect(() => {
+    const q = queryInput.trim();
+    if (!q) {
+      setSuggestions([]);
+      return;
+    }
+    const requestId = ++requestIdRef.current;
+    const handle = setTimeout(() => {
+      fetch(`/api/admin/photo-order-queue/suggest?q=${encodeURIComponent(q)}`, { credentials: "include" })
+        .then((response) => response.json())
+        .then((payload) => {
+          if (requestIdRef.current !== requestId || !payload.ok) return;
+          const tagSet = new Set(tags.map((tag) => tag.toLowerCase()));
+          setSuggestions((payload.suggestions || []).filter((s: PhotoOrderSuggestion) => !tagSet.has(s.name.toLowerCase())));
+          setHighlightedIndex(-1);
+        })
+        .catch(() => {});
+    }, 250);
+    return () => clearTimeout(handle);
+  }, [queryInput, tags]);
+
+  function commitTag(name: string) {
+    // Strips a trailing comma so typing "name," in one go (pasted, or typed
+    // faster than the keydown handler intercepts each keystroke) doesn't
+    // leave the comma baked into the tag.
+    onAddTag(name.replace(/,+$/, "").trim());
+    setQueryInput("");
+    setSuggestions([]);
+    setIsOpen(false);
+    setHighlightedIndex(-1);
+  }
+
+  function handleKeyDown(event: KeyboardEvent<HTMLInputElement>) {
+    if (event.key === "Enter" || event.key === ",") {
+      event.preventDefault();
+      if (highlightedIndex >= 0 && suggestions[highlightedIndex]) {
+        commitTag(suggestions[highlightedIndex].name);
+      } else if (queryInput.trim()) {
+        commitTag(queryInput);
+      }
+    } else if (event.key === "ArrowDown" && suggestions.length) {
+      event.preventDefault();
+      setHighlightedIndex((current) => (current + 1) % suggestions.length);
+    } else if (event.key === "ArrowUp" && suggestions.length) {
+      event.preventDefault();
+      setHighlightedIndex((current) => (current - 1 + suggestions.length) % suggestions.length);
+    } else if (event.key === "Escape") {
+      setIsOpen(false);
+    } else if (event.key === "Backspace" && !queryInput && tags.length) {
+      onRemoveTag(tags[tags.length - 1]);
+    }
+  }
+
+  return (
+    <div className="relative w-full max-w-sm">
+      <div className="flex min-h-10 flex-wrap items-center gap-1.5 border border-stone-300 bg-white px-2.5 py-1.5">
+        <Search className="size-4 shrink-0 text-stone-400" aria-hidden="true" />
+        {tags.map((tag) => (
+          <span
+            key={tag}
+            className="inline-flex items-center gap-1 rounded-none border border-stone-300 bg-stone-50 px-2 py-0.5 text-xs font-medium text-stone-700"
+          >
+            {tag}
+            <button
+              type="button"
+              onClick={() => onRemoveTag(tag)}
+              aria-label={`Remove ${tag}`}
+              className="text-stone-400 transition hover:text-stone-950"
+            >
+              <X className="size-3" />
+            </button>
+          </span>
+        ))}
+        <input
+          value={queryInput}
+          onChange={(event) => {
+            setQueryInput(event.target.value);
+            // Typing again after a tag commit (which closes the dropdown)
+            // needs its own reopen — the input never loses focus in that
+            // flow, so onFocus below doesn't fire a second time.
+            setIsOpen(true);
+          }}
+          onKeyDown={handleKeyDown}
+          onFocus={() => setIsOpen(true)}
+          onBlur={() => setIsOpen(false)}
+          placeholder={tags.length ? "Add another…" : "Search stylist names…"}
+          aria-label="Search stylists by name"
+          className="min-w-[120px] flex-1 border-none bg-transparent px-1 py-0.5 text-sm text-stone-950 outline-none placeholder:text-stone-400"
+        />
+      </div>
+      {isOpen && suggestions.length > 0 ? (
+        <div className="absolute left-0 right-0 top-full z-10 mt-1 flex flex-col border border-stone-200 bg-white shadow-sm">
+          {suggestions.map((suggestion, index) => (
+            <button
+              key={suggestion.id}
+              type="button"
+              // mousedown (not click) fires before the input's blur, so the
+              // dropdown is still mounted when this handler runs.
+              onMouseDown={(event) => {
+                event.preventDefault();
+                commitTag(suggestion.name);
+              }}
+              className={cn(
+                "px-3 py-2 text-left text-sm hover:bg-stone-50",
+                index === highlightedIndex ? "bg-stone-50" : ""
+              )}
+            >
+              {suggestion.name}
+            </button>
+          ))}
+        </div>
+      ) : null}
     </div>
   );
 }
@@ -7874,7 +8563,7 @@ function getActionableRemovedServices(check: DirectoryCheck) {
 }
 
 function hasSupportedFreshnessEvidence(check: DirectoryCheck, service: string) {
-  if (service === "U-part wig install") {
+  if (service === "U-Part / Half wig install") {
     return check.serviceCheck.rawServices.some((line) => hasExplicitUPartWigEvidence(line));
   }
   if (service === "Closure sew-in") {
@@ -7901,10 +8590,10 @@ function hasSupportedFreshnessEvidence(check: DirectoryCheck, service: string) {
   if (service === "Natural hair coaches / educators") {
     return check.serviceCheck.rawServices.some((line) => hasNaturalHairEducationEvidence(line));
   }
-  if (service === "Keratin treatment") {
+  if (service === "Keratin treatment / Brazilian blowdry") {
     return !check.serviceCheck.rawServices.some((line) => hasKeratinTipEvidence(line));
   }
-  if (service === "Starter locs") {
+  if (service === "Starter locs / instant locs") {
     return check.serviceCheck.rawServices.some((line) => hasStarterLocsEvidence(line));
   }
   if (service === "Twists (with extensions)") {
@@ -7925,7 +8614,7 @@ function hasSupportedFreshnessEvidence(check: DirectoryCheck, service: string) {
   if (service === "Stitch braids") {
     return check.serviceCheck.rawServices.some((line) => hasStitchBraidsEvidence(line));
   }
-  if (service === "Butterfly locs" || service === "Faux locs") {
+  if (service === "Butterfly locs" || service === "Soft locs" || service === "Crochet faux locs / invisible locs") {
     return check.serviceCheck.rawServices.some((line) => hasSpecificLocSubtypeEvidence(line, service));
   }
   if (service === "Full head colour" || service === "Balayage" || service === "Highlights") {
@@ -8059,8 +8748,11 @@ function hasSpecificLocSubtypeEvidence(value: string, service: string) {
   if (service === "Butterfly locs") {
     return /\bbutterfly\s+locs?\b/.test(normalized);
   }
-  if (service === "Faux locs") {
-    return /\bfaux\s+locs?\b|\binvisible\s+locs?\b|\bsoft\s+locs?\b/.test(normalized);
+  if (service === "Soft locs") {
+    return /\bfaux\s+locs?\b|\bsoft\s+locs?\b/.test(normalized);
+  }
+  if (service === "Crochet faux locs / invisible locs") {
+    return /\bcrochet\s+(faux\s+)?locs?\b|\bfaux\s+locs?\s+crochet\b|\binvisible\s+locs?\b/.test(normalized);
   }
   return false;
 }
@@ -8247,7 +8939,7 @@ const serviceEvidenceKeywords: Record<string, string[]> = {
   "Fulani / lemonade braids": ["fulani", "lemonade", "alicia keys braids"],
   "K-tips / invisible strands": ["k tips", "k-tips", "keratin tip", "keratin tips", "keratin bonds", "invisible strands"],
   "Frontal ponytail / bun": ["frontal ponytail", "frontal pony", "frontal bun", "frontal updo"],
-  "U-part wig install": ["u part", "upart", "u-part", "u part wig", "u-part wig", "upart wig", "v part", "vpart", "v-part", "u/vpart", "uvpart"],
+  "U-Part / Half wig install": ["u part", "upart", "u-part", "u part wig", "u-part wig", "upart wig", "v part", "vpart", "v-part", "u/vpart", "uvpart", "half wig"],
   "Custom wig": ["custom wig", "bespoke wig", "custom lace", "custom unit", "customised closure unit", "customized closure unit", "custom mini frontal unit", "unit customisation", "unit customization", "construction of wig", "construction of the wig", "wig making", "wig construction", "wig customising", "wig customisation", "wig customization", "construction and customisation", "construction and customization"],
   "Wig install (frontal / closure)": ["wig install", "wig installation", "installation of the wig", "wig application", "wig fitting", "glueless wig", "lace wig", "frontal wig", "closure wig", "lace frontal installation", "lace closure installation", "frontal unit", "closure unit", "ready-made unit", "ready made unit", "unit install", "frontal unit install", "closure unit install"],
   "Pixie wig / weave install": ["pixie wig", "pixie weave", "pixie install", "pixie sew in", "pixie sew-in", "pixie sewin"],
@@ -8261,8 +8953,8 @@ const serviceEvidenceKeywords: Record<string, string[]> = {
   "Updo": ["updo", "up do", "pin up", "french roll up", "french roll"],
   "Wig cornrows": ["under wig", "wig cornrows", "cornrows for wig installation", "cornrows"],
   "Butterfly locs": ["butterfly locs"],
-  "Faux locs": ["faux locs", "invisible locs", "soft locs"],
-  "Starter locs": ["starter locs", "start locs", "loc start"],
+  "Soft locs": ["faux locs", "invisible locs", "soft locs", "crochet locs"],
+  "Starter locs / instant locs": ["starter locs", "start locs", "loc start", "instant locs"],
   "Stitch braids": ["stitch braids", "stitch"],
   "Scalp detox / treatments": ["scalp", "scalp care", "scalp therapy", "scalp treatment", "scalp treatments", "scalp scrub", "scalp detox", "scalp rejuvenation", "scalp renewal", "exfoliating scalp salt scrub"],
   "Roller set": ["roller set", "roller sets", "rollers", "wet set", "wet roller set", "perm rods", "perm rod set", "curlformers", "flexi rods on wet hair", "rod set"],
@@ -10059,6 +10751,7 @@ const additionalNeedsFieldMap: Record<string, keyof StylistDraft> = {
   priceIncludesHair: "priceIncludesHair",
   lgbtqFriendly: "lgbtqFriendly",
   parkingAvailable: "parkingAvailable",
+  sameDayEmergency: "sameDayEmergency",
 };
 
 function DraftAdditionalNeeds({
@@ -10276,6 +10969,7 @@ function publishedSalonToDraft(salon: Partial<StylistDraft>): StylistDraft {
     packagePriceBand: salon.packagePriceBand,
     priceIncludesHair: salon.priceIncludesHair === true,
     sellsHairSeparately: salon.sellsHairSeparately === true,
+    sameDayEmergency: salon.sameDayEmergency === true,
     priceComparisonMode: salon.priceComparisonMode || "",
     priceSource: salon.priceSource || "",
     priceEvidence: Array.isArray(salon.priceEvidence) ? salon.priceEvidence : [],
@@ -12405,7 +13099,12 @@ function buildDraftPricingUpdate(
     priceBand: priceCheck.priceBand,
     servicePriceBand: priceCheck.servicePriceBand || priceCheck.priceBand,
     packagePriceBand: priceCheck.packagePriceBand || "",
-    priceIncludesHair: priceCheck.priceIncludesHair === true,
+    // Preserve an already-confirmed hair-inclusive flag: this auto-refresh only
+    // re-parses whatever price text is on the booking page right now, so an
+    // evidence line that doesn't happen to mention packages this time round
+    // must not silently revert a flag a human (or an earlier, richer check)
+    // already confirmed true.
+    priceIncludesHair: priceCheck.priceIncludesHair === true || draft.priceIncludesHair === true,
     priceComparisonMode: priceCheck.priceComparisonMode || (priceCheck.packagePriceBand ? "mixed" : "service-only"),
     priceSource: source,
     priceEvidence: (priceCheck.evidence || []).slice(0, 8),

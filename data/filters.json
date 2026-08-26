@@ -64,13 +64,22 @@
     },
     {
       "id": "locs-services",
-      "label": "Locs",
+      "label": "Locs (permanent)",
       "subcategories": [
-        "Butterfly locs",
-        "Faux locs",
+        "Starter locs / instant locs",
+        "Retwist / interlocking",
+        "Loc styling",
         "Microlocs / sisterlocs",
-        "Retwist",
-        "Starter locs"
+        "Loc extensions (permanent)"
+      ]
+    },
+    {
+      "id": "faux-locs-services",
+      "label": "Faux locs",
+      "subcategories": [
+        "Soft locs",
+        "Crochet faux locs / invisible locs",
+        "Butterfly locs"
       ]
     },
     {
@@ -108,7 +117,7 @@
         "Hair botox",
         "Japanese straightening",
         "K-18 treatment",
-        "Keratin treatment",
+        "Keratin treatment / Brazilian blowdry",
         "Moisturising treatment",
         "Olaplex treatment",
         "Relaxer / texturiser",
@@ -148,7 +157,7 @@
       "subcategories": [
         "Custom wig",
         "Pixie wig / weave install",
-        "U-part wig install",
+        "U-Part / Half wig install",
         "Wig colouring / bundle colouring",
         "Wig install (frontal / closure)",
         "Wig blowdry",
