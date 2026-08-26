@@ -35,6 +35,9 @@
   "functions": {
     "api/admin.js": {
       "excludeFiles": "public/portfolio-photos/**"
+    },
+    "api/search.mjs": {
+      "excludeFiles": "public/portfolio-photos/**"
     }
   }
 }
