@@ -106,6 +106,20 @@
       "salonId": "silk-and-sage",
       "postUrls": [],
       "addedAt": "2026-08-26"
+    },
+    {
+      "salonId": "crown-signed",
+      "postUrls": [
+        "https://www.instagram.com/p/DcVgwRat0wv/",
+        "https://www.instagram.com/p/DYz6NA7MC54/",
+        "https://www.instagram.com/p/DXT9CtojCCF/"
+      ],
+      "addedAt": "2026-08-26"
+    },
+    {
+      "salonId": "hairboyldn",
+      "postUrls": [],
+      "addedAt": "2026-08-26"
     }
   ]
 }

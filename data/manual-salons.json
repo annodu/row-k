@@ -47858,14 +47858,9 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-07-24",
+      "updatedAt": "2026-08-26",
       "portfolioPhotosCheckedAt": "2026-08-21",
       "portfolioPhotos": [
-        {
-          "id": "hairboyldn-portfolio-photo-0946141f-ab73-4a81-bf3a-c9bc4a501740",
-          "url": "/portfolio-photos/hairboyldn-709f7fa7-133e-44e4-a956-03ac8e42738a.jpg",
-          "source": "instagram-reel-thumbnail"
-        },
         {
           "id": "hairboyldn-portfolio-photo-0076e656-b550-4e80-8dc8-d9ecb6405e34",
           "url": "/portfolio-photos/hairboyldn-54e0df15-d5f3-41d4-bbca-64ee2073185e.jpg",
@@ -47874,6 +47869,11 @@
         {
           "id": "hairboyldn-portfolio-photo-0202b2e3-3585-4d1d-8019-98562e72b37f",
           "url": "/portfolio-photos/hairboyldn-fba49a6c-a3e4-4c47-8f53-4a16f004ae78.jpg",
+          "source": "instagram-reel-thumbnail"
+        },
+        {
+          "id": "hairboyldn-portfolio-photo-0946141f-ab73-4a81-bf3a-c9bc4a501740",
+          "url": "/portfolio-photos/hairboyldn-709f7fa7-133e-44e4-a956-03ac8e42738a.jpg",
           "source": "instagram-reel-thumbnail"
         }
       ],
@@ -54398,10 +54398,11 @@
       "portfolioPhotos": [
         {
           "id": "lorraine-styles-portfolio-photo-58b94a08-c223-4929-84a6-418f111fd7f7",
-          "url": "/portfolio-photos/lorraine-styles-fb632d75-1096-47f0-b784-3ac0421a5e30.jpg",
+          "url": "/portfolio-photos/lorraine-styles-dd195975-c095-40b1-9e77-8b2963d2798f.jpg",
           "source": "google-image-search"
         }
-      ]
+      ],
+      "updatedAt": "2026-08-26"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -75981,7 +75982,10 @@
         "Braid take-down",
         "Silk press",
         "Scalp detox / treatments",
-        "Wig laundry"
+        "Wig laundry",
+        "K-18 treatment",
+        "Trim / hair cut",
+        "Fulani / lemonade braids"
       ],
       "summary": "Manual Instagram-led entry added from user-provided booking menu.",
       "source": "manual",
@@ -76001,7 +76005,7 @@
       "priceCheckedAt": "",
       "priceUpdatedAt": "2026-06-04",
       "priceConfidence": "manual",
-      "updatedAt": "2026-06-04",
+      "updatedAt": "2026-08-26",
       "addedVia": "Code edit",
       "discoverySource": "Manual search",
       "verifiedReviewCount": 11,
@@ -76010,10 +76014,25 @@
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleDisplayName": null,
-      "googleFormattedAddress": null,
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-07-29",
       "portfolioPhotos": [
+        {
+          "id": "crown-signed-portfolio-photo-cff99102-378d-40d1-abe8-05160caea846",
+          "url": "/portfolio-photos/crown-signed-29d66be2-11a6-417f-b1cb-56f63206b25a.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "crown-signed-portfolio-photo-2d6f752d-e831-481c-8ec7-4b0701644335",
+          "url": "/portfolio-photos/crown-signed-770eee46-9f03-40b1-875d-3e0f55c24dbe.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "crown-signed-portfolio-photo-718757af-f0e2-4566-8fbe-df4922c08a76",
+          "url": "/portfolio-photos/crown-signed-6662b687-d146-4a57-907c-da2432c53e87.jpg",
+          "source": "google-image-search"
+        },
         {
           "id": "crown-signed-portfolio-photo-8870fb10-e4e1-40cd-9d6d-aa1688974412",
           "url": "/portfolio-photos/crown-signed-16ee39f2-39b4-4f39-b56c-82ac5ed825b9.jpg",
@@ -76035,7 +76054,18 @@
           "source": "instagram-reel-thumbnail"
         }
       ],
-      "photoSearchReviewedAt": "2026-08-24"
+      "photoSearchReviewedAt": "2026-08-26",
+      "websiteUrl": "",
+      "hairShopUrl": "https://crownsigned.com/collections/all",
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "sellsHairSeparately": true,
+      "customFilters": {},
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only"
     },
     {
       "id": "blessed-by-sj",
