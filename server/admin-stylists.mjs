@@ -6,7 +6,8 @@ import { assertSafeOutboundHttpUrl, createRateLimiter, requireTrustedOrigin, san
 import { fetchAllTimeSummary, fetchAnalyticsSummary, fetchRecentActivity } from "./analytics.mjs";
 import { extractPostcodeToken, getParkingAvailable, getWheelchairAccessibleEntrance, loadGooglePlacesApiKey, matchSalonToGoogle } from "./google-match.mjs";
 import { getVerifiedReviewPlatform, matchVerifiedReviews } from "./verified-reviews.mjs";
-import { fetchInstagramPostImage, fetchInstagramProfilePicture, searchSalonImages } from "./image-search.mjs";
+import { fetchInstagramPostImage, fetchInstagramProfilePicture, fetchInstagramProfileViaAnyApi, fetchInstagramRecentCaptions, searchSalonImages } from "./image-search.mjs";
+import { resolveBioLink } from "./bio-link-resolver.mjs";
 import { cropCollagePanel, downloadImage } from "../scripts/lib/photo-candidates.mjs";
 import { createWorker } from "tesseract.js";
 import sharp from "sharp";
@@ -119,6 +120,7 @@ const bookingPlatformMatchers = [
   ["getslick.com", "GetSlick"],
   ["slick.fyi", "GetSlick"],
   ["tressly.com", "Tressly"],
+  ["tress.ly", "Tressly"],
   ["jena", "Jena"],
   ["treatwell.co.uk", "Treatwell"],
   ["glossgenius.com", "GlossGenius"],
@@ -218,6 +220,13 @@ const serviceRuleMatchers = [
   ["Crochet", [/\bcrochet\b/]],
   ["Creative braids", [/\bpatewo\b/, /\bdolly\s+braids?\b/, /\bshuku\b/, /\bkoroba\s+braids?\b/, /\bcreative\b.*\bbraids?\b/]],
   ["Feed-in braids", [/\bfeed\s*in\b/, /\bfeed-in\b/, /\ball\s+back\b.*\b(braids?|cornrows?|feed\s*ins?)\b/, /\b(braids?|cornrows?|feed\s*ins?)\b.*\ball\s+back\b/, /\bbraids?\b.*\bgoing\s+back\b/, /\bgoing\s+back\b.*\bbraids?\b/, /\bcornrows?\b.*\b(extension|extensions|pre\s*pull(ed)?|braiding\s+hair)\b/, /\b(extension|extensions|pre\s*pull(ed)?|braiding\s+hair)\b.*\bcornrows?\b/]],
+  // Was never matchable at all before — "Men's Natural Braids/Twists" (a
+  // real Acuity line item) doesn't literally contain "men's braids" as a
+  // substring, so the isStrongServiceMatch fallback couldn't catch it either.
+  // Patterns run against normalizeServiceText's output, which strips
+  // apostrophes to spaces — "Men's" becomes "men s", not "mens" — so match
+  // bare "men", not "men's"/"mens".
+  ["Men's braids", [/\bmen\b.*\bbraids?\b/, /\bbraids?\b.*\bmen\b/, /\bmale\b.*\bbraids?\b/, /\bboys?\b.*\bbraids?\b/]],
   ["French curl", [/\bfrench\s+curl\b/]],
   ["French curl bob", [/\bfrench\s+curl\b.*\bbob\b/, /\bbob\b.*\bfrench\s+curl\b/]],
   ["Fulani / lemonade braids", [/\bfulani\b/, /\blemonade\b/, /\balicia\s+keys?\s+braids?\b/]],
@@ -259,6 +268,8 @@ const serviceRuleMatchers = [
   ["Twist out / flexi rod", [/\btwist\s*out\b/, /\bflexi\s*rod\b/, /\bflexi-rod\b/, /\bperm\s+rod\b/]],
   ["Bantu knots", [/\bbantu\b/]],
   ["Wig cornrows", [/\bunder\s*wig\b/, /\bwig\s+(cornrows?|cainrows?|braids?)\b/, /\b(cornrows?|cainrows?)\s+for\s+wig\s+installation\b/, /\b(cornrows?|cainrows?)\s+without\s+extensions?\b/, /\bwig\s+cainrows?\b/, /\bcainrows?\b/, /\bcornrows?\b/]],
+  // Also never matchable before — same gap as Men's braids above.
+  ["Kids & teens styles", [/\bkids?\b.*\b(braids?|twists?|styles?|hair|cornrows?)\b/, /\b(braids?|twists?|styles?|hair|cornrows?)\b.*\bkids?\b/, /\bteens?\b.*\b(braids?|twists?|styles?|hair)\b/, /\bchildren\b.*\b(braids?|twists?|styles?|hair)\b/]],
   ["Healthy hair plans & consultations", [/\bhealthy\s+hair\s+(regimes?|regimens?|plans?|journey|consultations?)\b/, /\bhair\s+growth\s+plans?\b/, /\bhair\s+health\s+plans?\b/]],
   ["Trichology / scalp analysis", [/\btricholog(?:y|ist|ists)\b/, /\bscalp\s+analysis\b/]],
   ["Natural hair coaches / educators", [/\b(afro|natural|curly|curl|hair)\b.*\beducation\b/, /\beducation\b.*\b(afro|natural|curly|curl|hair)\b/, /\b(hair|curl|styling)\b.*\btutorial\b/, /\btutorial\b.*\b(hair|curl|styling)\b/, /\bhair\s+health\b.*\b(assessment|plan|growth|consultation)\b/, /\bgrowth\s+plan\b/, /\bconsultation\b.*\bnatural\b/, /\bnatural\s+hair\b.*\b(class|education|consultation)\b/, /\bcurl\s+makeover\b.*\b(hands?\s*on|tutorial|styling)\b/]],
@@ -1221,7 +1232,7 @@ export function registerAdminStylistRoutes(app) {
       // admin doesn't like anything in the first batch.
       const cursor = typeof req.query.cursor === "string" && req.query.cursor ? req.query.cursor : undefined;
       const { results, nextCursor } = await searchSalonImages(salon, {
-        ...(includeReels ? { num: 30, includeReels: true } : {}),
+        ...(includeReels ? { num: 50, includeReels: true } : {}),
         cursor,
       });
       // A salon whose Instagram has nothing to show will never return
@@ -2044,6 +2055,9 @@ export function registerAdminStylistRoutes(app) {
     const rejectSenFriendly = req.body?.rejectSenFriendly === true;
     const rejectLgbtqFriendly = req.body?.rejectLgbtqFriendly === true;
     const rejectParkingAvailable = req.body?.rejectParkingAvailable === true;
+    const rejectCanBraidWithoutGel = req.body?.rejectCanBraidWithoutGel === true;
+    const rejectSellsHairSeparately = req.body?.rejectSellsHairSeparately === true;
+    const rejectSameDayEmergency = req.body?.rejectSameDayEmergency === true;
     const locationAreaIds = normalizeAreaIds(Array.isArray(req.body?.areaIds) && req.body.areaIds.length ? req.body.areaIds : req.body?.areaId ? [req.body.areaId] : []);
     const locationAreaLabel = cleanString(req.body?.areaLabel) || areaLabelForIds(locationAreaIds);
     const currentServices = normalizeServices(salon.services || []);
@@ -2073,6 +2087,9 @@ export function registerAdminStylistRoutes(app) {
       ...(req.body?.senFriendly === true ? { senFriendly: true } : {}),
       ...(req.body?.lgbtqFriendly === true ? { lgbtqFriendly: true } : {}),
       ...(req.body?.parkingAvailable === true ? { parkingAvailable: true } : {}),
+      ...(req.body?.canBraidWithoutGel === true ? { canBraidWithoutGel: true } : {}),
+      ...(req.body?.sellsHairSeparately === true ? { sellsHairSeparately: true } : {}),
+      ...(req.body?.sameDayEmergency === true ? { sameDayEmergency: true } : {}),
       ...sanitizeFreshnessPricingUpdate(req.body || {}, salon),
       services: nextServices,
     };
@@ -2092,6 +2109,9 @@ export function registerAdminStylistRoutes(app) {
       req.body?.senFriendly === true ||
       req.body?.lgbtqFriendly === true ||
       req.body?.parkingAvailable === true ||
+      req.body?.canBraidWithoutGel === true ||
+      req.body?.sellsHairSeparately === true ||
+      req.body?.sameDayEmergency === true ||
       hasFreshnessPricingUpdate(req.body || {}) ||
       locationAreaIds.length ||
       typeof req.body?.bookingUrl === "string" ||
@@ -2111,6 +2131,9 @@ export function registerAdminStylistRoutes(app) {
       rejectSenFriendly,
       rejectLgbtqFriendly,
       rejectParkingAvailable,
+      rejectCanBraidWithoutGel,
+      rejectSellsHairSeparately,
+      rejectSameDayEmergency,
       rejectPriceBand: req.body?.rejectPriceBand === true,
       rejectLocation: req.body?.rejectLocation === true,
       bookingUrl: typeof req.body?.bookingUrl === "string" ? cleanString(req.body.bookingUrl) : undefined,
@@ -2121,6 +2144,9 @@ export function registerAdminStylistRoutes(app) {
       senFriendly: req.body?.senFriendly === true ? true : undefined,
       lgbtqFriendly: req.body?.lgbtqFriendly === true ? true : undefined,
       parkingAvailable: req.body?.parkingAvailable === true ? true : undefined,
+      canBraidWithoutGel: req.body?.canBraidWithoutGel === true ? true : undefined,
+      sellsHairSeparately: req.body?.sellsHairSeparately === true ? true : undefined,
+      sameDayEmergency: req.body?.sameDayEmergency === true ? true : undefined,
       priceBand: sanitizePriceBand(req.body?.priceBand),
       areaId: locationAreaIds[0] || "",
       areaIds: locationAreaIds,
@@ -2165,7 +2191,10 @@ export function registerAdminStylistRoutes(app) {
     const hasPreviousSenFriendly = typeof req.body?.previousSenFriendly === "boolean";
     const hasPreviousLgbtqFriendly = typeof req.body?.previousLgbtqFriendly === "boolean";
     const hasPreviousParkingAvailable = typeof req.body?.previousParkingAvailable === "boolean";
-    if (previousServices.length || hasPreviousHijabiFriendly || hasPreviousWheelchairAccessible || hasPreviousSenFriendly || hasPreviousLgbtqFriendly || hasPreviousParkingAvailable) {
+    const hasPreviousCanBraidWithoutGel = typeof req.body?.previousCanBraidWithoutGel === "boolean";
+    const hasPreviousSellsHairSeparately = typeof req.body?.previousSellsHairSeparately === "boolean";
+    const hasPreviousSameDayEmergency = typeof req.body?.previousSameDayEmergency === "boolean";
+    if (previousServices.length || hasPreviousHijabiFriendly || hasPreviousWheelchairAccessible || hasPreviousSenFriendly || hasPreviousLgbtqFriendly || hasPreviousParkingAvailable || hasPreviousCanBraidWithoutGel || hasPreviousSellsHairSeparately || hasPreviousSameDayEmergency) {
       manualIndex.salons[salonIndex] = {
         ...manualIndex.salons[salonIndex],
         ...(previousServices.length ? { services: previousServices } : {}),
@@ -2174,6 +2203,9 @@ export function registerAdminStylistRoutes(app) {
         ...(hasPreviousSenFriendly ? { senFriendly: req.body.previousSenFriendly } : {}),
         ...(hasPreviousLgbtqFriendly ? { lgbtqFriendly: req.body.previousLgbtqFriendly } : {}),
         ...(hasPreviousParkingAvailable ? { parkingAvailable: req.body.previousParkingAvailable } : {}),
+        ...(hasPreviousCanBraidWithoutGel ? { canBraidWithoutGel: req.body.previousCanBraidWithoutGel } : {}),
+        ...(hasPreviousSellsHairSeparately ? { sellsHairSeparately: req.body.previousSellsHairSeparately } : {}),
+        ...(hasPreviousSameDayEmergency ? { sameDayEmergency: req.body.previousSameDayEmergency } : {}),
       };
       manualIndex.meta = {
         ...manualIndex.meta,
@@ -2193,6 +2225,9 @@ export function registerAdminStylistRoutes(app) {
       rejectSenFriendly: req.body?.rejectSenFriendly === true,
       rejectLgbtqFriendly: req.body?.rejectLgbtqFriendly === true,
       rejectParkingAvailable: req.body?.rejectParkingAvailable === true,
+      rejectCanBraidWithoutGel: req.body?.rejectCanBraidWithoutGel === true,
+      rejectSellsHairSeparately: req.body?.rejectSellsHairSeparately === true,
+      rejectSameDayEmergency: req.body?.rejectSameDayEmergency === true,
       rejectPriceBand: req.body?.rejectPriceBand === true,
       rejectLocation: req.body?.rejectLocation === true,
     });
@@ -2212,6 +2247,65 @@ export function registerAdminStylistRoutes(app) {
     store.drafts.unshift(draft);
     await writeDraftStore(store);
     res.status(201).json({ ok: true, draft });
+  });
+
+  app.post("/api/admin/stylists/intake-from-instagram", requireAdmin, adminExpensiveRateLimit, async (req, res) => {
+    let draft;
+    try {
+      draft = await buildDraftFromInstagram(req.body?.instagramUrl || "");
+    } catch (error) {
+      return res.status(400).json({ ok: false, message: error.message || "Could not read that Instagram profile." });
+    }
+
+    const store = await readDraftStore();
+    const manualIndex = await readJson(manualIndexPath, { meta: { source: "manual" }, salons: [] });
+    const duplicates = findDraftDuplicates(draft, { drafts: store.drafts, salons: manualIndex.salons });
+    if (duplicates.length) {
+      return res.status(409).json({ ok: false, message: formatDuplicateMessage(duplicates), duplicates });
+    }
+
+    store.drafts.unshift(draft);
+    await writeDraftStore(store);
+    res.status(201).json({ ok: true, draft });
+  });
+
+  // Re-runs the Instagram auto-fill pipeline against an *existing* draft
+  // (e.g. one created manually with just an Instagram URL and nothing else)
+  // instead of creating a new one — the result replaces the draft's
+  // auto-fillable fields in place, but keeps its id/createdAt/name so it's
+  // not treated as a new entity and doesn't trip duplicate detection against
+  // itself.
+  app.post("/api/admin/stylists/drafts/:id/autofill-from-instagram", requireAdmin, adminExpensiveRateLimit, async (req, res) => {
+    const store = await readDraftStore();
+    const draftIndex = store.drafts.findIndex((draft) => draft.id === req.params.id);
+    if (draftIndex === -1) {
+      return res.status(404).json({ ok: false, message: "Draft not found." });
+    }
+
+    const existing = store.drafts[draftIndex];
+    if (!existing.instagramUrl) {
+      return res.status(400).json({ ok: false, message: "This draft has no Instagram URL to auto-fill from." });
+    }
+
+    let filled;
+    try {
+      filled = await buildDraftFromInstagram(existing.instagramUrl);
+    } catch (error) {
+      return res.status(400).json({ ok: false, message: error.message || "Could not auto-fill from Instagram." });
+    }
+
+    const merged = normalizeDraftState({
+      ...filled,
+      id: existing.id,
+      createdAt: existing.createdAt,
+      addedVia: existing.addedVia || filled.addedVia,
+      discoverySource: existing.discoverySource || filled.discoverySource,
+      name: existing.name && existing.name !== "New stylist" ? existing.name : filled.name,
+    });
+
+    store.drafts[draftIndex] = merged;
+    await writeDraftStore(store);
+    res.json({ ok: true, draft: merged });
   });
 
   app.post("/api/admin/stylists/intake-bulk", requireAdmin, async (req, res) => {
@@ -3286,6 +3380,9 @@ async function updateFreshnessReview(salonId, {
   rejectSenFriendly = false,
   rejectLgbtqFriendly = false,
   rejectParkingAvailable = false,
+  rejectCanBraidWithoutGel = false,
+  rejectSellsHairSeparately = false,
+  rejectSameDayEmergency = false,
   rejectPriceBand = false,
   rejectLocation = false,
   bookingUrl,
@@ -3296,6 +3393,9 @@ async function updateFreshnessReview(salonId, {
   senFriendly,
   lgbtqFriendly,
   parkingAvailable,
+  canBraidWithoutGel,
+  sellsHairSeparately,
+  sameDayEmergency,
   priceBand,
   areaId = "",
   areaIds = [],
@@ -3317,11 +3417,17 @@ async function updateFreshnessReview(salonId, {
     senFriendly,
     lgbtqFriendly,
     parkingAvailable,
+    canBraidWithoutGel,
+    sellsHairSeparately,
+    sameDayEmergency,
     rejectHijabiFriendly,
     rejectWheelchairAccessible,
     rejectSenFriendly,
     rejectLgbtqFriendly,
     rejectParkingAvailable,
+    rejectCanBraidWithoutGel,
+    rejectSellsHairSeparately,
+    rejectSameDayEmergency,
     bookingUrl,
     instagramUrl,
     websiteUrl,
@@ -3362,6 +3468,9 @@ async function updateFreshnessReview(salonId, {
         ...(senFriendly === true ? { senFriendly: true } : {}),
         ...(lgbtqFriendly === true ? { lgbtqFriendly: true } : {}),
         ...(parkingAvailable === true ? { parkingAvailable: true } : {}),
+        ...(canBraidWithoutGel === true ? { canBraidWithoutGel: true } : {}),
+        ...(sellsHairSeparately === true ? { sellsHairSeparately: true } : {}),
+        ...(sameDayEmergency === true ? { sameDayEmergency: true } : {}),
         ...(priceBand ? { priceBand } : {}),
         ...(nextAreaIds.length
           ? {
@@ -3375,7 +3484,7 @@ async function updateFreshnessReview(salonId, {
         addedServices: (check.addedServices || []).filter((service) => !reviewedAdds.includes(service)),
         removedServices: (check.removedServices || []).filter((service) => !reviewedRemoves.includes(service)),
         attributeSuggestions: (check.attributeSuggestions || []).filter((suggestion) => {
-          if (!attributeFieldWasReviewed(suggestion?.field, { hijabiFriendly, rejectHijabiFriendly, wheelchairAccessible, rejectWheelchairAccessible, senFriendly, rejectSenFriendly, lgbtqFriendly, rejectLgbtqFriendly, parkingAvailable, rejectParkingAvailable })) {
+          if (!attributeFieldWasReviewed(suggestion?.field, { hijabiFriendly, rejectHijabiFriendly, wheelchairAccessible, rejectWheelchairAccessible, senFriendly, rejectSenFriendly, lgbtqFriendly, rejectLgbtqFriendly, parkingAvailable, rejectParkingAvailable, canBraidWithoutGel, rejectCanBraidWithoutGel, sellsHairSeparately, rejectSellsHairSeparately, sameDayEmergency, rejectSameDayEmergency })) {
             return true;
           }
           return false;
@@ -3385,7 +3494,7 @@ async function updateFreshnessReview(salonId, {
           if (reviewedLinkIssues.has(issue)) {
             return false;
           }
-          return !attributeIssueWasReviewed(issue, { hijabiFriendly, rejectHijabiFriendly, wheelchairAccessible, rejectWheelchairAccessible, senFriendly, rejectSenFriendly, lgbtqFriendly, rejectLgbtqFriendly, parkingAvailable, rejectParkingAvailable });
+          return !attributeIssueWasReviewed(issue, { hijabiFriendly, rejectHijabiFriendly, wheelchairAccessible, rejectWheelchairAccessible, senFriendly, rejectSenFriendly, lgbtqFriendly, rejectLgbtqFriendly, parkingAvailable, rejectParkingAvailable, canBraidWithoutGel, rejectCanBraidWithoutGel, sellsHairSeparately, rejectSellsHairSeparately, sameDayEmergency, rejectSameDayEmergency });
         }).filter((issue) => !((String(issue).toLowerCase() === "possible pricing band found" || String(issue).toLowerCase() === "manual price check required") && reviewedPrice)),
         serviceCheck: reviewedLocation && !nextAreaIds.length
           ? { ...(check.serviceCheck || emptyServiceCheck()), areaId: "", areaLabel: "" }
@@ -3424,7 +3533,7 @@ function getReviewedLinkTypes({ bookingUrl, instagramUrl, websiteUrl }) {
   return reviewedLinkTypes;
 }
 
-async function undoFreshnessReview(salonId, { check, update = {}, rejectAddedServices = [], rejectRemovedServices = [], rejectHijabiFriendly = false, rejectWheelchairAccessible = false, rejectSenFriendly = false, rejectLgbtqFriendly = false, rejectParkingAvailable = false, rejectPriceBand = false, rejectLocation = false }) {
+async function undoFreshnessReview(salonId, { check, update = {}, rejectAddedServices = [], rejectRemovedServices = [], rejectHijabiFriendly = false, rejectWheelchairAccessible = false, rejectSenFriendly = false, rejectLgbtqFriendly = false, rejectParkingAvailable = false, rejectCanBraidWithoutGel = false, rejectSellsHairSeparately = false, rejectSameDayEmergency = false, rejectPriceBand = false, rejectLocation = false }) {
   const store = await readFreshnessStore({ meta: { source: "freshness-checks", updatedAt: null, count: 0 }, checks: [], dismissedRecommendations: {} });
   const dismissedRecommendations = removeDismissedRecommendations(store.dismissedRecommendations || {}, salonId, {
     update,
@@ -3436,6 +3545,9 @@ async function undoFreshnessReview(salonId, { check, update = {}, rejectAddedSer
     rejectSenFriendly,
     rejectLgbtqFriendly,
     rejectParkingAvailable,
+    rejectCanBraidWithoutGel,
+    rejectSellsHairSeparately,
+    rejectSameDayEmergency,
     rejectPriceBand,
     rejectLocation,
   });
@@ -3468,11 +3580,17 @@ function updateDismissedRecommendations(dismissedRecommendations, salonId, {
   senFriendly = false,
   lgbtqFriendly = false,
   parkingAvailable = false,
+  canBraidWithoutGel = false,
+  sellsHairSeparately = false,
+  sameDayEmergency = false,
   rejectHijabiFriendly = false,
   rejectWheelchairAccessible = false,
   rejectSenFriendly = false,
   rejectLgbtqFriendly = false,
   rejectParkingAvailable = false,
+  rejectCanBraidWithoutGel = false,
+  rejectSellsHairSeparately = false,
+  rejectSameDayEmergency = false,
   bookingUrl,
   instagramUrl,
   websiteUrl,
@@ -3499,11 +3617,17 @@ function updateDismissedRecommendations(dismissedRecommendations, salonId, {
     senFriendly,
     lgbtqFriendly,
     parkingAvailable,
+    canBraidWithoutGel,
+    sellsHairSeparately,
+    sameDayEmergency,
     rejectHijabiFriendly,
     rejectWheelchairAccessible,
     rejectSenFriendly,
     rejectLgbtqFriendly,
     rejectParkingAvailable,
+    rejectCanBraidWithoutGel,
+    rejectSellsHairSeparately,
+    rejectSameDayEmergency,
     bookingUrl,
     instagramUrl,
     websiteUrl,
@@ -3514,7 +3638,7 @@ function updateDismissedRecommendations(dismissedRecommendations, salonId, {
     areaIds,
     areaLabel,
   });
-  if (!reviewedAdds.length && !reviewedRemoves.length && rejectHijabiFriendly !== true && hijabiFriendly !== true && rejectWheelchairAccessible !== true && wheelchairAccessible !== true && rejectSenFriendly !== true && senFriendly !== true && rejectLgbtqFriendly !== true && lgbtqFriendly !== true && rejectParkingAvailable !== true && parkingAvailable !== true && rejectPriceBand !== true && !dismissedPriceBand && !priceBand && rejectLocation !== true && !dismissedLocationLabel && !areaId && !areaIds.length && !areaLabel && !handledFingerprints.length) {
+  if (!reviewedAdds.length && !reviewedRemoves.length && rejectHijabiFriendly !== true && hijabiFriendly !== true && rejectWheelchairAccessible !== true && wheelchairAccessible !== true && rejectSenFriendly !== true && senFriendly !== true && rejectLgbtqFriendly !== true && lgbtqFriendly !== true && rejectParkingAvailable !== true && parkingAvailable !== true && rejectCanBraidWithoutGel !== true && canBraidWithoutGel !== true && rejectSellsHairSeparately !== true && sellsHairSeparately !== true && rejectSameDayEmergency !== true && sameDayEmergency !== true && rejectPriceBand !== true && !dismissedPriceBand && !priceBand && rejectLocation !== true && !dismissedLocationLabel && !areaId && !areaIds.length && !areaLabel && !handledFingerprints.length) {
     return dismissedRecommendations;
   }
 
@@ -3539,13 +3663,16 @@ function updateDismissedRecommendations(dismissedRecommendations, salonId, {
       ...(rejectSenFriendly === true || senFriendly === true ? { senFriendly: true } : current.senFriendly === true ? { senFriendly: true } : {}),
       ...(rejectLgbtqFriendly === true || lgbtqFriendly === true ? { lgbtqFriendly: true } : current.lgbtqFriendly === true ? { lgbtqFriendly: true } : {}),
       ...(rejectParkingAvailable === true || parkingAvailable === true ? { parkingAvailable: true } : current.parkingAvailable === true ? { parkingAvailable: true } : {}),
+      ...(rejectCanBraidWithoutGel === true || canBraidWithoutGel === true ? { canBraidWithoutGel: true } : current.canBraidWithoutGel === true ? { canBraidWithoutGel: true } : {}),
+      ...(rejectSellsHairSeparately === true || sellsHairSeparately === true ? { sellsHairSeparately: true } : current.sellsHairSeparately === true ? { sellsHairSeparately: true } : {}),
+      ...(rejectSameDayEmergency === true || sameDayEmergency === true ? { sameDayEmergency: true } : current.sameDayEmergency === true ? { sameDayEmergency: true } : {}),
       ...(dismissedPriceBand || priceBand ? { priceBand: dismissedPriceBand || priceBand } : current.priceBand ? { priceBand: current.priceBand } : {}),
       ...(dismissedLocationLabel || areaLabel ? { locationLabel: dismissedLocationLabel || areaLabel } : current.locationLabel ? { locationLabel: current.locationLabel } : {}),
     },
   };
 }
 
-function removeDismissedRecommendations(dismissedRecommendations, salonId, { update = {}, check = null, rejectAddedServices = [], rejectRemovedServices = [], rejectHijabiFriendly = false, rejectWheelchairAccessible = false, rejectSenFriendly = false, rejectLgbtqFriendly = false, rejectParkingAvailable = false, rejectPriceBand = false, rejectLocation = false }) {
+function removeDismissedRecommendations(dismissedRecommendations, salonId, { update = {}, check = null, rejectAddedServices = [], rejectRemovedServices = [], rejectHijabiFriendly = false, rejectWheelchairAccessible = false, rejectSenFriendly = false, rejectLgbtqFriendly = false, rejectParkingAvailable = false, rejectCanBraidWithoutGel = false, rejectSellsHairSeparately = false, rejectSameDayEmergency = false, rejectPriceBand = false, rejectLocation = false }) {
   const undoUpdate = {
     ...update,
     rejectAddedServices: update.rejectAddedServices || rejectAddedServices,
@@ -3555,13 +3682,16 @@ function removeDismissedRecommendations(dismissedRecommendations, salonId, { upd
     rejectSenFriendly: update.rejectSenFriendly === true || rejectSenFriendly === true,
     rejectLgbtqFriendly: update.rejectLgbtqFriendly === true || rejectLgbtqFriendly === true,
     rejectParkingAvailable: update.rejectParkingAvailable === true || rejectParkingAvailable === true,
+    rejectCanBraidWithoutGel: update.rejectCanBraidWithoutGel === true || rejectCanBraidWithoutGel === true,
+    rejectSellsHairSeparately: update.rejectSellsHairSeparately === true || rejectSellsHairSeparately === true,
+    rejectSameDayEmergency: update.rejectSameDayEmergency === true || rejectSameDayEmergency === true,
     rejectPriceBand: update.rejectPriceBand === true || rejectPriceBand === true,
     rejectLocation: update.rejectLocation === true || rejectLocation === true,
   };
   const reviewedAdds = normalizeServices([...(undoUpdate.addServices || []), ...(undoUpdate.rejectAddedServices || [])]);
   const reviewedRemoves = normalizeServices([...(undoUpdate.removeServices || []), ...(undoUpdate.rejectRemovedServices || [])]);
   const handledFingerprints = buildHandledFingerprintsForUpdate(check, undoUpdate);
-  if (!reviewedAdds.length && !reviewedRemoves.length && undoUpdate.rejectHijabiFriendly !== true && undoUpdate.hijabiFriendly !== true && undoUpdate.rejectWheelchairAccessible !== true && undoUpdate.wheelchairAccessible !== true && undoUpdate.rejectSenFriendly !== true && undoUpdate.senFriendly !== true && undoUpdate.rejectLgbtqFriendly !== true && undoUpdate.lgbtqFriendly !== true && undoUpdate.rejectParkingAvailable !== true && undoUpdate.parkingAvailable !== true && undoUpdate.rejectPriceBand !== true && !undoUpdate.priceBand && undoUpdate.rejectLocation !== true && !undoUpdate.areaId && !toArray(undoUpdate.areaIds).length && !undoUpdate.areaLabel && !handledFingerprints.length) {
+  if (!reviewedAdds.length && !reviewedRemoves.length && undoUpdate.rejectHijabiFriendly !== true && undoUpdate.hijabiFriendly !== true && undoUpdate.rejectWheelchairAccessible !== true && undoUpdate.wheelchairAccessible !== true && undoUpdate.rejectSenFriendly !== true && undoUpdate.senFriendly !== true && undoUpdate.rejectLgbtqFriendly !== true && undoUpdate.lgbtqFriendly !== true && undoUpdate.rejectParkingAvailable !== true && undoUpdate.parkingAvailable !== true && undoUpdate.rejectCanBraidWithoutGel !== true && undoUpdate.canBraidWithoutGel !== true && undoUpdate.rejectSellsHairSeparately !== true && undoUpdate.sellsHairSeparately !== true && undoUpdate.rejectSameDayEmergency !== true && undoUpdate.sameDayEmergency !== true && undoUpdate.rejectPriceBand !== true && !undoUpdate.priceBand && undoUpdate.rejectLocation !== true && !undoUpdate.areaId && !toArray(undoUpdate.areaIds).length && !undoUpdate.areaLabel && !handledFingerprints.length) {
     return dismissedRecommendations;
   }
 
@@ -3577,11 +3707,14 @@ function removeDismissedRecommendations(dismissedRecommendations, salonId, { upd
     ...(undoUpdate.rejectSenFriendly === true || undoUpdate.senFriendly === true ? {} : current.senFriendly === true ? { senFriendly: true } : {}),
     ...(undoUpdate.rejectLgbtqFriendly === true || undoUpdate.lgbtqFriendly === true ? {} : current.lgbtqFriendly === true ? { lgbtqFriendly: true } : {}),
     ...(undoUpdate.rejectParkingAvailable === true || undoUpdate.parkingAvailable === true ? {} : current.parkingAvailable === true ? { parkingAvailable: true } : {}),
+    ...(undoUpdate.rejectCanBraidWithoutGel === true || undoUpdate.canBraidWithoutGel === true ? {} : current.canBraidWithoutGel === true ? { canBraidWithoutGel: true } : {}),
+    ...(undoUpdate.rejectSellsHairSeparately === true || undoUpdate.sellsHairSeparately === true ? {} : current.sellsHairSeparately === true ? { sellsHairSeparately: true } : {}),
+    ...(undoUpdate.rejectSameDayEmergency === true || undoUpdate.sameDayEmergency === true ? {} : current.sameDayEmergency === true ? { sameDayEmergency: true } : {}),
     ...(undoUpdate.rejectPriceBand === true || undoUpdate.priceBand ? {} : current.priceBand ? { priceBand: current.priceBand } : {}),
     ...(undoUpdate.rejectLocation === true || undoUpdate.areaId || toArray(undoUpdate.areaIds).length || undoUpdate.areaLabel ? {} : current.locationLabel ? { locationLabel: current.locationLabel } : {}),
   };
   const updated = { ...dismissedRecommendations };
-  if (next.addedServices.length || next.removedServices.length || next.handledFingerprints.length || next.hijabiFriendly === true || next.wheelchairAccessible === true || next.senFriendly === true || next.lgbtqFriendly === true || next.parkingAvailable === true || next.priceBand || next.locationLabel) {
+  if (next.addedServices.length || next.removedServices.length || next.handledFingerprints.length || next.hijabiFriendly === true || next.wheelchairAccessible === true || next.senFriendly === true || next.lgbtqFriendly === true || next.parkingAvailable === true || next.canBraidWithoutGel === true || next.sellsHairSeparately === true || next.sameDayEmergency === true || next.priceBand || next.locationLabel) {
     updated[salonId] = next;
   } else {
     delete updated[salonId];
@@ -4062,6 +4195,36 @@ const attributeSuggestionConfig = {
     issue: "Possible parking wording found",
     evidenceFinder: findParkingAvailableEvidence,
   },
+  // These three previously had no evidence-finder at all — never suggested
+  // from any scan, regardless of what the text said. The "reject and don't
+  // suggest again" persistence for the *existing* five fields above is wired
+  // through several hardcoded per-field call sites in the freshness-check
+  // undo/dismiss flow (undoFreshnessReview, removeDismissedRecommendations,
+  // attributeFieldWasReviewed) that were not extended to these three — a
+  // dismiss here may not stick as reliably across health-check re-runs on
+  // already-published salons. Suggestions still surface and accept/dismiss
+  // both work in the moment; only that persistence nuance is unfinished.
+  canBraidWithoutGel: {
+    field: "canBraidWithoutGel",
+    rejectField: "rejectCanBraidWithoutGel",
+    label: "Can braid without gel",
+    issue: "Possible gel-free braiding wording found",
+    evidenceFinder: findCanBraidWithoutGelEvidence,
+  },
+  sellsHairSeparately: {
+    field: "sellsHairSeparately",
+    rejectField: "rejectSellsHairSeparately",
+    label: "Sells hair separately",
+    issue: "Possible hair-for-sale wording found",
+    evidenceFinder: findSellsHairSeparatelyEvidence,
+  },
+  sameDayEmergency: {
+    field: "sameDayEmergency",
+    rejectField: "rejectSameDayEmergency",
+    label: "Same-day / emergency appointments",
+    issue: "Possible same-day/emergency appointment wording found",
+    evidenceFinder: findSameDayEmergencyEvidence,
+  },
 };
 
 function sanitizeAttributeSuggestions(suggestions) {
@@ -4167,10 +4330,28 @@ async function checkSalonFreshness(salon, dismissedRecommendation = {}, previous
     getAttributeScanText(salon.websiteUrl, websiteLinkCheck?.responseText || ""),
     loadLearnedExclusions(),
   ]);
+  // Many as.me/Acuity pages put their real policy text — location, parking,
+  // access notes, SEN/needs wording — inside a single banner image rather
+  // than page text, so none of the text-based scans above ever see it. Only
+  // pay for the extra page load when the free signals (bio + plain booking
+  // text) didn't already give a specific area; once it does run, the exact
+  // same transcript feeds both location *and* every needs field below at no
+  // extra cost — it's the same OCR pass either way.
+  const bioAreaIdsForImageGate = inferAreaIdsFromText(instagramLinkCheck?.profileText || "");
+  let bookingImageAreaIds = [];
+  let bookingImageText = "";
+  if (!isSpecificAreaMatch(bioAreaIdsForImageGate) && (!serviceCheck.areaId || serviceCheck.areaId === "all-london") && isAcuityBookingUrl(salon.bookingUrl)) {
+    const imageText = await extractBookingImageTextQuotes(salon.bookingUrl).catch(() => null);
+    if (imageText?.transcript) {
+      bookingImageText = imageText.transcript;
+      bookingImageAreaIds = inferAreaIdsFromText(imageText.transcript).filter((id) => id !== "all-london");
+    }
+  }
   const attributeSuggestions = buildAttributeSuggestions(salon, {
     booking: attributeBookingText,
     website: attributeWebsiteText,
     instagram: instagramLinkCheck?.profileText || "",
+    "booking banner": bookingImageText,
   }, resetDismissedAttributeFlags(dismissedRecommendation, hasAttributeDismissals), learnedExclusions.attribute).filter((suggestion) => !dismissedFingerprints.has(attributeRecommendationFingerprint(suggestion)));
   const currentServices = normalizeServices(salon.services || []);
   const detectedServices = adjustDetectedServicesForCurrentContext(normalizeServices(serviceCheck.matchedServices), currentServices, serviceCheck.rawServices);
@@ -4229,6 +4410,26 @@ async function checkSalonFreshness(salon, dismissedRecommendation = {}, previous
       issues.push(issue);
     }
   });
+
+  // A booking page's scraped text often only yields a generic "all-london"
+  // match (e.g. a plain "London, UK" address), same problem the Instagram-
+  // intake pipeline hit — a more specific area named in the bio (already
+  // fetched above for attribute suggestions, so this is free) or an OCR'd
+  // booking-page banner image should win over it. See buildDraftFromInstagram
+  // for the same precedence chain.
+  const bioAreaIds = inferAreaIdsFromText(instagramLinkCheck?.profileText || "").filter((id) => id !== "all-london");
+  const bookingAreaIds = serviceCheck.areaId ? [serviceCheck.areaId] : [];
+  // A place that genuinely sits on the border of two regions (e.g. Sidcup as
+  // both Kent and south-east London) keeps every match from whichever source
+  // wins, rather than arbitrarily picking one — areaLabelForIds already
+  // renders multiple ids as "Kent / South East London".
+  const areaCandidateGroups = [bioAreaIds, bookingImageAreaIds, bookingAreaIds];
+  const winningAreaIds = areaCandidateGroups.find((ids) => ids.length) || [];
+  if (winningAreaIds.length && areaLabelForIds(winningAreaIds) !== serviceCheck.areaLabel) {
+    serviceCheck.areaId = winningAreaIds[0];
+    serviceCheck.areaIds = winningAreaIds;
+    serviceCheck.areaLabel = areaLabelForIds(winningAreaIds);
+  }
 
   const detectedLocationLabel = serviceCheck.areaLabel || "";
   const dismissedLocationLabel = dismissedRecommendation.locationLabel || "";
@@ -4509,91 +4710,110 @@ function resetDismissedAttributeFlags(dismissedRecommendation = {}, shouldReset 
   );
 }
 
-function findHijabiFriendlyEvidence(value = "") {
-  const text = htmlToReadableText(value);
-  if (!text) {
-    return [];
-  }
-
-  return [...new Set(
-    text
-      .split(/\n|\.|•|·|\|/)
-      .map((line) => line.replace(/\s+/g, " ").trim())
-      .filter((line) => /\bhijabi?\b/i.test(line))
-      .filter((line) => line.length >= 4 && line.length <= 180),
-  )].slice(0, 4);
-}
-
-function findWheelchairAccessibleEvidence(value = "") {
-  const text = htmlToReadableText(value);
-  if (!text) {
-    return [];
-  }
-
-  return [...new Set(
-    text
-      .split(/\n|\.|•|·|\|/)
-      .map((line) => line.replace(/\s+/g, " ").trim())
-      .filter((line) => /\bwheelchair[\s-]+accessible\b|\bstep[\s-]+free\s+access\b|\bdisabled\s+access\b|\baccessible\s+entrance\b/i.test(line))
-      .filter((line) => line.length >= 4 && line.length <= 180),
-  )].slice(0, 4);
-}
+// Shared synonym bank for the additional-needs filter fields — mirrors
+// serviceAliases (salon-index.mjs) but for filter concepts rather than
+// service names. Extend this list when a new phrasing turns up rather than
+// adding another one-off regex; every evidence-finder below reads from it.
+// A couple of fields also need a short-acronym guard beyond this bank (see
+// needsAcronymGuards) since e.g. bare "sen"/"lgbt" are too easy to
+// false-positive on alone.
+const needsAliases = {
+  hijabiFriendly: ["hijab", "hijabi"],
+  wheelchairAccessible: ["wheelchair accessible", "wheelchair access", "wheelchair friendly", "step free access", "disabled access", "accessible entrance"],
+  senFriendly: ["sen friendly", "send friendly", "send welcome", "sensory safe", "sensory friendly", "neurodivergent", "neurodiverse", "neurodivergent friendly", "autism friendly", "autistic friendly", "additional needs friendly", "additional needs welcome", "additional needs", "special educational needs", "special needs education"],
+  lgbtqFriendly: ["queer friendly", "gay friendly", "queer", "queer owned", "queer-owned"],
+  parkingAvailable: ["parking"],
+  canBraidWithoutGel: ["gel free", "no gel", "without gel", "gel free braiding"],
+  sellsHairSeparately: ["hair sold separately", "sells hair", "hair for sale", "buy hair from us", "hair available to purchase", "hair extensions for sale"],
+  sameDayEmergency: ["same day appointment", "same day emergency", "emergency appointment", "last minute appointment", "same day booking", "emergency booking"],
+};
 
 // Bare "sen"/"send" alone are far too common in ordinary booking copy ("send
 // us a DM", "send payment in advance") to treat as SEN/SEND evidence on their
 // own, so require the acronym to co-occur on the same line with an actual
 // accessibility-context word — order-agnostic, since real phrasing goes both
-// ways ("SEND-friendly" vs. "we welcome children with SEN").
+// ways ("SEND-friendly" vs. "we welcome children with SEN"). "clients?" /
+// "kids?" / "children" / "families?" used to also count, but a real Instagram
+// caption ("...for my beautiful client... Send Us a DM") confirmed live that
+// they're common enough in totally unrelated sentences to false-positive on
+// their own — genuine SEN-friendly copy essentially always also carries one
+// of the words below, so dropping them costs little real coverage.
 function hasSenAcronymContext(line) {
   return (
     /\bsend?\b/i.test(line) &&
-    /\b(friendly|safe|welcome|children|kids?|clients?|families?|support|needs?)\b/i.test(line)
+    /\b(friendly|safe|welcome|support|needs?)\b/i.test(line)
   );
 }
 
-function findSenFriendlyEvidence(value = "") {
+const needsAcronymGuards = {
+  senFriendly: hasSenAcronymContext,
+  lgbtqFriendly: (line) => /\blgbtq?i?a?\+?\b/i.test(line),
+};
+
+function escapeRegExpLiteral(value) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function buildNeedsAliasPattern(field) {
+  const phrases = needsAliases[field] || [];
+  if (!phrases.length) {
+    return null;
+  }
+  const alternation = phrases.map((phrase) => escapeRegExpLiteral(phrase).replace(/\s+/g, "[\\s-]+")).join("|");
+  return new RegExp(`\\b(?:${alternation})\\b`, "i");
+}
+
+const needsAliasPatterns = Object.fromEntries(
+  Object.keys(needsAliases).map((field) => [field, buildNeedsAliasPattern(field)]),
+);
+
+function findNeedsEvidence(value, field) {
   const text = htmlToReadableText(value);
   if (!text) {
     return [];
   }
 
+  const pattern = needsAliasPatterns[field];
+  const guard = needsAcronymGuards[field];
   return [...new Set(
     text
       .split(/\n|\.|•|·|\|/)
       .map((line) => line.replace(/\s+/g, " ").trim())
-      .filter((line) => hasSenAcronymContext(line) || /sensory[\s-]*(safe|friendly)/i.test(line) || /neurodivergen\w*|neurodiverse\w*/i.test(line))
+      .filter((line) => (pattern && pattern.test(line)) || (guard && guard(line)))
       .filter((line) => line.length >= 4 && line.length <= 180),
   )].slice(0, 4);
+}
+
+function findHijabiFriendlyEvidence(value = "") {
+  return findNeedsEvidence(value, "hijabiFriendly");
+}
+
+function findWheelchairAccessibleEvidence(value = "") {
+  return findNeedsEvidence(value, "wheelchairAccessible");
+}
+
+function findSenFriendlyEvidence(value = "") {
+  return findNeedsEvidence(value, "senFriendly");
 }
 
 function findLgbtqFriendlyEvidence(value = "") {
-  const text = htmlToReadableText(value);
-  if (!text) {
-    return [];
-  }
+  return findNeedsEvidence(value, "lgbtqFriendly");
+}
 
-  return [...new Set(
-    text
-      .split(/\n|\.|•|·|\|/)
-      .map((line) => line.replace(/\s+/g, " ").trim())
-      .filter((line) => /\blgbtq?i?a?\+?\b|\bqueer[\s-]*friendly\b|\bgay[\s-]*friendly\b/i.test(line))
-      .filter((line) => line.length >= 4 && line.length <= 180),
-  )].slice(0, 4);
+function findCanBraidWithoutGelEvidence(value = "") {
+  return findNeedsEvidence(value, "canBraidWithoutGel");
+}
+
+function findSellsHairSeparatelyEvidence(value = "") {
+  return findNeedsEvidence(value, "sellsHairSeparately");
+}
+
+function findSameDayEmergencyEvidence(value = "") {
+  return findNeedsEvidence(value, "sameDayEmergency");
 }
 
 function findParkingAvailableEvidence(value = "") {
-  const text = htmlToReadableText(value);
-  if (!text) {
-    return [];
-  }
-
-  return [...new Set(
-    text
-      .split(/\n|\.|•|·|\|/)
-      .map((line) => line.replace(/\s+/g, " ").trim())
-      .filter((line) => /\bparking\b/i.test(line))
-      .filter((line) => line.length >= 4 && line.length <= 180),
-  )].slice(0, 4);
+  return findNeedsEvidence(value, "parkingAvailable");
 }
 
 function adjustDetectedServicesForCurrentContext(detectedServices, currentServices, rawServices) {
@@ -4738,29 +4958,112 @@ async function checkUrl(type, url, { includeText = false, timeoutMs } = {}) {
   return result;
 }
 
+function instagramWebProfileInfoUrl(username) {
+  const apiUrl = new URL("https://www.instagram.com/api/v1/users/web_profile_info/");
+  apiUrl.searchParams.set("username", username);
+  return apiUrl.toString();
+}
+
+function instagramWebProfileInfoHeaders() {
+  return {
+    Accept: "application/json,text/plain,*/*",
+    "User-Agent": browserUserAgent,
+    Referer: "https://www.instagram.com/",
+    "Sec-Fetch-Dest": "empty",
+    "Sec-Fetch-Mode": "cors",
+    "Sec-Fetch-Site": "same-origin",
+    "X-IG-App-ID": "936619743392459",
+    "X-Requested-With": "XMLHttpRequest",
+  };
+}
+
+// Full profile fetch for the Instagram-driven stylist intake flow — unlike
+// checkInstagramProfileUrl (which only keeps flattened text for the health
+// check), this keeps the bio's external link and link-in-bio entries so the
+// intake pipeline can resolve them into a real booking/website URL.
+//
+// Tries the free direct endpoint first; falls back to AnyAPI (paid) only
+// when that fails for a reason other than a confirmed 404, since Instagram's
+// own endpoint has been observed live returning a schema error for accounts
+// that exist and are perfectly fetchable through AnyAPI's own scrape.
+async function fetchInstagramProfileDetails(username) {
+  if (!username) {
+    return { found: false };
+  }
+
+  const direct = await fetchInstagramProfileDetailsDirect(username);
+  if (direct.found || direct.httpStatus === 404) {
+    return direct;
+  }
+
+  const viaAnyApi = await fetchInstagramProfileViaAnyApi(username);
+  if (viaAnyApi.found) {
+    return { ...viaAnyApi, fallbackUsed: "anyapi", directFetchReason: direct.reason };
+  }
+
+  return direct;
+}
+
+async function fetchInstagramProfileDetailsDirect(username) {
+  try {
+    const response = await fetchInstagramProfileWithThrottle(instagramWebProfileInfoUrl(username), {
+      method: "GET",
+      redirect: "follow",
+      headers: instagramWebProfileInfoHeaders(),
+    });
+
+    if (!response.ok) {
+      // Instagram's own (unofficial) profile endpoint sometimes fails for a
+      // specific account with a descriptive JSON error body — e.g. a broken
+      // business-category field on their side — rather than a plain 404/429.
+      // Surface that reason when present instead of guessing "private or gone".
+      const errorBody = await response.json().catch(() => null);
+      const reason = cleanString(errorBody?.message);
+      return {
+        found: false,
+        httpStatus: response.status,
+        reason: reason || (response.status === 404 ? "Profile not found." : response.status === 429 ? "Rate-limited by Instagram — try again shortly." : ""),
+      };
+    }
+
+    const payload = await response.json();
+    const user = payload?.data?.user;
+    if (!user) {
+      return { found: false, httpStatus: response.status, reason: "Instagram returned no profile data for this account." };
+    }
+
+    const bioLinks = (Array.isArray(user.bio_links) ? user.bio_links : [])
+      .map((link) => ({ title: cleanString(link?.title), url: cleanString(link?.url || link?.lynx_url) }))
+      .filter((link) => link.url);
+
+    return {
+      found: true,
+      username: cleanString(user.username) || username,
+      fullName: cleanString(user.full_name),
+      bio: cleanString(user.biography),
+      externalUrl: cleanString(user.external_url),
+      bioLinks,
+      avatarUrl: cleanString(user.profile_pic_url_hd || user.profile_pic_url),
+      isPrivate: user.is_private === true,
+    };
+  } catch {
+    return { found: false };
+  }
+}
+
 async function checkInstagramProfileUrl(result) {
   const profile = getInstagramProfilePath(result.url);
   if (!profile) {
     return null;
   }
 
-  const apiUrl = new URL("https://www.instagram.com/api/v1/users/web_profile_info/");
-  apiUrl.searchParams.set("username", profile);
+  let shouldTryAnyApi = false;
 
   try {
-    const response = await fetchInstagramProfileWithThrottle(apiUrl.toString(), {
+    const response = await fetchInstagramProfileWithThrottle(instagramWebProfileInfoUrl(profile), {
       method: "GET",
       redirect: "follow",
-      headers: {
-        Accept: "application/json,text/plain,*/*",
-        "User-Agent": browserUserAgent,
-        Referer: "https://www.instagram.com/",
-        "Sec-Fetch-Dest": "empty",
-        "Sec-Fetch-Mode": "cors",
-        "Sec-Fetch-Site": "same-origin",
-        "X-IG-App-ID": "936619743392459",
-        "X-Requested-With": "XMLHttpRequest",
-      },
+      headers: instagramWebProfileInfoHeaders(),
     });
 
     result.httpStatus = response.status;
@@ -4789,10 +5092,40 @@ async function checkInstagramProfileUrl(result) {
     }
 
     if (response.status === 401 || response.status === 403 || response.status === 429) {
+      // Deliberately skip the AnyAPI fallback here, unlike the Instagram-intake
+      // pipeline (which does try it on these statuses too). Intake is one
+      // manual click, so retrying once is cheap; health check runs in batches
+      // over hundreds of salons, and 401/403/429 usually means *this session*
+      // is being throttled by Instagram, not that one specific account is
+      // broken — falling back to AnyAPI here would mean paying for a retry on
+      // every remaining salon in the batch to react to what's actually one
+      // global rate limit, not per-account failures.
       return null;
     }
+
+    // Any other non-ok status (e.g. the live "ig_business_category_subvertical"
+    // schema bug on Instagram's own side, seen as a 400) doesn't necessarily
+    // mean the account is gone or rate-limited — it can be a real, fetchable
+    // account Instagram's endpoint just can't currently serve. Try the same
+    // paid AnyAPI fallback the Instagram-intake pipeline uses before giving up,
+    // rather than silently losing bio text (and the attribute evidence it
+    // feeds) for every affected salon on every health check.
+    shouldTryAnyApi = true;
   } catch {
-    return null;
+    shouldTryAnyApi = true;
+  }
+
+  if (shouldTryAnyApi) {
+    const viaAnyApi = await fetchInstagramProfileViaAnyApi(profile).catch(() => ({ found: false }));
+    if (viaAnyApi.found) {
+      result.profileText = [
+        viaAnyApi.fullName,
+        viaAnyApi.bio,
+        viaAnyApi.bioLinks.map((link) => link.title).filter(Boolean).join(" "),
+      ].filter(Boolean).join("\n");
+      result.status = "ok";
+      return result;
+    }
   }
 
   return null;
@@ -6326,6 +6659,7 @@ async function extractBookingImageTextQuotes(url) {
   });
   const parkingQuotes = [];
   const stepFreeAccessQuotes = [];
+  const transcripts = [];
   try {
     await page.goto(url, { waitUntil: "domcontentloaded", timeout: 20_000 });
     await page.waitForLoadState("networkidle", { timeout: 8_000 }).catch(() => {});
@@ -6339,6 +6673,7 @@ async function extractBookingImageTextQuotes(url) {
         const { data } = await worker.recognize(buffer).catch(() => ({ data: { text: "" } }));
         const transcript = (data.text || "").trim();
         if (!transcript) continue;
+        transcripts.push(transcript);
         parkingQuotes.push(...findOcrKeywordQuotes(transcript, OCR_KEYWORD_PATTERNS.parking));
         stepFreeAccessQuotes.push(...findOcrKeywordQuotes(transcript, OCR_KEYWORD_PATTERNS.stepFreeAccess));
       }
@@ -6350,6 +6685,10 @@ async function extractBookingImageTextQuotes(url) {
   return {
     parkingQuotes: [...new Set(parkingQuotes)],
     stepFreeAccessQuotes: [...new Set(stepFreeAccessQuotes)],
+    // Full text, not just keyword-filtered lines — a banner image mentioning
+    // a specific area ("North London") won't match either keyword pattern
+    // above, so callers that want location need the whole transcript.
+    transcript: transcripts.join("\n"),
   };
 }
 
@@ -8073,6 +8412,303 @@ async function buildDraft(input) {
   });
 }
 
+// Turns "@handle", "handle", or any instagram.com/handle URL into a
+// canonical profile URL + bare handle, or null if it doesn't look like an
+// Instagram profile at all.
+function parseInstagramProfileInput(rawInput = "") {
+  const trimmed = cleanString(rawInput).replace(/^@/, "");
+  if (!trimmed) {
+    return null;
+  }
+
+  const asUrl = /^https?:\/\//i.test(trimmed) ? trimmed : `https://www.instagram.com/${trimmed.replace(/^instagram\.com\//i, "")}`;
+  const handle = getInstagramProfilePath(asUrl);
+  if (!handle) {
+    return null;
+  }
+
+  return { handle, instagramUrl: `https://www.instagram.com/${handle}/` };
+}
+
+// Renders the booking/website link resolution chain (bio text → link-in-bio
+// page → real link, if applicable) as readable evidence lines so an admin
+// can see exactly why a given link was picked before trusting it.
+function buildBookingLinkEvidence({ profile, linkResolution, bookingUrl, websiteUrl, locationQuote, locationSource, captionEvidenceLines }) {
+  const lines = [];
+  if (profile?.fallbackUsed === "anyapi") {
+    lines.push(`Instagram's own profile API failed for this account${profile.directFetchReason ? ` ("${profile.directFetchReason}")` : ""} — fetched via AnyAPI instead.`);
+  }
+  if (profile?.bio) {
+    lines.push(`Instagram bio: "${profile.bio.slice(0, 220)}"`);
+  }
+  (linkResolution?.chain || []).forEach((step) => {
+    lines.push(step.url ? `${step.note}: ${step.url}` : step.note);
+  });
+  if (!bookingUrl && !websiteUrl) {
+    lines.push("No bookable link found in bio — likely DM/WhatsApp/call to book.");
+    if (captionEvidenceLines?.length) {
+      lines.push("Checked recent post captions instead:");
+      lines.push(...captionEvidenceLines);
+    }
+  }
+  if (locationQuote && locationSource === "image") {
+    lines.push(`Location found in a banner image on the booking page (OCR'd): "${locationQuote}"`);
+  } else if (locationQuote && locationSource === "caption") {
+    lines.push(`Location found in a post caption: "${locationQuote}"`);
+  }
+  return lines.join("\n");
+}
+
+// The Instagram-driven counterpart to buildDraft(): given just a profile
+// URL/handle, fetches the bio, resolves whatever link is in it (following
+// link-in-bio pages like Linktree one level deep, per resolveBioLink), then
+// reuses the same booking/website service+price+attribute extraction the
+// admin health check already runs on published salons. Every auto-filled
+// field carries its evidence so the admin can judge it before saving —
+// nothing here writes to the published directory.
+export async function buildDraftFromInstagram(rawInstagramInput) {
+  const parsed = parseInstagramProfileInput(rawInstagramInput);
+  if (!parsed) {
+    throw new Error("That doesn't look like an Instagram profile URL or handle.");
+  }
+
+  const profile = await fetchInstagramProfileDetails(parsed.handle);
+  const now = today();
+
+  if (!profile.found) {
+    return normalizeDraftState({
+      id: makeUniqueDraftId(parsed.handle),
+      status: "needs_review",
+      name: parsed.handle,
+      areaId: "",
+      areaIds: [],
+      areaLabel: "",
+      neighbourhood: "",
+      postcode: "",
+      bookingPlatform: "",
+      bookingUrl: "",
+      websiteUrl: "",
+      instagramUrl: parsed.instagramUrl,
+      tiktokUrl: "",
+      addedVia: "Admin tool",
+      discoverySource: "Instagram auto-fill",
+      services: [],
+      rawServices: [],
+      summary: "Admin draft created from Instagram intake.",
+      confidence: 0.2,
+      warnings: [],
+      evidence: buildEvidence([parsed.instagramUrl], []),
+      source: "admin-draft",
+      createdAt: now,
+      updatedAt: now,
+      lastCheckedAt: now,
+      bookingLinkEvidence: profile.reason
+        ? `Could not fetch this Instagram profile: ${profile.reason} — fill in the rest manually.`
+        : "Could not fetch this Instagram profile (private, rate-limited, or gone) — fill in the rest manually.",
+      attributeSuggestions: [],
+    });
+  }
+
+  // Profiles often list their plain website as external_url and put the actual
+  // booking link separately in bio_links (e.g. a "Book now" button) — trying
+  // candidates in raw order would stop at the website and never reach it, so
+  // bio links explicitly titled "book"/"booking" go first, then every other
+  // candidate is checked for an actual booking-platform match before falling
+  // back to treating the first resolvable link as a plain website.
+  const linkCandidates = [...new Set([profile.externalUrl, ...profile.bioLinks.map((link) => link.url)].filter(Boolean))];
+  const bookingTitledUrls = new Set(
+    profile.bioLinks.filter((link) => /\bbook(ing)?\b/i.test(link.title || "")).map((link) => link.url),
+  );
+  const orderedCandidates = [
+    ...linkCandidates.filter((url) => bookingTitledUrls.has(url)),
+    ...linkCandidates.filter((url) => !bookingTitledUrls.has(url)),
+  ];
+
+  let linkResolution = null;
+  let fallbackWebsiteResolution = null;
+  for (const candidate of orderedCandidates) {
+    const resolved = await resolveBioLink(candidate, { bookingPlatformMatchers });
+    if (resolved.bookingUrl) {
+      linkResolution = resolved;
+      break;
+    }
+    fallbackWebsiteResolution ||= resolved.websiteUrl ? resolved : fallbackWebsiteResolution;
+  }
+  linkResolution ||= fallbackWebsiteResolution;
+
+  const bookingUrl = linkResolution?.bookingUrl || "";
+  const websiteUrl = linkResolution?.websiteUrl || "";
+  const bookingPlatform = linkResolution?.bookingPlatform || (bookingUrl ? platformFromUrl(bookingUrl) : "");
+
+  let serviceCheck = emptyServiceCheck();
+  let priceCheck = emptyPriceCheck("booking");
+  const attributeSources = { instagram: [profile.fullName, profile.bio].filter(Boolean).join("\n") };
+  const captionEvidenceLines = [];
+  let captionAreaIds = [];
+  let captionLocationQuote = "";
+
+  if (bookingUrl || websiteUrl) {
+    const [bookingLinkCheck, websiteLinkCheck] = await Promise.all([
+      bookingUrl ? checkUrl("booking", bookingUrl, { includeText: true }) : null,
+      websiteUrl && websiteUrl !== bookingUrl ? checkUrl("website", websiteUrl, { includeText: true }) : null,
+    ]);
+    const bookingHtml = bookingLinkCheck?.status === "ok" ? bookingLinkCheck.responseText || "" : "";
+    const websiteHtml = websiteLinkCheck?.status === "ok" ? websiteLinkCheck.responseText || "" : "";
+    const embeddedBookingSources = await fetchEmbeddedBookingSources([
+      { html: bookingHtml, url: bookingUrl },
+      { html: websiteHtml, url: websiteUrl },
+    ]);
+    const enrichedBookingHtml = combineBookingHtml(bookingHtml, embeddedBookingSources);
+    const resolvedBookingUrl = embeddedBookingSources[0]?.url || bookingUrl;
+
+    [serviceCheck, priceCheck, attributeSources.booking, attributeSources.website] = await Promise.all([
+      extractBestServiceCheck({ booking: enrichedBookingHtml, website: websiteHtml, bookingUrl: resolvedBookingUrl, websiteUrl, allowAiFallback: true }),
+      extractBestPriceCheck({ booking: enrichedBookingHtml, website: websiteHtml, bookingUrl: resolvedBookingUrl, websiteUrl, allowAiFallback: true }),
+      getAttributeScanText(bookingUrl, bookingHtml),
+      getAttributeScanText(websiteUrl, websiteHtml),
+    ]);
+  } else {
+    // No booking link at all — DM/WhatsApp/call to book. The only remaining
+    // signal for what she actually does is her own recent post captions, so
+    // reuse the exact same regex service matcher and location/attribute
+    // evidence-finders already trusted for booking-page text (no new AI
+    // call — same reasoning as the OCR step: prefer a free, quotable, local
+    // match over an AI guess wherever one already exists). Each matched
+    // service keeps the literal caption quote and post URL it came from.
+    const posts = await fetchInstagramRecentCaptions(parsed.instagramUrl, { num: 15 }).catch(() => []);
+    const captionRawServices = [];
+    const matchedFromCaptions = new Set();
+    for (const post of posts) {
+      const matched = matchServices([post.caption, ...expandHashtagsForMatching(post.caption)]);
+      if (matched.length) {
+        captionRawServices.push(post.caption);
+        matched.forEach((service) => {
+          matchedFromCaptions.add(service);
+          captionEvidenceLines.push(`"${service}" found in a post caption: "${post.caption.slice(0, 160)}"${post.url ? ` — ${post.url}` : ""}`);
+        });
+      }
+      if (!captionAreaIds.length) {
+        const areaIds = inferAreaIdsFromText(post.caption).filter((id) => id !== "all-london");
+        if (areaIds.length) {
+          captionAreaIds = areaIds;
+          captionLocationQuote = post.caption.slice(0, 160);
+        }
+      }
+    }
+    serviceCheck = {
+      confidence: matchedFromCaptions.size ? "low" : "unknown",
+      rawServices: captionRawServices,
+      matchedServices: [...matchedFromCaptions],
+      areaId: "",
+      areaLabel: "",
+    };
+    attributeSources.instagram = [attributeSources.instagram, ...posts.map((post) => post.caption)].filter(Boolean).join("\n");
+  }
+
+  const learnedExclusions = await loadLearnedExclusions();
+  const attributeSuggestions = buildAttributeSuggestions({}, attributeSources, {}, learnedExclusions.attribute);
+
+  const name = profile.fullName || parsed.handle;
+  // A booking page often only yields a generic "all-london" match (e.g. a
+  // plain "London, UK" address) while the bio names a specific area
+  // ("North London") — the specific one should win regardless of which
+  // source it came from, rather than letting field order silently discard
+  // a more useful signal in favor of a vaguer one.
+  const bioAreaIds = inferAreaIdsFromText([profile.bio, name].filter(Boolean).join(" "));
+
+  // Many as.me/Acuity pages put their real location line inside a single
+  // banner image (designed in Canva etc.) rather than page text, so the
+  // scrapers above never see it — it's pixels, not text. OCR is local/free
+  // (same Tesseract engine already used for the parking/access-notes check),
+  // so only pay the extra page load when the bio didn't already give us
+  // something specific.
+  let bookingImageAreaIds = [];
+  let locationImageQuote = "";
+  if (!isSpecificAreaMatch(bioAreaIds) && isAcuityBookingUrl(bookingUrl)) {
+    const imageText = await extractBookingImageTextQuotes(bookingUrl).catch(() => null);
+    if (imageText?.transcript) {
+      bookingImageAreaIds = inferAreaIdsFromText(imageText.transcript).filter((id) => id !== "all-london");
+      if (bookingImageAreaIds.length) {
+        locationImageQuote = imageText.transcript
+          .split(/\n+/)
+          .map((line) => line.trim())
+          .find((line) => line && inferAreaIdsFromText(line).some((id) => bookingImageAreaIds.includes(id))) || "";
+      }
+    }
+  }
+
+  const bookingAreaIds = serviceCheck.areaId ? [serviceCheck.areaId] : [];
+  // Specific beats generic regardless of source, in priority order: bio,
+  // then an OCR'd booking-page banner, then a post caption, then whatever
+  // plain booking-page text yielded (usually the vaguest of the four). A
+  // place that genuinely sits on the border of two regions (inferAreaIdsFromText
+  // can return more than one, e.g. Sidcup as both Kent and south-east) keeps
+  // every match from whichever source wins, rather than arbitrarily picking one.
+  const specificAreaCandidates = [
+    [bioAreaIds, "", ""],
+    [bookingImageAreaIds, locationImageQuote, "image"],
+    [captionAreaIds, captionLocationQuote, "caption"],
+    [bookingAreaIds, "", ""],
+  ];
+  const specificMatch = specificAreaCandidates.find(([ids]) => isSpecificAreaMatch(ids));
+  const winningAreaIds = specificMatch?.[0]?.length
+    ? specificMatch[0]
+    : bioAreaIds.length ? bioAreaIds : bookingImageAreaIds.length ? bookingImageAreaIds : captionAreaIds.length ? captionAreaIds : bookingAreaIds;
+  const areaIds = normalizeAreaIds(winningAreaIds);
+  const areaLabel = areaLabelForIds(areaIds);
+  const priceBand = sanitizePriceBand(priceCheck.priceBand);
+  const resolvedLocationQuote = specificMatch?.[1] || "";
+  const resolvedLocationSource = specificMatch?.[2] || "";
+
+  return normalizeDraftState({
+    id: makeUniqueDraftId(name),
+    status: "needs_review",
+    name,
+    areaId: areaIds[0] || "",
+    areaIds,
+    areaLabel,
+    neighbourhood: areaLabel ? `${areaLabel.replace(" / ", " and ")} London` : "",
+    postcode: "",
+    bookingPlatform,
+    bookingUrl,
+    websiteUrl,
+    instagramUrl: parsed.instagramUrl,
+    tiktokUrl: "",
+    addedVia: "Admin tool",
+    discoverySource: "Instagram auto-fill",
+    services: serviceCheck.matchedServices,
+    rawServices: [...new Set(serviceCheck.rawServices)],
+    summary: profile.bio ? profile.bio.slice(0, 400) : "Admin draft created from Instagram intake.",
+    confidence: serviceCheck.confidence === "high" ? 0.85 : serviceCheck.confidence === "medium" ? 0.7 : matchedServicesConfidenceFloor(serviceCheck),
+    warnings: [],
+    evidence: buildEvidence([parsed.instagramUrl, bookingUrl, websiteUrl].filter(Boolean), serviceCheck.rawServices),
+    source: "admin-draft",
+    createdAt: now,
+    updatedAt: now,
+    lastCheckedAt: now,
+    bookingLinkEvidence: buildBookingLinkEvidence({ profile, linkResolution, bookingUrl, websiteUrl, locationQuote: resolvedLocationQuote, locationSource: resolvedLocationSource, captionEvidenceLines }),
+    attributeSuggestions,
+    ...(priceBand
+      ? {
+          priceBand,
+          servicePriceBand: sanitizePriceBand(priceCheck.servicePriceBand),
+          packagePriceBand: sanitizePriceBand(priceCheck.packagePriceBand),
+          priceIncludesHair: priceCheck.priceIncludesHair === true,
+          priceComparisonMode: sanitizePriceComparisonMode(priceCheck.priceComparisonMode) || defaultPriceComparisonMode(sanitizePriceBand(priceCheck.servicePriceBand), sanitizePriceBand(priceCheck.packagePriceBand), priceCheck.priceIncludesHair === true),
+          priceSource: "auto",
+          priceEvidence: (priceCheck.evidence || []).slice(0, 8),
+          priceCheckedAt: now,
+          priceUpdatedAt: now,
+          priceConfidence: sanitizePriceConfidence(priceCheck.confidence) || "medium",
+        }
+      : {}),
+  });
+}
+
+function matchedServicesConfidenceFloor(serviceCheck) {
+  return serviceCheck.matchedServices?.length > 0 ? 0.55 : 0.2;
+}
+
 function parseBulkIntake(text = "") {
   const lines = String(text)
     .split(/\n+/)
@@ -8781,6 +9417,9 @@ export function matchServices(values) {
         if (hasStyleRemovalInstructionContext(context.nearby)) {
           return [];
         }
+        if (looksLikeRetailProductLine(lower)) {
+          return [];
+        }
         if (hasColourSignal(context.line) && hasWigPieceColourContext(context)) {
           return ["Wig colouring / bundle colouring"];
         }
@@ -9051,6 +9690,77 @@ function hasShampooBlowdryContext(text) {
   return /\b(shampoo|wash|washing)\b.*\b(blow\s*dry|blowdry|blowout|blow\s*drying)\b|\b(blow\s*dry|blowdry|blowout|blow\s*drying)\b.*\b(shampoo|wash|washing)\b/.test(text);
 }
 
+// Booking pages that also sell retail/affiliate hair products (Acuity
+// "shop" add-ons especially) list them alongside actual bookable services —
+// e.g. "Olaplex No.6 Bond Smoother Leave In Treatment 100ml" or "Color Wow
+// Extra Strength Dream Coat 200ml". A bare brand-name pattern like /\bolaplex\b/
+// or /\bcolou?r\b/ in serviceRuleMatchers would otherwise happily match
+// these as "Olaplex treatment" / "Full head colour" even though the
+// stylist doesn't perform either — she just sells the product. Catch the
+// product-listing shape itself (retail brand name plus a size/pack signal)
+// and skip the line entirely before it ever reaches rule matching.
+const RETAIL_BRAND_NAMES = /\b(olaplex|color\s*wow|the\s+doux|camille\s+rose|umberto\s+giannini|k18|moroccanoil|redken|k[eé]rastase|bondi\s+boost|mielle|shea\s+moisture|cantu|as\s+i\s+am|design\s+essentials|eco\s*styler)\b/i;
+const RETAIL_PRODUCT_SIGNAL = /\d+\s*(ml|g|kg|oz|fl\.?\s*oz)\b|\bbundle\b|\bno\.?\s*\d/i;
+function looksLikeRetailProductLine(text) {
+  return RETAIL_BRAND_NAMES.test(text) && RETAIL_PRODUCT_SIGNAL.test(text);
+}
+
+// Instagram captions lean heavily on hashtags ("#boxbraids", "#fauxlocs"),
+// which concatenate words with no separator — every serviceRuleMatchers
+// pattern above requires a \b word boundary between them, so "boxbraids"
+// never matches "box braids" as written. Confirmed live: a real stylist's
+// only service signal on several posts was hashtags exactly like this, with
+// zero plain-sentence mentions anywhere. Rather than a second, parallel
+// hashtag-matching table, segment the hashtag back into spaced words from a
+// small curated vocabulary and feed the result through the same matcher as
+// everything else — a failed/partial segmentation is simply dropped rather
+// than guessed at.
+const HASHTAG_VOCAB = [
+  "knotless", "box", "braids", "braid", "cornrows", "cornrow", "locs", "loc",
+  "faux", "soft", "butterfly", "micro", "sister", "sisterlocs", "twist", "twists", "twisted",
+  "weave", "sewin", "sew", "wig", "wigs", "closure", "frontal", "feedin", "feed",
+  "boho", "goddess", "fulani", "lemonade", "silk", "press", "crochet", "bantu",
+  "knots", "bridal", "wedding", "kids", "teens", "mens", "colour", "color",
+  "balayage", "highlights", "keratin", "relaxer", "texturiser", "texturizer",
+  "updo", "ponytail", "bun", "curls", "curly", "blowdry", "blowout", "trim",
+  "haircut", "cut", "install", "installation", "stitch", "tape", "clip", "clips",
+  "microlinks", "tips", "starter", "retwist", "interlock", "interlocking",
+  "spa", "scalp", "treatment", "gel", "free", "hairstylist", "braider",
+  "hairstyle", "hairstyles", "hair", "goddessbraids", "boho",
+];
+const HASHTAG_VOCAB_SET = new Set(HASHTAG_VOCAB);
+const HASHTAG_MAX_WORD_LEN = Math.max(...HASHTAG_VOCAB.map((word) => word.length));
+const HASHTAG_MIN_WORD_LEN = 3;
+
+function segmentHashtag(word) {
+  const segments = [];
+  let remaining = word;
+  let guard = 0;
+  while (remaining.length > 0 && guard < 12) {
+    guard += 1;
+    let matched = "";
+    for (let len = Math.min(remaining.length, HASHTAG_MAX_WORD_LEN); len >= HASHTAG_MIN_WORD_LEN; len -= 1) {
+      if (HASHTAG_VOCAB_SET.has(remaining.slice(0, len))) {
+        matched = remaining.slice(0, len);
+        break;
+      }
+    }
+    if (!matched) {
+      return null;
+    }
+    segments.push(matched);
+    remaining = remaining.slice(matched.length);
+  }
+  return remaining ? null : segments.join(" ");
+}
+
+function expandHashtagsForMatching(text) {
+  const hashtags = String(text || "").match(/#[a-z0-9]+/gi) || [];
+  return hashtags
+    .map((tag) => segmentHashtag(tag.slice(1).toLowerCase()))
+    .filter(Boolean);
+}
+
 function matchServicesByRule(input) {
   const normalized = normalizeServiceText(input);
 
@@ -9139,26 +9849,43 @@ function normalizeServiceText(value) {
   return String(value).toLowerCase().replace(/[^a-z0-9]+/g, " ").replace(/\s+/g, " ").trim();
 }
 
-function inferAreaIdFromText(value = "") {
+// Some place names genuinely sit on the border between two of our regions
+// (Sidcup reads as both Kent and outer south-east London, depending who you
+// ask) — rather than arbitrarily picking whichever pattern happens to come
+// first in the list below, return every region that matched so callers can
+// keep them all (see areaIds support throughout the draft/salon schema).
+// "all-london" only counts when nothing more specific matched at all.
+function inferAreaIdsFromText(value = "") {
   const text = normalizeServiceText(String(value).toLowerCase());
   if (/\bold\s+kent\s+road\b/.test(text)) {
-    return "south-east";
+    return ["south-east"];
   }
   const areaPatterns = [
     ["essex", /\b(essex|southend|westcliff|romford|ilford|dagenham|barking|grays|basildon|chelmsford)\b/],
-    ["kent", /\b(kent|chatham|dartford|gravesend|gillingham|maidstone|bromley)\b/],
-    ["croydon", /\bcroydon\b/],
-    ["south-east", /\b(south\s*east|se\s*london|peckham|lewisham|greenwich|woolwich|deptford|catford)\b/],
+    ["kent", /\b(kent|chatham|dartford|gravesend|gillingham|maidstone|bromley|sidcup)\b/],
+    ["croydon", /\b(croydon|thornton\s*heath)\b/],
+    ["south-east", /\b(south\s*east|se\s*london|peckham|lewisham|greenwich|woolwich|deptford|catford|sidcup)\b/],
     ["south-west", /\b(south\s*west|sw\s*london|brixton|tooting|wandsworth|clapham|putney|mitcham|streatham)\b/],
     ["north-west", /\b(north\s*west|nw\s*london|harlesden|wembley|kilburn|camden|brent)\b/],
     ["north", /\b(north\s*london|enfield|tottenham|finsbury|wood\s*green|islington)\b/],
     ["east", /\b(east\s*london|hackney|stratford|leyton|bow|newham|tower\s*hamlets)\b/],
     ["west", /\b(west\s*london|ealing|acton|hammersmith|hayes|uxbridge|shepherds\s*bush)\b/],
     ["central", /\b(central\s*london|soho|westminster|marylebone|fitzrovia|mayfair)\b/],
-    ["all-london", /\blondon\b/],
   ];
 
-  return areaPatterns.find(([, pattern]) => pattern.test(text))?.[0] || "";
+  const matches = [...new Set(areaPatterns.filter(([, pattern]) => pattern.test(text)).map(([id]) => id))];
+  if (matches.length) {
+    return matches;
+  }
+  return /\blondon\b/.test(text) ? ["all-london"] : [];
+}
+
+function inferAreaIdFromText(value = "") {
+  return inferAreaIdsFromText(value)[0] || "";
+}
+
+function isSpecificAreaMatch(areaIds = []) {
+  return areaIds.length > 0 && !(areaIds.length === 1 && areaIds[0] === "all-london");
 }
 
 function buildEvidence(links, rawServices) {

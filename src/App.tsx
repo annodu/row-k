@@ -418,11 +418,15 @@ function isInstagramUrl(url: string) {
   return /(^|\/\/)(www\.)?instagram\.com\//i.test(url);
 }
 
-// Reel-thumbnail covers (a Reel's static cover frame, not a real photo post)
-// are the lowest-quality source on file — text-overlay title cards, "GRWM"
-// slides. Never let one pad a card out to 3 when there aren't enough real
-// photos to fill it; show fewer instead. Falls back to them only when
-// that's literally all a salon has, so a card still shows *something*.
+// Reel-thumbnail covers (a Reel's pre-generated CDN cover frame, not a real
+// photo post) are the lowest-quality source on file — text-overlay title
+// cards, "GRWM" slides, capped at a small fixed resolution. Never let one pad
+// a card out to 3 when there aren't enough real photos to fill it; show
+// fewer instead. Falls back to them only when that's literally all a salon
+// has, so a card still shows *something*. "instagram-reel-frame" (a specific
+// frame scrubbed directly from the Reel's video at native resolution) is
+// deliberately excluded from this penalty — it's not the low-quality
+// auto-cover, so it's treated the same as a real photo.
 function getPortfolioPhotos(result: SalonResult): PortfolioPhoto[] {
   const photos = result.portfolioPhotos ?? [];
   const nonReelPhotos = photos.filter((photo) => photo.source !== "instagram-reel-thumbnail");

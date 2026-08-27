@@ -11,54 +11,624 @@
       "addedAt": "2026-08-25"
     },
     {
-      "salonId": "tribalbraidsandbeautysalon",
-      "postUrls": [
-        "https://www.instagram.com/p/DcfrImPuDBk/",
-        "https://www.instagram.com/p/DcJGBkTMwHK/",
-        "https://www.instagram.com/p/DbNf7ugudLy/",
-        "https://www.instagram.com/p/DbIVPahIzil/",
-        "https://www.instagram.com/p/DbFrByzuEn2/",
-        "https://www.instagram.com/p/Da5G-p-MAb5/"
-      ],
-      "addedAt": "2026-08-26"
+      "salonId": "by-laid-ldn",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
     },
     {
-      "salonId": "estylish",
-      "postUrls": [
-        "https://www.instagram.com/p/DU8B2jAjVnp/",
-        "https://www.instagram.com/p/DUSf0gsjXUX/",
-        "https://www.instagram.com/p/DSHiehYDeGV/"
-      ],
-      "addedAt": "2026-08-26"
+      "salonId": "styled-by-ariii",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
     },
     {
-      "salonId": "ariyo-hair",
-      "postUrls": [
-        "https://www.instagram.com/p/DLkXlYFNMy-/",
-        "https://www.instagram.com/p/DVA3NGzio6y/",
-        "https://www.instagram.com/p/DO0URaUDWzf/"
-      ],
-      "addedAt": "2026-08-26"
+      "salonId": "nzphair",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
     },
     {
-      "salonId": "carvedbeautyspa",
-      "postUrls": [
-        "https://www.instagram.com/p/DYfOcrvu4fN/",
-        "https://www.instagram.com/p/DXpIlfxChXr/",
-        "https://www.instagram.com/p/DU_S8iCiFpK/",
-        "https://www.instagram.com/p/DPb550UiEdH/"
-      ],
-      "addedAt": "2026-08-26"
+      "salonId": "tthairbarldn",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
     },
     {
-      "salonId": "justcurlsessex",
-      "postUrls": [
-        "https://www.instagram.com/p/CzmWV79LCAw/?img_index=1"
-      ],
-      "addedAt": "2026-08-26"
+      "salonId": "dillanbstudios",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
     },
     {
-      "salonId": "sn-chair",
+      "salonId": "vanity-hair-and-beauty-studios",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "hair-by-temiii",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "slayed-by-phairstyles",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "jazzy-thee-hair-artist",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "stylez-by-sara",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "zulu-bonita",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "hair-by-lsasha",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "rhair-studio",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "dlocs-surgery-uk",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "london-locs-uk",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "london-braid-boss",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "braider-barber-in-london",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "city-diva-braids",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "styled-by-karaa-x",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "ab-stylistt-uk",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "estelle-styled-it",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "hair-by-paulaa",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "the-house-of-lay",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "divine-hair-lounge",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "the-s-and-l-parlour",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "ebiluxe",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "ems-boutiquex",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "conceisao-uk",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "metrix-beauty-hair",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "the-beauty-haven-by-tosin",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "jerusalem-hair",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "dominique-s-beautique",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "mira-styless",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "hairrbykayy",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "tifah-s-touch",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "chiorahair",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "ajstyles-uk",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "kemiahair-uk",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "amz-hair-uk",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "marnz-made",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "by-estare-uk",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "dkhairuk",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "edslaysuk",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "hdastyless",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "damsstyledit",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "laidbya",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "curl-nv",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "bylatishahair",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "athstudiosldn",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "heslayedthat",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "hollylondon",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "hairbymodia",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "thedrybar",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "touchedby-tg",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "knotsandstrands",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "pearlhaircareuk",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "theheadspaedit",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "phebehair",
+      "postUrls": [
+        "https://www.instagram.com/p/C6qW4Voo8e_/"
+      ],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "lmabeauty",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "esu-hairandbeauty",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "bychiluxe",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "ynd-hair-studio",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "rchairandbeautyparlour",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "fashionsfaithstudio",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "shaistylesuk",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "rathestylist",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "aquahair-ldn",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "cutzgalore",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "tayra-hair",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "adeline-hair-and-beauty",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "beauty-by-shakyra",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "bels-beauty-complex",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "bimmytouch",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "blowoutsbys",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "braids-with-deee",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "bslayedit",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "by-zainab-ola",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "chae-hair",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "daniella-osei",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "fruittii-london",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "gias-hair-salon",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "glaysson-carvalho-hair-studio",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "goddess-dream-booking",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "gripped-it",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "groath-hair",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "hair-by-lauralyn-clinton-london",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "hair-by-wynn",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "hair-zones-uk",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "hairboyldn",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "hair-studio-by-enitan",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "hk-salon",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "innovative-salon-hair-beauty",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "irene-amadasun",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "jbs-hairr",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "jo-did-it",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "kaothar-beauty-care",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "keratin-by-anais",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "keratin-london-by-kami",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "kinkbynaturekbn",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "kintsubeauty",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "kitokohairlounge",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "kl-hairport",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "laidbycc",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "milli-links",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "natural-gloe",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "olahairbeau",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "omoadelocs",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "onlylux-hair",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "pej-styles",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "rens-touch",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "rikky-luxe",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "rochelle-london",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "salon-abv",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "silone-sensei",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "sisters-spa-london",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "slaybynay",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "stallistyles",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "styled-by-kadie",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "styled-by-kb",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "styled-by-nicia",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "the-hairbox",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "the-mab-ldn",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "touch-by-temmie",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "tressavenue",
       "postUrls": [],
       "addedAt": "2026-08-27"
     }

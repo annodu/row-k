@@ -43,6 +43,7 @@ import {
   SearchCheck,
   SearchX,
   SlidersHorizontal,
+  Sparkles,
   Tag,
   Trash2,
   Unlink,
@@ -139,6 +140,8 @@ type StylistDraft = {
   googleFormattedAddress?: string;
   verifiedReviewCount?: number;
   portfolioPhotos?: PortfolioPhotoAdmin[];
+  bookingLinkEvidence?: string;
+  attributeSuggestions?: AttributeSuggestion[];
 };
 
 type PortfolioPhotoAdmin = { id: string; url: string; source?: string };
@@ -502,6 +505,9 @@ type DirectoryCheck = {
   senFriendly?: boolean;
   lgbtqFriendly?: boolean;
   parkingAvailable?: boolean;
+  canBraidWithoutGel?: boolean;
+  sellsHairSeparately?: boolean;
+  sameDayEmergency?: boolean;
   priceBand?: PriceBand;
   servicePriceBand?: PriceBand;
   packagePriceBand?: PriceBand;
@@ -568,7 +574,7 @@ type BookingPreview = {
 };
 
 type AttributeSuggestion = {
-  field: "hijabiFriendly" | "wheelchairAccessible" | "senFriendly" | "lgbtqFriendly" | "parkingAvailable";
+  field: "hijabiFriendly" | "wheelchairAccessible" | "senFriendly" | "lgbtqFriendly" | "parkingAvailable" | "canBraidWithoutGel" | "sellsHairSeparately" | "sameDayEmergency";
   value: true;
   label: string;
   evidence: {
@@ -589,6 +595,9 @@ type FreshnessUpdate = {
   senFriendly?: boolean;
   lgbtqFriendly?: boolean;
   parkingAvailable?: boolean;
+  canBraidWithoutGel?: boolean;
+  sellsHairSeparately?: boolean;
+  sameDayEmergency?: boolean;
   priceBand?: PriceBand;
   servicePriceBand?: PriceBand;
   packagePriceBand?: PriceBand;
@@ -605,6 +614,9 @@ type FreshnessUpdate = {
   rejectSenFriendly?: boolean;
   rejectLgbtqFriendly?: boolean;
   rejectParkingAvailable?: boolean;
+  rejectCanBraidWithoutGel?: boolean;
+  rejectSellsHairSeparately?: boolean;
+  rejectSameDayEmergency?: boolean;
   rejectPriceBand?: boolean;
   rejectLocation?: boolean;
   areaId?: string;
@@ -647,6 +659,9 @@ type FreshnessUndoState = {
   previousSenFriendly?: boolean;
   previousLgbtqFriendly?: boolean;
   previousParkingAvailable?: boolean;
+  previousCanBraidWithoutGel?: boolean;
+  previousSellsHairSeparately?: boolean;
+  previousSameDayEmergency?: boolean;
   update: FreshnessUpdate;
   label: string;
 };
@@ -1254,6 +1269,31 @@ function AdminAppInner() {
     }
   }
 
+  async function createDraftFromInstagram(instagramUrl: string) {
+    setMessage("");
+    setIsBusy(true);
+    try {
+      const response = await fetch("/api/admin/stylists/intake-from-instagram", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({ instagramUrl }),
+      });
+      const payload = await response.json();
+      if (!response.ok) {
+        notify(formatDuplicateResponse(payload) || payload.message || "Could not create draft from Instagram.", "error");
+        return;
+      }
+      setDrafts((current) => [payload.draft, ...current]);
+      setSelectedDraftId(payload.draft.id);
+      setActiveView("drafts");
+      setIsDraftEditorOpen(true);
+      notify("Draft auto-filled from Instagram — review before saving.");
+    } finally {
+      setIsBusy(false);
+    }
+  }
+
   async function saveDraft(draft: StylistDraft) {
     setMessage("");
     setIsBusy(true);
@@ -1805,6 +1845,9 @@ function AdminAppInner() {
       previousSenFriendly: check.senFriendly === true,
       previousLgbtqFriendly: check.lgbtqFriendly === true,
       previousParkingAvailable: check.parkingAvailable === true,
+      previousCanBraidWithoutGel: check.canBraidWithoutGel === true,
+      previousSellsHairSeparately: check.sellsHairSeparately === true,
+      previousSameDayEmergency: check.sameDayEmergency === true,
       update,
       label: getFreshnessUndoLabel(update),
     };
@@ -1883,6 +1926,9 @@ function AdminAppInner() {
           previousSenFriendly: lastFreshnessUndo.previousSenFriendly,
           previousLgbtqFriendly: lastFreshnessUndo.previousLgbtqFriendly,
           previousParkingAvailable: lastFreshnessUndo.previousParkingAvailable,
+          previousCanBraidWithoutGel: lastFreshnessUndo.previousCanBraidWithoutGel,
+          previousSellsHairSeparately: lastFreshnessUndo.previousSellsHairSeparately,
+          previousSameDayEmergency: lastFreshnessUndo.previousSameDayEmergency,
           rejectAddedServices: lastFreshnessUndo.update.rejectAddedServices,
           rejectRemovedServices: lastFreshnessUndo.update.rejectRemovedServices,
           rejectHijabiFriendly: lastFreshnessUndo.update.rejectHijabiFriendly,
@@ -1890,6 +1936,9 @@ function AdminAppInner() {
           rejectSenFriendly: lastFreshnessUndo.update.rejectSenFriendly,
           rejectLgbtqFriendly: lastFreshnessUndo.update.rejectLgbtqFriendly,
           rejectParkingAvailable: lastFreshnessUndo.update.rejectParkingAvailable,
+          rejectCanBraidWithoutGel: lastFreshnessUndo.update.rejectCanBraidWithoutGel,
+          rejectSellsHairSeparately: lastFreshnessUndo.update.rejectSellsHairSeparately,
+          rejectSameDayEmergency: lastFreshnessUndo.update.rejectSameDayEmergency,
           rejectPriceBand: lastFreshnessUndo.update.rejectPriceBand,
           rejectLocation: lastFreshnessUndo.update.rejectLocation,
         }),
@@ -2067,6 +2116,7 @@ function AdminAppInner() {
             onStatusFilterChange={setStylistStatusFilter}
             onSearchTermChange={setStylistSearchTerm}
             onCreateDraft={createDraft}
+            onCreateDraftFromInstagram={createDraftFromInstagram}
             onSelectDraft={(draftId) => {
               setSelectedDraftId(draftId);
               setIsDraftEditorOpen(true);
@@ -2303,6 +2353,7 @@ function StylistsPage({
   onStatusFilterChange,
   onSearchTermChange,
   onCreateDraft,
+  onCreateDraftFromInstagram,
   onSelectDraft,
   onCloseEditor,
   onChangeDraft,
@@ -2332,6 +2383,7 @@ function StylistsPage({
   onStatusFilterChange: (value: string) => void;
   onSearchTermChange: (value: string) => void;
   onCreateDraft: () => void;
+  onCreateDraftFromInstagram: (instagramUrl: string) => Promise<void>;
   onSelectDraft: (draftId: string) => void;
   onCloseEditor: () => void;
   onChangeDraft: (update: Partial<StylistDraft>) => void;
@@ -2348,6 +2400,7 @@ function StylistsPage({
   onCropPortfolioPhoto: (photoId: string, region: { x: number; y: number; width: number; height: number; rotation: number }) => Promise<{ ok: boolean; message?: string }>;
   onUploadPortfolioPhoto: (file: File) => Promise<{ ok: boolean; message?: string }>;
 }) {
+  const [instagramIntakeUrl, setInstagramIntakeUrl] = useState("");
   const [stylistSort, setStylistSort] = useState<StylistSort>(null);
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
@@ -2391,15 +2444,47 @@ function StylistsPage({
       <section className="space-y-6">
         <div className="flex flex-wrap items-start justify-between gap-4">
           <h1 className="text-3xl font-bold tracking-tight text-stone-950">Stylists</h1>
-          <div className="flex items-center gap-4">
+          <div className="flex flex-wrap items-center gap-2">
+            <div className="flex items-center gap-2">
+              <div className="relative">
+                <Link2 className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-stone-400" />
+                <input
+                  type="text"
+                  value={instagramIntakeUrl}
+                  onChange={(event) => setInstagramIntakeUrl(event.target.value)}
+                  onKeyDown={(event) => {
+                    if (event.key === "Enter" && instagramIntakeUrl.trim() && !isBusy) {
+                      onCreateDraftFromInstagram(instagramIntakeUrl.trim()).then(() => setInstagramIntakeUrl(""));
+                    }
+                  }}
+                  placeholder="Instagram URL or @handle"
+                  disabled={isBusy}
+                  className="h-10 w-64 rounded-none border border-stone-300 bg-white pl-9 pr-3 text-[13px] font-medium text-stone-950 outline-none transition placeholder:text-stone-400 focus:border-stone-950 disabled:cursor-not-allowed disabled:opacity-50 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100"
+                />
+              </div>
+              <button
+                type="button"
+                onClick={() => {
+                  if (!instagramIntakeUrl.trim()) return;
+                  onCreateDraftFromInstagram(instagramIntakeUrl.trim()).then(() => setInstagramIntakeUrl(""));
+                }}
+                disabled={isBusy || !instagramIntakeUrl.trim()}
+                title="Fetches the bio, resolves the booking link, and pre-fills services, pricing, and needs — all with evidence to review."
+                className="inline-flex h-10 items-center gap-2 rounded-none bg-stone-950 px-4 text-[13px] font-semibold text-white transition hover:bg-stone-800 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-stone-300"
+              >
+                {isBusy ? <Loader2 className="size-4 animate-spin" /> : <Sparkles className="size-4" />}
+                Auto-fill from Instagram
+              </button>
+            </div>
             <button
               type="button"
               onClick={onCreateDraft}
               disabled={isBusy}
-              className="inline-flex h-10 items-center gap-2 rounded-none bg-stone-950 px-4 text-[13px] font-semibold text-white transition hover:bg-stone-800 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-stone-300"
+              title="Start a blank draft and fill it in by hand"
+              className="inline-flex h-10 items-center gap-2 rounded-none border border-stone-300 bg-white px-4 text-[13px] font-semibold text-stone-700 transition hover:border-stone-400 hover:text-stone-950 disabled:cursor-not-allowed disabled:opacity-50 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-300"
             >
               <Plus className="size-4" />
-              Create
+              Blank draft
             </button>
           </div>
         </div>
@@ -4889,6 +4974,10 @@ function PhotoSearchPicksBar({
 }) {
   const [stylists, setStylists] = useState<StylistDraft[] | null>(null);
   const [query, setQuery] = useState("");
+  // Collapsed by default — a big picks list (this one's grown well past a
+  // hundred) otherwise pushes the actual search results off the bottom of
+  // the screen every time this page loads.
+  const [isExpanded, setIsExpanded] = useState(false);
   const confirm = useConfirm();
 
   async function clearAll() {
@@ -4957,31 +5046,39 @@ function PhotoSearchPicksBar({
       {picks.length > 0 ? (
         <>
           <div className="flex items-center justify-between">
-            <p className="text-xs text-stone-500">
+            <button
+              type="button"
+              onClick={() => setIsExpanded((current) => !current)}
+              className="flex items-center gap-1 text-xs text-stone-500 hover:text-stone-950"
+              aria-expanded={isExpanded}
+            >
+              {isExpanded ? <ChevronUp className="size-3.5" /> : <ChevronDown className="size-3.5" />}
               {picks.length} stylist{picks.length === 1 ? "" : "s"} picked
-            </p>
+            </button>
             <button type="button" onClick={clearAll} className="text-xs font-medium text-stone-500 hover:text-stone-950">
               Clear all
             </button>
           </div>
-          <div className="flex flex-wrap gap-1.5">
-            {picks.map((pick) => (
-              <span
-                key={pick.id}
-                className={cn(
-                  "inline-flex items-center gap-1.5 border px-2 py-1 text-xs font-medium",
-                  pick.reviewed ? "border-stone-200 bg-stone-50 text-stone-400" : "border-stone-300 bg-stone-50 text-stone-700"
-                )}
-                title={pick.reviewed ? "Already reviewed — won't come up again in this queue" : undefined}
-              >
-                {pick.name}
-                {pick.reviewed ? <Check className="size-3" aria-hidden="true" /> : null}
-                <button type="button" onClick={() => onRemove(pick.id)} aria-label={`Remove ${pick.name} from picks`} className="text-stone-400 hover:text-stone-950">
-                  <X className="size-3" />
-                </button>
-              </span>
-            ))}
-          </div>
+          {isExpanded ? (
+            <div className="flex max-h-64 flex-wrap gap-1.5 overflow-y-auto">
+              {picks.map((pick) => (
+                <span
+                  key={pick.id}
+                  className={cn(
+                    "inline-flex items-center gap-1.5 border px-2 py-1 text-xs font-medium",
+                    pick.reviewed ? "border-stone-200 bg-stone-50 text-stone-400" : "border-stone-300 bg-stone-50 text-stone-700"
+                  )}
+                  title={pick.reviewed ? "Already reviewed — won't come up again in this queue" : undefined}
+                >
+                  {pick.name}
+                  {pick.reviewed ? <Check className="size-3" aria-hidden="true" /> : null}
+                  <button type="button" onClick={() => onRemove(pick.id)} aria-label={`Remove ${pick.name} from picks`} className="text-stone-400 hover:text-stone-950">
+                    <X className="size-3" />
+                  </button>
+                </span>
+              ))}
+            </div>
+          ) : null}
         </>
       ) : (
         <p className="text-xs text-stone-500">No stylists picked — search above to limit the queue to specific stylists.</p>
@@ -8221,6 +8318,15 @@ function mergeFreshnessRejectUpdates(details: FreshnessRecommendationDetail[], r
     if (update.rejectParkingAvailable) {
       merged.rejectParkingAvailable = true;
     }
+    if (update.rejectCanBraidWithoutGel) {
+      merged.rejectCanBraidWithoutGel = true;
+    }
+    if (update.rejectSellsHairSeparately) {
+      merged.rejectSellsHairSeparately = true;
+    }
+    if (update.rejectSameDayEmergency) {
+      merged.rejectSameDayEmergency = true;
+    }
     if (update.rejectLocation) {
       merged.rejectLocation = true;
     }
@@ -8237,6 +8343,9 @@ const attributeFieldConfig: Record<AttributeSuggestion["field"], { acceptUpdate:
   senFriendly: { acceptUpdate: { senFriendly: true }, rejectUpdate: { rejectSenFriendly: true }, actionLabel: "Mark sensory-safe / SEN-friendly" },
   lgbtqFriendly: { acceptUpdate: { lgbtqFriendly: true }, rejectUpdate: { rejectLgbtqFriendly: true }, actionLabel: "Mark LGBTQIA+-friendly" },
   parkingAvailable: { acceptUpdate: { parkingAvailable: true }, rejectUpdate: { rejectParkingAvailable: true }, actionLabel: "Mark parking nearby" },
+  canBraidWithoutGel: { acceptUpdate: { canBraidWithoutGel: true }, rejectUpdate: { rejectCanBraidWithoutGel: true }, actionLabel: "Mark can braid without gel" },
+  sellsHairSeparately: { acceptUpdate: { sellsHairSeparately: true }, rejectUpdate: { rejectSellsHairSeparately: true }, actionLabel: "Mark sells hair separately" },
+  sameDayEmergency: { acceptUpdate: { sameDayEmergency: true }, rejectUpdate: { rejectSameDayEmergency: true }, actionLabel: "Mark same-day / emergency appointments" },
 };
 
 function getAttributeAcceptUpdate(field: AttributeSuggestion["field"]): FreshnessUpdate {
@@ -9723,8 +9832,77 @@ function DraftEditor({
     <div className="rounded-none border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900">{visibleWarnings.join(" ")}</div>
   ) : null;
 
+  function acceptAttributeSuggestion(field: AttributeSuggestion["field"]) {
+    onChange({
+      [field]: true,
+      attributeSuggestions: (draft.attributeSuggestions || []).filter((item) => item.field !== field),
+    } as Partial<StylistDraft>);
+  }
+
+  function dismissAttributeSuggestion(field: AttributeSuggestion["field"]) {
+    onChange({
+      attributeSuggestions: (draft.attributeSuggestions || []).filter((item) => item.field !== field),
+    });
+  }
+
+  const autoFillEvidenceContent = draft.bookingLinkEvidence || (draft.attributeSuggestions && draft.attributeSuggestions.length > 0) ? (
+    <div className="space-y-3 rounded-none border border-indigo-200 bg-indigo-50 p-4 dark:border-indigo-900 dark:bg-indigo-950/30">
+      <div className="flex items-center gap-2 text-sm font-semibold text-indigo-900 dark:text-indigo-200">
+        <Sparkles className="size-4" />
+        Auto-filled from Instagram — review before saving
+      </div>
+      {draft.bookingLinkEvidence ? (
+        <div className="whitespace-pre-line rounded-none border border-indigo-100 bg-white px-3 py-2 text-xs text-stone-600 dark:border-indigo-900 dark:bg-stone-900 dark:text-stone-300">
+          {draft.bookingLinkEvidence}
+        </div>
+      ) : null}
+      {draft.attributeSuggestions && draft.attributeSuggestions.length > 0 ? (
+        <div className="space-y-2">
+          <p className="text-xs font-semibold uppercase tracking-wide text-indigo-700 dark:text-indigo-300">Possible additional needs found — confirm before accepting</p>
+          {draft.attributeSuggestions.map((suggestion) => (
+            <div key={suggestion.field} className="flex flex-wrap items-center justify-between gap-2 rounded-none border border-indigo-100 bg-white px-3 py-2 dark:border-indigo-900 dark:bg-stone-900">
+              <div className="min-w-0">
+                <p className="text-sm font-semibold text-stone-950 dark:text-stone-100">{suggestion.label}</p>
+                <div className="mt-1 flex flex-wrap gap-1.5">
+                  {suggestion.evidence.slice(0, 3).map((item, index) => (
+                    <span
+                      key={`${suggestion.field}-${index}`}
+                      title={item.text}
+                      className="max-w-[280px] truncate rounded-none border border-stone-200 bg-stone-50 px-2 py-0.5 text-[11px] font-medium text-stone-600 dark:border-stone-700 dark:bg-stone-800 dark:text-stone-300"
+                    >
+                      {titleCase(item.source)}: &ldquo;{item.text}&rdquo;
+                    </span>
+                  ))}
+                </div>
+              </div>
+              <div className="flex shrink-0 items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => acceptAttributeSuggestion(suggestion.field)}
+                  className="inline-flex h-8 items-center gap-1 rounded-none bg-stone-950 px-3 text-xs font-semibold text-white transition hover:bg-stone-800 dark:bg-stone-100 dark:text-stone-950"
+                >
+                  <Check className="size-3.5" />
+                  Accept
+                </button>
+                <button
+                  type="button"
+                  onClick={() => dismissAttributeSuggestion(suggestion.field)}
+                  className="inline-flex h-8 items-center gap-1 rounded-none border border-stone-200 px-3 text-xs font-semibold text-stone-500 transition hover:border-stone-400 hover:text-stone-950 dark:border-stone-700 dark:text-stone-400"
+                >
+                  <X className="size-3.5" />
+                  Dismiss
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      ) : null}
+    </div>
+  ) : null;
+
   const detailsContent = (
     <section className="space-y-6">
+      {autoFillEvidenceContent}
       <Field label="Name">
         <Input value={draft.name} onChange={(event) => onChange({ name: event.target.value })} placeholder="Stylist name" className="h-11 rounded-none" />
       </Field>
@@ -13022,7 +13200,7 @@ function Select({ value, onChange, children }: { value: string; onChange: (value
       >
         {children}
       </select>
-      <ChevronDown className="pointer-events-none absolute right-2 top-1/2 size-4 -translate-y-1/2 text-stone-950" />
+      <ChevronDown className="pointer-events-none absolute right-2 top-1/2 size-4 -translate-y-1/2 text-stone-950 dark:text-stone-400" />
     </div>
   );
 }
@@ -13148,6 +13326,15 @@ function removeReviewedAttributeSuggestions(current: AttributeSuggestion[] = [],
     if (suggestion.field === "parkingAvailable") {
       return update.parkingAvailable !== true && update.rejectParkingAvailable !== true;
     }
+    if (suggestion.field === "canBraidWithoutGel") {
+      return update.canBraidWithoutGel !== true && update.rejectCanBraidWithoutGel !== true;
+    }
+    if (suggestion.field === "sellsHairSeparately") {
+      return update.sellsHairSeparately !== true && update.rejectSellsHairSeparately !== true;
+    }
+    if (suggestion.field === "sameDayEmergency") {
+      return update.sameDayEmergency !== true && update.rejectSameDayEmergency !== true;
+    }
     return true;
   });
 }
@@ -13256,6 +13443,24 @@ function getFreshnessUndoLabel(update: FreshnessUpdate) {
   }
   if (update.rejectParkingAvailable === true) {
     return "ignored parking nearby recommendation";
+  }
+  if (update.canBraidWithoutGel === true) {
+    return "marked can braid without gel";
+  }
+  if (update.rejectCanBraidWithoutGel === true) {
+    return "ignored can-braid-without-gel recommendation";
+  }
+  if (update.sellsHairSeparately === true) {
+    return "marked sells hair separately";
+  }
+  if (update.rejectSellsHairSeparately === true) {
+    return "ignored sells-hair-separately recommendation";
+  }
+  if (update.sameDayEmergency === true) {
+    return "marked same-day / emergency appointments";
+  }
+  if (update.rejectSameDayEmergency === true) {
+    return "ignored same-day/emergency recommendation";
   }
   if (update.rejectPriceBand === true) {
     return "ignored price recommendation";

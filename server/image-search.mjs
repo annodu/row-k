@@ -104,7 +104,7 @@ function toResult(post, media) {
 // resumes from, so a second request doesn't re-walk pages already seen.
 // `nextCursor: null` means the account's post history is actually
 // exhausted, not just that this call stopped early to save cost.
-export async function searchSalonImages(salon, { num = 24, includeReels = false, cursor: startCursor } = {}) {
+export async function searchSalonImages(salon, { num = 40, includeReels = false, cursor: startCursor } = {}) {
   const apiKey = await loadAnyApiKey();
   if (!apiKey) {
     throw new Error("AnyAPI is not configured (ANYAPI_KEY).");
@@ -118,10 +118,18 @@ export async function searchSalonImages(salon, { num = 24, includeReels = false,
   // A video/Reels-heavy account can have many pages with zero usable photos
   // (all filtered out below) — without a page cap, chasing `num` photos on
   // an account that mostly doesn't have any would paginate through its
-  // entire post history, one paid request per page.
-  const MAX_PAGES = 6;
+  // entire post history, one paid request per page. Raised alongside `num`
+  // (was 6/24) — the one-per-post dedup means reaching a higher `num` now
+  // needs more pages than it used to, not just a higher ceiling on its own.
+  const MAX_PAGES = 10;
 
   const results = [];
+  // AnyAPI's cursor pagination has been observed (confirmed live) returning
+  // the *same* page of posts again instead of advancing — each post keeps
+  // its id but gets a freshly-signed CDN url, so without this it looks like
+  // legitimate new results and the same photo gets approved-grid-worthy
+  // duplicated once per page, all the way out to MAX_PAGES.
+  const seenPostIds = new Set();
   let cursor = startCursor;
   let page = 0;
   let exhausted = false;
@@ -152,9 +160,18 @@ export async function searchSalonImages(salon, { num = 24, includeReels = false,
       exhausted = true;
       break;
     }
+    if (posts.every((post) => seenPostIds.has(post.id))) {
+      // The cursor came back with nothing but posts already processed —
+      // that's the stuck-pagination case above, not a real next page.
+      // Nothing further to find by continuing to spend pages on it.
+      exhausted = true;
+      break;
+    }
 
     const resultsBeforePage = results.length;
     for (const post of posts) {
+      if (seenPostIds.has(post.id)) continue;
+      seenPostIds.add(post.id);
       // Only the first usable slide of each post, not every slide in a
       // carousel — a single 10-photo carousel post used to fill most of the
       // grid with one outfit/session, crowding out the rest of the account.
@@ -180,6 +197,56 @@ export async function searchSalonImages(salon, { num = 24, includeReels = false,
   }
 
   return { results: results.slice(0, num), nextCursor: exhausted ? null : cursor };
+}
+
+// For stylists with no booking link at all (DM/WhatsApp/call to book) — the
+// only remaining signal for what they actually do is their own post
+// captions/hashtags. Kept deliberately small (num defaults low, one page
+// cap) since this is a paid AnyAPI call with no free path, unlike the
+// profile fetch this pipeline tries first everywhere else.
+export async function fetchInstagramRecentCaptions(instagramUrl, { num = 15 } = {}) {
+  const apiKey = await loadAnyApiKey();
+  if (!apiKey) {
+    throw new Error("AnyAPI is not configured (ANYAPI_KEY).");
+  }
+
+  const handle = extractInstagramHandle(instagramUrl);
+  if (!handle) {
+    throw new Error("No Instagram handle to fetch posts for.");
+  }
+
+  const MAX_PAGES = 2;
+  const results = [];
+  const seenPostIds = new Set();
+  let cursor;
+  let page = 0;
+  while (results.length < num && page < MAX_PAGES) {
+    let payload;
+    try {
+      payload = await anyApiPost("/v1/run/instagram.user_posts", { handle, cursor }, apiKey);
+    } catch (error) {
+      if (page === 0) throw error;
+      break;
+    }
+    const data = payload.output?.data ?? payload;
+    const posts = Array.isArray(data) ? data : data.posts || [];
+    page += 1;
+    if (posts.length === 0) break;
+
+    for (const post of posts) {
+      if (seenPostIds.has(post.id)) continue;
+      seenPostIds.add(post.id);
+      const caption = String(post.caption || "").trim();
+      if (!caption) continue;
+      results.push({ caption, url: post.url || "" });
+      if (results.length >= num) break;
+    }
+
+    cursor = data.nextCursor;
+    if (!cursor) break;
+  }
+
+  return results;
 }
 
 function extractShortcode(postUrl) {
@@ -300,6 +367,49 @@ export async function fetchInstagramProfilePicture(instagramUrl) {
   }
 
   return fetchOgImage(instagramUrl);
+}
+
+// Paid fallback for the stylist-intake pipeline's free direct profile fetch
+// (Instagram's own unofficial web_profile_info endpoint) — used only when
+// that fails for a reason that isn't "this account doesn't exist". Confirmed
+// live: AnyAPI's instagram.profile reaches accounts that direct fetch can't,
+// e.g. ones tripping a live Instagram-side schema bug on certain business
+// accounts (seen as a 400 "ig_business_category_subvertical" error).
+export async function fetchInstagramProfileViaAnyApi(handle) {
+  if (!handle) {
+    return { found: false };
+  }
+
+  const apiKey = await loadAnyApiKey();
+  if (!apiKey) {
+    return { found: false };
+  }
+
+  try {
+    const payload = await anyApiPost("/v1/run/instagram.profile", { handle }, apiKey);
+    const output = payload.output ?? payload;
+    const data = output?.data;
+    if (!output?.found || !data) {
+      return { found: false };
+    }
+
+    const bioLinks = (Array.isArray(data.bioLinks) ? data.bioLinks : [])
+      .map((link) => ({ title: String(link?.title || "").trim(), url: String(link?.url || "").trim() }))
+      .filter((link) => link.url);
+
+    return {
+      found: true,
+      username: String(data.handle || handle).trim(),
+      fullName: String(data.displayName || "").trim(),
+      bio: String(data.bio || "").trim(),
+      externalUrl: String(data.externalUrl || "").trim(),
+      bioLinks,
+      avatarUrl: String(data.avatarUrl || "").trim(),
+      isPrivate: data.private === true,
+    };
+  } catch (error) {
+    return { found: false, reason: error.message };
+  }
 }
 
 async function fetchOgImage(pageUrl) {
