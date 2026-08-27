@@ -1,7 +1,7 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-08-26",
+    "updatedAt": "2026-08-27",
     "count": 1020,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
@@ -11123,22 +11123,12 @@
       "portfolioPhotosCheckedAt": "2026-08-20",
       "portfolioPhotos": [
         {
-          "id": "bm-the-stylist-portfolio-photo-dc847828-4acc-4102-9f14-2c93401ff9bf",
-          "url": "/portfolio-photos/bm-the-stylist-1053bc1a-f447-4871-a4de-735bb2b8437c.jpg",
-          "source": "google-image-search"
-        },
-        {
           "id": "bm-the-stylist-portfolio-photo-ccf753ed-21e0-4faa-b2ee-a4d7fcbd867f",
           "url": "/portfolio-photos/bm-the-stylist-2ea8012d-dee8-4bb9-aeb4-f1ea4733de1b.jpg",
           "source": "google-image-search"
-        },
-        {
-          "id": "bm-the-stylist-portfolio-photo-86358cd9-d429-40da-af5e-0a355a63e67c",
-          "url": "/portfolio-photos/bm-the-stylist-f7ee95cc-3fbc-4027-8c83-bd1fbaf1e90c.jpg",
-          "source": "instagram-reel-thumbnail"
         }
       ],
-      "updatedAt": "2026-08-25",
+      "updatedAt": "2026-08-27",
       "photoSearchReviewedAt": "2026-08-25"
     },
     {
@@ -24603,7 +24593,7 @@
       "googleDisplayName": null,
       "googleFormattedAddress": null,
       "googleCheckedAt": "2026-07-29",
-      "updatedAt": "2026-08-26",
+      "updatedAt": "2026-08-27",
       "websiteUrl": "",
       "tiktokUrl": "",
       "hijabiFriendly": false,
@@ -24616,26 +24606,6 @@
           "id": "bydiannn-portfolio-photo-18d97ba7-1b51-47cc-b6c5-aed290201c94",
           "url": "/portfolio-photos/bydiannn-f23b4977-5086-464b-b018-701f55019709.jpg",
           "source": "google-image-search"
-        },
-        {
-          "id": "bydiannn-portfolio-photo-ff1a3ba8-1cdb-40c9-a3d3-075be81d490a",
-          "url": "/portfolio-photos/bydiannn-f34b6c9c-2c49-4786-b5d9-78494ae8d05f.jpg",
-          "source": "instagram-reel-thumbnail"
-        },
-        {
-          "id": "bydiannn-portfolio-photo-678a38a4-893f-4162-81ff-959858a6ed52",
-          "url": "/portfolio-photos/bydiannn-e2730fb0-857a-4167-bffd-2331256159a8.jpg",
-          "source": "google-image-search"
-        },
-        {
-          "id": "bydiannn-portfolio-photo-2b05edcf-d427-4bb2-ad2f-7156d467b97c",
-          "url": "/portfolio-photos/bydiannn-8d739f75-d18c-4ade-97fe-d6fe9c18bc0e.jpg",
-          "source": "instagram-reel-thumbnail"
-        },
-        {
-          "id": "bydiannn-portfolio-photo-7cbc19b1-9719-4245-b85b-123119380414",
-          "url": "/portfolio-photos/bydiannn-72145878-a7cd-4380-8fb8-280cdf0d9f91.jpg",
-          "source": "instagram-reel-thumbnail"
         }
       ],
       "photoSearchReviewedAt": "2026-08-24"
@@ -29585,7 +29555,7 @@
       "googleDisplayName": null,
       "googleFormattedAddress": null,
       "googleCheckedAt": "2026-07-29",
-      "updatedAt": "2026-08-25",
+      "updatedAt": "2026-08-27",
       "websiteUrl": "",
       "tiktokUrl": "",
       "hijabiFriendly": false,
@@ -29601,11 +29571,6 @@
         {
           "id": "bychiluxe-portfolio-photo-7e2ccde0-7659-453f-8037-5600e54f1d23",
           "url": "/portfolio-photos/bychiluxe-a636f97e-9a7b-4f2e-bc58-834081f7f628.jpg",
-          "source": "instagram-reel-thumbnail"
-        },
-        {
-          "id": "bychiluxe-portfolio-photo-d356648a-be1c-41f3-bd76-9678cae5b8c5",
-          "url": "/portfolio-photos/bychiluxe-3924506d-1501-491d-b878-04889d0e43f3.jpg",
           "source": "instagram-reel-thumbnail"
         }
       ],
@@ -29956,7 +29921,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-25",
+      "updatedAt": "2026-08-27",
       "addedVia": "Admin tool",
       "discoverySource": "User submission",
       "verifiedReviewCount": 8,
@@ -29973,8 +29938,8 @@
       "portfolioPhotosCheckedAt": "2026-08-21",
       "portfolioPhotos": [
         {
-          "id": "fashionsfaithstudio-portfolio-photo-a656bddd-831a-4ef1-aac7-dd7a53d04cd4",
-          "url": "/portfolio-photos/fashionsfaithstudio-cac31a46-a5cb-44c8-a2ec-58f83e5f7a31.jpg",
+          "id": "fashionsfaithstudio-portfolio-photo-c63f7cc6-32ae-4bda-9107-71f5d968c1c9",
+          "url": "/portfolio-photos/fashionsfaithstudio-e9fcf468-41e6-45dd-b0d3-4f7bf408877d.jpg",
           "source": "instagram-reel-thumbnail"
         },
         {
@@ -29983,13 +29948,8 @@
           "source": "instagram-reel-thumbnail"
         },
         {
-          "id": "fashionsfaithstudio-portfolio-photo-c63f7cc6-32ae-4bda-9107-71f5d968c1c9",
-          "url": "/portfolio-photos/fashionsfaithstudio-e9fcf468-41e6-45dd-b0d3-4f7bf408877d.jpg",
-          "source": "instagram-reel-thumbnail"
-        },
-        {
-          "id": "fashionsfaithstudio-portfolio-photo-2e6bf8e9-d6e5-40d1-8983-8cd5a2d94ca1",
-          "url": "/portfolio-photos/fashionsfaithstudio-53a9a5aa-4a98-44a3-8377-bd22f26369d6.jpg",
+          "id": "fashionsfaithstudio-portfolio-photo-a656bddd-831a-4ef1-aac7-dd7a53d04cd4",
+          "url": "/portfolio-photos/fashionsfaithstudio-cac31a46-a5cb-44c8-a2ec-58f83e5f7a31.jpg",
           "source": "instagram-reel-thumbnail"
         }
       ],
@@ -41828,7 +41788,7 @@
       "priceCheckedAt": "2026-06-04",
       "priceConfidence": "high",
       "priceUpdatedAt": "2026-06-04",
-      "updatedAt": "2026-08-26",
+      "updatedAt": "2026-08-27",
       "addedVia": "Code edit",
       "discoverySource": "Cowork scrape",
       "hijabiFriendly": false,
@@ -41843,33 +41803,8 @@
       "portfolioPhotosCheckedAt": "2026-08-21",
       "portfolioPhotos": [
         {
-          "id": "chae-hair-portfolio-photo-8cfa1ea8-48e8-4335-af95-d3d5f2c1570f",
-          "url": "/portfolio-photos/chae-hair-9790c135-a86f-424c-b6fe-9d069bedc2e6.jpg",
-          "source": "instagram-reel-thumbnail"
-        },
-        {
           "id": "chae-hair-portfolio-photo-eea85c46-ee48-4017-98cd-3c1b66af298e",
           "url": "/portfolio-photos/chae-hair-ab7f2e59-7eca-47ba-8168-a1a2d8546205.jpg",
-          "source": "instagram-reel-thumbnail"
-        },
-        {
-          "id": "chae-hair-portfolio-photo-c3f7e6b7-8169-47a3-a074-9e7de79bcfdd",
-          "url": "/portfolio-photos/chae-hair-889a1e69-48f7-437f-8a69-675786d1c791.jpg",
-          "source": "instagram-reel-thumbnail"
-        },
-        {
-          "id": "chae-hair-portfolio-photo-c043166f-e9c7-45b6-a70d-2b522580687e",
-          "url": "/portfolio-photos/chae-hair-10e19a15-b861-4c46-9b12-cf3de089afb1.jpg",
-          "source": "instagram-reel-thumbnail"
-        },
-        {
-          "id": "chae-hair-portfolio-photo-0131df62-ad2f-4068-8ffd-9685c99105e2",
-          "url": "/portfolio-photos/chae-hair-c121698e-e5c0-4619-888b-90842961b76e.jpg",
-          "source": "instagram-reel-thumbnail"
-        },
-        {
-          "id": "chae-hair-portfolio-photo-ba2cd942-b3ce-4908-bbb5-ed94b81835a5",
-          "url": "/portfolio-photos/chae-hair-4fc3102c-5b16-4d27-8d1b-32e3df06e7ba.jpg",
           "source": "instagram-reel-thumbnail"
         }
       ],
@@ -42592,17 +42527,12 @@
       "googleCheckedAt": "2026-07-24",
       "googleDisplayName": "Cocoa's Touch Salon LTD",
       "googleFormattedAddress": "",
-      "updatedAt": "2026-08-26",
+      "updatedAt": "2026-08-27",
       "websiteUrl": "https://www.cocoastouch.co.uk/",
       "sellsHairSeparately": true,
       "hairShopUrl": "https://www.cocoastouch.co.uk/human-hair-braiding",
       "vendorId": "cocoa-s-touch",
       "portfolioPhotos": [
-        {
-          "id": "cocoas-touch-portfolio-photo-0",
-          "url": "/portfolio-photos/cocoas-touch-6f6ac12a-a9bb-433a-893c-f77ea565031e.jpg",
-          "source": "acuity"
-        },
         {
           "id": "cocoas-touch-portfolio-photo-2",
           "url": "/portfolio-photos/cocoas-touch-34b6e383-6554-46b6-9fd4-fa39e2ecef9b.jpg",
@@ -60960,59 +60890,9 @@
           "id": "o-so-snatched-portfolio-photo-2e25aa6d-fe3b-423f-a02c-f1bbc5fc99e3",
           "url": "/portfolio-photos/o-so-snatched-d228d24d-b87d-4997-9778-51349151f55c.jpg",
           "source": "google-image-search"
-        },
-        {
-          "id": "o-so-snatched-portfolio-photo-929028dd-e761-4a59-a728-63ce3552e68d",
-          "url": "/portfolio-photos/o-so-snatched-2638139c-ab8a-46fc-81b0-3808f2bdd0d6.jpg",
-          "source": "instagram-reel-thumbnail"
-        },
-        {
-          "id": "o-so-snatched-portfolio-photo-6eb9c406-06d2-4895-ab01-214835d93fcc",
-          "url": "/portfolio-photos/o-so-snatched-77b6bc3b-6e9b-4939-b32f-355bb149be0b.jpg",
-          "source": "instagram-reel-thumbnail"
-        },
-        {
-          "id": "o-so-snatched-portfolio-photo-e1a00326-1376-4abf-8c30-b499e2502883",
-          "url": "/portfolio-photos/o-so-snatched-30ae85c7-9cd7-4b49-91c6-bc363229ea20.jpg",
-          "source": "instagram-reel-thumbnail"
-        },
-        {
-          "id": "o-so-snatched-portfolio-photo-48cc6c06-b132-4d4a-ad7c-e30ebee45452",
-          "url": "/portfolio-photos/o-so-snatched-e5a50e6d-24df-4f32-8f85-d8b522602110.jpg",
-          "source": "instagram-reel-thumbnail"
-        },
-        {
-          "id": "o-so-snatched-portfolio-photo-fa2f2ebe-8892-4427-b34e-540521fd35af",
-          "url": "/portfolio-photos/o-so-snatched-cd7e2626-6df2-4f14-befd-f3724fe0f9ab.jpg",
-          "source": "instagram-reel-thumbnail"
-        },
-        {
-          "id": "o-so-snatched-portfolio-photo-3fe248cf-5d58-44e2-a1d4-ddb13c6ca3b7",
-          "url": "/portfolio-photos/o-so-snatched-0468e41f-6ffa-4f30-a131-306cb1ac89a8.jpg",
-          "source": "instagram-reel-thumbnail"
-        },
-        {
-          "id": "o-so-snatched-portfolio-photo-74630c77-a9d3-4c90-b7d4-2904ef2b5ecb",
-          "url": "/portfolio-photos/o-so-snatched-09f52c2e-f331-42e9-80b5-5982b34ed43d.jpg",
-          "source": "instagram-reel-thumbnail"
-        },
-        {
-          "id": "o-so-snatched-portfolio-photo-2fb4de2a-7c37-40cc-8d53-85bec51c786d",
-          "url": "/portfolio-photos/o-so-snatched-fba757e6-9bf1-48a2-b5f2-8aa3ae053eb7.jpg",
-          "source": "instagram-reel-thumbnail"
-        },
-        {
-          "id": "o-so-snatched-portfolio-photo-4d4fd0fa-113b-4630-a8f0-04da93a6ead9",
-          "url": "/portfolio-photos/o-so-snatched-f93bc9be-acad-4be8-9a0f-3e5f878ae392.jpg",
-          "source": "instagram-reel-thumbnail"
-        },
-        {
-          "id": "o-so-snatched-portfolio-photo-b686b45c-1bd5-463d-a924-863f5d80799c",
-          "url": "/portfolio-photos/o-so-snatched-8e4e9b4c-8bbe-43fc-ba9b-b675f4da2353.jpg",
-          "source": "instagram-reel-thumbnail"
         }
       ],
-      "updatedAt": "2026-08-25",
+      "updatedAt": "2026-08-27",
       "photoSearchReviewedAt": "2026-08-26",
       "photoOrderBumpedAt": 214
     },
@@ -68217,11 +68097,6 @@
       "portfolioPhotosCheckedAt": "2026-08-21",
       "portfolioPhotos": [
         {
-          "id": "steaze-glam-portfolio-photo-14b4db41-8c5d-4e59-8597-ac81c4b93a0d",
-          "url": "/portfolio-photos/steaze-glam-76553398-702d-46ba-a12e-ba8044bf58c1.jpg",
-          "source": "google-image-search"
-        },
-        {
           "id": "steaze-glam-portfolio-photo-0f63fd27-5989-49b1-83e3-7f88bcfa9525",
           "url": "/portfolio-photos/steaze-glam-4bfb42b4-3881-462a-811b-822526cc716c.jpg",
           "source": "google-image-search"
@@ -68231,7 +68106,8 @@
           "url": "/portfolio-photos/steaze-glam-a14968eb-9be3-4b2e-a9f6-214f684a746c.jpg",
           "source": "google-image-search"
         }
-      ]
+      ],
+      "updatedAt": "2026-08-27"
     },
     {
       "id": "stephanie-lebby-hair-limited",
@@ -72547,16 +72423,6 @@
       "portfolioPhotosCheckedAt": "2026-08-21",
       "portfolioPhotos": [
         {
-          "id": "tress-studios-portfolio-photo-a7adda21-71d4-4264-b40f-d5c19466e58b",
-          "url": "/portfolio-photos/tress-studios-4fcd2751-e92d-4de3-bd83-69c0f134cf49.jpg",
-          "source": "google-image-search"
-        },
-        {
-          "id": "tress-studios-portfolio-photo-974d6c5c-8280-4dc9-a714-e7468279c869",
-          "url": "/portfolio-photos/tress-studios-cc4d3159-1db6-4038-8bf1-6e86049f706a.jpg",
-          "source": "google-image-search"
-        },
-        {
           "id": "tress-studios-portfolio-photo-81b76b60-15bc-4b58-99a0-1c72371f45c8",
           "url": "/portfolio-photos/tress-studios-32f56a99-3fa2-4e30-9a96-88aebba0d6d0.jpg",
           "source": "google-image-search"
@@ -72568,7 +72434,7 @@
         }
       ],
       "photoSearchReviewedAt": "2026-08-26",
-      "updatedAt": "2026-08-26"
+      "updatedAt": "2026-08-27"
     },
     {
       "id": "tressavenue",
@@ -76859,16 +76725,6 @@
       "portfolioPhotosCheckedAt": "2026-08-21",
       "portfolioPhotos": [
         {
-          "id": "theetianashantel-portfolio-photo-f29b0384-1b54-44b6-8743-7bbb67460f91",
-          "url": "/portfolio-photos/theetianashantel-db81d80f-4bee-489a-8c5e-926e243f38be.jpg",
-          "source": "google-image-search"
-        },
-        {
-          "id": "theetianashantel-portfolio-photo-ee0c78c3-2697-444d-b1e6-41fc785476cb",
-          "url": "/portfolio-photos/theetianashantel-5fabc123-12bc-420c-84cd-5f7af4908680.jpg",
-          "source": "google-image-search"
-        },
-        {
           "id": "theetianashantel-portfolio-photo-164b530f-4dd0-4ffe-a729-604e7457454f",
           "url": "/portfolio-photos/theetianashantel-7ca772dd-1397-45dd-ab50-f674f9692a39.jpg",
           "source": "google-image-search"
@@ -76877,8 +76733,19 @@
           "id": "theetianashantel-portfolio-photo-a5e2389e-6dde-4910-9c99-fb552f9c4162",
           "url": "/portfolio-photos/theetianashantel-203c9a9f-d887-4ea2-84d2-8d66d8868f63.jpg",
           "source": "google-image-search"
+        },
+        {
+          "id": "theetianashantel-portfolio-photo-ee0c78c3-2697-444d-b1e6-41fc785476cb",
+          "url": "/portfolio-photos/theetianashantel-5fabc123-12bc-420c-84cd-5f7af4908680.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "theetianashantel-portfolio-photo-f29b0384-1b54-44b6-8743-7bbb67460f91",
+          "url": "/portfolio-photos/theetianashantel-db81d80f-4bee-489a-8c5e-926e243f38be.jpg",
+          "source": "google-image-search"
         }
-      ]
+      ],
+      "updatedAt": "2026-08-26"
     },
     {
       "id": "oraellounge",
