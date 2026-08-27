@@ -418,8 +418,15 @@ function isInstagramUrl(url: string) {
   return /(^|\/\/)(www\.)?instagram\.com\//i.test(url);
 }
 
+// Reel-thumbnail covers (a Reel's static cover frame, not a real photo post)
+// are the lowest-quality source on file — text-overlay title cards, "GRWM"
+// slides. Never let one pad a card out to 3 when there aren't enough real
+// photos to fill it; show fewer instead. Falls back to them only when
+// that's literally all a salon has, so a card still shows *something*.
 function getPortfolioPhotos(result: SalonResult): PortfolioPhoto[] {
-  return result.portfolioPhotos?.slice(0, 3) ?? [];
+  const photos = result.portfolioPhotos ?? [];
+  const nonReelPhotos = photos.filter((photo) => photo.source !== "instagram-reel-thumbnail");
+  return (nonReelPhotos.length > 0 ? nonReelPhotos : photos).slice(0, 3);
 }
 
 // Placeholder for salons without portfolio photos yet — the site's wide

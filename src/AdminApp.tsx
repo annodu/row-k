@@ -3729,6 +3729,19 @@ function PortfolioPhotoReorderGrid({
     return photosProp.length !== photos.length || photosProp.some((photo, index) => photo.id !== photos[index]?.id);
   }, [photosProp, photos]);
 
+  // Mirrors getPortfolioPhotos' identical rule on the public site: an
+  // instagram-reel-thumbnail (a Reel's static cover frame, the lowest-
+  // quality source on file) never counts toward the shown-{PORTFOLIO_SHOWN_COUNT}
+  // line while a real photo could take its slot instead — falls back to
+  // reel-thumbnails only when a stylist has nothing else at all. Badges here
+  // need to reflect that, not just raw position, or "Shown" would lie about
+  // what the public card actually displays.
+  const shownIds = useMemo(() => {
+    const nonReelPhotos = photos.filter((photo) => photo.source !== "instagram-reel-thumbnail");
+    const shownPhotos = nonReelPhotos.length > 0 ? nonReelPhotos : photos;
+    return new Set(shownPhotos.slice(0, PORTFOLIO_SHOWN_COUNT).map((photo) => photo.id));
+  }, [photos]);
+
   function moveUp(index: number) {
     if (index === 0) return;
     setPhotos((current) => {
@@ -3765,7 +3778,7 @@ function PortfolioPhotoReorderGrid({
       ) : (
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
           {photos.map((photo, index) => {
-            const isShown = index < PORTFOLIO_SHOWN_COUNT;
+            const isShown = shownIds.has(photo.id);
             return (
               <div key={photo.id} className="border border-stone-200 bg-white">
                 <div className="relative">

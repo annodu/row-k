@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-08-26"
+    "updatedAt": "2026-08-27"
   },
   "entries": [
     {
@@ -56,6 +56,11 @@
         "https://www.instagram.com/p/CzmWV79LCAw/?img_index=1"
       ],
       "addedAt": "2026-08-26"
+    },
+    {
+      "salonId": "sn-chair",
+      "postUrls": [],
+      "addedAt": "2026-08-27"
     }
   ]
 }

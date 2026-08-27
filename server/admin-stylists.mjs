@@ -1322,9 +1322,21 @@ export function registerAdminStylistRoutes(app) {
       const freshSalon = freshIndex.salons.find((s) => s.id === req.params.salonId);
       if (!freshSalon) return;
       const existingPhotos = freshSalon.portfolioPhotos || [];
-      // Photo-search approvals are sourced to look better than what's
-      // already on file, so they lead the gallery instead of trailing it.
-      freshSalon.portfolioPhotos = [photo, ...existingPhotos];
+      if (photo.source === "instagram-reel-thumbnail") {
+        // A Reel cover is the lowest-quality source (text-overlay title
+        // cards, "GRWM" slides) — never let a fresh one jump ahead of real
+        // photos already on file. Goes in front of any *existing* Reel
+        // covers, same "newest of its own tier leads" logic as the normal
+        // case below, just scoped to the low-quality tier instead of the
+        // very front of the whole gallery.
+        const existingNonReel = existingPhotos.filter((p) => p.source !== "instagram-reel-thumbnail");
+        const existingReel = existingPhotos.filter((p) => p.source === "instagram-reel-thumbnail");
+        freshSalon.portfolioPhotos = [...existingNonReel, photo, ...existingReel];
+      } else {
+        // Photo-search approvals are sourced to look better than what's
+        // already on file, so they lead the gallery instead of trailing it.
+        freshSalon.portfolioPhotos = [photo, ...existingPhotos];
+      }
       delete freshSalon.photoSearchSkippedAt;
       delete freshSalon.photoSearchSkippedReason;
       // A custom `ids` queue (re-running search on hand-picked stylists that
