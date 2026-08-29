@@ -612,7 +612,7 @@ function PortfolioPhotoCarousel({
                 event.preventDefault();
                 goToPhoto(activeIndex - 1);
               }}
-              className="absolute left-2 top-1/2 hidden size-8 -translate-y-1/2 items-center justify-center rounded-none border border-white/40 bg-white/20 text-stone-900 opacity-0 shadow-[0_2px_8px_rgba(0,0,0,0.12),inset_0_1px_0_rgba(255,255,255,0.25)] backdrop-blur-md backdrop-saturate-150 transition hover:bg-white/35 hover:opacity-100 dark:border-white/15 dark:bg-white/10 dark:text-white dark:shadow-[0_2px_8px_rgba(0,0,0,0.35),inset_0_1px_0_rgba(255,255,255,0.08)] dark:hover:bg-white/20 sm:flex"
+              className="absolute left-2 top-1/2 hidden size-8 -translate-y-1/2 items-center justify-center rounded-none border border-white/40 bg-white/30 text-stone-900 opacity-0 shadow-[0_2px_8px_rgba(0,0,0,0.12),inset_0_1px_0_rgba(255,255,255,0.25)] backdrop-blur-md backdrop-saturate-150 transition hover:bg-white/45 hover:opacity-100 dark:border-white/15 dark:bg-white/22 dark:text-white dark:shadow-[0_2px_8px_rgba(0,0,0,0.35),inset_0_1px_0_rgba(255,255,255,0.08)] dark:hover:bg-white/32 sm:flex"
             >
               <ChevronLeft className="size-4" />
             </button>
@@ -623,7 +623,7 @@ function PortfolioPhotoCarousel({
                 event.preventDefault();
                 goToPhoto(activeIndex + 1);
               }}
-              className="absolute right-2 top-1/2 hidden size-8 -translate-y-1/2 items-center justify-center rounded-none border border-white/40 bg-white/20 text-stone-900 opacity-0 shadow-[0_2px_8px_rgba(0,0,0,0.12),inset_0_1px_0_rgba(255,255,255,0.25)] backdrop-blur-md backdrop-saturate-150 transition hover:bg-white/35 hover:opacity-100 dark:border-white/15 dark:bg-white/10 dark:text-white dark:shadow-[0_2px_8px_rgba(0,0,0,0.35),inset_0_1px_0_rgba(255,255,255,0.08)] dark:hover:bg-white/20 sm:flex"
+              className="absolute right-2 top-1/2 hidden size-8 -translate-y-1/2 items-center justify-center rounded-none border border-white/40 bg-white/30 text-stone-900 opacity-0 shadow-[0_2px_8px_rgba(0,0,0,0.12),inset_0_1px_0_rgba(255,255,255,0.25)] backdrop-blur-md backdrop-saturate-150 transition hover:bg-white/45 hover:opacity-100 dark:border-white/15 dark:bg-white/22 dark:text-white dark:shadow-[0_2px_8px_rgba(0,0,0,0.35),inset_0_1px_0_rgba(255,255,255,0.08)] dark:hover:bg-white/32 sm:flex"
             >
               <ChevronRight className="size-4" />
             </button>

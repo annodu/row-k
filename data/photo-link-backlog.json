@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-08-27"
+    "updatedAt": "2026-08-29"
   },
   "entries": [
     {
@@ -631,6 +631,13 @@
       "salonId": "tressavenue",
       "postUrls": [],
       "addedAt": "2026-08-27"
+    },
+    {
+      "salonId": "michaela-creates-ldn",
+      "postUrls": [
+        "https://www.instagram.com/p/DVOZArXDPj2/"
+      ],
+      "addedAt": "2026-08-29"
     }
   ]
 }

@@ -6,7 +6,7 @@ import { assertSafeOutboundHttpUrl, createRateLimiter, requireTrustedOrigin, san
 import { fetchAllTimeSummary, fetchAnalyticsSummary, fetchRecentActivity } from "./analytics.mjs";
 import { extractPostcodeToken, getParkingAvailable, getWheelchairAccessibleEntrance, loadGooglePlacesApiKey, matchSalonToGoogle } from "./google-match.mjs";
 import { getVerifiedReviewPlatform, matchVerifiedReviews } from "./verified-reviews.mjs";
-import { fetchInstagramPostImage, fetchInstagramProfilePicture, fetchInstagramProfileViaAnyApi, fetchInstagramRecentCaptions, searchSalonImages } from "./image-search.mjs";
+import { fetchInstagramProfilePicture, fetchInstagramProfileViaAnyApi, fetchInstagramRecentCaptions, searchSalonImages } from "./image-search.mjs";
 import { resolveBioLink } from "./bio-link-resolver.mjs";
 import { cropCollagePanel, downloadImage } from "../scripts/lib/photo-candidates.mjs";
 import { createWorker } from "tesseract.js";
@@ -360,6 +360,48 @@ export const serviceNegationHints = {
   "Wig cornrows": ["under wig", "wig cornrows", "wig braids", "wig cainrows", "cainrows for wig installation", "cornrows for wig installation", "cornrows without extensions", "cainrows"],
   "Wig install (frontal / closure)": ["wig install", "wig installs", "wig instal", "wig installation", "wig application", "wig fitting", "glueless wig", "lace wig", "frontal wig", "closure wig", "wig frontal install", "wig closure install", "lace frontal installation", "lace closure installation", "frontal unit", "closure unit", "ready-made unit", "ready made unit", "unit install", "frontal unit install", "closure unit install"],
 };
+
+// Shared by both approve endpoints below (one downloads from a URL, the
+// other already has a raw buffer from an extracted Reel frame) — inserts a
+// freshly-approved photo into a salon's gallery and updates the bookkeeping
+// fields a page refresh / the Photo order queue rely on. Mutates freshIndex
+// in place (matching the inline version this was extracted from) and
+// returns the salon it touched, or null if the id no longer exists.
+function insertApprovedPortfolioPhoto(freshIndex, salonId, photo) {
+  const freshSalon = freshIndex.salons.find((s) => s.id === salonId);
+  if (!freshSalon) return null;
+  const existingPhotos = freshSalon.portfolioPhotos || [];
+  if (photo.source === "instagram-reel-thumbnail") {
+    // A Reel cover is the lowest-quality source (text-overlay title cards,
+    // "GRWM" slides) — never let a fresh one jump ahead of real photos
+    // already on file. Goes in front of any *existing* Reel covers, same
+    // "newest of its own tier leads" logic as the normal case below, just
+    // scoped to the low-quality tier instead of the very front of the whole
+    // gallery.
+    const existingNonReel = existingPhotos.filter((p) => p.source !== "instagram-reel-thumbnail");
+    const existingReel = existingPhotos.filter((p) => p.source === "instagram-reel-thumbnail");
+    freshSalon.portfolioPhotos = [...existingNonReel, photo, ...existingReel];
+  } else {
+    // Every other source (a real photo, or a Reel frame scrubbed at native
+    // resolution) is sourced to look better than what's already on file, so
+    // it leads the gallery instead of trailing it.
+    freshSalon.portfolioPhotos = [photo, ...existingPhotos];
+  }
+  delete freshSalon.photoSearchSkippedAt;
+  delete freshSalon.photoSearchSkippedReason;
+  // A custom `ids` queue (re-running search on hand-picked stylists that may
+  // already have photos) can't rely on "zero photos" to know a stylist is
+  // done — mark it explicitly so a page refresh doesn't re-show the whole
+  // list from scratch.
+  freshSalon.photoSearchReviewedAt = today();
+  // A plain ordinal, not a date — the Photo order queue sorts on this to
+  // float a just-approved stylist straight to the top, and a same-day
+  // approval still needs to outrank an earlier one from the same day for
+  // that.
+  const maxBump = freshIndex.salons.reduce((max, s) => Math.max(max, s.photoOrderBumpedAt || 0), 0);
+  freshSalon.photoOrderBumpedAt = maxBump + 1;
+  return freshSalon;
+}
 
 export function registerAdminStylistRoutes(app) {
   app.use("/api/admin", requireTrustedOrigin);
@@ -1322,46 +1364,89 @@ export function registerAdminStylistRoutes(app) {
     // read from before the (potentially slow) download/crop above — another
     // request could have written the file in the meantime, and this could
     // race a concurrent prefetch's auto-skip write for the same salon.
-    const isReel = req.body?.isReel === true;
+    // Callers that know their source precisely (Link backlog's direct-photo
+    // extraction, e.g.) can say so explicitly; anything else falls back to
+    // the old isReel-inferred default so existing callers keep working
+    // unchanged.
+    const allowedSources = new Set(["instagram", "instagram-reel-thumbnail", "google-image-search"]);
+    const requestedSource = cleanString(req.body?.source);
+    const source = allowedSources.has(requestedSource)
+      ? requestedSource
+      : req.body?.isReel === true
+        ? "instagram-reel-thumbnail"
+        : "google-image-search";
     const photo = {
       id: `${salon.id}-portfolio-photo-${crypto.randomUUID()}`,
       url: `/portfolio-photos/${filename}`,
-      source: isReel ? "instagram-reel-thumbnail" : "google-image-search",
+      source,
     };
     await withManualIndexLock(async () => {
       const freshIndex = await readJson(manualIndexPath, { meta: { source: "manual" }, salons: [] });
-      const freshSalon = freshIndex.salons.find((s) => s.id === req.params.salonId);
+      const freshSalon = insertApprovedPortfolioPhoto(freshIndex, req.params.salonId, photo);
       if (!freshSalon) return;
-      const existingPhotos = freshSalon.portfolioPhotos || [];
-      if (photo.source === "instagram-reel-thumbnail") {
-        // A Reel cover is the lowest-quality source (text-overlay title
-        // cards, "GRWM" slides) — never let a fresh one jump ahead of real
-        // photos already on file. Goes in front of any *existing* Reel
-        // covers, same "newest of its own tier leads" logic as the normal
-        // case below, just scoped to the low-quality tier instead of the
-        // very front of the whole gallery.
-        const existingNonReel = existingPhotos.filter((p) => p.source !== "instagram-reel-thumbnail");
-        const existingReel = existingPhotos.filter((p) => p.source === "instagram-reel-thumbnail");
-        freshSalon.portfolioPhotos = [...existingNonReel, photo, ...existingReel];
-      } else {
-        // Photo-search approvals are sourced to look better than what's
-        // already on file, so they lead the gallery instead of trailing it.
-        freshSalon.portfolioPhotos = [photo, ...existingPhotos];
-      }
-      delete freshSalon.photoSearchSkippedAt;
-      delete freshSalon.photoSearchSkippedReason;
-      // A custom `ids` queue (re-running search on hand-picked stylists that
-      // may already have photos) can't rely on "zero photos" to know a
-      // stylist is done — mark it explicitly so a page refresh doesn't
-      // re-show the whole list from scratch.
-      freshSalon.photoSearchReviewedAt = today();
-      // A plain ordinal, not a date — the Photo order queue sorts on this to
-      // float a just-approved stylist straight to the top, and a same-day
-      // approval still needs to outrank an earlier one from the same day for
-      // that. See photoOrderBumpedAt's use in the queue endpoint below.
-      const maxBump = freshIndex.salons.reduce((max, s) => Math.max(max, s.photoOrderBumpedAt || 0), 0);
-      freshSalon.photoOrderBumpedAt = maxBump + 1;
       await persistManualIndex(freshIndex, `Add photo-search photo for ${freshSalon.name}`);
+    });
+    res.json({ ok: true, photo });
+  });
+
+  // A frame scrubbed from a Reel's actual <video> element (see
+  // extractInstagramPostMedia below) arrives as raw image data, not a URL —
+  // there's nothing to download, so this is a separate endpoint from the
+  // URL-based approve above rather than an extra branch on it.
+  app.post("/api/admin/photo-search/:salonId/approve-frame", requireAdmin, adminExpensiveRateLimit, async (req, res) => {
+    const dataUrl = String(req.body?.dataUrl || "");
+    const match = dataUrl.match(/^data:image\/(?:jpeg|png);base64,([A-Za-z0-9+/=]+)$/);
+    if (!match) {
+      return res.status(400).json({ ok: false, message: "A valid image dataUrl is required." });
+    }
+
+    const manualIndex = await readJson(manualIndexPath, { meta: { source: "manual" }, salons: [] });
+    const salon = manualIndex.salons.find((s) => s.id === req.params.salonId);
+    if (!salon) {
+      return res.status(404).json({ ok: false, message: "Salon not found." });
+    }
+
+    // A scrubbed frame is native video resolution — commonly portrait
+    // (9:16-ish) — but portfolio photos display in a 3:2 landscape box on
+    // the live site, so an uncropped frame would get an uncontrolled
+    // center-crop from the browser's own `object-cover`. The admin UI always
+    // sends a crop (RepositionableImage defaults to a centered one even
+    // without a drag), same as the URL-based approve endpoint above; a
+    // missing/invalid crop here still falls back to a plain re-encode rather
+    // than failing outright, in case a future caller doesn't have one yet.
+    let buffer = Buffer.from(match[1], "base64");
+    try {
+      const panel = {
+        x: Number(req.body?.crop?.x),
+        y: Number(req.body?.crop?.y),
+        width: Number(req.body?.crop?.width),
+        height: Number(req.body?.crop?.height),
+      };
+      const hasCrop = [panel.x, panel.y, panel.width, panel.height].every((n) => Number.isFinite(n) && n >= 0 && n <= 1) && panel.width > 0 && panel.height > 0;
+      if (hasCrop) {
+        const rotation = Number(req.body?.rotation) || 0;
+        buffer = await cropCollagePanel(buffer, panel, rotation);
+      } else {
+        buffer = await sharp(buffer).jpeg().toBuffer();
+      }
+    } catch (error) {
+      return res.status(400).json({ ok: false, message: sanitizeErrorMessage(error, "Could not process that image.") });
+    }
+
+    await fs.mkdir(portfolioPhotosPublicDir, { recursive: true });
+    const filename = `${salon.id}-${crypto.randomUUID()}.jpg`;
+    await fs.writeFile(path.join(portfolioPhotosPublicDir, filename), buffer);
+
+    const photo = {
+      id: `${salon.id}-portfolio-photo-${crypto.randomUUID()}`,
+      url: `/portfolio-photos/${filename}`,
+      source: "instagram-reel-frame",
+    };
+    await withManualIndexLock(async () => {
+      const freshIndex = await readJson(manualIndexPath, { meta: { source: "manual" }, salons: [] });
+      const freshSalon = insertApprovedPortfolioPhoto(freshIndex, req.params.salonId, photo);
+      if (!freshSalon) return;
+      await persistManualIndex(freshIndex, `Add extracted Reel frame for ${freshSalon.name}`);
     });
     res.json({ ok: true, photo });
   });
@@ -1490,7 +1575,16 @@ export function registerAdminStylistRoutes(app) {
     res.json({ ok: true });
   });
 
-  app.post("/api/admin/photo-link-backlog/:salonId/run", requireAdmin, photoSearchRateLimit, async (req, res) => {
+  // Drives a real headless browser to each pasted link instead of AnyAPI's
+  // instagram.post (see extractInstagramPostMedia) — a photo post's actual
+  // displayed image comes straight off the DOM (free, and matches what's
+  // shown, sidestepping AnyAPI's carousel/blank-displayUrl quirks); a video/
+  // Reel can't be reduced to one auto-picked frame the way AnyAPI's
+  // algorithmic cover was, so those come back as multiple candidate frames
+  // for the admin to pick from instead of being auto-approved. One failed
+  // link no longer aborts the whole batch — a flaky navigation on one post
+  // shouldn't cost the others in the same paste.
+  app.post("/api/admin/photo-link-backlog/:salonId/run", requireAdmin, adminExpensiveRateLimit, async (req, res) => {
     const store = await readJson(photoLinkBacklogPath, { meta: {}, entries: [] });
     const entries = Array.isArray(store.entries) ? store.entries : [];
     const entry = entries.find((item) => item.salonId === req.params.salonId);
@@ -1505,10 +1599,14 @@ export function registerAdminStylistRoutes(app) {
     const results = [];
     for (const postUrl of postUrls) {
       try {
-        const result = await fetchInstagramPostImage(postUrl);
-        if (result) results.push(result);
+        const media = await extractInstagramPostMedia(postUrl);
+        if (media.type === "photo") {
+          results.push({ type: "photo", postUrl, imageUrl: media.imageUrl, thumbnailUrl: media.imageUrl, contextUrl: postUrl, isReel: false });
+        } else {
+          results.push({ type: "video", postUrl, duration: media.duration, candidates: media.candidates, batch: media.batch, hasMore: media.hasMore });
+        }
       } catch (error) {
-        return res.status(502).json({ ok: false, message: sanitizeErrorMessage(error, `Could not fetch ${postUrl}.`) });
+        results.push({ type: "error", postUrl, message: sanitizeErrorMessage(error, `Could not fetch ${postUrl}.`) });
       }
     }
     res.json({ ok: true, results });
@@ -1532,6 +1630,31 @@ export function registerAdminStylistRoutes(app) {
       res.json({ ok: true, result });
     } catch (error) {
       res.status(502).json({ ok: false, message: sanitizeErrorMessage(error, "Could not fetch the profile picture.") });
+    }
+  });
+
+  // Same extraction Link backlog's /run above uses, exposed directly for a
+  // single post — lets Photo search's whole-account browse grid offer "Get
+  // HD frame" on any Reel result it turns up (those otherwise only ever
+  // carry AnyAPI's low-res, algorithmically-picked cover), without needing
+  // the post added to a salon's Link backlog first. Salon-agnostic on
+  // purpose: this only reads a public Instagram post, it doesn't touch
+  // manual-salons.json — that happens on the separate approve/approve-frame
+  // call once the admin has actually picked something.
+  app.post("/api/admin/instagram/extract-media", requireAdmin, adminExpensiveRateLimit, async (req, res) => {
+    const postUrl = cleanString(req.body?.postUrl);
+    if (!postUrl || !validInstagramPostUrl(postUrl)) {
+      return res.status(400).json({ ok: false, message: "A valid Instagram post/reel URL is required." });
+    }
+    // Lets the frontend's "More frames" button ask for a different spread of
+    // moments from the same clip when none of the first batch look right,
+    // rather than getting the same fixed set back every time.
+    const batch = Number.isInteger(req.body?.batch) ? req.body.batch : 0;
+    try {
+      const media = await extractInstagramPostMedia(postUrl, { batch });
+      res.json({ ok: true, ...media });
+    } catch (error) {
+      res.status(502).json({ ok: false, message: sanitizeErrorMessage(error, "Could not extract media from that post.") });
     }
   });
 
@@ -6587,6 +6710,99 @@ function sanitizeAiServiceNames(services = []) {
 function sanitizeAiServiceConfidence(value = "") {
   const cleaned = cleanString(value).toLowerCase();
   return ["high", "medium", "low"].includes(cleaned) ? cleaned : "";
+}
+
+// Fractions of a Reel's duration to try as candidate cover frames, grouped
+// into batches an admin can page through one "More frames" click at a time
+// rather than getting a single fixed set with no recourse if none of them
+// land. Batch 0's later fractions bias toward a finished-look "reveal" (the
+// common case for a transformation clip); batch 1 catches short GRWM-style
+// clips that show the result up front instead; batch 2 fills in the
+// remaining gaps. There's no universal right moment (see
+// docs/instagram-reel-frame-extraction.md), so this offers a spread per
+// batch and lets an admin pick — or ask for a different spread — rather than
+// guessing a single "correct" one up front.
+const REEL_FRAME_CANDIDATE_BATCHES = [
+  [0.5, 0.7, 0.85, 0.95],
+  [0.1, 0.2, 0.3, 0.4],
+  [0.15, 0.35, 0.6, 0.8],
+];
+
+// Server-side counterpart to the manual technique in
+// docs/instagram-reel-frame-extraction.md: AnyAPI's instagram.post never
+// returns anything better than a low-res, algorithmically-picked cover frame
+// for a video/Reel (see the removed fetchInstagramPostImage), so this drives
+// a real headless browser to the post instead and rasterizes the actual
+// <video> element at a few candidate moments. A non-video post's real
+// displayed image is grabbed straight from the DOM too — free (no AnyAPI
+// call) and immune to AnyAPI's carousel/blank-displayUrl quirks, since it's
+// reading exactly what a visitor would see.
+async function extractInstagramPostMedia(postUrl, { batch = 0 } = {}) {
+  const browser = await getPriceCheckBrowser();
+  const page = await browser.newPage({ userAgent: browserUserAgent, viewport: { width: 800, height: 1200 } });
+  try {
+    await page.goto(postUrl, { waitUntil: "domcontentloaded", timeout: 20_000 });
+    await page.waitForLoadState("networkidle", { timeout: 8_000 }).catch(() => {});
+
+    const hasVideo = await page.evaluate(() => !!document.querySelector("video"));
+    if (!hasVideo) {
+      // First img over ~200px wide, in DOM order, is the post's own
+      // displayed slide (confirmed live against several posts) — profile
+      // avatars, icons, and other page chrome all render smaller than that.
+      const imageUrl = await page.evaluate(() => {
+        const img = Array.from(document.querySelectorAll("img")).find((el) => el.naturalWidth > 200);
+        return img?.src || "";
+      });
+      if (!imageUrl) {
+        throw new Error("Could not find a photo or video on that post — check the link is correct and the post is public.");
+      }
+      return { type: "photo", imageUrl };
+    }
+
+    // A <video> that's never played can silently no-op on a `currentTime`
+    // assignment — a brief muted play-then-pause "wakes it up" so the seeks
+    // below actually move the playhead.
+    await page.evaluate(async () => {
+      const vid = document.querySelector("video");
+      vid.muted = true;
+      await vid.play().catch(() => {});
+      await new Promise((resolve) => setTimeout(resolve, 300));
+      vid.pause();
+    });
+
+    const duration = await page.evaluate(() => document.querySelector("video")?.duration || 0);
+    // A batch index past the end of the table just re-requests the last
+    // batch rather than throwing — the frontend already stops offering
+    // "More frames" once hasMore comes back false, so this only fires if
+    // something calls in with a stale/out-of-range batch.
+    const clampedBatch = Math.max(0, Math.min(batch, REEL_FRAME_CANDIDATE_BATCHES.length - 1));
+    const fractions = REEL_FRAME_CANDIDATE_BATCHES[clampedBatch];
+    const targets = Number.isFinite(duration) && duration > 0.5
+      ? [...new Set(fractions.map((fraction) => Math.round(Math.max(0.2, Math.min(duration - 0.15, fraction * duration)) * 10) / 10))]
+      : [0];
+
+    const candidates = [];
+    for (const t of targets) {
+      const dataUrl = await page.evaluate(async (targetTime) => {
+        const vid = document.querySelector("video");
+        vid.currentTime = targetTime;
+        await new Promise((resolve) => {
+          vid.onseeked = resolve;
+          setTimeout(resolve, 2000);
+        });
+        const canvas = document.createElement("canvas");
+        canvas.width = vid.videoWidth;
+        canvas.height = vid.videoHeight;
+        canvas.getContext("2d").drawImage(vid, 0, 0, canvas.width, canvas.height);
+        return canvas.toDataURL("image/jpeg", 0.85);
+      }, t);
+      candidates.push({ t, dataUrl });
+    }
+
+    return { type: "video", duration, candidates, batch: clampedBatch, hasMore: clampedBatch + 1 < REEL_FRAME_CANDIDATE_BATCHES.length };
+  } finally {
+    await page.close().catch(() => {});
+  }
 }
 
 async function getPriceCheckBrowser() {

@@ -3861,11 +3861,11 @@ function PortfolioPhotoReorderGrid({
       {photos.length === 0 ? (
         <p className="text-sm text-stone-500">{emptyMessage}</p>
       ) : (
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
+        <div className="flex flex-wrap gap-4">
           {photos.map((photo, index) => {
             const isShown = shownIds.has(photo.id);
             return (
-              <div key={photo.id} className="border border-stone-200 bg-white">
+              <div key={photo.id} className={cn("border border-stone-200 bg-white", MOBILE_PHOTO_PREVIEW_WIDTH)}>
                 <div className="relative">
                   <RepositionableImage
                     src={photo.url}
@@ -4551,9 +4551,16 @@ function PhotoSearchPage() {
   const [results, setResults] = useState<PhotoSearchResult[] | null>(null);
   // What a "More posts" click resumes from — set from the initial search's
   // own response, so a second request continues past what's already been
-  // seen instead of re-walking the same pages. Null once the account's post
-  // history is actually exhausted (distinct from just not having fetched
-  // yet — see nextCursor's meaning in searchSalonImages).
+  // seen instead of re-walking the same pages. In practice this is null on
+  // almost every account, not just small ones: Instagram caps anonymous
+  // (logged-out) profile browsing at roughly one page of posts — confirmed
+  // live, both against AnyAPI directly (its own returned cursor re-fetches
+  // the identical page instead of advancing) and against a from-scratch
+  // Playwright profile scrape (its own "Show more posts" control is a
+  // login-gated no-op for a logged-out session). Neither this app nor
+  // AnyAPI can page past that without an actual Instagram login, which is
+  // its own can of worms (stored account credentials) — see the "More
+  // posts" button below for how this is surfaced to the admin instead.
   const [nextCursor, setNextCursor] = useState<string | null>(null);
   const [loadingMore, setLoadingMore] = useState(false);
   const [searchError, setSearchError] = useState("");
@@ -4938,7 +4945,14 @@ function PhotoSearchPage() {
           ) : results && results.length === 0 ? (
             <p className="text-sm text-stone-500">No image results for this salon.</p>
           ) : results ? (
-            <PhotoResultGrid results={results} approvedUrls={approvedUrls} actioning={actioning} onApprove={approve} />
+            <PhotoResultGrid
+              results={results}
+              approvedUrls={approvedUrls}
+              actioning={actioning}
+              onApprove={approve}
+              salonId={current.id}
+              onFrameApproved={(imageUrl) => setApprovedUrls((current) => new Set(current).add(imageUrl))}
+            />
           ) : null}
 
           {results !== null && nextCursor ? (
@@ -4950,6 +4964,11 @@ function PhotoSearchPage() {
             >
               {loadingMore ? "Loading more…" : "More posts"}
             </button>
+          ) : results && results.length > 0 ? (
+            <p className="text-xs text-stone-400">
+              That's everything Instagram shows without being logged in. For posts further back, browse the account yourself and
+              use "Send to link backlog" above to paste specific links.
+            </p>
           ) : null}
         </div>
       )}
@@ -5087,38 +5106,61 @@ function PhotoSearchPicksBar({
   );
 }
 
-// Shared by Photo search and the Link backlog tool: a grid of fetched
-// thumbnails, each with drag-to-reposition-then-approve (via
+// The live site shows a portfolio photo at roughly 340×227 CSS px on an
+// actual phone (measured against a 375px-wide viewport) — a dense grid of
+// ~100px admin thumbnails hides exactly the blur/artifacts an admin needs to
+// see before approving something. Every review card below is sized to this
+// instead, in a wrapping flex row rather than a fixed-column grid so it
+// still reflows sanely at any admin window width.
+const MOBILE_PHOTO_PREVIEW_WIDTH = "w-full sm:w-[340px]";
+
+// Shared by Photo search and the Link backlog tool: a row of fetched
+// photos, each with drag-to-reposition-then-approve (via
 // RepositionableImage) or a plain Approve button for a straight approve with
-// no crop.
+// no crop. A Reel result never gets that treatment, though — its thumbnail
+// is only ever AnyAPI's low-res, algorithmically-picked cover frame, so
+// cropping/approving it directly would just lock in a worse photo than the
+// post actually has. ReelResultCard offers pulling a real frame from the
+// post's video instead.
 function PhotoResultGrid({
   results,
   approvedUrls,
   actioning,
   onApprove,
+  salonId,
+  onFrameApproved,
 }: {
   results: PhotoSearchResult[];
   approvedUrls: Set<string>;
   actioning: boolean;
   onApprove: (result: PhotoSearchResult, crop?: { x: number; y: number; width: number; height: number }) => Promise<{ ok: boolean; message?: string }>;
+  salonId: string;
+  onFrameApproved: (imageUrl: string) => void;
 }) {
   return (
-    <div className="grid grid-cols-4 gap-2 sm:grid-cols-6 lg:grid-cols-8">
+    <div className="flex flex-wrap gap-3">
       {results.map((result, index) => {
         const isApproved = approvedUrls.has(result.imageUrl);
+        if (result.isReel) {
+          return (
+            <ReelResultCard
+              key={`${result.imageUrl}-${index}`}
+              result={result}
+              salonId={salonId}
+              approved={isApproved}
+              onApproved={() => onFrameApproved(result.imageUrl)}
+            />
+          );
+        }
         return (
           <div
             key={`${result.imageUrl}-${index}`}
             className={cn(
               "relative flex flex-col border bg-white",
+              MOBILE_PHOTO_PREVIEW_WIDTH,
               isApproved ? "border-emerald-500" : "border-stone-200"
             )}
           >
-            {result.isReel ? (
-              <span className="absolute left-1 top-1 z-10 bg-stone-950/80 px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-white">
-                Reel
-              </span>
-            ) : null}
             <RepositionableImage
               src={result.thumbnailUrl}
               disabled={isApproved}
@@ -5144,6 +5186,245 @@ function PhotoResultGrid({
           </div>
         );
       })}
+    </div>
+  );
+}
+
+type ReelFrameCandidate = { t: number; dataUrl: string };
+type CropRegion = { x: number; y: number; width: number; height: number };
+type ExtractedVideoMedia = { candidates: ReelFrameCandidate[]; batch: number; hasMore: boolean };
+
+// Shared by every Reel-candidate picker (Photo search's ReelResultCard, Link
+// backlog, and the Photo order drawer's inline fetch): shows the current
+// batch of frames pulled from a post's video, each drag-to-reframe-then-
+// approve via RepositionableImage, plus a "More frames" escape hatch for
+// when none of them are right — re-requests a different spread of moments
+// from the same clip (see REEL_FRAME_CANDIDATE_BATCHES server-side) instead
+// of leaving the admin stuck with whatever the first batch happened to land
+// on.
+function ReelFramePicker({
+  postUrl,
+  initialMedia,
+  salonId,
+  onApproved,
+}: {
+  postUrl: string;
+  initialMedia: ExtractedVideoMedia;
+  salonId: string;
+  onApproved: (photo: PortfolioPhotoAdmin) => void;
+}) {
+  const [candidates, setCandidates] = useState(initialMedia.candidates);
+  const [batch, setBatch] = useState(initialMedia.batch);
+  const [hasMore, setHasMore] = useState(initialMedia.hasMore);
+  const [loadingMore, setLoadingMore] = useState(false);
+  const [approvingIndex, setApprovingIndex] = useState<number | null>(null);
+  const [error, setError] = useState("");
+
+  async function loadMore() {
+    setLoadingMore(true);
+    setError("");
+    try {
+      const response = await fetch("/api/admin/instagram/extract-media", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({ postUrl, batch: batch + 1 }),
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok || !payload.ok || payload.type !== "video") {
+        setError(payload.message || "Could not fetch more frames.");
+        return;
+      }
+      setCandidates(payload.candidates ?? []);
+      setBatch(typeof payload.batch === "number" ? payload.batch : batch + 1);
+      setHasMore(!!payload.hasMore);
+    } catch {
+      setError("Could not fetch more frames.");
+    } finally {
+      setLoadingMore(false);
+    }
+  }
+
+  async function pickFrame(index: number, dataUrl: string, crop?: CropRegion) {
+    setApprovingIndex(index);
+    setError("");
+    try {
+      const response = await fetch(`/api/admin/photo-search/${salonId}/approve-frame`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({ dataUrl, crop }),
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (response.ok && payload.ok && payload.photo) {
+        onApproved(payload.photo);
+        return { ok: true };
+      }
+      setError(payload.message || "Could not approve that frame.");
+      return { ok: false, message: payload.message };
+    } catch {
+      setError("Could not approve that frame.");
+      return { ok: false, message: "Could not approve that frame." };
+    } finally {
+      setApprovingIndex(null);
+    }
+  }
+
+  return (
+    <div className="flex w-full flex-col gap-2">
+      <div className="flex flex-wrap gap-3">
+        {candidates.map((candidate, index) => (
+          <div key={`${batch}-${candidate.t}`} className={cn("flex flex-col border border-stone-200", MOBILE_PHOTO_PREVIEW_WIDTH)}>
+            <RepositionableImage
+              src={candidate.dataUrl}
+              disabled={approvingIndex !== null}
+              onCommit={(region) => pickFrame(index, candidate.dataUrl, region)}
+            />
+            <button
+              type="button"
+              disabled={approvingIndex !== null}
+              onClick={() => pickFrame(index, candidate.dataUrl)}
+              className="w-full bg-emerald-600 px-1 py-1.5 text-[12px] font-bold text-white transition hover:bg-emerald-500 disabled:opacity-50"
+            >
+              {approvingIndex === index ? "Saving…" : "Approve"}
+            </button>
+          </div>
+        ))}
+      </div>
+      {error ? <p className="text-xs text-red-600">{error}</p> : null}
+      {hasMore ? (
+        <button
+          type="button"
+          disabled={loadingMore || approvingIndex !== null}
+          onClick={loadMore}
+          className="self-start text-xs font-medium text-stone-600 underline hover:text-stone-950 disabled:opacity-50"
+        >
+          {loadingMore ? "Loading more…" : "None of these? Try more frames"}
+        </button>
+      ) : (
+        <p className="text-xs text-stone-400">No more frames to try from this clip.</p>
+      )}
+    </div>
+  );
+}
+
+// A Reel card's three states: plain low-res cover with a "Get HD frame"
+// button, a picker of real frames pulled from the post's video once that
+// button's been clicked, or "Approved" once one's been picked. Extraction
+// hits the post itself (via /api/admin/instagram/extract-media), so it also
+// has to handle the post turning out not to actually be a video (a carousel
+// whose first slide is a photo but a later Reel-cover result still got
+// tagged isReel by the account-wide crawl) — that path just approves the
+// real photo directly instead of showing a picker.
+function ReelResultCard({
+  result,
+  salonId,
+  approved,
+  onApproved,
+}: {
+  result: PhotoSearchResult;
+  salonId: string;
+  approved: boolean;
+  onApproved: () => void;
+}) {
+  const [media, setMedia] = useState<ExtractedVideoMedia | null>(null);
+  const [extracting, setExtracting] = useState(false);
+  const [error, setError] = useState("");
+
+  async function extract() {
+    if (!result.contextUrl) {
+      setError("No post link on file for this result.");
+      return;
+    }
+    setExtracting(true);
+    setError("");
+    try {
+      const response = await fetch("/api/admin/instagram/extract-media", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({ postUrl: result.contextUrl }),
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok || !payload.ok) {
+        setError(payload.message || "Could not extract frames from that post.");
+        return;
+      }
+      if (payload.type === "video") {
+        setMedia({ candidates: payload.candidates ?? [], batch: payload.batch ?? 0, hasMore: !!payload.hasMore });
+      } else {
+        await approveExtractedPhoto(payload.imageUrl);
+      }
+    } catch {
+      setError("Could not extract frames from that post.");
+    } finally {
+      setExtracting(false);
+    }
+  }
+
+  async function approveExtractedPhoto(imageUrl: string) {
+    try {
+      const response = await fetch(`/api/admin/photo-search/${salonId}/approve`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({ imageUrl, thumbnailUrl: imageUrl, source: "instagram" }),
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (response.ok && payload.ok) onApproved();
+      else setError(payload.message || "Could not approve that photo.");
+    } catch {
+      setError("Could not approve that photo.");
+    }
+  }
+
+  if (approved) {
+    return (
+      <div className={cn("relative flex flex-col border border-emerald-500 bg-white", MOBILE_PHOTO_PREVIEW_WIDTH)}>
+        <span className="absolute left-1 top-1 z-10 bg-stone-950/80 px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-white">
+          Reel
+        </span>
+        <img src={result.thumbnailUrl} alt="" className="aspect-[3/2] w-full object-cover opacity-60" />
+        <div className="flex items-center justify-center gap-1 bg-emerald-600 px-1 py-1.5 text-[12px] font-bold text-white">
+          <Check className="size-3.5" aria-hidden="true" />
+          Approved
+        </div>
+      </div>
+    );
+  }
+
+  if (media && result.contextUrl) {
+    return (
+      <div className="flex w-full flex-col gap-2 border border-stone-300 bg-white p-2">
+        <p className="text-xs text-stone-500">Pick the best frame — drag one to reframe it, then Approve:</p>
+        <ReelFramePicker postUrl={result.contextUrl} initialMedia={media} salonId={salonId} onApproved={onApproved} />
+        <button type="button" onClick={() => setMedia(null)} className="self-start text-xs text-stone-500 underline">
+          Cancel
+        </button>
+      </div>
+    );
+  }
+
+  return (
+    <div className={cn("relative flex flex-col border border-stone-200 bg-white", MOBILE_PHOTO_PREVIEW_WIDTH)}>
+      <span className="absolute left-1 top-1 z-10 bg-stone-950/80 px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-white">
+        Reel
+      </span>
+      <img src={result.thumbnailUrl} alt="" className="aspect-[3/2] w-full object-cover" />
+      <button
+        type="button"
+        disabled={extracting}
+        onClick={extract}
+        className="flex w-full items-center justify-center gap-1 bg-stone-800 px-1 py-1.5 text-[12px] font-bold text-white transition hover:bg-stone-700 disabled:opacity-50"
+      >
+        {extracting ? (
+          <Loader2 className="size-3.5 animate-spin" aria-hidden="true" />
+        ) : (
+          <Sparkles className="size-3.5" aria-hidden="true" />
+        )}
+        {extracting ? "Extracting…" : "Get HD frame"}
+      </button>
+      {error ? <p className="px-1 pb-1 text-[10px] text-red-600">{error}</p> : null}
     </div>
   );
 }
@@ -5310,6 +5591,23 @@ type LinkBacklogEntry = {
   postUrls: string[];
   addedAt?: string;
 };
+
+// /run's response, one entry per pasted link: a real photo post resolves
+// straight to a PhotoSearchResult (type "photo"); a video/Reel can't be
+// reduced to one auto-picked frame, so it comes back as several candidates
+// for the admin to choose from instead ("video"); a link that failed to
+// load reports why rather than aborting the whole batch ("error").
+type LinkBacklogPhotoResult = PhotoSearchResult & { type: "photo"; postUrl: string };
+type LinkBacklogVideoResult = {
+  type: "video";
+  postUrl: string;
+  duration: number;
+  candidates: ReelFrameCandidate[];
+  batch?: number;
+  hasMore?: boolean;
+};
+type LinkBacklogErrorResult = { type: "error"; postUrl: string; message: string };
+type LinkBacklogFetchResult = LinkBacklogPhotoResult | LinkBacklogVideoResult | LinkBacklogErrorResult;
 
 // A personal worklist: search the directory to add a stylist, paste post/
 // reel links hand-picked from their real Instagram, then fetch just those —
@@ -5484,6 +5782,11 @@ function LinkBacklogRow({
   const [approvedUrls, setApprovedUrls] = useState<Set<string>>(new Set());
   const [failedUrls, setFailedUrls] = useState<Set<string>>(new Set());
   const [fetchingProfilePicture, setFetchingProfilePicture] = useState(false);
+  // Reels among the pasted links can't be auto-approved (see runFetch) —
+  // tracked separately from the photo grid above so each gets its own
+  // frame-candidate picker instead of a pass/fail badge.
+  const [videoResults, setVideoResults] = useState<LinkBacklogVideoResult[]>([]);
+  const [videoApprovedPostUrls, setVideoApprovedPostUrls] = useState<Set<string>>(new Set());
 
   async function saveLinks(nextText: string): Promise<boolean> {
     const postUrls = nextText
@@ -5516,14 +5819,16 @@ function LinkBacklogRow({
   // A link the admin pasted here is already a deliberate pick (they browsed
   // the real Instagram themselves) — unlike Photo search's raw account-wide
   // results, there's nothing left to review, so every fetched photo is
-  // approved automatically instead of waiting on a per-photo click.
+  // approved automatically instead of waiting on a per-photo click. Always
+  // sourced "instagram" — every result here comes straight off a pasted
+  // Instagram link, never a Google image search.
   async function approveResult(result: PhotoSearchResult): Promise<boolean> {
     try {
       const response = await fetch(`/api/admin/photo-search/${entry.salonId}/approve`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
-        body: JSON.stringify({ imageUrl: result.imageUrl, thumbnailUrl: result.thumbnailUrl, isReel: result.isReel }),
+        body: JSON.stringify({ imageUrl: result.imageUrl, thumbnailUrl: result.thumbnailUrl, source: "instagram" }),
       });
       const payload = await response.json().catch(() => ({}));
       return response.ok && !!payload.ok;
@@ -5570,6 +5875,8 @@ function LinkBacklogRow({
     setResults(null);
     setApprovedUrls(new Set());
     setFailedUrls(new Set());
+    setVideoResults([]);
+    setVideoApprovedPostUrls(new Set());
     const saved = await saveLinks(linksText);
     if (!saved) {
       setFetching(false);
@@ -5582,20 +5889,29 @@ function LinkBacklogRow({
         setFetchError(payload.message || "Could not fetch those posts.");
         return;
       }
-      const fetched: PhotoSearchResult[] = payload.results ?? [];
+      const fetched: LinkBacklogFetchResult[] = payload.results ?? [];
+      const photoResults = fetched.filter((item): item is LinkBacklogPhotoResult => item.type === "photo");
+      const videoItems = fetched.filter((item): item is LinkBacklogVideoResult => item.type === "video");
+      const errorItems = fetched.filter((item): item is LinkBacklogErrorResult => item.type === "error");
+
       const approved = new Set<string>();
       const failed = new Set<string>();
-      for (const result of fetched) {
+      for (const result of photoResults) {
         const ok = await approveResult(result);
         if (ok) approved.add(result.imageUrl);
         else failed.add(result.imageUrl);
       }
-      setResults(fetched);
+      setResults(photoResults);
       setApprovedUrls(approved);
       setFailedUrls(failed);
-      if (failed.size > 0) {
-        setFetchError(`${failed.size} of ${fetched.length} photo${fetched.length === 1 ? "" : "s"} could not be approved.`);
-      }
+      setVideoResults(videoItems);
+      const messages = [
+        failed.size > 0 ? `${failed.size} of ${photoResults.length} photo${photoResults.length === 1 ? "" : "s"} could not be approved.` : "",
+        errorItems.length > 0 ? `${errorItems.length} link${errorItems.length === 1 ? "" : "s"} could not be fetched.` : "",
+      ]
+        .filter(Boolean)
+        .join(" ");
+      if (messages) setFetchError(messages);
     } catch {
       setFetchError("Could not fetch those posts.");
     } finally {
@@ -5659,17 +5975,17 @@ function LinkBacklogRow({
       </div>
 
       {fetchError ? <p className="text-xs text-red-600">{fetchError}</p> : null}
-      {results && results.length === 0 && !fetchError ? (
+      {results && results.length === 0 && !fetchError && videoResults.length === 0 ? (
         <p className="text-xs text-stone-500">No usable image found in those links.</p>
       ) : results && results.length > 0 ? (
-        <div className="grid grid-cols-4 gap-2 sm:grid-cols-6 lg:grid-cols-8">
+        <div className="flex flex-wrap gap-3">
           {results.map((result, index) => {
             const failed = failedUrls.has(result.imageUrl);
             const approved = approvedUrls.has(result.imageUrl);
             return (
               <div
                 key={`${result.imageUrl}-${index}`}
-                className={cn("flex flex-col border bg-white", failed ? "border-red-400" : "border-emerald-500")}
+                className={cn("flex flex-col border bg-white", MOBILE_PHOTO_PREVIEW_WIDTH, failed ? "border-red-400" : "border-emerald-500")}
               >
                 <img src={result.thumbnailUrl} alt="" className="aspect-[3/2] w-full object-cover" />
                 <div
@@ -5689,6 +6005,39 @@ function LinkBacklogRow({
                     "Approving…"
                   )}
                 </div>
+              </div>
+            );
+          })}
+        </div>
+      ) : null}
+
+      {videoResults.length > 0 ? (
+        <div className="flex flex-col gap-3">
+          {videoResults.map((video) => {
+            const approved = videoApprovedPostUrls.has(video.postUrl);
+            return (
+              <div key={video.postUrl} className="flex flex-col gap-2 border border-stone-200 bg-white p-2">
+                <div className="flex items-center justify-between gap-2">
+                  <a href={video.postUrl} target="_blank" rel="noreferrer" className="truncate text-xs text-stone-700 underline">
+                    {video.postUrl}
+                  </a>
+                  {approved ? (
+                    <span className="flex shrink-0 items-center gap-1 text-[11px] font-bold text-emerald-700">
+                      <Check className="size-3.5" aria-hidden="true" />
+                      Approved
+                    </span>
+                  ) : (
+                    <span className="shrink-0 text-[11px] text-stone-500">Reel — pick the best frame</span>
+                  )}
+                </div>
+                {!approved ? (
+                  <ReelFramePicker
+                    postUrl={video.postUrl}
+                    initialMedia={{ candidates: video.candidates, batch: video.batch ?? 0, hasMore: !!video.hasMore }}
+                    salonId={entry.salonId}
+                    onApproved={() => setVideoApprovedPostUrls((current) => new Set(current).add(video.postUrl))}
+                  />
+                ) : null}
               </div>
             );
           })}
@@ -5975,18 +6324,25 @@ function PhotoOrderLinkFetch({
   const [results, setResults] = useState<PhotoSearchResult[] | null>(null);
   const [approvedUrls, setApprovedUrls] = useState<Set<string>>(new Set());
   const [failedUrls, setFailedUrls] = useState<Set<string>>(new Set());
+  // Reels among the pasted links can't be auto-approved (see runFetch) —
+  // tracked separately so each gets its own frame-candidate picker instead
+  // of a pass/fail badge, same split as LinkBacklogRow.
+  const [videoResults, setVideoResults] = useState<LinkBacklogVideoResult[]>([]);
+  const [videoApprovedPostUrls, setVideoApprovedPostUrls] = useState<Set<string>>(new Set());
 
   // Search-result photos wait for a manual pick; a link pasted here was
   // already a deliberate one (the admin browsed the real Instagram
   // themselves), so every fetched photo is approved automatically instead —
-  // same tradeoff as LinkBacklogRow's identical helper.
+  // same tradeoff as LinkBacklogRow's identical helper. Always sourced
+  // "instagram" — every result here comes straight off a pasted Instagram
+  // link, never a Google image search.
   async function approveResult(result: PhotoSearchResult): Promise<PortfolioPhotoAdmin | null> {
     try {
       const response = await fetch(`/api/admin/photo-search/${salonId}/approve`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
-        body: JSON.stringify({ imageUrl: result.imageUrl, thumbnailUrl: result.thumbnailUrl, isReel: result.isReel }),
+        body: JSON.stringify({ imageUrl: result.imageUrl, thumbnailUrl: result.thumbnailUrl, source: "instagram" }),
       });
       const payload = await response.json().catch(() => ({}));
       return response.ok && payload.ok && payload.photo ? payload.photo : null;
@@ -6040,6 +6396,8 @@ function PhotoOrderLinkFetch({
     setResults(null);
     setApprovedUrls(new Set());
     setFailedUrls(new Set());
+    setVideoResults([]);
+    setVideoApprovedPostUrls(new Set());
     try {
       // This stylist may never have been added to the Link backlog before —
       // ensure an entry exists (a no-op if one already does) so the PATCH
@@ -6067,10 +6425,14 @@ function PhotoOrderLinkFetch({
         setFetchError(payload.message || "Could not fetch those posts.");
         return;
       }
-      const fetched: PhotoSearchResult[] = payload.results ?? [];
+      const fetched: LinkBacklogFetchResult[] = payload.results ?? [];
+      const photoResults = fetched.filter((item): item is LinkBacklogPhotoResult => item.type === "photo");
+      const videoItems = fetched.filter((item): item is LinkBacklogVideoResult => item.type === "video");
+      const errorItems = fetched.filter((item): item is LinkBacklogErrorResult => item.type === "error");
+
       const approved = new Set<string>();
       const failed = new Set<string>();
-      for (const result of fetched) {
+      for (const result of photoResults) {
         const photo = await approveResult(result);
         if (photo) {
           approved.add(result.imageUrl);
@@ -6079,12 +6441,17 @@ function PhotoOrderLinkFetch({
           failed.add(result.imageUrl);
         }
       }
-      setResults(fetched);
+      setResults(photoResults);
       setApprovedUrls(approved);
       setFailedUrls(failed);
-      if (failed.size > 0) {
-        setFetchError(`${failed.size} of ${fetched.length} photo${fetched.length === 1 ? "" : "s"} could not be approved.`);
-      }
+      setVideoResults(videoItems);
+      const messages = [
+        failed.size > 0 ? `${failed.size} of ${photoResults.length} photo${photoResults.length === 1 ? "" : "s"} could not be approved.` : "",
+        errorItems.length > 0 ? `${errorItems.length} link${errorItems.length === 1 ? "" : "s"} could not be fetched.` : "",
+      ]
+        .filter(Boolean)
+        .join(" ");
+      if (messages) setFetchError(messages);
     } catch {
       setFetchError("Could not fetch those posts.");
     } finally {
@@ -6134,17 +6501,17 @@ function PhotoOrderLinkFetch({
             </Button>
           </div>
           {fetchError ? <p className="text-xs text-red-600">{fetchError}</p> : null}
-          {results && results.length === 0 && !fetchError ? (
+          {results && results.length === 0 && !fetchError && videoResults.length === 0 ? (
             <p className="text-xs text-stone-500">No usable image found in those links.</p>
           ) : results && results.length > 0 ? (
-            <div className="grid grid-cols-4 gap-2 sm:grid-cols-6 lg:grid-cols-8">
+            <div className="flex flex-wrap gap-3">
               {results.map((result, index) => {
                 const failed = failedUrls.has(result.imageUrl);
                 const approved = approvedUrls.has(result.imageUrl);
                 return (
                   <div
                     key={`${result.imageUrl}-${index}`}
-                    className={cn("flex flex-col border bg-white", failed ? "border-red-400" : "border-emerald-500")}
+                    className={cn("flex flex-col border bg-white", MOBILE_PHOTO_PREVIEW_WIDTH, failed ? "border-red-400" : "border-emerald-500")}
                   >
                     <img src={result.thumbnailUrl} alt="" className="aspect-[3/2] w-full object-cover" />
                     <div
@@ -6164,6 +6531,42 @@ function PhotoOrderLinkFetch({
                         "Approving…"
                       )}
                     </div>
+                  </div>
+                );
+              })}
+            </div>
+          ) : null}
+
+          {videoResults.length > 0 ? (
+            <div className="flex flex-col gap-3">
+              {videoResults.map((video) => {
+                const approved = videoApprovedPostUrls.has(video.postUrl);
+                return (
+                  <div key={video.postUrl} className="flex flex-col gap-2 border border-stone-200 bg-white p-2">
+                    <div className="flex items-center justify-between gap-2">
+                      <a href={video.postUrl} target="_blank" rel="noreferrer" className="truncate text-xs text-stone-700 underline">
+                        {video.postUrl}
+                      </a>
+                      {approved ? (
+                        <span className="flex shrink-0 items-center gap-1 text-[11px] font-bold text-emerald-700">
+                          <Check className="size-3.5" aria-hidden="true" />
+                          Approved
+                        </span>
+                      ) : (
+                        <span className="shrink-0 text-[11px] text-stone-500">Reel — pick the best frame</span>
+                      )}
+                    </div>
+                    {!approved ? (
+                      <ReelFramePicker
+                        postUrl={video.postUrl}
+                        initialMedia={{ candidates: video.candidates, batch: video.batch ?? 0, hasMore: !!video.hasMore }}
+                        salonId={salonId}
+                        onApproved={(photo) => {
+                          setVideoApprovedPostUrls((current) => new Set(current).add(video.postUrl));
+                          onPhotoApproved(photo);
+                        }}
+                      />
+                    ) : null}
                   </div>
                 );
               })}
