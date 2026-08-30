@@ -4522,6 +4522,7 @@ type PhotoSearchQueueSalon = {
   websiteUrl?: string;
   instagramUrl?: string;
   googleFormattedAddress?: string;
+  portfolioPhotos?: PortfolioPhotoAdmin[];
 };
 
 type PhotoSearchResult = {
@@ -4937,6 +4938,22 @@ function PhotoSearchPage() {
               </button>
             </div>
           </div>
+
+          {current.portfolioPhotos && current.portfolioPhotos.length > 0 ? (
+            <div className="flex flex-col gap-2">
+              <p className="text-xs font-medium text-stone-500">
+                Currently on profile — compare before picking a replacement:
+              </p>
+              <div className="flex flex-wrap gap-3">
+                {current.portfolioPhotos.map((photo) => (
+                  <div key={photo.id} className={cn("flex flex-col border border-stone-200 bg-white", MOBILE_PHOTO_PREVIEW_WIDTH)}>
+                    <img src={photo.url} alt="" className="aspect-[3/2] w-full object-cover" />
+                    <p className="truncate px-1 py-1 text-[11px] text-stone-500">{photo.source || "unknown source"}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ) : null}
 
           {searchError ? <p className="text-sm text-red-600">{searchError}</p> : null}
 

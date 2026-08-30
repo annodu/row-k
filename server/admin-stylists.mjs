@@ -1176,6 +1176,12 @@ export function registerAdminStylistRoutes(app) {
       websiteUrl: salon.websiteUrl,
       instagramUrl: salon.instagramUrl,
       googleFormattedAddress: salon.googleFormattedAddress,
+      // The default zero-photos queue never has any of these, but the
+      // custom `ids`/picks queue re-runs search on salons that may already
+      // have something on file — an admin comparing a fresh candidate
+      // against "is this actually better?" needs to see what's already
+      // live, not just what's newly on offer.
+      portfolioPhotos: salon.portfolioPhotos || [],
     }));
     res.json({ ok: true, total: eligible.length, offset, limit, salons: page });
   });
@@ -6739,13 +6745,55 @@ const REEL_FRAME_CANDIDATE_BATCHES = [
 // reading exactly what a visitor would see.
 async function extractInstagramPostMedia(postUrl, { batch = 0 } = {}) {
   const browser = await getPriceCheckBrowser();
-  const page = await browser.newPage({ userAgent: browserUserAgent, viewport: { width: 800, height: 1200 } });
+  // deviceScaleFactor matters only for the tainted-canvas fallback below (an
+  // element screenshot's pixel output is CSS size × this factor) — the
+  // normal canvas-capture path reads the video's native decode resolution
+  // regardless of viewport/DPR, so this doesn't change anything for it.
+  const page = await browser.newPage({ userAgent: browserUserAgent, viewport: { width: 800, height: 1200 }, deviceScaleFactor: 2 });
   try {
     await page.goto(postUrl, { waitUntil: "domcontentloaded", timeout: 20_000 });
     await page.waitForLoadState("networkidle", { timeout: 8_000 }).catch(() => {});
 
-    const hasVideo = await page.evaluate(() => !!document.querySelector("video"));
-    if (!hasVideo) {
+    // Every fresh context here hits Instagram's cookie-consent banner, and
+    // a logged-out visitor also gets a "Never miss a post" signup dialog on
+    // top of that — neither ever mattered when frame capture only read the
+    // video's decoded buffer via canvas (unaffected by DOM overlays), but
+    // the tainted-canvas screenshot fallback below operates on rendered
+    // pixels, so a dialog sitting over the video would get captured instead
+    // of the frame itself (confirmed live: a first attempt at this fallback
+    // came back as a screenshot of the signup dialog, not the video).
+    // Clicking each dialog's own dismiss control turned out flaky — same
+    // selector, same coordinates, succeeded on some runs and silently
+    // no-opped on others (confirmed live), apparently down to animation/
+    // render timing outside this code's control. Both dialogs share a
+    // `role="dialog"` wrapper, so removing those nodes outright sidesteps
+    // that entirely — no click, no animation to race, nothing left to
+    // intercept a later screenshot regardless of whether it "closed" in any
+    // UI sense.
+    await page.evaluate(() => {
+      document.querySelectorAll('[role="dialog"]').forEach((node) => node.remove());
+    });
+
+    // Instagram preloads every slide of a carousel into the DOM at once —
+    // only one is visually shown (per img_index), but a `<video>` element
+    // for a *later* video slide is still sitting in the page even when
+    // slide 1 (what this function is actually meant to grab, per the
+    // multi-slide caveat below) is a plain photo. A bare "does a video
+    // exist anywhere" check was picking that later slide's video and
+    // scrubbing it for frames instead of just returning slide 1's real
+    // photo (confirmed live: a photo-first carousel with a video in a later
+    // slide). Document order fixes this — slide 1's own media (whichever
+    // type it is) always renders before any other slide's, so the first
+    // qualifying element of either kind, not "is there a video anywhere",
+    // is what actually describes slide 1.
+    const firstSlideIsVideo = await page.evaluate(() => {
+      for (const el of document.querySelectorAll("video, img")) {
+        if (el.tagName === "VIDEO") return true;
+        if (el.tagName === "IMG" && el.naturalWidth > 200) return false;
+      }
+      return false;
+    });
+    if (!firstSlideIsVideo) {
       // First img over ~200px wide, in DOM order, is the post's own
       // displayed slide (confirmed live against several posts) — profile
       // avatars, icons, and other page chrome all render smaller than that.
@@ -6783,19 +6831,83 @@ async function extractInstagramPostMedia(postUrl, { batch = 0 } = {}) {
 
     const candidates = [];
     for (const t of targets) {
-      const dataUrl = await page.evaluate(async (targetTime) => {
+      await page.evaluate(async (targetTime) => {
         const vid = document.querySelector("video");
         vid.currentTime = targetTime;
         await new Promise((resolve) => {
           vid.onseeked = resolve;
           setTimeout(resolve, 2000);
         });
-        const canvas = document.createElement("canvas");
-        canvas.width = vid.videoWidth;
-        canvas.height = vid.videoHeight;
-        canvas.getContext("2d").drawImage(vid, 0, 0, canvas.width, canvas.height);
-        return canvas.toDataURL("image/jpeg", 0.85);
+        // A paused <video> sits under Instagram's own paused-state chrome —
+        // a dimming overlay, a centered play triangle, the caption text —
+        // rendered as separate elements sharing the same screen region, not
+        // part of the video's own pixels. The canvas path below never sees
+        // any of that (it reads the decoded frame buffer directly, not the
+        // page's visual rendering), but the tainted-canvas screenshot
+        // fallback further down captures whatever's on screen at that
+        // region — a first attempt at this fallback came back as a
+        // screenshot of exactly that dimmed/play-button chrome instead of
+        // the frame itself (confirmed live). A brief play right up to the
+        // capture keeps Instagram in its normal "playing" visual state —
+        // undimmed, chrome hidden — for both paths; drifting ~150ms past
+        // the intended timestamp is immaterial for a representative-frame
+        // pick like this.
+        await vid.play().catch(() => {});
+        await new Promise((resolve) => setTimeout(resolve, 600));
       }, t);
+
+      let dataUrl;
+      try {
+        dataUrl = await page.evaluate(() => {
+          const vid = document.querySelector("video");
+          const canvas = document.createElement("canvas");
+          canvas.width = vid.videoWidth;
+          canvas.height = vid.videoHeight;
+          canvas.getContext("2d").drawImage(vid, 0, 0, canvas.width, canvas.height);
+          return canvas.toDataURL("image/jpeg", 0.85);
+        });
+      } catch (error) {
+        // Some posts' video CDN response doesn't carry CORS headers (varies
+        // by post/edge node, confirmed live — most do work via the canvas
+        // path above), which taints the canvas and blocks toDataURL with a
+        // SecurityError. A canvas read isn't the only way to get the pixels
+        // though: Playwright's own element screenshot operates at the
+        // browser-compositor level, not through the page's JS canvas API, so
+        // it isn't subject to that same-origin restriction at all. Lower
+        // resolution than the canvas path (capped by the video's on-screen
+        // CSS size × device scale factor, not its native decode resolution),
+        // but still far better than the old algorithmic cover-frame fallback
+        // this whole feature exists to replace.
+        if (!/SecurityError|tainted/i.test(String(error?.message))) throw error;
+        // The actual culprit turned out not to be play state at all — every
+        // capture kept coming back identical regardless of the play/wait
+        // dance above, confirmed live. Instagram overlays the <video> with
+        // a same-size sibling <img> (its own static cover-frame poster,
+        // already carrying a play-button icon and the caption text baked
+        // into its pixels — the exact "play-button icon baked into the
+        // pixels" problem docs/instagram-reel-frame-extraction.md describes
+        // for AnyAPI's og:image), and it isn't reliably hidden once
+        // playback starts. A screen-region screenshot has no way to see
+        // "through" whatever's topmost there, so this hides every element
+        // overlapping the video's own box (excluding the video and its
+        // ancestors) immediately before the shot — the removal is scoped to
+        // this one already-thrown-away page, not persisted anywhere the
+        // canvas path or a later candidate in this same loop would notice.
+        await page.evaluate(() => {
+          const vid = document.querySelector("video");
+          const box = vid.getBoundingClientRect();
+          for (const el of document.querySelectorAll("body *")) {
+            if (el === vid || el.contains(vid) || vid.contains(el)) continue;
+            const r = el.getBoundingClientRect();
+            if (r.width === 0 || r.height === 0) continue;
+            const overlapX = Math.max(0, Math.min(r.right, box.right) - Math.max(r.left, box.left));
+            const overlapY = Math.max(0, Math.min(r.bottom, box.bottom) - Math.max(r.top, box.top));
+            if (overlapX * overlapY > box.width * box.height * 0.3) el.style.setProperty("display", "none", "important");
+          }
+        });
+        const buffer = await page.locator("video").screenshot({ type: "jpeg", quality: 85 });
+        dataUrl = `data:image/jpeg;base64,${buffer.toString("base64")}`;
+      }
       candidates.push({ t, dataUrl });
     }
 
