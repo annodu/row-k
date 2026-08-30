@@ -9887,23 +9887,18 @@
       "portfolioPhotosCheckedAt": "2026-08-20",
       "portfolioPhotos": [
         {
-          "id": "hairbyflo-x-portfolio-photo-60139c2c-c28e-4e1a-a2c7-541c84a1c06b",
-          "url": "/portfolio-photos/hairbyflo-x-fb6e6b9e-1218-4cd9-b167-2ba0fc0cf42a.jpg",
-          "source": "google-image-search"
-        },
-        {
           "id": "hairbyflo-x-portfolio-photo-e3dbed1a-7354-45ef-920b-7faf4556a3f7",
           "url": "/portfolio-photos/hairbyflo-x-606e695e-68af-4fce-ad5e-f3d34f1db9ba.jpg",
           "source": "google-image-search"
         },
         {
-          "id": "hairbyflo-x-portfolio-photo-16e1980e-b9ce-489f-a001-7ea9b0558dd8",
-          "url": "/portfolio-photos/hairbyflo-x-48d5595b-25d3-43bf-bef9-a6c6290a1e2a.jpg",
+          "id": "hairbyflo-x-portfolio-photo-60139c2c-c28e-4e1a-a2c7-541c84a1c06b",
+          "url": "/portfolio-photos/hairbyflo-x-2b3ed800-6b42-41bf-9f20-047cda556e7d.jpg",
           "source": "google-image-search"
         }
       ],
       "photoSearchReviewedAt": "2026-08-26",
-      "updatedAt": "2026-08-25"
+      "updatedAt": "2026-08-30"
     },
     {
       "id": "hershairsuite",
@@ -13249,11 +13244,6 @@
       "portfolioPhotosCheckedAt": "2026-08-20",
       "portfolioPhotos": [
         {
-          "id": "donebydemz-portfolio-photo-49be9ece-564b-411a-9047-37f0d2aa943a",
-          "url": "/portfolio-photos/donebydemz-695fdda6-1e54-42da-96ce-e625e6bd971f.jpg",
-          "source": "google-image-search"
-        },
-        {
           "id": "donebydemz-portfolio-photo-8d8de866-6a6a-412e-b2db-7fce344bd7aa",
           "url": "/portfolio-photos/donebydemz-c28f3b16-9cb5-4141-9862-35b86fa20f91.jpg",
           "source": "google-image-search"
@@ -13264,7 +13254,7 @@
           "source": "google-image-search"
         }
       ],
-      "updatedAt": "2026-08-24",
+      "updatedAt": "2026-08-30",
       "photoSearchReviewedAt": "2026-08-24"
     },
     {
@@ -34181,7 +34171,7 @@
       "priceCheckedAt": "",
       "priceUpdatedAt": "2026-06-04",
       "priceConfidence": "manual",
-      "updatedAt": "2026-08-27",
+      "updatedAt": "2026-08-30",
       "addedVia": "Code edit",
       "discoverySource": "Cowork scrape",
       "wheelchairAccessible": true,
@@ -34199,27 +34189,14 @@
       "websiteUrl": "https://www.afrotherapysalon.com/",
       "portfolioPhotos": [
         {
-          "id": "afrotherapy-portfolio-photo-5",
-          "url": "/portfolio-photos/afrotherapy-6.jpg",
-          "source": "website"
-        },
-        {
-          "id": "afrotherapy-portfolio-photo-4",
-          "url": "/portfolio-photos/afrotherapy-5.jpg",
-          "source": "website"
-        },
-        {
-          "id": "afrotherapy-portfolio-photo-3",
-          "url": "/portfolio-photos/afrotherapy-4.jpg",
-          "source": "website"
-        },
-        {
-          "id": "afrotherapy-portfolio-photo-1",
-          "url": "/portfolio-photos/afrotherapy-2.jpg",
-          "source": "website"
+          "id": "afrotherapy-portfolio-photo-5eee2b4c-ee7c-40af-bf97-cd1d5d4a59cf",
+          "url": "/portfolio-photos/afrotherapy-c03e04b6-1353-4068-bb84-6a645af7a6eb.jpg",
+          "source": "instagram-reel-frame"
         }
       ],
-      "portfolioPhotosCheckedAt": "2026-08-20"
+      "portfolioPhotosCheckedAt": "2026-08-20",
+      "photoSearchReviewedAt": "2026-08-30",
+      "photoOrderBumpedAt": 640
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -38330,24 +38307,10 @@
           "id": "braider-in-london-portfolio-photo-2b0b2490-df55-4f55-bd1e-5952d7119681",
           "url": "/portfolio-photos/braider-in-london-143033c3-6f41-4fb8-a421-18ef45f1c27c.jpg",
           "source": "google-image-search"
-        },
-        {
-          "id": "braider-in-london-portfolio-photo-699cb389-74bb-4479-a0d2-a25cb6d452ff",
-          "url": "/portfolio-photos/braider-in-london-f56c36ec-e0d7-48a6-9476-5eb3e949d4c1.jpg",
-          "source": "google-image-search"
-        },
-        {
-          "id": "braider-in-london-portfolio-photo-41a76f52-6dd3-4479-bd65-82c5b1d5c5d4",
-          "url": "/portfolio-photos/braider-in-london-d3d89dc7-5359-42cc-a2f7-b1ef1a675395.jpg",
-          "source": "google-image-search"
-        },
-        {
-          "id": "braider-in-london-portfolio-photo-785653e2-ab28-45d0-bea7-e4b0521ff6b3",
-          "url": "/portfolio-photos/braider-in-london-fd2d17f8-19f1-4752-8cf3-7a16bf0c937e.jpg",
-          "source": "google-image-search"
         }
       ],
-      "photoSearchReviewedAt": "2026-08-25"
+      "photoSearchReviewedAt": "2026-08-25",
+      "updatedAt": "2026-08-30"
     },
     {
       "id": "braids-by-aduke",
