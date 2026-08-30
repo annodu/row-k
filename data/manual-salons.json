@@ -2,7 +2,7 @@
   "meta": {
     "source": "manual",
     "updatedAt": "2026-08-30",
-    "count": 1026,
+    "count": 1025,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
@@ -176,39 +176,6 @@
       "priceUpdatedAt": "",
       "priceConfidence": "",
       "updatedAt": "2026-08-28"
-    },
-    {
-      "id": "elluxe-beauty",
-      "name": "Elluxe Beauty",
-      "areaId": "north",
-      "areaLabel": "North London",
-      "neighbourhood": "North London London",
-      "postcode": "",
-      "bookingPlatform": "Acuity",
-      "bookingUrl": "https://elluxebeauty.as.me/",
-      "websiteUrl": "",
-      "hairShopUrl": "",
-      "instagramUrl": "https://www.instagram.com/elluxebeauty/",
-      "tiktokUrl": "",
-      "addedVia": "Admin tool",
-      "discoverySource": "Manual search",
-      "services": [
-        "Wig install (frontal / closure)",
-        "Custom wig",
-        "Frontal ponytail / bun"
-      ],
-      "summary": "▫️North London 🇬🇧\n▫️Mobile bookings 📨\n▫️August fully booked (including emergencies)🤍- Next month’s slots drop on the 18th,5pm\n▫️1-1 classes available",
-      "source": "manual",
-      "evidence": [
-        "Submitted link: https://www.instagram.com/elluxebeauty/",
-        "Submitted link: https://elluxebeauty.as.me/",
-        "Raw services provided during admin intake."
-      ],
-      "googlePlaceId": null,
-      "googleReviewCount": 0,
-      "googleMapsUri": "",
-      "googleMatchConfidence": "no-match",
-      "googleCheckedAt": "2026-08-27"
     },
     {
       "id": "reformed-by-rufina",
@@ -10397,17 +10364,12 @@
       "portfolioPhotosCheckedAt": "2026-08-20",
       "portfolioPhotos": [
         {
-          "id": "bysephorauk-portfolio-photo-637eaff7-6783-4292-b665-a892240268d8",
-          "url": "/portfolio-photos/bysephorauk-109d09ed-dba4-4a00-bd15-26b92fcf2a91.jpg",
-          "source": "google-image-search"
-        },
-        {
           "id": "bysephorauk-portfolio-photo-4881e588-b759-4472-a851-4ecd13c12d9d",
           "url": "/portfolio-photos/bysephorauk-6ff7de60-2cbf-4c13-9551-cedc685c0fb4.jpg",
           "source": "google-image-search"
         }
       ],
-      "updatedAt": "2026-08-25",
+      "updatedAt": "2026-08-30",
       "photoSearchReviewedAt": "2026-08-24"
     },
     {
@@ -28894,7 +28856,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-29",
+      "updatedAt": "2026-08-30",
       "addedVia": "Admin tool",
       "discoverySource": "User submission",
       "verifiedReviewCount": 8,
@@ -28909,18 +28871,7 @@
       "googleFormattedAddress": null,
       "googleCheckedAt": "2026-07-29",
       "portfolioPhotosCheckedAt": "2026-08-21",
-      "portfolioPhotos": [
-        {
-          "id": "fashionsfaithstudio-portfolio-photo-92003422-c08a-4903-aff3-ad70b4a65089",
-          "url": "/portfolio-photos/fashionsfaithstudio-9b37dd39-a5b2-426a-beb7-058b97b6bfab.jpg",
-          "source": "instagram-reel-frame"
-        },
-        {
-          "id": "fashionsfaithstudio-portfolio-photo-c63f7cc6-32ae-4bda-9107-71f5d968c1c9",
-          "url": "/portfolio-photos/fashionsfaithstudio-e9fcf468-41e6-45dd-b0d3-4f7bf408877d.jpg",
-          "source": "instagram-reel-thumbnail"
-        }
-      ],
+      "portfolioPhotos": [],
       "hairShopUrl": "",
       "senFriendly": false,
       "lgbtqFriendly": false,
@@ -36911,13 +36862,7 @@
       "googleFormattedAddress": null,
       "googleCheckedAt": "2026-07-29",
       "websiteUrl": "https://www.belsbeautycomplex.co.uk",
-      "portfolioPhotos": [
-        {
-          "id": "bels-beauty-complex-portfolio-photo-58b71ce9-f4a7-4fd3-935c-e38e33c7fa00",
-          "url": "/portfolio-photos/bels-beauty-complex-b2a2c624-7d14-4ba0-b1a6-fcab16cc0508.jpg",
-          "source": "instagram-reel-frame"
-        }
-      ],
+      "portfolioPhotos": [],
       "portfolioPhotosCheckedAt": "2026-08-21",
       "updatedAt": "2026-08-30",
       "photoSearchReviewedAt": "2026-08-30",
