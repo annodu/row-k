@@ -839,7 +839,7 @@ function BrandGroupCard({
     brand.lgbtqFriendly ? "lgbtqia+-friendly" : null,
     brand.priceIncludesHair ? "hair-inclusive packages" : null,
     !hairShopLink && brand.sellsHairSeparately ? "hair sold separately" : null,
-    brand.sameDayEmergency ? "same-day appointments" : null,
+    brand.sameDayEmergency ? "same-day / walk-ins" : null,
     ...getResultCustomFilterLabels(brand, customFilterTypes),
   ].filter((label): label is string => Boolean(label));
   const portfolioPhotos = getPortfolioPhotos(brand);
@@ -3811,7 +3811,7 @@ export default function App() {
                     result.lgbtqFriendly ? "lgbtqia+-friendly" : null,
                     result.priceIncludesHair ? "hair-inclusive packages" : null,
                     !hairShopLink && result.sellsHairSeparately ? "hair sold separately" : null,
-                    result.sameDayEmergency ? "same-day appointments" : null,
+                    result.sameDayEmergency ? "same-day / walk-ins" : null,
                     ...getResultCustomFilterLabels(result, customFilterTypes),
                   ].filter((label): label is string => Boolean(label));
                   const portfolioPhotos = getPortfolioPhotos(result);
@@ -4813,7 +4813,7 @@ export default function App() {
                         {currentSelectedSameDayEmergency ? <Check className="size-3.5" /> : null}
                       </span>
                       <span className="translate-y-[1.5px] text-[15px] text-stone-800 dark:text-stone-200">
-                        Same-day appointments
+                        Same-day / walk-ins
                       </span>
                     </button>
 

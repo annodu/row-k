@@ -4486,8 +4486,8 @@ const attributeSuggestionConfig = {
   sameDayEmergency: {
     field: "sameDayEmergency",
     rejectField: "rejectSameDayEmergency",
-    label: "Same-day / emergency appointments",
-    issue: "Possible same-day/emergency appointment wording found",
+    label: "Same-day / walk-ins",
+    issue: "Possible same-day/walk-in appointment wording found",
     evidenceFinder: findSameDayEmergencyEvidence,
   },
 };
@@ -4990,7 +4990,7 @@ const needsAliases = {
   parkingAvailable: ["parking"],
   canBraidWithoutGel: ["gel free", "no gel", "without gel", "gel free braiding"],
   sellsHairSeparately: ["hair sold separately", "sells hair", "hair for sale", "buy hair from us", "hair available to purchase", "hair extensions for sale"],
-  sameDayEmergency: ["same day appointment", "same day emergency", "emergency appointment", "last minute appointment", "same day booking", "emergency booking"],
+  sameDayEmergency: ["same day appointment", "same day emergency", "emergency appointment", "last minute appointment", "same day booking", "emergency booking", "walk in", "walk ins", "walk-in", "walk-ins"],
 };
 
 // Bare "sen"/"send" alone are far too common in ordinary booking copy ("send

@@ -2928,7 +2928,7 @@ const stylistNeedsFilterOptions = [
   { id: "senFriendly", label: "Sensory-safe / SEN-friendly" },
   { id: "priceIncludesHair", label: "Hair-inclusive packages available" },
   { id: "sellsHairSeparately", label: "Hair sold separately" },
-  { id: "sameDayEmergency", label: "Same-day appointments" },
+  { id: "sameDayEmergency", label: "Same-day / walk-ins" },
 ];
 
 const stylistStatusFilterOptions = [
@@ -8874,7 +8874,7 @@ const attributeFieldConfig: Record<AttributeSuggestion["field"], { acceptUpdate:
   parkingAvailable: { acceptUpdate: { parkingAvailable: true }, rejectUpdate: { rejectParkingAvailable: true }, actionLabel: "Mark parking nearby" },
   canBraidWithoutGel: { acceptUpdate: { canBraidWithoutGel: true }, rejectUpdate: { rejectCanBraidWithoutGel: true }, actionLabel: "Mark can braid without gel" },
   sellsHairSeparately: { acceptUpdate: { sellsHairSeparately: true }, rejectUpdate: { rejectSellsHairSeparately: true }, actionLabel: "Mark sells hair separately" },
-  sameDayEmergency: { acceptUpdate: { sameDayEmergency: true }, rejectUpdate: { rejectSameDayEmergency: true }, actionLabel: "Mark same-day / emergency appointments" },
+  sameDayEmergency: { acceptUpdate: { sameDayEmergency: true }, rejectUpdate: { rejectSameDayEmergency: true }, actionLabel: "Mark same-day / walk-ins" },
 };
 
 function getAttributeAcceptUpdate(field: AttributeSuggestion["field"]): FreshnessUpdate {
@@ -13986,10 +13986,10 @@ function getFreshnessUndoLabel(update: FreshnessUpdate) {
     return "ignored sells-hair-separately recommendation";
   }
   if (update.sameDayEmergency === true) {
-    return "marked same-day / emergency appointments";
+    return "marked same-day / walk-ins";
   }
   if (update.rejectSameDayEmergency === true) {
-    return "ignored same-day/emergency recommendation";
+    return "ignored same-day/walk-ins recommendation";
   }
   if (update.rejectPriceBand === true) {
     return "ignored price recommendation";
