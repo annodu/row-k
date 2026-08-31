@@ -1,10 +1,81 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-08-29",
-    "count": 19
+    "updatedAt": "2026-08-31",
+    "count": 21
   },
   "drafts": [
+    {
+      "id": "shanice-hair-and-makeup-artist-mth629eb",
+      "status": "needs_review",
+      "name": "Shanice 🙋🏾‍♀️ Hair & Makeup Artist",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london"
+      ],
+      "areaLabel": "London",
+      "neighbourhood": "London London",
+      "postcode": "",
+      "bookingPlatform": "",
+      "bookingUrl": "",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/shanicenoelhmu/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [],
+      "rawServices": [],
+      "summary": "📍London \n  Represented by @stellacreativeartists",
+      "confidence": 0.2,
+      "warnings": [
+        "No booking link identified yet.",
+        "No services matched yet."
+      ],
+      "evidence": [
+        "Submitted link: https://www.instagram.com/shanicenoelhmu/"
+      ],
+      "source": "admin-draft",
+      "createdAt": "2026-08-31",
+      "updatedAt": "2026-08-31",
+      "lastCheckedAt": "2026-08-31",
+      "bookingLinkEvidence": "Instagram bio: \"📍London \n  Represented by @stellacreativeartists\"\nNo bookable link found in bio — likely DM/WhatsApp/call to book.",
+      "attributeSuggestions": []
+    },
+    {
+      "id": "icy-mth4r5il",
+      "status": "needs_review",
+      "name": "Icy",
+      "areaId": "",
+      "areaIds": [],
+      "areaLabel": "",
+      "neighbourhood": "",
+      "postcode": "",
+      "bookingPlatform": "",
+      "bookingUrl": "",
+      "websiteUrl": "https://www.mobileapp.app/to/Hhulv0C?ref=so",
+      "instagramUrl": "https://www.instagram.com/five_star_londonbraider/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [],
+      "rawServices": [],
+      "summary": "Braided & Rooted✨  \nHair Designer",
+      "confidence": 0.2,
+      "warnings": [
+        "No booking link identified yet.",
+        "No services matched yet."
+      ],
+      "evidence": [
+        "Submitted link: https://www.instagram.com/five_star_londonbraider/",
+        "Submitted link: https://www.mobileapp.app/to/Hhulv0C?ref=so"
+      ],
+      "source": "admin-draft",
+      "createdAt": "2026-08-31",
+      "updatedAt": "2026-08-31",
+      "lastCheckedAt": "2026-08-31",
+      "bookingLinkEvidence": "Instagram bio: \"Braided & Rooted✨  \nHair Designer\"\nBio link used as website: https://www.mobileapp.app/to/Hhulv0C?ref=so",
+      "attributeSuggestions": []
+    },
     {
       "id": "new-stylist-mtbgl42z",
       "status": "needs_review",
