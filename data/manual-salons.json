@@ -2,10 +2,3245 @@
   "meta": {
     "source": "manual",
     "updatedAt": "2026-08-31",
-    "count": 1040,
+    "count": 1086,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "the-mane-stylist",
+      "name": "The Mane Stylist",
+      "areaId": "essex",
+      "areaLabel": "Essex",
+      "neighbourhood": "Essex London",
+      "postcode": "",
+      "bookingPlatform": "Direct website",
+      "bookingUrl": "https://www.instagram.com/themanestylist.uk/",
+      "websiteUrl": "",
+      "hairShopUrl": "https://www.instagram.com/themanestylistcollection/",
+      "instagramUrl": "https://www.instagram.com/themanestylist.uk/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Wig install (frontal / closure)",
+        "Half up half down",
+        "Frontal ponytail / bun",
+        "Sleek ponytail / bun"
+      ],
+      "sellsHairSeparately": true,
+      "summary": "ESSEX HAIRSTYLIST | @themanestylistcollection",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/themanestylist.uk/",
+        "Raw services provided during admin intake."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-08-31",
+      "portfolioPhotos": [
+        {
+          "id": "the-mane-stylist-portfolio-photo-21e291a9-7a94-4abb-a226-c93e1c624824",
+          "url": "/portfolio-photos/the-mane-stylist-1f94f905-314e-486d-a528-39903c80de2f.jpg",
+          "source": "google-image-search"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-08-31",
+      "photoOrderBumpedAt": 992
+    },
+    {
+      "id": "azaveliiartistry",
+      "name": "AzaveliiArtistry",
+      "areaId": "east",
+      "areaIds": [
+        "east",
+        "north"
+      ],
+      "areaLabel": "East London / North London",
+      "neighbourhood": "East London and North London London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/azaveliiartistry/",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/azaveliiartistry/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Bridal",
+        "Frontal ponytail / bun",
+        "Wig install (frontal / closure)",
+        "Frontal sew-in",
+        "Traditional sew-in / leave out",
+        "Full head colour",
+        "Half up half down",
+        "Flipover / Versatile sew-in",
+        "Pixie cut / finger waves"
+      ],
+      "summary": "North & East London 📍\nAugust slots available ~ DM to book\nRebranding!",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/azaveliiartistry/",
+        "Raw services provided during admin intake."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-08-31",
+      "portfolioPhotos": [
+        {
+          "id": "azaveliiartistry-portfolio-photo-7bee17a0-4fb3-4379-8b1b-9cf3548cd7eb",
+          "url": "/portfolio-photos/azaveliiartistry-ae4388d2-0ff5-45c3-b38e-58154e484498.jpg",
+          "source": "google-image-search"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-08-31",
+      "photoOrderBumpedAt": 991,
+      "updatedAt": "2026-08-31"
+    },
+    {
+      "id": "styledbyaisha",
+      "name": "StyledByAisha",
+      "areaId": "east",
+      "areaLabel": "East London",
+      "neighbourhood": "East London London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/styledbyaishaxx/",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/styledbyaishaxx/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Wig install (frontal / closure)",
+        "Sleek ponytail / bun",
+        "Boho braids / goddess braids",
+        "Fulani / lemonade braids"
+      ],
+      "summary": "THEBRAIDLOUNGE💕\nWaltham Forest , East London based (Females and males)\nDM TO BOOK 💕\n𝐍𝐎𝐍-𝐑𝐄𝐅𝐔𝐍𝐃𝐀𝐁𝐋𝐄 £𝟏𝟎 𝐃𝐄𝐏𝐎𝐒𝐈𝐓",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/styledbyaishaxx/",
+        "Raw services provided during admin intake."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-08-31",
+      "portfolioPhotos": [
+        {
+          "id": "styledbyaisha-portfolio-photo-576148d3-f657-4c3e-9bf8-5d2371ba6b42",
+          "url": "/portfolio-photos/styledbyaisha-643c959a-49fe-4c43-b477-dbb62dd038ef.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "styledbyaisha-portfolio-photo-db575aea-93b8-4ce2-a5f5-da85fe86301a",
+          "url": "/portfolio-photos/styledbyaisha-dff6d3c2-ae34-4f32-ab97-072af2abab1b.jpg",
+          "source": "google-image-search"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-08-31",
+      "photoOrderBumpedAt": 989
+    },
+    {
+      "id": "bvhairuk",
+      "name": "BVHairUK",
+      "areaId": "east",
+      "areaLabel": "East London",
+      "neighbourhood": "East London London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/bvhairuk/",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/bvhairuk/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Updo",
+        "Frontal ponytail / bun",
+        "Wig install (frontal / closure)",
+        "Flipover / Versatile sew-in",
+        "Half up half down"
+      ],
+      "summary": "SEPTEMBER SLOTS OUT NOW (LONDON📍)\nALL INSTALLS ARE £40 + addons✨\nSame-day appointments available \nRead POLICY before booking \nBookings via DM 💌",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/bvhairuk/",
+        "Raw services provided during admin intake."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-08-31",
+      "portfolioPhotos": [
+        {
+          "id": "bvhairuk-portfolio-photo-faafde29-642b-4b9b-b73e-1146774a931e",
+          "url": "/portfolio-photos/bvhairuk-9504d3a0-73c5-4249-833e-51b3e7d419d8.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "bvhairuk-portfolio-photo-9dc8a44a-5968-41ec-98c5-57d926d59fef",
+          "url": "/portfolio-photos/bvhairuk-ebb87862-ab5d-42e9-b1c3-6bbe25fdb1ed.jpg",
+          "source": "google-image-search"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-08-31",
+      "photoOrderBumpedAt": 987,
+      "updatedAt": "2026-08-31"
+    },
+    {
+      "id": "highend-hair-parlour-uk",
+      "name": "HIGHEND HAIR PARLOUR UK",
+      "areaId": "south-east",
+      "areaLabel": "South east London",
+      "neighbourhood": "South east London London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://book.heygoldie.com/Highendhairparlouruk",
+      "websiteUrl": "",
+      "hairShopUrl": "https://www.instagram.com/j2_signature_hair/",
+      "instagramUrl": "https://www.instagram.com/highend_hair_parlour_uk/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Wash & blowdry",
+        "Sleek ponytail / bun",
+        "Full head colour",
+        "Feed-in braids",
+        "Traditional sew-in / leave out",
+        "Wig cornrows",
+        "Fulani / lemonade braids",
+        "Twists (with extensions)",
+        "Knotless braids",
+        "Kids & teens styles",
+        "Boho braids / goddess braids",
+        "Wig install (frontal / closure)"
+      ],
+      "sellsHairSeparately": true,
+      "priceBand": "£",
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "Braids - £75",
+        "Wigging closure ( machine sewn) - £50",
+        "Feeding braids ( Extensions not included) - £60",
+        "Boho braids - £30",
+        "Take out service ( braids) wash and blow dry - £30",
+        "Texture release( relaxer) - £80",
+        "Wigging ( frontal) - £50",
+        "Ponytail with a bang - £40"
+      ],
+      "priceCheckedAt": "2026-08-31",
+      "priceUpdatedAt": "2026-08-31",
+      "priceConfidence": "high",
+      "summary": "• HAIR SALON \n• SE LDN HAIR STYLIST 🇬🇧\n• NO REFUNDS\n \n• @j2_signature_hair for Luxury Wigs & More \n📞07890536000 & 02086915270\n. CLICK LINK TO BOOK ⬇️",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/highend_hair_parlour_uk/",
+        "Submitted link: https://book.heygoldie.com/Highendhairparlouruk",
+        "Raw services provided during admin intake."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-08-31",
+      "portfolioPhotos": [
+        {
+          "id": "highend-hair-parlour-uk-portfolio-photo-9493ff14-5acf-4410-a1bc-091762bd418c",
+          "url": "/portfolio-photos/highend-hair-parlour-uk-4aaf42ee-7ea1-43ae-8a37-9730905dce6b.jpg",
+          "source": "instagram-reel-frame"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-08-31",
+      "photoOrderBumpedAt": 1004,
+      "updatedAt": "2026-08-31"
+    },
+    {
+      "id": "juliastyles-ldn",
+      "name": "JuliaStyles.LDN",
+      "areaId": "east",
+      "areaIds": [
+        "east",
+        "essex"
+      ],
+      "areaLabel": "East London / Essex",
+      "neighbourhood": "East London and Essex London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/juliastyles.ldn/",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/juliastyles.ldn/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Boho braids / goddess braids",
+        "Miracle knots",
+        "Knotless braids",
+        "Flipover / Versatile sew-in",
+        "Traditional sew-in / leave out",
+        "Twists (with extensions)",
+        "Sleek ponytail / bun",
+        "Half up half down"
+      ],
+      "summary": "East London | IG11 🇬🇧 \nBookings/Enquiries via Dm or Email. (juliastyles.ldn@gmail.com)",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/juliastyles.ldn/",
+        "Raw services provided during admin intake."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-08-31",
+      "portfolioPhotos": [
+        {
+          "id": "juliastyles-ldn-portfolio-photo-5b0b0056-2c2c-4603-9b7b-cde00c647176",
+          "url": "/portfolio-photos/juliastyles-ldn-2be1010b-3dc6-4f6c-bce8-817656a1f1be.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "juliastyles-ldn-portfolio-photo-a4df0074-d19a-417a-9c39-d859beab2a6c",
+          "url": "/portfolio-photos/juliastyles-ldn-03b75668-c993-4f46-9c15-eb229bdc6d8b.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "juliastyles-ldn-portfolio-photo-3527d065-9329-4677-8691-090fed8dc1d5",
+          "url": "/portfolio-photos/juliastyles-ldn-117ad08c-d883-4ec6-b322-cc5d9032719d.jpg",
+          "source": "google-image-search"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-08-31",
+      "photoOrderBumpedAt": 984,
+      "updatedAt": "2026-08-31"
+    },
+    {
+      "id": "hairbyflorencee",
+      "name": "HAIRBYFLORENCEE",
+      "areaId": "mobile",
+      "areaLabel": "Mobile / home service",
+      "neighbourhood": "Mobile / home service London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/hairbyflorencee/",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/hairbyflorencee/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Knotless braids",
+        "Boho braids / goddess braids",
+        "Miracle knots",
+        "Boho braids bob",
+        "French curl",
+        "French curl bob"
+      ],
+      "summary": "Jeremiah 29:11\nSeptember Calender open  📆 \n📍London mobile braider   \nDM to book",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/hairbyflorencee/",
+        "Raw services provided during admin intake."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-08-31",
+      "portfolioPhotos": [
+        {
+          "id": "hairbyflorencee-portfolio-photo-f742f515-78bf-4093-80c6-06669dbd3196",
+          "url": "/portfolio-photos/hairbyflorencee-4bc7790b-05e6-48ae-bfac-42d398d1964f.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "hairbyflorencee-portfolio-photo-9d3ee683-5f39-40b5-846c-761fe7f7dba6",
+          "url": "/portfolio-photos/hairbyflorencee-0b8ca814-f7e4-4bf2-bdfb-faad28c0aa82.jpg",
+          "source": "google-image-search"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-08-31",
+      "photoOrderBumpedAt": 981,
+      "updatedAt": "2026-08-31"
+    },
+    {
+      "id": "bystephaniehair",
+      "name": "ByStephanieHair",
+      "areaId": "north",
+      "areaLabel": "North London",
+      "neighbourhood": "North London London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/bystephaniehair/",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/bystephaniehair/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Soft locs"
+      ],
+      "summary": "- Faux locs specialist\n- North London \n- DM for appointments and enquiries\nAUGUST FULLY BOOKED",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/bystephaniehair/",
+        "Raw services provided during admin intake."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-08-31",
+      "portfolioPhotos": [
+        {
+          "id": "bystephaniehair-portfolio-photo-5f0bffc4-231c-486a-b139-91c9c5cbabb5",
+          "url": "/portfolio-photos/bystephaniehair-6edfd689-5207-4df0-9857-6e355a321cc1.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "bystephaniehair-portfolio-photo-9774fa6b-6e70-4774-8dfb-b61c3960c0c7",
+          "url": "/portfolio-photos/bystephaniehair-6cb235e2-5c8f-42bd-beae-5493b93e3279.jpg",
+          "source": "google-image-search"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-08-31",
+      "photoOrderBumpedAt": 978
+    },
+    {
+      "id": "eiri-ni-hair",
+      "name": "EIRÍNI HAIR",
+      "areaId": "all-london",
+      "areaLabel": "London",
+      "neighbourhood": "London London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/eirinihair/",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/eirinihair/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Soft locs",
+        "Butterfly locs",
+        "Boho braids / goddess braids",
+        "Knotless braids",
+        "Twists (with extensions)"
+      ],
+      "summary": "Specialising in Faux locs 💚\nJUNE SLOTS OUT NOW \nDM or WHATSAPP TO BOOK\nPARIS🇫🇷/London 🇬🇧\nNON-REFUNDABLE DEPOSIT REQUIRED",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/eirinihair/",
+        "Raw services provided during admin intake."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-08-31",
+      "portfolioPhotos": [
+        {
+          "id": "eiri-ni-hair-portfolio-photo-26d09315-beae-4101-a5ea-65278beb782d",
+          "url": "/portfolio-photos/eiri-ni-hair-19b81afc-a5ec-4db6-bba3-72fa6da79d57.jpg",
+          "source": "instagram-reel-frame"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-08-31",
+      "photoOrderBumpedAt": 1002,
+      "updatedAt": "2026-08-31"
+    },
+    {
+      "id": "faux-locs-london",
+      "name": "Faux Locs London",
+      "areaId": "all-london",
+      "areaLabel": "London",
+      "neighbourhood": "London London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/fauxlocslondon/",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/fauxlocslondon/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Bridal",
+        "Soft locs",
+        "Crochet faux locs / invisible locs",
+        "Butterfly locs"
+      ],
+      "sellsHairSeparately": true,
+      "summary": "#FAUXLOCSLONDON \nLocs of love 💚\n📧 Appointments + Orders via fauxlocslondon@gmail.com",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/fauxlocslondon/",
+        "Raw services provided during admin intake."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-08-31",
+      "portfolioPhotos": [
+        {
+          "id": "faux-locs-london-portfolio-photo-0ab81e04-2c5e-4452-b603-8a593e528c7a",
+          "url": "/portfolio-photos/faux-locs-london-a99b97f3-4462-48d2-9d4d-598fef0d245c.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "faux-locs-london-portfolio-photo-a98d8ec4-8fe1-470a-abb0-318309a5b861",
+          "url": "/portfolio-photos/faux-locs-london-56e899eb-fac3-4a6e-b855-44b567afc7b2.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "faux-locs-london-portfolio-photo-6b064569-6390-407f-ae04-236767726665",
+          "url": "/portfolio-photos/faux-locs-london-b91e3518-9226-4a64-b10f-6e0970c197c8.jpg",
+          "source": "google-image-search"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-08-31",
+      "photoOrderBumpedAt": 976
+    },
+    {
+      "id": "hair-by-rime",
+      "name": "Hair by Rime",
+      "areaId": "all-london",
+      "areaLabel": "London",
+      "neighbourhood": "London London",
+      "postcode": "",
+      "bookingPlatform": "Setmore",
+      "bookingUrl": "https://hairbyrime.setmore.com/hair",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/hairbyrime/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Starter locs / instant locs",
+        "Loc extensions (permanent)",
+        "Retwist / interlocking",
+        "Full head colour",
+        "Wig cornrows",
+        "Trim / hair cut"
+      ],
+      "priceBand": "£",
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "Wash and blowdry for braids - £30",
+        "Retwist Only - £100",
+        "Hot oil treatment - £50",
+        "Starter Locs - £200",
+        "Trim - £30",
+        "Color Dye - £50",
+        "Retwist and Style - £150",
+        "Cornrows (4-6) - £60"
+      ],
+      "priceCheckedAt": "2026-08-31",
+      "priceUpdatedAt": "2026-08-31",
+      "priceConfidence": "high",
+      "summary": "✨afro hair and locs specialist \n✈️international hairstylist\n📍london | bcn | paris\ndm for more info",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/hairbyrime/",
+        "Submitted link: https://hairbyrime.setmore.com/hair"
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-08-31",
+      "verifiedReviewCount": 0,
+      "verifiedReviewCheckedAt": "2026-08-31",
+      "portfolioPhotos": [
+        {
+          "id": "hair-by-rime-portfolio-photo-27a7d2b3-0a85-49bb-91ca-7a6282fdae31",
+          "url": "/portfolio-photos/hair-by-rime-7ce34043-c346-4ede-9ee5-47e1abfd1fbc.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "hair-by-rime-portfolio-photo-2fc777d6-53be-468f-a758-528b389fb9a5",
+          "url": "/portfolio-photos/hair-by-rime-9c31c28f-dc92-4f64-a39e-5fa4696300d1.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "hair-by-rime-portfolio-photo-cc7f16d5-9796-498a-8162-7919e1a06f57",
+          "url": "/portfolio-photos/hair-by-rime-80a1e543-e5b9-4711-bf31-1ad60fa75d67.jpg",
+          "source": "google-image-search"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-08-31",
+      "photoOrderBumpedAt": 973
+    },
+    {
+      "id": "yaze-s-touch",
+      "name": "Yaze's Touch",
+      "areaId": "south-east",
+      "areaLabel": "South east London",
+      "neighbourhood": "South east London London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/yazes.touch237/",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/yazes.touch237/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Bridal",
+        "Pixie cut / finger waves",
+        "Crochet",
+        "Wig cornrows",
+        "Box braids"
+      ],
+      "summary": "SE London hair plug & MUA\n‼️July slots are now available.\n#Location, Cradat Yaoundé.....671639242\n#London, 07534352131",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/yazes.touch237/",
+        "Raw services provided during admin intake."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-08-31",
+      "portfolioPhotos": [
+        {
+          "id": "yaze-s-touch-portfolio-photo-1d454ed7-e4ae-4925-a0ea-eedbe16cc156",
+          "url": "/portfolio-photos/yaze-s-touch-26fafeab-2cda-4f1a-8487-21d69b14903a.jpg",
+          "source": "instagram-reel-frame"
+        },
+        {
+          "id": "yaze-s-touch-portfolio-photo-94ba45ab-f6cc-4a71-99a2-bc8b157384dc",
+          "url": "/portfolio-photos/yaze-s-touch-6ba98655-45cd-47ea-8f94-bb8f8deb6666.jpg",
+          "source": "instagram-reel-frame"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-08-31",
+      "photoOrderBumpedAt": 1000,
+      "updatedAt": "2026-08-31"
+    },
+    {
+      "id": "haus-of-dayma",
+      "name": "Haus of Dayma",
+      "areaId": "east",
+      "areaIds": [
+        "east",
+        "mobile"
+      ],
+      "areaLabel": "East London / Mobile / home service",
+      "neighbourhood": "East London and Mobile / home service London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/hausofdayma/",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/hausofdayma/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Boho braids / goddess braids",
+        "Knotless braids",
+        "Retwist / interlocking",
+        "Stitch braids",
+        "Wig cornrows",
+        "Traditional sew-in / leave out",
+        "Half up half down",
+        "Wig install (frontal / closure)",
+        "Sleek ponytail / bun",
+        "Men's braids"
+      ],
+      "summary": "HausOfDayma ✨\nLuxury Hairstylist & Wig Specialist\nAll Hairstyles • Raw & Virgin Hair 💎\n📍London E2 8LD | Mobile | 📦 Worldwide",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/hausofdayma/",
+        "Raw services provided during admin intake."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-08-31",
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": true,
+      "sameDayEmergency": false,
+      "customFilters": {},
+      "priceBand": "",
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "",
+      "priceSource": "",
+      "priceEvidence": [],
+      "priceCheckedAt": "",
+      "priceUpdatedAt": "",
+      "priceConfidence": "",
+      "updatedAt": "2026-08-31",
+      "portfolioPhotos": [
+        {
+          "id": "haus-of-dayma-portfolio-photo-0da802d7-e029-4c9a-8b39-d3c8cd717111",
+          "url": "/portfolio-photos/haus-of-dayma-37963b7e-74ed-4999-a258-d39cfa8b7889.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "haus-of-dayma-portfolio-photo-7a0840ff-20b7-47dd-a01a-4626ad4255e9",
+          "url": "/portfolio-photos/haus-of-dayma-a26f004b-1c48-47de-b666-52b1216ce3c6.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "haus-of-dayma-portfolio-photo-dc7b3e61-fac3-4de8-8370-86af23499eb7",
+          "url": "/portfolio-photos/haus-of-dayma-4bba7f8a-b842-41de-a114-398e4062f5ad.jpg",
+          "source": "google-image-search"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-08-31",
+      "photoOrderBumpedAt": 970
+    },
+    {
+      "id": "npelegance",
+      "name": "NPElegance",
+      "areaId": "kent",
+      "areaLabel": "Kent",
+      "neighbourhood": "Kent London",
+      "postcode": "",
+      "bookingPlatform": "Direct website",
+      "bookingUrl": "https://npelegance.net/",
+      "websiteUrl": "https://npelegance.net",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/npelegance/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Frontal ponytail / bun",
+        "Sleek ponytail / bun",
+        "Wig install (frontal / closure)",
+        "Custom wig"
+      ],
+      "priceBand": "££",
+      "servicePriceBand": "££",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Frontal pony",
+        "Frontal ponytail - all back or middle part - Straightening is included - styling included - 1-2 bundles required Hd lace only Hair must be washed and no products added",
+        "Duration:",
+        "3 hrs",
+        "Price:",
+        "£90.00",
+        "Select",
+        "Basic Ponytail",
+        "Sleek ponytail - all back or middle part - Straightening is included - Basic styling included - 1-2 bundles required",
+        "Duration:",
+        "1.2 hrs",
+        "Price:",
+        "£70.00",
+        "Select",
+        "Wig customisation (not including install)",
+        "Bleach knots, plucking and straightening",
+        "Duration:",
+        "1 hr",
+        "Price:",
+        "£45.00",
+        "Select",
+        "Wig revamps",
+        "Deep cleanse, conditioning treatment, restyle, and minor repairs.",
+        "Duration:",
+        "2.00 hrs",
+        "Price:",
+        "£45.00",
+        "Select",
+        "Pre made closure wig install",
+        "customisation, bleaching and plucking knots, install and basic HD lace is recommended",
+        "Duration:",
+        "2:00 hrs",
+        "Price:",
+        "£95.00",
+        "Select",
+        "Pre made frontal wig Install",
+        "customisation, bleaching and plucking knots, install and basic styling. HD lace is recommended",
+        "Duration:",
+        "2:00 hrs",
+        "Price:",
+        "£100.00",
+        "Select",
+        "Wig construction closure",
+        "Custom unit constructed and installation HD lace is recommended",
+        "Duration:",
+        "3:00 hrs",
+        "Price:",
+        "£110.00",
+        "Select",
+        "Wig construction -Frontal",
+        "Custom unit constructed and installation HD lace is recommended",
+        "Duration:",
+        "3:00 hrs",
+        "Price:",
+        "£120.00",
+        "Select",
+        "Frontal Wig reinstall Install",
+        "install, and basic styling. Wig should be washed and clean unless you are adding wash to service",
+        "Duration:",
+        "2:00 hrs",
+        "Price:",
+        "£80.00",
+        "Select",
+        "Closure Wig reinstall",
+        "install with basic styling included. Hair should be washed and clean unless you add wash to the booking.",
+        "Duration:",
+        "2:00 hrs",
+        "Price:",
+        "£70.00"
+      ],
+      "priceCheckedAt": "2026-08-31",
+      "priceUpdatedAt": "2026-08-31",
+      "priceConfidence": "manual",
+      "summary": "📍KENT- DARTFORD, UK 🇬🇧\nSame day slots available \nSEPTEMBER slots⬇️",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/npelegance/",
+        "Submitted link: https://npelegance.net"
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-08-31",
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": false,
+      "sameDayEmergency": true,
+      "customFilters": {},
+      "updatedAt": "2026-08-31",
+      "portfolioPhotos": [
+        {
+          "id": "npelegance-portfolio-photo-aa689d05-175c-4060-90ef-01ec5697a935",
+          "url": "/portfolio-photos/npelegance-f59366e5-f192-457c-a627-ffbc7bf4f750.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "npelegance-portfolio-photo-9de9cd0c-098e-4d40-8ca1-af82c948886e",
+          "url": "/portfolio-photos/npelegance-bcd4a648-bad7-43e7-839c-6ad19d7c22bb.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "npelegance-portfolio-photo-88fee976-4272-48ff-8f73-ac2733d6ebae",
+          "url": "/portfolio-photos/npelegance-ea69bb0d-9ee1-405a-8a76-ed17a8e18fd2.jpg",
+          "source": "google-image-search"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-08-31",
+      "photoOrderBumpedAt": 967
+    },
+    {
+      "id": "fc-parlour",
+      "name": "FC Parlour",
+      "areaId": "north-west",
+      "areaLabel": "North west London",
+      "neighbourhood": "North west London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://fcparlour.as.me/schedule/aae4fafc",
+      "websiteUrl": "",
+      "hairShopUrl": "https://www.instagram.com/fc_hairr/",
+      "instagramUrl": "https://www.instagram.com/fc.parlour/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Fulani / lemonade braids",
+        "Wig cornrows",
+        "Stitch braids",
+        "Knotless braids",
+        "Boho braids / goddess braids",
+        "Boho braids bob",
+        "Miracle knots",
+        "Half braids, half sew-in"
+      ],
+      "priceBand": "£",
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "Boho Braids (smedium) - £120",
+        "Blonde mix Boho Braids (smedium) - £150",
+        "Boho braids (medium) - £100",
+        "Boho braids large - £80",
+        "Fulani/Sew in - £100",
+        "Fulani braids - £130",
+        "Small Knotless braids - £165",
+        "Medium Knotless braids - £85"
+      ],
+      "priceCheckedAt": "2026-08-31",
+      "priceUpdatedAt": "2026-08-31",
+      "priceConfidence": "high",
+      "summary": "Northwest London based📍\nClick link below for prices and availability\nDM for hair order 💜 @fc_hairr",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/fc.parlour/",
+        "Submitted link: https://ocstudioo.as.me/schedule/55c1068b?ref=ig_integration&amp;fbclid=PAVERFWAToh-lwZG9mAmZkaWQWUMQa8zF6OuFK9hoWuyGvGp3oyy_vdmV4dG4DYWVtAjEwAHNydGMGYXBwX2lkDzEyNDAyNDU3NDI4NzQxNAABpz87Zf1F_S4VxcPoH2PuKI8jJJfe94_kb_t_8EMQ_IZraVY-GwEmaDBp9Hha_aem_Lv4wcd0fK35k7cSZiu7Idw",
+        "Raw services provided during admin intake."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-08-31",
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": true,
+      "sameDayEmergency": false,
+      "customFilters": {},
+      "updatedAt": "2026-08-31",
+      "portfolioPhotos": [
+        {
+          "id": "fc-parlour-portfolio-photo-fc213371-a735-48c6-91c9-1880b54d6574",
+          "url": "/portfolio-photos/fc-parlour-a8c9e5ac-3afe-46c9-8e29-7b5abf9a8af6.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "fc-parlour-portfolio-photo-b0acd633-cb1e-4f32-902c-9c4ccc6fd317",
+          "url": "/portfolio-photos/fc-parlour-ab73f7ba-d046-4403-8d94-6e4a7ed5651a.jpg",
+          "source": "google-image-search"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-08-31",
+      "photoOrderBumpedAt": 964
+    },
+    {
+      "id": "nsk-inspired",
+      "name": "NSK Inspired",
+      "areaId": "south-west",
+      "areaLabel": "South west London",
+      "neighbourhood": "South west London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://nskinspired.as.me/",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/nskinspired/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Wig cornrows",
+        "Fulani / lemonade braids",
+        "Knotless braids",
+        "Boho braids / goddess braids",
+        "Boho braids bob",
+        "Traditional sew-in / leave out",
+        "U-Part / Half wig install",
+        "Miracle knots",
+        "Stitch braids",
+        "Feed-in braids",
+        "Twists (with extensions)"
+      ],
+      "priceBand": "££",
+      "servicePriceBand": "££",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "Tribal Braids Touch Up - £60",
+        "Tribal Twist Touch Up - £60",
+        "Front Half Cornrows (Medium) - £60",
+        "Front Half Cornrows (Smedium) - £70",
+        "Parisian Tribal Twists - £120",
+        "Ava Inspired Tribal Twists - £130",
+        "K’lise Inspired Tribal Twists - £140",
+        "Eni Inspired Tribal Twists - £140"
+      ],
+      "priceCheckedAt": "2026-08-31",
+      "priceUpdatedAt": "2026-08-31",
+      "priceConfidence": "high",
+      "summary": "🇬🇧August-September Slots Out Now\n🇦🇪 September 25th - 30th Out Now\n📍 Battersea, London\nHair Included | Limited Availability \nShop Hair: @nskkollection",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/nskinspired/",
+        "Submitted link: https://nskinspired.as.me/",
+        "Raw services provided during admin intake."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-08-31",
+      "portfolioPhotos": [
+        {
+          "id": "nsk-inspired-portfolio-photo-03c4841d-0b14-4c9d-9fe5-c91784b2642b",
+          "url": "/portfolio-photos/nsk-inspired-1752924e-e6ab-40a3-a022-d813fb138993.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "nsk-inspired-portfolio-photo-7840b3c7-68bf-4eea-b690-f0cfc674eab3",
+          "url": "/portfolio-photos/nsk-inspired-38cf121a-ab10-44b0-bc8b-f6b397e60c0d.jpg",
+          "source": "google-image-search"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-08-31",
+      "photoOrderBumpedAt": 962
+    },
+    {
+      "id": "beauty-by-gk",
+      "name": "Beauty by GK",
+      "areaId": "mobile",
+      "areaLabel": "Mobile / home service",
+      "neighbourhood": "Mobile / home service London",
+      "postcode": "",
+      "bookingPlatform": "Square",
+      "bookingUrl": "https://book.squareup.com/appointments/94einp42jmhvsd/location/LAKNM659H5W8G/services",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/_gkhairtrends/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Trim / hair cut",
+        "Full head colour"
+      ],
+      "priceBand": "£",
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "manual",
+      "priceEvidence": [],
+      "priceCheckedAt": "",
+      "priceUpdatedAt": "2026-08-31",
+      "priceConfidence": "manual",
+      "summary": "📍🇬🇧\n▪️ Mobile services available\n◾️Book Here⤵️⤵️⤵️",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/_gkhairtrends/",
+        "Submitted link: https://book.squareup.com/appointments/94einp42jmhvsd/location/LAKNM659H5W8G/services",
+        "Raw services provided during admin intake."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-08-31",
+      "portfolioPhotos": [
+        {
+          "id": "beauty-by-gk-portfolio-photo-e3d5895c-eed3-4c79-bba1-52d1745ca458",
+          "url": "/portfolio-photos/beauty-by-gk-82ebf8f3-78b8-4cca-a6bf-6e1501e08121.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "beauty-by-gk-portfolio-photo-d4adfed4-4464-49fa-8a92-cd4f091847b8",
+          "url": "/portfolio-photos/beauty-by-gk-2ba5821d-08c3-4b06-8266-4a47163a58e9.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "beauty-by-gk-portfolio-photo-ac847a6d-e392-440e-a6eb-76a4fe0c5de7",
+          "url": "/portfolio-photos/beauty-by-gk-94ee2b2b-b146-4de3-bd16-1f67a0279620.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "beauty-by-gk-portfolio-photo-8560010c-b84a-4a33-9a1c-58417b68ab5f",
+          "url": "/portfolio-photos/beauty-by-gk-a5f2d871-e1e2-4c37-8afc-b4737e1fc7ea.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "beauty-by-gk-portfolio-photo-00f01d3e-bc58-49a9-a502-9549dde63977",
+          "url": "/portfolio-photos/beauty-by-gk-a1f55b79-d928-4897-9c10-f0411be40502.jpg",
+          "source": "google-image-search"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-08-31",
+      "photoOrderBumpedAt": 960
+    },
+    {
+      "id": "lacedd-with-grace",
+      "name": "Lacedd with Grace",
+      "areaId": "south-east",
+      "areaLabel": "South east London",
+      "neighbourhood": "South east London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://laceddwithgrace.as.me/",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/laceddwithgrace/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Wig install (frontal / closure)",
+        "Custom wig",
+        "Wig cornrows",
+        "U-Part / Half wig install",
+        "Traditional sew-in / leave out",
+        "Frontal ponytail / bun"
+      ],
+      "priceBand": "£",
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "Pre-Made Frontal Wig + Installation - £95",
+        "Pre-made Closure Wig + Installation - £85",
+        "Custom Frontal Wig + Installation - £120",
+        "Custom Closure Wig + Installation - £110",
+        "Frontal Wig Reinstall - £90",
+        "Closure Wig Reinstall - £80",
+        "Under-wig braids - £35",
+        "Half-wig Installation - £70"
+      ],
+      "priceCheckedAt": "2026-08-31",
+      "priceUpdatedAt": "2026-08-31",
+      "priceConfidence": "high",
+      "summary": "An Advocate For Kingdom Expression In The Marketplace \nPowered by Christ 🤍\nIsaiah 43:18-19\nSEPTEMBER SLOTS OUT NOW\n📍Deptford, SE London",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/laceddwithgrace/",
+        "Submitted link: https://laceddwithgrace.as.me/",
+        "Raw services provided during admin intake."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-08-31",
+      "portfolioPhotos": [
+        {
+          "id": "lacedd-with-grace-portfolio-photo-6426d136-22d1-4084-b92a-c255541278c1",
+          "url": "/portfolio-photos/lacedd-with-grace-b1d648e6-7956-4d21-adc0-198c841b5943.jpg",
+          "source": "instagram-reel-frame"
+        },
+        {
+          "id": "lacedd-with-grace-portfolio-photo-2ec09244-9294-4cb2-8291-61ff2eb8de98",
+          "url": "/portfolio-photos/lacedd-with-grace-28d5c4ce-4dcc-498e-83bd-28289793727e.jpg",
+          "source": "instagram"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-08-31",
+      "photoOrderBumpedAt": 998,
+      "updatedAt": "2026-08-31"
+    },
+    {
+      "id": "slay-by-laura",
+      "name": "Slay By Laura",
+      "areaId": "south-east",
+      "areaLabel": "South east London",
+      "neighbourhood": "South east London London",
+      "postcode": "SE13 5NS",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://app.acuityscheduling.com/schedule.php?owner=17017600",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/slaybylaura_/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Quick weave",
+        "Wash & blowdry",
+        "Flipover / Versatile sew-in",
+        "Traditional sew-in / leave out",
+        "Tracks (+ silk press) / partial / invisible sew-in",
+        "Closure sew-in / closure behind the hairline",
+        "U-Part / Half wig install",
+        "Tape ins",
+        "Wig install (frontal / closure)",
+        "Wig cornrows"
+      ],
+      "priceBand": "£",
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "Quick weave (Bond in) - £80",
+        "Remove my sew in + Wash & blow dry my hair - £40",
+        "Wash & Blow dry my hair - £25",
+        "Sew in with leave out - £90",
+        "Flip over Sew in - £90",
+        "Sew in tracks (Rows) - £70",
+        "Closure sew in - £90",
+        "Sew in touch up - £30"
+      ],
+      "priceCheckedAt": "2026-08-31",
+      "priceUpdatedAt": "2026-08-31",
+      "priceConfidence": "high",
+      "summary": "South London",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/slaybylaura_/",
+        "Submitted link: https://app.acuityscheduling.com/schedule.php?owner=17017600",
+        "Raw services provided during admin intake."
+      ],
+      "googlePlaceId": "ChIJoxzb-bsDdkgRMzzBDqjKcY0",
+      "googleReviewCount": 0,
+      "googleMapsUri": "https://maps.google.com/?cid=10192150254867004467&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
+      "googleMatchConfidence": "high",
+      "googleDisplayName": "Slaybylaura",
+      "googleFormattedAddress": "53 Lee High Rd, London SE13 5NS, UK",
+      "googleCheckedAt": "2026-08-31",
+      "portfolioPhotos": [
+        {
+          "id": "slay-by-laura-portfolio-photo-e15a8e24-aabc-40fd-8707-ca0b9070ea61",
+          "url": "/portfolio-photos/slay-by-laura-0bce5036-d6d5-4ce3-98b1-822c926e7621.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "slay-by-laura-portfolio-photo-29ba4f8f-0545-42f3-9eda-8c8b34696eaf",
+          "url": "/portfolio-photos/slay-by-laura-a87eb808-a7ce-44a6-99ad-6ebb868c07f7.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "slay-by-laura-portfolio-photo-bc05a338-8118-4dfe-b233-b0356be4f3ce",
+          "url": "/portfolio-photos/slay-by-laura-39a38cd5-6796-42d5-9a83-6d910e80640f.jpg",
+          "source": "google-image-search"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-08-31",
+      "photoOrderBumpedAt": 955
+    },
+    {
+      "id": "lbl-hair",
+      "name": "LBL Hair",
+      "areaId": "essex",
+      "areaLabel": "Essex",
+      "neighbourhood": "Essex London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://lblhair.as.me/",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/lblhair/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Wig install (frontal / closure)",
+        "Custom wig"
+      ],
+      "priceBand": "£",
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "Wig Customisation *INSTALL NOT INCLUDED* - £35",
+        "Wig revamp - £20",
+        "Frontal Replacement Only *INSTALL NOT INCLUDED* - £20",
+        "Frontal Replacement + Install - £75",
+        "Closure Replacement + Install - £65",
+        "Reinstall - £50",
+        "Pre-made Closure install - £50",
+        "Pre-Made Frontal Wig - £60"
+      ],
+      "priceCheckedAt": "2026-08-31",
+      "priceUpdatedAt": "2026-08-31",
+      "priceConfidence": "high",
+      "summary": "📍ESSEX (SS16)\nSEPTEMBER BOOKS ARE OPEN\nBook | Click the link below\nContact | Via DM",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/lblhair/",
+        "Submitted link: https://lblhair.as.me/",
+        "Raw services provided during admin intake."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-08-31",
+      "portfolioPhotos": [
+        {
+          "id": "lbl-hair-portfolio-photo-aa91a55a-d6e2-45df-a2e5-dfa64fa870fc",
+          "url": "/portfolio-photos/lbl-hair-c9975c08-333d-49d0-b7fe-1d11fce922d8.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "lbl-hair-portfolio-photo-7fd243f1-b25e-493b-a61e-6255bad4ccfd",
+          "url": "/portfolio-photos/lbl-hair-90d0617d-8e04-4987-a9f8-43e06f36b2d2.jpg",
+          "source": "google-image-search"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-08-31",
+      "photoOrderBumpedAt": 952,
+      "updatedAt": "2026-08-31"
+    },
+    {
+      "id": "true-touch-london",
+      "name": "True Touch London",
+      "areaId": "south-east",
+      "areaLabel": "South east London",
+      "neighbourhood": "South east London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "http://truetouchlondon1.as.me/",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/truetouchlondon/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Sleek ponytail / bun",
+        "Updo",
+        "Bantu knots",
+        "Half up half down",
+        "Traditional sew-in / leave out",
+        "Quick weave",
+        "Flipover / Versatile sew-in"
+      ],
+      "priceBand": "£",
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "Top knot bun / Low knot bun - £40",
+        "Elegant updo/Messy Bun with Fringe - £55",
+        "2-3 Bantu knots includes fringe - £50",
+        "Infinity bun - £55",
+        "Classic Bun - £45",
+        "Twisted Knot Buns - £60",
+        "Half up and half down sew in (low no leave out )includes fringe - £50",
+        "Butterly Crown Halfuphalfdown - £65"
+      ],
+      "priceCheckedAt": "2026-08-31",
+      "priceUpdatedAt": "2026-08-31",
+      "priceConfidence": "high",
+      "summary": "Specialising in creative styles 🙋🏽‍♀️\n📍West Norwood (Studio based)\n  SEPTEMBER SLOTS AVAILABLE \n19-21 Chapel Road SE27 0TY (buzzer A5)",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/truetouchlondon/",
+        "Submitted link: http://truetouchlondon1.as.me/",
+        "Raw services provided during admin intake."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-08-31",
+      "portfolioPhotos": [
+        {
+          "id": "true-touch-london-portfolio-photo-f0f5b1c6-9111-4919-b7ed-b1dcc4b686a5",
+          "url": "/portfolio-photos/true-touch-london-a8433ce2-4aef-4e68-8d3d-f83604c37a79.jpg",
+          "source": "instagram-reel-frame"
+        },
+        {
+          "id": "true-touch-london-portfolio-photo-eb2e715d-ea69-4ba2-af54-370fed46f54d",
+          "url": "/portfolio-photos/true-touch-london-7c7577ca-ca2c-4ac4-8f77-c6c8b442f158.jpg",
+          "source": "instagram-reel-frame"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-08-31",
+      "photoOrderBumpedAt": 997
+    },
+    {
+      "id": "the-melting-pointt",
+      "name": "The Melting Pointt",
+      "areaId": "south-east",
+      "areaLabel": "South east London",
+      "neighbourhood": "South east London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://themeltingpointt.as.me/",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/themeltingpointt_uk/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Wig install (frontal / closure)",
+        "Frontal ponytail / bun",
+        "Traditional sew-in / leave out",
+        "Half up half down",
+        "Frontal sew-in",
+        "Closure sew-in / closure behind the hairline"
+      ],
+      "priceBand": "£",
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "Pre-bought Factory-made Wig install - £60",
+        "Pre-bought Factory made Closure Wig - £50",
+        "Middle Part/High Ponytail (No frontal) - £50",
+        "Double Knot Frontal Bun - £80",
+        "Low Frontal Ponytail - £70",
+        "Low Frontal Ponytail - Braided - £70",
+        "Frontal Ponytail Re-install (Customised by a different stylist) - £80",
+        "Wig Re-install (My work only!) - £60"
+      ],
+      "priceCheckedAt": "2026-08-31",
+      "priceUpdatedAt": "2026-08-31",
+      "priceConfidence": "high",
+      "summary": "Hairstylist (Home-based)\n📍London, SE16\nLINK BELOW TO BOOK",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/themeltingpointt_uk/",
+        "Submitted link: https://themeltingpointt.as.me/",
+        "Raw services provided during admin intake."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-08-31",
+      "portfolioPhotos": [
+        {
+          "id": "the-melting-pointt-portfolio-photo-c98f97d8-9945-4992-abfe-223d3e511453",
+          "url": "/portfolio-photos/the-melting-pointt-0309498b-a7b5-426f-af74-492d7979f580.jpg",
+          "source": "google-image-search"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-08-31",
+      "photoOrderBumpedAt": 950
+    },
+    {
+      "id": "by-shannel-akua",
+      "name": "By Shannel Akua",
+      "areaId": "east",
+      "areaLabel": "East London",
+      "neighbourhood": "East London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://shannelakua.as.me/",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/byshannelakua/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Wig install (frontal / closure)",
+        "Frontal ponytail / bun"
+      ],
+      "priceBand": "£",
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "Pre-made closure - £50",
+        "Frontal ponytail - £70",
+        "Pre-made frontal - £60",
+        "Frontal/closure replacement + install - £90",
+        "Frontal replacement - £45",
+        "No contact service - £45",
+        "Reinstall (not my work) - £50",
+        "Reinstall - £45"
+      ],
+      "priceCheckedAt": "2026-08-31",
+      "priceUpdatedAt": "2026-08-31",
+      "priceConfidence": "high",
+      "summary": "Units available to purchase via direct message \nContact hours 9:00-18:00\nClick link to book↓",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/byshannelakua/",
+        "Submitted link: https://shannelakua.as.me/",
+        "Raw services provided during admin intake."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-08-31",
+      "portfolioPhotos": [
+        {
+          "id": "by-shannel-akua-portfolio-photo-8c4999d3-b01f-414b-8807-fa84002a2738",
+          "url": "/portfolio-photos/by-shannel-akua-1e8033e4-6110-47a9-a047-38062e40723f.jpg",
+          "source": "google-image-search"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-08-31",
+      "photoOrderBumpedAt": 949
+    },
+    {
+      "id": "essence-hair-uk",
+      "name": "ESSENCE HAIR UK",
+      "areaId": "south-east",
+      "areaLabel": "South east London",
+      "neighbourhood": "South east London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://essencehairuk.as.me/",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/essencehairuk_/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Wig install (frontal / closure)",
+        "Custom wig",
+        "Frontal ponytail / bun"
+      ],
+      "priceBand": "£",
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "Custom made frontal wig - £80",
+        "Custom made closure wig - £70",
+        "Pre-made frontal unit - £65",
+        "Pre-made closure unit - £55",
+        "Reinstall frontal - £60",
+        "Reinstall closure - £50",
+        "Frontal replacement - £80",
+        "Closure replacement - £70"
+      ],
+      "priceCheckedAt": "2026-08-31",
+      "priceUpdatedAt": "2026-08-31",
+      "priceConfidence": "high",
+      "summary": "London, SE5\nSeptember slots available \nClink the link below to book 🤍",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/essencehairuk_/",
+        "Submitted link: https://essencehairuk.as.me/",
+        "Raw services provided during admin intake."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-08-31",
+      "portfolioPhotos": [
+        {
+          "id": "essence-hair-uk-portfolio-photo-6093a27f-1868-496e-a2e9-2911366969ed",
+          "url": "/portfolio-photos/essence-hair-uk-5f9b16ee-1a9d-47fe-9fa3-d9c167461907.jpg",
+          "source": "google-image-search"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-08-31",
+      "photoOrderBumpedAt": 948
+    },
+    {
+      "id": "saanz-salon",
+      "name": "Saanz Salon",
+      "areaId": "south-east",
+      "areaLabel": "South east London",
+      "neighbourhood": "South east London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://saanzsalon.as.me/",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/saanzsalon/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Closure sew-in / closure behind the hairline",
+        "Wig colouring / bundle colouring",
+        "Wig install (frontal / closure)",
+        "Custom wig"
+      ],
+      "priceBand": "£",
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "Closure Sew-in - £100",
+        "Customisation ONLY - £40",
+        "Colouring services - £15",
+        "Pre-made Lace Frontal - £75",
+        "Pre-made Lace Closure - £70",
+        "Pre-made Lace Frontal Reinstall (Originally Installed by me) - £65",
+        "Pre-made Lace Closure Reinstall (Originally Installed by me) - £60",
+        "Pre-made Lace Closure Reinstall (NOT Originally Installed by me) - £65"
+      ],
+      "priceCheckedAt": "2026-08-31",
+      "priceUpdatedAt": "2026-08-31",
+      "priceConfidence": "high",
+      "summary": "SE LDN HAIRSTYLIST\nSHOP: WIGS | BUNDLES | FRONTALS | CLOSURES\nSHIPPING (4-7 working days)\nDM TO PURCHASE🛍️\nSAME DAY APPOINTMENTS AVAILABLE",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/saanzsalon/",
+        "Submitted link: https://saanzsalon.as.me/",
+        "Raw services provided during admin intake."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-08-31",
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": false,
+      "sameDayEmergency": false,
+      "customFilters": {},
+      "updatedAt": "2026-08-31",
+      "portfolioPhotos": [
+        {
+          "id": "saanz-salon-portfolio-photo-c578b9af-c69b-47fe-943f-37b63c978904",
+          "url": "/portfolio-photos/saanz-salon-066dec7a-bf9b-462f-856e-a23fe7c6b9c8.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "saanz-salon-portfolio-photo-e0d2a8cc-66c7-4298-b7f7-1490c3041173",
+          "url": "/portfolio-photos/saanz-salon-14e4c097-5e05-4725-9202-8e0e274a43e0.jpg",
+          "source": "google-image-search"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-08-31",
+      "photoOrderBumpedAt": 947
+    },
+    {
+      "id": "hervanity",
+      "name": "HerVanity",
+      "areaId": "south-east",
+      "areaLabel": "South east London",
+      "neighbourhood": "South east London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://hervanityscheduling.as.me/",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/hervanity._/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Traditional sew-in / leave out",
+        "Sleek ponytail / bun",
+        "Frontal ponytail / bun",
+        "Quick weave",
+        "Half up half down",
+        "Wig install (frontal / closure)"
+      ],
+      "priceBand": "£",
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "Sew in (ALL SEW INS £60) - £60",
+        "Sleek ponytail/bun - £55",
+        "Frontal Ponytail/Bun - £60",
+        "Half up Half down quick weave/sew in - £55",
+        "Frontal install - £60",
+        "Closure wig installation - £50",
+        "Frontal Reinstall - £50",
+        "Closure Reinstall - £40"
+      ],
+      "priceCheckedAt": "2026-08-31",
+      "priceUpdatedAt": "2026-08-31",
+      "priceConfidence": "high",
+      "summary": "📍Based in South east London (Greenwich).\nBest quality virgin hair in stock —> @hv.hair.bundles\nBooking link below⬇️",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/hervanity._/",
+        "Submitted link: https://hervanityscheduling.as.me/",
+        "Raw services provided during admin intake."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-08-31",
+      "portfolioPhotos": [
+        {
+          "id": "hervanity-portfolio-photo-b7e081c2-d377-4ab6-b266-89a43f37e26a",
+          "url": "/portfolio-photos/hervanity-0aea45aa-3369-483b-9cb3-fb425f7a29b7.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "hervanity-portfolio-photo-5e99b7fb-f9ec-4a1b-a1e0-3103cb098cde",
+          "url": "/portfolio-photos/hervanity-a228548e-c095-4871-bda1-5843ded08977.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "hervanity-portfolio-photo-64b13fc6-0d96-46d2-8f50-d68b7622d896",
+          "url": "/portfolio-photos/hervanity-f360f936-ced5-4bec-b148-9a8650572539.jpg",
+          "source": "google-image-search"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-08-31",
+      "photoOrderBumpedAt": 945,
+      "updatedAt": "2026-08-31"
+    },
+    {
+      "id": "bolasplace-hair-salon",
+      "name": "Bolasplace Hair Salon",
+      "areaId": "south-east",
+      "areaLabel": "South east London",
+      "neighbourhood": "South east London London",
+      "postcode": "SE15 4PB",
+      "bookingPlatform": "Setmore",
+      "bookingUrl": "http://bolasplace.setmore.com",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/bolasplace_/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Box braids",
+        "Boho braids / goddess braids",
+        "Knotless braids",
+        "Wash & blowdry",
+        "Wig cornrows",
+        "Traditional sew-in / leave out",
+        "Wig install (frontal / closure)",
+        "Closure sew-in / closure behind the hairline",
+        "Crochet",
+        "Soft locs",
+        "Crochet faux locs / invisible locs",
+        "Bridal",
+        "Sleek ponytail / bun",
+        "Frontal ponytail / bun",
+        "Updo",
+        "Fulani / lemonade braids",
+        "Wig colouring / bundle colouring",
+        "Custom wig",
+        "Relaxer / texturiser",
+        "Miracle knots",
+        "Silk press"
+      ],
+      "priceBand": "£",
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "Boys cornrow half head - £30",
+        "Ponytail lagos hair line - £60",
+        "Cornrow 5 to 7yrs old - £50",
+        "Copy of Butterfly braids shoulder lenth - £110",
+        "Girls medium size braids 13 to 16 back lenth - £80",
+        "Wig making ( customised wig) - £80",
+        "Box braids jaw length - £60",
+        "Boho braids - £90"
+      ],
+      "priceCheckedAt": "2026-08-31",
+      "priceUpdatedAt": "2026-08-31",
+      "priceConfidence": "high",
+      "summary": "Specialist in \nBridal styles /Box Braids/Twist/Relock/wig making/wig installation/weav\nRevamping/ cornrow/make up\n+44 7947128161\nBook Now\nVIA LINK 👇",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/bolasplace_/",
+        "Submitted link: http://bolasplace.setmore.com",
+        "Raw services provided during admin intake."
+      ],
+      "googlePlaceId": "ChIJxXHy9vYDdkgRyuUPQHnRneg",
+      "googleReviewCount": 30,
+      "googleMapsUri": "https://maps.google.com/?cid=16761783706838885834&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
+      "googleMatchConfidence": "high",
+      "googleDisplayName": "Bolasplace Hair Salon",
+      "googleFormattedAddress": "Asantewaa unit 8 Peckham palms arcade, Bournemouth close London, palms SE15 4PB, UK",
+      "googleCheckedAt": "2026-08-31",
+      "verifiedReviewCount": 91,
+      "verifiedReviewCheckedAt": "2026-08-31",
+      "portfolioPhotos": [
+        {
+          "id": "bolasplace-hair-salon-portfolio-photo-9c7fbe55-e862-4d38-818a-11ce99fc3a36",
+          "url": "/portfolio-photos/bolasplace-hair-salon-50c3a8aa-d15d-4319-84e0-13844f64ec73.jpg",
+          "source": "instagram-reel-frame"
+        },
+        {
+          "id": "bolasplace-hair-salon-portfolio-photo-1ac06cf5-2322-49fb-b221-9cd43951d98b",
+          "url": "/portfolio-photos/bolasplace-hair-salon-3b9c04ee-b565-4438-b952-a09ba3e23bc1.jpg",
+          "source": "instagram-reel-frame"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-08-31",
+      "photoOrderBumpedAt": 995,
+      "updatedAt": "2026-08-31"
+    },
+    {
+      "id": "sheer-glow",
+      "name": "Sheer Glow",
+      "areaId": "south-east",
+      "areaLabel": "South east London",
+      "neighbourhood": "South east London London",
+      "postcode": "SE1 5NA",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://sheerglow.as.me/",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/sheer_glow/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Custom wig",
+        "Frontal ponytail / bun",
+        "Closure sew-in / closure behind the hairline",
+        "Traditional sew-in / leave out",
+        "Wig install (frontal / closure)",
+        "Half up half down"
+      ],
+      "sameDayEmergency": true,
+      "summary": "TUE-SAT 10AM-8PM\nFOR SAME DAY APPOINTMENT\nTel ☎️02036204299\ntext 💬07915778450\n@sheer.hairr \nCLICK LINK TO BOOK",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/sheer_glow/",
+        "Submitted link: https://sheerglow.as.me/",
+        "Raw services provided during admin intake."
+      ],
+      "googlePlaceId": "ChIJ0-ZfFgADdkgRfWwt4GnyMUY",
+      "googleReviewCount": 24,
+      "googleMapsUri": "https://maps.google.com/?cid=5058090393060338813&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
+      "googleMatchConfidence": "high",
+      "googleDisplayName": "Sheer Glow Ltd.",
+      "googleFormattedAddress": "209 Old Kent Rd, London SE1 5NA, UK",
+      "googleCheckedAt": "2026-08-31",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": false,
+      "customFilters": {},
+      "priceBand": "££",
+      "servicePriceBand": "££",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "manual",
+      "priceEvidence": [],
+      "priceCheckedAt": "",
+      "priceUpdatedAt": "2026-08-31",
+      "priceConfidence": "manual",
+      "updatedAt": "2026-08-31",
+      "portfolioPhotos": [
+        {
+          "id": "sheer-glow-portfolio-photo-d2271c3f-83ec-4b5c-9ffa-5ef5342d2c5e",
+          "url": "/portfolio-photos/sheer-glow-9574c286-4e3e-4277-aeb1-68bf7a8e9e7f.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "sheer-glow-portfolio-photo-5e600d01-396a-4a25-a1c5-80e7471acc91",
+          "url": "/portfolio-photos/sheer-glow-308b7a89-e984-45c3-a24c-62b0ab483295.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "sheer-glow-portfolio-photo-0176d668-e0ef-4e64-af72-46275bc79dfd",
+          "url": "/portfolio-photos/sheer-glow-25178fd7-0c7a-446e-81c7-2fe9e7b1daa9.jpg",
+          "source": "google-image-search"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-08-31",
+      "photoOrderBumpedAt": 942
+    },
+    {
+      "id": "rhy-style",
+      "name": "Rhy Style",
+      "areaId": "all-london",
+      "areaLabel": "London",
+      "neighbourhood": "London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "http://rhystyle.as.me",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/rhystyle/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Knotless braids",
+        "Boho braids / goddess braids",
+        "Boho braids bob",
+        "Fulani / lemonade braids",
+        "Feed-in braids",
+        "Crochet faux locs / invisible locs",
+        "Miracle knots",
+        "Kids & teens styles",
+        "Wig cornrows",
+        "Stitch braids"
+      ],
+      "summary": "NW Ldn Studio.\nHair Included!\nSep Slots OUT NOW. Text for emergency \nAvailability & Booking info ↓\nLadies Only ᥫ᭡",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/rhystyle/",
+        "Submitted link: http://rhystyle.as.me",
+        "Raw services provided during admin intake."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-08-31",
+      "priceBand": "£",
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "Braided Ponytail - £85",
+        "Small Braids - £140",
+        "SMedium Braids - £125",
+        "Medium Braids - £110",
+        "Large Braids - £85",
+        "Bob Boho Braids - £110",
+        "Cassie ponytail - £75",
+        "Diva Braids - £135"
+      ],
+      "priceCheckedAt": "2026-08-31",
+      "priceConfidence": "high",
+      "priceUpdatedAt": "2026-08-31",
+      "portfolioPhotos": [
+        {
+          "id": "rhy-style-portfolio-photo-4419b888-34b8-474f-a74f-4d9b99f359f8",
+          "url": "/portfolio-photos/rhy-style-386fb415-311e-4b6d-98cd-fcf062938758.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "rhy-style-portfolio-photo-e1ae66be-37fe-4de2-8583-efad848697fc",
+          "url": "/portfolio-photos/rhy-style-c1d7c87d-3562-4361-94b8-a9a1b7f4d405.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "rhy-style-portfolio-photo-8bab2936-ce9b-4e09-9e26-6ef44101a817",
+          "url": "/portfolio-photos/rhy-style-4ee2cf31-46a1-40e8-b94b-6f91432f018a.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "rhy-style-portfolio-photo-3881758c-18aa-4a20-8714-f4c109288af6",
+          "url": "/portfolio-photos/rhy-style-70a68491-9e0d-4d4c-a3fc-faf2a13461fd.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "rhy-style-portfolio-photo-c88bb996-bac3-4427-89f7-28859b86df0e",
+          "url": "/portfolio-photos/rhy-style-58076189-eefc-42e3-a75a-6def8b4642bd.jpg",
+          "source": "google-image-search"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-08-31",
+      "photoOrderBumpedAt": 939,
+      "updatedAt": "2026-08-31"
+    },
+    {
+      "id": "the-seven-touch",
+      "name": "The Seven Touch",
+      "areaId": "north",
+      "areaLabel": "North London",
+      "neighbourhood": "North London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://theseventouch.as.me/",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/theseventouch/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Retwist / interlocking",
+        "Tape ins",
+        "I-tips / microlinks strands",
+        "Sleek ponytail / bun",
+        "Updo",
+        "Wig install (frontal / closure)",
+        "Frontal ponytail / bun",
+        "Custom wig",
+        "Traditional sew-in / leave out"
+      ],
+      "priceBand": "£",
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "Loc Retwist + Two - strand Twist. - £70",
+        "Loc Retwist + Barrel Twist. - £70",
+        "Loc Retwist. - £60",
+        "Loc Retwist + Half Barrels/ Two Strands. - £70",
+        "Loc Retwist + Off White Twists. - £70",
+        "Loc Maintenance & Style Refresh - £40",
+        "MicroLinks. - £100",
+        "Tape - Ins. - £100"
+      ],
+      "priceCheckedAt": "2026-08-31",
+      "priceUpdatedAt": "2026-08-31",
+      "priceConfidence": "high",
+      "summary": "North London, Uk\nAUGUST SLOTS OUT NOW!\nContact hours (11am - 8pm)\n📧 : TheSevenTouch@outlook.com",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/theseventouch/",
+        "Submitted link: https://theseventouch.as.me/",
+        "Raw services provided during admin intake."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-08-31",
+      "portfolioPhotos": [
+        {
+          "id": "the-seven-touch-portfolio-photo-5c27faf3-dc5c-4728-8378-7cd6306a37f3",
+          "url": "/portfolio-photos/the-seven-touch-d8ace17e-a56b-4860-8ead-defc03d15818.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "the-seven-touch-portfolio-photo-42f297b3-6a6f-4ba6-aa78-d41302c2a455",
+          "url": "/portfolio-photos/the-seven-touch-7fe3349e-5382-4ac5-9c2a-b592f73abfdb.jpg",
+          "source": "google-image-search"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-08-31",
+      "photoOrderBumpedAt": 934
+    },
+    {
+      "id": "the-hair-senpai",
+      "name": "The Hair Senpai",
+      "areaId": "south-west",
+      "areaIds": [
+        "south-west",
+        "west"
+      ],
+      "areaLabel": "South west London / West London",
+      "neighbourhood": "South west London and West London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://thehairsenpai.as.me/",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/thehairsenpai/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Quick weave",
+        "Half up half down",
+        "Flipover / Versatile sew-in",
+        "Sleek ponytail / bun"
+      ],
+      "priceBand": "£",
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "manual",
+      "priceEvidence": [],
+      "priceCheckedAt": "",
+      "priceUpdatedAt": "2026-08-31",
+      "priceConfidence": "manual",
+      "summary": "Wigs • Quickweaves • Ponytails\nSouth West London hairstylist 🇬🇧\nBook via the link below 🤍",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/thehairsenpai/",
+        "Submitted link: https://thehairsenpai.as.me/",
+        "Raw services provided during admin intake."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-08-31",
+      "portfolioPhotos": [
+        {
+          "id": "the-hair-senpai-portfolio-photo-f6f03e96-edc8-494a-a8de-960ff0007125",
+          "url": "/portfolio-photos/the-hair-senpai-818a9306-dca7-4a47-a9df-01a716130d44.jpg",
+          "source": "instagram-reel-frame"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-08-31",
+      "photoOrderBumpedAt": 932
+    },
+    {
+      "id": "taimless-hair",
+      "name": "Taimless Hair",
+      "areaId": "east",
+      "areaLabel": "East London",
+      "neighbourhood": "East London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://taimlesshair.as.me/",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/taimlesshair/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Frontal ponytail / bun",
+        "Wig install (frontal / closure)",
+        "Custom wig"
+      ],
+      "priceBand": "£",
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "manual",
+      "priceEvidence": [],
+      "priceCheckedAt": "",
+      "priceUpdatedAt": "2026-08-31",
+      "priceConfidence": "manual",
+      "summary": "Hairstylist | Home of the #1 Lace Glue 🏆\nSHOP @taimlesshair.co\nEast London Based, E5 (Hackney)\nDM For Same Day/Emergency Appointments",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/taimlesshair/",
+        "Submitted link: https://taimlesshair.as.me/",
+        "Raw services provided during admin intake."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-08-31",
+      "portfolioPhotos": [
+        {
+          "id": "taimless-hair-portfolio-photo-3bd0a7d2-9415-4b6d-b2b7-b148e03fbf11",
+          "url": "/portfolio-photos/taimless-hair-d0d41872-09f1-4613-b91b-dd777fda3d55.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "taimless-hair-portfolio-photo-c7adcee9-e63a-4be3-baa6-bf7024251f12",
+          "url": "/portfolio-photos/taimless-hair-89b876da-8343-4a1f-96c9-9bd5a0551d3f.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "taimless-hair-portfolio-photo-1bf1c7a2-5a9d-4510-83ff-5013a8f3a9c9",
+          "url": "/portfolio-photos/taimless-hair-e48f3ac5-fb16-4676-8bdc-f343b70cdfaa.jpg",
+          "source": "google-image-search"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-08-31",
+      "photoOrderBumpedAt": 931
+    },
+    {
+      "id": "the-es-experience",
+      "name": "The ES Experience",
+      "areaId": "south-west",
+      "areaLabel": "South west London",
+      "neighbourhood": "South west London London",
+      "postcode": "SW8 1GW",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://theesexperience.as.me/",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/the_es_experience/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Traditional sew-in / leave out",
+        "Highlights",
+        "Frontal ponytail / bun",
+        "Wig laundry",
+        "Wig install (frontal / closure)",
+        "Custom wig",
+        "Flipover / Versatile sew-in",
+        "Closure sew-in / closure behind the hairline"
+      ],
+      "priceBand": "£",
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": true,
+      "priceComparisonMode": "service-only",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "The Frontal Ponytail Experience - £90",
+        "Frontal Wig Install - £50",
+        "Mini Frontal Install - £50",
+        "Reinstall Unit - £55",
+        "Custom Wig + Install - £120",
+        "Traditional Sew in - £85",
+        "Versatile Sew in - £85",
+        "Closure Sew in - £90"
+      ],
+      "priceCheckedAt": "2026-08-31",
+      "priceUpdatedAt": "2026-08-31",
+      "priceConfidence": "high",
+      "summary": "REBRANDING \nWE WILL BE BACK IN OCTOBER!\nJoin our community to stay connected ↓",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/the_es_experience/",
+        "Submitted link: https://theesexperience.as.me/",
+        "Raw services provided during admin intake."
+      ],
+      "googlePlaceId": "ChIJI_Urv7EFdkgR7UwVqUMejoM",
+      "googleReviewCount": 1,
+      "googleMapsUri": "https://maps.google.com/?cid=9479547541609860333&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
+      "googleMatchConfidence": "high",
+      "googleDisplayName": "The Es Experience",
+      "googleFormattedAddress": "Bondway, London SW8 1GW, UK",
+      "googleCheckedAt": "2026-08-31",
+      "portfolioPhotos": [
+        {
+          "id": "the-es-experience-portfolio-photo-12b2118f-98f0-43c2-8b50-612ba785cd8f",
+          "url": "/portfolio-photos/the-es-experience-c7acda48-9a6a-463d-82a0-d335ff086b26.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "the-es-experience-portfolio-photo-8eef559e-e3cd-4a49-8b8b-5515d44856bb",
+          "url": "/portfolio-photos/the-es-experience-e74e6380-fd6f-451d-9046-4893a02b90ea.jpg",
+          "source": "google-image-search"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-08-31",
+      "photoOrderBumpedAt": 928,
+      "updatedAt": "2026-08-31"
+    },
+    {
+      "id": "braids-by-tessa",
+      "name": "Braids by Tessa",
+      "areaId": "all-london",
+      "areaLabel": "London",
+      "neighbourhood": "London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://braidsbytessa.as.me/schedule/b04022b2",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/braidsbytessa._/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Boho braids / goddess braids",
+        "Boho braids bob",
+        "French curl",
+        "Fulani / lemonade braids",
+        "Creative braids",
+        "Traditional sew-in / leave out",
+        "Bantu knots",
+        "Twists (with extensions)",
+        "Knotless braids",
+        "Feed-in braids"
+      ],
+      "sameDayEmergency": true,
+      "priceBand": "££",
+      "servicePriceBand": "££",
+      "packagePriceBand": "£££",
+      "priceIncludesHair": true,
+      "priceComparisonMode": "mixed",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "Small medium bob boho braids - £126",
+        "Small boho braids - £161",
+        "Small Medium boho braids - £146",
+        "Medium boho braids - £136",
+        "Small boho bob braids - £136",
+        "Small boho braids (HUMAN HAIR INCLUDED) - £221",
+        "Small medium boho braids (HUMAN HAIR INCLUDED) - £206",
+        "Medium boho braids (HUMAN HAIR INCLUDED) - £196"
+      ],
+      "priceCheckedAt": "2026-08-31",
+      "priceUpdatedAt": "2026-08-31",
+      "priceConfidence": "high",
+      "summary": "CURRENTLY ON BREAK 01/09-31/09\n🔗Booking link 👇🏽\nDM for enquires or email: braids.by.tess.aa@gmail.com",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/braidsbytessa._/",
+        "Submitted link: https://braidsbytessa.as.me/schedule/b04022b2",
+        "Raw services provided during admin intake."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-08-31",
+      "portfolioPhotos": [
+        {
+          "id": "braids-by-tessa-portfolio-photo-96eee640-7ed4-431b-9edf-1e80cd57ee23",
+          "url": "/portfolio-photos/braids-by-tessa-70d7cad9-dc9f-45f9-a6cb-b8c5a6cdb36c.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "braids-by-tessa-portfolio-photo-f2defc65-3cb9-4f8e-bc7c-91a9927113be",
+          "url": "/portfolio-photos/braids-by-tessa-dbe56fa9-3a0c-468f-b8c7-1825acad583c.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "braids-by-tessa-portfolio-photo-3d1a1312-55d5-45ba-bbca-55ff0b5590e9",
+          "url": "/portfolio-photos/braids-by-tessa-e747b47f-78c6-4909-b7e7-a0285c59d9ae.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "braids-by-tessa-portfolio-photo-7934cc68-4cd2-4ed2-807b-2eae315a49bb",
+          "url": "/portfolio-photos/braids-by-tessa-30e621ff-bb89-4e18-b376-60cee0277e32.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "braids-by-tessa-portfolio-photo-5bdbaab6-8521-4d80-8580-4ef5f8ac80fe",
+          "url": "/portfolio-photos/braids-by-tessa-1a9b8b1d-018d-489f-a1c7-5613c8c588f2.jpg",
+          "source": "google-image-search"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-08-31",
+      "photoOrderBumpedAt": 926
+    },
+    {
+      "id": "adell-s-place",
+      "name": "Adell's Place",
+      "areaId": "all-london",
+      "areaLabel": "London",
+      "neighbourhood": "London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://app.acuityscheduling.com/schedule.php?owner=36986694",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/adells_place_/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Half up half down",
+        "Knotless braids",
+        "French curl",
+        "Boho braids / goddess braids",
+        "Wig cornrows",
+        "Wig install (frontal / closure)",
+        "Frontal ponytail / bun",
+        "Flipover / Versatile sew-in",
+        "Traditional sew-in / leave out",
+        "Frontal sew-in",
+        "Closure sew-in / closure behind the hairline",
+        "Bridal"
+      ],
+      "priceBand": "££",
+      "servicePriceBand": "££",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "manual",
+      "priceEvidence": [],
+      "priceCheckedAt": "",
+      "priceUpdatedAt": "2026-08-31",
+      "priceConfidence": "manual",
+      "summary": "Braids, frontal installation/bridal styling  \nRevamping e.t.c \nEducator,Available to 🌍\nLuxury hair page: @adellsplace_luxury\nClick the link below 👇",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/adells_place_/",
+        "Submitted link: https://app.acuityscheduling.com/schedule.php?owner=36986694",
+        "Raw services provided during admin intake."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-08-31",
+      "portfolioPhotos": [
+        {
+          "id": "adell-s-place-portfolio-photo-5f414c38-cb00-4ded-a1c1-7bddeccafa90",
+          "url": "/portfolio-photos/adell-s-place-c5c81aa6-8675-490f-9eeb-18fd73c386f3.jpg",
+          "source": "google-image-search"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-08-31",
+      "photoOrderBumpedAt": 921,
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": false,
+      "sameDayEmergency": false,
+      "customFilters": {},
+      "updatedAt": "2026-08-31"
+    },
+    {
+      "id": "braids-by-ym",
+      "name": "Braids by YM",
+      "areaId": "east",
+      "areaLabel": "East London",
+      "neighbourhood": "East London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://braidsbyym.as.me/",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/braidsbyym/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Boho braids / goddess braids",
+        "French curl",
+        "Knotless braids"
+      ],
+      "priceBand": "££",
+      "servicePriceBand": "££",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "manual",
+      "priceEvidence": [],
+      "priceCheckedAt": "",
+      "priceUpdatedAt": "2026-08-31",
+      "priceConfidence": "manual",
+      "summary": "Home based 🏡\nEast London, Leyton 📍\nSept slots available 🫶🏽\nLvl 3 hair & beauty qualifications\nBook your appointment here 👇🏽",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/braidsbyym/",
+        "Submitted link: https://braidsbyym.as.me/",
+        "Raw services provided during admin intake."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-08-31",
+      "portfolioPhotos": [
+        {
+          "id": "braids-by-ym-portfolio-photo-54f519ed-d1f8-4ce6-a2f4-7eb33522060d",
+          "url": "/portfolio-photos/braids-by-ym-3861638c-1ecf-4740-bb35-c37bb9ab956f.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "braids-by-ym-portfolio-photo-1529aa49-eb35-44ae-a258-e226ed0208ad",
+          "url": "/portfolio-photos/braids-by-ym-69c4b0e1-006e-49f9-88cc-85c13ab2ee1a.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "braids-by-ym-portfolio-photo-5562fe3b-631a-4dd0-9b7f-f4ac0b3ec8c4",
+          "url": "/portfolio-photos/braids-by-ym-662bd2e1-76f1-4ac5-8124-5bbc842a7b49.jpg",
+          "source": "google-image-search"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-08-31",
+      "photoOrderBumpedAt": 920,
+      "updatedAt": "2026-08-31"
+    },
+    {
+      "id": "dynasty-luxe-lounge",
+      "name": "Dynasty Luxe Lounge",
+      "areaId": "south-east",
+      "areaLabel": "South east London",
+      "neighbourhood": "South east London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://dynastyluxelounge.as.me/schedule.php",
+      "websiteUrl": "",
+      "hairShopUrl": "https://www.instagram.com/shopdyluxe/",
+      "instagramUrl": "https://www.instagram.com/dynastyluxelounge/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Bridal",
+        "Wig install (frontal / closure)",
+        "Custom wig",
+        "Wig colouring / bundle colouring",
+        "Half up half down",
+        "Updo",
+        "Sleek ponytail / bun",
+        "Frontal ponytail / bun",
+        "Tracks (+ silk press) / partial / invisible sew-in",
+        "Traditional sew-in / leave out",
+        "Frontal sew-in",
+        "Flipover / Versatile sew-in",
+        "Feed-in braids",
+        "Tape ins",
+        "Curly cut / wash & go / diffuse"
+      ],
+      "sameDayEmergency": false,
+      "priceBand": "£",
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "FRONTAL + BRAIDS - £195",
+        "CLOSURE / FRONTAL INSTALL - £120",
+        "READY/PRE MADE FACTORY UNIT - £110",
+        "GLUELESS WIG INSTALL - £90",
+        "WASH & GO SERVICES - £65",
+        "COLOUR SERVICES - £105",
+        "FULL LACE BRAIDING SERVICE - £65",
+        "FRONTAL/CLOSURE REPLACEMENT - £75"
+      ],
+      "priceCheckedAt": "2026-08-31",
+      "priceUpdatedAt": "2026-08-31",
+      "priceConfidence": "high",
+      "summary": "Wig Installs • Ponytails • Sew-ins \n✨Professional Hair Specialist of 9 years✨\n🛍️ : @shopdyluxe",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/dynastyluxelounge/",
+        "Submitted link: https://dynastyluxelounge.as.me/schedule.php",
+        "Raw services provided during admin intake."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-08-31",
+      "portfolioPhotos": [
+        {
+          "id": "dynasty-luxe-lounge-portfolio-photo-48569c13-6d98-4cf1-9815-d57ce783fbc1",
+          "url": "/portfolio-photos/dynasty-luxe-lounge-a4cf6493-5905-4b75-96f2-dd6a52e123ed.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "dynasty-luxe-lounge-portfolio-photo-3c6b8afc-0813-452c-8736-2f3ef0db0bb8",
+          "url": "/portfolio-photos/dynasty-luxe-lounge-108b96a3-b337-46ea-9c4d-ccc0fc03870d.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "dynasty-luxe-lounge-portfolio-photo-caf2a487-9e23-4437-ab5b-c69cfd6f3107",
+          "url": "/portfolio-photos/dynasty-luxe-lounge-1427949d-6b02-4a71-aa3a-2b7e45e6f934.jpg",
+          "source": "google-image-search"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-08-31",
+      "photoOrderBumpedAt": 917,
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": true,
+      "customFilters": {},
+      "updatedAt": "2026-08-31"
+    },
+    {
+      "id": "jp-styled-it",
+      "name": "JP Styled It",
+      "areaId": "north",
+      "areaLabel": "North London",
+      "neighbourhood": "North London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://jpstyledit.as.me/schedule/ddddb246",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/jpstyledit/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Frontal ponytail / bun",
+        "Traditional sew-in / leave out",
+        "Closure sew-in / closure behind the hairline",
+        "Frontal sew-in",
+        "Quick weave"
+      ],
+      "sameDayEmergency": true,
+      "priceBand": "£",
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "Frontal ponytail - £81",
+        "The Luxe install - £126",
+        "The Premium install - £86",
+        "The Express install - £76",
+        "Traditional Sew-In - £81",
+        "Closure sew in - £91",
+        "Closure sew in refresh - £50",
+        "Frontal sew in - £111"
+      ],
+      "priceCheckedAt": "2026-08-31",
+      "priceUpdatedAt": "2026-08-31",
+      "priceConfidence": "high",
+      "summary": "Slots out now!\nSame day appointment available \nN18",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/jpstyledit/",
+        "Submitted link: https://jpstyledit.as.me/schedule/ddddb246",
+        "Raw services provided during admin intake."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-08-31",
+      "portfolioPhotos": [
+        {
+          "id": "jp-styled-it-portfolio-photo-b9b68c53-fd6f-43b4-85d1-4297dbaddb4f",
+          "url": "/portfolio-photos/jp-styled-it-dda07ac6-a8a5-459f-b2eb-2f84567f0c96.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "jp-styled-it-portfolio-photo-da1adc62-9d1b-4915-9aa8-754a55ba176a",
+          "url": "/portfolio-photos/jp-styled-it-fa73a626-f217-4c4b-bef5-e16e26976a6f.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "jp-styled-it-portfolio-photo-265d4b28-0e08-4b9f-9d0c-8bb257fd13c7",
+          "url": "/portfolio-photos/jp-styled-it-e3f2992e-a742-4cce-aef1-b0133cca588e.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "jp-styled-it-portfolio-photo-e344575e-31d8-4d29-a2c0-9bb13ab5f385",
+          "url": "/portfolio-photos/jp-styled-it-32010cbf-a812-4650-bb65-b5483a18ef11.jpg",
+          "source": "google-image-search"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-08-31",
+      "photoOrderBumpedAt": 914
+    },
+    {
+      "id": "hair-by-niella",
+      "name": "Hair By Niella",
+      "areaId": "essex",
+      "areaLabel": "Essex",
+      "neighbourhood": "Essex London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://hairbyniella.as.me/",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/hairbyniella/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Boho braids / goddess braids",
+        "Knotless braids",
+        "Boho braids bob",
+        "French curl",
+        "Traditional sew-in / leave out",
+        "Closure sew-in / closure behind the hairline",
+        "Miracle knots",
+        "Fulani / lemonade braids",
+        "Wig cornrows",
+        "Flipover / Versatile sew-in",
+        "Stitch braids",
+        "Wig install (frontal / closure)",
+        "Custom wig",
+        "Frontal ponytail / bun"
+      ],
+      "priceBand": "££",
+      "servicePriceBand": "££",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "manual",
+      "priceEvidence": [],
+      "priceCheckedAt": "",
+      "priceUpdatedAt": "2026-08-31",
+      "priceConfidence": "manual",
+      "summary": "Located in Colchester, Essex📍\nLink in bio for website and price list\nSEPTEMBER SLOTS OUT NOW!\nMark 11:23 🤍\nCLICK LINK BELOW TO BOOK⬇️",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/hairbyniella/",
+        "Submitted link: https://hairbyniella.as.me/",
+        "Raw services provided during admin intake."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-08-31",
+      "portfolioPhotos": [
+        {
+          "id": "hair-by-niella-portfolio-photo-bd81b9ae-67fb-4723-8125-6c958cd9fb3b",
+          "url": "/portfolio-photos/hair-by-niella-b33a65cf-72dc-4cfc-bdcd-880dc2dd8468.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "hair-by-niella-portfolio-photo-f2b9a35d-3840-4026-98fe-9e2816d0b940",
+          "url": "/portfolio-photos/hair-by-niella-dea5f7e8-dfe4-460a-b94c-21381a890452.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "hair-by-niella-portfolio-photo-bb950e01-5db2-4cc6-86ae-1542088a9dc7",
+          "url": "/portfolio-photos/hair-by-niella-ef9aef1d-dd73-4ba3-8b80-923de9275a3d.jpg",
+          "source": "google-image-search"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-08-31",
+      "photoOrderBumpedAt": 909,
+      "updatedAt": "2026-08-31"
+    },
+    {
+      "id": "abraideditt",
+      "name": "ABRAIDEDITT",
+      "areaId": "all-london",
+      "areaLabel": "London",
+      "neighbourhood": "London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://abraideditt.as.me/",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/abraideditt/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Miracle knots",
+        "Crochet faux locs / invisible locs",
+        "Twists (with extensions)",
+        "Knotless braids",
+        "French curl"
+      ],
+      "priceBand": "£",
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "manual",
+      "priceEvidence": [],
+      "priceCheckedAt": "",
+      "priceUpdatedAt": "2026-08-31",
+      "priceConfidence": "manual",
+      "summary": "LONDON/ BIRMINGHAM based💕\n- Code FRESHERS15 for Birmingham September slots! \n- Code BACK2SCHOOL for London slots!\n- Slots out 20th 7pm",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/abraideditt/",
+        "Submitted link: https://abraideditt.as.me/",
+        "Raw services provided during admin intake."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-08-31",
+      "portfolioPhotos": [
+        {
+          "id": "abraideditt-portfolio-photo-5b177e3d-da27-44b4-bc5d-b893e2e008a2",
+          "url": "/portfolio-photos/abraideditt-2f868ba1-ac23-4978-98a6-097dd1a5e3fe.jpg",
+          "source": "google-image-search"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-08-31",
+      "photoOrderBumpedAt": 906
+    },
+    {
+      "id": "by-olivia-jael",
+      "name": "By Olivia Jael",
+      "areaId": "east",
+      "areaLabel": "East London",
+      "neighbourhood": "East London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://byoliviajael.as.me/",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/byoliviajael/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Knotless braids",
+        "Feed-in braids",
+        "Wig cornrows",
+        "French curl",
+        "Boho braids / goddess braids",
+        "Boho braids bob",
+        "Miracle knots",
+        "Fulani / lemonade braids",
+        "Sleek ponytail / bun",
+        "Half up half down",
+        "Traditional sew-in / leave out",
+        "Flipover / Versatile sew-in",
+        "Half braids, half sew-in",
+        "Quick weave",
+        "Wig install (frontal / closure)",
+        "U-Part / Half wig install",
+        "Custom wig"
+      ],
+      "priceBand": "£",
+      "servicePriceBand": "£",
+      "packagePriceBand": "£££",
+      "priceIncludesHair": true,
+      "priceComparisonMode": "mixed",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "6 Feed-In Cornrows - £65",
+        "8 Feed In Cornrows - £70",
+        "10 Feed In Cornrows - £75",
+        "12 Feed-In Cornrows - £80",
+        "20 Feed-In Cornrows - £120",
+        "Smedium French Curls - (BOB LENGTH) - £135",
+        "Smedium French Curls - £155",
+        "Smedium Knotless Braids - £160"
+      ],
+      "priceCheckedAt": "2026-08-31",
+      "priceUpdatedAt": "2026-08-31",
+      "priceConfidence": "high",
+      "summary": "† . Professional Hairstylist + Educator \nNatural Hair | Braids | Wigs | Sew-Ins \nQuality Hair Included\nEnquiries • Dm or ✉️ byoliviajael@gmail.com",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/byoliviajael/",
+        "Submitted link: https://byoliviajael.as.me/",
+        "Raw services provided during admin intake."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-08-31",
+      "portfolioPhotos": [
+        {
+          "id": "by-olivia-jael-portfolio-photo-df9a3ec5-47a2-4690-a861-ae022a6506da",
+          "url": "/portfolio-photos/by-olivia-jael-fe1d2656-bcb7-4c9e-9408-052d3ac1b810.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "by-olivia-jael-portfolio-photo-8d085edf-b22a-497b-be23-e560d24a14cb",
+          "url": "/portfolio-photos/by-olivia-jael-1464fe15-025d-42df-a4a6-4577c68aec0b.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "by-olivia-jael-portfolio-photo-f19c085d-bead-4a95-985a-3fccd004bc4d",
+          "url": "/portfolio-photos/by-olivia-jael-5f71bf26-4e82-48da-afde-a78c8dc91cd3.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "by-olivia-jael-portfolio-photo-026cc1d5-5c9a-4416-9eb2-81b591fb280d",
+          "url": "/portfolio-photos/by-olivia-jael-85e24dc4-8903-4052-bb58-885e8babe761.jpg",
+          "source": "google-image-search"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-08-31",
+      "photoOrderBumpedAt": 905,
+      "updatedAt": "2026-08-31"
+    },
+    {
+      "id": "the-mane-society-and-co",
+      "name": "The Mane Society & Co",
+      "areaId": "south-east",
+      "areaIds": [
+        "south-east",
+        "mobile"
+      ],
+      "areaLabel": "South east London / Mobile / home service",
+      "neighbourhood": "South east London and Mobile / home service London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://themanesctyco.as.me/",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/themanesocietyco_/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Wig install (frontal / closure)",
+        "Custom wig",
+        "Fulani / lemonade braids",
+        "Knotless braids",
+        "Boho braids / goddess braids",
+        "Boho braids bob",
+        "Miracle knots",
+        "Flipover / Versatile sew-in",
+        "Trim / hair cut",
+        "Feed-in braids",
+        "Stitch braids",
+        "Sleek ponytail / bun",
+        "Crochet",
+        "Frontal ponytail / bun",
+        "Frontal sew-in",
+        "Quick weave",
+        "Closure sew-in / closure behind the hairline",
+        "Traditional sew-in / leave out",
+        "Twists (with extensions)",
+        "Box braids"
+      ],
+      "priceBand": "££",
+      "servicePriceBand": "££",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "manual",
+      "priceEvidence": [],
+      "priceCheckedAt": "",
+      "priceUpdatedAt": "2026-08-31",
+      "priceConfidence": "manual",
+      "summary": "𝒯𝒽ℯ 𝒜𝓇𝓉 ℴ𝒻 𝒽𝒶𝒾𝓇 𝒹ℯ𝓈𝒾ℊ𝓃 \n𝒮𝓉𝓎𝓁𝒾𝓈𝓉 & ℬ𝓇𝒶𝒾𝒹𝓈 𝒮𝓅ℯ𝒸𝒾𝒶𝓁𝒾𝓈𝓉 \nTikTok -Themanesociety&co\n🗓️TUES - SAT\n📍SE LDN \n🚘MOBILE SERVICES \n🔖 BOOKINGS LINK BELOW",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/themanesocietyco_/",
+        "Submitted link: https://themanesctyco.as.me/",
+        "Raw services provided during admin intake."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-08-31",
+      "portfolioPhotos": [
+        {
+          "id": "the-mane-society-and-co-portfolio-photo-33b5bb6b-9749-427f-becb-f164c9b381f4",
+          "url": "/portfolio-photos/the-mane-society-and-co-f6be6428-0c92-4321-8806-fa4656965fee.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "the-mane-society-and-co-portfolio-photo-78b3dfb7-b327-4795-be69-dc7f87b82d5a",
+          "url": "/portfolio-photos/the-mane-society-and-co-896ae33c-ba8e-4b55-a46d-40dd0bf6eb92.jpg",
+          "source": "google-image-search"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-08-31",
+      "photoOrderBumpedAt": 901,
+      "updatedAt": "2026-08-31"
+    },
+    {
+      "id": "luxe-hair-london",
+      "name": "Luxe Hair London",
+      "areaId": "north",
+      "areaLabel": "North London",
+      "neighbourhood": "North London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://luxehairldn.as.me/",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/luxehairldn/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Knotless braids",
+        "Fulani / lemonade braids",
+        "Traditional sew-in / leave out",
+        "Wig cornrows",
+        "Retwist / interlocking",
+        "Starter locs / instant locs",
+        "Twists (with extensions)",
+        "Feed-in braids",
+        "Stitch braids",
+        "Miracle knots",
+        "Flipover / Versatile sew-in"
+      ],
+      "priceBand": "£",
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "Small Bohemian Knotless Braids - £135",
+        "Medium Bohemian Braids - £90",
+        "Large Bohemian Braids - £75",
+        "Fulani Braids - £90",
+        "Fulani Freestyle - £100",
+        "Fulani freestyle (twist) - £100",
+        "Touch ups - £55",
+        "Diva braids - £105"
+      ],
+      "priceCheckedAt": "2026-08-31",
+      "priceUpdatedAt": "2026-08-31",
+      "priceConfidence": "high",
+      "summary": "EN3, LONDON📍\nTUE - SAT 9-6PM\nEmail for enquiries : Luxehairldn@gmail.com\nSeptember slots - Out Now 🤍.\n@luxecollectionhair_",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/luxehairldn/",
+        "Submitted link: https://luxehairldn.as.me/",
+        "Raw services provided during admin intake."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-08-31",
+      "portfolioPhotos": [
+        {
+          "id": "luxe-hair-london-portfolio-photo-f4a2a7b7-88bc-42fe-ac58-08e640b901e3",
+          "url": "/portfolio-photos/luxe-hair-london-ff7f0549-fabe-4b6c-99fb-c61eca6efe52.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "luxe-hair-london-portfolio-photo-bfd94f24-e339-4c6d-9ca5-3927b4a39033",
+          "url": "/portfolio-photos/luxe-hair-london-08c879c2-74d9-47d8-bc2d-7604a6243c3e.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "luxe-hair-london-portfolio-photo-fb8215c4-676a-4650-9aea-fc77191ed85a",
+          "url": "/portfolio-photos/luxe-hair-london-a14f038d-a26f-4301-8e58-41c22ef1d101.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "luxe-hair-london-portfolio-photo-0b957586-4f22-4d46-8265-a752a60b82be",
+          "url": "/portfolio-photos/luxe-hair-london-29a23383-08fc-4ede-b97e-6674bbdbb31b.jpg",
+          "source": "google-image-search"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-08-31",
+      "photoOrderBumpedAt": 898,
+      "updatedAt": "2026-08-31"
+    },
+    {
+      "id": "hair-by-kofs",
+      "name": "Hair by Kofs",
+      "areaId": "mobile",
+      "areaLabel": "Mobile / home service",
+      "neighbourhood": "Mobile / home service London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://hairbykofs.as.me/",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/hairbykofs/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Boho braids / goddess braids",
+        "Boho braids bob",
+        "French curl",
+        "Feed-in braids",
+        "Fulani / lemonade braids",
+        "Kids & teens styles",
+        "Wig cornrows",
+        "Knotless braids",
+        "Miracle knots",
+        "Traditional sew-in / leave out",
+        "Flipover / Versatile sew-in",
+        "Half up half down",
+        "Sleek ponytail / bun",
+        "Creative braids"
+      ],
+      "priceBand": "£",
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "All-inclusive small boho braids - £235",
+        "All inclusive Smedium boho - £210",
+        "All inclusive medium boho - £190",
+        "All inclusive extra small boho - £270",
+        "All inclusive large boho - £170",
+        "Small bob boho braids - £140",
+        "Smedium Bob boho braids - £110",
+        "Medium bob boho braids - £100"
+      ],
+      "priceCheckedAt": "2026-08-31",
+      "priceUpdatedAt": "2026-08-31",
+      "priceConfidence": "high",
+      "summary": "Mobile: I come to you! (Mon - Sun)\nTravel £20-£30\nSEP SLOTS OUT click the link to book!\nWomen and kids ONLY",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/hairbykofs/",
+        "Submitted link: https://hairbykofs.as.me/",
+        "Raw services provided during admin intake."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-08-31",
+      "portfolioPhotos": [
+        {
+          "id": "hair-by-kofs-portfolio-photo-760b6419-04d7-420e-a175-ae5b26edc3d8",
+          "url": "/portfolio-photos/hair-by-kofs-1117446e-ebb9-4775-9421-09699505b917.jpg",
+          "source": "google-image-search"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-08-31",
+      "photoOrderBumpedAt": 894
+    },
+    {
+      "id": "perfected-by-ash",
+      "name": "Perfected by Ash",
+      "areaId": "east",
+      "areaLabel": "East London",
+      "neighbourhood": "East London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "http://perfectedbyash.as.me",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/perfectedbyash/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Boho braids / goddess braids",
+        "Knotless braids",
+        "Fulani / lemonade braids",
+        "Flipover / Versatile sew-in",
+        "French curl",
+        "Twists (with extensions)",
+        "Crochet faux locs / invisible locs",
+        "Stitch braids",
+        "Quick weave",
+        "Half up half down",
+        "Traditional sew-in / leave out",
+        "Wig install (frontal / closure)",
+        "U-Part / Half wig install",
+        "Sleek ponytail / bun",
+        "Creative braids"
+      ],
+      "priceBand": "££",
+      "servicePriceBand": "££",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "manual",
+      "priceEvidence": [],
+      "priceCheckedAt": "",
+      "priceUpdatedAt": "2026-08-31",
+      "priceConfidence": "manual",
+      "summary": "📍East London, RM8\nClick ‘𝗕𝗼𝗼𝗸 𝗻𝗼𝘄’ for availability & prices\nSEPTEMBER SLOTS OUT NOW!\nAges 12-18 use code for 15% off 🤍",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/perfectedbyash/",
+        "Submitted link: http://perfectedbyash.as.me",
+        "Raw services provided during admin intake."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-08-31",
+      "portfolioPhotos": [
+        {
+          "id": "perfected-by-ash-portfolio-photo-c5a83f70-7134-4d2f-a9a3-f9f5d9397325",
+          "url": "/portfolio-photos/perfected-by-ash-e49e4993-c6b4-4616-a3ad-e005a0d6dfc9.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "perfected-by-ash-portfolio-photo-e445c9a5-633d-44e9-b7eb-e9c4ccf66e66",
+          "url": "/portfolio-photos/perfected-by-ash-0e171e7d-43c5-4218-8418-df6c4871f5cf.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "perfected-by-ash-portfolio-photo-c9308edf-b979-417f-aa39-d5057cd07963",
+          "url": "/portfolio-photos/perfected-by-ash-602ac0f6-f0d9-423f-897c-9b6fbb38fa15.jpg",
+          "source": "google-image-search"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-08-31",
+      "photoOrderBumpedAt": 893
+    },
+    {
+      "id": "locs-by-vee",
+      "name": "Locs by Vee",
+      "areaId": "all-london",
+      "areaLabel": "London",
+      "neighbourhood": "London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://locsbyveeuk.as.me/schedule/5de06191",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/locsbyvee.uk/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Soft locs",
+        "Crochet faux locs / invisible locs",
+        "Fulani / lemonade braids",
+        "Butterfly locs",
+        "Microlocs / sisterlocs",
+        "Starter locs / instant locs",
+        "Retwist / interlocking",
+        "Braid take-down",
+        "Pre-parting"
+      ],
+      "priceBand": "£",
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "Invisible locs - £90",
+        "Fulani invisible locs - £100",
+        "Soft locs - £110",
+        "Butterfly locs - £120",
+        "Sister locs re-tie - £120",
+        "Two strand starter locs - £75",
+        "Comb coil Starter Locs - £70",
+        "Retwist - £65"
+      ],
+      "priceCheckedAt": "2026-08-31",
+      "priceUpdatedAt": "2026-08-31",
+      "priceConfidence": "high",
+      "summary": "📍London, SE5 \n☁️ Locs for the girlies, all hair included\n☁️ Booking link ↴",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/locsbyvee.uk/",
+        "Submitted link: https://locsbyveeuk.as.me/schedule/5de06191",
+        "Raw services provided during admin intake."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-08-31",
+      "portfolioPhotos": [
+        {
+          "id": "locs-by-vee-portfolio-photo-5827ac1c-b3bc-4877-a9f7-21e2d0708d8f",
+          "url": "/portfolio-photos/locs-by-vee-5be7c92d-c27c-4e37-b356-abeebab78995.jpg",
+          "source": "google-image-search"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-08-31",
+      "photoOrderBumpedAt": 890
+    },
     {
       "id": "empress-hair-and-beauty",
       "name": "Empress Hair and Beauty",
@@ -598,7 +3833,26 @@
         }
       ],
       "photoSearchReviewedAt": "2026-08-31",
-      "photoOrderBumpedAt": 800
+      "photoOrderBumpedAt": 800,
+      "priceBand": "£",
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "Knotless Braids Waistlength (Medium) - £140",
+        "Knotless braids Waistlength (Large) - £100",
+        "Regular Braids Mid Back (Meduim) - £70",
+        "Regular Braids Waistlength (Large) - £80",
+        "Regular Braids Mid Back (Large) - £70",
+        "Crochet Braids - £50",
+        "Passion Twists - £70",
+        "Senegalese Twists Waistlenght - £90"
+      ],
+      "priceCheckedAt": "2026-08-31",
+      "priceConfidence": "high",
+      "priceUpdatedAt": "2026-08-31"
     },
     {
       "id": "rv-hair-uk",
@@ -708,7 +3962,26 @@
       ],
       "photoSearchReviewedAt": "2026-08-31",
       "photoOrderBumpedAt": 798,
-      "updatedAt": "2026-08-31"
+      "updatedAt": "2026-08-31",
+      "priceBand": "£",
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "DLH Collection Custom Closure wig and install - £90",
+        "DLH Collection Custom Frontal Wig and Install - £100",
+        "DLH Collection Traditional Leave Out Sew Ins - £80",
+        "DLH Collection Closure Sew in - £95",
+        "DLH Custom Closure Glueless Wig - £90",
+        "Ponytails - £60",
+        "QUICK WEAVE - £100",
+        "Traditional Leave Out Sew Ins - £105"
+      ],
+      "priceCheckedAt": "2026-08-31",
+      "priceConfidence": "high",
+      "priceUpdatedAt": "2026-08-31"
     },
     {
       "id": "seven-hair-studio",
@@ -1464,7 +4737,26 @@
           "source": "google-image-search"
         }
       ],
-      "photoOrderBumpedAt": 377
+      "photoOrderBumpedAt": 377,
+      "priceBand": "£",
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "Highlights - £85",
+        "One solid colour - £70",
+        "Burgundy/Red - £75",
+        "Ombre - £65",
+        "Jet black - £50",
+        "Lowlights - £85",
+        "One solid colour - £60",
+        "Burgundy/Red - £65"
+      ],
+      "priceCheckedAt": "2026-08-31",
+      "priceConfidence": "high",
+      "priceUpdatedAt": "2026-08-31"
     },
     {
       "id": "hair-by-lsasha",
@@ -1505,7 +4797,26 @@
         }
       ],
       "photoOrderBumpedAt": 538,
-      "updatedAt": "2026-08-27"
+      "updatedAt": "2026-08-27",
+      "priceBand": "£",
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "Hair wash - £20",
+        "Previous hairstyle removal & wash - £40",
+        "Instant locs - £450",
+        "Comb out locs - £200",
+        "Detox wash - £50",
+        "Full head loc reattachment - £225",
+        "Steam + detox wash + retwist - £130",
+        "Retwist - £80"
+      ],
+      "priceCheckedAt": "2026-08-31",
+      "priceConfidence": "high",
+      "priceUpdatedAt": "2026-08-31"
     },
     {
       "id": "rhair-studio",
@@ -2069,7 +5380,25 @@
       ],
       "photoSearchReviewedAt": "2026-08-26",
       "photoOrderBumpedAt": 320,
-      "updatedAt": "2026-08-27"
+      "updatedAt": "2026-08-27",
+      "priceBand": "£",
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "Pre-made Wig Install - £75",
+        "Frontal Replacement (wig made/customised by me) - £65",
+        "Wig RE-VAMP & Install - £80",
+        "Custom Wig (Wig made by me) - £155",
+        "Canerow natural hair for install - £10",
+        "Frontal ponytail - £70",
+        "Lace closure install - £65"
+      ],
+      "priceCheckedAt": "2026-08-31",
+      "priceConfidence": "high",
+      "priceUpdatedAt": "2026-08-31"
     },
     {
       "id": "the-lace-lab-ldn",
@@ -2120,7 +5449,26 @@
       ],
       "photoSearchReviewedAt": "2026-08-26",
       "photoOrderBumpedAt": 328,
-      "updatedAt": "2026-08-27"
+      "updatedAt": "2026-08-27",
+      "priceBand": "£",
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "Toning 613 - £45",
+        "Highlights & Lowlights (from 1B) - £95",
+        "Highlights & Lowlights (613) - £85",
+        "Jet Black - £45",
+        "One Colour (1B) - £70",
+        "One Colour (613) - £60",
+        "Straight Wig + Install - £200",
+        "Burmese Curly Wig + Install - £200"
+      ],
+      "priceCheckedAt": "2026-08-31",
+      "priceConfidence": "high",
+      "priceUpdatedAt": "2026-08-31"
     },
     {
       "id": "sleeked-uk",
@@ -2247,7 +5595,26 @@
       ],
       "photoOrderBumpedAt": 539,
       "updatedAt": "2026-08-27",
-      "photoSearchReviewedAt": "2026-08-27"
+      "photoSearchReviewedAt": "2026-08-27",
+      "priceBand": "£",
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "Wig and Installation Package - £60",
+        "Hair, Nails and Toes Package - £75",
+        "Pre-Made Frontal Unit - £85",
+        "Pre-Made Closure Wig - £75",
+        "Reinstall - £70",
+        "Foreign Reinstall - £85",
+        "Frontal replacement + Install - £95",
+        "Closure Replacement + Install - £90"
+      ],
+      "priceCheckedAt": "2026-08-31",
+      "priceConfidence": "high",
+      "priceUpdatedAt": "2026-08-31"
     },
     {
       "id": "naomismithair",
@@ -8171,7 +11538,26 @@
         }
       ],
       "updatedAt": "2026-08-24",
-      "photoSearchReviewedAt": "2026-08-24"
+      "photoSearchReviewedAt": "2026-08-24",
+      "priceBand": "£",
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "Small Box braids - £90",
+        "Medium box braids - £75",
+        "Large box braids - £70",
+        "Fulani braids - £90",
+        "Fulani braids (free style ) - £95",
+        "Senegalese twist - £105",
+        "Crochet braids - £60",
+        "Sister loc retwist / interlock - £95"
+      ],
+      "priceCheckedAt": "2026-08-31",
+      "priceConfidence": "high",
+      "priceUpdatedAt": "2026-08-31"
     },
     {
       "id": "regan-did-that",
@@ -8441,7 +11827,26 @@
         }
       ],
       "photoSearchReviewedAt": "2026-08-24",
-      "updatedAt": "2026-08-25"
+      "updatedAt": "2026-08-25",
+      "priceBand": "£",
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "Retwist+Style - £30",
+        "Clavish braids (2 cainrows) - £20",
+        "4-6 cainrows - £25",
+        "6+ all back barrels - £35",
+        "6-8 cainrows - £25",
+        "single twists - £25",
+        "Ponytail - £30",
+        "2 strands - £35"
+      ],
+      "priceCheckedAt": "2026-08-31",
+      "priceConfidence": "high",
+      "priceUpdatedAt": "2026-08-31"
     },
     {
       "id": "hair-by-vanaa",
@@ -26418,7 +29823,7 @@
     },
     {
       "id": "crownedbeauty-22",
-      "name": "Crowned beauty",
+      "name": "Crowned Beauty",
       "areaId": "essex",
       "areaLabel": "Essex",
       "neighbourhood": "Essex London",
@@ -26468,8 +29873,8 @@
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleDisplayName": null,
-      "googleFormattedAddress": null,
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-07-29",
       "websiteUrl": "https://www.crownedbeauty22.com",
       "tiktokUrl": "",
@@ -26495,7 +29900,11 @@
         }
       ],
       "photoSearchReviewedAt": "2026-08-27",
-      "photoOrderBumpedAt": 466
+      "photoOrderBumpedAt": 466,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sameDayEmergency": false
     },
     {
       "id": "maluwanichole",
@@ -32464,12 +35873,20 @@
       "evidence": [
         "Submitted link: https://www.instagram.com/hairbabelondon/"
       ],
-      "priceBand": "",
-      "priceSource": "manual",
-      "priceEvidence": [],
-      "priceCheckedAt": "2026-06-03",
-      "priceUpdatedAt": "2026-07-24",
-      "priceConfidence": "",
+      "priceBand": "££",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "Frontal replacement (wigs made/customised by me) - £130",
+        "Frontal replacement (wigs not made by me) - £140",
+        "COMPLETE WIG REVAMP+ reinstall\\ud83e\\ude84 - £150",
+        "Pre-made Wig install - £140",
+        "Full fringe cut - £15",
+        "Layers + curls/ blow out look - £15",
+        "UNDER WIG BRAIDS - £10"
+      ],
+      "priceCheckedAt": "2026-08-31",
+      "priceUpdatedAt": "2026-08-31",
+      "priceConfidence": "high",
       "addedVia": "Admin tool",
       "discoverySource": "Manual search",
       "googlePlaceId": null,
@@ -32485,7 +35902,7 @@
       "canBraidWithoutGel": false,
       "wheelchairAccessible": false,
       "customFilters": {},
-      "servicePriceBand": "",
+      "servicePriceBand": "££",
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
@@ -35903,7 +39320,26 @@
           "source": "manual"
         }
       ],
-      "portfolioPhotosCheckedAt": "2026-08-21"
+      "portfolioPhotosCheckedAt": "2026-08-21",
+      "priceBand": "£",
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "Knotless Braids 1-1 Lesson - £400",
+        "Wig Creation 1-1 Lesson - £300",
+        "Beginners Ponytail 1:1 Lesson - £400",
+        "Relax & Sleek Package - £155",
+        "Makeup & Ponytail - £190",
+        "Makeup & Install - £190",
+        "Relax & Glam Package - £175",
+        "Knotless Bob Braids - £130"
+      ],
+      "priceCheckedAt": "2026-08-31",
+      "priceConfidence": "high",
+      "priceUpdatedAt": "2026-08-31"
     },
     {
       "id": "aluxebeauty-uk",
@@ -39979,11 +43415,6 @@
         {
           "id": "bslayedit-portfolio-photo-86086163-2953-4e63-b7f0-8262cbfdc6c2",
           "url": "/portfolio-photos/bslayedit-77303b71-fc63-4709-821b-a4f848f28bfc.jpg",
-          "source": "instagram-reel-frame"
-        },
-        {
-          "id": "bslayedit-portfolio-photo-0470a7d3-0a50-460c-9a6b-d19ad57d2977",
-          "url": "/portfolio-photos/bslayedit-a4d3aae8-5bf3-4b8e-bc90-bb9e6195ca6a.jpg",
           "source": "instagram-reel-frame"
         }
       ],
@@ -54481,16 +57912,25 @@
       "canBraidWithoutGel": false,
       "wheelchairAccessible": false,
       "customFilters": {},
-      "priceBand": "",
-      "servicePriceBand": "",
+      "priceBand": "££",
+      "servicePriceBand": "££",
       "packagePriceBand": "",
       "priceIncludesHair": false,
-      "priceComparisonMode": "",
-      "priceSource": "",
-      "priceEvidence": [],
-      "priceCheckedAt": "",
-      "priceUpdatedAt": "",
-      "priceConfidence": "",
+      "priceComparisonMode": "service-only",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "Lace Frontal REPLACEMENT - £135",
+        "Lace Closure REPLACEMENT (Mini Frontal) - £115",
+        "Lace Closure REPLACEMENT - £95",
+        "U-part/Flip-over/Half Wig Installation - £70",
+        "Frontal Ponytail Install - £145",
+        "Natural Leave out (Middle parting) - £120",
+        "Natural Leave out (Side parting) - £130",
+        "Versatile Sew in (2 partings) - £140"
+      ],
+      "priceCheckedAt": "2026-08-31",
+      "priceUpdatedAt": "2026-08-31",
+      "priceConfidence": "high",
       "updatedAt": "2026-07-24",
       "portfolioPhotosCheckedAt": "2026-08-21",
       "portfolioPhotos": [
@@ -62659,9 +66099,9 @@
       "portfolioPhotosCheckedAt": "2026-08-21",
       "portfolioPhotos": [
         {
-          "id": "rikky-luxe-portfolio-photo-0e1413f8-8ac7-4f62-99d9-7d86abef382e",
-          "url": "/portfolio-photos/rikky-luxe-bc28c701-a3de-405c-8197-279b42b4f8e4.jpg",
-          "source": "instagram-reel-thumbnail"
+          "id": "rikky-luxe-portfolio-photo-6fa6f388-878c-4930-92e8-64b731742c60",
+          "url": "/portfolio-photos/rikky-luxe-f1a046ae-e667-49c3-997c-b5738322d515.jpg",
+          "source": "instagram-reel-frame"
         }
       ],
       "websiteUrl": "",
@@ -62686,7 +66126,9 @@
       "priceCheckedAt": "",
       "priceUpdatedAt": "",
       "priceConfidence": "",
-      "updatedAt": "2026-08-31"
+      "updatedAt": "2026-08-31",
+      "photoSearchReviewedAt": "2026-08-31",
+      "photoOrderBumpedAt": 910
     },
     {
       "id": "rochelle-london",
@@ -63896,11 +67338,6 @@
           "id": "serenity-luxury-hair-portfolio-photo-bb862ed3-e4ce-47d4-83d8-e7c0bf2da1f5",
           "url": "/portfolio-photos/serenity-luxury-hair-54455b51-4643-42a2-8dd7-2c0a91016fa9.jpg",
           "source": "google-image-search"
-        },
-        {
-          "id": "serenity-luxury-hair-portfolio-photo-90e42917-d049-415d-82dd-f3b324924540",
-          "url": "/portfolio-photos/serenity-luxury-hair-4c0f2a04-21fd-40e7-b9af-75dee4cd5946.jpg",
-          "source": "instagram-reel-frame"
         }
       ],
       "websiteUrl": "",
@@ -64642,16 +68079,25 @@
       "canBraidWithoutGel": false,
       "wheelchairAccessible": false,
       "customFilters": {},
-      "priceBand": "",
-      "servicePriceBand": "",
+      "priceBand": "££",
+      "servicePriceBand": "££",
       "packagePriceBand": "",
       "priceIncludesHair": false,
-      "priceComparisonMode": "",
-      "priceSource": "",
-      "priceEvidence": [],
-      "priceCheckedAt": "",
-      "priceUpdatedAt": "",
-      "priceConfidence": "",
+      "priceComparisonMode": "service-only",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "Knotless (XL | Waist length) - £95",
+        "Knotless (Large | Waist length) - £120",
+        "Knotless (Standard | Waist length) - £150",
+        "Knotless (Smedium | Waist length) - £170",
+        "Knotless (Medium | Waist length) - £185",
+        "Knotless (Large | Hip length) - £140",
+        "Knotless (Standard | Hip length) - £170",
+        "Retouch your braids - £50"
+      ],
+      "priceCheckedAt": "2026-08-31",
+      "priceUpdatedAt": "2026-08-31",
+      "priceConfidence": "high",
       "updatedAt": "2026-08-31",
       "lgbtqFriendly": false,
       "parkingAvailable": false,
@@ -65273,7 +68719,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-06-11",
+      "updatedAt": "2026-08-31",
       "googlePlaceId": null,
       "googleReviewCount": 0,
       "googleMapsUri": "",
@@ -65288,11 +68734,6 @@
           "id": "slayed-by-phairstyles-portfolio-photo-57b6777f-9db9-4368-952b-51964f74c671",
           "url": "/portfolio-photos/slayed-by-phairstyles-75591f1a-6a1d-4442-ace5-6e9c05c4a726.jpg",
           "source": "instagram-reel-frame"
-        },
-        {
-          "id": "slayed-by-phairstyles-portfolio-photo-f503d5a8-afa7-4c7a-be44-1e2a3bf36430",
-          "url": "/portfolio-photos/slayed-by-phairstyles-7eb1160e-f822-4574-96ad-d087f871784d.jpg",
-          "source": "instagram-reel-thumbnail"
         }
       ],
       "photoSearchReviewedAt": "2026-08-31",

@@ -4,9 +4,63 @@
   },
   "entries": [
     {
-      "salonId": "errold-douglas-ldn",
+      "salonId": "bolasplace-hair-salon",
       "postUrls": [
-        "https://www.instagram.com/p/DQMxQ8QCNYR/"
+        "https://www.instagram.com/p/DYuPobbtZLT/",
+        "https://www.instagram.com/p/DbYWCu1N6eu/"
+      ],
+      "addedAt": "2026-08-31"
+    },
+    {
+      "salonId": "true-touch-london",
+      "postUrls": [
+        "https://www.instagram.com/p/Da7lrPBseRA/",
+        "https://www.instagram.com/p/Dcs5-lRtl5J/",
+        "https://www.instagram.com/p/DcMXrDSMzzn/"
+      ],
+      "addedAt": "2026-08-31"
+    },
+    {
+      "salonId": "lacedd-with-grace",
+      "postUrls": [
+        "https://www.instagram.com/p/Dca1EBAN8Yj/",
+        "https://www.instagram.com/p/Db75lHcOm7T/",
+        "https://www.instagram.com/p/DcBgm2CMGK_/"
+      ],
+      "addedAt": "2026-08-31"
+    },
+    {
+      "salonId": "yaze-s-touch",
+      "postUrls": [
+        "https://www.instagram.com/p/Cu-WiyDNHXx/",
+        "https://www.instagram.com/p/C0XJ2ltNMjH/",
+        "https://www.instagram.com/p/Cxz2t5oNv_Z/"
+      ],
+      "addedAt": "2026-08-31"
+    },
+    {
+      "salonId": "eiri-ni-hair",
+      "postUrls": [
+        "https://www.instagram.com/p/DWzfV8WjJaU/",
+        "https://www.instagram.com/p/DKFji9-MocU/"
+      ],
+      "addedAt": "2026-08-31"
+    },
+    {
+      "salonId": "highend-hair-parlour-uk",
+      "postUrls": [
+        "https://www.instagram.com/p/DcOQe79AGwY/",
+        "https://www.instagram.com/p/DW516BHABn8/"
+      ],
+      "addedAt": "2026-08-31"
+    },
+    {
+      "salonId": "thekklubhousee",
+      "postUrls": [
+        "https://www.instagram.com/p/DaJaz9HDM3F/?img_index=1",
+        "https://www.instagram.com/p/DYAAODGDA7h/",
+        "https://www.instagram.com/p/DUqhD_rjMtF/",
+        "https://www.instagram.com/p/DUgSl6MDDlr/"
       ],
       "addedAt": "2026-08-31"
     }

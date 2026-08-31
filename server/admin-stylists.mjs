@@ -1858,7 +1858,17 @@ export function registerAdminStylistRoutes(app) {
     const offset = Math.max(Number(req.query.offset || 0), 0);
     const requestedMode = cleanString(req.query.mode);
     const mode = requestedMode === "pricing" || requestedMode === "missing-prices" ? "pricing" : "freshness";
-    const candidateSalons = mode === "pricing" ? index.salons : index.salons;
+    // An explicit `ids=` list lets an admin re-run this against a hand-picked
+    // set (e.g. exactly the salons a bug just affected) instead of only ever
+    // paging positionally through the entire directory — same pattern as the
+    // photo-search queue's own `ids` support.
+    const requestedIds = String(req.query.ids || "")
+      .split(",")
+      .map((id) => id.trim())
+      .filter(Boolean);
+    const candidateSalons = requestedIds.length
+      ? requestedIds.map((id) => index.salons.find((salon) => salon.id === id)).filter(Boolean)
+      : index.salons;
     const batchSalons = candidateSalons.slice(offset, offset + limit);
     const existingStore = await readFreshnessStore({ meta: { source: "freshness-checks", updatedAt: null, count: 0 }, checks: [], dismissedRecommendations: {} });
     const dismissedRecommendations = existingStore.dismissedRecommendations || {};
@@ -7386,8 +7396,25 @@ function buildPriceCheckFromEntries(priceEntries, source, { structured = false }
     ...entry,
     priceKind: entry.priceKind || classifyPriceEntryKind(entry),
   }));
-  const serviceEntries = normalizedEntries.filter((entry) => entry.priceKind === "service");
+  const structuredEntries = structured || priceEntries.some((entry) => entry.structured);
+  let serviceEntries = normalizedEntries.filter((entry) => entry.priceKind === "service");
   const packageEntries = normalizedEntries.filter((entry) => entry.priceKind === "package");
+  // classifyPriceEntryKind defaults unlabeled entries to "ambiguous" rather
+  // than "service" specifically to stop a MIXED menu's hidden hair-included
+  // prices from inflating the styling-only band unnoticed (see its own
+  // comment). But a structured, platform-native listing (Fresha/Setmore/
+  // Booksy/etc. own service data, not regex-scraped page text) where every
+  // single entry came back ambiguous — no "included" and no "not included"
+  // language anywhere — isn't that mixed-menu case at all: there's no
+  // inclusive price hiding in there to guard against, just a plain menu
+  // that never mentions hair sourcing. Confirmed live 2026-08-31: this was
+  // silently zeroing out priceBand for salons with real, high-confidence
+  // structured pricing (e.g. 7 Setmore prices, £165-£750) purely because
+  // none of their service names happened to say "hair included/not
+  // included" — exactly the services-vs-pricing gap being fixed here.
+  if (structuredEntries && serviceEntries.length === 0 && packageEntries.length === 0 && normalizedEntries.length > 0) {
+    serviceEntries = normalizedEntries;
+  }
   const values = normalizedEntries.map((entry) => entry.value).sort((left, right) => left - right);
   const servicePrices = serviceEntries.map((entry) => entry.value).sort((left, right) => left - right);
   const packagePrices = packageEntries.map((entry) => entry.value).sort((left, right) => left - right);
@@ -7410,7 +7437,6 @@ function buildPriceCheckFromEntries(priceEntries, source, { structured = false }
   // "styling cost". Confirmed service-only prices are the only source; if
   // there are none, no price is suggested rather than guessing.
   const priceBand = servicePriceBand || "";
-  const structuredEntries = structured || priceEntries.some((entry) => entry.structured);
   const contextualEntries = normalizedEntries.filter((entry) => entry.hasServiceContext || entry.structured).length;
   return {
     source,
@@ -9165,13 +9191,27 @@ export async function buildDraftFromInstagram(rawInstagramInput) {
     lastCheckedAt: now,
     bookingLinkEvidence: buildBookingLinkEvidence({ profile, linkResolution, bookingUrl, websiteUrl, locationQuote: resolvedLocationQuote, locationSource: resolvedLocationSource, captionEvidenceLines }),
     attributeSuggestions,
-    ...(priceBand
+    // A confident band (a service-vs-package split clean enough to suggest a
+    // £/££/£££ number) and having real, quotable prices at all are different
+    // bars — the second can be true without the first (e.g. a structured
+    // menu where every price sits right next to its service name, but the
+    // classifier couldn't cleanly separate styling-only from hair-included
+    // for the band). Previously the whole priceEvidence array was dropped
+    // whenever priceBand came back empty, silently discarding real prices an
+    // admin could still read and act on manually — evidence now saves
+    // whenever the check found anything at all; the band-dependent fields
+    // stay conditional on actually having one.
+    ...(priceCheck.confidence !== "unknown" && (priceCheck.evidence || []).length
       ? {
-          priceBand,
-          servicePriceBand: sanitizePriceBand(priceCheck.servicePriceBand),
-          packagePriceBand: sanitizePriceBand(priceCheck.packagePriceBand),
-          priceIncludesHair: priceCheck.priceIncludesHair === true,
-          priceComparisonMode: sanitizePriceComparisonMode(priceCheck.priceComparisonMode) || defaultPriceComparisonMode(sanitizePriceBand(priceCheck.servicePriceBand), sanitizePriceBand(priceCheck.packagePriceBand), priceCheck.priceIncludesHair === true),
+          ...(priceBand
+            ? {
+                priceBand,
+                servicePriceBand: sanitizePriceBand(priceCheck.servicePriceBand),
+                packagePriceBand: sanitizePriceBand(priceCheck.packagePriceBand),
+                priceIncludesHair: priceCheck.priceIncludesHair === true,
+                priceComparisonMode: sanitizePriceComparisonMode(priceCheck.priceComparisonMode) || defaultPriceComparisonMode(sanitizePriceBand(priceCheck.servicePriceBand), sanitizePriceBand(priceCheck.packagePriceBand), priceCheck.priceIncludesHair === true),
+              }
+            : {}),
           priceSource: "auto",
           priceEvidence: (priceCheck.evidence || []).slice(0, 8),
           priceCheckedAt: now,
