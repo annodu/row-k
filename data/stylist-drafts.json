@@ -16,7 +16,6 @@
       "postcode": "",
       "bookingPlatform": "",
       "bookingUrl": "",
-      "websiteUrl": "",
       "instagramUrl": "https://www.instagram.com/naomistyledit_/",
       "tiktokUrl": "",
       "addedVia": "Admin tool",
@@ -30,9 +29,18 @@
       ],
       "rawServices": [
         "Botanical Repair Flash Treatment! It really is our favourite we just can’t work together without laughing 😂",
-        "There’s nothing like a bouncy blow out after using our scalp solution treatment 💙🚿\n\n📍 @avedacoventgarden",
-        "That transformation‼️ \n\nColour by the amazing @y.vhair \n \nStyled by me🥰\n\n📍 @avedacoventgarden \n\nThe beautiful face @rochelleaustin_",
-        "We felt like a change…\n\nHair cut by me✂️\n\n📍 @avedacoventgarden \n\n#longroundlayers #freshhaircut \n#botanicalbondbuildingtreatment #volumizingtonic #invatifoam #avedacoventgarden #avedaartist"
+        "There’s nothing like a bouncy blow out after using our scalp solution treatment 💙🚿",
+        "📍 @avedacoventgarden",
+        "That transformation‼️",
+        "Colour by the amazing @y.vhair",
+        "Styled by me🥰",
+        "📍 @avedacoventgarden",
+        "The beautiful face @rochelleaustin_",
+        "We felt like a change…",
+        "Hair cut by me✂️",
+        "📍 @avedacoventgarden",
+        "#longroundlayers #freshhaircut",
+        "#botanicalbondbuildingtreatment #volumizingtonic #invatifoam #avedacoventgarden #avedaartist"
       ],
       "summary": "Your hair is our hair now🌿.                                          Blowdry specialists - AVEDA (Covent Garden)",
       "confidence": 0.55,
@@ -48,11 +56,36 @@
       "updatedAt": "2026-08-31",
       "lastCheckedAt": "2026-08-31",
       "bookingLinkEvidence": "Instagram's own profile API failed for this account (\"Please wait a few minutes before you try again.\") — fetched via AnyAPI instead.\nInstagram bio: \"Your hair is our hair now🌿.                                          Blowdry specialists - AVEDA (Covent Garden)\"\nNo bookable link found in bio — likely DM/WhatsApp/call to book.\nChecked recent post captions instead:\n\"Olaplex treatment\" found in a post caption: \"Botanical Repair Flash Treatment! It really is our favourite we just can’t work together without laughing 😂\" — https://www.instagram.com/p/C6t4lkWoV2z/\n\"Scalp detox / treatments\" found in a post caption: \"There’s nothing like a bouncy blow out after using our scalp solution treatment 💙🚿\n\n📍 @avedacoventgarden\" — https://www.instagram.com/p/C4_TSc3t57c/\n\"Bouncy blowout / round brush blow dry\" found in a post caption: \"There’s nothing like a bouncy blow out after using our scalp solution treatment 💙🚿\n\n📍 @avedacoventgarden\" — https://www.instagram.com/p/C4_TSc3t57c/\n\"Full head colour\" found in a post caption: \"That transformation‼️ \n\nColour by the amazing @y.vhair \n \nStyled by me🥰\n\n📍 @avedacoventgarden \n\nThe beautiful face @rochelleaustin_\" — https://www.instagram.com/p/C4oI7HRtr6H/\n\"Trim / hair cut\" found in a post caption: \"We felt like a change…\n\nHair cut by me✂️\n\n📍 @avedacoventgarden \n\n#longroundlayers #freshhaircut \n#botanicalbondbuildingtreatment #volumizingtonic #invatifoam #\" — https://www.instagram.com/p/CsjcQBxN6EO/",
-      "attributeSuggestions": []
+      "attributeSuggestions": [],
+      "hairShopUrl": "",
+      "googlePlaceId": "",
+      "googleMapsUri": "",
+      "googleMatchConfidence": "",
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": false,
+      "sameDayEmergency": false,
+      "customFilters": {},
+      "priceBand": "",
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "",
+      "priceSource": "",
+      "priceEvidence": [],
+      "priceCheckedAt": "",
+      "priceUpdatedAt": "",
+      "priceConfidence": ""
     },
     {
       "id": "slayed-by-danielle",
-      "status": "needs_review",
+      "status": "deprecated",
       "name": "Slayed By Danielle",
       "areaId": "",
       "areaIds": [],
@@ -86,7 +119,7 @@
     },
     {
       "id": "eduardooliver195",
-      "status": "needs_review",
+      "status": "deprecated",
       "name": "Eduardo Oliveira",
       "areaId": "all-london",
       "areaIds": [
@@ -127,7 +160,7 @@
     },
     {
       "id": "new-stylist-mt8tp0x4",
-      "status": "needs_review",
+      "status": "deprecated",
       "name": "Johnnie Sapong",
       "areaId": "",
       "areaIds": [],
@@ -162,7 +195,7 @@
     },
     {
       "id": "adam-dyer",
-      "status": "needs_review",
+      "status": "deprecated",
       "name": "Adam Dyer",
       "areaId": "all-london",
       "areaIds": [
@@ -198,7 +231,7 @@
     },
     {
       "id": "kaay-long",
-      "status": "needs_review",
+      "status": "deprecated",
       "name": "Hair by Kay",
       "areaId": "",
       "areaIds": [],
@@ -267,7 +300,7 @@
     },
     {
       "id": "lockonego",
-      "status": "needs_review",
+      "status": "deprecated",
       "name": "Lock one go",
       "areaId": "all-london",
       "areaIds": [
@@ -342,7 +375,7 @@
     },
     {
       "id": "the-beauty-parlour-by-kimberly-graham",
-      "status": "needs_review",
+      "status": "deprecated",
       "name": "The Beauty Parlour by Kimberly Graham",
       "areaId": "",
       "areaIds": [],
@@ -407,7 +440,7 @@
     },
     {
       "id": "sebastianpierre-salon",
-      "status": "ready_to_approve",
+      "status": "deprecated",
       "name": "Sebastianpierre Salon",
       "areaId": "",
       "areaIds": [],
@@ -507,7 +540,7 @@
     },
     {
       "id": "ebuni-ajiduah-hair",
-      "status": "ready_to_approve",
+      "status": "deprecated",
       "name": "Untype",
       "areaId": "all-london",
       "areaIds": [
@@ -568,7 +601,7 @@
     },
     {
       "id": "hairby-mideyy",
-      "status": "needs_review",
+      "status": "deprecated",
       "name": "Hairby Mideyy",
       "areaId": "",
       "areaIds": [],
@@ -602,7 +635,7 @@
     },
     {
       "id": "get-inkzpired",
-      "status": "needs_review",
+      "status": "deprecated",
       "name": "Get Inkzpired",
       "areaId": "",
       "areaIds": [],
@@ -636,7 +669,7 @@
     },
     {
       "id": "mauwi-hair",
-      "status": "needs_review",
+      "status": "deprecated",
       "name": "Mauwi Hair",
       "areaId": "",
       "areaIds": [],
@@ -670,7 +703,7 @@
     },
     {
       "id": "hannurco",
-      "status": "needs_review",
+      "status": "deprecated",
       "name": "Hannurco",
       "areaId": "",
       "areaIds": [],

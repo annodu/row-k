@@ -9792,12 +9792,15 @@ function normalizeDraftState(draft) {
   const areaIds = normalizeAreaIds(draft.areaIds?.length ? draft.areaIds : draft.areaId ? [draft.areaId] : []);
   const areaLabel = draft.areaLabel || areaLabelForIds(areaIds);
 
+  // "deprecated" is a manual override (link broken, salon closed down) — leave it in
+  // place instead of letting the warnings check flip it back to needs_review/ready_to_approve
+  // on every save. Setting status to anything else restores the normal computed status.
   return {
     ...draft,
     areaId: areaIds[0] || "",
     areaIds,
     areaLabel,
-    status: warnings.length ? "needs_review" : "ready_to_approve",
+    status: draft.status === "deprecated" ? "deprecated" : warnings.length ? "needs_review" : "ready_to_approve",
     warnings,
   };
 }

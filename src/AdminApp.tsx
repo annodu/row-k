@@ -972,11 +972,12 @@ function AdminAppInner() {
 
   const allStylists = useMemo(() => [...drafts, ...publishedStylists], [drafts, publishedStylists]);
   const stylistStats = useMemo(() => {
-    const stats = { total: allStylists.length, draft: 0, readyToPublish: 0, published: 0 };
+    const stats = { total: allStylists.length, draft: 0, readyToPublish: 0, published: 0, deprecated: 0 };
     for (const stylist of allStylists) {
       const status = getDraftDisplayStatus(stylist);
       if (status === "ready_to_publish") stats.readyToPublish += 1;
       else if (status === "published") stats.published += 1;
+      else if (status === "deprecated") stats.deprecated += 1;
       else stats.draft += 1;
     }
     return stats;
@@ -1430,6 +1431,14 @@ function AdminAppInner() {
     } finally {
       setIsBusy(false);
     }
+  }
+
+  async function toggleDeprecateDraft(draft: StylistDraft) {
+    if (getDraftDisplayStatus(draft) === "published") {
+      return;
+    }
+    const nextStatus = draft.status === "deprecated" ? "needs_review" : "deprecated";
+    await saveDraft({ ...draft, status: nextStatus });
   }
 
   async function promoteSalon(salonId: string) {
@@ -2211,6 +2220,7 @@ function AdminAppInner() {
             onApproveDraft={() => selectedDraft ? approveDraft(selectedDraft) : undefined}
             onDeleteDraft={() => selectedDraft ? deleteStylist(selectedDraft) : undefined}
             onUnpublishDraft={() => selectedDraft ? unpublishStylist(selectedDraft) : undefined}
+            onToggleDeprecateDraft={() => selectedDraft ? toggleDeprecateDraft(selectedDraft) : undefined}
             onPromoteSalon={() => selectedDraft ? promoteSalon(selectedDraft.id) : undefined}
             onAddBranchToSalon={(fields) => selectedDraft ? addBranchToSalon(selectedDraft.id, fields) : undefined}
             onUpdateBranch={(branchId, fields) => selectedDraft ? updateBranch(selectedDraft.id, branchId, fields) : undefined}
@@ -2463,6 +2473,7 @@ function StylistsPage({
   onApproveDraft,
   onDeleteDraft,
   onUnpublishDraft,
+  onToggleDeprecateDraft,
   onPromoteSalon,
   onAddBranchToSalon,
   onUpdateBranch,
@@ -2472,7 +2483,7 @@ function StylistsPage({
   onUploadPortfolioPhoto,
 }: {
   drafts: StylistDraft[];
-  stats: { total: number; draft: number; readyToPublish: number; published: number };
+  stats: { total: number; draft: number; readyToPublish: number; published: number; deprecated: number };
   statusFilter: string;
   searchTerm: string;
   isBusy: boolean;
@@ -2493,6 +2504,7 @@ function StylistsPage({
   onApproveDraft: () => void;
   onDeleteDraft: () => void;
   onUnpublishDraft: () => void;
+  onToggleDeprecateDraft: () => void;
   onPromoteSalon: () => void;
   onAddBranchToSalon: (fields: Partial<BranchDraft>) => void;
   onUpdateBranch: (branchId: string, fields: Partial<BranchDraft>) => void;
@@ -2590,7 +2602,7 @@ function StylistsPage({
           </div>
         </div>
 
-        <div className="grid grid-cols-2 divide-x divide-y divide-stone-200 rounded-none border border-stone-200 bg-white sm:grid-cols-4 sm:divide-y-0">
+        <div className="grid grid-cols-2 divide-x divide-y divide-stone-200 rounded-none border border-stone-200 bg-white sm:grid-cols-5 sm:divide-y-0">
           <StylistStatCell
             label="Draft"
             value={stats.draft}
@@ -2608,6 +2620,12 @@ function StylistsPage({
             value={stats.published}
             active={statusFilter === "published"}
             onClick={() => onStatusFilterChange(statusFilter === "published" ? "all" : "published")}
+          />
+          <StylistStatCell
+            label="Deprecated"
+            value={stats.deprecated}
+            active={statusFilter === "deprecated"}
+            onClick={() => onStatusFilterChange(statusFilter === "deprecated" ? "all" : "deprecated")}
           />
           <StylistStatCell label="Total" value={stats.total} active={statusFilter === "all"} onClick={() => onStatusFilterChange("all")} />
         </div>
@@ -2714,6 +2732,7 @@ function StylistsPage({
           onApprove={onApproveDraft}
           onDelete={onDeleteDraft}
           onUnpublish={onUnpublishDraft}
+          onToggleDeprecate={onToggleDeprecateDraft}
           onPromoteSalon={onPromoteSalon}
           onAddBranchToSalon={onAddBranchToSalon}
           onUpdateBranch={onUpdateBranch}
@@ -2783,6 +2802,7 @@ const stylistStatusSortRank: Record<string, number> = {
   draft: 1,
   ready_to_publish: 2,
   published: 3,
+  deprecated: 4,
 };
 
 function getStylistSortValue(draft: StylistDraft, key: StylistSortKey, regions: RegionOption[]) {
@@ -2935,6 +2955,7 @@ const stylistStatusFilterOptions = [
   { id: "draft", label: "Draft" },
   { id: "ready_to_publish", label: "Complete" },
   { id: "published", label: "Published" },
+  { id: "deprecated", label: "Deprecated" },
 ];
 
 function FilterMenuCollapsible({ open, children }: { open: boolean; children: ReactNode }) {
@@ -3490,6 +3511,7 @@ function DraftEditorDrawer({
   onApprove,
   onDelete,
   onUnpublish,
+  onToggleDeprecate,
   onPromoteSalon,
   onAddBranchToSalon,
   onUpdateBranch,
@@ -3509,6 +3531,7 @@ function DraftEditorDrawer({
   onChangeLocations: (areaIds: string[]) => void;
   onSave: () => void;
   onApprove: () => void;
+  onToggleDeprecate: () => void;
   onDelete: () => void;
   onUnpublish: () => void;
   onPromoteSalon: () => void;
@@ -3572,7 +3595,21 @@ function DraftEditorDrawer({
                 >
                   <Unlink className="size-4" />
                 </button>
-              ) : null}
+              ) : (
+                <button
+                  type="button"
+                  onClick={onToggleDeprecate}
+                  disabled={isBusy}
+                  className={cn(
+                    "inline-flex size-8 items-center justify-center rounded-md transition disabled:cursor-not-allowed disabled:opacity-40",
+                    displayStatus === "deprecated" ? "text-red-700 hover:bg-red-50" : "text-stone-600 hover:bg-stone-100 hover:text-stone-950",
+                  )}
+                  aria-label={displayStatus === "deprecated" ? "Restore to draft" : "Mark as deprecated"}
+                  title={displayStatus === "deprecated" ? "Restore to draft" : "Mark as deprecated (broken link or closed down)"}
+                >
+                  <Ban className="size-4" />
+                </button>
+              )}
               <button
                 type="button"
                 onClick={onDelete}
@@ -4118,11 +4155,14 @@ function DraftStatusPill({ status }: { status: string }) {
       ? "bg-emerald-100 text-emerald-800"
       : status === "published"
         ? "bg-blue-100 text-blue-800"
-        : "bg-stone-100 text-stone-700";
+        : status === "deprecated"
+          ? "bg-red-100 text-red-800"
+          : "bg-stone-100 text-stone-700";
 
   return (
     <span className={cn("inline-flex items-center gap-1.5 rounded-md px-2 py-0.5 text-xs font-medium", colorClass)}>
       {status === "ready_to_publish" ? <Check className="size-3.5" /> : null}
+      {status === "deprecated" ? <Ban className="size-3.5" /> : null}
       {label}
     </span>
   );
@@ -4244,7 +4284,9 @@ function DraftTableStatusBadge({ draft }: { draft: StylistDraft }) {
       ? "border-amber-300 bg-amber-50 text-amber-700 dark:border-amber-800 dark:bg-amber-950/30 dark:text-amber-400"
       : status === "published"
         ? "border-emerald-300 bg-emerald-50 text-emerald-700 dark:border-emerald-800 dark:bg-emerald-950/30 dark:text-emerald-400"
-        : "border-stone-300 bg-stone-50 text-stone-600 dark:border-stone-700 dark:text-stone-300";
+        : status === "deprecated"
+          ? "border-red-300 bg-red-50 text-red-700 dark:border-red-900 dark:bg-red-950/30 dark:text-red-400"
+          : "border-stone-300 bg-stone-50 text-stone-600 dark:border-stone-700 dark:text-stone-300";
 
   return <span className={cn("inline-flex items-center rounded-none border px-2 py-0.5 text-xs font-medium", pillClass)}>{label}</span>;
 }
@@ -4252,6 +4294,10 @@ function DraftTableStatusBadge({ draft }: { draft: StylistDraft }) {
 function getDraftDisplayStatus(draft: StylistDraft) {
   if (draft.status === "approved") {
     return "published";
+  }
+
+  if (draft.status === "deprecated") {
+    return "deprecated";
   }
 
   if (draft.status === "ready_to_approve" || getDraftCompleteness(draft) === 100) {
@@ -4288,6 +4334,9 @@ function getStylistStatusLabel(status: string) {
   }
   if (status === "published") {
     return "Published";
+  }
+  if (status === "deprecated") {
+    return "Deprecated";
   }
   return "Draft";
 }
