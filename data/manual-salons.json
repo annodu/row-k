@@ -25713,7 +25713,7 @@
       "tiktokUrl": "",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
-      "updatedAt": "2026-08-25",
+      "updatedAt": "2026-08-31",
       "addedVia": "Admin tool",
       "discoverySource": "Manual search",
       "branches": [
@@ -25769,22 +25769,22 @@
       "photoSearchReviewedAt": "2026-08-31",
       "portfolioPhotos": [
         {
-          "id": "hershesons-portfolio-photo-12e28ea5-b33b-4d8d-8d58-ac01821bb60a",
-          "url": "/portfolio-photos/hershesons-f6f98326-422f-42b9-8349-870431690d2f.jpg",
+          "id": "hershesons-portfolio-photo-2cc1e7cb-a1c0-43bd-b34f-5c5060bcfc16",
+          "url": "/portfolio-photos/hershesons-ab0266ba-302d-4b7c-a3e7-704ecf8f5a61.jpg",
           "source": "instagram-reel-frame"
         },
         {
-          "id": "hershesons-portfolio-photo-aa93e406-8c70-4cbf-ae51-215f2c518238",
-          "url": "/portfolio-photos/hershesons-aeb7f6f9-4c05-4c04-9136-90caf9dfa69a.jpg",
+          "id": "hershesons-portfolio-photo-14b2d3e7-9ad6-47e1-83ce-1f7b15a2197b",
+          "url": "/portfolio-photos/hershesons-cbce4444-859a-49c0-b2cb-d18011ba0707.jpg",
           "source": "instagram-reel-frame"
         },
         {
-          "id": "hershesons-portfolio-photo-32f49a1e-917c-4437-84bd-d386d5c61291",
-          "url": "/portfolio-photos/hershesons-6f98f28f-73f0-4fbc-b0e4-5a3437602b31.jpg",
-          "source": "google-image-search"
+          "id": "hershesons-portfolio-photo-db11b61f-636e-45f3-909f-dd7621632abe",
+          "url": "/portfolio-photos/hershesons-85002eb0-1d22-417f-b2ea-b1dbcab1f602.jpg",
+          "source": "instagram-reel-frame"
         }
       ],
-      "photoOrderBumpedAt": 784
+      "photoOrderBumpedAt": 831
     },
     {
       "id": "slayybychanny",
@@ -34684,7 +34684,9 @@
       "portfolioPhotosCheckedAt": "2026-08-20",
       "portfolioPhotos": [],
       "updatedAt": "2026-08-29",
-      "photoOrderBumpedAt": 619
+      "photoOrderBumpedAt": 619,
+      "photoSearchSkippedAt": "2026-08-31",
+      "photoSearchSkippedReason": "no-instagram-results"
     },
     {
       "id": "fabulous-hair-salon",
@@ -42071,7 +42073,6 @@
       "lgbtqFriendly": false,
       "parkingAvailable": false,
       "sellsHairSeparately": false,
-      "photoSearchReviewedAt": "2026-08-26",
       "photoOrderBumpedAt": 271
     },
     {
