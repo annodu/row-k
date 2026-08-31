@@ -41,7 +41,16 @@
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleCheckedAt": "2026-08-29"
+      "googleCheckedAt": "2026-08-29",
+      "portfolioPhotos": [
+        {
+          "id": "susan-hair-empire-portfolio-photo-e605d6bd-470c-4e0c-89e1-cb852d343020",
+          "url": "/portfolio-photos/susan-hair-empire-a89249e8-b829-4919-a27c-bc382deb0692.jpg",
+          "source": "instagram-reel-frame"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-08-30",
+      "photoOrderBumpedAt": 645
     },
     {
       "id": "queen-of-braids",
@@ -77,7 +86,16 @@
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleCheckedAt": "2026-08-29"
+      "googleCheckedAt": "2026-08-29",
+      "portfolioPhotos": [
+        {
+          "id": "queen-of-braids-portfolio-photo-85d271be-3ce8-44eb-8fab-1125d05f293c",
+          "url": "/portfolio-photos/queen-of-braids-fa92dbf1-b714-4761-b081-cceb5156ba49.jpg",
+          "source": "instagram-reel-frame"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-08-30",
+      "photoOrderBumpedAt": 646
     },
     {
       "id": "cynthia-classic-hair",
@@ -114,7 +132,17 @@
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleCheckedAt": "2026-08-28"
+      "googleCheckedAt": "2026-08-28",
+      "portfolioPhotos": [
+        {
+          "id": "cynthia-classic-hair-portfolio-photo-e2e0a78d-240f-45cf-9c44-127ab0810201",
+          "url": "/portfolio-photos/cynthia-classic-hair-9c0c0754-476f-4ae0-9fa8-44e87868f430.jpg",
+          "source": "instagram-reel-frame"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-08-30",
+      "photoOrderBumpedAt": 647,
+      "updatedAt": "2026-08-30"
     },
     {
       "id": "braids-by-teemah",
@@ -175,7 +203,16 @@
       "priceCheckedAt": "",
       "priceUpdatedAt": "",
       "priceConfidence": "",
-      "updatedAt": "2026-08-28"
+      "updatedAt": "2026-08-30",
+      "portfolioPhotos": [
+        {
+          "id": "braids-by-teemah-portfolio-photo-886e529a-7577-4fce-9258-5d657b6a2edf",
+          "url": "/portfolio-photos/braids-by-teemah-357bedfb-2706-459c-986c-002c2a17f394.jpg",
+          "source": "instagram-reel-frame"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-08-30",
+      "photoOrderBumpedAt": 644
     },
     {
       "id": "reformed-by-rufina",
@@ -228,7 +265,17 @@
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleCheckedAt": "2026-08-27"
+      "googleCheckedAt": "2026-08-27",
+      "portfolioPhotos": [
+        {
+          "id": "reformed-by-rufina-portfolio-photo-39852d3a-c654-4c0b-bbce-1a341b21f4a1",
+          "url": "/portfolio-photos/reformed-by-rufina-733846ae-b7ba-46da-9efc-31cc2be525d2.jpg",
+          "source": "instagram-reel-frame"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-08-30",
+      "photoOrderBumpedAt": 642,
+      "updatedAt": "2026-08-30"
     },
     {
       "id": "ana-veronica",
@@ -265,7 +312,6 @@
           "source": "google-image-search"
         }
       ],
-      "photoSearchReviewedAt": "2026-08-26",
       "photoOrderBumpedAt": 387,
       "updatedAt": "2026-08-27"
     },
@@ -329,7 +375,6 @@
           "source": "google-image-search"
         }
       ],
-      "photoSearchReviewedAt": "2026-08-26",
       "photoOrderBumpedAt": 380,
       "updatedAt": "2026-08-26"
     },
@@ -394,7 +439,6 @@
           "source": "google-image-search"
         }
       ],
-      "photoSearchReviewedAt": "2026-08-26",
       "photoOrderBumpedAt": 377
     },
     {
@@ -1385,8 +1429,7 @@
           "url": "/portfolio-photos/dhairlux-18a51b5a-aa2f-49c1-a723-89235062f9e9.jpg",
           "source": "google-image-search"
         }
-      ],
-      "photoSearchReviewedAt": "2026-08-26"
+      ]
     },
     {
       "id": "hair-by-my-stylist",
@@ -3006,7 +3049,6 @@
         }
       ],
       "updatedAt": "2026-08-25",
-      "photoSearchReviewedAt": "2026-08-27",
       "photoOrderBumpedAt": 418
     },
     {
@@ -10369,8 +10411,7 @@
           "source": "google-image-search"
         }
       ],
-      "updatedAt": "2026-08-30",
-      "photoSearchReviewedAt": "2026-08-24"
+      "updatedAt": "2026-08-30"
     },
     {
       "id": "prihairuk",
@@ -13491,8 +13532,7 @@
           "source": "google-image-search"
         }
       ],
-      "photoOrderBumpedAt": 457,
-      "photoSearchReviewedAt": "2026-08-27"
+      "photoOrderBumpedAt": 457
     },
     {
       "id": "j-hair-uk",
@@ -15016,12 +15056,11 @@
       "portfolioPhotos": [
         {
           "id": "rv-the-stylist-portfolio-photo-e2221f59-b890-4507-8bb5-4f87415f5f90",
-          "url": "/portfolio-photos/rv-the-stylist-2a2fe510-3569-4923-89fe-17380d4b3f2d.jpg",
+          "url": "/portfolio-photos/rv-the-stylist-08a7099d-87b3-4616-bb70-9cfd297f31b8.jpg",
           "source": "google-image-search"
         }
       ],
-      "updatedAt": "2026-08-24",
-      "photoSearchReviewedAt": "2026-08-27",
+      "updatedAt": "2026-08-30",
       "photoOrderBumpedAt": 440
     },
     {
@@ -15924,8 +15963,6 @@
         }
       ],
       "updatedAt": "2026-08-27",
-      "photoSearchSkippedAt": "2026-08-27",
-      "photoSearchSkippedReason": "no-instagram-results",
       "photoOrderBumpedAt": 584
     },
     {
@@ -17025,8 +17062,7 @@
       "lgbtqFriendly": false,
       "parkingAvailable": false,
       "sellsHairSeparately": false,
-      "customFilters": {},
-      "photoSearchReviewedAt": "2026-08-24"
+      "customFilters": {}
     },
     {
       "id": "kayhairuk",
@@ -19488,6 +19524,11 @@
       "portfolioPhotosCheckedAt": "2026-08-20",
       "portfolioPhotos": [
         {
+          "id": "braidnaturelle-portfolio-photo-b1118126-76e8-4d72-8d91-5831c96ad942",
+          "url": "/portfolio-photos/braidnaturelle-76b47896-cf6d-4f75-aa7b-61f7025b0633.jpg",
+          "source": "instagram"
+        },
+        {
           "id": "braidnaturelle-portfolio-photo-a8bc1a81-7132-458c-b020-429259e23efd",
           "url": "/portfolio-photos/braidnaturelle-d9041d96-7b4d-4c44-abd5-8e182a10b90b.jpg",
           "source": "google-image-search"
@@ -19507,7 +19548,9 @@
           "url": "/portfolio-photos/braidnaturelle-7dfec16d-8136-48f9-97fc-b1a68b21864f.jpg",
           "source": "google-image-search"
         }
-      ]
+      ],
+      "photoSearchReviewedAt": "2026-08-30",
+      "photoOrderBumpedAt": 673
     },
     {
       "id": "evolutionhairandbeautyw7",
@@ -19930,7 +19973,7 @@
       "canBraidWithoutGel": false,
       "wheelchairAccessible": false,
       "customFilters": {},
-      "updatedAt": "2026-07-22",
+      "updatedAt": "2026-08-30",
       "verifiedReviewCount": 61,
       "verifiedReviewCheckedAt": "2026-07-22",
       "googlePlaceId": "ChIJnzibO8MDdkgRm-nMlMcemck",
@@ -19943,16 +19986,13 @@
       "portfolioPhotosCheckedAt": "2026-08-21",
       "portfolioPhotos": [
         {
-          "id": "hairpalaceldn-portfolio-photo-0",
-          "url": "/portfolio-photos/hairpalaceldn-1.jpg",
-          "source": "website"
-        },
-        {
-          "id": "hairpalaceldn-portfolio-photo-1",
-          "url": "/portfolio-photos/hairpalaceldn-2.jpg",
-          "source": "website"
+          "id": "hairpalaceldn-portfolio-photo-d662a6d9-1487-44d3-9445-642dd4a55520",
+          "url": "/portfolio-photos/hairpalaceldn-e065da5b-d31a-4f85-8aa5-30327ae0c487.jpg",
+          "source": "instagram-reel-frame"
         }
-      ]
+      ],
+      "photoSearchReviewedAt": "2026-08-30",
+      "photoOrderBumpedAt": 648
     },
     {
       "id": "fadom-beauty",
@@ -24369,8 +24409,7 @@
           "url": "/portfolio-photos/jennierobertshair-329df940-b038-480a-9579-18afc828f265.jpg",
           "source": "manual"
         }
-      ],
-      "photoSearchReviewedAt": "2026-08-25"
+      ]
     },
     {
       "id": "atstyledit",
@@ -24843,8 +24882,7 @@
       "senFriendly": false,
       "lgbtqFriendly": false,
       "parkingAvailable": false,
-      "sellsHairSeparately": false,
-      "photoSearchReviewedAt": "2026-08-25"
+      "sellsHairSeparately": false
     },
     {
       "id": "aaliyahsullivan-co",
@@ -25834,11 +25872,18 @@
       "parkingAvailable": false,
       "customFilters": {},
       "portfolioPhotosCheckedAt": "2026-08-20",
-      "portfolioPhotos": [],
+      "portfolioPhotos": [
+        {
+          "id": "touchedby-tg-portfolio-photo-4fc72462-eb29-4a77-935a-17be104136dc",
+          "url": "/portfolio-photos/touchedby-tg-d6baea49-4e15-427f-9569-a661f4b2280c.jpg",
+          "source": "instagram-reel-frame"
+        }
+      ],
       "hairShopUrl": "",
       "sellsHairSeparately": false,
       "sameDayEmergency": false,
-      "photoOrderBumpedAt": 603
+      "photoOrderBumpedAt": 649,
+      "photoSearchReviewedAt": "2026-08-30"
     },
     {
       "id": "ohnohair",
@@ -27270,7 +27315,7 @@
       "priceCheckedAt": "2026-06-05",
       "priceUpdatedAt": "2026-06-05",
       "priceConfidence": "manual",
-      "updatedAt": "2026-08-28",
+      "updatedAt": "2026-08-30",
       "addedVia": "Admin tool",
       "discoverySource": "Manual search",
       "googlePlaceId": null,
@@ -27284,27 +27329,11 @@
       "portfolioPhotosCheckedAt": "2026-08-20",
       "portfolioPhotos": [
         {
-          "id": "h-a-i-r-by-ebonygarwood-portfolio-photo-237b06f7-28b0-4b77-8109-76ef8e5fe2a6",
-          "url": "/portfolio-photos/h-a-i-r-by-ebonygarwood-fa2217c3-620f-46df-aa20-022f14d6401d.jpg",
-          "source": "google-image-search"
-        },
-        {
-          "id": "h-a-i-r-by-ebonygarwood-portfolio-photo-c0b41aa7-9ed2-4478-904a-8e61821b51b4",
-          "url": "/portfolio-photos/h-a-i-r-by-ebonygarwood-68a5bdb8-7abe-4050-ab95-ef90e0b100df.jpg",
-          "source": "google-image-search"
-        },
-        {
-          "id": "h-a-i-r-by-ebonygarwood-portfolio-photo-b1646a28-a292-459c-8d24-368f1ac72a4d",
-          "url": "/portfolio-photos/h-a-i-r-by-ebonygarwood-6ba17768-dd12-4445-acfd-6ecf6d620420.jpg",
-          "source": "google-image-search"
-        },
-        {
-          "id": "h-a-i-r-by-ebonygarwood-portfolio-photo-46abe727-3153-45a1-9417-e941ae2f80e4",
-          "url": "/portfolio-photos/h-a-i-r-by-ebonygarwood-00365f80-4308-4f64-92dd-bf31ac03d4b1.jpg",
-          "source": "google-image-search"
+          "id": "h-a-i-r-by-ebonygarwood-portfolio-photo-10c4696a-ba0d-4f88-8f04-bb29de93965a",
+          "url": "/portfolio-photos/h-a-i-r-by-ebonygarwood-4b05ded5-eb7b-4dc5-92ae-aa740f4b30c8.jpg",
+          "source": "instagram-reel-frame"
         }
       ],
-      "photoSearchReviewedAt": "2026-08-25",
       "hairShopUrl": "",
       "wheelchairAccessible": false,
       "senFriendly": false,
@@ -27316,7 +27345,9 @@
       "servicePriceBand": "",
       "packagePriceBand": "",
       "priceIncludesHair": false,
-      "priceComparisonMode": "service-only"
+      "priceComparisonMode": "service-only",
+      "photoSearchReviewedAt": "2026-08-30",
+      "photoOrderBumpedAt": 650
     },
     {
       "id": "phebehair",
@@ -28455,7 +28486,7 @@
       "tiktokUrl": "",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
-      "updatedAt": "2026-08-25",
+      "updatedAt": "2026-08-30",
       "servicePriceBand": "£",
       "packagePriceBand": "",
       "priceIncludesHair": false,
@@ -28472,6 +28503,21 @@
       "portfolioPhotosCheckedAt": "2026-08-20",
       "portfolioPhotos": [
         {
+          "id": "mmluxe-hair-portfolio-photo-54e94756-32ae-4d89-9636-a3a5d528438e",
+          "url": "/portfolio-photos/mmluxe-hair-a51c571f-986b-47e5-a1ca-39884f5c3da9.jpg",
+          "source": "instagram-reel-frame"
+        },
+        {
+          "id": "mmluxe-hair-portfolio-photo-a811c8ba-6332-4083-a7c5-723557e6f466",
+          "url": "/portfolio-photos/mmluxe-hair-9b04cbd9-93f6-4340-a7db-cf99abcc49b6.jpg",
+          "source": "instagram-reel-frame"
+        },
+        {
+          "id": "mmluxe-hair-portfolio-photo-e94af9f4-d736-459e-96b4-52230e0ee6b1",
+          "url": "/portfolio-photos/mmluxe-hair-a84c0b10-8d6b-4d13-98df-75115525e71d.jpg",
+          "source": "instagram-reel-frame"
+        },
+        {
           "id": "mmluxe-hair-portfolio-photo-328e25f7-4251-4445-8053-61c10c2f204c",
           "url": "/portfolio-photos/mmluxe-hair-367eabd0-e0bb-45dd-8641-d8f77e87f47b.jpg",
           "source": "google-image-search"
@@ -28482,7 +28528,8 @@
           "source": "google-image-search"
         }
       ],
-      "photoSearchReviewedAt": "2026-08-25"
+      "photoSearchReviewedAt": "2026-08-30",
+      "photoOrderBumpedAt": 666
     },
     {
       "id": "bychiluxe",
@@ -28877,7 +28924,6 @@
       "lgbtqFriendly": false,
       "parkingAvailable": false,
       "sellsHairSeparately": false,
-      "photoSearchReviewedAt": "2026-08-29",
       "photoOrderBumpedAt": 626
     },
     {
@@ -29992,8 +30038,7 @@
           "url": "/portfolio-photos/lianedidit-b7708558-6da4-449e-a747-d3319b6ec3c4.jpg",
           "source": "google-image-search"
         }
-      ],
-      "photoSearchReviewedAt": "2026-08-25"
+      ]
     },
     {
       "id": "hairconnoisseuruk",
@@ -34399,23 +34444,24 @@
         "Olaplex treatment",
         "Sew in / extensions blowdry",
         "Full head colour",
-        "U-Part / Half wig install"
+        "U-Part / Half wig install",
+        "Bouncy blowout / round brush blow dry"
       ],
-      "priceBand": "£",
+      "priceBand": "££",
       "priceSource": "auto",
       "priceEvidence": [
-        "Silk Press - £75",
-        "Roots (Hair colour) & Silk Press & Olaplex Combo Treatment - £120",
         "Avalon Texture Release| From £165 [Price is Dependant on hair length/Thickness] - £165",
+        "Silk Press - £75",
         "Silk Press (For texture released hair) - £65",
-        "Traditional Sew In Weave (With hair purchased from Alevenn hair only) - £85",
-        "Sew in Weave - £105",
-        "2x6 closure Sew In Weave (With hair purchased from Alevenn hair only) - £105",
-        "Traditional quick Weave (With hair purchased from Alevenn hair only) - £75"
+        "Roots (Hair colour) & Silk Press & Olaplex Combo Treatment - £120",
+        "Traditional Sew In Weave (With hair purchased from Alevenn hair only) - £105",
+        "Blow out + Olaplex Combo treatment - £75",
+        "Traditional quick Weave (With hair purchased from Alevenn hair only) - £75",
+        "Sew in removal with Treatment - £65"
       ],
-      "priceCheckedAt": "2026-06-24",
+      "priceCheckedAt": "2026-08-30",
       "priceConfidence": "high",
-      "priceUpdatedAt": "2026-06-24",
+      "priceUpdatedAt": "2026-08-30",
       "addedVia": "Code edit",
       "discoverySource": "Cowork scrape",
       "tiktokUrl": "",
@@ -34429,36 +34475,41 @@
           "date": "2026-06-10"
         }
       ],
-      "servicePriceBand": "£",
+      "servicePriceBand": "££",
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-27",
+      "updatedAt": "2026-08-30",
       "googlePlaceId": null,
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleDisplayName": null,
-      "googleFormattedAddress": null,
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-07-29",
       "portfolioPhotosCheckedAt": "2026-08-20",
       "portfolioPhotos": [
         {
-          "id": "alevenn-hair-portfolio-photo-a73931b4-af2f-4a71-9ce5-1cf2f7726513",
-          "url": "/portfolio-photos/alevenn-hair-fbe5775a-d261-4eed-8537-8f10f56704c1.jpg",
-          "source": "manual"
+          "id": "alevenn-hair-portfolio-photo-48435992-97a6-4736-b88f-75b9d7bf1566",
+          "url": "/portfolio-photos/alevenn-hair-aab918a1-69be-4faf-9810-2f0eff9b84a2.jpg",
+          "source": "instagram-reel-frame"
         },
         {
-          "id": "alevenn-hair-portfolio-photo-0d99fcd8-4c93-48ce-a21d-fc334e438f26",
-          "url": "/portfolio-photos/alevenn-hair-f304fe55-d16c-4d96-851c-c49e75ee823d.jpg",
-          "source": "manual"
-        },
-        {
-          "id": "alevenn-hair-portfolio-photo-c1bd3bde-af94-497b-ba3a-3f9ed395826e",
-          "url": "/portfolio-photos/alevenn-hair-e5acfb33-bac2-4177-bfd7-01966782cebc.jpg",
-          "source": "manual"
+          "id": "alevenn-hair-portfolio-photo-977b8d0a-8f00-4560-b5de-a7142a652e4d",
+          "url": "/portfolio-photos/alevenn-hair-c8d5c093-4916-46ea-be5e-b5e15412d104.jpg",
+          "source": "instagram-reel-frame"
         }
-      ]
+      ],
+      "photoSearchReviewedAt": "2026-08-30",
+      "photoOrderBumpedAt": 653,
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": false,
+      "sameDayEmergency": false,
+      "customFilters": {}
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -36865,7 +36916,6 @@
       "portfolioPhotos": [],
       "portfolioPhotosCheckedAt": "2026-08-21",
       "updatedAt": "2026-08-30",
-      "photoSearchReviewedAt": "2026-08-30",
       "photoOrderBumpedAt": 631
     },
     {
@@ -37271,18 +37321,13 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-27",
+      "updatedAt": "2026-08-30",
       "portfolioPhotosCheckedAt": "2026-08-21",
       "portfolioPhotos": [
         {
           "id": "bimmytouch-portfolio-photo-7b2e34bb-dbec-4124-8911-33b18b12123a",
           "url": "/portfolio-photos/bimmytouch-838200c6-988f-420a-83d0-dd1dee204aaf.jpg",
           "source": "instagram-reel-frame"
-        },
-        {
-          "id": "bimmytouch-portfolio-photo-5756df60-d4e7-4290-a927-48ccd4ede999",
-          "url": "/portfolio-photos/bimmytouch-c002788a-c6a0-4003-8bfa-93fe50dcb1fa.jpg",
-          "source": "instagram-reel-thumbnail"
         }
       ],
       "hairShopUrl": "",
@@ -37360,7 +37405,6 @@
       "parkingAvailable": false,
       "sellsHairSeparately": false,
       "customFilters": {},
-      "photoSearchReviewedAt": "2026-08-30",
       "photoOrderBumpedAt": 639
     },
     {
@@ -42152,8 +42196,7 @@
           "url": "/portfolio-photos/devine-rootz-e1c83554-dae0-4925-a8ad-1e1cdb2278fb.jpg",
           "source": "google-image-search"
         }
-      ],
-      "photoSearchReviewedAt": "2026-08-25"
+      ]
     },
     {
       "id": "dglowempire",
@@ -44537,17 +44580,12 @@
       "portfolioPhotosCheckedAt": "2026-08-21",
       "portfolioPhotos": [
         {
-          "id": "fd-hair-and-beauty-portfolio-photo-aa43df6b-4cf8-4d66-a3e7-838e2c357cf6",
-          "url": "/portfolio-photos/fd-hair-and-beauty-57bc3b51-c6a9-4245-8e40-22a689258b18.jpg",
-          "source": "google-image-search"
-        },
-        {
           "id": "fd-hair-and-beauty-portfolio-photo-c9c2bc1c-0df6-45a5-ab87-662bfa8cc467",
           "url": "/portfolio-photos/fd-hair-and-beauty-48a035a1-8506-4f0d-a242-90281334ff71.jpg",
           "source": "google-image-search"
         }
       ],
-      "updatedAt": "2026-08-25"
+      "updatedAt": "2026-08-30"
     },
     {
       "id": "fbnhairuk",
@@ -47903,12 +47941,19 @@
       "websiteUrl": "https://hairzones.com/",
       "portfolioPhotos": [
         {
+          "id": "hair-zones-uk-portfolio-photo-676036f9-de7d-4ef7-b178-ea2575d7f212",
+          "url": "/portfolio-photos/hair-zones-uk-f911e133-0590-482c-99f0-871b0f8fc34e.jpg",
+          "source": "instagram-reel-frame"
+        },
+        {
           "id": "hair-zones-uk-portfolio-photo-44252363-a103-4d39-81ea-db54d0b543c0",
           "url": "/portfolio-photos/hair-zones-uk-834a2a1c-6784-450b-b2f4-5c10078d8a5a.jpg",
           "source": "instagram-reel-thumbnail"
         }
       ],
-      "portfolioPhotosCheckedAt": "2026-08-21"
+      "portfolioPhotosCheckedAt": "2026-08-21",
+      "photoSearchReviewedAt": "2026-08-31",
+      "photoOrderBumpedAt": 677
     },
     {
       "id": "hairboyldn",
@@ -48118,15 +48163,17 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-27",
+      "updatedAt": "2026-08-30",
       "portfolioPhotosCheckedAt": "2026-08-21",
       "portfolioPhotos": [
         {
-          "id": "hairbyamandaniceandneat-portfolio-photo-3f6107f8-202b-45cb-aadd-27545310e948",
-          "url": "/portfolio-photos/hairbyamandaniceandneat-aa21458e-2e7f-438e-a38d-c94f25205e8c.jpg",
-          "source": "manual"
+          "id": "hairbyamandaniceandneat-portfolio-photo-a741138e-9235-4cc2-854e-48633b0caebe",
+          "url": "/portfolio-photos/hairbyamandaniceandneat-55b14acb-b129-4649-a806-2383ed1ca932.jpg",
+          "source": "instagram-reel-frame"
         }
-      ]
+      ],
+      "photoSearchReviewedAt": "2026-08-30",
+      "photoOrderBumpedAt": 676
     },
     {
       "id": "hairbyamaraa",
@@ -49258,13 +49305,15 @@
       "websiteUrl": "https://www.healthyhairstudio.co.uk",
       "portfolioPhotos": [
         {
-          "id": "hair-studio-by-enitan-portfolio-photo-5edc746b-9639-4a46-907e-8f3deb65ccf8",
-          "url": "/portfolio-photos/hair-studio-by-enitan-afbb912c-4763-4cd1-b243-7035048be01c.jpg",
-          "source": "instagram-reel-thumbnail"
+          "id": "hair-studio-by-enitan-portfolio-photo-47401d40-6f06-4478-aa2c-7e3e9e5b3f90",
+          "url": "/portfolio-photos/hair-studio-by-enitan-7a7abe67-09a1-42d7-8bf9-5e757d0d254d.jpg",
+          "source": "instagram-reel-frame"
         }
       ],
       "portfolioPhotosCheckedAt": "2026-08-21",
-      "updatedAt": "2026-08-22"
+      "updatedAt": "2026-08-30",
+      "photoSearchReviewedAt": "2026-08-30",
+      "photoOrderBumpedAt": 663
     },
     {
       "id": "helena-macris-salon",
@@ -50220,10 +50269,7 @@
           "url": "/portfolio-photos/houseoffaux-f41ac2da-90bc-4fd9-921e-a875c20b62fb.jpg",
           "source": "google-image-search"
         }
-      ],
-      "photoSearchReviewedAt": "2026-08-24",
-      "photoSearchSkippedAt": "2026-08-24",
-      "photoSearchSkippedReason": "manual"
+      ]
     },
     {
       "id": "houseofhairuk",
@@ -51018,13 +51064,17 @@
       "portfolioPhotosCheckedAt": "2026-08-21",
       "portfolioPhotos": [
         {
-          "id": "ines-does-my-hair-portfolio-photo-2f20d146-d4c3-445b-9cda-b81f28cb4311",
-          "url": "/portfolio-photos/ines-does-my-hair-4cf4ebde-5f94-445d-950d-f9024606357c.jpg",
-          "source": "google-image-search"
+          "id": "ines-does-my-hair-portfolio-photo-edcca51c-510e-4102-b50d-0d40b0dfa054",
+          "url": "/portfolio-photos/ines-does-my-hair-8b742af5-e73b-422d-938f-b472553a3989.jpg",
+          "source": "instagram-reel-frame"
+        },
+        {
+          "id": "ines-does-my-hair-portfolio-photo-1107415c-59bf-4a3a-8885-18dae5c5e898",
+          "url": "/portfolio-photos/ines-does-my-hair-ddfaa4a2-d18a-45b1-a3ac-4d74b5a62325.jpg",
+          "source": "instagram-reel-frame"
         }
       ],
-      "updatedAt": "2026-08-26",
-      "photoSearchReviewedAt": "2026-08-25",
+      "updatedAt": "2026-08-30",
       "websiteUrl": "",
       "hairShopUrl": "",
       "tiktokUrl": "",
@@ -51040,7 +51090,9 @@
       "servicePriceBand": "££££",
       "packagePriceBand": "",
       "priceIncludesHair": true,
-      "priceComparisonMode": "service-only"
+      "priceComparisonMode": "service-only",
+      "photoSearchReviewedAt": "2026-08-30",
+      "photoOrderBumpedAt": 675
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -53476,8 +53528,7 @@
           "url": "/portfolio-photos/kty-studios-ca5afd70-aa37-4b2f-9bce-ff010e4318d9.jpg",
           "source": "google-image-search"
         }
-      ],
-      "photoSearchReviewedAt": "2026-08-25"
+      ]
     },
     {
       "id": "kulture-hair",
@@ -56634,8 +56685,7 @@
           "source": "website"
         }
       ],
-      "portfolioPhotosCheckedAt": "2026-08-21",
-      "photoSearchReviewedAt": "2026-08-25"
+      "portfolioPhotosCheckedAt": "2026-08-21"
     },
     {
       "summary": "Manual entry added from your bridal and editorial list.",
@@ -57466,7 +57516,6 @@
         }
       ],
       "portfolioPhotosCheckedAt": "2026-08-21",
-      "photoSearchReviewedAt": "2026-08-25",
       "senFriendly": false
     },
     {
@@ -58179,11 +58228,14 @@
       "portfolioPhotosCheckedAt": "2026-08-21",
       "portfolioPhotos": [
         {
-          "id": "olahairbeau-portfolio-photo-82766f6a-6bd8-4904-9ef3-66474c9b802c",
-          "url": "/portfolio-photos/olahairbeau-5597cd25-7b0d-4674-bf02-99339c7c7bb4.jpg",
-          "source": "instagram-reel-thumbnail"
+          "id": "olahairbeau-portfolio-photo-a91cc0d2-b360-4e2e-8ae0-584c2baceaf5",
+          "url": "/portfolio-photos/olahairbeau-66fe9e1e-a011-42bb-a4d9-75ebe7f585c5.jpg",
+          "source": "instagram-reel-frame"
         }
-      ]
+      ],
+      "photoSearchReviewedAt": "2026-08-30",
+      "photoOrderBumpedAt": 667,
+      "updatedAt": "2026-08-30"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -58215,9 +58267,14 @@
       "portfolioPhotosCheckedAt": "2026-08-21",
       "portfolioPhotos": [
         {
-          "id": "omoadelocs-portfolio-photo-ff2b0bb3-57ff-4876-b75e-00ae998a7867",
-          "url": "/portfolio-photos/omoadelocs-a51b951c-de35-45a6-b958-a79e2488124b.jpg",
-          "source": "instagram-reel-thumbnail"
+          "id": "omoadelocs-portfolio-photo-d9a8e96b-5e97-40ec-84ba-ee0315797c33",
+          "url": "/portfolio-photos/omoadelocs-bda022ae-a148-45ac-a3e9-1ef313954cc5.jpg",
+          "source": "instagram-reel-frame"
+        },
+        {
+          "id": "omoadelocs-portfolio-photo-8dba43ee-4194-4b00-b979-e8f277e118e7",
+          "url": "/portfolio-photos/omoadelocs-f95522cc-0406-49a1-b5e6-27fd4d0f1497.jpg",
+          "source": "instagram-reel-frame"
         }
       ],
       "websiteUrl": "",
@@ -58242,7 +58299,9 @@
       "priceCheckedAt": "",
       "priceUpdatedAt": "",
       "priceConfidence": "",
-      "updatedAt": "2026-08-26"
+      "updatedAt": "2026-08-30",
+      "photoSearchReviewedAt": "2026-08-30",
+      "photoOrderBumpedAt": 658
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -58553,8 +58612,16 @@
       "sellsHairSeparately": true,
       "hairShopUrl": "https://ovieyalondon.co.uk/shop",
       "vendorId": "ovieya-london-ltd",
-      "portfolioPhotos": [],
-      "portfolioPhotosCheckedAt": "2026-08-21"
+      "portfolioPhotos": [
+        {
+          "id": "ovieya-london-ltd-portfolio-photo-fb097fa8-8795-4c69-b59a-dbd77ab911a7",
+          "url": "/portfolio-photos/ovieya-london-ltd-59e9aa40-565a-40ec-8127-8445df15b363.jpg",
+          "source": "instagram-reel-frame"
+        }
+      ],
+      "portfolioPhotosCheckedAt": "2026-08-21",
+      "photoSearchReviewedAt": "2026-08-30",
+      "photoOrderBumpedAt": 643
     },
     {
       "id": "oyinns-touch",
@@ -62413,7 +62480,6 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "photoSearchReviewedAt": "2026-08-27",
       "photoOrderBumpedAt": 496
     },
     {
@@ -63575,16 +63641,17 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-27",
+      "updatedAt": "2026-08-30",
       "portfolioPhotosCheckedAt": "2026-08-21",
       "portfolioPhotos": [
         {
-          "id": "slaybynay-portfolio-photo-5fc91fd1-8e40-4614-bbac-cf322b52b52b",
-          "url": "/portfolio-photos/slaybynay-06c4dcce-fca8-4416-baca-2d874aa14a1a.jpg",
-          "source": "instagram-reel-thumbnail"
+          "id": "slaybynay-portfolio-photo-32b6930f-6fc6-4bc0-9e23-59f78c466d6a",
+          "url": "/portfolio-photos/slaybynay-abbf52c1-cb4f-49b4-856c-54728b7766b7.jpg",
+          "source": "instagram-reel-frame"
         }
       ],
-      "photoOrderBumpedAt": 351
+      "photoOrderBumpedAt": 672,
+      "photoSearchReviewedAt": "2026-08-30"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -64251,7 +64318,6 @@
           "source": "google-image-search"
         }
       ],
-      "photoSearchReviewedAt": "2026-08-24",
       "updatedAt": "2026-08-27"
     },
     {
@@ -65705,19 +65771,25 @@
       "packagePriceBand": "££££",
       "priceIncludesHair": true,
       "priceComparisonMode": "mixed",
-      "updatedAt": "2026-08-24",
+      "updatedAt": "2026-08-30",
       "sellsHairSeparately": true,
       "hairShopUrl": "https://currentwigs.com/collections/hair-bundles/hair-bundles",
       "vendorId": "stylesbyfola",
       "portfolioPhotos": [
         {
-          "id": "stylesbyfola-portfolio-photo-2d2d3f03-9336-44b4-8265-f38e8d075fdb",
-          "url": "/portfolio-photos/stylesbyfola-f5d70846-8dac-4556-b39d-84375e7eae2f.webp",
-          "source": "website"
+          "id": "stylesbyfola-portfolio-photo-e969e5ef-a576-4505-89e3-8e4ee7d85292",
+          "url": "/portfolio-photos/stylesbyfola-4d9d8b93-2aa2-4cf4-ab18-1367cbc62d2d.jpg",
+          "source": "instagram"
+        },
+        {
+          "id": "stylesbyfola-portfolio-photo-c806252c-ffa2-45f5-864f-f623554b17ec",
+          "url": "/portfolio-photos/stylesbyfola-c10d4f68-7366-43e5-9424-c579ec101013.jpg",
+          "source": "instagram-reel-frame"
         }
       ],
       "portfolioPhotosCheckedAt": "2026-08-21",
-      "photoSearchReviewedAt": "2026-08-24"
+      "photoSearchReviewedAt": "2026-08-30",
+      "photoOrderBumpedAt": 670
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -67798,35 +67870,22 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-25",
+      "updatedAt": "2026-08-30",
       "portfolioPhotosCheckedAt": "2026-08-21",
       "portfolioPhotos": [
         {
-          "id": "the-standard-studio-portfolio-photo-9cb916dd-13b3-431b-ab79-8fb1c817e1e2",
-          "url": "/portfolio-photos/the-standard-studio-4d13054d-aa8a-403e-afce-eb32ddaac40d.jpg",
-          "source": "google-image-search"
+          "id": "the-standard-studio-portfolio-photo-b2519676-c166-4d0e-b0b4-114fdc73610b",
+          "url": "/portfolio-photos/the-standard-studio-740b5acf-dec1-464a-b131-8cf2304ffd5d.jpg",
+          "source": "instagram-reel-frame"
         },
         {
-          "id": "the-standard-studio-portfolio-photo-5aac71a8-ff69-45ce-8f2e-b2174701562a",
-          "url": "/portfolio-photos/the-standard-studio-95ec4192-7e1c-4d4c-af71-1d49f3b78e55.jpg",
-          "source": "google-image-search"
-        },
-        {
-          "id": "the-standard-studio-portfolio-photo-d9336353-6260-47c2-97ed-282c88fff136",
-          "url": "/portfolio-photos/the-standard-studio-efe72496-2a64-4b44-b3cf-7af291773241.jpg",
-          "source": "google-image-search"
-        },
-        {
-          "id": "the-standard-studio-portfolio-photo-c7d67320-0fe6-4a73-8012-938442c75c66",
-          "url": "/portfolio-photos/the-standard-studio-46e1e495-11f6-4516-b96a-bfcc4865b3dc.jpg",
-          "source": "google-image-search"
-        },
-        {
-          "id": "the-standard-studio-portfolio-photo-068abfd3-c4f4-48ea-b40d-d2a992e10d32",
-          "url": "/portfolio-photos/the-standard-studio-b2cfd8fd-1531-45f1-b4c9-69a19d485045.jpg",
-          "source": "google-image-search"
+          "id": "the-standard-studio-portfolio-photo-ef26457f-fe7b-47dc-8853-c698cc91d76b",
+          "url": "/portfolio-photos/the-standard-studio-03fc0fc8-b36f-4bed-936d-51f00953dbea.jpg",
+          "source": "instagram-reel-frame"
         }
-      ]
+      ],
+      "photoSearchReviewedAt": "2026-08-30",
+      "photoOrderBumpedAt": 661
     },
     {
       "id": "the-studdio",
@@ -69816,13 +69875,24 @@
       "portfolioPhotosCheckedAt": "2026-08-21",
       "portfolioPhotos": [
         {
+          "id": "wen-hair-ldn-portfolio-photo-914b0820-444b-4fed-9b80-f89a6a7391c6",
+          "url": "/portfolio-photos/wen-hair-ldn-868fc09d-56b0-48ab-a445-f2217fa8cb38.jpg",
+          "source": "instagram-reel-frame"
+        },
+        {
+          "id": "wen-hair-ldn-portfolio-photo-95ab1bf3-234f-435b-9b1f-eb386b4cdef3",
+          "url": "/portfolio-photos/wen-hair-ldn-803f6b01-433e-4324-af93-685aa6c5e13f.jpg",
+          "source": "instagram-reel-frame"
+        },
+        {
           "id": "wen-hair-ldn-portfolio-photo-c6a83824-37be-4814-ae4a-3a613a50c95d",
           "url": "/portfolio-photos/wen-hair-ldn-54a916ec-2c4d-4ae5-8e49-0da118614cd0.jpg",
           "source": "instagram-reel-thumbnail"
         }
       ],
       "updatedAt": "2026-08-27",
-      "photoOrderBumpedAt": 143
+      "photoOrderBumpedAt": 679,
+      "photoSearchReviewedAt": "2026-08-31"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -71777,8 +71847,7 @@
           "url": "/portfolio-photos/andrellastouch-036160e4-80d4-4ce5-a70b-e1ceaa36343e.jpg",
           "source": "manual"
         }
-      ],
-      "photoSearchReviewedAt": "2026-08-24"
+      ]
     },
     {
       "id": "theehairarchives",
@@ -73722,11 +73791,29 @@
       "googleCheckedAt": "2026-07-29",
       "portfolioPhotos": [
         {
+          "id": "remolabeauty-portfolio-photo-eca4f22c-b90e-485f-8088-65f8ecefeb18",
+          "url": "/portfolio-photos/remolabeauty-e4ff70f6-5f65-412e-a9e9-7dc460dc89a0.jpg",
+          "source": "instagram-reel-frame"
+        },
+        {
+          "id": "remolabeauty-portfolio-photo-c46b58cb-e204-4cc3-85c8-b660e3204564",
+          "url": "/portfolio-photos/remolabeauty-95aaecef-782c-4062-a6cd-84613493cfa6.jpg",
+          "source": "instagram-reel-frame"
+        },
+        {
+          "id": "remolabeauty-portfolio-photo-9bd91429-7ada-4875-8d3b-3a3faeb81bee",
+          "url": "/portfolio-photos/remolabeauty-dc833536-1541-40a0-8d8c-4a0acaf7ea08.jpg",
+          "source": "instagram-reel-frame"
+        },
+        {
           "id": "remolabeauty-portfolio-photo-2a5e7a06-d429-4cad-b0a3-b551c9917256",
           "url": "/portfolio-photos/remolabeauty-42bba26e-347b-4e2f-a1be-844f2393bad1.jpg",
           "source": "instagram-reel-thumbnail"
         }
-      ]
+      ],
+      "photoSearchReviewedAt": "2026-08-30",
+      "photoOrderBumpedAt": 656,
+      "updatedAt": "2026-08-30"
     },
     {
       "id": "aluxeuk",

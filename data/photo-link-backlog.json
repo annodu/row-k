@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-08-30"
+    "updatedAt": "2026-08-31"
   },
   "entries": [
     {
@@ -11,12 +11,16 @@
       "addedAt": "2026-08-25"
     },
     {
-      "salonId": "afrotherapy",
+      "salonId": "hair-zones-uk",
       "postUrls": [
-        "https://www.instagram.com/p/DbIrNp_lIL3/",
-        "https://www.instagram.com/p/DZr6v0VCEl4/"
+        "https://www.instagram.com/p/Dah5OfCgS7e/"
       ],
-      "addedAt": "2026-08-30"
+      "addedAt": "2026-08-31"
+    },
+    {
+      "salonId": "ajstyles-uk",
+      "postUrls": [],
+      "addedAt": "2026-08-31"
     }
   ]
 }
