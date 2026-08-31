@@ -1254,11 +1254,27 @@ export function registerAdminStylistRoutes(app) {
   });
 
   // Bulk-clears the hand-picked worklist in one action rather than removing
-  // chips one at a time — doesn't touch photoSearchReviewedAt/SkippedAt on
-  // the salons themselves, so anything cleared here is still exactly where
-  // it was in the automated zero-photos queue.
+  // chips one at a time. Only drops entries that are safe to lose track of —
+  // already reviewed/skipped, or genuinely zero-photo (which the automated
+  // queue below still catches on its own). A newly published stylist that
+  // already has a starter photo (so it's invisible to that automated
+  // zero-photos queue) and hasn't been reviewed yet is real pending work,
+  // not batch clutter — clearing indiscriminately here previously wiped
+  // those out along with finished ones, silently dropping brand-new
+  // stylists out of the queue entirely (caught 2026-08-31: 144 "Admin tool"
+  // published stylists had no queue path back once their pick was cleared).
   app.delete("/api/admin/photo-search-picks", requireAdmin, async (_req, res) => {
-    await writeJson(photoSearchPicksPath, { meta: { updatedAt: today() }, salonIds: [] });
+    const [manualIndex, store] = await Promise.all([
+      readJson(manualIndexPath, { meta: { source: "manual" }, salons: [] }),
+      readJson(photoSearchPicksPath, { meta: {}, salonIds: [] }),
+    ]);
+    const byId = new Map(manualIndex.salons.map((salon) => [salon.id, salon]));
+    const salonIds = (Array.isArray(store.salonIds) ? store.salonIds : []).filter((id) => {
+      const salon = byId.get(id);
+      if (!salon || salon.photoSearchReviewedAt || salon.photoSearchSkippedAt) return false;
+      return (salon.portfolioPhotos || []).length > 0;
+    });
+    await writeJson(photoSearchPicksPath, { meta: { updatedAt: today() }, salonIds });
     res.json({ ok: true });
   });
 
@@ -2672,6 +2688,126 @@ export function registerAdminStylistRoutes(app) {
       ...sanitizeDraftUpdate(req.body || {}),
       updatedAt: today(),
     });
+    await writeDraftStore(store);
+    res.json({ ok: true, draft: store.drafts[draftIndex] });
+  });
+
+  // Draft-scoped mirror of the published salon's portfolio-photos endpoints
+  // below — lets an admin attach photos (their own upload, since a draft has
+  // no Instagram history to search yet) before a stylist is even published,
+  // instead of publishing photo-less and hoping it turns up in the photo
+  // search queue afterward. Carried into the real salon record by
+  // draftToSalon on approve.
+  app.post("/api/admin/stylists/drafts/:id/portfolio-photos", requireAdmin, async (req, res) => {
+    const store = await readDraftStore();
+    const draftIndex = store.drafts.findIndex((d) => d.id === req.params.id);
+    if (draftIndex === -1) {
+      return res.status(404).json({ ok: false, message: "Draft not found." });
+    }
+    const draft = store.drafts[draftIndex];
+
+    const submitted = Array.isArray(req.body?.photos) ? req.body.photos : null;
+    if (!submitted) {
+      return res.status(400).json({ ok: false, message: "Invalid payload." });
+    }
+
+    const existingPhotos = Array.isArray(draft.portfolioPhotos) ? draft.portfolioPhotos : [];
+    const existingById = new Map(existingPhotos.map((photo) => [photo.id, photo]));
+    const submittedIds = new Set();
+    const nextPhotos = [];
+    for (const item of submitted) {
+      const id = cleanString(item?.id);
+      const existing = id ? existingById.get(id) : null;
+      if (!existing) continue;
+      submittedIds.add(id);
+      nextPhotos.push(existing);
+    }
+
+    for (const photo of existingPhotos) {
+      if (submittedIds.has(photo.id)) continue;
+      const filename = photo.url?.split("/").pop();
+      if (filename) await fs.unlink(path.join(portfolioPhotosPublicDir, filename)).catch(() => {});
+    }
+
+    store.drafts[draftIndex] = { ...draft, portfolioPhotos: nextPhotos, updatedAt: today() };
+    await writeDraftStore(store);
+    res.json({ ok: true, draft: store.drafts[draftIndex] });
+  });
+
+  app.post("/api/admin/stylists/drafts/:id/portfolio-photos/:photoId/crop", requireAdmin, async (req, res) => {
+    const store = await readDraftStore();
+    const draftIndex = store.drafts.findIndex((d) => d.id === req.params.id);
+    if (draftIndex === -1) {
+      return res.status(404).json({ ok: false, message: "Draft not found." });
+    }
+    const draft = store.drafts[draftIndex];
+    const photos = Array.isArray(draft.portfolioPhotos) ? draft.portfolioPhotos : [];
+    const photoIndex = photos.findIndex((photo) => photo.id === req.params.photoId);
+    if (photoIndex === -1) {
+      return res.status(404).json({ ok: false, message: "Photo not found." });
+    }
+    const photo = photos[photoIndex];
+
+    const panel = {
+      x: Number(req.body?.x),
+      y: Number(req.body?.y),
+      width: Number(req.body?.width),
+      height: Number(req.body?.height),
+    };
+    if (![panel.x, panel.y, panel.width, panel.height].every((n) => Number.isFinite(n) && n >= 0 && n <= 1) || panel.width <= 0 || panel.height <= 0) {
+      return res.status(400).json({ ok: false, message: "Invalid crop region." });
+    }
+    const rotation = Number(req.body?.rotation) || 0;
+    if (![0, 90, 180, 270].includes(((Math.round(rotation) % 360) + 360) % 360)) {
+      return res.status(400).json({ ok: false, message: "Invalid rotation." });
+    }
+
+    try {
+      const oldFilename = photo.url.split("/").pop();
+      const originalBuffer = await fs.readFile(path.join(portfolioPhotosPublicDir, oldFilename));
+      const croppedBuffer = await cropCollagePanel(originalBuffer, panel, rotation);
+      const newFilename = `${draft.id}-${crypto.randomUUID()}.jpg`;
+      await fs.writeFile(path.join(portfolioPhotosPublicDir, newFilename), croppedBuffer);
+      await fs.unlink(path.join(portfolioPhotosPublicDir, oldFilename)).catch(() => {});
+      photos[photoIndex] = { ...photo, url: `/portfolio-photos/${newFilename}` };
+
+      store.drafts[draftIndex] = { ...draft, portfolioPhotos: photos, updatedAt: today() };
+      await writeDraftStore(store);
+      res.json({ ok: true, draft: store.drafts[draftIndex] });
+    } catch (error) {
+      res.status(400).json({ ok: false, message: error.message || "Could not crop that region." });
+    }
+  });
+
+  app.post("/api/admin/stylists/drafts/:id/portfolio-photos/upload", requireAdmin, async (req, res) => {
+    const store = await readDraftStore();
+    const draftIndex = store.drafts.findIndex((d) => d.id === req.params.id);
+    if (draftIndex === -1) {
+      return res.status(404).json({ ok: false, message: "Draft not found." });
+    }
+    const draft = store.drafts[draftIndex];
+
+    const dataUrl = cleanString(req.body?.image);
+    const match = dataUrl.match(/^data:image\/(png|jpe?g|webp|gif);base64,(.+)$/);
+    if (!match) {
+      return res.status(400).json({ ok: false, message: "Upload a PNG, JPEG, WEBP, or GIF image." });
+    }
+    const ext = match[1] === "jpeg" ? "jpg" : match[1];
+    const buffer = Buffer.from(match[2], "base64");
+    if (buffer.length === 0) {
+      return res.status(400).json({ ok: false, message: "That file looks empty." });
+    }
+
+    await fs.mkdir(portfolioPhotosPublicDir, { recursive: true });
+    const filename = `${draft.id}-${crypto.randomUUID()}.${ext}`;
+    await fs.writeFile(path.join(portfolioPhotosPublicDir, filename), buffer);
+
+    const photo = { id: `${draft.id}-portfolio-photo-${crypto.randomUUID()}`, url: `/portfolio-photos/${filename}`, source: "manual" };
+    store.drafts[draftIndex] = {
+      ...draft,
+      portfolioPhotos: [...(draft.portfolioPhotos || []), photo],
+      updatedAt: today(),
+    };
     await writeDraftStore(store);
     res.json({ ok: true, draft: store.drafts[draftIndex] });
   });
@@ -6918,6 +7054,19 @@ async function extractInstagramPostMedia(postUrl, { batch = 0 } = {}) {
 }
 
 async function getPriceCheckBrowser() {
+  // A previously-launched browser can die on its own (killed, crashed, OOM)
+  // without this process finding out — every future newPage() on the cached
+  // handle then fails with "Target page, context or browser has been closed"
+  // forever, since nothing here re-checks after the initial launch. Confirmed
+  // live 2026-08-31: Reel extraction was down for the rest of the process's
+  // life until a manual restart. Checking isConnected() on every call instead
+  // relaunches automatically the next time this is asked for.
+  if (priceCheckBrowserPromise) {
+    const existing = await priceCheckBrowserPromise.catch(() => null);
+    if (!existing || !existing.isConnected()) {
+      priceCheckBrowserPromise = null;
+    }
+  }
   if (!priceCheckBrowserPromise) {
     priceCheckBrowserPromise = import("playwright")
       .then(({ chromium }) => chromium.launch({ headless: true }))
@@ -9665,6 +9814,7 @@ function draftToSalon(draft, existingIds) {
     summary: draft.summary || "Admin-approved stylist entry.",
     source: "manual",
     evidence: draft.evidence?.length ? draft.evidence : ["Approved through ROW K admin intake."],
+    ...(draft.portfolioPhotos?.length ? { portfolioPhotos: draft.portfolioPhotos } : {}),
   };
 }
 

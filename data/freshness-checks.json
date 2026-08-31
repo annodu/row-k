@@ -1,7 +1,7 @@
 {
   "meta": {
     "source": "freshness-checks",
-    "updatedAt": "2026-08-26",
+    "updatedAt": "2026-08-31",
     "count": 427,
     "checkedCount": 895,
     "total": 895,
@@ -6680,8 +6680,10 @@
       "addedServiceEvidence": {},
       "handledFingerprints": [
         "price:unknown",
-        "service-remove:faux locs"
-      ]
+        "service-remove:faux locs",
+        "issue:possible removed services found"
+      ],
+      "sameDayEmergency": true
     },
     "esu-hairandbeauty": {
       "addedServices": [],

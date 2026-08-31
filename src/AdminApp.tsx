@@ -1600,6 +1600,89 @@ function AdminAppInner() {
     }
   }
 
+  // Draft-scoped mirrors of the three functions above — same shape, but
+  // hitting the pre-publish draft endpoints and updating `drafts` state
+  // instead of `publishedStylists`, so a stylist can get photos attached
+  // before it's ever published rather than only afterward.
+  async function saveDraftPortfolioPhotos(draftId: string, photos: PortfolioPhotoAdmin[]) {
+    setMessage("");
+    setIsBusy(true);
+    try {
+      const response = await fetch(`/api/admin/stylists/drafts/${draftId}/portfolio-photos`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({ photos }),
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok) {
+        notify(payload.message || "Could not save photo shortlist.", "error");
+        return;
+      }
+      setDrafts((current) => current.map((item) => (item.id === payload.draft.id ? payload.draft : item)));
+      notify("Photo shortlist saved.");
+    } finally {
+      setIsBusy(false);
+    }
+  }
+
+  async function cropDraftPortfolioPhoto(
+    draftId: string,
+    photoId: string,
+    region: { x: number; y: number; width: number; height: number; rotation: number },
+  ): Promise<{ ok: boolean; message?: string }> {
+    setIsBusy(true);
+    try {
+      const response = await fetch(`/api/admin/stylists/drafts/${draftId}/portfolio-photos/${photoId}/crop`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify(region),
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok) {
+        return { ok: false, message: payload.message || "Could not crop that photo." };
+      }
+      setDrafts((current) => current.map((item) => (item.id === payload.draft.id ? payload.draft : item)));
+      return { ok: true };
+    } catch {
+      return { ok: false, message: "Could not crop that photo." };
+    } finally {
+      setIsBusy(false);
+    }
+  }
+
+  async function uploadDraftPortfolioPhoto(draftId: string, file: File): Promise<{ ok: boolean; message?: string }> {
+    if (!file.type.startsWith("image/")) {
+      return { ok: false, message: "Choose an image file." };
+    }
+    setIsBusy(true);
+    try {
+      const image = await new Promise<string>((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result as string);
+        reader.onerror = () => reject(new Error("Could not read that file."));
+        reader.readAsDataURL(file);
+      });
+      const response = await fetch(`/api/admin/stylists/drafts/${draftId}/portfolio-photos/upload`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({ image }),
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok) {
+        return { ok: false, message: payload.message || "Could not upload that photo." };
+      }
+      setDrafts((current) => current.map((item) => (item.id === payload.draft.id ? payload.draft : item)));
+      return { ok: true };
+    } catch {
+      return { ok: false, message: "Could not upload that photo." };
+    } finally {
+      setIsBusy(false);
+    }
+  }
+
   async function runChecks(offset = 0, mode: "freshness" | "pricing" = "freshness") {
     setMessage("");
     const isFullRun = offset === 0;
@@ -2132,9 +2215,27 @@ function AdminAppInner() {
             onAddBranchToSalon={(fields) => selectedDraft ? addBranchToSalon(selectedDraft.id, fields) : undefined}
             onUpdateBranch={(branchId, fields) => selectedDraft ? updateBranch(selectedDraft.id, branchId, fields) : undefined}
             onDeleteBranch={(branchId) => selectedDraft ? deleteBranch(selectedDraft.id, branchId) : undefined}
-            onSavePortfolioPhotos={(photos) => selectedDraft ? savePortfolioPhotos(selectedDraft.id, photos) : undefined}
-            onCropPortfolioPhoto={(photoId, region) => selectedDraft ? cropPortfolioPhoto(selectedDraft.id, photoId, region) : Promise.resolve({ ok: false })}
-            onUploadPortfolioPhoto={(file) => selectedDraft ? uploadPortfolioPhoto(selectedDraft.id, file) : Promise.resolve({ ok: false })}
+            onSavePortfolioPhotos={(photos) =>
+              !selectedDraft
+                ? undefined
+                : selectedDraft.status === "approved"
+                  ? savePortfolioPhotos(selectedDraft.id, photos)
+                  : saveDraftPortfolioPhotos(selectedDraft.id, photos)
+            }
+            onCropPortfolioPhoto={(photoId, region) =>
+              !selectedDraft
+                ? Promise.resolve({ ok: false })
+                : selectedDraft.status === "approved"
+                  ? cropPortfolioPhoto(selectedDraft.id, photoId, region)
+                  : cropDraftPortfolioPhoto(selectedDraft.id, photoId, region)
+            }
+            onUploadPortfolioPhoto={(file) =>
+              !selectedDraft
+                ? Promise.resolve({ ok: false })
+                : selectedDraft.status === "approved"
+                  ? uploadPortfolioPhoto(selectedDraft.id, file)
+                  : uploadDraftPortfolioPhoto(selectedDraft.id, file)
+            }
           />
         ) : null}
 
@@ -3429,7 +3530,7 @@ function DraftEditorDrawer({
     "filters",
     "reviews",
     ...(isPublished ? (["branches"] as const) : []),
-    ...(isPublished ? (["photos"] as const) : []),
+    "photos",
   ];
   const drawerTabLabels: Record<DrawerTab, string> = {
     basic: "Basic info",
@@ -3526,10 +3627,11 @@ function DraftEditorDrawer({
               onUpdateBranch={onUpdateBranch}
               onDeleteBranch={onDeleteBranch}
             />
-          ) : activeTab === "photos" && isPublished ? (
+          ) : activeTab === "photos" ? (
             <PortfolioPhotosTab
               draft={draft}
               isBusy={isBusy}
+              isPublished={isPublished}
               onSave={onSavePortfolioPhotos}
               onCropPhoto={onCropPortfolioPhoto}
               onUploadPhoto={onUploadPortfolioPhoto}
@@ -3940,12 +4042,14 @@ function PortfolioPhotoReorderGrid({
 function PortfolioPhotosTab({
   draft,
   isBusy,
+  isPublished,
   onSave,
   onCropPhoto,
   onUploadPhoto,
 }: {
   draft: StylistDraft;
   isBusy: boolean;
+  isPublished: boolean;
   onSave: (photos: PortfolioPhotoAdmin[]) => void;
   onCropPhoto: (photoId: string, region: { x: number; y: number; width: number; height: number; rotation: number }) => Promise<{ ok: boolean; message?: string }>;
   onUploadPhoto: (file: File) => Promise<{ ok: boolean; message?: string }>;
@@ -3973,6 +4077,7 @@ function PortfolioPhotosTab({
           <p className="mt-1 text-sm text-stone-500">
             Every approved photo stays here, however many there are. The first {PORTFOLIO_SHOWN_COUNT} below are what actually
             shows on the public listing — reorder to change the shortlist, or remove a photo for good.
+            {isPublished ? "" : " Uploaded here now, these come along automatically once you publish."}
           </p>
         </div>
         <div className="shrink-0">
@@ -3996,7 +4101,11 @@ function PortfolioPhotosTab({
         isBusy={isBusy}
         onSave={onSave}
         onCropPhoto={onCropPhoto}
-        emptyMessage="No approved photos yet — approve some from the Photo review page, or upload one directly above."
+        emptyMessage={
+          isPublished
+            ? "No approved photos yet — approve some from the Photo review page, or upload one directly above."
+            : "No photos yet — upload one directly above."
+        }
       />
     </div>
   );

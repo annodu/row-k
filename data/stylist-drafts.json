@@ -2,173 +2,322 @@
   "meta": {
     "source": "admin-drafts",
     "updatedAt": "2026-08-31",
-    "count": 21
+    "count": 20
   },
   "drafts": [
     {
-      "id": "shanice-hair-and-makeup-artist-mth629eb",
+      "id": "slay-with-yaze-mthdil97",
       "status": "needs_review",
-      "name": "Shanice 🙋🏾‍♀️ Hair & Makeup Artist",
-      "areaId": "all-london",
+      "name": "SLAY WITH YAZE🔥🥰",
+      "areaId": "south-east",
       "areaIds": [
-        "all-london"
+        "south-east"
       ],
-      "areaLabel": "London",
-      "neighbourhood": "London London",
+      "areaLabel": "South east London",
+      "neighbourhood": "South east London London",
       "postcode": "",
       "bookingPlatform": "",
       "bookingUrl": "",
       "websiteUrl": "",
-      "instagramUrl": "https://www.instagram.com/shanicenoelhmu/",
+      "instagramUrl": "https://www.instagram.com/yazes.touch237/",
       "tiktokUrl": "",
       "addedVia": "Admin tool",
       "discoverySource": "Instagram auto-fill",
-      "services": [],
-      "rawServices": [],
-      "summary": "📍London \n  Represented by @stellacreativeartists",
-      "confidence": 0.2,
-      "warnings": [
-        "No booking link identified yet.",
-        "No services matched yet."
-      ],
-      "evidence": [
-        "Submitted link: https://www.instagram.com/shanicenoelhmu/"
-      ],
-      "source": "admin-draft",
-      "createdAt": "2026-08-31",
-      "updatedAt": "2026-08-31",
-      "lastCheckedAt": "2026-08-31",
-      "bookingLinkEvidence": "Instagram bio: \"📍London \n  Represented by @stellacreativeartists\"\nNo bookable link found in bio — likely DM/WhatsApp/call to book.",
-      "attributeSuggestions": []
-    },
-    {
-      "id": "icy-mth4r5il",
-      "status": "needs_review",
-      "name": "Icy",
-      "areaId": "",
-      "areaIds": [],
-      "areaLabel": "",
-      "neighbourhood": "",
-      "postcode": "",
-      "bookingPlatform": "",
-      "bookingUrl": "",
-      "websiteUrl": "https://www.mobileapp.app/to/Hhulv0C?ref=so",
-      "instagramUrl": "https://www.instagram.com/five_star_londonbraider/",
-      "tiktokUrl": "",
-      "addedVia": "Admin tool",
-      "discoverySource": "Instagram auto-fill",
-      "services": [],
-      "rawServices": [],
-      "summary": "Braided & Rooted✨  \nHair Designer",
-      "confidence": 0.2,
-      "warnings": [
-        "No booking link identified yet.",
-        "No services matched yet."
-      ],
-      "evidence": [
-        "Submitted link: https://www.instagram.com/five_star_londonbraider/",
-        "Submitted link: https://www.mobileapp.app/to/Hhulv0C?ref=so"
-      ],
-      "source": "admin-draft",
-      "createdAt": "2026-08-31",
-      "updatedAt": "2026-08-31",
-      "lastCheckedAt": "2026-08-31",
-      "bookingLinkEvidence": "Instagram bio: \"Braided & Rooted✨  \nHair Designer\"\nBio link used as website: https://www.mobileapp.app/to/Hhulv0C?ref=so",
-      "attributeSuggestions": []
-    },
-    {
-      "id": "new-stylist-mtbgl42z",
-      "status": "needs_review",
-      "name": "Ginasighnature",
-      "areaId": "all-london",
-      "areaIds": [
-        "all-london"
-      ],
-      "areaLabel": "London",
-      "neighbourhood": "London London",
-      "postcode": "",
-      "bookingPlatform": "",
-      "bookingUrl": "",
-      "websiteUrl": "",
-      "instagramUrl": "https://www.instagram.com/ginasighnature/",
-      "tiktokUrl": "",
-      "addedVia": "Admin tool",
-      "discoverySource": "Manual search",
-      "services": [],
-      "rawServices": [],
-      "summary": "South London Braid Specialist\nFor Bookings & Enquiries:➡️ 07507383742",
-      "confidence": 0.2,
-      "warnings": [
-        "No booking link identified yet.",
-        "No services matched yet."
-      ],
-      "evidence": [
-        "Submitted link: https://www.instagram.com/ginasighnature/"
-      ],
-      "source": "admin-draft",
-      "createdAt": "2026-08-27",
-      "updatedAt": "2026-08-28",
-      "lastCheckedAt": "2026-08-28",
-      "bookingLinkEvidence": "Instagram's own profile API failed for this account (\"Asset asset://laser.provider/ig_business_category_subvertical has been deleted. You cannot use this schema\") — fetched via AnyAPI instead.\nInstagram bio: \"South London Braid Specialist\nFor Bookings & Enquiries:➡️ 07507383742\"\nNo bookable link found in bio — likely DM/WhatsApp/call to book.",
-      "attributeSuggestions": []
-    },
-    {
-      "id": "new-stylist-mtao52r0",
-      "status": "ready_to_approve",
-      "name": "JB The Hairstylist",
-      "areaId": "east",
-      "areaIds": [
-        "east"
-      ],
-      "areaLabel": "East London",
-      "neighbourhood": "East London London",
-      "postcode": "",
-      "bookingPlatform": "Acuity",
-      "bookingUrl": "http://jbhairstylist.as.me/",
-      "websiteUrl": "",
-      "instagramUrl": "https://www.instagram.com/jb.thehairstylist/",
-      "tiktokUrl": "",
-      "addedVia": "Admin tool",
-      "discoverySource": "Manual search",
       "services": [
-        "Wig install (frontal / closure)",
-        "Custom wig",
-        "Traditional sew-in / leave out",
-        "Closure sew-in / closure behind the hairline",
-        "Frontal sew-in",
-        "Flipover / Versatile sew-in"
+        "Bridal",
+        "Pixie cut / finger waves",
+        "Crochet",
+        "Wig cornrows",
+        "Box braids"
       ],
       "rawServices": [
-        "Lace customisation",
-        "Custom Wigs",
-        "Custom made frontal wig",
-        "Custom made mini frontal wig (5x5 - 7x7)",
-        "Pre-made Wigs",
-        "Pre-made wig install",
-        "Weave (leaveouts/lace sew-ins)",
-        "Middle part leave out",
-        "Side part leave out",
-        "Closure sew-in",
-        "Frontal sew-in",
-        "Flip over sew-in",
-        "Wig maintenance",
-        "Wig styling",
-        "Re-install closure/frontal",
-        "Lace replacement and install"
+        "It’s all about looking good!🥵🤗\nOutfit: Brenda-fashion-237\n.\n.\n.\n.\n.\n#installation #makeupartist #makeup237 #traditionalhairstyle #bridalhairstyle",
+        "Let’s wrap up the August birthday celebration in style!💋😍😍\n✨✨\n.\n.\n.\n.\n.\n.\n#augustborn #london #viralvideos #transition",
+        "Crochet Vixen with no leave out!🔥🥳\n.\n.\n.\n.\n.\n.\n.\n.\n.\n#londonhairstylists #ukhairstylist",
+        "🥳🔥 \n.\n.\n.\n.\n.\nexplore #kidshairstyles #braids #hair #hairstyles #cornrows #fyp #foryou #explore\n#trendyhairstyle #hair_stylespalace #hairtrends2024 #2025hairstyle",
+        "Our client in Paris was very satisfied!🇫🇷🙏\nBox braids for Xmas!🥳🥳\n.\n.\n.\n.\n.\n.\n.\n.\n.\n#braidstyles #boxbraids #millhill #londonbraidslessons"
       ],
-      "summary": "📍Private Studio in E10\n    I specialise in 𝗖𝘂𝘀𝘁𝗼𝗺 𝘄𝗶𝗴𝘀, 𝗜𝗻𝘀𝘁𝗮𝗹𝗹𝘀 and 𝗦𝗲𝘄-𝗶𝗻𝘀\n 𝗕𝘂𝗻𝗱𝗹𝗲𝘀 available - DM to purchase \nAUG & SEP slots available ⬇️",
-      "confidence": 0.85,
-      "warnings": [],
+      "summary": "SE London hair plug & MUA\n‼️July slots are now available.\n#Location, Cradat Yaoundé.....671639242\n#London, 07534352131",
+      "confidence": 0.55,
+      "warnings": [
+        "No booking link identified yet."
+      ],
       "evidence": [
-        "Submitted link: https://www.instagram.com/jb.thehairstylist/",
-        "Submitted link: http://jbhairstylist.as.me/",
+        "Submitted link: https://www.instagram.com/yazes.touch237/",
         "Raw services provided during admin intake."
       ],
       "source": "admin-draft",
-      "createdAt": "2026-08-26",
-      "updatedAt": "2026-08-28",
-      "lastCheckedAt": "2026-08-28",
-      "bookingLinkEvidence": "Instagram's own profile API failed for this account (\"Asset asset://laser.provider/ig_business_category_subvertical has been deleted. You cannot use this schema\") — fetched via AnyAPI instead.\nInstagram bio: \"📍Private Studio in E10\n    I specialise in 𝗖𝘂𝘀𝘁𝗼𝗺 𝘄𝗶𝗴𝘀, 𝗜𝗻𝘀𝘁𝗮𝗹𝗹𝘀 and 𝗦𝗲𝘄-𝗶𝗻𝘀\n 𝗕𝘂𝗻𝗱𝗹𝗲𝘀 available - DM to purchase \nAUG & SEP slots available ⬇️\"\nBio link recognized as Acuity: http://jbhairstylist.as.me/",
+      "createdAt": "2026-08-31",
+      "updatedAt": "2026-08-31",
+      "lastCheckedAt": "2026-08-31",
+      "bookingLinkEvidence": "Instagram's own profile API failed for this account (\"Please wait a few minutes before you try again.\") — fetched via AnyAPI instead.\nInstagram bio: \"SE London hair plug & MUA\n‼️July slots are now available.\n#Location, Cradat Yaoundé.....671639242\n#London, 07534352131\"\nNo bookable link found in bio — likely DM/WhatsApp/call to book.\nChecked recent post captions instead:\n\"Bridal\" found in a post caption: \"It’s all about looking good!🥵🤗\nOutfit: Brenda-fashion-237\n.\n.\n.\n.\n.\n#installation #makeupartist #makeup237 #traditionalhairstyle #bridalhairstyle\" — https://www.instagram.com/p/Cufekf2geAN/\n\"Pixie cut / finger waves\" found in a post caption: \"Let’s wrap up the August birthday celebration in style!💋😍😍\n✨✨\n.\n.\n.\n.\n.\n.\n#augustborn #london #viralvideos #transition\" — https://www.instagram.com/p/Dcp92iqsMX1/\n\"Crochet\" found in a post caption: \"Crochet Vixen with no leave out!🔥🥳\n.\n.\n.\n.\n.\n.\n.\n.\n.\n#londonhairstylists #ukhairstylist\" — https://www.instagram.com/p/DO_YBeaDIN1/\n\"Wig cornrows\" found in a post caption: \"🥳🔥 \n.\n.\n.\n.\n.\nexplore #kidshairstyles #braids #hair #hairstyles #cornrows #fyp #foryou #explore\n#trendyhairstyle #hair_stylespalace #hairtrends2024 #2025hairs\" — https://www.instagram.com/p/DFl4W0LK9jU/\n\"Box braids\" found in a post caption: \"Our client in Paris was very satisfied!🇫🇷🙏\nBox braids for Xmas!🥳🥳\n.\n.\n.\n.\n.\n.\n.\n.\n.\n#braidstyles #boxbraids #millhill #londonbraidslessons\" — https://www.instagram.com/p/DDVdILRNBMG/",
+      "attributeSuggestions": []
+    },
+    {
+      "id": "hair-by-rime-mthdfsb1",
+      "status": "needs_review",
+      "name": "Hair by Rime",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london"
+      ],
+      "areaLabel": "London",
+      "neighbourhood": "London London",
+      "postcode": "",
+      "bookingPlatform": "Setmore",
+      "bookingUrl": "https://hairbyrime.setmore.com/hair",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/hairbyrime/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [],
+      "rawServices": [],
+      "summary": "✨afro hair and locs specialist \n✈️international hairstylist\n📍london | bcn | paris\ndm for more info",
+      "confidence": 0.2,
+      "warnings": [
+        "No services matched yet."
+      ],
+      "evidence": [
+        "Submitted link: https://www.instagram.com/hairbyrime/",
+        "Submitted link: https://hairbyrime.setmore.com/hair"
+      ],
+      "source": "admin-draft",
+      "createdAt": "2026-08-31",
+      "updatedAt": "2026-08-31",
+      "lastCheckedAt": "2026-08-31",
+      "bookingLinkEvidence": "Instagram's own profile API failed for this account (\"Please wait a few minutes before you try again.\") — fetched via AnyAPI instead.\nInstagram bio: \"✨afro hair and locs specialist \n✈️international hairstylist\n📍london | bcn | paris\ndm for more info\"\nBio link recognized as Setmore: https://hairbyrime.setmore.com/hair",
+      "attributeSuggestions": []
+    },
+    {
+      "id": "faux-locs-london-faux-goddess-and-crochet-locs-mthdf077",
+      "status": "needs_review",
+      "name": "Faux Locs London | Faux, Goddess & Crochet Locs 🇬🇧",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london"
+      ],
+      "areaLabel": "London",
+      "neighbourhood": "London London",
+      "postcode": "",
+      "bookingPlatform": "",
+      "bookingUrl": "",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/fauxlocslondon/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Crochet",
+        "Bridal",
+        "Soft locs",
+        "Crochet faux locs / invisible locs",
+        "Butterfly locs",
+        "Full head colour"
+      ],
+      "rawServices": [
+        "Dreamy 🤍👰🏽‍♀️✨\n\nPhotographer: @rachaelhumphriesphotography \nMUA: @beatzbybre \nMuse: @rach.harris_ \n\n#weddinginspo #bridalhairstyle #fauxlocs #mua #locs #atlhairstylist #atllocs #fauxlocsatl #blackwomeninbusiness #fauxlocspecialist #locstyles #locstylesforwomen #blackisbeautiful #beforeandafter #reels #hairinspo #fauxlocsatlanta #weddingideas #crochetlocs #bride #protectivestyles #crochet #atlantahairstylist #locsstyles #weddingmakeup #fauxlocslondon #ootd #crochethairaccessories",
+        "A little update from FauxLocsLondon… 💚\n\nFirstly, thank you.\n\nThank you for your patience, your love, your recommendations, every booking, every order and every kind message. Your support has meant the world to me, and I’m so grateful for this beautiful community we’ve built together.\n\n✨ Appointments are now open for July – September 2026.\n\nI’ll be taking on a limited number of installation appointments during this period before appointments pause until further notice. If you’ve been waiting for the perfect time to book your next set of locs, this is it!\n\nIf you’ve previously sent an email enquiry and didn’t receive a response, I’d be so grateful if you could resend it. Due to unforeseen circumstances I was away from emails for a little while, but I’m now working through enquiries and can’t wait to connect with you again.\n\n📧 Bookings & enquiries:\nfauxlocslondon@gmail.com\n\nThe good news is that FauxLocsLondon isn’t going anywhere!\n\nYou’ll still be able to shop:\n🤎 Crochet hair\n🤎 Customised wig units\n🤎 Ready-to-ship wig units\n🤎 Your favourite FauxLocsLondon products\n\nThank you for your continued love, grace and support. I can’t wait to create with you over the next few months. Let’s make these appointments count! ✨\n\nLove always,\nFauxLocsLondon 💚",
+        "Wedding season is here! \n\nThese regal and elegant loc styles put a twist to the ‘go to’ looks. \n\nLondon & US appointments available now, book via FauxLocsLondon.com\n\n#fauxlocs #goddesslocs #softlocs #mermaidlocs #boholocs #bohemianlocs #distressedlocs #humanhairfauxlocs #humanhairlocs #crochetlocs #fauxlocsphilly #goddesslocsphilly #softlocsphilly #fauxlocsatl #fauxlocsatlanta #fauxlocsnyc #fauxlocslondon #fauxlocsmiami #fauxlocsnbeautiful #fauxlocshouston #neatbraids #fauxlocsatlanta #fauxlocsnbeautiful #goddessfauxlocs #protectivestyles #weave #crochet #locsoflove #butterflylocs #softlocs",
+        "September Appointments Available 🥹\n\nOur “Cinnamon Glow” locs are a classic and our clients can’t get enough. Just a gentle reminder we’ll be taking on a limited number of installation appointments during this period before appointments pause until further notice.\n\n✨ GET THE LOOK:\nSTYLE: Cinnamon Glow\nLENGTH: Hip\n\n#fauxlocs #goddesslocs #boholocs #crochetlocs #fauxlocslondon",
+        "Handmade crochet locs + Soft locs install 😍\n\nGET THE LOOK: \nSTYLE: Soft locs\nLENGTH: Bra strap\nCOLOUR: 1B\n\nHair: Handmade distressed faux locs - 18”\n\n#fauxlocs #distressedlocs #fauxlocslondon #crochetlocs #softlocs",
+        "Sometimes things don’t go exactly as planned… \nbut that doesn’t mean you can’t still get the look you want.\n\nOur client wanted her locs to have a curly finish. So we took matters into our own hands and customised the hair adding curls to bring her vision to life. At the end of the day, we’re always willing to go above and beyond for our clients… Especially our loyal ones. There’s no mountain we won’t climb for you, no challenge we won’t accept.\n\nThe result? Custom curly faux locs, in her desired colour and length… and a very happy client 💚\n\nGET THE LOOK:\nSTYLE: Soft locs \n\n#crochetlocs #greyhair #fauxlocs #hairstyles #fauxlocslondon",
+        "Turning up the HEAT 🔥\n\nThis is your sign to try some colour for the summer.\n\nGET THE LOOK: Soft locs \nCOLOUR: Burg\n\n#fauxlocs #locs #hairinspo #fauxlocslondon #redlocs",
+        "Spring/Summer hair inspo 🔥\n\nGET THE LOOK: Soft locs + Style\n\n#fauxlocs #locs #hairinspo #fauxlocslondon #reels",
+        "Made you look\n\nOur CINNAMON GLOW locs are gorgeous in both lengths… But which one are you choosing?\n\nTeam Long or Team Short? 💚✨\n\nGET THE LOOK:\nSTYLE: Soft Locs \n\n#fauxlocs #fauxlocslondon #bohostyle #trending #reel",
+        "7 weeks 4 days and counting 💚\n\nThis is your sign that a retouch can completely bring your locs back to life. Our client came through with her own style inspo for her retouch and we refreshed, refined, restyled and brought the look right back to life.\n\nWith the right maintenance, she can comfortably keep these in for another 4 weeks, looking neat, secure, and effortless.\n\nGET THE LOOK: Soft locs (Retouch & Retightening)\n\n#locs #fauxlocslondon #locstylesforwomen #fauxlocs #hairtransformation",
+        "138 days of this install and counting ✨\nproof that the right hairstyle isn’t just cute…it lasts.\n\nGET THE LOOK: \nSTYLE: Faux Locs + Distressed style\nLENGTH: Waist\nSIZE: L/XL\n\nsoft, lightweight faux locs for those  who want beauty and longevity.\nthis is your sign to invest in styles that work overtime. #fauxlocslondon #fauxlocs #locs #trending #boholocs",
+        "✨ Happy New Year from Faux Locs London ✨\n\nWe may have been a little quiet on here, but behind the scenes it’s been a full year of installs, creativity, and beautiful loc journeys. Thank you to every client who booked, returned, referred, and trusted us with their crown throughout 2025 your support truly means everything.\n\nAs we step into this new year, we’re excited for what’s ahead and ready to welcome both new and returning clients into the chair.\n\n📅 Bookings are now open for Jan 2026 - with added dates. Secure your appointment and start the year with your hair done and your confidence intact.\n\nHere’s to another year of growth, gratitude, and gorgeous faux locs 🤍\n\n— Faux Locs London 💚✨\n#fauxlocs #locs #fauxlocslondon #hairstyles #reels",
+        "GettingMyHairDoneaHolic 💁🏾‍♀️\n\nThere’s something about having your hair done that goes beyond the aesthetic. It’s the feeling of showing up for yourself. It’s the confidence returning. It’s the reminder that you deserve to feel good, looked after.\n\nFaux locs are not just a style. They’re a reset. A moment to breathe.\nA reminder that your softness, your beauty, and your well-being matter.\n\nWhen your crown is cared for, you feel cared for. And you deserve that every season 💚\n\nGET THE LOOK:\nSTYLE: Soft locs\nLENGTH: Bra strap\n\n#fauxlocs #fauxlocstyles #fauxlocsjourney #goddesslocs #softlocs #protectivestyles #crochetlocs #naturalhaircommunity #blackhairuk #blackgirlluxury #locinspired #texturedhair #braideruk #londonhairstylist #hairwellness #selfcarematters #fauxlocslondon"
+      ],
+      "summary": "#FAUXLOCSLONDON \nLocs of love 💚\n📧 Appointments + Orders via fauxlocslondon@gmail.com",
+      "confidence": 0.55,
+      "warnings": [
+        "No booking link identified yet."
+      ],
+      "evidence": [
+        "Submitted link: https://www.instagram.com/fauxlocslondon/",
+        "Raw services provided during admin intake."
+      ],
+      "source": "admin-draft",
+      "createdAt": "2026-08-31",
+      "updatedAt": "2026-08-31",
+      "lastCheckedAt": "2026-08-31",
+      "bookingLinkEvidence": "Instagram's own profile API failed for this account (\"Asset asset://laser.provider/ig_business_category_subvertical has been deleted. You cannot use this schema\") — fetched via AnyAPI instead.\nInstagram bio: \"#FAUXLOCSLONDON \nLocs of love 💚\n📧 Appointments + Orders via fauxlocslondon@gmail.com\"\nNo bookable link found in bio — likely DM/WhatsApp/call to book.\nChecked recent post captions instead:\n\"Crochet\" found in a post caption: \"Dreamy 🤍👰🏽‍♀️✨\n\nPhotographer: @rachaelhumphriesphotography \nMUA: @beatzbybre \nMuse: @rach.harris_ \n\n#weddinginspo #bridalhairstyle #fauxlocs #mua #locs #atlh\" — https://www.instagram.com/p/Cw-_M9HvWFY/\n\"Bridal\" found in a post caption: \"Dreamy 🤍👰🏽‍♀️✨\n\nPhotographer: @rachaelhumphriesphotography \nMUA: @beatzbybre \nMuse: @rach.harris_ \n\n#weddinginspo #bridalhairstyle #fauxlocs #mua #locs #atlh\" — https://www.instagram.com/p/Cw-_M9HvWFY/\n\"Soft locs\" found in a post caption: \"Dreamy 🤍👰🏽‍♀️✨\n\nPhotographer: @rachaelhumphriesphotography \nMUA: @beatzbybre \nMuse: @rach.harris_ \n\n#weddinginspo #bridalhairstyle #fauxlocs #mua #locs #atlh\" — https://www.instagram.com/p/Cw-_M9HvWFY/\n\"Crochet faux locs / invisible locs\" found in a post caption: \"Dreamy 🤍👰🏽‍♀️✨\n\nPhotographer: @rachaelhumphriesphotography \nMUA: @beatzbybre \nMuse: @rach.harris_ \n\n#weddinginspo #bridalhairstyle #fauxlocs #mua #locs #atlh\" — https://www.instagram.com/p/Cw-_M9HvWFY/\n\"Crochet\" found in a post caption: \"A little update from FauxLocsLondon… 💚\n\nFirstly, thank you.\n\nThank you for your patience, your love, your recommendations, every booking, every order and every\" — https://www.instagram.com/p/DbGC_E4OQyL/\n\"Bridal\" found in a post caption: \"Wedding season is here! \n\nThese regal and elegant loc styles put a twist to the ‘go to’ looks. \n\nLondon & US appointments available now, book via FauxLocsLondon\" — https://www.instagram.com/p/CejHkJ0Ilvh/\n\"Crochet\" found in a post caption: \"Wedding season is here! \n\nThese regal and elegant loc styles put a twist to the ‘go to’ looks. \n\nLondon & US appointments available now, book via FauxLocsLondon\" — https://www.instagram.com/p/CejHkJ0Ilvh/\n\"Soft locs\" found in a post caption: \"Wedding season is here! \n\nThese regal and elegant loc styles put a twist to the ‘go to’ looks. \n\nLondon & US appointments available now, book via FauxLocsLondon\" — https://www.instagram.com/p/CejHkJ0Ilvh/\n\"Crochet faux locs / invisible locs\" found in a post caption: \"Wedding season is here! \n\nThese regal and elegant loc styles put a twist to the ‘go to’ looks. \n\nLondon & US appointments available now, book via FauxLocsLondon\" — https://www.instagram.com/p/CejHkJ0Ilvh/\n\"Butterfly locs\" found in a post caption: \"Wedding season is here! \n\nThese regal and elegant loc styles put a twist to the ‘go to’ looks. \n\nLondon & US appointments available now, book via FauxLocsLondon\" — https://www.instagram.com/p/CejHkJ0Ilvh/\n\"Crochet\" found in a post caption: \"September Appointments Available 🥹\n\nOur “Cinnamon Glow” locs are a classic and our clients can’t get enough. Just a gentle reminder we’ll be taking on a limite\" — https://www.instagram.com/p/DcjtZIFtmeu/\n\"Soft locs\" found in a post caption: \"September Appointments Available 🥹\n\nOur “Cinnamon Glow” locs are a classic and our clients can’t get enough. Just a gentle reminder we’ll be taking on a limite\" — https://www.instagram.com/p/DcjtZIFtmeu/\n\"Crochet faux locs / invisible locs\" found in a post caption: \"September Appointments Available 🥹\n\nOur “Cinnamon Glow” locs are a classic and our clients can’t get enough. Just a gentle reminder we’ll be taking on a limite\" — https://www.instagram.com/p/DcjtZIFtmeu/\n\"Crochet\" found in a post caption: \"Handmade crochet locs + Soft locs install 😍\n\nGET THE LOOK: \nSTYLE: Soft locs\nLENGTH: Bra strap\nCOLOUR: 1B\n\nHair: Handmade distressed faux locs - 18”\n\n#fauxlocs\" — https://www.instagram.com/p/Dbi423GDW0l/\n\"Soft locs\" found in a post caption: \"Handmade crochet locs + Soft locs install 😍\n\nGET THE LOOK: \nSTYLE: Soft locs\nLENGTH: Bra strap\nCOLOUR: 1B\n\nHair: Handmade distressed faux locs - 18”\n\n#fauxlocs\" — https://www.instagram.com/p/Dbi423GDW0l/\n\"Crochet faux locs / invisible locs\" found in a post caption: \"Handmade crochet locs + Soft locs install 😍\n\nGET THE LOOK: \nSTYLE: Soft locs\nLENGTH: Bra strap\nCOLOUR: 1B\n\nHair: Handmade distressed faux locs - 18”\n\n#fauxlocs\" — https://www.instagram.com/p/Dbi423GDW0l/\n\"Full head colour\" found in a post caption: \"Handmade crochet locs + Soft locs install 😍\n\nGET THE LOOK: \nSTYLE: Soft locs\nLENGTH: Bra strap\nCOLOUR: 1B\n\nHair: Handmade distressed faux locs - 18”\n\n#fauxlocs\" — https://www.instagram.com/p/Dbi423GDW0l/\n\"Soft locs\" found in a post caption: \"Sometimes things don’t go exactly as planned… \nbut that doesn’t mean you can’t still get the look you want.\n\nOur client wanted her locs to have a curly finish. \" — https://www.instagram.com/p/DXcNcL8jRL2/\n\"Full head colour\" found in a post caption: \"Sometimes things don’t go exactly as planned… \nbut that doesn’t mean you can’t still get the look you want.\n\nOur client wanted her locs to have a curly finish. \" — https://www.instagram.com/p/DXcNcL8jRL2/\n\"Crochet\" found in a post caption: \"Sometimes things don’t go exactly as planned… \nbut that doesn’t mean you can’t still get the look you want.\n\nOur client wanted her locs to have a curly finish. \" — https://www.instagram.com/p/DXcNcL8jRL2/\n\"Crochet faux locs / invisible locs\" found in a post caption: \"Sometimes things don’t go exactly as planned… \nbut that doesn’t mean you can’t still get the look you want.\n\nOur client wanted her locs to have a curly finish. \" — https://www.instagram.com/p/DXcNcL8jRL2/\n\"Full head colour\" found in a post caption: \"Turning up the HEAT 🔥\n\nThis is your sign to try some colour for the summer.\n\nGET THE LOOK: Soft locs \nCOLOUR: Burg\n\n#fauxlocs #locs #hairinspo #fauxlocslondon \" — https://www.instagram.com/p/DXU_CCxDYNy/\n\"Soft locs\" found in a post caption: \"Turning up the HEAT 🔥\n\nThis is your sign to try some colour for the summer.\n\nGET THE LOOK: Soft locs \nCOLOUR: Burg\n\n#fauxlocs #locs #hairinspo #fauxlocslondon \" — https://www.instagram.com/p/DXU_CCxDYNy/\n\"Soft locs\" found in a post caption: \"Spring/Summer hair inspo 🔥\n\nGET THE LOOK: Soft locs + Style\n\n#fauxlocs #locs #hairinspo #fauxlocslondon #reels\" — https://www.instagram.com/p/DW0tI8ujXTa/\n\"Soft locs\" found in a post caption: \"Made you look\n\nOur CINNAMON GLOW locs are gorgeous in both lengths… But which one are you choosing?\n\nTeam Long or Team Short? 💚✨\n\nGET THE LOOK:\nSTYLE: Soft Loc\" — https://www.instagram.com/p/DUa32U8jVcR/\n\"Soft locs\" found in a post caption: \"7 weeks 4 days and counting 💚\n\nThis is your sign that a retouch can completely bring your locs back to life. Our client came through with her own style inspo f\" — https://www.instagram.com/p/DUCB8SQDXjd/\n\"Soft locs\" found in a post caption: \"138 days of this install and counting ✨\nproof that the right hairstyle isn’t just cute…it lasts.\n\nGET THE LOOK: \nSTYLE: Faux Locs + Distressed style\nLENGTH: Wai\" — https://www.instagram.com/p/DTu6ShcjW0h/\n\"Soft locs\" found in a post caption: \"✨ Happy New Year from Faux Locs London ✨\n\nWe may have been a little quiet on here, but behind the scenes it’s been a full year of installs, creativity, and beau\" — https://www.instagram.com/p/DTAz1sRDZjD/\n\"Soft locs\" found in a post caption: \"GettingMyHairDoneaHolic 💁🏾‍♀️\n\nThere’s something about having your hair done that goes beyond the aesthetic. It’s the feeling of showing up for yourself. It’s\" — https://www.instagram.com/p/DQrNa56jdto/\n\"Crochet\" found in a post caption: \"GettingMyHairDoneaHolic 💁🏾‍♀️\n\nThere’s something about having your hair done that goes beyond the aesthetic. It’s the feeling of showing up for yourself. It’s\" — https://www.instagram.com/p/DQrNa56jdto/\n\"Crochet faux locs / invisible locs\" found in a post caption: \"GettingMyHairDoneaHolic 💁🏾‍♀️\n\nThere’s something about having your hair done that goes beyond the aesthetic. It’s the feeling of showing up for yourself. It’s\" — https://www.instagram.com/p/DQrNa56jdto/",
+      "attributeSuggestions": []
+    },
+    {
+      "id": "eiri-ni-hair-mthdd2l8",
+      "status": "needs_review",
+      "name": "EIRÍNI HAIR",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london"
+      ],
+      "areaLabel": "London",
+      "neighbourhood": "London London",
+      "postcode": "",
+      "bookingPlatform": "",
+      "bookingUrl": "",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/eirinihair/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Soft locs",
+        "Butterfly locs",
+        "Boho braids / goddess braids",
+        "Knotless braids",
+        "Updo",
+        "Twists (with extensions)"
+      ],
+      "rawServices": [
+        "Soft locs….very versatile 😍\n\n #fauxlocs #fauxlocslondon #locs #fausseslocks #distressedlocs #ukbraiders #ukbraids #londonbraider #londonbraids #braidgang #braidstyles #butterflylocs #butterflylocslondon",
+        "Boho Knotless braids ✨\n\n #boho #bohobraids #bohoknotlessbraids #londonbraider #londonknotlessbraids #ukbraiders #knotlessbraids",
+        "Something about Ginger…..🔥\n\nSoft locs up do w/barrels \n #fauxlocs #fauxlocslondon #locs #fausseslocks #distressedlocs #ukbraiders #ukbraids #londonbraider #londonbraids #braidgang #braidstyles #butterflylocs #butterflylocslondon",
+        "I tried to make it work…she didn’t have much hair 😓.\n\nBoho braids waist length \n#knotlessbraids #bohobraids",
+        "Ginger textured soft locs 👩🏾‍🦰👩🏾‍🦰\n\nDm to book \n#fauxlocs",
+        "Blonde mix textured soft locs 👱🏾‍♀️✨\n\nA few slots left for April \nMay slots out \nDm or WhatsApp to book (link in bio)",
+        "Shoulder/bob length textured soft locs ✨ \n\nMat slots out on the 14th at 8pm \nDM TO BOOK",
+        "Marley twist\n\nDm to book ✨",
+        "Marley twist \nApril slots out on the 14th at 8pm\n\n#marleytwist #londonbraider #ukbraiders",
+        "Textured soft locs \n\nApril slots out on the 14th of this month at 8pm \n\n #fauxlocs #fauxlocslondon #ukbraiders #braidstyles",
+        "Shoulder length ✨\n\n #fauxlocs #fauxlocslondon #locs #fausseslocks #distressedlocs",
+        "Love the full look 😍😍\n\nMarch slots out now \n#fauxlocs #fauxlocslondon #fausseslocks #distressedlocs #ukbraiders",
+        "Marley twist 😍🤏🏾#londonbraider #ukbraiders #fauxlocslondon#londonbraids \n\nOnly a few slots left in February. \n\nMarch slots will be released on the 14/02 at 8pm.",
+        "Happy New Year ladies 🥳🙏🏾✨\nOne of my absolute favourite loc textures 😍\n\n✨ Textured soft locs\n✨ Blonde mix\n✨ 18 inches\n #fauxlocs #fauxlocslondon #londonbraider #fausseslocks",
+        "Boho braids 🔥\n\nDm to book x\n2 slots left for December ⏳\n\n#bohobraids #braids #knotlessbraids #braidslondon #ukbraider #londonbraider #bohobraidslondon"
+      ],
+      "summary": "Specialising in Faux locs 💚\nJUNE SLOTS OUT NOW \nDM or WHATSAPP TO BOOK\nPARIS🇫🇷/London 🇬🇧\nNON-REFUNDABLE DEPOSIT REQUIRED",
+      "confidence": 0.55,
+      "warnings": [
+        "No booking link identified yet."
+      ],
+      "evidence": [
+        "Submitted link: https://www.instagram.com/eirinihair/",
+        "Raw services provided during admin intake."
+      ],
+      "source": "admin-draft",
+      "createdAt": "2026-08-31",
+      "updatedAt": "2026-08-31",
+      "lastCheckedAt": "2026-08-31",
+      "bookingLinkEvidence": "Instagram's own profile API failed for this account (\"Asset asset://laser.provider/ig_business_category_subvertical has been deleted. You cannot use this schema\") — fetched via AnyAPI instead.\nInstagram bio: \"Specialising in Faux locs 💚\nJUNE SLOTS OUT NOW \nDM or WHATSAPP TO BOOK\nPARIS🇫🇷/London 🇬🇧\nNON-REFUNDABLE DEPOSIT REQUIRED\"\nNo bookable link found in bio — likely DM/WhatsApp/call to book.\nChecked recent post captions instead:\n\"Soft locs\" found in a post caption: \"Soft locs….very versatile 😍\n\n #fauxlocs #fauxlocslondon #locs #fausseslocks #distressedlocs #ukbraiders #ukbraids #londonbraider #londonbraids #braidgang #brai\" — https://www.instagram.com/p/DAJqXLEuihE/\n\"Butterfly locs\" found in a post caption: \"Soft locs….very versatile 😍\n\n #fauxlocs #fauxlocslondon #locs #fausseslocks #distressedlocs #ukbraiders #ukbraids #londonbraider #londonbraids #braidgang #brai\" — https://www.instagram.com/p/DAJqXLEuihE/\n\"Boho braids / goddess braids\" found in a post caption: \"Boho Knotless braids ✨\n\n #boho #bohobraids #bohoknotlessbraids #londonbraider #londonknotlessbraids #ukbraiders #knotlessbraids\" — https://www.instagram.com/p/DEr0HOYthck/\n\"Knotless braids\" found in a post caption: \"Boho Knotless braids ✨\n\n #boho #bohobraids #bohoknotlessbraids #londonbraider #londonknotlessbraids #ukbraiders #knotlessbraids\" — https://www.instagram.com/p/DEr0HOYthck/\n\"Soft locs\" found in a post caption: \"Something about Ginger…..🔥\n\nSoft locs up do w/barrels \n #fauxlocs #fauxlocslondon #locs #fausseslocks #distressedlocs #ukbraiders #ukbraids #londonbraider #lon\" — https://www.instagram.com/p/C5y0ZGeNRLW/\n\"Updo\" found in a post caption: \"Something about Ginger…..🔥\n\nSoft locs up do w/barrels \n #fauxlocs #fauxlocslondon #locs #fausseslocks #distressedlocs #ukbraiders #ukbraids #londonbraider #lon\" — https://www.instagram.com/p/C5y0ZGeNRLW/\n\"Butterfly locs\" found in a post caption: \"Something about Ginger…..🔥\n\nSoft locs up do w/barrels \n #fauxlocs #fauxlocslondon #locs #fausseslocks #distressedlocs #ukbraiders #ukbraids #londonbraider #lon\" — https://www.instagram.com/p/C5y0ZGeNRLW/\n\"Boho braids / goddess braids\" found in a post caption: \"I tried to make it work…she didn’t have much hair 😓.\n\nBoho braids waist length \n#knotlessbraids #bohobraids\" — https://www.instagram.com/p/DbWVcVkjFe3/\n\"Knotless braids\" found in a post caption: \"I tried to make it work…she didn’t have much hair 😓.\n\nBoho braids waist length \n#knotlessbraids #bohobraids\" — https://www.instagram.com/p/DbWVcVkjFe3/\n\"Soft locs\" found in a post caption: \"Ginger textured soft locs 👩🏾‍🦰👩🏾‍🦰\n\nDm to book \n#fauxlocs\" — https://www.instagram.com/p/DZDWqCVMvom/\n\"Soft locs\" found in a post caption: \"Blonde mix textured soft locs 👱🏾‍♀️✨\n\nA few slots left for April \nMay slots out \nDm or WhatsApp to book (link in bio)\" — https://www.instagram.com/p/DXPnLHBDJIe/\n\"Soft locs\" found in a post caption: \"Shoulder/bob length textured soft locs ✨ \n\nMat slots out on the 14th at 8pm \nDM TO BOOK\" — https://www.instagram.com/p/DXB8VbnjH2N/\n\"Twists (with extensions)\" found in a post caption: \"Marley twist\n\nDm to book ✨\" — https://www.instagram.com/p/DWzfV8WjJaU/\n\"Twists (with extensions)\" found in a post caption: \"Marley twist \nApril slots out on the 14th at 8pm\n\n#marleytwist #londonbraider #ukbraiders\" — https://www.instagram.com/p/DVy0eY6DEC2/\n\"Soft locs\" found in a post caption: \"Textured soft locs \n\nApril slots out on the 14th of this month at 8pm \n\n #fauxlocs #fauxlocslondon #ukbraiders #braidstyles\" — https://www.instagram.com/p/DVrbrGgjCIG/\n\"Soft locs\" found in a post caption: \"Shoulder length ✨\n\n #fauxlocs #fauxlocslondon #locs #fausseslocks #distressedlocs\" — https://www.instagram.com/p/DVHUW5gDNJ-/\n\"Soft locs\" found in a post caption: \"Love the full look 😍😍\n\nMarch slots out now \n#fauxlocs #fauxlocslondon #fausseslocks #distressedlocs #ukbraiders\" — https://www.instagram.com/p/DU5mWW1DMHD/\n\"Twists (with extensions)\" found in a post caption: \"Marley twist 😍🤏🏾#londonbraider #ukbraiders #fauxlocslondon#londonbraids \n\nOnly a few slots left in February. \n\nMarch slots will be released on the 14/02 at 8\" — https://www.instagram.com/p/DUV8UsbDG1n/\n\"Soft locs\" found in a post caption: \"Happy New Year ladies 🥳🙏🏾✨\nOne of my absolute favourite loc textures 😍\n\n✨ Textured soft locs\n✨ Blonde mix\n✨ 18 inches\n #fauxlocs #fauxlocslondon #londonbrai\" — https://www.instagram.com/p/DTFy1m-jG4x/\n\"Boho braids / goddess braids\" found in a post caption: \"Boho braids 🔥\n\nDm to book x\n2 slots left for December ⏳\n\n#bohobraids #braids #knotlessbraids #braidslondon #ukbraider #londonbraider #bohobraidslondon\" — https://www.instagram.com/p/DSDYkBKjNAr/\n\"Knotless braids\" found in a post caption: \"Boho braids 🔥\n\nDm to book x\n2 slots left for December ⏳\n\n#bohobraids #braids #knotlessbraids #braidslondon #ukbraider #londonbraider #bohobraidslondon\" — https://www.instagram.com/p/DSDYkBKjNAr/",
+      "attributeSuggestions": []
+    },
+    {
+      "id": "bystephaniehair-mthdbw0u",
+      "status": "needs_review",
+      "name": "bystephaniehair",
+      "areaId": "north",
+      "areaIds": [
+        "north"
+      ],
+      "areaLabel": "North London",
+      "neighbourhood": "North London London",
+      "postcode": "",
+      "bookingPlatform": "",
+      "bookingUrl": "",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/bystephaniehair/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Soft locs",
+        "Sleek ponytail / bun",
+        "Boho braids / goddess braids",
+        "Full head colour"
+      ],
+      "rawServices": [
+        "24 inch soft locs 🫧🎀🤍\n\nDm @bystephaniehair to book \n\n#softlocs #locs #hairinspo #london",
+        "24 inch soft locs 🫧🎀🤍\n\nDM @bystephaniehair to book\n\n•\n\n•\n\n•\n\n•\n\n•\n\n#fauxlocs #locs #softlocs #london #hair",
+        "24” boho soft locs + curly ends 🎀🫧🤍\n\nDM @bystephaniehair to book\n\n•\n\n•\n\n•\n\n•\n\n•\n\n#boholocs #fauxlocs #hairinspo #hairstylist #london",
+        "Soft loc barbie ponytails are a new fave 😍\n\nDM to book\n\n•\n\n•\n\n•\n\n•\n\n•\n\n•\n\n#locs #fauxlocs #softlocs #london #hair #hairstyle #ukhairstylist #hairstylist #locstyles #ponytail",
+        "Boho locs 🎀🫧🤍\n\nDM for January slots x\n\n•\n\n•\n\n•\n\n•\n\n•\n\n#boholocs #fauxlocs #locs #hairinspo #locs #softlocs #loosewave #curlyhair",
+        "boho soft locs w/barrel ends 🎀🫧🤍\n\nDM for January slots\n\n•\n\n•\n\n•\n\n•\n\n•\n#locs #fauxlocs #softlocs #boholocs #curlyhair #curls #hair",
+        "Barbie ponytail - soft locs 🎀🫧🤍\n\n•\n\n•\n\n•\n\n•\n\n•\n\n•\n\n#softlocs #ponytail #locs #fauxlocs #hairstyle #barbieponytail #barrelendsoftlocs",
+        "Put me in boho locs 🫧🎀🤍\n\nDM to book girlies \n\n•\n\n•\n\n•\n\n•\n\n•\n#locs #fauxlocs #softlocs #boho #boholocs #goddessfauxlocs #london #hairstylist",
+        "Boho locs season 🌞\n\n•\n\n•\n\n•\n\n•\n\n#boho #boholocs #bohobraids #goddesslocs #fauxlocs #london #hair #hairstyles",
+        "Obsessed with these 30” boho soft locs 😍😍\n\nDM @bystephaniehair to book\n•\n\n•\n\n•\n#locs #locs4life #softloc #fauxlocs #boholocs #goddessfauxlocs #goddesslocs #bohobraids",
+        "POV: You book 24” soft locs for £110 including hair 😍😍\n\nDM to book\n\n•\n\n•\n\n•\n\n•\n\n•\n\n•\n\n•\n#locs #loc #braidsontiktok #fauxlocs #blackhairtiktok #london #locstyles #hairtok #hairinspo #ukhairstylist #londonhairstylist #softlocs",
+        "Classic 18 inch soft locs ✨ \n\n•\n\n•\n\n•\n\n•\n\n•\n\n•\n\n•\n\n#locs #loc #locstyles #fauxlocs #braidtutorial #braid #hair #hairtok #hairinspo #ukhairstylist #softlocs #fyp",
+        "Boho soft locs>>>😍😍\n\nDM to book - December slots are limited \n\n•\n\n•\n\n•\n\n•\n\n•\n#boho #loc #locs #locstyles #boholocs #hair #hairtok #hairstyle #braid #braider #bohobraids #softlocs #hairinspo #londonhairstylist #fyp #curls #curly #curlyhair",
+        "Love me some colour (#27) 😍\n \n\n•\n\n•\n\n•\n\n•\n\n•\n\n•\n#loc #locs #colour #27 #blonde #blonde #blondehair #hair #softlocs #uk #london #stylist",
+        "#CLIENTCAM📸😍\n\nLove love love this look!\n\nService: 24 inch soft locs \n\n•\n\n•\n\n•\n\n•\n\n•\n#locs #locstyles #loc #fauxlocs #faux #holiday #hair #hairstyles #softlocs #braids"
+      ],
+      "summary": "- Faux locs specialist\n- North London \n- DM for appointments and enquiries\nAUGUST FULLY BOOKED",
+      "confidence": 0.55,
+      "warnings": [
+        "No booking link identified yet."
+      ],
+      "evidence": [
+        "Submitted link: https://www.instagram.com/bystephaniehair/",
+        "Raw services provided during admin intake."
+      ],
+      "source": "admin-draft",
+      "createdAt": "2026-08-31",
+      "updatedAt": "2026-08-31",
+      "lastCheckedAt": "2026-08-31",
+      "bookingLinkEvidence": "Instagram's own profile API failed for this account (\"Asset asset://laser.provider/ig_business_category_subvertical has been deleted. You cannot use this schema\") — fetched via AnyAPI instead.\nInstagram bio: \"- Faux locs specialist\n- North London \n- DM for appointments and enquiries\nAUGUST FULLY BOOKED\"\nNo bookable link found in bio — likely DM/WhatsApp/call to book.\nChecked recent post captions instead:\n\"Soft locs\" found in a post caption: \"24 inch soft locs 🫧🎀🤍\n\nDm @bystephaniehair to book \n\n#softlocs #locs #hairinspo #london\" — https://www.instagram.com/p/DXFSjB7M4ui/\n\"Soft locs\" found in a post caption: \"24 inch soft locs 🫧🎀🤍\n\nDM @bystephaniehair to book\n\n•\n\n•\n\n•\n\n•\n\n•\n\n#fauxlocs #locs #softlocs #london #hair\" — https://www.instagram.com/p/DXCmflSskrn/\n\"Soft locs\" found in a post caption: \"24” boho soft locs + curly ends 🎀🫧🤍\n\nDM @bystephaniehair to book\n\n•\n\n•\n\n•\n\n•\n\n•\n\n#boholocs #fauxlocs #hairinspo #hairstylist #london\" — https://www.instagram.com/p/DVbzxzKDP_P/\n\"Soft locs\" found in a post caption: \"Soft loc barbie ponytails are a new fave 😍\n\nDM to book\n\n•\n\n•\n\n•\n\n•\n\n•\n\n•\n\n#locs #fauxlocs #softlocs #london #hair #hairstyle #ukhairstylist #hairstylist #locst\" — https://www.instagram.com/p/DTqb1ysjO4W/\n\"Sleek ponytail / bun\" found in a post caption: \"Soft loc barbie ponytails are a new fave 😍\n\nDM to book\n\n•\n\n•\n\n•\n\n•\n\n•\n\n•\n\n#locs #fauxlocs #softlocs #london #hair #hairstyle #ukhairstylist #hairstylist #locst\" — https://www.instagram.com/p/DTqb1ysjO4W/\n\"Soft locs\" found in a post caption: \"Boho locs 🎀🫧🤍\n\nDM for January slots x\n\n•\n\n•\n\n•\n\n•\n\n•\n\n#boholocs #fauxlocs #locs #hairinspo #locs #softlocs #loosewave #curlyhair\" — https://www.instagram.com/p/DTLwoBYjHI7/\n\"Soft locs\" found in a post caption: \"boho soft locs w/barrel ends 🎀🫧🤍\n\nDM for January slots\n\n•\n\n•\n\n•\n\n•\n\n•\n#locs #fauxlocs #softlocs #boholocs #curlyhair #curls #hair\" — https://www.instagram.com/p/DTJJ82KjEt7/\n\"Soft locs\" found in a post caption: \"Barbie ponytail - soft locs 🎀🫧🤍\n\n•\n\n•\n\n•\n\n•\n\n•\n\n•\n\n#softlocs #ponytail #locs #fauxlocs #hairstyle #barbieponytail #barrelendsoftlocs\" — https://www.instagram.com/p/DSaZOjQjCNa/\n\"Sleek ponytail / bun\" found in a post caption: \"Barbie ponytail - soft locs 🎀🫧🤍\n\n•\n\n•\n\n•\n\n•\n\n•\n\n•\n\n#softlocs #ponytail #locs #fauxlocs #hairstyle #barbieponytail #barrelendsoftlocs\" — https://www.instagram.com/p/DSaZOjQjCNa/\n\"Soft locs\" found in a post caption: \"Put me in boho locs 🫧🎀🤍\n\nDM to book girlies \n\n•\n\n•\n\n•\n\n•\n\n•\n#locs #fauxlocs #softlocs #boho #boholocs #goddessfauxlocs #london #hairstylist\" — https://www.instagram.com/p/DRwlFigDLrA/\n\"Boho braids / goddess braids\" found in a post caption: \"Put me in boho locs 🫧🎀🤍\n\nDM to book girlies \n\n•\n\n•\n\n•\n\n•\n\n•\n#locs #fauxlocs #softlocs #boho #boholocs #goddessfauxlocs #london #hairstylist\" — https://www.instagram.com/p/DRwlFigDLrA/\n\"Boho braids / goddess braids\" found in a post caption: \"Boho locs season 🌞\n\n•\n\n•\n\n•\n\n•\n\n#boho #boholocs #bohobraids #goddesslocs #fauxlocs #london #hair #hairstyles\" — https://www.instagram.com/p/DJRl5u4M9Xi/\n\"Soft locs\" found in a post caption: \"Boho locs season 🌞\n\n•\n\n•\n\n•\n\n•\n\n#boho #boholocs #bohobraids #goddesslocs #fauxlocs #london #hair #hairstyles\" — https://www.instagram.com/p/DJRl5u4M9Xi/\n\"Soft locs\" found in a post caption: \"Obsessed with these 30” boho soft locs 😍😍\n\nDM @bystephaniehair to book\n•\n\n•\n\n•\n#locs #locs4life #softloc #fauxlocs #boholocs #goddessfauxlocs #goddesslocs #bo\" — https://www.instagram.com/p/DI9HRD3shhr/\n\"Boho braids / goddess braids\" found in a post caption: \"Obsessed with these 30” boho soft locs 😍😍\n\nDM @bystephaniehair to book\n•\n\n•\n\n•\n#locs #locs4life #softloc #fauxlocs #boholocs #goddessfauxlocs #goddesslocs #bo\" — https://www.instagram.com/p/DI9HRD3shhr/\n\"Soft locs\" found in a post caption: \"POV: You book 24” soft locs for £110 including hair 😍😍\n\nDM to book\n\n•\n\n•\n\n•\n\n•\n\n•\n\n•\n\n•\n#locs #loc #braidsontiktok #fauxlocs #blackhairtiktok #london #locstyl\" — https://www.instagram.com/p/DHiv08ItGcs/\n\"Soft locs\" found in a post caption: \"Classic 18 inch soft locs ✨ \n\n•\n\n•\n\n•\n\n•\n\n•\n\n•\n\n•\n\n#locs #loc #locstyles #fauxlocs #braidtutorial #braid #hair #hairtok #hairinspo #ukhairstylist #softlocs #fyp\" — https://www.instagram.com/p/DEc27TYtiuj/\n\"Soft locs\" found in a post caption: \"Boho soft locs>>>😍😍\n\nDM to book - December slots are limited \n\n•\n\n•\n\n•\n\n•\n\n•\n#boho #loc #locs #locstyles #boholocs #hair #hairtok #hairstyle #braid #braider #\" — https://www.instagram.com/p/DDKaH-TNC63/\n\"Boho braids / goddess braids\" found in a post caption: \"Boho soft locs>>>😍😍\n\nDM to book - December slots are limited \n\n•\n\n•\n\n•\n\n•\n\n•\n#boho #loc #locs #locstyles #boholocs #hair #hairtok #hairstyle #braid #braider #\" — https://www.instagram.com/p/DDKaH-TNC63/\n\"Full head colour\" found in a post caption: \"Love me some colour (#27) 😍\n \n\n•\n\n•\n\n•\n\n•\n\n•\n\n•\n#loc #locs #colour #27 #blonde #blonde #blondehair #hair #softlocs #uk #london #stylist\" — https://www.instagram.com/p/DCmqlbqtdF7/\n\"Soft locs\" found in a post caption: \"Love me some colour (#27) 😍\n \n\n•\n\n•\n\n•\n\n•\n\n•\n\n•\n#loc #locs #colour #27 #blonde #blonde #blondehair #hair #softlocs #uk #london #stylist\" — https://www.instagram.com/p/DCmqlbqtdF7/\n\"Soft locs\" found in a post caption: \"#CLIENTCAM📸😍\n\nLove love love this look!\n\nService: 24 inch soft locs \n\n•\n\n•\n\n•\n\n•\n\n•\n#locs #locstyles #loc #fauxlocs #faux #holiday #hair #hairstyles #softlocs\" — https://www.instagram.com/p/DCegu_xO9iK/",
+      "attributeSuggestions": []
+    },
+    {
+      "id": "london-loc-stylist-mthdb19p",
+      "status": "ready_to_approve",
+      "name": "London Loc stylist",
+      "areaId": "all-london",
+      "areaIds": [
+        "all-london"
+      ],
+      "areaLabel": "London",
+      "neighbourhood": "London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://locsbyveeuk.as.me/schedule/5de06191",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/locsbyvee.uk/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Soft locs",
+        "Crochet faux locs / invisible locs",
+        "Fulani / lemonade braids",
+        "Butterfly locs",
+        "Microlocs / sisterlocs",
+        "Starter locs / instant locs",
+        "Retwist / interlocking",
+        "Braid take-down"
+      ],
+      "rawServices": [
+        "Faux Locs",
+        "Invisible locs",
+        "Fulani invisible locs",
+        "Soft locs",
+        "Butterfly locs",
+        "Traditional Locs",
+        "Sister locs re-tie",
+        "Two strand starter locs",
+        "Comb coil Starter Locs",
+        "Retwist",
+        "Other Services",
+        "Partings only",
+        "Takedown - Braids/locs"
+      ],
+      "summary": "📍London, SE5 \n☁️ Locs for the girlies, all hair included\n☁️ Booking link ↴",
+      "confidence": 0.85,
+      "warnings": [],
+      "evidence": [
+        "Submitted link: https://www.instagram.com/locsbyvee.uk/",
+        "Submitted link: https://locsbyveeuk.as.me/schedule/5de06191",
+        "Raw services provided during admin intake."
+      ],
+      "source": "admin-draft",
+      "createdAt": "2026-08-31",
+      "updatedAt": "2026-08-31",
+      "lastCheckedAt": "2026-08-31",
+      "bookingLinkEvidence": "Instagram bio: \"📍London, SE5 \n☁️ Locs for the girlies, all hair included\n☁️ Booking link ↴\"\nBio link recognized as Acuity: https://locsbyveeuk.as.me/schedule/5de06191",
       "attributeSuggestions": [],
       "priceBand": "£",
       "servicePriceBand": "£",
@@ -177,52 +326,18 @@
       "priceComparisonMode": "service-only",
       "priceSource": "auto",
       "priceEvidence": [
-        "Lace customisation - £45",
-        "Custom made frontal wig - £100",
-        "Custom made mini frontal wig (5x5 - 7x7) - £85",
-        "Pre-made wig install - £75",
-        "Middle part leave out - £80",
-        "Side part leave out - £80",
-        "Closure sew-in - £85",
-        "Frontal sew-in - £100"
+        "Invisible locs - £90",
+        "Fulani invisible locs - £100",
+        "Soft locs - £110",
+        "Butterfly locs - £120",
+        "Sister locs re-tie - £120",
+        "Two strand starter locs - £75",
+        "Comb coil Starter Locs - £70",
+        "Retwist - £65"
       ],
-      "priceCheckedAt": "2026-08-28",
-      "priceUpdatedAt": "2026-08-28",
+      "priceCheckedAt": "2026-08-31",
+      "priceUpdatedAt": "2026-08-31",
       "priceConfidence": "high"
-    },
-    {
-      "id": "celine-styles",
-      "status": "needs_review",
-      "name": "Celine Styles",
-      "areaId": "",
-      "areaIds": [],
-      "areaLabel": "",
-      "neighbourhood": "",
-      "postcode": "",
-      "bookingPlatform": "",
-      "bookingUrl": "",
-      "websiteUrl": "",
-      "instagramUrl": "https://www.instagram.com/celinestyleshair/",
-      "tiktokUrl": "",
-      "addedVia": "Code edit",
-      "discoverySource": "Cowork scrape",
-      "services": [],
-      "rawServices": [],
-      "summary": "Admin draft created from Instagram intake.",
-      "confidence": 0.2,
-      "warnings": [
-        "No booking link identified yet.",
-        "No services matched yet."
-      ],
-      "evidence": [
-        "Submitted link: https://www.instagram.com/celinestyleshair/"
-      ],
-      "source": "admin-draft",
-      "createdAt": "2026-08-25",
-      "updatedAt": "2026-08-28",
-      "lastCheckedAt": "2026-08-28",
-      "bookingLinkEvidence": "Could not fetch this Instagram profile: Instagram returned no profile data for this account. — fill in the rest manually.",
-      "attributeSuggestions": []
     },
     {
       "id": "slayed-by-danielle",
@@ -256,74 +371,6 @@
       "updatedAt": "2026-08-28",
       "lastCheckedAt": "2026-08-28",
       "bookingLinkEvidence": "Instagram bio: \"✨ Protective styles \n✉️ DM to book \n@danielle_adewusi\"\nNo bookable link found in bio — likely DM/WhatsApp/call to book.",
-      "attributeSuggestions": []
-    },
-    {
-      "id": "bromley-uk-braider",
-      "status": "needs_review",
-      "name": "Bromley UK Braider",
-      "areaId": "",
-      "areaIds": [],
-      "areaLabel": "",
-      "neighbourhood": "",
-      "postcode": "",
-      "bookingPlatform": "",
-      "bookingUrl": "",
-      "websiteUrl": "",
-      "instagramUrl": "https://www.instagram.com/bromley_ukbraider/",
-      "tiktokUrl": "",
-      "addedVia": "Code edit",
-      "discoverySource": "Cowork scrape",
-      "services": [],
-      "rawServices": [],
-      "summary": "Admin draft created from Instagram intake.",
-      "confidence": 0.2,
-      "warnings": [
-        "No booking link identified yet.",
-        "No services matched yet."
-      ],
-      "evidence": [
-        "Submitted link: https://www.instagram.com/bromley_ukbraider/"
-      ],
-      "source": "admin-draft",
-      "createdAt": "2026-08-25",
-      "updatedAt": "2026-08-28",
-      "lastCheckedAt": "2026-08-28",
-      "bookingLinkEvidence": "Could not fetch this Instagram profile: Profile not found. — fill in the rest manually.",
-      "attributeSuggestions": []
-    },
-    {
-      "id": "dbh-loungeuk",
-      "status": "needs_review",
-      "name": "DBH Lounge UK",
-      "areaId": "",
-      "areaIds": [],
-      "areaLabel": "",
-      "neighbourhood": "",
-      "postcode": "",
-      "bookingPlatform": "",
-      "bookingUrl": "",
-      "websiteUrl": "",
-      "instagramUrl": "https://www.instagram.com/dbh.loungeuk/",
-      "tiktokUrl": "",
-      "addedVia": "Manual discovery",
-      "discoverySource": "Manual search",
-      "services": [],
-      "rawServices": [],
-      "summary": "Admin draft created from Instagram intake.",
-      "confidence": 0.2,
-      "warnings": [
-        "No booking link identified yet.",
-        "No services matched yet."
-      ],
-      "evidence": [
-        "Submitted link: https://www.instagram.com/dbh.loungeuk/"
-      ],
-      "source": "admin-draft",
-      "createdAt": "2026-08-25",
-      "updatedAt": "2026-08-28",
-      "lastCheckedAt": "2026-08-28",
-      "bookingLinkEvidence": "Could not fetch this Instagram profile: Profile not found. — fill in the rest manually.",
       "attributeSuggestions": []
     },
     {
