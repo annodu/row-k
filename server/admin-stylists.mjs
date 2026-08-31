@@ -2693,11 +2693,20 @@ export function registerAdminStylistRoutes(app) {
       return res.status(404).json({ ok: false, message: "Draft not found." });
     }
 
-    store.drafts[draftIndex] = normalizeDraftState({
+    const updatedDraft = normalizeDraftState({
       ...store.drafts[draftIndex],
       ...sanitizeDraftUpdate(req.body || {}),
       updatedAt: today(),
     });
+
+    const manualIndex = await readJson(manualIndexPath, { meta: { source: "manual" }, salons: [] });
+    const otherDrafts = store.drafts.filter((draft) => draft.id !== req.params.id);
+    const duplicates = findDraftDuplicates(updatedDraft, { drafts: otherDrafts, salons: manualIndex.salons });
+    if (duplicates.length) {
+      return res.status(409).json({ ok: false, message: formatDuplicateMessage(duplicates), duplicates });
+    }
+
+    store.drafts[draftIndex] = updatedDraft;
     await writeDraftStore(store);
     res.json({ ok: true, draft: store.drafts[draftIndex] });
   });
@@ -2839,6 +2848,12 @@ export function registerAdminStylistRoutes(app) {
     }
 
     const manualIndex = await readJson(manualIndexPath, { meta: { source: "manual" }, salons: [] });
+    const otherDrafts = store.drafts.filter((item) => item.id !== req.params.id);
+    const duplicates = findDraftDuplicates(draft, { drafts: otherDrafts, salons: manualIndex.salons });
+    if (duplicates.length) {
+      return res.status(409).json({ ok: false, message: formatDuplicateMessage(duplicates), duplicates });
+    }
+
     const existingIds = new Set(manualIndex.salons.map((salon) => salon.id));
     const salon = draftToSalon(draft, existingIds);
     const googleMatch = await enrichSalonWithReviews(salon);

@@ -2,7 +2,7 @@
   "meta": {
     "source": "manual",
     "updatedAt": "2026-08-31",
-    "count": 1086,
+    "count": 1084,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
@@ -4216,7 +4216,9 @@
         "Traditional sew-in / leave out",
         "Closure sew-in / closure behind the hairline",
         "Frontal sew-in",
-        "Flipover / Versatile sew-in"
+        "Flipover / Versatile sew-in",
+        "U-Part / Half wig install",
+        "Half up half down"
       ],
       "sellsHairSeparately": true,
       "priceBand": "£",
@@ -5402,7 +5404,8 @@
         "Custom wig",
         "Quick weave",
         "Half up half down",
-        "Bridal"
+        "Bridal",
+        "Sleek ponytail / bun"
       ],
       "sameDayEmergency": true,
       "summary": "Admin draft created from stylist intake.",
@@ -5424,6 +5427,21 @@
         {
           "id": "the-lace-lab-ldn-portfolio-photo-1591342f-4ff1-4342-b85a-54c2aebd81e1",
           "url": "/portfolio-photos/the-lace-lab-ldn-9a5f9134-05c6-4eba-bc78-48ec6f45e730.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "thelacelabldn-portfolio-photo-02b39e9e-5ef6-4c2d-a93b-df29b22bbbdb",
+          "url": "/portfolio-photos/thelacelabldn-e6ee4035-1d3c-4173-99de-32bbee84c359.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "thelacelabldn-portfolio-photo-f328be45-f1d9-4742-bece-8452f91944b9",
+          "url": "/portfolio-photos/thelacelabldn-087993b9-bcb1-4ed3-8f5b-eda43173782b.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "thelacelabldn-portfolio-photo-b041ca1e-1f70-42b1-9ab4-f472ed1612b0",
+          "url": "/portfolio-photos/thelacelabldn-4b2dadf3-5c67-445e-8dcc-8dec50b1e383.jpg",
           "source": "google-image-search"
         }
       ],
@@ -45771,13 +45789,13 @@
       "discoverySource": "Cowork scrape",
       "verifiedReviewCount": 0,
       "verifiedReviewCheckedAt": "2026-07-22",
-      "googlePlaceId": null,
+      "googlePlaceId": "ChIJIfv8Jgmt2EcRJfDdF38Z2ak",
       "googleReviewCount": 0,
-      "googleMapsUri": "",
-      "googleMatchConfidence": "no-match",
-      "googleDisplayName": null,
-      "googleFormattedAddress": null,
-      "googleCheckedAt": "2026-07-29",
+      "googleMapsUri": "https://maps.google.com/?cid=12238841496007995429&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
+      "googleMatchConfidence": "high",
+      "googleDisplayName": "Cotress Hair Lounge",
+      "googleFormattedAddress": "Eynswood Dr, Sidcup DA14 6JQ, UK",
+      "googleCheckedAt": "2026-09-01",
       "websiteUrl": "",
       "tiktokUrl": "",
       "hijabiFriendly": false,
@@ -76001,75 +76019,6 @@
       ]
     },
     {
-      "id": "thelacelabldn",
-      "name": "The Lace Lab LDN",
-      "areaId": "north-west",
-      "areaLabel": "North West",
-      "neighbourhood": "North West",
-      "postcode": "",
-      "bookingPlatform": "Direct website",
-      "bookingUrl": "https://thelacelabldn.as.me/schedule/6756b9de",
-      "instagramUrl": "https://www.instagram.com/thelacelabldn/",
-      "services": [
-        "Wig install (frontal / closure)",
-        "Wig colouring / bundle colouring",
-        "Sleek ponytail / bun",
-        "Frontal ponytail / bun",
-        "Half up half down",
-        "Quick weave"
-      ],
-      "summary": "Manual Instagram-led entry enriched from spreadsheet import.",
-      "source": "manual",
-      "evidence": [
-        "Spreadsheet import: Stylists_Database.xlsx.",
-        "Instagram source: https://www.instagram.com/thelacelabldn/",
-        "User-provided correction: booking link and services for The Lace Lab LDN.",
-        "User-provided correction: colour service should be Wig colouring / bundle colouring only."
-      ],
-      "priceBand": "£",
-      "priceSource": "auto",
-      "priceEvidence": [
-        "Toning 613 - £45",
-        "Highlights & Lowlights (from 1B) - £95",
-        "Highlights & Lowlights (613) - £85",
-        "Jet Black - £45",
-        "One Colour (1B) - £70",
-        "One Colour (613) - £60",
-        "Straight Wig + Install - £200",
-        "Burmese Curly Wig + Install - £200"
-      ],
-      "priceCheckedAt": "2026-06-03",
-      "priceConfidence": "high",
-      "priceUpdatedAt": "2026-06-03",
-      "addedVia": "Bulk import",
-      "discoverySource": "Cowork scrape",
-      "googlePlaceId": null,
-      "googleReviewCount": 0,
-      "googleMapsUri": "",
-      "googleMatchConfidence": "no-match",
-      "googleDisplayName": null,
-      "googleFormattedAddress": null,
-      "googleCheckedAt": "2026-07-29",
-      "portfolioPhotosCheckedAt": "2026-08-21",
-      "portfolioPhotos": [
-        {
-          "id": "thelacelabldn-portfolio-photo-02b39e9e-5ef6-4c2d-a93b-df29b22bbbdb",
-          "url": "/portfolio-photos/thelacelabldn-e6ee4035-1d3c-4173-99de-32bbee84c359.jpg",
-          "source": "google-image-search"
-        },
-        {
-          "id": "thelacelabldn-portfolio-photo-f328be45-f1d9-4742-bece-8452f91944b9",
-          "url": "/portfolio-photos/thelacelabldn-087993b9-bcb1-4ed3-8f5b-eda43173782b.jpg",
-          "source": "google-image-search"
-        },
-        {
-          "id": "thelacelabldn-portfolio-photo-b041ca1e-1f70-42b1-9ab4-f472ed1612b0",
-          "url": "/portfolio-photos/thelacelabldn-4b2dadf3-5c67-445e-8dcc-8dec50b1e383.jpg",
-          "source": "google-image-search"
-        }
-      ]
-    },
-    {
       "id": "deethebeautician",
       "name": "Deethebeautician",
       "areaId": "kent",
@@ -80123,67 +80072,6 @@
       ],
       "photoOrderBumpedAt": 530,
       "photoSearchReviewedAt": "2026-08-27"
-    },
-    {
-      "id": "jb-the-hairstylist",
-      "name": "JB The Hairstylist",
-      "areaId": "east",
-      "areaLabel": "East",
-      "neighbourhood": "East London",
-      "postcode": "",
-      "bookingPlatform": "Direct website",
-      "bookingUrl": "https://jbhairstylist.as.me/schedule/e3272b25",
-      "instagramUrl": "https://www.instagram.com/jb.thehairstylist/",
-      "services": [
-        "Custom wig",
-        "U-Part / Half wig install",
-        "Wig install (frontal / closure)",
-        "Traditional sew-in / leave out",
-        "Closure sew-in / closure behind the hairline",
-        "Frontal sew-in",
-        "Flipover / versatile sew-in",
-        "Half up half down"
-      ],
-      "summary": "Manual Instagram-led entry added from user-provided booking menu.",
-      "source": "manual",
-      "evidence": [
-        "User-provided manual addition on 2026-05-14.",
-        "Instagram source: https://www.instagram.com/jb.thehairstylist/",
-        "Booking source: https://jbhairstylist.as.me/schedule/e3272b25",
-        "User-provided location: East.",
-        "User-provided service menu includes lace customisation, U-part wig construction and install, custom frontal and mini frontal wigs, pre-made wig installs, middle/side leave-out sew-ins, closure sew-ins, frontal sew-ins, flipover sew-ins, half up half down weave, wig re-installs, and lace replacement/install."
-      ],
-      "priceBand": "£",
-      "priceSource": "auto",
-      "priceEvidence": [
-        "Lace customisation - £45",
-        "U part wig (construction only) - £80",
-        "U part wig with install - £85",
-        "Custom made frontal wig - £100",
-        "Custom made mini frontal wig (5x5 - 7x7) - £85",
-        "Pre-made wig install - £75",
-        "Middle part leave out - £80",
-        "Side part leave out - £80"
-      ],
-      "priceCheckedAt": "2026-06-03",
-      "priceConfidence": "high",
-      "priceUpdatedAt": "2026-06-03",
-      "addedVia": "Code edit",
-      "discoverySource": "Manual search",
-      "googlePlaceId": "ChIJkQ6OOTMddkgRm_tQgvi0gA0",
-      "googleReviewCount": 1,
-      "googleMapsUri": "https://maps.google.com/?cid=972976498943261595&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
-      "googleMatchConfidence": "high",
-      "googleDisplayName": "JB THEHAIRSTYLIST",
-      "googleFormattedAddress": "Lea Bridge Rd, London E10 7LA, UK",
-      "googleCheckedAt": "2026-07-23",
-      "portfolioPhotos": [
-        {
-          "id": "jb-the-hairstylist-portfolio-photo-3632fda0-9748-4702-a2b3-c6a69d0132bf",
-          "url": "/portfolio-photos/jb-the-hairstylist-91f2397b-b21f-47d9-bdc2-0d64e4f01113.jpg",
-          "source": "google-image-search"
-        }
-      ]
     },
     {
       "id": "madame-mariee",
