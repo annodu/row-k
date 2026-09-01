@@ -28,6 +28,10 @@
       "destination": "/api/admin?path=:path*"
     },
     {
+      "source": "/api/stylists/submit",
+      "destination": "/api/submit-stylist"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
