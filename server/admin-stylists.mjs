@@ -179,6 +179,25 @@ const publicSubmitRateLimit = createRateLimiter({
   keyPrefix: "public-submit",
   message: "Too many submissions from this connection. Please try again later.",
 });
+// Pure local text matching, no outbound fetch — safe to allow much more
+// often than an actual submission, since a visitor may paste/retype a list
+// more than once while filling in the form.
+const publicMatchServicesRateLimit = createRateLimiter({
+  windowMs: 60 * 60 * 1000,
+  max: 40,
+  keyPrefix: "public-match-services",
+  message: "Too many requests from this connection. Please try again later.",
+});
+// Performs a real outbound HTTP fetch per call (SSRF-guarded, but still a
+// resource and abuse surface) — kept tighter than match-services but looser
+// than the submit route since it's expected to fire a couple of times per
+// visit as link fields are filled in.
+const publicSuggestServicesRateLimit = createRateLimiter({
+  windowMs: 60 * 60 * 1000,
+  max: 15,
+  keyPrefix: "public-suggest-services",
+  message: "Too many requests from this connection. Please try again later.",
+});
 
 const intakeServiceAliases = {
   "leave out weave": "Traditional sew-in / leave out",
@@ -2931,8 +2950,16 @@ export function registerPublicStylistSubmissionRoutes(app) {
     const tiktokUrl = cleanString(body.tiktokUrl);
     const bookingUrl = cleanString(body.bookingUrl);
     const websiteUrl = cleanString(body.websiteUrl);
-    if (!name || !(instagramUrl || tiktokUrl || bookingUrl || websiteUrl)) {
-      return res.status(400).json({ ok: false, message: "Add a name and at least one link." });
+    if (!instagramUrl) {
+      return res.status(400).json({ ok: false, message: "Add an Instagram link." });
+    }
+    // The client already normalizes/validates this before sending, but the
+    // API is the actual gate — without this, any URL typed into the
+    // Instagram field would be stored and later rendered as a broken
+    // "Go to X Instagram" link. getInstagramProfilePath requires a full
+    // URL, so tolerate a missing "https://" the same way the client does.
+    if (!getInstagramProfilePath(/^https?:\/\//i.test(instagramUrl) ? instagramUrl : `https://${instagramUrl}`)) {
+      return res.status(400).json({ ok: false, message: "That doesn't look like an Instagram profile link — check the URL and try again." });
     }
 
     const isProvider = body.isProvider === true;
@@ -2975,6 +3002,60 @@ export function registerPublicStylistSubmissionRoutes(app) {
     store.drafts.unshift(draft);
     await writeDraftStore(store);
     res.status(201).json({ ok: true });
+  });
+
+  // Public counterpart to /api/admin/stylists/match-services — same pure,
+  // local, deterministic matcher, no admin gate. Pasting a block of service
+  // names into the submission form's services field hits this so the visitor
+  // sees recognized tags immediately, without waiting for submit.
+  app.post("/api/stylists/match-services", publicMatchServicesRateLimit, requireTrustedOrigin, async (req, res) => {
+    const rawServices = toArray(req.body?.rawServices);
+    res.json({ ok: true, services: matchServices(rawServices) });
+  });
+
+  // Best-effort, free-only service suggestion from a link the visitor has
+  // already typed into the Instagram/booking fields. Deliberately calls only
+  // the free halves of the existing intake pipeline — resolveBioLink,
+  // extractBookingServices, and fetchInstagramProfileDetailsDirect — and
+  // never fetchInstagramProfileDetails' paid AnyAPI fallback. Any failure at
+  // any step just returns no suggestions rather than guessing.
+  app.post("/api/stylists/suggest-services", publicSuggestServicesRateLimit, requireTrustedOrigin, async (req, res) => {
+    const bookingUrl = cleanString(req.body?.bookingUrl);
+    const instagramUrl = cleanString(req.body?.instagramUrl);
+
+    async function servicesFromCandidateLink(candidateUrl) {
+      if (!candidateUrl) return [];
+      const resolved = await resolveBioLink(candidateUrl, { bookingPlatformMatchers });
+      const targetUrl = resolved.bookingUrl || resolved.websiteUrl;
+      if (!targetUrl) return [];
+      const check = await extractBookingServices(targetUrl);
+      return check.matchedServices;
+    }
+
+    try {
+      const fromBooking = await servicesFromCandidateLink(bookingUrl);
+      if (fromBooking.length) {
+        return res.json({ ok: true, services: fromBooking });
+      }
+
+      const parsed = instagramUrl ? parseInstagramProfileInput(instagramUrl) : null;
+      if (parsed) {
+        const profile = await fetchInstagramProfileDetailsDirect(parsed.handle);
+        if (profile.found) {
+          const linkCandidates = [...new Set([profile.externalUrl, ...(profile.bioLinks || []).map((link) => link.url)].filter(Boolean))];
+          for (const candidate of linkCandidates) {
+            const services = await servicesFromCandidateLink(candidate);
+            if (services.length) {
+              return res.json({ ok: true, services });
+            }
+          }
+        }
+      }
+
+      return res.json({ ok: true, services: [] });
+    } catch {
+      return res.json({ ok: true, services: [] });
+    }
   });
 }
 

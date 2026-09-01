@@ -11536,7 +11536,7 @@ function DraftAdditionalNeeds({
 }) {
   return (
     <div className="space-y-1">
-      {hideLabel ? null : <p className="text-xs font-semibold uppercase tracking-[0.12em] text-stone-500">Preferences</p>}
+      {hideLabel ? null : <p className="text-xs font-semibold uppercase tracking-[0.12em] text-stone-500">Additional Needs</p>}
       <div className="grid gap-1">
         {options.map((option) => {
           const field = additionalNeedsFieldMap[option.id];

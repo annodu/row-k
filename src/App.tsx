@@ -1,5 +1,5 @@
 import { Fragment, type FormEvent, type ReactNode, useCallback, useEffect, useId, useRef, useState } from "react";
-import { ArrowUp, ArrowUpRight, Check, ChevronDown, ChevronLeft, ChevronRight, Copy, Globe, Info, Search, X } from "lucide-react";
+import { ArrowUp, ArrowUpRight, Check, ChevronDown, ChevronLeft, ChevronRight, Copy, Info, Search, X } from "lucide-react";
 
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
@@ -570,6 +570,11 @@ function PortfolioPhotoCarousel({
     const deltaY = touch.clientY - start.y;
 
     if (Math.abs(deltaX) >= SWIPE_THRESHOLD_PX && Math.abs(deltaX) > Math.abs(deltaY)) {
+      // Suppresses the browser's emulated click that would otherwise follow
+      // this touch — without it, the click handler below (added for mouse
+      // users on narrow desktop windows, where the hover chevrons are
+      // hidden) would double-navigate on real touchscreens.
+      event.preventDefault();
       goToPhoto(activeIndex + (deltaX < 0 ? 1 : -1));
       return;
     }
@@ -578,10 +583,27 @@ function PortfolioPhotoCarousel({
       Math.abs(deltaY) < TAP_MOVEMENT_TOLERANCE_PX &&
       !(event.target instanceof HTMLElement && event.target.closest("button"))
     ) {
+      event.preventDefault();
       const rect = event.currentTarget.getBoundingClientRect();
       const tappedRight = touch.clientX - rect.left > rect.width / 2;
       goToPhoto(activeIndex + (tappedRight ? 1 : -1));
     }
+  };
+
+  // Mouse-driven counterpart to the touch tap above. The prev/next chevrons
+  // are only shown from `sm:` up (hover-revealed, no use on touch devices),
+  // so a desktop browser window resized narrower than that — a mouse-only
+  // environment, not a touchscreen — would otherwise have no way to scrub
+  // photos at all. Real touches never reach this: the touchend handler
+  // above calls preventDefault() before the browser can emit its follow-up
+  // click.
+  const handleContainerClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    if (!hasMultiplePhotos || (event.target instanceof HTMLElement && event.target.closest("button"))) {
+      return;
+    }
+    const rect = event.currentTarget.getBoundingClientRect();
+    const clickedRight = event.clientX - rect.left > rect.width / 2;
+    goToPhoto(activeIndex + (clickedRight ? 1 : -1));
   };
 
   return (
@@ -595,6 +617,7 @@ function PortfolioPhotoCarousel({
         ref={containerRef}
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
+        onClick={handleContainerClick}
       >
         {!isNearViewport ? null : photoState === "failed" ? (
           <PortfolioPlaceholderIcon className="h-full w-full text-stone-100 dark:text-stone-950" />
@@ -623,7 +646,7 @@ function PortfolioPhotoCarousel({
                 event.preventDefault();
                 goToPhoto(activeIndex - 1);
               }}
-              className="absolute left-2 top-1/2 hidden size-8 -translate-y-1/2 items-center justify-center rounded-none border border-white/40 bg-white/30 text-stone-900 opacity-0 shadow-[0_2px_8px_rgba(0,0,0,0.12),inset_0_1px_0_rgba(255,255,255,0.25)] backdrop-blur-md backdrop-saturate-150 transition hover:bg-white/45 hover:opacity-100 dark:border-white/15 dark:bg-white/22 dark:text-white dark:shadow-[0_2px_8px_rgba(0,0,0,0.35),inset_0_1px_0_rgba(255,255,255,0.08)] dark:hover:bg-white/32 sm:flex"
+              className="absolute left-2 top-1/2 flex size-8 -translate-y-1/2 items-center justify-center rounded-none border border-white/40 bg-white/30 text-stone-900 opacity-0 shadow-[0_2px_8px_rgba(0,0,0,0.12),inset_0_1px_0_rgba(255,255,255,0.25)] backdrop-blur-md backdrop-saturate-150 transition hover:bg-white/45 hover:opacity-100 dark:border-white/15 dark:bg-white/22 dark:text-white dark:shadow-[0_2px_8px_rgba(0,0,0,0.35),inset_0_1px_0_rgba(255,255,255,0.08)] dark:hover:bg-white/32"
             >
               <ChevronLeft className="size-4" />
             </button>
@@ -634,7 +657,7 @@ function PortfolioPhotoCarousel({
                 event.preventDefault();
                 goToPhoto(activeIndex + 1);
               }}
-              className="absolute right-2 top-1/2 hidden size-8 -translate-y-1/2 items-center justify-center rounded-none border border-white/40 bg-white/30 text-stone-900 opacity-0 shadow-[0_2px_8px_rgba(0,0,0,0.12),inset_0_1px_0_rgba(255,255,255,0.25)] backdrop-blur-md backdrop-saturate-150 transition hover:bg-white/45 hover:opacity-100 dark:border-white/15 dark:bg-white/22 dark:text-white dark:shadow-[0_2px_8px_rgba(0,0,0,0.35),inset_0_1px_0_rgba(255,255,255,0.08)] dark:hover:bg-white/32 sm:flex"
+              className="absolute right-2 top-1/2 flex size-8 -translate-y-1/2 items-center justify-center rounded-none border border-white/40 bg-white/30 text-stone-900 opacity-0 shadow-[0_2px_8px_rgba(0,0,0,0.12),inset_0_1px_0_rgba(255,255,255,0.25)] backdrop-blur-md backdrop-saturate-150 transition hover:bg-white/45 hover:opacity-100 dark:border-white/15 dark:bg-white/22 dark:text-white dark:shadow-[0_2px_8px_rgba(0,0,0,0.35),inset_0_1px_0_rgba(255,255,255,0.08)] dark:hover:bg-white/32"
             >
               <ChevronRight className="size-4" />
             </button>
@@ -2222,15 +2245,15 @@ const submissionNeedFields = [
     field: "hijabiFriendly",
     label: "Hijabi-friendly",
     description:
-      "Female-only space, not in view of any windows. Could be hijabi-friendly all the time or on specific days, and the whole salon could be hijabi-friendly or just there could just be a private section.",
+      "Female-only space, not in view of any windows. The space / salon could be hijabi-friendly all the time, or only on specific days. The whole space could be hijabi-friendly, or there could be a private section of the space.",
   },
-  { field: "canBraidWithoutGel", label: "Can braid without gel", description: "Can do braiding styles without using gel or edge-control products." },
+  { field: "canBraidWithoutGel", label: "Can braid without gel", description: "For clients with sensitive scalps, its important that they can get their braids done without the use of gel or hair wax." },
   { field: "wheelchairAccessible", label: "Wheelchair accessible entrance", description: "The venue has step-free access at the entrance." },
   { field: "senFriendly", label: "Sensory-safe / SEN-friendly", description: "The salon accommodates the needs of neurodivergent clients, or clients with Special Educational Needs." },
   { field: "lgbtqFriendly", label: "LGBTQIA+-friendly", description: "A welcoming, inclusive space for LGBTQIA+ clients." },
-  { field: "sameDayEmergency", label: "Same-day / walk-ins", description: "Can take clientswithout needing to book in advance." },
-  { field: "sellsHairSeparately", label: "Hair sold separately", description: "Sells hair separately from appointment bookings." },
-  { field: "priceIncludesHair", label: "Hair-inclusive packages available", description: "Some packages include the cost of hair/extensions in the price." },
+  { field: "sameDayEmergency", label: "Same-day / walk-ins", description: "Can take clients without needing to book in advance." },
+  { field: "sellsHairSeparately", label: "Hair sold separately", description: "Sells hair, but you must buy it separately from appointment bookings." },
+  { field: "priceIncludesHair", label: "Hair-inclusive packages available", description: "Some items in the service menu include the cost of wigs/extensions/braiding hair in the price." },
 ] as const;
 type SubmissionNeedField = (typeof submissionNeedFields)[number]["field"];
 const defaultSubmissionNeeds = Object.fromEntries(submissionNeedFields.map((item) => [item.field, false])) as Record<SubmissionNeedField, boolean>;
@@ -2303,30 +2326,82 @@ function deriveNameFromInstagramUrl(url: string): string {
     .join(" ");
 }
 
+// Tolerant of a missing "https://" (plenty of visitors just paste the bare
+// instagram.com/... part) but otherwise strict — the host must actually be
+// instagram.com, so a link to some other site can't slip through as the
+// "Instagram link" and end up rendered as a broken Instagram icon later.
+function normalizeUrlProtocol(value: string): string {
+  const trimmed = value.trim();
+  if (!trimmed) return trimmed;
+  return /^https?:\/\//i.test(trimmed) ? trimmed : `https://${trimmed}`;
+}
+
+function isInstagramProfileUrl(url: string): boolean {
+  const trimmed = url.trim();
+  if (!trimmed) return false;
+
+  let parsed: URL;
+  try {
+    parsed = new URL(normalizeUrlProtocol(trimmed));
+  } catch {
+    return false;
+  }
+
+  const host = parsed.hostname.replace(/^www\./i, "").toLowerCase();
+  if (host !== "instagram.com") return false;
+
+  const handle = parsed.pathname.split("/").filter(Boolean)[0];
+  return Boolean(handle) && !INSTAGRAM_NON_PROFILE_SEGMENTS.has(handle.toLowerCase());
+}
+
 function SubmissionLinkField({
   label,
   icon,
   value,
   onChange,
+  onBlur,
   placeholder,
   disabled,
+  required,
+  error,
   children,
 }: {
   label: string;
   icon?: ReactNode;
   value: string;
   onChange: (value: string) => void;
+  onBlur?: () => void;
   placeholder: string;
   disabled?: boolean;
+  required?: boolean;
+  error?: string;
   children?: ReactNode;
 }) {
+  const inputId = useId();
+  const errorId = useId();
   return (
     <div className="flex flex-col gap-1.5">
-      <span className="flex items-center gap-1.5 text-[12px] font-semibold uppercase tracking-[0.08em] text-stone-600 dark:text-stone-400">
+      <label htmlFor={inputId} className="flex items-center gap-1.5 text-[12px] font-semibold uppercase tracking-[0.08em] text-stone-600 dark:text-stone-400">
         {icon}
         {label}
-      </span>
-      <Input value={value} onChange={(event) => onChange(event.target.value)} placeholder={placeholder} type="url" disabled={disabled} />
+      </label>
+      <Input
+        id={inputId}
+        value={value}
+        onChange={(event) => onChange(event.target.value)}
+        onBlur={onBlur}
+        placeholder={placeholder}
+        type="url"
+        disabled={disabled}
+        required={required}
+        aria-invalid={Boolean(error)}
+        aria-describedby={error ? errorId : undefined}
+      />
+      {error ? (
+        <p id={errorId} className="text-[12px] text-rose-600 dark:text-rose-400">
+          {error}
+        </p>
+      ) : null}
       {children}
     </div>
   );
@@ -2387,12 +2462,18 @@ export default function App() {
   const [searchError, setSearchError] = useState<string | null>(null);
   const [hasSearched, setHasSearched] = useState(false);
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
+  const submissionServicesInputId = useId();
+  const submissionServicesHintId = useId();
   const [submissionModalOpen, setSubmissionModalOpen] = useState(false);
   const [privacyModalOpen, setPrivacyModalOpen] = useState(false);
   const [siteDisclaimerModalOpen, setSiteDisclaimerModalOpen] = useState(false);
   const [submissionName, setSubmissionName] = useState("");
   const [submissionIsProvider, setSubmissionIsProvider] = useState(false);
   const [submissionInstagramUrl, setSubmissionInstagramUrl] = useState("");
+  // Only show the "that's not a valid Instagram link" error once the visitor
+  // has actually left the field — not on every keystroke while they're still
+  // typing a partial URL.
+  const [submissionInstagramTouched, setSubmissionInstagramTouched] = useState(false);
   // Tracks the last name we auto-filled from the Instagram handle, so we only
   // keep overwriting the Name field while the user hasn't typed their own
   // value over it.
@@ -2406,6 +2487,10 @@ export default function App() {
   const [submissionRawServices, setSubmissionRawServices] = useState("");
   const [submissionServices, setSubmissionServices] = useState<string[]>([]);
   const [submissionServiceQuery, setSubmissionServiceQuery] = useState("");
+  // Guards the debounced suggest-services fetch: only refires when the
+  // trimmed link actually changed, so repeated blurs on an unedited field
+  // don't trigger another outbound request.
+  const lastSuggestedLinkRef = useRef("");
   const [submissionHoneypot, setSubmissionHoneypot] = useState("");
   const [submissionStatus, setSubmissionStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [submissionError, setSubmissionError] = useState<string | null>(null);
@@ -2626,6 +2711,7 @@ export default function App() {
       setSubmissionName("");
       setSubmissionIsProvider(false);
       setSubmissionInstagramUrl("");
+      setSubmissionInstagramTouched(false);
       setSubmissionBookingUrl("");
       setSubmissionBookingSameAsInstagram(false);
       setSubmissionAreaIds([]);
@@ -2635,6 +2721,7 @@ export default function App() {
       setSubmissionRawServices("");
       setSubmissionServices([]);
       setSubmissionServiceQuery("");
+      lastSuggestedLinkRef.current = "";
       setSubmissionStatus("idle");
       setSubmissionError(null);
     }
@@ -2665,6 +2752,44 @@ export default function App() {
     setSubmissionServices((current) => (current.includes(service) ? current.filter((item) => item !== service) : [...current, service]));
   }
 
+  // A paste containing a comma or newline reads as a whole list rather than
+  // one search term — split it, match it against the known service catalog
+  // (server-side, pure text matching, see /api/stylists/match-services) and
+  // turn every recognized entry straight into a tag. The raw text is kept in
+  // submissionRawServices regardless of match success, so anything the
+  // matcher can't map still reaches admin review instead of being dropped.
+  async function handleSubmissionServiceQueryPaste(event: React.ClipboardEvent<HTMLInputElement>) {
+    const pasted = event.clipboardData.getData("text");
+    if (!/[\n,]/.test(pasted)) {
+      return;
+    }
+    event.preventDefault();
+    setSubmissionRawServices((current) => (current ? `${current}\n${pasted}` : pasted));
+
+    const lines = pasted
+      .split(/\n|,/)
+      .map((line) => line.trim())
+      .filter(Boolean);
+    if (!lines.length) {
+      return;
+    }
+
+    try {
+      const response = await fetch("/api/stylists/match-services", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ rawServices: lines }),
+      });
+      const payload = await response.json().catch(() => null);
+      const matched: string[] = Array.isArray(payload?.services) ? payload.services : [];
+      if (matched.length) {
+        setSubmissionServices((current) => [...new Set([...current, ...matched])]);
+      }
+    } catch {
+      // The raw paste is already preserved in submissionRawServices above.
+    }
+  }
+
   function handleSubmissionInstagramUrlChange(value: string) {
     setSubmissionInstagramUrl(value);
     const derived = deriveNameFromInstagramUrl(value);
@@ -2672,8 +2797,52 @@ export default function App() {
     submissionAutoNameRef.current = derived;
   }
 
-  const submissionHasLink = Boolean(submissionInstagramUrl.trim() || submissionBookingUrl.trim());
-  const submissionCanSend = Boolean(submissionName.trim()) && submissionHasLink;
+  const submissionInstagramIsValid = isInstagramProfileUrl(submissionInstagramUrl);
+  const submissionInstagramError =
+    submissionInstagramTouched && submissionInstagramUrl.trim() && !submissionInstagramIsValid
+      ? "That doesn't look like an Instagram profile link. Check the URL and try again."
+      : "";
+  const submissionCanSend = submissionInstagramIsValid;
+
+  // Best-effort, free-only service detection from whatever link the visitor
+  // has already typed in — see /api/stylists/suggest-services. Fires once
+  // per distinct link (debounced), never on every keystroke. Detected
+  // services are added straight to the tag list — same as a manual pick, so
+  // there's nothing separate to confirm.
+  useEffect(() => {
+    const instagram = submissionInstagramUrl.trim();
+    const booking = (submissionBookingSameAsInstagram ? submissionInstagramUrl : submissionBookingUrl).trim();
+    const linkKey = `${instagram}|${booking}`;
+
+    if (!instagram && !booking) {
+      lastSuggestedLinkRef.current = "";
+      return;
+    }
+
+    if (linkKey === lastSuggestedLinkRef.current) {
+      return;
+    }
+
+    const timeoutId = window.setTimeout(async () => {
+      lastSuggestedLinkRef.current = linkKey;
+      try {
+        const response = await fetch("/api/stylists/suggest-services", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ instagramUrl: instagram, bookingUrl: booking }),
+        });
+        const payload = await response.json().catch(() => null);
+        const services: string[] = Array.isArray(payload?.services) ? payload.services : [];
+        if (services.length) {
+          setSubmissionServices((current) => [...new Set([...current, ...services])]);
+        }
+      } catch {
+        // Best-effort only — no services found is a normal, silent outcome.
+      }
+    }, 800);
+
+    return () => window.clearTimeout(timeoutId);
+  }, [submissionInstagramUrl, submissionBookingUrl, submissionBookingSameAsInstagram]);
 
   async function submitStylist(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -2684,6 +2853,8 @@ export default function App() {
     setSubmissionStatus("submitting");
     setSubmissionError(null);
 
+    const normalizedInstagramUrl = normalizeUrlProtocol(submissionInstagramUrl);
+
     try {
       const response = await fetch("/api/stylists/submit", {
         method: "POST",
@@ -2691,8 +2862,8 @@ export default function App() {
         body: JSON.stringify({
           name: submissionName.trim(),
           isProvider: submissionIsProvider,
-          instagramUrl: submissionInstagramUrl.trim(),
-          bookingUrl: submissionBookingSameAsInstagram ? submissionInstagramUrl.trim() : submissionBookingUrl.trim(),
+          instagramUrl: normalizedInstagramUrl,
+          bookingUrl: submissionBookingSameAsInstagram ? normalizedInstagramUrl : submissionBookingUrl.trim(),
           areaIds: submissionAreaIds,
           ...submissionNeeds,
           customFilters: submissionCustomFilters,
@@ -3952,7 +4123,7 @@ export default function App() {
       <header className="border-b border-stone-300 dark:border-stone-800">
         <div className="mx-auto flex w-full max-w-[1120px] items-start px-4 sm:px-6 lg:px-10">
           <div className="min-w-0 flex-1 pb-7 pt-10 sm:pb-12 sm:pt-12">
-            <div className="flex flex-col items-start gap-16 px-0">
+            <div className="flex flex-col items-start gap-[4.5rem] px-0">
               <p className="inline-flex items-center bg-stone-200 px-3 py-2 text-left text-[11px] font-bold uppercase leading-none tracking-[0.11em] text-stone-700 dark:bg-stone-700 dark:text-stone-100">
                 Row K LDN
               </p>
@@ -3965,7 +4136,7 @@ export default function App() {
                   <br />
                   <span className="inline-block">Natural or relaxed. Braids, sew-ins, wigs, locs.</span>
                 </p>
-                <div className="flex w-full flex-col gap-4 pb-0 pt-5 sm:w-auto sm:flex-row sm:items-center">
+                <div className="flex w-full flex-col gap-4 pb-1 pt-3 sm:w-auto sm:flex-row sm:items-center sm:pb-0 sm:pt-5">
                   <a
                     href="#live-results"
                     onClick={(event) => {
@@ -4043,7 +4214,7 @@ export default function App() {
                   Submit a stylist
                 </h2>
                 <p className="mt-1 text-[13px] leading-[1.5] text-stone-600 dark:text-stone-400">
-                  We&rsquo;ll review before they&rsquo;re listed.
+                  This can be a hair stylist or service provider.
                 </p>
               </div>
               <button
@@ -4060,9 +4231,9 @@ export default function App() {
               {submissionStatus === "success" ? (
                 <div className="flex flex-col items-start gap-3 py-6">
                   <Check className="size-6 text-stone-950 dark:text-stone-50" aria-hidden="true" />
-                  <p className="text-[16px] font-medium text-stone-950 dark:text-stone-50">Thanks — got it</p>
+                  <p className="text-[16px] font-medium text-stone-950 dark:text-stone-50">Thanks!</p>
                   <p className="text-[14px] leading-[1.55] text-stone-700 dark:text-stone-300">
-                    We&rsquo;ll take a look and add them if it&rsquo;s a fit.
+                    We&rsquo;ll review each submission before it&rsquo;s listed.
                   </p>
                 </div>
               ) : (
@@ -4070,17 +4241,19 @@ export default function App() {
                   <section className="flex flex-col gap-3">
                     <SubmissionLinkField
                       label="Instagram link"
-                      icon={<InstagramIcon className="size-3.5" />}
                       value={submissionInstagramUrl}
                       onChange={handleSubmissionInstagramUrlChange}
+                      onBlur={() => setSubmissionInstagramTouched(true)}
                       placeholder="https://instagram.com/..."
+                      required
+                      error={submissionInstagramError}
                     />
                   </section>
 
                   <section className="flex flex-col gap-4">
                     <label className="flex flex-col gap-1.5">
                       <span className="text-[12px] font-semibold uppercase tracking-[0.08em] text-stone-600 dark:text-stone-400">Name</span>
-                      <Input value={submissionName} onChange={(event) => setSubmissionName(event.target.value)} placeholder="Stylist or business name" required />
+                      <Input value={submissionName} onChange={(event) => setSubmissionName(event.target.value)} placeholder="Stylist or business name" />
                     </label>
 
                     <div className="flex flex-col gap-1.5">
@@ -4122,7 +4295,6 @@ export default function App() {
                   <section className="flex flex-col gap-3">
                     <SubmissionLinkField
                       label="Booking link"
-                      icon={<Globe className="size-3.5" />}
                       value={submissionBookingSameAsInstagram ? submissionInstagramUrl : submissionBookingUrl}
                       onChange={setSubmissionBookingUrl}
                       placeholder="https://..."
@@ -4167,7 +4339,7 @@ export default function App() {
                   </section>
 
                   <section className="flex flex-col gap-1">
-                    <p className="text-xs font-semibold uppercase tracking-[0.12em] text-stone-500">Preferences</p>
+                    <p className="text-xs font-semibold uppercase tracking-[0.12em] text-stone-500">Additional Needs</p>
                     <div className="grid gap-1">
                       {submissionNeedFields
                         .filter((option) => option.field !== "sellsHairSeparately" && option.field !== "priceIncludesHair")
@@ -4243,29 +4415,35 @@ export default function App() {
                   ) : null}
 
                   <section className="flex flex-col gap-3">
-                    <p className="text-xs font-semibold uppercase tracking-[0.12em] text-stone-500">Services</p>
+                    <label htmlFor={submissionServicesInputId} className="text-xs font-semibold uppercase tracking-[0.12em] text-stone-500">
+                      Services
+                    </label>
+                    <p id={submissionServicesHintId} className="text-[12px] text-stone-500 dark:text-stone-400">
+                      Type to search, or paste a whole list to add several at once.
+                    </p>
 
-                    {submissionServices.length ? (
-                      <div className="flex flex-wrap gap-1.5">
-                        {submissionServices.map((service) => (
-                          <button
-                            key={service}
-                            type="button"
-                            onClick={() => toggleSubmissionService(service)}
-                            className="inline-flex items-center gap-1 rounded-none border border-stone-950 bg-stone-950 px-2.5 py-1 text-xs font-medium text-white dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950"
-                          >
-                            {service}
-                            <X className="size-3" aria-hidden="true" />
-                          </button>
-                        ))}
-                      </div>
-                    ) : null}
-
-                    <Input
-                      value={submissionServiceQuery}
-                      onChange={(event) => setSubmissionServiceQuery(event.target.value)}
-                      placeholder="Search services to add..."
-                    />
+                    <div className="flex flex-wrap items-center gap-1.5 border border-stone-300 bg-stone-50 px-3 py-2 focus-within:border-stone-950 dark:border-stone-700 dark:bg-stone-900 dark:focus-within:border-stone-100">
+                      {submissionServices.map((service) => (
+                        <button
+                          key={service}
+                          type="button"
+                          onClick={() => toggleSubmissionService(service)}
+                          className="inline-flex items-center gap-1 rounded-none border border-stone-950 bg-stone-950 px-2.5 py-1 text-xs font-medium text-white dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950"
+                        >
+                          {service}
+                          <X className="size-3" aria-hidden="true" />
+                        </button>
+                      ))}
+                      <input
+                        id={submissionServicesInputId}
+                        value={submissionServiceQuery}
+                        onChange={(event) => setSubmissionServiceQuery(event.target.value)}
+                        onPaste={handleSubmissionServiceQueryPaste}
+                        placeholder={submissionServices.length ? "Add more..." : "Search services..."}
+                        aria-describedby={submissionServicesHintId}
+                        className="min-w-[140px] flex-1 border-0 bg-transparent py-1.5 text-sm text-stone-950 outline-none placeholder:text-stone-400 dark:text-stone-100 dark:placeholder:text-stone-500"
+                      />
+                    </div>
 
                     <div className="max-h-56 space-y-3 overflow-y-auto border border-stone-300 bg-stone-50 p-3 dark:border-stone-700 dark:bg-stone-900">
                       {filteredSubmissionServiceGroups.length ? (
@@ -4332,14 +4510,19 @@ export default function App() {
                   Done
                 </button>
               ) : (
-                <button
-                  type="submit"
-                  form="submit-stylist-form"
-                  disabled={!submissionCanSend || submissionStatus === "submitting"}
-                  className="inline-flex h-12 w-full items-center justify-center rounded-none bg-stone-950 px-5 text-[14px] font-medium text-stone-100 transition-colors hover:bg-stone-800 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-stone-300"
-                >
-                  {submissionStatus === "submitting" ? "Sending..." : "Send"}
-                </button>
+                <>
+                  <button
+                    type="submit"
+                    form="submit-stylist-form"
+                    disabled={!submissionCanSend || submissionStatus === "submitting"}
+                    className="inline-flex h-12 w-full items-center justify-center rounded-none bg-stone-950 px-5 text-[14px] font-medium text-stone-100 transition-colors hover:bg-stone-800 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-stone-300"
+                  >
+                    {submissionStatus === "submitting" ? "Sending..." : "Send"}
+                  </button>
+                  <p className="mt-2 text-center text-[12px] text-stone-500 dark:text-stone-400">
+                    We&rsquo;ll review each submission before it&rsquo;s listed.
+                  </p>
+                </>
               )}
             </div>
           </aside>
@@ -4490,8 +4673,8 @@ export default function App() {
 
       <div className="mx-auto flex w-full max-w-[1120px] flex-col px-4 sm:px-6 lg:flex-row lg:items-start lg:px-10">
         {mobileFiltersOpen ? <div className="fixed inset-0 z-40 bg-stone-100 dark:bg-stone-950 lg:hidden" aria-hidden="true" /> : null}
-        <section id="live-results" className="min-w-0 flex-1 pb-6 pt-4 lg:pb-6 lg:pr-8 lg:pt-0">
-          <div className="sticky top-0 z-30 flex w-full items-center justify-between border-b border-stone-300 bg-stone-100 px-0 pb-3 pt-1 dark:border-stone-800 dark:bg-stone-950 lg:h-20 lg:items-end lg:pb-6 lg:pt-2">
+        <section id="live-results" className="min-w-0 flex-1 pb-6 pt-2 lg:pb-6 lg:pr-8 lg:pt-0">
+          <div className="sticky top-0 z-30 flex w-full items-center justify-between border-b border-stone-300 bg-stone-100 px-0 pb-3 pt-1 dark:border-stone-800 dark:bg-stone-950 lg:h-16 lg:items-end lg:pb-3 lg:pt-2">
             {directoryMode === "vendors" ? (
               hasSearchedVendors ? (
                 <h2 className="text-[14px] font-medium leading-none text-stone-500 dark:text-stone-400">
@@ -4729,19 +4912,15 @@ export default function App() {
               </button>
             </div>
 
-          <div className="hidden h-20 w-full shrink-0 border-b border-stone-300 bg-stone-100 pb-4 pt-4 dark:border-stone-800 dark:bg-stone-950 lg:sticky lg:top-0 lg:z-20 lg:block">
-            <div className="flex items-end justify-between">
-                <div className="inline-flex h-11 items-end pb-2">
-                  <h2 className="text-[15px] font-semibold leading-none text-stone-950 dark:text-stone-50">Filter / Sort</h2>
-                </div>
-                <button
-                  type="button"
-                  onClick={clearFilters}
-                  className="inline-flex h-11 items-end self-end px-2 pb-2 pt-0 text-[13px] font-medium leading-none text-stone-700 transition hover:text-stone-500 dark:text-stone-200 dark:hover:text-stone-400"
-                >
-                  <span>Reset</span>
-                </button>
-              </div>
+          <div className="hidden w-full shrink-0 items-end justify-between border-b border-stone-300 bg-stone-100 pb-3 pt-2 dark:border-stone-800 dark:bg-stone-950 lg:sticky lg:top-0 lg:z-20 lg:flex lg:h-16">
+            <h2 className="text-[15px] font-semibold leading-none text-stone-950 dark:text-stone-50">Filter / Sort</h2>
+            <button
+              type="button"
+              onClick={clearFilters}
+              className="text-[13px] font-medium leading-none text-stone-700 transition hover:text-stone-500 dark:text-stone-200 dark:hover:text-stone-400"
+            >
+              Reset
+            </button>
           </div>
 
           <section

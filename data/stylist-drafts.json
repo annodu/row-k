@@ -2,9 +2,54 @@
   "meta": {
     "source": "admin-drafts",
     "updatedAt": "2026-09-01",
-    "count": 16
+    "count": 17
   },
   "drafts": [
+    {
+      "id": "the-braid-hausee-mtijmmzw",
+      "status": "ready_to_approve",
+      "name": "The Braid Hausee",
+      "areaId": "essex",
+      "areaIds": [
+        "essex"
+      ],
+      "areaLabel": "Essex",
+      "neighbourhood": "Essex London",
+      "postcode": "",
+      "bookingPlatform": "",
+      "bookingUrl": "https://thebraidhause.as.me/schedule/df5bea17",
+      "instagramUrl": "https://www.instagram.com/thebraidhausee/",
+      "tiktokUrl": "",
+      "addedVia": "Submission form",
+      "discoverySource": "User submission",
+      "services": [
+        "Boho braids / goddess braids",
+        "Boho braids bob",
+        "French curl",
+        "Knotless braids"
+      ],
+      "rawServices": [],
+      "summary": "Admin draft created from stylist intake.",
+      "confidence": 0.72,
+      "warnings": [],
+      "evidence": [
+        "Created through ROW K admin intake."
+      ],
+      "source": "admin-draft",
+      "createdAt": "2026-09-01",
+      "updatedAt": "2026-09-01",
+      "lastCheckedAt": "2026-09-01",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "sameDayEmergency": false,
+      "sellsHairSeparately": false,
+      "priceIncludesHair": false,
+      "customFilters": {},
+      "submittedByProvider": false
+    },
     {
       "id": "osaruguelovely8-mti1cspc",
       "status": "ready_to_approve",
