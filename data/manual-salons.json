@@ -1,7 +1,7 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-08-31",
+    "updatedAt": "2026-09-01",
     "count": 1084,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
@@ -35219,7 +35219,7 @@
     },
     {
       "id": "hairbyivs",
-      "name": "Hairbyivs",
+      "name": "HairbyIVS",
       "areaId": "essex",
       "areaLabel": "Essex",
       "neighbourhood": "Essex London",
@@ -35231,7 +35231,7 @@
         "Half up half down",
         "Sleek ponytail / bun",
         "Traditional sew-in / leave out",
-        "Flipover / versatile sew-in"
+        "Flipover / Versatile sew-in"
       ],
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
@@ -35258,8 +35258,8 @@
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleDisplayName": null,
-      "googleFormattedAddress": null,
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-07-29",
       "portfolioPhotosCheckedAt": "2026-08-20",
       "portfolioPhotos": [
@@ -35269,10 +35269,26 @@
           "source": "google-image-search"
         }
       ],
-      "updatedAt": "2026-08-31",
+      "updatedAt": "2026-09-01",
       "photoSearchSkippedAt": "2026-08-24",
       "photoSearchSkippedReason": "manual",
-      "photoSearchReviewedAt": "2026-08-24"
+      "photoSearchReviewedAt": "2026-08-24",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": false,
+      "sameDayEmergency": false,
+      "customFilters": {},
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only"
     },
     {
       "id": "laidby-j",
@@ -44419,7 +44435,7 @@
     },
     {
       "id": "carvedbeautyspa",
-      "name": "Carved beauty spa",
+      "name": "Carved Beauty Spa",
       "areaId": "south-east",
       "areaLabel": "South East",
       "neighbourhood": "South East London",
@@ -44468,12 +44484,12 @@
       "priceConfidence": "manual",
       "addedVia": "Bulk import",
       "discoverySource": "Cowork scrape",
-      "googlePlaceId": "ChIJVSmmpaMDdkgR6Kp2nJfoLRY",
+      "googlePlaceId": null,
       "googleReviewCount": 36,
       "googleMapsUri": "https://maps.google.com/?cid=1598189180649122536&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
       "googleMatchConfidence": "high",
       "googleDisplayName": "Carved beauty spa",
-      "googleFormattedAddress": "38 Peckham Rye, London SE15 4JR, UK",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-07-23",
       "portfolioPhotosCheckedAt": "2026-08-21",
       "portfolioPhotos": [
@@ -44508,7 +44524,7 @@
           "source": "google"
         }
       ],
-      "updatedAt": "2026-08-26",
+      "updatedAt": "2026-09-01",
       "websiteUrl": "",
       "hairShopUrl": "",
       "tiktokUrl": "",
@@ -44524,7 +44540,8 @@
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
       "photoSearchReviewedAt": "2026-08-26",
-      "photoOrderBumpedAt": 370
+      "photoOrderBumpedAt": 370,
+      "sameDayEmergency": false
     },
     {
       "id": "catkalihair",

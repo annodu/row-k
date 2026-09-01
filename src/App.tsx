@@ -964,7 +964,7 @@ function BrandGroupCard({
             <div className="min-w-0">
               <div className="flex min-w-0 flex-wrap items-center gap-x-2 gap-y-1">
                 <h3 className="text-[17px] font-semibold text-stone-950 dark:text-stone-50">{brandName}</h3>
-                <span className="inline-block rounded-none border border-stone-300 bg-stone-100 px-1.5 py-1 text-[11px] font-semibold leading-none tracking-[0.06em] text-stone-600 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-400">
+                <span className="inline-block rounded-none bg-stone-200/45 px-1.5 py-1 text-[11px] font-semibold leading-none tracking-[0.06em] text-stone-600 dark:bg-stone-900/48 dark:text-stone-400">
                   {openBranches.length} branches
                 </span>
               </div>
@@ -1069,12 +1069,13 @@ function BrandGroupCard({
         ) : null}
       </div>
 
-      <div className="w-full divide-y divide-stone-200 border border-stone-200 dark:divide-stone-800 dark:border-stone-800">
-        {visibleBranches.map((branch) => {
+      <div className="w-full bg-stone-200/45 p-5 mt-4 dark:bg-stone-900/48">
+        <div className="divide-y divide-stone-300 dark:divide-stone-800">
+          {visibleBranches.map((branch) => {
           const reviewsBanner = getReviewsBannerInfo(branch, { preferBookingPlatform });
           const branchLocation = getLocationLabels(branch).join(" · ");
           return (
-            <div key={branch.id} className="flex items-start justify-between gap-3 px-3 py-3">
+            <div key={branch.id} className="flex items-start justify-between gap-3 py-4 first:pt-0 last:pb-0">
               <div className="min-w-0">
                 <p className="text-[15px] font-medium text-stone-950 dark:text-stone-50">{branch.branchLabel ?? branch.name}</p>
                 {branchLocation ? <p className="text-[13px] text-stone-500 dark:text-stone-400">{branchLocation}</p> : null}
@@ -1124,6 +1125,7 @@ function BrandGroupCard({
             </div>
           );
         })}
+        </div>
       </div>
 
       {sortedBranches.length > 5 ? (
