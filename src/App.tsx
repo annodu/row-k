@@ -2487,6 +2487,11 @@ export default function App() {
   const [submissionRawServices, setSubmissionRawServices] = useState("");
   const [submissionServices, setSubmissionServices] = useState<string[]>([]);
   const [submissionServiceQuery, setSubmissionServiceQuery] = useState("");
+  // Transient feedback after a bulk-paste into the services field, since the
+  // paste itself never appears as literal text in the input (it's parsed
+  // into tags) — without this, a paste that matched nothing looks identical
+  // to a paste that silently did nothing.
+  const [submissionServicePasteNotice, setSubmissionServicePasteNotice] = useState<string | null>(null);
   // Guards the debounced suggest-services fetch: only refires when the
   // trimmed link actually changed, so repeated blurs on an unedited field
   // don't trigger another outbound request.
@@ -2721,6 +2726,7 @@ export default function App() {
       setSubmissionRawServices("");
       setSubmissionServices([]);
       setSubmissionServiceQuery("");
+      setSubmissionServicePasteNotice(null);
       lastSuggestedLinkRef.current = "";
       setSubmissionStatus("idle");
       setSubmissionError(null);
@@ -2752,22 +2758,27 @@ export default function App() {
     setSubmissionServices((current) => (current.includes(service) ? current.filter((item) => item !== service) : [...current, service]));
   }
 
-  // A paste containing a comma or newline reads as a whole list rather than
-  // one search term — split it, match it against the known service catalog
-  // (server-side, pure text matching, see /api/stylists/match-services) and
-  // turn every recognized entry straight into a tag. The raw text is kept in
-  // submissionRawServices regardless of match success, so anything the
+  // A paste that reads as a whole list rather than one search term — has a
+  // newline/comma/tab/bullet in it, or is just long — gets split, matched
+  // against the known service catalog (server-side, pure text matching, see
+  // /api/stylists/match-services) and turned into tags. The raw text is kept
+  // in submissionRawServices regardless of match success, so anything the
   // matcher can't map still reaches admin review instead of being dropped.
+  // Line breaks don't always survive every clipboard source (copying a
+  // rendered list can flatten to tabs, bullet characters, or nothing at
+  // all), so the "is this a list" check errs broad rather than requiring a
+  // literal \n or comma.
   async function handleSubmissionServiceQueryPaste(event: React.ClipboardEvent<HTMLInputElement>) {
-    const pasted = event.clipboardData.getData("text");
-    if (!/[\n,]/.test(pasted)) {
+    const pasted = event.clipboardData.getData("text/plain") || event.clipboardData.getData("text");
+    const looksLikeList = /[\n,\t•‣·]/.test(pasted) || pasted.trim().length > 60;
+    if (!looksLikeList) {
       return;
     }
     event.preventDefault();
     setSubmissionRawServices((current) => (current ? `${current}\n${pasted}` : pasted));
 
     const lines = pasted
-      .split(/\n|,/)
+      .split(/\n|,|\t|•|‣|·/)
       .map((line) => line.trim())
       .filter(Boolean);
     if (!lines.length) {
@@ -2784,11 +2795,20 @@ export default function App() {
       const matched: string[] = Array.isArray(payload?.services) ? payload.services : [];
       if (matched.length) {
         setSubmissionServices((current) => [...new Set([...current, ...matched])]);
+        setSubmissionServicePasteNotice(`Added ${matched.length} service${matched.length === 1 ? "" : "s"} from your paste.`);
+      } else {
+        setSubmissionServicePasteNotice("Didn't recognize any services in that — saved as notes for review instead.");
       }
     } catch {
-      // The raw paste is already preserved in submissionRawServices above.
+      setSubmissionServicePasteNotice("Couldn't process that paste — saved as notes for review instead.");
     }
   }
+
+  useEffect(() => {
+    if (!submissionServicePasteNotice) return;
+    const timeoutId = window.setTimeout(() => setSubmissionServicePasteNotice(null), 5000);
+    return () => window.clearTimeout(timeoutId);
+  }, [submissionServicePasteNotice]);
 
   function handleSubmissionInstagramUrlChange(value: string) {
     setSubmissionInstagramUrl(value);
@@ -4444,6 +4464,12 @@ export default function App() {
                         className="min-w-[140px] flex-1 border-0 bg-transparent py-1.5 text-sm text-stone-950 outline-none placeholder:text-stone-400 dark:text-stone-100 dark:placeholder:text-stone-500"
                       />
                     </div>
+
+                    {submissionServicePasteNotice ? (
+                      <p role="status" className="text-[12px] text-stone-500 dark:text-stone-400">
+                        {submissionServicePasteNotice}
+                      </p>
+                    ) : null}
 
                     <div className="max-h-56 space-y-3 overflow-y-auto border border-stone-300 bg-stone-50 p-3 dark:border-stone-700 dark:bg-stone-900">
                       {filteredSubmissionServiceGroups.length ? (

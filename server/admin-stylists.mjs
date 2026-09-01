@@ -3560,10 +3560,30 @@ async function readJson(filePath, fallback) {
     }
   }
 
+  let raw;
   try {
-    return JSON.parse(await fs.readFile(filePath, "utf8"));
-  } catch {
-    return fallback;
+    raw = await fs.readFile(filePath, "utf8");
+  } catch (error) {
+    // No file at all is the only case where falling back to an empty
+    // store is legitimate (first run, or a store that's never been
+    // written yet).
+    if (error?.code === "ENOENT") {
+      return fallback;
+    }
+    throw error;
+  }
+
+  try {
+    return JSON.parse(raw);
+  } catch (error) {
+    // The file exists but isn't valid JSON (e.g. a bad merge). Silently
+    // falling back here would look identical to a legitimately empty
+    // store, and the next write to this path would overwrite — and
+    // permanently lose — whatever was actually on disk. Fail loudly
+    // instead (Express 5 turns this into a 500 on whichever request
+    // touched it) so a corrupt file gets fixed rather than quietly
+    // emptied out.
+    throw new Error(`${filePath} exists but is not valid JSON: ${error.message}`);
   }
 }
 

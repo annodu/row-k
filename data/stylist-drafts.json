@@ -2,8 +2,7 @@
   "meta": {
     "source": "admin-drafts",
     "updatedAt": "2026-09-01",
-    "count": 17
-    "count": 17
+    "count": 18
   },
   "drafts": [
     {
@@ -870,6 +869,47 @@
       "lastCheckedAt": "2026-08-31",
       "bookingLinkEvidence": "Instagram's own profile API failed for this account (\"Please wait a few minutes before you try again.\") — fetched via AnyAPI instead.\nInstagram bio: \"🌱 microloctician\n🌺 affordable reties, starters and extensions\n📍 LDN\n🏠 house-calls\n🐚 microsbylaura@gmail.com\"\nNo bookable link found in bio — likely DM/WhatsApp/call to book.\nChecked recent post captions instead:\n\"Microlocs / sisterlocs\" found in a post caption: \"Pricing📌\n#microlocs #microlocsretightening #microlocsjourney #microlocks #microlocstyles\" — https://www.instagram.com/p/DUORJr2DckJ/\n\"Microlocs / sisterlocs\" found in a post caption: \"First retie (and repair) service of the year. Email today for inquiries while discounted opening season prices are still available #microlocs #fyp #microlocstyl\" — https://www.instagram.com/p/DVzS6cbDEL5/\n\"Microlocs / sisterlocs\" found in a post caption: \"From a microloctician, here are 3 things u should know before you park that *ss in someones chair #fyp #microlocsjourney #microlocs #microlocks #microlocstyles\" — https://www.instagram.com/p/DUO8tFTjFZx/\n\"Microlocs / sisterlocs\" found in a post caption: \"I do starter, retie and extension services. Dm/email for inquiries #microlocs #microlocsjourney #microlocsretightening #microlocsretie #foryou\" — https://www.instagram.com/p/DULyNv6DdND/",
       "attributeSuggestions": []
+    },
+    {
+      "id": "hair-bytess-mtiknupj",
+      "status": "needs_review",
+      "name": "Hair bytess",
+      "areaId": "",
+      "areaIds": [],
+      "areaLabel": "",
+      "neighbourhood": "",
+      "postcode": "",
+      "bookingPlatform": "",
+      "bookingUrl": "",
+      "instagramUrl": "https://www.instagram.com/_hairbytess_/",
+      "tiktokUrl": "",
+      "addedVia": "Submission form",
+      "discoverySource": "User submission",
+      "services": [],
+      "rawServices": [],
+      "summary": "Admin draft created from stylist intake.",
+      "confidence": 0.35,
+      "warnings": [
+        "No booking link identified yet.",
+        "No services matched yet."
+      ],
+      "evidence": [
+        "Created through ROW K admin intake."
+      ],
+      "source": "admin-draft",
+      "createdAt": "2026-09-01",
+      "updatedAt": "2026-09-01",
+      "lastCheckedAt": "2026-09-01",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "sameDayEmergency": false,
+      "sellsHairSeparately": false,
+      "priceIncludesHair": false,
+      "customFilters": {},
+      "submittedByProvider": false
     }
   ]
 }
