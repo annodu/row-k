@@ -2392,7 +2392,6 @@ export default function App() {
   const [siteDisclaimerModalOpen, setSiteDisclaimerModalOpen] = useState(false);
   const [submissionName, setSubmissionName] = useState("");
   const [submissionIsProvider, setSubmissionIsProvider] = useState(false);
-  const [submissionEmail, setSubmissionEmail] = useState("");
   const [submissionInstagramUrl, setSubmissionInstagramUrl] = useState("");
   // Tracks the last name we auto-filled from the Instagram handle, so we only
   // keep overwriting the Name field while the user hasn't typed their own
@@ -2627,7 +2626,6 @@ export default function App() {
     if (submissionStatus === "success") {
       setSubmissionName("");
       setSubmissionIsProvider(false);
-      setSubmissionEmail("");
       setSubmissionInstagramUrl("");
       setSubmissionBookingUrl("");
       setSubmissionBookingSameAsInstagram(false);
@@ -2695,7 +2693,6 @@ export default function App() {
         body: JSON.stringify({
           name: submissionName.trim(),
           isProvider: submissionIsProvider,
-          email: submissionIsProvider ? submissionEmail.trim() : "",
           instagramUrl: submissionInstagramUrl.trim(),
           bookingUrl: submissionBookingSameAsInstagram ? submissionInstagramUrl.trim() : submissionBookingUrl.trim(),
           areaIds: submissionAreaIds,
@@ -4123,17 +4120,6 @@ export default function App() {
                       </div>
                     </div>
 
-                    {submissionIsProvider ? (
-                      <label className="flex flex-col gap-1.5">
-                        <span className="text-[12px] font-semibold uppercase tracking-[0.08em] text-stone-600 dark:text-stone-400">
-                          Your email <span className="normal-case text-stone-400">(optional)</span>
-                        </span>
-                        <p className="text-[12px] leading-[1.4] text-stone-500 dark:text-stone-500">
-                          Helps us verify you&rsquo;re the stylist/service provider. We may contact you about the listing, but your email address won&rsquo;t be published or shared.
-                        </p>
-                        <Input value={submissionEmail} onChange={(event) => setSubmissionEmail(event.target.value)} placeholder="you@example.com" type="email" />
-                      </label>
-                    ) : null}
                   </section>
 
                   <section className="flex flex-col gap-3">
@@ -4409,7 +4395,7 @@ export default function App() {
                   <h3 className="text-[13px] font-semibold uppercase tracking-[0.08em] text-stone-500">What Row K is</h3>
                   <p>
                     Row K is a directory of afro hair stylists and service providers in & around London. We link out to stylists&rsquo;
-                    Instagram and booking pages — we don&rsquo;t process bookings or payments ourselves.
+                    Instagram and booking pages. We don&rsquo;t process bookings or payments ourselves.
                   </p>
                 </section>
 
@@ -4418,10 +4404,9 @@ export default function App() {
                   <p>When you use the &ldquo;Submit a stylist&rdquo; form, we collect:</p>
                   <ul className="list-disc pl-5">
                     <li>The name, Instagram/booking links, location and service details you enter about the stylist</li>
-                    <li>Your email address, if you choose to give it as the person submitting</li>
                   </ul>
                   <p>
-                    We also use privacy-focused analytics (PostHog) to see how the site is used — page views and clicks. This runs without
+                    We also use privacy-focused analytics (PostHog) to see how the site is used: page views and clicks. This runs without
                     cookies or any identifier stored on your device, so it can&rsquo;t recognise you across visits, but it does see your IP
                     address and browser at the time.
                   </p>
@@ -4430,24 +4415,23 @@ export default function App() {
                 <section className="flex flex-col gap-2">
                   <h3 className="text-[13px] font-semibold uppercase tracking-[0.08em] text-stone-500">Why we collect it</h3>
                   <p>
-                    Submission details are used to review and add a stylist to the directory. A submitter&rsquo;s email
-                    is used only to verify the submission and contact them about it if needed — it&rsquo;s never published. Analytics helps us
-                    understand which parts of the site are useful and where to improve it.
+                    Submission details are used to review and add a stylist to the directory. Analytics helps us understand which parts
+                    of the site are useful and where to improve it.
                   </p>
                 </section>
 
                 <section className="flex flex-col gap-2">
                   <h3 className="text-[13px] font-semibold uppercase tracking-[0.08em] text-stone-500">Who we share it with</h3>
                   <p>
-                    PostHog processes analytics data (page views and clicks) on our behalf — it never receives anything from the submission
-                    form. Submission details aren&rsquo;t shared with anyone else.
+                    PostHog processes analytics data (page views and clicks) on our behalf, but it never receives anything from the
+                    submission form. Submission details aren&rsquo;t shared with anyone else.
                   </p>
                 </section>
 
                 <section className="flex flex-col gap-2">
                   <h3 className="text-[13px] font-semibold uppercase tracking-[0.08em] text-stone-500">How long we keep it</h3>
                   <p>
-                    Submissions are kept for as long as needed to review them and check for duplicates, and — once published — for as long
+                    Submissions are kept for as long as needed to review them and check for duplicates, and once published, for as long
                     as the listing stays in the directory.
                   </p>
                 </section>
@@ -4455,7 +4439,7 @@ export default function App() {
                 <section className="flex flex-col gap-2">
                   <h3 className="text-[13px] font-semibold uppercase tracking-[0.08em] text-stone-500">Your rights</h3>
                   <p>
-                    You can ask us what we hold about you, or ask us to correct or delete it — just email hello@row-k.london. The ICO is
+                    You can ask us what we hold about you, or ask us to correct or delete it, by emailing hello@row-k.london. The ICO is
                     the UK&rsquo;s independent regulator for this and can also be contacted directly.
                   </p>
                 </section>

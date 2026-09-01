@@ -2936,7 +2936,6 @@ export function registerPublicStylistSubmissionRoutes(app) {
     }
 
     const isProvider = body.isProvider === true;
-    const submitterEmail = cleanString(body.email);
 
     const draft = await buildDraft({
       name,
@@ -2965,11 +2964,7 @@ export function registerPublicStylistSubmissionRoutes(app) {
     draft.sellsHairSeparately = body.sellsHairSeparately === true;
     draft.priceIncludesHair = body.priceIncludesHair === true;
     draft.customFilters = sanitizeCustomFilters(body.customFilters);
-    // Contact info about the *submitter*, not the stylist being listed — kept
-    // off the published schema (draftToSalon() only copies fields it
-    // explicitly whitelists), visible to admins reviewing the draft only.
     draft.submittedByProvider = isProvider;
-    draft.submitterEmail = isProvider ? submitterEmail : "";
 
     const store = await readDraftStore();
     const manualIndex = await readJson(manualIndexPath, { meta: { source: "manual" }, salons: [] });
