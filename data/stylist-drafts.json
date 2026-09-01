@@ -100,7 +100,7 @@
     },
     {
       "id": "naomistyledit",
-      "status": "needs_review",
+      "status": "deprecated",
       "name": "Naomi Styled It",
       "areaId": "",
       "areaIds": [],
@@ -146,7 +146,7 @@
       ],
       "source": "admin-draft",
       "createdAt": "2026-08-31",
-      "updatedAt": "2026-08-31",
+      "updatedAt": "2026-09-01",
       "lastCheckedAt": "2026-08-31",
       "bookingLinkEvidence": "Instagram's own profile API failed for this account (\"Please wait a few minutes before you try again.\") — fetched via AnyAPI instead.\nInstagram bio: \"Your hair is our hair now🌿.                                          Blowdry specialists - AVEDA (Covent Garden)\"\nNo bookable link found in bio — likely DM/WhatsApp/call to book.\nChecked recent post captions instead:\n\"Olaplex treatment\" found in a post caption: \"Botanical Repair Flash Treatment! It really is our favourite we just can’t work together without laughing 😂\" — https://www.instagram.com/p/C6t4lkWoV2z/\n\"Scalp detox / treatments\" found in a post caption: \"There’s nothing like a bouncy blow out after using our scalp solution treatment 💙🚿\n\n📍 @avedacoventgarden\" — https://www.instagram.com/p/C4_TSc3t57c/\n\"Bouncy blowout / round brush blow dry\" found in a post caption: \"There’s nothing like a bouncy blow out after using our scalp solution treatment 💙🚿\n\n📍 @avedacoventgarden\" — https://www.instagram.com/p/C4_TSc3t57c/\n\"Full head colour\" found in a post caption: \"That transformation‼️ \n\nColour by the amazing @y.vhair \n \nStyled by me🥰\n\n📍 @avedacoventgarden \n\nThe beautiful face @rochelleaustin_\" — https://www.instagram.com/p/C4oI7HRtr6H/\n\"Trim / hair cut\" found in a post caption: \"We felt like a change…\n\nHair cut by me✂️\n\n📍 @avedacoventgarden \n\n#longroundlayers #freshhaircut \n#botanicalbondbuildingtreatment #volumizingtonic #invatifoam #\" — https://www.instagram.com/p/CsjcQBxN6EO/",
       "attributeSuggestions": [],
