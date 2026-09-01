@@ -32,6 +32,14 @@
       "destination": "/api/submit-stylist"
     },
     {
+      "source": "/api/stylists/match-services",
+      "destination": "/api/submit-stylist"
+    },
+    {
+      "source": "/api/stylists/suggest-services",
+      "destination": "/api/submit-stylist"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
