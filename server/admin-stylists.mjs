@@ -2946,7 +2946,6 @@ export function registerPublicStylistSubmissionRoutes(app) {
       areaIds: Array.isArray(body.areaIds) ? body.areaIds : [],
       rawServices: body.rawServices,
       services: body.services,
-      summary: body.note,
       addedVia: "Submission form",
       discoverySource: "User submission",
     });

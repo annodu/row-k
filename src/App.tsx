@@ -2406,7 +2406,6 @@ export default function App() {
   const [submissionRawServices, setSubmissionRawServices] = useState("");
   const [submissionServices, setSubmissionServices] = useState<string[]>([]);
   const [submissionServiceQuery, setSubmissionServiceQuery] = useState("");
-  const [submissionNote, setSubmissionNote] = useState("");
   const [submissionHoneypot, setSubmissionHoneypot] = useState("");
   const [submissionStatus, setSubmissionStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [submissionError, setSubmissionError] = useState<string | null>(null);
@@ -2636,7 +2635,6 @@ export default function App() {
       setSubmissionRawServices("");
       setSubmissionServices([]);
       setSubmissionServiceQuery("");
-      setSubmissionNote("");
       setSubmissionStatus("idle");
       setSubmissionError(null);
     }
@@ -2700,7 +2698,6 @@ export default function App() {
           customFilters: submissionCustomFilters,
           rawServices: submissionRawServices.trim(),
           services: submissionServices,
-          note: submissionNote.trim(),
           website: submissionHoneypot,
         }),
       });
@@ -4302,20 +4299,6 @@ export default function App() {
                         <p className="text-[13px] text-stone-500">No services match that search.</p>
                       )}
                     </div>
-                  </section>
-
-                  <section className="flex flex-col gap-4">
-                    <label className="flex flex-col gap-1.5">
-                      <span className="text-[12px] font-semibold uppercase tracking-[0.08em] text-stone-600 dark:text-stone-400">
-                        Anything we should know? <span className="normal-case text-stone-400">(optional)</span>
-                      </span>
-                      <textarea
-                        value={submissionNote}
-                        onChange={(event) => setSubmissionNote(event.target.value)}
-                        rows={2}
-                        className="w-full resize-none rounded-none border border-stone-300 bg-stone-50 px-4 py-3 text-sm text-stone-950 outline-none transition-colors placeholder:text-stone-400 hover:border-stone-400 focus-visible:border-stone-950 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100 dark:placeholder:text-stone-500 dark:hover:border-stone-500 dark:focus-visible:border-stone-100"
-                      />
-                    </label>
                   </section>
 
                   <div className="h-0 w-0 overflow-hidden opacity-0" aria-hidden="true">
