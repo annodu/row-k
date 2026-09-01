@@ -9435,6 +9435,33 @@ export async function buildDraftFromInstagram(rawInstagramInput) {
   });
 }
 
+// Script-callable equivalent of POST /api/admin/stylists/intake-from-instagram
+// for bulk admin adds outside the UI — same build/dedupe/store path, with an
+// optional admin-asserted service (e.g. "does colour mixing") that the
+// Instagram scrape itself has no way to see, appended with evidence noting
+// it's admin-confirmed rather than scraped.
+export async function addInstagramIntakeDraft(instagramUrl, { extraServices = [] } = {}) {
+  const draft = await buildDraftFromInstagram(instagramUrl);
+
+  for (const service of extraServices) {
+    if (!draft.services.includes(service)) {
+      draft.services.push(service);
+      draft.evidence.push(`"${service}" — admin-confirmed, not from Instagram scrape.`);
+    }
+  }
+
+  const store = await readDraftStore();
+  const manualIndex = await readJson(manualIndexPath, { meta: { source: "manual" }, salons: [] });
+  const duplicates = findDraftDuplicates(draft, { drafts: store.drafts, salons: manualIndex.salons });
+  if (duplicates.length) {
+    return { ok: false, message: formatDuplicateMessage(duplicates), duplicates, draft };
+  }
+
+  store.drafts.unshift(draft);
+  await writeDraftStore(store);
+  return { ok: true, draft };
+}
+
 function matchedServicesConfidenceFloor(serviceCheck) {
   return serviceCheck.matchedServices?.length > 0 ? 0.55 : 0.2;
 }

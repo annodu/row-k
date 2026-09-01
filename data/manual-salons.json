@@ -2,10 +2,1255 @@
   "meta": {
     "source": "manual",
     "updatedAt": "2026-09-01",
-    "count": 1101,
+    "count": 1119,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "queenb-braids",
+      "name": "QueenB.Braids",
+      "areaId": "east",
+      "areaLabel": "East London",
+      "neighbourhood": "East London London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/qb.braids/",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/qb.braids/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Fulani / lemonade braids",
+        "Knotless braids",
+        "French curl",
+        "Boho braids / goddess braids",
+        "Box braids",
+        "Feed-in braids",
+        "Soft locs",
+        "Colour blend (mixing braiding hair)"
+      ],
+      "summary": "▫️East london based (Walthamstow)\n▫️£20 Non refundable deposit required\n▫️Please allow 24/48hrs reply",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/qb.braids/",
+        "Raw services provided during admin intake.",
+        "\"Colour blend (mixing braiding hair)\" — admin-confirmed, not from Instagram scrape."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-09-01",
+      "portfolioPhotos": [
+        {
+          "id": "queenb-braids-portfolio-photo-298cfa45-634c-4280-a707-04cff5760077",
+          "url": "/portfolio-photos/queenb-braids-965c4147-b475-4716-9d86-41c95b6bbf9c.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "queenb-braids-portfolio-photo-97419434-df1c-48e6-a32a-cc6f68971ae9",
+          "url": "/portfolio-photos/queenb-braids-a910ac8a-1a92-44d7-b5ee-b1e27d4455f8.jpg",
+          "source": "google-image-search"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-09-01",
+      "photoOrderBumpedAt": 1155
+    },
+    {
+      "id": "romdidit",
+      "name": "RomDidIt!",
+      "areaId": "croydon",
+      "areaLabel": "Croydon",
+      "neighbourhood": "Croydon London",
+      "postcode": "",
+      "bookingPlatform": "Direct website",
+      "bookingUrl": "https://www.instagram.com/romididit/",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/romididit/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Knotless braids",
+        "Boho braids / goddess braids",
+        "Colour blend (mixing braiding hair)",
+        "Crochet faux locs / invisible locs",
+        "French curl"
+      ],
+      "summary": "Christian hairstylist ✝️\nPortsmouth x south London (Croydon)\nTaking bookings! Dm to book💛🧡",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/romididit/",
+        "Raw services provided during admin intake."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-09-01",
+      "portfolioPhotos": [
+        {
+          "id": "romdidit-portfolio-photo-0fb64512-ee61-478f-9649-51a8df0829a3",
+          "url": "/portfolio-photos/romdidit-a4269b24-5168-4a86-b1fa-384eb9bc347e.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "romdidit-portfolio-photo-de0377f8-882d-4e21-b125-1575f1ce71f1",
+          "url": "/portfolio-photos/romdidit-122a0c2e-2481-43aa-89b5-04a021506012.jpg",
+          "source": "google-image-search"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-09-01",
+      "photoOrderBumpedAt": 1153
+    },
+    {
+      "id": "braids-by-norah",
+      "name": "Braids by Norah",
+      "areaId": "kent",
+      "areaLabel": "Kent",
+      "neighbourhood": "Kent London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/braidsbynorah___/",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/braidsbynorah___/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Wig cornrows",
+        "Fulani / lemonade braids",
+        "Boho braids / goddess braids",
+        "Knotless braids",
+        "Colour blend (mixing braiding hair)",
+        "French curl"
+      ],
+      "summary": "Old account (@braids_by_norah) hacked\n📍 Home-Based Braider | Gillingham\nCEO @fromnorahh\nDM to book\n£25 Deposit Required\nPlease read booking policy",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/braidsbynorah___/",
+        "Raw services provided during admin intake."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-09-01",
+      "portfolioPhotos": [
+        {
+          "id": "braids-by-norah-portfolio-photo-7b4de815-9515-4848-8eac-4cf7c7576c6b",
+          "url": "/portfolio-photos/braids-by-norah-e2c0bb22-949a-41f4-be20-5668b3d3aca7.jpg",
+          "source": "instagram-reel-frame"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-09-01",
+      "photoOrderBumpedAt": 1151
+    },
+    {
+      "id": "maisonem-uk",
+      "name": "Maisonem UK",
+      "areaId": "all-london",
+      "areaLabel": "London",
+      "neighbourhood": "London London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/maisonem.uk/",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/maisonem.uk/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Crochet faux locs / invisible locs",
+        "Miracle knots",
+        "Boho braids / goddess braids",
+        "Knotless braids",
+        "Half braids, half sew-in",
+        "Microbraids / x-small braids",
+        "Colour blend (mixing braiding hair)"
+      ],
+      "summary": "Mobile Weekend Braider.\nWhere hair meets elegance ✨\nBraids & protective styles\nLondon 🇬🇧\n📲 WhatsApp bookings | Mobile service only",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/maisonem.uk/",
+        "Raw services provided during admin intake.",
+        "\"Colour blend (mixing braiding hair)\" — admin-confirmed, not from Instagram scrape."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-09-01",
+      "portfolioPhotos": [
+        {
+          "id": "maisonem-uk-portfolio-photo-bd8c72f5-5e92-4c79-bf6f-2f0e4dc55738",
+          "url": "/portfolio-photos/maisonem-uk-1cadb39a-6fc6-4d60-851a-2de1c349662f.jpg",
+          "source": "google-image-search"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-09-01",
+      "photoOrderBumpedAt": 1150
+    },
+    {
+      "id": "rayys-touch",
+      "name": "Rayys Touch",
+      "areaId": "croydon",
+      "areaLabel": "Croydon",
+      "neighbourhood": "Croydon London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/rayystouch/",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/rayystouch/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Boho braids / goddess braids",
+        "Fulani / lemonade braids",
+        "Twists (with extensions)",
+        "Colour blend (mixing braiding hair)"
+      ],
+      "summary": "* Dm to book \n*August bookings available🤍\n* based in South Croydon (CR2)📍\n* Read policy before booking",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/rayystouch/",
+        "Raw services provided during admin intake.",
+        "\"Colour blend (mixing braiding hair)\" — admin-confirmed, not from Instagram scrape."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-09-01",
+      "portfolioPhotos": [
+        {
+          "id": "rayys-touch-portfolio-photo-e31e3d81-2556-4f37-afa5-42a81fdb2d68",
+          "url": "/portfolio-photos/rayys-touch-98694342-15d3-42c2-a105-518037de598a.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "rayys-touch-portfolio-photo-55a35355-0f25-4387-9679-a8b18cc85d4d",
+          "url": "/portfolio-photos/rayys-touch-1632e3d3-14f5-4dbd-afed-27cbf70e7328.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "rayys-touch-portfolio-photo-abd42e39-d9f9-4ef1-b8bd-f7f283e4a2b4",
+          "url": "/portfolio-photos/rayys-touch-071493e4-ae2d-484f-a765-204d17435d8d.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "rayys-touch-portfolio-photo-d2de40b7-106c-4094-b043-65fec3ce2176",
+          "url": "/portfolio-photos/rayys-touch-09eb1bfe-098f-4afb-adeb-ae899b3817e7.jpg",
+          "source": "google-image-search"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-09-01",
+      "photoOrderBumpedAt": 1149
+    },
+    {
+      "id": "braided-by-annette",
+      "name": "Braided by Annette",
+      "areaId": "east",
+      "areaLabel": "East London",
+      "neighbourhood": "East London London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/braidedbyannette/",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/braidedbyannette/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Twists (with extensions)",
+        "Boho braids / goddess braids",
+        "Knotless braids",
+        "Fulani / lemonade braids",
+        "Box braids",
+        "Soft locs",
+        "Colour blend (mixing braiding hair)",
+        "Crochet faux locs / invisible locs",
+        "Half braids, half sew-in"
+      ],
+      "summary": "📍EAST LONDON\nBraids, twists, locs, sew-ins, sleek ponytails etc.\nPart time hairstylist\nTEMPORARILY CLOSED.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/braidedbyannette/",
+        "Raw services provided during admin intake."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-09-01",
+      "portfolioPhotos": [
+        {
+          "id": "braided-by-annette-portfolio-photo-c4aa2541-5696-47d8-941c-59c0f9925d35",
+          "url": "/portfolio-photos/braided-by-annette-442ae7e4-1018-439d-ae7e-b6b2e9174b6d.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "braided-by-annette-portfolio-photo-40653464-dd69-4601-9abe-3fb01f40a02b",
+          "url": "/portfolio-photos/braided-by-annette-d6fe6eff-9683-4a4c-af1a-de09e054da99.jpg",
+          "source": "google-image-search"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-09-01",
+      "photoOrderBumpedAt": 1145
+    },
+    {
+      "id": "sel-braids",
+      "name": "SEL Braids",
+      "areaId": "kent",
+      "areaLabel": "Kent",
+      "neighbourhood": "Kent London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/selbraids/",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/selbraids/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Knotless braids",
+        "Boho braids / goddess braids",
+        "Crochet faux locs / invisible locs",
+        "Colour blend (mixing braiding hair)"
+      ],
+      "summary": "DM to book appointments and Click ‘Book Now’ for prices! 💕\nLast minute bookings may be available\nGreenhithe , DA9📍",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/selbraids/",
+        "Raw services provided during admin intake.",
+        "\"Colour blend (mixing braiding hair)\" — admin-confirmed, not from Instagram scrape."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-09-01",
+      "portfolioPhotos": [
+        {
+          "id": "sel-braids-portfolio-photo-a31eb839-5e98-46e1-a939-cd7247694c44",
+          "url": "/portfolio-photos/sel-braids-b5155d4e-67cc-479c-9096-0eea9b7048d9.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "sel-braids-portfolio-photo-64ec468f-d47b-40e0-9ecd-8cdae97a6c59",
+          "url": "/portfolio-photos/sel-braids-caabde35-b73c-4589-aae9-9dc22b28d6e9.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "sel-braids-portfolio-photo-8d7a1544-19a5-43b0-8ff8-75a724953758",
+          "url": "/portfolio-photos/sel-braids-91de37f5-71c1-4abd-a878-0da6a14381fc.jpg",
+          "source": "google-image-search"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-09-01",
+      "photoOrderBumpedAt": 1143
+    },
+    {
+      "id": "haus-of-braids",
+      "name": "Haus of Braids",
+      "areaId": "east",
+      "areaLabel": "East London",
+      "neighbourhood": "East London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://hausofbraids.as.me/",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/hausofbraids/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Fulani / lemonade braids",
+        "Knotless braids",
+        "Wig cornrows",
+        "Feed-in braids",
+        "Colour blend (mixing braiding hair)"
+      ],
+      "priceBand": "£",
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "Fulani Braids - £155",
+        "Large knotless braids - £90",
+        "medium knotless braids - £170",
+        "Coi Leray Braids - £65",
+        "Mumma Braids - £155",
+        "small knotless braids - £250",
+        "Freestyle Fulani braids - £165",
+        "Diva Braids - £180"
+      ],
+      "priceCheckedAt": "2026-09-01",
+      "priceUpdatedAt": "2026-09-01",
+      "priceConfidence": "high",
+      "summary": "UK BRAIDER🇬🇧\nTuesday-Saturday\nMonday - emergency appts  \nUse promo code “HOB26” for 10% bundles from @elskollection \nEAST LONDON BASED E5📍\n13+ ONLY",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/hausofbraids/",
+        "Submitted link: https://hausofbraids.as.me/",
+        "Raw services provided during admin intake.",
+        "\"Colour blend (mixing braiding hair)\" — admin-confirmed, not from Instagram scrape."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-09-01",
+      "portfolioPhotos": [
+        {
+          "id": "haus-of-braids-portfolio-photo-66f1365b-cc55-410e-925b-80336518d77c",
+          "url": "/portfolio-photos/haus-of-braids-a5ff0894-3bb9-4945-a917-34d5d00bbf41.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "haus-of-braids-portfolio-photo-c53da252-f190-43fc-8b79-e9abe309a57a",
+          "url": "/portfolio-photos/haus-of-braids-1839f734-3965-4bb0-82cc-8450fc65de7a.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "haus-of-braids-portfolio-photo-8a1fe4e4-5f3d-47d5-bb4a-f8fb6dc575f9",
+          "url": "/portfolio-photos/haus-of-braids-724211a6-3ae1-4247-bea9-dc058cbd3594.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "haus-of-braids-portfolio-photo-0af42f35-f64f-42a3-8354-70c8c2f4af2d",
+          "url": "/portfolio-photos/haus-of-braids-beb5acb1-f4cb-4199-bdb5-8a643895fc4f.jpg",
+          "source": "google-image-search"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-09-01",
+      "photoOrderBumpedAt": 1140
+    },
+    {
+      "id": "ggrpd-it",
+      "name": "Ggrpd It",
+      "areaId": "essex",
+      "areaLabel": "Essex",
+      "neighbourhood": "Essex London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://ggrippedit.as.me/schedule.php",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/ggrpdit/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Boho braids / goddess braids",
+        "Boho braids bob",
+        "Feed-in braids",
+        "Fulani / lemonade braids",
+        "Knotless braids",
+        "French curl",
+        "Wig cornrows",
+        "Sleek ponytail / bun",
+        "Miracle knots",
+        "Colour blend (mixing braiding hair)",
+        "Creative braids",
+        "Half braids, half sew-in"
+      ],
+      "priceBand": "££",
+      "servicePriceBand": "££",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "Small Bob Standard Boho (Shoulder Length) - £135",
+        "Smedium Bob Standard Boho (Shoulder Length) - £125",
+        "Medium Bob Standard Boho (Shoulder Length) - £115",
+        "Small Long Bob Standard Boho ( Armpit length) - £145",
+        "Smedium Long Bob Standard Boho (Armpit Length) - £135",
+        "Medium Long Bob Standard Boho (Armpit Length) - £125",
+        "Medium Fulani Braids - £125",
+        "Small Fulani Braids - £145"
+      ],
+      "priceCheckedAt": "2026-09-01",
+      "priceUpdatedAt": "2026-09-01",
+      "priceConfidence": "high",
+      "summary": "Harlow , Essex 🇬🇧\nSLOTS • Every 15th of the month \nPLEASE READ FAQs BEFORE DM’ING\n📩 ggrippedit@gmail.com",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/ggrpdit/",
+        "Submitted link: https://ggrippedit.as.me/schedule.php",
+        "Raw services provided during admin intake.",
+        "\"Colour blend (mixing braiding hair)\" — admin-confirmed, not from Instagram scrape."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-09-01",
+      "portfolioPhotos": [
+        {
+          "id": "ggrpd-it-portfolio-photo-ffb28a1d-dbf3-4f32-862a-c3dfdacf9dcf",
+          "url": "/portfolio-photos/ggrpd-it-1791607a-2fb9-4bc4-8136-ad00eec5791c.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "ggrpd-it-portfolio-photo-0e10f1bf-0467-4020-8702-4df37c558bf0",
+          "url": "/portfolio-photos/ggrpd-it-95d667d8-a8b7-4a4e-9d1e-f2fca965da6a.jpg",
+          "source": "google-image-search"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-09-01",
+      "photoOrderBumpedAt": 1136
+    },
+    {
+      "id": "london-braider",
+      "name": "London braider",
+      "areaId": "kent",
+      "areaIds": [
+        "kent",
+        "south-east"
+      ],
+      "areaLabel": "Kent / South east London",
+      "neighbourhood": "Kent and South east London London",
+      "postcode": "SE15 1JF",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://beautybynnedaddy.as.me/",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/londonbraider_1/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Boho braids / goddess braids",
+        "Boho braids bob",
+        "French curl",
+        "French curl bob",
+        "Wash & blowdry",
+        "Knotless braids",
+        "Twists (with extensions)",
+        "Wig cornrows",
+        "Colour blend (mixing braiding hair)",
+        "Half braids, half sew-in"
+      ],
+      "priceBand": "££",
+      "servicePriceBand": "££",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "Medium Boho Braids - £150",
+        "Small Boho Braids (mid back) - £180",
+        "Small Bob Boho Braids - £110",
+        "Medium Bob Boho Braids - £100",
+        "Small-Medium French Curl Braids - £150",
+        "Bob boho French curl - £145",
+        "Boho French curl. Small size - £170",
+        "Washing / blow drying of hair - £60"
+      ],
+      "priceCheckedAt": "2026-09-01",
+      "priceUpdatedAt": "2026-09-01",
+      "priceConfidence": "high",
+      "summary": "SOUTH LONDON BRAIDER ✨\nBraids | Boho Braids | French Curls\nWeaves | Sew-ins | Protective Styles\n📍 South London 🇬🇧\n👇🏾 Appointments & bookings",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/londonbraider_1/",
+        "Submitted link: https://beautybynnedaddy.as.me/",
+        "Raw services provided during admin intake.",
+        "\"Colour blend (mixing braiding hair)\" — admin-confirmed, not from Instagram scrape."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
+      "googleCheckedAt": "2026-09-01",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": false,
+      "sameDayEmergency": false,
+      "customFilters": {},
+      "updatedAt": "2026-09-01",
+      "portfolioPhotos": [
+        {
+          "id": "london-braider-portfolio-photo-294031ff-08a7-436c-ad2d-767049de6a98",
+          "url": "/portfolio-photos/london-braider-f8d13ce1-69f6-4dd0-80be-dd06e2bd98a6.jpg",
+          "source": "instagram-reel-frame"
+        },
+        {
+          "id": "london-braider-portfolio-photo-f837b0a8-b43b-4c64-ba71-f03a07cf117a",
+          "url": "/portfolio-photos/london-braider-8d7649c0-d6f6-4a34-b7aa-654aa2608b16.jpg",
+          "source": "instagram-reel-frame"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-09-01",
+      "photoOrderBumpedAt": 1134
+    },
+    {
+      "id": "a-hair-uk",
+      "name": "A Hair UK",
+      "areaId": "south-east",
+      "areaLabel": "South east London",
+      "neighbourhood": "South east London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://ahairuk.as.me/",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/ahairuk/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Fulani / lemonade braids",
+        "Knotless braids",
+        "Miracle knots",
+        "Boho braids / goddess braids",
+        "Stitch braids",
+        "Twists (with extensions)",
+        "Colour blend (mixing braiding hair)"
+      ],
+      "priceBand": "£",
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "lemonade fulani braids - £110",
+        "freestyle fulani braids - £110",
+        "small knotless braids - £135",
+        "smedium knotless braids - £120",
+        "medium knotless braids - £110",
+        "large knotless braids - £95",
+        "miracle knots - £100",
+        "short smedium boho braids - £90"
+      ],
+      "priceCheckedAt": "2026-09-01",
+      "priceUpdatedAt": "2026-09-01",
+      "priceConfidence": "high",
+      "summary": "Sept slots out now!\nLondon & Leicester Hairstylist \nCurrently based in London\nDM | Email for enquiries 🤍",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/ahairuk/",
+        "Submitted link: https://ahairuk.as.me/",
+        "Raw services provided during admin intake.",
+        "\"Colour blend (mixing braiding hair)\" — admin-confirmed, not from Instagram scrape."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-09-01",
+      "portfolioPhotos": [
+        {
+          "id": "a-hair-uk-portfolio-photo-f99a5c80-7a9c-4fab-91d3-f2adbf331215",
+          "url": "/portfolio-photos/a-hair-uk-bb198e14-1643-4651-89cc-5b386016e482.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "a-hair-uk-portfolio-photo-10ce6ffe-4617-48bb-bd2e-c7f89be1e779",
+          "url": "/portfolio-photos/a-hair-uk-1d2c0db8-bf78-46ab-8892-aef9e6d7fe6a.jpg",
+          "source": "google-image-search"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-09-01",
+      "photoOrderBumpedAt": 1132
+    },
+    {
+      "id": "braidology",
+      "name": "Braidology",
+      "areaId": "south-west",
+      "areaLabel": "South west London",
+      "neighbourhood": "South west London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://braidologyuk.as.me/",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/_braidology/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Boho braids / goddess braids",
+        "Fulani / lemonade braids",
+        "Flipover / Versatile sew-in",
+        "Knotless braids",
+        "Boho braids bob",
+        "Crochet faux locs / invisible locs",
+        "Miracle knots",
+        "U-Part / Half wig install",
+        "Stitch braids",
+        "Colour blend (mixing braiding hair)"
+      ],
+      "priceBand": "£££",
+      "servicePriceBand": "£££",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "Flip-over Fulani - Minimal Boho - £230",
+        "Flip-over Fulani - Full Boho - £290",
+        "Flipover Fulani - Extreme Boho - £350",
+        "Fulani Braids - Minimal Boho - £210",
+        "Fulani Braids - Full Boho - £270",
+        "Fulani Braids - Extreme Boho - £330",
+        "Lemonade Fulani - Minimal Boho - £220",
+        "Lemonade Fulani - Full Boho - £280"
+      ],
+      "priceCheckedAt": "2026-09-01",
+      "priceUpdatedAt": "2026-09-01",
+      "priceConfidence": "high",
+      "summary": "Braids | Sew ins | Hair included packages\n📍Brixton, London\n↓ Booking Info & Prices",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/_braidology/",
+        "Submitted link: https://braidologyuk.as.me/",
+        "Raw services provided during admin intake.",
+        "\"Colour blend (mixing braiding hair)\" — admin-confirmed, not from Instagram scrape."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-09-01",
+      "portfolioPhotos": [
+        {
+          "id": "braidology-portfolio-photo-b58fb127-41b2-4a32-8735-d3f5c2eb6403",
+          "url": "/portfolio-photos/braidology-214b546e-eb27-4fec-b0e0-0b1f58b081b8.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "braidology-portfolio-photo-48166f4e-c3cc-4555-a09d-3bb280926f7a",
+          "url": "/portfolio-photos/braidology-dae04880-2178-4d44-989a-d2683a55d88b.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "braidology-portfolio-photo-a9973fa8-40cd-4e20-9c24-3640d30448c7",
+          "url": "/portfolio-photos/braidology-03be3d5a-8ea3-42cd-937f-07f456e65a98.jpg",
+          "source": "google-image-search"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-09-01",
+      "photoOrderBumpedAt": 1130
+    },
+    {
+      "id": "hair-by-vills-studio",
+      "name": "Hair by Vills Studio",
+      "areaId": "essex",
+      "areaLabel": "Essex",
+      "neighbourhood": "Essex London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://hairbyvillsstudio.as.me/",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/hairbyvillsstudio/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Wash & blowdry",
+        "Feed-in braids",
+        "Stitch braids",
+        "Wig cornrows",
+        "Sleek ponytail / bun",
+        "Sew-in take-down",
+        "Traditional sew-in / leave out",
+        "Moisturising treatment",
+        "Retwist / interlocking",
+        "Starter locs / instant locs",
+        "Colour blend (mixing braiding hair)",
+        "Editorial / Session styling",
+        "K-18 treatment"
+      ],
+      "priceBand": "£",
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "Braids Take down + Wash + Blowdry - £60",
+        "Cornrow for Weave-On | Basic - £20",
+        "Wash n Blow-dry - £30",
+        "Wash n Press/Straighten and Trim - £80",
+        "Hair Wash & Cornrow for weave - £50",
+        "Hair wash, Treatment and Blow-dry - £60",
+        "Stretch & Dry Trim - £20",
+        "Stretch & Dry Hair Cut - £40"
+      ],
+      "priceCheckedAt": "2026-09-01",
+      "priceUpdatedAt": "2026-09-01",
+      "priceConfidence": "high",
+      "summary": "Natural Hairstylist 🧚🏽‍♀️ 🧳🌐\nPromise HB Salon 🤍 \n📍London | Dagenham \nContact💌: Villanewalcottt@gmail.com\nCurrently : On Mat Leave 👩🏾‍🍼❤️",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/hairbyvillsstudio/",
+        "Submitted link: https://hairbyvillsstudio.as.me/",
+        "Raw services provided during admin intake.",
+        "\"Colour blend (mixing braiding hair)\" — admin-confirmed, not from Instagram scrape."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-09-01",
+      "portfolioPhotos": [
+        {
+          "id": "hair-by-vills-studio-portfolio-photo-2ae01cc0-4584-4395-9781-e9a133de4cd1",
+          "url": "/portfolio-photos/hair-by-vills-studio-3a139561-288f-439d-b044-870c6093f8e9.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "hair-by-vills-studio-portfolio-photo-0aba365b-6d0a-41ab-bc0f-aa3e6b6611bc",
+          "url": "/portfolio-photos/hair-by-vills-studio-2bbbc49f-87a8-4dd1-88a6-b6b6f23e831d.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "hair-by-vills-studio-portfolio-photo-7c5c879b-8867-48e7-b0d9-d2b81851f9e6",
+          "url": "/portfolio-photos/hair-by-vills-studio-15459d44-642f-4412-92ce-a7b0c4691556.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "hair-by-vills-studio-portfolio-photo-1aabcd10-363c-45ea-8326-9319278caaca",
+          "url": "/portfolio-photos/hair-by-vills-studio-462a63dd-2966-4a4c-b718-61255b803be8.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "hair-by-vills-studio-portfolio-photo-6510c4d0-06bb-49b6-a12f-372f47cac164",
+          "url": "/portfolio-photos/hair-by-vills-studio-902f1c91-7d1f-4dbf-8472-bf944d6cb090.jpg",
+          "source": "google-image-search"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-09-01",
+      "photoOrderBumpedAt": 1127
+    },
+    {
+      "id": "sma-hair-uk",
+      "name": "SMA Hair UK",
+      "areaId": "north-west",
+      "areaLabel": "North west London",
+      "neighbourhood": "North west London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://smahairuk.as.me/",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/sma.hairuk/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Boho braids / goddess braids",
+        "Knotless braids",
+        "Fulani / lemonade braids",
+        "Boho braids bob",
+        "Feed-in braids",
+        "Twists (with extensions)",
+        "Stitch braids",
+        "Wig cornrows",
+        "Quick weave",
+        "Sleek ponytail / bun",
+        "Updo",
+        "Colour blend (mixing braiding hair)",
+        "Kids & teens styles"
+      ],
+      "priceBand": "£",
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "*Small Knotless Boho Braids* - £320",
+        "*Smedium Knotless Boho Braids/Twists* - £270",
+        "*Medium Knotless Boho Braids/Twists* - £230",
+        "*Large Knotless Boho Braids/Twists* - £190",
+        "*Freestyle Fulani Boho Braids* - £250",
+        "*Bob Boho Knotless (medium)* - £210",
+        "*Bob Boho Knotless (smedium)* - £230",
+        "2 Feed-In Braids - £40"
+      ],
+      "priceCheckedAt": "2026-09-01",
+      "priceUpdatedAt": "2026-09-01",
+      "priceConfidence": "high",
+      "summary": "Neasden | London-NW10🇬🇧📍\n*All Hair Included Available*\n•”Contact” button for enquires\n•Link below for bookings & prices",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/sma.hairuk/",
+        "Submitted link: https://smahairuk.as.me/",
+        "Raw services provided during admin intake.",
+        "\"Colour blend (mixing braiding hair)\" — admin-confirmed, not from Instagram scrape."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-09-01",
+      "portfolioPhotos": [
+        {
+          "id": "sma-hair-uk-portfolio-photo-5b18e2ae-397c-478b-a7b8-9d6e26b2ce9f",
+          "url": "/portfolio-photos/sma-hair-uk-b0828a21-69d8-4c80-b3ea-c5075a1f0e85.jpg",
+          "source": "google-image-search"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-09-01",
+      "photoOrderBumpedAt": 1122
+    },
+    {
+      "id": "tress-co-uk",
+      "name": "Tress co UK",
+      "areaId": "north",
+      "areaLabel": "North London",
+      "neighbourhood": "North London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://tresscouk.as.me/",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/tresscouk/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Boho braids / goddess braids",
+        "Boho braids bob",
+        "Knotless braids",
+        "Fulani / lemonade braids",
+        "Braid take-down",
+        "Soft locs",
+        "Butterfly locs",
+        "Twists (with extensions)",
+        "Pre-parting",
+        "Sleek ponytail / bun",
+        "Flipover / Versatile sew-in",
+        "Traditional sew-in / leave out",
+        "Half up half down",
+        "Quick weave",
+        "Stitch braids",
+        "Half braids, half sew-in",
+        "Wig cornrows",
+        "Updo",
+        "Colour blend (mixing braiding hair)"
+      ],
+      "priceBand": "£",
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "Medium boho bob - £70",
+        "Medium boho braids - £85",
+        "Small- medium boho knotless - £95",
+        "Small boho knotless - £110",
+        "Small- medium boho bob - £75",
+        "Refresh Fulani - £35",
+        "Refresh freestyle fulani - £40",
+        "Refresh knotless braids - £35"
+      ],
+      "priceCheckedAt": "2026-09-01",
+      "priceUpdatedAt": "2026-09-01",
+      "priceConfidence": "high",
+      "summary": "Tress / Co / Uk • Braid specialist\n  + Book | Link available in bio\n  + Contact | Via text and email, no dms \n  + Based | North London & Birmingham B4",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/tresscouk/",
+        "Submitted link: https://tresscouk.as.me/",
+        "Raw services provided during admin intake.",
+        "\"Colour blend (mixing braiding hair)\" — admin-confirmed, not from Instagram scrape."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-09-01",
+      "portfolioPhotos": [
+        {
+          "id": "tress-co-uk-portfolio-photo-51b32a63-4d95-43b7-bb97-aa59a6d59faa",
+          "url": "/portfolio-photos/tress-co-uk-81d90b0d-6418-4f48-bbe1-ec549052c83b.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "tress-co-uk-portfolio-photo-02d1d3f0-0fbd-4117-93ba-51a165f70da7",
+          "url": "/portfolio-photos/tress-co-uk-0a17894a-db12-453a-afe4-0494f4c25721.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "tress-co-uk-portfolio-photo-1a639731-4407-4b6f-9cfb-656606fd76fb",
+          "url": "/portfolio-photos/tress-co-uk-e7aadc73-35c8-4cad-8a7c-a085ea2f9384.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "tress-co-uk-portfolio-photo-aa60e0fb-d2c0-4f72-b053-29759bbea2f8",
+          "url": "/portfolio-photos/tress-co-uk-0f31e927-4b6e-4549-b2c5-c5c1c3328d42.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "tress-co-uk-portfolio-photo-d6f83654-2729-4f8e-82d1-d7ee4a0c5cf4",
+          "url": "/portfolio-photos/tress-co-uk-a5e2c1ca-9293-41c4-864a-cb44f092ba06.jpg",
+          "source": "google-image-search"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-09-01",
+      "photoOrderBumpedAt": 1121
+    },
+    {
+      "id": "thee-hair-quarters",
+      "name": "Thee Hair Quarters",
+      "areaId": "croydon",
+      "areaLabel": "Croydon",
+      "neighbourhood": "Croydon London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://thq.as.me/",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/theehairquarters/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Boho braids / goddess braids",
+        "Knotless braids",
+        "Twists (with extensions)",
+        "Fulani / lemonade braids",
+        "French curl",
+        "Stitch braids",
+        "Feed-in braids",
+        "Wig cornrows",
+        "Quick weave",
+        "Sleek ponytail / bun",
+        "Half up half down",
+        "Colour blend (mixing braiding hair)",
+        "Half braids, half sew-in"
+      ],
+      "priceBand": "£",
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "Boho Braids - Small - £130",
+        "Boho Braids - Smedium - £120",
+        "Boho Braids - Medium - £110",
+        "Boho Braids - Large - £90",
+        "Boho Braids - Jumbo - £80",
+        "Knotless Braids - Small - £120",
+        "Knotless Braids - Smedium - £110",
+        "Knotless Braids - Medium - £100"
+      ],
+      "priceCheckedAt": "2026-09-01",
+      "priceUpdatedAt": "2026-09-01",
+      "priceConfidence": "high",
+      "summary": "📍Thornton Heath\nBraiding Hair Included \nFast Braider\nSame-Day Appointments Available \nSeptember Appointments Now Available ↓",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/theehairquarters/",
+        "Submitted link: https://thq.as.me/",
+        "Raw services provided during admin intake.",
+        "\"Colour blend (mixing braiding hair)\" — admin-confirmed, not from Instagram scrape."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-09-01",
+      "portfolioPhotos": [
+        {
+          "id": "thee-hair-quarters-portfolio-photo-ecab3a88-92d3-4226-ac6a-9ec16135eb04",
+          "url": "/portfolio-photos/thee-hair-quarters-8989b581-810d-4f31-b2b6-1f3e55b04e2a.jpg",
+          "source": "instagram-reel-frame"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-09-01",
+      "photoOrderBumpedAt": 1116
+    },
+    {
+      "id": "crafted-by-jl",
+      "name": "Crafted by Jl",
+      "areaId": "kent",
+      "areaLabel": "Kent",
+      "neighbourhood": "Kent London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://craftedbyjl.as.me/",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/craftedby.jl/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Boho braids / goddess braids",
+        "Knotless braids",
+        "Boho braids bob",
+        "Box braids",
+        "Feed-in braids",
+        "Fulani / lemonade braids",
+        "Half braids, half sew-in",
+        "Twists (with extensions)",
+        "Traditional sew-in / leave out",
+        "Flipover / Versatile sew-in",
+        "Sleek ponytail / bun",
+        "Half up half down",
+        "Soft locs",
+        "Crochet faux locs / invisible locs",
+        "Wig install (frontal / closure)",
+        "Wig cornrows",
+        "Custom wig"
+      ],
+      "priceBand": "£",
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "LARGE BOHO BRAIDS - £110",
+        "XL BOHO BRAIDS - £85",
+        "MEDIUM BOHO BRAIDS BOB - £150",
+        "SMALL BOHO BRAIDS BOB - £170",
+        "LARGE BOX BRAIDS - £90",
+        "MEDIUM BOX BRAIDS - £120",
+        "SMALL BOX BRAIDS - £140",
+        "LARGE BOHO BOX BRAIDS - £110"
+      ],
+      "priceCheckedAt": "2026-09-01",
+      "priceUpdatedAt": "2026-09-01",
+      "priceConfidence": "high",
+      "summary": "GRAVESEND, KENT 📍🇬🇧\nWednesday 9.30-5.30pm\nSaturdays 10am-5pm\nSeptember slots out x",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/craftedby.jl/",
+        "Submitted link: https://craftedbyjl.as.me/",
+        "Raw services provided during admin intake."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-09-01",
+      "portfolioPhotos": [
+        {
+          "id": "crafted-by-jl-portfolio-photo-9ebf9192-7fc3-4ad6-b641-890daac0dbe7",
+          "url": "/portfolio-photos/crafted-by-jl-b40a173a-7ade-4fd9-855d-1716c8c39339.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "crafted-by-jl-portfolio-photo-3c6036a1-ebba-44de-bf54-2a0ce54bc0c7",
+          "url": "/portfolio-photos/crafted-by-jl-219b4430-dd22-4da3-9992-3fc3a83a9dcc.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "crafted-by-jl-portfolio-photo-c42b8779-4a88-40f1-b347-1d237a94c4d9",
+          "url": "/portfolio-photos/crafted-by-jl-aec91bd9-54d7-401d-8212-aac3d2661f8b.jpg",
+          "source": "google-image-search"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-09-01",
+      "photoOrderBumpedAt": 1115
+    },
+    {
+      "id": "by-pm-beauty",
+      "name": "By PM Beauty",
+      "areaId": "essex",
+      "areaLabel": "Essex",
+      "neighbourhood": "Essex London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://bypmbeautyyy.as.me/",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/bypmbeauty_/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Half up half down",
+        "Quick weave",
+        "Traditional sew-in / leave out",
+        "Sleek ponytail / bun",
+        "Updo"
+      ],
+      "priceBand": "£",
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "Traditional Half Up-Half Down - £75",
+        "Freestyle Half Up Half Down - £80",
+        "Re slick Half - Half Down - £45",
+        "Quick weave Half Up Half down - £75",
+        "Traditional Sew In - £65",
+        "Sleek Middle Part - £60",
+        "Sleek All Back Pony (Middle, Low, High) - £60",
+        "Barbie Ponytail - £65"
+      ],
+      "priceCheckedAt": "2026-09-01",
+      "priceUpdatedAt": "2026-09-01",
+      "priceConfidence": "high",
+      "summary": "Romford, Essex📍\nSeptember slots out on the 15th",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/bypmbeauty_/",
+        "Submitted link: https://bypmbeautyyy.as.me/",
+        "Raw services provided during admin intake."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-09-01",
+      "portfolioPhotos": [
+        {
+          "id": "by-pm-beauty-portfolio-photo-a147e24c-cc6c-4b05-be67-ec302015c78c",
+          "url": "/portfolio-photos/by-pm-beauty-147053e6-ac30-4a95-8fab-64a321546078.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "by-pm-beauty-portfolio-photo-6a197a2c-2aa9-43da-bb61-a4db5ff8e275",
+          "url": "/portfolio-photos/by-pm-beauty-f3892dc7-d821-4029-8d5d-9d18b95937d9.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "by-pm-beauty-portfolio-photo-cf204d2f-9885-4d59-ac12-cf7354fca064",
+          "url": "/portfolio-photos/by-pm-beauty-7de1ff95-6fa6-42fa-8c0a-7e3c9ebbc68f.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "by-pm-beauty-portfolio-photo-3bf6c8d5-69ff-4c82-864c-f3df3f29937d",
+          "url": "/portfolio-photos/by-pm-beauty-7b7e594d-0386-4a2a-a92d-204c302a3adf.jpg",
+          "source": "google-image-search"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-09-01",
+      "photoOrderBumpedAt": 1112
+    },
     {
       "id": "hair-by-nai",
       "name": "HAIR BY NAI",
@@ -27,7 +1272,11 @@
         "Feed-in braids",
         "Boho braids / goddess braids",
         "Half braids, half sew-in",
-        "Colour blend (mixing braiding hair)"
+        "Colour blend (mixing braiding hair)",
+        "Traditional sew-in / leave out",
+        "Sleek ponytail / bun",
+        "French curl",
+        "Wig install (frontal / closure)"
       ],
       "summary": "•Matthew 19:26✨\nNorth Acton/Harlesden.\nDM me to book 🗓️",
       "source": "manual",
@@ -48,7 +1297,29 @@
         }
       ],
       "photoSearchReviewedAt": "2026-09-01",
-      "photoOrderBumpedAt": 1107
+      "photoOrderBumpedAt": 1107,
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": false,
+      "sameDayEmergency": false,
+      "customFilters": {},
+      "priceBand": "£",
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "manual",
+      "priceEvidence": [],
+      "priceCheckedAt": "",
+      "priceUpdatedAt": "2026-09-01",
+      "priceConfidence": "manual",
+      "updatedAt": "2026-09-01"
     },
     {
       "id": "queens-luxe",
@@ -71,7 +1342,8 @@
         "Crochet faux locs / invisible locs",
         "Knotless braids",
         "Boho braids / goddess braids",
-        "Colour blend (mixing braiding hair)"
+        "Colour blend (mixing braiding hair)",
+        "Pre-parting"
       ],
       "sellsHairSeparately": true,
       "summary": "ᥫ᭡ 𝖤𝖺𝗌𝗍 𝗅𝗈𝗇𝖽𝗈𝗇 𝗁𝖺𝗂𝗋𝗌𝗍𝗒𝗅𝗂𝗌𝗍 🇬🇧\nᥫ᭡ 𝗗𝗠 𝗧𝗢 𝗕𝗢𝗢𝗞❗️",
@@ -94,7 +1366,28 @@
         }
       ],
       "photoSearchReviewedAt": "2026-09-01",
-      "photoOrderBumpedAt": 1106
+      "photoOrderBumpedAt": 1106,
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sameDayEmergency": false,
+      "customFilters": {},
+      "priceBand": "£",
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "manual",
+      "priceEvidence": [],
+      "priceCheckedAt": "",
+      "priceUpdatedAt": "2026-09-01",
+      "priceConfidence": "manual",
+      "updatedAt": "2026-09-01"
     },
     {
       "id": "luhairuk",
@@ -136,7 +1429,29 @@
         }
       ],
       "photoSearchReviewedAt": "2026-09-01",
-      "photoOrderBumpedAt": 1105
+      "photoOrderBumpedAt": 1105,
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": false,
+      "sameDayEmergency": false,
+      "customFilters": {},
+      "priceBand": "",
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "",
+      "priceSource": "",
+      "priceEvidence": [],
+      "priceCheckedAt": "",
+      "priceUpdatedAt": "",
+      "priceConfidence": "",
+      "updatedAt": "2026-09-01"
     },
     {
       "id": "joy-s-hair-studio",
@@ -287,14 +1602,13 @@
       "addedVia": "Admin tool",
       "discoverySource": "Instagram auto-fill",
       "services": [
-        "Trim / hair cut",
         "Boho braids / goddess braids",
         "Feed-in braids",
         "Stitch braids",
         "Fulani / lemonade braids",
-        "Hybrid sew in (tapes + sew in)",
-        "Traditional sew-in / leave out",
-        "Colour blend (mixing braiding hair)"
+        "Colour blend (mixing braiding hair)",
+        "Half braids, half sew-in",
+        "Wig cornrows"
       ],
       "summary": "📍Canary Wharf - 6 mins from South Quay (E14)\n▫️Natural Hair & Extensions \n▫️07359832942",
       "source": "manual",
@@ -307,7 +1621,38 @@
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleCheckedAt": "2026-09-01"
+      "googleCheckedAt": "2026-09-01",
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": false,
+      "sameDayEmergency": false,
+      "customFilters": {},
+      "priceBand": "",
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "",
+      "priceSource": "",
+      "priceEvidence": [],
+      "priceCheckedAt": "",
+      "priceUpdatedAt": "",
+      "priceConfidence": "",
+      "updatedAt": "2026-09-01",
+      "portfolioPhotos": [
+        {
+          "id": "nowbeauty-portfolio-photo-6d8ad824-f328-4c09-aa66-0e32f277f46d",
+          "url": "/portfolio-photos/nowbeauty-0e26150d-c407-4deb-a49e-742d1b9c6749.jpg",
+          "source": "instagram-reel-frame"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-09-01",
+      "photoOrderBumpedAt": 1108
     },
     {
       "id": "hair-by-tess",
@@ -317,7 +1662,7 @@
       "neighbourhood": "Kent London",
       "postcode": "",
       "bookingPlatform": "Instagram",
-      "bookingUrl": "https://www.instagram.com/_hairbytess_/",
+      "bookingUrl": "https://www.fresha.com/en-GB/a/hair-by-tess-northfleet-huntley-avenue-zhab9td1",
       "websiteUrl": "",
       "hairShopUrl": "",
       "instagramUrl": "https://www.instagram.com/_hairbytess_/",
@@ -332,7 +1677,14 @@
         "Half braids, half sew-in",
         "Knotless braids",
         "Twists (with extensions)",
-        "French curl"
+        "French curl",
+        "Box braids",
+        "Wig cornrows",
+        "Kids & teens styles",
+        "Wig install (frontal / closure)",
+        "Men's braids",
+        "Stitch braids",
+        "Full head colour"
       ],
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
@@ -362,7 +1714,38 @@
         }
       ],
       "photoSearchReviewedAt": "2026-09-01",
-      "photoOrderBumpedAt": 1100
+      "photoOrderBumpedAt": 1100,
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": true,
+      "sameDayEmergency": false,
+      "customFilters": {},
+      "priceBand": "£",
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "Smedium miracle knots - £80",
+        "Medium size - from £124.99",
+        "Men stitch braids cornrows - from £25",
+        "Jayda wayda - £85",
+        "Smedium Knotless braids - from £89.99",
+        "Natural hair cornrows (medium size) - from £20",
+        "cornrows with extension - from £60",
+        "Extra long length for miracle knots - £30"
+      ],
+      "priceCheckedAt": "2026-09-01",
+      "priceUpdatedAt": "2026-09-01",
+      "priceConfidence": "high",
+      "updatedAt": "2026-09-01"
     },
     {
       "id": "braided-by-jada",
@@ -528,7 +1911,18 @@
       ],
       "photoSearchReviewedAt": "2026-09-01",
       "photoOrderBumpedAt": 1094,
-      "updatedAt": "2026-09-01"
+      "updatedAt": "2026-09-01",
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": false,
+      "sameDayEmergency": false,
+      "customFilters": {}
     },
     {
       "id": "mt-styles-uk",
@@ -903,7 +2297,7 @@
       "bookingPlatform": "Acuity",
       "bookingUrl": "https://flawlessbystacyfbs.as.me/",
       "websiteUrl": "",
-      "hairShopUrl": "",
+      "hairShopUrl": "https://www.instagram.com/fbs_luxury/",
       "instagramUrl": "https://www.instagram.com/flawless_bystacy/",
       "tiktokUrl": "",
       "addedVia": "Admin tool",
@@ -971,7 +2365,18 @@
       ],
       "photoSearchReviewedAt": "2026-09-01",
       "photoOrderBumpedAt": 1083,
-      "updatedAt": "2026-09-01"
+      "updatedAt": "2026-09-01",
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": true,
+      "sameDayEmergency": false,
+      "customFilters": {}
     },
     {
       "id": "kreated-by-jen",
