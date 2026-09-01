@@ -5,7 +5,7 @@ import { fileURLToPath } from "node:url";
 import express from "express";
 import { computeReviewHealth, readSalonIndex, searchSalons, setNoStoreHeaders } from "./salon-index.mjs";
 import { getVendorFilterOptions, searchVendors } from "./vendor-index.mjs";
-import { registerAdminStylistRoutes, serviceNegationHints } from "./admin-stylists.mjs";
+import { registerAdminStylistRoutes, registerPublicStylistSubmissionRoutes, serviceNegationHints } from "./admin-stylists.mjs";
 import { sanitizeCustomFilters } from "./custom-filters.mjs";
 import { createRateLimiter, requestLogger } from "./security.mjs";
 
@@ -48,6 +48,7 @@ app.get("/api/index-status", async (_req, res) => {
 });
 
 registerAdminStylistRoutes(app);
+registerPublicStylistSubmissionRoutes(app);
 
 app.get("/api/filters", async (_req, res) => {
   try {

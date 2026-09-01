@@ -1,10 +1,59 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-08-31",
-    "count": 15
+    "updatedAt": "2026-09-01",
+    "count": 16
   },
   "drafts": [
+    {
+      "id": "osaruguelovely8-mti1cspc",
+      "status": "ready_to_approve",
+      "name": "Osaruguelovely8",
+      "areaId": "south-east",
+      "areaIds": [
+        "south-east"
+      ],
+      "areaLabel": "South east London",
+      "neighbourhood": "South east London London",
+      "postcode": "",
+      "bookingPlatform": "",
+      "bookingUrl": "https://calendly.com/osaruguelovely5/360mins",
+      "instagramUrl": "https://www.instagram.com/osaruguelovely8/",
+      "tiktokUrl": "",
+      "addedVia": "Submission form",
+      "discoverySource": "User submission",
+      "services": [
+        "Boho braids / goddess braids",
+        "Box braids",
+        "Creative braids",
+        "French curl",
+        "Fulani / lemonade braids",
+        "Knotless braids",
+        "Wig cornrows"
+      ],
+      "rawServices": [],
+      "summary": "Admin draft created from stylist intake.",
+      "confidence": 0.72,
+      "warnings": [],
+      "evidence": [
+        "Created through ROW K admin intake."
+      ],
+      "source": "admin-draft",
+      "createdAt": "2026-09-01",
+      "updatedAt": "2026-09-01",
+      "lastCheckedAt": "2026-09-01",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": true,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "sameDayEmergency": false,
+      "sellsHairSeparately": false,
+      "priceIncludesHair": false,
+      "customFilters": {},
+      "submittedByProvider": false,
+      "submitterEmail": ""
+    },
     {
       "id": "naomistyledit",
       "status": "needs_review",

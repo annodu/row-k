@@ -1,7 +1,8 @@
-import { Fragment, type ReactNode, useCallback, useEffect, useId, useRef, useState } from "react";
-import { ArrowUp, ArrowUpRight, Check, ChevronDown, ChevronLeft, ChevronRight, Copy, Globe, Search, X } from "lucide-react";
+import { Fragment, type FormEvent, type ReactNode, useCallback, useEffect, useId, useRef, useState } from "react";
+import { ArrowUp, ArrowUpRight, Check, ChevronDown, ChevronLeft, ChevronRight, Copy, Globe, Info, Search, X } from "lucide-react";
 
 import { Checkbox } from "@/components/ui/checkbox";
+import { Input } from "@/components/ui/input";
 import { AdminApp } from "@/AdminApp";
 import { trackEvent as trackAnalyticsEvent } from "@/lib/analytics";
 import { useIsSlowConnection } from "@/lib/connectionQuality";
@@ -50,6 +51,16 @@ const regions = [
   { id: "essex", label: "Essex" },
   { id: "mobile", label: "Mobile / home service" },
 ] as const;
+
+// Same set as `regions`, but relabelled/reordered for the "Submit a stylist"
+// location picker: "all-london" reads oddly as a bare "London" chip next to
+// specific areas, so it's relabelled "London (general)" and moved last
+// rather than first, where a submitter with a specific area in mind would
+// otherwise be drawn to it by default.
+const submissionRegionOptions = [
+  ...regions.filter((region) => region.id !== "all-london"),
+  { id: "all-london", label: "London (general)" },
+];
 
 type RegionParentGroup = { id: string; label: string; childIds: string[] };
 const defaultRegionParentGroups: RegionParentGroup[] = [
@@ -2206,6 +2217,121 @@ function VendorResultsList({
   );
 }
 
+const submissionNeedFields = [
+  {
+    field: "hijabiFriendly",
+    label: "Hijabi-friendly",
+    description:
+      "Female-only space, not in view of any windows. Could be hijabi-friendly all the time or on specific days, and the whole salon could be hijabi-friendly or just there could just be a private section.",
+  },
+  { field: "canBraidWithoutGel", label: "Can braid without gel", description: "Can do braiding styles without using gel or edge-control products." },
+  { field: "wheelchairAccessible", label: "Wheelchair accessible entrance", description: "The venue has step-free access at the entrance." },
+  { field: "senFriendly", label: "Sensory-safe / SEN-friendly", description: "The salon accommodates the needs of neurodivergent clients, or clients with Special Educational Needs." },
+  { field: "lgbtqFriendly", label: "LGBTQIA+-friendly", description: "A welcoming, inclusive space for LGBTQIA+ clients." },
+  { field: "sameDayEmergency", label: "Same-day / walk-ins", description: "Can take clientswithout needing to book in advance." },
+  { field: "sellsHairSeparately", label: "Hair sold separately", description: "Sells hair separately from appointment bookings." },
+  { field: "priceIncludesHair", label: "Hair-inclusive packages available", description: "Some packages include the cost of hair/extensions in the price." },
+] as const;
+type SubmissionNeedField = (typeof submissionNeedFields)[number]["field"];
+const defaultSubmissionNeeds = Object.fromEntries(submissionNeedFields.map((item) => [item.field, false])) as Record<SubmissionNeedField, boolean>;
+// "Sells hair" is a UI-only grouping toggle (not its own stored field,
+// mirroring the public search filter's "Sells hair" parent) that reveals
+// these two once checked, same as toggleSellingHair() does for search.
+const submissionSellsHairSeparatelyField = submissionNeedFields.find((item) => item.field === "sellsHairSeparately")!;
+const submissionPriceIncludesHairField = submissionNeedFields.find((item) => item.field === "priceIncludesHair")!;
+
+function SubmissionNeedCheckbox({
+  label,
+  description,
+  checked,
+  onChange,
+  indent,
+}: {
+  label: string;
+  description: string;
+  checked: boolean;
+  onChange: (checked: boolean) => void;
+  indent?: boolean;
+}) {
+  return (
+    <label
+      className={cn(
+        "flex min-h-8 cursor-pointer items-center gap-3 rounded-none px-1 py-1 text-[14px] font-medium text-stone-800 transition hover:bg-stone-200 dark:text-stone-200 dark:hover:bg-stone-900",
+        indent && "ml-7",
+      )}
+    >
+      <input
+        type="checkbox"
+        checked={checked}
+        onChange={(event) => onChange(event.target.checked)}
+        className="size-4 rounded-none border-stone-400 accent-stone-950"
+      />
+      <span className="inline-flex items-center gap-1.5">
+        {label}
+        <span title={description}>
+          <Info className="size-3.5 shrink-0 text-stone-400" aria-hidden="true" />
+        </span>
+      </span>
+    </label>
+  );
+}
+
+// Profile URLs put the handle in the first path segment; anything else
+// (p/, reel/, explore/, stories/) is a post or feature link, not a profile,
+// so there's no handle worth turning into a name.
+const INSTAGRAM_NON_PROFILE_SEGMENTS = new Set(["p", "reel", "reels", "explore", "stories", "tv"]);
+
+function deriveNameFromInstagramUrl(url: string): string {
+  const trimmed = url.trim();
+  if (!trimmed) return "";
+
+  let pathname: string;
+  try {
+    const withProtocol = /^https?:\/\//i.test(trimmed) ? trimmed : `https://${trimmed}`;
+    pathname = new URL(withProtocol).pathname;
+  } catch {
+    return "";
+  }
+
+  const handle = pathname.split("/").filter(Boolean)[0];
+  if (!handle || INSTAGRAM_NON_PROFILE_SEGMENTS.has(handle.toLowerCase())) return "";
+
+  return handle
+    .split(/[._-]+/)
+    .filter(Boolean)
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+}
+
+function SubmissionLinkField({
+  label,
+  icon,
+  value,
+  onChange,
+  placeholder,
+  disabled,
+  children,
+}: {
+  label: string;
+  icon?: ReactNode;
+  value: string;
+  onChange: (value: string) => void;
+  placeholder: string;
+  disabled?: boolean;
+  children?: ReactNode;
+}) {
+  return (
+    <div className="flex flex-col gap-1.5">
+      <span className="flex items-center gap-1.5 text-[12px] font-semibold uppercase tracking-[0.08em] text-stone-600 dark:text-stone-400">
+        {icon}
+        {label}
+      </span>
+      <Input value={value} onChange={(event) => onChange(event.target.value)} placeholder={placeholder} type="url" disabled={disabled} />
+      {children}
+    </div>
+  );
+}
+
 export default function App() {
   if (window.location.pathname.startsWith("/admin/stylists")) {
     return <AdminApp />;
@@ -2261,6 +2387,30 @@ export default function App() {
   const [searchError, setSearchError] = useState<string | null>(null);
   const [hasSearched, setHasSearched] = useState(false);
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
+  const [submissionModalOpen, setSubmissionModalOpen] = useState(false);
+  const [privacyModalOpen, setPrivacyModalOpen] = useState(false);
+  const [siteDisclaimerModalOpen, setSiteDisclaimerModalOpen] = useState(false);
+  const [submissionName, setSubmissionName] = useState("");
+  const [submissionIsProvider, setSubmissionIsProvider] = useState(false);
+  const [submissionEmail, setSubmissionEmail] = useState("");
+  const [submissionInstagramUrl, setSubmissionInstagramUrl] = useState("");
+  // Tracks the last name we auto-filled from the Instagram handle, so we only
+  // keep overwriting the Name field while the user hasn't typed their own
+  // value over it.
+  const submissionAutoNameRef = useRef("");
+  const [submissionBookingUrl, setSubmissionBookingUrl] = useState("");
+  const [submissionBookingSameAsInstagram, setSubmissionBookingSameAsInstagram] = useState(false);
+  const [submissionAreaIds, setSubmissionAreaIds] = useState<string[]>([]);
+  const [submissionNeeds, setSubmissionNeeds] = useState<Record<SubmissionNeedField, boolean>>(defaultSubmissionNeeds);
+  const [submissionSellsHair, setSubmissionSellsHair] = useState(false);
+  const [submissionCustomFilters, setSubmissionCustomFilters] = useState<Record<string, string[]>>({});
+  const [submissionRawServices, setSubmissionRawServices] = useState("");
+  const [submissionServices, setSubmissionServices] = useState<string[]>([]);
+  const [submissionServiceQuery, setSubmissionServiceQuery] = useState("");
+  const [submissionNote, setSubmissionNote] = useState("");
+  const [submissionHoneypot, setSubmissionHoneypot] = useState("");
+  const [submissionStatus, setSubmissionStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const [submissionError, setSubmissionError] = useState<string | null>(null);
   const [emailCopied, setEmailCopied] = useState(false);
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [disclaimerDismissed, setDisclaimerDismissed] = useState(() => {
@@ -2404,6 +2554,17 @@ export default function App() {
   const runtimeCategoryServiceMap = Object.fromEntries(
     runtimeCategories.filter((c) => c.id !== "all").map((c) => [c.id, c.subcategories.length ? c.subcategories : [...(categoryServiceMap[c.id as ServiceCategoryId] ?? [])]])
   );
+  const submissionServiceGroups = runtimeCategories
+    .filter((c) => c.id !== "all")
+    .map((c) => ({ id: c.id, label: c.label, services: runtimeCategoryServiceMap[c.id] ?? [] }))
+    .filter((group) => group.services.length > 0)
+    .sort((a, b) => a.label.localeCompare(b.label));
+  const normalizedSubmissionServiceQuery = submissionServiceQuery.trim().toLowerCase();
+  const filteredSubmissionServiceGroups = normalizedSubmissionServiceQuery
+    ? submissionServiceGroups
+        .map((group) => ({ ...group, services: group.services.filter((service) => service.toLowerCase().includes(normalizedSubmissionServiceQuery)) }))
+        .filter((group) => group.services.length > 0)
+    : submissionServiceGroups;
 
   function syncDraftFiltersFromApplied() {
     setDraftSelectedRegions(selectedRegions);
@@ -2436,6 +2597,131 @@ export default function App() {
       setEmailCopied(true);
       setTimeout(() => setEmailCopied(false), 2000);
     });
+  }
+
+  function openSubmissionModal(source: "hero" | "footer" | "zero_results") {
+    trackAnalyticsEvent("stylist_submit_opened", { source });
+    setSubmissionStatus("idle");
+    setSubmissionError(null);
+    setSubmissionModalOpen(true);
+  }
+
+  function openPrivacyModal() {
+    setPrivacyModalOpen(true);
+  }
+
+  function closePrivacyModal() {
+    setPrivacyModalOpen(false);
+  }
+
+  function openSiteDisclaimerModal() {
+    setSiteDisclaimerModalOpen(true);
+  }
+
+  function closeSiteDisclaimerModal() {
+    setSiteDisclaimerModalOpen(false);
+  }
+
+  function closeSubmissionModal() {
+    setSubmissionModalOpen(false);
+    if (submissionStatus === "success") {
+      setSubmissionName("");
+      setSubmissionIsProvider(false);
+      setSubmissionEmail("");
+      setSubmissionInstagramUrl("");
+      setSubmissionBookingUrl("");
+      setSubmissionBookingSameAsInstagram(false);
+      setSubmissionAreaIds([]);
+      setSubmissionNeeds(defaultSubmissionNeeds);
+      setSubmissionSellsHair(false);
+      setSubmissionCustomFilters({});
+      setSubmissionRawServices("");
+      setSubmissionServices([]);
+      setSubmissionServiceQuery("");
+      setSubmissionNote("");
+      setSubmissionStatus("idle");
+      setSubmissionError(null);
+    }
+  }
+
+  function toggleSubmissionAreaId(areaId: string) {
+    setSubmissionAreaIds((current) => (current.includes(areaId) ? current.filter((id) => id !== areaId) : [...current, areaId]));
+  }
+
+  function toggleSubmissionSellsHair(checked: boolean) {
+    setSubmissionSellsHair(checked);
+    if (!checked) {
+      // Closing the group clears its subfields too, so they don't stay set
+      // but hidden behind a collapsed parent.
+      setSubmissionNeeds((current) => ({ ...current, sellsHairSeparately: false, priceIncludesHair: false }));
+    }
+  }
+
+  function toggleSubmissionCustomFilter(filterTypeId: string, optionId: string) {
+    setSubmissionCustomFilters((current) => {
+      const selected = current[filterTypeId] ?? [];
+      const next = selected.includes(optionId) ? selected.filter((id) => id !== optionId) : [...selected, optionId];
+      return { ...current, [filterTypeId]: next };
+    });
+  }
+
+  function toggleSubmissionService(service: string) {
+    setSubmissionServices((current) => (current.includes(service) ? current.filter((item) => item !== service) : [...current, service]));
+  }
+
+  function handleSubmissionInstagramUrlChange(value: string) {
+    setSubmissionInstagramUrl(value);
+    const derived = deriveNameFromInstagramUrl(value);
+    setSubmissionName((current) => (current === "" || current === submissionAutoNameRef.current ? derived : current));
+    submissionAutoNameRef.current = derived;
+  }
+
+  const submissionHasLink = Boolean(submissionInstagramUrl.trim() || submissionBookingUrl.trim());
+  const submissionCanSend = Boolean(submissionName.trim()) && submissionHasLink;
+
+  async function submitStylist(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (!submissionCanSend || submissionStatus === "submitting") {
+      return;
+    }
+
+    setSubmissionStatus("submitting");
+    setSubmissionError(null);
+
+    try {
+      const response = await fetch("/api/stylists/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: submissionName.trim(),
+          isProvider: submissionIsProvider,
+          email: submissionIsProvider ? submissionEmail.trim() : "",
+          instagramUrl: submissionInstagramUrl.trim(),
+          bookingUrl: submissionBookingSameAsInstagram ? submissionInstagramUrl.trim() : submissionBookingUrl.trim(),
+          areaIds: submissionAreaIds,
+          ...submissionNeeds,
+          customFilters: submissionCustomFilters,
+          rawServices: submissionRawServices.trim(),
+          services: submissionServices,
+          note: submissionNote.trim(),
+          website: submissionHoneypot,
+        }),
+      });
+
+      const contentType = response.headers.get("content-type") ?? "";
+      const payload = contentType.includes("application/json") ? await response.json() : null;
+
+      if (!response.ok || !payload?.ok) {
+        throw new Error(payload?.message || "Could not send that just now. Please try again.");
+      }
+
+      trackAnalyticsEvent("stylist_submit_success", { area_count: submissionAreaIds.length, service_count: submissionServices.length });
+      setSubmissionStatus("success");
+    } catch (error) {
+      trackAnalyticsEvent("stylist_submit_error", {});
+      setSubmissionStatus("error");
+      setSubmissionError(error instanceof Error ? error.message : "Could not send that just now. Please try again.");
+    }
   }
 
   function openMobileFilters() {
@@ -3482,6 +3768,72 @@ export default function App() {
     };
   }, [mobileFiltersOpen]);
 
+  useEffect(() => {
+    if (!submissionModalOpen) {
+      return;
+    }
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        closeSubmissionModal();
+      }
+    }
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [submissionModalOpen]);
+
+  useEffect(() => {
+    if (!privacyModalOpen) {
+      return;
+    }
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        closePrivacyModal();
+      }
+    }
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [privacyModalOpen]);
+
+  useEffect(() => {
+    if (!siteDisclaimerModalOpen) {
+      return;
+    }
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        closeSiteDisclaimerModal();
+      }
+    }
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [siteDisclaimerModalOpen]);
+
   const hasActiveFilters =
     selectedCategories.length > 0 ||
     selectedSubcategories.length > 0 ||
@@ -3605,12 +3957,12 @@ export default function App() {
     <div className="min-h-screen bg-stone-100 text-left dark:bg-stone-950">
       <header className="border-b border-stone-300 dark:border-stone-800">
         <div className="mx-auto flex w-full max-w-[1120px] items-start px-4 sm:px-6 lg:px-10">
-          <div className="min-w-0 flex-1 pb-10 pt-10 sm:pb-16 sm:pt-12">
-            <div className="flex flex-col items-start gap-11 px-0">
+          <div className="min-w-0 flex-1 pb-7 pt-10 sm:pb-12 sm:pt-12">
+            <div className="flex flex-col items-start gap-16 px-0">
               <p className="inline-flex items-center bg-stone-200 px-3 py-2 text-left text-[11px] font-bold uppercase leading-none tracking-[0.11em] text-stone-700 dark:bg-stone-700 dark:text-stone-100">
                 Row K LDN
               </p>
-              <div className="flex flex-col items-start gap-3">
+              <div className="flex w-full flex-col items-start gap-3">
                 <h1 className="-ml-[0.045em] w-full text-left text-[38px] italic font-medium leading-[40px] tracking-tight text-stone-950 dark:text-stone-50 sm:text-[56px] sm:leading-[58px] lg:text-[68px] lg:leading-[70px] lg:whitespace-nowrap" style={{ fontFamily: "Junicode" }}>
                   Black hair directory
                 </h1>
@@ -3619,6 +3971,26 @@ export default function App() {
                   <br />
                   <span className="inline-block">Natural or relaxed. Braids, sew-ins, wigs, locs.</span>
                 </p>
+                <div className="flex w-full flex-col gap-4 pb-0 pt-5 sm:w-auto sm:flex-row sm:items-center">
+                  <a
+                    href="#live-results"
+                    onClick={(event) => {
+                      event.preventDefault();
+                      document.getElementById("live-results")?.scrollIntoView({ behavior: "smooth" });
+                      trackAnalyticsEvent("find_stylists_click", { source: "hero" });
+                    }}
+                    className="inline-flex h-12 items-center justify-center rounded-none bg-stone-950 px-5 text-[14px] font-medium text-stone-100 transition-colors hover:bg-stone-800 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-stone-300"
+                  >
+                    Find a stylist ↓
+                  </a>
+                  <button
+                    type="button"
+                    onClick={() => openSubmissionModal("hero")}
+                    className="inline-flex h-12 items-center justify-center rounded-none border border-stone-400 bg-transparent px-5 text-[14px] font-medium text-stone-900 transition-colors hover:bg-stone-200 dark:border-stone-600 dark:text-stone-100 dark:hover:bg-stone-800"
+                  >
+                    Submit a stylist
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -3661,6 +4033,493 @@ export default function App() {
           <div className="hidden w-72 flex-none lg:block" aria-hidden="true" />
         </div>
       </div>
+
+      {submissionModalOpen ? (
+        <div className="fixed inset-0 z-50">
+          <button type="button" aria-label="Close" className="absolute inset-0 cursor-default bg-stone-950/40" onClick={closeSubmissionModal} />
+          <aside
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="submit-stylist-heading"
+            className="absolute inset-y-0 right-0 flex w-full max-w-[520px] flex-col overflow-hidden border-l border-stone-300 bg-stone-100 shadow-xl dark:border-stone-700 dark:bg-stone-950"
+          >
+            <div className="flex shrink-0 items-center justify-between border-b border-stone-300 px-6 py-5 dark:border-stone-800 sm:px-8">
+              <div>
+                <h2 id="submit-stylist-heading" className="text-[20px] font-medium text-stone-950 dark:text-stone-50">
+                  Submit a stylist
+                </h2>
+                <p className="mt-1 text-[13px] leading-[1.5] text-stone-600 dark:text-stone-400">
+                  We&rsquo;ll review before they&rsquo;re listed.
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={closeSubmissionModal}
+                aria-label="Close"
+                className="inline-flex size-8 shrink-0 items-center justify-center text-stone-500 transition hover:text-stone-900 dark:text-stone-400 dark:hover:text-stone-100"
+              >
+                <X className="size-4" aria-hidden="true" />
+              </button>
+            </div>
+
+            <div className="min-h-0 flex-1 overflow-y-auto px-6 py-6 sm:px-8">
+              {submissionStatus === "success" ? (
+                <div className="flex flex-col items-start gap-3 py-6">
+                  <Check className="size-6 text-stone-950 dark:text-stone-50" aria-hidden="true" />
+                  <p className="text-[16px] font-medium text-stone-950 dark:text-stone-50">Thanks — got it</p>
+                  <p className="text-[14px] leading-[1.55] text-stone-700 dark:text-stone-300">
+                    We&rsquo;ll take a look and add them if it&rsquo;s a fit.
+                  </p>
+                </div>
+              ) : (
+                <form id="submit-stylist-form" onSubmit={submitStylist} className="flex flex-col gap-7">
+                  <section className="flex flex-col gap-3">
+                    <SubmissionLinkField
+                      label="Instagram link"
+                      icon={<InstagramIcon className="size-3.5" />}
+                      value={submissionInstagramUrl}
+                      onChange={handleSubmissionInstagramUrlChange}
+                      placeholder="https://instagram.com/..."
+                    />
+                  </section>
+
+                  <section className="flex flex-col gap-4">
+                    <label className="flex flex-col gap-1.5">
+                      <span className="text-[12px] font-semibold uppercase tracking-[0.08em] text-stone-600 dark:text-stone-400">Name</span>
+                      <Input value={submissionName} onChange={(event) => setSubmissionName(event.target.value)} placeholder="Stylist or business name" required />
+                    </label>
+
+                    <div className="flex flex-col gap-1.5">
+                      <span className="text-[12px] font-semibold uppercase tracking-[0.08em] text-stone-600 dark:text-stone-400">
+                        Are you the stylist / service provider?
+                      </span>
+                      <div className="flex gap-2">
+                        <button
+                          type="button"
+                          onClick={() => setSubmissionIsProvider(true)}
+                          aria-pressed={submissionIsProvider}
+                          className={cn(
+                            "h-10 flex-1 rounded-none border text-[13px] font-medium transition",
+                            submissionIsProvider
+                              ? "border-stone-950 bg-stone-950 text-white dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950"
+                              : "border-stone-300 bg-transparent text-stone-600 hover:bg-stone-200 dark:border-stone-700 dark:text-stone-400 dark:hover:bg-stone-900",
+                          )}
+                        >
+                          Yes
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => setSubmissionIsProvider(false)}
+                          aria-pressed={!submissionIsProvider}
+                          className={cn(
+                            "h-10 flex-1 rounded-none border text-[13px] font-medium transition",
+                            !submissionIsProvider
+                              ? "border-stone-950 bg-stone-950 text-white dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950"
+                              : "border-stone-300 bg-transparent text-stone-600 hover:bg-stone-200 dark:border-stone-700 dark:text-stone-400 dark:hover:bg-stone-900",
+                          )}
+                        >
+                          No
+                        </button>
+                      </div>
+                    </div>
+
+                    {submissionIsProvider ? (
+                      <label className="flex flex-col gap-1.5">
+                        <span className="text-[12px] font-semibold uppercase tracking-[0.08em] text-stone-600 dark:text-stone-400">
+                          Your email <span className="normal-case text-stone-400">(optional)</span>
+                        </span>
+                        <p className="text-[12px] leading-[1.4] text-stone-500 dark:text-stone-500">
+                          Helps us verify you&rsquo;re the stylist/service provider. We may contact you about the listing, but your email address won&rsquo;t be published or shared.
+                        </p>
+                        <Input value={submissionEmail} onChange={(event) => setSubmissionEmail(event.target.value)} placeholder="you@example.com" type="email" />
+                      </label>
+                    ) : null}
+                  </section>
+
+                  <section className="flex flex-col gap-3">
+                    <SubmissionLinkField
+                      label="Booking link"
+                      icon={<Globe className="size-3.5" />}
+                      value={submissionBookingSameAsInstagram ? submissionInstagramUrl : submissionBookingUrl}
+                      onChange={setSubmissionBookingUrl}
+                      placeholder="https://..."
+                      disabled={submissionBookingSameAsInstagram}
+                    >
+                      <label className="mt-2 flex items-center gap-2 text-[13px] font-medium text-stone-700 dark:text-stone-300">
+                        <input
+                          type="checkbox"
+                          checked={submissionBookingSameAsInstagram}
+                          disabled={!submissionInstagramUrl.trim()}
+                          onChange={(event) => setSubmissionBookingSameAsInstagram(event.target.checked)}
+                          className="size-3.5 rounded-none border-stone-400 accent-stone-950 disabled:opacity-40"
+                        />
+                        Same as Instagram
+                      </label>
+                    </SubmissionLinkField>
+                  </section>
+
+                  <section className="flex flex-col gap-2">
+                    <p className="text-xs font-semibold uppercase tracking-[0.12em] text-stone-500">Location</p>
+                    <div className="flex flex-wrap gap-1.5">
+                      {submissionRegionOptions.map((region) => {
+                        const isSelected = submissionAreaIds.includes(region.id);
+                        return (
+                          <button
+                            key={region.id}
+                            type="button"
+                            onClick={() => toggleSubmissionAreaId(region.id)}
+                            aria-pressed={isSelected}
+                            className={cn(
+                              "rounded-none border px-2.5 py-1 text-xs font-medium transition",
+                              isSelected
+                                ? "border-stone-950 bg-stone-950 text-white dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950"
+                                : "border-stone-300 bg-transparent text-stone-600 hover:bg-stone-200 dark:border-stone-700 dark:text-stone-400 dark:hover:bg-stone-900",
+                            )}
+                          >
+                            {region.label}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </section>
+
+                  <section className="flex flex-col gap-1">
+                    <p className="text-xs font-semibold uppercase tracking-[0.12em] text-stone-500">Preferences</p>
+                    <div className="grid gap-1">
+                      {submissionNeedFields
+                        .filter((option) => option.field !== "sellsHairSeparately" && option.field !== "priceIncludesHair")
+                        .map((option) => (
+                          <SubmissionNeedCheckbox
+                            key={option.field}
+                            label={option.label}
+                            description={option.description}
+                            checked={submissionNeeds[option.field]}
+                            onChange={(checked) => setSubmissionNeeds((current) => ({ ...current, [option.field]: checked }))}
+                          />
+                        ))}
+
+                      <SubmissionNeedCheckbox
+                        label="Sells hair"
+                        description="Sells hair or extensions, either separately or as part of a package."
+                        checked={submissionSellsHair}
+                        onChange={toggleSubmissionSellsHair}
+                      />
+                      {submissionSellsHair ? (
+                        <>
+                          <SubmissionNeedCheckbox
+                            indent
+                            label={submissionSellsHairSeparatelyField.label}
+                            description={submissionSellsHairSeparatelyField.description}
+                            checked={submissionNeeds.sellsHairSeparately}
+                            onChange={(checked) => setSubmissionNeeds((current) => ({ ...current, sellsHairSeparately: checked }))}
+                          />
+                          <SubmissionNeedCheckbox
+                            indent
+                            label={submissionPriceIncludesHairField.label}
+                            description={submissionPriceIncludesHairField.description}
+                            checked={submissionNeeds.priceIncludesHair}
+                            onChange={(checked) => setSubmissionNeeds((current) => ({ ...current, priceIncludesHair: checked }))}
+                          />
+                        </>
+                      ) : null}
+                    </div>
+                  </section>
+
+                  {customFilterTypes.length ? (
+                    <section className="flex flex-col gap-4">
+                      {customFilterTypes.map((filterType) => {
+                        const selected = submissionCustomFilters[filterType.id] ?? [];
+                        return (
+                          <div key={filterType.id} className="flex flex-col gap-1.5">
+                            <p className="text-xs font-semibold uppercase tracking-[0.12em] text-stone-500">{filterType.label}</p>
+                            <div className="flex flex-wrap gap-1.5">
+                              {filterType.options.map((option) => {
+                                const isSelected = selected.includes(option.id);
+                                return (
+                                  <button
+                                    key={option.id}
+                                    type="button"
+                                    onClick={() => toggleSubmissionCustomFilter(filterType.id, option.id)}
+                                    aria-pressed={isSelected}
+                                    className={cn(
+                                      "rounded-none border px-2.5 py-1 text-xs font-medium transition",
+                                      isSelected
+                                        ? "border-stone-950 bg-stone-950 text-white dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950"
+                                        : "border-stone-300 bg-transparent text-stone-600 hover:bg-stone-200 dark:border-stone-700 dark:text-stone-400 dark:hover:bg-stone-900",
+                                    )}
+                                  >
+                                    {option.label}
+                                  </button>
+                                );
+                              })}
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </section>
+                  ) : null}
+
+                  <section className="flex flex-col gap-3">
+                    <p className="text-xs font-semibold uppercase tracking-[0.12em] text-stone-500">Services</p>
+
+                    {submissionServices.length ? (
+                      <div className="flex flex-wrap gap-1.5">
+                        {submissionServices.map((service) => (
+                          <button
+                            key={service}
+                            type="button"
+                            onClick={() => toggleSubmissionService(service)}
+                            className="inline-flex items-center gap-1 rounded-none border border-stone-950 bg-stone-950 px-2.5 py-1 text-xs font-medium text-white dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950"
+                          >
+                            {service}
+                            <X className="size-3" aria-hidden="true" />
+                          </button>
+                        ))}
+                      </div>
+                    ) : null}
+
+                    <Input
+                      value={submissionServiceQuery}
+                      onChange={(event) => setSubmissionServiceQuery(event.target.value)}
+                      placeholder="Search services to add..."
+                    />
+
+                    <div className="max-h-56 space-y-3 overflow-y-auto border border-stone-300 bg-stone-50 p-3 dark:border-stone-700 dark:bg-stone-900">
+                      {filteredSubmissionServiceGroups.length ? (
+                        filteredSubmissionServiceGroups.map((group) => (
+                          <div key={group.id} className="space-y-1.5">
+                            <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-stone-500">{group.label}</p>
+                            <div className="flex flex-wrap gap-1.5">
+                              {group.services.map((service) => {
+                                const isSelected = submissionServices.includes(service);
+                                return (
+                                  <button
+                                    key={service}
+                                    type="button"
+                                    onClick={() => toggleSubmissionService(service)}
+                                    aria-pressed={isSelected}
+                                    className={cn(
+                                      "rounded-none border px-2.5 py-1 text-xs font-medium transition",
+                                      isSelected
+                                        ? "border-stone-950 bg-stone-950 text-white dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950"
+                                        : "border-stone-300 bg-white text-stone-600 hover:bg-stone-200 dark:border-stone-700 dark:bg-stone-950 dark:text-stone-400 dark:hover:bg-stone-800",
+                                    )}
+                                  >
+                                    {service}
+                                  </button>
+                                );
+                              })}
+                            </div>
+                          </div>
+                        ))
+                      ) : (
+                        <p className="text-[13px] text-stone-500">No services match that search.</p>
+                      )}
+                    </div>
+                  </section>
+
+                  <section className="flex flex-col gap-4">
+                    <label className="flex flex-col gap-1.5">
+                      <span className="text-[12px] font-semibold uppercase tracking-[0.08em] text-stone-600 dark:text-stone-400">
+                        Anything we should know? <span className="normal-case text-stone-400">(optional)</span>
+                      </span>
+                      <textarea
+                        value={submissionNote}
+                        onChange={(event) => setSubmissionNote(event.target.value)}
+                        rows={2}
+                        className="w-full resize-none rounded-none border border-stone-300 bg-stone-50 px-4 py-3 text-sm text-stone-950 outline-none transition-colors placeholder:text-stone-400 hover:border-stone-400 focus-visible:border-stone-950 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100 dark:placeholder:text-stone-500 dark:hover:border-stone-500 dark:focus-visible:border-stone-100"
+                      />
+                    </label>
+                  </section>
+
+                  <div className="h-0 w-0 overflow-hidden opacity-0" aria-hidden="true">
+                    <label>
+                      Leave this field blank
+                      <input
+                        type="text"
+                        tabIndex={-1}
+                        autoComplete="off"
+                        value={submissionHoneypot}
+                        onChange={(event) => setSubmissionHoneypot(event.target.value)}
+                      />
+                    </label>
+                  </div>
+                </form>
+              )}
+            </div>
+
+            <div className="relative shrink-0 border-t border-stone-300 px-6 py-5 dark:border-stone-800 sm:px-8">
+              {submissionStatus === "error" && submissionError ? (
+                <div className="absolute inset-x-0 bottom-full bg-rose-100 px-6 py-2.5 text-[13px] leading-[1.4] text-rose-800 dark:bg-rose-950/30 dark:text-rose-300 sm:px-8">
+                  {submissionError}
+                </div>
+              ) : null}
+              {submissionStatus === "success" ? (
+                <button
+                  type="button"
+                  onClick={closeSubmissionModal}
+                  className="inline-flex h-12 w-full items-center justify-center rounded-none bg-stone-950 px-5 text-[14px] font-medium text-stone-100 transition-colors hover:bg-stone-800 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-stone-300"
+                >
+                  Done
+                </button>
+              ) : (
+                <button
+                  type="submit"
+                  form="submit-stylist-form"
+                  disabled={!submissionCanSend || submissionStatus === "submitting"}
+                  className="inline-flex h-12 w-full items-center justify-center rounded-none bg-stone-950 px-5 text-[14px] font-medium text-stone-100 transition-colors hover:bg-stone-800 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-stone-300"
+                >
+                  {submissionStatus === "submitting" ? "Sending..." : "Send"}
+                </button>
+              )}
+            </div>
+          </aside>
+        </div>
+      ) : null}
+
+      {privacyModalOpen ? (
+        <div className="fixed inset-0 z-50">
+          <button type="button" aria-label="Close" className="absolute inset-0 cursor-default bg-stone-950/40" onClick={closePrivacyModal} />
+          <aside
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="privacy-heading"
+            className="absolute inset-y-0 right-0 flex w-full max-w-[520px] flex-col overflow-hidden border-l border-stone-300 bg-stone-100 shadow-xl dark:border-stone-700 dark:bg-stone-950"
+          >
+            <div className="flex shrink-0 items-center justify-between border-b border-stone-300 px-6 py-5 dark:border-stone-800 sm:px-8">
+              <div>
+                <h2 id="privacy-heading" className="text-[20px] font-medium text-stone-950 dark:text-stone-50">
+                  Privacy
+                </h2>
+                <p className="mt-1 text-[13px] leading-[1.5] text-stone-600 dark:text-stone-400">Last updated 1 September 2026.</p>
+              </div>
+              <button
+                type="button"
+                onClick={closePrivacyModal}
+                aria-label="Close"
+                className="inline-flex size-8 shrink-0 items-center justify-center text-stone-500 transition hover:text-stone-900 dark:text-stone-400 dark:hover:text-stone-100"
+              >
+                <X className="size-4" aria-hidden="true" />
+              </button>
+            </div>
+
+            <div className="min-h-0 flex-1 overflow-y-auto px-6 py-6 text-[14px] leading-[1.6] text-stone-700 dark:text-stone-300 sm:px-8">
+              <div className="flex flex-col gap-6">
+                <section className="flex flex-col gap-2">
+                  <h3 className="text-[13px] font-semibold uppercase tracking-[0.08em] text-stone-500">What Row K is</h3>
+                  <p>
+                    Row K is a directory of afro hair stylists and service providers in & around London. We link out to stylists&rsquo;
+                    Instagram and booking pages — we don&rsquo;t process bookings or payments ourselves.
+                  </p>
+                </section>
+
+                <section className="flex flex-col gap-2">
+                  <h3 className="text-[13px] font-semibold uppercase tracking-[0.08em] text-stone-500">What we collect</h3>
+                  <p>When you use the &ldquo;Submit a stylist&rdquo; form, we collect:</p>
+                  <ul className="list-disc pl-5">
+                    <li>The name, Instagram/booking links, location and service details you enter about the stylist</li>
+                    <li>Your email address, if you choose to give it as the person submitting</li>
+                  </ul>
+                  <p>
+                    We also use privacy-focused analytics (PostHog) to see how the site is used — page views and clicks. This runs without
+                    cookies or any identifier stored on your device, so it can&rsquo;t recognise you across visits, but it does see your IP
+                    address and browser at the time.
+                  </p>
+                </section>
+
+                <section className="flex flex-col gap-2">
+                  <h3 className="text-[13px] font-semibold uppercase tracking-[0.08em] text-stone-500">Why we collect it</h3>
+                  <p>
+                    Submission details are used to review and add a stylist to the directory. A submitter&rsquo;s email
+                    is used only to verify the submission and contact them about it if needed — it&rsquo;s never published. Analytics helps us
+                    understand which parts of the site are useful and where to improve it.
+                  </p>
+                </section>
+
+                <section className="flex flex-col gap-2">
+                  <h3 className="text-[13px] font-semibold uppercase tracking-[0.08em] text-stone-500">Who we share it with</h3>
+                  <p>
+                    PostHog processes analytics data (page views and clicks) on our behalf — it never receives anything from the submission
+                    form. Submission details aren&rsquo;t shared with anyone else.
+                  </p>
+                </section>
+
+                <section className="flex flex-col gap-2">
+                  <h3 className="text-[13px] font-semibold uppercase tracking-[0.08em] text-stone-500">How long we keep it</h3>
+                  <p>
+                    Submissions are kept for as long as needed to review them and check for duplicates, and — once published — for as long
+                    as the listing stays in the directory.
+                  </p>
+                </section>
+
+                <section className="flex flex-col gap-2">
+                  <h3 className="text-[13px] font-semibold uppercase tracking-[0.08em] text-stone-500">Your rights</h3>
+                  <p>
+                    You can ask us what we hold about you, or ask us to correct or delete it — just email hello@row-k.london. The ICO is
+                    the UK&rsquo;s independent regulator for this and can also be contacted directly.
+                  </p>
+                </section>
+              </div>
+            </div>
+
+            <div className="shrink-0 border-t border-stone-300 px-6 py-5 dark:border-stone-800 sm:px-8">
+              <button
+                type="button"
+                onClick={closePrivacyModal}
+                className="inline-flex h-12 w-full items-center justify-center rounded-none bg-stone-950 px-5 text-[14px] font-medium text-stone-100 transition-colors hover:bg-stone-800 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-stone-300"
+              >
+                Close
+              </button>
+            </div>
+          </aside>
+        </div>
+      ) : null}
+
+      {siteDisclaimerModalOpen ? (
+        <div className="fixed inset-0 z-50">
+          <button type="button" aria-label="Close" className="absolute inset-0 cursor-default bg-stone-950/40" onClick={closeSiteDisclaimerModal} />
+          <aside
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="site-disclaimer-heading"
+            className="absolute inset-y-0 right-0 flex w-full max-w-[520px] flex-col overflow-hidden border-l border-stone-300 bg-stone-100 shadow-xl dark:border-stone-700 dark:bg-stone-950"
+          >
+            <div className="flex shrink-0 items-center justify-between border-b border-stone-300 px-6 py-5 dark:border-stone-800 sm:px-8">
+              <div>
+                <h2 id="site-disclaimer-heading" className="text-[20px] font-medium text-stone-950 dark:text-stone-50">
+                  Site disclaimer
+                </h2>
+              </div>
+              <button
+                type="button"
+                onClick={closeSiteDisclaimerModal}
+                aria-label="Close"
+                className="inline-flex size-8 shrink-0 items-center justify-center text-stone-500 transition hover:text-stone-900 dark:text-stone-400 dark:hover:text-stone-100"
+              >
+                <X className="size-4" aria-hidden="true" />
+              </button>
+            </div>
+
+            <div className="min-h-0 flex-1 overflow-y-auto px-6 py-6 text-[14px] leading-[1.6] text-stone-700 dark:text-stone-300 sm:px-8">
+              <div className="flex flex-col gap-2.5">
+                <p>Row K is a directory, not a booking platform.</p>
+                <p>We don&rsquo;t vet, endorse, or take responsibility for the service providers listed.</p>
+                <p>We don&rsquo;t claim ownership of any photos shown. To request removal, contact us.</p>
+              </div>
+            </div>
+
+            <div className="shrink-0 border-t border-stone-300 px-6 py-5 dark:border-stone-800 sm:px-8">
+              <button
+                type="button"
+                onClick={closeSiteDisclaimerModal}
+                className="inline-flex h-12 w-full items-center justify-center rounded-none bg-stone-950 px-5 text-[14px] font-medium text-stone-100 transition-colors hover:bg-stone-800 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-stone-300"
+              >
+                Close
+              </button>
+            </div>
+          </aside>
+        </div>
+      ) : null}
 
       <div className="mx-auto flex w-full max-w-[1120px] flex-col px-4 sm:px-6 lg:flex-row lg:items-start lg:px-10">
         {mobileFiltersOpen ? <div className="fixed inset-0 z-40 bg-stone-100 dark:bg-stone-950 lg:hidden" aria-hidden="true" /> : null}
@@ -3862,16 +4721,13 @@ export default function App() {
               <div className="mt-4 border-t border-stone-300 pt-4 dark:border-stone-700">
                 <div className="flex flex-wrap items-center gap-3 text-sm leading-7 text-stone-700 dark:text-stone-300">
                 <span>Know someone who meets this criteria?</span>
-                <a
-                  href="https://tally.so/r/VLY10g"
-                  target="_blank"
-                  rel="noreferrer"
+                <button
+                  type="button"
+                  onClick={() => openSubmissionModal("zero_results")}
                   className="inline-flex min-h-11 items-center gap-1 text-[14px] font-medium text-stone-950 underline underline-offset-4 transition-colors hover:text-stone-700 dark:text-stone-100 dark:hover:text-stone-300"
                 >
                   Submit a stylist
-                  <span className="sr-only"> - opens in a new tab</span>
-                  <ArrowUpRight className="size-3.5 shrink-0" aria-hidden="true" />
-                </a>
+                </button>
                 </div>
               </div>
             </div>
@@ -4994,38 +5850,49 @@ export default function App() {
         <div className="mx-auto w-full max-w-[1280px]">
           <div className="flex flex-col gap-10 sm:flex-row sm:justify-between">
             <div className="flex max-w-sm flex-col gap-4">
-              <img src="/icon.svg" alt="" className="size-8 shrink-0" />
-              <div className="flex flex-col gap-2.5 text-[13px] text-stone-700 dark:text-stone-300">
-                <p>Row K is a directory, not a booking platform.</p>
-                <p>We don't vet, endorse, or take responsibility for the service providers listed.</p>
-                <p>We don't claim ownership of any photos shown. To request removal, contact us.</p>
-              </div>
+              <img src="/icon.svg" alt="" className="size-8 shrink-0 border border-stone-300 dark:border-stone-700" />
             </div>
-            <div className="flex flex-col items-start gap-3.5">
-              <h3 className="text-[14px] font-semibold text-stone-950 dark:text-stone-50">Get in touch</h3>
-              <button
-                type="button"
-                onClick={copyFooterEmail}
-                className="inline-flex items-center gap-1.5 text-[14px] text-stone-700 transition-colors hover:text-stone-900 active:text-stone-900 dark:text-stone-300 dark:hover:text-stone-50 dark:active:text-stone-50"
-              >
-                hello@row-k.london
-                {emailCopied ? (
-                  <Check className="size-3.5 shrink-0" aria-hidden="true" />
-                ) : (
-                  <Copy className="size-3.5 shrink-0" aria-hidden="true" />
-                )}
-                <span className="sr-only">{emailCopied ? "Email copied to clipboard" : "Copy email to clipboard"}</span>
-              </button>
-              <a
-                href="https://tally.so/r/VLY10g"
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-1 text-[14px] font-medium text-stone-700 transition-colors hover:text-stone-900 active:text-stone-900 dark:text-stone-300 dark:hover:text-stone-50 dark:active:text-stone-50"
-              >
-                Submit a stylist
-                <span className="sr-only"> - opens in a new tab</span>
-                <ArrowUpRight className="size-3.5 shrink-0" aria-hidden="true" />
-              </a>
+            <div className="flex flex-col gap-10 sm:ml-auto sm:flex-row">
+              <div className="flex flex-col items-start gap-3.5">
+                <h3 className="text-[14px] font-semibold text-stone-950 dark:text-stone-50">Disclaimers</h3>
+                <button
+                  type="button"
+                  onClick={openPrivacyModal}
+                  className="inline-flex items-center gap-1 text-[14px] font-medium text-stone-700 transition-colors hover:text-stone-900 active:text-stone-900 dark:text-stone-300 dark:hover:text-stone-50 dark:active:text-stone-50"
+                >
+                  Privacy statement
+                </button>
+                <button
+                  type="button"
+                  onClick={openSiteDisclaimerModal}
+                  className="inline-flex items-center gap-1 text-[14px] font-medium text-stone-700 transition-colors hover:text-stone-900 active:text-stone-900 dark:text-stone-300 dark:hover:text-stone-50 dark:active:text-stone-50"
+                >
+                  Site disclaimer
+                </button>
+              </div>
+              <div className="flex flex-col items-start gap-3.5">
+                <h3 className="text-[14px] font-semibold text-stone-950 dark:text-stone-50">Get in touch</h3>
+                <button
+                  type="button"
+                  onClick={copyFooterEmail}
+                  className="inline-flex items-center gap-1.5 text-[14px] text-stone-700 transition-colors hover:text-stone-900 active:text-stone-900 dark:text-stone-300 dark:hover:text-stone-50 dark:active:text-stone-50"
+                >
+                  hello@row-k.london
+                  {emailCopied ? (
+                    <Check className="size-3.5 shrink-0" aria-hidden="true" />
+                  ) : (
+                    <Copy className="size-3.5 shrink-0" aria-hidden="true" />
+                  )}
+                  <span className="sr-only">{emailCopied ? "Email copied to clipboard" : "Copy email to clipboard"}</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => openSubmissionModal("footer")}
+                  className="inline-flex items-center gap-1 text-[14px] font-medium text-stone-700 transition-colors hover:text-stone-900 active:text-stone-900 dark:text-stone-300 dark:hover:text-stone-50 dark:active:text-stone-50"
+                >
+                  Submit a stylist
+                </button>
+              </div>
             </div>
           </div>
           <div className="mt-8">

@@ -173,6 +173,12 @@ const photoSearchRateLimit = createRateLimiter({
   keyPrefix: "photo-search",
   message: "Too many photo search requests. Please slow down and try again shortly.",
 });
+const publicSubmitRateLimit = createRateLimiter({
+  windowMs: 60 * 60 * 1000,
+  max: 5,
+  keyPrefix: "public-submit",
+  message: "Too many submissions from this connection. Please try again later.",
+});
 
 const intakeServiceAliases = {
   "leave out weave": "Traditional sew-in / leave out",
@@ -2898,6 +2904,94 @@ export function registerAdminStylistRoutes(app) {
     await writeDraftStore(store);
     res.json({ ok: true });
   });
+}
+
+// Public, unauthenticated counterpart to the admin "Blank draft" intake route
+// (POST /api/admin/stylists/intake, above) — lets any visitor point us at a
+// stylist. Deliberately reuses buildDraft() as-is rather than the Instagram
+// auto-fill or AI price/service-matching pipelines: buildDraft only infers
+// links from plain string parsing and, at most, does a single SSRF-guarded
+// HTML fetch of the submitted link to scrape service names (no AnyAPI, no
+// OpenAI) — so this route can never trigger a paid API call. Submissions
+// land in the same draft store the admin review queue already reads, with
+// status "needs_review" — nothing here ever writes to the published index.
+export function registerPublicStylistSubmissionRoutes(app) {
+  app.post("/api/stylists/submit", publicSubmitRateLimit, requireTrustedOrigin, async (req, res) => {
+    const body = req.body || {};
+
+    // Honeypot: real visitors never see or fill this field. A bot that
+    // autofills it gets a normal-looking success response, but nothing is
+    // written — this avoids tipping off the bot to try again differently.
+    if (cleanString(body.website)) {
+      return res.status(201).json({ ok: true });
+    }
+
+    const name = cleanString(body.name);
+    const instagramUrl = cleanString(body.instagramUrl);
+    const tiktokUrl = cleanString(body.tiktokUrl);
+    const bookingUrl = cleanString(body.bookingUrl);
+    const websiteUrl = cleanString(body.websiteUrl);
+    if (!name || !(instagramUrl || tiktokUrl || bookingUrl || websiteUrl)) {
+      return res.status(400).json({ ok: false, message: "Add a name and at least one link." });
+    }
+
+    const isProvider = body.isProvider === true;
+    const submitterEmail = cleanString(body.email);
+
+    const draft = await buildDraft({
+      name,
+      instagramUrl,
+      tiktokUrl,
+      bookingUrl,
+      websiteUrl,
+      areaIds: Array.isArray(body.areaIds) ? body.areaIds : [],
+      rawServices: body.rawServices,
+      services: body.services,
+      summary: body.note,
+      addedVia: "Submission form",
+      discoverySource: "User submission",
+    });
+
+    // These fields aren't part of buildDraft()'s own input contract (it's
+    // shared with the admin "blank draft" route, which sets them later via
+    // the drawer's own onChange handlers instead) — set directly on the
+    // built draft so a public submission can carry them too.
+    draft.hijabiFriendly = body.hijabiFriendly === true;
+    draft.canBraidWithoutGel = body.canBraidWithoutGel === true;
+    draft.wheelchairAccessible = body.wheelchairAccessible === true;
+    draft.senFriendly = body.senFriendly === true;
+    draft.lgbtqFriendly = body.lgbtqFriendly === true;
+    draft.sameDayEmergency = body.sameDayEmergency === true;
+    draft.sellsHairSeparately = body.sellsHairSeparately === true;
+    draft.priceIncludesHair = body.priceIncludesHair === true;
+    draft.customFilters = sanitizeCustomFilters(body.customFilters);
+    // Contact info about the *submitter*, not the stylist being listed — kept
+    // off the published schema (draftToSalon() only copies fields it
+    // explicitly whitelists), visible to admins reviewing the draft only.
+    draft.submittedByProvider = isProvider;
+    draft.submitterEmail = isProvider ? submitterEmail : "";
+
+    const store = await readDraftStore();
+    const manualIndex = await readJson(manualIndexPath, { meta: { source: "manual" }, salons: [] });
+    const duplicates = findDraftDuplicates(draft, { drafts: store.drafts, salons: manualIndex.salons });
+    if (duplicates.length) {
+      return res.status(409).json({ ok: false, message: formatPublicDuplicateMessage(duplicates) });
+    }
+
+    store.drafts.unshift(draft);
+    await writeDraftStore(store);
+    res.status(201).json({ ok: true });
+  });
+}
+
+// Public-safe phrasing for a duplicate hit on /api/stylists/submit — unlike
+// formatDuplicateMessage (used in the admin UI), this never names the
+// matched draft/salon or says "open the existing X instead", since an
+// anonymous caller has no admin session to act on that and shouldn't be able
+// to fingerprint someone else's still-unreviewed submission.
+function formatPublicDuplicateMessage(duplicates) {
+  const reason = duplicates[0]?.reasons?.[0] || "these details";
+  return `This stylist is already in our directory or awaiting review (matching ${reason}) — no need to submit it again.`;
 }
 
 // Called synchronously when a draft is approved so a new stylist gets matched
