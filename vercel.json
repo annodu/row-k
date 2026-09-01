@@ -38,6 +38,9 @@
     },
     "api/search.mjs": {
       "excludeFiles": "public/portfolio-photos/**"
+    },
+    "api/submit-stylist.mjs": {
+      "excludeFiles": "public/portfolio-photos/**"
     }
   }
 }
