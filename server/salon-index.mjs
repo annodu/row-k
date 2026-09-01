@@ -34,7 +34,7 @@ export function setRegionParentGroupsCache(groups) {
 const filtersPath = path.resolve(__dirname, "../data/filters.json");
 
 const defaultCategoryMap = {
-  "braiding-services": ["Boho braids / goddess braids","Braid take-down","Box braids","Crochet","Creative braids","Feed-in braids","French curl","Fulani / lemonade braids","Half braids, half sew-in","Knotless braids","Miracle knots","Microbraids / x-small braids","Pre-parting","Stitch braids","Twists (with extensions)","Boho braids bob","French curl bob","Men's braids","Wig cornrows"],
+  "braiding-services": ["Boho braids / goddess braids","Braid take-down","Box braids","Colour blend (mixing braiding hair)","Crochet","Creative braids","Feed-in braids","French curl","Fulani / lemonade braids","Half braids, half sew-in","Knotless braids","Miracle knots","Microbraids / x-small braids","Pre-parting","Stitch braids","Twists (with extensions)","Boho braids bob","French curl bob","Men's braids","Wig cornrows"],
   "colour-services": ["Balayage","Full head colour","Highlights","Wig colouring / bundle colouring"],
   "bridal-services": ["Bridal"],
   "editorial-services": ["Editorial / Session styling"],
@@ -74,6 +74,10 @@ export function setCategoryMapCache(categories) {
 })();
 
 export const serviceAliases = {
+  "Colour blend": "Colour blend (mixing braiding hair)",
+  "Color blend": "Colour blend (mixing braiding hair)",
+  "Colour mix": "Colour blend (mixing braiding hair)",
+  "Color mix": "Colour blend (mixing braiding hair)",
   "Keratin treatment": "Keratin treatment / Brazilian blowdry",
   "U-part wig install": "U-Part / Half wig install",
   "Boho bob": "Boho braids bob",

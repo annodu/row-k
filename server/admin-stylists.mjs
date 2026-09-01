@@ -217,6 +217,11 @@ const intakeServiceAliases = {
 
 const serviceRuleMatchers = [
   ["Wig colouring / bundle colouring", [/\b(wig|extensions?|bundle|bundles|frontal|closure|lace\s+system)\b.*\b(colou?r|dye|ton(e|ing)|bleach|highlight|custom colou?r)\b/, /\b(colou?r|dye|ton(e|ing)|bleach|highlight|custom colou?r)\b.*\b(wig|extensions?|bundle|bundles|frontal|closure|lace\s+system)\b/, /\b613\b.*\b(colou?r|dye|ton(e|ing)|bleach|highlight|bright)\b/, /\b(colou?r|dye|ton(e|ing)|bleach|highlight|bright)\b.*\b613\b/, /\bnon[\s-]*contact\b.*\b(colou?r|colou?ring|dye|ton(e|ing)|bleach|highlight)\b/]],
+  // Braiding hair sold/blended across two or more shades (e.g. "1B/30 colour
+  // mix") rather than a single flat colour — distinct from wig/bundle dye
+  // jobs above, which are about changing the hair's colour, not blending
+  // pre-coloured braiding hair for a style.
+  ["Colour blend (mixing braiding hair)", [/\bcolou?r\s+(mix|blend)(ed|ing)?\b/, /\bmix(ed)?\s+colou?rs?\b/, /\bcolou?rs?\s+mix(ed|ing)?\b/]],
   ["Frontal ponytail / bun", [/\bfrontal\b.*\b(pony|ponytail|bun)\b/, /\b(pony|ponytail|bun)\b.*\bfrontal\b/]],
   ["Half braids, half sew-in", [/\bhalf\b.*\b(braid|braids|feed\s*in|feed-in|cornrows?)\b.*\b(weave|sew[\s-]*in|sewin)\b/, /\bhalf\b.*\b(weave|sew[\s-]*in|sewin)\b.*\b(braid|braids|feed\s*in|feed-in|cornrows?)\b/, /\bhalf\s+braid\b/, /\bhalf\s+weave\b/]],
   ["Wig install (frontal / closure)", [/\bwig\b.*\b(install|instal|installation|application|fit|fitting)\b/, /\b(glueless|lace)\s+wig\b/, /\bfrontal\s+wig\b/, /\bclosure\s+wig\b/, /\b(frontal|closure|ready[\s-]*made)\s+unit\b/, /\bunit\b.*\b(install|instal|installation|application|fit|fitting)\b/, /\b(lace\s+)?frontal\s+installation\b/, /\b(lace\s+)?closure\s+installation\b/, /\bwigs?$/, /\b(frontal|closure)$/]],
@@ -323,6 +328,7 @@ export const serviceNegationHints = {
   "Butterfly locs": ["butterfly locs"],
   "Clip ins (+ silk press)": ["clip ins", "clip in"],
   "Closure sew-in": ["closure sew in", "closure sew-in", "closure sewin", "closure weave", "weave with lace closure", "closure behind the hairline"],
+  "Colour blend (mixing braiding hair)": ["colour blend", "color blend", "colour mix", "color mix"],
   "Creative braids": ["creative braids", "patewo", "dolly braids", "shuku", "koroba braids"],
   "Crochet": ["crochet"],
   "Curly cut / wash & go": ["curly cut", "wash go", "wash and go"],
@@ -9315,7 +9321,10 @@ export async function buildDraftFromInstagram(rawInstagramInput) {
   const learnedExclusions = await loadLearnedExclusions();
   const attributeSuggestions = buildAttributeSuggestions({}, attributeSources, {}, learnedExclusions.attribute);
 
-  const name = profile.fullName || parsed.handle;
+  // The bio/full_name text is often a slogan or a bunch of emoji rather than
+  // an actual business name ("UNAVAILABLE", "NORTH LONDON HAIRDRESSER") — the
+  // handle itself is a much more reliable stand-in until an admin renames it.
+  const name = inferNameFromUrl(parsed.instagramUrl) || profile.fullName || parsed.handle;
   // A booking page often only yields a generic "all-london" match (e.g. a
   // plain "London, UK" address) while the bio names a specific area
   // ("North London") — the specific one should win regardless of which
@@ -10589,13 +10598,18 @@ function inferAreaIdsFromText(value = "") {
     ["essex", /\b(essex|southend|westcliff|romford|ilford|dagenham|barking|grays|basildon|chelmsford)\b/],
     ["kent", /\b(kent|chatham|dartford|gravesend|gillingham|maidstone|bromley|sidcup)\b/],
     ["croydon", /\b(croydon|thornton\s*heath)\b/],
-    ["south-east", /\b(south\s*east|se\s*london|peckham|lewisham|greenwich|woolwich|deptford|catford|sidcup)\b/],
-    ["south-west", /\b(south\s*west|sw\s*london|brixton|tooting|wandsworth|clapham|putney|mitcham|streatham)\b/],
-    ["north-west", /\b(north\s*west|nw\s*london|harlesden|wembley|kilburn|camden|brent)\b/],
-    ["north", /\b(north\s*london|enfield|tottenham|finsbury|wood\s*green|islington)\b/],
-    ["east", /\b(east\s*london|hackney|stratford|leyton|bow|newham|tower\s*hamlets)\b/],
-    ["west", /\b(west\s*london|ealing|acton|hammersmith|hayes|uxbridge|shepherds\s*bush)\b/],
-    ["central", /\b(central\s*london|soho|westminster|marylebone|fitzrovia|mayfair)\b/],
+    ["south-east", /\b(south\s*east|se\s*london|peckham|lewisham|greenwich|woolwich|deptford|catford|sidcup|bexley|bexleyheath|eltham|abbey\s*wood|crystal\s*palace|sydenham|west\s*norwood|dulwich|herne\s*hill)\b/],
+    ["south-west", /\b(south\s*west|sw\s*london|brixton|tooting|wandsworth|clapham|putney|mitcham|streatham|wimbledon|richmond|kingston|sutton|merton|battersea|balham)\b/],
+    ["north-west", /\b(north\s*west|nw\s*london|harlesden|wembley|kilburn|camden|brent|willesden|neasden|cricklewood|hendon|golders\s*green|kingsbury)\b/],
+    ["north", /\b(north\s*london|enfield|tottenham|finsbury|wood\s*green|islington|barnet|finchley|muswell\s*hill|crouch\s*end|palmers\s*green|southgate|edmonton)\b/],
+    // Excludes an "east"/"west" hit that's really "south east"/"north west"
+    // (or "south west" for "west") spelled out in full — those already match
+    // their own, more specific pattern above, and without the lookbehind
+    // both this pattern AND the specific one would fire on the same text,
+    // tagging a South East London stylist as both "south-east" and "east".
+    ["east", /\bhackney\b|\bstratford\b|\bleyton\b|\bleytonstone\b|\bbow\b|\bnewham\b|\btower\s*hamlets\b|\bwalthamstow\b|\bchingford\b|(?<!south\s*)\beast\s*london\b/],
+    ["west", /\bealing\b|\bacton\b|\bhammersmith\b|\bhayes\b|\buxbridge\b|\bshepherds\s*bush\b|\bchiswick\b|\bhounslow\b|\bsouthall\b|\bgreenford\b|(?<!north\s*)(?<!south\s*)\bwest\s*london\b/],
+    ["central", /\b(central\s*london|soho|westminster|marylebone|fitzrovia|mayfair|clerkenwell|bloomsbury|kings\s*cross)\b/],
   ];
 
   const matches = [...new Set(areaPatterns.filter(([, pattern]) => pattern.test(text)).map(([id]) => id))];
