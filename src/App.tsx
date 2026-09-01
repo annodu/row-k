@@ -2792,6 +2792,17 @@ export default function App() {
         body: JSON.stringify({ rawServices: lines }),
       });
       const payload = await response.json().catch(() => null);
+
+      if (!response.ok || !payload?.ok) {
+        // Distinct from "genuinely no matches" below — a rate limit, a
+        // rejected origin, or a server error all land here instead of
+        // silently looking identical to zero recognized services.
+        setSubmissionServicePasteNotice(
+          payload?.message ? `Couldn't check that paste: ${payload.message}` : "Couldn't check that paste just now — saved as notes for review instead.",
+        );
+        return;
+      }
+
       const matched: string[] = Array.isArray(payload?.services) ? payload.services : [];
       if (matched.length) {
         setSubmissionServices((current) => [...new Set([...current, ...matched])]);
@@ -2800,7 +2811,7 @@ export default function App() {
         setSubmissionServicePasteNotice("Didn't recognize any services in that — saved as notes for review instead.");
       }
     } catch {
-      setSubmissionServicePasteNotice("Couldn't process that paste — saved as notes for review instead.");
+      setSubmissionServicePasteNotice("Couldn't reach the server — saved as notes for review instead.");
     }
   }
 

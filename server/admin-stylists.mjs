@@ -184,7 +184,7 @@ const publicSubmitRateLimit = createRateLimiter({
 // more than once while filling in the form.
 const publicMatchServicesRateLimit = createRateLimiter({
   windowMs: 60 * 60 * 1000,
-  max: 40,
+  max: 150,
   keyPrefix: "public-match-services",
   message: "Too many requests from this connection. Please try again later.",
 });
