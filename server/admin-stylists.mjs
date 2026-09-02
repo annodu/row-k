@@ -9673,7 +9673,12 @@ function normalizeDuplicateUrl(value) {
       return profile ? `instagram.com/${profile}` : "";
     }
 
-    if (host === "tiktok.com" && pathParts[0]?.startsWith("@")) {
+    // Only a bare profile link (tiktok.com/@handle) is a real identity signal. `tiktokUrl`
+    // sometimes holds a link to a specific video instead — e.g. the post whose comments a
+    // stylist was discovered in, not the salon's own account — and two unrelated salons
+    // discovered via the same viral video would otherwise collapse to that video's author's
+    // handle and get flagged as duplicates of each other and of the video's own creator.
+    if (host === "tiktok.com" && pathParts.length === 1 && pathParts[0]?.startsWith("@")) {
       return `tiktok.com/${pathParts[0].toLowerCase()}`;
     }
 

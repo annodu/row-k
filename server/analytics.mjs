@@ -351,7 +351,7 @@ function classifyTrafficSource(referringDomain, utmSource) {
 
 async function fetchTrafficSourceBreakdown(preset) {
   const rows = await runHogQLQuery(`
-    SELECT properties.$referring_domain AS referring_domain, properties.$utm_source AS utm_source, count(DISTINCT person_id) AS visitors
+    SELECT properties.$referring_domain AS referring_domain, properties.utm_source AS utm_source, count(DISTINCT person_id) AS visitors
     FROM events
     WHERE event = '$pageview' AND timestamp >= now() - INTERVAL ${preset.days} DAY${internalTrafficExclusionClause()}
     GROUP BY referring_domain, utm_source
