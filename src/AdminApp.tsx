@@ -734,6 +734,8 @@ type AnalyticsSummary = {
   deviceBreakdown: { deviceType: string; visitors: number }[];
   countryBreakdown: { country: string; visitors: number }[];
   cityBreakdown: { city: string; visitors: number }[];
+  trafficSourceBreakdown: { source: string; visitors: number }[];
+  headerClicks: { label: string; clicks: number }[];
 };
 
 type ActivityEvent = {
@@ -7196,6 +7198,41 @@ function AnalyticsPage({ onOpenView }: { onOpenView: (view: AdminView) => void }
             </SkeletonEmptyState>
           )}
         </div>
+
+        <div className="border border-stone-200 bg-white p-6">
+          <h2 className="text-sm font-semibold text-stone-950">Header button clicks</h2>
+          <p className="mt-1 text-xs text-stone-500">The two CTAs in the page header</p>
+          {isRangeLoading ? (
+            <FilterUsageSkeleton />
+          ) : analytics?.headerClicks?.length ? (
+            <div className="mt-5">
+              <FilterUsageGroup label="Button" rows={analytics.headerClicks.map((row) => ({ label: row.label, count: row.clicks }))} />
+            </div>
+          ) : (
+            <SkeletonEmptyState label="No data">
+              <FilterUsageSkeleton pulse={false} />
+            </SkeletonEmptyState>
+          )}
+        </div>
+      </div>
+
+      <div className="border border-stone-200 bg-white p-6">
+        <h2 className="text-sm font-semibold text-stone-950">Traffic sources</h2>
+        <p className="mt-1 text-xs text-stone-500">
+          Where visitors came from — a UTM-tagged link (e.g. <code className="text-[11px]">?utm_source=tiktok</code>) always wins; otherwise this falls
+          back to the browser&rsquo;s referrer, which social apps&rsquo; in-app browsers often strip, so real counts for those can run higher than shown
+        </p>
+        {isRangeLoading ? (
+          <FilterUsageSkeleton />
+        ) : analytics?.trafficSourceBreakdown?.length ? (
+          <div className="mt-5">
+            <FilterUsageGroup label="Source" rows={analytics.trafficSourceBreakdown.map((row) => ({ label: row.source, count: row.visitors }))} />
+          </div>
+        ) : (
+          <SkeletonEmptyState label="No data">
+            <FilterUsageSkeleton pulse={false} />
+          </SkeletonEmptyState>
+        )}
       </div>
 
       <div className="border border-stone-200 bg-white p-6">

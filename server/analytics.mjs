@@ -318,6 +318,76 @@ async function fetchDeviceBreakdown(preset) {
     .map(([deviceType, visitors]) => ({ deviceType: String(deviceType), visitors: Number(visitors) }));
 }
 
+// Known referring domains get a friendly label; everything else (a stylist's own blog, a
+// one-off forum post, etc.) just shows its raw domain rather than being lumped into "Other" —
+// there are few enough distinct referrers in practice that the raw list stays readable.
+const TRAFFIC_SOURCE_DOMAIN_PATTERNS = [
+  [/(^|\.)google\.[a-z.]+$/, "Google"],
+  [/googlequicksearchbox/, "Google"],
+  [/(^|\.)bing\.com$/, "Bing"],
+  [/(^|\.)duckduckgo\.com$/, "DuckDuckGo"],
+  [/(^|\.)ecosia\.org$/, "Ecosia"],
+  [/(^|\.)instagram\.com$/, "Instagram"],
+  [/(^|\.)tiktok\.com$/, "TikTok"],
+  [/(^|\.)facebook\.com$/, "Facebook"],
+  [/(^|\.)reddit(\.com|frontpage)/, "Reddit"],
+];
+
+// UTM tagging (e.g. ?utm_source=tiktok on a bio link) always wins when present, since it's an
+// explicit claim about where the click came from — useful precisely because in-app browsers
+// (TikTok's especially) often strip the referrer header, so real social-app traffic otherwise
+// falls into the $direct/unknown buckets below instead of showing up as that platform.
+function classifyTrafficSource(referringDomain, utmSource) {
+  if (utmSource) {
+    const normalized = String(utmSource).trim();
+    return normalized.charAt(0).toUpperCase() + normalized.slice(1).toLowerCase();
+  }
+  if (!referringDomain) return "Unknown";
+  if (referringDomain === "$direct") return "Direct";
+  const domain = String(referringDomain).toLowerCase();
+  const match = TRAFFIC_SOURCE_DOMAIN_PATTERNS.find(([pattern]) => pattern.test(domain));
+  return match ? match[1] : referringDomain;
+}
+
+async function fetchTrafficSourceBreakdown(preset) {
+  const rows = await runHogQLQuery(`
+    SELECT properties.$referring_domain AS referring_domain, properties.$utm_source AS utm_source, count(DISTINCT person_id) AS visitors
+    FROM events
+    WHERE event = '$pageview' AND timestamp >= now() - INTERVAL ${preset.days} DAY${internalTrafficExclusionClause()}
+    GROUP BY referring_domain, utm_source
+  `);
+
+  const totals = new Map();
+  for (const [referringDomain, utmSource, visitors] of rows) {
+    const source = classifyTrafficSource(referringDomain, utmSource);
+    totals.set(source, (totals.get(source) ?? 0) + Number(visitors));
+  }
+
+  return [...totals.entries()].map(([source, visitors]) => ({ source, visitors })).sort((a, b) => b.visitors - a.visitors);
+}
+
+// The header only ever fires these two events with source "hero" — Find a stylist scrolls to
+// results, Submit a stylist opens the intake modal (which also opens from the footer and the
+// zero-results empty state, hence filtering to source = 'hero' rather than counting every open).
+const HEADER_CLICK_EVENTS = [
+  { event: "find_stylists_click", label: "Find a stylist" },
+  { event: "stylist_submit_opened", label: "Submit a stylist" },
+];
+
+async function fetchHeaderClicks(preset) {
+  const rows = await runHogQLQuery(`
+    SELECT event, count() AS clicks
+    FROM events
+    WHERE event IN (${HEADER_CLICK_EVENTS.map((entry) => `'${entry.event}'`).join(", ")})
+      AND properties.source = 'hero'
+      AND timestamp >= now() - INTERVAL ${preset.days} DAY${internalTrafficExclusionClause()}
+    GROUP BY event
+  `);
+
+  const clicksByEvent = new Map(rows.map(([event, clicks]) => [event, Number(clicks)]));
+  return HEADER_CLICK_EVENTS.map(({ event, label }) => ({ label, clicks: clicksByEvent.get(event) ?? 0 }));
+}
+
 function countryName(code) {
   if (!code) return null;
   try {
@@ -455,17 +525,29 @@ export async function fetchAnalyticsSummary(range = "7d") {
 
   try {
     const preset = await resolveRange(range);
-    const [visitorsByDay, clicks, filterUsage, zeroResultSearches, topStylists, reviewsClicksByPlatform, deviceBreakdown, locationBreakdown] =
-      await Promise.all([
-        fetchVisitorsSeries(preset),
-        fetchClickCounts(preset),
-        fetchFilterUsage(preset),
-        fetchZeroResultSearches(preset),
-        fetchTopStylists(preset),
-        fetchReviewsClicksByPlatform(preset),
-        fetchDeviceBreakdown(preset),
-        fetchLocationBreakdown(preset),
-      ]);
+    const [
+      visitorsByDay,
+      clicks,
+      filterUsage,
+      zeroResultSearches,
+      topStylists,
+      reviewsClicksByPlatform,
+      deviceBreakdown,
+      locationBreakdown,
+      trafficSourceBreakdown,
+      headerClicks,
+    ] = await Promise.all([
+      fetchVisitorsSeries(preset),
+      fetchClickCounts(preset),
+      fetchFilterUsage(preset),
+      fetchZeroResultSearches(preset),
+      fetchTopStylists(preset),
+      fetchReviewsClicksByPlatform(preset),
+      fetchDeviceBreakdown(preset),
+      fetchLocationBreakdown(preset),
+      fetchTrafficSourceBreakdown(preset),
+      fetchHeaderClicks(preset),
+    ]);
 
     return {
       granularity: preset.granularity,
@@ -480,6 +562,8 @@ export async function fetchAnalyticsSummary(range = "7d") {
       deviceBreakdown,
       countryBreakdown: locationBreakdown.countryBreakdown,
       cityBreakdown: locationBreakdown.cityBreakdown,
+      trafficSourceBreakdown,
+      headerClicks,
     };
   } catch (error) {
     console.error("PostHog analytics fetch failed", error);
