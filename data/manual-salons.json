@@ -1,7 +1,7 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-09-01",
+    "updatedAt": "2026-09-02",
     "count": 1119,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
@@ -1555,9 +1555,7 @@
       "addedVia": "Admin tool",
       "discoverySource": "Instagram auto-fill",
       "services": [
-        "Highlights",
         "Twists (with extensions)",
-        "Full head colour",
         "French curl",
         "Boho braids / goddess braids",
         "Knotless braids",
@@ -1584,7 +1582,28 @@
         }
       ],
       "photoSearchReviewedAt": "2026-09-01",
-      "photoOrderBumpedAt": 1101
+      "photoOrderBumpedAt": 1101,
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sameDayEmergency": false,
+      "customFilters": {},
+      "priceBand": "",
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "",
+      "priceSource": "",
+      "priceEvidence": [],
+      "priceCheckedAt": "",
+      "priceUpdatedAt": "",
+      "priceConfidence": "",
+      "updatedAt": "2026-09-02"
     },
     {
       "id": "nowbeauty",
@@ -6535,7 +6554,6 @@
         "Trim / hair cut",
         "Moisturising treatment",
         "Olaplex treatment",
-        "K-18 treatment",
         "Keratin treatment / Brazilian blowdry",
         "Relaxer / texturiser",
         "Silk press",
@@ -6572,12 +6590,12 @@
         "Submitted link: https://sevenhairstudio.setmore.com",
         "Raw services provided during admin intake."
       ],
-      "googlePlaceId": "ChIJ4-tNbdEddkgRYquIa6I8URo",
+      "googlePlaceId": null,
       "googleReviewCount": 1,
       "googleMapsUri": "https://maps.google.com/?cid=1896363586386176866&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
       "googleMatchConfidence": "high",
       "googleDisplayName": "Seven Hair Studio",
-      "googleFormattedAddress": "38 Lordship Ln, London N17 8NS, UK",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-08-31",
       "verifiedReviewCount": 7,
       "verifiedReviewCheckedAt": "2026-08-31",
@@ -6589,7 +6607,17 @@
         }
       ],
       "photoSearchReviewedAt": "2026-08-31",
-      "photoOrderBumpedAt": 796
+      "photoOrderBumpedAt": 796,
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": false,
+      "sameDayEmergency": false,
+      "customFilters": {},
+      "updatedAt": "2026-09-02"
     },
     {
       "id": "yoyo-hair-boutique",
@@ -10183,13 +10211,14 @@
         "Full head colour",
         "Microbraids / x-small braids",
         "Traditional sew-in / leave out",
-        "K-18 treatment",
         "Wash & blowdry",
         "Boho braids / goddess braids",
         "Starter locs / instant locs",
         "Fulani / lemonade braids",
         "Wig install (frontal / closure)",
-        "Loc styling"
+        "Loc styling",
+        "Colour blend (mixing braiding hair)",
+        "U-Part / Half wig install"
       ],
       "priceBand": "£",
       "servicePriceBand": "£",
@@ -10234,7 +10263,18 @@
           "source": "google-image-search"
         }
       ],
-      "updatedAt": "2026-08-27"
+      "updatedAt": "2026-09-02",
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": false,
+      "sameDayEmergency": false,
+      "customFilters": {}
     },
     {
       "id": "braidometry",
@@ -16504,7 +16544,6 @@
         "Highlights",
         "Balayage",
         "Relaxer / texturiser",
-        "K-18 treatment",
         "Keratin treatment / Brazilian blowdry",
         "Pixie cut / finger waves"
       ],
@@ -16569,7 +16608,7 @@
         }
       ],
       "photoSearchReviewedAt": "2026-08-25",
-      "updatedAt": "2026-08-26",
+      "updatedAt": "2026-09-02",
       "hairShopUrl": "",
       "googleDisplayName": "",
       "googleFormattedAddress": "",
@@ -16579,7 +16618,8 @@
       "lgbtqFriendly": false,
       "parkingAvailable": false,
       "sellsHairSeparately": false,
-      "customFilters": {}
+      "customFilters": {},
+      "sameDayEmergency": false
     },
     {
       "id": "le-don-salon",
@@ -28672,7 +28712,8 @@
         "Wig install (frontal / closure)",
         "Retwist / interlocking",
         "Updo",
-        "Bridal"
+        "Bridal",
+        "Wig colouring / bundle colouring"
       ],
       "priceBand": "££",
       "servicePriceBand": "",
@@ -28704,8 +28745,8 @@
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleDisplayName": null,
-      "googleFormattedAddress": null,
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-07-29",
       "websiteUrl": "",
       "tiktokUrl": "",
@@ -28713,7 +28754,7 @@
       "canBraidWithoutGel": false,
       "wheelchairAccessible": false,
       "customFilters": {},
-      "updatedAt": "2026-08-25",
+      "updatedAt": "2026-09-02",
       "senFriendly": false,
       "lgbtqFriendly": false,
       "parkingAvailable": false,
@@ -28734,7 +28775,10 @@
           "url": "/portfolio-photos/tressesandtravel-c63666e0-c687-47bf-8043-7e62cad0790f.jpg",
           "source": "google-image-search"
         }
-      ]
+      ],
+      "hairShopUrl": "",
+      "sellsHairSeparately": false,
+      "sameDayEmergency": false
     },
     {
       "id": "taniabeautyse1",
@@ -32543,7 +32587,8 @@
         "Quick weave",
         "Closure sew-in / closure behind the hairline",
         "Moisturising treatment",
-        "K-18 treatment"
+        "Olaplex treatment",
+        "Bouncy blowout / round brush blow dry"
       ],
       "priceBand": "£",
       "servicePriceBand": "",
@@ -32572,7 +32617,7 @@
       "tiktokUrl": "",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
-      "updatedAt": "2026-08-27",
+      "updatedAt": "2026-09-02",
       "addedVia": "Admin tool",
       "discoverySource": "Manual search",
       "verifiedReviewCount": 32,
@@ -32581,8 +32626,8 @@
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleDisplayName": null,
-      "googleFormattedAddress": null,
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-07-29",
       "websiteUrl": "",
       "wheelchairAccessible": false,
@@ -32595,7 +32640,13 @@
           "source": "google-image-search"
         }
       ],
-      "photoSearchReviewedAt": "2026-08-25"
+      "photoSearchReviewedAt": "2026-08-25",
+      "hairShopUrl": "",
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": false,
+      "sameDayEmergency": false
     },
     {
       "id": "mourhairldn",
@@ -33153,10 +33204,6 @@
         "Twists (with extensions)",
         "French curl",
         "Braid take-down",
-        "Highlights",
-        "Keratin treatment / Brazilian blowdry",
-        "Balayage",
-        "Full head colour",
         "Editorial / Session styling"
       ],
       "priceBand": "££",
@@ -33191,15 +33238,15 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-25",
+      "updatedAt": "2026-09-02",
       "verifiedReviewCount": 34,
       "verifiedReviewCheckedAt": "2026-07-22",
       "googlePlaceId": null,
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleDisplayName": null,
-      "googleFormattedAddress": null,
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-07-29",
       "portfolioPhotosCheckedAt": "2026-08-21",
       "portfolioPhotos": [
@@ -33222,7 +33269,8 @@
       "hairShopUrl": "",
       "senFriendly": false,
       "lgbtqFriendly": false,
-      "sellsHairSeparately": false
+      "sellsHairSeparately": false,
+      "sameDayEmergency": false
     },
     {
       "id": "divinehairbynads",
@@ -35492,7 +35540,6 @@
         "Starter locs / instant locs",
         "Knotless braids",
         "Microlocs / sisterlocs",
-        "K-18 treatment",
         "Moisturising treatment",
         "Soft locs",
         "Sleek ponytail / bun",
@@ -35502,7 +35549,8 @@
         "Tracks (+ silk press) / partial / invisible sew-in",
         "Highlights",
         "Balayage",
-        "Loc styling"
+        "Loc styling",
+        "Crochet faux locs / invisible locs"
       ],
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
@@ -35536,15 +35584,15 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-07-31",
+      "updatedAt": "2026-09-02",
       "verifiedReviewCount": 319,
       "verifiedReviewCheckedAt": "2026-07-22",
       "googlePlaceId": null,
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleDisplayName": null,
-      "googleFormattedAddress": null,
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-07-29",
       "senFriendly": false,
       "lgbtqFriendly": true,
@@ -35612,7 +35660,10 @@
           "source": "website"
         }
       ],
-      "photoSearchReviewedAt": "2026-08-25"
+      "photoSearchReviewedAt": "2026-08-25",
+      "hairShopUrl": "",
+      "sellsHairSeparately": false,
+      "sameDayEmergency": false
     },
     {
       "id": "esu-hairandbeauty",
@@ -36105,7 +36156,6 @@
         "Trim / hair cut",
         "I-tips / microlinks strands",
         "Traditional sew-in / leave out",
-        "K-18 treatment",
         "Updo",
         "Scalp detox / treatments",
         "Moisturising treatment",
@@ -36142,7 +36192,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-31",
+      "updatedAt": "2026-09-02",
       "addedVia": "Admin tool",
       "discoverySource": "User submission",
       "verifiedReviewCount": 8,
@@ -38563,7 +38613,6 @@
       "services": [
         "Wig install (frontal / closure)",
         "Custom wig",
-        "K-18 treatment",
         "Moisturising treatment"
       ],
       "summary": "Admin draft created from stylist intake.",
@@ -38591,8 +38640,8 @@
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleDisplayName": null,
-      "googleFormattedAddress": null,
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-07-29",
       "websiteUrl": "",
       "tiktokUrl": "",
@@ -38604,7 +38653,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-07-24",
+      "updatedAt": "2026-09-02",
       "portfolioPhotosCheckedAt": "2026-08-20",
       "portfolioPhotos": [
         {
@@ -38622,7 +38671,13 @@
           "url": "/portfolio-photos/hairbabelondon-58d53ce7-0e5a-48d4-b46d-ef0d506bf846.jpg",
           "source": "google-image-search"
         }
-      ]
+      ],
+      "hairShopUrl": "",
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": false,
+      "sameDayEmergency": false
     },
     {
       "id": "rathestylist",
@@ -40007,7 +40062,6 @@
         "Half up half down",
         "Pixie cut / finger waves",
         "Relaxer / texturiser",
-        "K-18 treatment",
         "Pixie wig / weave install"
       ],
       "summary": "Admin draft created from stylist intake.",
@@ -40033,12 +40087,12 @@
       "priceConfidence": "manual",
       "addedVia": "Admin tool",
       "discoverySource": "Manual search",
-      "googlePlaceId": "ChIJoQUVPNwHdkgRirobQzv7wE4",
+      "googlePlaceId": null,
       "googleReviewCount": 21,
       "googleMapsUri": "https://maps.google.com/?cid=5674811762434357898&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
       "googleMatchConfidence": "high",
       "googleDisplayName": "Perfect Touch Hair Studio",
-      "googleFormattedAddress": "Flat1, 73 Yorkshire Rd, Mitcham CR4 1PQ, UK",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-07-24",
       "websiteUrl": "https://www.perfecttouchhairstudio.co.uk",
       "tiktokUrl": "",
@@ -40050,7 +40104,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-23",
+      "updatedAt": "2026-09-02",
       "portfolioPhotos": [
         {
           "id": "perfecttouch-hair-studio-portfolio-photo-0",
@@ -40058,7 +40112,13 @@
           "source": "google"
         }
       ],
-      "portfolioPhotosCheckedAt": "2026-08-20"
+      "portfolioPhotosCheckedAt": "2026-08-20",
+      "hairShopUrl": "",
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": false,
+      "sameDayEmergency": false
     },
     {
       "id": "hersilk",
@@ -43378,7 +43438,6 @@
         "Twists (with extensions)",
         "Crochet",
         "Sleek ponytail / bun",
-        "K-18 treatment",
         "Pixie cut / finger waves",
         "Traditional sew-in / leave out"
       ],
@@ -43415,7 +43474,7 @@
         }
       ],
       "portfolioPhotosCheckedAt": "2026-08-21",
-      "updatedAt": "2026-08-27",
+      "updatedAt": "2026-09-02",
       "websiteUrl": "",
       "hairShopUrl": "",
       "tiktokUrl": "",
@@ -43430,7 +43489,8 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "photoSearchReviewedAt": "2026-08-25"
+      "photoSearchReviewedAt": "2026-08-25",
+      "sameDayEmergency": false
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -43601,7 +43661,6 @@
         "Keratin treatment / Brazilian blowdry",
         "Full head colour",
         "Sew in / extensions blowdry",
-        "K-18 treatment",
         "Bouncy blowout / round brush blow dry"
       ],
       "summary": "Manual entry added from your latest salon update batch.",
@@ -43638,13 +43697,13 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-31",
-      "googlePlaceId": "ChIJbbAoTvAFdkgR2_0bUyl03h8",
+      "updatedAt": "2026-09-02",
+      "googlePlaceId": null,
       "googleReviewCount": 16,
       "googleMapsUri": "https://maps.google.com/?cid=2296400580842356187&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
       "googleMatchConfidence": "high",
       "googleDisplayName": "Be Styled By Chen",
-      "googleFormattedAddress": "100 Clapham High St, London SW4 7UL, UK",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-07-23",
       "senFriendly": false,
       "lgbtqFriendly": true,
@@ -43663,7 +43722,8 @@
       ],
       "portfolioPhotosCheckedAt": "2026-08-21",
       "hairShopUrl": "",
-      "sellsHairSeparately": false
+      "sellsHairSeparately": false,
+      "sameDayEmergency": false
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -52544,12 +52604,7 @@
       "bookingUrl": "https://www.rshairuk.co.uk/bridal",
       "instagramUrl": "https://www.instagram.com/foreverbyrs/",
       "services": [
-        "Bridal",
-        "Wig colouring / bundle colouring",
-        "Wig install (frontal / closure)",
-        "Custom wig",
-        "Highlights",
-        "Full head colour"
+        "Bridal"
       ],
       "hijabiFriendly": false,
       "priceBand": "££",
@@ -52576,7 +52631,7 @@
       "googleDisplayName": "",
       "googleFormattedAddress": "",
       "googleCheckedAt": "2026-07-29",
-      "updatedAt": "2026-09-01",
+      "updatedAt": "2026-09-02",
       "websiteUrl": "https://www.rshairuk.co.uk/",
       "portfolioPhotos": [
         {
@@ -55726,14 +55781,14 @@
         "Moisturising treatment",
         "Sew-in take-down",
         "Wash & blowdry",
-        "K-18 treatment"
+        "Bouncy blowout / round brush blow dry"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
       "evidence": [
         "User-provided Instagram handle awaiting categorisation."
       ],
-      "priceBand": "£",
+      "priceBand": "££",
       "priceSource": "auto",
       "priceEvidence": [
         "Relaxer Re Touch & 3 Rows Of La Weave/braidless sewin - £140",
@@ -55745,9 +55800,9 @@
         "Relaxer Re Touch, Trim & Finish - £80",
         "Bundles Cleanse, Condition & Dry - £15"
       ],
-      "priceCheckedAt": "2026-06-03",
+      "priceCheckedAt": "2026-09-02",
       "priceConfidence": "high",
-      "priceUpdatedAt": "2026-06-03",
+      "priceUpdatedAt": "2026-09-02",
       "addedVia": "Bulk import",
       "discoverySource": "Cowork scrape",
       "verifiedReviewCount": 0,
@@ -55756,8 +55811,8 @@
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleDisplayName": null,
-      "googleFormattedAddress": null,
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-07-29",
       "websiteUrl": "",
       "tiktokUrl": "",
@@ -55765,11 +55820,11 @@
       "canBraidWithoutGel": false,
       "wheelchairAccessible": false,
       "customFilters": {},
-      "servicePriceBand": "",
+      "servicePriceBand": "££",
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-27",
+      "updatedAt": "2026-09-02",
       "portfolioPhotosCheckedAt": "2026-08-21",
       "portfolioPhotos": [
         {
@@ -55778,7 +55833,13 @@
           "source": "instagram-reel-thumbnail"
         }
       ],
-      "photoOrderBumpedAt": 231
+      "photoOrderBumpedAt": 231,
+      "hairShopUrl": "",
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": false,
+      "sameDayEmergency": false
     },
     {
       "summary": "Manual Instagram-led entry added from your mobile wigs and sew-ins list.",
@@ -62438,13 +62499,13 @@
         "Frontal sew-in",
         "Scalp detox / treatments",
         "Moisturising treatment",
-        "K-18 treatment",
         "Bouncy blowout / round brush blow dry",
         "Trim / hair cut",
         "Updo",
         "Full head colour",
         "Men's braids",
-        "Keratin treatment / Brazilian blowdry"
+        "Keratin treatment / Brazilian blowdry",
+        "Wig install (frontal / closure)"
       ],
       "tiktokUrl": "",
       "hijabiFriendly": false,
@@ -62464,7 +62525,7 @@
       "priceCheckedAt": "2026-06-04",
       "priceUpdatedAt": "2026-06-04",
       "priceConfidence": "high",
-      "updatedAt": "2026-08-22",
+      "updatedAt": "2026-09-02",
       "addedVia": "Code edit",
       "discoverySource": "Cowork scrape",
       "verifiedReviewCount": 1003,
@@ -62476,12 +62537,12 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "googlePlaceId": "ChIJp55-X40NdkgRhbjlDfilSrU",
+      "googlePlaceId": null,
       "googleReviewCount": 179,
       "googleMapsUri": "https://maps.google.com/?cid=13063436153945176197&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
       "googleMatchConfidence": "high",
       "googleDisplayName": "Lush London",
-      "googleFormattedAddress": "8B, The Quadrant, 8c Little Ealing Ln, S Ealing Rd, London W5 4EE, UK",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-07-23",
       "senFriendly": false,
       "lgbtqFriendly": false,
@@ -62493,7 +62554,10 @@
           "source": "website"
         }
       ],
-      "portfolioPhotosCheckedAt": "2026-08-21"
+      "portfolioPhotosCheckedAt": "2026-08-21",
+      "hairShopUrl": "",
+      "sellsHairSeparately": false,
+      "sameDayEmergency": false
     },
     {
       "summary": "Manual entry added from your bridal and editorial list.",
@@ -62794,7 +62858,7 @@
       "neighbourhood": "South West London",
       "postcode": "",
       "bookingPlatform": "Direct website",
-      "bookingUrl": "https://maisonstyle.co.uk/book-online/",
+      "bookingUrl": "https://maisonstyle.co.uk/book",
       "instagramUrl": "https://www.instagram.com/maisonstylehair/",
       "services": [
         "Wig install (frontal / closure)",
@@ -62812,7 +62876,13 @@
         "Custom wig",
         "Twist out / flexi rod",
         "Bridal",
-        "LA weave"
+        "LA weave / microlinks wefts / braidless sew in",
+        "Trim / hair cut",
+        "Relaxer / texturiser",
+        "Scalp detox / treatments",
+        "Hair botox",
+        "Closure sew-in / closure behind the hairline",
+        "Tape ins"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -62851,13 +62921,13 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-25",
-      "googlePlaceId": "ChIJiUS9C2sEdkgR2qitstd8A-Y",
+      "updatedAt": "2026-09-02",
+      "googlePlaceId": null,
       "googleReviewCount": 202,
       "googleMapsUri": "https://maps.google.com/?cid=16574228319511095514&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
       "googleMatchConfidence": "high",
       "googleDisplayName": "Maison Style",
-      "googleFormattedAddress": "186 Tulse Hill, Norwood, London SW2 3BU, UK",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-07-23",
       "websiteUrl": "https://maisonstyle.co.uk",
       "sellsHairSeparately": true,
@@ -62888,7 +62958,12 @@
       ],
       "photoSearchSkippedAt": "2026-08-24",
       "photoSearchSkippedReason": "manual",
-      "photoSearchReviewedAt": "2026-08-24"
+      "photoSearchReviewedAt": "2026-08-24",
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sameDayEmergency": false,
+      "customFilters": {}
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -66330,7 +66405,6 @@
         "U-Part / Half wig install",
         "Flipover / Versatile sew-in",
         "Olaplex treatment",
-        "K-18 treatment",
         "Updo",
         "Scalp detox / treatments",
         "Wig install (frontal / closure)",
@@ -66367,17 +66441,17 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-31",
+      "updatedAt": "2026-09-02",
       "verifiedReviewCount": 432,
       "verifiedReviewCheckedAt": "2026-07-22",
       "websiteUrl": "https://www.ourahhairsalon.co.uk/",
       "customFilters": {},
-      "googlePlaceId": "ChIJucDDbwIFdkgRhe7Yb4s-RXE",
+      "googlePlaceId": null,
       "googleReviewCount": 62,
       "googleMapsUri": "https://maps.google.com/?cid=8161998668276756101&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
       "googleMatchConfidence": "high",
       "googleDisplayName": "Ourah hair salon",
-      "googleFormattedAddress": "1d Wyatt Park Rd, London SW2 3TN, UK",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-07-23",
       "portfolioPhotos": [
         {
@@ -66393,7 +66467,8 @@
       "parkingAvailable": false,
       "sellsHairSeparately": false,
       "photoSearchReviewedAt": "2026-08-31",
-      "photoOrderBumpedAt": 1030
+      "photoOrderBumpedAt": 1030,
+      "sameDayEmergency": false
     },
     {
       "id": "ovieya-london-ltd",
@@ -73703,20 +73778,20 @@
         "Stitch braids",
         "LA weave / microlinks wefts / braidless sew in",
         "Feed-in braids",
-        "K-18 treatment",
         "Moisturising treatment",
         "Starter locs / instant locs",
         "Men's braids",
         "Wig laundry",
         "Loc styling",
-        "Crochet faux locs / invisible locs"
+        "Crochet faux locs / invisible locs",
+        "Pixie cut / finger waves"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
       "evidence": [
         "User-provided Instagram handle awaiting categorisation."
       ],
-      "priceBand": "£",
+      "priceBand": "££",
       "priceSource": "auto",
       "priceEvidence": [
         "Hair Detangling - £20",
@@ -73725,34 +73800,34 @@
         "B3 DEMI PERMANENT CONDITIONER - £85",
         "Trim for Curly/ Afro Hair - £30",
         "Half Head 16 Inches - £320",
-        "Half Head 16 Inches - £260",
-        "Trim for Straight/ Relaxed Hair - £25"
+        "Bleaching - £80",
+        "Half Head 16 Inches - £260"
       ],
-      "priceCheckedAt": "2026-07-24",
+      "priceCheckedAt": "2026-09-02",
       "priceConfidence": "high",
-      "priceUpdatedAt": "2026-07-24",
+      "priceUpdatedAt": "2026-09-02",
       "addedVia": "Bulk import",
       "discoverySource": "Cowork scrape",
       "verifiedReviewCount": 88,
       "verifiedReviewCheckedAt": "2026-07-22",
       "wheelchairAccessible": true,
-      "googlePlaceId": "ChIJUbZz2vCn2EcR2A9aV0i95sU",
+      "googlePlaceId": null,
       "googleReviewCount": 1350,
       "googleMapsUri": "https://maps.google.com/?cid=14260293388516069336&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
       "googleMatchConfidence": "high",
       "googleDisplayName": "StylesbyFola",
-      "googleFormattedAddress": "Stylesbyfola, 4 High St, London E15 2GR, UK",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-07-23",
       "websiteUrl": "",
       "tiktokUrl": "",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
       "customFilters": {},
-      "servicePriceBand": "£",
+      "servicePriceBand": "££",
       "packagePriceBand": "££££",
       "priceIncludesHair": true,
       "priceComparisonMode": "mixed",
-      "updatedAt": "2026-08-30",
+      "updatedAt": "2026-09-02",
       "sellsHairSeparately": true,
       "hairShopUrl": "https://currentwigs.com/collections/hair-bundles/hair-bundles",
       "vendorId": "stylesbyfola",
@@ -73770,7 +73845,11 @@
       ],
       "portfolioPhotosCheckedAt": "2026-08-21",
       "photoSearchReviewedAt": "2026-08-30",
-      "photoOrderBumpedAt": 670
+      "photoOrderBumpedAt": 670,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sameDayEmergency": false
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -83044,8 +83123,7 @@
         "Hybrid sew in (tapes + sew in)",
         "Flipover / Versatile sew-in",
         "Sleek ponytail / bun",
-        "Silk press",
-        "K-18 treatment"
+        "Silk press"
       ],
       "summary": "Manual Instagram-led entry added from user-provided booking menu.",
       "source": "manual",
@@ -83092,7 +83170,7 @@
           "source": "google-image-search"
         }
       ],
-      "updatedAt": "2026-08-26",
+      "updatedAt": "2026-09-02",
       "websiteUrl": "",
       "hairShopUrl": "",
       "tiktokUrl": "",
@@ -83107,7 +83185,8 @@
       "servicePriceBand": "",
       "packagePriceBand": "",
       "priceIncludesHair": false,
-      "priceComparisonMode": "service-only"
+      "priceComparisonMode": "service-only",
+      "sameDayEmergency": false
     },
     {
       "id": "branco-hair",
@@ -83547,7 +83626,6 @@
         "Silk press",
         "Scalp detox / treatments",
         "Wig laundry",
-        "K-18 treatment",
         "Trim / hair cut",
         "Fulani / lemonade braids"
       ],
@@ -83569,7 +83647,7 @@
       "priceCheckedAt": "",
       "priceUpdatedAt": "2026-06-04",
       "priceConfidence": "manual",
-      "updatedAt": "2026-08-26",
+      "updatedAt": "2026-09-02",
       "addedVia": "Code edit",
       "discoverySource": "Manual search",
       "verifiedReviewCount": 11,
@@ -83609,7 +83687,8 @@
       "servicePriceBand": "",
       "packagePriceBand": "",
       "priceIncludesHair": false,
-      "priceComparisonMode": "service-only"
+      "priceComparisonMode": "service-only",
+      "sameDayEmergency": false
     },
     {
       "id": "blessed-by-sj",
@@ -84464,8 +84543,7 @@
       "bookingUrl": "https://the-hair-and-scalp-clinic.uk1.cliniko.com/bookings?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQPOTM2NjE5NzQzMzkyNDU5AAGnZyHvDofiJdmzanOV01_3hEjRzaIHDhpCAkBBhG3MTA3cyqW69RfTV8s37Lw_aem_5LG0jXRs_bMM9AyYT01iww&utm_id=97760_v0_s00_e0_tv3#service",
       "instagramUrl": "https://www.instagram.com/shirleymcdonaldtrichologist/",
       "services": [
-        "Trichology / scalp analysis",
-        "K-18 treatment"
+        "Trichology / scalp analysis"
       ],
       "summary": "Manual trichology entry added from user-provided profile.",
       "source": "manual",
@@ -84484,15 +84562,15 @@
       "priceCheckedAt": "2026-07-24",
       "priceUpdatedAt": "2026-07-24",
       "priceConfidence": "low",
-      "updatedAt": "2026-08-25",
+      "updatedAt": "2026-09-02",
       "addedVia": "Admin tool",
       "discoverySource": "Manual search",
-      "googlePlaceId": "ChIJ93JOkeIRdkgRVeMy4hd49L0",
+      "googlePlaceId": null,
       "googleReviewCount": 4,
       "googleMapsUri": "https://maps.google.com/?cid=13687697211460346709&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
       "googleMatchConfidence": "high",
       "googleDisplayName": "The Hair & Scalp Clinic",
-      "googleFormattedAddress": "9 Vivian Ave, London NW4 3UT, UK",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-07-24",
       "websiteUrl": "",
       "wheelchairAccessible": false,
@@ -84508,7 +84586,13 @@
           "source": "google-image-search"
         }
       ],
-      "photoSearchReviewedAt": "2026-08-25"
+      "photoSearchReviewedAt": "2026-08-25",
+      "hairShopUrl": "",
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": false,
+      "sameDayEmergency": false
     },
     {
       "id": "shannel-watson",
