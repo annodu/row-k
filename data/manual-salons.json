@@ -13009,7 +13009,7 @@
     },
     {
       "id": "mk-the-hairstylist",
-      "name": "MK the hairstylist",
+      "name": "MK the Hairstylist",
       "areaId": "mobile",
       "areaLabel": "Mobile / home service",
       "neighbourhood": "Mobile / home service London",
@@ -13072,14 +13072,15 @@
       "parkingAvailable": false,
       "sellsHairSeparately": false,
       "customFilters": {},
-      "updatedAt": "2026-08-27",
+      "updatedAt": "2026-09-01",
       "portfolioPhotos": [
         {
           "id": "mk-the-hairstylist-portfolio-photo-d0d9fbb6-c3d5-4b3c-988b-cdfd41a8194d",
           "url": "/portfolio-photos/mk-the-hairstylist-3cee209f-d6fb-41cf-8bfa-fec4515569d8.jpg",
           "source": "google-image-search"
         }
-      ]
+      ],
+      "sameDayEmergency": false
     },
     {
       "id": "manae-braids",
@@ -64336,13 +64337,9 @@
       ],
       "id": "momos-hair",
       "name": "Momos Hair",
-      "areaId": "north-west",
-      "areaIds": [
-        "north-west",
-        "mobile"
-      ],
-      "areaLabel": "North West",
-      "neighbourhood": "North West London and Mobile",
+      "areaId": "all-london",
+      "areaLabel": "London",
+      "neighbourhood": "London London",
       "postcode": "",
       "bookingPlatform": "Direct website",
       "bookingUrl": "https://app.acuityscheduling.com/schedule/c88c31be",
@@ -64383,8 +64380,8 @@
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleDisplayName": null,
-      "googleFormattedAddress": null,
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-07-29",
       "parkingAvailable": true,
       "portfolioPhotos": [
@@ -64419,7 +64416,8 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-23"
+      "updatedAt": "2026-09-01",
+      "sameDayEmergency": false
     },
     {
       "id": "morells-of-brockley",
@@ -83862,7 +83860,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-31",
+      "updatedAt": "2026-09-01",
       "portfolioPhotos": [
         {
           "id": "dkuk-salon-portfolio-photo-f160066e-6f5b-4646-9f2e-299a4332fcde",
@@ -83871,7 +83869,7 @@
         },
         {
           "id": "dkuk-salon-portfolio-photo-792738aa-f25f-4851-aefc-320475580176",
-          "url": "/portfolio-photos/dkuk-salon-faa4e75a-9a81-452a-b7fe-b8ef3cf21926.jpg",
+          "url": "/portfolio-photos/dkuk-salon-3fca4e1d-4105-44a3-9e8b-6e30e9ccf0a0.jpg",
           "source": "google-image-search"
         }
       ],

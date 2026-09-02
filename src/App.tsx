@@ -4266,7 +4266,7 @@ export default function App() {
                 <form id="submit-stylist-form" onSubmit={submitStylist} className="flex flex-col gap-7">
                   <section className="flex flex-col gap-3">
                     <SubmissionLinkField
-                      label="Instagram link"
+                      label="Instagram link (required)"
                       value={submissionInstagramUrl}
                       onChange={handleSubmissionInstagramUrlChange}
                       onBlur={() => setSubmissionInstagramTouched(true)}
