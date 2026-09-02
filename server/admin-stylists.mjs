@@ -283,7 +283,7 @@ const serviceRuleMatchers = [
   ["Japanese straightening", [/\bjapanese\b.*\bstraight(en|ening)\b/, /\bmomoko\b(?:.*\bstraight(en|ening)\b)?/]],
   ["Hair botox", [/\bbotox\b/]],
   ["Olaplex treatment", [/\bolaplex\b/, /\b(repair|bond)\b.*\b(bond|repair|treatment)\b/]],
-  ["K-18 treatment", [/\bk\s*18\b/, /\bk-18\b/]],
+  ["K18 treatment", [/\bk\s*18\b/, /\bk-18\b/]],
   ["Moisturising treatment", [/\bmoisturi[sz](ing|e)\b/, /\bmoisture\b/, /\bhydrat(e|ing|ion)\b/, /\bprotein\s*&?\s+moisture\b/, /\bdeep\s+condition(ing)?\b/, /\bsteam\s+treat(ment)?\b/, /\bnatural\s+hair\s+care\b/]],
   ["Japanese head spa", [/\bjapanese\s+head\s+spa\b/, /\bhead\s*spa\b/]],
   ["Scalp detox / treatments", [/\bscalp\b/]],
@@ -350,7 +350,7 @@ export const serviceNegationHints = {
   "Highlights": ["highlights", "high lights"],
   "Hybrid sew in (tapes + sew in)": ["hybrid sew in", "hybrid sewin", "hybrid weave"],
   "Japanese straightening": ["japanese straightening"],
-  "K-18 treatment": ["k 18", "k18"],
+  "K18 treatment": ["k 18", "k18", "k-18"],
   "K-tips / invisible strands": ["k tips", "invisible strands", "keratin tip", "keratin tips", "keratin bonds"],
   "Keratin treatment / Brazilian blowdry": ["keratin", "brazilian blow dry", "brazilian blowdry", "brazilian blow out", "brazilian blowout"],
   "Knotless braids": ["knotless"],
@@ -3357,6 +3357,19 @@ async function patchFilterSourceFiles(categories) {
   const newServiceGroups = serviceGroupLines.join("\n");
   const adminPatched = adminSrc.replace(/const serviceGroups = \[[\s\S]*?\];/, newServiceGroups);
   await fs.writeFile(adminTsxPath, adminPatched);
+}
+
+// Script-callable equivalent of POST /api/admin/filters for a rename outside the UI — same
+// write/patch/migrate sequence the endpoint runs, in the same order.
+export async function renameFilterServiceScripted({ categories, renames }) {
+  await writeJson(filtersPath, { categories });
+  if (!isHostedRuntime()) {
+    await patchFilterSourceFiles(categories);
+  }
+  setCategoryMapCache(categories);
+  if (Array.isArray(renames) && renames.length) {
+    await migrateRenamedServices(renames);
+  }
 }
 
 async function patchLocationsSourceFiles({ regions, standaloneIds }) {

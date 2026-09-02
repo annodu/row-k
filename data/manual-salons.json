@@ -2,7 +2,7 @@
   "meta": {
     "source": "manual",
     "updatedAt": "2026-09-02",
-    "count": 1119,
+    "count": 1118,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
@@ -782,7 +782,7 @@
         "Starter locs / instant locs",
         "Colour blend (mixing braiding hair)",
         "Editorial / Session styling",
-        "K-18 treatment"
+        "K18 treatment"
       ],
       "priceBand": "£",
       "servicePriceBand": "£",
@@ -28689,7 +28689,7 @@
         "Silk press",
         "Trim / hair cut",
         "Texture release",
-        "K-18 treatment",
+        "K18 treatment",
         "Scalp detox / treatments",
         "Moisturising treatment",
         "Natural hair coaches / educators",
@@ -32674,7 +32674,7 @@
         "Curly cut / wash & go / diffuse",
         "Keratin treatment / Brazilian blowdry",
         "Olaplex treatment",
-        "K-18 treatment"
+        "K18 treatment"
       ],
       "priceBand": "£",
       "servicePriceBand": "",
@@ -38830,7 +38830,7 @@
       "bookingUrl": "https://www.treatwell.co.uk/place/beyond-the-brush-by-monique",
       "instagramUrl": "https://www.instagram.com/beyondthebrushldn/",
       "services": [
-        "K-18 treatment",
+        "K18 treatment",
         "Olaplex treatment",
         "Keratin treatment / Brazilian blowdry",
         "Scalp detox / treatments",
@@ -39175,7 +39175,7 @@
       "services": [
         "Curly cut / wash & go / diffuse",
         "Moisturising treatment",
-        "K-18 treatment",
+        "K18 treatment",
         "Highlights",
         "Full head colour"
       ],
@@ -39972,7 +39972,7 @@
       "bookingUrl": "https://www.phorest.com/salon/enaltd?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQPOTM2NjE5NzQzMzkyNDU5AAGnRTOE0DHFoCLcJF5eiHdT-QngZiFm63dymODpMa9lTSPMNHh0xTWe122-J1o_aem_X2LEIdLdNHOeSQ4ZjfJ9oA&utm_id=97760_v0_s00_e0_tv3",
       "instagramUrl": "https://www.instagram.com/enasalon/",
       "services": [
-        "K-18 treatment",
+        "K18 treatment",
         "Olaplex treatment",
         "Keratin treatment / Brazilian blowdry",
         "Curly cut / wash & go / diffuse",
@@ -44049,7 +44049,7 @@
       "hijabiFriendly": true,
       "services": [
         "Wash & blowdry",
-        "K-18 treatment",
+        "K18 treatment",
         "Olaplex treatment",
         "Hair botox",
         "Full head colour",
@@ -44234,87 +44234,6 @@
       "sellsHairSeparately": false,
       "customFilters": {},
       "photoSearchReviewedAt": "2026-08-25"
-    },
-    {
-      "summary": "Manual entry added from your latest salon update batch.",
-      "source": "manual",
-      "evidence": [
-        "User-provided manual addition."
-      ],
-      "id": "belewa-hair",
-      "name": "Be Lẹwa Hair",
-      "areaId": "croydon",
-      "areaIds": [
-        "croydon",
-        "mobile"
-      ],
-      "areaLabel": "Croydon",
-      "neighbourhood": "Croydon and Mobile",
-      "postcode": "",
-      "bookingPlatform": "Direct website",
-      "bookingUrl": "https://belewahair.as.me/schedule/ae0f15d6",
-      "instagramUrl": "https://www.instagram.com/belewahair/",
-      "services": [
-        "Custom wig",
-        "Wig install (frontal / closure)",
-        "Closure sew-in / closure behind the hairline",
-        "Frontal sew-in",
-        "Traditional sew-in / leave out",
-        "Quick weave"
-      ],
-      "priceBand": "£",
-      "priceSource": "auto",
-      "priceEvidence": [
-        "HANDMADE CLOSURE WIG (MINI FRONTAL) - £75",
-        "STYLING - £30",
-        "HANDMADE FRONTAL WIG - £85",
-        "PRE-MADE FACTORY WIG (FRONTAL & CLOSURE) - £65",
-        "RE-INSTALLATION - £50",
-        "(CUSTOMISATION ONLY) - HANDMADE WIG - £60",
-        "CUSTOMISATION ONLY - PRE-MADE/FACTORY WIG - £45",
-        "LACE REPLACEMENT + INSTALMENT - £70"
-      ],
-      "priceCheckedAt": "2026-06-03",
-      "priceConfidence": "high",
-      "priceUpdatedAt": "2026-06-03",
-      "addedVia": "Code edit",
-      "discoverySource": "Cowork scrape",
-      "tiktokUrl": "https://www.tiktok.com/@xo_karrieee/video/7592032929845366019?lang=en-GB",
-      "hijabiFriendly": false,
-      "canBraidWithoutGel": false,
-      "wheelchairAccessible": false,
-      "servicePriceBand": "",
-      "packagePriceBand": "",
-      "priceIncludesHair": false,
-      "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-27",
-      "googlePlaceId": null,
-      "googleReviewCount": 0,
-      "googleMapsUri": "",
-      "googleMatchConfidence": "no-match",
-      "googleDisplayName": "",
-      "googleFormattedAddress": "",
-      "googleCheckedAt": "2026-07-29",
-      "websiteUrl": "",
-      "customFilters": {},
-      "portfolioPhotosCheckedAt": "2026-08-21",
-      "portfolioPhotos": [
-        {
-          "id": "belewa-hair-portfolio-photo-e0d5bc70-4081-4325-97fa-0ed9f90d3918",
-          "url": "/portfolio-photos/belewa-hair-7169c4c3-eff2-47ae-903b-b7eeba1fe4fe.jpg",
-          "source": "google-image-search"
-        },
-        {
-          "id": "belewa-hair-portfolio-photo-c51552b4-b8fc-4e06-93b8-c78a8b07c576",
-          "url": "/portfolio-photos/belewa-hair-57e74e31-1f2e-44e1-a243-ce7f1315ac62.jpg",
-          "source": "google-image-search"
-        }
-      ],
-      "hairShopUrl": "",
-      "senFriendly": false,
-      "lgbtqFriendly": false,
-      "parkingAvailable": false,
-      "sellsHairSeparately": false
     },
     {
       "id": "bella-moore",
@@ -48090,7 +48009,7 @@
         "Highlights",
         "Balayage",
         "Olaplex treatment",
-        "K-18 treatment",
+        "K18 treatment",
         "Moisturising treatment"
       ],
       "priceBand": "££",
@@ -49130,7 +49049,7 @@
         "Wig install (frontal / closure)",
         "Sleek ponytail / bun",
         "Custom wig",
-        "K-18 treatment",
+        "K18 treatment",
         "Moisturising treatment",
         "Olaplex treatment",
         "Wash & blowdry",
@@ -51440,7 +51359,7 @@
       "instagramUrl": "https://www.instagram.com/enhancedbyhair/",
       "services": [
         "Wash & blowdry",
-        "K-18 treatment",
+        "K18 treatment",
         "Texture release",
         "Trim / hair cut",
         "Silk press",
@@ -60628,7 +60547,7 @@
         "Wash & blowdry",
         "Bouncy blowout / round brush blow dry",
         "Scalp detox / treatments",
-        "K-18 treatment",
+        "K18 treatment",
         "Keratin treatment / Brazilian blowdry",
         "Relaxer / texturiser",
         "Tracks (+ silk press) / partial / invisible sew-in"
@@ -60697,7 +60616,7 @@
       "services": [
         "Curly cut / wash & go / diffuse",
         "Trim / hair cut",
-        "K-18 treatment",
+        "K18 treatment",
         "Bridal",
         "Olaplex treatment",
         "Full head colour",
@@ -62635,7 +62554,7 @@
         "Knotless braids",
         "Boho braids / goddess braids",
         "Moisturising treatment",
-        "K-18 treatment",
+        "K18 treatment",
         "Olaplex treatment",
         "Scalp detox / treatments",
         "Healthy hair plans & consultations",
@@ -62867,7 +62786,7 @@
         "Full head colour",
         "Pixie cut / finger waves",
         "Keratin treatment / Brazilian blowdry",
-        "K-18 treatment",
+        "K18 treatment",
         "Olaplex treatment",
         "Traditional sew-in / leave out",
         "Tracks (+ silk press) / partial / invisible sew-in",
@@ -66874,7 +66793,7 @@
         "Texture release",
         "Olaplex treatment",
         "Keratin treatment / Brazilian blowdry",
-        "K-18 treatment",
+        "K18 treatment",
         "Relaxer / texturiser",
         "Healthy hair plans & consultations",
         "Healthy hair consultations & regimes"
@@ -71368,7 +71287,7 @@
         "Bouncy blowout / round brush blow dry",
         "Silk press",
         "Kids & teens styles",
-        "K-18 treatment",
+        "K18 treatment",
         "Keratin treatment / Brazilian blowdry"
       ],
       "hijabiFriendly": true,
@@ -76803,7 +76722,7 @@
         "Relaxer / texturiser",
         "Traditional sew-in / leave out",
         "Olaplex treatment",
-        "K-18 treatment"
+        "K18 treatment"
       ],
       "priceBand": "££",
       "priceSource": "manual",
@@ -78026,7 +77945,7 @@
         "Clip ins (+ silk press)",
         "Wig install (frontal / closure)",
         "Half up half down",
-        "K-18 treatment",
+        "K18 treatment",
         "Texture release",
         "Custom wig",
         "Flipover / Versatile sew-in",
@@ -78706,7 +78625,7 @@
         "Wig cornrows",
         "Curly cut / wash & go / diffuse",
         "Olaplex treatment",
-        "K-18 treatment",
+        "K18 treatment",
         "Keratin treatment / Brazilian blowdry",
         "Relaxer / texturiser",
         "Twist out / flexi rod",

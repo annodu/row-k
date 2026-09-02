@@ -44,7 +44,7 @@ const defaultCategoryMap = {
   "faux-locs-services": ["Soft locs","Crochet faux locs / invisible locs","Butterfly locs"],
   "sew-in-weave": ["Closure sew-in / closure behind the hairline","Flipover / Versatile sew-in","Frontal sew-in","Hybrid sew in (tapes + sew in)","Pixie wig / weave install","Quick weave","Sew-in take-down","Tracks (+ silk press) / partial / invisible sew-in","Traditional sew-in / leave out"],
   "styling-services": ["Sew in / extensions blowdry","Frontal ponytail / bun","Half up half down","Pixie cut / finger waves","Sleek ponytail / bun","Updo"],
-  "straightening-treatments": ["Hair botox","Japanese straightening","K-18 treatment","Keratin treatment / Brazilian blowdry","Moisturising treatment","Olaplex treatment","Relaxer / texturiser","Texture release"],
+  "straightening-treatments": ["Hair botox","Japanese straightening","K18 treatment","Keratin treatment / Brazilian blowdry","Moisturising treatment","Olaplex treatment","Relaxer / texturiser","Texture release"],
   "natural-hair-services": ["Wig cornrows","Curly cut / wash & go / diffuse","Silk press","Bouncy blowout / round brush blow dry","Trim / hair cut","Roller set","Twist out / flexi rod","Bantu knots","Wash & blowdry","Japanese head spa","Scalp detox / treatments","Men's braids"],
   "natural-hair-scalp-health": ["Healthy hair plans & consultations","Natural hair coaches / educators","Trichology / scalp analysis"],
   "wig-services": ["Custom wig","Pixie wig / weave install","U-Part / Half wig install","Wig colouring / bundle colouring","Wig install (frontal / closure)","Wig blowdry","Wig laundry"],
@@ -74,6 +74,7 @@ export function setCategoryMapCache(categories) {
 })();
 
 export const serviceAliases = {
+  "K-18 treatment": "K18 treatment",
   "Colour blend": "Colour blend (mixing braiding hair)",
   "Color blend": "Colour blend (mixing braiding hair)",
   "Colour mix": "Colour blend (mixing braiding hair)",
@@ -359,7 +360,6 @@ export const serviceAliases = {
   "Half braid": "Half braids, half sew-in",
   "Half weave": "Half braids, half sew-in",
   "Half braid / Half weave": "Half braids, half sew-in",
-  "K18 treatment": "K-18 treatment",
   "K-tips / Invisible strands": "K-tips / invisible strands",
   "Keratin tip": "K-tips / invisible strands",
   "Keratin tips": "K-tips / invisible strands",

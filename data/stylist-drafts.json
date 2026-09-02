@@ -1,10 +1,91 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-09-01",
-    "count": 15
+    "updatedAt": "2026-09-02",
+    "count": 16
   },
   "drafts": [
+    {
+      "id": "belewa-hair",
+      "status": "ready_to_approve",
+      "name": "Be Lẹwa Hair",
+      "areaId": "croydon",
+      "areaIds": [
+        "croydon",
+        "mobile"
+      ],
+      "areaLabel": "Croydon",
+      "neighbourhood": "Croydon and Mobile",
+      "postcode": "",
+      "bookingPlatform": "Direct website",
+      "bookingUrl": "https://belewahair.as.me/schedule/ae0f15d6",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/belewahair/",
+      "tiktokUrl": "https://www.tiktok.com/@xo_karrieee/video/7592032929845366019?lang=en-GB",
+      "addedVia": "Code edit",
+      "discoverySource": "Cowork scrape",
+      "services": [
+        "Custom wig",
+        "Wig install (frontal / closure)",
+        "Closure sew-in / closure behind the hairline",
+        "Frontal sew-in",
+        "Traditional sew-in / leave out",
+        "Quick weave"
+      ],
+      "rawServices": [],
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "customFilters": {},
+      "sellsHairSeparately": false,
+      "sameDayEmergency": false,
+      "priceBand": "£",
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "HANDMADE CLOSURE WIG (MINI FRONTAL) - £75",
+        "STYLING - £30",
+        "HANDMADE FRONTAL WIG - £85",
+        "PRE-MADE FACTORY WIG (FRONTAL & CLOSURE) - £65",
+        "RE-INSTALLATION - £50",
+        "(CUSTOMISATION ONLY) - HANDMADE WIG - £60",
+        "CUSTOMISATION ONLY - PRE-MADE/FACTORY WIG - £45",
+        "LACE REPLACEMENT + INSTALMENT - £70"
+      ],
+      "priceCheckedAt": "2026-06-03",
+      "priceUpdatedAt": "2026-06-03",
+      "priceConfidence": "high",
+      "summary": "Manual entry added from your latest salon update batch.",
+      "warnings": [],
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "createdAt": "2026-09-02",
+      "updatedAt": "2026-09-02",
+      "googleMapsUri": "",
+      "googleReviewCount": 0,
+      "googleMatchConfidence": "no-match",
+      "googleDisplayName": "",
+      "portfolioPhotos": [
+        {
+          "id": "belewa-hair-portfolio-photo-e0d5bc70-4081-4325-97fa-0ed9f90d3918",
+          "url": "/portfolio-photos/belewa-hair-7169c4c3-eff2-47ae-903b-b7eeba1fe4fe.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "belewa-hair-portfolio-photo-c51552b4-b8fc-4e06-93b8-c78a8b07c576",
+          "url": "/portfolio-photos/belewa-hair-57e74e31-1f2e-44e1-a243-ce7f1315ac62.jpg",
+          "source": "google-image-search"
+        }
+      ]
+    },
     {
       "id": "naomistyledit",
       "status": "deprecated",
