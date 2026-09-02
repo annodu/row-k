@@ -4162,7 +4162,7 @@ export default function App() {
                   <br />
                   <span className="inline-block">Natural or relaxed. Braids, sew-ins, wigs, locs.</span>
                 </p>
-                <div className="flex w-full flex-col gap-4 pb-1 pt-3 sm:w-auto sm:flex-row sm:items-center sm:pb-0 sm:pt-5">
+                <div className="flex w-full flex-col gap-4 pb-1 pt-3 sm:w-auto sm:flex-row sm:items-center sm:pb-3 sm:pt-5">
                   <a
                     href="#live-results"
                     onClick={(event) => {
