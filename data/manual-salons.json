@@ -2,10 +2,191 @@
   "meta": {
     "source": "manual",
     "updatedAt": "2026-09-02",
-    "count": 1118,
+    "count": 1121,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "hair-by-dee-e",
+      "name": "Hair by Dee E",
+      "areaId": "essex",
+      "areaLabel": "Essex",
+      "neighbourhood": "Essex London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/hairbydee.e/",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/hairbydee.e/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Knotless braids",
+        "Boho braids / goddess braids"
+      ],
+      "canBraidWithoutGel": true,
+      "summary": "@itsv.dxmii \n-📍RM15 Aveley (HOME-BASED)                           -Beginner Braider      \n-£10 deposit needed to book\nNOT TAKING BOOKINGS‼️",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/hairbydee.e/",
+        "Raw services provided during admin intake."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-09-02"
+    },
+    {
+      "id": "styledd-by-mv",
+      "name": "Styledd by MV",
+      "areaId": "south-east",
+      "areaLabel": "South east London",
+      "neighbourhood": "South east London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://styleddbymv.as.me/",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/styleddbymv/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Boho braids / goddess braids",
+        "Boho braids bob",
+        "Knotless braids",
+        "Twists (with extensions)",
+        "Fulani / lemonade braids",
+        "Miracle knots",
+        "French curl",
+        "Crochet faux locs / invisible locs",
+        "Traditional sew-in / leave out",
+        "Butterfly locs",
+        "Soft locs",
+        "Retwist / interlocking",
+        "Stitch braids",
+        "Pre-parting",
+        "Wig cornrows",
+        "Flipover / Versatile sew-in",
+        "Wig install (frontal / closure)"
+      ],
+      "canBraidWithoutGel": true,
+      "priceBand": "£",
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "Bob boho twists - £90",
+        "Straight Layered braids - £95",
+        "Medium knotless braids - £110",
+        "Large Knotless Braids - £100",
+        "Small Knotless Braids - £120",
+        "Bob boho braids - £95",
+        "Small Twists - £100",
+        "Medium Twists - £95"
+      ],
+      "priceCheckedAt": "2026-09-02",
+      "priceUpdatedAt": "2026-09-02",
+      "priceConfidence": "high",
+      "summary": "SEPTEMBER SLOTS OUT NOW🤎\nBERMONDSEY 📍\nEST.2023🤍\nUSE CODE:’SBM’ for 10% off x",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/styleddbymv/",
+        "Submitted link: https://styleddbymv.as.me/",
+        "Raw services provided during admin intake."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-09-02",
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
+      "hijabiFriendly": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": false,
+      "sameDayEmergency": false,
+      "customFilters": {},
+      "updatedAt": "2026-09-02",
+      "portfolioPhotos": [
+        {
+          "id": "styledd-by-mv-portfolio-photo-2452c575-4216-4fd3-af2e-8cacf524fd1b",
+          "url": "/portfolio-photos/styledd-by-mv-0210bcdd-794d-4b85-9afe-9e47f350accc.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "styledd-by-mv-portfolio-photo-d243bf2b-2a1c-4b01-8c5f-bafecb300bfb",
+          "url": "/portfolio-photos/styledd-by-mv-4a6530b6-3dcf-4ed2-be87-420018c1338d.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "styledd-by-mv-portfolio-photo-9fd55b8c-4fed-4c03-9e11-82dd3c855b81",
+          "url": "/portfolio-photos/styledd-by-mv-2fcbaa03-eca6-4c78-ac27-d9a8e78d991b.jpg",
+          "source": "google-image-search"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-09-02",
+      "photoOrderBumpedAt": 1160
+    },
+    {
+      "id": "strands-society-co",
+      "name": "Strands Society Co",
+      "areaId": "east",
+      "areaLabel": "East London",
+      "neighbourhood": "East London London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/strandssociety.co/",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/strandssociety.co/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Wig install (frontal / closure)",
+        "Sleek ponytail / bun",
+        "Boho braids / goddess braids",
+        "Soft locs",
+        "Traditional sew-in / leave out",
+        "French curl"
+      ],
+      "canBraidWithoutGel": true,
+      "sellsHairSeparately": true,
+      "summary": "NO JULY BOOKINGS AVAILABLE\nBookings reopen in August.\n📍London Based\nDM to Order / Book",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/strandssociety.co/",
+        "Raw services provided during admin intake."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-09-02",
+      "portfolioPhotos": [
+        {
+          "id": "strands-society-co-portfolio-photo-a0730aa5-f8b1-4255-86c0-992944d87a9f",
+          "url": "/portfolio-photos/strands-society-co-55e4387f-7c51-409a-8e24-50aaf092e4c4.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "strands-society-co-portfolio-photo-1c435c1a-13f9-4fd4-8460-eb725e028323",
+          "url": "/portfolio-photos/strands-society-co-a11d47bd-97cd-476c-9b89-41d76c84a869.jpg",
+          "source": "google-image-search"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-09-02",
+      "photoOrderBumpedAt": 1157,
+      "updatedAt": "2026-09-02"
+    },
     {
       "id": "queenb-braids",
       "name": "QueenB.Braids",
@@ -580,7 +761,7 @@
       "googleFormattedAddress": "",
       "googleCheckedAt": "2026-09-01",
       "hijabiFriendly": false,
-      "canBraidWithoutGel": false,
+      "canBraidWithoutGel": true,
       "wheelchairAccessible": false,
       "senFriendly": false,
       "lgbtqFriendly": false,
@@ -588,7 +769,7 @@
       "sellsHairSeparately": false,
       "sameDayEmergency": false,
       "customFilters": {},
-      "updatedAt": "2026-09-01",
+      "updatedAt": "2026-09-02",
       "portfolioPhotos": [
         {
           "id": "london-braider-portfolio-photo-294031ff-08a7-436c-ad2d-767049de6a98",
@@ -818,13 +999,13 @@
       "googleCheckedAt": "2026-09-01",
       "portfolioPhotos": [
         {
-          "id": "hair-by-vills-studio-portfolio-photo-2ae01cc0-4584-4395-9781-e9a133de4cd1",
-          "url": "/portfolio-photos/hair-by-vills-studio-3a139561-288f-439d-b044-870c6093f8e9.jpg",
+          "id": "hair-by-vills-studio-portfolio-photo-0aba365b-6d0a-41ab-bc0f-aa3e6b6611bc",
+          "url": "/portfolio-photos/hair-by-vills-studio-2bbbc49f-87a8-4dd1-88a6-b6b6f23e831d.jpg",
           "source": "google-image-search"
         },
         {
-          "id": "hair-by-vills-studio-portfolio-photo-0aba365b-6d0a-41ab-bc0f-aa3e6b6611bc",
-          "url": "/portfolio-photos/hair-by-vills-studio-2bbbc49f-87a8-4dd1-88a6-b6b6f23e831d.jpg",
+          "id": "hair-by-vills-studio-portfolio-photo-2ae01cc0-4584-4395-9781-e9a133de4cd1",
+          "url": "/portfolio-photos/hair-by-vills-studio-3a139561-288f-439d-b044-870c6093f8e9.jpg",
           "source": "google-image-search"
         },
         {
@@ -844,7 +1025,8 @@
         }
       ],
       "photoSearchReviewedAt": "2026-09-01",
-      "photoOrderBumpedAt": 1127
+      "photoOrderBumpedAt": 1127,
+      "updatedAt": "2026-09-02"
     },
     {
       "id": "sma-hair-uk",
@@ -1086,7 +1268,19 @@
         }
       ],
       "photoSearchReviewedAt": "2026-09-01",
-      "photoOrderBumpedAt": 1116
+      "photoOrderBumpedAt": 1116,
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": true,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": false,
+      "sameDayEmergency": false,
+      "customFilters": {},
+      "updatedAt": "2026-09-02"
     },
     {
       "id": "crafted-by-jl",
@@ -4347,12 +4541,12 @@
         "Submitted link: http://bolasplace.setmore.com",
         "Raw services provided during admin intake."
       ],
-      "googlePlaceId": "ChIJxXHy9vYDdkgRyuUPQHnRneg",
+      "googlePlaceId": null,
       "googleReviewCount": 30,
       "googleMapsUri": "https://maps.google.com/?cid=16761783706838885834&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
       "googleMatchConfidence": "high",
       "googleDisplayName": "Bolasplace Hair Salon",
-      "googleFormattedAddress": "Asantewaa unit 8 Peckham palms arcade, Bournemouth close London, palms SE15 4PB, UK",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-08-31",
       "verifiedReviewCount": 91,
       "verifiedReviewCheckedAt": "2026-08-31",
@@ -4370,7 +4564,16 @@
       ],
       "photoSearchReviewedAt": "2026-08-31",
       "photoOrderBumpedAt": 995,
-      "updatedAt": "2026-08-31"
+      "updatedAt": "2026-09-02",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": true,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": false,
+      "sameDayEmergency": false,
+      "customFilters": {}
     },
     {
       "id": "sheer-glow",
@@ -5649,7 +5852,19 @@
         }
       ],
       "photoSearchReviewedAt": "2026-08-31",
-      "photoOrderBumpedAt": 894
+      "photoOrderBumpedAt": 894,
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": true,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": false,
+      "sameDayEmergency": false,
+      "customFilters": {},
+      "updatedAt": "2026-09-02"
     },
     {
       "id": "perfected-by-ash",
@@ -9175,8 +9390,29 @@
           "source": "google-image-search"
         }
       ],
-      "updatedAt": "2026-08-27",
-      "photoSearchReviewedAt": "2026-08-25"
+      "updatedAt": "2026-09-02",
+      "photoSearchReviewedAt": "2026-08-25",
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": true,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": false,
+      "sameDayEmergency": false,
+      "customFilters": {},
+      "priceBand": "",
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "",
+      "priceSource": "",
+      "priceEvidence": [],
+      "priceCheckedAt": "",
+      "priceUpdatedAt": "",
+      "priceConfidence": ""
     },
     {
       "id": "ayanas-salon",
@@ -9674,9 +9910,30 @@
           "source": "instagram-reel-thumbnail"
         }
       ],
-      "updatedAt": "2026-08-27",
+      "updatedAt": "2026-09-02",
       "photoOrderBumpedAt": 565,
-      "portfolioPhotosCheckedAt": "2026-08-27"
+      "portfolioPhotosCheckedAt": "2026-08-27",
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": true,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": false,
+      "sameDayEmergency": false,
+      "customFilters": {},
+      "priceBand": "",
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "",
+      "priceSource": "",
+      "priceEvidence": [],
+      "priceCheckedAt": "",
+      "priceUpdatedAt": "",
+      "priceConfidence": ""
     },
     {
       "id": "paig3-n",
@@ -14171,7 +14428,7 @@
     },
     {
       "id": "regan-did-that",
-      "name": "Regan did That",
+      "name": "Regan Did That",
       "areaId": "south",
       "areaLabel": "South London",
       "neighbourhood": "South London London",
@@ -14219,8 +14476,28 @@
           "source": "google-image-search"
         }
       ],
-      "updatedAt": "2026-08-24",
-      "photoSearchReviewedAt": "2026-08-24"
+      "updatedAt": "2026-09-02",
+      "photoSearchReviewedAt": "2026-08-24",
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
+      "hijabiFriendly": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": false,
+      "sameDayEmergency": false,
+      "customFilters": {},
+      "priceBand": "",
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "",
+      "priceSource": "",
+      "priceEvidence": [],
+      "priceCheckedAt": "",
+      "priceUpdatedAt": "",
+      "priceConfidence": ""
     },
     {
       "id": "kture-hair",
@@ -67052,12 +67329,12 @@
       "priceUpdatedAt": "2026-08-24",
       "addedVia": "Code edit",
       "discoverySource": "Cowork scrape",
-      "googlePlaceId": "ChIJD8iwC_QDdkgRAHzTTokJP3o",
+      "googlePlaceId": null,
       "googleReviewCount": 0,
       "googleMapsUri": "https://maps.google.com/?cid=8808769881497631744",
       "googleMatchConfidence": "high",
       "googleDisplayName": "Paule B Beauty",
-      "googleFormattedAddress": "15 Manor Park, London SE13 5PB, UK",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-08-31",
       "parkingAvailable": true,
       "portfolioPhotosCheckedAt": "2026-08-21",
@@ -67077,7 +67354,7 @@
       "hairShopUrl": "",
       "tiktokUrl": "",
       "hijabiFriendly": false,
-      "canBraidWithoutGel": false,
+      "canBraidWithoutGel": true,
       "wheelchairAccessible": false,
       "senFriendly": false,
       "lgbtqFriendly": false,
@@ -67087,9 +67364,10 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-31",
+      "updatedAt": "2026-09-02",
       "photoOrderBumpedAt": 773,
-      "photoSearchReviewedAt": "2026-08-31"
+      "photoSearchReviewedAt": "2026-08-31",
+      "sameDayEmergency": false
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -83215,8 +83493,8 @@
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleDisplayName": null,
-      "googleFormattedAddress": null,
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-07-29",
       "portfolioPhotosCheckedAt": "2026-08-21",
       "portfolioPhotos": [
@@ -83235,7 +83513,30 @@
           "url": "/portfolio-photos/dreaway-hair-31f6b45f-f29b-45bd-9fed-fb5500dfa4de.jpg",
           "source": "google-image-search"
         }
-      ]
+      ],
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": true,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": false,
+      "sameDayEmergency": false,
+      "customFilters": {},
+      "priceBand": "",
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "",
+      "priceSource": "",
+      "priceEvidence": [],
+      "priceCheckedAt": "",
+      "priceUpdatedAt": "",
+      "priceConfidence": "",
+      "updatedAt": "2026-09-02"
     },
     {
       "id": "c-gaskin-hair",

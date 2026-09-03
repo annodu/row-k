@@ -52,16 +52,6 @@ const regions = [
   { id: "mobile", label: "Mobile / home service" },
 ] as const;
 
-// Same set as `regions`, but relabelled/reordered for the "Submit a stylist"
-// location picker: "all-london" reads oddly as a bare "London" chip next to
-// specific areas, so it's relabelled "London (general)" and moved last
-// rather than first, where a submitter with a specific area in mind would
-// otherwise be drawn to it by default.
-const submissionRegionOptions = [
-  ...regions.filter((region) => region.id !== "all-london"),
-  { id: "all-london", label: "London (general)" },
-];
-
 type RegionParentGroup = { id: string; label: string; childIds: string[] };
 const defaultRegionParentGroups: RegionParentGroup[] = [
   { id: "all-london", label: "London", childIds: ["central", "north", "north-west", "east", "south-east", "south-west", "west", "croydon"] },
@@ -803,6 +793,15 @@ function makeFilterLabelId(...parts: string[]) {
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "");
+}
+
+function handleToggleKeyDown(event: React.KeyboardEvent, onToggle: () => void) {
+  if (event.key !== " " && event.key !== "Enter") {
+    return;
+  }
+
+  event.preventDefault();
+  onToggle();
 }
 
 function getLocationLabels(result: SalonResult) {
@@ -2245,15 +2244,15 @@ const submissionNeedFields = [
     field: "hijabiFriendly",
     label: "Hijabi-friendly",
     description:
-      "Female-only space, not in view of any windows. The space / salon could be hijabi-friendly all the time, or only on specific days. The whole space could be hijabi-friendly, or there could be a private section of the space.",
+      "Female-only space, not in view of any public-facing windows. May apply all the time or only on specific days, and could apply to the whole space or only a private section.",
   },
-  { field: "canBraidWithoutGel", label: "Can braid without gel", description: "For clients with sensitive scalps, its important that they can get their braids done without the use of gel or hair wax." },
-  { field: "wheelchairAccessible", label: "Wheelchair accessible entrance", description: "The venue has step-free access at the entrance." },
-  { field: "senFriendly", label: "Sensory-safe / SEN-friendly", description: "The salon accommodates the needs of neurodivergent clients, or clients with Special Educational Needs." },
+  { field: "canBraidWithoutGel", label: "Can braid without gel", description: "For clients with sensitive scalps, braids can be done without gel or hair wax." },
+  { field: "wheelchairAccessible", label: "Wheelchair accessible entrance", description: "Step-free access at the entrance." },
+  { field: "senFriendly", label: "Sensory-safe / SEN-friendly", description: "Accommodates neurodivergent clients or clients with Special Educational Needs." },
   { field: "lgbtqFriendly", label: "LGBTQIA+-friendly", description: "A welcoming, inclusive space for LGBTQIA+ clients." },
   { field: "sameDayEmergency", label: "Same-day / walk-ins", description: "Can take clients without needing to book in advance." },
-  { field: "sellsHairSeparately", label: "Hair sold separately", description: "Sells hair, but you must buy it separately from appointment bookings." },
-  { field: "priceIncludesHair", label: "Hair-inclusive packages available", description: "Some items in the service menu include the cost of wigs/extensions/braiding hair in the price." },
+  { field: "sellsHairSeparately", label: "Hair sold separately", description: "Sells hair, but it must be bought separately from bookings." },
+  { field: "priceIncludesHair", label: "Hair-inclusive packages available", description: "Some services include the cost of wigs, extensions, or braiding hair in the price." },
 ] as const;
 type SubmissionNeedField = (typeof submissionNeedFields)[number]["field"];
 const defaultSubmissionNeeds = Object.fromEntries(submissionNeedFields.map((item) => [item.field, false])) as Record<SubmissionNeedField, boolean>;
@@ -2262,6 +2261,32 @@ const defaultSubmissionNeeds = Object.fromEntries(submissionNeedFields.map((item
 // these two once checked, same as toggleSellingHair() does for search.
 const submissionSellsHairSeparatelyField = submissionNeedFields.find((item) => item.field === "sellsHairSeparately")!;
 const submissionPriceIncludesHairField = submissionNeedFields.find((item) => item.field === "priceIncludesHair")!;
+// Shared with the search filters' "Additional needs" panel so both places
+// show the same hint text for a given field.
+const needFieldDescriptions = Object.fromEntries(submissionNeedFields.map((item) => [item.field, item.description])) as Record<SubmissionNeedField, string>;
+
+// On a hover-capable pointer (desktop), the description shows as the
+// browser's native title tooltip on hover and tapping never reveals inline
+// text. On touch devices there's no hover to rely on, so tapping toggles the
+// description in as a line of text under the label instead.
+function NeedInfoButton({ description, open, onToggle }: { description: string; open: boolean; onToggle: () => void }) {
+  return (
+    <button
+      type="button"
+      title={description}
+      aria-label={`More info: ${description}`}
+      aria-expanded={open}
+      onClick={(event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        onToggle();
+      }}
+      className="-m-[15px] flex shrink-0 items-center justify-center p-[15px] text-stone-400 hover:text-stone-600 dark:hover:text-stone-300"
+    >
+      <Info className="size-3.5" aria-hidden="true" />
+    </button>
+  );
+}
 
 function SubmissionNeedCheckbox({
   label,
@@ -2276,6 +2301,88 @@ function SubmissionNeedCheckbox({
   onChange: (checked: boolean) => void;
   indent?: boolean;
 }) {
+  const [infoOpen, setInfoOpen] = useState(false);
+
+  return (
+    <div className={cn(indent && "ml-7")}>
+      <label
+        className={cn(
+          "flex min-h-8 cursor-pointer items-center gap-3 rounded-none px-1 py-1 text-[14px] font-medium text-stone-800 transition hover:bg-stone-200 dark:text-stone-200 dark:hover:bg-stone-900",
+        )}
+      >
+        <Checkbox checked={checked} onCheckedChange={(value) => onChange(value === true)} className="size-4" />
+        <span className="inline-flex items-center gap-1.5">
+          {label}
+          <NeedInfoButton description={description} open={infoOpen} onToggle={() => setInfoOpen((open) => !open)} />
+        </span>
+      </label>
+      {infoOpen ? (
+        <p className="pb-1 pl-7 pr-1 text-[12px] leading-4 text-stone-500 [@media(hover:hover)]:hidden dark:text-stone-500">{description}</p>
+      ) : null}
+    </div>
+  );
+}
+
+function FilterNeedCheckbox({
+  labelId,
+  label,
+  description,
+  checked,
+  onToggle,
+}: {
+  labelId: string;
+  label: string;
+  description: string;
+  checked: boolean;
+  onToggle: () => void;
+}) {
+  const [infoOpen, setInfoOpen] = useState(false);
+
+  return (
+    <div>
+      <div
+        role="checkbox"
+        tabIndex={0}
+        aria-checked={checked}
+        aria-labelledby={labelId}
+        className="flex w-full cursor-pointer items-start gap-3 rounded-none px-2 py-2 text-left transition-colors hover:bg-stone-200 active:bg-stone-200 dark:hover:bg-stone-900 dark:active:bg-stone-900"
+        onClick={onToggle}
+        onKeyDown={(event) => handleToggleKeyDown(event, onToggle)}
+      >
+        <span
+          aria-hidden="true"
+          className={cn(
+            "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-none border border-stone-500 bg-white text-white transition dark:border-stone-500 dark:bg-stone-900",
+            checked && "border-stone-950 bg-stone-950 dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950",
+          )}
+        >
+          {checked ? <Check className="size-3.5" /> : null}
+        </span>
+        <span className="flex flex-1 items-center gap-1.5">
+          <span id={labelId} className="translate-y-[1.5px] text-[15px] text-stone-800 dark:text-stone-200">
+            {label}
+          </span>
+          <NeedInfoButton description={description} open={infoOpen} onToggle={() => setInfoOpen((open) => !open)} />
+        </span>
+      </div>
+      {infoOpen ? (
+        <p className="pb-1 pl-10 pr-2 text-[12px] leading-4 text-stone-500 [@media(hover:hover)]:hidden dark:text-stone-500">{description}</p>
+      ) : null}
+    </div>
+  );
+}
+
+function SubmissionAreaCheckbox({
+  label,
+  checked,
+  onChange,
+  indent,
+}: {
+  label: string;
+  checked: boolean;
+  onChange: (checked: boolean) => void;
+  indent?: boolean;
+}) {
   return (
     <label
       className={cn(
@@ -2284,12 +2391,7 @@ function SubmissionNeedCheckbox({
       )}
     >
       <Checkbox checked={checked} onCheckedChange={(value) => onChange(value === true)} className="size-4" />
-      <span className="inline-flex items-center gap-1.5">
-        {label}
-        <span title={description}>
-          <Info className="size-3.5 shrink-0 text-stone-400" aria-hidden="true" />
-        </span>
-      </span>
+      {label}
     </label>
   );
 }
@@ -2376,7 +2478,7 @@ function SubmissionLinkField({
   const errorId = useId();
   return (
     <div className="flex flex-col gap-1.5">
-      <label htmlFor={inputId} className="flex items-center gap-1.5 text-[12px] font-semibold uppercase tracking-[0.08em] text-stone-600 dark:text-stone-400">
+      <label htmlFor={inputId} className="flex items-center gap-1.5 text-[12px] font-semibold text-stone-600 dark:text-stone-400">
         {icon}
         {label}
       </label>
@@ -2482,6 +2584,7 @@ export default function App() {
   const [submissionRawServices, setSubmissionRawServices] = useState("");
   const [submissionServices, setSubmissionServices] = useState<string[]>([]);
   const [submissionServiceQuery, setSubmissionServiceQuery] = useState("");
+  const [openSubmissionServiceGroupIds, setOpenSubmissionServiceGroupIds] = useState<string[]>([]);
   // Transient feedback after a bulk-paste into the services field, since the
   // paste itself never appears as literal text in the input (it's parsed
   // into tags) — without this, a paste that matched nothing looks identical
@@ -2728,8 +2831,38 @@ export default function App() {
     }
   }
 
-  function toggleSubmissionAreaId(areaId: string) {
-    setSubmissionAreaIds((current) => (current.includes(areaId) ? current.filter((id) => id !== areaId) : [...current, areaId]));
+  // Mirrors the search filters' region toggle, but scoped to just the group
+  // being touched: checking a parent group (e.g. "London") selects only that
+  // umbrella id, not its boroughs — the boroughs stay visible but unchecked
+  // so they can still be picked individually. Picking a specific borough
+  // narrows away from the umbrella selection; unchecking the last
+  // individually-picked borough falls back to the umbrella ("all of London")
+  // rather than leaving nothing selected. Areas outside the group — Kent,
+  // Essex, Mobile, or any other parent group — are always left untouched, so
+  // a salon that straddles London and Kent (or has branches in both) can
+  // have both selected at once.
+  function toggleSubmissionAreaId(nextId: string) {
+    setSubmissionAreaIds((current) => {
+      const parentGroup = runtimeParentGroups.find((group) => group.id === nextId);
+      if (parentGroup) {
+        const otherIds = current.filter((id) => id !== parentGroup.id && !parentGroup.childIds.includes(id));
+        return current.includes(nextId) ? otherIds : [...otherIds, nextId];
+      }
+
+      const owningGroup = runtimeParentGroups.find((group) => group.childIds.includes(nextId));
+      if (owningGroup) {
+        const currentGroupChildren = current.filter((id) => owningGroup.childIds.includes(id));
+        const isActive = currentGroupChildren.includes(nextId);
+        const nextGroupChildren = isActive
+          ? currentGroupChildren.filter((id) => id !== nextId)
+          : [...currentGroupChildren, nextId];
+        const otherIds = current.filter((id) => id !== owningGroup.id && !owningGroup.childIds.includes(id));
+
+        return nextGroupChildren.length === 0 ? [...otherIds, owningGroup.id] : [...otherIds, ...nextGroupChildren];
+      }
+
+      return current.includes(nextId) ? current.filter((id) => id !== nextId) : [...current, nextId];
+    });
   }
 
   function toggleSubmissionSellsHair(checked: boolean) {
@@ -2751,6 +2884,12 @@ export default function App() {
 
   function toggleSubmissionService(service: string) {
     setSubmissionServices((current) => (current.includes(service) ? current.filter((item) => item !== service) : [...current, service]));
+  }
+
+  function toggleSubmissionServiceGroupOpen(groupId: string) {
+    setOpenSubmissionServiceGroupIds((current) =>
+      current.includes(groupId) ? current.filter((id) => id !== groupId) : [...current, groupId],
+    );
   }
 
   // A paste that reads as a whole list rather than one search term — has a
@@ -3698,15 +3837,6 @@ export default function App() {
     });
   }
 
-  function handleToggleKeyDown(event: React.KeyboardEvent, onToggle: () => void) {
-    if (event.key !== " " && event.key !== "Enter") {
-      return;
-    }
-
-    event.preventDefault();
-    onToggle();
-  }
-
   async function handleSearch(options?: { scroll?: boolean }) {
     setIsSearching(true);
     setSearchError(null);
@@ -4278,12 +4408,12 @@ export default function App() {
 
                   <section className="flex flex-col gap-4">
                     <label className="flex flex-col gap-1.5">
-                      <span className="text-[12px] font-semibold uppercase tracking-[0.08em] text-stone-600 dark:text-stone-400">Name</span>
+                      <span className="text-[12px] font-semibold text-stone-600 dark:text-stone-400">Name</span>
                       <Input value={submissionName} onChange={(event) => setSubmissionName(event.target.value)} placeholder="Stylist or business name" />
                     </label>
 
                     <div className="flex flex-col gap-1.5">
-                      <span className="text-[12px] font-semibold uppercase tracking-[0.08em] text-stone-600 dark:text-stone-400">
+                      <span className="text-[12px] font-semibold text-stone-600 dark:text-stone-400">
                         Are you the stylist / service provider?
                       </span>
                       <div className="flex gap-2">
@@ -4339,33 +4469,59 @@ export default function App() {
                     </SubmissionLinkField>
                   </section>
 
-                  <section className="flex flex-col gap-2">
-                    <p className="text-xs font-semibold uppercase tracking-[0.12em] text-stone-500">Location</p>
-                    <div className="flex flex-wrap gap-1.5">
-                      {submissionRegionOptions.map((region) => {
-                        const isSelected = submissionAreaIds.includes(region.id);
+                  <section className="flex flex-col gap-1">
+                    <p className="text-xs font-semibold text-stone-500">Location</p>
+                    <div className="grid gap-1">
+                      {runtimeParentGroups.map((group) => {
+                        const parent = runtimeRegions.find((item) => item.id === group.id);
+                        if (!parent) return null;
+                        const groupExpanded = submissionAreaIds.includes(group.id) || group.childIds.some((id) => submissionAreaIds.includes(id));
+
                         return (
-                          <button
-                            key={region.id}
-                            type="button"
-                            onClick={() => toggleSubmissionAreaId(region.id)}
-                            aria-pressed={isSelected}
-                            className={cn(
-                              "rounded-none border px-2.5 py-1 text-xs font-medium transition",
-                              isSelected
-                                ? "border-stone-950 bg-stone-950 text-white dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950"
-                                : "border-stone-300 bg-transparent text-stone-600 hover:bg-stone-200 dark:border-stone-700 dark:text-stone-400 dark:hover:bg-stone-900",
-                            )}
-                          >
-                            {region.label}
-                          </button>
+                          <div key={group.id}>
+                            <SubmissionAreaCheckbox
+                              label={parent.label}
+                              checked={submissionAreaIds.includes(group.id)}
+                              onChange={() => toggleSubmissionAreaId(group.id)}
+                            />
+                            <AnimatedCollapsible open={groupExpanded}>
+                              <div className="grid gap-1">
+                                {group.childIds.map((regionId) => {
+                                  const item = runtimeRegions.find((regionItem) => regionItem.id === regionId);
+                                  if (!item) return null;
+                                  return (
+                                    <SubmissionAreaCheckbox
+                                      key={item.id}
+                                      indent
+                                      label={getRegionDisplayLabel(item.id, item.label, { abbreviate: true })}
+                                      checked={submissionAreaIds.includes(item.id)}
+                                      onChange={() => toggleSubmissionAreaId(item.id)}
+                                    />
+                                  );
+                                })}
+                              </div>
+                            </AnimatedCollapsible>
+                          </div>
+                        );
+                      })}
+
+                      {runtimeStandaloneIds.map((regionId) => {
+                        const item = runtimeRegions.find((regionItem) => regionItem.id === regionId);
+                        if (!item) return null;
+                        return (
+                          <SubmissionAreaCheckbox
+                            key={item.id}
+                            label={item.label}
+                            checked={submissionAreaIds.includes(item.id)}
+                            onChange={() => toggleSubmissionAreaId(item.id)}
+                          />
                         );
                       })}
                     </div>
                   </section>
 
                   <section className="flex flex-col gap-1">
-                    <p className="text-xs font-semibold uppercase tracking-[0.12em] text-stone-500">Additional Needs</p>
+                    <p className="text-xs font-semibold text-stone-500">Additional needs</p>
                     <div className="grid gap-1">
                       {submissionNeedFields
                         .filter((option) => option.field !== "sellsHairSeparately" && option.field !== "priceIncludesHair")
@@ -4381,7 +4537,7 @@ export default function App() {
 
                       <SubmissionNeedCheckbox
                         label="Sells hair"
-                        description="Sells hair or extensions, either separately or as part of a package."
+                        description="Stylist also sells wigs, braiding hair or extensions."
                         checked={submissionSellsHair}
                         onChange={toggleSubmissionSellsHair}
                       />
@@ -4412,7 +4568,7 @@ export default function App() {
                         const selected = submissionCustomFilters[filterType.id] ?? [];
                         return (
                           <div key={filterType.id} className="flex flex-col gap-1.5">
-                            <p className="text-xs font-semibold uppercase tracking-[0.12em] text-stone-500">{filterType.label}</p>
+                            <p className="text-xs font-semibold text-stone-500">{filterType.label}</p>
                             <div className="flex flex-wrap gap-1.5">
                               {filterType.options.map((option) => {
                                 const isSelected = selected.includes(option.id);
@@ -4441,7 +4597,7 @@ export default function App() {
                   ) : null}
 
                   <section className="flex flex-col gap-3">
-                    <label htmlFor={submissionServicesInputId} className="text-xs font-semibold uppercase tracking-[0.12em] text-stone-500">
+                    <label htmlFor={submissionServicesInputId} className="text-xs font-semibold text-stone-500">
                       Services
                     </label>
                     <p id={submissionServicesHintId} className="text-[12px] text-stone-500 dark:text-stone-400">
@@ -4477,36 +4633,52 @@ export default function App() {
                       </p>
                     ) : null}
 
-                    <div className="max-h-56 space-y-3 overflow-y-auto border border-stone-300 bg-stone-50 p-3 dark:border-stone-700 dark:bg-stone-900">
+                    <div className="border border-stone-300 bg-stone-50 dark:border-stone-700 dark:bg-stone-900">
                       {filteredSubmissionServiceGroups.length ? (
-                        filteredSubmissionServiceGroups.map((group) => (
-                          <div key={group.id} className="space-y-1.5">
-                            <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-stone-500">{group.label}</p>
-                            <div className="flex flex-wrap gap-1.5">
-                              {group.services.map((service) => {
-                                const isSelected = submissionServices.includes(service);
-                                return (
-                                  <button
-                                    key={service}
-                                    type="button"
-                                    onClick={() => toggleSubmissionService(service)}
-                                    aria-pressed={isSelected}
-                                    className={cn(
-                                      "rounded-none border px-2.5 py-1 text-xs font-medium transition",
-                                      isSelected
-                                        ? "border-stone-950 bg-stone-950 text-white dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950"
-                                        : "border-stone-300 bg-white text-stone-600 hover:bg-stone-200 dark:border-stone-700 dark:bg-stone-950 dark:text-stone-400 dark:hover:bg-stone-800",
-                                    )}
-                                  >
-                                    {service}
-                                  </button>
-                                );
-                              })}
+                        filteredSubmissionServiceGroups.map((group, index) => {
+                          const isOpen = Boolean(normalizedSubmissionServiceQuery) || openSubmissionServiceGroupIds.includes(group.id);
+                          return (
+                            <div key={group.id} className={cn(index > 0 && "border-t border-stone-300 dark:border-stone-700")}>
+                              <button
+                                type="button"
+                                aria-expanded={isOpen}
+                                onClick={() => toggleSubmissionServiceGroupOpen(group.id)}
+                                className="flex min-h-11 w-full items-center justify-between gap-2 px-3 py-2 text-left"
+                              >
+                                <span className="text-[12px] font-semibold text-stone-600 dark:text-stone-400">{group.label}</span>
+                                <ChevronDown
+                                  className={cn("size-4 shrink-0 text-stone-500 transition-transform", isOpen && "rotate-180")}
+                                  aria-hidden="true"
+                                />
+                              </button>
+                              <AnimatedCollapsible open={isOpen}>
+                                <div className="flex flex-wrap gap-1.5 px-3 pb-3">
+                                  {group.services.map((service) => {
+                                    const isSelected = submissionServices.includes(service);
+                                    return (
+                                      <button
+                                        key={service}
+                                        type="button"
+                                        onClick={() => toggleSubmissionService(service)}
+                                        aria-pressed={isSelected}
+                                        className={cn(
+                                          "rounded-none border px-2.5 py-1 text-xs font-medium transition",
+                                          isSelected
+                                            ? "border-stone-950 bg-stone-950 text-white dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950"
+                                            : "border-stone-300 bg-white text-stone-600 hover:bg-stone-200 dark:border-stone-700 dark:bg-stone-950 dark:text-stone-400 dark:hover:bg-stone-800",
+                                        )}
+                                      >
+                                        {service}
+                                      </button>
+                                    );
+                                  })}
+                                </div>
+                              </AnimatedCollapsible>
                             </div>
-                          </div>
-                        ))
+                          );
+                        })
                       ) : (
-                        <p className="text-[13px] text-stone-500">No services match that search.</p>
+                        <p className="p-3 text-[13px] text-stone-500">No services match that search.</p>
                       )}
                     </div>
                   </section>
@@ -5728,190 +5900,82 @@ export default function App() {
                     </p>
 
                     <div className="space-y-2">
-                      <button
-                        type="button"
-                        aria-pressed={currentSelectedSellingHair}
-                        onClick={toggleSellingHair}
-                        className="flex w-full cursor-pointer items-start gap-3 rounded-none px-2 py-2 text-left transition-colors hover:bg-stone-200 active:bg-stone-200 dark:hover:bg-stone-900 dark:active:bg-stone-900"
-                      >
-                        <span
-                          aria-hidden="true"
-                          className={cn(
-                            "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-none border border-stone-500 bg-white text-white transition dark:border-stone-500 dark:bg-stone-900",
-                            currentSelectedSellingHair && "border-stone-950 bg-stone-950 dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950",
-                          )}
-                        >
-                          {currentSelectedSellingHair ? <Check className="size-3.5" /> : null}
-                        </span>
-                        <span className="translate-y-[1.5px] text-[15px] text-stone-800 dark:text-stone-200">
-                          Sells hair
-                        </span>
-                      </button>
+                      <FilterNeedCheckbox
+                        labelId={makeFilterLabelId("additional-needs", "sells-hair")}
+                        label="Sells hair"
+                        description="Stylist also sells wigs, braiding hair or extensions."
+                        checked={currentSelectedSellingHair}
+                        onToggle={toggleSellingHair}
+                      />
 
                       {showSellingHairSubfilters ? (
-                      <div className="space-y-2 pl-8">
-                        <button
-                          type="button"
-                          aria-pressed={currentSelectedPriceIncludesHair}
-                          onClick={togglePriceIncludesHair}
-                          className="flex w-full cursor-pointer items-start gap-3 rounded-none px-2 py-2 text-left transition-colors hover:bg-stone-200 active:bg-stone-200 dark:hover:bg-stone-900 dark:active:bg-stone-900"
-                        >
-                          <span
-                            aria-hidden="true"
-                            className={cn(
-                              "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-none border border-stone-500 bg-white text-white transition dark:border-stone-500 dark:bg-stone-900",
-                              currentSelectedPriceIncludesHair && "border-stone-950 bg-stone-950 dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950",
-                            )}
-                          >
-                            {currentSelectedPriceIncludesHair ? <Check className="size-3.5" /> : null}
-                          </span>
-                          <span className="translate-y-[1.5px] text-[15px] text-stone-800 dark:text-stone-200">
-                            Hair-inclusive packages available
-                          </span>
-                        </button>
+                        <div className="space-y-2 pl-8">
+                          <FilterNeedCheckbox
+                            labelId={makeFilterLabelId("additional-needs", "price-includes-hair")}
+                            label="Hair-inclusive packages available"
+                            description={needFieldDescriptions.priceIncludesHair}
+                            checked={currentSelectedPriceIncludesHair}
+                            onToggle={togglePriceIncludesHair}
+                          />
 
-                        <button
-                          type="button"
-                          aria-pressed={currentSelectedSellsHairSeparately}
-                          onClick={toggleSellsHairSeparately}
-                          className="flex w-full cursor-pointer items-start gap-3 rounded-none px-2 py-2 text-left transition-colors hover:bg-stone-200 active:bg-stone-200 dark:hover:bg-stone-900 dark:active:bg-stone-900"
-                        >
-                          <span
-                            aria-hidden="true"
-                            className={cn(
-                              "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-none border border-stone-500 bg-white text-white transition dark:border-stone-500 dark:bg-stone-900",
-                              currentSelectedSellsHairSeparately && "border-stone-950 bg-stone-950 dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950",
-                            )}
-                          >
-                            {currentSelectedSellsHairSeparately ? <Check className="size-3.5" /> : null}
-                          </span>
-                          <span className="translate-y-[1.5px] text-[15px] text-stone-800 dark:text-stone-200">
-                            Hair sold separately
-                          </span>
-                        </button>
-                      </div>
+                          <FilterNeedCheckbox
+                            labelId={makeFilterLabelId("additional-needs", "sells-hair-separately")}
+                            label="Hair sold separately"
+                            description={needFieldDescriptions.sellsHairSeparately}
+                            checked={currentSelectedSellsHairSeparately}
+                            onToggle={toggleSellsHairSeparately}
+                          />
+                        </div>
                       ) : null}
                     </div>
 
-                    <button
-                      type="button"
-                      aria-pressed={currentSelectedWheelchairAccessible}
-                      onClick={toggleWheelchairAccessible}
-                      className="flex w-full cursor-pointer items-start gap-3 rounded-none px-2 py-2 text-left transition-colors hover:bg-stone-200 active:bg-stone-200 dark:hover:bg-stone-900 dark:active:bg-stone-900"
-                    >
-                      <span
-                        aria-hidden="true"
-                        className={cn(
-                          "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-none border border-stone-500 bg-white text-white transition dark:border-stone-500 dark:bg-stone-900",
-                          currentSelectedWheelchairAccessible && "border-stone-950 bg-stone-950 dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950",
-                        )}
-                      >
-                        {currentSelectedWheelchairAccessible ? <Check className="size-3.5" /> : null}
-                      </span>
-                      <span className="translate-y-[1.5px] text-[15px] text-stone-800 dark:text-stone-200">
-                        Wheelchair accessible entrance
-                      </span>
-                    </button>
+                    <FilterNeedCheckbox
+                      labelId={makeFilterLabelId("additional-needs", "wheelchair-accessible")}
+                      label="Wheelchair accessible entrance"
+                      description={needFieldDescriptions.wheelchairAccessible}
+                      checked={currentSelectedWheelchairAccessible}
+                      onToggle={toggleWheelchairAccessible}
+                    />
 
-                    <button
-                      type="button"
-                      aria-pressed={currentSelectedHijabiFriendly}
-                      onClick={toggleHijabiFriendly}
-                      className="flex w-full cursor-pointer items-start gap-3 rounded-none px-2 py-2 text-left transition-colors hover:bg-stone-200 active:bg-stone-200 dark:hover:bg-stone-900 dark:active:bg-stone-900"
-                    >
-                      <span
-                        aria-hidden="true"
-                        className={cn(
-                          "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-none border border-stone-500 bg-white text-white transition dark:border-stone-500 dark:bg-stone-900",
-                          currentSelectedHijabiFriendly && "border-stone-950 bg-stone-950 dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950",
-                        )}
-                      >
-                        {currentSelectedHijabiFriendly ? <Check className="size-3.5" /> : null}
-                      </span>
-                      <span className="translate-y-[1.5px] text-[15px] text-stone-800 dark:text-stone-200">
-                        Hijabi-friendly
-                      </span>
-                    </button>
+                    <FilterNeedCheckbox
+                      labelId={makeFilterLabelId("additional-needs", "hijabi-friendly")}
+                      label="Hijabi-friendly"
+                      description={needFieldDescriptions.hijabiFriendly}
+                      checked={currentSelectedHijabiFriendly}
+                      onToggle={toggleHijabiFriendly}
+                    />
 
-                    <button
-                      type="button"
-                      aria-pressed={currentSelectedSameDayEmergency}
-                      onClick={toggleSameDayEmergency}
-                      className="flex w-full cursor-pointer items-start gap-3 rounded-none px-2 py-2 text-left transition-colors hover:bg-stone-200 active:bg-stone-200 dark:hover:bg-stone-900 dark:active:bg-stone-900"
-                    >
-                      <span
-                        aria-hidden="true"
-                        className={cn(
-                          "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-none border border-stone-500 bg-white text-white transition dark:border-stone-500 dark:bg-stone-900",
-                          currentSelectedSameDayEmergency && "border-stone-950 bg-stone-950 dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950",
-                        )}
-                      >
-                        {currentSelectedSameDayEmergency ? <Check className="size-3.5" /> : null}
-                      </span>
-                      <span className="translate-y-[1.5px] text-[15px] text-stone-800 dark:text-stone-200">
-                        Same-day / walk-ins
-                      </span>
-                    </button>
+                    <FilterNeedCheckbox
+                      labelId={makeFilterLabelId("additional-needs", "same-day-emergency")}
+                      label="Same-day / walk-ins"
+                      description={needFieldDescriptions.sameDayEmergency}
+                      checked={currentSelectedSameDayEmergency}
+                      onToggle={toggleSameDayEmergency}
+                    />
 
-                    <button
-                      type="button"
-                      aria-pressed={currentSelectedLgbtqFriendly}
-                      onClick={toggleLgbtqFriendly}
-                      className="flex w-full cursor-pointer items-start gap-3 rounded-none px-2 py-2 text-left transition-colors hover:bg-stone-200 active:bg-stone-200 dark:hover:bg-stone-900 dark:active:bg-stone-900"
-                    >
-                      <span
-                        aria-hidden="true"
-                        className={cn(
-                          "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-none border border-stone-500 bg-white text-white transition dark:border-stone-500 dark:bg-stone-900",
-                          currentSelectedLgbtqFriendly && "border-stone-950 bg-stone-950 dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950",
-                        )}
-                      >
-                        {currentSelectedLgbtqFriendly ? <Check className="size-3.5" /> : null}
-                      </span>
-                      <span className="translate-y-[1.5px] text-[15px] text-stone-800 dark:text-stone-200">
-                        LGBTQIA+-friendly
-                      </span>
-                    </button>
+                    <FilterNeedCheckbox
+                      labelId={makeFilterLabelId("additional-needs", "lgbtq-friendly")}
+                      label="LGBTQIA+-friendly"
+                      description={needFieldDescriptions.lgbtqFriendly}
+                      checked={currentSelectedLgbtqFriendly}
+                      onToggle={toggleLgbtqFriendly}
+                    />
 
-                    <button
-                      type="button"
-                      aria-pressed={currentSelectedCanBraidWithoutGel}
-                      onClick={toggleCanBraidWithoutGel}
-                      className="flex w-full cursor-pointer items-start gap-3 rounded-none px-2 py-2 text-left transition-colors hover:bg-stone-200 active:bg-stone-200 dark:hover:bg-stone-900 dark:active:bg-stone-900"
-                    >
-                      <span
-                        aria-hidden="true"
-                        className={cn(
-                          "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-none border border-stone-500 bg-white text-white transition dark:border-stone-500 dark:bg-stone-900",
-                          currentSelectedCanBraidWithoutGel && "border-stone-950 bg-stone-950 dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950",
-                        )}
-                      >
-                        {currentSelectedCanBraidWithoutGel ? <Check className="size-3.5" /> : null}
-                      </span>
-                      <span className="translate-y-[1.5px] text-[15px] text-stone-800 dark:text-stone-200">
-                        Can braid without gel
-                      </span>
-                    </button>
+                    <FilterNeedCheckbox
+                      labelId={makeFilterLabelId("additional-needs", "can-braid-without-gel")}
+                      label="Can braid without gel"
+                      description={needFieldDescriptions.canBraidWithoutGel}
+                      checked={currentSelectedCanBraidWithoutGel}
+                      onToggle={toggleCanBraidWithoutGel}
+                    />
 
-                    <button
-                      type="button"
-                      aria-pressed={currentSelectedSenFriendly}
-                      onClick={toggleSenFriendly}
-                      className="flex w-full cursor-pointer items-start gap-3 rounded-none px-2 py-2 text-left transition-colors hover:bg-stone-200 active:bg-stone-200 dark:hover:bg-stone-900 dark:active:bg-stone-900"
-                    >
-                      <span
-                        aria-hidden="true"
-                        className={cn(
-                          "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-none border border-stone-500 bg-white text-white transition dark:border-stone-500 dark:bg-stone-900",
-                          currentSelectedSenFriendly && "border-stone-950 bg-stone-950 dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950",
-                        )}
-                      >
-                        {currentSelectedSenFriendly ? <Check className="size-3.5" /> : null}
-                      </span>
-                      <span className="translate-y-[1.5px] text-[15px] text-stone-800 dark:text-stone-200">
-                        Sensory-safe / SEN-friendly
-                      </span>
-                    </button>
+                    <FilterNeedCheckbox
+                      labelId={makeFilterLabelId("additional-needs", "sen-friendly")}
+                      label="Sensory-safe / SEN-friendly"
+                      description={needFieldDescriptions.senFriendly}
+                      checked={currentSelectedSenFriendly}
+                      onToggle={toggleSenFriendly}
+                    />
                   </div>
                 </AnimatedCollapsible>
               </div>
