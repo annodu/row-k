@@ -4370,7 +4370,7 @@ export default function App() {
                   Submit a stylist
                 </h2>
                 <p className="mt-1 text-[13px] leading-[1.5] text-stone-600 dark:text-stone-400">
-                  This can be a hair stylist or service provider.
+                  This can be a hair stylist, salon or haircare service provider.
                 </p>
               </div>
               <button
