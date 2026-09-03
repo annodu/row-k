@@ -4878,7 +4878,7 @@ export default function App() {
       <div className="mx-auto flex w-full max-w-[1120px] flex-col px-4 sm:px-6 lg:flex-row lg:items-start lg:px-10">
         {mobileFiltersOpen ? <div className="fixed inset-0 z-40 bg-stone-100 dark:bg-stone-950 lg:hidden" aria-hidden="true" /> : null}
         <section id="live-results" className="min-w-0 flex-1 pb-6 pt-2 lg:pb-6 lg:pr-8 lg:pt-0">
-          <div className="sticky top-0 z-30 flex w-full items-center justify-between border-b border-stone-300 bg-stone-100 px-0 pb-3 pt-1 dark:border-stone-800 dark:bg-stone-950 lg:h-16 lg:items-end lg:pb-3 lg:pt-2">
+          <div className="sticky top-0 z-30 flex w-full items-center justify-between border-b border-stone-300 bg-stone-100 px-0 pb-3 pt-1 dark:border-stone-800 dark:bg-stone-950 lg:h-16 lg:items-end lg:pb-6 lg:pt-2">
             {directoryMode === "vendors" ? (
               hasSearchedVendors ? (
                 <h2 className="text-[14px] font-medium leading-none text-stone-500 dark:text-stone-400">
@@ -5116,7 +5116,7 @@ export default function App() {
               </button>
             </div>
 
-          <div className="hidden w-full shrink-0 items-end justify-between border-b border-stone-300 bg-stone-100 pb-3 pt-2 dark:border-stone-800 dark:bg-stone-950 lg:sticky lg:top-0 lg:z-20 lg:flex lg:h-16">
+          <div className="hidden w-full shrink-0 items-end justify-between border-b border-stone-300 bg-stone-100 pb-6 pt-2 dark:border-stone-800 dark:bg-stone-950 lg:sticky lg:top-0 lg:z-20 lg:flex lg:h-16">
             <h2 className="text-[15px] font-semibold leading-none text-stone-950 dark:text-stone-50">Filter / Sort</h2>
             <button
               type="button"
