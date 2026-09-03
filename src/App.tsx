@@ -4721,7 +4721,7 @@ export default function App() {
                     disabled={!submissionCanSend || submissionStatus === "submitting"}
                     className="inline-flex h-12 w-full items-center justify-center rounded-none bg-stone-950 px-5 text-[14px] font-medium text-stone-100 transition-colors hover:bg-stone-800 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-stone-300"
                   >
-                    {submissionStatus === "submitting" ? "Sending..." : "Send"}
+                    {submissionStatus === "submitting" ? "Submitting..." : "Submit"}
                   </button>
                   <p className="mt-2 text-center text-[12px] text-stone-500 dark:text-stone-400">
                     We&rsquo;ll review each submission before it&rsquo;s listed.
