@@ -48,7 +48,8 @@
         "Miracle Knots (Extensions NOT Included)",
         "4 hours",
         "Miracle Knots (Human Hair Extensions)",
-        "£250.00"
+        "£250.00",
+        "Our location"
       ],
       "summary": "Admin draft created from stylist intake.",
       "confidence": 0.72,
@@ -69,7 +70,27 @@
       "sellsHairSeparately": false,
       "priceIncludesHair": true,
       "customFilters": {},
-      "submittedByProvider": false
+      "submittedByProvider": false,
+      "hairShopUrl": "",
+      "googlePlaceId": "",
+      "googleMapsUri": "",
+      "googleMatchConfidence": "",
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
+      "parkingAvailable": false,
+      "priceBand": "££",
+      "servicePriceBand": "££",
+      "packagePriceBand": "",
+      "priceComparisonMode": "service-only",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "Frontal Wig Installation - £70.00",
+        "Colour 2 and Colour 4. - £150.00",
+        "£250.00"
+      ],
+      "priceCheckedAt": "2026-09-03",
+      "priceUpdatedAt": "2026-09-03",
+      "priceConfidence": "manual"
     },
     {
       "id": "belewa-hair",
