@@ -2745,10 +2745,17 @@ export default function App() {
     .map((c) => ({ id: c.id, label: c.label, services: runtimeCategoryServiceMap[c.id] ?? [] }))
     .filter((group) => group.services.length > 0)
     .sort((a, b) => a.label.localeCompare(b.label));
-  const normalizedSubmissionServiceQuery = submissionServiceQuery.trim().toLowerCase();
+  const normalizedSubmissionServiceQuery = normalizeServiceSearch(submissionServiceQuery);
   const filteredSubmissionServiceGroups = normalizedSubmissionServiceQuery
     ? submissionServiceGroups
-        .map((group) => ({ ...group, services: group.services.filter((service) => service.toLowerCase().includes(normalizedSubmissionServiceQuery)) }))
+        .map((group) => ({
+          ...group,
+          services: group.services.filter(
+            (service) =>
+              normalizeServiceSearch(service).includes(normalizedSubmissionServiceQuery) ||
+              (serviceSearchAliases[service] ?? []).some((alias) => normalizeServiceSearch(alias).includes(normalizedSubmissionServiceQuery)),
+          ),
+        }))
         .filter((group) => group.services.length > 0)
     : submissionServiceGroups;
 
