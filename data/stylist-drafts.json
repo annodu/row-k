@@ -1,10 +1,76 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-09-02",
-    "count": 16
+    "updatedAt": "2026-09-03",
+    "count": 17
   },
   "drafts": [
+    {
+      "id": "braids-by-mamahz-mtkshy3d",
+      "status": "ready_to_approve",
+      "name": "Braids by Mamahz",
+      "areaId": "south-west",
+      "areaIds": [
+        "south-west"
+      ],
+      "areaLabel": "South west London",
+      "neighbourhood": "South west London London",
+      "postcode": "",
+      "bookingPlatform": "",
+      "bookingUrl": "https://mamahzxtensions.bookinbeautiful.com/",
+      "instagramUrl": "https://www.instagram.com/braidsbymamahz/",
+      "tiktokUrl": "",
+      "addedVia": "Submission form",
+      "discoverySource": "User submission",
+      "services": [
+        "Traditional sew-in / leave out",
+        "Full head colour",
+        "Wig install (frontal / closure)",
+        "Miracle knots",
+        "Crochet"
+      ],
+      "rawServices": [
+        "Crotchet Extensions (Synthetic)",
+        "No-leaveout crochet extensions made with premium synthetic bundles for a natural",
+        "versatile finish. Available in 14–26 inches",
+        "with a range of colours available — or choose your preferred colour for a personalised look.",
+        "Show more",
+        "3 hours",
+        "£70.00",
+        "Frontal Wig Installation",
+        "1 hour",
+        "Crotchet Extensions (Human Hair)",
+        "No-leaveout crochet extensions made with premium human hair for a natural",
+        "seamless finish. Available in 14–22 inches in Natural Black",
+        "1B",
+        "Colour 2 and Colour 4.",
+        "£150.00",
+        "Miracle Knots (Extensions NOT Included)",
+        "4 hours",
+        "Miracle Knots (Human Hair Extensions)",
+        "£250.00"
+      ],
+      "summary": "Admin draft created from stylist intake.",
+      "confidence": 0.72,
+      "warnings": [],
+      "evidence": [
+        "Raw services provided during admin intake."
+      ],
+      "source": "admin-draft",
+      "createdAt": "2026-09-03",
+      "updatedAt": "2026-09-03",
+      "lastCheckedAt": "2026-09-03",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "sameDayEmergency": false,
+      "sellsHairSeparately": false,
+      "priceIncludesHair": true,
+      "customFilters": {},
+      "submittedByProvider": false
+    },
     {
       "id": "belewa-hair",
       "status": "deprecated",
