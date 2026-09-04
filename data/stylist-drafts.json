@@ -1,10 +1,61 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-09-03",
-    "count": 17
+    "updatedAt": "2026-09-04",
+    "count": 18
   },
   "drafts": [
+    {
+      "id": "adwoasartistry-mtndfpqn",
+      "status": "ready_to_approve",
+      "name": "Adwoasartistry",
+      "areaId": "west",
+      "areaIds": [
+        "west"
+      ],
+      "areaLabel": "West London",
+      "neighbourhood": "West London London",
+      "postcode": "",
+      "bookingPlatform": "",
+      "bookingUrl": "https://adwoas-artistry.square.site/",
+      "instagramUrl": "https://www.instagram.com/adwoasartistry?igsi=MWs4YjU1c3hpOTl0Mg%3D%3D&utm_source=qr",
+      "tiktokUrl": "",
+      "addedVia": "Submission form",
+      "discoverySource": "User submission",
+      "services": [
+        "Creative braids",
+        "Half braids, half sew-in",
+        "Traditional sew-in / leave out",
+        "Closure sew-in / closure behind the hairline",
+        "Flipover / Versatile sew-in",
+        "Sew in / extensions blowdry",
+        "Sew-in take-down",
+        "Braid take-down",
+        "Men's braids",
+        "Stitch braids"
+      ],
+      "rawServices": [],
+      "summary": "Admin draft created from stylist intake.",
+      "confidence": 0.72,
+      "warnings": [],
+      "evidence": [
+        "Created through ROW K admin intake."
+      ],
+      "source": "admin-draft",
+      "createdAt": "2026-09-04",
+      "updatedAt": "2026-09-04",
+      "lastCheckedAt": "2026-09-04",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": true,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "sameDayEmergency": true,
+      "sellsHairSeparately": false,
+      "priceIncludesHair": true,
+      "customFilters": {},
+      "submittedByProvider": true
+    },
     {
       "id": "braids-by-mamahz-mtkshy3d",
       "status": "ready_to_approve",
