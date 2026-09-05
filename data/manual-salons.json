@@ -1,11 +1,51 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-09-02",
-    "count": 1121,
+    "updatedAt": "2026-09-05",
+    "count": 1122,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "adwoa-s-artistry",
+      "name": "Adwoa’s Artistry",
+      "areaId": "west",
+      "areaLabel": "West London",
+      "neighbourhood": "West London London",
+      "postcode": "",
+      "bookingPlatform": "Direct website",
+      "bookingUrl": "https://adwoas-artistry.square.site/",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/adwoasartistry?igsi=MWs4YjU1c3hpOTl0Mg%3D%3D&utm_source=qr",
+      "tiktokUrl": "",
+      "addedVia": "Submission form",
+      "discoverySource": "User submission",
+      "services": [
+        "Creative braids",
+        "Half braids, half sew-in",
+        "Traditional sew-in / leave out",
+        "Closure sew-in / closure behind the hairline",
+        "Flipover / Versatile sew-in",
+        "Sew in / extensions blowdry",
+        "Sew-in take-down",
+        "Braid take-down",
+        "Men's braids",
+        "Stitch braids"
+      ],
+      "canBraidWithoutGel": true,
+      "sameDayEmergency": true,
+      "summary": "Admin draft created from stylist intake.",
+      "source": "manual",
+      "evidence": [
+        "Created through ROW K admin intake."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-09-05"
+    },
     {
       "id": "hair-by-dee-e",
       "name": "Hair by Dee E",
