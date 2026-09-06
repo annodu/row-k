@@ -2,10 +2,67 @@
   "meta": {
     "source": "manual",
     "updatedAt": "2026-09-06",
-    "count": 1123,
+    "count": 1124,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "4klounge",
+      "name": "4klounge",
+      "areaId": "croydon",
+      "areaLabel": "Croydon",
+      "neighbourhood": "Croydon London",
+      "postcode": "",
+      "bookingPlatform": "Direct website",
+      "bookingUrl": "https://4klounge.as.me/schedule/e1a55c62",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/4klounge/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Custom wig",
+        "Frontal ponytail / bun",
+        "Updo",
+        "Half up half down",
+        "Sleek ponytail / bun",
+        "Wig install (frontal / closure)",
+        "Traditional sew-in / leave out",
+        "Closure sew-in / closure behind the hairline",
+        "Frontal sew-in",
+        "Wig cornrows"
+      ],
+      "priceBand": "£",
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "Wig Customisation - £41",
+        "Wig Revamp - £51",
+        "Wig Styling - £26",
+        "Frontal Bun - £71",
+        "Frontal Ponytail - £71",
+        "Frontal Updo - £86",
+        "Option 1 - Wig Updo - £65",
+        "Option 2 - Wig Half Up Half Down - £65"
+      ],
+      "priceCheckedAt": "2026-09-06",
+      "priceUpdatedAt": "2026-09-06",
+      "priceConfidence": "high",
+      "summary": "Admin draft created from Instagram intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/4klounge/"
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-09-06"
+    },
     {
       "id": "hairbyzeenyah",
       "name": "hairbyzeenyah",
