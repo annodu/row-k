@@ -1,7 +1,7 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-09-05",
+    "updatedAt": "2026-09-06",
     "count": 1122,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
@@ -64298,7 +64298,8 @@
       "instagramUrl": "https://www.instagram.com/microlocswithmimi/",
       "services": [
         "Microlocs / sisterlocs",
-        "Loc extensions (permanent)"
+        "Loc extensions (permanent)",
+        "Retwist / interlocking"
       ],
       "priceBand": "££££",
       "priceSource": "manual",
@@ -64322,8 +64323,8 @@
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleDisplayName": null,
-      "googleFormattedAddress": null,
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-07-29",
       "websiteUrl": "https://www.foryourlocsonly.com",
       "portfolioPhotosCheckedAt": "2026-08-21",
@@ -64349,7 +64350,18 @@
           "source": "website"
         }
       ],
-      "updatedAt": "2026-08-24"
+      "updatedAt": "2026-09-06",
+      "hairShopUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": false,
+      "sameDayEmergency": false,
+      "customFilters": {}
     },
     {
       "id": "milian-london",
