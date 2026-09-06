@@ -2,43 +2,9 @@
   "meta": {
     "source": "admin-drafts",
     "updatedAt": "2026-09-06",
-    "count": 18
+    "count": 17
   },
   "drafts": [
-    {
-      "id": "liasdollhouse-mtpjzuk4",
-      "status": "needs_review",
-      "name": "liasdollhouse_",
-      "areaId": "",
-      "areaIds": [],
-      "areaLabel": "",
-      "neighbourhood": "",
-      "postcode": "",
-      "bookingPlatform": "",
-      "bookingUrl": "",
-      "websiteUrl": "",
-      "instagramUrl": "https://www.instagram.com/liasdollhouse_/",
-      "tiktokUrl": "",
-      "addedVia": "Admin tool",
-      "discoverySource": "Instagram auto-fill",
-      "services": [],
-      "rawServices": [],
-      "summary": "Admin draft created from Instagram intake.",
-      "confidence": 0.2,
-      "warnings": [
-        "No booking link identified yet.",
-        "No services matched yet."
-      ],
-      "evidence": [
-        "Submitted link: https://www.instagram.com/liasdollhouse_/"
-      ],
-      "source": "admin-draft",
-      "createdAt": "2026-09-06",
-      "updatedAt": "2026-09-06",
-      "lastCheckedAt": "2026-09-06",
-      "bookingLinkEvidence": "Could not fetch this Instagram profile: Rate-limited by Instagram — try again shortly. — fill in the rest manually.",
-      "attributeSuggestions": []
-    },
     {
       "id": "braids-by-mamahz-mtkshy3d",
       "status": "ready_to_approve",

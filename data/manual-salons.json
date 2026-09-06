@@ -2,10 +2,53 @@
   "meta": {
     "source": "manual",
     "updatedAt": "2026-09-06",
-    "count": 1123,
+    "count": 1124,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "lias-dollhouse",
+      "name": "lias dollhouse",
+      "areaId": "south-east",
+      "areaLabel": "South east London",
+      "neighbourhood": "South east London London",
+      "postcode": "",
+      "bookingPlatform": "Direct website",
+      "bookingUrl": "https://liasdollhouse.square.site/",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/liasdollhouse_/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Traditional sew-in / leave out",
+        "Flipover / Versatile sew-in",
+        "Closure sew-in / closure behind the hairline",
+        "Custom wig",
+        "Half braids, half sew-in"
+      ],
+      "priceBand": "£",
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "manual",
+      "priceEvidence": [],
+      "priceCheckedAt": "",
+      "priceUpdatedAt": "2026-09-06",
+      "priceConfidence": "manual",
+      "summary": "Admin draft created from Instagram intake.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/liasdollhouse_/"
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-09-06"
+    },
     {
       "id": "hairbyzeenyah",
       "name": "hairbyzeenyah",
