@@ -78161,14 +78161,14 @@
       "priceCheckedAt": "",
       "priceUpdatedAt": "",
       "priceConfidence": "",
-      "updatedAt": "2026-08-26",
-      "websiteUrl": "",
+      "updatedAt": "2026-09-06",
+      "websiteUrl": "https://www.wendisroom.com/",
       "googlePlaceId": null,
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleDisplayName": null,
-      "googleFormattedAddress": null,
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-07-29",
       "customFilters": {},
       "portfolioPhotosCheckedAt": "2026-08-21",
@@ -78179,7 +78179,13 @@
           "source": "instagram-reel-thumbnail"
         }
       ],
-      "photoOrderBumpedAt": 58
+      "photoOrderBumpedAt": 58,
+      "hairShopUrl": "",
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": false,
+      "sameDayEmergency": false
     },
     {
       "id": "wen-hair-ldn",
