@@ -268,6 +268,7 @@ const serviceRuleMatchers = [
   ["Braid take-down", [/\bbraids?\b.*\b(take\s*down|takedown|removal|remove)\b/, /\b(take\s*down|takedown|removal|remove)\b.*\bbraids?\b/]],
   ["Starter locs / instant locs", [/\bstarter\s+locs?\b/, /\bstart\s+locs?\b/, /\bstarting\s+locs?\b/, /\bloc\s+start\b/, /\binstant\s+locs?\b/]],
   ["Retwist / interlocking", [/\bretwist\b/, /\bre\s*twist\b/, /\binterlocking\b/, /\binter\s*locking\b/]],
+  ["Boho locs", [/\bboho\s+locs?\b/]],
   ["Soft locs", [/\bfaux\s+locs?\b/, /\bsoft\s+locs?\b/]],
   ["Crochet faux locs / invisible locs", [/\bcrochet\s+(faux\s+)?locs?\b/, /\bfaux\s+locs?\s+crochet\b/, /\binvisible\s+locs?\b/]],
   ["Butterfly locs", [/\bbutterfly\s+locs?\b/]],
@@ -333,6 +334,7 @@ export const serviceNegationHints = {
   "Crochet": ["crochet"],
   "Curly cut / wash & go": ["curly cut", "wash go", "wash and go"],
   "Custom wig": ["custom wig", "bespoke wig", "custom handmade wig", "custom handmade wigs", "custom made frontal unit", "custom made closure unit", "customised closure unit", "customized closure unit", "custom mini frontal unit", "unit customisation", "unit customization", "wig making", "wig construction", "construction of wig", "construction of the wig", "wig customising", "wig customisation", "wig customization", "construction and customisation", "construction and customization"],
+  "Boho locs": ["boho locs"],
   "Soft locs": ["faux locs", "soft locs"],
   "Crochet faux locs / invisible locs": ["crochet locs", "crochet faux locs", "invisible locs", "faux locs crochet"],
   "Feed-in braids": ["feed in", "feed in braids", "all back", "braids going back", "cornrows incl extensions", "cornrows including extensions", "cornrows with extensions", "20 cornrows"],
@@ -1554,7 +1556,11 @@ export function registerAdminStylistRoutes(app) {
   // fetches; the admin's own pick already *is* the review, so the frontend
   // auto-approves every fetched photo (via Photo search's approve endpoint)
   // instead of asking for a second click.
-  const validInstagramPostUrl = (value) => /^https:\/\/(www\.)?instagram\.com\/(p|reel)\/[^/?#]+\/?/.test(value);
+  // AnyAPI's whole-account crawl returns permalinks with the username in the
+  // path (https://www.instagram.com/<handle>/p/<shortcode>/), not just the
+  // canonical /p/<shortcode>/ form an admin would paste by hand — both are
+  // valid Instagram URLs, so accept the optional username segment.
+  const validInstagramPostUrl = (value) => /^https:\/\/(www\.)?instagram\.com\/(?:[^/?#]+\/)?(p|reel)\/[^/?#]+\/?/.test(value);
 
   app.get("/api/admin/photo-link-backlog", requireAdmin, async (_req, res) => {
     const [manualIndex, store] = await Promise.all([

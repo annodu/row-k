@@ -786,7 +786,7 @@ const serviceGroups = [
   { label: "Kids & teens styles", services: ["Kids & teens styles"] },
   { label: "Extensions", services: ["Clip ins (+ silk press)","Hybrid sew in (tapes + sew in)","K-tips / invisible strands","LA weave / microlinks wefts / braidless sew in","I-tips / microlinks strands","Tape ins"] },
   { label: "Locs", services: ["Starter locs / instant locs","Retwist / interlocking","Loc styling","Microlocs / sisterlocs","Loc extensions (permanent)"] },
-  { label: "Faux locs", services: ["Soft locs","Crochet faux locs / invisible locs","Butterfly locs"] },
+  { label: "Faux locs", services: ["Soft locs","Boho locs","Crochet faux locs / invisible locs","Butterfly locs"] },
   { label: "Sew in / weave", services: ["Closure sew-in / closure behind the hairline","Flipover / Versatile sew-in","Frontal sew-in","Half braids, half sew-in","Hybrid sew in (tapes + sew in)","Pixie wig / weave install","Quick weave","Sew-in take-down","Tracks (+ silk press) / partial / invisible sew-in","Traditional sew-in / leave out"] },
   { label: "Styling (sew in / frontal / relaxer)", services: ["Sew in / extensions blowdry","Frontal ponytail / bun","Half up half down","Pixie cut / finger waves","Sleek ponytail / bun","Updo"] },
   { label: "Treatments", services: ["Hair botox","Japanese straightening","K18 treatment","Keratin treatment / Brazilian blowdry","Moisturising treatment","Olaplex treatment","Relaxer / texturiser","Texture release"] },

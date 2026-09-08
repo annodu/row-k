@@ -1,213 +1,10 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-09-06",
-    "count": 18
+    "updatedAt": "2026-09-08",
+    "count": 15
   },
   "drafts": [
-    {
-      "id": "k-styles-mtpk777f",
-      "status": "needs_review",
-      "name": "__k.styles__",
-      "areaId": "",
-      "areaIds": [],
-      "areaLabel": "",
-      "neighbourhood": "",
-      "postcode": "",
-      "bookingPlatform": "",
-      "bookingUrl": "",
-      "websiteUrl": "",
-      "instagramUrl": "https://www.instagram.com/__k.styles__/",
-      "tiktokUrl": "",
-      "addedVia": "Admin tool",
-      "discoverySource": "Instagram auto-fill",
-      "services": [],
-      "rawServices": [],
-      "summary": "Admin draft created from Instagram intake.",
-      "confidence": 0.2,
-      "warnings": [
-        "No booking link identified yet.",
-        "No services matched yet."
-      ],
-      "evidence": [
-        "Submitted link: https://www.instagram.com/__k.styles__/"
-      ],
-      "source": "admin-draft",
-      "createdAt": "2026-09-06",
-      "updatedAt": "2026-09-06",
-      "lastCheckedAt": "2026-09-06",
-      "bookingLinkEvidence": "Could not fetch this Instagram profile: Rate-limited by Instagram — try again shortly. — fill in the rest manually.",
-      "attributeSuggestions": []
-    },
-    {
-      "id": "braids-by-mamahz-mtkshy3d",
-      "status": "ready_to_approve",
-      "name": "Braids by Mamahz",
-      "areaId": "south-west",
-      "areaIds": [
-        "south-west"
-      ],
-      "areaLabel": "South west London",
-      "neighbourhood": "South west London London",
-      "postcode": "",
-      "bookingPlatform": "",
-      "bookingUrl": "https://mamahzxtensions.bookinbeautiful.com/",
-      "instagramUrl": "https://www.instagram.com/braidsbymamahz/",
-      "tiktokUrl": "",
-      "addedVia": "Submission form",
-      "discoverySource": "User submission",
-      "services": [
-        "Traditional sew-in / leave out",
-        "Wig install (frontal / closure)",
-        "Miracle knots",
-        "Crochet"
-      ],
-      "rawServices": [
-        "Crotchet Extensions (Synthetic)",
-        "No-leaveout crochet extensions made with premium synthetic bundles for a natural",
-        "versatile finish. Available in 14–26 inches",
-        "with a range of colours available — or choose your preferred colour for a personalised look.",
-        "Show more",
-        "3 hours",
-        "£70.00",
-        "Frontal Wig Installation",
-        "1 hour",
-        "Crotchet Extensions (Human Hair)",
-        "No-leaveout crochet extensions made with premium human hair for a natural",
-        "seamless finish. Available in 14–22 inches in Natural Black",
-        "1B",
-        "Colour 2 and Colour 4.",
-        "£150.00",
-        "Miracle Knots (Extensions NOT Included)",
-        "4 hours",
-        "Miracle Knots (Human Hair Extensions)",
-        "£250.00",
-        "Our location"
-      ],
-      "summary": "Admin draft created from stylist intake.",
-      "confidence": 0.72,
-      "warnings": [],
-      "evidence": [
-        "Raw services provided during admin intake."
-      ],
-      "source": "admin-draft",
-      "createdAt": "2026-09-03",
-      "updatedAt": "2026-09-03",
-      "lastCheckedAt": "2026-09-03",
-      "hijabiFriendly": false,
-      "canBraidWithoutGel": false,
-      "wheelchairAccessible": false,
-      "senFriendly": false,
-      "lgbtqFriendly": false,
-      "sameDayEmergency": false,
-      "sellsHairSeparately": false,
-      "priceIncludesHair": true,
-      "customFilters": {},
-      "submittedByProvider": false,
-      "hairShopUrl": "",
-      "googlePlaceId": "",
-      "googleMapsUri": "",
-      "googleMatchConfidence": "",
-      "googleDisplayName": "",
-      "googleFormattedAddress": "",
-      "parkingAvailable": false,
-      "priceBand": "££",
-      "servicePriceBand": "££",
-      "packagePriceBand": "",
-      "priceComparisonMode": "service-only",
-      "priceSource": "manual",
-      "priceEvidence": [
-        "Frontal Wig Installation - £70.00",
-        "Colour 2 and Colour 4. - £150.00",
-        "£250.00"
-      ],
-      "priceCheckedAt": "2026-09-03",
-      "priceUpdatedAt": "2026-09-03",
-      "priceConfidence": "manual"
-    },
-    {
-      "id": "belewa-hair",
-      "status": "deprecated",
-      "name": "Be Lẹwa Hair",
-      "areaId": "croydon",
-      "areaIds": [
-        "croydon",
-        "mobile"
-      ],
-      "areaLabel": "Croydon",
-      "neighbourhood": "Croydon and Mobile",
-      "postcode": "",
-      "bookingPlatform": "Direct website",
-      "bookingUrl": "https://belewahair.as.me/schedule/ae0f15d6",
-      "websiteUrl": "",
-      "hairShopUrl": "",
-      "instagramUrl": "https://www.instagram.com/belewahair/",
-      "tiktokUrl": "https://www.tiktok.com/@xo_karrieee/video/7592032929845366019?lang=en-GB",
-      "addedVia": "Code edit",
-      "discoverySource": "Cowork scrape",
-      "services": [
-        "Custom wig",
-        "Wig install (frontal / closure)",
-        "Closure sew-in / closure behind the hairline",
-        "Frontal sew-in",
-        "Traditional sew-in / leave out",
-        "Quick weave"
-      ],
-      "rawServices": [],
-      "hijabiFriendly": false,
-      "canBraidWithoutGel": false,
-      "wheelchairAccessible": false,
-      "senFriendly": false,
-      "lgbtqFriendly": false,
-      "parkingAvailable": false,
-      "customFilters": {},
-      "sellsHairSeparately": false,
-      "sameDayEmergency": false,
-      "priceBand": "£",
-      "servicePriceBand": "",
-      "packagePriceBand": "",
-      "priceIncludesHair": false,
-      "priceComparisonMode": "service-only",
-      "priceSource": "auto",
-      "priceEvidence": [
-        "HANDMADE CLOSURE WIG (MINI FRONTAL) - £75",
-        "STYLING - £30",
-        "HANDMADE FRONTAL WIG - £85",
-        "PRE-MADE FACTORY WIG (FRONTAL & CLOSURE) - £65",
-        "RE-INSTALLATION - £50",
-        "(CUSTOMISATION ONLY) - HANDMADE WIG - £60",
-        "CUSTOMISATION ONLY - PRE-MADE/FACTORY WIG - £45",
-        "LACE REPLACEMENT + INSTALMENT - £70"
-      ],
-      "priceCheckedAt": "2026-06-03",
-      "priceUpdatedAt": "2026-06-03",
-      "priceConfidence": "high",
-      "summary": "Manual entry added from your latest salon update batch.",
-      "warnings": [],
-      "evidence": [
-        "User-provided manual addition."
-      ],
-      "createdAt": "2026-09-02",
-      "updatedAt": "2026-09-02",
-      "googleMapsUri": "",
-      "googleReviewCount": 0,
-      "googleMatchConfidence": "no-match",
-      "googleDisplayName": "",
-      "portfolioPhotos": [
-        {
-          "id": "belewa-hair-portfolio-photo-e0d5bc70-4081-4325-97fa-0ed9f90d3918",
-          "url": "/portfolio-photos/belewa-hair-7169c4c3-eff2-47ae-903b-b7eeba1fe4fe.jpg",
-          "source": "google-image-search"
-        },
-        {
-          "id": "belewa-hair-portfolio-photo-c51552b4-b8fc-4e06-93b8-c78a8b07c576",
-          "url": "/portfolio-photos/belewa-hair-57e74e31-1f2e-44e1-a243-ce7f1315ac62.jpg",
-          "source": "google-image-search"
-        }
-      ],
-      "googlePlaceId": "",
-      "googleFormattedAddress": ""
-    },
     {
       "id": "naomistyledit",
       "status": "deprecated",
@@ -256,7 +53,7 @@
       ],
       "source": "admin-draft",
       "createdAt": "2026-08-31",
-      "updatedAt": "2026-09-01",
+      "updatedAt": "2026-09-08",
       "lastCheckedAt": "2026-08-31",
       "bookingLinkEvidence": "Instagram's own profile API failed for this account (\"Please wait a few minutes before you try again.\") — fetched via AnyAPI instead.\nInstagram bio: \"Your hair is our hair now🌿.                                          Blowdry specialists - AVEDA (Covent Garden)\"\nNo bookable link found in bio — likely DM/WhatsApp/call to book.\nChecked recent post captions instead:\n\"Olaplex treatment\" found in a post caption: \"Botanical Repair Flash Treatment! It really is our favourite we just can’t work together without laughing 😂\" — https://www.instagram.com/p/C6t4lkWoV2z/\n\"Scalp detox / treatments\" found in a post caption: \"There’s nothing like a bouncy blow out after using our scalp solution treatment 💙🚿\n\n📍 @avedacoventgarden\" — https://www.instagram.com/p/C4_TSc3t57c/\n\"Bouncy blowout / round brush blow dry\" found in a post caption: \"There’s nothing like a bouncy blow out after using our scalp solution treatment 💙🚿\n\n📍 @avedacoventgarden\" — https://www.instagram.com/p/C4_TSc3t57c/\n\"Full head colour\" found in a post caption: \"That transformation‼️ \n\nColour by the amazing @y.vhair \n \nStyled by me🥰\n\n📍 @avedacoventgarden \n\nThe beautiful face @rochelleaustin_\" — https://www.instagram.com/p/C4oI7HRtr6H/\n\"Trim / hair cut\" found in a post caption: \"We felt like a change…\n\nHair cut by me✂️\n\n📍 @avedacoventgarden \n\n#longroundlayers #freshhaircut \n#botanicalbondbuildingtreatment #volumizingtonic #invatifoam #\" — https://www.instagram.com/p/CsjcQBxN6EO/",
       "attributeSuggestions": [],
@@ -345,7 +142,7 @@
         "Silkpress!\nResultado incrível.\n@amahairsalon",
         "Bom dia vida!\n#silkpress #detangle #escova \n#hairtransformation #hairstylist \n#london🇬🇧 \n@amahairsalon"
       ],
-      "summary": "👑Especialista em mechas \n👑Penteados \n👑cortes\n👑+44 7399 771766‬\nAnapolis/Brasília/london\nKadu2013_",
+      "summary": "👑Especialista em mechas \n👑Penteados \n👑cortes\n👑+44 7399 771766‬\nAnapolis/Brasília/london\nKadu2013_",
       "confidence": 0.55,
       "warnings": [
         "No booking link identified yet."
@@ -358,7 +155,7 @@
       "createdAt": "2026-08-25",
       "updatedAt": "2026-08-31",
       "lastCheckedAt": "2026-08-31",
-      "bookingLinkEvidence": "Instagram's own profile API failed for this account (\"Please wait a few minutes before you try again.\") — fetched via AnyAPI instead.\nInstagram bio: \"👑Especialista em mechas \n👑Penteados \n👑cortes\n👑+44 7399 771766‬\nAnapolis/Brasília/london\nKadu2013_\"\nNo bookable link found in bio — likely DM/WhatsApp/call to book.\nChecked recent post captions instead:\n\"Silk press\" found in a post caption: \"Silkpress!\nResultado incrível.\n@amahairsalon\" — https://www.instagram.com/p/C_ZDe7ys7vJ/\n\"Silk press\" found in a post caption: \"Bom dia vida!\n#silkpress #detangle #escova \n#hairtransformation #hairstylist \n#london🇬🇧 \n@amahairsalon\" — https://www.instagram.com/p/C-4xK8sMVjI/",
+      "bookingLinkEvidence": "Instagram's own profile API failed for this account (\"Please wait a few minutes before you try again.\") — fetched via AnyAPI instead.\nInstagram bio: \"👑Especialista em mechas \n👑Penteados \n👑cortes\n👑+44 7399 771766‬\nAnapolis/Brasília/london\nKadu2013_\"\nNo bookable link found in bio — likely DM/WhatsApp/call to book.\nChecked recent post captions instead:\n\"Silk press\" found in a post caption: \"Silkpress!\nResultado incrível.\n@amahairsalon\" — https://www.instagram.com/p/C_ZDe7ys7vJ/\n\"Silk press\" found in a post caption: \"Bom dia vida!\n#silkpress #detangle #escova \n#hairtransformation #hairstylist \n#london🇬🇧 \n@amahairsalon\" — https://www.instagram.com/p/C-4xK8sMVjI/",
       "attributeSuggestions": []
     },
     {
