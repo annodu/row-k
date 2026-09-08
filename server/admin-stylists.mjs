@@ -932,6 +932,31 @@ export function registerAdminStylistRoutes(app) {
     }
   });
 
+  // Only recompresses uploads too large to ever matter at portfolio-photo
+  // display size (see MOBILE_PHOTO_PREVIEW_WIDTH-scale usage on the live
+  // site) — an already-reasonably-sized upload is written through untouched
+  // so re-encoding never costs quality on something that didn't need it.
+  const MAX_UPLOAD_WIDTH = 1600;
+  async function shrinkOversizedUpload(buffer, ext) {
+    let metadata;
+    try {
+      metadata = await sharp(buffer).metadata();
+    } catch {
+      return { buffer, ext };
+    }
+    const rotated = metadata.orientation >= 5 && metadata.orientation <= 8;
+    const displayWidth = rotated ? metadata.height : metadata.width;
+    if (!displayWidth || displayWidth <= MAX_UPLOAD_WIDTH) {
+      return { buffer, ext };
+    }
+    const resized = await sharp(buffer)
+      .rotate()
+      .resize({ width: MAX_UPLOAD_WIDTH, withoutEnlargement: true })
+      .jpeg({ quality: 85, mozjpeg: true })
+      .toBuffer();
+    return { buffer: resized, ext: "jpg" };
+  }
+
   // Lets an admin add a photo straight from their own machine — a stylist's
   // own submission, a photo the scraper never found, etc. Sent as a base64
   // data URL rather than multipart, so it rides the same JSON body parser as
@@ -949,11 +974,12 @@ export function registerAdminStylistRoutes(app) {
     if (!match) {
       return res.status(400).json({ ok: false, message: "Upload a PNG, JPEG, WEBP, or GIF image." });
     }
-    const ext = match[1] === "jpeg" ? "jpg" : match[1];
-    const buffer = Buffer.from(match[2], "base64");
+    let ext = match[1] === "jpeg" ? "jpg" : match[1];
+    let buffer = Buffer.from(match[2], "base64");
     if (buffer.length === 0) {
       return res.status(400).json({ ok: false, message: "That file looks empty." });
     }
+    ({ buffer, ext } = await shrinkOversizedUpload(buffer, ext));
 
     await fs.mkdir(portfolioPhotosPublicDir, { recursive: true });
     const filename = `${salon.id}-${crypto.randomUUID()}.${ext}`;
@@ -2848,11 +2874,12 @@ export function registerAdminStylistRoutes(app) {
     if (!match) {
       return res.status(400).json({ ok: false, message: "Upload a PNG, JPEG, WEBP, or GIF image." });
     }
-    const ext = match[1] === "jpeg" ? "jpg" : match[1];
-    const buffer = Buffer.from(match[2], "base64");
+    let ext = match[1] === "jpeg" ? "jpg" : match[1];
+    let buffer = Buffer.from(match[2], "base64");
     if (buffer.length === 0) {
       return res.status(400).json({ ok: false, message: "That file looks empty." });
     }
+    ({ buffer, ext } = await shrinkOversizedUpload(buffer, ext));
 
     await fs.mkdir(portfolioPhotosPublicDir, { recursive: true });
     const filename = `${draft.id}-${crypto.randomUUID()}.${ext}`;
