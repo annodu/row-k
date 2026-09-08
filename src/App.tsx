@@ -2270,7 +2270,17 @@ const needFieldDescriptions = Object.fromEntries(submissionNeedFields.map((item)
 // browser's native title tooltip on hover and tapping never reveals inline
 // text. On touch devices there's no hover to rely on, so tapping toggles the
 // description in as a line of text under the label instead.
-function NeedInfoButton({ description, open, onToggle }: { description: string; open: boolean; onToggle: () => void }) {
+function NeedInfoButton({
+  description,
+  open,
+  onToggle,
+  className,
+}: {
+  description: string;
+  open: boolean;
+  onToggle: () => void;
+  className?: string;
+}) {
   return (
     <button
       type="button"
@@ -2282,7 +2292,10 @@ function NeedInfoButton({ description, open, onToggle }: { description: string; 
         event.stopPropagation();
         onToggle();
       }}
-      className="-m-[15px] flex shrink-0 items-center justify-center p-[15px] text-stone-400 hover:text-stone-600 dark:hover:text-stone-300"
+      className={cn(
+        "-m-[15px] flex shrink-0 items-center justify-center p-[15px] text-stone-400 hover:text-stone-600 dark:hover:text-stone-300",
+        className,
+      )}
     >
       <Info className="size-3.5" aria-hidden="true" />
     </button>
@@ -2359,11 +2372,16 @@ function FilterNeedCheckbox({
         >
           {checked ? <Check className="size-3.5" /> : null}
         </span>
-        <span className="flex flex-1 items-center gap-1.5">
+        <span className="flex flex-1 items-start gap-1.5">
           <span id={labelId} className="translate-y-[1.5px] text-[15px] text-stone-800 dark:text-stone-200">
             {label}
           </span>
-          <NeedInfoButton description={description} open={infoOpen} onToggle={() => setInfoOpen((open) => !open)} />
+          <NeedInfoButton
+            description={description}
+            open={infoOpen}
+            onToggle={() => setInfoOpen((open) => !open)}
+            className="-mt-[9px]"
+          />
         </span>
       </div>
       {infoOpen ? (
