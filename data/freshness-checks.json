@@ -14341,7 +14341,8 @@
       "handledFingerprints": [
         "service-add:crochet faux locs / invisible locs|boho bob locs|invisible locs / normal twist with barrelled ends x fulani|locs|soft/butterfly locs",
         "service-remove:soft locs"
-      ]
+      ],
+      "sellsHairSeparately": true
     },
     "truemillani": {
       "addedServices": [

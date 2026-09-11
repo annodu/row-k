@@ -1602,7 +1602,7 @@
       "bookingPlatform": "Direct website",
       "bookingUrl": "https://bookzeenyah.as.me/schedule/55503936",
       "websiteUrl": "https://www.hairbyzeenyah.co.uk/",
-      "hairShopUrl": "",
+      "hairShopUrl": "https://www.hairbyzeenyah.co.uk/shop-1",
       "instagramUrl": "https://www.instagram.com/hairbyzeenyah/",
       "tiktokUrl": "",
       "addedVia": "Admin tool",
@@ -1662,10 +1662,10 @@
       "senFriendly": false,
       "lgbtqFriendly": false,
       "parkingAvailable": false,
-      "sellsHairSeparately": false,
+      "sellsHairSeparately": true,
       "sameDayEmergency": false,
       "customFilters": {},
-      "updatedAt": "2026-09-08",
+      "updatedAt": "2026-09-11",
       "portfolioPhotos": [
         {
           "id": "hairbyzeenyah-portfolio-photo-1467e2e8-5f93-4abc-a258-4473fa4de9d7",
@@ -13578,7 +13578,7 @@
       "priceBand": "££",
       "servicePriceBand": "",
       "packagePriceBand": "",
-      "priceIncludesHair": false,
+      "priceIncludesHair": true,
       "priceComparisonMode": "service-only",
       "priceSource": "manual",
       "priceEvidence": [
@@ -13625,7 +13625,7 @@
           "source": "google-image-search"
         }
       ],
-      "updatedAt": "2026-08-24",
+      "updatedAt": "2026-09-11",
       "photoSearchReviewedAt": "2026-08-24",
       "googleDisplayName": "",
       "googleFormattedAddress": "",
@@ -13636,7 +13636,8 @@
       "lgbtqFriendly": false,
       "parkingAvailable": false,
       "sellsHairSeparately": false,
-      "customFilters": {}
+      "customFilters": {},
+      "sameDayEmergency": false
     },
     {
       "id": "braids-from-london",
@@ -15339,7 +15340,7 @@
       "bookingPlatform": "Own booking subdomain",
       "bookingUrl": "https://book.glambarbeauty.co.uk",
       "websiteUrl": "",
-      "hairShopUrl": "",
+      "hairShopUrl": "https://www.glambarbeauty.co.uk/",
       "instagramUrl": "https://www.instagram.com/glambar_beauty/",
       "tiktokUrl": "",
       "addedVia": "Admin tool",
@@ -15399,12 +15400,12 @@
       "evidence": [
         "Created through ROW K admin intake."
       ],
-      "googlePlaceId": "ChIJsYuAIuEHdkgRYI35TDtIuHo",
+      "googlePlaceId": null,
       "googleReviewCount": 14,
       "googleMapsUri": "https://maps.google.com/?cid=8842897287873662304",
       "googleMatchConfidence": "high",
       "googleDisplayName": "Glam Bar Beauty Salon - Hair Extensions & Braiding Specialist",
-      "googleFormattedAddress": "117 High St, Sutton SM1 1JF, UK",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-08-31",
       "portfolioPhotos": [
         {
@@ -15414,7 +15415,16 @@
         }
       ],
       "photoSearchReviewedAt": "2026-08-25",
-      "updatedAt": "2026-08-26"
+      "updatedAt": "2026-09-11",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": true,
+      "sameDayEmergency": false,
+      "customFilters": {}
     },
     {
       "id": "cbloc-house",
@@ -17623,7 +17633,28 @@
         }
       ],
       "photoSearchReviewedAt": "2026-08-24",
-      "updatedAt": "2026-08-27"
+      "updatedAt": "2026-09-11",
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": true,
+      "sameDayEmergency": false,
+      "customFilters": {},
+      "priceBand": "",
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "",
+      "priceSource": "",
+      "priceEvidence": [],
+      "priceCheckedAt": "",
+      "priceUpdatedAt": "",
+      "priceConfidence": ""
     },
     {
       "id": "cachos-rubinathy",
@@ -36393,8 +36424,8 @@
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleDisplayName": null,
-      "googleFormattedAddress": null,
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-07-29",
       "websiteUrl": "",
       "tiktokUrl": "",
@@ -36406,7 +36437,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-31",
+      "updatedAt": "2026-09-11",
       "parkingAvailable": true,
       "portfolioPhotosCheckedAt": "2026-08-20",
       "portfolioPhotos": [
@@ -36415,7 +36446,12 @@
           "url": "/portfolio-photos/sevynpressed-d7c9f360-9234-4159-8d2c-561475b4c5cf.jpg",
           "source": "google-image-search"
         }
-      ]
+      ],
+      "hairShopUrl": "",
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "sellsHairSeparately": true,
+      "sameDayEmergency": false
     },
     {
       "id": "princessxlace",
@@ -37579,8 +37615,8 @@
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleDisplayName": null,
-      "googleFormattedAddress": null,
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-07-29",
       "websiteUrl": "",
       "tiktokUrl": "",
@@ -37592,7 +37628,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-07-24",
+      "updatedAt": "2026-09-11",
       "portfolioPhotosCheckedAt": "2026-08-20",
       "portfolioPhotos": [
         {
@@ -37605,7 +37641,13 @@
           "url": "/portfolio-photos/hairbyadiam-7eb1d44c-8a92-4768-b7ae-4d26c415fadc.jpg",
           "source": "google-image-search"
         }
-      ]
+      ],
+      "hairShopUrl": "",
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": true,
+      "sameDayEmergency": false
     },
     {
       "id": "houseoffbl",
@@ -39035,8 +39077,8 @@
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleDisplayName": null,
-      "googleFormattedAddress": null,
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-07-29",
       "websiteUrl": "",
       "tiktokUrl": "",
@@ -39048,7 +39090,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-07-24",
+      "updatedAt": "2026-09-11",
       "portfolioPhotosCheckedAt": "2026-08-20",
       "portfolioPhotos": [
         {
@@ -39066,7 +39108,13 @@
           "url": "/portfolio-photos/thehairklub-fffff64d-df71-416b-961a-bc814fa7f0ff.jpg",
           "source": "google-image-search"
         }
-      ]
+      ],
+      "hairShopUrl": "",
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": true,
+      "sameDayEmergency": false
     },
     {
       "id": "thelacespaceuk",
@@ -44248,7 +44296,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-31",
+      "updatedAt": "2026-09-11",
       "googlePlaceId": null,
       "googleReviewCount": 0,
       "googleMapsUri": "",
@@ -44276,7 +44324,7 @@
       "senFriendly": false,
       "lgbtqFriendly": false,
       "parkingAvailable": false,
-      "sellsHairSeparately": false,
+      "sellsHairSeparately": true,
       "sameDayEmergency": false,
       "customFilters": {}
     },
@@ -58795,8 +58843,8 @@
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleDisplayName": null,
-      "googleFormattedAddress": null,
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-07-29",
       "websiteUrl": "",
       "tiktokUrl": "",
@@ -58808,7 +58856,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-07-24",
+      "updatedAt": "2026-09-11",
       "portfolioPhotosCheckedAt": "2026-08-21",
       "portfolioPhotos": [
         {
@@ -58826,7 +58874,13 @@
           "url": "/portfolio-photos/hairbyoceanne-b3ab9e9d-d8bb-48ab-ae56-3f984cd26cf9.jpg",
           "source": "google-image-search"
         }
-      ]
+      ],
+      "hairShopUrl": "https://hairbyoceanne.com/collections/all",
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": true,
+      "sameDayEmergency": false
     },
     {
       "id": "hairbytshi",
@@ -58875,8 +58929,8 @@
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleDisplayName": null,
-      "googleFormattedAddress": null,
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-07-29",
       "websiteUrl": "",
       "tiktokUrl": "",
@@ -58886,9 +58940,9 @@
       "customFilters": {},
       "servicePriceBand": "",
       "packagePriceBand": "",
-      "priceIncludesHair": false,
+      "priceIncludesHair": true,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-25",
+      "updatedAt": "2026-09-11",
       "portfolioPhotosCheckedAt": "2026-08-21",
       "portfolioPhotos": [
         {
@@ -58906,7 +58960,13 @@
           "url": "/portfolio-photos/hairbytshi-9f1d4059-22b7-4fd0-9298-7d704dc67a5f.jpg",
           "source": "google-image-search"
         }
-      ]
+      ],
+      "hairShopUrl": "",
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": false,
+      "sameDayEmergency": false
     },
     {
       "id": "hairbyzhb",
@@ -59340,7 +59400,7 @@
         "Silk press",
         "Keratin treatment / Brazilian blowdry",
         "Traditional sew-in / leave out",
-        "Flipover / versatile sew-in",
+        "Flipover / Versatile sew-in",
         "Hybrid sew in (tapes + sew in)",
         "Tape ins"
       ],
@@ -59370,8 +59430,8 @@
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleDisplayName": null,
-      "googleFormattedAddress": null,
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-07-29",
       "portfolioPhotosCheckedAt": "2026-08-21",
       "portfolioPhotos": [
@@ -59380,7 +59440,24 @@
           "url": "/portfolio-photos/haute-glam-hair-c6a0ba27-cc40-4a36-8fcc-256a1e28bc06.jpg",
           "source": "google-image-search"
         }
-      ]
+      ],
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": false,
+      "sameDayEmergency": false,
+      "customFilters": {},
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": true,
+      "priceComparisonMode": "",
+      "updatedAt": "2026-09-11"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -64587,8 +64664,8 @@
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleDisplayName": null,
-      "googleFormattedAddress": null,
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-07-29",
       "websiteUrl": "",
       "tiktokUrl": "",
@@ -64606,7 +64683,7 @@
       "priceCheckedAt": "",
       "priceUpdatedAt": "",
       "priceConfidence": "",
-      "updatedAt": "2026-08-27",
+      "updatedAt": "2026-09-11",
       "portfolioPhotosCheckedAt": "2026-08-27",
       "portfolioPhotos": [
         {
@@ -64621,7 +64698,13 @@
         }
       ],
       "photoSearchReviewedAt": "2026-08-27",
-      "photoOrderBumpedAt": 556
+      "photoOrderBumpedAt": 556,
+      "hairShopUrl": "",
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": true,
+      "sameDayEmergency": false
     },
     {
       "summary": "Manual entry added from your bridal and editorial list.",
@@ -65050,7 +65133,7 @@
       "bookingUrl": "https://maggieshair.as.me/schedule/5ce5c061",
       "instagramUrl": "https://www.instagram.com/maggieshair_/",
       "services": [
-        "LA weave",
+        "LA weave / microlinks wefts / braidless sew in",
         "Sleek ponytail / bun",
         "Tape ins",
         "Wash & blowdry",
@@ -65084,8 +65167,8 @@
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleDisplayName": null,
-      "googleFormattedAddress": null,
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-07-29",
       "portfolioPhotosCheckedAt": "2026-08-21",
       "portfolioPhotos": [
@@ -65094,7 +65177,24 @@
           "url": "/portfolio-photos/maggies-hair-f58388ee-e063-42d7-b587-ccbc17c93f5a.jpg",
           "source": "google-image-search"
         }
-      ]
+      ],
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": true,
+      "sameDayEmergency": false,
+      "customFilters": {},
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "updatedAt": "2026-09-11"
     },
     {
       "id": "maison-oceane-ltd",
@@ -72426,7 +72526,8 @@
         "Half up half down",
         "Wig cornrows",
         "Healthy hair plans & consultations",
-        "Bridal"
+        "Bridal",
+        "Sleek ponytail / bun"
       ],
       "summary": "Manual entry added from your latest salon update batch.",
       "source": "manual",
@@ -72454,8 +72555,8 @@
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleDisplayName": null,
-      "googleFormattedAddress": null,
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-07-29",
       "portfolioPhotosCheckedAt": "2026-08-21",
       "portfolioPhotos": [
@@ -72475,7 +72576,23 @@
           "source": "google-image-search"
         }
       ],
-      "updatedAt": "2026-08-25"
+      "updatedAt": "2026-09-11",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": true,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": false,
+      "sameDayEmergency": false,
+      "customFilters": {},
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -73012,7 +73129,7 @@
       "tiktokUrl": "https://www.tiktok.com/@kacorporategirly/video/7494584955608075542?lang=en-GB",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
-      "updatedAt": "2026-06-10",
+      "updatedAt": "2026-09-11",
       "priceBand": "££",
       "priceSource": "auto",
       "priceEvidence": [
@@ -73033,14 +73150,14 @@
       "wheelchairAccessible": false,
       "servicePriceBand": "",
       "packagePriceBand": "",
-      "priceIncludesHair": false,
+      "priceIncludesHair": true,
       "priceComparisonMode": "service-only",
       "googlePlaceId": null,
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleDisplayName": null,
-      "googleFormattedAddress": null,
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-07-29",
       "parkingAvailable": true,
       "portfolioPhotosCheckedAt": "2026-08-21",
@@ -73060,7 +73177,14 @@
           "url": "/portfolio-photos/sf-laid-it-b3a13464-9076-4ae9-8d73-3dfe19f5b7f9.jpg",
           "source": "google-image-search"
         }
-      ]
+      ],
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "sellsHairSeparately": false,
+      "sameDayEmergency": false,
+      "customFilters": {}
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -78984,45 +79108,46 @@
         "Traditional sew-in / leave out",
         "Hybrid sew in (tapes + sew in)",
         "U-Part / Half wig install",
-        "Tape ins"
+        "Tape ins",
+        "Wig colouring / bundle colouring"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
       "evidence": [
         "User-provided Instagram handle awaiting categorisation."
       ],
-      "priceBand": "££",
+      "priceBand": "£",
       "priceSource": "auto",
       "priceEvidence": [
         "The Restore Package - £80",
-        "Glass Silk Press - £125",
-        "Pre-Made U-Part/ Half Wig Install - £135",
-        "The Sew In Install - £150",
+        "Glass Silk Press - - Glass Silk Press - £125",
+        "Pre-Made U-Part/ Half Wig Install - - Pre-Made U-Part/ Half Wig Install - £135",
+        "The Sew In Install - - The Sew In Install - £150",
         "The Signature Upgrade - £185",
-        "GLUELESS 2X6 Closure Install - £175",
-        "The Hybrid Sew In + Tape Ins - £210",
+        "GLUELESS 2X6 Closure Install - - GLUELESS 2X6 Closure Install - £175",
+        "The Hybrid Sew In + Tape Ins - - The Hybrid Sew In + Tape Ins - £210",
         "Style Refresh - £65"
       ],
-      "priceCheckedAt": "2026-06-03",
-      "priceConfidence": "high",
-      "priceUpdatedAt": "2026-06-03",
+      "priceCheckedAt": "2026-09-11",
+      "priceConfidence": "manual",
+      "priceUpdatedAt": "2026-09-11",
       "addedVia": "Bulk import",
       "discoverySource": "Cowork scrape",
       "tiktokUrl": "https://www.tiktok.com/@xo_karrieee/video/7592032929845366019?lang=en-GB",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
       "wheelchairAccessible": false,
-      "servicePriceBand": "",
+      "servicePriceBand": "£",
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-27",
+      "updatedAt": "2026-09-11",
       "googlePlaceId": null,
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleDisplayName": null,
-      "googleFormattedAddress": null,
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-07-29",
       "websiteUrl": "",
       "customFilters": {},
@@ -79034,7 +79159,13 @@
           "source": "google-image-search"
         }
       ],
-      "photoSearchReviewedAt": "2026-08-25"
+      "photoSearchReviewedAt": "2026-08-25",
+      "hairShopUrl": "",
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": false,
+      "sameDayEmergency": false
     },
     {
       "id": "thesilqmistsalon",
@@ -80531,13 +80662,13 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-06-10",
+      "updatedAt": "2026-09-11",
       "googlePlaceId": null,
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleDisplayName": null,
-      "googleFormattedAddress": null,
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-07-29",
       "parkingAvailable": true,
       "portfolioPhotosCheckedAt": "2026-08-21",
@@ -80558,7 +80689,14 @@
           "source": "google-image-search"
         }
       ],
-      "photoSearchReviewedAt": "2026-08-24"
+      "photoSearchReviewedAt": "2026-08-24",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "sellsHairSeparately": true,
+      "sameDayEmergency": false,
+      "customFilters": {}
     },
     {
       "id": "xtra-beauty",
@@ -80801,9 +80939,10 @@
         "Scalp detox / treatments",
         "Relaxer / texturiser",
         "Sleek ponytail / bun",
-        "LA weave",
+        "LA weave / microlinks wefts / braidless sew in",
         "Half up half down",
-        "Texture release"
+        "Texture release",
+        "Trichology / scalp analysis"
       ],
       "priceBand": "£",
       "priceSource": "manual",
@@ -80841,7 +80980,24 @@
           "source": "google-image-search"
         }
       ],
-      "updatedAt": "2026-08-26"
+      "updatedAt": "2026-09-11",
+      "hairShopUrl": "",
+      "tiktokUrl": "",
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": false,
+      "sameDayEmergency": false,
+      "customFilters": {},
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -84645,13 +84801,14 @@
       "instagramUrl": "https://www.instagram.com/silkstylistuk/",
       "services": [
         "Tape ins",
-        "LA weave",
+        "LA weave / microlinks wefts / braidless sew in",
         "K-tips / invisible strands",
-        "Microlinks",
-        "Clip ins / Silk press + Clip ins",
+        "I-tips / microlinks strands",
+        "Clip ins (+ silk press)",
         "Silk press",
         "Texture release",
-        "Trim / hair cut"
+        "Trim / hair cut",
+        "Healthy hair plans & consultations"
       ],
       "summary": "Manual Instagram-led entry added from user-provided booking menu.",
       "source": "manual",
@@ -84683,8 +84840,8 @@
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleDisplayName": null,
-      "googleFormattedAddress": null,
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-07-29",
       "portfolioPhotosCheckedAt": "2026-08-21",
       "portfolioPhotos": [
@@ -84699,9 +84856,25 @@
           "source": "google-image-search"
         }
       ],
-      "updatedAt": "2026-08-27",
+      "updatedAt": "2026-09-11",
       "photoSearchReviewedAt": "2026-08-27",
-      "photoOrderBumpedAt": 519
+      "photoOrderBumpedAt": 519,
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": true,
+      "sameDayEmergency": false,
+      "customFilters": {},
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only"
     },
     {
       "id": "moniquecharleshair",
@@ -86640,15 +86813,15 @@
       "priceCheckedAt": "2026-06-04",
       "priceUpdatedAt": "2026-06-04",
       "priceConfidence": "manual",
-      "updatedAt": "2026-06-04",
+      "updatedAt": "2026-09-11",
       "addedVia": "Admin tool",
       "discoverySource": "Manual search",
       "googlePlaceId": null,
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleDisplayName": null,
-      "googleFormattedAddress": null,
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-07-29",
       "portfolioPhotosCheckedAt": "2026-08-21",
       "portfolioPhotos": [
@@ -86667,7 +86840,20 @@
           "url": "/portfolio-photos/azira-hair-b635cca4-0dbf-44b0-9520-5eaa2f635d50.jpg",
           "source": "google-image-search"
         }
-      ]
+      ],
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": true,
+      "sameDayEmergency": false,
+      "customFilters": {},
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only"
     },
     {
       "id": "capitao-london-bridal",
