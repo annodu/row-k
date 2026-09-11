@@ -2,7 +2,7 @@
   "meta": {
     "source": "freshness-checks",
     "updatedAt": "2026-09-11",
-    "count": 174,
+    "count": 158,
     "checkedCount": 424,
     "total": 424,
     "mode": "freshness"
@@ -152,7 +152,12 @@
           "1-1 sew in install",
           "Low half up half down v part with bun (no leave out- quickweave)"
         ]
-      }
+      },
+      "handledFingerprints": [
+        "location:south east|kent|kent",
+        "location:kent|kent"
+      ],
+      "locationLabel": "Kent"
     },
     "cg-hair": {
       "addedServices": [
@@ -521,7 +526,12 @@
           "24” soft locs (hair included)",
           "36” soft locs (hair included)"
         ]
-      }
+      },
+      "handledFingerprints": [
+        "location:south east london / kent|east|east london",
+        "location:east|east london"
+      ],
+      "locationLabel": "East London"
     },
     "vhudzi-hair-by-alicia-pearl": {
       "addedServices": [
@@ -1326,7 +1336,9 @@
         "Half up half down",
         "Sleek ponytail / bun",
         "Wig cornrows",
-        "Fulani / lemonade braids"
+        "Fulani / lemonade braids",
+        "Crochet faux locs / invisible locs",
+        "Bridal"
       ],
       "removedServices": [],
       "addedServiceFamilies": [],
@@ -1348,8 +1360,21 @@
           "Half Feed-Ins with Large Knotless Braids",
           "Feed-In ALL BACK Braids",
           "2 Braids"
+        ],
+        "Crochet faux locs / invisible locs": [
+          "INVISIBLE LOCS",
+          "Locs Re-Touch"
+        ],
+        "Bridal": [
+          "Bridal Hair"
         ]
-      }
+      },
+      "handledFingerprints": [
+        "service-add:crochet faux locs / invisible locs|invisible locs|locs re-touch",
+        "service-add:bridal|bridal hair",
+        "attribute:samedayemergency|true|booking:same day appointment are an extra charge of £45"
+      ],
+      "sameDayEmergency": true
     },
     "slaybynay": {
       "addedServices": [],
@@ -1538,7 +1563,9 @@
       "addedServices": [
         "Sleek ponytail / bun",
         "Boho braids / goddess braids",
-        "Half up half down"
+        "Half up half down",
+        "Miracle knots",
+        "Crochet"
       ],
       "removedServices": [],
       "addedServiceFamilies": [],
@@ -1559,8 +1586,20 @@
           "Half Sew-in Half Feedin",
           "Freestyle Half Sew-in Half Feedin",
           "Half Up Half Down Feedin Braids"
+        ],
+        "Miracle knots": [
+          "- Please Bring 4-5 Bundles of Miracle Knot Crochet Human Hair",
+          "- Please Bring 3-4 Bundles of Miracle Knot Crochet Human Hair"
+        ],
+        "Crochet": [
+          "- Please Bring 4-5 Bundles of Miracle Knot Crochet Human Hair",
+          "- Please Bring 3-4 Bundles of Miracle Knot Crochet Human Hair"
         ]
-      }
+      },
+      "handledFingerprints": [
+        "service-add:miracle knots|- please bring 4-5 bundles of miracle knot crochet human hair|- please bring 3-4 bundles of miracle knot crochet human hair",
+        "service-add:crochet|- please bring 4-5 bundles of miracle knot crochet human hair|- please bring 3-4 bundles of miracle knot crochet human hair"
+      ]
     },
     "rachel-braids": {
       "addedServices": [
@@ -2198,7 +2237,8 @@
       "addedServices": [
         "Braid take-down",
         "Fulani / lemonade braids",
-        "Stitch braids"
+        "Stitch braids",
+        "Closure sew-in / closure behind the hairline"
       ],
       "removedServices": [],
       "addedServiceFamilies": [],
@@ -2220,8 +2260,14 @@
           "5. SEW-IN with BRAIDS",
           "Sewin and braids Zoe kravis",
           "Micro Braids all around with sewin"
+        ],
+        "Closure sew-in / closure behind the hairline": [
+          "Behind the hairline closure sew-in"
         ]
-      }
+      },
+      "handledFingerprints": [
+        "service-add:closure sew-in / closure behind the hairline|behind the hairline closure sew-in"
+      ]
     },
     "gias-hair-salon": {
       "addedServices": [
@@ -2289,7 +2335,8 @@
     },
     "es-lounge": {
       "addedServices": [
-        "Microbraids / x-small braids"
+        "Microbraids / x-small braids",
+        "Crochet faux locs / invisible locs"
       ],
       "removedServices": [],
       "addedServiceFamilies": [],
@@ -2299,8 +2346,16 @@
           "Small Freestyle Boho Fulani",
           "Small boho boho knotless",
           "6 All back feed in braids"
+        ],
+        "Crochet faux locs / invisible locs": [
+          "Crochet & Handmade Locs",
+          "Crochet Locs",
+          "Hand Wrapped Distressed Locs (REGULAR SIZE)"
         ]
-      }
+      },
+      "handledFingerprints": [
+        "service-add:crochet faux locs / invisible locs|crochet & handmade locs|crochet locs|hand wrapped distressed locs (regular size)"
+      ]
     },
     "dvh-salon": {
       "addedServices": [
@@ -2382,7 +2437,8 @@
     "braidsbyfels": {
       "addedServices": [
         "Sleek ponytail / bun",
-        "Half up half down"
+        "Half up half down",
+        "Men's braids"
       ],
       "removedServices": [
         "Wig cornrows",
@@ -2399,6 +2455,12 @@
           "Half Feed in Braids With Sew in/Weave -Large",
           "Half Feed in Braids With Sew in/Weave - Medium",
           "Half Feed in Braids With Sew in/Weave - Small"
+        ],
+        "Men's braids": [
+          "1-1 braiding class - Knotless Braids",
+          "1-1 braiding class - Feed in Braids",
+          "HEAD BRAIDER: FELS - BOHO BRAIDS",
+          "Boho Braids with sew in - medium"
         ]
       },
       "handledFingerprints": [
@@ -2406,12 +2468,14 @@
         "link:booking|braidsbyfels.as.me|unverified|503",
         "service-remove:wig cornrows",
         "service-remove:wash & blowdry",
-        "service-remove:starter locs"
+        "service-remove:starter locs",
+        "service-add:men's braids|1-1 braiding class - knotless braids|1-1 braiding class - feed in braids|head braider: fels - boho braids|boho braids with sew in - medium"
       ]
     },
     "braidbarldn": {
       "addedServices": [
-        "Feed-in braids"
+        "Feed-in braids",
+        "Colour blend (mixing braiding hair)"
       ],
       "removedServices": [],
       "addedServiceFamilies": [],
@@ -2419,8 +2483,16 @@
         "Feed-in braids": [
           "Stitch Braids all back- 1-2 packs Pre Stretched",
           "Knotless Braids - packs Pre stretched"
+        ],
+        "Colour blend (mixing braiding hair)": [
+          "if your hair needs blow drying.",
+          "Braiding Hair",
+          "Synthetic braiding hair"
         ]
-      }
+      },
+      "handledFingerprints": [
+        "service-add:colour blend (mixing braiding hair)|if your hair needs blow drying.|braiding hair|synthetic braiding hair"
+      ]
     },
     "beyond-glam": {
       "addedServices": [
@@ -2464,7 +2536,9 @@
       "addedServices": [
         "Fulani / lemonade braids"
       ],
-      "removedServices": [],
+      "removedServices": [
+        "Soft locs"
+      ],
       "addedServiceFamilies": [],
       "addedServiceEvidence": {
         "Fulani / lemonade braids": [
@@ -2476,7 +2550,8 @@
       },
       "handledFingerprints": [
         "location:essex|kent|kent",
-        "location:kent|kent"
+        "location:kent|kent",
+        "service-remove:soft locs"
       ],
       "locationLabel": "Kent"
     },
@@ -3284,12 +3359,24 @@
       }
     },
     "be-styled-by-chen": {
-      "addedServices": [],
+      "addedServices": [
+        "K18 treatment"
+      ],
       "removedServices": [
         "Full head colour"
       ],
       "addedServiceFamilies": [],
-      "addedServiceEvidence": {}
+      "addedServiceEvidence": {
+        "K18 treatment": [
+          "The Treatment Files",
+          "Hair Care Combination Treatment",
+          "Ladies - Protein Treatment (add on service only)",
+          "Existing Clients Services - Treatments"
+        ]
+      },
+      "handledFingerprints": [
+        "service-add:k18 treatment|the treatment files|hair care combination treatment|ladies - protein treatment (add on service only)|existing clients services - treatments"
+      ]
     },
     "beautycreationsinsta": {
       "addedServices": [
@@ -3643,9 +3730,12 @@
     "ellise-tresses": {
       "addedServices": [
         "Boho braids / goddess braids",
-        "Editorial / Session styling"
+        "Editorial / Session styling",
+        "Crochet faux locs / invisible locs"
       ],
-      "removedServices": [],
+      "removedServices": [
+        "Soft locs"
+      ],
       "addedServiceFamilies": [],
       "addedServiceEvidence": {
         "Boho braids / goddess braids": [
@@ -3655,12 +3745,19 @@
         ],
         "Editorial / Session styling": [
           "Editorial Fulani"
+        ],
+        "Crochet faux locs / invisible locs": [
+          "Invisible locs (long bob length)"
         ]
       },
       "handledFingerprints": [
         "service-add:editorial / session styling|editorial fulani",
-        "service-add:boho braids / goddess braids|fulani braids|fulani braids|flip over fulani braids|knotless braids"
-      ]
+        "service-add:boho braids / goddess braids|fulani braids|fulani braids|flip over fulani braids|knotless braids",
+        "service-add:crochet faux locs / invisible locs|invisible locs (long bob length)",
+        "service-remove:soft locs",
+        "attribute:samedayemergency|true|booking banner:good friday, easter sunday, easter monday, and valentines day are considered an emergency appointment, charged"
+      ],
+      "sameDayEmergency": true
     },
     "ella-iman-hair": {
       "addedServices": [
@@ -3694,7 +3791,9 @@
         "Half up half down",
         "French curl",
         "Braid take-down",
-        "Microbraids / x-small braids"
+        "Microbraids / x-small braids",
+        "Kids & teens styles",
+        "Wig cornrows"
       ],
       "removedServices": [
         "Feed-in braids"
@@ -3720,6 +3819,15 @@
           "Small Boho Knotless Braids- Human Hair Included",
           "Bora Bora Braids",
           "Small Bora Bora Braids"
+        ],
+        "Kids & teens styles": [
+          "Kids Under 10",
+          "Kids 4 Stitch Braids",
+          "Kids 6 Stitch Braids",
+          "Kids 8 Stitch Braids"
+        ],
+        "Wig cornrows": [
+          "Wig cornrows"
         ]
       },
       "handledFingerprints": [
@@ -3728,7 +3836,9 @@
         "service-add:french curl|french curl|smedium french curl boho braids",
         "service-remove:feed-in braids",
         "service-add:braid take-down|boho braids|small boho knotless braids- human hair included|bora bora braids|small bora bora braids",
-        "service-add:microbraids / x-small braids|boho braids|small boho knotless braids- human hair included|bora bora braids|small bora bora braids"
+        "service-add:microbraids / x-small braids|boho braids|small boho knotless braids- human hair included|bora bora braids|small bora bora braids",
+        "service-add:kids & teens styles|kids under 10|kids 4 stitch braids|kids 6 stitch braids|kids 8 stitch braids",
+        "service-add:wig cornrows|wig cornrows|wig cornrows"
       ]
     },
     "jo-johnson-ltd": {
@@ -4281,7 +4391,8 @@
       "addedServices": [
         "Sew-in take-down",
         "K-18 treatment",
-        "Wig install (frontal / closure)"
+        "Wig install (frontal / closure)",
+        "K18 treatment"
       ],
       "removedServices": [],
       "addedServiceFamilies": [
@@ -4302,12 +4413,19 @@
         ],
         "Wig install (frontal / closure)": [
           "Half Wig Install"
+        ],
+        "K18 treatment": [
+          "Traditional Sew-In + Treatment",
+          "Sew-In Removal + Treatment",
+          "Classic Ponytail or Bun + Treatment",
+          "Half up Half Down + Treatment"
         ]
       },
       "handledFingerprints": [
         "service-add:k-18 treatment|traditional sew-in + treatment|sew-in removal + treatment|classic ponytail or bun + treatment|half up half down + treatment",
         "service-add:wig install (frontal / closure)|half wig install",
-        "service-add:sew-in take-down|custom half up half down|half up half down|half up half down + treatment|half up half down (natural hair)"
+        "service-add:sew-in take-down|custom half up half down|half up half down|half up half down + treatment|half up half down (natural hair)",
+        "service-add:k18 treatment|traditional sew-in + treatment|sew-in removal + treatment|classic ponytail or bun + treatment|half up half down + treatment"
       ]
     },
     "bromley-uk-braider": {
@@ -4507,7 +4625,8 @@
     },
     "caeslique": {
       "addedServices": [
-        "Healthy hair consultations & regimes"
+        "Healthy hair consultations & regimes",
+        "Bouncy blowout / round brush blow dry"
       ],
       "removedServices": [],
       "addedServiceFamilies": [],
@@ -4517,8 +4636,14 @@
           "Keratin Bond Install (Hair Included)",
           "Tape-In Install (Hair Provided)",
           "Tape-In Install (Pre-Coloured Hair Provided)"
+        ],
+        "Bouncy blowout / round brush blow dry": [
+          "Bouncy Blowdry"
         ]
-      }
+      },
+      "handledFingerprints": [
+        "service-add:bouncy blowout / round brush blow dry|bouncy blowdry"
+      ]
     },
     "capitao-london-bridal": {
       "addedServices": [
@@ -5082,8 +5207,10 @@
         "service-add:scalp detox / treatments|scalp detox therapy|luxury scalp clinic|luxury hair & scalp consultation|luxury scalp analysis",
         "service-add:moisturising treatment|the intensive hydration treatment|the hair growth intensive treatment",
         "service-add:healthy hair plans & consultations|consultations|online braiding & boho colour hair consultation|luxury hair spa|luxury hair & scalp consultation",
-        "service-add:trichology / scalp analysis|scalp detox therapy|luxury scalp clinic|luxury hair & scalp consultation|luxury scalp analysis"
+        "service-add:trichology / scalp analysis|scalp detox therapy|luxury scalp clinic|luxury hair & scalp consultation|luxury scalp analysis",
+        "attribute:samedayemergency|true|website:walk ins welcome"
       ],
+      "sameDayEmergency": true,
       "locationLabel": "Kent"
     },
     "fashionsfaithstudio": {
@@ -5519,13 +5646,21 @@
       "priceBand": "££"
     },
     "hair-cupid-london": {
-      "addedServices": [],
+      "addedServices": [
+        "Texture release"
+      ],
       "removedServices": [],
       "addedServiceFamilies": [],
-      "addedServiceEvidence": {},
+      "addedServiceEvidence": {
+        "Texture release": [
+          "Texture Release — Short/Medium Lengths (10-15”)",
+          "Texture Release — Long Lengths (up to 20”)"
+        ]
+      },
       "handledFingerprints": [
         "price:£|medium|60|80|90|220|extension removal & hair revival - £80|tape-in refresh & maintenance - £90|tape-in renewal & refit - £220|sew-in refresh & revive - £60",
-        "price:£|medium"
+        "price:£|medium",
+        "service-add:texture release|texture release — short/medium lengths (10-15”)|texture release — long lengths (up to 20”)"
       ],
       "priceBand": "£"
     },
@@ -5749,18 +5884,30 @@
       "priceBand": "£££"
     },
     "taylor-taylor-london": {
-      "addedServices": [],
+      "addedServices": [
+        "Keratin treatment / Brazilian blowdry"
+      ],
       "removedServices": [
         "Wash & blowdry",
-        "Bouncy blowout / round brush blow dry"
+        "Bouncy blowout / round brush blow dry",
+        "Balayage",
+        "Highlights"
       ],
       "addedServiceFamilies": [],
-      "addedServiceEvidence": {},
+      "addedServiceEvidence": {
+        "Keratin treatment / Brazilian blowdry": [
+          "Brazilian Blow Out",
+          "Treatments"
+        ]
+      },
       "handledFingerprints": [
         "price:£|low|16|54|85|85|95|105|120|130|wash & blow-dry - £85.00|wash & blow-dry - £54.00|from £95.00|from £105.00|from £120.00|from £130.00|from £85.00|a discretionary charge of £16.00 may apply for complex tonging or longer hair extensions. *priced by stylist.",
         "price:£|low",
         "service-remove:wash & blowdry",
-        "service-remove:bouncy blowout / round brush blow dry"
+        "service-remove:bouncy blowout / round brush blow dry",
+        "service-add:keratin treatment / brazilian blowdry|brazilian blow out|treatments",
+        "service-remove:balayage",
+        "service-remove:highlights"
       ],
       "priceBand": "££"
     },
@@ -5801,14 +5948,18 @@
       "addedServices": [],
       "removedServices": [
         "Wig cornrows",
-        "Wash & blowdry"
+        "Wash & blowdry",
+        "Highlights",
+        "Balayage"
       ],
       "addedServiceFamilies": [],
       "addedServiceEvidence": {},
       "handledFingerprints": [
         "price:unknown",
         "service-remove:wig cornrows",
-        "service-remove:wash & blowdry"
+        "service-remove:wash & blowdry",
+        "service-remove:highlights",
+        "service-remove:balayage"
       ],
       "priceBand": "£"
     },
@@ -6244,10 +6395,16 @@
       "priceBand": "£"
     },
     "microlocs-with-mimi": {
-      "addedServices": [],
+      "addedServices": [
+        "Retwist / interlocking"
+      ],
       "removedServices": [],
       "addedServiceFamilies": [],
-      "addedServiceEvidence": {},
+      "addedServiceEvidence": {
+        "Retwist / interlocking": [
+          "micro interlocking\""
+        ]
+      },
       "handledFingerprints": [
         "price:£|medium|10|10|10|15|15|20|30|30|30|40|40|40|50|50|50|50|90|90|90|90|90|90|90|90|90|90|90|100|100|150|150|170|700|micro - £700|locs - for interlocks +£100|500 locs - from £150 for|+ fri/sat)\",\"4 hours (£10|+ fri/sat)\",\"5 hours (£10|+ £30|ph (£15|(start price)+ £30",
         "price:£|medium",
@@ -6258,7 +6415,8 @@
         "link:booking|www.foryourlocsonly.com|www.foryourlocsonly.com|unverified|503",
         "link:booking|www.foryourlocsonly.com|unverified|503",
         "link:instagram|www.instagram.com/microlocswithmimi|www.instagram.com/accounts/login/?next=https%3a%2f%2fwww.instagram.com%2fmicrolocswithmimi%2f&is_from_rle|unverified|200",
-        "link:instagram|www.instagram.com/microlocswithmimi|unverified|200"
+        "link:instagram|www.instagram.com/microlocswithmimi|unverified|200",
+        "service-add:retwist / interlocking|micro interlocking\""
       ],
       "priceBand": "££"
     },
@@ -6340,7 +6498,11 @@
       "addedServiceEvidence": {},
       "handledFingerprints": [
         "price:£|medium|25|35|50|50|50|55|55|65|75|85|93|95|102|105|118|120|130|145|145|160|180|210|235|ultimate head spa 75 mins - 1 hour, 15 mins &#183; £105|ultimate head spa 75 mins - 30 mins &#183; £55|signature head spa 60 mins - 1 hour &#183; £85|express signature head spa 45 mins - 45 mins &#183; £65|the treatment incorporates: - 1 hour, 30 mins &#183; £145|dandruff relief treatment - 1 hour, 40 mins &#183; £130|dandruff relief treatment - 30 mins &#183; £25|30 mins &#183; £35",
-        "price:£|medium"
+        "price:£|medium",
+        "link:booking|www.theheadspaeditt.com/appointments|www.theheadspaeditt.com/appointments|broken|404|booking link appears to be gone",
+        "link:booking|www.theheadspaeditt.com/appointments|broken|404",
+        "link:instagram|www.instagram.com/theheadspaedit|www.instagram.com/theheadspaedit|ok|200",
+        "link:instagram|www.instagram.com/theheadspaedit|ok|200"
       ],
       "priceBand": "£"
     },
@@ -6358,7 +6520,8 @@
     "sisters-spa-london": {
       "addedServices": [],
       "removedServices": [
-        "Wash & blowdry"
+        "Wash & blowdry",
+        "Bouncy blowout / round brush blow dry"
       ],
       "addedServiceFamilies": [],
       "addedServiceEvidence": {},
@@ -6369,7 +6532,8 @@
         "link:booking|www.vagaro.com/sistersspa|unverified|null",
         "link:instagram|www.instagram.com/sistersspalondon|www.instagram.com/sistersspalondon|ok|200",
         "link:instagram|www.instagram.com/sistersspalondon|ok|200",
-        "service-remove:wash & blowdry"
+        "service-remove:wash & blowdry",
+        "service-remove:bouncy blowout / round brush blow dry"
       ],
       "priceBand": "££"
     },
@@ -6699,7 +6863,8 @@
       ],
       "removedServices": [
         "Faux locs",
-        "Butterfly locs"
+        "Butterfly locs",
+        "Soft locs"
       ],
       "addedServiceFamilies": [],
       "addedServiceEvidence": {
@@ -6711,7 +6876,8 @@
         "price:unknown",
         "service-remove:faux locs",
         "service-remove:butterfly locs",
-        "service-add:trim / hair cut|void 0===e?\"\":string(e)).trim(),a=object.freeze({}),m=e=>null===e"
+        "service-add:trim / hair cut|void 0===e?\"\":string(e)).trim(),a=object.freeze({}),m=e=>null===e",
+        "service-remove:soft locs"
       ],
       "priceBand": "££"
     },
@@ -7143,19 +7309,40 @@
     },
     "braidsnchill": {
       "addedServices": [
-        "Retwist"
+        "Retwist",
+        "Crochet faux locs / invisible locs",
+        "Colour blend (mixing braiding hair)",
+        "Retwist / interlocking"
       ],
       "removedServices": [],
       "addedServiceFamilies": [],
       "addedServiceEvidence": {
         "Retwist": [
           "Touch UP ONLY for braids and retwist"
+        ],
+        "Crochet faux locs / invisible locs": [
+          "Invisible locs Bob length hair included",
+          "Butterfly Locs",
+          "Butterfly Locs Bra Length (HAIR INCLUDED & TAKE DOWN OF LOCS)",
+          "Butterfly Locs Waist Length (HAIR INCLUDED & TAKE DOWN OF LOCS)"
+        ],
+        "Colour blend (mixing braiding hair)": [
+          "Invisible locs Bob length hair included",
+          "kinky twist hair included (1/1B)",
+          "boho knotless braids Human Hair (1B)",
+          "boho knotless braids Human Hair (one Colour) please email."
+        ],
+        "Retwist / interlocking": [
+          "Touch UP ONLY for braids and retwist"
         ]
       },
       "handledFingerprints": [
         "price:unknown",
         "service-add:retwist|touch up only for braids and retwist",
-        "attribute:parkingavailable|true|booking:free parking"
+        "attribute:parkingavailable|true|booking:free parking",
+        "service-add:crochet faux locs / invisible locs|invisible locs bob length hair included|butterfly locs|butterfly locs bra length (hair included & take down of locs)|butterfly locs waist length (hair included & take down of locs)",
+        "service-add:colour blend (mixing braiding hair)|invisible locs bob length hair included|kinky twist hair included (1/1b)|boho knotless braids human hair (1b)|boho knotless braids human hair (one colour) please email.",
+        "service-add:retwist / interlocking|touch up only for braids and retwist"
       ],
       "parkingAvailable": true
     },
@@ -7716,18 +7903,33 @@
       ]
     },
     "kl-hairport": {
-      "addedServices": [],
+      "addedServices": [
+        "Stitch braids",
+        "Wig cornrows"
+      ],
       "removedServices": [
         "Stitch braids",
         "Twists (with extensions)"
       ],
       "addedServiceFamilies": [],
-      "addedServiceEvidence": {},
+      "addedServiceEvidence": {
+        "Stitch braids": [
+          "🚗 Large Goddess braids",
+          "🚗 Medium Goddess braids",
+          "🚗 Smedium Goddess braids",
+          "Knotless Braids"
+        ]
+      },
       "handledFingerprints": [
         "price:unknown",
         "service-remove:stitch braids",
-        "service-remove:twists (with extensions)"
-      ]
+        "service-remove:twists (with extensions)",
+        "service-add:stitch braids|🚗 large goddess braids|🚗 medium goddess braids|🚗 smedium goddess braids|knotless braids",
+        "service-add:wig cornrows",
+        "location:south|south-east|south east london",
+        "location:south-east|south east london"
+      ],
+      "locationLabel": "South east London"
     },
     "kumba-secka": {
       "addedServices": [],
@@ -8181,12 +8383,16 @@
     },
     "shirley-mcdonald-trichologist": {
       "addedServices": [
-        "K-18 treatment"
+        "K-18 treatment",
+        "K18 treatment"
       ],
       "removedServices": [],
       "addedServiceFamilies": [],
       "addedServiceEvidence": {
         "K-18 treatment": [
+          "Treatment"
+        ],
+        "K18 treatment": [
           "Treatment"
         ]
       },
@@ -8194,7 +8400,8 @@
         "price:unknown",
         "price:£|medium|45|45|45|75|150|treatment - £45|treatment - £45.00|£75.0040minsmore infoselect|treatment - £150.0060minsmore infoselect|treatment - £45.0060minsmore infoselect",
         "price:£|medium",
-        "service-add:k-18 treatment|treatment"
+        "service-add:k-18 treatment|treatment",
+        "service-add:k18 treatment|treatment"
       ],
       "priceBand": "£"
     },
@@ -8338,7 +8545,8 @@
     },
     "subrina-kidd-hair": {
       "addedServices": [
-        "Silk press"
+        "Silk press",
+        "K18 treatment"
       ],
       "removedServices": [
         "Wash & blowdry"
@@ -8348,12 +8556,16 @@
         "Silk press": [
           "PRESS",
           "Finish (blow-dry, silk-press, straighteners, twist-out, curly-set)"
+        ],
+        "K18 treatment": [
+          "Treatment"
         ]
       },
       "handledFingerprints": [
         "price:unknown",
         "service-remove:wash & blowdry",
-        "service-add:silk press|press|finish (blow-dry, silk-press, straighteners, twist-out, curly-set)"
+        "service-add:silk press|press|finish (blow-dry, silk-press, straighteners, twist-out, curly-set)",
+        "service-add:k18 treatment|treatment"
       ]
     },
     "sulayhairsalon": {
@@ -8603,12 +8815,15 @@
     },
     "hollylondon": {
       "addedServices": [],
-      "removedServices": [],
+      "removedServices": [
+        "Bouncy blowout / round brush blow dry"
+      ],
       "addedServiceFamilies": [],
       "addedServiceEvidence": {},
       "handledFingerprints": [
         "link:booking|tress.ly/hollylondon|tress.ly/hollylondon|unverified|null",
-        "link:booking|tress.ly/hollylondon|unverified|null"
+        "link:booking|tress.ly/hollylondon|unverified|null",
+        "service-remove:bouncy blowout / round brush blow dry"
       ]
     },
     "ify-london": {
@@ -8645,7 +8860,8 @@
         "K-18 treatment",
         "Olaplex treatment",
         "Hair botox",
-        "Healthy hair plans & consultations"
+        "Healthy hair plans & consultations",
+        "K18 treatment"
       ],
       "removedServices": [
         "Tracks (+ silk press) / partial / invisible sew-in"
@@ -8662,7 +8878,9 @@
           "Treatment",
           "Treatment & Go Curly Finish",
           "Basic Treatment Blow/Finish",
-          "Prescribed Treatment Blow/Finish (Uberliss/Collagen)"
+          "Prescribed Treatment Blow/Finish (Uberliss/Collagen)",
+          "Basic Treatment with Trim",
+          "Colour Hairline & Treatment"
         ],
         "Hair botox": [
           "Cut and Blow dry Long hair",
@@ -8675,6 +8893,12 @@
           "Keratin Smoothing Short Hair",
           "Keratin Smoothing Medium Hair",
           "Kertin Smoothing Long Hair"
+        ],
+        "K18 treatment": [
+          "Treatment",
+          "Basic Treatment with Trim",
+          "Colour Hairline & Treatment",
+          "Treatment & Go Curly Finish"
         ]
       },
       "handledFingerprints": [
@@ -8684,7 +8908,9 @@
         "service-add:olaplex treatment|treatment|treatment & go curly finish|basic treatment blow/finish|prescribed treatment blow/finish (uberliss/collagen)",
         "service-add:hair botox|cut and blow dry long hair|keratin smoothing short hair|keratin smoothing medium hair|kertin smoothing long hair",
         "service-remove:tracks (+ silk press) / partial / invisible sew-in",
-        "service-add:healthy hair plans & consultations|cut and blow dry long hair|keratin smoothing short hair|keratin smoothing medium hair|kertin smoothing long hair"
+        "service-add:healthy hair plans & consultations|cut and blow dry long hair|keratin smoothing short hair|keratin smoothing medium hair|kertin smoothing long hair",
+        "service-add:k18 treatment|treatment|basic treatment with trim|colour hairline & treatment|treatment & go curly finish",
+        "service-add:olaplex treatment|treatment|basic treatment with trim|colour hairline & treatment|treatment & go curly finish"
       ],
       "locationLabel": "Central London"
     },
@@ -8796,7 +9022,8 @@
     "the-reign-spitalfields": {
       "addedServices": [
         "K-18 treatment",
-        "Hair botox"
+        "Hair botox",
+        "K18 treatment"
       ],
       "removedServices": [],
       "addedServiceFamilies": [],
@@ -8812,13 +9039,20 @@
           "Keratin Smoothing Short Hair",
           "Keratin Smoothing Medium Hair",
           "Kertin Smoothing Long Hair"
+        ],
+        "K18 treatment": [
+          "Treatment",
+          "Basic Treatment with Trim",
+          "Colour Hairline & Treatment",
+          "Treatment & Go Curly Finish"
         ]
       },
       "handledFingerprints": [
         "location:central london / east london|central|central london",
         "location:central|central london",
         "service-add:k-18 treatment|treatment|treatment & go curly finish|basic treatment blow/finish|prescribed treatment blow/finish (uberliss/collagen)",
-        "service-add:hair botox|cut and blow dry long hair|keratin smoothing short hair|keratin smoothing medium hair|kertin smoothing long hair"
+        "service-add:hair botox|cut and blow dry long hair|keratin smoothing short hair|keratin smoothing medium hair|kertin smoothing long hair",
+        "service-add:k18 treatment|treatment|basic treatment with trim|colour hairline & treatment|treatment & go curly finish"
       ],
       "locationLabel": "Central London"
     },
@@ -9006,7 +9240,8 @@
         "Bridal",
         "Full head colour",
         "Highlights",
-        "Balayage"
+        "Balayage",
+        "Keratin treatment / Brazilian blowdry"
       ],
       "removedServices": [
         "Wash & blowdry"
@@ -9035,6 +9270,12 @@
         ],
         "Balayage": [
           "Balayage Hair Colouring"
+        ],
+        "Keratin treatment / Brazilian blowdry": [
+          "Autumn / Winter Treatments",
+          "Other Conditioning Treatments",
+          "Brazilian Keratin",
+          "Hair Treatments"
         ]
       },
       "handledFingerprints": [
@@ -9044,7 +9285,8 @@
         "service-add:full head colour|colour|colour consultation|hair coloring|hair colouring highlights",
         "service-add:highlights|hair colouring highlights",
         "service-add:balayage|balayage hair colouring",
-        "attribute:lgbtqfriendly|true|booking:lgbtq+"
+        "attribute:lgbtqfriendly|true|booking:lgbtq+",
+        "service-add:keratin treatment / brazilian blowdry|autumn / winter treatments|other conditioning treatments|brazilian keratin|hair treatments"
       ],
       "lgbtqFriendly": true
     },
@@ -9159,7 +9401,8 @@
         "Fulani / lemonade braids",
         "Retwist",
         "Wig colouring / bundle colouring",
-        "Twists (with extensions)"
+        "Twists (with extensions)",
+        "Retwist / interlocking"
       ],
       "removedServices": [
         "Full head colour"
@@ -9186,6 +9429,9 @@
         ],
         "Twists (with extensions)": [
           "Marley twists"
+        ],
+        "Retwist / interlocking": [
+          "Retwist (faux locs)"
         ]
       },
       "handledFingerprints": [
@@ -9194,13 +9440,15 @@
         "service-add:fulani / lemonade braids|fulani faux locs|fulani locs",
         "service-add:retwist|retwist (faux locs)",
         "service-add:wig colouring / bundle colouring|colour 613",
-        "service-add:twists (with extensions)|marley twists"
+        "service-add:twists (with extensions)|marley twists",
+        "service-add:retwist / interlocking|retwist (faux locs)"
       ]
     },
     "becrochetcreation": {
       "addedServices": [
         "Healthy hair plans & consultations",
-        "Boho braids / goddess braids"
+        "Boho braids / goddess braids",
+        "Crochet faux locs / invisible locs"
       ],
       "removedServices": [],
       "addedServiceFamilies": [],
@@ -9216,12 +9464,21 @@
           "CROCHET BRAIDS CURLY",
           "Curly crochet braids",
           "Human hair goddess Braids"
+        ],
+        "Crochet faux locs / invisible locs": [
+          "Faux locs touch up",
+          "CROCHET BRAIDS CURLY",
+          "Curly crochet braids",
+          "Curly crochet Bun Option"
         ]
       },
       "handledFingerprints": [
         "service-add:healthy hair plans & consultations|consultation- hairstyles, hair help, alopecia advice|afro hairstyles|human hair curly (1 part)|human hair curly with 360 (bun)",
-        "service-add:boho braids / goddess braids|box braids/senegalese twist/passion twist|crochet braids curly|curly crochet braids|human hair goddess braids"
-      ]
+        "service-add:boho braids / goddess braids|box braids/senegalese twist/passion twist|crochet braids curly|curly crochet braids|human hair goddess braids",
+        "service-add:crochet faux locs / invisible locs|faux locs touch up|crochet braids curly|curly crochet braids|curly crochet bun option",
+        "attribute:samedayemergency|true|booking:emergency appointment|booking:- any emergency appointment are subject to availability and additional £30 will apply"
+      ],
+      "sameDayEmergency": true
     },
     "blessed-by-sj": {
       "addedServices": [
@@ -9337,16 +9594,26 @@
       ]
     },
     "theblowdryartist": {
-      "addedServices": [],
+      "addedServices": [
+        "Full head colour"
+      ],
       "removedServices": [
         "Bouncy blowout / round brush blow dry",
         "Wash & blowdry"
       ],
-      "addedServiceFamilies": [],
-      "addedServiceEvidence": {},
+      "addedServiceFamilies": [
+        "colour"
+      ],
+      "addedServiceEvidence": {
+        "Full head colour": [
+          "\"theme_color\": \"#ffffff\",",
+          "\"background_color\": \"#ffffff\""
+        ]
+      },
       "handledFingerprints": [
         "service-remove:bouncy blowout / round brush blow dry",
-        "service-remove:wash & blowdry"
+        "service-remove:wash & blowdry",
+        "service-add:full head colour|\"theme_color\": \"#ffffff\",|\"background_color\": \"#ffffff\""
       ]
     },
     "slayybychanny": {
@@ -9456,7 +9723,8 @@
     "maluwanichole": {
       "addedServices": [
         "K-18 treatment",
-        "Olaplex treatment"
+        "Olaplex treatment",
+        "K18 treatment"
       ],
       "removedServices": [
         "Wash & blowdry",
@@ -9476,6 +9744,12 @@
           "Protein Repair Treatment",
           "Filter by treatment",
           "Treatment"
+        ],
+        "K18 treatment": [
+          "The Treatment Files",
+          "Protein Repair Treatment",
+          "Filter by treatment",
+          "Treatment"
         ]
       },
       "handledFingerprints": [
@@ -9483,7 +9757,8 @@
         "service-remove:tracks (+ silk press) / partial / invisible sew-in",
         "service-add:k-18 treatment|the treatment files|filter by treatment|treatment|all treatments",
         "service-add:k-18 treatment|the treatment files|protein repair treatment|filter by treatment|treatment",
-        "service-add:olaplex treatment|the treatment files|protein repair treatment|filter by treatment|treatment"
+        "service-add:olaplex treatment|the treatment files|protein repair treatment|filter by treatment|treatment",
+        "service-add:k18 treatment|the treatment files|protein repair treatment|filter by treatment|treatment"
       ]
     },
     "jennifer-cynthia-the-hairstylist": {
@@ -9754,7 +10029,9 @@
         "Quick weave",
         "Sew-in take-down"
       ],
-      "removedServices": [],
+      "removedServices": [
+        "Tracks (+ silk press) / partial / invisible sew-in"
+      ],
       "addedServiceFamilies": [],
       "addedServiceEvidence": {
         "Closure sew-in / closure behind the hairline": [
@@ -9785,8 +10062,11 @@
         "service-add:sleek ponytail / bun|sleek ponytail",
         "service-add:trim / hair cut|20% off wash & blow-dry appointments in between your treatments (natural hair only)|includes a trim|select hair wash add on|🌱 trim",
         "service-add:quick weave|this service can be sew in or quick weave|removal for: la weave & sew ins|la weave|la weave maintenance",
-        "service-add:sew-in take-down|🌱 braid down"
-      ]
+        "service-add:sew-in take-down|🌱 braid down",
+        "service-remove:tracks (+ silk press) / partial / invisible sew-in",
+        "attribute:samedayemergency|true|booking:appointments only, no walk-ins"
+      ],
+      "sameDayEmergency": true
     },
     "za-wigs": {
       "addedServices": [],
@@ -10033,7 +10313,8 @@
         "Stitch braids",
         "Butterfly locs",
         "Highlights",
-        "Quick weave"
+        "Quick weave",
+        "Miracle knots"
       ],
       "removedServices": [
         "Butterfly locs"
@@ -10068,6 +10349,11 @@
           "Fulani Flip Over+ Quickweave",
           "Fulani Braids+Quickweave",
           "Fulani braided down+ Sew In/Quick weave"
+        ],
+        "Miracle knots": [
+          "Miracle Knots",
+          "Smedium Miracle Knots",
+          "Medium Miracke knots"
         ]
       },
       "handledFingerprints": [
@@ -10076,8 +10362,13 @@
         "service-add:butterfly locs|smedium butterfly locs|medium butterfly locs|large butterfly locs|✨jah locs✨",
         "service-add:highlights|recreation/highlighted styles|model highlights recreation",
         "service-add:quick weave|fulani flip over+ quickweave|fulani braids+quickweave|fulani braided down+ sew in/quick weave",
-        "service-remove:butterfly locs"
-      ]
+        "service-remove:butterfly locs",
+        "service-add:miracle knots|miracle knots|smedium miracle knots|medium miracke knots",
+        "attribute:parkingavailable|true|booking banner:parking is available on darlan rd for certain times]|booking banner:please note parking can be pricey in this area",
+        "attribute:samedayemergency|true|booking banner:emergency appointment = £20 less than 24 hours before booking"
+      ],
+      "parkingAvailable": true,
+      "sameDayEmergency": true
     },
     "sixxx": {
       "addedServices": [
@@ -10306,8 +10597,10 @@
         ]
       },
       "handledFingerprints": [
-        "service-add:highlights|'faux highlights' hair included sew-in|'faux highlights' hair included tape-in install"
-      ]
+        "service-add:highlights|'faux highlights' hair included sew-in|'faux highlights' hair included tape-in install",
+        "attribute:parkingavailable|true|booking banner:\\ 4 paid parking is available nearby"
+      ],
+      "parkingAvailable": true
     },
     "mochasloungeuk": {
       "addedServices": [
@@ -10419,20 +10712,32 @@
     },
     "keratin-by-anais": {
       "addedServices": [
-        "Keratin treatment"
+        "Keratin treatment",
+        "Highlights",
+        "Balayage"
       ],
       "removedServices": [
         "Wash & blowdry"
       ],
-      "addedServiceFamilies": [],
+      "addedServiceFamilies": [
+        "colour"
+      ],
       "addedServiceEvidence": {
         "Keratin treatment": [
           "Make an appointment at Keratin by Anais - 16b Pratt Street - London"
+        ],
+        "Highlights": [
+          "Hair Colouring Highlights"
+        ],
+        "Balayage": [
+          "Balayage Hair Colouring"
         ]
       },
       "handledFingerprints": [
         "service-add:keratin treatment|make an appointment at keratin by anais - 16b pratt street - london",
-        "service-remove:wash & blowdry"
+        "service-remove:wash & blowdry",
+        "service-add:highlights|hair colouring highlights",
+        "service-add:balayage|balayage hair colouring"
       ]
     },
     "jazzy-thee-hair-artist": {
@@ -10612,7 +10917,8 @@
         "Keratin treatment",
         "Healthy hair plans & consultations",
         "K-18 treatment",
-        "Traditional sew-in / leave out"
+        "Traditional sew-in / leave out",
+        "K18 treatment"
       ],
       "removedServices": [],
       "addedServiceFamilies": [],
@@ -10638,22 +10944,35 @@
         "Traditional sew-in / leave out": [
           "Sew in with Leave/Finish",
           "Sew In With Leave/Finish With Wash Prior £30"
+        ],
+        "K18 treatment": [
+          "Treatment",
+          "Basic Treatment with Trim",
+          "Colour Hairline & Treatment",
+          "Treatment & Go Curly Finish"
         ]
       },
       "handledFingerprints": [
         "service-add:keratin treatment|keratin smoothing short hair|keratin smoothing medium hair|keratin smoothing from £250 from 2h|treatment",
         "service-add:healthy hair plans & consultations|cut and blow dry long hair|keratin smoothing short hair|keratin smoothing medium hair|kertin smoothing long hair",
         "service-add:k-18 treatment|treatment|treatment & go curly finish|basic treatment blow/finish|prescribed treatment blow/finish (uberliss/collagen)",
-        "service-add:traditional sew-in / leave out|sew in with leave/finish|sew in with leave/finish with wash prior £30"
-      ]
+        "service-add:traditional sew-in / leave out|sew in with leave/finish|sew in with leave/finish with wash prior £30",
+        "service-add:k18 treatment|treatment|basic treatment with trim|colour hairline & treatment|treatment & go curly finish",
+        "location:central london / east london|central|central london",
+        "location:central|central london"
+      ],
+      "locationLabel": "Central London"
     },
     "ess-belle-tresses": {
       "addedServices": [
         "Traditional sew-in / leave out",
         "Tape ins",
-        "Miracle knots"
+        "Miracle knots",
+        "Crochet faux locs / invisible locs"
       ],
-      "removedServices": [],
+      "removedServices": [
+        "Soft locs"
+      ],
       "addedServiceFamilies": [],
       "addedServiceEvidence": {
         "Traditional sew-in / leave out": [
@@ -10667,12 +10986,17 @@
         ],
         "Miracle knots": [
           "Miracle Knot Braids"
+        ],
+        "Crochet faux locs / invisible locs": [
+          "INVISIBLE LOCS - BOHO"
         ]
       },
       "handledFingerprints": [
         "service-add:traditional sew-in / leave out|traditional sew in",
         "service-add:tape ins|2. tape in extensions|hybrid tape in extension|tape ins - full head (200-350g)|tape ins - half head (100-150g)",
-        "service-add:miracle knots|miracle knot braids"
+        "service-add:miracle knots|miracle knot braids",
+        "service-add:crochet faux locs / invisible locs|invisible locs - boho",
+        "service-remove:soft locs"
       ]
     },
     "daniella-osei": {
@@ -10781,8 +11105,10 @@
         ]
       },
       "handledFingerprints": [
-        "service-add:updo|prom updo special"
-      ]
+        "service-add:updo|prom updo special",
+        "attribute:parkingavailable|true|booking banner:earlier to find parking"
+      ],
+      "parkingAvailable": true
     },
     "cocoas-touch": {
       "addedServices": [
@@ -10854,19 +11180,30 @@
     },
     "aluxebeauty-uk": {
       "addedServices": [
-        "Miracle knots"
+        "Miracle knots",
+        "Crochet faux locs / invisible locs"
       ],
-      "removedServices": [],
+      "removedServices": [
+        "Soft locs"
+      ],
       "addedServiceFamilies": [],
       "addedServiceEvidence": {
         "Miracle knots": [
           "Miracle knots ꨄ",
           "Small/med Miracle knots",
           "Small Miracle knots"
+        ],
+        "Crochet faux locs / invisible locs": [
+          "Locs ꨄ",
+          "Invisible Locs - Medium",
+          "Invisible locs - Large",
+          "Small/med invisible locs"
         ]
       },
       "handledFingerprints": [
-        "service-add:miracle knots|miracle knots ꨄ|small/med miracle knots|small miracle knots"
+        "service-add:miracle knots|miracle knots ꨄ|small/med miracle knots|small miracle knots",
+        "service-add:crochet faux locs / invisible locs|locs ꨄ|invisible locs - medium|invisible locs - large|small/med invisible locs",
+        "service-remove:soft locs"
       ]
     },
     "beverleyfrimpong": {
@@ -10998,7 +11335,8 @@
     },
     "hebehair": {
       "addedServices": [
-        "K-18 treatment"
+        "K-18 treatment",
+        "K18 treatment"
       ],
       "removedServices": [],
       "addedServiceFamilies": [],
@@ -11008,10 +11346,17 @@
           "Filter by treatment",
           "Treatment",
           "All treatments"
+        ],
+        "K18 treatment": [
+          "The Treatment Files",
+          "Filter by treatment",
+          "Treatment",
+          "All treatments"
         ]
       },
       "handledFingerprints": [
-        "service-add:k-18 treatment|the treatment files|filter by treatment|treatment|all treatments"
+        "service-add:k-18 treatment|the treatment files|filter by treatment|treatment|all treatments",
+        "service-add:k18 treatment|the treatment files|filter by treatment|treatment|all treatments"
       ]
     },
     "oceanes-hair": {
@@ -11290,7 +11635,9 @@
     },
     "covemedical": {
       "addedServices": [
-        "Healthy hair plans & consultations"
+        "Healthy hair plans & consultations",
+        "Closure sew-in / closure behind the hairline",
+        "Scalp detox / treatments"
       ],
       "removedServices": [],
       "addedServiceFamilies": [],
@@ -11298,11 +11645,25 @@
         "Healthy hair plans & consultations": [
           "1 PRP session for hair loss",
           "PRP Bundle of 3 for hair loss",
-          "PRP 4 bundle for hair loss"
+          "PRP 4 bundle for hair loss",
+          "Hair Loss Treatment",
+          "1 PRP session for hair loss (One Area) - edges, crown, nape, hairline",
+          "PRP Bundle of 3 for hair loss - one area ( edges, crown, nape, hairline)",
+          "PRP 4 SESSIONS FOR HAIR LOSS"
+        ],
+        "Closure sew-in / closure behind the hairline": [
+          "1 PRP session for hair loss (One Area) - edges, crown, nape, hairline",
+          "PRP Bundle of 3 for hair loss - one area ( edges, crown, nape, hairline)"
+        ],
+        "Scalp detox / treatments": [
+          "1 PRP session covering 2 areas of the scalp (edges & nape, edges & crown, full scalp )"
         ]
       },
       "handledFingerprints": [
-        "service-add:healthy hair plans & consultations|1 prp session for hair loss|prp bundle of 3 for hair loss|prp 4 bundle for hair loss"
+        "service-add:healthy hair plans & consultations|1 prp session for hair loss|prp bundle of 3 for hair loss|prp 4 bundle for hair loss",
+        "service-add:healthy hair plans & consultations|hair loss treatment|1 prp session for hair loss (one area) - edges, crown, nape, hairline|prp bundle of 3 for hair loss - one area ( edges, crown, nape, hairline)|prp 4 sessions for hair loss",
+        "service-add:closure sew-in / closure behind the hairline|1 prp session for hair loss (one area) - edges, crown, nape, hairline|prp bundle of 3 for hair loss - one area ( edges, crown, nape, hairline)",
+        "service-add:scalp detox / treatments|1 prp session covering 2 areas of the scalp (edges & nape, edges & crown, full scalp )"
       ]
     },
     "cshairuk": {
@@ -11456,8 +11817,10 @@
       "addedServiceEvidence": {},
       "handledFingerprints": [
         "service-remove:wash & blowdry",
-        "service-remove:tracks (+ silk press) / partial / invisible sew-in"
-      ]
+        "service-remove:tracks (+ silk press) / partial / invisible sew-in",
+        "attribute:parkingavailable|true|booking:parking available"
+      ],
+      "parkingAvailable": true
     },
     "kaay-long": {
       "addedServices": [],
@@ -11476,7 +11839,10 @@
       "addedServices": [
         "Traditional sew-in / leave out"
       ],
-      "removedServices": [],
+      "removedServices": [
+        "Butterfly locs",
+        "Soft locs"
+      ],
       "addedServiceFamilies": [],
       "addedServiceEvidence": {
         "Traditional sew-in / leave out": [
@@ -11484,7 +11850,9 @@
         ]
       },
       "handledFingerprints": [
-        "service-add:traditional sew-in / leave out|cassie braids x leave out"
+        "service-add:traditional sew-in / leave out|cassie braids x leave out",
+        "service-remove:butterfly locs",
+        "service-remove:soft locs"
       ]
     },
     "hair-by-rose-essex": {
@@ -11742,16 +12110,25 @@
       "sameDayEmergency": true
     },
     "ohnohair": {
-      "addedServices": [],
+      "addedServices": [
+        "Highlights"
+      ],
       "removedServices": [
         "Starter locs",
         "Twists (with extensions)"
       ],
-      "addedServiceFamilies": [],
-      "addedServiceEvidence": {},
+      "addedServiceFamilies": [
+        "colour"
+      ],
+      "addedServiceEvidence": {
+        "Highlights": [
+          "Hair Colouring Highlights"
+        ]
+      },
       "handledFingerprints": [
         "service-remove:starter locs",
-        "service-remove:twists (with extensions)"
+        "service-remove:twists (with extensions)",
+        "service-add:highlights|hair colouring highlights"
       ]
     },
     "paula-mademe": {
@@ -11860,20 +12237,30 @@
     },
     "unrulycurls": {
       "addedServices": [
-        "Trim / hair cut"
+        "Trim / hair cut",
+        "Full head colour"
       ],
       "removedServices": [],
-      "addedServiceFamilies": [],
+      "addedServiceFamilies": [
+        "colour"
+      ],
       "addedServiceEvidence": {
         "Trim / hair cut": [
           "Thank you, very happy with my hair cut!",
           "Men&#x27;s Haircuts",
           "Hair Coloring",
           "Hair Treatments"
+        ],
+        "Full head colour": [
+          "Colour Extras",
+          "Hair Coloring",
+          "Hair Colouring Highlights",
+          "Balayage Hair Colouring"
         ]
       },
       "handledFingerprints": [
-        "service-add:trim / hair cut|thank you, very happy with my hair cut!|men&#x27;s haircuts|hair coloring|hair treatments"
+        "service-add:trim / hair cut|thank you, very happy with my hair cut!|men&#x27;s haircuts|hair coloring|hair treatments",
+        "service-add:full head colour|colour extras|hair coloring|hair colouring highlights|balayage hair colouring"
       ]
     },
     "dash-dept-uk": {
@@ -12025,8 +12412,10 @@
       "handledFingerprints": [
         "service-add:wig colouring / bundle colouring|colouring",
         "service-remove:wash & blowdry",
-        "service-remove:bouncy blowout / round brush blow dry"
-      ]
+        "service-remove:bouncy blowout / round brush blow dry",
+        "attribute:samedayemergency|true|website:we offer an extensive range of beverages, from matcha lattes and iced coffee to fruit and herbal teas, ensuring our clients feel pampered from the moment they walk in"
+      ],
+      "sameDayEmergency": true
     },
     "naysahny-hair": {
       "addedServices": [
@@ -12129,7 +12518,8 @@
     "bluetit": {
       "addedServices": [
         "Wig colouring / bundle colouring",
-        "K-18 treatment"
+        "K-18 treatment",
+        "K18 treatment"
       ],
       "removedServices": [],
       "addedServiceFamilies": [
@@ -12141,11 +12531,15 @@
         ],
         "K-18 treatment": [
           "Treatment"
+        ],
+        "K18 treatment": [
+          "Treatment"
         ]
       },
       "handledFingerprints": [
         "service-add:wig colouring / bundle colouring|colouring",
-        "service-add:k-18 treatment|treatment"
+        "service-add:k-18 treatment|treatment",
+        "service-add:k18 treatment|treatment"
       ]
     },
     "asp-hair-london": {
@@ -14261,6 +14655,331 @@
       "addedServiceEvidence": {},
       "handledFingerprints": [],
       "sellsHairSeparately": true
+    },
+    "braids-from-london": {
+      "addedServices": [],
+      "removedServices": [],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {},
+      "handledFingerprints": [
+        "link:booking|www.fresha.com/book-now/braidsfromparis-xd05bq37/all-offer?id=1440466&pid=1368001|www.fresha.com/providers/braidsfromparis-xd05bq37/offline|broken|410|booking link appears to be gone",
+        "link:booking|www.fresha.com/book-now/braidsfromparis-xd05bq37/all-offer?id=1440466&pid=1368001|broken|410",
+        "link:instagram|www.instagram.com/braidsfromlondon|www.instagram.com/braidsfromlondon|ok|200",
+        "link:instagram|www.instagram.com/braidsfromlondon|ok|200"
+      ]
+    },
+    "adysa-studio": {
+      "addedServices": [
+        "Crochet faux locs / invisible locs"
+      ],
+      "removedServices": [],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {
+        "Crochet faux locs / invisible locs": [
+          "Locs",
+          "Invisible Locs - Shoulder Length",
+          "Invisible Locs - Mid Back",
+          "Invisible Locs - Waist Length"
+        ]
+      },
+      "handledFingerprints": [
+        "service-add:crochet faux locs / invisible locs|locs|invisible locs - shoulder length|invisible locs - mid back|invisible locs - waist length"
+      ]
+    },
+    "braided-by-bibi": {
+      "addedServices": [],
+      "removedServices": [],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {},
+      "handledFingerprints": [
+        "attribute:parkingavailable|true|booking banner:© location daily vistors parking permits are"
+      ],
+      "parkingAvailable": true
+    },
+    "by-pm-beauty": {
+      "addedServices": [
+        "Flipover / Versatile sew-in"
+      ],
+      "removedServices": [],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {
+        "Flipover / Versatile sew-in": [
+          "Versatile Sew In"
+        ]
+      },
+      "handledFingerprints": [
+        "service-add:flipover / versatile sew-in|versatile sew in"
+      ]
+    },
+    "conceisao-uk": {
+      "addedServices": [
+        "Crochet faux locs / invisible locs"
+      ],
+      "removedServices": [
+        "Soft locs"
+      ],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {
+        "Crochet faux locs / invisible locs": [
+          "Starter Locs ( medium )",
+          "Starter locs +style ( medium )",
+          "Retwist ( under 150 locs)",
+          "Re-twist + Style ( under 150 locs)"
+        ]
+      },
+      "handledFingerprints": [
+        "service-add:crochet faux locs / invisible locs|starter locs ( medium )|starter locs +style ( medium )|retwist ( under 150 locs)|re-twist + style ( under 150 locs)",
+        "service-remove:soft locs"
+      ]
+    },
+    "dillanbstudios": {
+      "addedServices": [],
+      "removedServices": [
+        "Tracks (+ silk press) / partial / invisible sew-in",
+        "Wash & blowdry",
+        "Natural hair coaches / educators"
+      ],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {},
+      "handledFingerprints": [
+        "service-remove:tracks (+ silk press) / partial / invisible sew-in",
+        "service-remove:wash & blowdry",
+        "service-remove:natural hair coaches / educators"
+      ]
+    },
+    "eksleek": {
+      "addedServices": [],
+      "removedServices": [],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {},
+      "handledFingerprints": [
+        "attribute:samedayemergency|true|booking banner:same day appointment (less than 12 hour notice) +£20"
+      ],
+      "sameDayEmergency": true
+    },
+    "elysia-beauty": {
+      "addedServices": [
+        "Crochet faux locs / invisible locs",
+        "Healthy hair plans & consultations",
+        "Wig cornrows"
+      ],
+      "removedServices": [],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {
+        "Crochet faux locs / invisible locs": [
+          "Soft Locs small",
+          "INVISIBLE LOCS",
+          "invisible locs bob length",
+          "LOCS"
+        ],
+        "Healthy hair plans & consultations": [
+          "Smedium boho bob with human hair pieces",
+          "Short hair girlies small knotless midback"
+        ]
+      },
+      "handledFingerprints": [
+        "service-add:crochet faux locs / invisible locs|soft locs small|invisible locs|invisible locs bob length|locs",
+        "service-add:healthy hair plans & consultations|smedium boho bob with human hair pieces|short hair girlies small knotless midback",
+        "service-add:wig cornrows"
+      ]
+    },
+    "hair-by-ssb": {
+      "addedServices": [
+        "Crochet faux locs / invisible locs"
+      ],
+      "removedServices": [],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {
+        "Crochet faux locs / invisible locs": [
+          "Faux Locs",
+          "Invisible Locs - Armpit Length",
+          "Butterfly Locs - Armpit Length",
+          "Butterfly Locs - Waist Length"
+        ]
+      },
+      "handledFingerprints": [
+        "service-add:crochet faux locs / invisible locs|faux locs|invisible locs - armpit length|butterfly locs - armpit length|butterfly locs - waist length"
+      ]
+    },
+    "the-hair-senpai": {
+      "addedServices": [],
+      "removedServices": [],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {},
+      "handledFingerprints": [
+        "location:south west london / west london|south-west|south west london",
+        "location:south-west|south west london"
+      ],
+      "locationLabel": "South west London"
+    },
+    "mk-the-hairstylist": {
+      "addedServices": [],
+      "removedServices": [],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {},
+      "handledFingerprints": [
+        "location:mobile / home service|kent|kent",
+        "location:kent|kent"
+      ],
+      "locationLabel": "Kent"
+    },
+    "jhykesignaturee": {
+      "addedServices": [],
+      "removedServices": [],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {},
+      "handledFingerprints": [
+        "location:essex|east|east london",
+        "location:east|east london"
+      ],
+      "locationLabel": "East London"
+    },
+    "braided-by-nicks": {
+      "addedServices": [],
+      "removedServices": [],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {},
+      "handledFingerprints": [
+        "location:essex|east|east london",
+        "location:east|east london"
+      ],
+      "locationLabel": "East London"
+    },
+    "true-touch-london": {
+      "addedServices": [],
+      "removedServices": [],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {},
+      "handledFingerprints": [
+        "attribute:parkingavailable|true|booking banner:e 4 = = free parking available"
+      ],
+      "parkingAvailable": true
+    },
+    "thehouseofplush": {
+      "addedServices": [],
+      "removedServices": [],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {},
+      "handledFingerprints": [
+        "attribute:parkingavailable|true|booking:parking available"
+      ],
+      "parkingAvailable": true
+    },
+    "the-braidologist-ldn": {
+      "addedServices": [
+        "Knotless braids"
+      ],
+      "removedServices": [
+        "Stitch braids"
+      ],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {
+        "Knotless braids": [
+          "Smedium Knotless Braids"
+        ]
+      },
+      "handledFingerprints": [
+        "service-add:knotless braids|smedium knotless braids",
+        "service-remove:stitch braids"
+      ]
+    },
+    "styled-by-kadie": {
+      "addedServices": [
+        "Miracle knots"
+      ],
+      "removedServices": [],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {
+        "Miracle knots": [
+          "Miracle Knots",
+          "Smedium Miracle Knots",
+          "Medium Miracle knots"
+        ]
+      },
+      "handledFingerprints": [
+        "service-add:miracle knots|miracle knots|smedium miracle knots|medium miracle knots"
+      ]
+    },
+    "sleeked-out-ldn": {
+      "addedServices": [
+        "Quick weave"
+      ],
+      "removedServices": [],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {
+        "Quick weave": [
+          "Sew ins / Quick weaves"
+        ]
+      },
+      "handledFingerprints": [
+        "service-add:quick weave|sew ins / quick weaves"
+      ]
+    },
+    "london-locs-uk": {
+      "addedServices": [
+        "Keratin treatment / Brazilian blowdry",
+        "Crochet"
+      ],
+      "removedServices": [
+        "Full head colour",
+        "Starter locs / instant locs"
+      ],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {
+        "Keratin treatment / Brazilian blowdry": [
+          "Loc Treatments",
+          "Hair Treatments",
+          "Keratin Treatments",
+          "Hair Treatments in Whitmore Estate"
+        ],
+        "Crochet": [
+          "Crochet and Locs Extensions"
+        ]
+      },
+      "handledFingerprints": [
+        "service-remove:full head colour",
+        "service-remove:starter locs / instant locs",
+        "service-add:keratin treatment / brazilian blowdry|loc treatments|hair treatments|keratin treatments|hair treatments in whitmore estate",
+        "service-add:crochet|crochet and locs extensions"
+      ]
+    },
+    "maggies-hair": {
+      "addedServices": [],
+      "removedServices": [],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {},
+      "handledFingerprints": [
+        "attribute:samedayemergency|true|booking banner:ee ave any 24-48 hrs prior / same day appointment will be cancelled hours before appointment)"
+      ],
+      "sameDayEmergency": true
+    },
+    "mbl-hair": {
+      "addedServices": [
+        "Boho braids bob",
+        "Boho braids / goddess braids"
+      ],
+      "removedServices": [],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {
+        "Boho braids bob": [
+          "Boho Locs",
+          "Boho Locs 18’’",
+          "Boho Locs 24’’",
+          "Boho Bob"
+        ],
+        "Boho braids / goddess braids": [
+          "Boho Locs",
+          "Boho Locs 18’’",
+          "Boho Locs 24’’",
+          "Boho Bob"
+        ]
+      },
+      "handledFingerprints": [
+        "service-add:boho braids bob|boho locs|boho locs 18’’|boho locs 24’’|boho bob",
+        "service-add:boho braids / goddess braids|boho locs|boho locs 18’’|boho locs 24’’|boho bob",
+        "attribute:samedayemergency|true|booking banner:emergency appointment"
+      ],
+      "sameDayEmergency": true
     }
   },
   "checks": [
@@ -14373,8 +15092,7 @@
         "Flipover / Versatile sew-in"
       ],
       "addedServices": [
-        "Updo",
-        "Quick weave"
+        "Updo"
       ],
       "removedServices": [
         "Full head colour",
@@ -14384,140 +15102,8 @@
       "checkedAt": "2026-09-11",
       "priceBand": "",
       "priceSource": "",
-      "priceConfidence": ""
-    },
-    {
-      "id": "mbl-hair",
-      "name": "MBL Hair",
-      "areaLabel": "South west London",
-      "bookingUrl": "https://mblhair.as.me/schedule/0699598a",
-      "instagramUrl": "https://www.instagram.com/_mblhair/",
-      "websiteUrl": "",
-      "hijabiFriendly": false,
-      "wheelchairAccessible": false,
-      "issues": [
-        "Possible new services found",
-        "Possible same-day/walk-in appointment wording found"
-      ],
-      "linkChecks": [
-        {
-          "type": "booking",
-          "url": "https://mblhair.as.me/schedule/0699598a",
-          "finalUrl": "https://mblhair.as.me/schedule/0699598a",
-          "status": "ok",
-          "httpStatus": 200,
-          "issues": []
-        },
-        {
-          "type": "instagram",
-          "url": "https://www.instagram.com/_mblhair/",
-          "finalUrl": "https://www.instagram.com/_mblhair/",
-          "status": "ok",
-          "httpStatus": 200,
-          "issues": []
-        }
-      ],
-      "serviceCheck": {
-        "confidence": "high",
-        "rawServices": [
-          "Boho Locs",
-          "Boho Locs 18’’",
-          "Boho Locs 24’’",
-          "Butterfly Locs",
-          "Butterfly Locs (Midback length)",
-          "Butterfly Locs - Waist Length",
-          "Butterfly Locs (Bob Length)",
-          "Invisible Locs",
-          "Invisible Locs (Bob Length)",
-          "Invisible Locs (Midback length)",
-          "Invisible Locs (Waist Length)",
-          "Invisible Locs (Shoulder Length)",
-          "Maintenance & Takedowns",
-          "Locs Takedown",
-          "Soft Locs - Half head touch up",
-          "Invisible Locs touch up (Half head)",
-          "Soft Locs",
-          "36’’ Soft Locs",
-          "18-24’’ Soft Locs",
-          "Shoulder length soft locs (Below 18’’)",
-          "Boho Bob",
-          "Twists",
-          "Passion Twists - Midback length",
-          "Passion Twists - Waist Length",
-          "Boho Twists",
-          "Boho Twists Bob",
-          "Marley Twists - Shoulder length"
-        ],
-        "matchedServices": [
-          "Boho locs",
-          "Butterfly locs",
-          "Crochet faux locs / invisible locs",
-          "Soft locs",
-          "Boho braids bob",
-          "Twists (with extensions)",
-          "Boho braids / goddess braids"
-        ],
-        "areaId": "all-london",
-        "areaLabel": "London"
-      },
-      "priceCheck": {
-        "source": "health",
-        "confidence": "unknown",
-        "priceBand": "",
-        "medianPrice": 0,
-        "prices": [],
-        "priceCount": 0,
-        "evidence": [],
-        "servicePriceBand": "",
-        "serviceMedianPrice": 0,
-        "servicePrices": [],
-        "servicePriceCount": 0,
-        "packagePriceBand": "",
-        "packageMedianPrice": 0,
-        "packagePrices": [],
-        "packagePriceCount": 0,
-        "priceIncludesHair": false,
-        "priceComparisonMode": ""
-      },
-      "attributeSuggestions": [
-        {
-          "field": "sameDayEmergency",
-          "value": true,
-          "label": "Same-day / walk-ins",
-          "evidence": [
-            {
-              "source": "booking banner",
-              "text": "emergency appointment"
-            }
-          ]
-        }
-      ],
-      "currentServices": [
-        "Soft locs",
-        "Crochet faux locs / invisible locs",
-        "Boho locs",
-        "Butterfly locs",
-        "Twists (with extensions)"
-      ],
-      "detectedServices": [
-        "Boho locs",
-        "Butterfly locs",
-        "Crochet faux locs / invisible locs",
-        "Soft locs",
-        "Boho braids bob",
-        "Twists (with extensions)",
-        "Boho braids / goddess braids"
-      ],
-      "addedServices": [
-        "Boho braids bob",
-        "Boho braids / goddess braids"
-      ],
-      "removedServices": [],
-      "locationReviewIgnored": false,
-      "checkedAt": "2026-09-11",
-      "priceBand": "£",
-      "priceSource": "auto",
-      "priceConfidence": "high"
+      "priceConfidence": "",
+      "reviewedAt": "2026-09-11"
     },
     {
       "id": "locs-by-lkk",
@@ -14752,115 +15338,6 @@
       "priceConfidence": "high"
     },
     {
-      "id": "by-pm-beauty",
-      "name": "By PM Beauty",
-      "areaLabel": "Essex",
-      "bookingUrl": "https://bypmbeautyyy.as.me/",
-      "instagramUrl": "https://www.instagram.com/bypmbeauty_/",
-      "websiteUrl": "",
-      "hijabiFriendly": false,
-      "wheelchairAccessible": false,
-      "issues": [
-        "Possible new services found"
-      ],
-      "linkChecks": [
-        {
-          "type": "booking",
-          "url": "https://bypmbeautyyy.as.me/",
-          "finalUrl": "https://bypmbeautyyy.as.me/schedule/793383e7",
-          "status": "ok",
-          "httpStatus": 200,
-          "issues": []
-        },
-        {
-          "type": "instagram",
-          "url": "https://www.instagram.com/bypmbeauty_/",
-          "finalUrl": "https://www.instagram.com/bypmbeauty_/",
-          "status": "ok",
-          "httpStatus": 200,
-          "issues": []
-        }
-      ],
-      "serviceCheck": {
-        "confidence": "high",
-        "rawServices": [
-          "Half Up-Half Down Styles",
-          "Traditional Half Up-Half Down",
-          "Re slick Half - Half Down",
-          "Quick weave Half Up Half down",
-          "Sew-Ins",
-          "Traditional Sew In",
-          "Versatile Sew In",
-          "Flip Over Sew In",
-          "Sleek Styles",
-          "Sleek Middle Part",
-          "Sleek All Back Pony (Mid, Low, High)",
-          "Barbie Ponytail",
-          "Three Part Ponytail",
-          "Side Swoop Ponytail",
-          "Custom Ponytail",
-          "Classic Up-do Style"
-        ],
-        "matchedServices": [
-          "Half up half down",
-          "Quick weave",
-          "Traditional sew-in / leave out",
-          "Flipover / Versatile sew-in",
-          "Sleek ponytail / bun",
-          "Updo"
-        ],
-        "areaId": "essex",
-        "areaLabel": "Essex",
-        "areaIds": [
-          "essex"
-        ]
-      },
-      "priceCheck": {
-        "source": "health",
-        "confidence": "unknown",
-        "priceBand": "",
-        "medianPrice": 0,
-        "prices": [],
-        "priceCount": 0,
-        "evidence": [],
-        "servicePriceBand": "",
-        "serviceMedianPrice": 0,
-        "servicePrices": [],
-        "servicePriceCount": 0,
-        "packagePriceBand": "",
-        "packageMedianPrice": 0,
-        "packagePrices": [],
-        "packagePriceCount": 0,
-        "priceIncludesHair": false,
-        "priceComparisonMode": ""
-      },
-      "attributeSuggestions": [],
-      "currentServices": [
-        "Half up half down",
-        "Quick weave",
-        "Traditional sew-in / leave out",
-        "Sleek ponytail / bun",
-        "Updo"
-      ],
-      "detectedServices": [
-        "Half up half down",
-        "Quick weave",
-        "Traditional sew-in / leave out",
-        "Flipover / Versatile sew-in",
-        "Sleek ponytail / bun",
-        "Updo"
-      ],
-      "addedServices": [
-        "Flipover / Versatile sew-in"
-      ],
-      "removedServices": [],
-      "locationReviewIgnored": false,
-      "checkedAt": "2026-09-11",
-      "priceBand": "£",
-      "priceSource": "auto",
-      "priceConfidence": "high"
-    },
-    {
       "id": "hair-elysian",
       "name": "Hair Elysian",
       "areaLabel": "South east London",
@@ -14963,240 +15440,6 @@
       "priceBand": "£",
       "priceSource": "auto",
       "priceConfidence": "high"
-    },
-    {
-      "id": "true-touch-london",
-      "name": "True Touch London",
-      "areaLabel": "South east London",
-      "bookingUrl": "http://truetouchlondon1.as.me/",
-      "instagramUrl": "https://www.instagram.com/truetouchlondon/",
-      "websiteUrl": "",
-      "hijabiFriendly": false,
-      "wheelchairAccessible": false,
-      "issues": [
-        "Possible parking wording found"
-      ],
-      "linkChecks": [
-        {
-          "type": "booking",
-          "url": "http://truetouchlondon1.as.me/",
-          "finalUrl": "https://truetouchlondon1.as.me/schedule/e50fe1d4",
-          "status": "ok",
-          "httpStatus": 200,
-          "issues": []
-        },
-        {
-          "type": "instagram",
-          "url": "https://www.instagram.com/truetouchlondon/",
-          "finalUrl": "https://www.instagram.com/truetouchlondon/",
-          "status": "ok",
-          "httpStatus": 200,
-          "issues": []
-        }
-      ],
-      "serviceCheck": {
-        "confidence": "high",
-        "rawServices": [
-          "BUNS & KNOTS",
-          "Top knot bun / Low knot bun",
-          "Elegant updo/Messy Bun with Fringe",
-          "2-3 Bantu knots includes fringe",
-          "Infinity bun",
-          "Classic Bun",
-          "Twisted Knot Buns",
-          "HALF UP HALF DOWNS",
-          "Half up and half down sew in (low no leave out )",
-          "Butterly Crown Halfuphalfdown",
-          "Half up half down sew in",
-          "Halfuphalfdown Quickweave",
-          "Middle Part Halfuphalfdown",
-          "V part halfuphalfdown no leave out",
-          "Bantu twisted knots crown halfuphalfdown",
-          "PONYTAILS",
-          "Basic ponytail low,mid,high",
-          "Braided Pony",
-          "Three part ponytail",
-          "Butterfly braid ponytail",
-          "Butterfly Crown + Ponytail",
-          "Middle part ponytail",
-          "Creative ponytail (freestyle )",
-          "Half Ponytail Half Bun",
-          "Layered ponytail",
-          "SEW-INS",
-          "Flip over sewin",
-          "Traditional sewin middle",
-          "Traditional sewin side part"
-        ],
-        "matchedServices": [
-          "Sleek ponytail / bun",
-          "Updo",
-          "Bantu knots",
-          "Half up half down",
-          "Traditional sew-in / leave out",
-          "Quick weave",
-          "Flipover / Versatile sew-in"
-        ],
-        "areaId": "south-east",
-        "areaLabel": "South east London",
-        "areaIds": [
-          "south-east"
-        ]
-      },
-      "priceCheck": {
-        "source": "health",
-        "confidence": "unknown",
-        "priceBand": "",
-        "medianPrice": 0,
-        "prices": [],
-        "priceCount": 0,
-        "evidence": [],
-        "servicePriceBand": "",
-        "serviceMedianPrice": 0,
-        "servicePrices": [],
-        "servicePriceCount": 0,
-        "packagePriceBand": "",
-        "packageMedianPrice": 0,
-        "packagePrices": [],
-        "packagePriceCount": 0,
-        "priceIncludesHair": false,
-        "priceComparisonMode": ""
-      },
-      "attributeSuggestions": [
-        {
-          "field": "parkingAvailable",
-          "value": true,
-          "label": "Parking nearby",
-          "evidence": [
-            {
-              "source": "booking banner",
-              "text": "E 4 = = FREE PARKING AVAILABLE"
-            }
-          ]
-        }
-      ],
-      "currentServices": [
-        "Sleek ponytail / bun",
-        "Updo",
-        "Bantu knots",
-        "Half up half down",
-        "Traditional sew-in / leave out",
-        "Quick weave",
-        "Flipover / Versatile sew-in"
-      ],
-      "detectedServices": [
-        "Sleek ponytail / bun",
-        "Updo",
-        "Bantu knots",
-        "Half up half down",
-        "Traditional sew-in / leave out",
-        "Quick weave",
-        "Flipover / Versatile sew-in"
-      ],
-      "addedServices": [],
-      "removedServices": [],
-      "locationReviewIgnored": false,
-      "checkedAt": "2026-09-11",
-      "priceBand": "£",
-      "priceSource": "auto",
-      "priceConfidence": "high"
-    },
-    {
-      "id": "the-hair-senpai",
-      "name": "The Hair Senpai",
-      "areaLabel": "South west London / West London",
-      "bookingUrl": "https://thehairsenpai.as.me/",
-      "instagramUrl": "https://www.instagram.com/thehairsenpai/",
-      "websiteUrl": "",
-      "hijabiFriendly": false,
-      "wheelchairAccessible": false,
-      "issues": [],
-      "linkChecks": [
-        {
-          "type": "booking",
-          "url": "https://thehairsenpai.as.me/",
-          "finalUrl": "https://thehairsenpai.as.me/schedule/bcb59635",
-          "status": "ok",
-          "httpStatus": 200,
-          "issues": []
-        },
-        {
-          "type": "instagram",
-          "url": "https://www.instagram.com/thehairsenpai/",
-          "finalUrl": "https://www.instagram.com/thehairsenpai/",
-          "status": "ok",
-          "httpStatus": 200,
-          "issues": []
-        }
-      ],
-      "serviceCheck": {
-        "confidence": "high",
-        "rawServices": [
-          "Quickweaves",
-          "Half Up Half Down Quickweave",
-          "Traditional Middle/ Side part Quickweave",
-          "Flipover Quickweave",
-          "Sleeks",
-          "Side part ponytail",
-          "Middle part ponytail",
-          "High ponytail",
-          "Barbie ponytail ( No swoop)",
-          "No part ponytail",
-          "Wig Installs",
-          "Frontal Ready made install",
-          "Closure/ Mini Frontal Install",
-          "Reinstall"
-        ],
-        "matchedServices": [
-          "Quick weave",
-          "Half up half down",
-          "Flipover / Versatile sew-in",
-          "Sleek ponytail / bun"
-        ],
-        "areaId": "south-west",
-        "areaLabel": "South west London",
-        "areaIds": [
-          "south-west"
-        ]
-      },
-      "priceCheck": {
-        "source": "health",
-        "confidence": "unknown",
-        "priceBand": "",
-        "medianPrice": 0,
-        "prices": [],
-        "priceCount": 0,
-        "evidence": [],
-        "servicePriceBand": "",
-        "serviceMedianPrice": 0,
-        "servicePrices": [],
-        "servicePriceCount": 0,
-        "packagePriceBand": "",
-        "packageMedianPrice": 0,
-        "packagePrices": [],
-        "packagePriceCount": 0,
-        "priceIncludesHair": false,
-        "priceComparisonMode": ""
-      },
-      "attributeSuggestions": [],
-      "currentServices": [
-        "Quick weave",
-        "Half up half down",
-        "Flipover / Versatile sew-in",
-        "Sleek ponytail / bun"
-      ],
-      "detectedServices": [
-        "Quick weave",
-        "Half up half down",
-        "Flipover / Versatile sew-in",
-        "Sleek ponytail / bun"
-      ],
-      "addedServices": [],
-      "removedServices": [],
-      "locationReviewIgnored": false,
-      "checkedAt": "2026-09-11",
-      "priceBand": "£",
-      "priceSource": "manual",
-      "priceConfidence": "manual"
     },
     {
       "id": "braids-by-tessa",
@@ -15766,14 +16009,10 @@
         "Keratin treatment / Brazilian blowdry"
       ],
       "addedServices": [
-        "Crochet",
         "Highlights",
-        "Balayage",
-        "Keratin treatment / Brazilian blowdry"
+        "Balayage"
       ],
       "removedServices": [
-        "Full head colour",
-        "Starter locs / instant locs",
         "Retwist / interlocking",
         "Loc styling",
         "Loc extensions (permanent)"
@@ -15782,7 +16021,8 @@
       "checkedAt": "2026-09-11",
       "priceBand": "££",
       "priceSource": "manual",
-      "priceConfidence": "manual"
+      "priceConfidence": "manual",
+      "reviewedAt": "2026-09-11"
     },
     {
       "id": "mluxe-studios",
@@ -16359,21 +16599,19 @@
         "Knotless braids",
         "Starter locs / instant locs"
       ],
-      "addedServices": [
-        "Knotless braids"
-      ],
+      "addedServices": [],
       "removedServices": [
         "Men's braids",
         "Feed-in braids",
         "Kids & teens styles",
-        "Retwist / interlocking",
-        "Stitch braids"
+        "Retwist / interlocking"
       ],
       "locationReviewIgnored": false,
       "checkedAt": "2026-09-11",
       "priceBand": "£",
       "priceSource": "manual",
-      "priceConfidence": "high"
+      "priceConfidence": "high",
+      "reviewedAt": "2026-09-11"
     },
     {
       "id": "braided-by-bibi",
@@ -16385,8 +16623,7 @@
       "hijabiFriendly": false,
       "wheelchairAccessible": false,
       "issues": [
-        "Possible new services found",
-        "Possible parking wording found"
+        "Possible new services found"
       ],
       "linkChecks": [
         {
@@ -16532,19 +16769,7 @@
         "priceIncludesHair": false,
         "priceComparisonMode": ""
       },
-      "attributeSuggestions": [
-        {
-          "field": "parkingAvailable",
-          "value": true,
-          "label": "Parking nearby",
-          "evidence": [
-            {
-              "source": "booking banner",
-              "text": "© LOCATION DAILY VISTORS PARKING PERMITS ARE"
-            }
-          ]
-        }
-      ],
+      "attributeSuggestions": [],
       "currentServices": [
         "Men's braids",
         "Stitch braids",
@@ -16592,7 +16817,8 @@
       "checkedAt": "2026-09-11",
       "priceBand": "££",
       "priceSource": "manual",
-      "priceConfidence": "high"
+      "priceConfidence": "high",
+      "reviewedAt": "2026-09-11"
     },
     {
       "id": "divine-hair-lounge",
@@ -16709,77 +16935,6 @@
       "priceBand": "££",
       "priceSource": "manual",
       "priceConfidence": "high"
-    },
-    {
-      "id": "braids-from-london",
-      "name": "Braids from London",
-      "areaLabel": "Central London",
-      "bookingUrl": "https://www.fresha.com/book-now/braidsfromparis-xd05bq37/all-offer?id=1440466&pId=1368001",
-      "instagramUrl": "https://www.instagram.com/braidsfromlondon/",
-      "websiteUrl": "",
-      "hijabiFriendly": false,
-      "wheelchairAccessible": false,
-      "issues": [
-        "Booking link appears to be gone"
-      ],
-      "linkChecks": [
-        {
-          "type": "booking",
-          "url": "https://www.fresha.com/book-now/braidsfromparis-xd05bq37/all-offer?id=1440466&pId=1368001",
-          "finalUrl": "https://www.fresha.com/providers/braidsfromparis-xd05bq37/offline",
-          "status": "broken",
-          "httpStatus": 410,
-          "issues": [
-            "Booking link appears to be gone"
-          ]
-        },
-        {
-          "type": "instagram",
-          "url": "https://www.instagram.com/braidsfromlondon/",
-          "finalUrl": "https://www.instagram.com/braidsfromlondon/",
-          "status": "ok",
-          "httpStatus": 200,
-          "issues": []
-        }
-      ],
-      "serviceCheck": {
-        "confidence": "unknown",
-        "rawServices": [],
-        "matchedServices": [],
-        "areaId": "",
-        "areaLabel": ""
-      },
-      "priceCheck": {
-        "source": "health",
-        "confidence": "unknown",
-        "priceBand": "",
-        "medianPrice": 0,
-        "prices": [],
-        "priceCount": 0,
-        "evidence": [],
-        "servicePriceBand": "",
-        "serviceMedianPrice": 0,
-        "servicePrices": [],
-        "servicePriceCount": 0,
-        "packagePriceBand": "",
-        "packageMedianPrice": 0,
-        "packagePrices": [],
-        "packagePriceCount": 0,
-        "priceIncludesHair": false,
-        "priceComparisonMode": ""
-      },
-      "attributeSuggestions": [],
-      "currentServices": [
-        "Men's braids"
-      ],
-      "detectedServices": [],
-      "addedServices": [],
-      "removedServices": [],
-      "locationReviewIgnored": false,
-      "checkedAt": "2026-09-11",
-      "priceBand": "£",
-      "priceSource": "manual",
-      "priceConfidence": "medium"
     },
     {
       "id": "original-hairplug",
@@ -17012,19 +17167,17 @@
         "Loc styling",
         "Crochet faux locs / invisible locs"
       ],
-      "addedServices": [
-        "Crochet faux locs / invisible locs"
-      ],
+      "addedServices": [],
       "removedServices": [
         "Men's braids",
-        "Soft locs",
         "Loc extensions (permanent)"
       ],
       "locationReviewIgnored": false,
       "checkedAt": "2026-09-11",
       "priceBand": "£",
       "priceSource": "manual",
-      "priceConfidence": "high"
+      "priceConfidence": "high",
+      "reviewedAt": "2026-09-11"
     },
     {
       "id": "mk-the-hairstylist",
@@ -17098,8 +17251,8 @@
           "Stitch braids",
           "Twists (with extensions)"
         ],
-        "areaId": "kent",
-        "areaLabel": "Kent",
+        "areaId": "",
+        "areaLabel": "",
         "areaIds": [
           "kent"
         ]
@@ -17151,11 +17304,12 @@
       "removedServices": [
         "Men's braids"
       ],
-      "locationReviewIgnored": false,
+      "locationReviewIgnored": true,
       "checkedAt": "2026-09-11",
       "priceBand": "£",
       "priceSource": "manual",
-      "priceConfidence": "high"
+      "priceConfidence": "high",
+      "reviewedAt": "2026-09-11"
     },
     {
       "id": "sstyles",
@@ -17288,177 +17442,6 @@
       "priceConfidence": "manual"
     },
     {
-      "id": "braided-by-nicks",
-      "name": "Braided by Nicks",
-      "areaLabel": "Essex",
-      "bookingUrl": "https://braidedbynicks.as.me/schedule/946e37a9",
-      "instagramUrl": "https://www.instagram.com/braidedbynicks/",
-      "websiteUrl": "",
-      "hijabiFriendly": false,
-      "wheelchairAccessible": false,
-      "issues": [],
-      "linkChecks": [
-        {
-          "type": "booking",
-          "url": "https://braidedbynicks.as.me/schedule/946e37a9",
-          "finalUrl": "https://braidedbynicks.as.me/schedule/946e37a9",
-          "status": "ok",
-          "httpStatus": 200,
-          "issues": []
-        },
-        {
-          "type": "instagram",
-          "url": "https://www.instagram.com/braidedbynicks/",
-          "finalUrl": "https://www.instagram.com/braidedbynicks/",
-          "status": "ok",
-          "httpStatus": 200,
-          "issues": []
-        }
-      ],
-      "serviceCheck": {
-        "confidence": "high",
-        "rawServices": [
-          "Bob boho braids | Armpit length",
-          "M/Large boho knotless braids",
-          "Medium boho knotless bob braids",
-          "S|medium boho knotless bob braids",
-          "Small boho knotless bob braids",
-          "X|small boho knotless bob braids",
-          "Bob boho braids | Collarbone length",
-          "M|large boho knotless bob",
-          "Medium boho knotless bob.",
-          "S|medium boho knotless bob.",
-          "Small boho knotless bob.",
-          "X|small boho knotless bob.",
-          "Boho braids | bra strap",
-          "M/Large",
-          "Medium",
-          "S/Medium",
-          "Small",
-          "X-small",
-          "Boho braids| Mid back",
-          "Large boho braids.",
-          "M|large boho braids",
-          "Medium boho braids.",
-          "S|medium boho braids.",
-          "Small boho braids.",
-          "X|small boho braids.",
-          "Half stitch + half knotless|",
-          "M\\large, half stitch + half knotless.",
-          "Medium, half stitch + half knotless.",
-          "Small, half stitch + half knotless.",
-          "Medium flipover braids.",
-          "S|medium flipover briads.",
-          "Half weave + half stitch |",
-          "20 feed in braids/ half weave",
-          "30 feedin braid & weave",
-          "Knotless braids with human ends|",
-          "Large knotless with human ends.",
-          "M|large knotless with human ends.",
-          "Medium knotless with human ends.",
-          "S|medium knotless with human ends.",
-          "Small knotless with human ends.",
-          "X|small knotless with human ends.",
-          "Knotless braids |",
-          "Large knotless braids.",
-          "M - Large knotless.",
-          "Medium knotless braids.",
-          "S/medium knotless braids.",
-          "Small knotless braids",
-          "X-small knotless braids",
-          "Lemonade braids |",
-          "Medium lemonade braids.",
-          "Small lemonade braids.",
-          "X|small lemonade braids.",
-          "Ponytail |",
-          "10 feed in ponytail.",
-          "12 feed in ponytail.",
-          "16 feed in ponytail.",
-          "20 feed in ponytail.",
-          "25 feed in ponytail.",
-          "30 feed in braids.",
-          "Stitch braids |",
-          "4 feeding into a bun.",
-          "4 feed in braids waist length.",
-          "6 feed in braids into a bun.",
-          "6 feed in braids, waist length.",
-          "8 feed in braids into a bun",
-          "8 feed in braids, waist length.",
-          "10 feed in braids, waist length.",
-          "12 feed in braids, waist length.",
-          "Upto 16 stitch braids, waist length.",
-          "Upto 20 braids, waist length.",
-          "Upto 30 braids, waist length.",
-          "Upto 40 braids, waist length."
-        ],
-        "matchedServices": [
-          "Boho braids / goddess braids",
-          "Boho braids bob",
-          "Knotless braids",
-          "Microbraids / x-small braids",
-          "Stitch braids",
-          "Flipover / Versatile sew-in",
-          "Half braids, half sew-in",
-          "Feed-in braids",
-          "Fulani / lemonade braids",
-          "Sleek ponytail / bun"
-        ],
-        "areaId": "east",
-        "areaLabel": "East London"
-      },
-      "priceCheck": {
-        "source": "health",
-        "confidence": "unknown",
-        "priceBand": "",
-        "medianPrice": 0,
-        "prices": [],
-        "priceCount": 0,
-        "evidence": [],
-        "servicePriceBand": "",
-        "serviceMedianPrice": 0,
-        "servicePrices": [],
-        "servicePriceCount": 0,
-        "packagePriceBand": "",
-        "packageMedianPrice": 0,
-        "packagePrices": [],
-        "packagePriceCount": 0,
-        "priceIncludesHair": false,
-        "priceComparisonMode": ""
-      },
-      "attributeSuggestions": [],
-      "currentServices": [
-        "Boho braids / goddess braids",
-        "Boho braids bob",
-        "Knotless braids",
-        "Microbraids / x-small braids",
-        "Stitch braids",
-        "Flipover / Versatile sew-in",
-        "Half braids, half sew-in",
-        "Feed-in braids",
-        "Fulani / lemonade braids",
-        "Sleek ponytail / bun"
-      ],
-      "detectedServices": [
-        "Boho braids / goddess braids",
-        "Boho braids bob",
-        "Knotless braids",
-        "Microbraids / x-small braids",
-        "Stitch braids",
-        "Flipover / Versatile sew-in",
-        "Half braids, half sew-in",
-        "Feed-in braids",
-        "Fulani / lemonade braids",
-        "Sleek ponytail / bun"
-      ],
-      "addedServices": [],
-      "removedServices": [],
-      "locationReviewIgnored": false,
-      "checkedAt": "2026-09-11",
-      "priceBand": "£££",
-      "priceSource": "manual",
-      "priceConfidence": "manual"
-    },
-    {
       "id": "hair-by-jazz-dalila",
       "name": "Hair by Jazz Dalila",
       "areaLabel": "Kent",
@@ -17468,8 +17451,7 @@
       "hijabiFriendly": false,
       "wheelchairAccessible": false,
       "issues": [
-        "Possible removed services found",
-        "Possible parking wording found"
+        "Possible removed services found"
       ],
       "linkChecks": [
         {
@@ -17534,19 +17516,7 @@
         "priceIncludesHair": false,
         "priceComparisonMode": ""
       },
-      "attributeSuggestions": [
-        {
-          "field": "parkingAvailable",
-          "value": true,
-          "label": "Parking nearby",
-          "evidence": [
-            {
-              "source": "booking",
-              "text": "Parking available"
-            }
-          ]
-        }
-      ],
+      "attributeSuggestions": [],
       "currentServices": [
         "Wash & blowdry",
         "Trim / hair cut",
@@ -17578,7 +17548,9 @@
       "checkedAt": "2026-09-11",
       "priceBand": "£",
       "priceSource": "auto",
-      "priceConfidence": "high"
+      "priceConfidence": "high",
+      "parkingAvailable": true,
+      "reviewedAt": "2026-09-11"
     },
     {
       "id": "elysia-beauty",
@@ -17716,10 +17688,7 @@
         "Stitch braids"
       ],
       "addedServices": [
-        "Healthy hair plans & consultations",
-        "Traditional sew-in / leave out",
-        "Wig cornrows",
-        "Crochet faux locs / invisible locs"
+        "Traditional sew-in / leave out"
       ],
       "removedServices": [
         "Retwist / interlocking",
@@ -17729,7 +17698,8 @@
       "checkedAt": "2026-09-11",
       "priceBand": "££",
       "priceSource": "manual",
-      "priceConfidence": "manual"
+      "priceConfidence": "manual",
+      "reviewedAt": "2026-09-11"
     },
     {
       "id": "locks-by-lottie",
@@ -17945,112 +17915,6 @@
       "priceBand": "£",
       "priceSource": "auto",
       "priceConfidence": "high"
-    },
-    {
-      "id": "rhehab-hair",
-      "name": "RHE;HAB Hair Studio",
-      "areaLabel": "East London",
-      "bookingUrl": "https://www.phorest.com/salon/rehabhairstudio",
-      "instagramUrl": "https://www.instagram.com/rhehab_hair/",
-      "websiteUrl": "https://www.rhehab.co.uk/",
-      "hijabiFriendly": false,
-      "wheelchairAccessible": false,
-      "issues": [
-        "Possible same-day/walk-in appointment wording found"
-      ],
-      "linkChecks": [
-        {
-          "type": "booking",
-          "url": "https://www.phorest.com/salon/rehabhairstudio",
-          "finalUrl": "https://www.phorest.com/salon/rehabhairstudio",
-          "status": "ok",
-          "httpStatus": 200,
-          "issues": []
-        },
-        {
-          "type": "instagram",
-          "url": "https://www.instagram.com/rhehab_hair/",
-          "finalUrl": "https://www.instagram.com/rhehab_hair/",
-          "status": "ok",
-          "httpStatus": 200,
-          "issues": []
-        },
-        {
-          "type": "website",
-          "url": "https://www.rhehab.co.uk/",
-          "finalUrl": "https://www.rhehab.co.uk/",
-          "status": "ok",
-          "httpStatus": 200,
-          "issues": []
-        }
-      ],
-      "serviceCheck": {
-        "confidence": "unknown",
-        "rawServices": [
-          "Multi-Location",
-          "Streamlined salon or clinic running like clockwork",
-          "Multi-Location Compatible",
-          "Multi-Location Features",
-          "Is Phorest suitable for multi-location businesses?",
-          "Number of Locations"
-        ],
-        "matchedServices": [],
-        "areaId": "",
-        "areaLabel": ""
-      },
-      "priceCheck": {
-        "source": "health",
-        "confidence": "unknown",
-        "priceBand": "",
-        "medianPrice": 0,
-        "prices": [],
-        "priceCount": 0,
-        "evidence": [],
-        "servicePriceBand": "",
-        "serviceMedianPrice": 0,
-        "servicePrices": [],
-        "servicePriceCount": 0,
-        "packagePriceBand": "",
-        "packageMedianPrice": 0,
-        "packagePrices": [],
-        "packagePriceCount": 0,
-        "priceIncludesHair": false,
-        "priceComparisonMode": ""
-      },
-      "attributeSuggestions": [
-        {
-          "field": "sameDayEmergency",
-          "value": true,
-          "label": "Same-day / walk-ins",
-          "evidence": [
-            {
-              "source": "website",
-              "text": "We offer an extensive range of beverages, from matcha lattes and iced coffee to fruit and herbal teas, ensuring our clients feel pampered from the moment they walk in"
-            }
-          ]
-        }
-      ],
-      "currentServices": [
-        "Wash & blowdry",
-        "Twist out / flexi rod",
-        "Scalp detox / treatments",
-        "Bridal",
-        "Relaxer / texturiser",
-        "Healthy hair plans & consultations",
-        "Kids & teens styles",
-        "Curly cut / wash & go / diffuse",
-        "Bouncy blowout / round brush blow dry",
-        "Silk press",
-        "Trim / hair cut"
-      ],
-      "detectedServices": [],
-      "addedServices": [],
-      "removedServices": [],
-      "locationReviewIgnored": false,
-      "checkedAt": "2026-09-11",
-      "priceBand": "£",
-      "priceSource": "manual",
-      "priceConfidence": "manual"
     },
     {
       "id": "shivstylez",
@@ -18380,8 +18244,8 @@
           "Boho braids / goddess braids",
           "Scalp detox / treatments"
         ],
-        "areaId": "central",
-        "areaLabel": "Central London"
+        "areaId": "",
+        "areaLabel": ""
       },
       "priceCheck": {
         "source": "health",
@@ -18445,7 +18309,6 @@
       "addedServices": [
         "Bouncy blowout / round brush blow dry",
         "Bridal",
-        "K18 treatment",
         "Updo",
         "Pixie cut / finger waves",
         "Texture release",
@@ -18454,11 +18317,12 @@
       "removedServices": [
         "Moisturising treatment"
       ],
-      "locationReviewIgnored": false,
+      "locationReviewIgnored": true,
       "checkedAt": "2026-09-11",
       "priceBand": "££",
       "priceSource": "manual",
-      "priceConfidence": "manual"
+      "priceConfidence": "manual",
+      "reviewedAt": "2026-09-11"
     },
     {
       "id": "unrulycurls",
@@ -18581,9 +18445,7 @@
         "Balayage",
         "Keratin treatment / Brazilian blowdry"
       ],
-      "addedServices": [
-        "Full head colour"
-      ],
+      "addedServices": [],
       "removedServices": [
         "Curly cut / wash & go / diffuse"
       ],
@@ -18591,148 +18453,8 @@
       "checkedAt": "2026-09-11",
       "priceBand": "££",
       "priceSource": "auto",
-      "priceConfidence": "high"
-    },
-    {
-      "id": "becrochetcreation",
-      "name": "BeCrochetCreation",
-      "areaLabel": "South east London",
-      "bookingUrl": "https://app.acuityscheduling.com/schedule/5f67633e",
-      "instagramUrl": "https://www.instagram.com/becrochetcreation/",
-      "websiteUrl": "",
-      "hijabiFriendly": false,
-      "wheelchairAccessible": false,
-      "issues": [
-        "Possible new services found",
-        "Possible same-day/walk-in appointment wording found"
-      ],
-      "linkChecks": [
-        {
-          "type": "booking",
-          "url": "https://app.acuityscheduling.com/schedule/5f67633e",
-          "finalUrl": "https://app.acuityscheduling.com/schedule/5f67633e",
-          "status": "ok",
-          "httpStatus": 200,
-          "issues": []
-        },
-        {
-          "type": "instagram",
-          "url": "https://www.instagram.com/becrochetcreation/",
-          "finalUrl": "https://www.instagram.com/becrochetcreation/",
-          "status": "ok",
-          "httpStatus": 200,
-          "issues": []
-        }
-      ],
-      "serviceCheck": {
-        "confidence": "high",
-        "rawServices": [
-          "Consultation",
-          "Consultation- Hairstyles, Hair help, Alopecia Advice",
-          "Box braids/Senegalese twist/passion twist",
-          "Faux locs touch up",
-          "AFRO HAIRSTYLES",
-          "CROCHET BRAIDS CURLY",
-          "Curly crochet braids",
-          "Curly crochet Bun Option",
-          "Curly multiple part",
-          "HUMAN hair curly (1 part)",
-          "HUMAN HAIR Curly with 360 (bun)",
-          "CROCHET LOCS",
-          "Crochet locs",
-          "Crochet locs (individual Large)",
-          "Crochet Locs (Medium size)",
-          "Crochet locs singles",
-          "Human hair goddess Braids",
-          "Human hair Goddess LOCS",
-          "STRAIGHT INSTALL",
-          "straight crochet (1 parting)",
-          "Straight install Vixen style",
-          "HUMAN HAIR STRAIGHT KINKY (1 Part)",
-          "HUMAN HAIR 360 seamless straight kinky",
-          "TAKEDOWN SERVICE",
-          "Takedown service (Straight install)",
-          "CURLY TAKE DOWN",
-          "Locs Takedown",
-          "Human hair Takedown"
-        ],
-        "matchedServices": [
-          "Healthy hair plans & consultations",
-          "Box braids",
-          "Twists (with extensions)",
-          "Soft locs",
-          "Crochet",
-          "Sleek ponytail / bun",
-          "Crochet faux locs / invisible locs",
-          "Boho braids / goddess braids"
-        ],
-        "areaId": "all-london",
-        "areaLabel": "London"
-      },
-      "priceCheck": {
-        "source": "health",
-        "confidence": "unknown",
-        "priceBand": "",
-        "medianPrice": 0,
-        "prices": [],
-        "priceCount": 0,
-        "evidence": [],
-        "servicePriceBand": "",
-        "serviceMedianPrice": 0,
-        "servicePrices": [],
-        "servicePriceCount": 0,
-        "packagePriceBand": "",
-        "packageMedianPrice": 0,
-        "packagePrices": [],
-        "packagePriceCount": 0,
-        "priceIncludesHair": false,
-        "priceComparisonMode": ""
-      },
-      "attributeSuggestions": [
-        {
-          "field": "sameDayEmergency",
-          "value": true,
-          "label": "Same-day / walk-ins",
-          "evidence": [
-            {
-              "source": "booking",
-              "text": "EMERGENCY APPOINTMENT"
-            },
-            {
-              "source": "booking",
-              "text": "- Any emergency appointment are subject to availability and additional £30 will apply"
-            }
-          ]
-        }
-      ],
-      "currentServices": [
-        "Box braids",
-        "Twists (with extensions)",
-        "Soft locs",
-        "Crochet",
-        "Boho braids / goddess braids",
-        "Healthy hair plans & consultations",
-        "Sleek ponytail / bun"
-      ],
-      "detectedServices": [
-        "Healthy hair plans & consultations",
-        "Box braids",
-        "Twists (with extensions)",
-        "Soft locs",
-        "Crochet",
-        "Sleek ponytail / bun",
-        "Crochet faux locs / invisible locs",
-        "Boho braids / goddess braids"
-      ],
-      "addedServices": [
-        "Crochet faux locs / invisible locs"
-      ],
-      "removedServices": [],
-      "locationReviewIgnored": false,
-      "checkedAt": "2026-09-11",
-      "priceBand": "££",
-      "priceSource": "auto",
-      "priceConfidence": "high"
+      "priceConfidence": "high",
+      "reviewedAt": "2026-09-11"
     },
     {
       "id": "the-reign-spitalfields",
@@ -18941,7 +18663,6 @@
         "Scalp detox / treatments"
       ],
       "addedServices": [
-        "K18 treatment",
         "Boho braids / goddess braids"
       ],
       "removedServices": [
@@ -18952,7 +18673,8 @@
       "checkedAt": "2026-09-11",
       "priceBand": "££",
       "priceSource": "manual",
-      "priceConfidence": "manual"
+      "priceConfidence": "manual",
+      "reviewedAt": "2026-09-11"
     },
     {
       "id": "crownedbyshyuk",
@@ -19303,8 +19025,6 @@
         "Scalp detox / treatments"
       ],
       "addedServices": [
-        "K18 treatment",
-        "Olaplex treatment",
         "Updo",
         "Boho braids / goddess braids",
         "Scalp detox / treatments"
@@ -19317,7 +19037,8 @@
       "checkedAt": "2026-09-11",
       "priceBand": "££",
       "priceSource": "manual",
-      "priceConfidence": "manual"
+      "priceConfidence": "manual",
+      "reviewedAt": "2026-09-11"
     },
     {
       "id": "thehouseofplush",
@@ -19329,8 +19050,7 @@
       "hijabiFriendly": false,
       "wheelchairAccessible": false,
       "issues": [
-        "Possible removed services found",
-        "Possible parking wording found"
+        "Possible removed services found"
       ],
       "linkChecks": [
         {
@@ -19398,19 +19118,7 @@
         "priceIncludesHair": false,
         "priceComparisonMode": ""
       },
-      "attributeSuggestions": [
-        {
-          "field": "parkingAvailable",
-          "value": true,
-          "label": "Parking nearby",
-          "evidence": [
-            {
-              "source": "booking",
-              "text": "Parking available"
-            }
-          ]
-        }
-      ],
+      "attributeSuggestions": [],
       "currentServices": [
         "Trim / hair cut",
         "Relaxer / texturiser",
@@ -19430,7 +19138,9 @@
       "checkedAt": "2026-09-11",
       "priceBand": "£",
       "priceSource": "auto",
-      "priceConfidence": "high"
+      "priceConfidence": "high",
+      "parkingAvailable": true,
+      "reviewedAt": "2026-09-11"
     },
     {
       "id": "yinsbeautybar",
@@ -19556,8 +19266,7 @@
       "hijabiFriendly": false,
       "wheelchairAccessible": false,
       "issues": [
-        "Possible removed services found",
-        "Possible same-day/walk-in appointment wording found"
+        "Possible removed services found"
       ],
       "linkChecks": [
         {
@@ -19639,19 +19348,7 @@
         "priceIncludesHair": false,
         "priceComparisonMode": ""
       },
-      "attributeSuggestions": [
-        {
-          "field": "sameDayEmergency",
-          "value": true,
-          "label": "Same-day / walk-ins",
-          "evidence": [
-            {
-              "source": "booking banner",
-              "text": "Same day appointment (less than 12 hour notice) +£20"
-            }
-          ]
-        }
-      ],
+      "attributeSuggestions": [],
       "currentServices": [
         "Sleek ponytail / bun",
         "Traditional sew-in / leave out",
@@ -19679,7 +19376,8 @@
       "checkedAt": "2026-09-11",
       "priceBand": "£",
       "priceSource": "auto",
-      "priceConfidence": "high"
+      "priceConfidence": "high",
+      "reviewedAt": "2026-09-11"
     },
     {
       "id": "hebehair",
@@ -19804,9 +19502,7 @@
         "Scalp detox / treatments",
         "Trim / hair cut"
       ],
-      "addedServices": [
-        "K18 treatment"
-      ],
+      "addedServices": [],
       "removedServices": [
         "Relaxer / texturiser",
         "Sew in / extensions blowdry"
@@ -19815,7 +19511,8 @@
       "checkedAt": "2026-09-11",
       "priceBand": "££",
       "priceSource": "auto",
-      "priceConfidence": "manual"
+      "priceConfidence": "manual",
+      "reviewedAt": "2026-09-11"
     },
     {
       "id": "andrewjosesalon",
@@ -19935,9 +19632,7 @@
         "Highlights",
         "Balayage"
       ],
-      "addedServices": [
-        "Keratin treatment / Brazilian blowdry"
-      ],
+      "addedServices": [],
       "removedServices": [
         "Scalp detox / treatments",
         "Moisturising treatment",
@@ -19950,7 +19645,8 @@
       "checkedAt": "2026-09-11",
       "priceBand": "££",
       "priceSource": "manual",
-      "priceConfidence": "manual"
+      "priceConfidence": "manual",
+      "reviewedAt": "2026-09-11"
     },
     {
       "id": "silkedbyli",
@@ -20061,95 +19757,6 @@
       "priceBand": "£",
       "priceSource": "auto",
       "priceConfidence": "high"
-    },
-    {
-      "id": "theblowdryartist",
-      "name": "The Blowdry Artist",
-      "areaLabel": "South east London",
-      "bookingUrl": "https://bookings.gettimely.com/blowdryartist",
-      "instagramUrl": "https://www.instagram.com/theblowdryartist/",
-      "websiteUrl": "",
-      "hijabiFriendly": false,
-      "wheelchairAccessible": false,
-      "issues": [
-        "Possible new services found"
-      ],
-      "linkChecks": [
-        {
-          "type": "booking",
-          "url": "https://bookings.gettimely.com/blowdryartist",
-          "finalUrl": "https://bookings.gettimely.com/blowdryartist",
-          "status": "ok",
-          "httpStatus": 200,
-          "issues": []
-        },
-        {
-          "type": "instagram",
-          "url": "https://www.instagram.com/theblowdryartist/",
-          "finalUrl": "https://www.instagram.com/theblowdryartist/",
-          "status": "ok",
-          "httpStatus": 200,
-          "issues": []
-        }
-      ],
-      "serviceCheck": {
-        "confidence": "low",
-        "rawServices": [
-          "\"theme_color\": \"#ffffff\",",
-          "\"background_color\": \"#ffffff\"",
-          "// Safari 10 support type=\"module\" but still download and executes the nomodule script",
-          "// Note: using .call(window) here because the self-executing function needs"
-        ],
-        "matchedServices": [
-          "Full head colour"
-        ],
-        "areaId": "",
-        "areaLabel": ""
-      },
-      "priceCheck": {
-        "source": "health",
-        "confidence": "unknown",
-        "priceBand": "",
-        "medianPrice": 0,
-        "prices": [],
-        "priceCount": 0,
-        "evidence": [],
-        "servicePriceBand": "",
-        "serviceMedianPrice": 0,
-        "servicePrices": [],
-        "servicePriceCount": 0,
-        "packagePriceBand": "",
-        "packageMedianPrice": 0,
-        "packagePrices": [],
-        "packagePriceCount": 0,
-        "priceIncludesHair": false,
-        "priceComparisonMode": ""
-      },
-      "attributeSuggestions": [],
-      "currentServices": [
-        "Curly cut / wash & go / diffuse",
-        "Keratin treatment / Brazilian blowdry",
-        "Silk press",
-        "Sew-in take-down",
-        "Braid take-down",
-        "Olaplex treatment",
-        "Texture release",
-        "Editorial / Session styling",
-        "Bouncy blowout / round brush blow dry",
-        "Wash & blowdry"
-      ],
-      "detectedServices": [
-        "Full head colour"
-      ],
-      "addedServices": [
-        "Full head colour"
-      ],
-      "removedServices": [],
-      "locationReviewIgnored": false,
-      "checkedAt": "2026-09-11",
-      "priceBand": "££",
-      "priceSource": "auto",
-      "priceConfidence": "manual"
     },
     {
       "id": "aaliyahsullivan-co",
@@ -20359,14 +19966,14 @@
         "Balayage",
         "Trim / hair cut",
         "Silk press",
-        "Curly cut / wash & go / diffuse",
-        "Bouncy blowout / round brush blow dry"
+        "Curly cut / wash & go / diffuse"
       ],
       "locationReviewIgnored": false,
       "checkedAt": "2026-09-11",
       "priceBand": "££",
       "priceSource": "auto",
-      "priceConfidence": "medium"
+      "priceConfidence": "medium",
+      "reviewedAt": "2026-09-11"
     },
     {
       "id": "dillanbstudios",
@@ -20462,16 +20069,14 @@
         "Scalp detox / treatments",
         "Curly cut / wash & go / diffuse",
         "Moisturising treatment",
-        "Tracks (+ silk press) / partial / invisible sew-in",
-        "Silk press",
-        "Wash & blowdry",
-        "Natural hair coaches / educators"
+        "Silk press"
       ],
       "locationReviewIgnored": false,
       "checkedAt": "2026-09-11",
       "priceBand": "££",
       "priceSource": "manual",
-      "priceConfidence": "manual"
+      "priceConfidence": "manual",
+      "reviewedAt": "2026-09-11"
     },
     {
       "id": "maluwanichole",
@@ -20597,9 +20202,7 @@
         "Bouncy blowout / round brush blow dry",
         "Scalp detox / treatments"
       ],
-      "addedServices": [
-        "K18 treatment"
-      ],
+      "addedServices": [],
       "removedServices": [
         "Traditional sew-in / leave out",
         "Quick weave",
@@ -20610,7 +20213,8 @@
       "checkedAt": "2026-09-11",
       "priceBand": "£",
       "priceSource": "manual",
-      "priceConfidence": "manual"
+      "priceConfidence": "manual",
+      "reviewedAt": "2026-09-11"
     },
     {
       "id": "mourhairldn",
@@ -20846,9 +20450,7 @@
         "Fulani / lemonade braids",
         "Highlights"
       ],
-      "addedServices": [
-        "Highlights"
-      ],
+      "addedServices": [],
       "removedServices": [
         "Retwist / interlocking",
         "Editorial / Session styling"
@@ -20857,7 +20459,8 @@
       "checkedAt": "2026-09-11",
       "priceBand": "££",
       "priceSource": "manual",
-      "priceConfidence": "manual"
+      "priceConfidence": "manual",
+      "reviewedAt": "2026-09-11"
     },
     {
       "id": "braidsnchill",
@@ -21039,11 +20642,8 @@
         "Twists (with extensions)"
       ],
       "addedServices": [
-        "Crochet faux locs / invisible locs",
         "Wash & blowdry",
-        "Full head colour",
-        "Colour blend (mixing braiding hair)",
-        "Retwist / interlocking"
+        "Full head colour"
       ],
       "removedServices": [
         "Half braids, half sew-in",
@@ -21053,7 +20653,8 @@
       "checkedAt": "2026-09-11",
       "priceBand": "£",
       "priceSource": "auto",
-      "priceConfidence": "manual"
+      "priceConfidence": "manual",
+      "reviewedAt": "2026-09-11"
     },
     {
       "id": "styledbyroxii",
@@ -21066,9 +20667,7 @@
       "wheelchairAccessible": false,
       "issues": [
         "Possible new services found",
-        "Possible removed services found",
-        "Possible parking wording found",
-        "Possible same-day/walk-in appointment wording found"
+        "Possible removed services found"
       ],
       "linkChecks": [
         {
@@ -21189,34 +20788,7 @@
         "priceIncludesHair": false,
         "priceComparisonMode": ""
       },
-      "attributeSuggestions": [
-        {
-          "field": "parkingAvailable",
-          "value": true,
-          "label": "Parking nearby",
-          "evidence": [
-            {
-              "source": "booking banner",
-              "text": "PARKING IS AVAILABLE ON DARLAN RD FOR CERTAIN TIMES]"
-            },
-            {
-              "source": "booking banner",
-              "text": "PLEASE NOTE PARKING CAN BE PRICEY IN THIS AREA"
-            }
-          ]
-        },
-        {
-          "field": "sameDayEmergency",
-          "value": true,
-          "label": "Same-day / walk-ins",
-          "evidence": [
-            {
-              "source": "booking banner",
-              "text": "Emergency appointment = £20 Less than 24 hours before booking"
-            }
-          ]
-        }
-      ],
+      "attributeSuggestions": [],
       "currentServices": [
         "Boho braids / goddess braids",
         "French curl",
@@ -21252,8 +20824,7 @@
       ],
       "addedServices": [
         "Wig install (frontal / closure)",
-        "U-Part / Half wig install",
-        "Miracle knots"
+        "U-Part / Half wig install"
       ],
       "removedServices": [
         "French curl",
@@ -21263,7 +20834,9 @@
       "checkedAt": "2026-09-11",
       "priceBand": "££",
       "priceSource": "auto",
-      "priceConfidence": "high"
+      "priceConfidence": "high",
+      "parkingAvailable": true,
+      "reviewedAt": "2026-09-11"
     },
     {
       "id": "fulhamscalphair",
@@ -21364,87 +20937,6 @@
       "priceConfidence": "high"
     },
     {
-      "id": "theheadspaedit",
-      "name": "The Head Spa Edit",
-      "areaLabel": "North west London",
-      "bookingUrl": "https://www.theheadspaeditt.com/appointments",
-      "instagramUrl": "https://www.instagram.com/theheadspaedit/",
-      "websiteUrl": "https://www.theheadspaeditt.com",
-      "hijabiFriendly": true,
-      "wheelchairAccessible": false,
-      "issues": [
-        "Booking link appears to be gone"
-      ],
-      "linkChecks": [
-        {
-          "type": "booking",
-          "url": "https://www.theheadspaeditt.com/appointments",
-          "finalUrl": "https://www.theheadspaeditt.com/appointments",
-          "status": "broken",
-          "httpStatus": 404,
-          "issues": [
-            "Booking link appears to be gone"
-          ]
-        },
-        {
-          "type": "instagram",
-          "url": "https://www.instagram.com/theheadspaedit/",
-          "finalUrl": "https://www.instagram.com/theheadspaedit/",
-          "status": "ok",
-          "httpStatus": 200,
-          "issues": []
-        },
-        {
-          "type": "website",
-          "url": "https://www.theheadspaeditt.com",
-          "finalUrl": "https://www.theheadspaeditt.com/",
-          "status": "ok",
-          "httpStatus": 200,
-          "issues": []
-        }
-      ],
-      "serviceCheck": {
-        "confidence": "unknown",
-        "rawServices": [],
-        "matchedServices": [],
-        "areaId": "",
-        "areaLabel": ""
-      },
-      "priceCheck": {
-        "source": "health",
-        "confidence": "unknown",
-        "priceBand": "",
-        "medianPrice": 0,
-        "prices": [],
-        "priceCount": 0,
-        "evidence": [],
-        "servicePriceBand": "",
-        "serviceMedianPrice": 0,
-        "servicePrices": [],
-        "servicePriceCount": 0,
-        "packagePriceBand": "",
-        "packageMedianPrice": 0,
-        "packagePrices": [],
-        "packagePriceCount": 0,
-        "priceIncludesHair": false,
-        "priceComparisonMode": ""
-      },
-      "attributeSuggestions": [],
-      "currentServices": [
-        "Japanese head spa",
-        "Scalp detox / treatments",
-        "Kids & teens styles"
-      ],
-      "detectedServices": [],
-      "addedServices": [],
-      "removedServices": [],
-      "locationReviewIgnored": false,
-      "checkedAt": "2026-09-11",
-      "priceBand": "£",
-      "priceSource": "manual",
-      "priceConfidence": "medium"
-    },
-    {
       "id": "covemedical",
       "name": "Cove Medical",
       "areaLabel": "Essex",
@@ -21542,11 +21034,7 @@
         "Closure sew-in / closure behind the hairline",
         "Scalp detox / treatments"
       ],
-      "addedServices": [
-        "Healthy hair plans & consultations",
-        "Closure sew-in / closure behind the hairline",
-        "Scalp detox / treatments"
-      ],
+      "addedServices": [],
       "removedServices": [
         "Trichology / scalp analysis"
       ],
@@ -21554,7 +21042,8 @@
       "checkedAt": "2026-09-11",
       "priceBand": "££",
       "priceSource": "auto",
-      "priceConfidence": "high"
+      "priceConfidence": "high",
+      "reviewedAt": "2026-09-11"
     },
     {
       "id": "h-a-i-r-by-ebonygarwood",
@@ -22054,318 +21543,6 @@
       "checkedAt": "2026-09-11",
       "priceBand": "£",
       "priceSource": "manual",
-      "priceConfidence": "manual"
-    },
-    {
-      "id": "ajahsbeautybase",
-      "name": "Ajahs Beauty Base",
-      "areaLabel": "South West London",
-      "bookingUrl": "https://ajahsbeautybasebookings.as.me/schedule/0ef2ec18/category/X19hbGxfXw%3D%3D",
-      "instagramUrl": "https://www.instagram.com/ajahsbeautybase/",
-      "websiteUrl": "https://ajahsbeautybase.com",
-      "hijabiFriendly": false,
-      "wheelchairAccessible": false,
-      "issues": [
-        "Possible same-day/walk-in appointment wording found"
-      ],
-      "linkChecks": [
-        {
-          "type": "booking",
-          "url": "https://ajahsbeautybasebookings.as.me/schedule/0ef2ec18/category/X19hbGxfXw%3D%3D",
-          "finalUrl": "https://ajahsbeautybasebookings.as.me/schedule/0ef2ec18/category/X19hbGxfXw%3D%3D",
-          "status": "ok",
-          "httpStatus": 200,
-          "issues": []
-        },
-        {
-          "type": "instagram",
-          "url": "https://www.instagram.com/ajahsbeautybase/",
-          "finalUrl": "https://www.instagram.com/ajahsbeautybase/",
-          "status": "ok",
-          "httpStatus": 200,
-          "issues": []
-        },
-        {
-          "type": "website",
-          "url": "https://ajahsbeautybase.com",
-          "finalUrl": "https://ajahsbeautybase.com/",
-          "status": "ok",
-          "httpStatus": 200,
-          "issues": []
-        }
-      ],
-      "serviceCheck": {
-        "confidence": "high",
-        "rawServices": [
-          "Boho Maintenance / Touch Up Services",
-          "Luxury Boho curl refresh",
-          "Luxury Front Boho Touch Up",
-          "Consultations",
-          "Online Braiding & boho colour Hair consultation",
-          "Bridal online consultation",
-          "Luxury braid collection",
-          "Medium Knotless Braids",
-          "Large Knotless Braids",
-          "Smedium Knotless Braids",
-          "Large Boho Knotless Braids",
-          "Medium Boho Knotless Braids",
-          "Smedium Boho Knotless",
-          "The Ultimate Signature Boho",
-          "6 stitch braids",
-          "8 freestyle stitch braids",
-          "Medium Alicia key braids",
-          "Freestyle Fulani braids with curled ends",
-          "Small boho knotless bob",
-          "Sun-kissed boho braids",
-          "Luxury Hair Spa",
-          "The Cécred Experience",
-          "The Reset Wash & Blow Dry",
-          "Scalp Detox Therapy",
-          "Olaplex Bond Repair",
-          "Luxury Scalp Clinic",
-          "Luxury Hair & Scalp Consultation",
-          "Luxury Scalp Analysis",
-          "Luxury Hair Recovery Experience",
-          "The Intensive Hydration Treatment",
-          "The Hair Growth Intensive Treatment",
-          "Masterclasses",
-          "Luxury hair spa & scalp clinic masterclass",
-          "The Luxury Reset Lounge",
-          "Luxury Braid Takedown",
-          "Luxury Takedown , Wash & Blow Dry",
-          "The Cécred braid takedown and Reset Experience",
-          "Luxury braid takedown and Scalp Detox therapy Reset",
-          "Luxury braid takedown and Olaplex Bond Repair Reset",
-          "Luxury braid prep appointment"
-        ],
-        "matchedServices": [
-          "Boho braids / goddess braids",
-          "Healthy hair plans & consultations",
-          "Full head colour",
-          "Bridal",
-          "Knotless braids",
-          "Stitch braids",
-          "Fulani / lemonade braids",
-          "Boho braids bob",
-          "Wash & blowdry",
-          "Scalp detox / treatments",
-          "Trichology / scalp analysis",
-          "Moisturising treatment",
-          "Braid take-down",
-          "Olaplex treatment"
-        ],
-        "areaId": "kent",
-        "areaLabel": "Kent"
-      },
-      "priceCheck": {
-        "source": "health",
-        "confidence": "unknown",
-        "priceBand": "",
-        "medianPrice": 0,
-        "prices": [],
-        "priceCount": 0,
-        "evidence": [],
-        "servicePriceBand": "",
-        "serviceMedianPrice": 0,
-        "servicePrices": [],
-        "servicePriceCount": 0,
-        "packagePriceBand": "",
-        "packageMedianPrice": 0,
-        "packagePrices": [],
-        "packagePriceCount": 0,
-        "priceIncludesHair": false,
-        "priceComparisonMode": ""
-      },
-      "attributeSuggestions": [
-        {
-          "field": "sameDayEmergency",
-          "value": true,
-          "label": "Same-day / walk-ins",
-          "evidence": [
-            {
-              "source": "website",
-              "text": "Walk ins welcome"
-            }
-          ]
-        }
-      ],
-      "currentServices": [
-        "Boho braids / goddess braids",
-        "Wash & blowdry",
-        "Braid take-down",
-        "Knotless braids",
-        "Olaplex treatment",
-        "Stitch braids",
-        "Bridal",
-        "Fulani / lemonade braids",
-        "Scalp detox / treatments",
-        "Moisturising treatment",
-        "Boho braids bob",
-        "Healthy hair plans & consultations",
-        "Full head colour",
-        "Trichology / scalp analysis"
-      ],
-      "detectedServices": [
-        "Boho braids / goddess braids",
-        "Healthy hair plans & consultations",
-        "Full head colour",
-        "Bridal",
-        "Knotless braids",
-        "Stitch braids",
-        "Fulani / lemonade braids",
-        "Boho braids bob",
-        "Wash & blowdry",
-        "Scalp detox / treatments",
-        "Trichology / scalp analysis",
-        "Moisturising treatment",
-        "Braid take-down",
-        "Olaplex treatment"
-      ],
-      "addedServices": [],
-      "removedServices": [],
-      "locationReviewIgnored": true,
-      "checkedAt": "2026-09-11",
-      "priceBand": "££",
-      "priceSource": "auto",
-      "priceConfidence": "high"
-    },
-    {
-      "id": "jhykesignaturee",
-      "name": "Jhyke Signaturee",
-      "areaLabel": "Essex",
-      "bookingUrl": "https://styledbyjhyke.as.me/schedule/dd5f6d89",
-      "instagramUrl": "https://www.instagram.com/jhykesignaturee/",
-      "websiteUrl": "",
-      "hijabiFriendly": false,
-      "wheelchairAccessible": false,
-      "issues": [],
-      "linkChecks": [
-        {
-          "type": "booking",
-          "url": "https://styledbyjhyke.as.me/schedule/dd5f6d89",
-          "finalUrl": "https://styledbyjhyke.as.me/schedule/dd5f6d89",
-          "status": "ok",
-          "httpStatus": 200,
-          "issues": []
-        },
-        {
-          "type": "instagram",
-          "url": "https://www.instagram.com/jhykesignaturee/",
-          "finalUrl": "https://www.instagram.com/jhykesignaturee/",
-          "status": "ok",
-          "httpStatus": 200,
-          "issues": []
-        }
-      ],
-      "serviceCheck": {
-        "confidence": "high",
-        "rawServices": [
-          "Boho bob",
-          "Small boho bob",
-          "Smedium boho bob",
-          "Medium boho bob",
-          "Boho braids",
-          "Small boho braids(without human hair)",
-          "Smedium boho braids(without human hair)",
-          "Medium boho braids(without human hair)",
-          "Classes(Trainig)",
-          "Jhykesignature Braiding Essential Experience",
-          "French Curls",
-          "Small French curls",
-          "Smedium French curls",
-          "Fulani braids",
-          "Large Fulani",
-          "Medium fulani",
-          "Small Fulani",
-          "Diva (flipover) braids",
-          "Lemonade Fulani braids",
-          "Fulani x Sew in",
-          "Standard Fulani x Sew in",
-          "Freestyle Fulani x Sew in",
-          "Jada wayda braids",
-          "Freestyle Fulani x Sew in (small)",
-          "Knotless braids",
-          "Medium knotless braids",
-          "SMedium knotless braids",
-          "Small knotless braids",
-          "Small knotless twists",
-          "SMedium knotless twists",
-          "Medium knotless twist",
-          "Signature Boho braids",
-          "Small boho braids(without human hair)",
-          "Stitch braids",
-          "6-8 Feed ins",
-          "8-10 Feed ins",
-          "10-16 Feed ins",
-          "15-20 Alicia braids",
-          "18-25 Alicia braids",
-          "Braided ponytail 10-18",
-          "Braided ponytail 12-26",
-          "Small Lemonade braids",
-          "20-30 Alicia braids"
-        ],
-        "matchedServices": [
-          "Boho braids bob",
-          "Boho braids / goddess braids",
-          "French curl",
-          "Fulani / lemonade braids",
-          "Flipover / Versatile sew-in",
-          "Traditional sew-in / leave out",
-          "Knotless braids",
-          "Stitch braids"
-        ],
-        "areaId": "east",
-        "areaLabel": "East London",
-        "areaIds": [
-          "east"
-        ]
-      },
-      "priceCheck": {
-        "source": "health",
-        "confidence": "unknown",
-        "priceBand": "",
-        "medianPrice": 0,
-        "prices": [],
-        "priceCount": 0,
-        "evidence": [],
-        "servicePriceBand": "",
-        "serviceMedianPrice": 0,
-        "servicePrices": [],
-        "servicePriceCount": 0,
-        "packagePriceBand": "",
-        "packageMedianPrice": 0,
-        "packagePrices": [],
-        "packagePriceCount": 0,
-        "priceIncludesHair": false,
-        "priceComparisonMode": ""
-      },
-      "attributeSuggestions": [],
-      "currentServices": [
-        "Boho braids / goddess braids",
-        "French curl",
-        "Fulani / lemonade braids",
-        "Stitch braids",
-        "Flipover / Versatile sew-in",
-        "Traditional sew-in / leave out",
-        "Knotless braids",
-        "Boho braids bob"
-      ],
-      "detectedServices": [
-        "Boho braids bob",
-        "Boho braids / goddess braids",
-        "French curl",
-        "Fulani / lemonade braids",
-        "Flipover / Versatile sew-in",
-        "Traditional sew-in / leave out",
-        "Knotless braids",
-        "Stitch braids"
-      ],
-      "addedServices": [],
-      "removedServices": [],
-      "locationReviewIgnored": false,
-      "checkedAt": "2026-09-11",
-      "priceBand": "£££",
-      "priceSource": "auto",
       "priceConfidence": "manual"
     },
     {
@@ -22953,7 +22130,6 @@
         "Loc extensions (permanent)"
       ],
       "addedServices": [
-        "Keratin treatment / Brazilian blowdry",
         "Scalp detox / treatments"
       ],
       "removedServices": [
@@ -22962,15 +22138,14 @@
         "Feed-in braids",
         "Fulani / lemonade braids",
         "Knotless braids",
-        "Curly cut / wash & go / diffuse",
-        "Balayage",
-        "Highlights"
+        "Curly cut / wash & go / diffuse"
       ],
       "locationReviewIgnored": false,
       "checkedAt": "2026-09-11",
       "priceBand": "££",
       "priceSource": "manual",
-      "priceConfidence": "manual"
+      "priceConfidence": "manual",
+      "reviewedAt": "2026-09-11"
     },
     {
       "id": "mylaanddavis",
@@ -23413,9 +22588,7 @@
         "Crochet faux locs / invisible locs",
         "Soft locs"
       ],
-      "addedServices": [
-        "Crochet faux locs / invisible locs"
-      ],
+      "addedServices": [],
       "removedServices": [
         "Retwist / interlocking",
         "Men's braids",
@@ -23425,7 +22598,8 @@
       "checkedAt": "2026-09-11",
       "priceBand": "££",
       "priceSource": "auto",
-      "priceConfidence": "high"
+      "priceConfidence": "high",
+      "reviewedAt": "2026-09-11"
     },
     {
       "id": "akela-jasmin-hair",
@@ -23837,18 +23011,16 @@
         "Crochet faux locs / invisible locs",
         "Miracle knots"
       ],
-      "addedServices": [
-        "Crochet faux locs / invisible locs"
-      ],
+      "addedServices": [],
       "removedServices": [
-        "Soft locs",
         "Colour blend (mixing braiding hair)"
       ],
       "locationReviewIgnored": false,
       "checkedAt": "2026-09-11",
       "priceBand": "££",
       "priceSource": "auto",
-      "priceConfidence": "high"
+      "priceConfidence": "high",
+      "reviewedAt": "2026-09-11"
     },
     {
       "id": "artistrybyserena",
@@ -24568,8 +23740,7 @@
         "Twists (with extensions)"
       ],
       "addedServices": [
-        "Traditional sew-in / leave out",
-        "Retwist / interlocking"
+        "Traditional sew-in / leave out"
       ],
       "removedServices": [
         "Boho locs"
@@ -24578,7 +23749,8 @@
       "checkedAt": "2026-09-11",
       "priceBand": "££",
       "priceSource": "auto",
-      "priceConfidence": "high"
+      "priceConfidence": "high",
+      "reviewedAt": "2026-09-11"
     },
     {
       "id": "be-styled-by-chen",
@@ -24723,9 +23895,7 @@
         "Full head colour",
         "Scalp detox / treatments"
       ],
-      "addedServices": [
-        "K18 treatment"
-      ],
+      "addedServices": [],
       "removedServices": [
         "Olaplex treatment",
         "Moisturising treatment",
@@ -24736,7 +23906,8 @@
       "checkedAt": "2026-09-11",
       "priceBand": "£",
       "priceSource": "auto",
-      "priceConfidence": "high"
+      "priceConfidence": "high",
+      "reviewedAt": "2026-09-11"
     },
     {
       "id": "beaute-brenda",
@@ -24857,7 +24028,6 @@
       ],
       "addedServices": [],
       "removedServices": [
-        "Soft locs",
         "Microbraids / x-small braids",
         "Colour blend (mixing braiding hair)"
       ],
@@ -24865,7 +24035,8 @@
       "checkedAt": "2026-09-11",
       "priceBand": "£££",
       "priceSource": "auto",
-      "priceConfidence": "high"
+      "priceConfidence": "high",
+      "reviewedAt": "2026-09-11"
     },
     {
       "id": "beauty-kulture-uk",
@@ -25197,9 +24368,7 @@
         "Wig colouring / bundle colouring",
         "K18 treatment"
       ],
-      "addedServices": [
-        "K18 treatment"
-      ],
+      "addedServices": [],
       "removedServices": [
         "Trim / hair cut",
         "Texture release",
@@ -25217,7 +24386,8 @@
       "checkedAt": "2026-09-11",
       "priceBand": "££",
       "priceSource": "manual",
-      "priceConfidence": "manual"
+      "priceConfidence": "manual",
+      "reviewedAt": "2026-09-11"
     },
     {
       "id": "braidbarldn",
@@ -25333,9 +24503,7 @@
         "Knotless braids",
         "Boho braids / goddess braids"
       ],
-      "addedServices": [
-        "Colour blend (mixing braiding hair)"
-      ],
+      "addedServices": [],
       "removedServices": [
         "Traditional sew-in / leave out",
         "Half up half down",
@@ -25348,7 +24516,8 @@
       "checkedAt": "2026-09-11",
       "priceBand": "££",
       "priceSource": "manual",
-      "priceConfidence": "low"
+      "priceConfidence": "low",
+      "reviewedAt": "2026-09-11"
     },
     {
       "id": "braidsbyfels",
@@ -25568,7 +24737,6 @@
         "Moisturising treatment"
       ],
       "addedServices": [
-        "Men's braids",
         "Moisturising treatment"
       ],
       "removedServices": [
@@ -25579,7 +24747,8 @@
       "checkedAt": "2026-09-11",
       "priceBand": "££",
       "priceSource": "auto",
-      "priceConfidence": "manual"
+      "priceConfidence": "manual",
+      "reviewedAt": "2026-09-11"
     },
     {
       "id": "bybrittss",
@@ -25802,9 +24971,7 @@
         "Silk press",
         "K18 treatment"
       ],
-      "addedServices": [
-        "K18 treatment"
-      ],
+      "addedServices": [],
       "removedServices": [
         "Feed-in braids",
         "Half braids, half sew-in"
@@ -25813,117 +24980,8 @@
       "checkedAt": "2026-09-11",
       "priceBand": "£",
       "priceSource": "auto",
-      "priceConfidence": "high"
-    },
-    {
-      "id": "caeslique",
-      "name": "Caeslique",
-      "areaLabel": "South West",
-      "bookingUrl": "https://silquehair.as.me/schedule/15560fa5",
-      "instagramUrl": "https://www.instagram.com/caeslique/",
-      "websiteUrl": "",
-      "hijabiFriendly": false,
-      "wheelchairAccessible": false,
-      "issues": [
-        "Possible new services found"
-      ],
-      "linkChecks": [
-        {
-          "type": "booking",
-          "url": "https://silquehair.as.me/schedule/15560fa5",
-          "finalUrl": "https://silquehair.as.me/schedule/15560fa5",
-          "status": "ok",
-          "httpStatus": 200,
-          "issues": []
-        },
-        {
-          "type": "instagram",
-          "url": "https://www.instagram.com/caeslique/",
-          "finalUrl": "https://www.instagram.com/caeslique/",
-          "status": "ok",
-          "httpStatus": 200,
-          "issues": []
-        }
-      ],
-      "serviceCheck": {
-        "confidence": "high",
-        "rawServices": [
-          "Blowdry & Styling",
-          "Bouncy Blowdry",
-          "Pinned curls",
-          "Silk Press & Treatments",
-          "Silk Press",
-          "Hydro-Bonding Treatment With Silk Press",
-          "Avlon Texture Release With Silk Press",
-          "Keratin Bond Extensions (Invisible K-Tips)",
-          "Keratin Bond Extensions (Invisible K-Tips) Virtual Consultation",
-          "Keratin Bond Install (Extensions Provided)",
-          "Keratin Bond Install (Pre Coloured Extensions Provided)",
-          "Keratin Bond Maintenance",
-          "Keratin Bond Removal",
-          "Tape-In Extensions",
-          "Tape-In Extensions Virtual Consultation",
-          "Tape-In Extensions Install (Extensions Provided)",
-          "Tape-In Extensions Install (Pre-Coloured Extensions Provided)",
-          "Tape-In Extension Install (150-200g)",
-          "Tape-In Extension Install (250-300g)",
-          "Tape-In Extensions Maintenance",
-          "Tape-In Extensions Removal & Reinstall",
-          "Tape-In Extensions Reinstall",
-          "Tape-In Extensions Removal"
-        ],
-        "matchedServices": [
-          "Bouncy blowout / round brush blow dry",
-          "Silk press",
-          "Texture release",
-          "K-tips / invisible strands",
-          "Tape ins"
-        ],
-        "areaId": "south-west",
-        "areaLabel": "South west London"
-      },
-      "priceCheck": {
-        "source": "health",
-        "confidence": "unknown",
-        "priceBand": "",
-        "medianPrice": 0,
-        "prices": [],
-        "priceCount": 0,
-        "evidence": [],
-        "servicePriceBand": "",
-        "serviceMedianPrice": 0,
-        "servicePrices": [],
-        "servicePriceCount": 0,
-        "packagePriceBand": "",
-        "packageMedianPrice": 0,
-        "packagePrices": [],
-        "packagePriceCount": 0,
-        "priceIncludesHair": false,
-        "priceComparisonMode": ""
-      },
-      "attributeSuggestions": [],
-      "currentServices": [
-        "Silk press",
-        "K-tips / invisible strands",
-        "Texture release",
-        "Tape ins"
-      ],
-      "detectedServices": [
-        "Bouncy blowout / round brush blow dry",
-        "Silk press",
-        "Texture release",
-        "K-tips / invisible strands",
-        "Tape ins"
-      ],
-      "addedServices": [
-        "Bouncy blowout / round brush blow dry"
-      ],
-      "removedServices": [],
-      "locationReviewIgnored": false,
-      "checkedAt": "2026-09-11",
-      "priceBand": "£",
-      "priceSource": "auto",
-      "priceConfidence": "high"
+      "priceConfidence": "high",
+      "reviewedAt": "2026-09-11"
     },
     {
       "id": "charlotte-mensah-hair-lounge",
@@ -26231,8 +25289,7 @@
       "hijabiFriendly": false,
       "wheelchairAccessible": false,
       "issues": [
-        "Possible removed services found",
-        "Possible parking wording found"
+        "Possible removed services found"
       ],
       "linkChecks": [
         {
@@ -26321,19 +25378,7 @@
         "priceIncludesHair": false,
         "priceComparisonMode": ""
       },
-      "attributeSuggestions": [
-        {
-          "field": "parkingAvailable",
-          "value": true,
-          "label": "Parking nearby",
-          "evidence": [
-            {
-              "source": "booking banner",
-              "text": "EARLIER TO FIND PARKING"
-            }
-          ]
-        }
-      ],
+      "attributeSuggestions": [],
       "currentServices": [
         "Silk press",
         "Moisturising treatment",
@@ -26367,7 +25412,8 @@
       "checkedAt": "2026-09-11",
       "priceBand": "£",
       "priceSource": "auto",
-      "priceConfidence": "high"
+      "priceConfidence": "high",
+      "reviewedAt": "2026-09-11"
     },
     {
       "id": "curl-talk",
@@ -26797,8 +25843,7 @@
       "wheelchairAccessible": false,
       "issues": [
         "Possible new services found",
-        "Possible removed services found",
-        "Possible same-day/walk-in appointment wording found"
+        "Possible removed services found"
       ],
       "linkChecks": [
         {
@@ -26888,19 +25933,7 @@
         "priceIncludesHair": false,
         "priceComparisonMode": ""
       },
-      "attributeSuggestions": [
-        {
-          "field": "sameDayEmergency",
-          "value": true,
-          "label": "Same-day / walk-ins",
-          "evidence": [
-            {
-              "source": "booking banner",
-              "text": "Good Friday, Easter Sunday, Easter Monday, and Valentines Day are considered an emergency appointment, charged"
-            }
-          ]
-        }
-      ],
+      "attributeSuggestions": [],
       "currentServices": [
         "Fulani / lemonade braids",
         "Knotless braids",
@@ -26931,13 +25964,11 @@
         "Creative braids"
       ],
       "addedServices": [
-        "Flipover / Versatile sew-in",
-        "Crochet faux locs / invisible locs"
+        "Flipover / Versatile sew-in"
       ],
       "removedServices": [
         "Retwist / interlocking",
         "Half braids, half sew-in",
-        "Soft locs",
         "Men's braids",
         "Colour blend (mixing braiding hair)"
       ],
@@ -26945,7 +25976,8 @@
       "checkedAt": "2026-09-11",
       "priceBand": "££",
       "priceSource": "auto",
-      "priceConfidence": "high"
+      "priceConfidence": "high",
+      "reviewedAt": "2026-09-11"
     },
     {
       "id": "entwined-curls",
@@ -27158,146 +26190,6 @@
       "priceConfidence": "medium"
     },
     {
-      "id": "es-lounge",
-      "name": "ES Lounge",
-      "areaLabel": "South East",
-      "bookingUrl": "https://eslounge.as.me/schedule/df712656",
-      "instagramUrl": "https://www.instagram.com/eslounge_/",
-      "websiteUrl": "",
-      "hijabiFriendly": false,
-      "wheelchairAccessible": false,
-      "issues": [
-        "Possible new services found"
-      ],
-      "linkChecks": [
-        {
-          "type": "booking",
-          "url": "https://eslounge.as.me/schedule/df712656",
-          "finalUrl": "https://eslounge.as.me/schedule/df712656",
-          "status": "ok",
-          "httpStatus": 200,
-          "issues": []
-        },
-        {
-          "type": "instagram",
-          "url": "https://www.instagram.com/eslounge_/",
-          "finalUrl": "https://www.instagram.com/eslounge_/",
-          "status": "ok",
-          "httpStatus": 200,
-          "issues": []
-        }
-      ],
-      "serviceCheck": {
-        "confidence": "high",
-        "rawServices": [
-          "All inclusive",
-          "Small Boho knotless",
-          "Medium Boho Knotless",
-          "Large Boho Knotless",
-          "Small Freestyle Boho Fulani",
-          "Small boho boho knotless",
-          "Medium Boho Boho Knotless",
-          "Bob boho knotless",
-          "All Stitches",
-          "6 All back feed in braids",
-          "10 All Back Feed In Braids",
-          "8 All Back Feed in Braids",
-          "4 All Back Feed In Braids",
-          "Freestyle Baddiiie Me (Stitches)",
-          "Crochet & Handmade Locs",
-          "Hand Wrapped Distressed loc (Large Size)",
-          "Crochet Locs",
-          "Hand Wrapped Distressed Locs (REGULAR SIZE)",
-          "Es Knotless",
-          "Small knotless",
-          "Medium knotless",
-          "Large knotless",
-          "Es Re-touch",
-          "Freestyle Fulani Touch Up",
-          "Small Touch up",
-          "Medium Knotless Touch Up",
-          "Es xs small feed in",
-          "Small all back braids (16-20 braids)",
-          "XSmall ponytail braids",
-          "26-30 Small All Back Feed In",
-          "20-24 Small All Back Feed In",
-          "Freestyle Fulani",
-          "Freestyle Fulani",
-          "Freestyle Fulani",
-          "Ponytails",
-          "No Parting Low/Mid/High ponytail",
-          "No Parting Low/Mid/High Braided Ponytail",
-          "Sleek’d Knot Low/Mid/High Bun",
-          "Let’s Get Creative",
-          "Middle Low Part Ponytail",
-          "Middle Low Part Braided Pony",
-          "Two Braided Ponytail"
-        ],
-        "matchedServices": [
-          "Boho braids / goddess braids",
-          "Knotless braids",
-          "Fulani / lemonade braids",
-          "Boho braids bob",
-          "Feed-in braids",
-          "Crochet",
-          "Crochet faux locs / invisible locs",
-          "Microbraids / x-small braids",
-          "Sleek ponytail / bun"
-        ],
-        "areaId": "all-london",
-        "areaLabel": "London"
-      },
-      "priceCheck": {
-        "source": "health",
-        "confidence": "unknown",
-        "priceBand": "",
-        "medianPrice": 0,
-        "prices": [],
-        "priceCount": 0,
-        "evidence": [],
-        "servicePriceBand": "",
-        "serviceMedianPrice": 0,
-        "servicePrices": [],
-        "servicePriceCount": 0,
-        "packagePriceBand": "",
-        "packageMedianPrice": 0,
-        "packagePrices": [],
-        "packagePriceCount": 0,
-        "priceIncludesHair": false,
-        "priceComparisonMode": ""
-      },
-      "attributeSuggestions": [],
-      "currentServices": [
-        "Knotless braids",
-        "Feed-in braids",
-        "Fulani / lemonade braids",
-        "Sleek ponytail / bun",
-        "Crochet",
-        "Boho braids / goddess braids",
-        "Boho braids bob"
-      ],
-      "detectedServices": [
-        "Boho braids / goddess braids",
-        "Knotless braids",
-        "Fulani / lemonade braids",
-        "Boho braids bob",
-        "Feed-in braids",
-        "Crochet",
-        "Crochet faux locs / invisible locs",
-        "Microbraids / x-small braids",
-        "Sleek ponytail / bun"
-      ],
-      "addedServices": [
-        "Crochet faux locs / invisible locs"
-      ],
-      "removedServices": [],
-      "locationReviewIgnored": false,
-      "checkedAt": "2026-09-11",
-      "priceBand": "££",
-      "priceSource": "auto",
-      "priceConfidence": "high"
-    },
-    {
       "id": "ess-belle-tresses",
       "name": "Ess Belle Tresses",
       "areaLabel": "East",
@@ -27464,18 +26356,17 @@
       ],
       "addedServices": [
         "Twists (with extensions)",
-        "Crochet faux locs / invisible locs",
         "Flipover / Versatile sew-in"
       ],
       "removedServices": [
-        "Soft locs",
         "Colour blend (mixing braiding hair)"
       ],
       "locationReviewIgnored": false,
       "checkedAt": "2026-09-11",
       "priceBand": "££",
       "priceSource": "auto",
-      "priceConfidence": "high"
+      "priceConfidence": "high",
+      "reviewedAt": "2026-09-11"
     },
     {
       "id": "estylish",
@@ -28516,8 +27407,7 @@
         "Boho braids bob"
       ],
       "addedServices": [
-        "Flipover / Versatile sew-in",
-        "Closure sew-in / closure behind the hairline"
+        "Flipover / Versatile sew-in"
       ],
       "removedServices": [
         "Half braids, half sew-in",
@@ -28527,7 +27417,8 @@
       "checkedAt": "2026-09-11",
       "priceBand": "££",
       "priceSource": "auto",
-      "priceConfidence": "high"
+      "priceConfidence": "high",
+      "reviewedAt": "2026-09-11"
     },
     {
       "id": "hair-by-kuks",
@@ -28698,8 +27589,6 @@
       ],
       "addedServices": [],
       "removedServices": [
-        "Butterfly locs",
-        "Soft locs",
         "Half braids, half sew-in",
         "French curl bob",
         "Colour blend (mixing braiding hair)"
@@ -28708,7 +27597,8 @@
       "checkedAt": "2026-09-11",
       "priceBand": "££",
       "priceSource": "auto",
-      "priceConfidence": "high"
+      "priceConfidence": "high",
+      "reviewedAt": "2026-09-11"
     },
     {
       "id": "hairbynoella",
@@ -28942,7 +27832,6 @@
         "Retwist / interlocking"
       ],
       "addedServices": [
-        "Crochet faux locs / invisible locs",
         "Flipover / Versatile sew-in"
       ],
       "removedServices": [],
@@ -28950,7 +27839,8 @@
       "checkedAt": "2026-09-11",
       "priceBand": "££",
       "priceSource": "auto",
-      "priceConfidence": "high"
+      "priceConfidence": "high",
+      "reviewedAt": "2026-09-11"
     },
     {
       "id": "hair-cupid-london",
@@ -29056,9 +27946,7 @@
         "Closure sew-in / closure behind the hairline",
         "Silk press"
       ],
-      "addedServices": [
-        "Texture release"
-      ],
+      "addedServices": [],
       "removedServices": [
         "Sew-in take-down"
       ],
@@ -29066,7 +27954,8 @@
       "checkedAt": "2026-09-11",
       "priceBand": "££",
       "priceSource": "manual",
-      "priceConfidence": "manual"
+      "priceConfidence": "manual",
+      "reviewedAt": "2026-09-11"
     },
     {
       "id": "hairbyoceanne",
@@ -30351,7 +29240,6 @@
       "removedServices": [
         "Knotless braids",
         "Traditional sew-in / leave out",
-        "Soft locs",
         "Retwist / interlocking",
         "Moisturising treatment",
         "Silk press",
@@ -30363,7 +29251,8 @@
       "checkedAt": "2026-09-11",
       "priceBand": "££",
       "priceSource": "manual",
-      "priceConfidence": "manual"
+      "priceConfidence": "manual",
+      "reviewedAt": "2026-09-11"
     },
     {
       "id": "keratin-by-anais",
@@ -30472,16 +29361,15 @@
       ],
       "addedServices": [
         "Scalp detox / treatments",
-        "Bouncy blowout / round brush blow dry",
-        "Highlights",
-        "Balayage"
+        "Bouncy blowout / round brush blow dry"
       ],
       "removedServices": [],
       "locationReviewIgnored": false,
       "checkedAt": "2026-09-11",
       "priceBand": "£",
       "priceSource": "auto",
-      "priceConfidence": "high"
+      "priceConfidence": "high",
+      "reviewedAt": "2026-09-11"
     },
     {
       "id": "kinkbynaturekbn",
@@ -30616,7 +29504,7 @@
     {
       "id": "kl-hairport",
       "name": "KL Hairport",
-      "areaLabel": "South",
+      "areaLabel": "South east London",
       "bookingUrl": "https://klhairport.as.me/schedule/d508b95c?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQPOTM2NjE5NzQzMzkyNDU5AAGn3PiJP-NV6R7QjYwLnHw8C5S3S3ja7bzI8XIHtXpynQRWeM6NF6hOJ4-4G2c_aem_YmtGarKv85EBkLsk33hzqQ",
       "instagramUrl": "https://www.instagram.com/klhairport/",
       "websiteUrl": "",
@@ -30727,10 +29615,7 @@
         "Stitch braids",
         "Wig cornrows"
       ],
-      "addedServices": [
-        "Stitch braids",
-        "Wig cornrows"
-      ],
+      "addedServices": [],
       "removedServices": [
         "Fulani / lemonade braids"
       ],
@@ -30738,7 +29623,12 @@
       "checkedAt": "2026-09-11",
       "priceBand": "££",
       "priceSource": "manual",
-      "priceConfidence": "manual"
+      "priceConfidence": "manual",
+      "areaId": "south-east",
+      "areaIds": [
+        "south-east"
+      ],
+      "reviewedAt": "2026-09-11"
     },
     {
       "id": "ksanya-hair",
@@ -30904,10 +29794,7 @@
         "Kids & teens styles",
         "Wig cornrows"
       ],
-      "addedServices": [
-        "Kids & teens styles",
-        "Wig cornrows"
-      ],
+      "addedServices": [],
       "removedServices": [
         "Colour blend (mixing braiding hair)"
       ],
@@ -30915,7 +29802,8 @@
       "checkedAt": "2026-09-11",
       "priceBand": "££",
       "priceSource": "auto",
-      "priceConfidence": "high"
+      "priceConfidence": "high",
+      "reviewedAt": "2026-09-11"
     },
     {
       "id": "les-braid-it",
@@ -31159,8 +30047,7 @@
       "wheelchairAccessible": false,
       "issues": [
         "Possible new services found",
-        "Possible removed services found",
-        "Possible same-day/walk-in appointment wording found"
+        "Possible removed services found"
       ],
       "linkChecks": [
         {
@@ -31243,19 +30130,7 @@
         "priceIncludesHair": false,
         "priceComparisonMode": ""
       },
-      "attributeSuggestions": [
-        {
-          "field": "sameDayEmergency",
-          "value": true,
-          "label": "Same-day / walk-ins",
-          "evidence": [
-            {
-              "source": "booking banner",
-              "text": "EE AVE ANY 24-48 HRS PRIOR / SAME DAY APPOINTMENT WILL BE CANCELLED HOURS BEFORE APPOINTMENT)"
-            }
-          ]
-        }
-      ],
+      "attributeSuggestions": [],
       "currentServices": [
         "LA weave / microlinks wefts / braidless sew in",
         "Sleek ponytail / bun",
@@ -31286,7 +30161,8 @@
       "checkedAt": "2026-09-11",
       "priceBand": "££",
       "priceSource": "auto",
-      "priceConfidence": "high"
+      "priceConfidence": "high",
+      "reviewedAt": "2026-09-11"
     },
     {
       "id": "majestik-styles",
@@ -31622,227 +30498,6 @@
         "Half braids, half sew-in",
         "Creative braids"
       ],
-      "locationReviewIgnored": false,
-      "checkedAt": "2026-09-11",
-      "priceBand": "££",
-      "priceSource": "auto",
-      "priceConfidence": "high"
-    },
-    {
-      "id": "microlocs-with-mimi",
-      "name": "Microlocs with Mimi",
-      "areaLabel": "Croydon",
-      "bookingUrl": "https://www.foryourlocsonly.com/",
-      "instagramUrl": "https://www.instagram.com/microlocswithmimi/",
-      "websiteUrl": "https://www.foryourlocsonly.com",
-      "hijabiFriendly": false,
-      "wheelchairAccessible": false,
-      "issues": [
-        "Possible new services found"
-      ],
-      "linkChecks": [
-        {
-          "type": "booking",
-          "url": "https://www.foryourlocsonly.com/",
-          "finalUrl": "https://www.foryourlocsonly.com/",
-          "status": "ok",
-          "httpStatus": 200,
-          "issues": []
-        },
-        {
-          "type": "instagram",
-          "url": "https://www.instagram.com/microlocswithmimi/",
-          "finalUrl": "https://www.instagram.com/microlocswithmimi/",
-          "status": "ok",
-          "httpStatus": 200,
-          "issues": []
-        },
-        {
-          "type": "website",
-          "url": "https://www.foryourlocsonly.com",
-          "finalUrl": "https://www.foryourlocsonly.com/",
-          "status": "ok",
-          "httpStatus": 200,
-          "issues": []
-        }
-      ],
-      "serviceCheck": {
-        "confidence": "medium",
-        "rawServices": [
-          "Microlocs in London",
-          "For Your Locs Only",
-          "*of any locs you may have been admiring or hoping for",
-          "location",
-          "Let&#x27;s discuss your hair and what you want from Microlocs",
-          "icrolocs?",
-          "Microlocs are extremely small strands of",
-          "interlocked",
-          "differing in size when compared to Traditional locs.",
-          "Microlocs",
-          "micro interlocking\"",
-          "Sisterlocks",
-          "http://infocenter.sisterlocks.com/what-are-sisterlocks.html",
-          "www.sisterlocks.com",
-          "Microlocs with Twists",
-          "Interlock installation process",
-          "Grid for Microlocs",
-          "For Your locs Only",
-          "MICROLOCS 2019",
-          "icrolocs",
-          "nterlocks",
-          "variable depending on hair density, length & loc size,",
-          "MICRO",
-          "for INTERLOCKS +&pound;100",
-          "locs",
-          "mimi@foryourlocsonly.com",
-          "@microlocswithmimi"
-        ],
-        "matchedServices": [
-          "Microlocs / sisterlocs",
-          "Retwist / interlocking"
-        ],
-        "areaId": "",
-        "areaLabel": ""
-      },
-      "priceCheck": {
-        "source": "health",
-        "confidence": "unknown",
-        "priceBand": "",
-        "medianPrice": 0,
-        "prices": [],
-        "priceCount": 0,
-        "evidence": [],
-        "servicePriceBand": "",
-        "serviceMedianPrice": 0,
-        "servicePrices": [],
-        "servicePriceCount": 0,
-        "packagePriceBand": "",
-        "packageMedianPrice": 0,
-        "packagePrices": [],
-        "packagePriceCount": 0,
-        "priceIncludesHair": false,
-        "priceComparisonMode": ""
-      },
-      "attributeSuggestions": [],
-      "currentServices": [
-        "Microlocs / sisterlocs"
-      ],
-      "detectedServices": [
-        "Microlocs / sisterlocs",
-        "Retwist / interlocking"
-      ],
-      "addedServices": [
-        "Retwist / interlocking"
-      ],
-      "removedServices": [],
-      "locationReviewIgnored": false,
-      "checkedAt": "2026-09-11",
-      "priceBand": "££££",
-      "priceSource": "manual",
-      "priceConfidence": "manual"
-    },
-    {
-      "id": "nhanced-hair",
-      "name": "Nhanced Hair",
-      "areaLabel": "London",
-      "bookingUrl": "https://nhancedhair.as.me/schedule/7f86294a",
-      "instagramUrl": "https://www.instagram.com/nhancedhair/",
-      "websiteUrl": "",
-      "hijabiFriendly": false,
-      "wheelchairAccessible": false,
-      "issues": [
-        "Possible parking wording found"
-      ],
-      "linkChecks": [
-        {
-          "type": "booking",
-          "url": "https://nhancedhair.as.me/schedule/7f86294a",
-          "finalUrl": "https://nhancedhair.as.me/schedule/7f86294a",
-          "status": "ok",
-          "httpStatus": 200,
-          "issues": []
-        },
-        {
-          "type": "instagram",
-          "url": "https://www.instagram.com/nhancedhair/",
-          "finalUrl": "https://www.instagram.com/nhancedhair/",
-          "status": "ok",
-          "httpStatus": 200,
-          "issues": []
-        }
-      ],
-      "serviceCheck": {
-        "confidence": "high",
-        "rawServices": [
-          "Sew-ins",
-          "Traditional sew-in (hair not provided)",
-          "Sew-in (hair provided)",
-          "'Faux Highlights' Hair Included Sew-In",
-          "2 x 6 Closure Sew-In",
-          "Tape-Ins",
-          "Tape-In Consultation",
-          "Tape-In Install - 60-80pcs (150-200g)",
-          "Tape-In Install - 100-120pcs (250-300grams)",
-          "Tape-in Install (Hair provided)",
-          "'Faux Highlights' Hair Included Tape-in Install",
-          "Tape Extension Refitting",
-          "Tape In Maintenance",
-          "Tape Removal"
-        ],
-        "matchedServices": [
-          "Traditional sew-in / leave out",
-          "Highlights",
-          "Closure sew-in / closure behind the hairline",
-          "Tape ins"
-        ],
-        "areaId": "all-london",
-        "areaLabel": "London"
-      },
-      "priceCheck": {
-        "source": "health",
-        "confidence": "unknown",
-        "priceBand": "",
-        "medianPrice": 0,
-        "prices": [],
-        "priceCount": 0,
-        "evidence": [],
-        "servicePriceBand": "",
-        "serviceMedianPrice": 0,
-        "servicePrices": [],
-        "servicePriceCount": 0,
-        "packagePriceBand": "",
-        "packageMedianPrice": 0,
-        "packagePrices": [],
-        "packagePriceCount": 0,
-        "priceIncludesHair": false,
-        "priceComparisonMode": ""
-      },
-      "attributeSuggestions": [
-        {
-          "field": "parkingAvailable",
-          "value": true,
-          "label": "Parking nearby",
-          "evidence": [
-            {
-              "source": "booking banner",
-              "text": "\\ 4 Paid Parking is available nearby"
-            }
-          ]
-        }
-      ],
-      "currentServices": [
-        "Traditional sew-in / leave out",
-        "Closure sew-in / closure behind the hairline",
-        "Tape ins"
-      ],
-      "detectedServices": [
-        "Traditional sew-in / leave out",
-        "Highlights",
-        "Closure sew-in / closure behind the hairline",
-        "Tape ins"
-      ],
-      "addedServices": [],
-      "removedServices": [],
       "locationReviewIgnored": false,
       "checkedAt": "2026-09-11",
       "priceBand": "££",
@@ -32948,9 +31603,7 @@
         "Miracle knots"
       ],
       "addedServices": [
-        "Flipover / Versatile sew-in",
-        "Crochet",
-        "Miracle knots"
+        "Flipover / Versatile sew-in"
       ],
       "removedServices": [
         "Men's braids"
@@ -32959,7 +31612,8 @@
       "checkedAt": "2026-09-11",
       "priceBand": "££",
       "priceSource": "auto",
-      "priceConfidence": "high"
+      "priceConfidence": "high",
+      "reviewedAt": "2026-09-11"
     },
     {
       "id": "sbeks-hair",
@@ -33598,7 +32252,6 @@
         "Hair botox",
         "Balayage",
         "Highlights",
-        "Bouncy blowout / round brush blow dry",
         "Silk press",
         "Kids & teens styles",
         "K18 treatment",
@@ -33608,7 +32261,8 @@
       "checkedAt": "2026-09-11",
       "priceBand": "££",
       "priceSource": "auto",
-      "priceConfidence": "manual"
+      "priceConfidence": "manual",
+      "reviewedAt": "2026-09-11"
     },
     {
       "id": "sixxx",
@@ -33805,8 +32459,7 @@
       "wheelchairAccessible": false,
       "issues": [
         "Possible new services found",
-        "Possible removed services found",
-        "Possible same-day/walk-in appointment wording found"
+        "Possible removed services found"
       ],
       "linkChecks": [
         {
@@ -33947,19 +32600,7 @@
         "priceIncludesHair": false,
         "priceComparisonMode": ""
       },
-      "attributeSuggestions": [
-        {
-          "field": "sameDayEmergency",
-          "value": true,
-          "label": "Same-day / walk-ins",
-          "evidence": [
-            {
-              "source": "booking",
-              "text": "SAME DAY APPOINTMENT are an extra charge of £45"
-            }
-          ]
-        }
-      ],
+      "attributeSuggestions": [],
       "currentServices": [
         "Knotless braids",
         "Feed-in braids",
@@ -33987,10 +32628,7 @@
         "Soft locs",
         "Fulani / lemonade braids"
       ],
-      "addedServices": [
-        "Bridal",
-        "Crochet faux locs / invisible locs"
-      ],
+      "addedServices": [],
       "removedServices": [
         "Editorial / Session styling",
         "Boho braids bob"
@@ -33999,7 +32637,8 @@
       "checkedAt": "2026-09-11",
       "priceBand": "££",
       "priceSource": "auto",
-      "priceConfidence": "high"
+      "priceConfidence": "high",
+      "reviewedAt": "2026-09-11"
     },
     {
       "id": "slayed-by-phairstyles",
@@ -34263,9 +32902,7 @@
         "Stitch braids",
         "Twists (with extensions)"
       ],
-      "addedServices": [
-        "Miracle knots"
-      ],
+      "addedServices": [],
       "removedServices": [
         "Half braids, half sew-in"
       ],
@@ -34273,7 +32910,8 @@
       "checkedAt": "2026-09-11",
       "priceBand": "£",
       "priceSource": "auto",
-      "priceConfidence": "high"
+      "priceConfidence": "high",
+      "reviewedAt": "2026-09-11"
     },
     {
       "id": "styled-by-nicia",
@@ -34630,9 +33268,7 @@
         "Full head colour",
         "K18 treatment"
       ],
-      "addedServices": [
-        "K18 treatment"
-      ],
+      "addedServices": [],
       "removedServices": [
         "Trim / hair cut",
         "Twist out / flexi rod",
@@ -34643,7 +33279,8 @@
       "checkedAt": "2026-09-11",
       "priceBand": "£",
       "priceSource": "auto",
-      "priceConfidence": "manual"
+      "priceConfidence": "manual",
+      "reviewedAt": "2026-09-11"
     },
     {
       "id": "swish-london",
@@ -35468,7 +34105,7 @@
     {
       "id": "vstylsz",
       "name": "V Stylsz",
-      "areaLabel": "South East London / Kent",
+      "areaLabel": "East London",
       "bookingUrl": "https://vstylsz.as.me/schedule/ed30d471",
       "instagramUrl": "https://www.instagram.com/vstylsz/",
       "websiteUrl": "",
@@ -35646,7 +34283,12 @@
       "checkedAt": "2026-09-11",
       "priceBand": "££",
       "priceSource": "auto",
-      "priceConfidence": "high"
+      "priceConfidence": "high",
+      "areaId": "east",
+      "areaIds": [
+        "east"
+      ],
+      "reviewedAt": "2026-09-11"
     },
     {
       "id": "zantibloom",
@@ -35658,8 +34300,7 @@
       "hijabiFriendly": false,
       "wheelchairAccessible": true,
       "issues": [
-        "Possible removed services found",
-        "Possible same-day/walk-in appointment wording found"
+        "Possible removed services found"
       ],
       "linkChecks": [
         {
@@ -35794,19 +34435,7 @@
         "priceIncludesHair": false,
         "priceComparisonMode": ""
       },
-      "attributeSuggestions": [
-        {
-          "field": "sameDayEmergency",
-          "value": true,
-          "label": "Same-day / walk-ins",
-          "evidence": [
-            {
-              "source": "booking",
-              "text": "Appointments only, no walk-ins"
-            }
-          ]
-        }
-      ],
+      "attributeSuggestions": [],
       "currentServices": [
         "Traditional sew-in / leave out",
         "K-tips / invisible strands",
@@ -35867,14 +34496,14 @@
         "Texture release",
         "Japanese straightening",
         "Keratin treatment / Brazilian blowdry",
-        "Tracks (+ silk press) / partial / invisible sew-in",
         "Full head colour"
       ],
       "locationReviewIgnored": false,
       "checkedAt": "2026-09-11",
       "priceBand": "£££",
       "priceSource": "auto",
-      "priceConfidence": "high"
+      "priceConfidence": "high",
+      "reviewedAt": "2026-09-11"
     },
     {
       "id": "zks-touch",
@@ -36575,8 +35204,8 @@
           "Flipover / Versatile sew-in",
           "Hybrid sew in (tapes + sew in)"
         ],
-        "areaId": "kent",
-        "areaLabel": "Kent",
+        "areaId": "",
+        "areaLabel": "",
         "areaIds": [
           "kent"
         ]
@@ -36632,11 +35261,12 @@
       "removedServices": [
         "Olaplex treatment"
       ],
-      "locationReviewIgnored": false,
+      "locationReviewIgnored": true,
       "checkedAt": "2026-09-11",
       "priceBand": "£",
       "priceSource": "auto",
-      "priceConfidence": "high"
+      "priceConfidence": "high",
+      "reviewedAt": "2026-09-11"
     },
     {
       "id": "hairology-by-christiana-e",
@@ -36866,15 +35496,14 @@
         "Traditional sew-in / leave out",
         "Box braids",
         "Relaxer / texturiser",
-        "Silk press",
-        "Highlights",
-        "Balayage"
+        "Silk press"
       ],
       "locationReviewIgnored": false,
       "checkedAt": "2026-09-11",
       "priceBand": "£",
       "priceSource": "auto",
-      "priceConfidence": "manual"
+      "priceConfidence": "manual",
+      "reviewedAt": "2026-09-11"
     },
     {
       "id": "shirley-mcdonald-trichologist",
@@ -36951,14 +35580,13 @@
       "detectedServices": [
         "K18 treatment"
       ],
-      "addedServices": [
-        "K18 treatment"
-      ],
+      "addedServices": [],
       "removedServices": [
         "Trichology / scalp analysis"
       ],
       "locationReviewIgnored": false,
-      "checkedAt": "2026-09-11"
+      "checkedAt": "2026-09-11",
+      "reviewedAt": "2026-09-11"
     }
   ]
 }

@@ -682,6 +682,22 @@
         }
       ],
       "createdAt": "2026-09-10"
+    },
+    {
+      "salonId": "bluetit",
+      "salonName": "Blue Tit",
+      "reason": "it just said treatment, not K18 or k-18",
+      "context": [
+        "K18 treatment"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "K18 treatment",
+          "evidenceText": "Treatment"
+        }
+      ],
+      "createdAt": "2026-09-11"
     }
   ]
 }
