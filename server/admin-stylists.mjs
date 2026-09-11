@@ -9790,6 +9790,7 @@ function sanitizeDraftUpdate(input) {
   const priceBand = sanitizePriceBand(input.priceBand);
   const servicePriceBand = sanitizePriceBand(input.servicePriceBand);
   const packagePriceBand = sanitizePriceBand(input.packagePriceBand);
+  const hairShopUrl = cleanString(input.hairShopUrl);
 
   return {
     ...(input.status ? { status: cleanString(input.status) } : {}),
@@ -9802,7 +9803,7 @@ function sanitizeDraftUpdate(input) {
     bookingPlatform: cleanString(input.bookingPlatform) || inferred.bookingPlatform,
     bookingUrl: cleanString(input.bookingUrl) || inferred.bookingUrl,
     websiteUrl: cleanString(input.websiteUrl) || inferred.websiteUrl,
-    hairShopUrl: cleanString(input.hairShopUrl),
+    hairShopUrl,
     instagramUrl: cleanString(input.instagramUrl) || inferred.instagramUrl,
     tiktokUrl: cleanString(input.tiktokUrl) || inferred.tiktokUrl,
     googlePlaceId: cleanString(input.googlePlaceId),
@@ -9822,7 +9823,10 @@ function sanitizeDraftUpdate(input) {
     senFriendly: input.senFriendly === true,
     lgbtqFriendly: input.lgbtqFriendly === true,
     parkingAvailable: input.parkingAvailable === true,
-    sellsHairSeparately: input.sellsHairSeparately === true,
+    // A hair-shop link on file is itself evidence the stylist sells hair
+    // separately — don't let a forgotten checkbox leave the link unrenderable
+    // (see getHairShopLinkInfo on the site, which requires both).
+    sellsHairSeparately: input.sellsHairSeparately === true || Boolean(hairShopUrl),
     sameDayEmergency: input.sameDayEmergency === true,
     customFilters: sanitizeCustomFilters(input.customFilters),
     priceBand: priceBand || servicePriceBand,

@@ -14,16 +14,14 @@
       "neighbourhood": "London London",
       "postcode": "",
       "bookingPlatform": "Instagram",
-      "bookingUrl": "https://www.instagram.com/theeditorialjt/",
+      "bookingUrl": "",
       "websiteUrl": "",
       "hairShopUrl": "",
-      "instagramUrl": "https://www.instagram.com/theeditorialjt/",
+      "instagramUrl": "",
       "tiktokUrl": "",
       "addedVia": "Admin tool",
       "discoverySource": "Instagram auto-fill",
-      "services": [
-        "Editorial / Session styling"
-      ],
+      "services": [],
       "summary": "✂️ Editorial Hairstylist | London | Leeds | Manchester  Travel hairstylist\n@joyshairstudio_ \n💫 Specialising in braids + textured hair\n DM for bookings",
       "source": "manual",
       "evidence": [
@@ -53,7 +51,29 @@
         }
       ],
       "photoSearchReviewedAt": "2026-09-11",
-      "photoOrderBumpedAt": 1210
+      "photoOrderBumpedAt": 1210,
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": false,
+      "sameDayEmergency": false,
+      "customFilters": {},
+      "priceBand": "",
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "",
+      "priceSource": "",
+      "priceEvidence": [],
+      "priceCheckedAt": "",
+      "priceUpdatedAt": "",
+      "priceConfidence": "",
+      "updatedAt": "2026-09-11"
     },
     {
       "id": "short-story-uk",
@@ -1256,7 +1276,8 @@
       "source": "manual",
       "evidence": [
         "Submitted link: https://www.instagram.com/braidsbymamahz/",
-        "Raw services provided during admin intake."
+        "Raw services provided during admin intake.",
+        "Flag corrected: hairShopUrl (https://www.instagram.com/mamahzxtensions/) was already on file as a distinct shop link, but sellsHairSeparately was false — link was invisible in the directory."
       ],
       "googlePlaceId": null,
       "googleReviewCount": 0,
@@ -1271,7 +1292,9 @@
         }
       ],
       "photoSearchReviewedAt": "2026-09-08",
-      "photoOrderBumpedAt": 1186
+      "photoOrderBumpedAt": 1186,
+      "sellsHairSeparately": true,
+      "updatedAt": "2026-09-11"
     },
     {
       "id": "ts-locs",
@@ -6169,10 +6192,10 @@
       "senFriendly": false,
       "lgbtqFriendly": false,
       "parkingAvailable": false,
-      "sellsHairSeparately": false,
+      "sellsHairSeparately": true,
       "sameDayEmergency": false,
       "customFilters": {},
-      "updatedAt": "2026-08-31",
+      "updatedAt": "2026-09-11",
       "portfolioPhotos": [
         {
           "id": "saanz-salon-portfolio-photo-c578b9af-c69b-47fe-943f-37b63c978904",
@@ -7083,7 +7106,8 @@
       "evidence": [
         "Submitted link: https://www.instagram.com/dynastyluxelounge/",
         "Submitted link: https://dynastyluxelounge.as.me/schedule.php",
-        "Raw services provided during admin intake."
+        "Raw services provided during admin intake.",
+        "Flag corrected: hairShopUrl (https://www.instagram.com/shopdyluxe/) was already on file as a distinct shop link, but sellsHairSeparately was false — link was invisible in the directory."
       ],
       "googlePlaceId": null,
       "googleReviewCount": 0,
@@ -7119,7 +7143,7 @@
       "parkingAvailable": false,
       "sellsHairSeparately": true,
       "customFilters": {},
-      "updatedAt": "2026-08-31"
+      "updatedAt": "2026-09-11"
     },
     {
       "id": "jp-styled-it",
@@ -8675,14 +8699,15 @@
       "evidence": [
         "Submitted link: https://www.instagram.com/yoyo_hair_boutique/",
         "Submitted link: https://www.yoyohairboutique.com/book-online",
-        "Raw services provided during admin intake."
+        "Raw services provided during admin intake.",
+        "Flag corrected: hairShopUrl (https://www.yoyohairboutique.com) was already on file as a distinct shop link, but sellsHairSeparately was false — link was invisible in the directory."
       ],
-      "googlePlaceId": "ChIJPTmH-zkbdkgR1DyTIIPe3Ro",
+      "googlePlaceId": null,
       "googleReviewCount": 28,
       "googleMapsUri": "https://maps.google.com/?cid=1935948069607783636&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
       "googleMatchConfidence": "high",
       "googleDisplayName": "Yoyo Hair Boutique",
-      "googleFormattedAddress": "527 Seven Sisters Rd, London N15 6EP, UK",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-08-31",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
@@ -8690,7 +8715,7 @@
       "senFriendly": false,
       "lgbtqFriendly": false,
       "parkingAvailable": false,
-      "sellsHairSeparately": false,
+      "sellsHairSeparately": true,
       "customFilters": {},
       "priceBand": "£",
       "servicePriceBand": "£",
@@ -8702,7 +8727,7 @@
       "priceCheckedAt": "",
       "priceUpdatedAt": "2026-08-31",
       "priceConfidence": "manual",
-      "updatedAt": "2026-08-31",
+      "updatedAt": "2026-09-11",
       "portfolioPhotos": [
         {
           "id": "yoyo-hair-boutique-portfolio-photo-d8ffda76-673c-4cde-befd-6edf515bd4df",
@@ -9893,7 +9918,8 @@
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
       "evidence": [
-        "Created through ROW K admin intake."
+        "Created through ROW K admin intake.",
+        "Flag corrected: hairShopUrl (https://www.instagram.com/arelihairco/) was already on file as a distinct shop link, but sellsHairSeparately was false — link was invisible in the directory."
       ],
       "googlePlaceId": null,
       "googleReviewCount": 0,
@@ -9908,10 +9934,10 @@
       "senFriendly": false,
       "lgbtqFriendly": false,
       "parkingAvailable": false,
-      "sellsHairSeparately": false,
+      "sellsHairSeparately": true,
       "sameDayEmergency": true,
       "customFilters": {},
-      "updatedAt": "2026-08-27",
+      "updatedAt": "2026-09-11",
       "portfolioPhotos": [
         {
           "id": "by-areli-uk-portfolio-photo-559c5c17-2270-48d6-acef-056ece7675ce",
@@ -14069,7 +14095,7 @@
       "bookingPlatform": "Acuity",
       "bookingUrl": "https://blessedbyelaa.as.me",
       "websiteUrl": "",
-      "hairShopUrl": "",
+      "hairShopUrl": "https://www.instagram.com/elaveehair/",
       "instagramUrl": "https://www.instagram.com/blessedbyela/",
       "tiktokUrl": "",
       "addedVia": "Admin tool",
@@ -14114,7 +14140,8 @@
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
       "evidence": [
-        "Created through ROW K admin intake."
+        "Created through ROW K admin intake.",
+        "Flag corrected: hairShopUrl (https://www.instagram.com/elaveehair/) was already on file as a distinct shop link, but sellsHairSeparately was false — link was invisible in the directory."
       ],
       "googlePlaceId": null,
       "googleReviewCount": 0,
@@ -14143,9 +14170,20 @@
           "source": "instagram-reel-thumbnail"
         }
       ],
-      "updatedAt": "2026-08-27",
+      "updatedAt": "2026-09-11",
       "photoSearchReviewedAt": "2026-08-27",
-      "photoOrderBumpedAt": 542
+      "photoOrderBumpedAt": 542,
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": true,
+      "sameDayEmergency": false,
+      "customFilters": {}
     },
     {
       "id": "magicfingersldn",
@@ -17777,14 +17815,9 @@
     {
       "id": "butterfly-fingaz",
       "name": "Butterfly Fingaz",
-      "areaId": "east",
-      "areaIds": [
-        "east",
-        "mobile",
-        "south-east"
-      ],
-      "areaLabel": "East London / Mobile / home service / South east London",
-      "neighbourhood": "East London and Mobile / home service and South east London London",
+      "areaId": "south-east",
+      "areaLabel": "South east London",
+      "neighbourhood": "South east London London",
       "postcode": "",
       "bookingPlatform": "Direct website",
       "bookingUrl": "https://butterfly-fingaz-studio.square.site/s/appointments",
@@ -17948,8 +17981,19 @@
         }
       ],
       "photoSearchReviewedAt": "2026-08-24",
-      "updatedAt": "2026-08-25",
-      "canBraidWithoutGel": true
+      "updatedAt": "2026-09-11",
+      "canBraidWithoutGel": true,
+      "hairShopUrl": "",
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
+      "hijabiFriendly": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": false,
+      "sameDayEmergency": false,
+      "customFilters": {}
     },
     {
       "id": "ymk-hairr",
@@ -18412,7 +18456,8 @@
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
       "evidence": [
-        "Created through ROW K admin intake."
+        "Created through ROW K admin intake.",
+        "Flag corrected: hairShopUrl (https://www.instagram.com/thekwaycollection/) was already on file as a distinct shop link, but sellsHairSeparately was false — link was invisible in the directory."
       ],
       "googlePlaceId": null,
       "googleReviewCount": 0,
@@ -18420,16 +18465,16 @@
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-08-11",
       "portfolioPhotosCheckedAt": "2026-08-20",
-      "hairShopUrl": "",
+      "hairShopUrl": "https://www.instagram.com/thekwaycollection/",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
       "wheelchairAccessible": false,
       "senFriendly": false,
       "lgbtqFriendly": false,
       "parkingAvailable": false,
-      "sellsHairSeparately": false,
+      "sellsHairSeparately": true,
       "customFilters": {},
-      "updatedAt": "2026-08-24",
+      "updatedAt": "2026-09-11",
       "portfolioPhotos": [
         {
           "id": "by-the-kway-portfolio-photo-b6ae42e2-fefc-4eaf-8b5d-597872043e31",
@@ -18437,7 +18482,10 @@
           "source": "google-image-search"
         }
       ],
-      "photoSearchReviewedAt": "2026-08-24"
+      "photoSearchReviewedAt": "2026-08-24",
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
+      "sameDayEmergency": false
     },
     {
       "id": "moiselle-de-pinto-moreira",
@@ -20960,7 +21008,8 @@
       "source": "manual",
       "evidence": [
         "Submitted link: https://www.instagram.com/elizabethayouk/",
-        "Source: https://www.tiktok.com/@ihsginaa/video/7667238290973576470 (£100, Royal Victoria Dock)"
+        "Source: https://www.tiktok.com/@ihsginaa/video/7667238290973576470 (£100, Royal Victoria Dock)",
+        "Flag corrected: hairShopUrl (https://www.instagram.com/byelizabethayo/) was already on file as a distinct shop link, but sellsHairSeparately was false — link was invisible in the directory."
       ],
       "googlePlaceId": null,
       "googleReviewCount": 0,
@@ -20984,7 +21033,21 @@
           "url": "/portfolio-photos/elizabethayouk-578e5ad0-512c-4270-ad65-fa56d202129e.jpg",
           "source": "google-image-search"
         }
-      ]
+      ],
+      "websiteUrl": "",
+      "hairShopUrl": "https://www.instagram.com/byelizabethayo/",
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": true,
+      "sameDayEmergency": false,
+      "customFilters": {},
+      "updatedAt": "2026-09-11"
     },
     {
       "id": "kutieshairuk",
@@ -23433,7 +23496,8 @@
       "source": "manual",
       "evidence": [
         "Submitted link: https://www.instagram.com/bynyaasika/",
-        "Source: https://www.tiktok.com/@ihsginaa/video/7667238290973576470 (£110, Deptford)"
+        "Source: https://www.tiktok.com/@ihsginaa/video/7667238290973576470 (£110, Deptford)",
+        "Flag corrected: hairShopUrl (https://www.instagram.com/bynyaasikacollection/) was already on file as a distinct shop link, but sellsHairSeparately was false — link was invisible in the directory."
       ],
       "googlePlaceId": null,
       "googleReviewCount": 0,
@@ -23458,8 +23522,21 @@
           "source": "google-image-search"
         }
       ],
-      "updatedAt": "2026-08-24",
-      "photoSearchReviewedAt": "2026-08-24"
+      "updatedAt": "2026-09-11",
+      "photoSearchReviewedAt": "2026-08-24",
+      "websiteUrl": "",
+      "hairShopUrl": "https://www.instagram.com/bynyaasikacollection/",
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": true,
+      "sameDayEmergency": false,
+      "customFilters": {}
     },
     {
       "id": "kn-hair-lounge",
@@ -25393,9 +25470,9 @@
     {
       "id": "cz-beauty",
       "name": "CZ Beauty",
-      "areaId": "south-east",
-      "areaLabel": "South east London",
-      "neighbourhood": "South east London",
+      "areaId": "south-west",
+      "areaLabel": "South west London",
+      "neighbourhood": "South west London London",
       "postcode": "",
       "bookingPlatform": "Direct website",
       "bookingUrl": "https://czbeauty.as.me/schedule/6ca54b1b",
@@ -25426,7 +25503,8 @@
       "source": "manual",
       "evidence": [
         "Submitted link: https://www.instagram.com/cz.beauty/",
-        "Source: https://www.tiktok.com/@ihsginaa/video/7667238290973576470 (£80, West Norwood)"
+        "Source: https://www.tiktok.com/@ihsginaa/video/7667238290973576470 (£80, West Norwood)",
+        "Flag corrected: hairShopUrl (https://www.instagram.com/czxtensionz/) was already on file as a distinct shop link, but sellsHairSeparately was false — link was invisible in the directory."
       ],
       "googlePlaceId": null,
       "googleReviewCount": 0,
@@ -25443,7 +25521,19 @@
         }
       ],
       "photoSearchReviewedAt": "2026-08-24",
-      "updatedAt": "2026-08-27"
+      "updatedAt": "2026-09-11",
+      "websiteUrl": "",
+      "hairShopUrl": "https://www.instagram.com/czxtensionz/",
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "sellsHairSeparately": true,
+      "sameDayEmergency": false,
+      "customFilters": {}
     },
     {
       "id": "ca-studioss",
@@ -26875,7 +26965,8 @@
       "source": "manual",
       "evidence": [
         "Submitted link: https://www.instagram.com/dbxhairuk/",
-        "Source: https://www.tiktok.com/@ihsginaa/video/7667238290973576470 (£70, Thamesmead)"
+        "Source: https://www.tiktok.com/@ihsginaa/video/7667238290973576470 (£70, Thamesmead)",
+        "Flag corrected: hairShopUrl (https://www.instagram.com/dbxcollectionuk/) was already on file as a distinct shop link, but sellsHairSeparately was false — link was invisible in the directory."
       ],
       "googlePlaceId": null,
       "googleReviewCount": 0,
@@ -26890,7 +26981,7 @@
       "lgbtqFriendly": false,
       "parkingAvailable": false,
       "customFilters": {},
-      "updatedAt": "2026-08-24",
+      "updatedAt": "2026-09-11",
       "portfolioPhotosCheckedAt": "2026-08-20",
       "portfolioPhotos": [
         {
@@ -26899,7 +26990,12 @@
           "source": "google-image-search"
         }
       ],
-      "photoSearchReviewedAt": "2026-08-25"
+      "photoSearchReviewedAt": "2026-08-25",
+      "hairShopUrl": "https://www.instagram.com/dbxcollectionuk/",
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
+      "sellsHairSeparately": true,
+      "sameDayEmergency": false
     },
     {
       "id": "dkhairuk",
@@ -38964,7 +39060,8 @@
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
       "evidence": [
-        "Submitted link: https://www.instagram.com/thelacespaceuk/"
+        "Submitted link: https://www.instagram.com/thelacespaceuk/",
+        "Flag corrected: hairShopUrl (https://www.instagram.com/atarahaircollection/) was already on file as a distinct shop link, but sellsHairSeparately was false — link was invisible in the directory."
       ],
       "priceBand": "£",
       "priceSource": "auto",
@@ -38987,8 +39084,8 @@
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleDisplayName": null,
-      "googleFormattedAddress": null,
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-07-29",
       "websiteUrl": "",
       "tiktokUrl": "",
@@ -39000,7 +39097,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-27",
+      "updatedAt": "2026-09-11",
       "portfolioPhotosCheckedAt": "2026-08-20",
       "portfolioPhotos": [
         {
@@ -39010,7 +39107,13 @@
         }
       ],
       "photoOrderBumpedAt": 470,
-      "photoSearchReviewedAt": "2026-08-27"
+      "photoSearchReviewedAt": "2026-08-27",
+      "hairShopUrl": "https://www.instagram.com/atarahaircollection/",
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": true,
+      "sameDayEmergency": false
     },
     {
       "id": "pastyles",
@@ -41750,12 +41853,12 @@
       "addedVia": "Admin tool",
       "discoverySource": "Manual search",
       "wheelchairAccessible": true,
-      "googlePlaceId": "ChIJuc1kzdkDdkgRbhpg2sHYg6o",
+      "googlePlaceId": null,
       "googleReviewCount": 105,
       "googleMapsUri": "https://maps.google.com/?cid=12286902535500864110&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
       "googleMatchConfidence": "high",
       "googleDisplayName": "Bleu Ribbon Hair & Beauty Lounge",
-      "googleFormattedAddress": "683A Old Kent Rd, London SE15 1JS, UK",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-07-24",
       "websiteUrl": "",
       "tiktokUrl": "",
@@ -41766,7 +41869,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-22",
+      "updatedAt": "2026-09-11",
       "portfolioPhotosCheckedAt": "2026-08-20",
       "portfolioPhotos": [
         {
@@ -41774,7 +41877,13 @@
           "url": "/portfolio-photos/bleuribbonhair-d34219a9-baac-456b-a3c6-4ba5dc8a2faa.jpg",
           "source": "google"
         }
-      ]
+      ],
+      "hairShopUrl": "",
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": true,
+      "sameDayEmergency": false
     },
     {
       "id": "taylor-taylor-london",
@@ -42549,7 +42658,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-24",
+      "updatedAt": "2026-09-11",
       "senFriendly": false,
       "lgbtqFriendly": false,
       "parkingAvailable": false,
@@ -42587,7 +42696,8 @@
       ],
       "portfolioPhotosCheckedAt": "2026-08-21",
       "hairShopUrl": "",
-      "sellsHairSeparately": false
+      "sellsHairSeparately": true,
+      "sameDayEmergency": false
     },
     {
       "id": "3thirty-salon",
@@ -44141,7 +44251,8 @@
       "source": "manual",
       "evidence": [
         "User-provided manual addition.",
-        "Restored Updo service from historical standalone-updo commit de619f9."
+        "Restored Updo service from historical standalone-updo commit de619f9.",
+        "Flag corrected: hairShopUrl (https://www.allurehouse.co.uk/haircollection) was already on file as a distinct shop link, but sellsHairSeparately was false — link was invisible in the directory."
       ],
       "id": "allure-by-ec",
       "name": "Allure House",
@@ -44202,7 +44313,7 @@
       "googleCheckedAt": "2026-07-29",
       "parkingAvailable": true,
       "websiteUrl": "https://www.allurehouse.co.uk/",
-      "sellsHairSeparately": false,
+      "sellsHairSeparately": true,
       "hairShopUrl": "https://www.allurehouse.co.uk/haircollection",
       "portfolioPhotos": [
         {
@@ -44227,7 +44338,7 @@
         }
       ],
       "portfolioPhotosCheckedAt": "2026-08-20",
-      "updatedAt": "2026-08-23",
+      "updatedAt": "2026-09-11",
       "tiktokUrl": "",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
@@ -50078,8 +50189,8 @@
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleDisplayName": null,
-      "googleFormattedAddress": null,
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-07-29",
       "portfolioPhotosCheckedAt": "2026-08-21",
       "portfolioPhotos": [
@@ -50108,9 +50219,10 @@
       "senFriendly": false,
       "lgbtqFriendly": false,
       "parkingAvailable": false,
-      "sellsHairSeparately": false,
+      "sellsHairSeparately": true,
       "customFilters": {},
-      "updatedAt": "2026-08-21"
+      "updatedAt": "2026-09-11",
+      "sameDayEmergency": false
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -54543,7 +54655,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-31",
+      "updatedAt": "2026-09-11",
       "googlePlaceId": null,
       "googleReviewCount": 0,
       "googleMapsUri": "",
@@ -54569,7 +54681,7 @@
       "senFriendly": false,
       "lgbtqFriendly": false,
       "parkingAvailable": false,
-      "sellsHairSeparately": false,
+      "sellsHairSeparately": true,
       "sameDayEmergency": true,
       "customFilters": {}
     },
@@ -55265,12 +55377,12 @@
       "priceUpdatedAt": "2026-06-03",
       "addedVia": "Bulk import",
       "discoverySource": "Cowork scrape",
-      "googlePlaceId": "ChIJ4_POXxQFdkgRoWsMoZKFAy0",
+      "googlePlaceId": null,
       "googleReviewCount": 5,
       "googleMapsUri": "https://maps.google.com/?cid=3243583021450554273&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
       "googleMatchConfidence": "high",
       "googleDisplayName": "Glo Lounge London",
-      "googleFormattedAddress": "170 Battersea Park Rd, London SW11 4ND, UK",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-07-23",
       "priceIncludesHair": true,
       "portfolioPhotosCheckedAt": "2026-08-21",
@@ -55292,8 +55404,22 @@
         }
       ],
       "photoSearchReviewedAt": "2026-08-25",
-      "updatedAt": "2026-08-31",
-      "parkingAvailable": true
+      "updatedAt": "2026-09-11",
+      "parkingAvailable": false,
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "sellsHairSeparately": true,
+      "sameDayEmergency": false,
+      "customFilters": {},
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceComparisonMode": ""
     },
     {
       "id": "goddess-dream-booking",
@@ -63704,7 +63830,8 @@
       "summary": "Manual entry added from your East London wig install, sew-in, custom wig, locs, and twists list.",
       "source": "manual",
       "evidence": [
-        "User-provided manual addition."
+        "User-provided manual addition.",
+        "Flag corrected: hairShopUrl (https://www.instagram.com/laminlace/) was already on file as a distinct shop link, but sellsHairSeparately was false — link was invisible in the directory."
       ],
       "priceBand": "£",
       "priceSource": "auto",
@@ -63731,14 +63858,14 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-06-12",
+      "updatedAt": "2026-09-11",
       "websiteUrl": "",
-      "googlePlaceId": "ChIJ5_FGi4kddkgRWJmcaSGDJxA",
+      "googlePlaceId": null,
       "googleReviewCount": 0,
       "googleMapsUri": "https://maps.google.com/?cid=1164043208227592536&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
       "googleMatchConfidence": "high",
       "googleDisplayName": "Lamin label",
-      "googleFormattedAddress": "Grosvenor Way, London E5 9ND, UK",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-07-23",
       "parkingAvailable": true,
       "portfolioPhotosCheckedAt": "2026-08-21",
@@ -63753,7 +63880,13 @@
           "url": "/portfolio-photos/lamin-label-f77a9fe9-da98-4b7d-ad8b-86c1718ab88d.jpg",
           "source": "google-image-search"
         }
-      ]
+      ],
+      "hairShopUrl": "https://www.instagram.com/laminlace/",
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "sellsHairSeparately": true,
+      "sameDayEmergency": false,
+      "customFilters": {}
     },
     {
       "id": "lael-london",
@@ -66342,8 +66475,8 @@
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleDisplayName": null,
-      "googleFormattedAddress": null,
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-07-29",
       "websiteUrl": "https://www.milianlondon.com",
       "portfolioPhotosCheckedAt": "2026-08-21",
@@ -66378,7 +66511,23 @@
           "url": "/portfolio-photos/milian-london-6cde33e8-38ee-4418-a2ce-7679a580e9ca.webp",
           "source": "website"
         }
-      ]
+      ],
+      "hairShopUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": true,
+      "sameDayEmergency": false,
+      "customFilters": {},
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "updatedAt": "2026-09-11"
     },
     {
       "id": "milli-links",
@@ -67279,7 +67428,8 @@
       "source": "manual",
       "evidence": [
         "User-provided manual addition.",
-        "User-confirmed explicit frontal ponytail service."
+        "User-confirmed explicit frontal ponytail service.",
+        "Flag corrected: hairShopUrl (https://www.naysahnyhair.com/category/all-products) was already on file as a distinct shop link, but sellsHairSeparately was false — link was invisible in the directory."
       ],
       "priceBand": "£",
       "priceSource": "auto",
@@ -67303,7 +67453,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-26",
+      "updatedAt": "2026-09-11",
       "addedVia": "Bulk import",
       "discoverySource": "Cowork scrape",
       "googlePlaceId": null,
@@ -74496,7 +74646,10 @@
         "Silk press",
         "Wig colouring / bundle colouring",
         "Texture release",
-        "Sew in / extensions blowdry"
+        "Wig install (frontal / closure)",
+        "Sew in / extensions blowdry",
+        "Custom wig",
+        "U-Part / Half wig install"
       ],
       "priceBand": "£",
       "priceSource": "auto",
@@ -74519,8 +74672,8 @@
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleDisplayName": null,
-      "googleFormattedAddress": null,
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-07-29",
       "parkingAvailable": true,
       "portfolioPhotosCheckedAt": "2026-08-21",
@@ -74566,9 +74719,24 @@
           "source": "google-image-search"
         }
       ],
-      "updatedAt": "2026-08-31",
+      "updatedAt": "2026-09-11",
       "photoSearchReviewedAt": "2026-08-31",
-      "photoOrderBumpedAt": 749
+      "photoOrderBumpedAt": 749,
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "sellsHairSeparately": false,
+      "sameDayEmergency": false,
+      "customFilters": {},
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": true,
+      "priceComparisonMode": ""
     },
     {
       "id": "south-west-six-salon",
@@ -77802,7 +77970,9 @@
         "Half up half down",
         "Feed-in braids",
         "Boho braids / goddess braids",
-        "Wig cornrows"
+        "Wig cornrows",
+        "Full head colour",
+        "Pixie cut / finger waves"
       ],
       "summary": "Manual entry added from your known South East London flipover sew-in list.",
       "source": "manual",
@@ -77829,7 +77999,7 @@
       "canBraidWithoutGel": false,
       "servicePriceBand": "",
       "packagePriceBand": "",
-      "priceIncludesHair": false,
+      "priceIncludesHair": true,
       "priceComparisonMode": "service-only",
       "updatedAt": "2026-09-11",
       "addedVia": "Bulk import",
@@ -81703,7 +81873,8 @@
       "source": "manual",
       "evidence": [
         "Spreadsheet import: Stylists_Database.xlsx.",
-        "Instagram source: https://www.instagram.com/scalpish.uk/"
+        "Instagram source: https://www.instagram.com/scalpish.uk/",
+        "Flag corrected: hairShopUrl (https://www.instagram.com/scalpishco/) was already on file as a distinct shop link, but sellsHairSeparately was false — link was invisible in the directory."
       ],
       "priceBand": "£",
       "priceSource": "auto",
@@ -81723,7 +81894,7 @@
       "tiktokUrl": "",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
-      "updatedAt": "2026-08-31",
+      "updatedAt": "2026-09-11",
       "addedVia": "Bulk import",
       "discoverySource": "Cowork scrape",
       "googlePlaceId": null,
@@ -81755,7 +81926,8 @@
       "lgbtqFriendly": false,
       "parkingAvailable": false,
       "photoSearchReviewedAt": "2026-08-31",
-      "photoOrderBumpedAt": 1020
+      "photoOrderBumpedAt": 1020,
+      "sameDayEmergency": false
     },
     {
       "id": "moshhairlondon",
@@ -82535,7 +82707,7 @@
       "googleDisplayName": "",
       "googleFormattedAddress": "",
       "googleCheckedAt": "2026-07-29",
-      "sellsHairSeparately": true,
+      "sellsHairSeparately": false,
       "hairShopUrl": "https://www.instagram.com/tcolourshair/",
       "vendorId": "tcolourshair",
       "websiteUrl": "",
@@ -82547,7 +82719,7 @@
       "lgbtqFriendly": false,
       "parkingAvailable": false,
       "customFilters": {},
-      "updatedAt": "2026-08-31",
+      "updatedAt": "2026-09-11",
       "portfolioPhotosCheckedAt": "2026-08-21",
       "portfolioPhotos": [
         {
@@ -83286,6 +83458,7 @@
         "Frontal sew-in",
         "Traditional sew-in / leave out",
         "Wig colouring / bundle colouring",
+        "Full head colour",
         "Editorial / Session styling",
         "Bridal"
       ],
@@ -83348,13 +83521,14 @@
       "wheelchairAccessible": false,
       "senFriendly": false,
       "lgbtqFriendly": false,
-      "sellsHairSeparately": false,
+      "sellsHairSeparately": true,
       "customFilters": {},
       "servicePriceBand": "",
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-24"
+      "updatedAt": "2026-09-11",
+      "sameDayEmergency": true
     },
     {
       "id": "diosa-london",
@@ -83457,7 +83631,7 @@
         "Frontal sew-in",
         "Closure sew-in / closure behind the hairline",
         "Traditional sew-in / leave out",
-        "Flipover / versatile sew-in",
+        "Flipover / Versatile sew-in",
         "Wig colouring / bundle colouring",
         "Updo"
       ],
@@ -83468,7 +83642,8 @@
         "Instagram source: https://www.instagram.com/larostudios/",
         "User-provided correction: LaRo Studios service menu.",
         "User-provided correction: colour service should be Wig colouring / bundle colouring only.",
-        "User-provided correction: LaRo Studios menu includes Frontal Updo/ Ponytail."
+        "User-provided correction: LaRo Studios menu includes Frontal Updo/ Ponytail.",
+        "Flag corrected: hairShopUrl (https://www.instagram.com/premehair/) was already on file as a distinct shop link, but sellsHairSeparately was false — link was invisible in the directory."
       ],
       "priceBand": "£",
       "priceSource": "auto",
@@ -83488,10 +83663,10 @@
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleDisplayName": null,
-      "googleFormattedAddress": null,
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-07-29",
-      "updatedAt": "2026-07-24",
+      "updatedAt": "2026-09-11",
       "portfolioPhotosCheckedAt": "2026-08-21",
       "portfolioPhotos": [
         {
@@ -83504,7 +83679,23 @@
           "url": "/portfolio-photos/larostudios-1dd85045-fbf3-4a3a-a0cf-05825a77772c.jpg",
           "source": "google-image-search"
         }
-      ]
+      ],
+      "websiteUrl": "",
+      "hairShopUrl": "https://www.instagram.com/premehair/",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": true,
+      "sameDayEmergency": false,
+      "customFilters": {},
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only"
     },
     {
       "id": "dollytheeslickz",
@@ -83829,6 +84020,7 @@
         "Quick weave",
         "Half up half down",
         "Tape ins",
+        "U-Part / Half wig install",
         "Wig install (frontal / closure)"
       ],
       "summary": "Manual Instagram-led entry added from user-provided booking menu.",
@@ -83837,7 +84029,8 @@
         "User-provided Instagram profile: https://www.instagram.com/clouisebeauty_/",
         "User-provided booking page: https://clouisebeauty.as.me/schedule/b9207d1a",
         "User-provided service menu includes colouring, customisation, natural hair care, quick weaves, tape-ins, and wig installs.",
-        "User-provided correction: colour service should be Wig colouring / bundle colouring only."
+        "User-provided correction: colour service should be Wig colouring / bundle colouring only.",
+        "Flag corrected: hairShopUrl (https://www.instagram.com/hautehaushair/) was already on file as a distinct shop link, but sellsHairSeparately was false — link was invisible in the directory."
       ],
       "priceBand": "£",
       "priceSource": "auto",
@@ -83860,8 +84053,8 @@
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleDisplayName": null,
-      "googleFormattedAddress": null,
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-07-29",
       "portfolioPhotos": [
         {
@@ -83874,7 +84067,24 @@
           "url": "/portfolio-photos/clouisebeauty-caa0b34b-1719-4b10-8558-3e4445549436.jpg",
           "source": "google-image-search"
         }
-      ]
+      ],
+      "websiteUrl": "",
+      "hairShopUrl": "https://www.instagram.com/hautehaushair/",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": true,
+      "sameDayEmergency": false,
+      "customFilters": {},
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "updatedAt": "2026-09-11"
     },
     {
       "id": "hairbycarollassey",
@@ -84687,9 +84897,10 @@
         "Instagram source: https://www.instagram.com/flawsrawsome/",
         "Booking source: https://app.acuityscheduling.com/schedule/7a634868/category/X19hbGxfXw%3D%3D",
         "User-provided location: SE.",
-        "User-provided service menu includes wig colour services for bundles/frontals/closures, custom lace frontal and closure wigs, U-part wig, premade frontal/closure wig installs, silk press, wash and blowdry, quick weaves, frontal/closure replacement, sew-in refresh, closure sew-in, traditional sew-in, versatile sew-in, flipover sew-in, and half up half down."
+        "User-provided service menu includes wig colour services for bundles/frontals/closures, custom lace frontal and closure wigs, U-part wig, premade frontal/closure wig installs, silk press, wash and blowdry, quick weaves, frontal/closure replacement, sew-in refresh, closure sew-in, traditional sew-in, versatile sew-in, flipover sew-in, and half up half down.",
+        "Flag corrected: hairShopUrl (https://www.flawsrawsome.com/shop) was already on file as a distinct shop link, but sellsHairSeparately was false — link was invisible in the directory."
       ],
-      "priceBand": "£",
+      "priceBand": "££",
       "priceSource": "auto",
       "priceEvidence": [
         "Vivid Colour - £190",
@@ -84701,20 +84912,20 @@
         "Custom colour in 1 shade - £90",
         "Custom Lace Frontal Unit w/ Install - £130"
       ],
-      "priceCheckedAt": "2026-06-03",
+      "priceCheckedAt": "2026-09-11",
       "priceConfidence": "high",
-      "priceUpdatedAt": "2026-06-03",
+      "priceUpdatedAt": "2026-09-11",
       "addedVia": "Bulk import",
       "discoverySource": "Cowork scrape",
       "tiktokUrl": "https://www.tiktok.com/@xo_karrieee/video/7592032929845366019?lang=en-GB",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
       "wheelchairAccessible": false,
-      "servicePriceBand": "",
+      "servicePriceBand": "££",
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-26",
+      "updatedAt": "2026-09-11",
       "googlePlaceId": null,
       "googleReviewCount": 0,
       "googleMapsUri": "",
@@ -84730,12 +84941,13 @@
         }
       ],
       "websiteUrl": "",
-      "hairShopUrl": "",
+      "hairShopUrl": "https://www.flawsrawsome.com/shop",
       "senFriendly": false,
       "lgbtqFriendly": false,
       "parkingAvailable": false,
-      "sellsHairSeparately": false,
-      "customFilters": {}
+      "sellsHairSeparately": true,
+      "customFilters": {},
+      "sameDayEmergency": false
     },
     {
       "id": "joycekartistry",
