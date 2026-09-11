@@ -23031,7 +23031,20 @@
           "source": "google-image-search"
         }
       ],
-      "updatedAt": "2026-08-25"
+      "updatedAt": "2026-09-11",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": true,
+      "sameDayEmergency": false,
+      "customFilters": {}
     },
     {
       "id": "thee-lace-parlour",
@@ -24855,7 +24868,20 @@
           "source": "google-image-search"
         }
       ],
-      "updatedAt": "2026-08-24"
+      "updatedAt": "2026-09-11",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": false,
+      "sameDayEmergency": true,
+      "customFilters": {}
     },
     {
       "id": "nelas-hair-uk",
@@ -84295,8 +84321,8 @@
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleDisplayName": null,
-      "googleFormattedAddress": null,
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-07-29",
       "portfolioPhotos": [
         {
@@ -84325,7 +84351,20 @@
           "source": "google-image-search"
         }
       ],
-      "photoSearchReviewedAt": "2026-08-25"
+      "photoSearchReviewedAt": "2026-08-25",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": true,
+      "sameDayEmergency": false,
+      "customFilters": {},
+      "updatedAt": "2026-09-11"
     },
     {
       "id": "remolabeauty",
