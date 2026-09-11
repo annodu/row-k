@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-09-08"
+    "updatedAt": "2026-09-11"
   },
   "entries": [
     {
@@ -14,25 +14,13 @@
       "addedAt": "2026-08-31"
     },
     {
-      "salonId": "hairbyzeenyah",
+      "salonId": "j-riz-beor",
       "postUrls": [
-        "https://www.instagram.com/p/DR-AE3IiPvX/"
+        "https://www.instagram.com/p/DWZqOZRiG_x/?img_index=1",
+        "https://www.instagram.com/p/DSe-9I-iNZ_/",
+        "https://www.instagram.com/p/DH_0RNqozzl/"
       ],
-      "addedAt": "2026-09-08"
-    },
-    {
-      "salonId": "signed-by-allure",
-      "postUrls": [
-        "https://www.instagram.com/p/DcQ0cwQjrY0/?img_index=1"
-      ],
-      "addedAt": "2026-09-08"
-    },
-    {
-      "salonId": "braids-by-mamahz",
-      "postUrls": [
-        "https://www.instagram.com/p/DcVRepys3m2/"
-      ],
-      "addedAt": "2026-09-08"
+      "addedAt": "2026-09-11"
     }
   ]
 }

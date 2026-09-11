@@ -2,10 +2,282 @@
   "meta": {
     "source": "manual",
     "updatedAt": "2026-09-11",
-    "count": 1150,
+    "count": 1154,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "melanin-hair-ldn",
+      "name": "Melanin Hair LDN",
+      "areaId": "south-east",
+      "areaLabel": "South east London",
+      "neighbourhood": "South east London London",
+      "postcode": "",
+      "bookingPlatform": "Setmore",
+      "bookingUrl": "https://melaninhairldn.setmore.com?utm_source=in-app&utm_medium=iosapp&utm_campaign=settsharebp",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/melaninhairldn/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Wash & blowdry",
+        "Feed-in braids",
+        "Fulani / lemonade braids",
+        "Crochet",
+        "Retwist / interlocking",
+        "Starter locs / instant locs",
+        "Knotless braids",
+        "Boho braids / goddess braids",
+        "Boho braids bob",
+        "Wig cornrows",
+        "Traditional sew-in / leave out",
+        "Twists (with extensions)",
+        "Soft locs",
+        "Crochet faux locs / invisible locs",
+        "Butterfly locs",
+        "Full head colour"
+      ],
+      "priceBand": "£",
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "Add-on BEADS - £10",
+        "Full service WASH - RETWIST - STYLE - £100",
+        "Goddess braids / Bum length - £305",
+        "Boho braids / Waist length - £335",
+        "Pre-parting - £40",
+        "Mixing 3 colours - £20",
+        "Goddess braids / Waist length - £270",
+        "Fulani braids or twist / bob length - £125"
+      ],
+      "priceCheckedAt": "2026-09-11",
+      "priceUpdatedAt": "2026-09-11",
+      "priceConfidence": "high",
+      "summary": "𝐘𝐎𝐔𝐑 𝐂𝐑𝐎𝐖𝐍, 𝐌𝐘 𝐂𝐀𝐑𝐄 👑\n𝙻𝚘𝚌𝚜 𝚖𝚊𝚒𝚗𝚝𝚎𝚗𝚊𝚗𝚌𝚎 - 𝙱𝚛𝚊𝚒𝚍𝚒𝚗𝚐 - 𝙲𝚑𝚒𝚕𝚍𝚛𝚎𝚗 𝚏𝚛𝚒𝚎𝚗𝚍𝚕𝚢\n📍𝐏𝐞𝐜𝐤𝐡𝐚𝐦 - 𝐒𝐄𝟏𝟓 𝟓𝐒𝐋\n𝐁𝐨𝐨𝐤𝐢𝐧𝐠 𝐬𝐢𝐭𝐞 𝐛𝐞𝐥𝐨𝐰 👇🏾",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/melaninhairldn/",
+        "Submitted link: https://melaninhairldn.setmore.com?utm_source=in-app&utm_medium=iosapp&utm_campaign=settsharebp",
+        "Raw services provided during admin intake."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-09-11",
+      "verifiedReviewCount": 11,
+      "verifiedReviewCheckedAt": "2026-09-11",
+      "portfolioPhotos": [
+        {
+          "id": "melanin-hair-ldn-portfolio-photo-0fe4c929-d4ff-4915-93e3-d85cd314dff3",
+          "url": "/portfolio-photos/melanin-hair-ldn-35d1cab8-3da1-4cda-b161-f9b9525875ea.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "melanin-hair-ldn-portfolio-photo-0d3ae1ad-5039-40a7-a3c8-5027cf0f4e3e",
+          "url": "/portfolio-photos/melanin-hair-ldn-2cb8a8b6-19cf-4b80-bf46-88bdd71d5d57.jpg",
+          "source": "google-image-search"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-09-11",
+      "photoOrderBumpedAt": 1219
+    },
+    {
+      "id": "raae-london",
+      "name": "Raae London",
+      "areaId": "kent",
+      "areaIds": [
+        "kent",
+        "south-east"
+      ],
+      "areaLabel": "Kent / South east London",
+      "neighbourhood": "Kent and South east London London",
+      "postcode": "",
+      "bookingPlatform": "Direct website",
+      "bookingUrl": "https://www.raaelondon.com/pages/book-our-services",
+      "websiteUrl": "http://www.raaelondon.com",
+      "hairShopUrl": "https://www.raaelondon.com/collections",
+      "instagramUrl": "https://www.instagram.com/raaelondon/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Healthy hair plans & consultations",
+        "Custom wig",
+        "Wig install (frontal / closure)",
+        "LA weave / microlinks wefts / braidless sew in",
+        "I-tips / microlinks strands",
+        "Silk press",
+        "Relaxer / texturiser",
+        "Texture release",
+        "Traditional sew-in / leave out",
+        "Closure sew-in / closure behind the hairline",
+        "Sew-in take-down",
+        "Wash & blowdry",
+        "Wig laundry"
+      ],
+      "sellsHairSeparately": true,
+      "priceBand": "££",
+      "servicePriceBand": "££",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "Custom made - Lace Closure Wig ( 4x4, 5x5 only) - - Custom made - Lace Closure Wig ( 4x4, 5x5 only) - £100",
+        "Custom made - Lace Closure Wig ( 6x6, 7x7 only) aka Mini frontal - - Custom made - Lace Closure Wig ( 6x6, 7x7 only) aka Mini frontal - £105",
+        "Custom made - Lace Frontal Wig (13x4, 13x6) - - Custom made - Lace Frontal Wig (13x4, 13x6) - £110",
+        "2 Rows - Micro Link Weft Extensions (aka LA Weave) - - 2 Rows - Micro Link Weft Extensions (aka LA Weave) - £60",
+        "3 Rows - Micro Link Weft Extensions (aka LA Weave) - - 3 Rows - Micro Link Weft Extensions (aka LA Weave) - £90",
+        "4 Rows - Micro Link Weft Extensions (aka LA Weave) - - 4 Rows - Micro Link Weft Extensions (aka LA Weave) - £110",
+        "Texture Release (refresh) - - Texture Release (refresh) - £160",
+        "SEW-IN (Take down and Reset) - - SEW-IN (Take down and Reset) - £95"
+      ],
+      "priceCheckedAt": "2026-09-11",
+      "priceUpdatedAt": "2026-09-11",
+      "priceConfidence": "manual",
+      "summary": "Custom Wig Units\n📍London,Kent U.K Based\n🌍 Worldwide Shipping\n📩For enquires please contact us via email: hello@raaelondon.com. DM slowly monitored",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/raaelondon/",
+        "Submitted link: http://www.raaelondon.com"
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-09-11",
+      "portfolioPhotos": [
+        {
+          "id": "raae-london-portfolio-photo-1f990558-ddf5-4af3-a0da-7b6ae4e5a3d1",
+          "url": "/portfolio-photos/raae-london-59db2150-98b8-479c-a800-fda4c606463f.jpg",
+          "source": "google-image-search"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-09-11",
+      "photoOrderBumpedAt": 1216
+    },
+    {
+      "id": "hair-by-fro",
+      "name": "Hair by Fro",
+      "areaId": "kent",
+      "areaLabel": "Kent",
+      "neighbourhood": "Kent London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/hairbyfro_/",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/hairbyfro_/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Quick weave",
+        "Traditional sew-in / leave out",
+        "Wig install (frontal / closure)",
+        "Wig laundry",
+        "Frontal ponytail / bun"
+      ],
+      "summary": "🤎Frontal | Closure | Wig Revamp | Ponytail | Quick Weave | Sew-in\n🤎 Hair Extensions available\n🤎Kent, UK.\n🤎Book your appointment via DM or link below.",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/hairbyfro_/",
+        "Submitted link: https://wa.link/ju6gss"
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-09-11",
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": true,
+      "sameDayEmergency": false,
+      "customFilters": {},
+      "priceBand": "",
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "",
+      "priceSource": "",
+      "priceEvidence": [],
+      "priceCheckedAt": "",
+      "priceUpdatedAt": "",
+      "priceConfidence": "",
+      "updatedAt": "2026-09-11",
+      "portfolioPhotos": [
+        {
+          "id": "hair-by-fro-portfolio-photo-9950731e-3030-4553-8c71-a5b1ffe5f24b",
+          "url": "/portfolio-photos/hair-by-fro-ff57dcf4-e76d-41ff-b8b9-bb716b04c6dd.jpg",
+          "source": "instagram-reel-frame"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-09-11",
+      "photoOrderBumpedAt": 1215
+    },
+    {
+      "id": "j-riz-beor",
+      "name": "JÁRIZ BEOR",
+      "areaId": "all-london",
+      "areaLabel": "London",
+      "neighbourhood": "London London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/jarizbeor_oficial/",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/jarizbeor_oficial/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Editorial / Session styling",
+        "Curly cut / wash & go / diffuse"
+      ],
+      "summary": "Járiz Beor  •Curl artist •\nTexture Specialist - based in London 🇬🇧\nWorking with curls, image and identity.\nEditorial • Celebrities • Private Clients",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/jarizbeor_oficial/",
+        "Raw services provided during admin intake."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-09-11",
+      "portfolioPhotos": [
+        {
+          "id": "j-riz-beor-portfolio-photo-21d388a4-0609-4d8d-90d8-33817afff83c",
+          "url": "/portfolio-photos/j-riz-beor-bbf43a06-f55c-461a-a7ef-b7bd73c3abff.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "j-riz-beor-portfolio-photo-76e68c87-dd57-4171-9214-8a3750a680db",
+          "url": "/portfolio-photos/j-riz-beor-cc419f7d-5e90-4ae5-a451-1dbd900fd9f3.jpg",
+          "source": "instagram"
+        },
+        {
+          "id": "j-riz-beor-portfolio-photo-73b547ea-957e-4c56-8922-fdbc64ce19f1",
+          "url": "/portfolio-photos/j-riz-beor-6317569f-e561-4e36-8920-addd6ed72293.jpg",
+          "source": "google-image-search"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-09-11",
+      "photoOrderBumpedAt": 1214,
+      "updatedAt": "2026-09-11"
+    },
     {
       "id": "the-editorial-jt",
       "name": "The Editorial JT",
@@ -42,13 +314,13 @@
           "source": "google-image-search"
         },
         {
-          "id": "the-editorial-jt-portfolio-photo-330b820f-182a-4bd2-84fb-2ce2ebdde3b6",
-          "url": "/portfolio-photos/the-editorial-jt-a4fbd6bd-d319-4fc4-93dd-3b3bdb78d71e.jpg",
+          "id": "the-editorial-jt-portfolio-photo-7ee2f101-06a5-45fe-a3b8-63aa4d158441",
+          "url": "/portfolio-photos/the-editorial-jt-dd32d91e-fb7a-41de-a5ec-1d22287bf074.jpg",
           "source": "google-image-search"
         },
         {
-          "id": "the-editorial-jt-portfolio-photo-7ee2f101-06a5-45fe-a3b8-63aa4d158441",
-          "url": "/portfolio-photos/the-editorial-jt-dd32d91e-fb7a-41de-a5ec-1d22287bf074.jpg",
+          "id": "the-editorial-jt-portfolio-photo-330b820f-182a-4bd2-84fb-2ce2ebdde3b6",
+          "url": "/portfolio-photos/the-editorial-jt-a4fbd6bd-d319-4fc4-93dd-3b3bdb78d71e.jpg",
           "source": "google-image-search"
         }
       ],
@@ -113,8 +385,8 @@
           "source": "google-image-search"
         },
         {
-          "id": "short-story-uk-portfolio-photo-7269fd36-9249-4f5b-af69-524f6135b50b",
-          "url": "/portfolio-photos/short-story-uk-ddd077ed-f23d-4832-ab5a-11be2167ece4.jpg",
+          "id": "short-story-uk-portfolio-photo-b22e3158-c643-49a0-84ff-bb86c4c842eb",
+          "url": "/portfolio-photos/short-story-uk-92341bb6-4e24-4000-9302-f42547795b59.jpg",
           "source": "google-image-search"
         },
         {
@@ -123,14 +395,14 @@
           "source": "google-image-search"
         },
         {
-          "id": "short-story-uk-portfolio-photo-b22e3158-c643-49a0-84ff-bb86c4c842eb",
-          "url": "/portfolio-photos/short-story-uk-92341bb6-4e24-4000-9302-f42547795b59.jpg",
+          "id": "short-story-uk-portfolio-photo-7269fd36-9249-4f5b-af69-524f6135b50b",
+          "url": "/portfolio-photos/short-story-uk-ddd077ed-f23d-4832-ab5a-11be2167ece4.jpg",
           "source": "google-image-search"
         }
       ],
       "photoSearchReviewedAt": "2026-09-10",
       "photoOrderBumpedAt": 1207,
-      "updatedAt": "2026-09-10"
+      "updatedAt": "2026-09-11"
     },
     {
       "id": "hausoftlm",
@@ -1571,8 +1843,13 @@
       "sellsHairSeparately": false,
       "sameDayEmergency": false,
       "customFilters": {},
-      "updatedAt": "2026-09-08",
+      "updatedAt": "2026-09-11",
       "portfolioPhotos": [
+        {
+          "id": "4klounge-portfolio-photo-5af71ede-ac1a-4a01-845b-ff538df6befe",
+          "url": "/portfolio-photos/4klounge-f594d117-404f-4bb5-ac46-d8743293c5d8.jpg",
+          "source": "google-image-search"
+        },
         {
           "id": "4klounge-portfolio-photo-4c1197ba-4a10-4cfa-877d-da6e55b4df9f",
           "url": "/portfolio-photos/4klounge-f7ea2201-c753-4466-b70e-c8296971693f.jpg",
@@ -1581,11 +1858,6 @@
         {
           "id": "4klounge-portfolio-photo-7728ce41-a606-4d7e-b11f-ca210eea9f6e",
           "url": "/portfolio-photos/4klounge-52f6ccee-c967-47c7-8c38-a378c1b84ef3.jpg",
-          "source": "google-image-search"
-        },
-        {
-          "id": "4klounge-portfolio-photo-5af71ede-ac1a-4a01-845b-ff538df6befe",
-          "url": "/portfolio-photos/4klounge-f594d117-404f-4bb5-ac46-d8743293c5d8.jpg",
           "source": "google-image-search"
         }
       ],
@@ -23324,7 +23596,7 @@
       "postcode": "",
       "bookingPlatform": "Direct website",
       "bookingUrl": "https://tressologybydca.as.me/schedule/90501ec2",
-      "instagramUrl": "https://www.instagram.com/tressologybydca/",
+      "instagramUrl": "https://www.instagram.com/tressologyy.co",
       "tiktokUrl": "https://www.tiktok.com/@ihsginaa/video/7667238290973576470",
       "addedVia": "Manual discovery",
       "discoverySource": "Manual search",
@@ -23366,8 +23638,19 @@
           "source": "google-image-search"
         }
       ],
-      "updatedAt": "2026-08-24",
-      "photoSearchReviewedAt": "2026-08-24"
+      "updatedAt": "2026-09-11",
+      "photoSearchReviewedAt": "2026-08-24",
+      "websiteUrl": "",
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sameDayEmergency": false,
+      "customFilters": {}
     },
     {
       "id": "laced-out-uk",
