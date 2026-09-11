@@ -357,6 +357,331 @@
         }
       ],
       "createdAt": "2026-08-01T23:00:46.833Z"
+    },
+    {
+      "salonId": "adornedbyanj",
+      "salonName": "Adorned by Anj",
+      "reason": "they're talking about closure wig install",
+      "context": [
+        "Closure sew-in / closure behind the hairline"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Closure sew-in / closure behind the hairline",
+          "evidenceText": "5x5/6X6/7X7 CLOSURE WIG"
+        },
+        {
+          "kind": "add",
+          "field": "Closure sew-in / closure behind the hairline",
+          "evidenceText": "LACE CLOSURE PRE-MADE WIG INSTALLATION"
+        },
+        {
+          "kind": "add",
+          "field": "Closure sew-in / closure behind the hairline",
+          "evidenceText": "LACE CLOSURE REPLACEMENT"
+        },
+        {
+          "kind": "add",
+          "field": "Closure sew-in / closure behind the hairline",
+          "evidenceText": "FRONTAL/CLOSURE WIG REINSTALL"
+        }
+      ],
+      "createdAt": "2026-09-10"
+    },
+    {
+      "salonId": "abhairuk",
+      "salonName": "ABHairUK",
+      "reason": "It says 'send me a DM' not 'SEN-friendly'",
+      "context": [
+        "Mark sensory-safe / SEN-friendly"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "attribute",
+          "field": "senFriendly",
+          "evidenceText": "Booking Banner: Send me a DM if you need"
+        }
+      ],
+      "createdAt": "2026-09-10"
+    },
+    {
+      "salonId": "afrotherapy",
+      "salonName": "Afrotherapy Salon",
+      "reason": "It's one person's experience. doesn't mean they advertise as being neurodivergent friendly",
+      "context": [
+        "Mark sensory-safe / SEN-friendly"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "attribute",
+          "field": "senFriendly",
+          "evidenceText": "and Joseph! Full Review: Neurodivergent-friendly: 5/5 I didn&rsquo;t tell the staff that I was neurodivergent, but I appreciated how naturally they adapted to my quietness"
+        }
+      ],
+      "createdAt": "2026-09-10"
+    },
+    {
+      "salonId": "thee-ck-suite",
+      "salonName": "Thee CK Suite",
+      "reason": "It's in hackney which is north east",
+      "context": [
+        "Review location"
+      ],
+      "rejectedEvidence": [],
+      "createdAt": "2026-09-10"
+    },
+    {
+      "salonId": "the-wig-line",
+      "salonName": "The Wig Line",
+      "reason": "Bromley is on the border of south east london and kent",
+      "context": [
+        "Review location"
+      ],
+      "rejectedEvidence": [],
+      "createdAt": "2026-09-10"
+    },
+    {
+      "salonId": "aaliyahnaomihair",
+      "salonName": "Aaliyah Naomi hair",
+      "reason": "this is K-Tips",
+      "context": [
+        "Keratin treatment / Brazilian blowdry"
+      ],
+      "rejectedEvidence": [],
+      "createdAt": "2026-09-10"
+    },
+    {
+      "salonId": "aaliyahnaomihair",
+      "salonName": "Aaliyah Naomi hair",
+      "reason": "they have U-part wig and fitting in their service menu",
+      "context": [
+        "U-Part / Half wig install"
+      ],
+      "rejectedEvidence": [],
+      "createdAt": "2026-09-10"
+    },
+    {
+      "salonId": "afrotherapy",
+      "salonName": "Afrotherapy Salon",
+      "reason": "soft locs and faux locs can be used interchangedly, and they have faux locs on their service menu",
+      "context": [
+        "Soft locs"
+      ],
+      "rejectedEvidence": [],
+      "createdAt": "2026-09-10"
+    },
+    {
+      "salonId": "afrotherapy",
+      "salonName": "Afrotherapy Salon",
+      "reason": "its a review that that says \"the moment you walk in\" not \"they take walk ins\"",
+      "context": [
+        "Mark same-day / walk-ins"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "attribute",
+          "field": "sameDayEmergency",
+          "evidenceText": "This salon strikes the exact right balance between sleek, professional service and also making you feel like part of the family from the moment you walk in"
+        }
+      ],
+      "createdAt": "2026-09-10"
+    },
+    {
+      "salonId": "alevenn-hair",
+      "salonName": "Alevenn Hair",
+      "reason": "it has \"blowout\" in service menu",
+      "context": [
+        "Bouncy blowout / round brush blow dry"
+      ],
+      "rejectedEvidence": [],
+      "createdAt": "2026-09-10"
+    },
+    {
+      "salonId": "amia-hair-studio",
+      "salonName": "Amia Hair Studio",
+      "reason": "it says they don't accept walkins",
+      "context": [
+        "Mark same-day / walk-ins"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "attribute",
+          "field": "sameDayEmergency",
+          "evidenceText": "Do you offer same-day or walk-in appointments?"
+        },
+        {
+          "kind": "attribute",
+          "field": "sameDayEmergency",
+          "evidenceText": "We don’t accept walk-ins without prior contact, as booking ahead protects everyone’s chair time and lets us prepare properly for your service"
+        }
+      ],
+      "createdAt": "2026-09-10"
+    },
+    {
+      "salonId": "annels-braids",
+      "salonName": "Annels Braids",
+      "reason": "its working fine",
+      "context": [
+        "Website link"
+      ],
+      "rejectedEvidence": [],
+      "createdAt": "2026-09-10"
+    },
+    {
+      "salonId": "by-laid-ldn",
+      "salonName": "By Laide LDN",
+      "reason": "emergency appointments are not the same - they normally charge a fee",
+      "context": [
+        "Mark same-day / walk-ins"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "attribute",
+          "field": "sameDayEmergency",
+          "evidenceText": "Booking Banner: considered an emergency appointment"
+        }
+      ],
+      "createdAt": "2026-09-10"
+    },
+    {
+      "salonId": "by-olivia-jael",
+      "salonName": "By Olivia Jael",
+      "reason": "\"need send\" is not \"the same as sen-friendly\"",
+      "context": [
+        "Mark sensory-safe / SEN-friendly"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "attribute",
+          "field": "senFriendly",
+          "evidenceText": "Booking Banner: need to send = a clear appointment is out of hours"
+        }
+      ],
+      "createdAt": "2026-09-10"
+    },
+    {
+      "salonId": "clouisebeauty",
+      "salonName": "C Louise Beauty",
+      "reason": "consultation isn't enough to justify it being a healthy hair consultation",
+      "context": [
+        "Healthy hair plans & consultations"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Healthy hair plans & consultations",
+          "evidenceText": "Consultations"
+        },
+        {
+          "kind": "add",
+          "field": "Healthy hair plans & consultations",
+          "evidenceText": "1 part sew in - hair purchased from us"
+        },
+        {
+          "kind": "add",
+          "field": "Healthy hair plans & consultations",
+          "evidenceText": "2 part sew in - Hair purchased from us"
+        }
+      ],
+      "createdAt": "2026-09-10"
+    },
+    {
+      "salonId": "gslhob",
+      "salonName": "GSLHOB",
+      "reason": "it clearly says frontal install and closure install",
+      "context": [
+        "Wig install (frontal / closure)"
+      ],
+      "rejectedEvidence": [],
+      "createdAt": "2026-09-10"
+    },
+    {
+      "salonId": "hair-by-abie",
+      "salonName": "Hair by Abie",
+      "reason": "says half wigs",
+      "context": [
+        "U-Part / Half wig install"
+      ],
+      "rejectedEvidence": [],
+      "createdAt": "2026-09-10"
+    },
+    {
+      "salonId": "hair-by-anais",
+      "salonName": "Hair by Anais",
+      "reason": "says u-part custom",
+      "context": [
+        "U-Part / Half wig install"
+      ],
+      "rejectedEvidence": [],
+      "createdAt": "2026-09-10"
+    },
+    {
+      "salonId": "highend-hair-parlour-uk",
+      "salonName": "HIGHEND HAIR PARLOUR UK",
+      "reason": "they do kinky twists",
+      "context": [
+        "Twists (with extensions)"
+      ],
+      "rejectedEvidence": [],
+      "createdAt": "2026-09-10"
+    },
+    {
+      "salonId": "houseofhairuk",
+      "salonName": "House of Hair UK",
+      "reason": "saw they do this on tik tok",
+      "context": [
+        "U-Part / Half wig install"
+      ],
+      "rejectedEvidence": [],
+      "createdAt": "2026-09-10"
+    },
+    {
+      "salonId": "iam-ola-eletu",
+      "salonName": "I Am Ola Eletu",
+      "reason": "no mention of locs",
+      "context": [
+        "Loc extensions (permanent)"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Loc extensions (permanent)",
+          "evidenceText": "EXTENSIONS"
+        },
+        {
+          "kind": "add",
+          "field": "Loc extensions (permanent)",
+          "evidenceText": "SEMI-PERMANENT CHEMICAL STRAIGHTENING"
+        }
+      ],
+      "createdAt": "2026-09-10"
+    },
+    {
+      "salonId": "in-faithful-hands",
+      "salonName": "In Faithful Hands",
+      "reason": "insta says se, booking says sw. unsure",
+      "context": [
+        "Review location"
+      ],
+      "rejectedEvidence": [],
+      "createdAt": "2026-09-10"
+    },
+    {
+      "salonId": "karenwrightsalon",
+      "salonName": "Karen Wright Salon",
+      "reason": "extensions are not the same as loc extensions",
+      "context": [
+        "Loc extensions (permanent)"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Loc extensions (permanent)",
+          "evidenceText": "Extensions"
+        }
+      ],
+      "createdAt": "2026-09-10"
     }
   ]
 }

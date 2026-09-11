@@ -1,11 +1,96 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-09-08",
-    "count": 1148,
+    "updatedAt": "2026-09-11",
+    "count": 1150,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "the-editorial-jt",
+      "name": "The Editorial JT",
+      "areaId": "all-london",
+      "areaLabel": "London",
+      "neighbourhood": "London London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/theeditorialjt/",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/theeditorialjt/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Editorial / Session styling"
+      ],
+      "summary": "✂️ Editorial Hairstylist | London | Leeds | Manchester  Travel hairstylist\n@joyshairstudio_ \n💫 Specialising in braids + textured hair\n DM for bookings",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/theeditorialjt/",
+        "Raw services provided during admin intake."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-09-10"
+    },
+    {
+      "id": "short-story-uk",
+      "name": "Short Story UK",
+      "areaId": "mobile",
+      "areaLabel": "Mobile / home service",
+      "neighbourhood": "Mobile / home service London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/shortstoryuk/",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/shortstoryuk/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Pixie cut / finger waves"
+      ],
+      "summary": "Mobile appointments — pixies & short styling in London.\nBuilding the future of short-haired femininity.\nSign up to get started ↓",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/shortstoryuk/",
+        "Submitted link: https://graceful-dream-14023.myflodesk.com/shortstorysignup"
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-09-10",
+      "portfolioPhotos": [
+        {
+          "id": "short-story-uk-portfolio-photo-3bf66b86-2333-419d-ac62-db02136c0152",
+          "url": "/portfolio-photos/short-story-uk-dba81daf-c486-4003-b25d-b72d6c0c2140.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "short-story-uk-portfolio-photo-7269fd36-9249-4f5b-af69-524f6135b50b",
+          "url": "/portfolio-photos/short-story-uk-ddd077ed-f23d-4832-ab5a-11be2167ece4.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "short-story-uk-portfolio-photo-703ab135-283a-49da-ba5a-a189fffd2aa6",
+          "url": "/portfolio-photos/short-story-uk-6bba0106-762a-4c38-8a77-8441efeab61e.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "short-story-uk-portfolio-photo-b22e3158-c643-49a0-84ff-bb86c4c842eb",
+          "url": "/portfolio-photos/short-story-uk-92341bb6-4e24-4000-9302-f42547795b59.jpg",
+          "source": "google-image-search"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-09-10",
+      "photoOrderBumpedAt": 1207,
+      "updatedAt": "2026-09-10"
+    },
     {
       "id": "hausoftlm",
       "name": "HausofTLM",
@@ -24,7 +109,8 @@
       "services": [
         "Wig install (frontal / closure)",
         "Wig colouring / bundle colouring",
-        "Half up half down"
+        "Half up half down",
+        "Wig cornrows"
       ],
       "sellsHairSeparately": true,
       "summary": "Admin draft created from Instagram intake.",
@@ -204,7 +290,9 @@
       ],
       "photoSearchReviewedAt": "2026-09-08",
       "photoOrderBumpedAt": 1201,
-      "updatedAt": "2026-09-08"
+      "updatedAt": "2026-09-08",
+      "parkingAvailable": true,
+      "sameDayEmergency": true
     },
     {
       "id": "gslhob",
@@ -609,7 +697,6 @@
         "Stitch braids",
         "Boho braids / goddess braids",
         "Knotless braids",
-        "Crochet faux locs / invisible locs",
         "Wig cornrows",
         "Box braids",
         "Fulani / lemonade braids",
@@ -1435,7 +1522,7 @@
       "wheelchairAccessible": false,
       "senFriendly": false,
       "lgbtqFriendly": false,
-      "parkingAvailable": false,
+      "parkingAvailable": true,
       "sellsHairSeparately": false,
       "sameDayEmergency": false,
       "customFilters": {},
@@ -2324,7 +2411,8 @@
         }
       ],
       "photoSearchReviewedAt": "2026-09-01",
-      "photoOrderBumpedAt": 1136
+      "photoOrderBumpedAt": 1136,
+      "canBraidWithoutGel": true
     },
     {
       "id": "london-braider",
@@ -2517,7 +2605,7 @@
       "priceBand": "£££",
       "servicePriceBand": "£££",
       "packagePriceBand": "",
-      "priceIncludesHair": false,
+      "priceIncludesHair": true,
       "priceComparisonMode": "service-only",
       "priceSource": "auto",
       "priceEvidence": [
@@ -2564,7 +2652,19 @@
         }
       ],
       "photoSearchReviewedAt": "2026-09-01",
-      "photoOrderBumpedAt": 1130
+      "photoOrderBumpedAt": 1130,
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": true,
+      "sellsHairSeparately": false,
+      "sameDayEmergency": false,
+      "customFilters": {},
+      "updatedAt": "2026-09-10"
     },
     {
       "id": "hair-by-vills-studio",
@@ -2669,7 +2769,7 @@
       "wheelchairAccessible": false,
       "senFriendly": false,
       "lgbtqFriendly": false,
-      "parkingAvailable": false,
+      "parkingAvailable": true,
       "sellsHairSeparately": false,
       "sameDayEmergency": false,
       "customFilters": {}
@@ -2959,8 +3059,7 @@
         "Soft locs",
         "Crochet faux locs / invisible locs",
         "Wig install (frontal / closure)",
-        "Wig cornrows",
-        "Custom wig"
+        "Wig cornrows"
       ],
       "priceBand": "£",
       "servicePriceBand": "£",
@@ -3327,12 +3426,16 @@
         "Wig cornrows",
         "Feed-in braids",
         "Colour blend (mixing braiding hair)",
-        "Boho locs"
+        "Boho locs",
+        "Full head colour",
+        "Hybrid sew in (tapes + sew in)",
+        "Tape ins",
+        "Wig install (frontal / closure)"
       ],
       "priceBand": "£££",
       "servicePriceBand": "£££",
       "packagePriceBand": "",
-      "priceIncludesHair": false,
+      "priceIncludesHair": true,
       "priceComparisonMode": "service-only",
       "priceSource": "auto",
       "priceEvidence": [
@@ -3379,7 +3482,18 @@
       ],
       "photoSearchReviewedAt": "2026-09-01",
       "photoOrderBumpedAt": 1104,
-      "updatedAt": "2026-09-08"
+      "updatedAt": "2026-09-10",
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": false,
+      "sameDayEmergency": false,
+      "customFilters": {}
     },
     {
       "id": "carmys-hair",
@@ -3537,7 +3651,6 @@
         "Fulani / lemonade braids",
         "Half braids, half sew-in",
         "Knotless braids",
-        "Twists (with extensions)",
         "French curl",
         "Box braids",
         "Wig cornrows",
@@ -3582,8 +3695,8 @@
       "canBraidWithoutGel": false,
       "wheelchairAccessible": false,
       "senFriendly": false,
-      "lgbtqFriendly": false,
-      "parkingAvailable": false,
+      "lgbtqFriendly": true,
+      "parkingAvailable": true,
       "sellsHairSeparately": true,
       "sameDayEmergency": false,
       "customFilters": {},
@@ -3950,7 +4063,8 @@
         }
       ],
       "photoSearchReviewedAt": "2026-09-01",
-      "photoOrderBumpedAt": 1089
+      "photoOrderBumpedAt": 1089,
+      "parkingAvailable": true
     },
     {
       "id": "hair-elysian",
@@ -4146,7 +4260,8 @@
         }
       ],
       "photoSearchReviewedAt": "2026-09-01",
-      "photoOrderBumpedAt": 1084
+      "photoOrderBumpedAt": 1084,
+      "parkingAvailable": true
     },
     {
       "id": "flawless-by-stacy",
@@ -5297,7 +5412,8 @@
         "Boho braids / goddess braids",
         "Boho braids bob",
         "Miracle knots",
-        "Half braids, half sew-in"
+        "Half braids, half sew-in",
+        "Wash & blowdry"
       ],
       "priceBand": "£",
       "servicePriceBand": "£",
@@ -5429,7 +5545,8 @@
         }
       ],
       "photoSearchReviewedAt": "2026-08-31",
-      "photoOrderBumpedAt": 962
+      "photoOrderBumpedAt": 962,
+      "sellsHairSeparately": true
     },
     {
       "id": "beauty-by-gk",
@@ -6222,7 +6339,7 @@
       "lgbtqFriendly": false,
       "parkingAvailable": false,
       "sellsHairSeparately": false,
-      "sameDayEmergency": false,
+      "sameDayEmergency": true,
       "customFilters": {}
     },
     {
@@ -6395,8 +6512,8 @@
       "id": "the-seven-touch",
       "name": "The Seven Touch",
       "areaId": "north",
-      "areaLabel": "North London",
-      "neighbourhood": "North London London",
+      "areaLabel": "North London / East London",
+      "neighbourhood": "North London and East London London",
       "postcode": "",
       "bookingPlatform": "Acuity",
       "bookingUrl": "https://theseventouch.as.me/",
@@ -6461,7 +6578,23 @@
         }
       ],
       "photoSearchReviewedAt": "2026-08-31",
-      "photoOrderBumpedAt": 934
+      "photoOrderBumpedAt": 934,
+      "areaIds": [
+        "north",
+        "east"
+      ],
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": false,
+      "sameDayEmergency": false,
+      "customFilters": {},
+      "updatedAt": "2026-09-11"
     },
     {
       "id": "the-hair-senpai",
@@ -7519,9 +7652,9 @@
     {
       "id": "perfected-by-ash",
       "name": "Perfected by Ash",
-      "areaId": "east",
-      "areaLabel": "East London",
-      "neighbourhood": "East London London",
+      "areaId": "essex",
+      "areaLabel": "Essex / East London",
+      "neighbourhood": "Essex / East London",
       "postcode": "",
       "bookingPlatform": "Acuity",
       "bookingUrl": "http://perfectedbyash.as.me",
@@ -8662,7 +8795,6 @@
         "Closure sew-in / closure behind the hairline",
         "Frontal sew-in",
         "Flipover / Versatile sew-in",
-        "U-Part / Half wig install",
         "Half up half down"
       ],
       "sellsHairSeparately": true,
@@ -9044,9 +9176,9 @@
     {
       "id": "beautywise-uk",
       "name": "Beautywise UK",
-      "areaId": "south-east",
-      "areaLabel": "South east London",
-      "neighbourhood": "South east London London",
+      "areaId": "all-london",
+      "areaLabel": "London",
+      "neighbourhood": "London London",
       "postcode": "",
       "bookingPlatform": "Direct website",
       "bookingUrl": "https://beautywiseukk.as.me/schedule/162cbeac",
@@ -9102,7 +9234,17 @@
         }
       ],
       "photoOrderBumpedAt": 380,
-      "updatedAt": "2026-08-26"
+      "updatedAt": "2026-09-10",
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": false,
+      "customFilters": {}
     },
     {
       "id": "nika-hair-lab",
@@ -9438,7 +9580,6 @@
         "Retwist / interlocking",
         "Soft locs",
         "Starter locs / instant locs",
-        "Wig cornrows",
         "Loc extensions (permanent)",
         "Loc styling",
         "Crochet"
@@ -9785,8 +9926,7 @@
       "services": [
         "Wig install (frontal / closure)",
         "Custom wig",
-        "Frontal ponytail / bun",
-        "Wig cornrows"
+        "Frontal ponytail / bun"
       ],
       "sameDayEmergency": true,
       "summary": "Admin draft created from stylist intake.",
@@ -9961,7 +10101,7 @@
       "wheelchairAccessible": false,
       "senFriendly": false,
       "lgbtqFriendly": false,
-      "parkingAvailable": false,
+      "parkingAvailable": true,
       "sellsHairSeparately": false,
       "customFilters": {},
       "priceBand": "",
@@ -11882,7 +12022,8 @@
       ],
       "updatedAt": "2026-08-25",
       "photoSearchReviewedAt": "2026-08-27",
-      "photoOrderBumpedAt": 417
+      "photoOrderBumpedAt": 417,
+      "parkingAvailable": true
     },
     {
       "id": "the-braid-studio-uk",
@@ -12186,9 +12327,9 @@
     {
       "id": "braidometry",
       "name": "Braidometry",
-      "areaId": "east",
-      "areaLabel": "East London",
-      "neighbourhood": "Romford",
+      "areaId": "essex",
+      "areaLabel": "Essex",
+      "neighbourhood": "Essex",
       "postcode": "",
       "bookingPlatform": "Acuity",
       "bookingUrl": "https://braidometry.as.me",
@@ -12281,7 +12422,8 @@
         "Stitch braids",
         "Knotless braids",
         "Creative braids",
-        "Wig cornrows"
+        "Wig cornrows",
+        "Kids & teens styles"
       ],
       "priceBand": "£",
       "servicePriceBand": "",
@@ -12686,9 +12828,9 @@
     {
       "id": "the-emporiumm",
       "name": "The Emporiumm",
-      "areaId": "south-west",
-      "areaLabel": "South west London",
-      "neighbourhood": "South west London",
+      "areaId": "croydon",
+      "areaLabel": "Croydon",
+      "neighbourhood": "Croydon London",
       "postcode": "CR7",
       "bookingPlatform": "Acuity",
       "bookingUrl": "https://asemporium.as.me",
@@ -12743,7 +12885,19 @@
           "url": "/portfolio-photos/the-emporiumm-22ba8f32-eaf7-40ad-97ac-5ca3ab70781e.jpg",
           "source": "google-image-search"
         }
-      ]
+      ],
+      "canBraidWithoutGel": false,
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
+      "hijabiFriendly": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": false,
+      "sameDayEmergency": false,
+      "customFilters": {},
+      "updatedAt": "2026-09-10"
     },
     {
       "id": "hair-by-shans",
@@ -12810,7 +12964,8 @@
         }
       ],
       "updatedAt": "2026-08-25",
-      "photoSearchReviewedAt": "2026-08-24"
+      "photoSearchReviewedAt": "2026-08-24",
+      "parkingAvailable": true
     },
     {
       "id": "en3-did-it",
@@ -13357,7 +13512,6 @@
         "Fulani / lemonade braids",
         "Boho braids bob",
         "Flipover / Versatile sew-in",
-        "Soft locs",
         "French curl",
         "Wig cornrows",
         "Trim / hair cut",
@@ -13370,7 +13524,8 @@
         "Bantu knots",
         "Braid take-down",
         "Boho braids / goddess braids",
-        "Loc styling"
+        "Loc styling",
+        "Crochet faux locs / invisible locs"
       ],
       "priceBand": "££",
       "servicePriceBand": "",
@@ -13531,7 +13686,8 @@
         "Miracle knots",
         "Crochet",
         "Wig cornrows",
-        "Colour blend (mixing braiding hair)"
+        "Colour blend (mixing braiding hair)",
+        "Kids & teens styles"
       ],
       "priceBand": "££",
       "servicePriceBand": "",
@@ -13832,7 +13988,6 @@
         "French curl bob",
         "Half braids, half sew-in",
         "Retwist / interlocking",
-        "Soft locs",
         "Knotless braids",
         "Twists (with extensions)",
         "Starter locs / instant locs",
@@ -13845,7 +14000,9 @@
         "Traditional sew-in / leave out",
         "Quick weave",
         "Frontal ponytail / bun",
-        "Loc styling"
+        "Loc styling",
+        "Crochet faux locs / invisible locs",
+        "Kids & teens styles"
       ],
       "priceBand": "££",
       "servicePriceBand": "",
@@ -13914,7 +14071,8 @@
         "Wig cornrows",
         "Starter locs / instant locs",
         "Retwist / interlocking",
-        "Loc styling"
+        "Loc styling",
+        "Crochet faux locs / invisible locs"
       ],
       "priceBand": "££",
       "servicePriceBand": "£",
@@ -14170,7 +14328,8 @@
         "Wig install (frontal / closure)",
         "Custom wig",
         "Frontal sew-in",
-        "Closure sew-in / closure behind the hairline"
+        "Closure sew-in / closure behind the hairline",
+        "Kids & teens styles"
       ],
       "priceBand": "£",
       "servicePriceBand": "",
@@ -14216,7 +14375,9 @@
           "url": "/portfolio-photos/luus-beauty-lounge-53ef8f84-5661-46cc-998b-c69ce49635fd.jpg",
           "source": "google-image-search"
         }
-      ]
+      ],
+      "parkingAvailable": true,
+      "sameDayEmergency": true
     },
     {
       "id": "hvney-beauty",
@@ -14480,9 +14641,9 @@
         "Knotless braids",
         "Twists (with extensions)",
         "Retwist / interlocking",
-        "Soft locs",
         "Stitch braids",
-        "Loc styling"
+        "Loc styling",
+        "Crochet faux locs / invisible locs"
       ],
       "priceBand": "£",
       "servicePriceBand": "",
@@ -15354,7 +15515,8 @@
         "Retwist / interlocking",
         "Crochet",
         "Stitch braids",
-        "Trim / hair cut"
+        "Trim / hair cut",
+        "Kids & teens styles"
       ],
       "priceBand": "£",
       "servicePriceBand": "",
@@ -15774,7 +15936,8 @@
         "Quick weave",
         "Flipover / Versatile sew-in",
         "Wig install (frontal / closure)",
-        "Loc styling"
+        "Loc styling",
+        "Crochet faux locs / invisible locs"
       ],
       "priceBand": "£",
       "servicePriceBand": "£",
@@ -15841,7 +16004,8 @@
         "Feed-in braids",
         "Fulani / lemonade braids",
         "Stitch braids",
-        "Loc styling"
+        "Loc styling",
+        "Starter locs / instant locs"
       ],
       "priceBand": "£",
       "servicePriceBand": "",
@@ -16020,7 +16184,8 @@
         "Soft locs",
         "Starter locs / instant locs",
         "Wig cornrows",
-        "Loc styling"
+        "Loc styling",
+        "Crochet faux locs / invisible locs"
       ],
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
@@ -16428,7 +16593,8 @@
         "Half braids, half sew-in",
         "Loc styling",
         "Kids & teens styles",
-        "Loc extensions (permanent)"
+        "Loc extensions (permanent)",
+        "Crochet faux locs / invisible locs"
       ],
       "priceBand": "£",
       "servicePriceBand": "£",
@@ -16551,7 +16717,8 @@
         "Traditional sew-in / leave out",
         "Stitch braids",
         "Wig install (frontal / closure)",
-        "Loc styling"
+        "Loc styling",
+        "Crochet faux locs / invisible locs"
       ],
       "priceBand": "£",
       "servicePriceBand": "£",
@@ -16905,7 +17072,6 @@
         "Starter locs / instant locs",
         "Retwist / interlocking",
         "Traditional sew-in / leave out",
-        "Twists (with extensions)",
         "Loc styling"
       ],
       "priceBand": "£",
@@ -16943,7 +17109,9 @@
       "photoSearchSkippedAt": "2026-08-24",
       "photoSearchSkippedReason": "manual",
       "photoSearchReviewedAt": "2026-08-24",
-      "updatedAt": "2026-08-27"
+      "updatedAt": "2026-08-27",
+      "wheelchairAccessible": true,
+      "parkingAvailable": true
     },
     {
       "id": "vicksenstyles",
@@ -17584,7 +17752,8 @@
       ],
       "updatedAt": "2026-08-27",
       "photoSearchReviewedAt": "2026-08-27",
-      "photoOrderBumpedAt": 409
+      "photoOrderBumpedAt": 409,
+      "canBraidWithoutGel": true
     },
     {
       "id": "butterfly-fingaz",
@@ -17760,7 +17929,8 @@
         }
       ],
       "photoSearchReviewedAt": "2026-08-24",
-      "updatedAt": "2026-08-25"
+      "updatedAt": "2026-08-25",
+      "canBraidWithoutGel": true
     },
     {
       "id": "ymk-hairr",
@@ -17790,7 +17960,8 @@
         "Scalp detox / treatments",
         "Moisturising treatment",
         "Sew-in take-down",
-        "Loc styling"
+        "Loc styling",
+        "Kids & teens styles"
       ],
       "priceBand": "£",
       "servicePriceBand": "",
@@ -17839,7 +18010,7 @@
           "source": "google-image-search"
         }
       ],
-      "updatedAt": "2026-08-27",
+      "updatedAt": "2026-09-10",
       "hairShopUrl": "",
       "googleDisplayName": "",
       "googleFormattedAddress": "",
@@ -17852,7 +18023,8 @@
       "sellsHairSeparately": false,
       "customFilters": {},
       "photoSearchReviewedAt": "2026-08-27",
-      "photoOrderBumpedAt": 429
+      "photoOrderBumpedAt": 429,
+      "sameDayEmergency": false
     },
     {
       "id": "gbemi-hair",
@@ -17936,11 +18108,11 @@
         "Knotless braids",
         "Stitch braids",
         "Feed-in braids",
-        "Soft locs",
         "Wig cornrows",
         "Miracle knots",
         "Half braids, half sew-in",
-        "Men's braids"
+        "Men's braids",
+        "Crochet faux locs / invisible locs"
       ],
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
@@ -18032,7 +18204,8 @@
         "Traditional sew-in / leave out",
         "Half braids, half sew-in",
         "Wash & blowdry",
-        "Trim / hair cut"
+        "Trim / hair cut",
+        "Crochet faux locs / invisible locs"
       ],
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
@@ -18204,7 +18377,8 @@
       "discoverySource": "Manual search",
       "services": [
         "Wig colouring / bundle colouring",
-        "Custom wig"
+        "Custom wig",
+        "Wig install (frontal / closure)"
       ],
       "priceBand": "£",
       "servicePriceBand": "",
@@ -18321,7 +18495,8 @@
         "Pixie cut / finger waves",
         "Trim / hair cut",
         "Full head colour",
-        "Custom wig"
+        "Custom wig",
+        "Curly cut / wash & go / diffuse"
       ],
       "priceBand": "££",
       "servicePriceBand": "",
@@ -20135,7 +20310,8 @@
         "Flipover / Versatile sew-in",
         "Sleek ponytail / bun",
         "Frontal ponytail / bun",
-        "Bridal"
+        "Bridal",
+        "Men's braids"
       ],
       "priceBand": "£",
       "servicePriceBand": "",
@@ -21253,7 +21429,8 @@
         }
       ],
       "updatedAt": "2026-08-25",
-      "photoSearchReviewedAt": "2026-08-24"
+      "photoSearchReviewedAt": "2026-08-24",
+      "parkingAvailable": true
     },
     {
       "id": "hermshair",
@@ -22178,7 +22355,8 @@
         }
       ],
       "updatedAt": "2026-08-24",
-      "photoSearchReviewedAt": "2026-08-24"
+      "photoSearchReviewedAt": "2026-08-24",
+      "sameDayEmergency": true
     },
     {
       "id": "mira-styless",
@@ -22315,12 +22493,8 @@
       "id": "donebydemz",
       "name": "DoneByDemz",
       "areaId": "essex",
-      "areaIds": [
-        "essex",
-        "east"
-      ],
-      "areaLabel": "Essex / East London",
-      "neighbourhood": "Essex and East London London",
+      "areaLabel": "Essex",
+      "neighbourhood": "Essex",
       "postcode": "",
       "bookingPlatform": "Direct website",
       "bookingUrl": "https://donebydemz.as.me/schedule/0a4af607",
@@ -22538,9 +22712,9 @@
         "Box braids",
         "Sleek ponytail / bun",
         "Twists (with extensions)",
-        "Soft locs",
         "Frontal ponytail / bun",
-        "Custom wig"
+        "Custom wig",
+        "Crochet faux locs / invisible locs"
       ],
       "priceBand": "£",
       "servicePriceBand": "£",
@@ -22857,9 +23031,9 @@
     {
       "id": "sleeked-palace",
       "name": "Sleeked Palace",
-      "areaId": "south-west",
-      "areaLabel": "South west London",
-      "neighbourhood": "South west London London",
+      "areaId": "essex",
+      "areaLabel": "Essex",
+      "neighbourhood": "Essex",
       "postcode": "",
       "bookingPlatform": "Direct website",
       "bookingUrl": "https://sleekedpalace.as.me/schedule/4fd1b44e",
@@ -22925,7 +23099,19 @@
       ],
       "photoSearchReviewedAt": "2026-08-31",
       "photoOrderBumpedAt": 782,
-      "updatedAt": "2026-08-31"
+      "updatedAt": "2026-09-11",
+      "websiteUrl": "",
+      "hairShopUrl": "https://www.instagram.com/lunashaircollection/",
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "sellsHairSeparately": true,
+      "sameDayEmergency": false,
+      "customFilters": {}
     },
     {
       "id": "lhair-uk",
@@ -23118,7 +23304,8 @@
       ],
       "updatedAt": "2026-08-26",
       "photoSearchReviewedAt": "2026-08-26",
-      "photoOrderBumpedAt": 242
+      "photoOrderBumpedAt": 242,
+      "parkingAvailable": true
     },
     {
       "id": "lba-uk",
@@ -23258,9 +23445,9 @@
     {
       "id": "kn-hair-lounge",
       "name": "KN Hair Lounge",
-      "areaId": "croydon",
-      "areaLabel": "Croydon",
-      "neighbourhood": "Croydon London",
+      "areaId": "south-west",
+      "areaLabel": "South west London",
+      "neighbourhood": "South west London",
       "postcode": "",
       "bookingPlatform": "Direct website",
       "bookingUrl": "https://knhairlounge.as.me/schedule/0f36682e",
@@ -24641,13 +24828,13 @@
         "Knotless braids",
         "Fulani / lemonade braids",
         "Sleek ponytail / bun",
-        "Soft locs",
         "Boho braids bob",
         "Frontal ponytail / bun",
         "Twists (with extensions)",
         "Quick weave",
         "Closure sew-in / closure behind the hairline",
-        "Bridal"
+        "Bridal",
+        "Crochet faux locs / invisible locs"
       ],
       "priceBand": "£",
       "servicePriceBand": "",
@@ -25187,9 +25374,9 @@
     {
       "id": "cz-beauty",
       "name": "CZ Beauty",
-      "areaId": "south-west",
-      "areaLabel": "South west London",
-      "neighbourhood": "South west London London",
+      "areaId": "south-east",
+      "areaLabel": "South east London",
+      "neighbourhood": "South east London",
       "postcode": "",
       "bookingPlatform": "Direct website",
       "bookingUrl": "https://czbeauty.as.me/schedule/6ca54b1b",
@@ -26065,7 +26252,8 @@
       "updatedAt": "2026-08-27",
       "photoSearchSkippedAt": "2026-08-27",
       "photoSearchSkippedReason": "no-instagram-results",
-      "photoOrderBumpedAt": 587
+      "photoOrderBumpedAt": 587,
+      "sameDayEmergency": true
     },
     {
       "id": "the-beauty-sector",
@@ -26927,7 +27115,6 @@
         "Half up half down",
         "Quick weave",
         "Sleek ponytail / bun",
-        "Custom wig",
         "Frontal ponytail / bun"
       ],
       "priceBand": "£",
@@ -26990,7 +27177,9 @@
         "Traditional sew-in / leave out",
         "Closure sew-in / closure behind the hairline",
         "Flipover / Versatile sew-in",
-        "Custom wig"
+        "Custom wig",
+        "Frontal ponytail / bun",
+        "Frontal sew-in"
       ],
       "priceBand": "£",
       "servicePriceBand": "£",
@@ -27034,7 +27223,8 @@
         }
       ],
       "updatedAt": "2026-08-25",
-      "photoSearchReviewedAt": "2026-08-24"
+      "photoSearchReviewedAt": "2026-08-24",
+      "parkingAvailable": true
     },
     {
       "id": "flou-lace-diaries",
@@ -27316,7 +27506,6 @@
         "Silk press",
         "Closure sew-in / closure behind the hairline",
         "Braid take-down",
-        "U-Part / Half wig install",
         "Custom wig",
         "Wig blowdry",
         "Kids & teens styles"
@@ -28012,7 +28201,8 @@
         "Wig cornrows",
         "Closure sew-in / closure behind the hairline",
         "Frontal sew-in",
-        "Custom wig"
+        "Custom wig",
+        "Quick weave"
       ],
       "priceBand": "£",
       "servicePriceBand": "£",
@@ -32699,7 +32889,8 @@
         "Traditional sew-in / leave out",
         "Half up half down",
         "Sleek ponytail / bun",
-        "Editorial / Session styling"
+        "Editorial / Session styling",
+        "Custom wig"
       ],
       "priceBand": "£",
       "servicePriceBand": "",
@@ -32780,9 +32971,9 @@
     {
       "id": "bydiannn",
       "name": "By Diannn",
-      "areaId": "east",
-      "areaLabel": "East London",
-      "neighbourhood": "East London London",
+      "areaId": "essex",
+      "areaLabel": "Essex / East London",
+      "neighbourhood": "Essex / East London",
       "postcode": "",
       "bookingPlatform": "Direct website",
       "bookingUrl": "https://bydian.as.me/schedule/0ef2a496",
@@ -33831,7 +34022,8 @@
         "Closure sew-in / closure behind the hairline",
         "Wig install (frontal / closure)",
         "Wig cornrows",
-        "Flipover / Versatile sew-in"
+        "Flipover / Versatile sew-in",
+        "Custom wig"
       ],
       "priceBand": "£",
       "servicePriceBand": "",
@@ -35336,15 +35528,15 @@
       "tiktokUrl": "",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
-      "updatedAt": "2026-07-24",
+      "updatedAt": "2026-09-11",
       "addedVia": "Admin tool",
       "discoverySource": "Manual search",
       "googlePlaceId": null,
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleDisplayName": null,
-      "googleFormattedAddress": null,
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-07-29",
       "websiteUrl": "",
       "wheelchairAccessible": false,
@@ -35370,7 +35562,13 @@
           "url": "/portfolio-photos/theokoistudio-0d219efd-8b4f-4a09-a8b7-05460d3e415b.jpg",
           "source": "google-image-search"
         }
-      ]
+      ],
+      "hairShopUrl": "",
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": true,
+      "sameDayEmergency": false
     },
     {
       "id": "braidsnchill",
@@ -35930,7 +36128,6 @@
         "Fulani / lemonade braids",
         "Boho braids / goddess braids",
         "Retwist / interlocking",
-        "Soft locs",
         "Butterfly locs",
         "Knotless braids",
         "Wig cornrows",
@@ -35945,7 +36142,8 @@
         "Scalp detox / treatments",
         "Sleek ponytail / bun",
         "Wig install (frontal / closure)",
-        "Kids & teens styles"
+        "Kids & teens styles",
+        "Crochet faux locs / invisible locs"
       ],
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
@@ -36144,7 +36342,8 @@
         }
       ],
       "photoSearchReviewedAt": "2026-08-31",
-      "photoOrderBumpedAt": 708
+      "photoOrderBumpedAt": 708,
+      "sameDayEmergency": true
     },
     {
       "id": "covemedical",
@@ -39286,7 +39485,8 @@
         }
       ],
       "photoSearchReviewedAt": "2026-08-31",
-      "photoOrderBumpedAt": 721
+      "photoOrderBumpedAt": 721,
+      "sameDayEmergency": true
     },
     {
       "id": "hairconnoisseuruk",
@@ -39367,8 +39567,8 @@
       "id": "hairbyhml",
       "name": "Hair By HML",
       "areaId": "east",
-      "areaLabel": "East London",
-      "neighbourhood": "East London London",
+      "areaLabel": "East London / Essex",
+      "neighbourhood": "East London and Essex London",
       "postcode": "",
       "bookingPlatform": "Direct website",
       "bookingUrl": "https://hairbyhml.as.me/schedule/007f22ef",
@@ -39409,7 +39609,7 @@
       "priceCheckedAt": "2026-06-05",
       "priceUpdatedAt": "2026-06-05",
       "priceConfidence": "high",
-      "updatedAt": "2026-08-26",
+      "updatedAt": "2026-09-11",
       "addedVia": "Admin tool",
       "discoverySource": "Manual search",
       "googlePlaceId": null,
@@ -39444,7 +39644,11 @@
       "lgbtqFriendly": false,
       "parkingAvailable": false,
       "sellsHairSeparately": false,
-      "sameDayEmergency": false
+      "sameDayEmergency": false,
+      "areaIds": [
+        "east",
+        "essex"
+      ]
     },
     {
       "id": "murisalondon",
@@ -39546,9 +39750,9 @@
     {
       "id": "aureahairnco",
       "name": "AuréaHair&Co.",
-      "areaId": "essex",
-      "areaLabel": "Essex",
-      "neighbourhood": "Essex London",
+      "areaId": "east",
+      "areaLabel": "East London",
+      "neighbourhood": "East London",
       "postcode": "",
       "bookingPlatform": "Direct website",
       "bookingUrl": "https://aureahairnco.as.me/schedule/02b35fce?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0DMTAwAHNydGMGYXBwX2lkDzkzNjYxOTc0MzM5MjQ1OQABp0vmmEc1W_2wCtUEdkaLc1Jd5YWNbEJ5_1FRaBKOq09Nr5QYeqeCbbuDWGXP_aem_q4Tl0UsN8rLzsXugBP4u0A",
@@ -39558,7 +39762,8 @@
         "Frontal ponytail / bun",
         "Traditional sew-in / leave out",
         "Half up half down",
-        "Updo"
+        "Updo",
+        "Quick weave"
       ],
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
@@ -39848,7 +40053,6 @@
         "Boho braids / goddess braids",
         "Knotless braids",
         "Sleek ponytail / bun",
-        "Butterfly locs",
         "Feed-in braids",
         "French curl",
         "Wig cornrows",
@@ -39857,7 +40061,6 @@
         "Updo",
         "Half up half down",
         "Frontal ponytail / bun",
-        "Twists (with extensions)",
         "Traditional sew-in / leave out",
         "Flipover / Versatile sew-in",
         "Closure sew-in / closure behind the hairline",
@@ -40395,7 +40598,8 @@
         "Traditional sew-in / leave out",
         "Flipover / Versatile sew-in",
         "Men's braids",
-        "Loc styling"
+        "Loc styling",
+        "Sew-in take-down"
       ],
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
@@ -41280,10 +41484,9 @@
       "bookingUrl": "https://www.arielalondon.com/book?category=9019d1e2-baeb-4194-bce7-577551a31455",
       "instagramUrl": "https://www.instagram.com/ariela_london/",
       "services": [
-        "Microlinks",
-        "LA weave",
-        "Tracks (+ silk press) / partial / invisible sew-in",
-        "Flipover / versatile sew-in",
+        "I-tips / microlinks strands",
+        "LA weave / microlinks wefts / braidless sew in",
+        "Flipover / Versatile sew-in",
         "Traditional sew-in / leave out",
         "Closure sew-in / closure behind the hairline",
         "Sew-in take-down",
@@ -42288,7 +42491,8 @@
         "Custom wig",
         "Wig install (frontal / closure)",
         "Bridal",
-        "Tracks (+ silk press) / partial / invisible sew-in"
+        "Tracks (+ silk press) / partial / invisible sew-in",
+        "Wig colouring / bundle colouring"
       ],
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
@@ -42613,9 +42817,9 @@
     {
       "id": "cutzgalore",
       "name": "CutzGalore",
-      "areaId": "west",
-      "areaLabel": "West London",
-      "neighbourhood": "West London London",
+      "areaId": "kent",
+      "areaLabel": "Kent",
+      "neighbourhood": "Kent",
       "postcode": "",
       "bookingPlatform": "Direct website",
       "bookingUrl": "https://cutzgalore.as.me/schedule/ec3244a1",
@@ -43344,7 +43548,7 @@
       "neighbourhood": "East London",
       "postcode": "",
       "bookingPlatform": "Direct website",
-      "bookingUrl": "https://www.adornedbyanj.co.uk/book-an-appointment",
+      "bookingUrl": "https://adornedbyanj.as.me/schedule/75dd0d7c",
       "instagramUrl": "https://www.instagram.com/adornedbyanj/",
       "services": [
         "Custom wig",
@@ -43922,9 +44126,9 @@
       ],
       "id": "allure-by-ec",
       "name": "Allure House",
-      "areaId": "central",
-      "areaLabel": "Central",
-      "neighbourhood": "Central London",
+      "areaId": "south-west",
+      "areaLabel": "South west London",
+      "neighbourhood": "South west London",
       "postcode": "",
       "bookingPlatform": "Direct website",
       "bookingUrl": "https://allurehouse.as.me/schedule/59a6e8e4",
@@ -43950,7 +44154,8 @@
         "Fulani / lemonade braids",
         "Wig install (frontal / closure)",
         "Kids & teens styles",
-        "Men's braids"
+        "Men's braids",
+        "Crochet faux locs / invisible locs"
       ],
       "priceBand": "££",
       "priceSource": "auto",
@@ -45367,7 +45572,8 @@
         "Crochet",
         "Sleek ponytail / bun",
         "Pixie cut / finger waves",
-        "Traditional sew-in / leave out"
+        "Traditional sew-in / leave out",
+        "Crochet faux locs / invisible locs"
       ],
       "priceBand": "££",
       "priceSource": "auto",
@@ -46122,7 +46328,8 @@
         "Flipover / Versatile sew-in",
         "Kids & teens styles",
         "Bantu knots",
-        "Men's braids"
+        "Men's braids",
+        "Crochet faux locs / invisible locs"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -46179,7 +46386,7 @@
       "hairShopUrl": "",
       "senFriendly": false,
       "lgbtqFriendly": false,
-      "parkingAvailable": false,
+      "parkingAvailable": true,
       "sellsHairSeparately": false,
       "customFilters": {},
       "photoSearchReviewedAt": "2026-08-25"
@@ -46476,7 +46683,11 @@
         "Crochet",
         "I-tips / microlinks strands",
         "LA weave / microlinks wefts / braidless sew in",
-        "Trim / hair cut"
+        "Trim / hair cut",
+        "Colour blend (mixing braiding hair)",
+        "Full head colour",
+        "Men's braids",
+        "Kids & teens styles"
       ],
       "priceBand": "£",
       "priceSource": "auto",
@@ -46500,7 +46711,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-27",
+      "updatedAt": "2026-09-10",
       "addedVia": "Code edit",
       "discoverySource": "Cowork scrape",
       "websiteUrl": "",
@@ -46508,12 +46719,12 @@
       "customFilters": {},
       "verifiedReviewCount": 197,
       "verifiedReviewCheckedAt": "2026-07-22",
-      "googlePlaceId": "ChIJP7pqbm2m2EcRpEHOxmGKml4",
+      "googlePlaceId": null,
       "googleReviewCount": 30,
       "googleMapsUri": "https://maps.google.com/?cid=6816913138530533796&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
       "googleMatchConfidence": "high",
       "googleDisplayName": "Betty's Unisex Hair Studio",
-      "googleFormattedAddress": "Essex, Shop 1, 17 Ripple Rd, Barking IG11 7NN, UK",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-07-23",
       "sellsHairSeparately": true,
       "hairShopUrl": "https://www.bettysunisexhairstudio.com/shop",
@@ -46533,7 +46744,8 @@
       "portfolioPhotosCheckedAt": "2026-08-21",
       "senFriendly": false,
       "lgbtqFriendly": false,
-      "parkingAvailable": false
+      "parkingAvailable": false,
+      "sameDayEmergency": false
     },
     {
       "id": "beyond-glam",
@@ -47278,13 +47490,14 @@
         "Starter locs / instant locs",
         "Retwist / interlocking",
         "Wig cornrows",
-        "Soft locs",
         "Miracle knots",
         "Flipover / Versatile sew-in",
         "Stitch braids",
         "Boho braids bob",
         "Men's braids",
-        "Loc styling"
+        "Loc styling",
+        "Crochet faux locs / invisible locs",
+        "Kids & teens styles"
       ],
       "canBraidWithoutGel": true,
       "priceBand": "£",
@@ -47487,9 +47700,9 @@
       ],
       "id": "braided-by-tayla",
       "name": "Braided by Tayla",
-      "areaId": "south-east",
-      "areaLabel": "South East",
-      "neighbourhood": "South East London",
+      "areaId": "kent",
+      "areaLabel": "Kent / South east London",
+      "neighbourhood": "Kent / South east London",
       "postcode": "",
       "bookingPlatform": "Direct website",
       "bookingUrl": "https://braidedbytayla.as.me/schedule/33b23481",
@@ -48124,7 +48337,8 @@
       "services": [
         "Wig install (frontal / closure)",
         "Custom wig",
-        "Traditional sew-in / leave out"
+        "Traditional sew-in / leave out",
+        "Bridal"
       ],
       "tiktokUrl": "https://www.tiktok.com/@xo_karrieee/video/7592032929845366019",
       "hijabiFriendly": false,
@@ -48374,9 +48588,9 @@
     {
       "id": "by-mil-made",
       "name": "By Mil Made",
-      "areaId": "east",
-      "areaLabel": "East",
-      "neighbourhood": "East London",
+      "areaId": "central",
+      "areaLabel": "Central London",
+      "neighbourhood": "Central London",
       "postcode": "",
       "bookingPlatform": "Direct website",
       "bookingUrl": "https://bymilmade.as.me/schedule/0705c124",
@@ -48775,7 +48989,8 @@
         "Sew-in take-down",
         "Silk press",
         "Wig install (frontal / closure)",
-        "Traditional sew-in / leave out"
+        "Traditional sew-in / leave out",
+        "Frontal ponytail / bun"
       ],
       "priceBand": "£",
       "priceSource": "auto",
@@ -50091,7 +50306,6 @@
         "Boho braids bob",
         "Men's braids",
         "Microbraids / x-small braids",
-        "Wig cornrows",
         "Full head colour",
         "Colour blend (mixing braiding hair)"
       ],
@@ -51666,8 +51880,8 @@
       "areaLabel": "Essex",
       "neighbourhood": "Essex",
       "postcode": "",
-      "bookingPlatform": "Direct website",
-      "bookingUrl": "https://www.fresha.com/a/devinerootz-salon-grays-nu-me-salons-limited-unit-5-eastern-avenue-klznz6ei",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://devinerootz.as.me/schedule/f824544c",
       "instagramUrl": "https://www.instagram.com/devinerootz/",
       "services": [
         "Moisturising treatment",
@@ -51678,22 +51892,28 @@
         "Trim / hair cut",
         "Traditional sew-in / leave out",
         "Wig cornrows",
-        "Full head colour"
+        "Full head colour",
+        "Crochet",
+        "Bridal",
+        "Feed-in braids",
+        "Updo",
+        "Scalp detox / treatments",
+        "Healthy hair plans & consultations"
       ],
-      "priceBand": "£",
+      "priceBand": "££",
       "priceSource": "auto",
       "priceEvidence": [
-        "Hair Treatment - £85",
-        "Twist - from £80",
-        "Hair Detox (includes Hair Wash) - £100",
-        "Braids - from £150",
-        "Cornrows - from £30",
-        "Hair trim - £20",
-        "Weave on - from £120",
-        "Hair Treatment - £85"
+        "Small Braids - Waist Length - £220",
+        "Medium Braids - Waist Length - £180",
+        "Medium Braids - Back Length - £150",
+        "Small Braids - Back Length - £180",
+        "Knotless Braids - Medium, Back Length - £160",
+        "Knotless Braids - Small, Back Length - £180",
+        "Boho Braids - Medium, Back Length - £170",
+        "Boho Braids - Small, Back Length - £190"
       ],
-      "priceCheckedAt": "2026-06-04",
-      "priceUpdatedAt": "2026-06-04",
+      "priceCheckedAt": "2026-09-10",
+      "priceUpdatedAt": "2026-09-10",
       "priceConfidence": "high",
       "addedVia": "Code edit",
       "discoverySource": "Cowork scrape",
@@ -51701,19 +51921,19 @@
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
       "wheelchairAccessible": false,
-      "servicePriceBand": "",
+      "servicePriceBand": "££",
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-31",
+      "updatedAt": "2026-09-10",
       "verifiedReviewCount": 0,
       "verifiedReviewCheckedAt": "2026-07-22",
       "googlePlaceId": null,
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleDisplayName": null,
-      "googleFormattedAddress": null,
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-07-29",
       "websiteUrl": "https://www.devinerootz.com/",
       "portfolioPhotosCheckedAt": "2026-08-21",
@@ -51727,7 +51947,13 @@
       "photoOrderBumpedAt": 711,
       "photoSearchSkippedAt": "2026-09-01",
       "photoSearchSkippedReason": "manual",
-      "photoSearchReviewedAt": "2026-09-01"
+      "photoSearchReviewedAt": "2026-09-01",
+      "hairShopUrl": "",
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "sellsHairSeparately": false,
+      "sameDayEmergency": false,
+      "customFilters": {}
     },
     {
       "id": "dglowempire",
@@ -51868,7 +52094,8 @@
       "evidence": [
         "User-provided manual addition.",
         "User-confirmed explicit frontal ponytail service.",
-        "Restored Updo service from historical standalone-updo commit de619f9."
+        "Restored Updo service from historical standalone-updo commit de619f9.",
+        "Health check: live booking page lists \"Wig Laundry Services\" (https://www.divasbyclaudia.com/book-appointment)."
       ],
       "id": "divas-by-claudia",
       "name": "Divas by Claudia",
@@ -51906,7 +52133,8 @@
         "Wig blowdry",
         "Flipover / Versatile sew-in",
         "Bouncy blowout / round brush blow dry",
-        "Full head colour"
+        "Full head colour",
+        "Wig laundry"
       ],
       "priceBand": "££",
       "priceSource": "manual",
@@ -51930,7 +52158,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-31",
+      "updatedAt": "2026-09-10",
       "addedVia": "Code edit",
       "discoverySource": "Cowork scrape",
       "wheelchairAccessible": false,
@@ -54172,12 +54400,8 @@
       "id": "fbnhairuk",
       "name": "FbnhairUK",
       "areaId": "south-east",
-      "areaIds": [
-        "south-east",
-        "kent"
-      ],
-      "areaLabel": "South East London / Kent",
-      "neighbourhood": "South East London / Kent",
+      "areaLabel": "South east London / East London",
+      "neighbourhood": "South east London / East London",
       "postcode": "",
       "bookingPlatform": "Direct website",
       "bookingUrl": "https://fbnhairuk.as.me/schedule.php",
@@ -54619,8 +54843,7 @@
       "instagramUrl": "https://www.instagram.com/fshairuk/",
       "services": [
         "Knotless braids",
-        "Soft locs",
-        "Cornrows / Twists / Underwig cornrows",
+        "Wig cornrows",
         "Feed-in braids",
         "Quick weave",
         "Fulani / lemonade braids",
@@ -54989,7 +55212,7 @@
       "services": [
         "Wig install (frontal / closure)",
         "Traditional sew-in / leave out",
-        "Flipover / versatile sew-in",
+        "Flipover / Versatile sew-in",
         "Closure sew-in / closure behind the hairline",
         "Wig colouring / bundle colouring",
         "Tape ins",
@@ -55050,7 +55273,8 @@
         }
       ],
       "photoSearchReviewedAt": "2026-08-25",
-      "updatedAt": "2026-08-31"
+      "updatedAt": "2026-08-31",
+      "parkingAvailable": true
     },
     {
       "id": "goddess-dream-booking",
@@ -55065,7 +55289,6 @@
       "services": [
         "Knotless braids",
         "Feed-in braids",
-        "Soft locs",
         "French curl",
         "Half braids, half sew-in",
         "Wig cornrows",
@@ -55726,7 +55949,8 @@
           "url": "/portfolio-photos/gxtouched-4e112745-aecf-4f9f-b5c8-d9b7de48ea82.jpg",
           "source": "google-image-search"
         }
-      ]
+      ],
+      "sameDayEmergency": true
     },
     {
       "id": "h-hair",
@@ -56143,9 +56367,9 @@
     {
       "id": "hair-by-anais",
       "name": "Hair by Anais",
-      "areaId": "east",
-      "areaLabel": "East",
-      "neighbourhood": "East London",
+      "areaId": "essex",
+      "areaLabel": "Essex",
+      "neighbourhood": "Essex",
       "postcode": "",
       "bookingPlatform": "Direct website",
       "bookingUrl": "https://hairbyanais.as.me/schedule/8b59527b",
@@ -56914,13 +57138,13 @@
         "Half up half down",
         "Sleek ponytail / bun",
         "Updo",
-        "Soft locs",
         "Editorial / Session styling",
         "Miracle knots",
-        "Flipover / versatile sew-in",
+        "Flipover / Versatile sew-in",
         "Wig cornrows",
         "Half braids, half sew-in",
-        "Kids & teens styles"
+        "Kids & teens styles",
+        "Crochet faux locs / invisible locs"
       ],
       "tiktokUrl": "",
       "hijabiFriendly": false,
@@ -57211,7 +57435,8 @@
         "Traditional sew-in / leave out",
         "Frontal sew-in",
         "Custom wig",
-        "Frontal ponytail / bun"
+        "Frontal ponytail / bun",
+        "Half up half down"
       ],
       "summary": "Manual entry added from your South East London wigs list.",
       "source": "manual",
@@ -57558,8 +57783,8 @@
         "Silk press",
         "Bouncy blowout / round brush blow dry",
         "K-tips / invisible strands",
-        "LA weave",
-        "Microlinks",
+        "LA weave / microlinks wefts / braidless sew in",
+        "I-tips / microlinks strands",
         "Tape ins",
         "Wig install (frontal / closure)",
         "Relaxer / texturiser",
@@ -57625,7 +57850,8 @@
       ],
       "portfolioPhotosCheckedAt": "2026-08-21",
       "photoSearchReviewedAt": "2026-08-31",
-      "photoOrderBumpedAt": 677
+      "photoOrderBumpedAt": 677,
+      "sellsHairSeparately": true
     },
     {
       "id": "hairboyldn",
@@ -58080,7 +58306,8 @@
         "Flipover / Versatile sew-in",
         "Quick weave",
         "Loc styling",
-        "Boho locs"
+        "Boho locs",
+        "Crochet faux locs / invisible locs"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -58436,7 +58663,8 @@
         "Hybrid sew in (tapes + sew in)",
         "Flipover / Versatile sew-in",
         "Wig install (frontal / closure)",
-        "Custom wig"
+        "Custom wig",
+        "U-Part / Half wig install"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -58766,15 +58994,15 @@
     {
       "id": "haus-of-amani",
       "name": "Haus of Amani",
-      "areaId": "croydon",
-      "areaLabel": "Croydon",
-      "neighbourhood": "Croydon",
+      "areaId": "south-west",
+      "areaLabel": "South west London",
+      "neighbourhood": "South west London London",
       "postcode": "",
       "bookingPlatform": "Direct website",
       "bookingUrl": "https://haus-of-amani.as.me/schedule/3ef63367",
       "instagramUrl": "https://www.instagram.com/hausofamani/",
       "services": [
-        "Flipover / versatile sew-in",
+        "Flipover / Versatile sew-in",
         "Closure sew-in / closure behind the hairline",
         "Frontal sew-in",
         "Traditional sew-in / leave out",
@@ -58803,12 +59031,12 @@
       "priceUpdatedAt": "2026-06-03",
       "addedVia": "Code edit",
       "discoverySource": "Cowork scrape",
-      "googlePlaceId": "ChIJWSPvKP8HdkgRmX5V8maqoPI",
+      "googlePlaceId": null,
       "googleReviewCount": 0,
       "googleMapsUri": "https://maps.google.com/?cid=17483161112581340825&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
       "googleMatchConfidence": "high",
       "googleDisplayName": "Hausofamani",
-      "googleFormattedAddress": "1 Peall Rd, Croydon CR0 3EX, UK",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-07-23",
       "portfolioPhotos": [
         {
@@ -58828,7 +59056,23 @@
         }
       ],
       "portfolioPhotosCheckedAt": "2026-08-21",
-      "updatedAt": "2026-08-22"
+      "updatedAt": "2026-09-11",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": false,
+      "sameDayEmergency": false,
+      "customFilters": {},
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only"
     },
     {
       "summary": "Manual entry amalgamated from duplicate Hausofshee and Haus of Shee records.",
@@ -59041,9 +59285,10 @@
         "Texture release",
         "Relaxer / texturiser",
         "Tracks (+ silk press) / partial / invisible sew-in",
-        "Flipover / versatile sew-in",
+        "Flipover / Versatile sew-in",
         "Wig cornrows",
-        "Moisturising treatment"
+        "Moisturising treatment",
+        "Closure sew-in / closure behind the hairline"
       ],
       "summary": "Manual entry added from your latest salon update batch.",
       "source": "manual",
@@ -59200,8 +59445,7 @@
         "Healthy hair plans & consultations",
         "Japanese head spa",
         "LA weave / microlinks wefts / braidless sew in",
-        "Wig colouring / bundle colouring",
-        "Soft locs"
+        "Wig colouring / bundle colouring"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -60656,7 +60900,8 @@
         "Wig cornrows",
         "Knotless braids",
         "Feed-in braids",
-        "Miracle knots"
+        "Miracle knots",
+        "Quick weave"
       ],
       "priceBand": "£",
       "priceSource": "auto",
@@ -61158,7 +61403,9 @@
         "Boho braids bob",
         "Men's braids",
         "Loc styling",
-        "Colour blend (mixing braiding hair)"
+        "Colour blend (mixing braiding hair)",
+        "Miracle knots",
+        "Crochet faux locs / invisible locs"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -61227,7 +61474,8 @@
         "Wig cornrows",
         "Stitch braids",
         "Wig install (frontal / closure)",
-        "Boho braids bob"
+        "Boho braids bob",
+        "Miracle knots"
       ],
       "summary": "Manual entry added from your South East London braids list.",
       "source": "manual",
@@ -61669,7 +61917,8 @@
         "Wig cornrows",
         "Pre-parting",
         "Boho braids bob",
-        "French curl bob"
+        "French curl bob",
+        "Crochet faux locs / invisible locs"
       ],
       "priceBand": "£",
       "priceSource": "auto",
@@ -61844,7 +62093,8 @@
         "Custom wig",
         "U-Part / Half wig install",
         "Twist out / flexi rod",
-        "Healthy hair plans & consultations"
+        "Healthy hair plans & consultations",
+        "Updo"
       ],
       "priceBand": "££",
       "priceSource": "auto",
@@ -62278,9 +62528,9 @@
       ],
       "id": "kayy-the-braider",
       "name": "Kayy the Braider",
-      "areaId": "north-west",
-      "areaLabel": "North West",
-      "neighbourhood": "North West London",
+      "areaId": "north",
+      "areaLabel": "North London",
+      "neighbourhood": "North London London",
       "postcode": "",
       "bookingPlatform": "Direct website",
       "bookingUrl": "https://kayythebraider-ktb.as.me/schedule/34b7fea6",
@@ -62325,8 +62575,8 @@
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleDisplayName": null,
-      "googleFormattedAddress": null,
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-07-29",
       "websiteUrl": "",
       "tiktokUrl": "",
@@ -62341,7 +62591,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-01",
+      "updatedAt": "2026-09-11",
       "portfolioPhotosCheckedAt": "2026-08-21",
       "portfolioPhotos": [
         {
@@ -62354,7 +62604,10 @@
           "url": "/portfolio-photos/kayy-the-braider-2442200e-a91c-4d98-9839-a0f6b5a862be.jpg",
           "source": "google-image-search"
         }
-      ]
+      ],
+      "hairShopUrl": "",
+      "sellsHairSeparately": false,
+      "sameDayEmergency": false
     },
     {
       "id": "keratin-by-anais",
@@ -63265,8 +63518,8 @@
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleDisplayName": null,
-      "googleFormattedAddress": null,
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-07-29",
       "websiteUrl": "",
       "tiktokUrl": "",
@@ -63278,7 +63531,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-31",
+      "updatedAt": "2026-09-11",
       "senFriendly": false,
       "lgbtqFriendly": false,
       "parkingAvailable": true,
@@ -63291,7 +63544,10 @@
         }
       ],
       "photoSearchReviewedAt": "2026-08-31",
-      "photoOrderBumpedAt": 680
+      "photoOrderBumpedAt": 680,
+      "hairShopUrl": "",
+      "sellsHairSeparately": false,
+      "sameDayEmergency": true
     },
     {
       "id": "kulture-hair",
@@ -63570,9 +63826,9 @@
     {
       "id": "laid-by-j-hair",
       "name": "Laid by J Hair",
-      "areaId": "south-west",
-      "areaLabel": "South West London / Croydon",
-      "neighbourhood": "South West London and Croydon London",
+      "areaId": "croydon",
+      "areaLabel": "Croydon",
+      "neighbourhood": "Croydon London",
       "postcode": "",
       "bookingPlatform": "Direct website",
       "bookingUrl": "https://laidbyjhair.as.me/schedule/2c94793b",
@@ -63591,10 +63847,6 @@
         "User-provided manual addition.",
         "Restored Updo service from historical standalone-updo commit de619f9.",
         "Submitted link: https://www.instagram.com/laidbyjhair/"
-      ],
-      "areaIds": [
-        "south-west",
-        "croydon"
       ],
       "priceBand": "£",
       "priceSource": "auto",
@@ -63617,8 +63869,8 @@
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleDisplayName": null,
-      "googleFormattedAddress": null,
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-07-29",
       "portfolioPhotosCheckedAt": "2026-08-21",
       "portfolioPhotos": [
@@ -63637,7 +63889,24 @@
           "url": "/portfolio-photos/laid-by-j-hair-89d29e59-bfe0-4ef8-a25a-d507681e0b77.jpg",
           "source": "google-image-search"
         }
-      ]
+      ],
+      "websiteUrl": "",
+      "hairShopUrl": "https://silkcentralwigs.co.uk/",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": true,
+      "sameDayEmergency": false,
+      "customFilters": {},
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "updatedAt": "2026-09-11"
     },
     {
       "id": "laid-by-sophh",
@@ -64519,7 +64788,8 @@
         "Olaplex treatment",
         "Scalp detox / treatments",
         "Healthy hair plans & consultations",
-        "Custom wig"
+        "Custom wig",
+        "LA weave / microlinks wefts / braidless sew in"
       ],
       "summary": "Manual entry added from your known South West London keratin treatment list.",
       "source": "manual",
@@ -64636,12 +64906,8 @@
       "id": "maison-oceane-ltd",
       "name": "Maison Oceane Ltd",
       "areaId": "south-east",
-      "areaIds": [
-        "south-east",
-        "south-west"
-      ],
-      "areaLabel": "South",
-      "neighbourhood": "South",
+      "areaLabel": "South east London",
+      "neighbourhood": "South east London",
       "postcode": "",
       "bookingPlatform": "Direct website",
       "bookingUrl": "https://maisonoceaneltd.as.me/schedule/2d295ea5",
@@ -65703,9 +65969,9 @@
     {
       "id": "michelle-amal-ldn",
       "name": "Michelle Amal LDN",
-      "areaId": "south-east",
-      "areaLabel": "South East",
-      "neighbourhood": "South East London",
+      "areaId": "essex",
+      "areaLabel": "Essex / South east London",
+      "neighbourhood": "Essex / South east London",
       "postcode": "",
       "bookingPlatform": "Direct website",
       "bookingUrl": "https://michelleamaldn.as.me/schedule/f562b45a",
@@ -67093,10 +67359,11 @@
         "Moisturising treatment",
         "Traditional sew-in / leave out",
         "Feed-in braids",
-        "Cornrows / Twists / Underwig cornrows",
+        "Wig cornrows",
         "Twists (with extensions)",
         "Soft locs",
-        "Creative braids"
+        "Creative braids",
+        "Crochet faux locs / invisible locs"
       ],
       "summary": "Manual entry added from your Croydon braids, natural hair, and sew-in list.",
       "source": "manual",
@@ -67403,7 +67670,8 @@
         "Feed-in braids",
         "Boho braids bob",
         "Bridal",
-        "Men's braids"
+        "Men's braids",
+        "Colour blend (mixing braiding hair)"
       ],
       "priceBand": "££",
       "priceSource": "auto",
@@ -67425,17 +67693,17 @@
       "canBraidWithoutGel": false,
       "servicePriceBand": "",
       "packagePriceBand": "",
-      "priceIncludesHair": false,
+      "priceIncludesHair": true,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-27",
+      "updatedAt": "2026-09-10",
       "addedVia": "Code edit",
       "discoverySource": "Cowork scrape",
-      "googlePlaceId": "ChIJ_xzkai6xGkYRqxMjUhbBiHQ",
+      "googlePlaceId": null,
       "googleReviewCount": 32,
       "googleMapsUri": "https://maps.google.com/?cid=8397173806843761579",
       "googleMatchConfidence": "high",
       "googleDisplayName": "NOQUE Salon",
-      "googleFormattedAddress": "497 Kingsland Rd, London E8 4AU, UK",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-08-31",
       "websiteUrl": "https://noquesalon.com",
       "portfolioPhotos": [
@@ -67521,7 +67789,15 @@
         }
       ],
       "portfolioPhotosCheckedAt": "2026-08-21",
-      "photoSearchReviewedAt": "2026-08-25"
+      "photoSearchReviewedAt": "2026-08-25",
+      "hairShopUrl": "",
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": false,
+      "sameDayEmergency": false,
+      "customFilters": {}
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -68483,7 +68759,8 @@
         "Tracks (+ silk press) / partial / invisible sew-in",
         "Frontal ponytail / bun",
         "Men's braids",
-        "Colour blend (mixing braiding hair)"
+        "Colour blend (mixing braiding hair)",
+        "Box braids"
       ],
       "summary": "Starter verified entry for a South East London salon the project identified as relevant for textured-hair clients looking for smoothing and care services.",
       "source": "manual",
@@ -69704,14 +69981,14 @@
         "Starter locs / instant locs",
         "Fulani / lemonade braids",
         "Feed-in braids",
-        "Wig install (frontal / closure)",
         "Wig colouring / bundle colouring",
-        "Custom wig",
         "Wig cornrows",
         "Traditional sew-in / leave out",
         "Closure sew-in / closure behind the hairline",
         "Half up half down",
-        "Loc extensions (permanent)"
+        "Loc extensions (permanent)",
+        "French curl",
+        "Stitch braids"
       ],
       "tiktokUrl": "",
       "hijabiFriendly": false,
@@ -70722,7 +70999,7 @@
       "neighbourhood": "South East London",
       "postcode": "",
       "bookingPlatform": "Direct website",
-      "bookingUrl": "https://www.renstouch.co.uk/pages/book",
+      "bookingUrl": "https://www.renstouch.co.uk/",
       "instagramUrl": "https://www.instagram.com/renstouch/",
       "services": [
         "Flipover / Versatile sew-in",
@@ -70733,8 +71010,7 @@
         "Half up half down",
         "Sew-in take-down",
         "Updo",
-        "Bridal",
-        "U-Part / Half wig install"
+        "Bridal"
       ],
       "summary": "Manual entry added from your known South East London list, expanded to include styling, sew-ins, and extensions.",
       "source": "manual",
@@ -70761,8 +71037,8 @@
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleDisplayName": null,
-      "googleFormattedAddress": null,
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-07-29",
       "websiteUrl": "https://www.renstouch.co.uk",
       "sellsHairSeparately": true,
@@ -70778,7 +71054,19 @@
       ],
       "photoSearchReviewedAt": "2026-08-31",
       "photoOrderBumpedAt": 1024,
-      "updatedAt": "2026-08-31"
+      "updatedAt": "2026-09-10",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sameDayEmergency": false,
+      "customFilters": {},
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only"
     },
     {
       "summary": "Manual entry added from your bridal and editorial list.",
@@ -71638,7 +71926,8 @@
       "servicePriceBand": "",
       "packagePriceBand": "",
       "priceIncludesHair": false,
-      "priceComparisonMode": "service-only"
+      "priceComparisonMode": "service-only",
+      "sameDayEmergency": true
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -71908,7 +72197,7 @@
         "Full head colour",
         "Highlights",
         "Balayage",
-        "LA weave",
+        "LA weave / microlinks wefts / braidless sew in",
         "Tape ins",
         "Hybrid sew in (tapes + sew in)",
         "Traditional sew-in / leave out",
@@ -71921,8 +72210,9 @@
         "Tracks (+ silk press) / partial / invisible sew-in",
         "Olaplex treatment",
         "Half up half down",
-        "Cornrows / Twists / Underwig cornrows",
-        "Healthy hair plans & consultations"
+        "Wig cornrows",
+        "Healthy hair plans & consultations",
+        "Bridal"
       ],
       "summary": "Manual entry added from your latest salon update batch.",
       "source": "manual",
@@ -72749,7 +73039,8 @@
         "Soft locs",
         "Stitch braids",
         "Men's braids",
-        "Loc styling"
+        "Loc styling",
+        "Crochet faux locs / invisible locs"
       ],
       "priceBand": "£",
       "priceSource": "auto",
@@ -74186,10 +74477,7 @@
         "Silk press",
         "Wig colouring / bundle colouring",
         "Texture release",
-        "Wig install (frontal / closure)",
-        "Sew in / extensions blowdry",
-        "Custom wig",
-        "U-Part / Half wig install"
+        "Sew in / extensions blowdry"
       ],
       "priceBand": "£",
       "priceSource": "auto",
@@ -74679,7 +74967,8 @@
         "Quick weave",
         "Crochet",
         "Twists (with extensions)",
-        "Feed-in braids"
+        "Feed-in braids",
+        "Crochet faux locs / invisible locs"
       ],
       "summary": "Manual entry added from your Essex salon update batch.",
       "source": "manual",
@@ -74927,13 +75216,12 @@
         "Feed-in braids",
         "Half braids, half sew-in",
         "Traditional sew-in / leave out",
-        "Flipover / versatile sew-in",
+        "Flipover / Versatile sew-in",
         "Sleek ponytail / bun",
         "Wig install (frontal / closure)",
         "Quick weave",
         "Frontal ponytail / bun",
-        "Custom wig",
-        "Wig cornrows"
+        "Custom wig"
       ],
       "summary": "Manual entry added from your South East London braids list.",
       "source": "manual",
@@ -75151,9 +75439,9 @@
       ],
       "id": "styled-by-kb",
       "name": "Styled by KB",
-      "areaId": "mobile",
-      "areaLabel": "Mobile",
-      "neighbourhood": "Mobile",
+      "areaId": "south-east",
+      "areaLabel": "South east London",
+      "neighbourhood": "South east London",
       "postcode": "",
       "bookingPlatform": "Direct website",
       "bookingUrl": "https://styledbykibong.as.me/schedule/b5bc0329",
@@ -75387,7 +75675,8 @@
         "Sleek ponytail / bun",
         "Half up half down",
         "Flipover / Versatile sew-in",
-        "Men's braids"
+        "Men's braids",
+        "Miracle knots"
       ],
       "summary": "Manual Instagram-led entry added from your latest salon update batch.",
       "source": "manual",
@@ -76488,7 +76777,8 @@
         "French curl bob",
         "Kids & teens styles",
         "Miracle knots",
-        "Loc styling"
+        "Loc styling",
+        "Crochet faux locs / invisible locs"
       ],
       "summary": "Manual entry added from your South East London sew-in and wig install list.",
       "source": "manual",
@@ -76698,9 +76988,9 @@
     {
       "id": "the-hair-lounge-uk",
       "name": "The Hair Lounge UK",
-      "areaId": "north",
-      "areaLabel": "North",
-      "neighbourhood": "North London",
+      "areaId": "east",
+      "areaLabel": "East London",
+      "neighbourhood": "East London",
       "postcode": "",
       "bookingPlatform": "Direct website",
       "bookingUrl": "https://bookthehairloungeuk.as.me/schedule/f72401a2",
@@ -77130,8 +77420,8 @@
       "id": "the-hct-studio",
       "name": "The HCT Studio",
       "areaId": "south-east",
-      "areaLabel": "South East",
-      "neighbourhood": "South East London",
+      "areaLabel": "South east London / Kent",
+      "neighbourhood": "South east London and Kent London",
       "postcode": "",
       "bookingPlatform": "Direct website",
       "bookingUrl": "https://thehctstudio.as.me/schedule/26197d98",
@@ -77177,8 +77467,8 @@
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleDisplayName": null,
-      "googleFormattedAddress": null,
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-07-29",
       "portfolioPhotosCheckedAt": "2026-08-21",
       "portfolioPhotos": [
@@ -77197,7 +77487,28 @@
           "url": "/portfolio-photos/the-hct-studio-f7a11386-a163-4455-8562-7d344d07c96f.jpg",
           "source": "google-image-search"
         }
-      ]
+      ],
+      "areaIds": [
+        "south-east",
+        "kent"
+      ],
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": false,
+      "sameDayEmergency": false,
+      "customFilters": {},
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "updatedAt": "2026-09-10"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -77449,8 +77760,8 @@
       "id": "the-mab-ldn",
       "name": "The MAB LDN",
       "areaId": "south-east",
-      "areaLabel": "South East",
-      "neighbourhood": "South East London",
+      "areaLabel": "South east London / Kent",
+      "neighbourhood": "South east London and Kent London",
       "postcode": "",
       "bookingPlatform": "Direct website",
       "bookingUrl": "https://themabldn.as.me/schedule/577911c9",
@@ -77501,7 +77812,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-31",
+      "updatedAt": "2026-09-11",
       "addedVia": "Bulk import",
       "discoverySource": "Cowork scrape",
       "googlePlaceId": null,
@@ -77528,7 +77839,12 @@
         }
       ],
       "photoOrderBumpedAt": 1077,
-      "photoSearchReviewedAt": "2026-08-31"
+      "photoSearchReviewedAt": "2026-08-31",
+      "areaIds": [
+        "south-east",
+        "kent"
+      ],
+      "sameDayEmergency": false
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -77546,7 +77862,8 @@
       "bookingUrl": "https://themaneline.as.me/schedule/3bee8908",
       "instagramUrl": "https://www.instagram.com/the.maneline/",
       "services": [
-        "Wig colouring / bundle colouring"
+        "Wig colouring / bundle colouring",
+        "Bridal"
       ],
       "priceBand": "££",
       "priceSource": "auto",
@@ -79141,7 +79458,8 @@
         }
       ],
       "photoSearchReviewedAt": "2026-08-26",
-      "photoOrderBumpedAt": 308
+      "photoOrderBumpedAt": 308,
+      "sameDayEmergency": true
     },
     {
       "id": "tthairbarldn",
@@ -81670,7 +81988,7 @@
       "hairShopUrl": "https://riestylez.com/collections/all",
       "senFriendly": false,
       "lgbtqFriendly": false,
-      "parkingAvailable": false,
+      "parkingAvailable": true,
       "sellsHairSeparately": true,
       "photoSearchReviewedAt": "2026-08-31",
       "photoOrderBumpedAt": 1022
@@ -82147,7 +82465,8 @@
       "senFriendly": false,
       "lgbtqFriendly": false,
       "parkingAvailable": false,
-      "sellsHairSeparately": false
+      "sellsHairSeparately": false,
+      "sameDayEmergency": true
     },
     {
       "id": "tcolourshair",
@@ -82228,9 +82547,9 @@
     {
       "id": "veehairlab",
       "name": "VeeHairLab",
-      "areaId": "kent",
-      "areaLabel": "South East London / Kent",
-      "neighbourhood": "South East London / Kent",
+      "areaId": "croydon",
+      "areaLabel": "Croydon",
+      "neighbourhood": "Croydon",
       "postcode": "",
       "bookingPlatform": "Direct website",
       "bookingUrl": "https://veehairlabbooking.as.me",
@@ -82693,7 +83012,6 @@
       "instagramUrl": "https://www.instagram.com/bbhair.lounge/",
       "services": [
         "French curl",
-        "Soft locs",
         "Frontal ponytail / bun",
         "Knotless braids",
         "Twists (with extensions)",
@@ -82755,7 +83073,7 @@
           "source": "google-image-search"
         }
       ],
-      "updatedAt": "2026-08-31",
+      "updatedAt": "2026-09-10",
       "websiteUrl": "",
       "hairShopUrl": "",
       "tiktokUrl": "",
@@ -82854,8 +83172,8 @@
       "id": "oraellounge",
       "name": "OraelLounge",
       "areaId": "kent",
-      "areaLabel": "South East London / Kent",
-      "neighbourhood": "South East London / Kent",
+      "areaLabel": "Kent",
+      "neighbourhood": "Kent",
       "postcode": "",
       "bookingPlatform": "Direct website",
       "bookingUrl": "https://oraelthelounge.as.me/schedule/5b782627",
@@ -82868,7 +83186,14 @@
         "Closure sew-in / closure behind the hairline",
         "Frontal ponytail / bun",
         "Wig install (frontal / closure)",
-        "Sleek ponytail / bun"
+        "Sleek ponytail / bun",
+        "Knotless braids",
+        "French curl",
+        "Crochet faux locs / invisible locs",
+        "Soft locs",
+        "Fulani / lemonade braids",
+        "Starter locs / instant locs",
+        "Wig cornrows"
       ],
       "summary": "Manual Instagram-led entry enriched from spreadsheet import.",
       "source": "manual",
@@ -82922,7 +83247,8 @@
           "url": "/portfolio-photos/oraellounge-4bed14bd-70ed-469f-8be3-585c5567290e.jpg",
           "source": "google-image-search"
         }
-      ]
+      ],
+      "sameDayEmergency": true
     },
     {
       "id": "isongbeautyuk",
@@ -82941,7 +83267,6 @@
         "Frontal sew-in",
         "Traditional sew-in / leave out",
         "Wig colouring / bundle colouring",
-        "Full head colour",
         "Editorial / Session styling",
         "Bridal"
       ],
@@ -83026,7 +83351,6 @@
         "Custom wig",
         "Wig colouring / bundle colouring",
         "Traditional sew-in / leave out",
-        "Wig install (frontal / closure)",
         "Flipover / Versatile sew-in",
         "Editorial / Session styling"
       ],
@@ -83486,7 +83810,6 @@
         "Quick weave",
         "Half up half down",
         "Tape ins",
-        "U-Part / Half wig install",
         "Wig install (frontal / closure)"
       ],
       "summary": "Manual Instagram-led entry added from user-provided booking menu.",
@@ -83774,7 +84097,8 @@
         "Quick weave",
         "Tracks (+ silk press) / partial / invisible sew-in",
         "Half braids, half sew-in",
-        "U-Part / Half wig install"
+        "U-Part / Half wig install",
+        "Closure sew-in / closure behind the hairline"
       ],
       "summary": "Manual Instagram-led entry enriched from spreadsheet import.",
       "source": "manual",
@@ -84111,11 +84435,10 @@
         "Traditional sew-in / leave out",
         "Frontal sew-in",
         "Closure sew-in / closure behind the hairline",
-        "Flipover / versatile sew-in",
+        "Flipover / Versatile sew-in",
         "Half up half down",
         "Frontal ponytail / bun",
         "Sleek ponytail / bun",
-        "Pixie wig / weave install",
         "Wig colouring / bundle colouring",
         "Olaplex treatment",
         "Moisturising treatment"
@@ -84550,19 +84873,18 @@
       "instagramUrl": "https://www.instagram.com/thebosslook/",
       "services": [
         "Traditional sew-in / leave out",
-        "Flipover / versatile sew-in",
+        "Flipover / Versatile sew-in",
         "Closure sew-in / closure behind the hairline",
         "Frontal sew-in",
         "Half braids, half sew-in",
-        "LA weave",
+        "LA weave / microlinks wefts / braidless sew in",
         "Texture release",
         "U-Part / Half wig install",
         "Custom wig",
         "Wig install (frontal / closure)",
         "Sleek ponytail / bun",
         "Half up half down",
-        "Trim / hair cut",
-        "Wig cornrows"
+        "Trim / hair cut"
       ],
       "summary": "Manual Instagram-led entry added from user-provided booking menu.",
       "source": "manual",
@@ -84742,7 +85064,7 @@
       "priceConfidence": "manual",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "wheelchairAccessible": false,
+      "wheelchairAccessible": true,
       "servicePriceBand": "",
       "packagePriceBand": "",
       "addedVia": "Code edit",
@@ -84757,7 +85079,7 @@
       "websiteUrl": "https://www.zateeshabarbour.com",
       "customFilters": {},
       "senFriendly": false,
-      "lgbtqFriendly": false,
+      "lgbtqFriendly": true,
       "parkingAvailable": false,
       "verifiedReviewCount": 38,
       "verifiedReviewCheckedAt": "2026-08-02",
@@ -85477,9 +85799,9 @@
     {
       "id": "ifes-chair",
       "name": "Ife's Chair",
-      "areaId": "east",
-      "areaLabel": "East",
-      "neighbourhood": "East London",
+      "areaId": "essex",
+      "areaLabel": "Essex",
+      "neighbourhood": "Essex",
       "postcode": "",
       "bookingPlatform": "Direct website",
       "bookingUrl": "https://ifeschair.as.me/schedule/4de3f4b2",

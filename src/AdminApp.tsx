@@ -500,6 +500,7 @@ type DirectoryCheck = {
   locationReviewIgnored?: boolean;
   bookingUrl?: string;
   instagramUrl?: string;
+  websiteUrl?: string;
   hijabiFriendly?: boolean;
   wheelchairAccessible?: boolean;
   senFriendly?: boolean;
@@ -8259,7 +8260,7 @@ function FreshnessRecommendationBody({
 }) {
   const hasWebsiteLinkIssue = row.check.linkChecks.some((linkCheck) => linkCheck.type === "website" && linkCheck.status !== "ok");
   const primaryLinkLabel = hasWebsiteLinkIssue ? "Website URL" : "Booking URL";
-  const primaryLinkValue = row.bookingUrl || "";
+  const primaryLinkValue = (hasWebsiteLinkIssue ? row.check.websiteUrl : row.bookingUrl) || "";
   const [primaryLinkUrl, setPrimaryLinkUrl] = useState(primaryLinkValue);
   const [instagramUrl, setInstagramUrl] = useState(row.instagramUrl || "");
   const [linkSaveState, setLinkSaveState] = useState<"idle" | "saving" | "saved">("idle");
@@ -8282,10 +8283,12 @@ function FreshnessRecommendationBody({
   async function handleSaveLinks() {
     setLinkSaveState("saving");
     try {
-      const linkUpdate: FreshnessUpdate = {
-        bookingUrl: primaryLinkUrl,
-        ...(bookingLinkMatchesInstagram ? { bookingPlatform: "Instagram" } : {}),
-      };
+      const linkUpdate: FreshnessUpdate = hasWebsiteLinkIssue
+        ? { websiteUrl: primaryLinkUrl }
+        : {
+            bookingUrl: primaryLinkUrl,
+            ...(bookingLinkMatchesInstagram ? { bookingPlatform: "Instagram" } : {}),
+          };
       await Promise.resolve(onApply(row.check, { ...linkUpdate, instagramUrl }));
       setLinkSaveState("saved");
       setTimeout(() => setLinkSaveState("idle"), 2500);
@@ -8843,10 +8846,12 @@ function getFreshnessDetailAcceptUpdate(detail: FreshnessRecommendationDetail, r
 }
 
 function isDetailBulkSelectable(detail: FreshnessRecommendationDetail, row: FreshnessRecommendationGroup) {
-  if (detail.kind === "manual" || detail.kind === "fix" || detail.kind === "price" || detail.kind === "manual-price" || detail.kind === "price-info") {
+  if (detail.kind === "price" || detail.kind === "manual-price" || detail.kind === "price-info") {
     return false;
   }
-  return Boolean(getFreshnessDetailAcceptUpdate(detail, row));
+  // A link-check row (fix/manual) has nothing to "accept" — the only real
+  // action is dismissing it, so fall back to checking the reject update.
+  return Boolean(getFreshnessDetailAcceptUpdate(detail, row)) || Boolean(getFreshnessDetailRejectUpdate(detail, row));
 }
 
 function mergeFreshnessAcceptUpdates(details: FreshnessRecommendationDetail[], row: FreshnessRecommendationGroup): FreshnessUpdate | undefined {
@@ -8877,6 +8882,15 @@ function mergeFreshnessAcceptUpdates(details: FreshnessRecommendationDetail[], r
     if (update.parkingAvailable) {
       merged.parkingAvailable = true;
     }
+    if (update.canBraidWithoutGel) {
+      merged.canBraidWithoutGel = true;
+    }
+    if (update.sellsHairSeparately) {
+      merged.sellsHairSeparately = true;
+    }
+    if (update.sameDayEmergency) {
+      merged.sameDayEmergency = true;
+    }
     if (update.areaId) {
       merged.areaId = update.areaId;
       merged.areaIds = update.areaIds;
@@ -8901,6 +8915,20 @@ function getFreshnessDetailRejectUpdate(detail: FreshnessRecommendationDetail, r
   }
   if (detail.kind === "location") {
     return { rejectLocation: true };
+  }
+  if ((detail.kind === "fix" || detail.kind === "manual") && detail.linkType) {
+    // "Ignoring" a link-check suggestion means confirming the currently
+    // saved URL is fine as-is, which re-saving it (unchanged) already does
+    // server-side — see removeReviewedLinkChecks.
+    if (detail.linkType === "booking") {
+      return { bookingUrl: row.check.bookingUrl };
+    }
+    if (detail.linkType === "instagram") {
+      return { instagramUrl: row.check.instagramUrl };
+    }
+    if (detail.linkType === "website") {
+      return { websiteUrl: row.check.websiteUrl };
+    }
   }
   return row.rejectUpdate;
 }
@@ -8947,6 +8975,18 @@ function mergeFreshnessRejectUpdates(details: FreshnessRecommendationDetail[], r
     }
     if (update.rejectPriceBand) {
       merged.rejectPriceBand = true;
+    }
+    if (update.bookingUrl !== undefined) {
+      merged.bookingUrl = update.bookingUrl;
+      if (update.bookingPlatform !== undefined) {
+        merged.bookingPlatform = update.bookingPlatform;
+      }
+    }
+    if (update.instagramUrl !== undefined) {
+      merged.instagramUrl = update.instagramUrl;
+    }
+    if (update.websiteUrl !== undefined) {
+      merged.websiteUrl = update.websiteUrl;
     }
   }
   return Object.keys(merged).length ? merged : undefined;
@@ -9029,6 +9069,7 @@ type FreshnessRecommendationDetail = {
   label: string;
   description: string;
   service?: string;
+  linkType?: string;
   attributeField?: AttributeSuggestion["field"];
   priceBand?: PriceBand;
   servicePriceBand?: PriceBand;
@@ -9139,11 +9180,13 @@ function buildFreshnessRecommendationGroups(checks: DirectoryCheck[]): Freshness
         kind: "fix" as const,
         label: `${titleCase(linkCheck.type)} link`,
         description: linkCheck.issues[0] || "Link not loading",
+        linkType: linkCheck.type,
       })),
       ...manualLinks.map((linkCheck) => ({
         kind: "manual" as const,
         label: `${titleCase(linkCheck.type)} link`,
         description: getManualCheckDescription(linkCheck),
+        linkType: linkCheck.type,
       })),
       ...removedServices.map((service) => {
         const possibleEvidence = getRemovalReviewEvidence(check.serviceCheck.rawServices, service);
@@ -9544,6 +9587,9 @@ function getLinkDismissUpdate(check: DirectoryCheck): FreshnessUpdate | undefine
   }
   if (linkTypes.has("instagram") && check.instagramUrl !== undefined) {
     update.instagramUrl = check.instagramUrl;
+  }
+  if (linkTypes.has("website") && check.websiteUrl !== undefined) {
+    update.websiteUrl = check.websiteUrl;
   }
 
   return Object.keys(update).length ? update : undefined;
@@ -13961,6 +14007,9 @@ function removeReviewedLinkChecks(check: DirectoryCheck, update: FreshnessUpdate
   }
   if (update.instagramUrl !== undefined) {
     reviewedLinkTypes.add("instagram");
+  }
+  if (update.websiteUrl !== undefined) {
+    reviewedLinkTypes.add("website");
   }
   const reviewedIssues = new Set(
     check.linkChecks
