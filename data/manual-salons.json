@@ -34,7 +34,26 @@
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleCheckedAt": "2026-09-10"
+      "googleCheckedAt": "2026-09-10",
+      "portfolioPhotos": [
+        {
+          "id": "the-editorial-jt-portfolio-photo-23b54d0e-e768-4b2b-abef-d58759ae33f5",
+          "url": "/portfolio-photos/the-editorial-jt-88c64594-028b-4db6-b308-afee482a9e06.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "the-editorial-jt-portfolio-photo-330b820f-182a-4bd2-84fb-2ce2ebdde3b6",
+          "url": "/portfolio-photos/the-editorial-jt-a4fbd6bd-d319-4fc4-93dd-3b3bdb78d71e.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "the-editorial-jt-portfolio-photo-7ee2f101-06a5-45fe-a3b8-63aa4d158441",
+          "url": "/portfolio-photos/the-editorial-jt-dd32d91e-fb7a-41de-a5ec-1d22287bf074.jpg",
+          "source": "google-image-search"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-09-11",
+      "photoOrderBumpedAt": 1210
     },
     {
       "id": "short-story-uk",
