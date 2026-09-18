@@ -4835,8 +4835,7 @@ export default function App() {
                 <section className="flex flex-col gap-2">
                   <h3 className="text-[13px] font-semibold uppercase tracking-[0.08em] text-stone-500">Your rights</h3>
                   <p>
-                    You can ask us what we hold about you, or ask us to correct or delete it, by emailing hello@row-k.london. The ICO is
-                    the UK&rsquo;s independent regulator for this and can also be contacted directly.
+                    You can ask us what we hold about you, or ask us to correct or delete it, by emailing hello@row-k.london.
                   </p>
                 </section>
               </div>
