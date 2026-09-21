@@ -1,8 +1,8 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-09-11",
-    "count": 1154,
+    "updatedAt": "2026-09-21",
+    "count": 1153,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
@@ -286,10 +286,10 @@
       "neighbourhood": "London London",
       "postcode": "",
       "bookingPlatform": "Instagram",
-      "bookingUrl": "",
+      "bookingUrl": "https://www.instagram.com/theeditorialjt/",
       "websiteUrl": "",
       "hairShopUrl": "",
-      "instagramUrl": "",
+      "instagramUrl": "https://www.instagram.com/theeditorialjt/",
       "tiktokUrl": "",
       "addedVia": "Admin tool",
       "discoverySource": "Instagram auto-fill",
@@ -347,7 +347,7 @@
       "priceCheckedAt": "",
       "priceUpdatedAt": "",
       "priceConfidence": "",
-      "updatedAt": "2026-09-11"
+      "updatedAt": "2026-09-21"
     },
     {
       "id": "short-story-uk",
@@ -7029,80 +7029,6 @@
       ],
       "photoSearchReviewedAt": "2026-08-31",
       "photoOrderBumpedAt": 931
-    },
-    {
-      "id": "the-es-experience",
-      "name": "The ES Experience",
-      "areaId": "south-west",
-      "areaLabel": "South west London",
-      "neighbourhood": "South west London London",
-      "postcode": "SW8 1GW",
-      "bookingPlatform": "Acuity",
-      "bookingUrl": "https://theesexperience.as.me/",
-      "websiteUrl": "",
-      "hairShopUrl": "",
-      "instagramUrl": "https://www.instagram.com/the_es_experience/",
-      "tiktokUrl": "",
-      "addedVia": "Admin tool",
-      "discoverySource": "Instagram auto-fill",
-      "services": [
-        "Traditional sew-in / leave out",
-        "Highlights",
-        "Frontal ponytail / bun",
-        "Wig laundry",
-        "Wig install (frontal / closure)",
-        "Custom wig",
-        "Flipover / Versatile sew-in",
-        "Closure sew-in / closure behind the hairline"
-      ],
-      "priceBand": "£",
-      "servicePriceBand": "£",
-      "packagePriceBand": "",
-      "priceIncludesHair": true,
-      "priceComparisonMode": "service-only",
-      "priceSource": "auto",
-      "priceEvidence": [
-        "The Frontal Ponytail Experience - £90",
-        "Frontal Wig Install - £50",
-        "Mini Frontal Install - £50",
-        "Reinstall Unit - £55",
-        "Custom Wig + Install - £120",
-        "Traditional Sew in - £85",
-        "Versatile Sew in - £85",
-        "Closure Sew in - £90"
-      ],
-      "priceCheckedAt": "2026-08-31",
-      "priceUpdatedAt": "2026-08-31",
-      "priceConfidence": "high",
-      "summary": "REBRANDING \nWE WILL BE BACK IN OCTOBER!\nJoin our community to stay connected ↓",
-      "source": "manual",
-      "evidence": [
-        "Submitted link: https://www.instagram.com/the_es_experience/",
-        "Submitted link: https://theesexperience.as.me/",
-        "Raw services provided during admin intake."
-      ],
-      "googlePlaceId": "ChIJI_Urv7EFdkgR7UwVqUMejoM",
-      "googleReviewCount": 1,
-      "googleMapsUri": "https://maps.google.com/?cid=9479547541609860333&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
-      "googleMatchConfidence": "high",
-      "googleDisplayName": "The Es Experience",
-      "googleFormattedAddress": "Bondway, London SW8 1GW, UK",
-      "googleCheckedAt": "2026-08-31",
-      "portfolioPhotos": [
-        {
-          "id": "the-es-experience-portfolio-photo-12b2118f-98f0-43c2-8b50-612ba785cd8f",
-          "url": "/portfolio-photos/the-es-experience-c7acda48-9a6a-463d-82a0-d335ff086b26.jpg",
-          "source": "google-image-search"
-        },
-        {
-          "id": "the-es-experience-portfolio-photo-8eef559e-e3cd-4a49-8b8b-5515d44856bb",
-          "url": "/portfolio-photos/the-es-experience-e74e6380-fd6f-451d-9046-4893a02b90ea.jpg",
-          "source": "google-image-search"
-        }
-      ],
-      "photoSearchReviewedAt": "2026-08-31",
-      "photoOrderBumpedAt": 928,
-      "updatedAt": "2026-08-31"
     },
     {
       "id": "braids-by-tessa",
@@ -43147,9 +43073,9 @@
     {
       "id": "7styles",
       "name": "7styles",
-      "areaId": "south",
-      "areaLabel": "South",
-      "neighbourhood": "South London",
+      "areaId": "south-east",
+      "areaLabel": "South east London",
+      "neighbourhood": "South east London London",
       "postcode": "",
       "bookingPlatform": "Direct website",
       "bookingUrl": "https://www.7styles.co.uk/book-with-me/",
@@ -43204,7 +43130,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": true,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-09-08",
+      "updatedAt": "2026-09-21",
       "googlePlaceId": null,
       "googleReviewCount": 0,
       "googleMapsUri": "",
