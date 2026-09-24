@@ -2,10 +2,68 @@
   "meta": {
     "source": "manual",
     "updatedAt": "2026-09-24",
-    "count": 1155,
+    "count": 1156,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "celaska-hair",
+      "name": "Celaska Hair",
+      "areaId": "east",
+      "areaLabel": "East London",
+      "neighbourhood": "East London London",
+      "postcode": "",
+      "bookingPlatform": "Acuity",
+      "bookingUrl": "https://celaska.as.me/",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/celaskahair/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Wash & blowdry",
+        "Trim / hair cut",
+        "Full head colour",
+        "I-tips / microlinks strands",
+        "Tape ins",
+        "Silk press",
+        "Keratin treatment / Brazilian blowdry",
+        "Moisturising treatment"
+      ],
+      "sellsHairSeparately": true,
+      "summary": "Dm for tape deal \nHair stylist & Educator \n10years experience 🤍\nLONDON, UK\nSilk press | keratin treatment | tape ins",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/celaskahair/",
+        "Submitted link: https://celaska.as.me/",
+        "Raw services provided during admin intake."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-09-24",
+      "portfolioPhotos": [
+        {
+          "id": "celaska-hair-portfolio-photo-9f2fdb38-6d53-4b4b-9a93-a1f4c6565521",
+          "url": "/portfolio-photos/celaska-hair-5d10ffd9-5f9e-4e74-a983-e767aa33473e.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "celaska-hair-portfolio-photo-969f8774-4a20-45e4-8e1e-f5a85c562bb2",
+          "url": "/portfolio-photos/celaska-hair-d9836765-93da-4abb-9e9b-e966b3a422ad.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "celaska-hair-portfolio-photo-ecc8114d-9265-4a4a-9c14-6ba9f65def96",
+          "url": "/portfolio-photos/celaska-hair-b3a28359-684b-48cb-bc03-243adfbce473.jpg",
+          "source": "google-image-search"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-09-24",
+      "photoOrderBumpedAt": 1228
+    },
     {
       "id": "elz-haair",
       "name": "Elz Haair",
@@ -41,7 +99,26 @@
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleCheckedAt": "2026-09-24"
+      "googleCheckedAt": "2026-09-24",
+      "portfolioPhotos": [
+        {
+          "id": "elz-haair-portfolio-photo-b002e797-c21e-4d15-a28d-a29e30db89b2",
+          "url": "/portfolio-photos/elz-haair-37240247-73ab-4409-95f1-d4dcf5006891.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "elz-haair-portfolio-photo-8bd7eced-2b4b-4170-8e5a-650bf48a5f9f",
+          "url": "/portfolio-photos/elz-haair-78bf306d-be2c-4653-97bb-13b628026c0b.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "elz-haair-portfolio-photo-326d7c16-60f8-472a-abee-5b917214d9d0",
+          "url": "/portfolio-photos/elz-haair-455a2e0a-a0e0-4f00-8205-461c23025646.jpg",
+          "source": "google-image-search"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-09-24",
+      "photoOrderBumpedAt": 1225
     },
     {
       "id": "hair-by-domperry",
@@ -74,7 +151,26 @@
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleCheckedAt": "2026-09-24"
+      "googleCheckedAt": "2026-09-24",
+      "portfolioPhotos": [
+        {
+          "id": "hair-by-domperry-portfolio-photo-7c8ab2aa-d501-4647-913d-96c3d55983c2",
+          "url": "/portfolio-photos/hair-by-domperry-45f04c66-7c4c-4f9c-abd5-2d938460e78e.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "hair-by-domperry-portfolio-photo-b979b8c0-39ce-43c0-9edf-1be3f1a26b38",
+          "url": "/portfolio-photos/hair-by-domperry-ec91b862-eaaa-4e32-acd3-0c646f67d345.jpg",
+          "source": "google-image-search"
+        },
+        {
+          "id": "hair-by-domperry-portfolio-photo-09f5ee81-2a81-4340-bb45-753cb8be49a9",
+          "url": "/portfolio-photos/hair-by-domperry-c610436a-bb47-4783-ad3d-d1157604c675.jpg",
+          "source": "google-image-search"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-09-24",
+      "photoOrderBumpedAt": 1222
     },
     {
       "id": "melanin-hair-ldn",
