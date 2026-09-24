@@ -2,7 +2,7 @@
   "meta": {
     "source": "admin-drafts",
     "updatedAt": "2026-09-24",
-    "count": 18
+    "count": 17
   },
   "drafts": [
     {
@@ -31,40 +31,6 @@
       ],
       "evidence": [
         "Submitted link: https://www.instagram.com/elzhaair/"
-      ],
-      "source": "admin-draft",
-      "createdAt": "2026-09-24",
-      "updatedAt": "2026-09-24",
-      "lastCheckedAt": "2026-09-24",
-      "bookingLinkEvidence": "Could not fetch this Instagram profile: Rate-limited by Instagram — try again shortly. — fill in the rest manually.",
-      "attributeSuggestions": []
-    },
-    {
-      "id": "celaskahair-mues6iqv",
-      "status": "needs_review",
-      "name": "celaskahair",
-      "areaId": "",
-      "areaIds": [],
-      "areaLabel": "",
-      "neighbourhood": "",
-      "postcode": "",
-      "bookingPlatform": "",
-      "bookingUrl": "",
-      "websiteUrl": "",
-      "instagramUrl": "https://www.instagram.com/celaskahair/",
-      "tiktokUrl": "",
-      "addedVia": "Admin tool",
-      "discoverySource": "Instagram auto-fill",
-      "services": [],
-      "rawServices": [],
-      "summary": "Admin draft created from Instagram intake.",
-      "confidence": 0.2,
-      "warnings": [
-        "No booking link identified yet.",
-        "No services matched yet."
-      ],
-      "evidence": [
-        "Submitted link: https://www.instagram.com/celaskahair/"
       ],
       "source": "admin-draft",
       "createdAt": "2026-09-24",

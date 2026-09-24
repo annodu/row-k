@@ -7,31 +7,35 @@
   },
   "salons": [
     {
-      "id": "hair-by-domperry",
-      "name": "Hair by Domperry",
-      "areaId": "south-east",
-      "areaLabel": "South east London",
-      "neighbourhood": "South east London London",
+      "id": "celaska-hair",
+      "name": "Celaska Hair",
+      "areaId": "east",
+      "areaLabel": "East London",
+      "neighbourhood": "East London London",
       "postcode": "",
-      "bookingPlatform": "Instagram",
-      "bookingUrl": "https://www.instagram.com/hair_by_domperry/",
+      "bookingPlatform": "Direct website",
+      "bookingUrl": "https://celaska.as.me/schedule/0e0e5306",
       "websiteUrl": "",
       "hairShopUrl": "",
-      "instagramUrl": "https://www.instagram.com/hair_by_domperry/",
+      "instagramUrl": "https://www.instagram.com/celaskahair/",
       "tiktokUrl": "",
       "addedVia": "Admin tool",
       "discoverySource": "Instagram auto-fill",
       "services": [
-        "Relaxer / texturiser",
+        "Wash & blowdry",
+        "Trim / hair cut",
+        "Full head colour",
         "I-tips / microlinks strands",
-        "Texture release",
-        "Traditional sew-in / leave out"
+        "Tape ins",
+        "Silk press",
+        "Keratin treatment / Brazilian blowdry",
+        "Moisturising treatment"
       ],
       "sellsHairSeparately": true,
       "summary": "Admin draft created from Instagram intake.",
       "source": "manual",
       "evidence": [
-        "Submitted link: https://www.instagram.com/hair_by_domperry/"
+        "Submitted link: https://www.instagram.com/celaskahair/"
       ],
       "googlePlaceId": null,
       "googleReviewCount": 0,
