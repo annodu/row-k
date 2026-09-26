@@ -1,0 +1,10 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "row-k-photos",
+  "compatibility_date": "2026-09-26",
+  "assets": {
+    "directory": "./photo-pages-dist",
+    "not_found_handling": "none",
+    "html_handling": "none"
+  }
+}
