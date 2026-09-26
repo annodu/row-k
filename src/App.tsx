@@ -185,6 +185,18 @@ type PortfolioPhoto = {
   source?: string;
 };
 
+const portfolioPhotosBaseUrl = String(import.meta.env.VITE_PORTFOLIO_PHOTOS_BASE_URL || "").replace(/\/+$/, "");
+
+function resolvePortfolioPhotoUrl(url: string) {
+  if (!url || /^(?:https?:|data:|blob:)/i.test(url)) {
+    return url;
+  }
+  if (portfolioPhotosBaseUrl && url.startsWith("/portfolio-photos/")) {
+    return `${portfolioPhotosBaseUrl}${url}`;
+  }
+  return url;
+}
+
 type SearchResponse = {
   ok: boolean;
   results: SalonResult[];
@@ -614,7 +626,7 @@ function PortfolioPhotoCarousel({
           <PortfolioPlaceholderIcon className="h-full w-full text-stone-100 dark:text-stone-950" />
         ) : (
           <img
-            src={activePhoto.url}
+            src={resolvePortfolioPhotoUrl(activePhoto.url)}
             alt=""
             className="h-full w-full object-cover"
             onLoad={() => setPhotoState("loaded")}

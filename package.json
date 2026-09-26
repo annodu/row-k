@@ -10,7 +10,8 @@
     "server": "node server/index.mjs",
     "validate": "node scripts/validate-services.mjs",
     "validate:reviews": "node scripts/validate-reviews.mjs",
-    "backfill:portfolio-photos": "node scripts/backfill-portfolio-photos.mjs"
+    "backfill:portfolio-photos": "node scripts/backfill-portfolio-photos.mjs",
+    "build:photo-pages": "node scripts/build-photo-pages.mjs"
   },
   "devDependencies": {
     "@types/react": "^19.2.14",

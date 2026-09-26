@@ -43,6 +43,7 @@ const healthCheckFeedbackPath = path.resolve(__dirname, "../data/health-check-fe
 const portfolioReviewPath = path.resolve(__dirname, "../data/portfolio-photo-review.json");
 const portfolioReviewPhotosDir = path.resolve(__dirname, "../data/portfolio-review-photos");
 const portfolioPhotosPublicDir = path.resolve(__dirname, "../public/portfolio-photos");
+const portfolioPhotosGitDir = "public/portfolio-photos";
 const portfolioCorrectionsPath = path.resolve(__dirname, "../data/portfolio-photo-corrections.json");
 const portfolioCorrectionsPhotosDir = path.resolve(__dirname, "../data/portfolio-photo-corrections-photos");
 const photoLinkBacklogPath = path.resolve(__dirname, "../data/photo-link-backlog.json");
@@ -864,17 +865,18 @@ export function registerAdminStylistRoutes(app) {
 
     // Any existing photo not present in the submitted list was removed in the
     // drawer — delete its file, it's gone for good.
+    const removedFilenames = [];
     for (const photo of existingPhotos) {
       if (submittedIds.has(photo.id)) continue;
-      const filename = photo.url?.split("/").pop();
-      if (filename) await fs.unlink(path.join(portfolioPhotosPublicDir, filename)).catch(() => {});
+      const filename = portfolioPhotoFilename(photo.url);
+      if (filename) removedFilenames.push(filename);
     }
 
     const now = today();
     salon.portfolioPhotos = nextPhotos;
     salon.updatedAt = now;
     manualIndex.meta = { ...manualIndex.meta, updatedAt: now, count: manualIndex.salons.length };
-    await persistManualIndex(manualIndex, `Update portfolio photo shortlist for ${salon.name}`);
+    await persistManualIndexWithPortfolioFiles(manualIndex, `Update portfolio photo shortlist for ${salon.name}`, { deletes: removedFilenames });
 
     res.json({ ok: true, salon: publishedSalonToDraft(salon, now) });
   });
@@ -912,19 +914,20 @@ export function registerAdminStylistRoutes(app) {
     }
 
     try {
-      const oldFilename = photo.url.split("/").pop();
-      const originalBuffer = await fs.readFile(path.join(portfolioPhotosPublicDir, oldFilename));
+      const oldFilename = portfolioPhotoFilename(photo.url);
+      const originalBuffer = await readPortfolioPhotoBuffer(photo.url);
       const croppedBuffer = await cropCollagePanel(originalBuffer, panel, rotation);
       const newFilename = `${salon.id}-${crypto.randomUUID()}.jpg`;
-      await fs.writeFile(path.join(portfolioPhotosPublicDir, newFilename), croppedBuffer);
-      await fs.unlink(path.join(portfolioPhotosPublicDir, oldFilename)).catch(() => {});
       photos[photoIndex] = { ...photo, url: `/portfolio-photos/${newFilename}` };
 
       const now = today();
       salon.portfolioPhotos = photos;
       salon.updatedAt = now;
       manualIndex.meta = { ...manualIndex.meta, updatedAt: now, count: manualIndex.salons.length };
-      await persistManualIndex(manualIndex, `Crop a portfolio photo for ${salon.name}`);
+      await persistManualIndexWithPortfolioFiles(manualIndex, `Crop a portfolio photo for ${salon.name}`, {
+        writes: [{ filename: newFilename, buffer: croppedBuffer }],
+        deletes: oldFilename ? [oldFilename] : [],
+      });
 
       res.json({ ok: true, salon: publishedSalonToDraft(salon, now) });
     } catch (error) {
@@ -981,9 +984,7 @@ export function registerAdminStylistRoutes(app) {
     }
     ({ buffer, ext } = await shrinkOversizedUpload(buffer, ext));
 
-    await fs.mkdir(portfolioPhotosPublicDir, { recursive: true });
     const filename = `${salon.id}-${crypto.randomUUID()}.${ext}`;
-    await fs.writeFile(path.join(portfolioPhotosPublicDir, filename), buffer);
 
     const now = today();
     salon.portfolioPhotos = [
@@ -994,7 +995,9 @@ export function registerAdminStylistRoutes(app) {
     delete salon.photoSearchSkippedReason;
     salon.updatedAt = now;
     manualIndex.meta = { ...manualIndex.meta, updatedAt: now, count: manualIndex.salons.length };
-    await persistManualIndex(manualIndex, `Upload a portfolio photo for ${salon.name}`);
+    await persistManualIndexWithPortfolioFiles(manualIndex, `Upload a portfolio photo for ${salon.name}`, {
+      writes: [{ filename, buffer }],
+    });
 
     res.json({ ok: true, salon: publishedSalonToDraft(salon, now) });
   });
@@ -1098,10 +1101,9 @@ export function registerAdminStylistRoutes(app) {
     // and reordered there), not capped at approval time.
     const existingPhotos = salon.portfolioPhotos || [];
     const ext = path.extname(candidate.filename) || ".jpg";
-    await fs.mkdir(portfolioPhotosPublicDir, { recursive: true });
 
     const newFilename = `${salon.id}-${crypto.randomUUID()}${ext}`;
-    await fs.copyFile(path.join(portfolioReviewPhotosDir, candidate.filename), path.join(portfolioPhotosPublicDir, newFilename));
+    const newBuffer = await fs.readFile(path.join(portfolioReviewPhotosDir, candidate.filename));
     const updatedPhotos = [
       ...existingPhotos,
       { id: `${salon.id}-portfolio-photo-${crypto.randomUUID()}`, url: `/portfolio-photos/${newFilename}`, source: candidate.source },
@@ -1132,7 +1134,9 @@ export function registerAdminStylistRoutes(app) {
     await fs.unlink(path.join(portfolioReviewPhotosDir, candidate.filename)).catch(() => {});
 
     salon.portfolioPhotos = updatedPhotos;
-    await writeJson(manualIndexPath, manualIndex);
+    await persistManualIndexWithPortfolioFiles(manualIndex, `Approve portfolio review photo for ${salon.name}`, {
+      writes: [{ filename: newFilename, buffer: newBuffer }],
+    });
 
     candidates.splice(index, 1);
     store.candidates = candidates;
@@ -1437,9 +1441,7 @@ export function registerAdminStylistRoutes(app) {
       return res.status(400).json({ ok: false, message: sanitizeErrorMessage(error, "Could not process that image.") });
     }
 
-    await fs.mkdir(portfolioPhotosPublicDir, { recursive: true });
     const filename = `${salon.id}-${crypto.randomUUID()}.jpg`;
-    await fs.writeFile(path.join(portfolioPhotosPublicDir, filename), buffer);
 
     // Re-read + write under the lock instead of reusing the `manualIndex`
     // read from before the (potentially slow) download/crop above — another
@@ -1465,7 +1467,9 @@ export function registerAdminStylistRoutes(app) {
       const freshIndex = await readJson(manualIndexPath, { meta: { source: "manual" }, salons: [] });
       const freshSalon = insertApprovedPortfolioPhoto(freshIndex, req.params.salonId, photo);
       if (!freshSalon) return;
-      await persistManualIndex(freshIndex, `Add photo-search photo for ${freshSalon.name}`);
+      await persistManualIndexWithPortfolioFiles(freshIndex, `Add photo-search photo for ${freshSalon.name}`, {
+        writes: [{ filename, buffer }],
+      });
     });
     res.json({ ok: true, photo });
   });
@@ -1514,9 +1518,7 @@ export function registerAdminStylistRoutes(app) {
       return res.status(400).json({ ok: false, message: sanitizeErrorMessage(error, "Could not process that image.") });
     }
 
-    await fs.mkdir(portfolioPhotosPublicDir, { recursive: true });
     const filename = `${salon.id}-${crypto.randomUUID()}.jpg`;
-    await fs.writeFile(path.join(portfolioPhotosPublicDir, filename), buffer);
 
     const photo = {
       id: `${salon.id}-portfolio-photo-${crypto.randomUUID()}`,
@@ -1527,7 +1529,9 @@ export function registerAdminStylistRoutes(app) {
       const freshIndex = await readJson(manualIndexPath, { meta: { source: "manual" }, salons: [] });
       const freshSalon = insertApprovedPortfolioPhoto(freshIndex, req.params.salonId, photo);
       if (!freshSalon) return;
-      await persistManualIndex(freshIndex, `Add extracted Reel frame for ${freshSalon.name}`);
+      await persistManualIndexWithPortfolioFiles(freshIndex, `Add extracted Reel frame for ${freshSalon.name}`, {
+        writes: [{ filename, buffer }],
+      });
     });
     res.json({ ok: true, photo });
   });
@@ -2805,14 +2809,15 @@ export function registerAdminStylistRoutes(app) {
       nextPhotos.push(existing);
     }
 
+    const removedFilenames = [];
     for (const photo of existingPhotos) {
       if (submittedIds.has(photo.id)) continue;
-      const filename = photo.url?.split("/").pop();
-      if (filename) await fs.unlink(path.join(portfolioPhotosPublicDir, filename)).catch(() => {});
+      const filename = portfolioPhotoFilename(photo.url);
+      if (filename) removedFilenames.push(filename);
     }
 
     store.drafts[draftIndex] = { ...draft, portfolioPhotos: nextPhotos, updatedAt: today() };
-    await writeDraftStore(store);
+    await persistDraftStoreWithPortfolioFiles(store, `Update draft portfolio photos for ${draft.name || draft.id}`, { deletes: removedFilenames });
     res.json({ ok: true, draft: store.drafts[draftIndex] });
   });
 
@@ -2845,16 +2850,17 @@ export function registerAdminStylistRoutes(app) {
     }
 
     try {
-      const oldFilename = photo.url.split("/").pop();
-      const originalBuffer = await fs.readFile(path.join(portfolioPhotosPublicDir, oldFilename));
+      const oldFilename = portfolioPhotoFilename(photo.url);
+      const originalBuffer = await readPortfolioPhotoBuffer(photo.url);
       const croppedBuffer = await cropCollagePanel(originalBuffer, panel, rotation);
       const newFilename = `${draft.id}-${crypto.randomUUID()}.jpg`;
-      await fs.writeFile(path.join(portfolioPhotosPublicDir, newFilename), croppedBuffer);
-      await fs.unlink(path.join(portfolioPhotosPublicDir, oldFilename)).catch(() => {});
       photos[photoIndex] = { ...photo, url: `/portfolio-photos/${newFilename}` };
 
       store.drafts[draftIndex] = { ...draft, portfolioPhotos: photos, updatedAt: today() };
-      await writeDraftStore(store);
+      await persistDraftStoreWithPortfolioFiles(store, `Crop draft portfolio photo for ${draft.name || draft.id}`, {
+        writes: [{ filename: newFilename, buffer: croppedBuffer }],
+        deletes: oldFilename ? [oldFilename] : [],
+      });
       res.json({ ok: true, draft: store.drafts[draftIndex] });
     } catch (error) {
       res.status(400).json({ ok: false, message: error.message || "Could not crop that region." });
@@ -2881,9 +2887,7 @@ export function registerAdminStylistRoutes(app) {
     }
     ({ buffer, ext } = await shrinkOversizedUpload(buffer, ext));
 
-    await fs.mkdir(portfolioPhotosPublicDir, { recursive: true });
     const filename = `${draft.id}-${crypto.randomUUID()}.${ext}`;
-    await fs.writeFile(path.join(portfolioPhotosPublicDir, filename), buffer);
 
     const photo = { id: `${draft.id}-portfolio-photo-${crypto.randomUUID()}`, url: `/portfolio-photos/${filename}`, source: "manual" };
     store.drafts[draftIndex] = {
@@ -2891,7 +2895,9 @@ export function registerAdminStylistRoutes(app) {
       portfolioPhotos: [...(draft.portfolioPhotos || []), photo],
       updatedAt: today(),
     };
-    await writeDraftStore(store);
+    await persistDraftStoreWithPortfolioFiles(store, `Upload draft portfolio photo for ${draft.name || draft.id}`, {
+      writes: [{ filename, buffer }],
+    });
     res.json({ ok: true, draft: store.drafts[draftIndex] });
   });
 
@@ -3204,6 +3210,92 @@ async function persistManualIndex(manualIndex, commitMessage) {
   } else {
     await writeJson(manualIndexPath, manualIndex);
   }
+}
+
+function portfolioPhotoFilename(url) {
+  const pathname = cleanString(url).split("?")[0].split("#")[0];
+  const filename = pathname.split("/").pop() || "";
+  return filename && !filename.includes("..") && !filename.includes("/") && !filename.includes("\\") ? filename : "";
+}
+
+function portfolioPhotoGitPath(filename) {
+  return `${portfolioPhotosGitDir}/${filename}`;
+}
+
+function getPortfolioPhotosBaseUrl() {
+  return (process.env.PORTFOLIO_PHOTOS_BASE_URL || process.env.VITE_PORTFOLIO_PHOTOS_BASE_URL || "").trim().replace(/\/+$/, "");
+}
+
+function portfolioPhotoRemoteUrl(filename) {
+  const baseUrl = getPortfolioPhotosBaseUrl();
+  return baseUrl ? `${baseUrl}/portfolio-photos/${encodeURIComponent(filename)}` : "";
+}
+
+async function readPortfolioPhotoBuffer(photoUrl) {
+  const filename = portfolioPhotoFilename(photoUrl);
+  if (!filename) {
+    throw new Error("Invalid portfolio photo filename.");
+  }
+
+  const localPath = path.join(portfolioPhotosPublicDir, filename);
+  try {
+    return await fs.readFile(localPath);
+  } catch (localError) {
+    const remoteUrl = portfolioPhotoRemoteUrl(filename);
+    if (!remoteUrl) throw localError;
+    const response = await fetch(remoteUrl);
+    if (!response.ok) {
+      throw new Error(`Could not fetch portfolio photo ${filename}: ${response.status}`);
+    }
+    return Buffer.from(await response.arrayBuffer());
+  }
+}
+
+async function writeLocalPortfolioPhoto(filename, buffer) {
+  await fs.mkdir(portfolioPhotosPublicDir, { recursive: true });
+  await fs.writeFile(path.join(portfolioPhotosPublicDir, filename), buffer);
+}
+
+async function deleteLocalPortfolioPhoto(filename) {
+  if (!filename) return;
+  await fs.unlink(path.join(portfolioPhotosPublicDir, filename)).catch(() => {});
+}
+
+async function persistManualIndexWithPortfolioFiles(manualIndex, commitMessage, { writes = [], deletes = [] } = {}) {
+  if (isGitHubJsonBacked()) {
+    await writeJsonFilesToGitHub(
+      [
+        ...writes.map(({ filename, buffer }) => ({ path: portfolioPhotoGitPath(filename), buffer })),
+        ...deletes.map((filename) => ({ path: portfolioPhotoGitPath(filename), delete: true })),
+        { path: "data/manual-salons.json", payload: manualIndex },
+      ],
+      commitMessage,
+    );
+    return;
+  }
+
+  await Promise.all(writes.map(({ filename, buffer }) => writeLocalPortfolioPhoto(filename, buffer)));
+  await Promise.all(deletes.map((filename) => deleteLocalPortfolioPhoto(filename)));
+  await writeJson(manualIndexPath, manualIndex);
+}
+
+async function persistDraftStoreWithPortfolioFiles(store, commitMessage, { writes = [], deletes = [] } = {}) {
+  const payload = buildDraftStorePayload(store);
+  if (isGitHubJsonBacked()) {
+    await writeJsonFilesToGitHub(
+      [
+        ...writes.map(({ filename, buffer }) => ({ path: portfolioPhotoGitPath(filename), buffer })),
+        ...deletes.map((filename) => ({ path: portfolioPhotoGitPath(filename), delete: true })),
+        { path: "data/stylist-drafts.json", payload },
+      ],
+      commitMessage,
+    );
+    return;
+  }
+
+  await Promise.all(writes.map(({ filename, buffer }) => writeLocalPortfolioPhoto(filename, buffer)));
+  await Promise.all(deletes.map((filename) => deleteLocalPortfolioPhoto(filename)));
+  await writeJson(draftsPath, payload);
 }
 
 function requireAdmin(req, res, next) {
@@ -3773,17 +3865,50 @@ async function writeJsonFilesToGitHub(files, message) {
   }
 
   const parentCommit = await parseGitHubResponse(await githubFetch(`https://api.github.com/repos/${repo}/git/commits/${parentSha}`));
+  const treeEntries = [];
+  for (const file of files) {
+    if (file.delete) {
+      treeEntries.push({
+        path: file.path,
+        mode: "100644",
+        type: "blob",
+        sha: null,
+      });
+      continue;
+    }
+
+    if (file.buffer) {
+      const blob = await parseGitHubResponse(
+        await githubFetch(`https://api.github.com/repos/${repo}/git/blobs`, {
+          method: "POST",
+          body: JSON.stringify({
+            content: Buffer.from(file.buffer).toString("base64"),
+            encoding: "base64",
+          }),
+        }),
+      );
+      treeEntries.push({
+        path: file.path,
+        mode: "100644",
+        type: "blob",
+        sha: blob.sha,
+      });
+      continue;
+    }
+
+    treeEntries.push({
+      path: file.path,
+      mode: "100644",
+      type: "blob",
+      content: `${JSON.stringify(file.payload, null, 2)}\n`,
+    });
+  }
   const tree = await parseGitHubResponse(
     await githubFetch(`https://api.github.com/repos/${repo}/git/trees`, {
       method: "POST",
       body: JSON.stringify({
         base_tree: parentCommit.tree?.sha,
-        tree: files.map((file) => ({
-          path: file.path,
-          mode: "100644",
-          type: "blob",
-          content: `${JSON.stringify(file.payload, null, 2)}\n`,
-        })),
+        tree: treeEntries,
       }),
     }),
   );

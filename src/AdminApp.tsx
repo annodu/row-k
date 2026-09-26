@@ -146,6 +146,18 @@ type StylistDraft = {
 
 type PortfolioPhotoAdmin = { id: string; url: string; source?: string };
 
+const portfolioPhotosBaseUrl = String(import.meta.env.VITE_PORTFOLIO_PHOTOS_BASE_URL || "").replace(/\/+$/, "");
+
+function resolvePortfolioPhotoUrl(url: string) {
+  if (!url || /^(?:https?:|data:|blob:)/i.test(url)) {
+    return url;
+  }
+  if (portfolioPhotosBaseUrl && url.startsWith("/portfolio-photos/")) {
+    return `${portfolioPhotosBaseUrl}${url}`;
+  }
+  return url;
+}
+
 type PriceBand = string;
 type PriceComparisonMode = "service-only" | "mixed" | "package-only";
 type CustomFilterBehavior = "toggle-group" | "tag-multiselect";
@@ -4010,7 +4022,7 @@ function PortfolioPhotoReorderGrid({
               <div key={photo.id} className={cn("border border-stone-200 bg-white", MOBILE_PHOTO_PREVIEW_WIDTH)}>
                 <div className="relative">
                   <RepositionableImage
-                    src={photo.url}
+                    src={resolvePortfolioPhotoUrl(photo.url)}
                     disabled={isDirty}
                     disabledTitle="Save your reorder first"
                     onCommit={(region) => onCropPhoto(photo.id, { ...region, rotation: 0 })}
@@ -5108,7 +5120,7 @@ function PhotoSearchPage() {
               <div className="flex flex-wrap gap-3">
                 {current.portfolioPhotos.map((photo) => (
                   <div key={photo.id} className={cn("flex flex-col border border-stone-200 bg-white", MOBILE_PHOTO_PREVIEW_WIDTH)}>
-                    <img src={photo.url} alt="" className="aspect-[3/2] w-full object-cover" />
+                    <img src={resolvePortfolioPhotoUrl(photo.url)} alt="" className="aspect-[3/2] w-full object-cover" />
                     <p className="truncate px-1 py-1 text-[11px] text-stone-500">{photo.source || "unknown source"}</p>
                   </div>
                 ))}
