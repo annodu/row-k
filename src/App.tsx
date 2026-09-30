@@ -135,6 +135,21 @@ type SortOption =
 type PriceBand = string;
 type PriceRangeFilterId = PriceBand | "not-listed";
 type PriceBandTier = { symbol: string; label: string; maxAmount: number | null };
+const submissionDrawerStyle = {
+  panel:
+    "absolute inset-y-0 right-0 flex w-full max-w-[480px] flex-col overflow-hidden border-l border-stone-400 bg-stone-50 shadow-xl dark:border-stone-700 dark:bg-stone-950",
+  header: "shrink-0 border-b border-stone-300 px-5 py-4 dark:border-stone-800",
+  title: "text-[18px] font-semibold text-stone-950 dark:text-stone-50",
+  description: "mt-1 text-[12px] leading-[1.45] text-stone-600 dark:text-stone-400",
+  body: "min-h-0 flex-1 overflow-y-auto px-5 py-5",
+  form: "flex flex-col gap-5",
+  section: "flex flex-col gap-3 border-t border-stone-300 pt-4 first:border-t-0 first:pt-0 dark:border-stone-800",
+  sectionTight: "flex flex-col gap-3 border-t border-stone-300 pt-4 first:border-t-0 first:pt-0 dark:border-stone-800",
+  footer: "relative shrink-0 border-t border-stone-300 bg-stone-50 px-5 py-4 dark:border-stone-800 dark:bg-stone-950",
+  submitButton:
+    "inline-flex h-11 w-full items-center justify-center rounded-none bg-stone-950 px-5 text-[13px] font-semibold text-stone-100 transition-[background-color,transform] duration-150 ease-[var(--ease-out)] hover:bg-stone-800 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50 disabled:active:scale-100 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-stone-300",
+  hint: "mt-2 text-center text-[12px] text-stone-500 dark:text-stone-400",
+};
 
 type SalonResult = {
   id: string;
@@ -2543,7 +2558,7 @@ function SubmissionLinkField({
   const errorId = useId();
   return (
     <div className="flex flex-col gap-1.5">
-      <label htmlFor={inputId} className="flex items-center gap-1.5 text-[12px] font-semibold text-stone-600 dark:text-stone-400">
+      <label htmlFor={inputId} className="flex items-center gap-1.5 text-[12px] font-normal text-stone-600 dark:text-stone-400">
         {icon}
         {label}
       </label>
@@ -2804,7 +2819,6 @@ export default function App() {
         }))
         .filter((group) => group.services.length > 0)
     : submissionServiceGroups;
-
   function syncDraftFiltersFromApplied() {
     setDraftSelectedRegions(selectedRegions);
     setDraftSelectedCategories(selectedCategories);
@@ -4357,28 +4371,30 @@ export default function App() {
             aria-modal="true"
             aria-labelledby="submit-stylist-heading"
             tabIndex={-1}
-            className="drawer-panel absolute inset-y-0 right-0 flex w-full max-w-[520px] flex-col overflow-hidden border-l border-stone-300 bg-stone-100 shadow-xl dark:border-stone-700 dark:bg-stone-950"
+            className={cn("drawer-panel", submissionDrawerStyle.panel)}
           >
-            <div className="flex shrink-0 items-center justify-between border-b border-stone-300 px-6 py-5 dark:border-stone-800 sm:px-8">
-              <div>
-                <h2 id="submit-stylist-heading" className="text-[20px] font-medium text-stone-950 dark:text-stone-50">
-                  Submit a stylist
-                </h2>
-                <p className="mt-1 text-[13px] leading-[1.5] text-stone-600 dark:text-stone-400">
-                  This can be a hair stylist, salon or haircare service provider.
-                </p>
+            <div className={submissionDrawerStyle.header}>
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <h2 id="submit-stylist-heading" className={submissionDrawerStyle.title}>
+                    Submit a stylist
+                  </h2>
+                  <p className={submissionDrawerStyle.description}>
+                    This can be a hair stylist, salon or haircare service provider.
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  onClick={closeSubmissionModal}
+                  aria-label="Close"
+                  className="inline-flex size-11 shrink-0 items-center justify-center text-stone-500 transition-[color,transform] duration-150 ease-[var(--ease-out)] hover:text-stone-900 active:scale-[0.96] dark:text-stone-400 dark:hover:text-stone-100"
+                >
+                  <X className="size-4" aria-hidden="true" />
+                </button>
               </div>
-              <button
-                type="button"
-                onClick={closeSubmissionModal}
-                aria-label="Close"
-                className="inline-flex size-11 shrink-0 items-center justify-center text-stone-500 transition hover:text-stone-900 dark:text-stone-400 dark:hover:text-stone-100"
-              >
-                <X className="size-4" aria-hidden="true" />
-              </button>
             </div>
 
-            <div className="min-h-0 flex-1 overflow-y-auto px-6 py-6 sm:px-8">
+            <div className={submissionDrawerStyle.body}>
               {submissionStatus === "success" ? (
                 <div className="flex flex-col items-start gap-3 py-6">
                   <Check className="size-6 text-stone-950 dark:text-stone-50" aria-hidden="true" />
@@ -4388,8 +4404,8 @@ export default function App() {
                   </p>
                 </div>
               ) : (
-                <form id="submit-stylist-form" onSubmit={submitStylist} className="flex flex-col gap-7">
-                  <section className="flex flex-col gap-3">
+                <form id="submit-stylist-form" onSubmit={submitStylist} className={submissionDrawerStyle.form}>
+                  <section className={cn(submissionDrawerStyle.section, "flex flex-col gap-3")}>
                     <SubmissionLinkField
                       label="Instagram link (required)"
                       value={submissionInstagramUrl}
@@ -4401,14 +4417,14 @@ export default function App() {
                     />
                   </section>
 
-                  <section className="flex flex-col gap-4">
+                  <section className={cn(submissionDrawerStyle.section, "flex flex-col gap-4")}>
                     <label className="flex flex-col gap-1.5">
-                      <span className="text-[12px] font-semibold text-stone-600 dark:text-stone-400">Name</span>
+                      <span className="text-[12px] font-normal text-stone-600 dark:text-stone-400">Name</span>
                       <Input value={submissionName} onChange={(event) => setSubmissionName(event.target.value)} placeholder="Stylist or business name" />
                     </label>
 
                     <div className="flex flex-col gap-1.5">
-                      <span className="text-[12px] font-semibold text-stone-600 dark:text-stone-400">
+                      <span className="text-[12px] font-normal text-stone-600 dark:text-stone-400">
                         Are you the stylist / service provider?
                       </span>
                       <div className="flex gap-2">
@@ -4417,7 +4433,7 @@ export default function App() {
                           onClick={() => setSubmissionIsProvider(true)}
                           aria-pressed={submissionIsProvider}
                           className={cn(
-                            "h-10 flex-1 rounded-none border text-[13px] font-medium transition",
+                            "h-10 flex-1 rounded-none border text-[13px] font-medium transition-[background-color,border-color,color,transform] duration-150 ease-[var(--ease-out)] active:scale-[0.98]",
                             submissionIsProvider
                               ? "border-stone-950 bg-stone-950 text-white dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950"
                               : "border-stone-300 bg-transparent text-stone-600 hover:bg-stone-200 dark:border-stone-700 dark:text-stone-400 dark:hover:bg-stone-900",
@@ -4430,7 +4446,7 @@ export default function App() {
                           onClick={() => setSubmissionIsProvider(false)}
                           aria-pressed={!submissionIsProvider}
                           className={cn(
-                            "h-10 flex-1 rounded-none border text-[13px] font-medium transition",
+                            "h-10 flex-1 rounded-none border text-[13px] font-medium transition-[background-color,border-color,color,transform] duration-150 ease-[var(--ease-out)] active:scale-[0.98]",
                             !submissionIsProvider
                               ? "border-stone-950 bg-stone-950 text-white dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950"
                               : "border-stone-300 bg-transparent text-stone-600 hover:bg-stone-200 dark:border-stone-700 dark:text-stone-400 dark:hover:bg-stone-900",
@@ -4443,7 +4459,7 @@ export default function App() {
 
                   </section>
 
-                  <section className="flex flex-col gap-3">
+                  <section className={cn(submissionDrawerStyle.section, "flex flex-col gap-3")}>
                     <SubmissionLinkField
                       label="Booking link"
                       value={submissionBookingSameAsInstagram ? submissionInstagramUrl : submissionBookingUrl}
@@ -4452,20 +4468,19 @@ export default function App() {
                       disabled={submissionBookingSameAsInstagram}
                     >
                       <label className="mt-2 flex items-center gap-2 text-[13px] font-medium text-stone-700 dark:text-stone-300">
-                        <input
-                          type="checkbox"
+                        <Checkbox
                           checked={submissionBookingSameAsInstagram}
                           disabled={!submissionInstagramUrl.trim()}
-                          onChange={(event) => setSubmissionBookingSameAsInstagram(event.target.checked)}
-                          className="size-3.5 rounded-none border-stone-400 accent-stone-950 disabled:opacity-40"
+                          onCheckedChange={(value) => setSubmissionBookingSameAsInstagram(value === true)}
+                          className="size-4"
                         />
                         Same as Instagram
                       </label>
                     </SubmissionLinkField>
                   </section>
 
-                  <section className="flex flex-col gap-1">
-                    <p className="text-xs font-semibold text-stone-500">Location</p>
+                  <section className={cn(submissionDrawerStyle.sectionTight, "flex flex-col gap-1")}>
+                    <p className="text-xs font-normal text-stone-500">Location</p>
                     <div className="grid gap-1">
                       {runtimeParentGroups.map((group) => {
                         const parent = runtimeRegions.find((item) => item.id === group.id);
@@ -4515,8 +4530,8 @@ export default function App() {
                     </div>
                   </section>
 
-                  <section className="flex flex-col gap-1">
-                    <p className="text-xs font-semibold text-stone-500">Additional needs</p>
+                  <section className={cn(submissionDrawerStyle.sectionTight, "flex flex-col gap-1")}>
+                    <p className="text-xs font-normal text-stone-500">Additional needs</p>
                     <div className="grid gap-1">
                       {submissionNeedFields
                         .filter((option) => option.field !== "sellsHairSeparately" && option.field !== "priceIncludesHair")
@@ -4558,12 +4573,12 @@ export default function App() {
                   </section>
 
                   {customFilterTypes.length ? (
-                    <section className="flex flex-col gap-4">
+                    <section className={cn(submissionDrawerStyle.section, "flex flex-col gap-4")}>
                       {customFilterTypes.map((filterType) => {
                         const selected = submissionCustomFilters[filterType.id] ?? [];
                         return (
                           <div key={filterType.id} className="flex flex-col gap-1.5">
-                            <p className="text-xs font-semibold text-stone-500">{filterType.label}</p>
+                            <p className="text-xs font-normal text-stone-500">{filterType.label}</p>
                             <div className="flex flex-wrap gap-1.5">
                               {filterType.options.map((option) => {
                                 const isSelected = selected.includes(option.id);
@@ -4574,7 +4589,7 @@ export default function App() {
                                     onClick={() => toggleSubmissionCustomFilter(filterType.id, option.id)}
                                     aria-pressed={isSelected}
                                     className={cn(
-                                      "rounded-none border px-2.5 py-1 text-xs font-medium transition",
+                                      "rounded-none border px-2.5 py-1 text-xs font-medium transition-[background-color,border-color,color,transform] duration-150 ease-[var(--ease-out)] active:scale-[0.98]",
                                       isSelected
                                         ? "border-stone-950 bg-stone-950 text-white dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950"
                                         : "border-stone-300 bg-transparent text-stone-600 hover:bg-stone-200 dark:border-stone-700 dark:text-stone-400 dark:hover:bg-stone-900",
@@ -4591,8 +4606,8 @@ export default function App() {
                     </section>
                   ) : null}
 
-                  <section className="flex flex-col gap-3">
-                    <label htmlFor={submissionServicesInputId} className="text-xs font-semibold text-stone-500">
+                  <section className={cn(submissionDrawerStyle.section, "flex flex-col gap-3")}>
+                    <label htmlFor={submissionServicesInputId} className="text-xs font-normal text-stone-500">
                       Services
                     </label>
                     <p id={submissionServicesHintId} className="text-[12px] text-stone-500 dark:text-stone-400">
@@ -4605,7 +4620,7 @@ export default function App() {
                           key={service}
                           type="button"
                           onClick={() => toggleSubmissionService(service)}
-                          className="inline-flex items-center gap-1 rounded-none border border-stone-950 bg-stone-950 px-2.5 py-1 text-xs font-medium text-white dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950"
+                          className="inline-flex items-center gap-1 rounded-none border border-stone-950 bg-stone-950 px-2.5 py-1 text-xs font-medium text-white transition-transform duration-150 ease-[var(--ease-out)] active:scale-[0.98] dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950"
                         >
                           {service}
                           <X className="size-3" aria-hidden="true" />
@@ -4640,7 +4655,7 @@ export default function App() {
                                 onClick={() => toggleSubmissionServiceGroupOpen(group.id)}
                                 className="flex min-h-11 w-full items-center justify-between gap-2 px-3 py-2 text-left"
                               >
-                                <span className="text-[12px] font-semibold text-stone-600 dark:text-stone-400">{group.label}</span>
+                                <span className="text-[12px] font-normal text-stone-600 dark:text-stone-400">{group.label}</span>
                                 <ChevronDown
                                   className={cn("size-4 shrink-0 text-stone-500 transition-transform", isOpen && "rotate-180")}
                                   aria-hidden="true"
@@ -4657,7 +4672,7 @@ export default function App() {
                                         onClick={() => toggleSubmissionService(service)}
                                         aria-pressed={isSelected}
                                         className={cn(
-                                          "rounded-none border px-2.5 py-1 text-xs font-medium transition",
+                                          "rounded-none border px-2.5 py-1 text-xs font-medium transition-[background-color,border-color,color,transform] duration-150 ease-[var(--ease-out)] active:scale-[0.98]",
                                           isSelected
                                             ? "border-stone-950 bg-stone-950 text-white dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950"
                                             : "border-stone-300 bg-white text-stone-600 hover:bg-stone-200 dark:border-stone-700 dark:bg-stone-950 dark:text-stone-400 dark:hover:bg-stone-800",
@@ -4694,7 +4709,7 @@ export default function App() {
               )}
             </div>
 
-            <div className="relative shrink-0 border-t border-stone-300 px-6 py-5 dark:border-stone-800 sm:px-8">
+            <div className={submissionDrawerStyle.footer}>
               {submissionStatus === "error" && submissionError ? (
                 <div className="absolute inset-x-0 bottom-full bg-rose-100 px-6 py-2.5 text-[13px] leading-[1.4] text-rose-800 dark:bg-rose-950/30 dark:text-rose-300 sm:px-8">
                   {submissionError}
@@ -4704,7 +4719,7 @@ export default function App() {
                 <button
                   type="button"
                   onClick={closeSubmissionModal}
-                  className="inline-flex h-12 w-full items-center justify-center rounded-none bg-stone-950 px-5 text-[14px] font-medium text-stone-100 transition-colors hover:bg-stone-800 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-stone-300"
+                  className={submissionDrawerStyle.submitButton}
                 >
                   Done
                 </button>
@@ -4714,11 +4729,11 @@ export default function App() {
                     type="submit"
                     form="submit-stylist-form"
                     disabled={!submissionCanSend || submissionStatus === "submitting"}
-                    className="inline-flex h-12 w-full items-center justify-center rounded-none bg-stone-950 px-5 text-[14px] font-medium text-stone-100 transition-colors hover:bg-stone-800 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-stone-300"
+                    className={submissionDrawerStyle.submitButton}
                   >
                     {submissionStatus === "submitting" ? "Submitting..." : "Submit"}
                   </button>
-                  <p className="mt-2 text-center text-[12px] text-stone-500 dark:text-stone-400">
+                  <p className={submissionDrawerStyle.hint}>
                     We&rsquo;ll review each submission before it&rsquo;s listed.
                   </p>
                 </>
