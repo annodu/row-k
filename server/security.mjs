@@ -1,5 +1,6 @@
 import dns from "node:dns/promises";
 import net from "node:net";
+import ipaddr from "ipaddr.js";
 
 const unsafeMethods = new Set(["POST", "PUT", "PATCH", "DELETE"]);
 const rateLimitBuckets = new Map();
@@ -76,21 +77,31 @@ export function requestLogger(req, res, next) {
 }
 
 export async function assertSafeOutboundHttpUrl(rawUrl) {
+  const { url } = await resolveSafeOutboundHttpUrl(rawUrl);
+  return url.toString();
+}
+
+export async function resolveSafeOutboundHttpUrl(rawUrl) {
   const parsed = parseHttpUrl(rawUrl);
   if (!parsed) {
     throw new Error("Only valid http and https URLs are allowed.");
   }
 
-  if (isBlockedHostname(parsed.hostname)) {
+  if (parsed.username || parsed.password) {
+    throw new Error("URL credentials are not allowed.");
+  }
+
+  const hostname = parsed.hostname.replace(/^\[|\]$/g, "");
+  if (isBlockedHostname(hostname)) {
     throw new Error("This URL host is not allowed.");
   }
 
-  const addresses = await resolveHostname(parsed.hostname);
-  if (addresses.some((address) => isPrivateAddress(address.address))) {
+  const addresses = await resolveHostname(hostname);
+  if (!addresses.length || addresses.some(({ address, family }) => net.isIP(address) !== family || isPrivateAddress(address))) {
     throw new Error("This URL resolves to a private network address.");
   }
 
-  return parsed.toString();
+  return { url: parsed, addresses };
 }
 
 export function sanitizeErrorMessage(error, fallback = "Request failed.") {
@@ -134,8 +145,18 @@ function cleanupRateLimitBuckets(now) {
 }
 
 function getClientIp(req) {
-  const forwardedFor = String(req.headers["x-forwarded-for"] || "");
-  return forwardedFor.split(",")[0].trim() || req.socket?.remoteAddress || req.ip || "unknown";
+  const platformIp = isHostedRuntime()
+    ? firstValidIp(req.headers["x-real-ip"]) || firstValidIp(req.headers["x-forwarded-for"])
+    : "";
+  return platformIp || firstValidIp(req.ip) || firstValidIp(req.socket?.remoteAddress) || "unknown";
+}
+
+function firstValidIp(value = "") {
+  const candidate = String(Array.isArray(value) ? value[0] : value)
+    .split(",")[0]
+    .trim()
+    .replace(/^\[|\]$/g, "");
+  return net.isIP(candidate) ? candidate : "";
 }
 
 function isTrustedOrigin(origin, req) {
@@ -198,46 +219,14 @@ async function resolveHostname(hostname) {
 }
 
 function isPrivateAddress(address = "") {
-  if (net.isIPv4(address)) {
-    return isPrivateIpv4(address);
+  try {
+    const parsed = ipaddr.process(address);
+    // Reject special ranges and IPv6 outside global unicast, including tunnels.
+    return parsed.range() !== "unicast" ||
+      (parsed.kind() === "ipv6" && !parsed.match(ipaddr.parse("2000::"), 3));
+  } catch {
+    return true;
   }
-
-  if (net.isIPv6(address)) {
-    return isPrivateIpv6(address);
-  }
-
-  return true;
-}
-
-function isPrivateIpv4(address) {
-  const parts = address.split(".").map((part) => Number(part));
-  const [first, second] = parts;
-  return (
-    first === 0 ||
-    first === 10 ||
-    first === 127 ||
-    (first === 100 && second >= 64 && second <= 127) ||
-    (first === 169 && second === 254) ||
-    (first === 172 && second >= 16 && second <= 31) ||
-    (first === 192 && second === 168) ||
-    (first === 198 && (second === 18 || second === 19)) ||
-    first >= 224
-  );
-}
-
-function isPrivateIpv6(address) {
-  const normalized = address.toLowerCase();
-  return (
-    normalized === "::1" ||
-    normalized === "::" ||
-    normalized.startsWith("fc") ||
-    normalized.startsWith("fd") ||
-    normalized.startsWith("fe80:") ||
-    normalized.startsWith("::ffff:127.") ||
-    normalized.startsWith("::ffff:10.") ||
-    normalized.startsWith("::ffff:169.254.") ||
-    normalized.startsWith("::ffff:192.168.")
-  );
 }
 
 function isHostedRuntime() {

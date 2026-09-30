@@ -1,9 +1,8 @@
-import { Fragment, type FormEvent, type ReactNode, useCallback, useEffect, useId, useRef, useState } from "react";
+import { Fragment, Suspense, lazy, type FormEvent, type ReactNode, useCallback, useEffect, useId, useRef, useState } from "react";
 import { ArrowUp, ArrowUpRight, Check, ChevronDown, ChevronLeft, ChevronRight, Copy, Info, Search, X } from "lucide-react";
 
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
-import { AdminApp } from "@/AdminApp";
 import { trackEvent as trackAnalyticsEvent } from "@/lib/analytics";
 import { useIsSlowConnection } from "@/lib/connectionQuality";
 import { cn } from "@/lib/utils";
@@ -11,6 +10,8 @@ import {
   getVerifiedReviewsPlatform as getVerifiedReviewsPlatformForUrl,
   getVerifiedReviewsUrl as getVerifiedReviewsUrlForBookingUrl,
 } from "@/lib/verifiedReviews";
+
+const AdminApp = lazy(() => import("@/AdminApp").then((module) => ({ default: module.AdminApp })));
 
 const vendorProductTypeGroups: { label: string; options: string[] }[] = [
   {
@@ -370,7 +371,7 @@ function getVerifiedReviewsUrl(result: SalonResult): string {
 function getReviewsBannerInfo(
   result: SalonResult,
   options?: { preferBookingPlatform?: boolean },
-): { label: string; url: string; accessibleLabel: string } | null {
+): { label: string; mobileLabel: string; url: string; accessibleLabel: string } | null {
   const hasGoogleReviews = result.googleMatchConfidence === "high" && Number(result.googleReviewCount) > 0 && result.googleMapsUri;
   const platform = getVerifiedReviewsPlatform(result);
   const hasBookingPlatformReviews = Boolean(platform) && Number(result.verifiedReviewCount) > 0;
@@ -378,15 +379,15 @@ function getReviewsBannerInfo(
   // Google reviews win by default, but a user who's filtered to booking-site
   // reviews specifically wants to see that link, not Google's, for salons with both.
   if (options?.preferBookingPlatform && hasBookingPlatformReviews) {
-    return { label: `Reviews on ${platform}`, url: getVerifiedReviewsUrl(result), accessibleLabel: `Reviews for ${result.name} on ${platform}` };
+    return { label: `${platform} reviews`, mobileLabel: `${platform} reviews`, url: getVerifiedReviewsUrl(result), accessibleLabel: `Reviews for ${result.name} on ${platform}` };
   }
 
   if (hasGoogleReviews) {
-    return { label: "Google reviews available", url: result.googleMapsUri, accessibleLabel: `Google reviews for ${result.name} available` };
+    return { label: "Google reviews", mobileLabel: "Google reviews", url: result.googleMapsUri, accessibleLabel: `Google reviews for ${result.name} available` };
   }
 
   if (hasBookingPlatformReviews) {
-    return { label: `Reviews on ${platform}`, url: getVerifiedReviewsUrl(result), accessibleLabel: `Reviews for ${result.name} on ${platform}` };
+    return { label: `${platform} reviews`, mobileLabel: `${platform} reviews`, url: getVerifiedReviewsUrl(result), accessibleLabel: `Reviews for ${result.name} on ${platform}` };
   }
 
   return null;
@@ -406,7 +407,7 @@ function normalizeUrlForComparison(url: string) {
     .replace(/\/+$/, "");
 }
 
-function getHairShopLinkInfo(result: SalonResult): { label: string; url: string; accessibleLabel: string } | null {
+function getHairShopLinkInfo(result: SalonResult): { label: string; mobileLabel: string; url: string; accessibleLabel: string } | null {
   if (!result.sellsHairSeparately) {
     return null;
   }
@@ -425,7 +426,7 @@ function getHairShopLinkInfo(result: SalonResult): { label: string; url: string;
     return null;
   }
 
-  return { label: "Hair sold separately", url, accessibleLabel: `Hair shop for ${result.name}` };
+  return { label: "Buy hair", mobileLabel: "Buy hair", url, accessibleLabel: `Hair shop for ${result.name}` };
 }
 
 function isInstagramUrl(url: string) {
@@ -649,7 +650,7 @@ function PortfolioPhotoCarousel({
                 event.preventDefault();
                 goToPhoto(activeIndex - 1);
               }}
-              className="absolute left-2 top-1/2 flex size-8 -translate-y-1/2 items-center justify-center rounded-none border border-white/40 bg-white/30 text-stone-900 opacity-0 shadow-[0_2px_8px_rgba(0,0,0,0.12),inset_0_1px_0_rgba(255,255,255,0.25)] backdrop-blur-md backdrop-saturate-150 transition hover:bg-white/45 hover:opacity-100 dark:border-white/15 dark:bg-white/22 dark:text-white dark:shadow-[0_2px_8px_rgba(0,0,0,0.35),inset_0_1px_0_rgba(255,255,255,0.08)] dark:hover:bg-white/32"
+              className="absolute left-2 top-1/2 flex size-11 -translate-y-1/2 items-center justify-center rounded-none border border-white/40 bg-white/30 text-stone-900 opacity-0 shadow-[0_2px_8px_rgba(0,0,0,0.12),inset_0_1px_0_rgba(255,255,255,0.25)] backdrop-blur-md backdrop-saturate-150 transition hover:bg-white/45 hover:opacity-100"
             >
               <ChevronLeft className="size-4" />
             </button>
@@ -660,11 +661,11 @@ function PortfolioPhotoCarousel({
                 event.preventDefault();
                 goToPhoto(activeIndex + 1);
               }}
-              className="absolute right-2 top-1/2 flex size-8 -translate-y-1/2 items-center justify-center rounded-none border border-white/40 bg-white/30 text-stone-900 opacity-0 shadow-[0_2px_8px_rgba(0,0,0,0.12),inset_0_1px_0_rgba(255,255,255,0.25)] backdrop-blur-md backdrop-saturate-150 transition hover:bg-white/45 hover:opacity-100 dark:border-white/15 dark:bg-white/22 dark:text-white dark:shadow-[0_2px_8px_rgba(0,0,0,0.35),inset_0_1px_0_rgba(255,255,255,0.08)] dark:hover:bg-white/32"
+              className="absolute right-2 top-1/2 flex size-11 -translate-y-1/2 items-center justify-center rounded-none border border-white/40 bg-white/30 text-stone-900 opacity-0 shadow-[0_2px_8px_rgba(0,0,0,0.12),inset_0_1px_0_rgba(255,255,255,0.25)] backdrop-blur-md backdrop-saturate-150 transition hover:bg-white/45 hover:opacity-100"
             >
               <ChevronRight className="size-4" />
             </button>
-            <div className="absolute bottom-2 left-2 flex items-center gap-1.5">
+            <div className="absolute bottom-2 left-2 h-1.5" style={{ width: Math.max(6, photos.length * 12 - 6) }}>
               {photos.map((photo, index) => (
                 <button
                   key={photo.id}
@@ -674,8 +675,11 @@ function PortfolioPhotoCarousel({
                     event.preventDefault();
                     goToPhoto(index);
                   }}
-                  className="size-1.5 rounded-none bg-white/70 shadow-[0_0_0_1px_rgba(0,0,0,0.18)] transition hover:bg-white"
-                />
+                  className="group absolute top-1/2 flex size-11 -translate-x-[19px] -translate-y-1/2 items-center justify-center rounded-none"
+                  style={{ left: index * 12 }}
+                >
+                  <span className="size-1.5 rounded-none bg-white/70 shadow-[0_0_0_1px_rgba(0,0,0,0.18)] transition group-hover:bg-white" />
+                </button>
               ))}
               <div
                 className="pointer-events-none absolute left-0 size-1.5 rounded-none bg-white shadow-[0_0_0_1px_rgba(0,0,0,0.18)] transition-transform duration-300 ease-out"
@@ -815,6 +819,81 @@ function handleToggleKeyDown(event: React.KeyboardEvent, onToggle: () => void) {
 
   event.preventDefault();
   onToggle();
+}
+
+const focusableDialogSelector = [
+  "a[href]",
+  "button:not([disabled])",
+  "input:not([disabled])",
+  "select:not([disabled])",
+  "textarea:not([disabled])",
+  "[tabindex]:not([tabindex='-1'])",
+].join(",");
+
+function getFocusableDialogElements(container: HTMLElement) {
+  return Array.from(container.querySelectorAll<HTMLElement>(focusableDialogSelector)).filter((element) => {
+    if (element.getAttribute("aria-hidden") === "true") return false;
+    const rect = element.getBoundingClientRect();
+    return rect.width > 0 || rect.height > 0 || element === document.activeElement;
+  });
+}
+
+function useDialogFocusTrap(isOpen: boolean, onClose: () => void) {
+  const dialogRef = useRef<HTMLElement | null>(null);
+  const restoreFocusRef = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const dialog = dialogRef.current;
+    const previousOverflow = document.body.style.overflow;
+    restoreFocusRef.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    document.body.style.overflow = "hidden";
+
+    const focusInitialElement = window.requestAnimationFrame(() => {
+      const firstFocusable = dialog ? getFocusableDialogElements(dialog)[0] : null;
+      (firstFocusable ?? dialog)?.focus({ preventScroll: true });
+    });
+
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        onClose();
+        return;
+      }
+
+      if (event.key !== "Tab" || !dialog) return;
+
+      const focusableElements = getFocusableDialogElements(dialog);
+      if (focusableElements.length === 0) {
+        event.preventDefault();
+        dialog.focus({ preventScroll: true });
+        return;
+      }
+
+      const first = focusableElements[0];
+      const last = focusableElements[focusableElements.length - 1];
+
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    }
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.cancelAnimationFrame(focusInitialElement);
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", handleKeyDown);
+      restoreFocusRef.current?.focus({ preventScroll: true });
+    };
+  }, [isOpen, onClose]);
+
+  return dialogRef;
 }
 
 function getLocationLabels(result: SalonResult) {
@@ -1028,9 +1107,10 @@ function BrandGroupCard({
                   rel="noreferrer"
                   aria-label={`${hairShopLink.accessibleLabel} - opens in a new tab`}
                   onClick={() => trackAnalyticsEvent("hair_shop_click", { salon: brandName, location: "multiple" })}
-                  className="mt-1 inline-flex w-fit items-center gap-1 text-[13px] font-semibold text-[oklch(0.45_0.05_255)] transition-colors hover:text-[oklch(0.38_0.06_255)] active:text-[oklch(0.38_0.06_255)] dark:text-[oklch(0.72_0.05_255)] dark:hover:text-[oklch(0.80_0.06_255)] dark:active:text-[oklch(0.80_0.06_255)]"
+                  className="mt-1 inline-flex min-h-11 w-fit items-center gap-1 py-2 text-[13px] font-semibold text-[oklch(0.45_0.05_255)] transition-colors hover:text-[oklch(0.38_0.06_255)] active:text-[oklch(0.38_0.06_255)] dark:text-[oklch(0.72_0.05_255)] dark:hover:text-[oklch(0.80_0.06_255)] dark:active:text-[oklch(0.80_0.06_255)]"
                 >
-                  <span aria-hidden="true">{hairShopLink.label}</span>
+                  <span className="sm:hidden" aria-hidden="true">{hairShopLink.mobileLabel}</span>
+                  <span className="hidden sm:inline" aria-hidden="true">{hairShopLink.label}</span>
                   <ArrowUpRight className="size-3.5 shrink-0" aria-hidden="true" />
                 </a>
               ) : null}
@@ -1075,7 +1155,7 @@ function BrandGroupCard({
               onClick={() => trackAnalyticsEvent("instagram_click", { salon: brandName, placement: "brand-group" })}
               aria-hidden={!isSmUp}
               tabIndex={isSmUp ? 0 : -1}
-              className="hidden min-h-[48px] min-w-[40px] shrink-0 items-center justify-center gap-2 rounded-none bg-transparent px-2 py-2 text-[14px] font-medium text-stone-950 transition-colors duration-150 hover:bg-stone-200 active:bg-stone-200 dark:bg-transparent dark:text-stone-100 dark:hover:bg-stone-800 dark:active:bg-stone-800 sm:inline-flex sm:min-h-[40px]"
+              className="hidden min-h-[48px] min-w-11 shrink-0 items-center justify-center gap-2 rounded-none bg-transparent px-2 py-2 text-[14px] font-medium text-stone-950 transition-colors duration-150 hover:bg-stone-200 active:bg-stone-200 dark:bg-transparent dark:text-stone-100 dark:hover:bg-stone-800 dark:active:bg-stone-800 sm:inline-flex sm:min-h-11"
             >
               <InstagramIcon className="size-4" />
               <span className="sr-only">Go to {brandName} Instagram - opens in a new tab</span>
@@ -1094,7 +1174,7 @@ function BrandGroupCard({
                   services: "none",
                 })
               }
-              className="inline-flex min-h-[48px] flex-1 shrink-0 items-center justify-center rounded-none bg-stone-950 px-4 py-2 text-[13px] font-medium text-stone-100 transition-colors duration-150 hover:bg-stone-800 active:bg-stone-800 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-stone-300 dark:active:bg-stone-300 sm:min-h-[40px] sm:flex-none"
+              className="inline-flex min-h-[48px] flex-1 shrink-0 items-center justify-center rounded-none bg-stone-950 px-4 py-2 text-[13px] font-medium text-stone-100 transition-colors duration-150 hover:bg-stone-800 active:bg-stone-800 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-stone-300 dark:active:bg-stone-300 sm:min-h-11 sm:flex-none"
             >
               <span aria-hidden="true">Book</span>
               <span className="sr-only">Book {brandName} - opens in a new tab</span>
@@ -1137,9 +1217,10 @@ function BrandGroupCard({
                         platform: getVerifiedReviewsPlatform(branch) ?? "google",
                       })
                     }
-                    className="mt-0.5 inline-flex w-fit items-center gap-1 text-[13px] font-semibold text-[oklch(0.45_0.05_255)] transition-colors hover:text-[oklch(0.38_0.06_255)] active:text-[oklch(0.38_0.06_255)] dark:text-[oklch(0.72_0.05_255)] dark:hover:text-[oklch(0.80_0.06_255)] dark:active:text-[oklch(0.80_0.06_255)]"
+                    className="mt-0.5 inline-flex min-h-11 w-fit items-center gap-1 py-2 text-[13px] font-semibold text-[oklch(0.45_0.05_255)] transition-colors hover:text-[oklch(0.38_0.06_255)] active:text-[oklch(0.38_0.06_255)] dark:text-[oklch(0.72_0.05_255)] dark:hover:text-[oklch(0.80_0.06_255)] dark:active:text-[oklch(0.80_0.06_255)]"
                   >
-                    <span aria-hidden="true">{reviewsBanner.label}</span>
+                    <span className="sm:hidden" aria-hidden="true">{reviewsBanner.mobileLabel}</span>
+                    <span className="hidden sm:inline" aria-hidden="true">{reviewsBanner.label}</span>
                     <ArrowUpRight className="size-3.5 shrink-0" aria-hidden="true" />
                   </a>
                 ) : null}
@@ -1162,7 +1243,7 @@ function BrandGroupCard({
                       services: "none",
                     })
                   }
-                  className="inline-flex min-h-[48px] shrink-0 items-center justify-center rounded-none bg-stone-950 px-4 py-2 text-[13px] font-medium text-stone-100 transition-colors duration-150 hover:bg-stone-800 active:bg-stone-800 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-stone-300 dark:active:bg-stone-300 sm:min-h-[40px]"
+                  className="inline-flex min-h-[48px] shrink-0 items-center justify-center rounded-none bg-stone-950 px-4 py-2 text-[13px] font-medium text-stone-100 transition-colors duration-150 hover:bg-stone-800 active:bg-stone-800 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-stone-300 dark:active:bg-stone-300 sm:min-h-11"
                 >
                   <span aria-hidden="true">Book</span>
                   <span className="sr-only">Book {branch.name} - opens in a new tab</span>
@@ -1379,51 +1460,57 @@ function SalonResultCard({
                   </p>
                 ) : null}
                 {reviewsBanner || hairShopLink || attributeLabels.length > 0 ? (
-                <div className="mt-1.5 flex flex-col items-start gap-2">
-                {reviewsBanner ? (
-                  <a
-                    href={reviewsBanner.url}
-                    target="_blank"
-                    rel="noreferrer"
-                    aria-label={`${reviewsBanner.accessibleLabel} - opens in a new tab`}
-                    onClick={() =>
-                      trackAnalyticsEvent("verified_reviews_click", {
-                        salon: result.name,
-                        platform: getVerifiedReviewsPlatform(result) ?? "google",
-                      })
-                    }
-                    className="inline-flex w-fit items-center gap-1 text-[13px] font-semibold text-[oklch(0.45_0.05_255)] transition-colors hover:text-[oklch(0.38_0.06_255)] active:text-[oklch(0.38_0.06_255)] dark:text-[oklch(0.72_0.05_255)] dark:hover:text-[oklch(0.80_0.06_255)] dark:active:text-[oklch(0.80_0.06_255)]"
-                  >
-                    <span aria-hidden="true">{reviewsBanner.label}</span>
-                    <ArrowUpRight className="size-3.5 shrink-0" aria-hidden="true" />
-                  </a>
-                ) : null}
-                {hairShopLink ? (
-                  <a
-                    href={hairShopLink.url}
-                    target="_blank"
-                    rel="noreferrer"
-                    aria-label={`${hairShopLink.accessibleLabel} - opens in a new tab`}
-                    onClick={() => trackAnalyticsEvent("hair_shop_click", { salon: result.name })}
-                    className="inline-flex w-fit items-center gap-1 text-[13px] font-semibold text-[oklch(0.45_0.05_255)] transition-colors hover:text-[oklch(0.38_0.06_255)] active:text-[oklch(0.38_0.06_255)] dark:text-[oklch(0.72_0.05_255)] dark:hover:text-[oklch(0.80_0.06_255)] dark:active:text-[oklch(0.80_0.06_255)]"
-                  >
-                    <span aria-hidden="true">{hairShopLink.label}</span>
-                    <ArrowUpRight className="size-3.5 shrink-0" aria-hidden="true" />
-                  </a>
-                ) : null}
-                {attributeLabels.length > 0 ? (
-                  <div className="flex flex-wrap gap-1">
-                    {attributeLabels.map((label) => (
-                      <span
-                        key={label}
-                        className="inline-block w-fit rounded-none border border-[oklch(0.72_0.07_86)]/35 bg-[oklch(0.94_0.025_92)] px-1.5 py-1 align-baseline text-[11px] font-semibold leading-none tracking-[0.06em] text-[oklch(0.44_0.08_80)] dark:bg-[oklch(0.44_0.08_80)] dark:text-[oklch(0.94_0.025_92)]"
-                      >
-                        {label}
-                      </span>
-                    ))}
+                  <div className="mt-1.5 flex flex-col items-start gap-1">
+                    {attributeLabels.length > 0 ? (
+                      <div className="flex flex-wrap gap-1">
+                        {attributeLabels.map((label) => (
+                          <span
+                            key={label}
+                            className="inline-block w-fit rounded-none border border-[oklch(0.72_0.07_86)]/35 bg-[oklch(0.94_0.025_92)] px-1.5 py-1 align-baseline text-[11px] font-semibold leading-none tracking-[0.06em] text-[oklch(0.44_0.08_80)] dark:bg-[oklch(0.44_0.08_80)] dark:text-[oklch(0.94_0.025_92)]"
+                          >
+                            {label}
+                          </span>
+                        ))}
+                      </div>
+                    ) : null}
+                    {reviewsBanner || hairShopLink ? (
+                      <div className="flex flex-wrap items-center gap-x-3 gap-y-0">
+                        {hairShopLink ? (
+                          <a
+                            href={hairShopLink.url}
+                            target="_blank"
+                            rel="noreferrer"
+                            aria-label={`${hairShopLink.accessibleLabel} - opens in a new tab`}
+                            onClick={() => trackAnalyticsEvent("hair_shop_click", { salon: result.name })}
+                            className="inline-flex min-h-11 w-fit items-center gap-1 py-2 text-[13px] font-semibold text-[oklch(0.45_0.05_255)] transition-colors hover:text-[oklch(0.38_0.06_255)] active:text-[oklch(0.38_0.06_255)] dark:text-[oklch(0.72_0.05_255)] dark:hover:text-[oklch(0.80_0.06_255)] dark:active:text-[oklch(0.80_0.06_255)]"
+                          >
+                            <span className="sm:hidden" aria-hidden="true">{hairShopLink.mobileLabel}</span>
+                            <span className="hidden sm:inline" aria-hidden="true">{hairShopLink.label}</span>
+                            <ArrowUpRight className="size-3.5 shrink-0" aria-hidden="true" />
+                          </a>
+                        ) : null}
+                        {reviewsBanner ? (
+                          <a
+                            href={reviewsBanner.url}
+                            target="_blank"
+                            rel="noreferrer"
+                            aria-label={`${reviewsBanner.accessibleLabel} - opens in a new tab`}
+                            onClick={() =>
+                              trackAnalyticsEvent("verified_reviews_click", {
+                                salon: result.name,
+                                platform: getVerifiedReviewsPlatform(result) ?? "google",
+                              })
+                            }
+                            className="inline-flex min-h-11 w-fit items-center gap-1 py-2 text-[13px] font-semibold text-[oklch(0.45_0.05_255)] transition-colors hover:text-[oklch(0.38_0.06_255)] active:text-[oklch(0.38_0.06_255)] dark:text-[oklch(0.72_0.05_255)] dark:hover:text-[oklch(0.80_0.06_255)] dark:active:text-[oklch(0.80_0.06_255)]"
+                          >
+                            <span className="sm:hidden" aria-hidden="true">{reviewsBanner.mobileLabel}</span>
+                            <span className="hidden sm:inline" aria-hidden="true">{reviewsBanner.label}</span>
+                            <ArrowUpRight className="size-3.5 shrink-0" aria-hidden="true" />
+                          </a>
+                        ) : null}
+                      </div>
+                    ) : null}
                   </div>
-                ) : null}
-                </div>
                 ) : null}
               </div>
               {result.instagramUrl ? (
@@ -1467,7 +1554,7 @@ function SalonResultCard({
               }
               aria-hidden={!isSmUp}
               tabIndex={isSmUp ? 0 : -1}
-              className="hidden min-h-[48px] items-center justify-center gap-2 rounded-none bg-transparent px-4 py-2 text-[14px] font-medium text-stone-950 transition-colors duration-150 hover:bg-stone-200 dark:bg-transparent dark:text-stone-100 dark:hover:bg-stone-800 sm:inline-flex sm:min-h-[40px]"
+              className="hidden min-h-[48px] items-center justify-center gap-2 rounded-none bg-transparent px-4 py-2 text-[14px] font-medium text-stone-950 transition-colors duration-150 hover:bg-stone-200 dark:bg-transparent dark:text-stone-100 dark:hover:bg-stone-800 sm:inline-flex sm:min-h-11"
             >
               <InstagramIcon className="size-4" />
               <span className="sr-only">Go to {result.name} Instagram - opens in a new tab</span>
@@ -1486,7 +1573,7 @@ function SalonResultCard({
                   services: activeServices,
                 })
               }
-              className="inline-flex min-h-[48px] flex-1 items-center justify-center rounded-none bg-stone-950 px-5 py-2 text-[14px] font-medium text-stone-100 transition-colors duration-150 hover:bg-stone-800 active:bg-stone-800 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-stone-300 dark:active:bg-stone-300 sm:min-h-[40px] sm:flex-none sm:px-4"
+              className="inline-flex min-h-[48px] flex-1 items-center justify-center rounded-none bg-stone-950 px-5 py-2 text-[14px] font-medium text-stone-100 transition-colors duration-150 hover:bg-stone-800 active:bg-stone-800 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-stone-300 dark:active:bg-stone-300 sm:min-h-11 sm:flex-none sm:px-4"
             >
               <span aria-hidden="true">Book</span>
               <span className="sr-only">Book {result.name} - opens in a new tab</span>
@@ -1588,10 +1675,13 @@ function AnimatedCollapsible({
   return (
     <div
       aria-hidden={!open}
-      className={cn("overflow-hidden", className)}
-      style={{ height: open ? "auto" : 0 }}
+      className={cn(
+        "grid overflow-hidden transition-[grid-template-rows,opacity] duration-200 ease-[var(--ease-out)] motion-reduce:transition-none",
+        open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0",
+        className,
+      )}
     >
-      <div className={cn(open ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-0 opacity-0")}>
+      <div className={cn("min-h-0", !open && "pointer-events-none")}>
         {children}
       </div>
     </div>
@@ -1621,11 +1711,7 @@ function ServicesSummary({
   const labels = badgeLabels ?? [];
   const isMultiLine = maxLines > 1;
   const lineRef = useRef<HTMLDivElement | null>(null);
-  const separatorMeasureRef = useRef<HTMLSpanElement | null>(null);
-  const badgeCandidateMeasureRefs = useRef<Record<number, HTMLSpanElement | null>>({});
-  const serviceMeasureRefs = useRef<(HTMLSpanElement | null)[]>([]);
-  const suffixMeasureRefs = useRef<Record<number, HTMLSpanElement | null>>({});
-  const shortSuffixMeasureRefs = useRef<Record<number, HTMLSpanElement | null>>({});
+  const measureCanvasRef = useRef<HTMLCanvasElement | null>(null);
   const [visibleCount, setVisibleCount] = useState(services.length);
   const [useShortSuffix, setUseShortSuffix] = useState(false);
   const [badgeVisibleCount, setBadgeVisibleCount] = useState(labels.length);
@@ -1634,6 +1720,7 @@ function ServicesSummary({
   const [isHoveredOnDesktop, setIsHoveredOnDesktop] = useState(false);
   const marqueeCopyRef = useRef<HTMLSpanElement | null>(null);
   const [marqueeSeconds, setMarqueeSeconds] = useState(8);
+  const prefersReducedMotion = usePrefersReducedMotion();
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(max-width: 768px)");
@@ -1655,9 +1742,8 @@ function ServicesSummary({
 
   useEffect(() => {
     const lineElement = lineRef.current;
-    const separatorElement = separatorMeasureRef.current;
 
-    if (!lineElement || !separatorElement) {
+    if (!lineElement) {
       return;
     }
 
@@ -1668,23 +1754,38 @@ function ServicesSummary({
         return;
       }
 
-      const serviceWidths = services.map((_, index) => serviceMeasureRefs.current[index]?.offsetWidth ?? 0);
-      const separatorWidth = separatorElement.offsetWidth;
+      const canvas = measureCanvasRef.current ?? document.createElement("canvas");
+      measureCanvasRef.current = canvas;
+      const context = canvas.getContext("2d");
+      if (!context) return;
+
+      const computedStyle = window.getComputedStyle(lineElement);
+      context.font = `${computedStyle.fontWeight} ${computedStyle.fontSize} ${computedStyle.fontFamily}`;
+      const measureText = (text: string) => context.measureText(text).width;
+      const serviceWidths = services.map((service) => measureText(getServiceDisplayName(service)));
+      const separatorWidth = measureText(" · ");
+      const getSuffixWidth = (count: number, useShort: boolean) =>
+        measureText(useShort ? `+${count}` : `+ ${count} ${count === 1 ? "service" : "services"}`);
+      const getBadgeCandidateWidth = (count: number) => {
+        if (count <= 0 || labels.length === 0) return 0;
+        const hidden = labels.length - count;
+        const text = hidden > 0 ? `${labels.slice(0, count).join(" · ")} +${hidden}` : labels.join(" · ");
+        return measureText(text) + 16;
+      };
 
       // The badge is always shown, never part of the truncation count. But a long
       // additional-needs badge (2+ items) shouldn't be allowed to eat the whole
       // line and starve the services list of even a short "+N" indicator — so the
       // badge itself only gets truncated (labels replaced with a trailing "+N")
       // once it would otherwise leave no room for that minimal indicator.
-      const shortestServicesIndicatorWidth =
-        services.length > 0 ? (shortSuffixMeasureRefs.current[1]?.offsetWidth ?? 0) + separatorWidth : 0;
+      const shortestServicesIndicatorWidth = services.length > 0 ? getSuffixWidth(1, true) + separatorWidth : 0;
       const maxBadgeWidth = Math.max(0, availableWidth - safetyBuffer - shortestServicesIndicatorWidth);
 
       let nextBadgeVisibleCount = labels.length;
       if (labels.length > 1) {
         nextBadgeVisibleCount = 1;
         for (let count = labels.length; count >= 1; count -= 1) {
-          const candidateWidth = badgeCandidateMeasureRefs.current[count]?.offsetWidth ?? 0;
+          const candidateWidth = getBadgeCandidateWidth(count);
           if (candidateWidth <= maxBadgeWidth) {
             nextBadgeVisibleCount = count;
             break;
@@ -1693,8 +1794,7 @@ function ServicesSummary({
       }
       setBadgeVisibleCount(nextBadgeVisibleCount);
 
-      const badgeCandidateWidth = labels.length > 0 ? (badgeCandidateMeasureRefs.current[nextBadgeVisibleCount]?.offsetWidth ?? 0) : 0;
-      const badgeWidth = labels.length > 0 ? badgeCandidateWidth + (services.length > 0 ? separatorWidth : 0) : 0;
+      const badgeWidth = labels.length > 0 ? getBadgeCandidateWidth(nextBadgeVisibleCount) + (services.length > 0 ? separatorWidth : 0) : 0;
 
       // Multi-line callers don't actually get more horizontal room per line, just
       // more lines to wrap into — so simulate real greedy line-wrapping (each
@@ -1709,10 +1809,7 @@ function ServicesSummary({
           segments.push(serviceWidths[index] + (segments.length > 0 ? separatorWidth : 0));
         }
         if (hiddenCount > 0) {
-          const suffixWidth = useShort
-            ? (shortSuffixMeasureRefs.current[hiddenCount]?.offsetWidth ?? 0)
-            : (suffixMeasureRefs.current[hiddenCount]?.offsetWidth ?? 0);
-          segments.push(suffixWidth + (segments.length > 0 ? separatorWidth : 0));
+          segments.push(getSuffixWidth(hiddenCount, useShort) + (segments.length > 0 ? separatorWidth : 0));
         }
         return segments;
       };
@@ -1796,13 +1893,13 @@ function ServicesSummary({
   }, [isMobileViewport]);
 
   useEffect(() => {
-    if (!isHoveredOnDesktop || isMobileViewport || isMultiLine || services.length - visibleCount <= 0) return;
+    if (prefersReducedMotion || !isHoveredOnDesktop || isMobileViewport || isMultiLine || services.length - visibleCount <= 0) return;
     const copyWidth = marqueeCopyRef.current?.scrollWidth ?? 0;
     const pixelsPerSecond = 55;
     if (copyWidth > 0) {
       setMarqueeSeconds(Math.max(4, copyWidth / pixelsPerSecond));
     }
-  }, [isHoveredOnDesktop, isMobileViewport, services.length, visibleCount]);
+  }, [prefersReducedMotion, isHoveredOnDesktop, isMobileViewport, services.length, visibleCount]);
 
   const hiddenCount = Math.max(0, services.length - visibleCount);
   const badgeHiddenCount = Math.max(0, labels.length - badgeVisibleCount);
@@ -1890,7 +1987,7 @@ function ServicesSummary({
             {showExpandedList ? <>{badgeElement}{fullServicesLabel}</> : collapsedSummary}
           </div>
         </>
-      ) : showExpandedOnDesktop && isMultiLine ? (
+      ) : showExpandedOnDesktop && (isMultiLine || prefersReducedMotion) ? (
         <div ref={lineRef} aria-hidden="true" className="whitespace-normal">
           {badgeElement}
           {fullServicesLabel}
@@ -1920,69 +2017,6 @@ function ServicesSummary({
       )}
       <span className="sr-only">{fullAriaLabel}</span>
 
-      <div className="pointer-events-none absolute left-0 top-0 -z-10 opacity-0" aria-hidden="true">
-        <span ref={separatorMeasureRef} className="text-[12px] font-normal lowercase leading-[18px] tracking-[0.02em]">
-          {" · "}
-        </span>
-        {services.map((service, index) => (
-          <span
-            key={`measure-${service}-${index}`}
-            ref={(element) => {
-              serviceMeasureRefs.current[index] = element;
-            }}
-            className="inline-block text-[12px] font-normal lowercase leading-[18px] tracking-[0.02em]"
-          >
-            {getServiceDisplayName(service)}
-          </span>
-        ))}
-        {services.map((_, hiddenCountIndex) => {
-          const count = hiddenCountIndex + 1;
-
-          return (
-            <span
-              key={`suffix-${count}`}
-              ref={(element) => {
-                suffixMeasureRefs.current[count] = element;
-              }}
-              className="inline-block text-[12px] font-normal lowercase leading-[18px] tracking-[0.02em]"
-            >
-              + {count} {count === 1 ? "service" : "services"}
-            </span>
-          );
-        })}
-        {services.map((_, hiddenCountIndex) => {
-          const count = hiddenCountIndex + 1;
-
-          return (
-            <span
-              key={`short-suffix-${count}`}
-              ref={(element) => {
-                shortSuffixMeasureRefs.current[count] = element;
-              }}
-              className="inline-block text-[12px] font-normal lowercase leading-[18px] tracking-[0.02em]"
-            >
-              +{count}
-            </span>
-          );
-        })}
-        {labels.map((_, index) => {
-          const count = index + 1;
-          const hidden = labels.length - count;
-          const text = hidden > 0 ? `${labels.slice(0, count).join(" · ")} +${hidden}` : labels.join(" · ");
-
-          return (
-            <span
-              key={`badge-candidate-${count}`}
-              ref={(element) => {
-                badgeCandidateMeasureRefs.current[count] = element;
-              }}
-              className={badgeClassName}
-            >
-              {text}
-            </span>
-          );
-        })}
-      </div>
     </div>
   );
 }
@@ -2076,7 +2110,7 @@ function VendorCard({ vendor }: { vendor: VendorResult }) {
               target="_blank"
               rel="noreferrer"
               onClick={() => trackAnalyticsEvent("vendor_instagram_click", { vendor: vendor.name })}
-              className="inline-flex min-h-11 min-w-[40px] shrink-0 items-center justify-center gap-2 rounded-none bg-transparent px-2 py-2 text-[14px] font-medium text-stone-950 transition-colors duration-150 hover:bg-stone-200 active:bg-stone-200 dark:bg-transparent dark:text-stone-100 dark:hover:bg-stone-800 dark:active:bg-stone-800"
+              className="inline-flex min-h-11 min-w-11 shrink-0 items-center justify-center gap-2 rounded-none bg-transparent px-2 py-2 text-[14px] font-medium text-stone-950 transition-colors duration-150 hover:bg-stone-200 active:bg-stone-200 dark:bg-transparent dark:text-stone-100 dark:hover:bg-stone-800 dark:active:bg-stone-800"
             >
               <InstagramIcon className="size-4" />
               <span className="sr-only">Go to {vendor.name} Instagram - opens in a new tab</span>
@@ -2088,7 +2122,7 @@ function VendorCard({ vendor }: { vendor: VendorResult }) {
               target="_blank"
               rel="noreferrer"
               onClick={() => trackAnalyticsEvent("vendor_instagram_click", { vendor: vendor.name, source: "hair-shop-link" })}
-              className="inline-flex min-h-11 min-w-[40px] shrink-0 items-center justify-center gap-2 rounded-none bg-transparent px-2 py-2 text-[14px] font-medium text-stone-950 transition-colors duration-150 hover:bg-stone-200 active:bg-stone-200 dark:bg-transparent dark:text-stone-100 dark:hover:bg-stone-800 dark:active:bg-stone-800"
+              className="inline-flex min-h-11 min-w-11 shrink-0 items-center justify-center gap-2 rounded-none bg-transparent px-2 py-2 text-[14px] font-medium text-stone-950 transition-colors duration-150 hover:bg-stone-200 active:bg-stone-200 dark:bg-transparent dark:text-stone-100 dark:hover:bg-stone-800 dark:active:bg-stone-800"
             >
               <InstagramIcon className="size-4" />
               <span className="sr-only">Go to {vendor.name} hair shop on Instagram - opens in a new tab</span>
@@ -2099,7 +2133,7 @@ function VendorCard({ vendor }: { vendor: VendorResult }) {
               target="_blank"
               rel="noreferrer"
               onClick={() => trackAnalyticsEvent("vendor_link_click", { vendor: vendor.name, label: "Browse" })}
-              className="inline-flex min-h-[40px] items-center justify-center gap-1 rounded-none bg-stone-950 px-4 py-2 text-[14px] font-medium text-stone-100 transition-colors duration-150 hover:bg-stone-800 active:bg-stone-800 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-stone-300 dark:active:bg-stone-300"
+              className="inline-flex min-h-11 items-center justify-center gap-1 rounded-none bg-stone-950 px-4 py-2 text-[14px] font-medium text-stone-100 transition-colors duration-150 hover:bg-stone-800 active:bg-stone-800 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-stone-300 dark:active:bg-stone-300"
             >
               <span aria-hidden="true">Browse</span>
               <span className="sr-only"> - opens in a new tab</span>
@@ -2137,7 +2171,7 @@ function VendorCard({ vendor }: { vendor: VendorResult }) {
                         target="_blank"
                         rel="noreferrer"
                         onClick={() => trackAnalyticsEvent("instagram_click", { salon: branch.label, placement: "linked-stylist" })}
-                        className="inline-flex min-h-[48px] min-w-[40px] shrink-0 items-center justify-center gap-2 rounded-none bg-transparent px-2 py-2 text-[14px] font-medium text-stone-950 transition-colors duration-150 hover:bg-stone-200 active:bg-stone-200 dark:bg-transparent dark:text-stone-100 dark:hover:bg-stone-800 dark:active:bg-stone-800 sm:min-h-[40px]"
+                        className="inline-flex min-h-[48px] min-w-11 shrink-0 items-center justify-center gap-2 rounded-none bg-transparent px-2 py-2 text-[14px] font-medium text-stone-950 transition-colors duration-150 hover:bg-stone-200 active:bg-stone-200 dark:bg-transparent dark:text-stone-100 dark:hover:bg-stone-800 dark:active:bg-stone-800 sm:min-h-11"
                       >
                         <InstagramIcon className="size-4" />
                         <span className="sr-only">Go to {branch.label} Instagram - opens in a new tab</span>
@@ -2156,7 +2190,7 @@ function VendorCard({ vendor }: { vendor: VendorResult }) {
                             services: "none",
                           })
                         }
-                        className="inline-flex min-h-[48px] shrink-0 items-center justify-center rounded-none border border-stone-400 bg-transparent px-4 py-2 text-[13px] font-medium text-stone-800 transition-colors duration-150 hover:bg-stone-200 active:bg-stone-200 dark:border-stone-600 dark:bg-transparent dark:text-stone-200 dark:hover:bg-stone-800 dark:active:bg-stone-800 sm:min-h-[40px]"
+                        className="inline-flex min-h-[48px] shrink-0 items-center justify-center rounded-none border border-stone-400 bg-transparent px-4 py-2 text-[13px] font-medium text-stone-800 transition-colors duration-150 hover:bg-stone-200 active:bg-stone-200 dark:border-stone-600 dark:bg-transparent dark:text-stone-200 dark:hover:bg-stone-800 dark:active:bg-stone-800 sm:min-h-11"
                       >
                         <span aria-hidden="true">Book</span>
                         <span className="sr-only">Book {branch.label} - opens in a new tab</span>
@@ -2240,7 +2274,7 @@ function VendorResultsList({
               <button
                 type="button"
                 onClick={onResetFilters}
-                className="inline text-stone-950 underline underline-offset-4 transition-colors hover:text-stone-700 dark:text-stone-100 dark:hover:text-stone-300"
+                className="inline-flex min-h-11 items-center text-stone-950 underline underline-offset-4 transition-colors hover:text-stone-700 dark:text-stone-100 dark:hover:text-stone-300"
               >
                 reset
               </button>
@@ -2537,7 +2571,11 @@ function SubmissionLinkField({
 
 export default function App() {
   if (window.location.pathname.startsWith("/admin/stylists")) {
-    return <AdminApp />;
+    return (
+      <Suspense fallback={<div className="min-h-screen bg-stone-100 p-6 text-[14px] text-stone-700 dark:bg-stone-950 dark:text-stone-300">Loading admin...</div>}>
+        <AdminApp />
+      </Suspense>
+    );
   }
 
   const [filterConfig, setFilterConfig] = useState<RuntimeFilterConfig>(defaultFilterConfig);
@@ -2630,6 +2668,7 @@ export default function App() {
   const [submissionError, setSubmissionError] = useState<string | null>(null);
   const [emailCopied, setEmailCopied] = useState(false);
   const [showBackToTop, setShowBackToTop] = useState(false);
+  const backToTopSentinelRef = useRef<HTMLDivElement | null>(null);
   const [disclaimerDismissed, setDisclaimerDismissed] = useState(() => {
     try {
       return localStorage.getItem(DISCLAIMER_DISMISSED_KEY) === "1";
@@ -2647,40 +2686,15 @@ export default function App() {
   }, []);
   const disclaimerRef = useRef<HTMLDivElement | null>(null);
   useEffect(() => {
-    // Push the button up from the bottom while the visitor is scrolling back
-    // up (the moment they'd want a shortcut to the top) and hide it again the
-    // instant they resume scrolling down, rather than leaving it pinned the
-    // whole time they're reading further down the list.
-    let lastScrollY = window.scrollY;
-    // Momentum/inertial scrolling (trackpads, mobile) commonly overshoots and
-    // settles back up by a few pixels right as a downward scroll ends — a
-    // naive "any upward delta" check would misread that as the visitor
-    // scrolling up and reveal the button right after they scrolled down.
-    // Requiring a small sustained upward distance (reset on every downward
-    // tick) filters that out while still reacting immediately to a real
-    // scroll-up gesture.
-    let upwardDistance = 0;
-    const BACK_TO_TOP_REVEAL_THRESHOLD = 400;
-    const MIN_SUSTAINED_UPWARD_SCROLL = 24;
-    function handleScroll() {
-      const currentScrollY = window.scrollY;
-      const delta = currentScrollY - lastScrollY;
-      if (currentScrollY <= BACK_TO_TOP_REVEAL_THRESHOLD) {
-        setShowBackToTop(false);
-        upwardDistance = 0;
-      } else if (delta < 0) {
-        upwardDistance -= delta;
-        if (upwardDistance >= MIN_SUSTAINED_UPWARD_SCROLL) {
-          setShowBackToTop(true);
-        }
-      } else if (delta > 0) {
-        upwardDistance = 0;
-        setShowBackToTop(false);
-      }
-      lastScrollY = currentScrollY;
-    }
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    const sentinel = backToTopSentinelRef.current;
+    if (!sentinel) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setShowBackToTop(!entry.isIntersecting),
+      { threshold: 0 },
+    );
+    observer.observe(sentinel);
+    return () => observer.disconnect();
   }, []);
   useEffect(() => {
     if (disclaimerDismissed) return;
@@ -2715,6 +2729,7 @@ export default function App() {
   const [selectedGoogleReviewsOnly, setSelectedGoogleReviewsOnly] = useState(false);
   const [selectedBookingSitesOnly, setSelectedBookingSitesOnly] = useState(false);
   const [selectedPriceBands, setSelectedPriceBands] = useState<PriceRangeFilterId[]>([]);
+  const prefersReducedMotion = usePrefersReducedMotion();
   const [isDesktopViewport, setIsDesktopViewport] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const [locationsOpen, setLocationsOpen] = useState(false);
@@ -2868,6 +2883,10 @@ export default function App() {
       setSubmissionError(null);
     }
   }
+
+  const submissionDialogRef = useDialogFocusTrap(submissionModalOpen, closeSubmissionModal);
+  const privacyDialogRef = useDialogFocusTrap(privacyModalOpen, closePrivacyModal);
+  const siteDisclaimerDialogRef = useDialogFocusTrap(siteDisclaimerModalOpen, closeSiteDisclaimerModal);
 
   // Mirrors the search filters' region toggle, but scoped to just the group
   // being touched: checking a parent group (e.g. "London") selects only that
@@ -3968,7 +3987,7 @@ export default function App() {
       setVisibleResultCount(RESULTS_BATCH_SIZE);
       setResults(payload.results ?? []);
       if (options?.scroll !== false) {
-        document.getElementById("live-results")?.scrollIntoView({ behavior: "smooth", block: "start" });
+        document.getElementById("live-results")?.scrollIntoView({ behavior: prefersReducedMotion ? "auto" : "smooth", block: "start" });
       }
     } catch (error) {
       setResults([]);
@@ -4025,7 +4044,7 @@ export default function App() {
 
       setVendorResults(payload.results ?? []);
       if (options?.scroll !== false) {
-        document.getElementById("live-results")?.scrollIntoView({ behavior: "smooth", block: "start" });
+        document.getElementById("live-results")?.scrollIntoView({ behavior: prefersReducedMotion ? "auto" : "smooth", block: "start" });
       }
     } catch (error) {
       setVendorResults([]);
@@ -4126,72 +4145,6 @@ export default function App() {
       window.scrollTo(0, scrollY);
     };
   }, [mobileFiltersOpen]);
-
-  useEffect(() => {
-    if (!submissionModalOpen) {
-      return;
-    }
-
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-
-    function handleKeyDown(event: KeyboardEvent) {
-      if (event.key === "Escape") {
-        closeSubmissionModal();
-      }
-    }
-
-    window.addEventListener("keydown", handleKeyDown);
-
-    return () => {
-      document.body.style.overflow = previousOverflow;
-      window.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [submissionModalOpen]);
-
-  useEffect(() => {
-    if (!privacyModalOpen) {
-      return;
-    }
-
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-
-    function handleKeyDown(event: KeyboardEvent) {
-      if (event.key === "Escape") {
-        closePrivacyModal();
-      }
-    }
-
-    window.addEventListener("keydown", handleKeyDown);
-
-    return () => {
-      document.body.style.overflow = previousOverflow;
-      window.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [privacyModalOpen]);
-
-  useEffect(() => {
-    if (!siteDisclaimerModalOpen) {
-      return;
-    }
-
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-
-    function handleKeyDown(event: KeyboardEvent) {
-      if (event.key === "Escape") {
-        closeSiteDisclaimerModal();
-      }
-    }
-
-    window.addEventListener("keydown", handleKeyDown);
-
-    return () => {
-      document.body.style.overflow = previousOverflow;
-      window.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [siteDisclaimerModalOpen]);
 
   const hasActiveFilters =
     selectedCategories.length > 0 ||
@@ -4335,7 +4288,7 @@ export default function App() {
                     href="#live-results"
                     onClick={(event) => {
                       event.preventDefault();
-                      document.getElementById("live-results")?.scrollIntoView({ behavior: "smooth" });
+                      document.getElementById("live-results")?.scrollIntoView({ behavior: prefersReducedMotion ? "auto" : "smooth" });
                       trackAnalyticsEvent("find_stylists_click", { source: "hero" });
                     }}
                     className="inline-flex h-12 items-center justify-center rounded-none bg-stone-950 px-5 text-[14px] font-medium text-stone-100 transition-colors hover:bg-stone-800 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-stone-300"
@@ -4357,6 +4310,8 @@ export default function App() {
         </div>
       </header>
 
+      <div ref={backToTopSentinelRef} className="h-px w-full" aria-hidden="true" />
+
       {/* DOM position matters here, not just visual placement: this is a
           `position: fixed` button, so moving it doesn't move it on screen —
           but with a results list that can run into the hundreds of cards
@@ -4372,7 +4327,7 @@ export default function App() {
           // in resolving a percentage translate against an auto-height fixed
           // box: this guarantees the button clears the viewport completely
           // while hidden instead of merely peeking in at the bottom edge.
-          "pointer-events-none fixed inset-x-0 bottom-6 z-40 h-11 transition-transform duration-300 ease-out",
+          "pointer-events-none fixed inset-x-0 bottom-6 z-40 h-11 transition-transform duration-200 ease-[var(--ease-out)]",
           showBackToTop ? "translate-y-0" : "translate-y-24",
         )}
       >
@@ -4380,7 +4335,7 @@ export default function App() {
           <div className="flex flex-1 justify-center lg:pr-8">
             <button
               type="button"
-              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              onClick={() => window.scrollTo({ top: 0, behavior: prefersReducedMotion ? "auto" : "smooth" })}
               aria-label="Back to top"
               aria-hidden={!showBackToTop}
               tabIndex={showBackToTop ? 0 : -1}
@@ -4395,12 +4350,14 @@ export default function App() {
 
       {submissionModalOpen ? (
         <div className="fixed inset-0 z-50">
-          <button type="button" aria-label="Close" className="absolute inset-0 cursor-default bg-stone-950/40" onClick={closeSubmissionModal} />
+          <button type="button" aria-label="Close" className="drawer-overlay absolute inset-0 cursor-default bg-stone-950/40" onClick={closeSubmissionModal} />
           <aside
+            ref={submissionDialogRef}
             role="dialog"
             aria-modal="true"
             aria-labelledby="submit-stylist-heading"
-            className="absolute inset-y-0 right-0 flex w-full max-w-[520px] flex-col overflow-hidden border-l border-stone-300 bg-stone-100 shadow-xl dark:border-stone-700 dark:bg-stone-950"
+            tabIndex={-1}
+            className="drawer-panel absolute inset-y-0 right-0 flex w-full max-w-[520px] flex-col overflow-hidden border-l border-stone-300 bg-stone-100 shadow-xl dark:border-stone-700 dark:bg-stone-950"
           >
             <div className="flex shrink-0 items-center justify-between border-b border-stone-300 px-6 py-5 dark:border-stone-800 sm:px-8">
               <div>
@@ -4415,7 +4372,7 @@ export default function App() {
                 type="button"
                 onClick={closeSubmissionModal}
                 aria-label="Close"
-                className="inline-flex size-8 shrink-0 items-center justify-center text-stone-500 transition hover:text-stone-900 dark:text-stone-400 dark:hover:text-stone-100"
+                className="inline-flex size-11 shrink-0 items-center justify-center text-stone-500 transition hover:text-stone-900 dark:text-stone-400 dark:hover:text-stone-100"
               >
                 <X className="size-4" aria-hidden="true" />
               </button>
@@ -4773,12 +4730,14 @@ export default function App() {
 
       {privacyModalOpen ? (
         <div className="fixed inset-0 z-50">
-          <button type="button" aria-label="Close" className="absolute inset-0 cursor-default bg-stone-950/40" onClick={closePrivacyModal} />
+          <button type="button" aria-label="Close" className="drawer-overlay absolute inset-0 cursor-default bg-stone-950/40" onClick={closePrivacyModal} />
           <aside
+            ref={privacyDialogRef}
             role="dialog"
             aria-modal="true"
             aria-labelledby="privacy-heading"
-            className="absolute inset-y-0 right-0 flex w-full max-w-[520px] flex-col overflow-hidden border-l border-stone-300 bg-stone-100 shadow-xl dark:border-stone-700 dark:bg-stone-950"
+            tabIndex={-1}
+            className="drawer-panel absolute inset-y-0 right-0 flex w-full max-w-[520px] flex-col overflow-hidden border-l border-stone-300 bg-stone-100 shadow-xl dark:border-stone-700 dark:bg-stone-950"
           >
             <div className="flex shrink-0 items-center justify-between border-b border-stone-300 px-6 py-5 dark:border-stone-800 sm:px-8">
               <div>
@@ -4791,7 +4750,7 @@ export default function App() {
                 type="button"
                 onClick={closePrivacyModal}
                 aria-label="Close"
-                className="inline-flex size-8 shrink-0 items-center justify-center text-stone-500 transition hover:text-stone-900 dark:text-stone-400 dark:hover:text-stone-100"
+                className="inline-flex size-11 shrink-0 items-center justify-center text-stone-500 transition hover:text-stone-900 dark:text-stone-400 dark:hover:text-stone-100"
               >
                 <X className="size-4" aria-hidden="true" />
               </button>
@@ -4868,12 +4827,14 @@ export default function App() {
 
       {siteDisclaimerModalOpen ? (
         <div className="fixed inset-0 z-50">
-          <button type="button" aria-label="Close" className="absolute inset-0 cursor-default bg-stone-950/40" onClick={closeSiteDisclaimerModal} />
+          <button type="button" aria-label="Close" className="drawer-overlay absolute inset-0 cursor-default bg-stone-950/40" onClick={closeSiteDisclaimerModal} />
           <aside
+            ref={siteDisclaimerDialogRef}
             role="dialog"
             aria-modal="true"
             aria-labelledby="site-disclaimer-heading"
-            className="absolute inset-y-0 right-0 flex w-full max-w-[520px] flex-col overflow-hidden border-l border-stone-300 bg-stone-100 shadow-xl dark:border-stone-700 dark:bg-stone-950"
+            tabIndex={-1}
+            className="drawer-panel absolute inset-y-0 right-0 flex w-full max-w-[520px] flex-col overflow-hidden border-l border-stone-300 bg-stone-100 shadow-xl dark:border-stone-700 dark:bg-stone-950"
           >
             <div className="flex shrink-0 items-center justify-between border-b border-stone-300 px-6 py-5 dark:border-stone-800 sm:px-8">
               <div>
@@ -4885,7 +4846,7 @@ export default function App() {
                 type="button"
                 onClick={closeSiteDisclaimerModal}
                 aria-label="Close"
-                className="inline-flex size-8 shrink-0 items-center justify-center text-stone-500 transition hover:text-stone-900 dark:text-stone-400 dark:hover:text-stone-100"
+                className="inline-flex size-11 shrink-0 items-center justify-center text-stone-500 transition hover:text-stone-900 dark:text-stone-400 dark:hover:text-stone-100"
               >
                 <X className="size-4" aria-hidden="true" />
               </button>
@@ -4936,7 +4897,7 @@ export default function App() {
               <button
                 type="button"
                 onClick={openMobileFilters}
-                className="min-h-11 px-0 py-2 text-[14px] font-medium text-stone-500 transition hover:text-stone-800 active:text-stone-800 dark:text-stone-400 dark:hover:text-stone-100 dark:active:text-stone-100"
+                className="min-h-11 min-w-11 px-0 py-2 text-[14px] font-medium text-stone-500 transition hover:text-stone-800 active:text-stone-800 dark:text-stone-400 dark:hover:text-stone-100 dark:active:text-stone-100"
               >
                 Filter
               </button>
@@ -4948,7 +4909,7 @@ export default function App() {
               ref={disclaimerRef}
               className="relative mb-1 mt-0 flex w-full items-center border-b border-[oklch(0.93_0.003_55)] bg-[oklch(0.968_0.007_55)] text-[12px] leading-[1.4] text-[oklch(0.444_0.035_55)] dark:border-[oklch(0.22_0.02_55)] dark:bg-[oklch(0.26_0.025_55)] dark:text-[oklch(0.87_0.02_55)]"
             >
-              <span aria-hidden="true" className="h-12 w-12 shrink-0 lg:h-10 lg:w-10" />
+              <span aria-hidden="true" className="size-12 shrink-0" />
               <div className="mx-auto flex items-center gap-2 text-center">
                 <span className="font-medium">We don't vet, endorse, or take responsibility for any of the service providers listed</span>
               </div>
@@ -4956,7 +4917,7 @@ export default function App() {
                 type="button"
                 onClick={dismissDisclaimer}
                 aria-label="Dismiss disclaimer"
-                className="flex h-12 w-12 shrink-0 items-center justify-center text-[oklch(0.444_0.035_55)] transition hover:text-[oklch(0.374_0.01_55)] dark:text-[oklch(0.87_0.02_55)] dark:hover:text-[oklch(0.78_0.02_55)] lg:h-10 lg:w-10"
+                className="flex size-12 shrink-0 items-center justify-center text-[oklch(0.444_0.035_55)] transition hover:text-[oklch(0.374_0.01_55)] dark:text-[oklch(0.87_0.02_55)] dark:hover:text-[oklch(0.78_0.02_55)]"
               >
                 <X className="h-3.5 w-3.5" strokeWidth={2.75} />
               </button>
@@ -5130,7 +5091,7 @@ export default function App() {
         <aside
           className={cn(
             "hidden w-full border-t border-stone-300 py-6 dark:border-stone-800",
-            "lg:sticky lg:top-0 lg:flex lg:h-screen lg:w-72 lg:flex-none lg:self-start lg:flex-col lg:border-t-0 lg:border-l lg:pl-8 lg:pr-6 lg:py-0 dark:border-stone-800",
+            "lg:sticky lg:top-0 lg:flex lg:min-h-dvh lg:h-auto lg:w-72 lg:flex-none lg:self-start lg:flex-col lg:border-t-0 lg:border-l lg:pl-8 lg:pr-6 lg:py-0 dark:border-stone-800",
             mobileFiltersOpen &&
               "fixed inset-0 z-50 grid h-dvh min-h-dvh w-full grid-rows-[auto_minmax(0,1fr)_auto] overflow-hidden border-b-0 bg-stone-100 px-4 py-0 overscroll-contain dark:bg-stone-950 sm:px-6 lg:static lg:z-auto lg:h-auto lg:min-h-0 lg:w-72 lg:bg-transparent lg:flex lg:flex-col",
           )}
@@ -6137,14 +6098,14 @@ export default function App() {
                 <button
                   type="button"
                   onClick={openPrivacyModal}
-                  className="inline-flex items-center gap-1 text-[14px] font-medium text-stone-700 transition-colors hover:text-stone-900 active:text-stone-900 dark:text-stone-300 dark:hover:text-stone-50 dark:active:text-stone-50"
+                  className="inline-flex min-h-11 items-center gap-1 py-2 text-[14px] font-medium text-stone-700 transition-colors hover:text-stone-900 active:text-stone-900 dark:text-stone-300 dark:hover:text-stone-50 dark:active:text-stone-50"
                 >
                   Privacy statement
                 </button>
                 <button
                   type="button"
                   onClick={openSiteDisclaimerModal}
-                  className="inline-flex items-center gap-1 text-[14px] font-medium text-stone-700 transition-colors hover:text-stone-900 active:text-stone-900 dark:text-stone-300 dark:hover:text-stone-50 dark:active:text-stone-50"
+                  className="inline-flex min-h-11 items-center gap-1 py-2 text-[14px] font-medium text-stone-700 transition-colors hover:text-stone-900 active:text-stone-900 dark:text-stone-300 dark:hover:text-stone-50 dark:active:text-stone-50"
                 >
                   Site disclaimer
                 </button>
@@ -6154,7 +6115,7 @@ export default function App() {
                 <button
                   type="button"
                   onClick={copyFooterEmail}
-                  className="inline-flex items-center gap-1.5 text-[14px] text-stone-700 transition-colors hover:text-stone-900 active:text-stone-900 dark:text-stone-300 dark:hover:text-stone-50 dark:active:text-stone-50"
+                  className="inline-flex min-h-11 items-center gap-1.5 py-2 text-[14px] text-stone-700 transition-colors hover:text-stone-900 active:text-stone-900 dark:text-stone-300 dark:hover:text-stone-50 dark:active:text-stone-50"
                 >
                   hello@row-k.london
                   {emailCopied ? (
@@ -6167,7 +6128,7 @@ export default function App() {
                 <button
                   type="button"
                   onClick={() => openSubmissionModal("footer")}
-                  className="inline-flex items-center gap-1 text-[14px] font-medium text-stone-700 transition-colors hover:text-stone-900 active:text-stone-900 dark:text-stone-300 dark:hover:text-stone-50 dark:active:text-stone-50"
+                  className="inline-flex min-h-11 items-center gap-1 py-2 text-[14px] font-medium text-stone-700 transition-colors hover:text-stone-900 active:text-stone-900 dark:text-stone-300 dark:hover:text-stone-50 dark:active:text-stone-50"
                 >
                   Submit a stylist
                 </button>

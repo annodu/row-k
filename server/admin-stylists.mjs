@@ -2,7 +2,10 @@ import crypto from "node:crypto";
 import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { assertSafeOutboundHttpUrl, createRateLimiter, requireTrustedOrigin, sanitizeErrorMessage } from "./security.mjs";
+import { createRateLimiter, requireTrustedOrigin, sanitizeErrorMessage } from "./security.mjs";
+import { safeFetch } from "./outbound-http.mjs";
+import { createSafeBrowserPage } from "./outbound-browser.mjs";
+import { adminSessionMaxAgeSeconds, authenticateAdmin, createAdminSessionToken, getAdminAuthConfig, verifyAdminSessionToken } from "./admin-auth.mjs";
 import { fetchAllTimeSummary, fetchAnalyticsSummary, fetchRecentActivity } from "./analytics.mjs";
 import { extractPostcodeToken, getParkingAvailable, getWheelchairAccessibleEntrance, loadGooglePlacesApiKey, matchSalonToGoogle } from "./google-match.mjs";
 import { getVerifiedReviewPlatform, matchVerifiedReviews } from "./verified-reviews.mjs";
@@ -49,7 +52,7 @@ const portfolioCorrectionsPhotosDir = path.resolve(__dirname, "../data/portfolio
 const photoLinkBacklogPath = path.resolve(__dirname, "../data/photo-link-backlog.json");
 const photoSearchPicksPath = path.resolve(__dirname, "../data/photo-search-picks.json");
 const sessionCookieName = "rowk_admin_session";
-const sessionMaxAgeSeconds = 60 * 60 * 12;
+const sessionMaxAgeSeconds = adminSessionMaxAgeSeconds;
 const repositoryRoot = path.resolve(__dirname, "..");
 const githubBackedJsonPaths = new Set([
   "data/manual-salons.json",
@@ -441,17 +444,22 @@ export function registerAdminStylistRoutes(app) {
   app.use("/api/admin", requireTrustedOrigin);
 
   app.post("/api/admin/login", adminLoginRateLimit, async (req, res) => {
-    const configuredPassword = getAdminPassword();
-    if (!configuredPassword) {
-      return res.status(503).json({ ok: false, message: "Set ADMIN_PASSWORD before using the admin tool." });
+    try {
+      const config = getAdminAuthConfig();
+      const result = await authenticateAdmin(req.body || {}, { config });
+      if (!result.ok) {
+        res.setHeader("Set-Cookie", expireCookie());
+        if (result.retryAfter) res.setHeader("Retry-After", String(result.retryAfter));
+        return res.status(result.status).json({ ok: false, message: result.status === 429
+          ? "Too many login attempts. Please try again later."
+          : "That password or verification code was not accepted." });
+      }
+      res.setHeader("Set-Cookie", makeCookie(createAdminSessionToken(config)));
+      return res.json({ ok: true });
+    } catch {
+      res.setHeader("Set-Cookie", expireCookie());
+      return res.status(503).json({ ok: false, message: "Admin security is unavailable. Check the MFA configuration and storage." });
     }
-
-    if (String(req.body?.password || "").trim() !== configuredPassword) {
-      return res.status(401).json({ ok: false, message: "That password was not accepted." });
-    }
-
-    res.setHeader("Set-Cookie", makeCookie(createSessionToken()));
-    res.json({ ok: true });
   });
 
   app.post("/api/admin/logout", requireAdmin, async (_req, res) => {
@@ -935,26 +943,27 @@ export function registerAdminStylistRoutes(app) {
     }
   });
 
-  // Only recompresses uploads too large to ever matter at portfolio-photo
-  // display size (see MOBILE_PHOTO_PREVIEW_WIDTH-scale usage on the live
-  // site) — an already-reasonably-sized upload is written through untouched
-  // so re-encoding never costs quality on something that didn't need it.
+  // Decode and re-encode every upload before it becomes a public asset. The
+  // data URL MIME type is user-controlled, so sharp's parser is the trust
+  // boundary here, not the extension in the request.
   const MAX_UPLOAD_WIDTH = 1600;
-  async function shrinkOversizedUpload(buffer, ext) {
+  async function processUploadedImage(buffer) {
     let metadata;
     try {
       metadata = await sharp(buffer).metadata();
     } catch {
-      return { buffer, ext };
+      throw new Error("That file could not be read as an image.");
     }
+
+    if (!["gif", "jpeg", "jpg", "png", "webp"].includes(metadata.format || "")) {
+      throw new Error("Upload a PNG, JPEG, WEBP, or GIF image.");
+    }
+
     const rotated = metadata.orientation >= 5 && metadata.orientation <= 8;
     const displayWidth = rotated ? metadata.height : metadata.width;
-    if (!displayWidth || displayWidth <= MAX_UPLOAD_WIDTH) {
-      return { buffer, ext };
-    }
-    const resized = await sharp(buffer)
+    const resized = await sharp(buffer, { limitInputPixels: 40_000_000 })
       .rotate()
-      .resize({ width: MAX_UPLOAD_WIDTH, withoutEnlargement: true })
+      .resize({ width: displayWidth && displayWidth > MAX_UPLOAD_WIDTH ? MAX_UPLOAD_WIDTH : undefined, withoutEnlargement: true })
       .jpeg({ quality: 85, mozjpeg: true })
       .toBuffer();
     return { buffer: resized, ext: "jpg" };
@@ -977,12 +986,16 @@ export function registerAdminStylistRoutes(app) {
     if (!match) {
       return res.status(400).json({ ok: false, message: "Upload a PNG, JPEG, WEBP, or GIF image." });
     }
-    let ext = match[1] === "jpeg" ? "jpg" : match[1];
     let buffer = Buffer.from(match[2], "base64");
     if (buffer.length === 0) {
       return res.status(400).json({ ok: false, message: "That file looks empty." });
     }
-    ({ buffer, ext } = await shrinkOversizedUpload(buffer, ext));
+    let ext;
+    try {
+      ({ buffer, ext } = await processUploadedImage(buffer));
+    } catch (error) {
+      return res.status(400).json({ ok: false, message: error.message || "Upload a valid image." });
+    }
 
     const filename = `${salon.id}-${crypto.randomUUID()}.${ext}`;
 
@@ -1406,15 +1419,13 @@ export function registerAdminStylistRoutes(app) {
     // than failing outright.
     let buffer;
     try {
-      const safeUrl = await assertSafeOutboundHttpUrl(imageUrl);
-      buffer = await downloadImage(safeUrl);
+      buffer = await downloadImage(imageUrl);
     } catch (primaryError) {
       if (!thumbnailUrl) {
         return res.status(400).json({ ok: false, message: sanitizeErrorMessage(primaryError, "Could not download that image.") });
       }
       try {
-        const safeThumbnailUrl = await assertSafeOutboundHttpUrl(thumbnailUrl);
-        buffer = await downloadImage(safeThumbnailUrl);
+        buffer = await downloadImage(thumbnailUrl);
       } catch (fallbackError) {
         return res.status(400).json({ ok: false, message: sanitizeErrorMessage(fallbackError, "Could not download that image.") });
       }
@@ -2880,12 +2891,16 @@ export function registerAdminStylistRoutes(app) {
     if (!match) {
       return res.status(400).json({ ok: false, message: "Upload a PNG, JPEG, WEBP, or GIF image." });
     }
-    let ext = match[1] === "jpeg" ? "jpg" : match[1];
     let buffer = Buffer.from(match[2], "base64");
     if (buffer.length === 0) {
       return res.status(400).json({ ok: false, message: "That file looks empty." });
     }
-    ({ buffer, ext } = await shrinkOversizedUpload(buffer, ext));
+    let ext;
+    try {
+      ({ buffer, ext } = await processUploadedImage(buffer));
+    } catch (error) {
+      return res.status(400).json({ ok: false, message: error.message || "Upload a valid image." });
+    }
 
     const filename = `${draft.id}-${crypto.randomUUID()}.${ext}`;
 
@@ -3243,7 +3258,7 @@ async function readPortfolioPhotoBuffer(photoUrl) {
   } catch (localError) {
     const remoteUrl = portfolioPhotoRemoteUrl(filename);
     if (!remoteUrl) throw localError;
-    const response = await fetch(remoteUrl);
+    const response = await safeFetch(remoteUrl, { maxBytes: 20_000_000 });
     if (!response.ok) {
       throw new Error(`Could not fetch portfolio photo ${filename}: ${response.status}`);
     }
@@ -3299,13 +3314,16 @@ async function persistDraftStoreWithPortfolioFiles(store, commitMessage, { write
 }
 
 function requireAdmin(req, res, next) {
-  const configuredPassword = getAdminPassword();
-  if (!configuredPassword) {
-    return res.status(503).json({ ok: false, message: "Set ADMIN_PASSWORD before using the admin tool." });
+  let config;
+  try {
+    config = getAdminAuthConfig();
+  } catch {
+    res.setHeader("Set-Cookie", expireCookie());
+    return res.status(503).json({ ok: false, message: "Admin MFA is not configured." });
   }
 
   const token = getCookieValue(req.headers.cookie, sessionCookieName);
-  const session = token ? verifySessionToken(token, configuredPassword) : null;
+  const session = token ? verifyAdminSessionToken(token, config) : null;
   if (!session) {
     res.setHeader("Set-Cookie", expireCookie());
     return res.status(401).json({ ok: false, message: "Admin login required." });
@@ -3317,49 +3335,6 @@ function requireAdmin(req, res, next) {
   }
 
   next();
-}
-
-function getAdminPassword() {
-  const configuredPassword = (process.env.ADMIN_PASSWORD || process.env.ROWK_ADMIN_PASSWORD || "").trim();
-  if (configuredPassword) {
-    return configuredPassword;
-  }
-
-  return isHostedRuntime() ? "" : "rowk-admin";
-}
-
-function createSessionToken() {
-  const createdAt = Date.now();
-  const nonce = crypto.randomBytes(16).toString("hex");
-  const payload = `${createdAt}.${nonce}`;
-  return `${payload}.${signSessionPayload(payload, getAdminPassword())}`;
-}
-
-function verifySessionToken(token, password) {
-  const parts = String(token || "").split(".");
-  if (parts.length !== 3) {
-    return null;
-  }
-
-  const [createdAt, nonce, signature] = parts;
-  const payload = `${createdAt}.${nonce}`;
-  const expectedSignature = signSessionPayload(payload, password);
-  if (!timingSafeEqual(signature, expectedSignature)) {
-    return null;
-  }
-
-  const createdAtNumber = Number(createdAt);
-  return Number.isFinite(createdAtNumber) ? { createdAt: createdAtNumber } : null;
-}
-
-function signSessionPayload(payload, password) {
-  return crypto.createHmac("sha256", password).update(payload).digest("base64url");
-}
-
-function timingSafeEqual(left, right) {
-  const leftBuffer = Buffer.from(String(left));
-  const rightBuffer = Buffer.from(String(right));
-  return leftBuffer.length === rightBuffer.length && crypto.timingSafeEqual(leftBuffer, rightBuffer);
 }
 
 function makeCookie(token) {
@@ -6582,7 +6557,7 @@ function isBrowserBackedPriceCheckUrl(url = "") {
 
 async function extractBrowserRenderedPriceCheck(url = "", { allowAiFallback = false } = {}) {
   const browser = await getPriceCheckBrowser();
-  const page = await browser.newPage({
+  const page = await createSafeBrowserPage(browser, {
     userAgent: browserUserAgent,
     viewport: { width: 1365, height: 900 },
   });
@@ -6664,7 +6639,7 @@ async function renderBookingPageTextWithBrowser(url) {
   }
   try {
     const browser = await getPriceCheckBrowser();
-    const page = await browser.newPage({ userAgent: browserUserAgent, viewport: { width: 1365, height: 900 } });
+    const page = await createSafeBrowserPage(browser, { userAgent: browserUserAgent, viewport: { width: 1365, height: 900 } });
     try {
       await page.goto(url, { waitUntil: "domcontentloaded", timeout: 18_000 });
       await page.waitForLoadState("networkidle", { timeout: 8_000 }).catch(() => {});
@@ -6811,7 +6786,7 @@ async function extractInvestigativeAiPriceCheck({ bookingUrl = "", websiteUrl = 
 
 async function investigatePricePageWithBrowser(url = "") {
   const browser = await getPriceCheckBrowser();
-  const page = await browser.newPage({
+  const page = await createSafeBrowserPage(browser, {
     userAgent: browserUserAgent,
     viewport: { width: 1365, height: 900 },
   });
@@ -7276,7 +7251,7 @@ async function extractInstagramPostMedia(postUrl, { batch = 0 } = {}) {
   // element screenshot's pixel output is CSS size × this factor) — the
   // normal canvas-capture path reads the video's native decode resolution
   // regardless of viewport/DPR, so this doesn't change anything for it.
-  const page = await browser.newPage({ userAgent: browserUserAgent, viewport: { width: 800, height: 1200 }, deviceScaleFactor: 2 });
+  const page = await createSafeBrowserPage(browser, { userAgent: browserUserAgent, viewport: { width: 800, height: 1200 }, deviceScaleFactor: 2 });
   try {
     await page.goto(postUrl, { waitUntil: "domcontentloaded", timeout: 20_000 });
     await page.waitForLoadState("networkidle", { timeout: 8_000 }).catch(() => {});
@@ -7520,7 +7495,7 @@ async function findOcrContentImages(page) {
 
 async function extractBookingImageTextQuotes(url) {
   const browser = await getPriceCheckBrowser();
-  const page = await browser.newPage({
+  const page = await createSafeBrowserPage(browser, {
     userAgent: browserUserAgent,
     viewport: { width: 1365, height: 900 },
     deviceScaleFactor: 3,
@@ -9075,68 +9050,16 @@ function emptyServiceCheck() {
 }
 
 async function fetchWithTimeout(url, options = {}) {
-  const { timeoutMs = 8000, maxBytes = 4_000_000, maxRedirects = 3, ...fetchOptions } = options;
-  const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), timeoutMs);
-  try {
-    let nextUrl = await assertSafeOutboundHttpUrl(url);
-    let redirects = 0;
-
-    while (true) {
-      const response = await fetch(nextUrl, {
-        ...fetchOptions,
-        redirect: "manual",
-        signal: controller.signal,
-        headers: {
-          "User-Agent": browserUserAgent,
-          Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-          ...fetchOptions.headers,
-        },
-      });
-
-      if (!isRedirectResponse(response) || fetchOptions.redirect === "manual") {
-        return await capResponseBody(response, maxBytes);
-      }
-
-      if (redirects >= maxRedirects) {
-        throw new Error("Too many redirects.");
-      }
-
-      const location = response.headers.get("location");
-      if (!location) {
-        return await capResponseBody(response, maxBytes);
-      }
-
-      nextUrl = await assertSafeOutboundHttpUrl(new URL(location, nextUrl).toString());
-      redirects += 1;
-    }
-  } finally {
-    clearTimeout(timeout);
-  }
-}
-
-function isRedirectResponse(response) {
-  return response.status >= 300 && response.status < 400;
-}
-
-async function capResponseBody(response, maxBytes) {
-  const contentLength = Number(response.headers.get("content-length"));
-  if (Number.isFinite(contentLength) && contentLength > maxBytes) {
-    throw new Error("Remote response is too large.");
-  }
-
-  const body = await response.arrayBuffer();
-  if (body.byteLength > maxBytes) {
-    throw new Error("Remote response is too large.");
-  }
-
-  const limitedResponse = new Response(body, {
-    status: response.status,
-    statusText: response.statusText,
-    headers: response.headers,
+  return safeFetch(url, {
+    timeoutMs: 8000,
+    maxRedirects: 3,
+    ...options,
+    headers: {
+      "User-Agent": browserUserAgent,
+      Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+      ...options.headers,
+    },
   });
-  Object.defineProperty(limitedResponse, "url", { value: response.url });
-  return limitedResponse;
 }
 
 async function withTimeout(promise, timeoutMs, fallbackValue) {

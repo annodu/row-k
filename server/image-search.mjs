@@ -1,7 +1,7 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { assertSafeOutboundHttpUrl } from "./security.mjs";
+import { safeFetch } from "./outbound-http.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const envPath = path.resolve(__dirname, "../.env");
@@ -322,8 +322,7 @@ export async function fetchInstagramProfileViaAnyApi(handle) {
 }
 
 async function fetchOgImage(pageUrl) {
-  const safeUrl = await assertSafeOutboundHttpUrl(pageUrl);
-  const response = await fetch(safeUrl, {
+  const response = await safeFetch(pageUrl, {
     headers: { "User-Agent": "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)" },
   });
   if (!response.ok) return null;

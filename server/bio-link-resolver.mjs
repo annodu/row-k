@@ -5,6 +5,8 @@
 // check already applies when *rejecting* those hosts (see isSocialOnlyUrl in
 // admin-stylists.mjs), just completing the other half of it.
 
+import { safeFetch } from "./outbound-http.mjs";
+
 const AGGREGATOR_HOSTS = [
   "linktr.ee",
   "linktree.com",
@@ -112,7 +114,7 @@ async function resolveRedirectTarget(url, { timeoutMs = 6000 } = {}) {
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), timeoutMs);
     try {
-      const response = await fetch(url, {
+      const response = await safeFetch(url, {
         method,
         redirect: "follow",
         signal: controller.signal,
@@ -137,7 +139,7 @@ async function fetchPageHtml(url, { timeoutMs = 8000 } = {}) {
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), timeoutMs);
   try {
-    const response = await fetch(url, {
+    const response = await safeFetch(url, {
       method: "GET",
       redirect: "follow",
       signal: controller.signal,

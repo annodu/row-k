@@ -1,4 +1,4 @@
-import { assertSafeOutboundHttpUrl } from "./security.mjs";
+import { safeFetch } from "./outbound-http.mjs";
 
 export const verifiedReviewHostnames = ["fresha.com", "treatwell.co.uk", "booksy.com", "vagaro.com", "styleseat.com", "setmore.com"];
 
@@ -35,11 +35,10 @@ function extractReviewCount(html) {
 }
 
 export async function fetchReviewCount(bookingUrl) {
-  const safeUrl = await assertSafeOutboundHttpUrl(bookingUrl);
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 15000);
   try {
-    const response = await fetch(safeUrl, {
+    const response = await safeFetch(bookingUrl, {
       headers: { "User-Agent": userAgent, Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8" },
       signal: controller.signal,
       redirect: "follow",

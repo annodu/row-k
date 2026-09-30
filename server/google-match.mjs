@@ -1,7 +1,7 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { assertSafeOutboundHttpUrl } from "./security.mjs";
+import { safeFetch } from "./outbound-http.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const envPath = path.resolve(__dirname, "../.env");
@@ -58,11 +58,10 @@ function extractAddressFromHtml(html) {
 
 export async function fetchPreciseAddress(bookingUrl) {
   try {
-    const safeUrl = await assertSafeOutboundHttpUrl(bookingUrl);
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 15000);
     try {
-      const response = await fetch(safeUrl, {
+      const response = await safeFetch(bookingUrl, {
         headers: { "User-Agent": userAgent, Accept: "text/html,application/xhtml+xml" },
         signal: controller.signal,
         redirect: "follow",

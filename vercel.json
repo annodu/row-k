@@ -1,4 +1,9 @@
 {
+  "git": {
+    "deploymentEnabled": {
+      "rowk-admin-auth": false
+    }
+  },
   "headers": [
     {
       "source": "/(.*)",

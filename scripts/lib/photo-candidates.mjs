@@ -1,5 +1,7 @@
 import { createWorker } from "tesseract.js";
 import sharp from "sharp";
+import { safeFetch } from "../../server/outbound-http.mjs";
+import { createSafeBrowserPage } from "../../server/outbound-browser.mjs";
 
 // Shared candidate-gathering + filtering for the portfolio-photos pipeline.
 // Reuses the same "content-sized images, rendered browser, local OCR" approach
@@ -179,7 +181,7 @@ async function collectAcuityServicePhotos(page, pageUrl) {
 // every frame on the page gets checked, not just the main one.
 export async function findCandidateImageUrls(pageUrl) {
   const browser = await getBrowser();
-  const page = await browser.newPage({
+  const page = await createSafeBrowserPage(browser, {
     userAgent: browserUserAgent,
     viewport: { width: 1365, height: 900 },
   });
@@ -214,7 +216,8 @@ export async function downloadImage(url) {
   // page instead of the actual image bytes to requests with no browser-like
   // headers — a real User-Agent (and an Accept header favoring images) is
   // enough to get the real response most of the time.
-  const response = await fetch(url, {
+  const response = await safeFetch(url, {
+    maxBytes: 20_000_000,
     redirect: "follow",
     headers: {
       "User-Agent": browserUserAgent,

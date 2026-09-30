@@ -1,2 +1,4 @@
 public/portfolio-photos/**
 photo-pages-dist/**
+.env*
+.admin-security/

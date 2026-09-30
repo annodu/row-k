@@ -11,6 +11,7 @@ import { createRateLimiter, requestLogger } from "./security.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 loadLocalEnv(path.resolve(__dirname, "../.env"));
+loadLocalEnv(path.resolve(__dirname, "../.env.admin-mfa.local"));
 
 const app = express();
 const port = Number(process.env.API_PORT || 3001);

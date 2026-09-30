@@ -42,7 +42,7 @@ Most hand-written UI (App.tsx, AdminApp.tsx, and the `ui/` primitives) uses lite
 ## Typography
 
 - **Body/UI font:** Figtree — loaded via Google Fonts in `index.html` (weights 400, 500, 600, 700, 800), set as `--font-sans` and applied via `font-sans antialiased` on `<body>`.
-- **Display/serif font:** `Instrument Serif` is preconnected/loaded in `index.html` but the one hero `<h1>` in App.tsx currently sets `fontFamily: "Junicode"` inline (not loaded anywhere) instead of using the loaded serif — likely stale/inconsistent. If touching that hero, prefer wiring it to `Instrument Serif` (or add a `--font-serif` token) rather than leaving the unloaded `Junicode` reference.
+- **Display/serif font:** Junicode is self-hosted from `src/fonts/` and used by the hero `<h1>` via its inline `fontFamily` declaration. Figtree remains the body/UI font and is loaded from Google Fonts.
 - **Headings** (`h1`–`h4`) get `font-family: var(--font-sans)` globally via `@layer base` in `index.css`.
 
 **Font sizes in practice:** the storefront leans on arbitrary pixel values rather than Tailwind's default type scale:
@@ -80,11 +80,12 @@ When adding new components, default to `rounded-none` unless the element is circ
 Custom breakpoints set in `@theme` (`src/index.css`):
 
 ```
---breakpoint-sm: 48.0625rem  /* ~769px */
---breakpoint-lg: 48.0625rem  /* same value as sm */
+--breakpoint-sm: 40rem  /* 640px */
+--breakpoint-md: 48rem  /* 768px */
+--breakpoint-lg: 64rem  /* 1024px */
 ```
 
-`sm:` and `lg:` therefore currently trigger at the **same** viewport width (~769px) — `md:`/`xl:`/`2xl:` remain at Tailwind defaults. This is unusual and likely intentional for a two-tier (mobile/desktop) layout rather than a full responsive scale; be aware `sm:` and `lg:` won't create a visually distinct third breakpoint against each other.
+The storefront uses the standard Tailwind breakpoint ladder for mobile, tablet, and desktop layout changes.
 
 ## Components (`src/components/ui/`)
 

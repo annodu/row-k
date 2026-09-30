@@ -8,6 +8,10 @@
     "build": "vite build",
     "preview": "vite preview",
     "server": "node server/index.mjs",
+    "test:security": "node --test server/outbound-http.test.mjs",
+    "test:security:browser": "node --test server/outbound-browser.test.mjs",
+    "test:admin-auth": "node --test server/admin-auth.test.mjs",
+    "setup:admin-mfa": "node scripts/setup-admin-mfa.mjs",
     "validate": "node scripts/validate-services.mjs",
     "validate:reviews": "node scripts/validate-reviews.mjs",
     "backfill:portfolio-photos": "node scripts/backfill-portfolio-photos.mjs",
@@ -28,14 +32,19 @@
     "clsx": "^2.1.1",
     "concurrently": "^10.0.3",
     "express": "^5.2.1",
+    "ipaddr.js": "^2.5.0",
     "lucide-react": "^1.7.0",
+    "otpauth": "^9.5.2",
     "playwright": "^1.60.0",
     "posthog-js": "^1.404.0",
+    "proper-lockfile": "^4.1.2",
+    "qrcode": "^1.5.4",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "sharp": "^0.35.3",
     "tailwind-merge": "^3.5.0",
     "tailwindcss": "^4.2.2",
-    "tesseract.js": "^7.0.0"
+    "tesseract.js": "^7.0.0",
+    "undici": "^7.30.0"
   }
 }

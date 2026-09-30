@@ -1,4 +1,4 @@
-import { FormEvent, KeyboardEvent, type ComponentType, type ReactNode, createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
+import { FormEvent, KeyboardEvent, type ComponentType, type ReactNode, createContext, useCallback, useContext, useEffect, useId, useMemo, useRef, useState } from "react";
 import {
   Activity,
   AlertTriangle,
@@ -924,6 +924,77 @@ function ConfirmDialog({
   );
 }
 
+const adminDialogFocusableSelector = [
+  "a[href]",
+  "button:not([disabled])",
+  "input:not([disabled])",
+  "select:not([disabled])",
+  "textarea:not([disabled])",
+  "[tabindex]:not([tabindex='-1'])",
+].join(",");
+
+function getAdminDialogFocusableElements(container: HTMLElement) {
+  return Array.from(container.querySelectorAll<HTMLElement>(adminDialogFocusableSelector)).filter((element) => {
+    const rect = element.getBoundingClientRect();
+    return rect.width > 0 || rect.height > 0 || element === document.activeElement;
+  });
+}
+
+function useAdminDialogFocusTrap(onClose: () => void) {
+  const dialogRef = useRef<HTMLElement | null>(null);
+  const restoreFocusRef = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    const dialog = dialogRef.current;
+    const previousOverflow = document.body.style.overflow;
+    restoreFocusRef.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    document.body.style.overflow = "hidden";
+
+    const focusInitialElement = window.requestAnimationFrame(() => {
+      const firstFocusable = dialog ? getAdminDialogFocusableElements(dialog)[0] : null;
+      (firstFocusable ?? dialog)?.focus({ preventScroll: true });
+    });
+
+    function handleKeyDown(event: globalThis.KeyboardEvent) {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        onClose();
+        return;
+      }
+
+      if (event.key !== "Tab" || !dialog) return;
+
+      const focusableElements = getAdminDialogFocusableElements(dialog);
+      if (!focusableElements.length) {
+        event.preventDefault();
+        dialog.focus({ preventScroll: true });
+        return;
+      }
+
+      const first = focusableElements[0];
+      const last = focusableElements[focusableElements.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    }
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.cancelAnimationFrame(focusInitialElement);
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", handleKeyDown);
+      restoreFocusRef.current?.focus({ preventScroll: true });
+    };
+  }, [onClose]);
+
+  return dialogRef;
+}
+
 export function AdminApp() {
   return (
     <ConfirmProvider>
@@ -937,6 +1008,8 @@ function AdminAppInner() {
   const [isCheckingSession, setIsCheckingSession] = useState(true);
   const [isAuthed, setIsAuthed] = useState(false);
   const [password, setPassword] = useState("");
+  const [verificationCode, setVerificationCode] = useState("");
+  const [useRecoveryCode, setUseRecoveryCode] = useState(false);
   const [loginError, setLoginError] = useState("");
   const [drafts, setDrafts] = useState<StylistDraft[]>([]);
   const [publishedStylists, setPublishedStylists] = useState<StylistDraft[]>([]);
@@ -1233,7 +1306,9 @@ function AdminAppInner() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
-        body: JSON.stringify({ password }),
+        body: JSON.stringify({ password, ...(useRecoveryCode
+          ? { recoveryCode: verificationCode.trim() }
+          : { code: verificationCode.replace(/\s/g, "") }) }),
       });
       const payload = await response.json().catch(() => ({}));
       if (!response.ok || payload?.ok !== true) {
@@ -1241,8 +1316,11 @@ function AdminAppInner() {
         return;
       }
       setPassword("");
+      setVerificationCode("");
       setIsAuthed(true);
       markAsInternalVisitor();
+    } catch {
+      setLoginError("Could not sign in. Please try again.");
     } finally {
       setIsBusy(false);
     }
@@ -2142,13 +2220,39 @@ function AdminAppInner() {
               <h1 className="mt-3 text-3xl font-semibold">Admin portal</h1>
             </div>
             <Input
+              aria-label="Admin password"
               type="password"
+              autoComplete="current-password"
+              required
               value={password}
               onChange={(event) => setPassword(event.target.value)}
               placeholder="Admin password"
               className="rounded-none border-stone-700 bg-stone-900 text-stone-50 placeholder:text-stone-500"
             />
-            {loginError ? <p className="text-sm text-red-300">{loginError}</p> : null}
+            <div className="space-y-2">
+              <label htmlFor="admin-verification-code" className="text-sm text-stone-300">
+                {useRecoveryCode ? "Recovery code" : "Google Authenticator code"}
+              </label>
+              <Input
+                id="admin-verification-code"
+                type="text"
+                inputMode={useRecoveryCode ? "text" : "numeric"}
+                autoComplete={useRecoveryCode ? "off" : "one-time-code"}
+                value={verificationCode}
+                onChange={(event) => setVerificationCode(useRecoveryCode
+                  ? event.target.value
+                  : event.target.value.replace(/\D/g, "").slice(0, 6))}
+                maxLength={useRecoveryCode ? 40 : 6}
+                pattern={useRecoveryCode ? "[A-Fa-f0-9\\s\\-]{32,40}" : "[0-9]{6}"}
+                required
+                className="rounded-none border-stone-700 bg-stone-900 text-stone-50"
+              />
+              <button type="button" disabled={isBusy} className="text-sm text-stone-400 underline underline-offset-4 hover:text-stone-200"
+                onClick={() => { setUseRecoveryCode((current) => !current); setVerificationCode(""); setLoginError(""); }}>
+                {useRecoveryCode ? "Use authenticator code" : "Use a recovery code"}
+              </button>
+            </div>
+            {loginError ? <p role="alert" className="text-sm text-red-300">{loginError}</p> : null}
             <Button type="submit" disabled={isBusy} className="w-full rounded-none">
               {isBusy ? <Loader2 className="size-4 animate-spin" /> : null}
               Unlock admin
@@ -2160,7 +2264,7 @@ function AdminAppInner() {
   }
 
   return (
-    <main className="admin-ui flex min-h-screen bg-[#f8f8f7] text-stone-950 dark:bg-stone-950 dark:text-stone-50">
+    <main className="admin-ui flex min-h-screen bg-stone-100 text-stone-950 dark:bg-stone-950 dark:text-stone-50">
       <AdminSidebar
         activeView={activeView}
         onSelectView={(view) => {
@@ -2345,14 +2449,21 @@ function AdminSidebar({
   onCloseMobile: () => void;
   onLogout: () => void;
 }) {
-  const navList = (
+  const renderNavList = (isCollapsed: boolean) => (
     <nav className="flex-1 space-y-4 overflow-y-auto px-3 py-4">
       {ADMIN_NAV_GROUPS.map((group, groupIndex) => (
         <div key={group.label ?? `group-${groupIndex}`} className="space-y-1">
-          {group.label && !collapsed ? (
-            <p className="px-3 pb-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-stone-400 dark:text-stone-500">{group.label}</p>
+          {group.label ? (
+            <p
+              className={cn(
+                "overflow-hidden px-3 pb-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-stone-400 transition-[opacity,max-height,padding] duration-150 ease-[var(--ease-out)] dark:text-stone-500",
+                isCollapsed ? "max-h-0 opacity-0" : "max-h-5 opacity-100",
+              )}
+            >
+              {group.label}
+            </p>
           ) : null}
-          {group.label && collapsed ? <div className="mx-2 mb-2 border-t border-stone-200 dark:border-stone-800" /> : null}
+          {group.label && isCollapsed ? <div className="mx-2 mb-2 border-t border-stone-200 dark:border-stone-800" /> : null}
           {group.items.map((item) => {
             const Icon = item.icon;
             const isActive = activeView === item.id;
@@ -2364,14 +2475,21 @@ function AdminSidebar({
                 onClick={() => onSelectView(item.id)}
                 className={cn(
                   "flex w-full items-center gap-3 rounded-none border-l-2 px-3 py-2 text-sm transition",
-                  collapsed ? "justify-center" : "",
+                  isCollapsed ? "justify-center" : "",
                   isActive
                     ? "border-stone-950 bg-stone-950/5 font-medium text-stone-950 dark:border-stone-100 dark:bg-stone-100/10 dark:text-stone-50"
                     : "border-transparent text-stone-500 hover:bg-stone-950/5 hover:text-stone-900 dark:text-stone-400 dark:hover:bg-stone-100/5 dark:hover:text-stone-100",
                 )}
               >
                 <Icon className="size-4 shrink-0" />
-                {collapsed ? null : <span className="truncate">{item.label}</span>}
+                <span
+                  className={cn(
+                    "truncate transition-[opacity,max-width] duration-150 ease-[var(--ease-out)]",
+                    isCollapsed ? "max-w-0 opacity-0" : "max-w-40 opacity-100",
+                  )}
+                >
+                  {item.label}
+                </span>
               </button>
             );
           })}
@@ -2416,7 +2534,7 @@ function AdminSidebar({
             {collapsed ? <PanelLeftOpen className="size-4" /> : <PanelLeftClose className="size-4" />}
           </button>
         </div>
-        {navList}
+        {renderNavList(collapsed)}
         {footer}
       </aside>
 
@@ -2434,7 +2552,7 @@ function AdminSidebar({
                 <X className="size-4" />
               </button>
             </div>
-            {navList}
+            {renderNavList(false)}
             {footer}
           </aside>
         </div>
@@ -2590,7 +2708,7 @@ function StylistsPage({
                   className="h-10 w-64 rounded-none border border-stone-300 bg-white pl-9 pr-3 text-[13px] font-medium text-stone-950 outline-none transition placeholder:text-stone-400 focus:border-stone-950 disabled:cursor-not-allowed disabled:opacity-50 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100"
                 />
               </div>
-              <button
+              <Button
                 type="button"
                 onClick={() => {
                   if (!instagramIntakeUrl.trim()) return;
@@ -2598,22 +2716,23 @@ function StylistsPage({
                 }}
                 disabled={isBusy || !instagramIntakeUrl.trim()}
                 title="Fetches the bio, resolves the booking link, and pre-fills services, pricing, and needs — all with evidence to review."
-                className="inline-flex h-10 items-center gap-2 rounded-none bg-stone-950 px-4 text-[13px] font-semibold text-white transition hover:bg-stone-800 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-stone-300"
+                className="h-10 rounded-none px-4 text-[13px] font-semibold"
               >
                 {isBusy ? <Loader2 className="size-4 animate-spin" /> : <Sparkles className="size-4" />}
                 Auto-fill from Instagram
-              </button>
+              </Button>
             </div>
-            <button
+            <Button
               type="button"
+              variant="outline"
               onClick={onCreateDraft}
               disabled={isBusy}
               title="Start a blank draft and fill it in by hand"
-              className="inline-flex h-10 items-center gap-2 rounded-none border border-stone-300 bg-white px-4 text-[13px] font-semibold text-stone-700 transition hover:border-stone-400 hover:text-stone-950 disabled:cursor-not-allowed disabled:opacity-50 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-300"
+              className="h-10 rounded-none border-stone-300 bg-white px-4 text-[13px] font-semibold text-stone-700 hover:border-stone-400 hover:text-stone-950 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-300"
             >
               <Plus className="size-4" />
               Blank draft
-            </button>
+            </Button>
           </div>
         </div>
 
@@ -7583,10 +7702,11 @@ function VisitorsLineChart({ bars, emptyLabel }: { bars: { label: string; value:
   const plotWidth = width - paddingX * 2;
   const plotHeight = height - paddingTop - paddingBottom;
   const max = Math.max(1, ...bars.map((bar) => bar.value));
+  const hasVisitorData = bars.some((bar) => bar.value > 0);
 
   const points = bars.map((bar, index) => ({
     x: bars.length === 1 ? paddingX + plotWidth / 2 : paddingX + (index / (bars.length - 1)) * plotWidth,
-    y: paddingTop + plotHeight - (bar.value / max) * plotHeight,
+    y: hasVisitorData ? paddingTop + plotHeight - (bar.value / max) * plotHeight : paddingTop + plotHeight / 2,
     bar,
   }));
 
@@ -7606,10 +7726,12 @@ function VisitorsLineChart({ bars, emptyLabel }: { bars: { label: string; value:
   return (
     <div className="mt-6 flex-1">
       <div className="relative">
-        <span className="pointer-events-none absolute left-0 top-0 text-[11px] font-medium text-stone-400">peak {max}</span>
+        <span className="pointer-events-none absolute left-0 top-0 text-[11px] font-medium text-stone-400">
+          {hasVisitorData ? `peak ${max}` : emptyLabel}
+        </span>
         {!hovered ? (
           <span
-            className="pointer-events-none absolute whitespace-nowrap text-xs font-semibold text-stone-950"
+            className="pointer-events-none absolute whitespace-nowrap text-xs font-semibold text-stone-950 dark:text-stone-50"
             style={{ left: `${(lastPoint.x / width) * 100}%`, top: `${(lastPoint.y / height) * 100}%`, transform: "translate(-100%, -160%)" }}
           >
             {lastPoint.bar.value}
@@ -7617,7 +7739,7 @@ function VisitorsLineChart({ bars, emptyLabel }: { bars: { label: string; value:
         ) : null}
         {hovered ? (
           <div
-            className="pointer-events-none absolute z-10 whitespace-nowrap border border-stone-200 bg-white px-2 py-1 text-xs shadow-sm"
+            className="pointer-events-none absolute z-10 whitespace-nowrap border border-stone-200 bg-white px-2 py-1 text-xs shadow-sm dark:border-stone-700 dark:bg-stone-900"
             style={{
               left: `${(hovered.x / width) * 100}%`,
               top: `${(hovered.y / height) * 100}%`,
@@ -7625,7 +7747,7 @@ function VisitorsLineChart({ bars, emptyLabel }: { bars: { label: string; value:
             }}
           >
             <span className="text-stone-500">{hovered.bar.label}</span>{" "}
-            <span className="font-semibold text-stone-950">{hovered.bar.value}</span>
+            <span className="font-semibold text-stone-950 dark:text-stone-50">{hovered.bar.value}</span>
           </div>
         ) : null}
         <svg
@@ -7636,16 +7758,15 @@ function VisitorsLineChart({ bars, emptyLabel }: { bars: { label: string; value:
           aria-label="Visitors over time"
           onMouseLeave={() => setHoveredIndex(null)}
         >
-          <path d={areaPath} fill="rgba(28,25,23,0.08)" stroke="none" />
-          <path d={linePath} fill="none" stroke="#1c1917" strokeWidth={2} vectorEffect="non-scaling-stroke" />
+          <path d={areaPath} className="fill-stone-950/10 dark:fill-stone-50/10" stroke="none" />
+          <path d={linePath} fill="none" className="stroke-stone-950 dark:stroke-stone-50" strokeWidth={2} vectorEffect="non-scaling-stroke" />
           {points.map((point, index) => (
             <circle
               key={index}
               cx={point.x}
               cy={point.y}
               r={hoveredIndex === index ? 4 : 2.5}
-              fill="#1c1917"
-              className="transition-[r]"
+              className="fill-stone-950 transition-[r] dark:fill-stone-50"
             />
           ))}
           {points.map((point, index) => (
@@ -12175,9 +12296,17 @@ function FiltersPage({ onCategoriesChange }: { onCategoriesChange?: (categories:
           <p className="mt-1 text-sm text-stone-500">Manage filter types, groups and categories for the directory</p>
         </div>
         <div className="flex items-center gap-3">
-          {publishMessage ? (
-            <p className={cn("text-sm font-medium", publishMessage.ok ? "text-emerald-700" : "text-red-600")}>{publishMessage.text}</p>
-          ) : null}
+          <p
+            role="status"
+            aria-live="polite"
+            className={cn(
+              "min-w-24 text-right text-sm font-medium transition-[opacity,color] duration-150 ease-[var(--ease-out)]",
+              publishMessage ? "opacity-100" : "opacity-0",
+              publishMessage?.ok ? "text-emerald-700" : "text-red-600",
+            )}
+          >
+            {publishMessage?.text ?? ""}
+          </p>
           <Button type="button" onClick={publish} disabled={isPublishing} className="h-10 rounded-none px-4 text-sm">
             {isPublishing ? <Loader2 className="size-4 animate-spin" /> : <UploadCloud className="size-4" />}
             Publish
@@ -12296,6 +12425,8 @@ function AddFilterItemDrawer({
   const [label, setLabel] = useState("");
   const [id, setId] = useState("");
   const [isParent, setIsParent] = useState(false);
+  const titleId = useId();
+  const dialogRef = useAdminDialogFocusTrap(onClose);
 
   function handleSubmit() {
     if (!label.trim() || !id.trim()) return;
@@ -12303,11 +12434,18 @@ function AddFilterItemDrawer({
   }
 
   return (
-    <div className="fixed inset-0 z-50 bg-stone-950/10">
-      <button type="button" aria-label="Close" className="absolute inset-0 cursor-default" onClick={onClose} />
-      <aside className="absolute inset-y-0 right-0 flex w-full max-w-[440px] flex-col overflow-hidden border-l border-stone-200 bg-white shadow-xl shadow-stone-950/10">
+    <div className="fixed inset-0 z-50">
+      <button type="button" aria-label="Close" className="drawer-overlay absolute inset-0 cursor-default bg-stone-950/10" onClick={onClose} />
+      <aside
+        ref={dialogRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby={titleId}
+        tabIndex={-1}
+        className="drawer-panel absolute inset-y-0 right-0 flex w-full max-w-[440px] flex-col overflow-hidden border-l border-stone-200 bg-white shadow-xl shadow-stone-950/10"
+      >
         <div className="flex shrink-0 items-center justify-between border-b border-stone-200 px-6 py-5">
-          <h2 className="text-lg font-semibold tracking-tight text-stone-950">{title}</h2>
+          <h2 id={titleId} className="text-lg font-semibold tracking-tight text-stone-950">{title}</h2>
           <button
             type="button"
             onClick={onClose}
@@ -12381,10 +12519,20 @@ function EditFilterItemDrawer({
   nestedUnderId?: string;
   onNestedUnderChange?: (value: string) => void;
 }) {
+  const titleId = useId();
+  const dialogRef = useAdminDialogFocusTrap(onClose);
+
   return (
-    <div className="fixed inset-0 z-50 bg-stone-950/10">
-      <button type="button" aria-label="Close" className="absolute inset-0 cursor-default" onClick={onClose} />
-      <aside className="absolute inset-y-0 right-0 flex w-full max-w-[600px] flex-col overflow-hidden border-l border-stone-200 bg-white shadow-xl shadow-stone-950/10">
+    <div className="fixed inset-0 z-50">
+      <button type="button" aria-label="Close" className="drawer-overlay absolute inset-0 cursor-default bg-stone-950/10" onClick={onClose} />
+      <aside
+        ref={dialogRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby={titleId}
+        tabIndex={-1}
+        className="drawer-panel absolute inset-y-0 right-0 flex w-full max-w-[600px] flex-col overflow-hidden border-l border-stone-200 bg-white shadow-xl shadow-stone-950/10"
+      >
         <div className="shrink-0 border-b border-stone-200 px-8 pb-2 pt-5">
           <div className="flex items-center justify-between gap-4">
             <button
@@ -12411,7 +12559,7 @@ function EditFilterItemDrawer({
         </div>
 
         <div className="min-h-0 flex-1 overflow-y-auto px-8 pb-8 pt-8">
-          <p className="text-xs font-semibold uppercase tracking-[0.12em] text-stone-500">{title}</p>
+          <p id={titleId} className="text-xs font-semibold uppercase tracking-[0.12em] text-stone-500">{title}</p>
           <Input
             autoFocus
             value={label}
@@ -12478,6 +12626,8 @@ function AddCustomFilterTypeDrawer({
   const [label, setLabel] = useState("");
   const [description, setDescription] = useState("");
   const [behavior, setBehavior] = useState<CustomFilterBehavior>("toggle-group");
+  const titleId = useId();
+  const dialogRef = useAdminDialogFocusTrap(onClose);
 
   const id = label.trim().toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
   const isDuplicate = Boolean(id) && existingIds.has(id);
@@ -12488,11 +12638,18 @@ function AddCustomFilterTypeDrawer({
   }
 
   return (
-    <div className="fixed inset-0 z-50 bg-stone-950/10">
-      <button type="button" aria-label="Close" className="absolute inset-0 cursor-default" onClick={onClose} />
-      <aside className="absolute inset-y-0 right-0 flex w-full max-w-[440px] flex-col overflow-hidden border-l border-stone-200 bg-white shadow-xl shadow-stone-950/10">
+    <div className="fixed inset-0 z-50">
+      <button type="button" aria-label="Close" className="drawer-overlay absolute inset-0 cursor-default bg-stone-950/10" onClick={onClose} />
+      <aside
+        ref={dialogRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby={titleId}
+        tabIndex={-1}
+        className="drawer-panel absolute inset-y-0 right-0 flex w-full max-w-[440px] flex-col overflow-hidden border-l border-stone-200 bg-white shadow-xl shadow-stone-950/10"
+      >
         <div className="flex shrink-0 items-center justify-between border-b border-stone-200 px-6 py-5">
-          <h2 className="text-lg font-semibold tracking-tight text-stone-950">Add filter type</h2>
+          <h2 id={titleId} className="text-lg font-semibold tracking-tight text-stone-950">Add filter type</h2>
           <button
             type="button"
             onClick={onClose}

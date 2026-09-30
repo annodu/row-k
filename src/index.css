@@ -2,6 +2,22 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+@font-face {
+  font-family: "Junicode";
+  src: url("./fonts/junicode-regular.otf") format("opentype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Junicode";
+  src: url("./fonts/junicode-italic.otf") format("opentype");
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+}
+
 @keyframes services-marquee {
   from {
     transform: translateX(0);
@@ -13,8 +29,10 @@
 
 @theme {
   --font-sans: "Figtree", ui-sans-serif, system-ui, sans-serif;
-  --breakpoint-sm: 48.0625rem;
-  --breakpoint-lg: 48.0625rem;
+  --font-serif: "Instrument Serif", ui-serif, Georgia, serif;
+  --breakpoint-sm: 40rem;
+  --breakpoint-md: 48rem;
+  --breakpoint-lg: 64rem;
   /* Midpoint between the default stone-100 (#f5f5f4) and stone-200 (#e7e5e4) shades. */
   --color-stone-150: #eeeded;
 
@@ -33,6 +51,8 @@
 }
 
 :root {
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
   --background: oklch(0.97 0.004 75);
   --foreground: oklch(0.24 0.01 45);
   --card: oklch(0.99 0.002 75);
@@ -131,6 +151,37 @@ html.dark {
   h3,
   h4 {
     font-family: var(--font-sans);
+  }
+
+  :where(a, button, input, select, textarea, [role="checkbox"], [role="tab"]):focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 3px;
+  }
+
+  .drawer-overlay {
+    opacity: 1;
+    transition: opacity 150ms var(--ease-out);
+
+    @starting-style {
+      opacity: 0;
+    }
+  }
+
+  .drawer-panel {
+    transform: translateX(0);
+    transition: transform 220ms var(--ease-drawer);
+    will-change: transform;
+
+    @starting-style {
+      transform: translateX(100%);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .drawer-overlay,
+    .drawer-panel {
+      transition-duration: 0ms;
+    }
   }
 }
 
