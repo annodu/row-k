@@ -4812,15 +4812,6 @@ export default function App() {
               </div>
             </div>
 
-            <div className="shrink-0 border-t border-stone-300 px-6 py-5 dark:border-stone-800 sm:px-8">
-              <button
-                type="button"
-                onClick={closePrivacyModal}
-                className="inline-flex h-12 w-full items-center justify-center rounded-none bg-stone-950 px-5 text-[14px] font-medium text-stone-100 transition-colors hover:bg-stone-800 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-stone-300"
-              >
-                Close
-              </button>
-            </div>
           </aside>
         </div>
       ) : null}
@@ -4860,15 +4851,6 @@ export default function App() {
               </div>
             </div>
 
-            <div className="shrink-0 border-t border-stone-300 px-6 py-5 dark:border-stone-800 sm:px-8">
-              <button
-                type="button"
-                onClick={closeSiteDisclaimerModal}
-                className="inline-flex h-12 w-full items-center justify-center rounded-none bg-stone-950 px-5 text-[14px] font-medium text-stone-100 transition-colors hover:bg-stone-800 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-stone-300"
-              >
-                Close
-              </button>
-            </div>
           </aside>
         </div>
       ) : null}
