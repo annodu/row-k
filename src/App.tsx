@@ -2574,6 +2574,7 @@ function SubmissionLinkField({
         onBlur={onBlur}
         placeholder={placeholder}
         type="url"
+        className="text-base sm:text-sm"
         disabled={disabled}
         required={required}
         aria-invalid={Boolean(error)}
@@ -4425,7 +4426,12 @@ export default function App() {
                   <section className={cn(submissionDrawerStyle.section, "flex flex-col gap-4")}>
                     <label className="flex flex-col gap-1.5">
                       <span className="text-[12px] font-normal text-stone-600 dark:text-stone-400">Name</span>
-                      <Input value={submissionName} onChange={(event) => setSubmissionName(event.target.value)} placeholder="Stylist or business name" />
+                      <Input
+                        value={submissionName}
+                        onChange={(event) => setSubmissionName(event.target.value)}
+                        placeholder="Stylist or business name"
+                        className="text-base sm:text-sm"
+                      />
                     </label>
 
                     <div className="flex flex-col gap-1.5">
@@ -4638,7 +4644,7 @@ export default function App() {
                         onPaste={handleSubmissionServiceQueryPaste}
                         placeholder={submissionServices.length ? "Add more..." : "Search services..."}
                         aria-describedby={submissionServicesHintId}
-                        className="min-w-[140px] flex-1 border-0 bg-transparent py-1.5 text-sm text-stone-950 outline-none placeholder:text-stone-400 dark:text-stone-100 dark:placeholder:text-stone-500"
+                        className="min-w-[140px] flex-1 border-0 bg-transparent py-1.5 text-base text-stone-950 outline-none placeholder:text-stone-400 dark:text-stone-100 dark:placeholder:text-stone-500 sm:text-sm"
                       />
                     </div>
 
