@@ -1225,6 +1225,11 @@ function BrandGroupCard({
               <div className="min-w-0">
                 <p className="text-[15px] font-medium text-stone-950 dark:text-stone-50">{branch.branchLabel ?? branch.name}</p>
                 {branchLocation ? <p className="text-[13px] text-stone-500 dark:text-stone-400">{branchLocation}</p> : null}
+                {branch.wheelchairAccessible ? (
+                  <span className="mt-2.5 block w-fit rounded-none border border-[oklch(0.72_0.07_86)]/35 bg-[oklch(0.94_0.025_92)] px-1.5 py-1 align-baseline text-[11px] font-semibold leading-none tracking-[0.06em] text-[oklch(0.44_0.08_80)] dark:bg-[oklch(0.44_0.08_80)] dark:text-[oklch(0.94_0.025_92)]">
+                    wheelchair access
+                  </span>
+                ) : null}
                 {reviewsBanner ? (
                   <a
                     href={reviewsBanner.url}
@@ -1243,11 +1248,6 @@ function BrandGroupCard({
                     <span className="hidden sm:inline" aria-hidden="true">{reviewsBanner.label}</span>
                     <ArrowUpRight className="size-3.5 shrink-0" aria-hidden="true" />
                   </a>
-                ) : null}
-                {branch.wheelchairAccessible ? (
-                  <span className="mt-2.5 block w-fit rounded-none border border-[oklch(0.72_0.07_86)]/35 bg-[oklch(0.94_0.025_92)] px-1.5 py-1 align-baseline text-[11px] font-semibold leading-none tracking-[0.06em] text-[oklch(0.44_0.08_80)] dark:bg-[oklch(0.44_0.08_80)] dark:text-[oklch(0.94_0.025_92)]">
-                    wheelchair access
-                  </span>
                 ) : null}
               </div>
               {!sharedBookingUrl && branch.bookingUrl && branch.bookingPlatform !== "Instagram" ? (
