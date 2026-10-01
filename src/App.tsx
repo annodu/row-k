@@ -4463,39 +4463,47 @@ export default function App() {
                       />
                     </label>
 
-                    <div className="flex flex-col gap-1.5">
-                      <span className="text-[12px] font-normal text-stone-600 dark:text-stone-400">
+                    <fieldset className="flex flex-col gap-1.5">
+                      <legend className="text-[12px] font-normal text-stone-600 dark:text-stone-400">
                         Are you the stylist / service provider?
-                      </span>
-                      <div className="flex gap-2">
-                        <button
-                          type="button"
-                          onClick={() => setSubmissionIsProvider(true)}
-                          aria-pressed={submissionIsProvider}
+                      </legend>
+                      <div className="flex gap-8">
+                        <label
                           className={cn(
-                            "h-10 flex-1 rounded-none border text-[13px] font-medium transition-[background-color,border-color,color,transform] duration-150 ease-[var(--ease-out)] active:scale-[0.98]",
+                            "flex h-10 cursor-pointer items-center justify-start gap-2 text-[13px] font-medium transition-[color,transform] duration-150 ease-[var(--ease-out)] active:scale-[0.98]",
                             submissionIsProvider
-                              ? "border-stone-950 bg-stone-950 text-white dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950"
-                              : "border-stone-300 bg-transparent text-stone-600 hover:bg-stone-200 dark:border-stone-700 dark:text-stone-400 dark:hover:bg-stone-900",
+                              ? "text-stone-950 dark:text-stone-100"
+                              : "text-stone-600 hover:text-stone-950 dark:text-stone-400 dark:hover:text-stone-100",
                           )}
                         >
+                          <input
+                            type="radio"
+                            name="submission-is-provider"
+                            checked={submissionIsProvider}
+                            onChange={() => setSubmissionIsProvider(true)}
+                            className="size-4 shrink-0 accent-stone-950 dark:accent-stone-100"
+                          />
                           Yes
-                        </button>
-                        <button
-                          type="button"
-                          onClick={() => setSubmissionIsProvider(false)}
-                          aria-pressed={!submissionIsProvider}
+                        </label>
+                        <label
                           className={cn(
-                            "h-10 flex-1 rounded-none border text-[13px] font-medium transition-[background-color,border-color,color,transform] duration-150 ease-[var(--ease-out)] active:scale-[0.98]",
+                            "flex h-10 cursor-pointer items-center justify-start gap-2 text-[13px] font-medium transition-[color,transform] duration-150 ease-[var(--ease-out)] active:scale-[0.98]",
                             !submissionIsProvider
-                              ? "border-stone-950 bg-stone-950 text-white dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950"
-                              : "border-stone-300 bg-transparent text-stone-600 hover:bg-stone-200 dark:border-stone-700 dark:text-stone-400 dark:hover:bg-stone-900",
+                              ? "text-stone-950 dark:text-stone-100"
+                              : "text-stone-600 hover:text-stone-950 dark:text-stone-400 dark:hover:text-stone-100",
                           )}
                         >
+                          <input
+                            type="radio"
+                            name="submission-is-provider"
+                            checked={!submissionIsProvider}
+                            onChange={() => setSubmissionIsProvider(false)}
+                            className="size-4 shrink-0 accent-stone-950 dark:accent-stone-100"
+                          />
                           No
-                        </button>
+                        </label>
                       </div>
-                    </div>
+                    </fieldset>
 
                   </section>
 
