@@ -856,6 +856,11 @@ function getFocusableDialogElements(container: HTMLElement) {
 function useDialogFocusTrap(isOpen: boolean, onClose: () => void) {
   const dialogRef = useRef<HTMLElement | null>(null);
   const restoreFocusRef = useRef<HTMLElement | null>(null);
+  const onCloseRef = useRef(onClose);
+
+  useEffect(() => {
+    onCloseRef.current = onClose;
+  }, [onClose]);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -873,7 +878,7 @@ function useDialogFocusTrap(isOpen: boolean, onClose: () => void) {
     function handleKeyDown(event: KeyboardEvent) {
       if (event.key === "Escape") {
         event.preventDefault();
-        onClose();
+        onCloseRef.current();
         return;
       }
 
@@ -906,7 +911,7 @@ function useDialogFocusTrap(isOpen: boolean, onClose: () => void) {
       window.removeEventListener("keydown", handleKeyDown);
       restoreFocusRef.current?.focus({ preventScroll: true });
     };
-  }, [isOpen, onClose]);
+  }, [isOpen]);
 
   return dialogRef;
 }
