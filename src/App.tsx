@@ -2692,7 +2692,6 @@ export default function App() {
   const [submissionError, setSubmissionError] = useState<string | null>(null);
   const [emailCopied, setEmailCopied] = useState(false);
   const [showBackToTop, setShowBackToTop] = useState(false);
-  const backToTopSentinelRef = useRef<HTMLDivElement | null>(null);
   const [disclaimerDismissed, setDisclaimerDismissed] = useState(() => {
     try {
       return localStorage.getItem(DISCLAIMER_DISMISSED_KEY) === "1";
@@ -2710,15 +2709,83 @@ export default function App() {
   }, []);
   const disclaimerRef = useRef<HTMLDivElement | null>(null);
   useEffect(() => {
-    const sentinel = backToTopSentinelRef.current;
-    if (!sentinel) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => setShowBackToTop(!entry.isIntersecting),
-      { threshold: 0 },
-    );
-    observer.observe(sentinel);
-    return () => observer.disconnect();
+    // Push the button up from the bottom while the visitor is scrolling back
+    // up (the moment they'd want a shortcut to the top) and hide it again the
+    // instant they resume scrolling down, rather than leaving it pinned the
+    // whole time they're reading further down the list.
+    let lastScrollY = window.scrollY;
+    // Momentum/inertial scrolling (trackpads, mobile) commonly overshoots and
+    // settles back up by a few pixels right as a downward scroll ends — a
+    // naive "any upward delta" check would misread that as the visitor
+    // scrolling up and reveal the button right after they scrolled down.
+    // Requiring a small sustained upward distance (reset on every downward
+    // tick) filters that out while still reacting immediately to a real
+    // scroll-up gesture.
+    let upwardDistance = 0;
+    let lastScrollIntent: "up" | "down" | null = null;
+    let lastTouchY: number | null = null;
+    const BACK_TO_TOP_REVEAL_THRESHOLD = 400;
+    const MIN_SUSTAINED_UPWARD_SCROLL = 24;
+    function setScrollIntent(direction: "up" | "down") {
+      lastScrollIntent = direction;
+    }
+    function handleWheel(event: WheelEvent) {
+      if (event.deltaY > 0) {
+        setScrollIntent("down");
+      } else if (event.deltaY < 0) {
+        setScrollIntent("up");
+      }
+    }
+    function handleTouchStart(event: TouchEvent) {
+      lastTouchY = event.touches[0]?.clientY ?? null;
+    }
+    function handleTouchMove(event: TouchEvent) {
+      const currentTouchY = event.touches[0]?.clientY;
+      if (currentTouchY === undefined || lastTouchY === null) return;
+      if (currentTouchY < lastTouchY) {
+        setScrollIntent("down");
+      } else if (currentTouchY > lastTouchY) {
+        setScrollIntent("up");
+      }
+      lastTouchY = currentTouchY;
+    }
+    function handleKeyDown(event: KeyboardEvent) {
+      if (["ArrowDown", "PageDown", "End", " "].includes(event.key) && !event.shiftKey) {
+        setScrollIntent("down");
+      } else if (["ArrowUp", "PageUp", "Home"].includes(event.key) || (event.key === " " && event.shiftKey)) {
+        setScrollIntent("up");
+      }
+    }
+    function handleScroll() {
+      const currentScrollY = window.scrollY;
+      const delta = currentScrollY - lastScrollY;
+      const scrollDirection = lastScrollIntent ?? (delta < 0 ? "up" : delta > 0 ? "down" : null);
+      if (currentScrollY <= BACK_TO_TOP_REVEAL_THRESHOLD) {
+        setShowBackToTop(false);
+        upwardDistance = 0;
+      } else if (scrollDirection === "up" && delta < 0) {
+        upwardDistance += Math.abs(delta);
+        if (upwardDistance >= MIN_SUSTAINED_UPWARD_SCROLL) {
+          setShowBackToTop(true);
+        }
+      } else if (scrollDirection === "down" || delta > 0) {
+        upwardDistance = 0;
+        setShowBackToTop(false);
+      }
+      lastScrollY = currentScrollY;
+    }
+    window.addEventListener("wheel", handleWheel, { passive: true });
+    window.addEventListener("touchstart", handleTouchStart, { passive: true });
+    window.addEventListener("touchmove", handleTouchMove, { passive: true });
+    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener("wheel", handleWheel);
+      window.removeEventListener("touchstart", handleTouchStart);
+      window.removeEventListener("touchmove", handleTouchMove);
+      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
   useEffect(() => {
     if (disclaimerDismissed) return;
@@ -4333,8 +4400,6 @@ export default function App() {
         </div>
       </header>
 
-      <div ref={backToTopSentinelRef} className="h-px w-full" aria-hidden="true" />
-
       {/* DOM position matters here, not just visual placement: this is a
           `position: fixed` button, so moving it doesn't move it on screen —
           but with a results list that can run into the hundreds of cards
@@ -4362,7 +4427,7 @@ export default function App() {
               aria-label="Back to top"
               aria-hidden={!showBackToTop}
               tabIndex={showBackToTop ? 0 : -1}
-              className="pointer-events-auto inline-flex size-11 items-center justify-center rounded-none border border-white/40 bg-white/20 text-stone-900 shadow-[0_4px_16px_rgba(0,0,0,0.15),inset_0_1px_0_rgba(255,255,255,0.25)] backdrop-blur-md backdrop-saturate-150 transition hover:bg-white/35 dark:border-white/15 dark:bg-white/10 dark:text-white dark:shadow-[0_4px_16px_rgba(0,0,0,0.4),inset_0_1px_0_rgba(255,255,255,0.08)] dark:hover:bg-white/20"
+              className="pointer-events-auto inline-flex size-11 items-center justify-center rounded-none border border-white/55 bg-white/70 text-stone-950 shadow-[0_4px_16px_rgba(0,0,0,0.15),inset_0_1px_0_rgba(255,255,255,0.35)] backdrop-blur-md backdrop-saturate-150 transition hover:bg-white/85 dark:border-white/20 dark:bg-stone-950/70 dark:text-white dark:shadow-[0_4px_16px_rgba(0,0,0,0.4),inset_0_1px_0_rgba(255,255,255,0.1)] dark:hover:bg-stone-950/85"
             >
               <ArrowUp className="size-4" aria-hidden="true" />
             </button>
