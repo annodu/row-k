@@ -2573,7 +2573,10 @@ function SubmissionLinkField({
         onChange={(event) => onChange(event.target.value)}
         onBlur={onBlur}
         placeholder={placeholder}
-        type="url"
+        type="text"
+        inputMode="url"
+        autoCapitalize="none"
+        autoCorrect="off"
         className="text-base sm:text-sm"
         disabled={disabled}
         required={required}
