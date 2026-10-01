@@ -2722,70 +2722,31 @@ export default function App() {
     // tick) filters that out while still reacting immediately to a real
     // scroll-up gesture.
     let upwardDistance = 0;
-    let lastScrollIntent: "up" | "down" | null = null;
-    let lastTouchY: number | null = null;
+    let lastScrollMaxY = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
     const BACK_TO_TOP_REVEAL_THRESHOLD = 400;
     const MIN_SUSTAINED_UPWARD_SCROLL = 24;
-    function setScrollIntent(direction: "up" | "down") {
-      lastScrollIntent = direction;
-    }
-    function handleWheel(event: WheelEvent) {
-      if (event.deltaY > 0) {
-        setScrollIntent("down");
-      } else if (event.deltaY < 0) {
-        setScrollIntent("up");
-      }
-    }
-    function handleTouchStart(event: TouchEvent) {
-      lastTouchY = event.touches[0]?.clientY ?? null;
-    }
-    function handleTouchMove(event: TouchEvent) {
-      const currentTouchY = event.touches[0]?.clientY;
-      if (currentTouchY === undefined || lastTouchY === null) return;
-      if (currentTouchY < lastTouchY) {
-        setScrollIntent("down");
-      } else if (currentTouchY > lastTouchY) {
-        setScrollIntent("up");
-      }
-      lastTouchY = currentTouchY;
-    }
-    function handleKeyDown(event: KeyboardEvent) {
-      if (["ArrowDown", "PageDown", "End", " "].includes(event.key) && !event.shiftKey) {
-        setScrollIntent("down");
-      } else if (["ArrowUp", "PageUp", "Home"].includes(event.key) || (event.key === " " && event.shiftKey)) {
-        setScrollIntent("up");
-      }
-    }
     function handleScroll() {
       const currentScrollY = window.scrollY;
       const delta = currentScrollY - lastScrollY;
-      const scrollDirection = lastScrollIntent ?? (delta < 0 ? "up" : delta > 0 ? "down" : null);
+      const currentScrollMaxY = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+      const scrollRangeShrank = currentScrollMaxY < lastScrollMaxY;
       if (currentScrollY <= BACK_TO_TOP_REVEAL_THRESHOLD) {
         setShowBackToTop(false);
         upwardDistance = 0;
-      } else if (scrollDirection === "up" && delta < 0) {
-        upwardDistance += Math.abs(delta);
+      } else if (delta < 0 && !scrollRangeShrank) {
+        upwardDistance -= delta;
         if (upwardDistance >= MIN_SUSTAINED_UPWARD_SCROLL) {
           setShowBackToTop(true);
         }
-      } else if (scrollDirection === "down" || delta > 0) {
+      } else if (delta > 0) {
         upwardDistance = 0;
         setShowBackToTop(false);
       }
       lastScrollY = currentScrollY;
+      lastScrollMaxY = currentScrollMaxY;
     }
-    window.addEventListener("wheel", handleWheel, { passive: true });
-    window.addEventListener("touchstart", handleTouchStart, { passive: true });
-    window.addEventListener("touchmove", handleTouchMove, { passive: true });
-    window.addEventListener("keydown", handleKeyDown);
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => {
-      window.removeEventListener("wheel", handleWheel);
-      window.removeEventListener("touchstart", handleTouchStart);
-      window.removeEventListener("touchmove", handleTouchMove);
-      window.removeEventListener("keydown", handleKeyDown);
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
   useEffect(() => {
     if (disclaimerDismissed) return;
