@@ -1460,15 +1460,15 @@ export function registerAdminStylistRoutes(app) {
     // race a concurrent prefetch's auto-skip write for the same salon.
     // Callers that know their source precisely (Link backlog's direct-photo
     // extraction, e.g.) can say so explicitly; anything else falls back to
-    // the old isReel-inferred default so existing callers keep working
-    // unchanged.
-    const allowedSources = new Set(["instagram", "instagram-reel-thumbnail", "google-image-search"]);
+    // an isReel-inferred default. searchSalonImages only returns the salon's
+    // own Instagram posts, so a non-reel result is "instagram".
+    const allowedSources = new Set(["instagram", "instagram-reel-thumbnail"]);
     const requestedSource = cleanString(req.body?.source);
     const source = allowedSources.has(requestedSource)
       ? requestedSource
       : req.body?.isReel === true
         ? "instagram-reel-thumbnail"
-        : "google-image-search";
+        : "instagram";
     const photo = {
       id: `${salon.id}-portfolio-photo-${crypto.randomUUID()}`,
       url: `/portfolio-photos/${filename}`,
