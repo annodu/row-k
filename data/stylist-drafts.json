@@ -2,43 +2,9 @@
   "meta": {
     "source": "admin-drafts",
     "updatedAt": "2026-10-02",
-    "count": 17
+    "count": 16
   },
   "drafts": [
-    {
-      "id": "thesteambar-muqulvnl",
-      "status": "needs_review",
-      "name": "thesteambar",
-      "areaId": "",
-      "areaIds": [],
-      "areaLabel": "",
-      "neighbourhood": "",
-      "postcode": "",
-      "bookingPlatform": "",
-      "bookingUrl": "",
-      "websiteUrl": "",
-      "instagramUrl": "https://www.instagram.com/thesteambar/",
-      "tiktokUrl": "",
-      "addedVia": "Admin tool",
-      "discoverySource": "Instagram auto-fill",
-      "services": [],
-      "rawServices": [],
-      "summary": "Admin draft created from Instagram intake.",
-      "confidence": 0.2,
-      "warnings": [
-        "No booking link identified yet.",
-        "No services matched yet."
-      ],
-      "evidence": [
-        "Submitted link: https://www.instagram.com/thesteambar/"
-      ],
-      "source": "admin-draft",
-      "createdAt": "2026-10-02",
-      "updatedAt": "2026-10-02",
-      "lastCheckedAt": "2026-10-02",
-      "bookingLinkEvidence": "Could not fetch this Instagram profile: Rate-limited by Instagram — try again shortly. — fill in the rest manually.",
-      "attributeSuggestions": []
-    },
     {
       "id": "the-es-experience",
       "status": "deprecated",
