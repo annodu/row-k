@@ -2,9 +2,43 @@
   "meta": {
     "source": "admin-drafts",
     "updatedAt": "2026-10-03",
-    "count": 17
+    "count": 18
   },
   "drafts": [
+    {
+      "id": "mghairuk-musmdel2",
+      "status": "needs_review",
+      "name": "mghairuk",
+      "areaId": "",
+      "areaIds": [],
+      "areaLabel": "",
+      "neighbourhood": "",
+      "postcode": "",
+      "bookingPlatform": "",
+      "bookingUrl": "",
+      "websiteUrl": "",
+      "instagramUrl": "https://www.instagram.com/mghairuk/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [],
+      "rawServices": [],
+      "summary": "Admin draft created from Instagram intake.",
+      "confidence": 0.2,
+      "warnings": [
+        "No booking link identified yet.",
+        "No services matched yet."
+      ],
+      "evidence": [
+        "Submitted link: https://www.instagram.com/mghairuk/"
+      ],
+      "source": "admin-draft",
+      "createdAt": "2026-10-03",
+      "updatedAt": "2026-10-03",
+      "lastCheckedAt": "2026-10-03",
+      "bookingLinkEvidence": "Could not fetch this Instagram profile: Rate-limited by Instagram — try again shortly. — fill in the rest manually.",
+      "attributeSuggestions": []
+    },
     {
       "id": "tay-hairuk-musmd1tj",
       "status": "needs_review",
