@@ -41,4 +41,6 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          # The action's default is Wrangler 3; wrangler.jsonc + static assets need 4.
+          wranglerVersion: "4"
           command: deploy
