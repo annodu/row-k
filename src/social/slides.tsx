@@ -14,7 +14,9 @@ import {
   type PhotoCell,
   type SlideData,
   CANVAS,
+  DEFAULT_COVER_LAYOUT,
   DEFAULT_CTA_LAYOUT,
+  type ElementAdjust,
   FONT_DISPLAY,
   FONT_SERIF,
   FONT_UI,
@@ -231,6 +233,13 @@ function CoverSlide({ data, aspect }: SlideProps<CoverSlideData>) {
   const safe = SAFE_ZONES[aspect];
   const safeHeight = CANVAS[aspect].height - safe.top - safe.bottom;
   const hasSubject = Boolean(data.subject);
+  const layout = { ...DEFAULT_COVER_LAYOUT, ...data.layout };
+  const { width, height } = CANVAS[aspect];
+  // Shifts keep each block in the safe-box flow, so a nudge doesn't push the others.
+  const shift = (adjust: ElementAdjust) => (adjust.dx || adjust.dy ? `translate(${(adjust.dx / 100) * width}px, ${(-adjust.dy / 100) * height}px)` : undefined);
+  const titleScale = layout.title.size / 100;
+  const kickerScale = layout.kicker.size / 100;
+  const signoffScale = layout.signoff.size / 100;
 
   return (
     <>
@@ -269,10 +278,10 @@ function CoverSlide({ data, aspect }: SlideProps<CoverSlideData>) {
       <SafeBox aspect={aspect}>
         <div style={{ position: "relative", zIndex: 1 }}>
           <FitText
-            maxSize={tall ? 300 : 270}
-            minSize={110}
-            maxHeight={safeHeight * 0.52}
-            style={{ fontFamily: FONT_DISPLAY, lineHeight: 0.86, letterSpacing: "-0.02em", textTransform: "uppercase", color: PALETTE.offwhite }}
+            maxSize={(tall ? 300 : 270) * titleScale}
+            minSize={110 * titleScale}
+            maxHeight={safeHeight * 0.52 * titleScale}
+            style={{ fontFamily: FONT_DISPLAY, lineHeight: 0.86, letterSpacing: "-0.02em", textTransform: "uppercase", color: PALETTE.offwhite, transform: shift(layout.title) }}
           >
             {data.titleTop ? <div>{data.titleTop}</div> : null}
             <div>{data.title}</div>
@@ -285,11 +294,13 @@ function CoverSlide({ data, aspect }: SlideProps<CoverSlideData>) {
                 maxWidth: "58%",
                 textAlign: "right",
                 fontFamily: FONT_DISPLAY,
-                fontSize: 42,
+                fontSize: 42 * kickerScale,
                 lineHeight: 1.1,
                 letterSpacing: "0.01em",
                 textTransform: "uppercase",
                 color: PALETTE.offwhite,
+                whiteSpace: "pre-line",
+                transform: shift(layout.kicker),
               }}
             >
               {data.kicker}
@@ -300,11 +311,11 @@ function CoverSlide({ data, aspect }: SlideProps<CoverSlideData>) {
         <div style={{ flex: 1, minHeight: 0 }} />
 
         <div style={{ position: "relative", zIndex: 3, display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: 24 }}>
-          <div style={{ color: PALETTE.offwhite, textAlign: "center", textShadow: "0 4px 24px rgba(0,0,0,.35)" }}>
-            <div style={{ fontFamily: FONT_SERIF, fontStyle: "italic", fontSize: 140, lineHeight: 1 }}>{data.handle}</div>
-            {data.subtitle ? <div style={{ fontFamily: FONT_SERIF, fontStyle: "italic", fontSize: 52, lineHeight: 1, marginTop: 12 }}>{data.subtitle}</div> : null}
+          <div style={{ color: PALETTE.offwhite, textAlign: "center", textShadow: "0 4px 24px rgba(0,0,0,.35)", transform: shift(layout.signoff) }}>
+            <div style={{ fontFamily: FONT_SERIF, fontStyle: "italic", fontSize: 140 * signoffScale, lineHeight: 1 }}>{data.handle}</div>
+            {data.subtitle ? <div style={{ fontFamily: FONT_SERIF, fontStyle: "italic", fontSize: 52 * signoffScale, lineHeight: 1, marginTop: 12 * signoffScale }}>{data.subtitle}</div> : null}
           </div>
-          <ScribbleArrow style={{ width: 200, height: 300, flexShrink: 0, opacity: 0.95 }} />
+          {data.showArrow === false ? null : <ScribbleArrow style={{ width: 200, height: 300, flexShrink: 0, opacity: 0.95 }} />}
         </div>
       </SafeBox>
     </>

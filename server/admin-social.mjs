@@ -7,6 +7,7 @@ import { fileURLToPath } from "node:url";
 import { categoryMap, derivedServiceMatches, readSalonIndex, searchSalons, serviceAliases } from "./salon-index.mjs";
 import sharp from "sharp";
 import { downloadImage } from "../scripts/lib/photo-candidates.mjs";
+import { safeFetch } from "./outbound-http.mjs";
 import { sanitizeErrorMessage } from "./security.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -28,6 +29,20 @@ function splitParam(value) {
 // Same rule as the public site's price filter (App.tsx comparablePriceBand).
 function comparablePriceBand(salon) {
   return salon.servicePriceBand || salon.priceBand || "";
+}
+
+// A single TikTok video link (www/m/vm/vt.tiktok.com). Short vm/vt links are
+// accepted too; oEmbed resolves them itself.
+export function isTikTokVideoUrl(rawUrl) {
+  try {
+    const url = new URL(rawUrl);
+    const host = url.hostname.toLowerCase();
+    if (url.protocol !== "https:" || url.port) return false;
+    if (host === "vm.tiktok.com" || host === "vt.tiktok.com") return /^\/[A-Za-z0-9]+\/?$/.test(url.pathname);
+    return (host === "www.tiktok.com" || host === "tiktok.com" || host === "m.tiktok.com") && /^\/@[^/]+\/(video|photo)\/\d+\/?$/.test(url.pathname);
+  } catch {
+    return false;
+  }
 }
 
 function instagramHandle(url) {
@@ -150,6 +165,37 @@ export function registerAdminSocialRoutes(app, { requireAdmin, readJson }) {
       res.json({ ok: true, dataUrl: `data:image/jpeg;base64,${jpeg.toString("base64")}` });
     } catch (error) {
       res.status(400).json({ ok: false, message: sanitizeErrorMessage(error, "Could not process that image.") });
+    }
+  });
+
+  // POST /api/admin/social/tiktok-cover  { videoUrl }
+  // TikTok's public oEmbed: the video's cover image (usually 576×1024) plus its
+  // title and author. Free and keyless, but only the cover TikTok picked —
+  // there's no way to choose a different frame through it.
+  app.post("/api/admin/social/tiktok-cover", requireAdmin, async (req, res) => {
+    const videoUrl = String(req.body?.videoUrl || "").trim();
+    if (!isTikTokVideoUrl(videoUrl)) {
+      return res.status(400).json({ ok: false, message: "Use a link to one TikTok video, e.g. tiktok.com/@name/video/…" });
+    }
+    try {
+      const response = await safeFetch(`https://www.tiktok.com/oembed?url=${encodeURIComponent(videoUrl)}`, {
+        headers: { accept: "application/json" },
+        maxBytes: 200_000,
+      });
+      const payload = await response.json().catch(() => null);
+      if (!response.ok || !payload?.thumbnail_url) {
+        return res.status(404).json({ ok: false, message: "TikTok didn't return a cover for that video — check it's public and the link is right." });
+      }
+      res.json({
+        ok: true,
+        imageUrl: payload.thumbnail_url,
+        width: payload.thumbnail_width ?? null,
+        height: payload.thumbnail_height ?? null,
+        title: String(payload.title || "").slice(0, 300),
+        authorHandle: payload.author_unique_id ? `@${payload.author_unique_id}` : "",
+      });
+    } catch (error) {
+      res.status(502).json({ ok: false, message: sanitizeErrorMessage(error, "Couldn't reach TikTok. Try again.") });
     }
   });
 

@@ -76,6 +76,10 @@ export type CoverSlideData = {
   subjectScale?: number;
   subjectOffsetX?: number;
   subjectOffsetY?: number;
+  // Missing = shown.
+  showArrow?: boolean;
+  // Text nudges: size in % of default, dx/dy in % of slide width/height.
+  layout?: CoverLayout;
 };
 
 export type ListSlideData = {
@@ -123,6 +127,18 @@ export const DEFAULT_CTA_LAYOUT: CtaLayout = {
   services: { size: 100, dx: 0, dy: 0 },
   locations: { size: 100, dx: 0, dy: 0 },
   caption: { size: 100, dx: 0, dy: 0, width: 100 },
+};
+
+export type CoverLayout = {
+  title: ElementAdjust;
+  kicker: ElementAdjust;
+  signoff: ElementAdjust;
+};
+
+export const DEFAULT_COVER_LAYOUT: CoverLayout = {
+  title: { size: 100, dx: 0, dy: 0 },
+  kicker: { size: 100, dx: 0, dy: 0 },
+  signoff: { size: 100, dx: 0, dy: 0 },
 };
 
 export type CtaSlideData = {

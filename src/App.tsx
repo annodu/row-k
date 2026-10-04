@@ -3747,22 +3747,32 @@ export default function App() {
     });
   }
 
-  function toggleSubcategory(nextSubcategory: ServiceSubcategoryId) {
+  function toggleSubcategory(nextSubcategory: ServiceSubcategoryId, categoryId?: string) {
     trackAnalyticsEvent("service_filter_selected", {
       selection: nextSubcategory,
       selected: !currentSelectedSubcategories.includes(nextSubcategory),
       type: "subcategory",
     });
 
-    const parentCategory = runtimeCategories.find(
-      (cat) => cat.id !== "all" && getCategorySubcategories(cat.id).includes(nextSubcategory),
-    )?.id as ServiceCategoryId | undefined;
+    const parentCategory = (categoryId ??
+      runtimeCategories.find((cat) => cat.id !== "all" && getCategorySubcategories(cat.id).includes(nextSubcategory))?.id) as ServiceCategoryId | undefined;
+    // Style families nest like category → style: picking a family clears its
+    // members, picking a member clears every family holding it, and clearing
+    // the last picked member falls back to the family it sits under here.
+    const groupedFamilies = new Set(Object.values(subcategoryGroupsByCategory).flat());
+    const familyMembers = groupedFamilies.has(nextSubcategory) ? (serviceFamilies[nextSubcategory] ?? []) : [];
+    const familiesHoldingIt = [...groupedFamilies].filter((family) => (serviceFamilies[family] ?? []).includes(nextSubcategory));
+    const familyHere = parentCategory ? (subcategoryGroupsByCategory[parentCategory] ?? []).find((family) => familiesHoldingIt.includes(family)) : undefined;
 
     updateSubcategories((currentSubcategories) => {
       const isCurrentlySelected = currentSubcategories.includes(nextSubcategory);
-      const nextSubcategories = isCurrentlySelected
+      let nextSubcategories = isCurrentlySelected
         ? currentSubcategories.filter((subcategory) => subcategory !== nextSubcategory)
-        : [...currentSubcategories, nextSubcategory];
+        : [...currentSubcategories.filter((subcategory) => !familyMembers.includes(subcategory) && !familiesHoldingIt.includes(subcategory)), nextSubcategory];
+      if (isCurrentlySelected && familyHere) {
+        const hasSelectedSiblingMember = (serviceFamilies[familyHere] ?? []).some((member) => nextSubcategories.includes(member as ServiceSubcategoryId));
+        if (!hasSelectedSiblingMember) nextSubcategories = [...nextSubcategories, familyHere as ServiceSubcategoryId];
+      }
 
       if (parentCategory) {
         const parentSubcategories = getCategorySubcategories(parentCategory);
@@ -5608,7 +5618,7 @@ export default function App() {
                                       "flex w-full cursor-pointer items-start gap-3 rounded-none px-2 py-2 text-left transition-colors hover:bg-stone-200 active:bg-stone-200 dark:hover:bg-stone-900 dark:active:bg-stone-900",
                                       isNestedSubcategory && "pl-10",
                                     )}
-                                    onClick={() => toggleSubcategory(itemSubcategory as ServiceSubcategoryId)}
+                                    onClick={() => toggleSubcategory(itemSubcategory as ServiceSubcategoryId, id)}
                                   >
                                     <span
                                       aria-hidden="true"

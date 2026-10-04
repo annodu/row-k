@@ -12,7 +12,7 @@ import { downloadDataUrl, renderSlidePng } from "./export";
 import { type Brief, type BriefOptions, type Candidate, EMPTY_BRIEF, buildCarousel, candidateToListSlide, describeBrief, filterPanelGroups, filtersFromBrief, resolvePhotoUrl } from "./build";
 import { fileToDataUrl, removeImageBackground } from "./cutout";
 import { type Sort, FinderView, StylistNameSearch, useBriefOptions } from "./finder";
-import { type Aspect, type CoverSlideData, type CtaFilters, type CtaLayout, type CtaSlideData, type ElementAdjust, DEFAULT_CTA_LAYOUT, type ListSlideData, type PhotoLayoutId, type SlideData, CANVAS, PHOTO_LAYOUTS, getPhotoLayout, layoutCellCount } from "./model";
+import { type Aspect, type CoverSlideData, type CtaFilters, type CtaLayout, type CtaSlideData, type ElementAdjust, type CoverLayout, DEFAULT_COVER_LAYOUT, DEFAULT_CTA_LAYOUT, type ListSlideData, type PhotoLayoutId, type SlideData, CANVAS, PHOTO_LAYOUTS, getPhotoLayout, layoutCellCount } from "./model";
 import { SafeZoneOverlay, SlideContent, SlideFrame } from "./slides";
 
 function slideLabel(slide: SlideData) {
@@ -105,10 +105,19 @@ function Field({ label, hint, children }: { label: string; hint?: string; childr
   );
 }
 
-function TextField({ label, value, onChange, hint }: { label: string; value: string; onChange: (value: string) => void; hint?: string }) {
+function TextField({ label, value, onChange, hint, multiline = false }: { label: string; value: string; onChange: (value: string) => void; hint?: string; multiline?: boolean }) {
   return (
     <Field label={label} hint={hint}>
-      <Input value={value} onChange={(event) => onChange(event.target.value)} className="h-10 py-2" />
+      {multiline ? (
+        <textarea
+          value={value}
+          rows={3}
+          onChange={(event) => onChange(event.target.value)}
+          className="block w-full resize-y rounded-none border border-stone-300 bg-stone-50 px-4 py-2 text-sm text-stone-950 transition-colors outline-none hover:border-stone-400 focus-visible:border-stone-950 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100 dark:hover:border-stone-500 dark:focus-visible:border-stone-100"
+        />
+      ) : (
+        <Input value={value} onChange={(event) => onChange(event.target.value)} className="h-10 py-2" />
+      )}
     </Field>
   );
 }
@@ -176,6 +185,8 @@ function instagramProfileUrl(handle: string) {
 // Same shape the server accepts (admin-stylists validInstagramPostUrl):
 // a single post or reel, optionally with the username in the path.
 const INSTAGRAM_POST_URL = /^https:\/\/(www\.)?instagram\.com\/(?:[^/?#]+\/)?(p|reel)\/[^/?#]+\/?/;
+// Mirrors admin-social isTikTokVideoUrl: one video (or photo post), or a short vm/vt link.
+const TIKTOK_VIDEO_URL = /^https:\/\/(?:(?:(?:www|m)\.)?tiktok\.com\/@[^/?#]+\/(?:video|photo)\/\d+\/?(?:[?#].*)?$|(?:vm|vt)\.tiktok\.com\/[A-Za-z0-9]+\/?$)/;
 
 type InstagramResult = { imageUrl: string; thumbnailUrl: string; contextUrl?: string; isReel?: boolean; title?: string };
 
@@ -244,7 +255,34 @@ function InstagramPhotoFetcher({ slide, onAddPhoto }: { slide: ListSlideData; on
   // Same route as Link backlog: a pasted post/reel the search didn't surface.
   // A photo post is added straight away (pasting it is already the pick); a
   // Reel returns frames to choose from.
+  // A TikTok link adds the video's cover (via TikTok's oEmbed) — there's no
+  // frame choice for TikTok, so pasting it is the pick, like an Instagram photo.
+  const fetchTikTokCover = async (videoUrl: string) => {
+    setLinkBusy(true);
+    setError("");
+    try {
+      const response = await fetch("/api/admin/social/tiktok-cover", {
+        method: "POST",
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ videoUrl }),
+      });
+      const payload = await response.json().catch(() => null);
+      if (!response.ok || !payload?.ok || !payload.imageUrl) {
+        throw new Error(response.status === 404 && !payload ? "Restart the admin API server (npm run dev) to fetch TikTok covers." : payload?.message || "Couldn't fetch that TikTok.");
+      }
+      setReel(null);
+      setPostLink("");
+      await addResult({ imageUrl: payload.imageUrl, thumbnailUrl: payload.imageUrl, contextUrl: videoUrl, isReel: false });
+    } catch (linkError) {
+      setError(linkError instanceof Error ? linkError.message : "Couldn't fetch that TikTok.");
+    } finally {
+      setLinkBusy(false);
+    }
+  };
+
   const fetchLink = async (postUrl: string, batch = 0) => {
+    if (TIKTOK_VIDEO_URL.test(postUrl)) return fetchTikTokCover(postUrl);
     setLinkBusy(true);
     setError("");
     try {
@@ -297,7 +335,7 @@ function InstagramPhotoFetcher({ slide, onAddPhoto }: { slide: ListSlideData; on
     }
   };
 
-  const linkIsValid = INSTAGRAM_POST_URL.test(postLink.trim());
+  const linkIsValid = INSTAGRAM_POST_URL.test(postLink.trim()) || TIKTOK_VIDEO_URL.test(postLink.trim());
 
   return (
     <div className="space-y-2.5 border border-stone-200 p-3 dark:border-stone-800">
@@ -316,15 +354,15 @@ function InstagramPhotoFetcher({ slide, onAddPhoto }: { slide: ListSlideData; on
         <Input
           value={postLink}
           onChange={(event) => setPostLink(event.target.value)}
-          placeholder="Paste a post or reel link"
-          aria-label="Instagram post or reel link"
+          placeholder="Paste a post, reel or TikTok link"
+          aria-label="Instagram post, Reel or TikTok video link"
           className="h-9 min-w-0 flex-1 px-3 py-1.5 text-xs"
         />
         <Button type="submit" variant="outline" disabled={!linkIsValid || linkBusy} className="h-9 shrink-0 px-3 text-xs">
           {linkBusy ? <Loader2 className="size-3.5 animate-spin" /> : "Fetch"}
         </Button>
       </form>
-      {postLink.trim() && !linkIsValid ? <p className="text-[11px] text-stone-500">Use a link to one post or reel, e.g. instagram.com/p/…</p> : null}
+      {postLink.trim() && !linkIsValid ? <p className="text-[11px] text-stone-500">Use a link to one post, reel or TikTok video, e.g. instagram.com/p/… or tiktok.com/@name/video/…</p> : null}
 
       {reel ? (
         <div className="space-y-1.5">
@@ -637,9 +675,48 @@ function CoverInspector({
 
       <TextField label="Title — top line" value={slide.titleTop} onChange={(titleTop) => onChange({ ...slide, titleTop })} hint="Optional." />
       <TextField label="Title" value={slide.title} onChange={(title) => onChange({ ...slide, title })} />
-      <TextField label="Kicker" value={slide.kicker} onChange={(kicker) => onChange({ ...slide, kicker })} />
+      <TextField label="Kicker" value={slide.kicker} onChange={(kicker) => onChange({ ...slide, kicker })} hint="Press Enter for a new line." multiline />
       <TextField label="Sign-off" value={slide.handle} onChange={(handle) => onChange({ ...slide, handle })} />
       <TextField label="Sign-off subtitle" value={slide.subtitle} onChange={(subtitle) => onChange({ ...slide, subtitle })} />
+
+      <label className="flex cursor-pointer items-center gap-2.5 text-[13px] text-stone-800 dark:text-stone-200">
+        <Checkbox checked={slide.showArrow !== false} onCheckedChange={(checked) => onChange({ ...slide, showArrow: checked === true })} className="size-4" />
+        Show arrow
+      </label>
+
+      <CoverLayoutControls layout={{ ...DEFAULT_COVER_LAYOUT, ...slide.layout }} onChange={(layout) => onChange({ ...slide, layout })} />
+    </div>
+  );
+}
+
+// Same collapsible pattern as the closing slide's Layout panel. Up is positive
+// here, matching the cut-out's "Down / up" slider on this slide.
+function CoverLayoutControls({ layout, onChange }: { layout: CoverLayout; onChange: (layout: CoverLayout) => void }) {
+  const [open, setOpen] = useState(false);
+  const group = (title: string, key: keyof CoverLayout) => (
+    <div className="space-y-2 border-t border-stone-200 pt-3 first:border-t-0 first:pt-0 dark:border-stone-800">
+      <p className="text-[13px] font-medium text-stone-950 dark:text-stone-50">{title}</p>
+      <RangeField label="Size" value={layout[key].size} min={50} max={160} unit="%" onChange={(size) => onChange({ ...layout, [key]: { ...layout[key], size } })} />
+      <RangeField label="Left / right" value={layout[key].dx} min={-40} max={40} unit="%" onChange={(dx) => onChange({ ...layout, [key]: { ...layout[key], dx } })} />
+      <RangeField label="Down / up" value={layout[key].dy} min={-60} max={60} unit="%" onChange={(dy) => onChange({ ...layout, [key]: { ...layout[key], dy } })} />
+    </div>
+  );
+  return (
+    <div className="border border-stone-200 dark:border-stone-800">
+      <button type="button" onClick={() => setOpen((current) => !current)} aria-expanded={open} className="flex h-10 w-full items-center justify-between px-3 text-left">
+        <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-stone-500">Text layout</span>
+        <ChevronDown className={cn("size-4 text-stone-500 transition-transform", open && "rotate-180")} />
+      </button>
+      {open ? (
+        <div className="space-y-3 px-3 pb-3">
+          {group("Title", "title")}
+          {group("Kicker", "kicker")}
+          {group("Sign-off", "signoff")}
+          <Button type="button" variant="outline" onClick={() => onChange(DEFAULT_COVER_LAYOUT)} className="h-9 w-full text-xs">
+            Reset text layout
+          </Button>
+        </div>
+      ) : null}
     </div>
   );
 }
