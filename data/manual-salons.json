@@ -2,10 +2,103 @@
   "meta": {
     "source": "manual",
     "updatedAt": "2026-10-04",
-    "count": 1164,
+    "count": 1165,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "elikya-hair",
+      "name": "Elikya Hair",
+      "areaId": "north-west",
+      "areaLabel": "North west London",
+      "neighbourhood": "North west London London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.elikyahairsalon.com/services",
+      "websiteUrl": "https://www.elikyahairsalon.com",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/elikya_hair/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Colour blend (mixing braiding hair)",
+        "Box braids",
+        "Feed-in braids",
+        "Wig cornrows",
+        "Twists (with extensions)",
+        "Crochet",
+        "Knotless braids",
+        "Wig install (frontal / closure)",
+        "French curl",
+        "Boho braids / goddess braids",
+        "Healthy hair plans & consultations",
+        "Fulani / lemonade braids",
+        "Silk press",
+        "Trim / hair cut",
+        "Moisturising treatment",
+        "Wash & blowdry",
+        "Texture release",
+        "Highlights",
+        "Full head colour",
+        "Balayage",
+        "Retwist / interlocking",
+        "Microlocs / sisterlocs",
+        "Bouncy blowout / round brush blow dry",
+        "Traditional sew-in / leave out",
+        "Tape ins"
+      ],
+      "priceBand": "£",
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "Crochet Braids - £70",
+        "Pick &#x27;n&#x27;drop Braids - £90",
+        "Cornrow under wig - £15",
+        "French Curls Braids - £100",
+        "Boho / Goddess knotless Braids - £105",
+        "Braids Touch Up (hairline/edges only) - £35",
+        "Fulani braids (any style) - £70",
+        "French / Dutch braid - £25"
+      ],
+      "priceCheckedAt": "2026-10-04",
+      "priceUpdatedAt": "2026-10-04",
+      "priceConfidence": "high",
+      "summary": "📍Hanwell Broadway\nCHAIR TO RENT                                   \n🔝Braids - Tape-ins - Silk press & more",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/elikya_hair/",
+        "Submitted link: https://www.elikyahairsalon.com"
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-10-04",
+      "portfolioPhotos": [
+        {
+          "id": "elikya-hair-portfolio-photo-9dfce2c5-1fe4-4b1a-b5b5-de1a8d3f4113",
+          "url": "/portfolio-photos/elikya-hair-529323a3-a71c-4f0b-a383-2fc11aa44223.jpg",
+          "source": "instagram"
+        },
+        {
+          "id": "elikya-hair-portfolio-photo-b93d9acb-c202-466e-93ea-1eb72eaf869d",
+          "url": "/portfolio-photos/elikya-hair-52f96144-38cd-4aa0-968a-a8006ea2c615.jpg",
+          "source": "instagram"
+        },
+        {
+          "id": "elikya-hair-portfolio-photo-452f826f-594a-41eb-9919-6a2242ae7e23",
+          "url": "/portfolio-photos/elikya-hair-04f2ce64-4960-483a-8f1b-ae059442a937.jpg",
+          "source": "instagram"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-10-04",
+      "photoOrderBumpedAt": 1270,
+      "updatedAt": "2026-10-04"
+    },
     {
       "id": "annienimz",
       "name": "Annienimz",
