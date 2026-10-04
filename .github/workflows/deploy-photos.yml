@@ -14,6 +14,7 @@ on:
       - "public/portfolio-photos/**"
       - "scripts/build-photo-pages.mjs"
       - "wrangler.jsonc"
+      - ".github/workflows/deploy-photos.yml"
   workflow_dispatch:
 
 # A newer push supersedes an in-progress deploy rather than racing it.
