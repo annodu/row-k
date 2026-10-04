@@ -34,15 +34,15 @@ export function setRegionParentGroupsCache(groups) {
 const filtersPath = path.resolve(__dirname, "../data/filters.json");
 
 const defaultCategoryMap = {
-  "braiding-services": ["Boho braids / goddess braids","Braid take-down","Box braids","Colour blend (mixing braiding hair)","Crochet","Creative braids","Feed-in braids","French curl","Fulani / lemonade braids","Half braids, half sew-in","Knotless braids","Miracle knots","Microbraids / x-small braids","Pre-parting","Stitch braids","Twists (with extensions)","Boho braids bob","French curl bob","Men's braids","Wig cornrows"],
+  "braiding-services": ["Boho braids / goddess braids","Braid take-down","Box braids","Colour blend (mixing braiding hair)","Crochet","Creative braids","Feed-in braids","French curl","Fulani / lemonade braids","Knotless braids","Miracle knots","Microbraids / x-small braids","Pre-parting","Stitch braids","Twists (with extensions)","Boho braids bob","French curl bob","Men's braids","Wig cornrows","Hybrid (braids + sew-in)","Fulani sew-in","Boho sew-in","Feed-in / stitch braid sew-in"],
   "colour-services": ["Balayage","Full head colour","Highlights","Wig colouring / bundle colouring"],
   "bridal-services": ["Bridal"],
   "editorial-services": ["Editorial / Session styling"],
   "kids-teens-services": ["Kids & teens styles"],
-  "extension-services": ["Clip ins (+ silk press)","K-tips / invisible strands","LA weave / microlinks wefts / braidless sew in","I-tips / microlinks strands","Tape ins"],
+  "extension-services": ["Clip ins (+ silk press)","K-tips / invisible strands","LA weave / microlinks wefts / braidless sew in","I-tips / microlinks strands","Tape ins","Hybrid installs","Tape-ins + sew-in","K-tips + sew-in"],
   "locs-services": ["Starter locs / instant locs","Retwist / interlocking","Loc styling","Microlocs / sisterlocs","Loc extensions (permanent)"],
-  "faux-locs-services": ["Soft locs","Crochet faux locs / invisible locs","Butterfly locs"],
-  "sew-in-weave": ["Closure sew-in / closure behind the hairline","Flipover / Versatile sew-in","Frontal sew-in","Hybrid sew in (tapes + sew in)","Pixie wig / weave install","Quick weave","Sew-in take-down","Tracks (+ silk press) / partial / invisible sew-in","Traditional sew-in / leave out"],
+  "faux-locs-services": ["Soft locs","Boho locs","Crochet faux locs / invisible locs","Butterfly locs"],
+  "sew-in-weave": ["Closure sew-in / closure behind the hairline","Flipover / Versatile sew-in","Frontal sew-in","Pixie wig / weave install","Quick weave","Sew-in take-down","Tracks (+ silk press) / partial / invisible sew-in","Traditional sew-in / leave out","Fulani sew-in","Boho sew-in","Feed-in / stitch braid sew-in","Tape-ins + sew-in","K-tips + sew-in"],
   "styling-services": ["Sew in / extensions blowdry","Frontal ponytail / bun","Half up half down","Pixie cut / finger waves","Sleek ponytail / bun","Updo"],
   "straightening-treatments": ["Hair botox","Japanese straightening","K18 treatment","Keratin treatment / Brazilian blowdry","Moisturising treatment","Olaplex treatment","Relaxer / texturiser","Texture release"],
   "natural-hair-services": ["Wig cornrows","Curly cut / wash & go / diffuse","Silk press","Bouncy blowout / round brush blow dry","Trim / hair cut","Roller set","Twist out / flexi rod","Bantu knots","Wash & blowdry","Japanese head spa","Scalp detox / treatments","Men's braids"],
@@ -74,6 +74,9 @@ export function setCategoryMapCache(categories) {
 })();
 
 export const serviceAliases = {
+  "Braids + sew-in hybrids": "Hybrid (braids + sew-in)",
+  "Half braids, half sew-in": "Hybrid (braids + sew-in)",
+  "Hybrid sew in (tapes + sew in)": "Tape-ins + sew-in",
   "K-18 treatment": "K18 treatment",
   "Colour blend": "Colour blend (mixing braiding hair)",
   "Color blend": "Colour blend (mixing braiding hair)",
@@ -227,8 +230,8 @@ export const serviceAliases = {
   "Micro links strands": "I-tips / microlinks strands",
   "Flipover sew-in": "Flipover / Versatile sew-in",
   "Flipover / versatile sew-in": "Flipover / Versatile sew-in",
-  "Hybrid sew-in": "Hybrid sew in (tapes + sew in)",
-  "Hybrid sew in": "Hybrid sew in (tapes + sew in)",
+  "Hybrid sew-in": "Tape-ins + sew-in",
+  "Hybrid sew in": "Tape-ins + sew-in",
   "Bouncy blowout / Round Brush Blow dry": "Bouncy blowout / round brush blow dry",
   "Boho braids / microbraids": "Boho braids / goddess braids",
   "Boho braids / goddess braids": "Boho braids / goddess braids",
@@ -357,9 +360,9 @@ export const serviceAliases = {
   "Permanent tint": "Full head colour",
   "Wig colouring / Bundle colouring": "Wig colouring / bundle colouring",
   "Hair Botox": "Hair botox",
-  "Half braid": "Half braids, half sew-in",
-  "Half weave": "Half braids, half sew-in",
-  "Half braid / Half weave": "Half braids, half sew-in",
+  "Half braid": "Hybrid (braids + sew-in)",
+  "Half weave": "Hybrid (braids + sew-in)",
+  "Half braid / Half weave": "Hybrid (braids + sew-in)",
   "K-tips / Invisible strands": "K-tips / invisible strands",
   "Keratin tip": "K-tips / invisible strands",
   "Keratin tips": "K-tips / invisible strands",
@@ -704,6 +707,27 @@ function matchesRegion(salon, regions) {
   });
 }
 
+// Parent filters are derived: a stylist tagged with a member (e.g. Fulani
+// sew-in) also matches its parent. The hybrid parents are real services for
+// unspecified combos; the "(all)" families are filter-only.
+const derivedServiceMatches = {
+  "Hybrid (braids + sew-in)": ["Fulani sew-in", "Boho sew-in", "Feed-in / stitch braid sew-in"],
+  "Hybrid installs": ["Tape-ins + sew-in", "K-tips + sew-in"],
+  // Sew in / weave's single hybrid group, including both umbrella tags.
+  "Hybrid installs (all)": ["Boho sew-in", "Fulani sew-in", "Feed-in / stitch braid sew-in", "Tape-ins + sew-in", "K-tips + sew-in", "Hybrid (braids + sew-in)", "Hybrid installs"],
+  // Filter-only style families (see serviceFamilies in src/App.tsx).
+  "Boho (all)": ["Boho braids / goddess braids", "Boho braids bob", "Boho sew-in"],
+  "Fulani (all)": ["Fulani / lemonade braids", "Fulani sew-in"],
+  "Feed-in & stitch braids (all)": ["Feed-in braids", "Stitch braids", "Feed-in / stitch braid sew-in"],
+  "French curl (all)": ["French curl", "French curl bob"],
+  "Tape-in (all)": ["Tape ins", "Tape-ins + sew-in"],
+  "K-tip (all)": ["K-tips / invisible strands", "K-tips + sew-in"],
+};
+
+function hasService(services, service) {
+  return services.includes(service) || (derivedServiceMatches[service] ?? []).some((child) => services.includes(child));
+}
+
 function matchesServiceSelection(salon, categories, subcategories) {
   const services = normalizeServices(salon.services);
 
@@ -720,7 +744,7 @@ function matchesServiceSelection(salon, categories, subcategories) {
     return false;
   }
 
-  return (subcategories ?? []).every((subcategory) => services.includes(subcategory));
+  return (subcategories ?? []).every((subcategory) => hasService(services, subcategory));
 }
 
 function matchesHijabiFriendly(salon, hijabiFriendly) {

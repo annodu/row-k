@@ -15,6 +15,7 @@ import { cropCollagePanel, downloadImage } from "../scripts/lib/photo-candidates
 import { createWorker } from "tesseract.js";
 import sharp from "sharp";
 import { cleanString, sanitizeCustomFilters } from "./custom-filters.mjs";
+import { registerAdminSocialRoutes } from "./admin-social.mjs";
 
 function today() {
   return new Date().toISOString().split("T")[0];
@@ -43,12 +44,8 @@ const customFilterTypesPath = path.resolve(__dirname, "../data/custom-filter-typ
 const priceBandsPath = path.resolve(__dirname, "../data/price-bands.json");
 const manualIndexPath = path.resolve(__dirname, "../data/manual-salons.json");
 const healthCheckFeedbackPath = path.resolve(__dirname, "../data/health-check-feedback.json");
-const portfolioReviewPath = path.resolve(__dirname, "../data/portfolio-photo-review.json");
-const portfolioReviewPhotosDir = path.resolve(__dirname, "../data/portfolio-review-photos");
 const portfolioPhotosPublicDir = path.resolve(__dirname, "../public/portfolio-photos");
 const portfolioPhotosGitDir = "public/portfolio-photos";
-const portfolioCorrectionsPath = path.resolve(__dirname, "../data/portfolio-photo-corrections.json");
-const portfolioCorrectionsPhotosDir = path.resolve(__dirname, "../data/portfolio-photo-corrections-photos");
 const photoLinkBacklogPath = path.resolve(__dirname, "../data/photo-link-backlog.json");
 const photoSearchPicksPath = path.resolve(__dirname, "../data/photo-search-picks.json");
 const sessionCookieName = "rowk_admin_session";
@@ -227,7 +224,14 @@ const serviceRuleMatchers = [
   // pre-coloured braiding hair for a style.
   ["Colour blend (mixing braiding hair)", [/\bcolou?r\s+(mix|blend)(ed|ing)?\b/, /\bmix(ed)?\s+colou?rs?\b/, /\bcolou?rs?\s+mix(ed|ing)?\b/]],
   ["Frontal ponytail / bun", [/\bfrontal\b.*\b(pony|ponytail|bun)\b/, /\b(pony|ponytail|bun)\b.*\bfrontal\b/]],
-  ["Half braids, half sew-in", [/\bhalf\b.*\b(braid|braids|feed\s*in|feed-in|cornrows?)\b.*\b(weave|sew[\s-]*in|sewin)\b/, /\bhalf\b.*\b(weave|sew[\s-]*in|sewin)\b.*\b(braid|braids|feed\s*in|feed-in|cornrows?)\b/, /\bhalf\s+braid\b/, /\bhalf\s+weave\b/]],
+  // A Jayda Wayda sew-in is feed-in even when the name also says Fulani.
+  ["Fulani sew-in", [/^(?!.*\bjayda\b).*\b(fulani|alicia\s+keys?)\b.*\b(sew\s*in|sewin|weave|quick\s*weave|half\s+wig)\b/, /^(?!.*\bjayda\b).*\b(sew\s*in|sewin|weave|quick\s*weave|half\s+wig)\b.*\b(fulani|alicia\s+keys?)\b/]],
+  ["Boho sew-in", [/\b(boho|zoe\s+kravitz)\b.*\b(sew\s*in|sewin|weave|quick\s*weave|half\s+wig)\b/, /\b(sew\s*in|sewin|weave|quick\s*weave|half\s+wig)\b.*\b(boho|zoe\s+kravitz)\b/]],
+  // Visible feed-ins / stitch braids alongside the install. Plain cornrows only
+  // count when the service is split ("half cornrows half weave"), so cornrow
+  // prep under a full weave doesn't land here. Tyla and Jayda Wayda count as feed-in.
+  ["Feed-in / stitch braid sew-in", [/\b(feed\s*ins?|stitch(\s+braids?)?|tyla|jayda(\s+wayda)?)\b.*\b(sew\s*in|sewin|weave|quick\s*weave|half\s+wig)\b/, /\b(sew\s*in|sewin|weave|quick\s*weave|half\s+wig)\b.*\b(feed\s*ins?|stitch(\s+braids?)?|tyla|jayda(\s+wayda)?)\b/, /\bhalf\b.*\bcornrows?\b.*\b(weave|sew\s*in|sewin)\b/, /\bhalf\b.*\b(weave|sew\s*in|sewin)\b.*\bcornrows?\b/]],
+  ["Hybrid (braids + sew-in)", [/\bhybrid\b.*\b(sew\s*in|sewin|weave)\b.*\b(braids?|cornrows?)\b/, /\b(braids?|cornrows?)\b.*\bhybrid\b.*\b(sew\s*in|sewin|weave)\b/, /\bhalf\b.*\b(braid|braids|feed\s*in|feed-in|cornrows?)\b.*\b(weave|sew[\s-]*in|sewin)\b/, /\bhalf\b.*\b(weave|sew[\s-]*in|sewin)\b.*\b(braid|braids|feed\s*in|feed-in|cornrows?)\b/, /\bhalf\s+braid\b/, /\bhalf\s+weave\b/]],
   ["Wig install (frontal / closure)", [/\bwig\b.*\b(install|instal|installation|application|fit|fitting)\b/, /\b(glueless|lace)\s+wig\b/, /\bfrontal\s+wig\b/, /\bclosure\s+wig\b/, /\b(frontal|closure|ready[\s-]*made)\s+unit\b/, /\bunit\b.*\b(install|instal|installation|application|fit|fitting)\b/, /\b(lace\s+)?frontal\s+installation\b/, /\b(lace\s+)?closure\s+installation\b/, /\bwigs?$/, /\b(frontal|closure)$/]],
   ["U-Part / Half wig install", [/\b(u[\s-]*part|v[\s-]*part|u[\s/-]*v[\s-]*part|uvpart)\b.*\b(wig|install|installation)\b/, /\b(wig|install|installation)\b.*\b(u[\s-]*part|v[\s-]*part|u[\s/-]*v[\s-]*part|uvpart)\b/, /\bhalf\s+wig\b/]],
   ["Custom wig", [/\bcustom\b.*\bwig\b/, /\bbespoke\b.*\bwig\b/, /\bcustom\s+handmade\s+wigs?\b/, /\bwig\b.*\b(custom|bespoke|handmade|made|making|construction|unit)\b/, /\bunit\b.*\bcustomi[sz](ing|ation)\b/, /\bcustomi[sz](ing|ation)\b.*\bunit\b/, /\bcustom(?:\s+made)?\b.*\b(frontal|closure)\s+unit\b/, /\bcustom\b.*\bfrontal\s+closure\s+units?\b/, /\bwig\s+(making|construction|customi[sz](ing|ation))\b/, /\bconstruction\s+of\s+(the\s+)?wig\b/, /\bconstruction\b.*\bcustomi[sz](ing|ation)\b/, /\bcustomi[sz](ing|ation)\b.*\bconstruction\b/, /\b(frontal|closure)\b.*\bcustomi[sz](ing|ation)\b/, /\bcustomi[sz](ing|ation)\b.*\b(frontal|closure|wig)\b/, /\b(frontal|closure|wig)\b.*\b(hand[\s-]*made|handmade)\b/, /\b(hand[\s-]*made|handmade)\b.*\b(frontal|closure|wig)\b/]],
@@ -236,7 +240,11 @@ const serviceRuleMatchers = [
   ["Frontal sew-in", [/\bfrontal\b.*\b(sew\s*in|sewin|weave)\b/, /\b(sew\s*in|sewin|weave)\b.*\bfrontal\b/]],
   ["Flipover / versatile sew-in", [/\bflip\s*over\b/, /\bflipover\b/, /\bversatile\b.*\b(sew\s*in|sewin|weave)\b/, /\bversatile\s+sew\s+in\b/]],
   ["Quick weave", [/\bquick\b.*\bweave\b/, /\bquickweave\b/]],
-  ["Hybrid sew in (tapes + sew in)", [/\bhybrid\b.*\b(sew\s*in|sewin|weave)\b/, /\btracks?\b.*\btapes?\b.*\bhybrid\b/, /\bhybrid\b.*\btracks?\b.*\btapes?\b/]],
+  // A bare "hybrid sew-in" has long meant tapes + tracks; skip it when the same
+  // line names K-tips, I-tips or braids rather than tapes.
+  ["Tape-ins + sew-in", [/^(?!.*\b[ki]\s*tips?\b)(?!.*\b(braids?|cornrows?|fulani|boho)\b).*\bhybrid\b.*\b(sew\s*in|sewin|weave)\b/, /\btracks?\b.*\btapes?\b.*\bhybrid\b/, /\bhybrid\b.*\btracks?\b.*\btapes?\b/, /^(?!.*\b(removals?|take\s*down|takedown)\b)(?=.*\btapes?\b)(?=.*\b(sew\s*in|sewin)\b)/]],
+  ["K-tips + sew-in", [/^(?!.*\b(removals?|take\s*down|takedown)\b)(?=.*\bk\s*tips?\b)(?=.*\b(sew\s*in|sewin|hybrid)\b)/]],
+  ["Hybrid installs", [/^(?!.*\b(braids?|cornrows?|fulani|boho)\b).*\bhybrid\s+install(s|ation)?\b/]],
   ["Sew-in take-down", [/\b(sew\s*in|sewin|weave|tracks?)\b.*\b(take\s*down|takedown|removal|remove)\b/, /\b(take\s*down|takedown|removal|remove)\b.*\b(sew\s*in|sewin|weave|tracks?)\b/]],
   ["Tracks (+ silk press) / partial / invisible sew-in", [/\btracks?\b/, /\bsingle\s+tracks?\s+weave\b/, /\bsingle\s*\/\s*double\s+tracks?\s+weave\b/, /\bindividual\s+sewn\s+on\s+tracks?\b/, /\bpartial\b.*\b(sew\s*in|sewin|weave)\b/, /\binvisible\b.*\b(sew\s*in|sewin|weave|wefts?)\b/, /\b(row|rows|line)\s+(?:of\s+)?(sew\s*in|sewin|weave)\b/, /\b(sew\s*in|sewin|weave)\s+(row|rows|line)\b/, /\bweave\s+on\s+per\s+row\b/, /\bweave\s+tracks?\s*\(?per\s+track\)?\b/, /\bsew[\s-]*in\s+tracks?\b/, /\bper\s+(track|row|line)\b/, /\btrack\s+per\s+row\b/, /\btracks?\s+per\s+(track|row|line|double\s+row)\b/, /\btraditional\s+weave\s+rows?\b/, /^\d+\s+row$/, /\bone\s+row\b/]],
   ["Traditional sew-in / leave out", [/\bleave\s*out\b/, /\b(middle|side)\s+part\b.*\b(sew\s*in|sewin|weave)\b/, /\btraditional\b.*\b(sew\s*in|sewin|weave)\b/, /\b(sew\s*in|sewin)\b/]],
@@ -252,7 +260,7 @@ const serviceRuleMatchers = [
   ["Knotless braids", [/\bknotless\b/]],
   ["Box braids", [/\bbox\b.*\bbraids?\b/]],
   ["Crochet", [/\bcrochet\b/]],
-  ["Creative braids", [/\bpatewo\b/, /\bdolly\s+braids?\b/, /\bshuku\b/, /\bkoroba\s+braids?\b/, /\bcreative\b.*\bbraids?\b/]],
+  ["Creative braids", [/\bcassie\b.*\b(sew\s*in|sewin|weave)\b/, /\bpatewo\b/, /\bdolly\s+braids?\b/, /\bshuku\b/, /\bkoroba\s+braids?\b/, /\bcreative\b.*\bbraids?\b/]],
   ["Feed-in braids", [/\bfeed\s*in\b/, /\bfeed-in\b/, /\ball\s+back\b.*\b(braids?|cornrows?|feed\s*ins?)\b/, /\b(braids?|cornrows?|feed\s*ins?)\b.*\ball\s+back\b/, /\bbraids?\b.*\bgoing\s+back\b/, /\bgoing\s+back\b.*\bbraids?\b/, /\bcornrows?\b.*\b(extension|extensions|pre\s*pull(ed)?|braiding\s+hair)\b/, /\b(extension|extensions|pre\s*pull(ed)?|braiding\s+hair)\b.*\bcornrows?\b/]],
   // Was never matchable at all before — "Men's Natural Braids/Twists" (a
   // real Acuity line item) doesn't literally contain "men's braids" as a
@@ -351,10 +359,15 @@ export const serviceNegationHints = {
   "Full head colour": ["full head colour", "full head color", "colour", "color", "dye", "tint"],
   "Hair botox": ["hair botox", "botox"],
   "Healthy hair plans & consultations": ["healthy hair", "healthy hair plan", "healthy hair plans", "healthy hair consultation", "healthy hair consultations", "healthy hair regime", "healthy hair regimes", "healthy hair regimen", "healthy hair journey", "hair growth plan", "hair health plan"],
-  "Half braids, half sew-in": ["half braids half sew in", "half braid half weave", "half weave"],
+  "Hybrid (braids + sew-in)": ["half braids half sew in", "half braid half weave", "half weave"],
+  "Fulani sew-in": ["fulani sew in", "fulani sewin", "fulani weave", "fulani quick weave"],
+  "Boho sew-in": ["boho sew in", "boho sewin", "boho weave"],
+  "Feed-in / stitch braid sew-in": ["feed in sew in", "feed ins sew in", "stitch braids sew in", "half feed in half sew in", "half feed ins half weave"],
   "Half up half down": ["half up half down"],
   "Highlights": ["highlights", "high lights"],
-  "Hybrid sew in (tapes + sew in)": ["hybrid sew in", "hybrid sewin", "hybrid weave"],
+  "Tape-ins + sew-in": ["hybrid sew in", "hybrid sewin", "hybrid weave", "tape in sew in", "tapes and sew in"],
+  "K-tips + sew-in": ["k tip sew in", "k tips sew in", "hybrid k tips", "k tip hybrid"],
+  "Hybrid installs": ["hybrid install", "hybrid installation", "hybrid extensions"],
   "Japanese straightening": ["japanese straightening"],
   "K18 treatment": ["k 18", "k18", "k-18"],
   "K-tips / invisible strands": ["k tips", "invisible strands", "keratin tip", "keratin tips", "keratin bonds"],
@@ -844,8 +857,7 @@ export function registerAdminStylistRoutes(app) {
   // the ORDER of this array is what decides which ones actually show on the
   // public card — see getPortfolioPhotos in App.tsx, which slices to the
   // first 3. A photo dropped from the submitted list (the admin removed it in
-  // the drawer) has its file deleted for good, same as a portfolio-review
-  // dismiss.
+  // the drawer) has its file deleted for good.
   app.post("/api/admin/stylists/published/:id/portfolio-photos", requireAdmin, async (req, res) => {
     const manualIndex = await readJson(manualIndexPath, { meta: { source: "manual" }, salons: [] });
     const salonIndex = manualIndex.salons.findIndex((salon) => salon.id === req.params.id);
@@ -889,10 +901,9 @@ export function registerAdminStylistRoutes(app) {
     res.json({ ok: true, salon: publishedSalonToDraft(salon, now) });
   });
 
-  // Same manual-crop tool as the portfolio-review queue, but for a photo
-  // that's already approved onto the profile — lets an admin fix a messy
-  // crop (caption bleed, UI chrome) in place from the Photos tab without
-  // needing to remove it and re-approve a fresh copy from Photo review.
+  // Manual crop for a photo that's already approved onto the profile — lets
+  // an admin fix a messy crop (caption bleed, UI chrome) in place from the
+  // Photos tab without needing to remove it and re-approve a fresh copy.
   app.post("/api/admin/stylists/published/:id/portfolio-photos/:photoId/crop", requireAdmin, async (req, res) => {
     const manualIndex = await readJson(manualIndexPath, { meta: { source: "manual" }, salons: [] });
     const salonIndex = manualIndex.salons.findIndex((salon) => salon.id === req.params.id);
@@ -1019,158 +1030,6 @@ export function registerAdminStylistRoutes(app) {
     const store = await readJson(healthCheckFeedbackPath, { meta: { source: "health-check-feedback" }, entries: [] });
     const entries = Array.isArray(store.entries) ? store.entries : [];
     res.json({ ok: true, entries: [...entries].reverse() });
-  });
-
-  // Rejected candidate photos from scripts/backfill-portfolio-photos.mjs, held here
-  // for manual review since the vision classifier's rejections are heuristic
-  // judgment calls and some will be wrong (as several were during development —
-  // an editorial hairstyle photo, in particular, got misclassified as product
-  // marketing until the prompt was corrected). Local-filesystem only: the
-  // candidate images never leave this machine unless approved, so this doesn't
-  // work against the hosted/Vercel admin — only via `npm run dev` locally.
-  app.get("/api/admin/portfolio-review", requireAdmin, async (_req, res) => {
-    const store = await readJson(portfolioReviewPath, { meta: {}, candidates: [] });
-    res.json({ ok: true, candidates: Array.isArray(store.candidates) ? store.candidates : [] });
-  });
-
-  app.get("/api/admin/portfolio-review/photo/:id", requireAdmin, async (req, res) => {
-    const store = await readJson(portfolioReviewPath, { meta: {}, candidates: [] });
-    const candidate = (store.candidates || []).find((c) => c.id === req.params.id);
-    if (!candidate) {
-      return res.status(404).end();
-    }
-    try {
-      const buffer = await fs.readFile(path.join(portfolioReviewPhotosDir, candidate.filename));
-      res.setHeader("Content-Type", mimeTypeForImageFilename(candidate.filename));
-      res.setHeader("Cache-Control", "private, max-age=3600");
-      res.send(buffer);
-    } catch {
-      res.status(404).end();
-    }
-  });
-
-  // Lets an admin draw their own crop over a review candidate — e.g. an
-  // Instagram-style collage the automated panel-cropper bled into (caption
-  // text, "like" icons, a phone-mockup bezel), where a human eye can pick a
-  // cleaner rectangle than the vision model's own coordinate estimate.
-  // Replaces the candidate's file in place with the cropped result, so the
-  // same candidate can then just be approved normally.
-  app.post("/api/admin/portfolio-review/:id/crop", requireAdmin, async (req, res) => {
-    const store = await readJson(portfolioReviewPath, { meta: {}, candidates: [] });
-    const candidates = Array.isArray(store.candidates) ? store.candidates : [];
-    const index = candidates.findIndex((c) => c.id === req.params.id);
-    if (index === -1) {
-      return res.status(404).json({ ok: false, message: "Candidate not found." });
-    }
-    const candidate = candidates[index];
-
-    const panel = {
-      x: Number(req.body?.x),
-      y: Number(req.body?.y),
-      width: Number(req.body?.width),
-      height: Number(req.body?.height),
-    };
-    if (![panel.x, panel.y, panel.width, panel.height].every((n) => Number.isFinite(n) && n >= 0 && n <= 1) || panel.width <= 0 || panel.height <= 0) {
-      return res.status(400).json({ ok: false, message: "Invalid crop region." });
-    }
-    const rotation = Number(req.body?.rotation) || 0;
-    if (![0, 90, 180, 270].includes(((Math.round(rotation) % 360) + 360) % 360)) {
-      return res.status(400).json({ ok: false, message: "Invalid rotation." });
-    }
-
-    try {
-      const originalBuffer = await fs.readFile(path.join(portfolioReviewPhotosDir, candidate.filename));
-      const croppedBuffer = await cropCollagePanel(originalBuffer, panel, rotation);
-      const newFilename = `${candidate.id}-crop-${Date.now()}.jpg`;
-      await fs.writeFile(path.join(portfolioReviewPhotosDir, newFilename), croppedBuffer);
-      await fs.unlink(path.join(portfolioReviewPhotosDir, candidate.filename)).catch(() => {});
-      candidate.filename = newFilename;
-      store.candidates = candidates;
-      await writeJson(portfolioReviewPath, store);
-      res.json({ ok: true, candidate });
-    } catch (error) {
-      res.status(400).json({ ok: false, message: error.message || "Could not crop that region." });
-    }
-  });
-
-  app.post("/api/admin/portfolio-review/:id/approve", requireAdmin, async (req, res) => {
-    const store = await readJson(portfolioReviewPath, { meta: {}, candidates: [] });
-    const candidates = Array.isArray(store.candidates) ? store.candidates : [];
-    const index = candidates.findIndex((c) => c.id === req.params.id);
-    if (index === -1) {
-      return res.status(404).json({ ok: false, message: "Candidate not found." });
-    }
-    const candidate = candidates[index];
-
-    const manualIndex = await readJson(manualIndexPath, { meta: { source: "manual" }, salons: [] });
-    const salon = manualIndex.salons.find((s) => s.id === candidate.salonId);
-    if (!salon) {
-      return res.status(404).json({ ok: false, message: "Salon not found." });
-    }
-
-    // Every approved photo is kept on the profile, however many there are —
-    // the public site only ever shows the first 3, and which ones those are
-    // is decided separately in the stylist drawer's Photos tab (shortlisted
-    // and reordered there), not capped at approval time.
-    const existingPhotos = salon.portfolioPhotos || [];
-    const ext = path.extname(candidate.filename) || ".jpg";
-
-    const newFilename = `${salon.id}-${crypto.randomUUID()}${ext}`;
-    const newBuffer = await fs.readFile(path.join(portfolioReviewPhotosDir, candidate.filename));
-    const updatedPhotos = [
-      ...existingPhotos,
-      { id: `${salon.id}-portfolio-photo-${crypto.randomUUID()}`, url: `/portfolio-photos/${newFilename}`, source: candidate.source },
-    ];
-
-    // Keep a copy plus the classifier's original (wrong) verdict as a
-    // human-confirmed correction — scripts/backfill-portfolio-photos.mjs feeds
-    // a rotating sample of these back into future classification calls as
-    // reference examples, so the same kind of mistake shows up less often
-    // instead of just being fixed one photo at a time.
-    await fs.mkdir(portfolioCorrectionsPhotosDir, { recursive: true });
-    const correctionFilename = `${candidate.id}${ext}`;
-    await fs.copyFile(path.join(portfolioReviewPhotosDir, candidate.filename), path.join(portfolioCorrectionsPhotosDir, correctionFilename));
-    const corrections = await readJson(portfolioCorrectionsPath, { corrections: [] });
-    corrections.corrections = [
-      ...(corrections.corrections || []),
-      {
-        id: candidate.id,
-        filename: correctionFilename,
-        category: candidate.category,
-        quality: candidate.quality,
-        reason: candidate.reason,
-        correctedAt: today(),
-      },
-    ];
-    await writeJson(portfolioCorrectionsPath, corrections);
-
-    await fs.unlink(path.join(portfolioReviewPhotosDir, candidate.filename)).catch(() => {});
-
-    salon.portfolioPhotos = updatedPhotos;
-    await persistManualIndexWithPortfolioFiles(manualIndex, `Approve portfolio review photo for ${salon.name}`, {
-      writes: [{ filename: newFilename, buffer: newBuffer }],
-    });
-
-    candidates.splice(index, 1);
-    store.candidates = candidates;
-    await writeJson(portfolioReviewPath, store);
-
-    res.json({ ok: true });
-  });
-
-  app.post("/api/admin/portfolio-review/:id/dismiss", requireAdmin, async (req, res) => {
-    const store = await readJson(portfolioReviewPath, { meta: {}, candidates: [] });
-    const candidates = Array.isArray(store.candidates) ? store.candidates : [];
-    const index = candidates.findIndex((c) => c.id === req.params.id);
-    if (index === -1) {
-      return res.status(404).json({ ok: false, message: "Candidate not found." });
-    }
-    const candidate = candidates[index];
-    await fs.unlink(path.join(portfolioReviewPhotosDir, candidate.filename)).catch(() => {});
-    candidates.splice(index, 1);
-    store.candidates = candidates;
-    await writeJson(portfolioReviewPath, store);
-    res.json({ ok: true });
   });
 
   // Shared by the manual "pick a stylist" action below and by draft
@@ -1564,31 +1423,6 @@ export function registerAdminStylistRoutes(app) {
     res.json({ ok: true });
   });
 
-  // Salons dismissed from Photo search (auto-skipped for having no Instagram
-  // results, or manually dismissed) without ever getting a photo approved —
-  // surfaced here so an admin can source and upload one by hand via the
-  // existing Stylists portfolio-photo upload endpoint.
-  app.get("/api/admin/photo-search-backlog", requireAdmin, async (req, res) => {
-    const manualIndex = await readJson(manualIndexPath, { meta: { source: "manual" }, salons: [] });
-    const offset = Math.max(0, Number(req.query.offset) || 0);
-    const limit = Math.min(50, Math.max(1, Number(req.query.limit) || 20));
-    const backlog = manualIndex.salons.filter(
-      (salon) => !salon.branches && (salon.portfolioPhotos || []).length === 0 && !!salon.photoSearchSkippedAt
-    );
-    const page = backlog.slice(offset, offset + limit).map((salon) => ({
-      id: salon.id,
-      name: salon.name,
-      neighbourhood: salon.neighbourhood,
-      postcode: salon.postcode,
-      areaLabel: salon.areaLabel,
-      websiteUrl: salon.websiteUrl,
-      instagramUrl: salon.instagramUrl,
-      googleFormattedAddress: salon.googleFormattedAddress,
-      photoSearchSkippedAt: salon.photoSearchSkippedAt,
-      photoSearchSkippedReason: salon.photoSearchSkippedReason || "manual",
-    }));
-    res.json({ ok: true, total: backlog.length, offset, limit, salons: page });
-  });
 
   // A personal, persistent worklist: the admin browses a stylist's own
   // Instagram themselves, hand-picks specific post URLs worth pulling in,
@@ -2983,6 +2817,8 @@ export function registerAdminStylistRoutes(app) {
     await writeDraftStore(store);
     res.json({ ok: true });
   });
+
+  registerAdminSocialRoutes(app, { requireAdmin, readJson });
 }
 
 // Public, unauthenticated counterpart to the admin "Blank draft" intake route

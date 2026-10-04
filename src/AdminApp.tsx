@@ -1,4 +1,4 @@
-import { FormEvent, KeyboardEvent, type ComponentType, type ReactNode, createContext, useCallback, useContext, useEffect, useId, useMemo, useRef, useState } from "react";
+import { FormEvent, KeyboardEvent, Suspense, type ComponentType, type ReactNode, createContext, lazy, useCallback, useContext, useEffect, useId, useMemo, useRef, useState } from "react";
 import {
   Activity,
   AlertTriangle,
@@ -21,7 +21,6 @@ import {
   FileText,
   Globe,
   Heart,
-  Image as ImageIcon,
   ImagePlus,
   Info,
   LayoutDashboard,
@@ -31,6 +30,7 @@ import {
   LogOut,
   MapPin,
   Menu,
+  Clapperboard,
   Star,
   PanelLeftClose,
   PanelLeftOpen,
@@ -173,11 +173,10 @@ type AdminView =
   | "keyword"
   | "discovery"
   | "filters"
-  | "photo-review"
   | "photo-search"
-  | "photo-backlog"
   | "link-backlog"
-  | "photo-order";
+  | "photo-order"
+  | "social";
 
 type AdminNavItem = { id: AdminView; label: string; icon: ComponentType<{ className?: string }> };
 
@@ -200,18 +199,23 @@ const ADMIN_NAV_GROUPS: { label?: string; items: AdminNavItem[] }[] = [
     items: [
       { id: "freshness", label: "Health", icon: Activity },
       { id: "pricing", label: "Pricing", icon: PoundSterling },
-      { id: "photo-review", label: "Photo review", icon: ImageIcon },
       { id: "photo-search", label: "Photo search", icon: ImagePlus },
-      { id: "photo-backlog", label: "Photo backlog", icon: UploadCloud },
       { id: "link-backlog", label: "Link backlog", icon: Link2 },
       { id: "photo-order", label: "Photo order", icon: ArrowUpDown },
     ],
+  },
+  {
+    label: "Social",
+    items: [{ id: "social", label: "Studio", icon: Clapperboard }],
   },
   {
     label: "Discover",
     items: [{ id: "keyword", label: "Keyword search", icon: SearchCheck }],
   },
 ];
+
+// The studio pulls in html-to-image and its own fonts — loaded only when opened.
+const SocialStudio = lazy(() => import("@/social/SocialStudio"));
 
 type DraftForm = {
   links: string;
@@ -792,15 +796,15 @@ const emptyForm: DraftForm = {
 };
 
 const serviceGroups = [
-  { label: "Braids", services: ["Boho braids / goddess braids","Braid take-down","Box braids","Colour blend (mixing braiding hair)","Crochet","Creative braids","Feed-in braids","French curl","Fulani / lemonade braids","Half braids, half sew-in","Knotless braids","Miracle knots","Microbraids / x-small braids","Pre-parting","Stitch braids","Twists (with extensions)","Boho braids bob","French curl bob","Men's braids","Wig cornrows"] },
+  { label: "Braids", services: ["Boho braids / goddess braids","Braid take-down","Box braids","Colour blend (mixing braiding hair)","Crochet","Creative braids","Feed-in braids","French curl","Fulani / lemonade braids","Knotless braids","Miracle knots","Microbraids / x-small braids","Pre-parting","Stitch braids","Twists (with extensions)","Boho braids bob","French curl bob","Men's braids","Wig cornrows","Hybrid (braids + sew-in)","Fulani sew-in","Boho sew-in","Feed-in / stitch braid sew-in"] },
   { label: "Colour", services: ["Balayage","Full head colour","Highlights","Wig colouring / bundle colouring"] },
   { label: "Bridal", services: ["Bridal"] },
   { label: "Editorial / Session styling", services: ["Editorial / Session styling"] },
   { label: "Kids & teens styles", services: ["Kids & teens styles"] },
-  { label: "Extensions", services: ["Clip ins (+ silk press)","Hybrid sew in (tapes + sew in)","K-tips / invisible strands","LA weave / microlinks wefts / braidless sew in","I-tips / microlinks strands","Tape ins"] },
+  { label: "Extensions", services: ["Clip ins (+ silk press)","K-tips / invisible strands","LA weave / microlinks wefts / braidless sew in","I-tips / microlinks strands","Tape ins","Hybrid installs","Tape-ins + sew-in","K-tips + sew-in"] },
   { label: "Locs", services: ["Starter locs / instant locs","Retwist / interlocking","Loc styling","Microlocs / sisterlocs","Loc extensions (permanent)"] },
   { label: "Faux locs", services: ["Soft locs","Boho locs","Crochet faux locs / invisible locs","Butterfly locs"] },
-  { label: "Sew in / weave", services: ["Closure sew-in / closure behind the hairline","Flipover / Versatile sew-in","Frontal sew-in","Half braids, half sew-in","Hybrid sew in (tapes + sew in)","Pixie wig / weave install","Quick weave","Sew-in take-down","Tracks (+ silk press) / partial / invisible sew-in","Traditional sew-in / leave out"] },
+  { label: "Sew in / weave", services: ["Closure sew-in / closure behind the hairline","Flipover / Versatile sew-in","Frontal sew-in","Pixie wig / weave install","Quick weave","Sew-in take-down","Tracks (+ silk press) / partial / invisible sew-in","Traditional sew-in / leave out","Fulani sew-in","Boho sew-in","Feed-in / stitch braid sew-in","Tape-ins + sew-in","K-tips + sew-in"] },
   { label: "Styling (sew in / frontal / relaxer)", services: ["Sew in / extensions blowdry","Frontal ponytail / bun","Half up half down","Pixie cut / finger waves","Sleek ponytail / bun","Updo"] },
   { label: "Treatments", services: ["Hair botox","Japanese straightening","K18 treatment","Keratin treatment / Brazilian blowdry","Moisturising treatment","Olaplex treatment","Relaxer / texturiser","Texture release"] },
   { label: "Natural hair washing & styling", services: ["Wig cornrows","Curly cut / wash & go / diffuse","Silk press","Bouncy blowout / round brush blow dry","Trim / hair cut","Roller set","Twist out / flexi rod","Bantu knots","Wash & blowdry","Japanese head spa","Scalp detox / treatments","Men's braids"] },
@@ -2305,12 +2309,15 @@ function AdminAppInner() {
           <AnalyticsPage onOpenView={setActiveView} />
         ) : null}
 
-        {activeView === "photo-review" ? <PortfolioReviewPage /> : null}
 
         {activeView === "photo-search" ? <PhotoSearchPage /> : null}
-        {activeView === "photo-backlog" ? <PhotoBacklogPage /> : null}
         {activeView === "link-backlog" ? <LinkBacklogPage /> : null}
         {activeView === "photo-order" ? <PhotoOrderQueuePage /> : null}
+        {activeView === "social" ? (
+          <Suspense fallback={<div className="flex h-[100dvh] items-center justify-center text-sm text-stone-500"><Loader2 className="mr-2 size-4 animate-spin" />Loading studio…</div>}>
+            <SocialStudio />
+          </Suspense>
+        ) : null}
 
         {activeView === "drafts" ? (
           <StylistsPage
@@ -4121,7 +4128,7 @@ function PortfolioPhotoReorderGrid({
   async function removePhoto(index: number) {
     const confirmed = await confirm({
       title: "Remove this photo?",
-      description: "It's deleted for good, not just hidden — you'd need to re-approve it from Photo review to bring it back.",
+      description: "It's deleted for good, not just hidden — you'd need to fetch or upload it again to bring it back.",
       confirmLabel: "Remove",
       tone: "danger",
     });
@@ -4274,7 +4281,7 @@ function PortfolioPhotosTab({
         onCropPhoto={onCropPhoto}
         emptyMessage={
           isPublished
-            ? "No approved photos yet — approve some from the Photo review page, or upload one directly above."
+            ? "No approved photos yet — approve some from Photo search, or upload one directly above."
             : "No photos yet — upload one directly above."
         }
       />
@@ -4650,157 +4657,6 @@ function DashboardOverview({
           )}
         </div>
       </div>
-    </div>
-  );
-}
-
-type PortfolioReviewCandidate = {
-  id: string;
-  filename: string;
-  salonId: string;
-  salonName: string;
-  source: string;
-  category: string;
-  quality: number;
-  reason: string;
-  rejectedAt: string;
-};
-
-function PortfolioReviewPage() {
-  const [candidates, setCandidates] = useState<PortfolioReviewCandidate[] | null>(null);
-  const [error, setError] = useState("");
-  const [actioningId, setActioningId] = useState<string | null>(null);
-  const [imageNonce, setImageNonce] = useState(0);
-
-  async function repositionCandidate(candidateId: string, region: { x: number; y: number; width: number; height: number }) {
-    const response = await fetch(`/api/admin/portfolio-review/${candidateId}/crop`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      credentials: "include",
-      body: JSON.stringify({ ...region, rotation: 0 }),
-    });
-    const payload = await response.json().catch(() => ({}));
-    if (!response.ok) return { ok: false, message: payload.message };
-    setImageNonce((current) => current + 1);
-    return { ok: true };
-  }
-
-  const loadCandidates = useCallback(() => {
-    let cancelled = false;
-    fetch("/api/admin/portfolio-review", { credentials: "include" })
-      .then((response) => response.json())
-      .then((payload) => {
-        if (cancelled) return;
-        if (!payload.ok) {
-          setError(payload.message || "Could not load review queue.");
-          return;
-        }
-        setCandidates(payload.candidates);
-      })
-      .catch(() => {
-        if (!cancelled) setError("Could not load review queue.");
-      });
-    return () => {
-      cancelled = true;
-    };
-  }, []);
-
-  useEffect(() => loadCandidates(), [loadCandidates]);
-
-  async function act(id: string, action: "approve" | "dismiss") {
-    setActioningId(id);
-    try {
-      const response = await fetch(`/api/admin/portfolio-review/${id}/${action}`, {
-        method: "POST",
-        credentials: "include",
-      });
-      if (!response.ok) {
-        const payload = await response.json().catch(() => null);
-        setError(payload?.message || `Could not ${action} this photo.`);
-        return;
-      }
-      setCandidates((current) => (current ? current.filter((c) => c.id !== id) : current));
-    } catch {
-      setError(`Could not ${action} this photo.`);
-    } finally {
-      setActioningId(null);
-    }
-  }
-
-  const grouped = useMemo(() => {
-    const bySalon = new Map<string, { salonName: string; items: PortfolioReviewCandidate[] }>();
-    for (const candidate of candidates ?? []) {
-      const entry = bySalon.get(candidate.salonId) ?? { salonName: candidate.salonName, items: [] };
-      entry.items.push(candidate);
-      bySalon.set(candidate.salonId, entry);
-    }
-    return [...bySalon.entries()];
-  }, [candidates]);
-
-  return (
-    <div className="space-y-6">
-      <div>
-        <h1 className="text-lg font-semibold text-stone-950">Photo review</h1>
-        <p className="mt-1 text-sm text-stone-500">
-          Photos the portfolio-photos backfill rejected, held here in case the classifier judged one wrong. Approving adds it to
-          that salon's approved photo pool — pick which ones actually show in the stylist drawer's Photos tab. Dismissing
-          deletes it for good. Only available when running the admin tool locally (candidate images live on disk, not in the
-          repo).
-        </p>
-      </div>
-
-      {error ? <p className="text-sm text-red-600">{error}</p> : null}
-
-      {candidates === null ? (
-        <p className="text-sm text-stone-500">Loading…</p>
-      ) : candidates.length === 0 ? (
-        <p className="text-sm text-stone-500">Nothing waiting for review.</p>
-      ) : (
-        <div className="space-y-8">
-          {grouped.map(([salonId, { salonName, items }]) => (
-            <div key={salonId}>
-              <h2 className="text-sm font-semibold text-stone-950">{salonName}</h2>
-              <div className="mt-2 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
-                {items.map((candidate) => (
-                  <div key={candidate.id} className="border border-stone-200 bg-white">
-                    <RepositionableImage
-                      key={`${candidate.id}-${imageNonce}`}
-                      src={`/api/admin/portfolio-review/photo/${candidate.id}${imageNonce ? `?v=${imageNonce}` : ""}`}
-                      onCommit={(region) => repositionCandidate(candidate.id, region)}
-                    />
-                    <div className="space-y-1 p-2">
-                      <p className="text-xs font-medium text-stone-700">
-                        {candidate.category} · quality {candidate.quality} · {candidate.source}
-                      </p>
-                      <p className="truncate text-xs text-stone-500" title={candidate.reason}>
-                        {candidate.reason}
-                      </p>
-                      <div className="flex flex-wrap gap-2 pt-1">
-                        <Button
-                          size="sm"
-                          variant="outline"
-                          disabled={actioningId === candidate.id}
-                          onClick={() => act(candidate.id, "approve")}
-                        >
-                          Approve
-                        </Button>
-                        <Button
-                          size="sm"
-                          variant="ghost"
-                          disabled={actioningId === candidate.id}
-                          onClick={() => act(candidate.id, "dismiss")}
-                        >
-                          Dismiss
-                        </Button>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
     </div>
   );
 }
@@ -5734,158 +5590,6 @@ function ReelResultCard({
         {extracting ? "Extracting…" : "Get HD frame"}
       </button>
       {error ? <p className="px-1 pb-1 text-[10px] text-red-600">{error}</p> : null}
-    </div>
-  );
-}
-
-type PhotoBacklogSalon = PhotoSearchQueueSalon & {
-  photoSearchSkippedAt?: string;
-  photoSearchSkippedReason?: string;
-};
-
-// Salons Photo search dismissed without an approved photo (either
-// auto-skipped for having nothing on Instagram, or manually dismissed) land
-// here for a human to source and upload a photo by hand.
-function PhotoBacklogPage() {
-  const [salons, setSalons] = useState<PhotoBacklogSalon[] | null>(null);
-  const [total, setTotal] = useState(0);
-  const [offset, setOffset] = useState(0);
-  const [loadError, setLoadError] = useState("");
-  const [uploadingId, setUploadingId] = useState<string | null>(null);
-  const [uploadError, setUploadError] = useState("");
-
-  const loadPage = useCallback((newOffset: number) => {
-    fetch(`/api/admin/photo-search-backlog?offset=${newOffset}&limit=20`, { credentials: "include" })
-      .then((response) => response.json())
-      .then((payload) => {
-        if (!payload.ok) {
-          setLoadError(payload.message || "Could not load the photo backlog.");
-          return;
-        }
-        setSalons(payload.salons);
-        setTotal(payload.total);
-        setOffset(newOffset);
-      })
-      .catch(() => setLoadError("Could not load the photo backlog."));
-  }, []);
-
-  useEffect(() => loadPage(0), [loadPage]);
-
-  async function upload(salonId: string, file: File) {
-    if (!file.type.startsWith("image/")) {
-      setUploadError("Choose an image file.");
-      return;
-    }
-    setUploadingId(salonId);
-    setUploadError("");
-    try {
-      const image = await new Promise<string>((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onload = () => resolve(reader.result as string);
-        reader.onerror = () => reject(new Error("Could not read that file."));
-        reader.readAsDataURL(file);
-      });
-      const response = await fetch(`/api/admin/stylists/published/${salonId}/portfolio-photos/upload`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
-        body: JSON.stringify({ image }),
-      });
-      const payload = await response.json().catch(() => ({}));
-      if (!response.ok || !payload.ok) {
-        setUploadError(payload.message || "Could not upload that photo.");
-        return;
-      }
-      setSalons((current) => (current ?? []).filter((salon) => salon.id !== salonId));
-      setTotal((current) => Math.max(0, current - 1));
-    } catch {
-      setUploadError("Could not upload that photo.");
-    } finally {
-      setUploadingId(null);
-    }
-  }
-
-  return (
-    <div className="flex h-full flex-col gap-2">
-      <div className="flex items-baseline justify-between gap-4">
-        <h1 className="text-lg font-semibold text-stone-950">Photo backlog</h1>
-        <p className="truncate text-xs text-stone-500">
-          Salons skipped from Photo search with no approved photo — upload one by hand.
-        </p>
-      </div>
-
-      {loadError ? <p className="text-sm text-red-600">{loadError}</p> : null}
-      {uploadError ? <p className="text-sm text-red-600">{uploadError}</p> : null}
-
-      {salons === null ? (
-        <p className="text-sm text-stone-500">Loading…</p>
-      ) : salons.length === 0 ? (
-        <p className="text-sm text-stone-500">Nothing in the backlog.</p>
-      ) : (
-        <div className="flex min-h-0 flex-1 flex-col gap-2 overflow-y-auto">
-          <p className="text-xs text-stone-500">
-            {total} salon{total === 1 ? "" : "s"} need a photo
-          </p>
-          {salons.map((salon) => (
-            <div
-              key={salon.id}
-              className="flex items-center justify-between gap-4 border border-stone-200 bg-white px-3 py-2 dark:border-stone-800 dark:bg-stone-900"
-            >
-              <div className="flex min-w-0 flex-wrap items-baseline gap-x-2 gap-y-0.5">
-                <span className="text-sm font-semibold text-stone-950 dark:text-stone-100">{salon.name}</span>
-                <span className="truncate text-xs text-stone-500">
-                  {[salon.neighbourhood, salon.postcode].filter(Boolean).join(" · ") || salon.areaLabel || "No location on file"}
-                </span>
-                {salon.instagramUrl ? (
-                  <a
-                    href={salon.instagramUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="shrink-0 text-xs text-stone-700 underline dark:text-stone-300"
-                  >
-                    Instagram
-                  </a>
-                ) : null}
-                <span className="shrink-0 text-xs text-stone-400">
-                  {salon.photoSearchSkippedReason === "no-instagram-results" ? "No Instagram results" : "Manually dismissed"}
-                </span>
-              </div>
-              <label className="shrink-0 cursor-pointer border border-stone-300 bg-white px-3 py-1.5 text-xs font-semibold text-stone-700 transition hover:bg-stone-100 has-[:disabled]:opacity-50 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-200">
-                {uploadingId === salon.id ? "Uploading…" : "Upload photo"}
-                <input
-                  type="file"
-                  accept="image/*"
-                  className="hidden"
-                  disabled={uploadingId === salon.id}
-                  onChange={(event) => {
-                    const file = event.target.files?.[0];
-                    event.target.value = "";
-                    if (file) upload(salon.id, file);
-                  }}
-                />
-              </label>
-            </div>
-          ))}
-          <div className="flex items-center gap-2 pt-2">
-            <button
-              type="button"
-              disabled={offset === 0}
-              onClick={() => loadPage(Math.max(0, offset - 20))}
-              className="border border-stone-300 bg-white px-3 py-1.5 text-xs font-semibold text-stone-700 transition hover:bg-stone-100 disabled:opacity-50 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-200"
-            >
-              Previous
-            </button>
-            <button
-              type="button"
-              disabled={offset + 20 >= total}
-              onClick={() => loadPage(offset + 20)}
-              className="border border-stone-300 bg-white px-3 py-1.5 text-xs font-semibold text-stone-700 transition hover:bg-stone-100 disabled:opacity-50 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-200"
-            >
-              Next
-            </button>
-          </div>
-        </div>
-      )}
     </div>
   );
 }
@@ -7042,7 +6746,7 @@ function computeCoverCropRegion(naturalWidth: number, naturalHeight: number, tar
   return { x, y, width, height };
 }
 
-// Shared by Photo search, Photo review, and the stylist drawer's Photos tab:
+// Shared by Photo search and the stylist drawer's Photos tab:
 // shows the photo already boxed at the site's real display ratio, and lets
 // the admin drag directly on it (grab-and-move-the-photo, not draw-a-box) to
 // shift what's in frame — releasing auto-saves through whatever the caller's
@@ -9860,7 +9564,8 @@ const serviceEvidenceKeywords: Record<string, string[]> = {
   "Wig install (frontal / closure)": ["wig install", "wig installation", "installation of the wig", "wig application", "wig fitting", "glueless wig", "lace wig", "frontal wig", "closure wig", "lace frontal installation", "lace closure installation", "frontal unit", "closure unit", "ready-made unit", "ready made unit", "unit install", "frontal unit install", "closure unit install"],
   "Pixie wig / weave install": ["pixie wig", "pixie weave", "pixie install", "pixie sew in", "pixie sew-in", "pixie sewin"],
   "Twists (with extensions)": ["twists with extensions", "passion twists", "marley twists", "senegalese twists", "kinky twists", "rope twists", "island twists", "island twist"],
-  "Hybrid sew in (tapes + sew in)": ["hybrid sew in", "hybrid sew-in", "hybrid weave", "tracks + tapes hybrid", "tracks and tapes hybrid"],
+  "Tape-ins + sew-in": ["hybrid sew in", "hybrid sew-in", "hybrid weave", "tracks + tapes hybrid", "tracks and tapes hybrid"],
+  "K-tips + sew-in": ["k tip sew in", "k-tip sew-in", "k tips sew in", "hybrid k tips"],
   "Tracks (+ silk press) / partial / invisible sew-in": ["tracks", "track per row", "per track", "per row", "one row", "individual sewn on track", "individual sewn on tracks", "tracks add on", "tracks add-on", "silk press add on tracks", "silk press add-on tracks", "row sew in", "rows of sew in", "weave tracks", "weave tracks per track", "weave on per row", "traditional weave rows", "partial sew in", "partial sewin", "invisible sew in", "invisible weave", "invisible weft", "invisible wefts", "half head weave"],
   "Bouncy blowout / round brush blow dry": ["bouncy blowout", "bouncy blow out", "bouncy blowdry", "bouncy blow dry", "bouncy blow-dry", "round brush blow dry", "round brush blowdry", "dry bouncy blow-dry", "blowout"],
   "Sew in / extensions blowdry": ["extensions blowdry", "extensions blow dry", "extensions blowout", "extensions blow out", "extension blowdry", "extension blow dry", "extension blowout", "extension blow out", "blowdry with extensions", "blow dry with extensions", "blowout with extensions", "blow out with extensions", "weave blowdry", "weave blow dry", "weave blowout", "weave blow out", "sew in blowdry", "sew in blow dry", "sew-in blowdry", "sew-in blow dry", "sewin blowdry", "sewin blow dry", "sew in blowout", "sew in blow out", "k tips blowdry", "k-tips blowdry", "ktips blowdry", "k tips blow dry", "k-tips blow dry", "ktips blow dry", "blow out on sew in weave", "blowout on sew in weave", "wash blow dry with extensions", "wash and blow dry with extensions"],

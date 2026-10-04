@@ -10,6 +10,24 @@
   font-display: swap;
 }
 
+/* Social Studio slide headline font — self-hosted (not Google Fonts) so
+   html-to-image can embed it in exported PNGs. */
+@font-face {
+  font-family: "Bowlby One";
+  src: url("./fonts/bowlby-one-regular.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Figtree Slide";
+  src: url("./fonts/figtree-variable.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: block;
+}
+
 @font-face {
   font-family: "Junicode";
   src: url("./fonts/junicode-italic.otf") format("opentype");

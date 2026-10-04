@@ -13,7 +13,6 @@
         "Feed-in braids",
         "French curl",
         "Fulani / lemonade braids",
-        "Half braids, half sew-in",
         "Knotless braids",
         "Miracle knots",
         "Microbraids / x-small braids",
@@ -23,7 +22,11 @@
         "Boho braids bob",
         "French curl bob",
         "Men's braids",
-        "Wig cornrows"
+        "Wig cornrows",
+        "Hybrid (braids + sew-in)",
+        "Fulani sew-in",
+        "Boho sew-in",
+        "Feed-in / stitch braid sew-in"
       ]
     },
     {
@@ -56,11 +59,13 @@
       "label": "Extensions",
       "subcategories": [
         "Clip ins (+ silk press)",
-        "Hybrid sew in (tapes + sew in)",
         "K-tips / invisible strands",
         "LA weave / microlinks wefts / braidless sew in",
         "I-tips / microlinks strands",
-        "Tape ins"
+        "Tape ins",
+        "Hybrid installs",
+        "Tape-ins + sew-in",
+        "K-tips + sew-in"
       ]
     },
     {
@@ -91,13 +96,16 @@
         "Closure sew-in / closure behind the hairline",
         "Flipover / Versatile sew-in",
         "Frontal sew-in",
-        "Half braids, half sew-in",
-        "Hybrid sew in (tapes + sew in)",
         "Pixie wig / weave install",
         "Quick weave",
         "Sew-in take-down",
         "Tracks (+ silk press) / partial / invisible sew-in",
-        "Traditional sew-in / leave out"
+        "Traditional sew-in / leave out",
+        "Fulani sew-in",
+        "Boho sew-in",
+        "Feed-in / stitch braid sew-in",
+        "Tape-ins + sew-in",
+        "K-tips + sew-in"
       ]
     },
     {

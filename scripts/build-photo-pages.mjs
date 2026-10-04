@@ -62,7 +62,10 @@ await Promise.all(
 
 await fs.writeFile(
   path.join(outputDir, "_headers"),
-  "/portfolio-photos/*\n  Cache-Control: public, max-age=31536000, immutable\n",
+  // CORS lets the admin's Social Studio export slides (html-to-image fetches
+  // every <img> and canvas-draws it, which a cross-origin image without this
+  // header would taint and fail). These are public photos already.
+  "/portfolio-photos/*\n  Cache-Control: public, max-age=31536000, immutable\n  Access-Control-Allow-Origin: *\n",
   "utf8",
 );
 

@@ -814,7 +814,7 @@
         "Custom wig",
         "Frontal sew-in",
         "Pixie wig / weave install",
-        "Half braids, half sew-in"
+        "Fulani sew-in"
       ],
       "priceBand": "££",
       "servicePriceBand": "££",
@@ -1281,7 +1281,7 @@
         "Box braids",
         "Fulani / lemonade braids",
         "Twists (with extensions)",
-        "Half braids, half sew-in"
+        "Feed-in / stitch braid sew-in"
       ],
       "priceBand": "£",
       "servicePriceBand": "£",
@@ -1322,7 +1322,7 @@
       ],
       "photoSearchReviewedAt": "2026-09-08",
       "photoOrderBumpedAt": 1175,
-      "updatedAt": "2026-09-08"
+      "updatedAt": "2026-10-04"
     },
     {
       "id": "mbl-hair",
@@ -2231,7 +2231,6 @@
       "discoverySource": "User submission",
       "services": [
         "Creative braids",
-        "Half braids, half sew-in",
         "Traditional sew-in / leave out",
         "Stitch braids",
         "Wig cornrows",
@@ -2243,7 +2242,8 @@
         "Sew-in take-down",
         "Men's braids",
         "Braid take-down",
-        "Sew in / extensions blowdry"
+        "Sew in / extensions blowdry",
+        "Feed-in / stitch braid sew-in"
       ],
       "canBraidWithoutGel": true,
       "sameDayEmergency": true,
@@ -2276,7 +2276,7 @@
       "priceCheckedAt": "",
       "priceUpdatedAt": "2026-09-08",
       "priceConfidence": "manual",
-      "updatedAt": "2026-09-08",
+      "updatedAt": "2026-10-04",
       "portfolioPhotos": [
         {
           "id": "adwoa-s-artistry-portfolio-photo-e38b5ddb-37f9-4078-b22b-65def040935d",
@@ -2652,7 +2652,6 @@
         "Miracle knots",
         "Boho braids / goddess braids",
         "Knotless braids",
-        "Half braids, half sew-in",
         "Microbraids / x-small braids",
         "Colour blend (mixing braiding hair)"
       ],
@@ -2781,8 +2780,7 @@
         "Box braids",
         "Soft locs",
         "Colour blend (mixing braiding hair)",
-        "Crochet faux locs / invisible locs",
-        "Half braids, half sew-in"
+        "Crochet faux locs / invisible locs"
       ],
       "summary": "📍EAST LONDON\nBraids, twists, locs, sew-ins, sleek ponytails etc.\nPart time hairstylist\nTEMPORARILY CLOSED.",
       "source": "manual",
@@ -2969,7 +2967,7 @@
         "Miracle knots",
         "Colour blend (mixing braiding hair)",
         "Creative braids",
-        "Half braids, half sew-in"
+        "Fulani sew-in"
       ],
       "priceBand": "££",
       "servicePriceBand": "££",
@@ -3048,7 +3046,7 @@
         "Twists (with extensions)",
         "Wig cornrows",
         "Colour blend (mixing braiding hair)",
-        "Half braids, half sew-in"
+        "Boho sew-in"
       ],
       "priceBand": "££",
       "servicePriceBand": "££",
@@ -3093,7 +3091,7 @@
       "sellsHairSeparately": false,
       "sameDayEmergency": false,
       "customFilters": {},
-      "updatedAt": "2026-09-02",
+      "updatedAt": "2026-10-04",
       "portfolioPhotos": [
         {
           "id": "london-braider-portfolio-photo-294031ff-08a7-436c-ad2d-767049de6a98",
@@ -3482,10 +3480,11 @@
         "Half up half down",
         "Quick weave",
         "Stitch braids",
-        "Half braids, half sew-in",
         "Wig cornrows",
         "Updo",
-        "Colour blend (mixing braiding hair)"
+        "Colour blend (mixing braiding hair)",
+        "Feed-in / stitch braid sew-in",
+        "Fulani sew-in"
       ],
       "priceBand": "£",
       "servicePriceBand": "£",
@@ -3577,7 +3576,7 @@
         "Sleek ponytail / bun",
         "Half up half down",
         "Colour blend (mixing braiding hair)",
-        "Half braids, half sew-in"
+        "Fulani sew-in"
       ],
       "priceBand": "£",
       "servicePriceBand": "£",
@@ -3631,7 +3630,7 @@
       "sellsHairSeparately": false,
       "sameDayEmergency": false,
       "customFilters": {},
-      "updatedAt": "2026-09-02"
+      "updatedAt": "2026-10-04"
     },
     {
       "id": "crafted-by-jl",
@@ -3655,7 +3654,6 @@
         "Box braids",
         "Feed-in braids",
         "Fulani / lemonade braids",
-        "Half braids, half sew-in",
         "Twists (with extensions)",
         "Traditional sew-in / leave out",
         "Flipover / Versatile sew-in",
@@ -3664,7 +3662,8 @@
         "Soft locs",
         "Crochet faux locs / invisible locs",
         "Wig install (frontal / closure)",
-        "Wig cornrows"
+        "Wig cornrows",
+        "Feed-in / stitch braid sew-in"
       ],
       "priceBand": "£",
       "servicePriceBand": "£",
@@ -3816,12 +3815,12 @@
         "Updo",
         "Feed-in braids",
         "Boho braids / goddess braids",
-        "Half braids, half sew-in",
         "Colour blend (mixing braiding hair)",
         "Traditional sew-in / leave out",
         "Sleek ponytail / bun",
         "French curl",
-        "Wig install (frontal / closure)"
+        "Wig install (frontal / closure)",
+        "Fulani sew-in"
       ],
       "summary": "•Matthew 19:26✨\nNorth Acton/Harlesden.\nDM me to book 🗓️",
       "source": "manual",
@@ -3864,7 +3863,7 @@
       "priceCheckedAt": "",
       "priceUpdatedAt": "2026-09-01",
       "priceConfidence": "manual",
-      "updatedAt": "2026-09-01"
+      "updatedAt": "2026-10-04"
     },
     {
       "id": "queens-luxe",
@@ -4025,7 +4024,6 @@
         "French curl",
         "Fulani / lemonade braids",
         "Traditional sew-in / leave out",
-        "Half braids, half sew-in",
         "Closure sew-in / closure behind the hairline",
         "Twists (with extensions)",
         "Soft locs",
@@ -4034,9 +4032,10 @@
         "Colour blend (mixing braiding hair)",
         "Boho locs",
         "Full head colour",
-        "Hybrid sew in (tapes + sew in)",
+        "Tape-ins + sew-in",
         "Tape ins",
-        "Wig install (frontal / closure)"
+        "Wig install (frontal / closure)",
+        "Fulani sew-in"
       ],
       "priceBand": "£££",
       "servicePriceBand": "£££",
@@ -4088,7 +4087,7 @@
       ],
       "photoSearchReviewedAt": "2026-09-01",
       "photoOrderBumpedAt": 1104,
-      "updatedAt": "2026-09-10",
+      "updatedAt": "2026-10-04",
       "googleDisplayName": "",
       "googleFormattedAddress": "",
       "hijabiFriendly": false,
@@ -4188,8 +4187,8 @@
         "Stitch braids",
         "Fulani / lemonade braids",
         "Colour blend (mixing braiding hair)",
-        "Half braids, half sew-in",
-        "Wig cornrows"
+        "Wig cornrows",
+        "Boho sew-in"
       ],
       "summary": "📍Canary Wharf - 6 mins from South Quay (E14)\n▫️Natural Hair & Extensions \n▫️07359832942",
       "source": "manual",
@@ -4224,7 +4223,7 @@
       "priceCheckedAt": "",
       "priceUpdatedAt": "",
       "priceConfidence": "",
-      "updatedAt": "2026-09-01",
+      "updatedAt": "2026-10-04",
       "portfolioPhotos": [
         {
           "id": "nowbeauty-portfolio-photo-6d8ad824-f328-4c09-aa66-0e32f277f46d",
@@ -4255,7 +4254,6 @@
         "Creative braids",
         "Feed-in braids",
         "Fulani / lemonade braids",
-        "Half braids, half sew-in",
         "Knotless braids",
         "French curl",
         "Box braids",
@@ -4264,7 +4262,8 @@
         "Wig install (frontal / closure)",
         "Men's braids",
         "Stitch braids",
-        "Full head colour"
+        "Full head colour",
+        "Fulani sew-in"
       ],
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
@@ -4325,7 +4324,7 @@
       "priceCheckedAt": "2026-09-01",
       "priceUpdatedAt": "2026-09-01",
       "priceConfidence": "high",
-      "updatedAt": "2026-09-01"
+      "updatedAt": "2026-10-04"
     },
     {
       "id": "braided-by-jada",
@@ -4616,9 +4615,11 @@
         "Miracle knots",
         "Microbraids / x-small braids",
         "Stitch braids",
-        "Half braids, half sew-in",
         "Men's braids",
-        "Colour blend (mixing braiding hair)"
+        "Colour blend (mixing braiding hair)",
+        "Creative braids",
+        "Feed-in / stitch braid sew-in",
+        "Fulani sew-in"
       ],
       "priceBand": "££",
       "servicePriceBand": "££",
@@ -4758,7 +4759,8 @@
         "Stitch braids",
         "Wig cornrows",
         "Frontal ponytail / bun",
-        "Colour blend (mixing braiding hair)"
+        "Colour blend (mixing braiding hair)",
+        "Fulani sew-in"
       ],
       "priceBand": "£",
       "servicePriceBand": "£",
@@ -4892,7 +4894,6 @@
         "Stitch braids",
         "Wig cornrows",
         "Half up half down",
-        "Half braids, half sew-in",
         "Quick weave",
         "Frontal ponytail / bun",
         "Sleek ponytail / bun",
@@ -4900,7 +4901,8 @@
         "Custom wig",
         "Men's braids",
         "Retwist / interlocking",
-        "Colour blend (mixing braiding hair)"
+        "Colour blend (mixing braiding hair)",
+        "Feed-in / stitch braid sew-in"
       ],
       "priceBand": "££",
       "servicePriceBand": "££",
@@ -4947,7 +4949,7 @@
       ],
       "photoSearchReviewedAt": "2026-09-01",
       "photoOrderBumpedAt": 1083,
-      "updatedAt": "2026-09-01",
+      "updatedAt": "2026-10-04",
       "googleDisplayName": "",
       "googleFormattedAddress": "",
       "hijabiFriendly": false,
@@ -6018,8 +6020,9 @@
         "Boho braids / goddess braids",
         "Boho braids bob",
         "Miracle knots",
-        "Half braids, half sew-in",
-        "Wash & blowdry"
+        "Wash & blowdry",
+        "Feed-in / stitch braid sew-in",
+        "Fulani sew-in"
       ],
       "priceBand": "£",
       "servicePriceBand": "£",
@@ -6063,7 +6066,7 @@
       "sellsHairSeparately": true,
       "sameDayEmergency": false,
       "customFilters": {},
-      "updatedAt": "2026-08-31",
+      "updatedAt": "2026-10-04",
       "portfolioPhotos": [
         {
           "id": "fc-parlour-portfolio-photo-fc213371-a735-48c6-91c9-1880b54d6574",
@@ -7344,7 +7347,8 @@
         "Twists (with extensions)",
         "Knotless braids",
         "Feed-in braids",
-        "Colour blend (mixing braiding hair)"
+        "Colour blend (mixing braiding hair)",
+        "Feed-in / stitch braid sew-in"
       ],
       "sameDayEmergency": true,
       "priceBand": "££",
@@ -7387,7 +7391,7 @@
       ],
       "photoSearchReviewedAt": "2026-08-31",
       "photoOrderBumpedAt": 926,
-      "updatedAt": "2026-09-01",
+      "updatedAt": "2026-10-04",
       "googleDisplayName": "",
       "googleFormattedAddress": "",
       "hijabiFriendly": false,
@@ -7867,12 +7871,12 @@
         "Half up half down",
         "Traditional sew-in / leave out",
         "Flipover / Versatile sew-in",
-        "Half braids, half sew-in",
         "Quick weave",
         "Wig install (frontal / closure)",
         "U-Part / Half wig install",
         "Custom wig",
-        "Colour blend (mixing braiding hair)"
+        "Colour blend (mixing braiding hair)",
+        "Feed-in / stitch braid sew-in"
       ],
       "priceBand": "£",
       "servicePriceBand": "£",
@@ -7929,7 +7933,7 @@
       ],
       "photoSearchReviewedAt": "2026-08-31",
       "photoOrderBumpedAt": 905,
-      "updatedAt": "2026-08-31"
+      "updatedAt": "2026-10-04"
     },
     {
       "id": "the-mane-society-and-co",
@@ -8759,11 +8763,12 @@
       "services": [
         "Boho braids / goddess braids",
         "Boho braids bob",
-        "Half braids, half sew-in",
         "Fulani / lemonade braids",
         "Flipover / Versatile sew-in",
         "Knotless braids",
-        "Wig cornrows"
+        "Wig cornrows",
+        "Boho sew-in",
+        "Feed-in / stitch braid sew-in"
       ],
       "priceBand": "££",
       "servicePriceBand": "££",
@@ -8804,7 +8809,7 @@
       ],
       "photoSearchReviewedAt": "2026-08-31",
       "photoOrderBumpedAt": 827,
-      "updatedAt": "2026-08-31"
+      "updatedAt": "2026-10-04"
     },
     {
       "id": "hair-by-amz",
@@ -9554,7 +9559,6 @@
         "Feed-in braids",
         "French curl",
         "Fulani / lemonade braids",
-        "Half braids, half sew-in",
         "Knotless braids",
         "Miracle knots",
         "Twists (with extensions)",
@@ -9592,7 +9596,7 @@
       "priceCheckedAt": "",
       "priceUpdatedAt": "",
       "priceConfidence": "",
-      "updatedAt": "2026-09-01",
+      "updatedAt": "2026-10-04",
       "portfolioPhotos": [
         {
           "id": "braids-by-teemah-portfolio-photo-886e529a-7577-4fce-9258-5d657b6a2edf",
@@ -10744,10 +10748,10 @@
         "Editorial / Session styling",
         "Wig install (frontal / closure)",
         "Fulani / lemonade braids",
-        "Half braids, half sew-in",
         "Boho braids / goddess braids",
         "Twists (with extensions)",
-        "Men's braids"
+        "Men's braids",
+        "Feed-in / stitch braid sew-in"
       ],
       "sameDayEmergency": true,
       "summary": "Admin draft created from stylist intake.",
@@ -10769,7 +10773,7 @@
       ],
       "photoSearchReviewedAt": "2026-08-26",
       "photoOrderBumpedAt": 340,
-      "updatedAt": "2026-08-27"
+      "updatedAt": "2026-10-04"
     },
     {
       "id": "london-braid-boss",
@@ -10859,7 +10863,6 @@
         "Frontal sew-in",
         "Quick weave",
         "Crochet",
-        "Half braids, half sew-in",
         "Miracle knots",
         "Moisturising treatment",
         "Sleek ponytail / bun",
@@ -10875,7 +10878,9 @@
         "Hair botox",
         "Twist out / flexi rod",
         "Balayage",
-        "Highlights"
+        "Highlights",
+        "Boho sew-in",
+        "Fulani sew-in"
       ],
       "canBraidWithoutGel": true,
       "priceBand": "£",
@@ -10916,7 +10921,7 @@
       "parkingAvailable": false,
       "sellsHairSeparately": false,
       "customFilters": {},
-      "updatedAt": "2026-08-31",
+      "updatedAt": "2026-10-04",
       "portfolioPhotos": [
         {
           "id": "dhairlux-portfolio-photo-e8228026-34e0-4746-aa79-e29be9cd8a24",
@@ -11267,7 +11272,8 @@
         "Fulani / lemonade braids",
         "Wig install (frontal / closure)",
         "Custom wig",
-        "Wig cornrows"
+        "Wig cornrows",
+        "Fulani sew-in"
       ],
       "priceBand": "£",
       "servicePriceBand": "£",
@@ -11310,7 +11316,7 @@
           "source": "instagram"
         }
       ],
-      "updatedAt": "2026-08-25"
+      "updatedAt": "2026-10-04"
     },
     {
       "id": "diamond-hair-and-beauty-salon",
@@ -12213,8 +12219,8 @@
         "Men's braids",
         "Stitch braids",
         "Traditional sew-in / leave out",
-        "Half braids, half sew-in",
-        "Creative braids"
+        "Creative braids",
+        "Fulani sew-in"
       ],
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
@@ -12233,7 +12239,7 @@
           "source": "instagram-reel-thumbnail"
         }
       ],
-      "updatedAt": "2026-09-02",
+      "updatedAt": "2026-10-04",
       "photoOrderBumpedAt": 565,
       "portfolioPhotosCheckedAt": "2026-08-27",
       "googleDisplayName": "",
@@ -12318,9 +12324,9 @@
         "Knotless braids",
         "Twists (with extensions)",
         "Sleek ponytail / bun",
-        "Half braids, half sew-in",
         "Fulani / lemonade braids",
-        "Colour blend (mixing braiding hair)"
+        "Colour blend (mixing braiding hair)",
+        "Feed-in / stitch braid sew-in"
       ],
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
@@ -12339,7 +12345,7 @@
           "source": "instagram-reel-thumbnail"
         }
       ],
-      "updatedAt": "2026-08-27",
+      "updatedAt": "2026-10-04",
       "photoOrderBumpedAt": 568,
       "portfolioPhotosCheckedAt": "2026-08-27"
     },
@@ -12460,7 +12466,7 @@
       "discoverySource": "Manual search",
       "services": [
         "Men's braids",
-        "Half braids, half sew-in",
+        "Fulani sew-in",
         "Sleek ponytail / bun",
         "Fulani / lemonade braids",
         "Boho braids / goddess braids"
@@ -12482,7 +12488,7 @@
           "source": "instagram-reel-frame"
         }
       ],
-      "updatedAt": "2026-08-31",
+      "updatedAt": "2026-10-04",
       "photoSearchReviewedAt": "2026-08-31",
       "photoOrderBumpedAt": 729
     },
@@ -12720,7 +12726,7 @@
         "Knotless braids",
         "Traditional sew-in / leave out",
         "Half up half down",
-        "Half braids, half sew-in",
+        "Hybrid (braids + sew-in)",
         "Sleek ponytail / bun"
       ],
       "priceBand": "££",
@@ -12799,7 +12805,8 @@
         "Wig install (frontal / closure)",
         "Loc styling",
         "Colour blend (mixing braiding hair)",
-        "U-Part / Half wig install"
+        "U-Part / Half wig install",
+        "Fulani sew-in"
       ],
       "priceBand": "£",
       "servicePriceBand": "£",
@@ -12844,7 +12851,7 @@
           "source": "instagram"
         }
       ],
-      "updatedAt": "2026-09-02",
+      "updatedAt": "2026-10-04",
       "googleDisplayName": "",
       "googleFormattedAddress": "",
       "hijabiFriendly": false,
@@ -12880,9 +12887,9 @@
         "Knotless braids",
         "Boho braids / goddess braids",
         "Fulani / lemonade braids",
-        "Half braids, half sew-in",
         "Relaxer / texturiser",
-        "Texture release"
+        "Texture release",
+        "Feed-in / stitch braid sew-in"
       ],
       "priceBand": "£",
       "servicePriceBand": "",
@@ -13604,9 +13611,9 @@
         "Twists (with extensions)",
         "Knotless braids",
         "Quick weave",
-        "Half braids, half sew-in",
         "Traditional sew-in / leave out",
-        "Flipover / Versatile sew-in"
+        "Flipover / Versatile sew-in",
+        "Feed-in / stitch braid sew-in"
       ],
       "priceBand": "£",
       "servicePriceBand": "",
@@ -13649,7 +13656,7 @@
           "source": "instagram"
         }
       ],
-      "updatedAt": "2026-08-24",
+      "updatedAt": "2026-10-04",
       "photoSearchReviewedAt": "2026-08-24",
       "googleDisplayName": "",
       "googleFormattedAddress": "",
@@ -13686,7 +13693,6 @@
         "Feed-in braids",
         "Fulani / lemonade braids",
         "Traditional sew-in / leave out",
-        "Half braids, half sew-in",
         "French curl",
         "French curl bob",
         "Flipover / Versatile sew-in",
@@ -13694,7 +13700,8 @@
         "Creative braids",
         "Soft locs",
         "Twists (with extensions)",
-        "Moisturising treatment"
+        "Moisturising treatment",
+        "Feed-in / stitch braid sew-in"
       ],
       "priceBand": "££",
       "servicePriceBand": "",
@@ -13741,7 +13748,7 @@
           "source": "instagram"
         }
       ],
-      "updatedAt": "2026-08-25",
+      "updatedAt": "2026-10-04",
       "photoSearchReviewedAt": "2026-08-24"
     },
     {
@@ -13901,7 +13908,7 @@
         "Microbraids / x-small braids",
         "Sleek ponytail / bun",
         "Stitch braids",
-        "Half braids, half sew-in",
+        "Feed-in / stitch braid sew-in",
         "Wig cornrows",
         "Trim / hair cut",
         "Boho braids / goddess braids"
@@ -13951,7 +13958,7 @@
           "source": "instagram"
         }
       ],
-      "updatedAt": "2026-08-24",
+      "updatedAt": "2026-10-04",
       "photoSearchReviewedAt": "2026-08-24"
     },
     {
@@ -14054,7 +14061,7 @@
         "Retwist / interlocking",
         "Twists (with extensions)",
         "Traditional sew-in / leave out",
-        "Hybrid sew in (tapes + sew in)",
+        "Tape-ins + sew-in",
         "Bantu knots",
         "Braid take-down",
         "Boho braids / goddess braids",
@@ -14111,7 +14118,7 @@
           "source": "instagram"
         }
       ],
-      "updatedAt": "2026-09-11",
+      "updatedAt": "2026-10-04",
       "photoSearchReviewedAt": "2026-08-24",
       "googleDisplayName": "",
       "googleFormattedAddress": "",
@@ -14214,7 +14221,7 @@
         "Feed-in braids",
         "French curl",
         "Fulani / lemonade braids",
-        "Hybrid sew in (tapes + sew in)",
+        "Tape-ins + sew-in",
         "Traditional sew-in / leave out",
         "Twists (with extensions)",
         "Knotless braids",
@@ -14261,7 +14268,7 @@
           "source": "instagram-reel-thumbnail"
         }
       ],
-      "updatedAt": "2026-08-27",
+      "updatedAt": "2026-10-04",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
       "wheelchairAccessible": false,
@@ -14380,9 +14387,9 @@
         "Stitch braids",
         "Feed-in braids",
         "Boho braids / goddess braids",
-        "Half braids, half sew-in",
         "Wig install (frontal / closure)",
-        "Traditional sew-in / leave out"
+        "Traditional sew-in / leave out",
+        "Feed-in / stitch braid sew-in"
       ],
       "priceBand": "£",
       "servicePriceBand": "",
@@ -14429,7 +14436,7 @@
           "source": "instagram"
         }
       ],
-      "updatedAt": "2026-08-25"
+      "updatedAt": "2026-10-04"
     },
     {
       "id": "cheveux-by-coco",
@@ -14521,7 +14528,6 @@
         "Box braids",
         "French curl",
         "French curl bob",
-        "Half braids, half sew-in",
         "Retwist / interlocking",
         "Knotless braids",
         "Twists (with extensions)",
@@ -14537,7 +14543,8 @@
         "Frontal ponytail / bun",
         "Loc styling",
         "Crochet faux locs / invisible locs",
-        "Kids & teens styles"
+        "Kids & teens styles",
+        "Fulani sew-in"
       ],
       "priceBand": "££",
       "servicePriceBand": "",
@@ -15190,7 +15197,8 @@
         "Retwist / interlocking",
         "Stitch braids",
         "Loc styling",
-        "Crochet faux locs / invisible locs"
+        "Crochet faux locs / invisible locs",
+        "Fulani sew-in"
       ],
       "priceBand": "£",
       "servicePriceBand": "",
@@ -15227,7 +15235,7 @@
           "source": "instagram"
         }
       ],
-      "updatedAt": "2026-08-31",
+      "updatedAt": "2026-10-04",
       "photoSearchReviewedAt": "2026-08-27",
       "photoOrderBumpedAt": 422
     },
@@ -15837,7 +15845,7 @@
         "Traditional sew-in / leave out",
         "Closure sew-in / closure behind the hairline",
         "Flipover / Versatile sew-in",
-        "Hybrid sew in (tapes + sew in)",
+        "Tape-ins + sew-in",
         "LA weave / microlinks wefts / braidless sew in",
         "I-tips / microlinks strands",
         "Sleek ponytail / bun",
@@ -15901,7 +15909,7 @@
         }
       ],
       "photoSearchReviewedAt": "2026-08-25",
-      "updatedAt": "2026-09-11",
+      "updatedAt": "2026-10-04",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
       "wheelchairAccessible": false,
@@ -17146,11 +17154,11 @@
         "Quick weave",
         "Custom wig",
         "Tape ins",
-        "Half braids, half sew-in",
         "Loc styling",
         "Kids & teens styles",
         "Loc extensions (permanent)",
-        "Crochet faux locs / invisible locs"
+        "Crochet faux locs / invisible locs",
+        "Hybrid (braids + sew-in)"
       ],
       "priceBand": "£",
       "servicePriceBand": "£",
@@ -17190,7 +17198,7 @@
       "sellsHairSeparately": false,
       "sameDayEmergency": false,
       "customFilters": {},
-      "updatedAt": "2026-08-31"
+      "updatedAt": "2026-10-04"
     },
     {
       "id": "by-mae-studio",
@@ -17353,7 +17361,7 @@
         "Wig install (frontal / closure)",
         "Custom wig",
         "Stitch braids",
-        "Half braids, half sew-in",
+        "Feed-in / stitch braid sew-in",
         "Men's braids",
         "Wig cornrows"
       ],
@@ -17380,7 +17388,7 @@
           "source": "instagram"
         }
       ],
-      "updatedAt": "2026-08-24",
+      "updatedAt": "2026-10-04",
       "photoSearchReviewedAt": "2026-08-24",
       "googleDisplayName": "",
       "googleFormattedAddress": "",
@@ -17562,7 +17570,7 @@
         "Knotless braids",
         "Relaxer / texturiser",
         "Silk press",
-        "Half braids, half sew-in",
+        "Fulani sew-in",
         "Soft locs",
         "Stitch braids",
         "Creative braids",
@@ -17602,7 +17610,7 @@
         }
       ],
       "photoSearchReviewedAt": "2026-08-25",
-      "updatedAt": "2026-08-25"
+      "updatedAt": "2026-10-04"
     },
     {
       "id": "kimoy-s-unisex-hair-and-beauty",
@@ -17846,10 +17854,10 @@
         "Microbraids / x-small braids",
         "Stitch braids",
         "Flipover / Versatile sew-in",
-        "Half braids, half sew-in",
         "Feed-in braids",
         "Fulani / lemonade braids",
-        "Sleek ponytail / bun"
+        "Sleek ponytail / bun",
+        "Feed-in / stitch braid sew-in"
       ],
       "sellsHairSeparately": true,
       "priceBand": "£££",
@@ -17880,7 +17888,7 @@
           "source": "instagram"
         }
       ],
-      "updatedAt": "2026-08-25",
+      "updatedAt": "2026-10-04",
       "photoSearchReviewedAt": "2026-08-25"
     },
     {
@@ -18283,7 +18291,7 @@
         "Knotless braids",
         "Miracle knots",
         "French curl",
-        "Half braids, half sew-in",
+        "Fulani sew-in",
         "Men's braids"
       ],
       "priceBand": "££",
@@ -18327,7 +18335,7 @@
           "source": "instagram"
         }
       ],
-      "updatedAt": "2026-08-27",
+      "updatedAt": "2026-10-04",
       "photoSearchReviewedAt": "2026-08-27",
       "photoOrderBumpedAt": 409,
       "canBraidWithoutGel": true
@@ -18361,7 +18369,8 @@
         "Crochet",
         "Soft locs",
         "Updo",
-        "Half braids, half sew-in"
+        "Feed-in / stitch braid sew-in",
+        "Fulani sew-in"
       ],
       "priceBand": "£",
       "servicePriceBand": "£",
@@ -18692,9 +18701,10 @@
         "Feed-in braids",
         "Wig cornrows",
         "Miracle knots",
-        "Half braids, half sew-in",
         "Men's braids",
-        "Crochet faux locs / invisible locs"
+        "Crochet faux locs / invisible locs",
+        "Creative braids",
+        "Feed-in / stitch braid sew-in"
       ],
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
@@ -18723,7 +18733,7 @@
       "lgbtqFriendly": false,
       "parkingAvailable": false,
       "customFilters": {},
-      "updatedAt": "2026-08-31",
+      "updatedAt": "2026-10-04",
       "portfolioPhotosCheckedAt": "2026-08-20",
       "portfolioPhotos": [
         {
@@ -18784,10 +18794,10 @@
         "Closure sew-in / closure behind the hairline",
         "Half up half down",
         "Traditional sew-in / leave out",
-        "Half braids, half sew-in",
         "Wash & blowdry",
         "Trim / hair cut",
-        "Crochet faux locs / invisible locs"
+        "Crochet faux locs / invisible locs",
+        "Fulani sew-in"
       ],
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
@@ -18816,7 +18826,7 @@
       "lgbtqFriendly": false,
       "parkingAvailable": false,
       "customFilters": {},
-      "updatedAt": "2026-08-31",
+      "updatedAt": "2026-10-04",
       "portfolioPhotos": [
         {
           "id": "milkeys-parlour-portfolio-photo-cdd86f1b-aa75-4792-aac8-ce601b2b45c7",
@@ -19170,8 +19180,8 @@
         "Starter locs / instant locs",
         "Retwist / interlocking",
         "Stitch braids",
-        "Half braids, half sew-in",
-        "Crochet faux locs / invisible locs"
+        "Crochet faux locs / invisible locs",
+        "Fulani sew-in"
       ],
       "priceBand": "££",
       "servicePriceBand": "££",
@@ -19208,7 +19218,7 @@
       ],
       "photoSearchReviewedAt": "2026-08-26",
       "photoOrderBumpedAt": 139,
-      "updatedAt": "2026-08-27"
+      "updatedAt": "2026-10-04"
     },
     {
       "id": "sandra-webb",
@@ -28165,7 +28175,7 @@
         "Flipover / Versatile sew-in",
         "Box braids",
         "Creative braids",
-        "Half braids, half sew-in",
+        "Fulani sew-in",
         "Crochet",
         "Miracle knots",
         "Boho braids / goddess braids",
@@ -28212,7 +28222,7 @@
       "lgbtqFriendly": false,
       "parkingAvailable": true,
       "customFilters": {},
-      "updatedAt": "2026-08-22",
+      "updatedAt": "2026-10-04",
       "portfolioPhotos": [
         {
           "id": "hair-by-rose-essex-portfolio-photo-17bcc673-846b-410b-a2ef-03eb9d8720a0",
@@ -29204,7 +29214,6 @@
         "Stitch braids",
         "Wig cornrows",
         "Traditional sew-in / leave out",
-        "Half braids, half sew-in",
         "Kids & teens styles",
         "Men's braids"
       ],
@@ -29287,7 +29296,7 @@
       "parkingAvailable": false,
       "sellsHairSeparately": false,
       "customFilters": {},
-      "updatedAt": "2026-08-24"
+      "updatedAt": "2026-10-04"
     },
     {
       "id": "london-sensory-hair-care",
@@ -29892,8 +29901,8 @@
         "Wig cornrows",
         "Flipover / Versatile sew-in",
         "Quick weave",
-        "Half braids, half sew-in",
-        "Boho braids bob"
+        "Boho braids bob",
+        "Fulani sew-in"
       ],
       "priceBand": "££",
       "servicePriceBand": "££",
@@ -29923,7 +29932,7 @@
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
       "wheelchairAccessible": false,
-      "updatedAt": "2026-08-24",
+      "updatedAt": "2026-10-04",
       "googlePlaceId": null,
       "googleReviewCount": 0,
       "googleMapsUri": "",
@@ -32468,7 +32477,8 @@
         "Updo",
         "Quick weave",
         "Sleek ponytail / bun",
-        "Flipover / Versatile sew-in"
+        "Flipover / Versatile sew-in",
+        "Fulani sew-in"
       ],
       "priceBand": "£",
       "servicePriceBand": "£",
@@ -32503,7 +32513,7 @@
       "googleDisplayName": null,
       "googleFormattedAddress": null,
       "googleCheckedAt": "2026-07-29",
-      "updatedAt": "2026-08-25",
+      "updatedAt": "2026-10-04",
       "parkingAvailable": true,
       "portfolioPhotosCheckedAt": "2026-08-20",
       "portfolioPhotos": [
@@ -32843,7 +32853,6 @@
         "Sleek ponytail / bun",
         "Traditional sew-in / leave out",
         "Closure sew-in / closure behind the hairline",
-        "Half braids, half sew-in",
         "Half up half down",
         "Sew-in take-down",
         "Flipover / Versatile sew-in",
@@ -32888,7 +32897,7 @@
       "canBraidWithoutGel": false,
       "wheelchairAccessible": false,
       "customFilters": {},
-      "updatedAt": "2026-08-25",
+      "updatedAt": "2026-10-04",
       "portfolioPhotosCheckedAt": "2026-08-20",
       "portfolioPhotos": [
         {
@@ -34432,10 +34441,10 @@
         "Feed-in braids",
         "Twists (with extensions)",
         "Creative braids",
-        "Half braids, half sew-in",
         "Traditional sew-in / leave out",
         "Men's braids",
-        "Flipover / Versatile sew-in"
+        "Flipover / Versatile sew-in",
+        "Fulani sew-in"
       ],
       "priceBand": "£",
       "servicePriceBand": "£",
@@ -34474,7 +34483,7 @@
           "date": "2026-06-10"
         }
       ],
-      "updatedAt": "2026-08-26",
+      "updatedAt": "2026-10-04",
       "googlePlaceId": null,
       "googleReviewCount": 0,
       "googleMapsUri": "",
@@ -34937,10 +34946,10 @@
         "Boho braids / goddess braids",
         "Sleek ponytail / bun",
         "Fulani / lemonade braids",
-        "Half braids, half sew-in",
         "Wash & blowdry",
         "Creative braids",
-        "Editorial / Session styling"
+        "Editorial / Session styling",
+        "Fulani sew-in"
       ],
       "priceBand": "££",
       "servicePriceBand": "££",
@@ -34969,7 +34978,7 @@
       "tiktokUrl": "",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
-      "updatedAt": "2026-07-28",
+      "updatedAt": "2026-10-04",
       "addedVia": "Admin tool",
       "discoverySource": "Manual search",
       "googlePlaceId": null,
@@ -36262,11 +36271,11 @@
         "Creative braids",
         "Butterfly locs",
         "Braid take-down",
-        "Half braids, half sew-in",
         "Sleek ponytail / bun",
         "Boho braids bob",
         "Flipover / Versatile sew-in",
-        "Crochet faux locs / invisible locs"
+        "Crochet faux locs / invisible locs",
+        "Boho sew-in"
       ],
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
@@ -36289,7 +36298,7 @@
       "priceCheckedAt": "2026-07-29",
       "priceUpdatedAt": "2026-07-29",
       "priceConfidence": "manual",
-      "updatedAt": "2026-08-25",
+      "updatedAt": "2026-10-04",
       "googlePlaceId": null,
       "googleReviewCount": 0,
       "googleMapsUri": "",
@@ -36328,7 +36337,6 @@
         "Knotless braids",
         "Twists (with extensions)",
         "Soft locs",
-        "Half braids, half sew-in",
         "Traditional sew-in / leave out",
         "Flipover / Versatile sew-in",
         "Feed-in braids",
@@ -36336,7 +36344,8 @@
         "Stitch braids",
         "Quick weave",
         "Highlights",
-        "Miracle knots"
+        "Miracle knots",
+        "Fulani sew-in"
       ],
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
@@ -36368,7 +36377,7 @@
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
       "wheelchairAccessible": false,
-      "updatedAt": "2026-07-24",
+      "updatedAt": "2026-10-04",
       "websiteUrl": "",
       "googlePlaceId": null,
       "googleReviewCount": 0,
@@ -36889,7 +36898,7 @@
         "Sew-in take-down",
         "Traditional sew-in / leave out",
         "Tape ins",
-        "Hybrid sew in (tapes + sew in)",
+        "Tape-ins + sew-in",
         "Flipover / Versatile sew-in",
         "U-Part / Half wig install",
         "Wig install (frontal / closure)"
@@ -36933,7 +36942,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-09-11",
+      "updatedAt": "2026-10-04",
       "parkingAvailable": true,
       "portfolioPhotosCheckedAt": "2026-08-20",
       "portfolioPhotos": [
@@ -37670,9 +37679,9 @@
         "French curl",
         "Sleek ponytail / bun",
         "Sew-in take-down",
-        "Half braids, half sew-in",
         "Miracle knots",
-        "Braid take-down"
+        "Braid take-down",
+        "Boho sew-in"
       ],
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
@@ -37697,7 +37706,7 @@
       "tiktokUrl": "",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
-      "updatedAt": "2026-08-27",
+      "updatedAt": "2026-10-04",
       "addedVia": "Admin tool",
       "discoverySource": "Manual search",
       "servicePriceBand": "££",
@@ -38559,11 +38568,11 @@
         "Stitch braids",
         "Traditional sew-in / leave out",
         "Quick weave",
-        "Half braids, half sew-in",
         "Sleek ponytail / bun",
         "Feed-in braids",
         "Kids & teens styles",
-        "Loc styling"
+        "Loc styling",
+        "Fulani sew-in"
       ],
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
@@ -38588,7 +38597,7 @@
       "tiktokUrl": "",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
-      "updatedAt": "2026-08-31",
+      "updatedAt": "2026-10-04",
       "servicePriceBand": "£",
       "packagePriceBand": "",
       "priceIncludesHair": false,
@@ -38646,7 +38655,7 @@
         "Custom wig",
         "Sew-in take-down",
         "Traditional sew-in / leave out",
-        "Hybrid sew in (tapes + sew in)",
+        "Tape-ins + sew-in",
         "Flipover / Versatile sew-in",
         "Frontal sew-in",
         "Closure sew-in / closure behind the hairline",
@@ -38682,7 +38691,7 @@
       "googleDisplayName": null,
       "googleFormattedAddress": null,
       "googleCheckedAt": "2026-07-29",
-      "updatedAt": "2026-08-31",
+      "updatedAt": "2026-10-04",
       "websiteUrl": "",
       "tiktokUrl": "",
       "hijabiFriendly": false,
@@ -38717,7 +38726,7 @@
       "services": [
         "Boho braids / goddess braids",
         "Knotless braids",
-        "Half braids, half sew-in",
+        "Hybrid (braids + sew-in)",
         "Traditional sew-in / leave out",
         "Flipover / versatile sew-in",
         "Fulani / lemonade braids",
@@ -38758,7 +38767,7 @@
       "googleDisplayName": null,
       "googleFormattedAddress": null,
       "googleCheckedAt": "2026-07-29",
-      "updatedAt": "2026-08-29",
+      "updatedAt": "2026-10-04",
       "portfolioPhotosCheckedAt": "2026-08-20",
       "portfolioPhotos": [
         {
@@ -38792,7 +38801,7 @@
         "Keratin treatment / Brazilian blowdry",
         "Closure sew-in / closure behind the hairline",
         "I-tips / microlinks strands",
-        "Hybrid sew in (tapes + sew in)",
+        "Tape-ins + sew-in",
         "Traditional sew-in / leave out",
         "Trim / hair cut",
         "Wig install (frontal / closure)",
@@ -38831,7 +38840,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-24",
+      "updatedAt": "2026-10-04",
       "verifiedReviewCount": 19,
       "verifiedReviewCheckedAt": "2026-07-22",
       "googlePlaceId": null,
@@ -40767,8 +40776,8 @@
         "Boho braids bob",
         "French curl bob",
         "Men's braids",
-        "Half braids, half sew-in",
-        "Creative braids"
+        "Creative braids",
+        "Fulani sew-in"
       ],
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
@@ -40809,7 +40818,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-31",
+      "updatedAt": "2026-10-04",
       "parkingAvailable": true,
       "portfolioPhotosCheckedAt": "2026-08-20",
       "portfolioPhotos": [
@@ -41289,7 +41298,6 @@
         "U-Part / Half wig install",
         "Stitch braids",
         "French curl",
-        "Half braids, half sew-in",
         "Twists (with extensions)",
         "Wig cornrows",
         "Feed-in braids",
@@ -41299,7 +41307,8 @@
         "Flipover / Versatile sew-in",
         "Men's braids",
         "Loc styling",
-        "Sew-in take-down"
+        "Sew-in take-down",
+        "Feed-in / stitch braid sew-in"
       ],
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
@@ -41309,7 +41318,7 @@
       "tiktokUrl": "",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
-      "updatedAt": "2026-08-26",
+      "updatedAt": "2026-10-04",
       "priceBand": "£",
       "priceSource": "auto",
       "priceEvidence": [
@@ -42083,7 +42092,7 @@
         "LA weave / microlinks wefts / braidless sew in",
         "I-tips / microlinks strands",
         "Traditional sew-in / leave out",
-        "Hybrid sew in (tapes + sew in)",
+        "Tape-ins + sew-in",
         "Wig colouring / bundle colouring",
         "Pixie wig / weave install",
         "Quick weave",
@@ -42118,7 +42127,7 @@
       "priceCheckedAt": "2026-07-24",
       "priceUpdatedAt": "2026-07-24",
       "priceConfidence": "high",
-      "updatedAt": "2026-08-31",
+      "updatedAt": "2026-10-04",
       "servicePriceBand": "",
       "packagePriceBand": "",
       "priceIncludesHair": true,
@@ -43473,7 +43482,8 @@
         "Boho braids bob",
         "Men's braids",
         "Loc styling",
-        "Colour blend (mixing braiding hair)"
+        "Colour blend (mixing braiding hair)",
+        "Fulani sew-in"
       ],
       "summary": "Manual entry added from your North West London braids, sew-in, quick weave, cornrow, and twists list.",
       "source": "manual",
@@ -43519,7 +43529,7 @@
       ],
       "photoSearchReviewedAt": "2026-08-27",
       "photoOrderBumpedAt": 477,
-      "updatedAt": "2026-08-27"
+      "updatedAt": "2026-10-04"
     },
     {
       "id": "cutzgalore",
@@ -44166,7 +44176,6 @@
         "Knotless braids",
         "Boho braids / goddess braids",
         "Texture release",
-        "Half braids, half sew-in",
         "Silk press",
         "Sleek ponytail / bun",
         "Tracks (+ silk press) / partial / invisible sew-in",
@@ -44174,7 +44183,9 @@
         "Wig cornrows",
         "Wash & blowdry",
         "Boho braids bob",
-        "Colour blend (mixing braiding hair)"
+        "Colour blend (mixing braiding hair)",
+        "Boho sew-in",
+        "Feed-in / stitch braid sew-in"
       ],
       "tiktokUrl": "",
       "hijabiFriendly": false,
@@ -44189,7 +44200,7 @@
       "priceCheckedAt": "2026-06-04",
       "priceUpdatedAt": "2026-06-04",
       "priceConfidence": "medium",
-      "updatedAt": "2026-08-26",
+      "updatedAt": "2026-10-04",
       "addedVia": "Code edit",
       "discoverySource": "Cowork scrape",
       "googlePlaceId": null,
@@ -44266,7 +44277,7 @@
         "Traditional sew-in / leave out",
         "LA weave / microlinks wefts / braidless sew in",
         "Flipover / Versatile sew-in",
-        "Hybrid sew in (tapes + sew in)",
+        "Tape-ins + sew-in",
         "Tracks (+ silk press) / partial / invisible sew-in",
         "Frontal ponytail / bun"
       ],
@@ -44314,7 +44325,7 @@
       "servicePriceBand": "",
       "packagePriceBand": "",
       "priceComparisonMode": "",
-      "updatedAt": "2026-08-29",
+      "updatedAt": "2026-10-04",
       "portfolioPhotos": [
         {
           "id": "adornedbyanj-portfolio-photo-e946558a-d12e-4406-9679-bb1fba2ecc91",
@@ -44586,7 +44597,7 @@
         "Tape ins",
         "Wash & blowdry",
         "Sew in / extensions blowdry",
-        "Hybrid sew in (tapes + sew in)",
+        "Tape-ins + sew-in",
         "Bridal"
       ],
       "summary": "Manual entry added from your South East London extensions, sew-ins, and treatments list.",
@@ -44651,7 +44662,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-25"
+      "updatedAt": "2026-10-04"
     },
     {
       "id": "akuabeauxhair",
@@ -44672,9 +44683,9 @@
         "Knotless braids",
         "Sleek ponytail / bun",
         "Feed-in braids",
-        "Half braids, half sew-in",
         "Fulani / lemonade braids",
-        "Twists (with extensions)"
+        "Twists (with extensions)",
+        "Fulani sew-in"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -44715,7 +44726,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-25",
+      "updatedAt": "2026-10-04",
       "parkingAvailable": true,
       "portfolioPhotosCheckedAt": "2026-08-20",
       "portfolioPhotos": [
@@ -44853,7 +44864,6 @@
         "Sleek ponytail / bun",
         "Half up half down",
         "Traditional sew-in / leave out",
-        "Half braids, half sew-in",
         "Flipover / Versatile sew-in",
         "Closure sew-in / closure behind the hairline",
         "Tape ins",
@@ -44864,7 +44874,9 @@
         "Wig install (frontal / closure)",
         "Kids & teens styles",
         "Men's braids",
-        "Crochet faux locs / invisible locs"
+        "Crochet faux locs / invisible locs",
+        "Creative braids",
+        "Feed-in / stitch braid sew-in"
       ],
       "priceBand": "££",
       "priceSource": "auto",
@@ -44917,7 +44929,7 @@
         }
       ],
       "portfolioPhotosCheckedAt": "2026-08-20",
-      "updatedAt": "2026-09-11",
+      "updatedAt": "2026-10-04",
       "tiktokUrl": "",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
@@ -45021,11 +45033,11 @@
         "Feed-in braids",
         "French curl",
         "Fulani / lemonade braids",
-        "Half braids, half sew-in",
         "Miracle knots",
         "Boho braids bob",
         "Colour blend (mixing braiding hair)",
-        "Crochet faux locs / invisible locs"
+        "Crochet faux locs / invisible locs",
+        "Feed-in / stitch braid sew-in"
       ],
       "summary": "Manual entry added from your latest salon update batch.",
       "source": "manual",
@@ -45074,7 +45086,7 @@
           "source": "instagram"
         }
       ],
-      "updatedAt": "2026-09-01",
+      "updatedAt": "2026-10-04",
       "websiteUrl": "",
       "hairShopUrl": "",
       "tiktokUrl": "",
@@ -45605,7 +45617,6 @@
         "Knotless braids",
         "Box braids",
         "Boho braids / goddess braids",
-        "Half braids, half sew-in",
         "Soft locs",
         "Sleek ponytail / bun",
         "Wig cornrows",
@@ -45618,7 +45629,8 @@
         "Feed-in braids",
         "Creative braids",
         "Boho braids bob",
-        "Colour blend (mixing braiding hair)"
+        "Colour blend (mixing braiding hair)",
+        "Feed-in / stitch braid sew-in"
       ],
       "summary": "Manual entry added from your North London braids list.",
       "source": "manual",
@@ -45667,7 +45679,7 @@
           "source": "instagram"
         }
       ],
-      "updatedAt": "2026-08-24"
+      "updatedAt": "2026-10-04"
     },
     {
       "id": "arinze-studios",
@@ -45683,8 +45695,8 @@
         "Knotless braids",
         "Boho braids / goddess braids",
         "Stitch braids",
-        "Half braids, half sew-in",
-        "Boho braids bob"
+        "Boho braids bob",
+        "Fulani sew-in"
       ],
       "summary": "Manual Instagram-led entry added from your East London braids list.",
       "source": "manual",
@@ -45733,7 +45745,6 @@
         "Half up half down",
         "Flipover / versatile sew-in",
         "Wig install (frontal / closure)",
-        "Half braids, half sew-in",
         "Fulani / lemonade braids",
         "Traditional sew-in / leave out",
         "Custom wig",
@@ -45742,7 +45753,8 @@
         "Bridal",
         "U-Part / Half wig install",
         "Frontal ponytail / bun",
-        "Boho braids bob"
+        "Boho braids bob",
+        "Boho sew-in"
       ],
       "summary": "Manual entry added from your East London braids list.",
       "source": "manual",
@@ -45797,7 +45809,7 @@
       ],
       "photoSearchReviewedAt": "2026-08-26",
       "photoOrderBumpedAt": 366,
-      "updatedAt": "2026-08-27"
+      "updatedAt": "2026-10-04"
     },
     {
       "id": "artistrybyserena",
@@ -45814,10 +45826,10 @@
         "Fulani / lemonade braids",
         "Boho braids / goddess braids",
         "Stitch braids",
-        "Half braids, half sew-in",
         "Boho braids bob",
         "Microbraids / x-small braids",
-        "Traditional sew-in / leave out"
+        "Traditional sew-in / leave out",
+        "Feed-in / stitch braid sew-in"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -45854,7 +45866,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-27",
+      "updatedAt": "2026-10-04",
       "portfolioPhotosCheckedAt": "2026-08-21",
       "portfolioPhotos": [
         {
@@ -45889,7 +45901,6 @@
         "Starter locs / instant locs",
         "Miracle knots",
         "Sleek ponytail / bun",
-        "Half braids, half sew-in",
         "Traditional sew-in / leave out",
         "Half up half down",
         "Flipover / Versatile sew-in",
@@ -45899,7 +45910,9 @@
         "Frontal ponytail / bun",
         "Updo",
         "Kids & teens styles",
-        "Men's braids"
+        "Men's braids",
+        "Feed-in / stitch braid sew-in",
+        "Fulani sew-in"
       ],
       "tiktokUrl": "",
       "hijabiFriendly": false,
@@ -45919,7 +45932,7 @@
       "priceCheckedAt": "2026-06-04",
       "priceUpdatedAt": "2026-06-04",
       "priceConfidence": "manual",
-      "updatedAt": "2026-08-23",
+      "updatedAt": "2026-10-04",
       "addedVia": "Code edit",
       "discoverySource": "Cowork scrape",
       "googlePlaceId": null,
@@ -46263,7 +46276,6 @@
         "Box braids",
         "Fulani / lemonade braids",
         "Soft locs",
-        "Half braids, half sew-in",
         "Full head colour",
         "Highlights",
         "Custom wig",
@@ -46282,7 +46294,8 @@
         "Sleek ponytail / bun",
         "Pixie cut / finger waves",
         "Traditional sew-in / leave out",
-        "Crochet faux locs / invisible locs"
+        "Crochet faux locs / invisible locs",
+        "Boho sew-in"
       ],
       "priceBand": "££",
       "priceSource": "auto",
@@ -46317,7 +46330,7 @@
         }
       ],
       "portfolioPhotosCheckedAt": "2026-08-21",
-      "updatedAt": "2026-09-02",
+      "updatedAt": "2026-10-04",
       "websiteUrl": "",
       "hairShopUrl": "",
       "tiktokUrl": "",
@@ -47010,7 +47023,6 @@
         "Scalp detox / treatments",
         "Olaplex treatment",
         "Relaxer / texturiser",
-        "Half braids, half sew-in",
         "Traditional sew-in / leave out",
         "Half up half down",
         "Closure sew-in / closure behind the hairline",
@@ -47038,7 +47050,8 @@
         "Kids & teens styles",
         "Bantu knots",
         "Men's braids",
-        "Crochet faux locs / invisible locs"
+        "Crochet faux locs / invisible locs",
+        "Feed-in / stitch braid sew-in"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -47070,7 +47083,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-27",
+      "updatedAt": "2026-10-04",
       "googlePlaceId": "ChIJm70pp-2n2EcRPyk36g31t1E",
       "googleReviewCount": 133,
       "googleMapsUri": "https://maps.google.com/?cid=5888444477923076415&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
@@ -47255,7 +47268,7 @@
         "Feed-in braids",
         "Wig install (frontal / closure)",
         "Boho braids / goddess braids",
-        "Half braids, half sew-in",
+        "Hybrid (braids + sew-in)",
         "Frontal sew-in",
         "Closure sew-in / closure behind the hairline",
         "Custom wig",
@@ -47287,7 +47300,7 @@
       "priceCheckedAt": "2026-06-05",
       "priceUpdatedAt": "2026-06-05",
       "priceConfidence": "high",
-      "updatedAt": "2026-08-21",
+      "updatedAt": "2026-10-04",
       "servicePriceBand": "",
       "packagePriceBand": "",
       "priceIncludesHair": false,
@@ -47608,7 +47621,8 @@
         "Boho braids / goddess braids",
         "Stitch braids",
         "Wig cornrows",
-        "Wig install (frontal / closure)"
+        "Wig install (frontal / closure)",
+        "Fulani sew-in"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -47648,7 +47662,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-30",
+      "updatedAt": "2026-10-04",
       "portfolioPhotosCheckedAt": "2026-08-21",
       "portfolioPhotos": [
         {
@@ -48424,7 +48438,7 @@
         "Creative braids",
         "Wig cornrows",
         "Stitch braids",
-        "Half braids, half sew-in",
+        "Fulani sew-in",
         "Boho braids bob",
         "Kids & teens styles",
         "Men's braids",
@@ -48452,7 +48466,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-06-08",
+      "updatedAt": "2026-10-04",
       "addedVia": "Code edit",
       "discoverySource": "Cowork scrape",
       "googlePlaceId": null,
@@ -48596,7 +48610,6 @@
         "Boho braids / goddess braids",
         "Stitch braids",
         "Fulani / lemonade braids",
-        "Half braids, half sew-in",
         "Feed-in braids",
         "Knotless braids",
         "Wig cornrows",
@@ -48629,7 +48642,7 @@
         }
       ],
       "photoSearchReviewedAt": "2026-08-25",
-      "updatedAt": "2026-09-01",
+      "updatedAt": "2026-10-04",
       "websiteUrl": "",
       "hairShopUrl": "",
       "tiktokUrl": "",
@@ -48840,7 +48853,6 @@
         "Miracle knots",
         "Fulani / lemonade braids",
         "Stitch braids",
-        "Half braids, half sew-in",
         "Wash & blowdry",
         "Flipover / Versatile sew-in",
         "Sleek ponytail / bun",
@@ -48853,7 +48865,9 @@
         "Crochet faux locs / invisible locs",
         "Colour blend (mixing braiding hair)",
         "Boho locs",
-        "Men's braids"
+        "Men's braids",
+        "Boho sew-in",
+        "Feed-in / stitch braid sew-in"
       ],
       "canBraidWithoutGel": true,
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
@@ -48881,7 +48895,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-09-08",
+      "updatedAt": "2026-10-04",
       "websiteUrl": "",
       "googlePlaceId": null,
       "googleReviewCount": 0,
@@ -49100,7 +49114,7 @@
       "bookingUrl": "https://bookbundlesdealer.as.me/schedule/422f57bb",
       "instagramUrl": "https://www.instagram.com/bundlesdealer/",
       "services": [
-        "Hybrid sew in (tapes + sew in)",
+        "Tape-ins + sew-in",
         "Closure sew-in / closure behind the hairline",
         "Traditional sew-in / leave out",
         "Tape ins",
@@ -49161,7 +49175,7 @@
       "servicePriceBand": "",
       "packagePriceBand": "",
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-27",
+      "updatedAt": "2026-10-04",
       "sameDayEmergency": false
     },
     {
@@ -49545,11 +49559,11 @@
       "services": [
         "Knotless braids",
         "Boho braids / goddess braids",
-        "Half braids, half sew-in",
         "Fulani / lemonade braids",
         "Stitch braids",
         "Miracle knots",
-        "Boho braids bob"
+        "Boho braids bob",
+        "Feed-in / stitch braid sew-in"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -49590,7 +49604,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-07-24",
+      "updatedAt": "2026-10-04",
       "portfolioPhotosCheckedAt": "2026-08-21",
       "portfolioPhotos": [
         {
@@ -49629,7 +49643,6 @@
         "Silk press",
         "Feed-in braids",
         "Traditional sew-in / leave out",
-        "Half braids, half sew-in",
         "Half up half down",
         "Sleek ponytail / bun"
       ],
@@ -49675,7 +49688,7 @@
       ],
       "photoSearchReviewedAt": "2026-08-27",
       "photoOrderBumpedAt": 485,
-      "updatedAt": "2026-08-27"
+      "updatedAt": "2026-10-04"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -49700,7 +49713,8 @@
         "Silk press",
         "Wig install (frontal / closure)",
         "Traditional sew-in / leave out",
-        "Frontal ponytail / bun"
+        "Frontal ponytail / bun",
+        "Tape-ins + sew-in"
       ],
       "priceBand": "£",
       "priceSource": "auto",
@@ -49750,7 +49764,7 @@
         }
       ],
       "portfolioPhotosCheckedAt": "2026-08-21",
-      "updatedAt": "2026-08-21",
+      "updatedAt": "2026-10-04",
       "websiteUrl": "",
       "tiktokUrl": "",
       "hijabiFriendly": false,
@@ -49958,7 +49972,7 @@
         "Tape ins",
         "Closure sew-in / closure behind the hairline",
         "Flipover / Versatile sew-in",
-        "Hybrid sew in (tapes + sew in)",
+        "Tape-ins + sew-in",
         "Frontal sew-in",
         "Frontal ponytail / bun",
         "Japanese head spa"
@@ -50026,7 +50040,7 @@
           "source": "google"
         }
       ],
-      "updatedAt": "2026-09-01",
+      "updatedAt": "2026-10-04",
       "websiteUrl": "",
       "hairShopUrl": "",
       "tiktokUrl": "",
@@ -52167,7 +52181,6 @@
         "Boho braids / goddess braids",
         "Feed-in braids",
         "Traditional sew-in / leave out",
-        "Half braids, half sew-in",
         "Frontal sew-in",
         "Sleek ponytail / bun",
         "Half up half down",
@@ -52176,7 +52189,8 @@
         "Frontal ponytail / bun",
         "Wig cornrows",
         "Closure sew-in / closure behind the hairline",
-        "Custom wig"
+        "Custom wig",
+        "Fulani sew-in"
       ],
       "priceBand": "£",
       "priceSource": "auto",
@@ -53099,7 +53113,6 @@
         "Traditional sew-in / leave out",
         "Closure sew-in / closure behind the hairline",
         "Tracks (+ silk press) / partial / invisible sew-in",
-        "Half braids, half sew-in",
         "LA weave / microlinks wefts / braidless sew in",
         "Tape ins",
         "K-tips / invisible strands",
@@ -53118,7 +53131,8 @@
         "Sew-in take-down",
         "Moisturising treatment",
         "Knotless braids",
-        "Men's braids"
+        "Men's braids",
+        "Feed-in / stitch braid sew-in"
       ],
       "summary": "Manual entry added from your North West London wigs, sew-ins, extensions, braids, silk press, ponytail, and locs list.",
       "source": "manual",
@@ -53184,7 +53198,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-23"
+      "updatedAt": "2026-10-04"
     },
     {
       "id": "dsrhair",
@@ -53207,7 +53221,7 @@
         "Knotless braids",
         "French curl",
         "Boho braids / goddess braids",
-        "Hybrid sew in (tapes + sew in)"
+        "Hybrid (braids + sew-in)"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -53248,7 +53262,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-24",
+      "updatedAt": "2026-10-04",
       "portfolioPhotosCheckedAt": "2026-08-21",
       "portfolioPhotos": [
         {
@@ -53290,7 +53304,6 @@
         "Closure sew-in / closure behind the hairline",
         "Sleek ponytail / bun",
         "Half up half down",
-        "Half braids, half sew-in",
         "Butterfly locs",
         "Soft locs",
         "Crochet",
@@ -53302,7 +53315,8 @@
         "Men's braids",
         "Stitch braids",
         "French curl",
-        "Feed-in braids"
+        "Feed-in braids",
+        "Feed-in / stitch braid sew-in"
       ],
       "summary": "Manual entry added from your Essex braids list.",
       "source": "manual",
@@ -53327,7 +53341,7 @@
       "priceCheckedAt": "2026-08-24",
       "priceUpdatedAt": "2026-08-24",
       "priceConfidence": "manual",
-      "updatedAt": "2026-08-31",
+      "updatedAt": "2026-10-04",
       "addedVia": "Code edit",
       "discoverySource": "Cowork scrape",
       "googlePlaceId": null,
@@ -53396,11 +53410,10 @@
         "Clip ins (+ silk press)",
         "LA weave / microlinks wefts / braidless sew in",
         "Flipover / Versatile sew-in",
-        "Hybrid sew in (tapes + sew in)",
+        "Tape-ins + sew-in",
         "Tracks (+ silk press) / partial / invisible sew-in",
         "Tape ins",
         "Custom wig",
-        "Half braids, half sew-in",
         "Closure sew-in / closure behind the hairline",
         "Frontal ponytail / bun",
         "Wig install (frontal / closure)",
@@ -53450,7 +53463,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-25",
+      "updatedAt": "2026-10-04",
       "sellsHairSeparately": true,
       "hairShopUrl": "https://dvhextensions.com",
       "vendorId": "dvh-salon",
@@ -53582,13 +53595,13 @@
       "instagramUrl": "https://www.instagram.com/eda.lnd/",
       "services": [
         "Traditional sew-in / leave out",
-        "Half braids, half sew-in",
         "Flipover / Versatile sew-in",
         "French curl",
         "Fulani / lemonade braids",
         "Miracle knots",
-        "Hybrid sew in (tapes + sew in)",
-        "Closure sew-in / closure behind the hairline"
+        "Tape-ins + sew-in",
+        "Closure sew-in / closure behind the hairline",
+        "Boho sew-in"
       ],
       "summary": "Manual entry added from your North West London salon update batch.",
       "source": "manual",
@@ -53634,7 +53647,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": true,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-31",
+      "updatedAt": "2026-10-04",
       "vendorId": "eda-lnd",
       "portfolioPhotosCheckedAt": "2026-08-21",
       "portfolioPhotos": [
@@ -54064,7 +54077,6 @@
         "Fulani / lemonade braids",
         "Knotless braids",
         "Retwist / interlocking",
-        "Half braids, half sew-in",
         "Creative braids",
         "Sleek ponytail / bun",
         "Half up half down",
@@ -54073,7 +54085,8 @@
         "Stitch braids",
         "Men's braids",
         "Colour blend (mixing braiding hair)",
-        "Crochet faux locs / invisible locs"
+        "Crochet faux locs / invisible locs",
+        "Feed-in / stitch braid sew-in"
       ],
       "priceBand": "££",
       "priceSource": "auto",
@@ -54115,7 +54128,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-09-01",
+      "updatedAt": "2026-10-04",
       "portfolioPhotos": [
         {
           "id": "ellise-tresses-portfolio-photo-ba145da9-b9d8-45d6-8f55-f5883c124f18",
@@ -54261,7 +54274,6 @@
         "Sew in / extensions blowdry",
         "Clip ins (+ silk press)",
         "Half up half down",
-        "Half braids, half sew-in",
         "Sew-in take-down",
         "Wig install (frontal / closure)",
         "Custom wig",
@@ -54298,7 +54310,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": true,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-06-10",
+      "updatedAt": "2026-10-04",
       "googlePlaceId": null,
       "googleReviewCount": 0,
       "googleMapsUri": "",
@@ -54745,7 +54757,6 @@
         "Box braids",
         "Wash & blowdry",
         "Wig cornrows",
-        "Half braids, half sew-in",
         "Half up half down",
         "Editorial / Session styling",
         "Creative braids",
@@ -54790,7 +54801,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-23",
+      "updatedAt": "2026-10-04",
       "portfolioPhotos": [
         {
           "id": "estheticshair-portfolio-photo-0",
@@ -54855,13 +54866,14 @@
         "Sleek ponytail / bun",
         "Half up half down",
         "Boho braids / goddess braids",
-        "Half braids, half sew-in",
         "Updo",
         "Fulani / lemonade braids",
         "Stitch braids",
         "Boho braids bob",
         "Flipover / Versatile sew-in",
-        "Traditional sew-in / leave out"
+        "Traditional sew-in / leave out",
+        "Boho sew-in",
+        "Feed-in / stitch braid sew-in"
       ],
       "summary": "Manual entry added from your Croydon braids and styling list.",
       "source": "manual",
@@ -54911,7 +54923,7 @@
       "lgbtqFriendly": false,
       "parkingAvailable": true,
       "customFilters": {},
-      "updatedAt": "2026-08-26",
+      "updatedAt": "2026-10-04",
       "vendorId": "estylish",
       "portfolioPhotos": [
         {
@@ -54964,7 +54976,6 @@
         "U-Part / Half wig install",
         "Frontal ponytail / bun",
         "Wig cornrows",
-        "Half braids, half sew-in",
         "Editorial / Session styling"
       ],
       "priceBand": "££",
@@ -54993,7 +55004,7 @@
       "googleDisplayName": null,
       "googleFormattedAddress": null,
       "googleCheckedAt": "2026-07-29",
-      "updatedAt": "2026-08-22",
+      "updatedAt": "2026-10-04",
       "sellsHairSeparately": true,
       "hairShopUrl": "https://eugenzehair.com/shop/",
       "vendorId": "eugenze",
@@ -55204,7 +55215,8 @@
         "Wig cornrows",
         "Quick weave",
         "Frontal sew-in",
-        "Fulani / lemonade braids"
+        "Fulani / lemonade braids",
+        "Fulani sew-in"
       ],
       "summary": "Manual entry added from your latest salon update batch.",
       "source": "manual",
@@ -55237,7 +55249,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-09-11",
+      "updatedAt": "2026-10-04",
       "googlePlaceId": null,
       "googleReviewCount": 0,
       "googleMapsUri": "",
@@ -55290,7 +55302,6 @@
         "LA weave / microlinks wefts / braidless sew in",
         "Traditional sew-in / leave out",
         "K-tips / invisible strands",
-        "Hybrid sew in (tapes + sew in)",
         "Trim / hair cut",
         "Relaxer / texturiser",
         "Wash & blowdry"
@@ -55345,7 +55356,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-27",
+      "updatedAt": "2026-10-04",
       "photoOrderBumpedAt": 109
     },
     {
@@ -55935,7 +55946,8 @@
         "Custom wig",
         "Sew-in take-down",
         "Frontal sew-in",
-        "Olaplex treatment"
+        "Olaplex treatment",
+        "Tape-ins + sew-in"
       ],
       "summary": "Manual entry added from your South East London sew-in and wig install list.",
       "source": "manual",
@@ -55986,7 +55998,7 @@
         }
       ],
       "photoSearchReviewedAt": "2026-08-25",
-      "updatedAt": "2026-09-11",
+      "updatedAt": "2026-10-04",
       "parkingAvailable": false,
       "websiteUrl": "",
       "hairShopUrl": "",
@@ -56017,7 +56029,6 @@
         "Knotless braids",
         "Feed-in braids",
         "French curl",
-        "Half braids, half sew-in",
         "Wig cornrows",
         "Crochet",
         "Moisturising treatment",
@@ -56025,7 +56036,9 @@
         "Closure sew-in / closure behind the hairline",
         "Custom wig",
         "Wig install (frontal / closure)",
-        "Kids & teens styles"
+        "Kids & teens styles",
+        "Microbraids / x-small braids",
+        "Hybrid (braids + sew-in)"
       ],
       "summary": "Manual entry added from your East London braids list.",
       "source": "manual",
@@ -56052,10 +56065,10 @@
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleDisplayName": null,
-      "googleFormattedAddress": null,
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-07-29",
-      "updatedAt": "2026-08-31",
+      "updatedAt": "2026-10-04",
       "portfolioPhotosCheckedAt": "2026-08-21",
       "portfolioPhotos": [
         {
@@ -56065,7 +56078,23 @@
         }
       ],
       "photoSearchReviewedAt": "2026-08-31",
-      "photoOrderBumpedAt": 1062
+      "photoOrderBumpedAt": 1062,
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": false,
+      "sameDayEmergency": false,
+      "customFilters": {},
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -56388,7 +56417,6 @@
       "instagramUrl": "https://www.instagram.com/gripped_it/",
       "services": [
         "Traditional sew-in / leave out",
-        "Half braids, half sew-in",
         "French curl",
         "Knotless braids",
         "Boho braids / goddess braids",
@@ -56397,7 +56425,9 @@
         "Braid take-down",
         "Fulani / lemonade braids",
         "Boho braids bob",
-        "Closure sew-in / closure behind the hairline"
+        "Closure sew-in / closure behind the hairline",
+        "Boho sew-in",
+        "Feed-in / stitch braid sew-in"
       ],
       "canBraidWithoutGel": true,
       "priceBand": "££",
@@ -56424,7 +56454,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-31",
+      "updatedAt": "2026-10-04",
       "googlePlaceId": null,
       "googleReviewCount": 0,
       "googleMapsUri": "",
@@ -56466,11 +56496,11 @@
         "Sew-in take-down",
         "Braid take-down",
         "Traditional sew-in / leave out",
-        "Half braids, half sew-in",
         "Crochet",
         "Healthy hair plans & consultations",
         "Fulani / lemonade braids",
-        "Men's braids"
+        "Men's braids",
+        "Fulani sew-in"
       ],
       "canBraidWithoutGel": true,
       "summary": "Manual entry added from your latest salon update batch.",
@@ -56502,7 +56532,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-27",
+      "updatedAt": "2026-10-04",
       "websiteUrl": "",
       "googlePlaceId": null,
       "googleReviewCount": 0,
@@ -56537,7 +56567,6 @@
         "Boho braids / goddess braids",
         "Stitch braids",
         "Butterfly locs",
-        "Half braids, half sew-in",
         "Half up half down",
         "Sleek ponytail / bun",
         "Wig cornrows",
@@ -56546,7 +56575,8 @@
         "Fulani / lemonade braids",
         "Crochet",
         "Traditional sew-in / leave out",
-        "Crochet faux locs / invisible locs"
+        "Crochet faux locs / invisible locs",
+        "Fulani sew-in"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -56579,7 +56609,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-27",
+      "updatedAt": "2026-10-04",
       "googlePlaceId": null,
       "googleReviewCount": 0,
       "googleMapsUri": "",
@@ -56694,7 +56724,6 @@
         "Knotless braids",
         "Traditional sew-in / leave out",
         "French curl",
-        "Half braids, half sew-in",
         "Boho braids / goddess braids",
         "Flipover / Versatile sew-in",
         "Closure sew-in / closure behind the hairline",
@@ -56704,7 +56733,9 @@
         "Microbraids / x-small braids",
         "Boho braids bob",
         "French curl bob",
-        "Creative braids"
+        "Creative braids",
+        "Boho sew-in",
+        "Fulani sew-in"
       ],
       "canBraidWithoutGel": true,
       "summary": "Manual entry added from your East London braids and sew-ins list.",
@@ -56751,7 +56782,7 @@
       "hijabiFriendly": false,
       "wheelchairAccessible": false,
       "customFilters": {},
-      "updatedAt": "2026-08-24",
+      "updatedAt": "2026-10-04",
       "sellsHairSeparately": true,
       "hairShopUrl": "https://hhair.co/shop",
       "vendorId": "h-hair",
@@ -56822,10 +56853,10 @@
         "Closure sew-in / closure behind the hairline",
         "Wig cornrows",
         "Closure sew-in",
-        "Half braids, half sew-in",
         "Half up half down",
         "Flipover / Versatile sew-in",
-        "Boho braids bob"
+        "Boho braids bob",
+        "Feed-in / stitch braid sew-in"
       ],
       "priceBand": "£",
       "priceSource": "auto",
@@ -56850,7 +56881,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-06-09",
+      "updatedAt": "2026-10-04",
       "addedVia": "Code edit",
       "discoverySource": "Cowork scrape",
       "googlePlaceId": null,
@@ -57558,7 +57589,6 @@
         "French curl",
         "Stitch braids",
         "Fulani / lemonade braids",
-        "Half braids, half sew-in",
         "Twists (with extensions)",
         "Half up half down",
         "Miracle knots",
@@ -57566,7 +57596,8 @@
         "Boho braids bob",
         "French curl bob",
         "Colour blend (mixing braiding hair)",
-        "Boho locs"
+        "Boho locs",
+        "Fulani sew-in"
       ],
       "priceBand": "££",
       "priceSource": "auto",
@@ -57604,7 +57635,7 @@
           "source": "instagram"
         }
       ],
-      "updatedAt": "2026-09-08"
+      "updatedAt": "2026-10-04"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -57764,13 +57795,13 @@
         "Boho braids / goddess braids",
         "Wig install (frontal / closure)",
         "Feed-in braids",
-        "Half braids, half sew-in",
         "Traditional sew-in / leave out",
         "Knotless braids",
         "Twists (with extensions)",
         "Wig cornrows",
         "Miracle knots",
-        "Boho braids bob"
+        "Boho braids bob",
+        "Feed-in / stitch braid sew-in"
       ],
       "priceBand": "££",
       "priceSource": "auto",
@@ -57794,7 +57825,7 @@
       "tiktokUrl": "",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
-      "updatedAt": "2026-08-24",
+      "updatedAt": "2026-10-04",
       "addedVia": "Code edit",
       "discoverySource": "Cowork scrape",
       "googlePlaceId": null,
@@ -57868,9 +57899,9 @@
         "Miracle knots",
         "Flipover / Versatile sew-in",
         "Wig cornrows",
-        "Half braids, half sew-in",
         "Kids & teens styles",
-        "Crochet faux locs / invisible locs"
+        "Crochet faux locs / invisible locs",
+        "Feed-in / stitch braid sew-in"
       ],
       "tiktokUrl": "",
       "hijabiFriendly": false,
@@ -57890,7 +57921,7 @@
       "priceCheckedAt": "2026-06-03",
       "priceUpdatedAt": "2026-06-03",
       "priceConfidence": "high",
-      "updatedAt": "2026-08-24",
+      "updatedAt": "2026-10-04",
       "addedVia": "Code edit",
       "discoverySource": "Cowork scrape",
       "verifiedReviewCount": 14,
@@ -57936,7 +57967,7 @@
         "Box braids",
         "Stitch braids",
         "Fulani / lemonade braids",
-        "Half braids, half sew-in",
+        "Hybrid (braids + sew-in)",
         "Half up half down",
         "Relaxer / texturiser",
         "Sleek ponytail / bun",
@@ -58031,7 +58062,7 @@
         }
       ],
       "portfolioPhotosCheckedAt": "2026-08-21",
-      "updatedAt": "2026-08-25"
+      "updatedAt": "2026-10-04"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -58242,11 +58273,11 @@
         "Stitch braids",
         "Knotless braids",
         "Pre-parting",
-        "Half braids, half sew-in",
         "Cornrows / Twists / Underwig cornrows",
         "Wash & blowdry",
         "Braid take-down",
-        "Men's braids"
+        "Men's braids",
+        "Feed-in / stitch braid sew-in"
       ],
       "priceBand": "£",
       "priceSource": "auto",
@@ -58285,7 +58316,7 @@
           "source": "instagram-reel-frame"
         }
       ],
-      "updatedAt": "2026-08-31",
+      "updatedAt": "2026-10-04",
       "photoSearchReviewedAt": "2026-08-31",
       "photoOrderBumpedAt": 754
     },
@@ -58527,7 +58558,6 @@
         "Wig cornrows",
         "Full head colour",
         "Sleek ponytail / bun",
-        "Half braids, half sew-in",
         "Crochet",
         "Tracks (+ silk press) / partial / invisible sew-in",
         "Miracle knots",
@@ -58535,7 +58565,8 @@
         "Boho braids bob",
         "Kids & teens styles",
         "Men's braids",
-        "Wig laundry"
+        "Wig laundry",
+        "Boho sew-in"
       ],
       "summary": "Manual entry added from your East London braids, extensions, sew-ins, and natural hair list.",
       "source": "manual",
@@ -58567,7 +58598,7 @@
       "googleDisplayName": "HairZonesuk Salon",
       "googleFormattedAddress": "74, Stratford Broadway, Stratford shopping centre, London E15 1NG, UK",
       "googleCheckedAt": "2026-07-23",
-      "updatedAt": "2026-08-31",
+      "updatedAt": "2026-10-04",
       "websiteUrl": "https://hairzones.com/",
       "portfolioPhotos": [
         {
@@ -58748,7 +58779,6 @@
         "Feed-in braids",
         "Boho braids / goddess braids",
         "French curl",
-        "Half braids, half sew-in",
         "Knotless braids",
         "Wig cornrows",
         "Fulani / lemonade braids",
@@ -58756,7 +58786,9 @@
         "Crochet",
         "Stitch braids",
         "Creative braids",
-        "Sleek ponytail / bun"
+        "Sleek ponytail / bun",
+        "Boho sew-in",
+        "Feed-in / stitch braid sew-in"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -58797,7 +58829,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-30",
+      "updatedAt": "2026-10-04",
       "portfolioPhotosCheckedAt": "2026-08-21",
       "portfolioPhotos": [
         {
@@ -59309,11 +59341,10 @@
       "instagramUrl": "https://www.instagram.com/hairbyoceanne/",
       "services": [
         "Traditional sew-in / leave out",
-        "Half braids, half sew-in",
         "Tape ins",
         "Clip ins (+ silk press)",
         "Flipover / Versatile sew-in",
-        "Hybrid sew in (tapes + sew in)"
+        "Tape-ins + sew-in"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -59353,7 +59384,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-09-11",
+      "updatedAt": "2026-10-04",
       "portfolioPhotosCheckedAt": "2026-08-21",
       "portfolioPhotos": [
         {
@@ -59394,7 +59425,7 @@
         "Quick weave",
         "Tape ins",
         "Traditional sew-in / leave out",
-        "Hybrid sew in (tapes + sew in)",
+        "Tape-ins + sew-in",
         "Flipover / Versatile sew-in",
         "Wig install (frontal / closure)",
         "Custom wig",
@@ -59439,7 +59470,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": true,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-09-11",
+      "updatedAt": "2026-10-04",
       "portfolioPhotosCheckedAt": "2026-08-21",
       "portfolioPhotos": [
         {
@@ -59573,7 +59604,7 @@
         "Boho braids / goddess braids",
         "Traditional sew-in / leave out",
         "Half up half down",
-        "Half braids, half sew-in",
+        "Hybrid (braids + sew-in)",
         "Closure sew-in / closure behind the hairline",
         "French curl",
         "Fulani / lemonade braids",
@@ -59612,7 +59643,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-27",
+      "updatedAt": "2026-10-04",
       "addedVia": "Code edit",
       "discoverySource": "Cowork scrape",
       "googlePlaceId": null,
@@ -59898,7 +59929,7 @@
         "Keratin treatment / Brazilian blowdry",
         "Traditional sew-in / leave out",
         "Flipover / Versatile sew-in",
-        "Hybrid sew in (tapes + sew in)",
+        "Tape-ins + sew-in",
         "Tape ins"
       ],
       "summary": "Manual entry added from your latest salon update batch.",
@@ -59954,7 +59985,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": true,
       "priceComparisonMode": "",
-      "updatedAt": "2026-09-11"
+      "updatedAt": "2026-10-04"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -61083,13 +61114,13 @@
         "Feed-in braids",
         "Soft locs",
         "Box braids",
-        "Half braids, half sew-in",
         "Wig cornrows",
         "Sleek ponytail / bun",
         "Crochet",
         "Boho braids / goddess braids",
         "Boho braids bob",
-        "Wash & blowdry"
+        "Wash & blowdry",
+        "Feed-in / stitch braid sew-in"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -61132,7 +61163,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-31",
+      "updatedAt": "2026-10-04",
       "portfolioPhotos": [
         {
           "id": "houseofiye-portfolio-photo-b1be2427-a5de-4b47-b7e6-894a31051c3c",
@@ -61562,12 +61593,12 @@
         "Knotless braids",
         "Wig cornrows",
         "Feed-in braids",
-        "Half braids, half sew-in",
         "Fulani / lemonade braids",
         "Stitch braids",
         "Kids & teens styles",
         "Flipover / Versatile sew-in",
-        "Sleek ponytail / bun"
+        "Sleek ponytail / bun",
+        "Feed-in / stitch braid sew-in"
       ],
       "canBraidWithoutGel": true,
       "summary": "Manual entry added from your South West London braids list.",
@@ -61648,7 +61679,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-31"
+      "updatedAt": "2026-10-04"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -61667,14 +61698,14 @@
       "instagramUrl": "https://www.instagram.com/infaithfulhands_/",
       "services": [
         "Fulani / lemonade braids",
-        "Half braids, half sew-in",
         "Stitch braids",
         "Flipover / Versatile sew-in",
         "Wig cornrows",
         "Knotless braids",
         "Feed-in braids",
         "Miracle knots",
-        "Quick weave"
+        "Quick weave",
+        "Fulani sew-in"
       ],
       "priceBand": "£",
       "priceSource": "auto",
@@ -61715,7 +61746,7 @@
       ],
       "photoSearchReviewedAt": "2026-08-26",
       "photoOrderBumpedAt": 249,
-      "updatedAt": "2026-08-26"
+      "updatedAt": "2026-10-04"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -61978,7 +62009,7 @@
         "Knotless braids",
         "Traditional sew-in / leave out",
         "Moisturising treatment",
-        "Half braids, half sew-in",
+        "Hybrid (braids + sew-in)",
         "Cornrows / Twists / Underwig cornrows",
         "Fulani / lemonade braids",
         "Stitch braids"
@@ -62034,14 +62065,15 @@
       "services": [
         "Knotless braids",
         "Sleek ponytail / bun",
-        "Half braids, half sew-in",
         "Feed-in braids",
         "Fulani / lemonade braids",
         "Boho braids / goddess braids",
         "Quick weave",
         "Half up half down",
         "Traditional sew-in / leave out",
-        "Boho braids bob"
+        "Boho braids bob",
+        "Fulani sew-in",
+        "Feed-in / stitch braid sew-in"
       ],
       "summary": "Manual entry added from your mobile braids, sew-ins, and styling list.",
       "source": "manual",
@@ -62090,7 +62122,7 @@
           "source": "instagram"
         }
       ],
-      "updatedAt": "2026-08-24"
+      "updatedAt": "2026-10-04"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -62178,7 +62210,8 @@
         "Loc styling",
         "Colour blend (mixing braiding hair)",
         "Miracle knots",
-        "Crochet faux locs / invisible locs"
+        "Crochet faux locs / invisible locs",
+        "Fulani sew-in"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -62219,7 +62252,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-07-24",
+      "updatedAt": "2026-10-04",
       "portfolioPhotosCheckedAt": "2026-08-21",
       "portfolioPhotos": [
         {
@@ -62248,7 +62281,8 @@
         "Stitch braids",
         "Wig install (frontal / closure)",
         "Boho braids bob",
-        "Miracle knots"
+        "Miracle knots",
+        "Fulani sew-in"
       ],
       "summary": "Manual entry added from your South East London braids list.",
       "source": "manual",
@@ -62292,7 +62326,7 @@
           "source": "instagram"
         }
       ],
-      "updatedAt": "2026-08-25"
+      "updatedAt": "2026-10-04"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -62382,7 +62416,7 @@
         "Traditional sew-in / leave out",
         "Frontal ponytail / bun",
         "Updo",
-        "Half braids, half sew-in"
+        "Fulani sew-in"
       ],
       "summary": "Manual entry added from your South East London styling, natural hair, sew-ins, extensions, and wigs list.",
       "source": "manual",
@@ -62433,7 +62467,7 @@
           "source": "instagram"
         }
       ],
-      "updatedAt": "2026-08-31",
+      "updatedAt": "2026-10-04",
       "photoOrderBumpedAt": 766,
       "photoSearchReviewedAt": "2026-08-31"
     },
@@ -62612,7 +62646,7 @@
         "Wig install (frontal / closure)",
         "Sew-in take-down",
         "Quick weave",
-        "Hybrid sew in (tapes + sew in)",
+        "Tape-ins + sew-in",
         "Relaxer / texturiser",
         "Moisturising treatment"
       ],
@@ -63941,7 +63975,7 @@
         "Sleek ponytail / bun",
         "Stitch braids",
         "Fulani / lemonade braids",
-        "Half braids, half sew-in",
+        "Feed-in / stitch braid sew-in",
         "Boho braids bob",
         "Kids & teens styles",
         "Box braids",
@@ -63987,7 +64021,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-31",
+      "updatedAt": "2026-10-04",
       "portfolioPhotosCheckedAt": "2026-08-21",
       "portfolioPhotos": [
         {
@@ -64187,12 +64221,12 @@
         "Knotless braids",
         "Boho braids / goddess braids",
         "Stitch braids",
-        "Half braids, half sew-in",
         "Half up half down",
         "French curl",
         "Colour blend (mixing braiding hair)",
         "Kids & teens styles",
-        "Wig cornrows"
+        "Wig cornrows",
+        "Feed-in / stitch braid sew-in"
       ],
       "priceBand": "££",
       "priceSource": "auto",
@@ -64216,7 +64250,7 @@
       "tiktokUrl": "",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
-      "updatedAt": "2026-09-01",
+      "updatedAt": "2026-10-04",
       "wheelchairAccessible": false,
       "servicePriceBand": "",
       "packagePriceBand": "",
@@ -64535,11 +64569,11 @@
         "Traditional sew-in / leave out",
         "Closure sew-in / closure behind the hairline",
         "Frontal sew-in",
-        "Hybrid sew in (tapes + sew in)",
         "K-tips / invisible strands",
         "Silk press",
         "I-tips / microlinks strands",
-        "Texture release"
+        "Texture release",
+        "K-tips + sew-in"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -64568,7 +64602,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-25",
+      "updatedAt": "2026-10-04",
       "addedVia": "Bulk import",
       "discoverySource": "Cowork scrape",
       "googlePlaceId": "ChIJgabxTp0HdkgR0swl8p-cwV4",
@@ -64776,11 +64810,11 @@
         "Traditional sew-in / leave out",
         "Half up half down",
         "Sleek ponytail / bun",
-        "Half braids, half sew-in",
         "Updo",
         "Frontal ponytail / bun",
         "U-Part / Half wig install",
-        "Closure sew-in / closure behind the hairline"
+        "Closure sew-in / closure behind the hairline",
+        "Feed-in / stitch braid sew-in"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -64835,7 +64869,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-31",
+      "updatedAt": "2026-10-04",
       "sameDayEmergency": false
     },
     {
@@ -64945,9 +64979,17 @@
         "Custom wig",
         "U-Part / Half wig install",
         "Traditional sew-in / leave out",
-        "Hybrid sew in (tapes + sew in)",
+        "Tape-ins + sew-in",
         "Closure sew-in / closure behind the hairline",
-        "Flipover / versatile sew-in"
+        "Flipover / Versatile sew-in",
+        "Bouncy blowout / round brush blow dry",
+        "Sew in / extensions blowdry",
+        "Texture release",
+        "Silk press",
+        "Trim / hair cut",
+        "Tape ins",
+        "Sleek ponytail / bun",
+        "Wash & blowdry"
       ],
       "summary": "Manual Instagram-led entry added from your South East London wig install, U-Part, and sew-in list.",
       "source": "manual",
@@ -64960,8 +65002,8 @@
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleDisplayName": null,
-      "googleFormattedAddress": null,
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-07-29",
       "portfolioPhotosCheckedAt": "2026-08-21",
       "portfolioPhotos": [
@@ -64980,7 +65022,39 @@
           "url": "/portfolio-photos/leema-hairstylist-4b819262-8d6a-446d-a253-c7c2353855bf.jpg",
           "source": "instagram"
         }
-      ]
+      ],
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": false,
+      "sameDayEmergency": false,
+      "customFilters": {},
+      "priceBand": "£",
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "Blow dry - 3 hours @ £150.00",
+        "Luxury Cut & Bouncy Blow Dry - 1 hour 20 minutes @ £80.00",
+        "My signature Bouncy Blow Dry - including a cut, for that unbeatable luxurious finish. - My signature Bouncy Blow Dry - including a cut, for that unbeatable luxurious finish. From £80",
+        "Luxury Bouncy Blow Out - 50 minutes @ £65.00",
+        "Texture Release/Silk Press 12 week - 4 hours 40 minutes @ £250.00",
+        "Weave - 3 hours @ £150.00",
+        "Luxury Weave & Tape Extensions - 4 hours @ £180.00",
+        "Luxury Versatile Weave - 3 hours 30 minutes @ £160.00"
+      ],
+      "priceCheckedAt": "2026-10-04",
+      "priceUpdatedAt": "2026-10-04",
+      "priceConfidence": "manual",
+      "updatedAt": "2026-10-04"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -65003,12 +65077,12 @@
         "Box braids",
         "Traditional sew-in / leave out",
         "French curl",
-        "Half braids, half sew-in",
         "Crochet",
         "Stitch braids",
         "Fulani / lemonade braids",
         "Microbraids / x-small braids",
-        "Boho braids / goddess braids"
+        "Boho braids / goddess braids",
+        "Fulani sew-in"
       ],
       "canBraidWithoutGel": true,
       "priceBand": "£",
@@ -65035,7 +65109,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-26",
+      "updatedAt": "2026-10-04",
       "googlePlaceId": null,
       "googleReviewCount": 0,
       "googleMapsUri": "",
@@ -65415,7 +65489,6 @@
         "Silk press",
         "Knotless braids",
         "Boho braids / goddess braids",
-        "Half braids, half sew-in",
         "Traditional sew-in / leave out",
         "Retwist / interlocking",
         "Miracle knots",
@@ -65464,7 +65537,7 @@
       "priceCheckedAt": "2026-06-04",
       "priceUpdatedAt": "2026-06-04",
       "priceConfidence": "high",
-      "updatedAt": "2026-09-02",
+      "updatedAt": "2026-10-04",
       "addedVia": "Code edit",
       "discoverySource": "Cowork scrape",
       "verifiedReviewCount": 1003,
@@ -66247,13 +66320,13 @@
         "Quick weave",
         "Traditional sew-in / leave out",
         "Closure sew-in / closure behind the hairline",
-        "Half braids, half sew-in",
         "Wash & blowdry",
         "Braid take-down",
         "Sew-in take-down",
         "Wig install (frontal / closure)",
         "Fulani / lemonade braids",
-        "Flipover / Versatile sew-in"
+        "Flipover / Versatile sew-in",
+        "Fulani sew-in"
       ],
       "priceBand": "£",
       "priceSource": "auto",
@@ -66280,7 +66353,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-25",
+      "updatedAt": "2026-10-04",
       "googlePlaceId": null,
       "googleReviewCount": 0,
       "googleMapsUri": "",
@@ -66331,13 +66404,14 @@
         "Fulani / lemonade braids",
         "Knotless braids",
         "Traditional sew-in / leave out",
-        "Half braids, half sew-in",
         "Wash & blowdry",
         "Creative braids",
         "Stitch braids",
         "Miracle knots",
         "Boho braids bob",
-        "Men's braids"
+        "Men's braids",
+        "Feed-in / stitch braid sew-in",
+        "Fulani sew-in"
       ],
       "priceBand": "££",
       "priceSource": "auto",
@@ -66365,7 +66439,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-24",
+      "updatedAt": "2026-10-04",
       "googlePlaceId": "ChIJN8mqbsaIw44Rm7bW2gbe62A",
       "googleReviewCount": 3,
       "googleMapsUri": "https://maps.google.com/?cid=6983919768190760603&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
@@ -67402,7 +67476,6 @@
       "instagramUrl": "https://www.instagram.com/momoshair/",
       "services": [
         "Boho braids / goddess braids",
-        "Half braids, half sew-in",
         "Microbraids / x-small braids",
         "Feed-in braids",
         "Wig cornrows",
@@ -67413,7 +67486,8 @@
         "Editorial / Session styling",
         "Boho braids bob",
         "Box braids",
-        "Full head colour"
+        "Full head colour",
+        "Boho sew-in"
       ],
       "priceBand": "££",
       "priceSource": "auto",
@@ -67472,7 +67546,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-09-01",
+      "updatedAt": "2026-10-04",
       "sameDayEmergency": false
     },
     {
@@ -68376,14 +68450,14 @@
         "Knotless braids",
         "Moisturising treatment",
         "Scalp detox / treatments",
-        "Half braids, half sew-in",
         "Stitch braids",
         "Half up half down",
         "Pixie cut / finger waves",
         "Olaplex treatment",
         "Silk press",
         "Feed-in braids",
-        "Roller set"
+        "Roller set",
+        "Feed-in / stitch braid sew-in"
       ],
       "summary": "Manual entry added from your South East London sew-in and wig install list.",
       "source": "manual",
@@ -68424,7 +68498,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-31",
+      "updatedAt": "2026-10-04",
       "parkingAvailable": true,
       "sellsHairSeparately": true,
       "hairShopUrl": "https://www.nobletiaras.com/collections",
@@ -68487,7 +68561,6 @@
         "Fulani / lemonade braids",
         "Boho braids / goddess braids",
         "Stitch braids",
-        "Half braids, half sew-in",
         "Retwist / interlocking",
         "Wig cornrows",
         "Sleek ponytail / bun",
@@ -68497,7 +68570,8 @@
         "Boho braids bob",
         "Bridal",
         "Men's braids",
-        "Colour blend (mixing braiding hair)"
+        "Colour blend (mixing braiding hair)",
+        "Fulani sew-in"
       ],
       "priceBand": "££",
       "priceSource": "auto",
@@ -68521,7 +68595,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": true,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-09-10",
+      "updatedAt": "2026-10-04",
       "addedVia": "Code edit",
       "discoverySource": "Cowork scrape",
       "googlePlaceId": null,
@@ -68642,7 +68716,7 @@
       "instagramUrl": "https://www.instagram.com/novatressuk/",
       "services": [
         "Frontal sew-in",
-        "Hybrid sew in (tapes + sew in)",
+        "Tape-ins + sew-in",
         "Sleek ponytail / bun",
         "Quick weave",
         "Silk press",
@@ -68681,7 +68755,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-31",
+      "updatedAt": "2026-10-04",
       "googlePlaceId": null,
       "googleReviewCount": 0,
       "googleMapsUri": "",
@@ -68726,7 +68800,6 @@
       "instagramUrl": "https://www.instagram.com/nsgalore/",
       "services": [
         "Boho braids / goddess braids",
-        "Half braids, half sew-in",
         "French curl",
         "Fulani / lemonade braids",
         "Knotless braids",
@@ -68738,7 +68811,10 @@
         "Retwist / interlocking",
         "Men's braids",
         "Wig install (frontal / closure)",
-        "Colour blend (mixing braiding hair)"
+        "Colour blend (mixing braiding hair)",
+        "Creative braids",
+        "Feed-in / stitch braid sew-in",
+        "Fulani sew-in"
       ],
       "addedVia": "Code edit",
       "discoverySource": "Cowork scrape",
@@ -68774,7 +68850,7 @@
       "priceCheckedAt": "2026-07-28",
       "priceUpdatedAt": "2026-07-28",
       "priceConfidence": "high",
-      "updatedAt": "2026-09-01",
+      "updatedAt": "2026-10-04",
       "parkingAvailable": true,
       "portfolioPhotos": [
         {
@@ -68887,12 +68963,12 @@
         "Traditional sew-in / leave out",
         "Closure sew-in / closure behind the hairline",
         "Frontal sew-in",
-        "Half braids, half sew-in",
         "Wig install (frontal / closure)",
         "Frontal ponytail / bun",
         "Boho braids / goddess braids",
         "Quick weave",
-        "Custom wig"
+        "Custom wig",
+        "Feed-in / stitch braid sew-in"
       ],
       "priceBand": "££",
       "priceSource": "auto",
@@ -68930,7 +69006,7 @@
           "source": "instagram"
         }
       ],
-      "updatedAt": "2026-08-27",
+      "updatedAt": "2026-10-04",
       "photoSearchReviewedAt": "2026-08-26",
       "photoOrderBumpedAt": 214
     },
@@ -69269,7 +69345,7 @@
         "Silk press",
         "Wash & blowdry",
         "Traditional sew-in / leave out",
-        "Hybrid sew in (tapes + sew in)",
+        "Tape-ins + sew-in",
         "Sleek ponytail / bun",
         "Sew-in take-down",
         "Tracks (+ silk press) / partial / invisible sew-in",
@@ -69300,7 +69376,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-31",
+      "updatedAt": "2026-10-04",
       "googlePlaceId": null,
       "googleReviewCount": 0,
       "googleMapsUri": "",
@@ -69501,7 +69577,6 @@
         "Wash & blowdry",
         "Trim / hair cut",
         "Sleek ponytail / bun",
-        "Half braids, half sew-in",
         "Keratin treatment / Brazilian blowdry",
         "Highlights",
         "Balayage",
@@ -69534,7 +69609,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-27",
+      "updatedAt": "2026-10-04",
       "addedVia": "Bulk import",
       "discoverySource": "Cowork scrape",
       "verifiedReviewCount": 176,
@@ -70030,9 +70105,10 @@
         "Traditional sew-in / leave out",
         "Flipover / Versatile sew-in",
         "Closure sew-in / closure behind the hairline",
-        "Hybrid sew in (tapes + sew in)",
+        "Tape-ins + sew-in",
         "Sleek ponytail / bun",
-        "Keratin treatment / Brazilian blowdry"
+        "Keratin treatment / Brazilian blowdry",
+        "K-tips + sew-in"
       ],
       "priceBand": "££",
       "servicePriceBand": "££",
@@ -70062,7 +70138,7 @@
       "tiktokUrl": "",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
-      "updatedAt": "2026-08-26",
+      "updatedAt": "2026-10-04",
       "addedVia": "Code edit",
       "discoverySource": "Cowork scrape",
       "googlePlaceId": null,
@@ -70903,7 +70979,7 @@
         "Traditional sew-in / leave out",
         "Quick weave",
         "Tape ins",
-        "Hybrid sew in (tapes + sew in)",
+        "Tape-ins + sew-in",
         "Bridal"
       ],
       "summary": "Manual entry added from your South East London sew-in and wig install list.",
@@ -71251,7 +71327,7 @@
         "French curl bob",
         "Wig cornrows",
         "Creative braids",
-        "Half braids, half sew-in"
+        "Fulani sew-in"
       ],
       "canBraidWithoutGel": true,
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
@@ -71283,7 +71359,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-06-10",
+      "updatedAt": "2026-10-04",
       "googlePlaceId": null,
       "googleReviewCount": 0,
       "googleMapsUri": "",
@@ -72154,7 +72230,7 @@
       "instagramUrl": "https://www.instagram.com/riasbeautystudio/",
       "services": [
         "Traditional sew-in / leave out",
-        "Hybrid sew in (tapes + sew in)",
+        "Tape-ins + sew-in",
         "Sew-in take-down",
         "Flipover / versatile sew-in",
         "Tape ins",
@@ -72214,7 +72290,7 @@
           "source": "instagram"
         }
       ],
-      "updatedAt": "2026-08-26",
+      "updatedAt": "2026-10-04",
       "photoSearchReviewedAt": "2026-08-25"
     },
     {
@@ -72237,12 +72313,13 @@
         "Boho braids / goddess braids",
         "Stitch braids",
         "Fulani / lemonade braids",
-        "Half braids, half sew-in",
         "Feed-in braids",
         "Knotless braids",
         "Boho braids bob",
         "Miracle knots",
-        "Crochet"
+        "Crochet",
+        "Fulani sew-in",
+        "Feed-in / stitch braid sew-in"
       ],
       "addedVia": "Code edit",
       "discoverySource": "Cowork scrape",
@@ -72283,7 +72360,7 @@
       "priceCheckedAt": "",
       "priceUpdatedAt": "",
       "priceConfidence": "",
-      "updatedAt": "2026-08-31",
+      "updatedAt": "2026-10-04",
       "photoSearchReviewedAt": "2026-08-31",
       "photoOrderBumpedAt": 910
     },
@@ -72963,9 +73040,9 @@
         "Fulani / lemonade braids",
         "Knotless braids",
         "Stitch braids",
-        "Half braids, half sew-in",
         "Men's braids",
-        "Miracle knots"
+        "Miracle knots",
+        "Feed-in / stitch braid sew-in"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -73026,7 +73103,7 @@
         "Balayage",
         "LA weave / microlinks wefts / braidless sew in",
         "Tape ins",
-        "Hybrid sew in (tapes + sew in)",
+        "Tape-ins + sew-in",
         "Traditional sew-in / leave out",
         "Wash & blowdry",
         "Trim / hair cut",
@@ -73089,7 +73166,7 @@
           "source": "instagram"
         }
       ],
-      "updatedAt": "2026-09-11",
+      "updatedAt": "2026-10-04",
       "websiteUrl": "",
       "hairShopUrl": "",
       "tiktokUrl": "",
@@ -73125,12 +73202,15 @@
       "services": [
         "Feed-in braids",
         "Fulani / lemonade braids",
-        "Half braids, half sew-in",
         "Traditional sew-in / leave out",
         "Knotless braids",
         "Tape ins",
         "Flipover / Versatile sew-in",
-        "Closure sew-in / closure behind the hairline"
+        "Closure sew-in / closure behind the hairline",
+        "Roller set",
+        "Moisturising treatment",
+        "Healthy hair plans & consultations",
+        "Feed-in / stitch braid sew-in"
       ],
       "priceBand": "£",
       "priceSource": "auto",
@@ -73154,8 +73234,8 @@
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleDisplayName": null,
-      "googleFormattedAddress": null,
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-07-29",
       "parkingAvailable": true,
       "sellsHairSeparately": true,
@@ -73179,7 +73259,19 @@
           "source": "instagram"
         }
       ],
-      "updatedAt": "2026-08-24"
+      "updatedAt": "2026-10-04",
+      "websiteUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "sameDayEmergency": false,
+      "customFilters": {},
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only"
     },
     {
       "id": "sc-braided-her",
@@ -73411,7 +73503,7 @@
         "I-tips / microlinks strands",
         "Traditional sew-in / leave out",
         "Flipover / Versatile sew-in",
-        "Hybrid sew in (tapes + sew in)",
+        "Tape-ins + sew-in",
         "Wig cornrows",
         "Sleek ponytail / bun",
         "Half up half down",
@@ -73451,7 +73543,7 @@
           "source": "instagram"
         }
       ],
-      "updatedAt": "2026-08-24",
+      "updatedAt": "2026-10-04",
       "websiteUrl": "",
       "hairShopUrl": "https://www.instagram.com/serenehairlounge/",
       "tiktokUrl": "",
@@ -73630,7 +73722,7 @@
         "Tape ins",
         "Traditional sew-in / leave out",
         "Feed-in braids",
-        "Hybrid sew in (tapes + sew in)",
+        "Tape-ins + sew-in",
         "Flipover / Versatile sew-in",
         "Wig install (frontal / closure)"
       ],
@@ -73642,7 +73734,7 @@
       "tiktokUrl": "https://www.tiktok.com/@kacorporategirly/video/7494584955608075542?lang=en-GB",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
-      "updatedAt": "2026-09-11",
+      "updatedAt": "2026-10-04",
       "priceBand": "££",
       "priceSource": "auto",
       "priceEvidence": [
@@ -73800,7 +73892,7 @@
         "Sleek ponytail / bun",
         "Half up half down",
         "Flipover / versatile sew-in",
-        "Hybrid sew in (tapes + sew in)",
+        "Tape-ins + sew-in",
         "U-Part / Half wig install",
         "Tracks (+ silk press) / partial / invisible sew-in",
         "Updo",
@@ -73862,7 +73954,7 @@
           "source": "google"
         }
       ],
-      "updatedAt": "2026-08-31"
+      "updatedAt": "2026-10-04"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -73886,12 +73978,12 @@
         "Retwist / interlocking",
         "Wig cornrows",
         "Starter locs / instant locs",
-        "Half braids, half sew-in",
         "Soft locs",
         "Stitch braids",
         "Men's braids",
         "Loc styling",
-        "Crochet faux locs / invisible locs"
+        "Crochet faux locs / invisible locs",
+        "Fulani sew-in"
       ],
       "priceBand": "£",
       "priceSource": "auto",
@@ -74030,10 +74122,10 @@
         "Knotless braids",
         "Traditional sew-in / leave out",
         "Flipover / Versatile sew-in",
-        "Half braids, half sew-in",
         "Miracle knots",
         "Stitch braids",
-        "Boho braids bob"
+        "Boho braids bob",
+        "Fulani sew-in"
       ],
       "priceBand": "££",
       "priceSource": "auto",
@@ -74080,7 +74172,7 @@
           "source": "instagram"
         }
       ],
-      "updatedAt": "2026-08-24"
+      "updatedAt": "2026-10-04"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -74490,7 +74582,6 @@
         "Half up half down",
         "Flipover / Versatile sew-in",
         "Feed-in braids",
-        "Half braids, half sew-in",
         "Moisturising treatment",
         "Scalp detox / treatments",
         "Braid take-down",
@@ -74500,7 +74591,8 @@
         "Fulani / lemonade braids",
         "Stitch braids",
         "Microbraids / x-small braids",
-        "Boho braids / goddess braids"
+        "Boho braids / goddess braids",
+        "Feed-in / stitch braid sew-in"
       ],
       "summary": "Manual entry added from your South East London braids, sew-ins, and styling list.",
       "source": "manual",
@@ -74598,10 +74690,10 @@
         "Tracks (+ silk press) / partial / invisible sew-in",
         "Traditional sew-in / leave out",
         "Wig cornrows",
-        "Half braids, half sew-in",
         "Boho braids bob",
         "Kids & teens styles",
-        "Colour blend (mixing braiding hair)"
+        "Colour blend (mixing braiding hair)",
+        "Feed-in / stitch braid sew-in"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -74642,7 +74734,7 @@
         }
       ],
       "portfolioPhotosCheckedAt": "2026-08-21",
-      "updatedAt": "2026-08-31"
+      "updatedAt": "2026-10-04"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -74805,12 +74897,13 @@
         "Stitch braids",
         "Twists (with extensions)",
         "Creative braids",
-        "Half braids, half sew-in",
         "Editorial / Session styling",
         "Boho braids bob",
         "Bantu knots",
         "Crochet faux locs / invisible locs",
-        "Bridal"
+        "Bridal",
+        "Boho sew-in",
+        "Feed-in / stitch braid sew-in"
       ],
       "summary": "Manual entry added from your East London braids list.",
       "source": "manual",
@@ -74943,7 +75036,6 @@
       "instagramUrl": "https://www.instagram.com/_slayedbyl/",
       "services": [
         "Wash & blowdry",
-        "Half braids, half sew-in",
         "Retwist / interlocking",
         "Stitch braids",
         "Half up half down",
@@ -74956,7 +75048,9 @@
         "Wig cornrows",
         "Feed-in braids",
         "Men's braids",
-        "Loc styling"
+        "Loc styling",
+        "Feed-in / stitch braid sew-in",
+        "Fulani sew-in"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -74997,7 +75091,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-27",
+      "updatedAt": "2026-10-04",
       "portfolioPhotosCheckedAt": "2026-08-21",
       "hairShopUrl": "",
       "senFriendly": false,
@@ -75441,7 +75535,6 @@
         "Knotless braids",
         "Box braids",
         "Boho braids / goddess braids",
-        "Half braids, half sew-in",
         "French curl",
         "Fulani / lemonade braids",
         "Relaxer / texturiser",
@@ -75458,7 +75551,8 @@
         "Braid take-down",
         "Creative braids",
         "Boho braids bob",
-        "French curl bob"
+        "French curl bob",
+        "Boho sew-in"
       ],
       "summary": "Manual entry added from your South West London list covering braids, sew-ins, natural hair, treatments, extensions, and styling.",
       "source": "manual",
@@ -75504,7 +75598,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-25",
+      "updatedAt": "2026-10-04",
       "portfolioPhotos": [
         {
           "id": "south-west-six-salon-portfolio-photo-c7fbd087-7eb5-4995-9984-294379f5f3b5",
@@ -75840,7 +75934,8 @@
         "Crochet",
         "Twists (with extensions)",
         "Feed-in braids",
-        "Crochet faux locs / invisible locs"
+        "Crochet faux locs / invisible locs",
+        "Fulani sew-in"
       ],
       "summary": "Manual entry added from your Essex salon update batch.",
       "source": "manual",
@@ -75890,7 +75985,7 @@
           "source": "instagram"
         }
       ],
-      "updatedAt": "2026-08-27"
+      "updatedAt": "2026-10-04"
     },
     {
       "id": "stephanie-lebby-hair-limited",
@@ -76086,14 +76181,14 @@
       "instagramUrl": "https://www.instagram.com/styledbyarii_/",
       "services": [
         "Feed-in braids",
-        "Half braids, half sew-in",
         "Traditional sew-in / leave out",
         "Flipover / Versatile sew-in",
         "Sleek ponytail / bun",
         "Wig install (frontal / closure)",
         "Quick weave",
         "Frontal ponytail / bun",
-        "Custom wig"
+        "Custom wig",
+        "Feed-in / stitch braid sew-in"
       ],
       "summary": "Manual entry added from your South East London braids list.",
       "source": "manual",
@@ -76123,7 +76218,7 @@
       "googleDisplayName": null,
       "googleFormattedAddress": null,
       "googleCheckedAt": "2026-07-29",
-      "updatedAt": "2026-08-27",
+      "updatedAt": "2026-10-04",
       "portfolioPhotosCheckedAt": "2026-08-21",
       "portfolioPhotos": [
         {
@@ -76254,11 +76349,11 @@
         "Sleek ponytail / bun",
         "Half up half down",
         "Stitch braids",
-        "Half braids, half sew-in",
         "Twists (with extensions)",
         "Updo",
         "Quick weave",
-        "Miracle knots"
+        "Miracle knots",
+        "Feed-in / stitch braid sew-in"
       ],
       "priceBand": "£",
       "priceSource": "auto",
@@ -76285,7 +76380,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-31",
+      "updatedAt": "2026-10-04",
       "googlePlaceId": null,
       "googleReviewCount": 0,
       "googleMapsUri": "",
@@ -76326,7 +76421,6 @@
         "Feed-in braids",
         "Traditional sew-in / leave out",
         "Closure sew-in / closure behind the hairline",
-        "Half braids, half sew-in",
         "Wig cornrows",
         "Wash & blowdry",
         "Braid take-down",
@@ -76335,7 +76429,8 @@
         "Curly cut / wash & go / diffuse",
         "Twists (with extensions)",
         "Miracle knots",
-        "Kids & teens styles"
+        "Kids & teens styles",
+        "Feed-in / stitch braid sew-in"
       ],
       "priceBand": "££",
       "priceSource": "auto",
@@ -76373,7 +76468,7 @@
           "source": "instagram-reel-thumbnail"
         }
       ],
-      "updatedAt": "2026-08-25"
+      "updatedAt": "2026-10-04"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -76834,7 +76929,6 @@
         "Retwist / interlocking",
         "Wig colouring / bundle colouring",
         "Balayage",
-        "Half braids, half sew-in",
         "Crochet",
         "U-Part / Half wig install",
         "Custom wig",
@@ -76855,7 +76949,8 @@
         "Wig laundry",
         "Loc styling",
         "Crochet faux locs / invisible locs",
-        "Pixie cut / finger waves"
+        "Pixie cut / finger waves",
+        "Boho sew-in"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -76898,7 +76993,7 @@
       "packagePriceBand": "££££",
       "priceIncludesHair": true,
       "priceComparisonMode": "mixed",
-      "updatedAt": "2026-09-02",
+      "updatedAt": "2026-10-04",
       "sellsHairSeparately": true,
       "hairShopUrl": "https://currentwigs.com/collections/hair-bundles/hair-bundles",
       "vendorId": "stylesbyfola",
@@ -77095,7 +77190,7 @@
         "Quick weave",
         "Traditional sew-in / leave out",
         "Closure sew-in / closure behind the hairline",
-        "Hybrid sew in (tapes + sew in)",
+        "Tape-ins + sew-in",
         "K-tips / invisible strands",
         "Pixie cut / finger waves",
         "Silk press",
@@ -77144,7 +77239,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-26",
+      "updatedAt": "2026-10-04",
       "googlePlaceId": null,
       "googleReviewCount": 0,
       "googleMapsUri": "",
@@ -77269,7 +77364,7 @@
         "Flipover / Versatile sew-in",
         "Closure sew-in / closure behind the hairline",
         "Half up half down",
-        "Hybrid sew in (tapes + sew in)",
+        "Tape-ins + sew-in",
         "I-tips / microlinks strands",
         "LA weave / microlinks wefts / braidless sew in",
         "Quick weave",
@@ -77288,7 +77383,8 @@
         "Healthy hair plans & consultations",
         "Twists (with extensions)",
         "Wig install (frontal / closure)",
-        "Custom wig"
+        "Custom wig",
+        "K-tips + sew-in"
       ],
       "priceBand": "££",
       "priceSource": "auto",
@@ -77337,7 +77433,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": true,
       "priceComparisonMode": "",
-      "updatedAt": "2026-08-25"
+      "updatedAt": "2026-10-04"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -77363,11 +77459,11 @@
         "Closure sew-in / closure behind the hairline",
         "Flipover / Versatile sew-in",
         "Wig install (frontal / closure)",
-        "Half braids, half sew-in",
         "Quick weave",
         "U-Part / Half wig install",
         "Men's braids",
-        "Colour blend (mixing braiding hair)"
+        "Colour blend (mixing braiding hair)",
+        "Feed-in / stitch braid sew-in"
       ],
       "priceBand": "£",
       "priceSource": "auto",
@@ -77427,7 +77523,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-09-01"
+      "updatedAt": "2026-10-04"
     },
     {
       "id": "texturehairbyfloria",
@@ -77626,7 +77722,6 @@
         "Stitch braids",
         "Soft locs",
         "Sleek ponytail / bun",
-        "Half braids, half sew-in",
         "Sew-in take-down",
         "U-Part / Half wig install",
         "Wash & blowdry",
@@ -77642,7 +77737,7 @@
         "Half up half down",
         "LA weave / microlinks wefts / braidless sew in",
         "Crochet",
-        "Hybrid sew in (tapes + sew in)",
+        "Tape-ins + sew-in",
         "K-tips / invisible strands",
         "Tracks (+ silk press) / partial / invisible sew-in",
         "Healthy hair plans & consultations",
@@ -77651,7 +77746,10 @@
         "Kids & teens styles",
         "Miracle knots",
         "Loc styling",
-        "Crochet faux locs / invisible locs"
+        "Crochet faux locs / invisible locs",
+        "Feed-in / stitch braid sew-in",
+        "Fulani sew-in",
+        "K-tips + sew-in"
       ],
       "summary": "Manual entry added from your South East London sew-in and wig install list.",
       "source": "manual",
@@ -77661,7 +77759,7 @@
       "tiktokUrl": "",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
-      "updatedAt": "2026-08-24",
+      "updatedAt": "2026-10-04",
       "priceBand": "£",
       "priceSource": "auto",
       "priceEvidence": [
@@ -78152,7 +78250,6 @@
         "Sleek ponytail / bun",
         "Flipover / Versatile sew-in",
         "Wig install (frontal / closure)",
-        "Half braids, half sew-in",
         "U-Part / Half wig install",
         "Custom wig",
         "Frontal ponytail / bun",
@@ -78201,7 +78298,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-27",
+      "updatedAt": "2026-10-04",
       "portfolioPhotos": [
         {
           "id": "the-haircode-portfolio-photo-8823e34e-6d55-48c9-8272-2b492148f4b4",
@@ -78312,7 +78409,8 @@
         "Starter locs / instant locs",
         "Wig install (frontal / closure)",
         "Boho braids bob",
-        "Loc styling"
+        "Loc styling",
+        "Fulani sew-in"
       ],
       "summary": "Manual entry added from your South East London braids and natural hair list.",
       "source": "manual",
@@ -78381,7 +78479,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-09-10"
+      "updatedAt": "2026-10-04"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -78845,7 +78943,6 @@
       "services": [
         "Feed-in braids",
         "Fulani / lemonade braids",
-        "Half braids, half sew-in",
         "Knotless braids",
         "Sleek ponytail / bun",
         "Half up half down",
@@ -78853,7 +78950,9 @@
         "Bantu knots",
         "Traditional sew-in / leave out",
         "Boho braids / goddess braids",
-        "Boho braids bob"
+        "Boho braids bob",
+        "Feed-in / stitch braid sew-in",
+        "Fulani sew-in"
       ],
       "summary": "Manual entry added from your East London braids, locs, and styling list.",
       "source": "manual",
@@ -78890,7 +78989,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-01",
+      "updatedAt": "2026-10-04",
       "portfolioPhotosCheckedAt": "2026-08-21",
       "portfolioPhotos": [
         {
@@ -79391,12 +79490,12 @@
         "Custom wig",
         "Wig cornrows",
         "Retwist / interlocking",
-        "Half braids, half sew-in",
         "Miracle knots",
         "Starter locs / instant locs",
         "Frontal ponytail / bun",
         "Men's braids",
-        "Loc styling"
+        "Loc styling",
+        "Feed-in / stitch braid sew-in"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -79436,7 +79535,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-27",
+      "updatedAt": "2026-10-04",
       "portfolioPhotosCheckedAt": "2026-08-21",
       "portfolioPhotos": [
         {
@@ -79537,7 +79636,6 @@
       "services": [
         "Wash & blowdry",
         "Texture release",
-        "Half braids, half sew-in",
         "Traditional sew-in / leave out",
         "Closure sew-in / closure behind the hairline",
         "Braid take-down",
@@ -79549,7 +79647,8 @@
         "Feed-in braids",
         "Boho braids / goddess braids",
         "Fulani / lemonade braids",
-        "Wig cornrows"
+        "Wig cornrows",
+        "Feed-in / stitch braid sew-in"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -79578,7 +79677,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-09-08",
+      "updatedAt": "2026-10-04",
       "addedVia": "Bulk import",
       "discoverySource": "Cowork scrape",
       "wheelchairAccessible": false,
@@ -79620,7 +79719,7 @@
         "Silk press",
         "Wig install (frontal / closure)",
         "Traditional sew-in / leave out",
-        "Hybrid sew in (tapes + sew in)",
+        "Tape-ins + sew-in",
         "U-Part / Half wig install",
         "Tape ins",
         "Wig colouring / bundle colouring"
@@ -79655,7 +79754,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-09-11",
+      "updatedAt": "2026-10-04",
       "googlePlaceId": null,
       "googleReviewCount": 0,
       "googleMapsUri": "",
@@ -80057,7 +80156,6 @@
       "instagramUrl": "https://www.instagram.com/tressavenue_/",
       "services": [
         "Sleek ponytail / bun",
-        "Half braids, half sew-in",
         "Traditional sew-in / leave out",
         "Closure sew-in / closure behind the hairline",
         "Wig install (frontal / closure)",
@@ -80065,7 +80163,10 @@
         "Frontal ponytail / bun",
         "Tape ins",
         "Updo",
-        "Half up half down"
+        "Half up half down",
+        "Boho sew-in",
+        "Feed-in / stitch braid sew-in",
+        "Fulani sew-in"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -80098,7 +80199,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-26",
+      "updatedAt": "2026-10-04",
       "googlePlaceId": null,
       "googleReviewCount": 0,
       "googleMapsUri": "",
@@ -80141,7 +80242,6 @@
         "Crochet",
         "Feed-in braids",
         "Fulani / lemonade braids",
-        "Half braids, half sew-in",
         "Knotless braids",
         "Miracle knots",
         "Stitch braids",
@@ -80172,7 +80272,8 @@
         "U-Part / Half wig install",
         "Healthy hair plans & consultations",
         "Sew in / extensions blowdry",
-        "Kids & teens styles"
+        "Kids & teens styles",
+        "Fulani sew-in"
       ],
       "priceBand": "££",
       "priceSource": "auto",
@@ -80196,7 +80297,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-26",
+      "updatedAt": "2026-10-04",
       "addedVia": "Code edit",
       "discoverySource": "Cowork scrape",
       "googlePlaceId": null,
@@ -80262,7 +80363,8 @@
         "Kids & teens styles",
         "Trim / hair cut",
         "Men's braids",
-        "Loc styling"
+        "Loc styling",
+        "Fulani sew-in"
       ],
       "canBraidWithoutGel": true,
       "priceBand": "£",
@@ -80291,7 +80393,7 @@
       "wheelchairAccessible": false,
       "summary": "",
       "evidence": [],
-      "updatedAt": "2026-08-26",
+      "updatedAt": "2026-10-04",
       "googlePlaceId": "ChIJhbf-2x8ZdkgRZjmjpwY2LmQ",
       "googleReviewCount": 32,
       "googleMapsUri": "https://maps.google.com/?cid=7218766654931679590&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
@@ -80361,7 +80463,6 @@
         "Boho braids / goddess braids",
         "Fulani / lemonade braids",
         "Knotless braids",
-        "Half braids, half sew-in",
         "Creative braids",
         "Pre-parting",
         "Miracle knots",
@@ -80370,7 +80471,8 @@
         "Traditional sew-in / leave out",
         "Flipover / Versatile sew-in",
         "Wig cornrows",
-        "Men's braids"
+        "Men's braids",
+        "Feed-in / stitch braid sew-in"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -80405,7 +80507,7 @@
       "googleDisplayName": "TTHAIRBARLDN",
       "googleFormattedAddress": "17 Bellegrove Rd, Welling DA16 3PA, UK",
       "googleCheckedAt": "2026-07-24",
-      "updatedAt": "2026-08-27",
+      "updatedAt": "2026-10-04",
       "websiteUrl": "",
       "tiktokUrl": "",
       "hijabiFriendly": false,
@@ -80664,7 +80766,6 @@
         "Traditional sew-in / leave out",
         "I-tips / microlinks strands",
         "Flipover / Versatile sew-in",
-        "Half braids, half sew-in",
         "Half up half down",
         "LA weave / microlinks wefts / braidless sew in",
         "Feed-in braids",
@@ -80680,7 +80781,8 @@
         "Wash & blowdry",
         "Tracks (+ silk press) / partial / invisible sew-in",
         "Microlocs / sisterlocs",
-        "Crochet"
+        "Crochet",
+        "Fulani sew-in"
       ],
       "summary": "Manual entry added from your latest salon update batch.",
       "source": "manual",
@@ -80729,7 +80831,7 @@
         }
       ],
       "portfolioPhotosCheckedAt": "2026-08-21",
-      "updatedAt": "2026-08-27",
+      "updatedAt": "2026-10-04",
       "websiteUrl": "",
       "hairShopUrl": "",
       "tiktokUrl": "",
@@ -80832,12 +80934,12 @@
         "Soft locs",
         "Boho braids / goddess braids",
         "Fulani / lemonade braids",
-        "Half braids, half sew-in",
         "Knotless braids",
         "Flipover / Versatile sew-in",
         "Closure sew-in / closure behind the hairline",
         "Miracle knots",
-        "Boho braids bob"
+        "Boho braids bob",
+        "Fulani sew-in"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -80902,7 +81004,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-31"
+      "updatedAt": "2026-10-04"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -80933,7 +81035,7 @@
         "Updo",
         "U-Part / Half wig install",
         "Wig cornrows",
-        "Hybrid sew in (tapes + sew in)",
+        "Tape-ins + sew-in",
         "Wig colouring / bundle colouring",
         "Wig blowdry",
         "Closure sew-in"
@@ -80953,7 +81055,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-25",
+      "updatedAt": "2026-10-04",
       "addedVia": "Code edit",
       "discoverySource": "Cowork scrape",
       "wheelchairAccessible": false,
@@ -81139,7 +81241,7 @@
       "services": [
         "Traditional sew-in / leave out",
         "Quick weave",
-        "Hybrid sew in (tapes + sew in)",
+        "Tape-ins + sew-in",
         "Sew-in take-down",
         "Tape ins",
         "Clip ins (+ silk press)",
@@ -81176,7 +81278,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-09-11",
+      "updatedAt": "2026-10-04",
       "googlePlaceId": null,
       "googleReviewCount": 0,
       "googleMapsUri": "",
@@ -81695,7 +81797,8 @@
         "Quick weave",
         "Sew-in take-down",
         "Full head colour",
-        "Bouncy blowout / round brush blow dry"
+        "Bouncy blowout / round brush blow dry",
+        "Fulani sew-in"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -81725,7 +81828,7 @@
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
       "wheelchairAccessible": true,
-      "updatedAt": "2026-08-26",
+      "updatedAt": "2026-10-04",
       "addedVia": "Bulk import",
       "discoverySource": "Cowork scrape",
       "communityNotes": [
@@ -81791,10 +81894,11 @@
         "Boho braids / goddess braids",
         "Knotless braids",
         "Stitch braids",
-        "Half braids, half sew-in",
         "Traditional sew-in / leave out",
         "Flipover / versatile sew-in",
-        "Fulani / lemonade braids"
+        "Fulani / lemonade braids",
+        "Boho sew-in",
+        "Feed-in / stitch braid sew-in"
       ],
       "priceBand": "££",
       "priceSource": "auto",
@@ -81830,7 +81934,7 @@
       ],
       "photoSearchReviewedAt": "2026-08-26",
       "photoOrderBumpedAt": 198,
-      "updatedAt": "2026-08-27"
+      "updatedAt": "2026-10-04"
     },
     {
       "id": "zulu-bonita",
@@ -82661,7 +82765,6 @@
         "Trim / hair cut",
         "Texture release",
         "Half up half down",
-        "Half braids, half sew-in",
         "Traditional sew-in / leave out",
         "Sleek ponytail / bun",
         "Frontal ponytail / bun",
@@ -82686,7 +82789,7 @@
       "tiktokUrl": "",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
-      "updatedAt": "2026-08-23",
+      "updatedAt": "2026-10-04",
       "priceBand": "£",
       "priceSource": "auto",
       "priceEvidence": [
@@ -85051,7 +85154,6 @@
         "Flipover / Versatile sew-in",
         "Quick weave",
         "Tracks (+ silk press) / partial / invisible sew-in",
-        "Half braids, half sew-in",
         "U-Part / Half wig install",
         "Closure sew-in / closure behind the hairline"
       ],
@@ -85112,7 +85214,7 @@
       ],
       "photoSearchReviewedAt": "2026-08-30",
       "photoOrderBumpedAt": 656,
-      "updatedAt": "2026-08-30"
+      "updatedAt": "2026-10-04"
     },
     {
       "id": "aluxeuk",
@@ -85553,7 +85655,7 @@
         "Flipover / versatile sew-in",
         "Quick weave",
         "Half up half down",
-        "Hybrid sew in (tapes + sew in)",
+        "Tape-ins + sew-in",
         "U-Part / Half wig install"
       ],
       "summary": "Manual Instagram-led entry added from user-provided booking menu.",
@@ -85850,7 +85952,6 @@
         "Flipover / Versatile sew-in",
         "Closure sew-in / closure behind the hairline",
         "Frontal sew-in",
-        "Half braids, half sew-in",
         "LA weave / microlinks wefts / braidless sew in",
         "Texture release",
         "U-Part / Half wig install",
@@ -85858,7 +85959,8 @@
         "Wig install (frontal / closure)",
         "Sleek ponytail / bun",
         "Half up half down",
-        "Trim / hair cut"
+        "Trim / hair cut",
+        "Feed-in / stitch braid sew-in"
       ],
       "summary": "Manual Instagram-led entry added from user-provided booking menu.",
       "source": "manual",
@@ -85911,7 +86013,7 @@
       ],
       "photoSearchReviewedAt": "2026-08-27",
       "photoOrderBumpedAt": 528,
-      "updatedAt": "2026-08-27"
+      "updatedAt": "2026-10-04"
     },
     {
       "id": "maisondecheveuxldn",
@@ -86339,7 +86441,7 @@
         "Quick weave",
         "Tape ins",
         "Traditional sew-in / leave out",
-        "Hybrid sew in (tapes + sew in)",
+        "Tape-ins + sew-in",
         "Flipover / Versatile sew-in",
         "Sleek ponytail / bun",
         "Silk press"
@@ -86389,7 +86491,7 @@
           "source": "instagram"
         }
       ],
-      "updatedAt": "2026-09-11",
+      "updatedAt": "2026-10-04",
       "websiteUrl": "",
       "hairShopUrl": "",
       "tiktokUrl": "",
@@ -86502,8 +86604,8 @@
       "services": [
         "French curl",
         "Boho braids / goddess braids",
-        "Half braids, half sew-in",
-        "French curl bob"
+        "French curl bob",
+        "Feed-in / stitch braid sew-in"
       ],
       "summary": "Manual Instagram-led entry added from user-provided service list.",
       "source": "manual",
@@ -86562,7 +86664,7 @@
       "priceCheckedAt": "",
       "priceUpdatedAt": "",
       "priceConfidence": "",
-      "updatedAt": "2026-09-02"
+      "updatedAt": "2026-10-04"
     },
     {
       "id": "c-gaskin-hair",
@@ -86649,7 +86751,7 @@
         "Custom wig",
         "Wig install (frontal / closure)",
         "LA weave",
-        "Hybrid sew in (tapes + sew in)",
+        "Tape-ins + sew-in",
         "Tracks (+ silk press) / partial / invisible sew-in"
       ],
       "summary": "Manual Instagram-led entry added from user-provided booking menu.",
@@ -86664,7 +86766,7 @@
       "tiktokUrl": "",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
-      "updatedAt": "2026-08-27",
+      "updatedAt": "2026-10-04",
       "priceBand": "££",
       "priceSource": "auto",
       "priceEvidence": [
@@ -86715,9 +86817,9 @@
       "services": [
         "Feed-in braids",
         "Fulani / lemonade braids",
-        "Half braids, half sew-in",
         "Traditional sew-in / leave out",
-        "Flipover / Versatile sew-in"
+        "Flipover / Versatile sew-in",
+        "Fulani sew-in"
       ],
       "summary": "Manual Instagram-led entry added from user-provided booking menu.",
       "source": "manual",
@@ -86742,7 +86844,7 @@
       "priceCheckedAt": "2026-08-26",
       "priceUpdatedAt": "2026-08-26",
       "priceConfidence": "manual",
-      "updatedAt": "2026-08-26",
+      "updatedAt": "2026-10-04",
       "addedVia": "Code edit",
       "discoverySource": "Manual search",
       "googlePlaceId": null,
@@ -86951,10 +87053,10 @@
         "Closure sew-in / closure behind the hairline",
         "Traditional sew-in / leave out",
         "Flipover / Versatile sew-in",
-        "Hybrid sew in (tapes + sew in)",
         "K-tips / invisible strands",
         "Silk press",
-        "Moisturising treatment"
+        "Moisturising treatment",
+        "K-tips + sew-in"
       ],
       "summary": "Manual Instagram-led entry added from user-provided booking menu.",
       "source": "manual",
@@ -87018,7 +87120,7 @@
           "source": "instagram"
         }
       ],
-      "updatedAt": "2026-08-27",
+      "updatedAt": "2026-10-04",
       "photoSearchReviewedAt": "2026-08-31",
       "photoOrderBumpedAt": 880
     },

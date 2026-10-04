@@ -86,15 +86,15 @@ const DISCLAIMER_DISMISSED_KEY = "rowk_disclaimer_dismissed";
 
 const categoryMap = {
   all: { label: "All services", subcategories: ["all"] },
-  "braiding-services": { label: "Braids", subcategories: ["all","Boho braids / goddess braids","Braid take-down","Box braids","Colour blend (mixing braiding hair)","Crochet","Creative braids","Feed-in braids","French curl","Fulani / lemonade braids","Half braids, half sew-in","Knotless braids","Miracle knots","Microbraids / x-small braids","Pre-parting","Stitch braids","Twists (with extensions)","Boho braids bob","French curl bob","Men's braids","Wig cornrows"] },
+  "braiding-services": { label: "Braids", subcategories: ["all","Boho braids / goddess braids","Braid take-down","Box braids","Colour blend (mixing braiding hair)","Crochet","Creative braids","Feed-in braids","French curl","Fulani / lemonade braids","Knotless braids","Miracle knots","Microbraids / x-small braids","Pre-parting","Stitch braids","Twists (with extensions)","Boho braids bob","French curl bob","Men's braids","Wig cornrows","Hybrid (braids + sew-in)","Fulani sew-in","Boho sew-in","Feed-in / stitch braid sew-in"] },
   "colour-services": { label: "Colour", subcategories: ["all","Balayage","Full head colour","Highlights","Wig colouring / bundle colouring"] },
   "bridal-services": { label: "Bridal", subcategories: ["all","Bridal"] },
   "editorial-services": { label: "Editorial / Session styling", subcategories: ["all","Editorial / Session styling"] },
   "kids-teens-services": { label: "Kids & teens styles", subcategories: ["all","Kids & teens styles"] },
-  "extension-services": { label: "Extensions", subcategories: ["all","Clip ins (+ silk press)","Hybrid sew in (tapes + sew in)","K-tips / invisible strands","LA weave / microlinks wefts / braidless sew in","I-tips / microlinks strands","Tape ins"] },
+  "extension-services": { label: "Extensions", subcategories: ["all","Clip ins (+ silk press)","K-tips / invisible strands","LA weave / microlinks wefts / braidless sew in","I-tips / microlinks strands","Tape ins","Hybrid installs","Tape-ins + sew-in","K-tips + sew-in"] },
   "locs-services": { label: "Locs", subcategories: ["all","Starter locs / instant locs","Retwist / interlocking","Loc styling","Microlocs / sisterlocs","Loc extensions (permanent)"] },
   "faux-locs-services": { label: "Faux locs", subcategories: ["all","Soft locs","Boho locs","Crochet faux locs / invisible locs","Butterfly locs"] },
-  "sew-in-weave": { label: "Sew in / weave", subcategories: ["all","Closure sew-in / closure behind the hairline","Flipover / Versatile sew-in","Frontal sew-in","Half braids, half sew-in","Hybrid sew in (tapes + sew in)","Pixie wig / weave install","Quick weave","Sew-in take-down","Tracks (+ silk press) / partial / invisible sew-in","Traditional sew-in / leave out"] },
+  "sew-in-weave": { label: "Sew in / weave", subcategories: ["all","Closure sew-in / closure behind the hairline","Flipover / Versatile sew-in","Frontal sew-in","Pixie wig / weave install","Quick weave","Sew-in take-down","Tracks (+ silk press) / partial / invisible sew-in","Traditional sew-in / leave out","Fulani sew-in","Boho sew-in","Feed-in / stitch braid sew-in","Tape-ins + sew-in","K-tips + sew-in"] },
   "styling-services": { label: "Styling (sew in / frontal / relaxer)", subcategories: ["all","Sew in / extensions blowdry","Frontal ponytail / bun","Half up half down","Pixie cut / finger waves","Sleek ponytail / bun","Updo"] },
   "straightening-treatments": { label: "Treatments", subcategories: ["all","Hair botox","Japanese straightening","K18 treatment","Keratin treatment / Brazilian blowdry","Moisturising treatment","Olaplex treatment","Relaxer / texturiser","Texture release"] },
   "natural-hair-services": { label: "Natural hair washing & styling", subcategories: ["all","Wig cornrows","Curly cut / wash & go / diffuse","Silk press","Bouncy blowout / round brush blow dry","Trim / hair cut","Roller set","Twist out / flexi rod","Bantu knots","Wash & blowdry","Japanese head spa","Scalp detox / treatments","Men's braids"] },
@@ -103,15 +103,15 @@ const categoryMap = {
 } as const;
 
 const categoryServiceMap = {
-  "braiding-services": ["Boho braids / goddess braids","Braid take-down","Box braids","Colour blend (mixing braiding hair)","Crochet","Creative braids","Feed-in braids","French curl","Fulani / lemonade braids","Half braids, half sew-in","Knotless braids","Miracle knots","Microbraids / x-small braids","Pre-parting","Stitch braids","Twists (with extensions)","Boho braids bob","French curl bob","Men's braids","Wig cornrows"],
+  "braiding-services": ["Boho braids / goddess braids","Braid take-down","Box braids","Colour blend (mixing braiding hair)","Crochet","Creative braids","Feed-in braids","French curl","Fulani / lemonade braids","Knotless braids","Miracle knots","Microbraids / x-small braids","Pre-parting","Stitch braids","Twists (with extensions)","Boho braids bob","French curl bob","Men's braids","Wig cornrows","Hybrid (braids + sew-in)","Fulani sew-in","Boho sew-in","Feed-in / stitch braid sew-in"],
   "colour-services": ["Balayage","Full head colour","Highlights","Wig colouring / bundle colouring"],
   "bridal-services": ["Bridal"],
   "editorial-services": ["Editorial / Session styling"],
   "kids-teens-services": ["Kids & teens styles"],
-  "extension-services": ["Clip ins (+ silk press)","Hybrid sew in (tapes + sew in)","K-tips / invisible strands","LA weave / microlinks wefts / braidless sew in","I-tips / microlinks strands","Tape ins"],
+  "extension-services": ["Clip ins (+ silk press)","K-tips / invisible strands","LA weave / microlinks wefts / braidless sew in","I-tips / microlinks strands","Tape ins","Hybrid installs","Tape-ins + sew-in","K-tips + sew-in"],
   "locs-services": ["Starter locs / instant locs","Retwist / interlocking","Loc styling","Microlocs / sisterlocs","Loc extensions (permanent)"],
   "faux-locs-services": ["Soft locs","Boho locs","Crochet faux locs / invisible locs","Butterfly locs"],
-  "sew-in-weave": ["Closure sew-in / closure behind the hairline","Flipover / Versatile sew-in","Frontal sew-in","Half braids, half sew-in","Hybrid sew in (tapes + sew in)","Pixie wig / weave install","Quick weave","Sew-in take-down","Tracks (+ silk press) / partial / invisible sew-in","Traditional sew-in / leave out"],
+  "sew-in-weave": ["Closure sew-in / closure behind the hairline","Flipover / Versatile sew-in","Frontal sew-in","Pixie wig / weave install","Quick weave","Sew-in take-down","Tracks (+ silk press) / partial / invisible sew-in","Traditional sew-in / leave out","Fulani sew-in","Boho sew-in","Feed-in / stitch braid sew-in","Tape-ins + sew-in","K-tips + sew-in"],
   "styling-services": ["Sew in / extensions blowdry","Frontal ponytail / bun","Half up half down","Pixie cut / finger waves","Sleek ponytail / bun","Updo"],
   "straightening-treatments": ["Hair botox","Japanese straightening","K18 treatment","Keratin treatment / Brazilian blowdry","Moisturising treatment","Olaplex treatment","Relaxer / texturiser","Texture release"],
   "natural-hair-services": ["Wig cornrows","Curly cut / wash & go / diffuse","Silk press","Bouncy blowout / round brush blow dry","Trim / hair cut","Roller set","Twist out / flexi rod","Bantu knots","Wash & blowdry","Japanese head spa","Scalp detox / treatments","Men's braids"],
@@ -261,8 +261,38 @@ type VendorSearchResponse = {
 
 const regionLabelMap = Object.fromEntries(regions.map((region) => [region.id, region.label])) as Record<string, string>;
 
+// Picking a family matches any of its members (see derivedServiceMatches in
+// salon-index.mjs). The "(all)" families are filter-only headings, not services,
+// so they stay out of filters.json and never show up in the service pickers.
+const serviceFamilies: Record<string, readonly string[]> = {
+  "Boho (all)": ["Boho braids / goddess braids", "Boho braids bob", "Boho sew-in"],
+  "Fulani (all)": ["Fulani / lemonade braids", "Fulani sew-in"],
+  "Feed-in & stitch braids (all)": ["Feed-in braids", "Stitch braids", "Feed-in / stitch braid sew-in"],
+  "French curl (all)": ["French curl", "French curl bob"],
+  "Tape-in (all)": ["Tape ins", "Tape-ins + sew-in"],
+  "K-tip (all)": ["K-tips / invisible strands", "K-tips + sew-in"],
+  "Hybrid (braids + sew-in)": ["Fulani sew-in", "Boho sew-in", "Feed-in / stitch braid sew-in"],
+  "Hybrid installs": ["Tape-ins + sew-in", "K-tips + sew-in"],
+  "Hybrid installs (all)": ["Boho sew-in", "Fulani sew-in", "Feed-in / stitch braid sew-in", "Tape-ins + sew-in", "K-tips + sew-in"],
+};
+
+// Which families nest their members in each category's filter list. Braids
+// groups by style; Sew in / weave groups every hybrid by install.
+const subcategoryGroupsByCategory: Record<string, readonly string[]> = {
+  "braiding-services": ["Boho (all)", "Fulani (all)", "Feed-in & stitch braids (all)", "French curl (all)"],
+  "sew-in-weave": ["Hybrid installs (all)"],
+  "extension-services": ["Tape-in (all)", "K-tip (all)"],
+};
+
 const serviceDisplayNames: Record<string, string> = {
-  "Wig cornrows": "Cornrows / Twists / Wig cornrows",
+  "Wig cornrows": "(Wig) cornrows",
+  "Feed-in braids": "Feed-in braids / all backs",
+  "Boho braids / goddess braids": "Boho braids",
+  "Tape ins": "Tape-in install",
+  "Tape-ins + sew-in": "Tapes + sew-in",
+  "K-tips / invisible strands": "K-tip install",
+  "French curl": "French curl braids",
+  ...Object.fromEntries(Object.keys(serviceFamilies).filter((family) => family.endsWith(" (all)")).map((family) => [family, family.slice(0, -" (all)".length)])),
 };
 
 function getServiceDisplayName(service: string) {
@@ -271,6 +301,21 @@ function getServiceDisplayName(service: string) {
 
 function normalizeServiceSearch(s: string) {
   return s.toLowerCase().replace(/[-–—]/g, " ").replace(/\s+/g, " ").trim();
+}
+
+// Search-only synonyms, merged on top of the server's list. They live here rather
+// than in serviceNegationHints because those also drive negation checks, where a
+// broad word like "twists" would misfire.
+const extraServiceSearchAliases: Record<string, string[]> = {
+  "Wig cornrows": ["twists", "wig cornrows", "cornrows for wig", "natural hair cornrows"],
+};
+
+function withExtraServiceSearchAliases(aliases: Record<string, string[]>) {
+  const merged = { ...aliases };
+  for (const [service, extras] of Object.entries(extraServiceSearchAliases)) {
+    merged[service] = [...new Set([...(merged[service] ?? []), ...extras])];
+  }
+  return merged;
 }
 
 // Fallback used until /api/filters responds with the server's searchAliases
@@ -294,7 +339,9 @@ const defaultServiceSearchAliases: Record<string, string[]> = {
   "Wig install (frontal / closure)": ["wig install", "wig installation", "wig application", "wig fitting", "glueless wig", "lace wig", "frontal wig", "closure wig", "frontal unit install", "closure unit install"],
   "Pixie wig / weave install": ["pixie wig", "pixie weave", "pixie install", "pixie sew in", "pixie sew-in"],
   "Twists (with extensions)": ["twists with extensions", "passion twists", "marley twists", "senegalese twists", "kinky twists", "rope twists", "island twists", "island twist"],
-  "Hybrid sew in (tapes + sew in)": ["hybrid sew in", "hybrid sew-in", "hybrid weave", "tracks + tapes hybrid", "tracks and tapes hybrid"],
+  "Tape-ins + sew-in": ["hybrid sew in", "hybrid sew-in", "hybrid weave", "tracks + tapes hybrid", "tracks and tapes hybrid", "tape in sew in", "tape-in sew-in", "tapes and sew in"],
+  "K-tips + sew-in": ["k tip sew in", "k-tip sew-in", "k tips sew in", "hybrid k tips", "k tip hybrid"],
+  "Hybrid installs": ["hybrid install", "hybrid installation", "hybrid extensions"],
   "Tracks (+ silk press) / partial / invisible sew-in": ["rows", "tracks", "track per row", "per row", "one row", "weave tracks", "partial sew in", "partial sew-in", "invisible sew in", "invisible weave", "invisible weft", "half head weave"],
   "Silk press": ["straightening", "straighten", "silk press", "silkpress", "press and curl"],
   "Bouncy blowout / round brush blow dry": ["bouncy blowout", "bouncy blow out", "bouncy blowdry", "bouncy blow dry", "bouncy blow-dry", "round brush blow dry", "round brush blowdry", "blowout"],
@@ -309,7 +356,10 @@ const defaultServiceSearchAliases: Record<string, string[]> = {
   "Crochet faux locs / invisible locs": ["crochet locs", "crochet faux locs", "invisible locs", "faux locs crochet"],
   "Starter locs / instant locs": ["starter locs", "start locs", "loc start", "instant locs"],
   "Retwist / interlocking": ["retwist", "re twist", "interlocking", "inter locking"],
-  "Half braids, half sew-in": ["boho braids sew in", "boho braid sew in", "boho sew in", "fulani braids sew in", "fulani braid sew in", "fulani sew in"],
+  "Hybrid (braids + sew-in)": ["half braids half sew in", "half braid half sew in", "half braid half weave", "braids and sew in", "hybrid braids"],
+  "Fulani sew-in": ["fulani braids sew in", "fulani braid sew in", "fulani sew in", "fulani weave", "fulani quick weave", "alicia keys sew in"],
+  "Boho sew-in": ["boho braids sew in", "boho braid sew in", "boho sew in", "boho weave", "zoe kravitz sew in"],
+  "Feed-in / stitch braid sew-in": ["feed in sew in", "feed ins sew in", "half feed in half sew in", "stitch braids sew in", "stitch braid sew in", "jayda wayda sew in", "tyla sew in"],
   "Braid take-down": ["braids removal", "braid removal", "braids takedown", "braid takedown"],
   "Sew-in take-down": ["sew in removal", "sewin removal", "sew-in removal", "weave removal", "weave takedown", "sew in takedown", "sewin takedown"],
   "Stitch braids": ["stitch braids", "stitch"],
@@ -1638,7 +1688,7 @@ function orderServicesBySelection(
     return services;
   }
 
-  const prioritizedServices = new Set<string>(selectedSubcategories);
+  const prioritizedServices = new Set<string>(selectedSubcategories.flatMap((subcategory) => [subcategory, ...(serviceFamilies[subcategory] ?? [])]));
 
   selectedCategories.forEach((categoryId) => {
     (catServiceMap[categoryId] ?? []).forEach((service) => {
@@ -2624,7 +2674,7 @@ export default function App() {
   const [selectedCategories, setSelectedCategories] = useState<ServiceCategoryId[]>([]);
   const [selectedSubcategories, setSelectedSubcategories] = useState<ServiceSubcategoryId[]>([]);
   const [serviceSearch, setServiceSearch] = useState("");
-  const [serviceSearchAliases, setServiceSearchAliases] = useState<Record<string, string[]>>(defaultServiceSearchAliases);
+  const [serviceSearchAliases, setServiceSearchAliases] = useState<Record<string, string[]>>(() => withExtraServiceSearchAliases(defaultServiceSearchAliases));
   const [results, setResults] = useState<SalonResult[]>([]);
   const [sortOption, setSortOption] = useState<SortOption>("default");
   const shuffleKeysRef = useRef<Map<string, number>>(new Map());
@@ -3667,7 +3717,8 @@ export default function App() {
   }
 
   function getCategorySubcategories(categoryId: string): string[] {
-    return runtimeCategories.find((c) => c.id === categoryId)?.subcategories ?? [];
+    const subcategories = runtimeCategories.find((c) => c.id === categoryId)?.subcategories ?? [];
+    return [...subcategories, ...(subcategoryGroupsByCategory[categoryId] ?? []).filter((family) => !subcategories.includes(family))];
   }
 
   function getCategoryLabel(categoryId: string): string {
@@ -3721,7 +3772,7 @@ export default function App() {
     });
 
     const parentCategory = runtimeCategories.find(
-      (cat) => cat.id !== "all" && cat.subcategories.includes(nextSubcategory),
+      (cat) => cat.id !== "all" && getCategorySubcategories(cat.id).includes(nextSubcategory),
     )?.id as ServiceCategoryId | undefined;
 
     updateSubcategories((currentSubcategories) => {
@@ -4141,7 +4192,7 @@ export default function App() {
           setCustomFilterTypes(data.customFilterTypes);
         }
         if (data.ok && data.searchAliases && typeof data.searchAliases === "object") {
-          setServiceSearchAliases(data.searchAliases);
+          setServiceSearchAliases(withExtraServiceSearchAliases(data.searchAliases));
         }
         if (data.ok && data.vendorFilterOptions && typeof data.vendorFilterOptions === "object") {
           setVendorFilterOptions({
@@ -5507,10 +5558,26 @@ export default function App() {
                         : isCategorySelected(id as ServiceCategoryId);
                       const categoryLabelId = makeFilterLabelId("service-category", id);
                       const searchQ = normalizeServiceSearch(serviceSearch);
-                      const visibleSubcategories = item.subcategories
-                        .filter((subItem) => subItem !== "all")
-                        .filter((subItem) => !searchQ || normalizeServiceSearch(subItem).includes(searchQ) || (serviceSearchAliases[subItem] ?? []).some((alias) => normalizeServiceSearch(alias).includes(searchQ)))
-                        .sort((left, right) => left.localeCompare(right));
+                      const matchesServiceSearch = (subItem: string) =>
+                        !searchQ || normalizeServiceSearch(subItem).includes(searchQ) || (serviceSearchAliases[subItem] ?? []).some((alias) => normalizeServiceSearch(alias).includes(searchQ));
+                      const categoryFamilies = (subcategoryGroupsByCategory[id] ?? []).filter((family) =>
+                        (serviceFamilies[family] ?? []).some((member) => item.subcategories.includes(member)),
+                      );
+                      const nestedHere = new Set(categoryFamilies.flatMap((family) => serviceFamilies[family] ?? []));
+                      const getVisibleChildren = (parent: string) => {
+                        if (!categoryFamilies.includes(parent)) return [];
+                        const children = (serviceFamilies[parent] ?? []).filter((child) => item.subcategories.includes(child));
+                        if (searchQ) return matchesServiceSearch(getServiceDisplayName(parent)) ? children : children.filter(matchesServiceSearch);
+                        // Collapsed until the family (or one of its members) is picked.
+                        const isFamilyOpen = [parent, ...children].some((service) => currentSelectedSubcategories.includes(service as ServiceSubcategoryId));
+                        return isFamilyOpen ? children : [];
+                      };
+                      const visibleSubcategories = [
+                        ...item.subcategories.filter((subItem) => subItem !== "all" && !nestedHere.has(subItem) && !categoryFamilies.includes(subItem)),
+                        ...categoryFamilies,
+                      ]
+                        .filter((subItem) => matchesServiceSearch(subItem) || matchesServiceSearch(getServiceDisplayName(subItem)) || (!!searchQ && getVisibleChildren(subItem).length > 0))
+                        .sort((left, right) => getServiceDisplayName(left).replace(/^\W+/, "").localeCompare(getServiceDisplayName(right).replace(/^\W+/, "")));
                       const showSubcategories =
                         !isAllServices &&
                         (isCategorySelected(id as ServiceCategoryId) || categoryHasSelectedSubcategories(id as ServiceCategoryId) || (!!searchQ && visibleSubcategories.length > 0));
@@ -5541,7 +5608,8 @@ export default function App() {
 
                           {showSubcategories && visibleSubcategories.length > 0 ? (
                             <div className="space-y-2 pl-8">
-                              {visibleSubcategories.map((itemSubcategory) => {
+                              {visibleSubcategories.flatMap((parentSubcategory) => [parentSubcategory, ...getVisibleChildren(parentSubcategory)]).map((itemSubcategory) => {
+                                const isNestedSubcategory = nestedHere.has(itemSubcategory);
                                 const subcategoryLabelId = makeFilterLabelId("service-subcategory", id, itemSubcategory);
                                 const isSubcategoryActive = currentSelectedSubcategories.includes(
                                   itemSubcategory as ServiceSubcategoryId,
@@ -5555,6 +5623,7 @@ export default function App() {
                                     key={itemSubcategory}
                                     className={cn(
                                       "flex w-full cursor-pointer items-start gap-3 rounded-none px-2 py-2 text-left transition-colors hover:bg-stone-200 active:bg-stone-200 dark:hover:bg-stone-900 dark:active:bg-stone-900",
+                                      isNestedSubcategory && "pl-10",
                                     )}
                                     onClick={() => toggleSubcategory(itemSubcategory as ServiceSubcategoryId)}
                                   >
