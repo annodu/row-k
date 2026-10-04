@@ -59,7 +59,9 @@ export function layoutCellCount(id: PhotoLayoutId) {
   return new Set(getPhotoLayout(id).areas.join(" ").split(" ")).size;
 }
 
-export type PhotoCell = { src: string; focusX: number; focusY: number };
+// focusX/Y: which part of the photo stays in frame (0–100). zoom: % of the
+// cover-fit size, missing = 100.
+export type PhotoCell = { src: string; focusX: number; focusY: number; zoom?: number };
 
 export type CoverSlideData = {
   type: "cover";
@@ -117,9 +119,12 @@ export type CtaFilters = {
 // the default composition: size in % of default, dx/dy in % of the area
 // below the search bar. Missing = default layout.
 export type ElementAdjust = { size: number; dx: number; dy: number };
+// rows: how many filter rows a sheet shows before it's cropped at the bottom.
+// Missing = the sheet's default (see filterSheetGroups in slides.tsx).
+export type SheetAdjust = ElementAdjust & { rows?: number };
 export type CtaLayout = {
-  services: ElementAdjust;
-  locations: ElementAdjust;
+  services: SheetAdjust;
+  locations: SheetAdjust;
   caption: ElementAdjust & { width: number };
 };
 

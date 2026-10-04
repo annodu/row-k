@@ -50,3 +50,17 @@ export async function removeImageBackground(src: string, onProgress?: (label: st
 export function fileToDataUrl(file: File) {
   return blobToDataUrl(file);
 }
+
+// Uploaded slide photos, scaled so the long side is at most `maxSide` (twice
+// the 1080px canvas width — sharp enough for any cell) and re-encoded as JPEG,
+// so a few phone photos don't overflow the studio's sessionStorage.
+export async function fileToSlideImage(file: File, maxSide = 2160) {
+  const bitmap = await createImageBitmap(file);
+  const scale = Math.min(1, maxSide / Math.max(bitmap.width, bitmap.height));
+  const canvas = document.createElement("canvas");
+  canvas.width = Math.round(bitmap.width * scale);
+  canvas.height = Math.round(bitmap.height * scale);
+  canvas.getContext("2d")?.drawImage(bitmap, 0, 0, canvas.width, canvas.height);
+  bitmap.close();
+  return canvas.toDataURL("image/jpeg", 0.9);
+}

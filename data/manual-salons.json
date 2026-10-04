@@ -2,10 +2,121 @@
   "meta": {
     "source": "manual",
     "updatedAt": "2026-10-04",
-    "count": 1165,
+    "count": 1167,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "dolled-by-tems",
+      "name": "Dolled by tems",
+      "areaId": "east",
+      "areaLabel": "East London",
+      "neighbourhood": "East London London",
+      "postcode": "",
+      "bookingPlatform": "Direct website",
+      "bookingUrl": "https://www.instagram.com/dolledbytems/",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/dolledbytems/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Creative braids",
+        "Stitch braids",
+        "Half up half down",
+        "Fulani / lemonade braids",
+        "Boho braids / goddess braids",
+        "Bantu knots",
+        "Knotless braids",
+        "Quick weave",
+        "Sleek ponytail / bun",
+        "Soft locs",
+        "Flipover / Versatile sew-in",
+        "Traditional sew-in / leave out",
+        "Crochet faux locs / invisible locs"
+      ],
+      "summary": "📍ᴇᴀꜱᴛ ʟᴏɴᴅᴏɴ \nʙʀᴀɪᴅꜱ • Qᴜɪᴄᴋ ᴡᴇᴀᴠᴇꜱ • ꜱʟᴇᴇᴋꜱ\nᴅᴍ ᴛᴏ ʙᴏᴏᴋ ᴀɴ ᴀᴘᴘᴏɪɴᴛᴍᴇɴᴛ",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/dolledbytems/",
+        "Raw services provided during admin intake."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-10-04",
+      "portfolioPhotos": [
+        {
+          "id": "dolled-by-tems-portfolio-photo-15231b95-0e5e-41b4-a385-dede0999dba2",
+          "url": "/portfolio-photos/dolled-by-tems-266c1e84-d3ac-4a89-aa2e-280135c4cd6a.jpg",
+          "source": "instagram"
+        },
+        {
+          "id": "dolled-by-tems-portfolio-photo-73e409d2-fa5c-4cfe-9bc4-87567a3b3b36",
+          "url": "/portfolio-photos/dolled-by-tems-49d0cc3d-cc10-497e-866d-4315819009be.jpg",
+          "source": "instagram"
+        },
+        {
+          "id": "dolled-by-tems-portfolio-photo-cc4ea701-d2df-40f5-af97-b1febe46d76b",
+          "url": "/portfolio-photos/dolled-by-tems-465cd23d-ae18-4bf0-b602-2ac4699d7591.jpg",
+          "source": "instagram"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-10-04",
+      "photoOrderBumpedAt": 1282,
+      "updatedAt": "2026-10-04"
+    },
+    {
+      "id": "braids-and-style-studio",
+      "name": "Braids and style studio",
+      "areaId": "kent",
+      "areaLabel": "Kent",
+      "neighbourhood": "Kent London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/braidsandstylestudio/",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/braidsandstylestudio/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Stitch braids",
+        "Feed-in braids",
+        "Knotless braids",
+        "Fulani sew-in",
+        "Traditional sew-in / leave out",
+        "Fulani / lemonade braids",
+        "Sleek ponytail / bun",
+        "Boho braids / goddess braids",
+        "Flipover / Versatile sew-in",
+        "Boho sew-in"
+      ],
+      "summary": "Professional Braider\n| Braids | Ponytails | Sew-ins |\n📍Swanscombe | Kent (UK) \n📅 By appointment only \n📌 Booking via DM",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/braidsandstylestudio/",
+        "Raw services provided during admin intake."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-10-04",
+      "portfolioPhotos": [
+        {
+          "id": "braids-and-style-studio-portfolio-photo-f7f83762-1de0-4749-acd1-56a7e3a768c6",
+          "url": "/portfolio-photos/braids-and-style-studio-7c5d6943-c441-4385-a73d-8fe44602387b.jpg",
+          "source": "instagram-reel-frame"
+        }
+      ],
+      "photoOrderBumpedAt": 1283,
+      "updatedAt": "2026-10-04",
+      "photoSearchReviewedAt": "2026-10-04"
+    },
     {
       "id": "elikya-hair",
       "name": "Elikya Hair",
@@ -11400,16 +11511,6 @@
       "googleMatchConfidence": "no-match",
       "googleCheckedAt": "2026-08-26",
       "portfolioPhotos": [
-        {
-          "id": "london-braid-boss-portfolio-photo-bd9d86ee-be21-4efa-b355-c4cd77a7f941",
-          "url": "/portfolio-photos/london-braid-boss-3bfa12b7-b1a7-42d1-9f40-f7e446c3ee9a.jpg",
-          "source": "instagram-reel-frame"
-        },
-        {
-          "id": "london-braid-boss-portfolio-photo-8c70eef7-2299-4605-a4f8-b61505ef4700",
-          "url": "/portfolio-photos/london-braid-boss-aa2ddc90-049e-4162-9deb-480a7f61c584.jpg",
-          "source": "instagram-reel-frame"
-        },
         {
           "id": "london-braid-boss-portfolio-photo-aad880e6-62af-4a16-ba03-b15196e37842",
           "url": "/portfolio-photos/london-braid-boss-02c68c22-3b92-405d-b1f4-ff1a611c5249.jpg",
@@ -44449,33 +44550,13 @@
       "portfolioPhotosCheckedAt": "2026-08-20",
       "portfolioPhotos": [
         {
-          "id": "tayra-hair-portfolio-photo-1090c052-fcbf-49b2-aac9-6129dd226945",
-          "url": "/portfolio-photos/tayra-hair-dfa9c031-636a-417c-a9db-ab7c7caa08dd.jpg",
-          "source": "instagram-reel-frame"
-        },
-        {
-          "id": "tayra-hair-portfolio-photo-76689d08-02c7-45b5-8f30-eeb3bffe3484",
-          "url": "/portfolio-photos/tayra-hair-4a405cc5-cebf-46cf-ac12-f7d7a5da8ef5.jpg",
-          "source": "instagram-reel-frame"
-        },
-        {
-          "id": "tayra-hair-portfolio-photo-8254e758-288a-482a-9a59-d1b1013930e0",
-          "url": "/portfolio-photos/tayra-hair-0610fc0e-eb7c-4d03-b5a4-c6385dd546f2.jpg",
-          "source": "instagram-reel-frame"
-        },
-        {
-          "id": "tayra-hair-portfolio-photo-0d56a0b4-7d1b-4ad5-ad3f-0804613b5b09",
-          "url": "/portfolio-photos/tayra-hair-eb6b3235-29ec-48a6-b48c-ad435c373656.jpg",
+          "id": "tayra-hair-portfolio-photo-896d42c4-dda4-459f-9177-ec7fc9184c8c",
+          "url": "/portfolio-photos/tayra-hair-4dbdc223-ddb4-409a-b8c0-bd2c5045f062.jpg",
           "source": "instagram-reel-frame"
         },
         {
           "id": "tayra-hair-portfolio-photo-654c573b-f2f2-49e8-bd82-d9edfc8622c9",
-          "url": "/portfolio-photos/tayra-hair-78565922-d3d8-48e6-ba8c-9a0f2a9f5c26.jpg",
-          "source": "instagram-reel-frame"
-        },
-        {
-          "id": "tayra-hair-portfolio-photo-896d42c4-dda4-459f-9177-ec7fc9184c8c",
-          "url": "/portfolio-photos/tayra-hair-4dbdc223-ddb4-409a-b8c0-bd2c5045f062.jpg",
+          "url": "/portfolio-photos/tayra-hair-90b89aff-7e9d-4d95-8087-2a8540a88100.jpg",
           "source": "instagram-reel-frame"
         }
       ],
@@ -46380,7 +46461,9 @@
       "servicePriceBand": "",
       "packagePriceBand": "",
       "priceIncludesHair": false,
-      "priceComparisonMode": "service-only"
+      "priceComparisonMode": "service-only",
+      "photoSearchReviewedAt": "2026-10-04",
+      "photoOrderBumpedAt": 1272
     },
     {
       "id": "arinze-studios",
@@ -59543,53 +59626,13 @@
       "portfolioPhotosCheckedAt": "2026-08-21",
       "portfolioPhotos": [
         {
-          "id": "hairbyamandaniceandneat-portfolio-photo-292cf9d6-3ea0-49ba-8c20-10332f1c1f1f",
-          "url": "/portfolio-photos/hairbyamandaniceandneat-b69fc845-48dc-4f07-93b5-ba0f13993b12.jpg",
-          "source": "instagram-reel-frame"
-        },
-        {
-          "id": "hairbyamandaniceandneat-portfolio-photo-2543542a-dd8b-4490-a9c3-b8ca735a0773",
-          "url": "/portfolio-photos/hairbyamandaniceandneat-116bc531-70de-439d-8aa7-6eb5561a40cf.jpg",
-          "source": "instagram-reel-frame"
-        },
-        {
-          "id": "hairbyamandaniceandneat-portfolio-photo-271b6275-3499-422c-89bb-614e47aa0752",
-          "url": "/portfolio-photos/hairbyamandaniceandneat-aa1f673d-8d52-4ce7-bd98-65c4601fdac1.jpg",
-          "source": "instagram-reel-frame"
-        },
-        {
-          "id": "hairbyamandaniceandneat-portfolio-photo-e0db4f0a-1c3a-435c-af36-ceebbc11a10f",
-          "url": "/portfolio-photos/hairbyamandaniceandneat-cecffd15-7750-4081-bf78-f7b07536a5d5.jpg",
-          "source": "instagram-reel-frame"
-        },
-        {
-          "id": "hairbyamandaniceandneat-portfolio-photo-85fe3372-288d-4423-b4d6-f340810429de",
-          "url": "/portfolio-photos/hairbyamandaniceandneat-f46bede5-81b3-4657-a956-71c2359418d8.jpg",
-          "source": "instagram-reel-frame"
-        },
-        {
-          "id": "hairbyamandaniceandneat-portfolio-photo-88d5ae3e-477e-49d4-98fd-9de437e4dde5",
-          "url": "/portfolio-photos/hairbyamandaniceandneat-1181bf63-6c26-4a84-8dfb-a392a4410347.jpg",
+          "id": "hairbyamandaniceandneat-portfolio-photo-a741138e-9235-4cc2-854e-48633b0caebe",
+          "url": "/portfolio-photos/hairbyamandaniceandneat-55b14acb-b129-4649-a806-2383ed1ca932.jpg",
           "source": "instagram-reel-frame"
         },
         {
           "id": "hairbyamandaniceandneat-portfolio-photo-baadffa7-a85b-41b5-9032-5491f209057a",
           "url": "/portfolio-photos/hairbyamandaniceandneat-7995e367-dc70-48e4-a200-3f16a3b90242.jpg",
-          "source": "instagram-reel-frame"
-        },
-        {
-          "id": "hairbyamandaniceandneat-portfolio-photo-abe4ad3c-3206-43b1-95a1-654a123cf2ba",
-          "url": "/portfolio-photos/hairbyamandaniceandneat-71ab015b-42ea-4ff3-bff8-9ba540264933.jpg",
-          "source": "instagram-reel-frame"
-        },
-        {
-          "id": "hairbyamandaniceandneat-portfolio-photo-76e00a71-b4d2-46db-8497-bde00bdae6dc",
-          "url": "/portfolio-photos/hairbyamandaniceandneat-aa8c2e13-ae7a-4542-a908-6d9b7fae107b.jpg",
-          "source": "instagram-reel-frame"
-        },
-        {
-          "id": "hairbyamandaniceandneat-portfolio-photo-a741138e-9235-4cc2-854e-48633b0caebe",
-          "url": "/portfolio-photos/hairbyamandaniceandneat-55b14acb-b129-4649-a806-2383ed1ca932.jpg",
           "source": "instagram-reel-frame"
         }
       ],
@@ -78593,7 +78636,9 @@
       "wheelchairAccessible": false,
       "senFriendly": false,
       "lgbtqFriendly": false,
-      "customFilters": {}
+      "customFilters": {},
+      "photoSearchReviewedAt": "2026-10-04",
+      "photoOrderBumpedAt": 1278
     },
     {
       "id": "the-curl-coach",
@@ -78926,41 +78971,6 @@
       "portfolioPhotosCheckedAt": "2026-08-21",
       "portfolioPhotos": [
         {
-          "id": "the-hair-space-portfolio-photo-ec9333be-03d5-470b-bc21-c4ad0d2824aa",
-          "url": "/portfolio-photos/the-hair-space-347c471e-d237-4a26-932c-078b8c09f8ce.jpg",
-          "source": "instagram-reel-frame"
-        },
-        {
-          "id": "the-hair-space-portfolio-photo-2da3966d-6e85-4c5d-9d7b-c7841a60da8a",
-          "url": "/portfolio-photos/the-hair-space-23b5fa97-89d8-40ad-86ee-72224944a6e7.jpg",
-          "source": "instagram-reel-frame"
-        },
-        {
-          "id": "the-hair-space-portfolio-photo-91ddc7bb-855a-4e02-bc50-077838aebe31",
-          "url": "/portfolio-photos/the-hair-space-5a816919-f569-4416-96a7-a98ad61b3397.jpg",
-          "source": "instagram-reel-frame"
-        },
-        {
-          "id": "the-hair-space-portfolio-photo-00ad052c-bd7a-461c-895b-610021404378",
-          "url": "/portfolio-photos/the-hair-space-e505f355-0c40-4cd4-b083-0a634bed0dfe.jpg",
-          "source": "instagram-reel-frame"
-        },
-        {
-          "id": "the-hair-space-portfolio-photo-e5cb1c76-5290-40b4-a0b7-56746f403023",
-          "url": "/portfolio-photos/the-hair-space-c2763820-ec40-437b-83a1-520b7b79a769.jpg",
-          "source": "instagram-reel-frame"
-        },
-        {
-          "id": "the-hair-space-portfolio-photo-6fbcb531-88f2-4466-a186-e49c4478ffd7",
-          "url": "/portfolio-photos/the-hair-space-510d9169-8dc1-424d-ab61-dac7a3568b95.jpg",
-          "source": "instagram-reel-frame"
-        },
-        {
-          "id": "the-hair-space-portfolio-photo-f76a74f2-b332-4079-ac33-c9e43202f9d0",
-          "url": "/portfolio-photos/the-hair-space-09aa0d6f-6097-4771-ab77-d13aa6d7b1b3.jpg",
-          "source": "instagram-reel-frame"
-        },
-        {
           "id": "the-hair-space-portfolio-photo-9a2223c8-0160-4c00-91b9-44860046fe5a",
           "url": "/portfolio-photos/the-hair-space-e14c282c-d700-4d85-bcb4-172d42dc4936.jpg",
           "source": "instagram"
@@ -78969,6 +78979,11 @@
           "id": "the-hair-space-portfolio-photo-e9c24666-a526-476d-8e42-25b7715753ad",
           "url": "/portfolio-photos/the-hair-space-5e78a7bb-5917-432d-9a8f-fbde06595956.jpg",
           "source": "instagram"
+        },
+        {
+          "id": "the-hair-space-portfolio-photo-00ad052c-bd7a-461c-895b-610021404378",
+          "url": "/portfolio-photos/the-hair-space-e505f355-0c40-4cd4-b083-0a634bed0dfe.jpg",
+          "source": "instagram-reel-frame"
         },
         {
           "id": "the-hair-space-portfolio-photo-26943f6d-c52c-422b-aa97-26ce4e814f5d",

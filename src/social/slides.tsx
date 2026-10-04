@@ -78,6 +78,8 @@ function Photo({ cell, style }: { cell: PhotoCell | undefined; style?: CSSProper
           height: "100%",
           objectFit: "cover",
           objectPosition: `${cell.focusX}% ${cell.focusY}%`,
+          transform: cell.zoom && cell.zoom !== 100 ? `scale(${cell.zoom / 100})` : undefined,
+          transformOrigin: `${cell.focusX}% ${cell.focusY}%`,
           display: "block",
         }}
       />
@@ -438,22 +440,66 @@ const SITE = {
   chevron: "#44403c", // stone-700
   placeholder: "#a8a29e", // stone-400
 };
-// Keeps every ticked row (and its order), filling the rest with unticked ones,
-// so a long list like Braids' 20 styles can't push a sheet out of the safe box.
+// Picks `max` rows to show. Prefers one unbroken run of the list starting at
+// the first ticked row's parent (e.g. "Braids", "London"), so the sheet reads
+// like a section of the real filter panel. If the last ticked row is further
+// down than that, the parent stays as a heading and the run picks up just
+// above the ticked rows. Only when the ticked rows are too far apart for one
+// run does it fall back to every ticked row plus neighbours.
 function visiblePanelRows(rows: ChecklistGroup["rows"], max: number) {
   if (rows.length <= max) return rows;
-  const keep = new Set(rows.filter((row) => row.checked).slice(0, max));
-  // Fill from the parent of the first ticked row onwards (e.g. "London" then
-  // its areas), so the sheet reads like that section of the real filter list.
-  const firstTicked = rows.findIndex((row) => row.checked);
-  let start = Math.max(0, firstTicked);
-  while (start > 0 && rows[start].indent) start -= 1;
-  const ordered = [...rows.slice(start), ...rows.slice(0, start)];
-  for (const row of ordered) {
-    if (keep.size >= max) break;
-    keep.add(row);
+  const ticked = rows.flatMap((row, index) => (row.checked ? [index] : []));
+  if (!ticked.length) return rows.slice(0, max);
+  const first = ticked[0];
+  const last = ticked[ticked.length - 1];
+  let parent = first;
+  while (parent > 0 && rows[parent].indent) parent -= 1;
+  if (last < parent + max) {
+    const start = Math.min(parent, rows.length - max);
+    return rows.slice(start, start + max);
   }
-  return rows.filter((row) => keep.has(row));
+  if (last - first < max - 1) {
+    const runStart = last - max + 2;
+    return [rows[parent], ...rows.slice(runStart, last + 1)];
+  }
+  if (last - first < max) return rows.slice(first, first + max);
+  const keep = new Set(ticked.slice(0, max));
+  for (let index = first; keep.size < max && index < rows.length; index += 1) keep.add(index);
+  return rows.filter((_, index) => keep.has(index));
+}
+
+// Slides saved before build.ts dropped repeated styles can still list one
+// twice (it sits in two families); show only its first appearance.
+function withoutRepeats(rows: ChecklistGroup["rows"]) {
+  const seen = new Set<string>();
+  return rows.filter((row) => {
+    if (row.indent && seen.has(row.label)) return false;
+    seen.add(row.label);
+    return true;
+  });
+}
+
+type SheetGroups = { group: ChecklistGroup; maxRows: number }[];
+
+// Default row counts per sheet; `rows` in the layout crops from the bottom.
+// On the Locations sheet the Price rows are at the bottom, so they're cut
+// first — down to the ticked band — before any locations go.
+export function filterSheetGroups(checklists: ChecklistGroup[], sheet: "services" | "locations", rows?: number): { groups: SheetGroups; defaultRows: number } {
+  const find = (title: string) => checklists.find((group) => group.title === title);
+  if (sheet === "services") {
+    const services = find("Services");
+    const defaultRows = 10;
+    return { groups: services ? [{ group: services, maxRows: Math.min(rows ?? defaultRows, defaultRows) }] : [], defaultRows };
+  }
+  const locations = find("Locations");
+  const price = find("Price");
+  const priceTicked = Boolean(price?.rows.some((row) => row.checked));
+  const defaultRows = priceTicked ? 13 : 11;
+  const total = Math.min(rows ?? defaultRows, defaultRows);
+  if (!locations) return { groups: [], defaultRows };
+  if (!price || !priceTicked) return { groups: [{ group: locations, maxRows: total }], defaultRows };
+  const priceRows = Math.min(5, Math.max(1, total - 8));
+  return { groups: [{ group: locations, maxRows: Math.max(1, total - priceRows) }, { group: price, maxRows: priceRows }], defaultRows };
 }
 
 function SiteCheckbox({ checked, size }: { checked: boolean; size: number }) {
@@ -483,14 +529,14 @@ function SiteCheckbox({ checked, size }: { checked: boolean; size: number }) {
 // no section header, just the checkbox rows with nested styles/areas indented.
 // Several groups stack in one sheet (e.g. Locations then Price), separated by
 // a gap like the site's panel sections.
-function FilterSheet({ groups, scale = 1, style }: { groups: { group: ChecklistGroup; maxRows: number }[]; scale?: number; style?: CSSProperties }) {
+function FilterSheet({ groups, scale = 1, style }: { groups: SheetGroups; scale?: number; style?: CSSProperties }) {
   const box = Math.round(30 * scale);
   return (
     // Allowed to run past the safe box (like the Canva slide) — exempt from the overflow check.
     <div data-safe-exempt style={{ background: SITE.panel, fontFamily: FONT_UI, padding: `${Math.round(22 * scale)}px ${Math.round(24 * scale)}px`, boxShadow: "0 18px 44px rgba(0,0,0,.45)", ...style }}>
       {groups.map(({ group, maxRows }, groupIndex) => (
         <div key={group.title} style={{ marginTop: groupIndex ? Math.round(22 * scale) : 0 }}>
-          {visiblePanelRows(group.rows, maxRows).map((row) => (
+          {visiblePanelRows(withoutRepeats(group.rows), maxRows).map((row) => (
             <div
               key={`${row.indent ? "sub" : "top"}-${row.label}`}
               style={{ display: "flex", alignItems: "flex-start", gap: Math.round(16 * scale), padding: `${Math.round(9 * scale)}px 0`, paddingLeft: Math.round(Number(row.indent || 0) * 34 * scale) }}
@@ -561,11 +607,9 @@ function CaptionBox({ caption, fontSize = 62, style }: { caption: string; fontSi
 
 function CtaSlide({ data, aspect }: SlideProps<CtaSlideData>) {
   const tall = aspect === "9:16";
-  const services = data.checklists.find((group) => group.title === "Services");
-  const locations = data.checklists.find((group) => group.title === "Locations");
-  const price = data.checklists.find((group) => group.title === "Price");
-  const priceTicked = Boolean(price?.rows.some((row) => row.checked));
   const layout = { ...DEFAULT_CTA_LAYOUT, ...data.layout };
+  const services = filterSheetGroups(data.checklists, "services", layout.services.rows).groups;
+  const locations = filterSheetGroups(data.checklists, "locations", layout.locations.rows).groups;
 
   return (
     <>
@@ -590,9 +634,9 @@ function CtaSlide({ data, aspect }: SlideProps<CtaSlideData>) {
             into TikTok's UI area but not off the left; the caption stays
             inside the safe box. */}
         <div style={{ position: "relative", flex: 1, minHeight: 0, width: "100%", textAlign: "left" }}>
-          {locations ? (
+          {locations.length ? (
             <FilterSheet
-              groups={[{ group: locations, maxRows: priceTicked ? 8 : 11 }, ...(price && priceTicked ? [{ group: price, maxRows: 5 }] : [])]}
+              groups={locations}
               scale={0.62 * (layout.locations.size / 100)}
               style={{
                 position: "absolute",
@@ -604,9 +648,9 @@ function CtaSlide({ data, aspect }: SlideProps<CtaSlideData>) {
               }}
             />
           ) : null}
-          {services ? (
+          {services.length ? (
             <FilterSheet
-              groups={[{ group: services, maxRows: 10 }]}
+              groups={services}
               scale={0.85 * (layout.services.size / 100)}
               style={{
                 position: "absolute",

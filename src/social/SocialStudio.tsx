@@ -10,10 +10,10 @@ import { getServiceDisplayName, serviceFilterRows } from "@/lib/serviceTaxonomy"
 import { cn } from "@/lib/utils";
 import { downloadDataUrl, renderSlidePng } from "./export";
 import { type Brief, type BriefOptions, type Candidate, EMPTY_BRIEF, buildCarousel, candidateToListSlide, describeBrief, filterPanelGroups, filtersFromBrief, resolvePhotoUrl } from "./build";
-import { fileToDataUrl, removeImageBackground } from "./cutout";
+import { fileToDataUrl, fileToSlideImage, removeImageBackground } from "./cutout";
 import { type Sort, FinderView, StylistNameSearch, useBriefOptions } from "./finder";
-import { type Aspect, type CoverSlideData, type CtaFilters, type CtaLayout, type CtaSlideData, type ElementAdjust, type CoverLayout, DEFAULT_COVER_LAYOUT, DEFAULT_CTA_LAYOUT, type ListSlideData, type PhotoLayoutId, type SlideData, CANVAS, PHOTO_LAYOUTS, getPhotoLayout, layoutCellCount } from "./model";
-import { SafeZoneOverlay, SlideContent, SlideFrame } from "./slides";
+import { type Aspect, type CoverSlideData, type CtaFilters, type CtaLayout, type CtaSlideData, type ElementAdjust, type SheetAdjust, type ChecklistGroup, type CoverLayout, DEFAULT_COVER_LAYOUT, DEFAULT_CTA_LAYOUT, type ListSlideData, type PhotoCell, type PhotoLayoutId, type SlideData, CANVAS, PHOTO_LAYOUTS, getPhotoLayout, layoutCellCount } from "./model";
+import { DEFAULT_BACKGROUND, SafeZoneOverlay, SlideContent, SlideFrame, filterSheetGroups } from "./slides";
 
 function slideLabel(slide: SlideData) {
   if (slide.type === "cover") return "Cover";
@@ -454,9 +454,48 @@ function InstagramPhotoFetcher({ slide, onAddPhoto }: { slide: ListSlideData; on
   );
 }
 
+function PhotoUploadTile({ onFiles, multiple = false }: { onFiles: (files: File[]) => Promise<void>; multiple?: boolean }) {
+  const inputRef = useRef<HTMLInputElement>(null);
+  const [busy, setBusy] = useState(false);
+  return (
+    <>
+      <button
+        type="button"
+        onClick={() => inputRef.current?.click()}
+        disabled={busy}
+        className="flex aspect-square flex-col items-center justify-center gap-1 border border-dashed border-stone-300 text-[11px] text-stone-500 hover:border-stone-500 hover:text-stone-900 dark:border-stone-700 dark:hover:text-stone-100"
+      >
+        {busy ? <Loader2 className="size-4 animate-spin" /> : <ImagePlus className="size-4" />}
+        Upload
+      </button>
+      <input
+        ref={inputRef}
+        type="file"
+        accept="image/*"
+        multiple={multiple}
+        className="hidden"
+        onChange={async (event) => {
+          const files = [...(event.target.files ?? [])];
+          event.target.value = "";
+          if (!files.length) return;
+          setBusy(true);
+          try {
+            await onFiles(files);
+          } finally {
+            setBusy(false);
+          }
+        }}
+      />
+    </>
+  );
+}
+
 function ListInspector({ slide, onChange, onAddPhoto }: { slide: ListSlideData; onChange: (next: ListSlideData) => void; onAddPhoto: (salonId: string, src: string) => void }) {
   const cellCount = layoutCellCount(slide.layout);
   const chosen = slide.cells.map((cell) => cell.src);
+  const [framingIndex, setFramingIndex] = useState(0);
+  const framed = slide.cells[Math.min(framingIndex, slide.cells.length - 1)];
+  const updateFramed = (patch: Partial<PhotoCell>) => onChange({ ...slide, cells: slide.cells.map((cell) => (cell === framed ? { ...cell, ...patch } : cell)) });
 
   const setLayout = (layout: PhotoLayoutId) => {
     const count = layoutCellCount(layout);
@@ -498,7 +537,7 @@ function ListInspector({ slide, onChange, onAddPhoto }: { slide: ListSlideData; 
         </div>
       </Field>
 
-      <Field label={`Photos · ${slide.cells.length}/${cellCount}`} hint="Click to add or remove. Numbers show the order on the slide.">
+      <Field label={`Photos · ${slide.cells.length}/${cellCount}`} hint="Click to add or remove. Numbers show the order on the slide. Uploads fill any empty spots.">
         <div className="grid grid-cols-4 gap-1.5">
           {slide.photoPool.map((src) => {
             const position = chosen.indexOf(src);
@@ -524,8 +563,39 @@ function ListInspector({ slide, onChange, onAddPhoto }: { slide: ListSlideData; 
               </button>
             );
           })}
+          <PhotoUploadTile multiple onFiles={async (files) => {
+            for (const file of files) onAddPhoto(slide.salonId, await fileToSlideImage(file));
+          }} />
         </div>
       </Field>
+
+      {framed ? (
+        <Field label="Photo framing" hint="Zoom in on a photo and choose which part stays in frame.">
+          <div className="space-y-2">
+            <div className="flex gap-1.5">
+              {slide.cells.map((cell, index) => (
+                <button
+                  key={cell.src}
+                  type="button"
+                  onClick={() => setFramingIndex(index)}
+                  aria-pressed={cell === framed}
+                  aria-label={`Frame photo ${index + 1}`}
+                  className={cn("relative size-11 overflow-hidden border-2 transition hover:opacity-90", cell === framed ? "border-stone-950 dark:border-stone-100" : "border-transparent")}
+                >
+                  <img src={cell.src} alt="" className="size-full object-cover" loading="lazy" />
+                  <span className="absolute left-0.5 top-0.5 inline-flex size-4 items-center justify-center rounded-full bg-stone-950 text-[10px] font-bold text-white">{index + 1}</span>
+                </button>
+              ))}
+            </div>
+            <RangeField label="Size" value={framed.zoom ?? 100} min={100} max={300} unit="%" onChange={(zoom) => updateFramed({ zoom })} />
+            <RangeField label="Left / right" value={framed.focusX} min={0} max={100} unit="%" signed={false} onChange={(focusX) => updateFramed({ focusX })} />
+            <RangeField label="Top / bottom" value={framed.focusY} min={0} max={100} unit="%" signed={false} onChange={(focusY) => updateFramed({ focusY })} />
+            <Button type="button" variant="outline" onClick={() => updateFramed({ zoom: 100, focusX: 50, focusY: 50 })} className="h-9 w-full text-xs">
+              Reset framing
+            </Button>
+          </div>
+        </Field>
+      ) : null}
 
       <InstagramPhotoFetcher slide={slide} onAddPhoto={onAddPhoto} />
 
@@ -771,8 +841,24 @@ function AdjustGroup({ title, value, onChange, children }: { title: string; valu
 // Sliders for the filter sheets and caption. Positions are relative to the
 // area below the search bar; the sheets may run off the bottom, the caption
 // gets the red safe-area warning if it leaves the safe box.
-function CtaLayoutControls({ layout, onChange }: { layout: CtaLayout; onChange: (layout: CtaLayout) => void }) {
+function CtaLayoutControls({ layout, checklists, onChange }: { layout: CtaLayout; checklists: ChecklistGroup[]; onChange: (layout: CtaLayout) => void }) {
   const [open, setOpen] = useState(false);
+  // "Rows shown" crops a sheet from the bottom; its max is the uncropped sheet.
+  const rowsField = (sheet: "services" | "locations") => {
+    const { defaultRows } = filterSheetGroups(checklists, sheet);
+    const value: SheetAdjust = layout[sheet];
+    return (
+      <RangeField
+        label="Rows shown"
+        value={Math.min(value.rows ?? defaultRows, defaultRows)}
+        min={1}
+        max={defaultRows}
+        unit=""
+        signed={false}
+        onChange={(rows) => onChange({ ...layout, [sheet]: { ...value, rows: rows === defaultRows ? undefined : rows } })}
+      />
+    );
+  };
   return (
     <div className="border border-stone-200 dark:border-stone-800">
       <button type="button" onClick={() => setOpen((current) => !current)} aria-expanded={open} className="flex h-10 w-full items-center justify-between px-3 text-left">
@@ -781,8 +867,12 @@ function CtaLayoutControls({ layout, onChange }: { layout: CtaLayout; onChange: 
       </button>
       {open ? (
         <div className="space-y-3 px-3 pb-3">
-          <AdjustGroup title="Services sheet" value={layout.services} onChange={(services) => onChange({ ...layout, services })} />
-          <AdjustGroup title="Locations sheet" value={layout.locations} onChange={(locations) => onChange({ ...layout, locations })} />
+          <AdjustGroup title="Services sheet" value={layout.services} onChange={(services) => onChange({ ...layout, services: { ...layout.services, ...services } })}>
+            {rowsField("services")}
+          </AdjustGroup>
+          <AdjustGroup title="Locations sheet" value={layout.locations} onChange={(locations) => onChange({ ...layout, locations: { ...layout.locations, ...locations } })}>
+            {rowsField("locations")}
+          </AdjustGroup>
           <AdjustGroup title="Caption" value={layout.caption} onChange={(caption) => onChange({ ...layout, caption: { ...layout.caption, ...caption } })}>
             <RangeField label="Width" value={layout.caption.width} min={50} max={150} unit="%" signed={false} onChange={(width) => onChange({ ...layout, caption: { ...layout.caption, width } })} />
           </AdjustGroup>
@@ -813,7 +903,26 @@ function CtaInspector({ slide, onChange, options, brief }: { slide: CtaSlideData
       <TextField label="Search bar" value={slide.url} onChange={(url) => onChange({ ...slide, url })} />
       <TextField label="Caption" value={slide.caption} onChange={(caption) => onChange({ ...slide, caption })} />
 
-      <CtaLayoutControls layout={{ ...DEFAULT_CTA_LAYOUT, ...slide.layout }} onChange={(layout) => onChange({ ...slide, layout })} />
+      <Field label="Background" hint="Shown under the halftone. Defaults to the cityscape.">
+        <div className="grid grid-cols-4 gap-1.5">
+          <button
+            type="button"
+            onClick={() => onChange({ ...slide, photo: "" })}
+            aria-pressed={!slide.photo}
+            className={cn("relative aspect-square overflow-hidden border-2 transition hover:opacity-90", !slide.photo ? "border-stone-950 dark:border-stone-100" : "border-transparent")}
+          >
+            <img src={DEFAULT_BACKGROUND} alt="Default cityscape" className="size-full object-cover" />
+          </button>
+          {slide.photo ? (
+            <button type="button" aria-pressed className="relative aspect-square overflow-hidden border-2 border-stone-950 dark:border-stone-100">
+              <img src={slide.photo} alt="Uploaded background" className="size-full object-cover" />
+            </button>
+          ) : null}
+          <PhotoUploadTile onFiles={async ([file]) => onChange({ ...slide, photo: await fileToSlideImage(file) })} />
+        </div>
+      </Field>
+
+      <CtaLayoutControls layout={{ ...DEFAULT_CTA_LAYOUT, ...slide.layout }} checklists={slide.checklists} onChange={(layout) => onChange({ ...slide, layout })} />
 
       <div className="space-y-1">
         <div className="flex items-baseline justify-between">

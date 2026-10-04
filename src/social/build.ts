@@ -140,7 +140,23 @@ export function filterPanelGroups(filters: CtaFilters, options: BriefOptions): C
     const expanded = filters.categories.includes(category.id) || rows.some((row) => filters.services.includes(row.service));
     serviceRows.push({ label: category.label, checked: filters.categories.includes(category.id) });
     if (expanded) {
-      for (const row of rows) serviceRows.push({ label: getServiceDisplayName(row.service), checked: filters.services.includes(row.service), indent: row.nested ? 2 : 1 });
+      // A style can belong to two families (Boho sew-in is in Boho and Hybrid),
+      // which would list it twice. Keep its first appearance, and leave a
+      // family closed if that duplicate was its only ticked style.
+      const shown = new Set<string>();
+      let family: ChecklistGroup["rows"] = [];
+      const flush = () => {
+        const [head, ...children] = family;
+        if (head) serviceRows.push(head, ...(head.checked || children.some((child) => child.checked) ? children : []));
+        family = [];
+      };
+      for (const row of rows) {
+        if (!row.nested) flush();
+        else if (shown.has(row.service)) continue;
+        shown.add(row.service);
+        family.push({ label: getServiceDisplayName(row.service), checked: filters.services.includes(row.service), indent: row.nested ? 2 : 1 });
+      }
+      flush();
     }
   }
 
