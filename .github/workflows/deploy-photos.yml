@@ -1,0 +1,44 @@
+# Shrinks portfolio photos and deploys them to the Cloudflare photo host (row-k-photos)
+# whenever photos are added or changed on main. Can also be run by hand from the
+# Actions tab ("Run workflow").
+#
+# Needs two repository secrets (Settings → Secrets and variables → Actions):
+#   CLOUDFLARE_API_TOKEN   – token with the "Edit Cloudflare Workers" permission
+#   CLOUDFLARE_ACCOUNT_ID  – the account ID shown on the Cloudflare dashboard
+name: Deploy portfolio photos
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "public/portfolio-photos/**"
+      - "scripts/build-photo-pages.mjs"
+      - "wrangler.jsonc"
+  workflow_dispatch:
+
+# A newer push supersedes an in-progress deploy rather than racing it.
+concurrency:
+  group: deploy-photos
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+
+      - run: npm run build:photo-pages
+
+      - uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: deploy

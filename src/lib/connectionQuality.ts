@@ -21,6 +21,14 @@ function computeIsSlow(): boolean {
   return connection.effectiveType === "slow-2g" || connection.effectiveType === "2g";
 }
 
+// Looser than computeIsSlow: connections still fast enough to show photos, but too
+// constrained to spend bandwidth prefetching ones that aren't on screen yet.
+export function isConstrainedConnection(): boolean {
+  const connection = getConnection();
+  if (!connection) return false;
+  return computeIsSlow() || connection.effectiveType === "3g";
+}
+
 // Single shared listener rather than one per hook instance — a results page can render hundreds
 // of PortfolioPhotoCarousel cards at once.
 const subscribers = new Set<(value: boolean) => void>();

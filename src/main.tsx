@@ -4,6 +4,16 @@ import ReactDOM from "react-dom/client";
 import App from "@/App";
 import "@/index.css";
 
+// Warm up the connection to the photo host while the first search request is in flight,
+// so the first portfolio photos don't also pay for DNS + TLS setup.
+const portfolioPhotosBaseUrl = String(import.meta.env.VITE_PORTFOLIO_PHOTOS_BASE_URL || "");
+if (/^https?:\/\//i.test(portfolioPhotosBaseUrl)) {
+  const link = document.createElement("link");
+  link.rel = "preconnect";
+  link.href = new URL(portfolioPhotosBaseUrl).origin;
+  document.head.appendChild(link);
+}
+
 function SystemThemeSync() {
   React.useEffect(() => {
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");

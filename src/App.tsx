@@ -4,7 +4,7 @@ import { ArrowUp, ArrowUpRight, Check, ChevronDown, ChevronLeft, ChevronRight, C
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { trackEvent as trackAnalyticsEvent } from "@/lib/analytics";
-import { useIsSlowConnection } from "@/lib/connectionQuality";
+import { isConstrainedConnection, useIsSlowConnection } from "@/lib/connectionQuality";
 import { cn } from "@/lib/utils";
 import {
   getVerifiedReviewsPlatform as getVerifiedReviewsPlatformForUrl,
@@ -514,7 +514,9 @@ function PortfolioPhotoCarousel({
   // started loading yet, not retroactively yank ones that already loaded fine.
   const isSlowConnectionRef = useRef(isSlowConnection);
   isSlowConnectionRef.current = isSlowConnection;
-  const [photoState, setPhotoState] = useState<"loading" | "loaded" | "failed">(
+  // "stalled" = still fetching past the timeout below: the placeholder shows, but the
+  // img stays mounted so a late-arriving photo still replaces it instead of being lost.
+  const [photoState, setPhotoState] = useState<"loading" | "loaded" | "stalled" | "failed">(
     isSlowConnection ? "failed" : "loading",
   );
   const touchStartRef = useRef<{ x: number; y: number } | null>(null);
@@ -542,7 +544,10 @@ function PortfolioPhotoCarousel({
           observer.disconnect();
         }
       },
-      { rootMargin: "300px" },
+      // Generous margin so photos are usually fetched before the card scrolls into view —
+      // except on constrained connections, where prefetching off-screen photos would
+      // compete for bandwidth with the ones the visitor is actually looking at.
+      { rootMargin: isConstrainedConnection() ? "300px 0px" : "800px 0px" },
     );
     observer.observe(node);
     return () => observer.disconnect();
@@ -554,12 +559,12 @@ function PortfolioPhotoCarousel({
     setPhotoState(slow ? "failed" : "loading");
     if (slow) return;
     // A photo that hasn't finished loading after this long once we've started
-    // fetching it is treated as failed — catches stalled/broken requests on every
+    // fetching it is shown as the placeholder — catches stalled requests on every
     // browser, not just the ones the Network Information API can flag (Chromium/
     // Android only). Guarded on "loading" so a photo that already resolved via
     // onLoad/onError isn't clobbered once the timer eventually fires.
     const timeoutId = window.setTimeout(() => {
-      setPhotoState((current) => (current === "loading" ? "failed" : current));
+      setPhotoState((current) => (current === "loading" ? "stalled" : current));
     }, 10000);
     return () => window.clearTimeout(timeoutId);
   }, [activePhoto?.url, isNearViewport]);
@@ -641,13 +646,19 @@ function PortfolioPhotoCarousel({
         {!isNearViewport ? null : photoState === "failed" ? (
           <PortfolioPlaceholderIcon className="h-full w-full text-stone-100 dark:text-stone-950" />
         ) : (
-          <img
-            src={resolvePortfolioPhotoUrl(activePhoto.url)}
-            alt=""
-            className="h-full w-full object-cover"
-            onLoad={() => setPhotoState("loaded")}
-            onError={() => setPhotoState("failed")}
-          />
+          <>
+            <img
+              src={resolvePortfolioPhotoUrl(activePhoto.url)}
+              alt=""
+              decoding="async"
+              className="h-full w-full object-cover"
+              onLoad={() => setPhotoState("loaded")}
+              onError={() => setPhotoState("failed")}
+            />
+            {photoState === "stalled" ? (
+              <PortfolioPlaceholderIcon className="absolute inset-0 h-full w-full bg-stone-200 text-stone-100 dark:bg-stone-900 dark:text-stone-950" />
+            ) : null}
+          </>
         )}
 
         {hasMultiplePhotos ? (
