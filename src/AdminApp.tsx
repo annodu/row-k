@@ -199,6 +199,11 @@ const ADMIN_NAV_GROUPS: { label?: string; items: AdminNavItem[] }[] = [
     items: [
       { id: "freshness", label: "Health", icon: Activity },
       { id: "pricing", label: "Pricing", icon: PoundSterling },
+    ],
+  },
+  {
+    label: "Photos",
+    items: [
       { id: "photo-search", label: "Photo search", icon: ImagePlus },
       { id: "link-backlog", label: "Link backlog", icon: Link2 },
       { id: "photo-order", label: "Photo order", icon: ArrowUpDown },

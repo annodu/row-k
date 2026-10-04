@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { chromium } from "playwright";
-import { createSafeBrowserPage } from "./outbound-browser.mjs";
+import { createSafeBrowserPage, isDirectFetchHost } from "./outbound-browser.mjs";
 import { fixture } from "./test-support/outbound-fixture.mjs";
 
 async function browserPage(t) {
@@ -107,4 +107,19 @@ test("browser blocks private frames, popups, WebSockets, and service workers", a
   await failed;
   assert.equal(f.connections.length, 1);
   assert.equal(await page.evaluate(() => Boolean(navigator.serviceWorker)), false);
+});
+
+test("direct-fetch hosts only match https URLs on that host or its subdomains", () => {
+  const hosts = ["instagram.com", "cdninstagram.com"];
+  assert.equal(isDirectFetchHost("https://www.instagram.com/reel/abc/", hosts), true);
+  assert.equal(isDirectFetchHost("https://scontent-lhr8-1.cdninstagram.com/v/t51.jpg", hosts), true);
+  assert.equal(isDirectFetchHost("https://instagram.com/", hosts), true);
+  assert.equal(isDirectFetchHost("http://www.instagram.com/", hosts), false);
+  assert.equal(isDirectFetchHost("https://evilinstagram.com/", hosts), false);
+  assert.equal(isDirectFetchHost("https://instagram.com.evil.test/", hosts), false);
+  assert.equal(isDirectFetchHost("https://www.instagram.com:8443/", hosts), false);
+  assert.equal(isDirectFetchHost("https://user@www.instagram.com/", hosts), false);
+  assert.equal(isDirectFetchHost("https://127.0.0.1/", hosts), false);
+  assert.equal(isDirectFetchHost("not a url", hosts), false);
+  assert.equal(isDirectFetchHost("https://www.instagram.com/", []), false);
 });

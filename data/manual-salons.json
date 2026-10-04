@@ -57,7 +57,17 @@
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleCheckedAt": "2026-10-04"
+      "googleCheckedAt": "2026-10-04",
+      "portfolioPhotos": [
+        {
+          "id": "annienimz-portfolio-photo-aaaaaf03-9695-4423-8c42-e48f0c0e6fef",
+          "url": "/portfolio-photos/annienimz-b4529c1a-914b-4692-b929-ffe9ce952f61.jpg",
+          "source": "instagram-reel-frame"
+        }
+      ],
+      "photoOrderBumpedAt": 1243,
+      "photoSearchReviewedAt": "2026-10-04",
+      "updatedAt": "2026-10-04"
     },
     {
       "id": "mg-hair-uk",
@@ -115,7 +125,16 @@
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleCheckedAt": "2026-10-04"
+      "googleCheckedAt": "2026-10-04",
+      "portfolioPhotos": [
+        {
+          "id": "mg-hair-uk-portfolio-photo-37eaccb0-38bd-4e7d-b26a-954c89b4d55d",
+          "url": "/portfolio-photos/mg-hair-uk-68305e3b-d81e-4320-8232-919c25a20719.jpg",
+          "source": "instagram"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-10-04",
+      "photoOrderBumpedAt": 1241
     },
     {
       "id": "tay-hair-uk",
@@ -185,7 +204,16 @@
       "sellsHairSeparately": false,
       "sameDayEmergency": false,
       "customFilters": {},
-      "updatedAt": "2026-10-04"
+      "updatedAt": "2026-10-04",
+      "portfolioPhotos": [
+        {
+          "id": "tay-hair-uk-portfolio-photo-83fa623d-d0fc-46a0-a3c0-bbc0697e3c8a",
+          "url": "/portfolio-photos/tay-hair-uk-79e4f69d-95ab-43b5-8406-55d322e7ada7.jpg",
+          "source": "instagram"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-10-04",
+      "photoOrderBumpedAt": 1240
     },
     {
       "id": "jay-ma",
@@ -215,7 +243,26 @@
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleCheckedAt": "2026-10-04"
+      "googleCheckedAt": "2026-10-04",
+      "portfolioPhotos": [
+        {
+          "id": "jay-ma-portfolio-photo-6394a12c-33b6-4ec1-9def-d88b7fb42a47",
+          "url": "/portfolio-photos/jay-ma-2c9aba99-942b-4d35-a19e-5c99b60d96fe.jpg",
+          "source": "instagram"
+        },
+        {
+          "id": "jay-ma-portfolio-photo-9c94fb6b-dea4-4c4f-9502-e42ffb390d59",
+          "url": "/portfolio-photos/jay-ma-2727b8d1-a99a-4a90-95e0-9d2b9fa1cb6d.jpg",
+          "source": "instagram"
+        },
+        {
+          "id": "jay-ma-portfolio-photo-07fe3db3-73ff-4cc7-abe2-060bf7231d27",
+          "url": "/portfolio-photos/jay-ma-02951ab5-1c89-49bb-9cb2-0fa0e5fb1428.jpg",
+          "source": "instagram"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-10-04",
+      "photoOrderBumpedAt": 1239
     },
     {
       "id": "sawce-hl",
@@ -273,7 +320,27 @@
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleCheckedAt": "2026-10-04"
+      "googleCheckedAt": "2026-10-04",
+      "portfolioPhotos": [
+        {
+          "id": "sawce-hl-portfolio-photo-6ecd1a85-b2ef-4482-86f5-e0c6a8662cc9",
+          "url": "/portfolio-photos/sawce-hl-9c68ebf1-2112-48c1-a09f-7b4e0e02e0ae.jpg",
+          "source": "instagram"
+        },
+        {
+          "id": "sawce-hl-portfolio-photo-8205b2fe-ec9e-45c6-90a9-0bb8860a1fa0",
+          "url": "/portfolio-photos/sawce-hl-8b965bdf-f9c2-4e74-8981-28cd0a969d98.jpg",
+          "source": "instagram"
+        },
+        {
+          "id": "sawce-hl-portfolio-photo-e82f8f70-7025-4a14-8444-2455fe4ba5af",
+          "url": "/portfolio-photos/sawce-hl-a1af32e7-8154-429b-8eac-27c98de4c271.jpg",
+          "source": "instagram"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-10-04",
+      "photoOrderBumpedAt": 1236,
+      "updatedAt": "2026-10-04"
     },
     {
       "id": "dzsi-hair",
@@ -338,7 +405,22 @@
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleCheckedAt": "2026-10-04"
+      "googleCheckedAt": "2026-10-04",
+      "portfolioPhotos": [
+        {
+          "id": "dzsi-hair-portfolio-photo-282ae83d-d428-45fd-9b26-008e8d9e6fb3",
+          "url": "/portfolio-photos/dzsi-hair-d0fe2d7e-6d2c-4e3c-a4ee-1a6bd6db1a2c.jpg",
+          "source": "instagram"
+        },
+        {
+          "id": "dzsi-hair-portfolio-photo-a75abecb-aff6-4735-a2f0-4e4258ac7d22",
+          "url": "/portfolio-photos/dzsi-hair-088ba5ca-6795-40cc-b9e1-a33861d1a95b.jpg",
+          "source": "instagram"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-10-04",
+      "photoOrderBumpedAt": 1233,
+      "updatedAt": "2026-10-04"
     },
     {
       "id": "osparlour",
@@ -396,7 +478,16 @@
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleCheckedAt": "2026-10-04"
+      "googleCheckedAt": "2026-10-04",
+      "portfolioPhotos": [
+        {
+          "id": "osparlour-portfolio-photo-f4f60a0d-9153-4f91-a470-7714d89bfe60",
+          "url": "/portfolio-photos/osparlour-22d9f754-3f6a-43b1-9d7e-1b4cd046cc90.jpg",
+          "source": "instagram"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-10-04",
+      "photoOrderBumpedAt": 1231
     },
     {
       "id": "semone-lennon-hair",

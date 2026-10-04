@@ -7066,6 +7066,8 @@ function sanitizeAiServiceConfidence(value = "") {
 // docs/instagram-reel-frame-extraction.md), so this offers a spread per
 // batch and lets an admin pick — or ask for a different spread — rather than
 // guessing a single "correct" one up front.
+const instagramDirectFetchHosts = ["instagram.com", "cdninstagram.com", "fbcdn.net", "facebook.com"];
+
 const REEL_FRAME_CANDIDATE_BATCHES = [
   [0.5, 0.7, 0.85, 0.95],
   [0.1, 0.2, 0.3, 0.4],
@@ -7087,7 +7089,14 @@ async function extractInstagramPostMedia(postUrl, { batch = 0 } = {}) {
   // element screenshot's pixel output is CSS size × this factor) — the
   // normal canvas-capture path reads the video's native decode resolution
   // regardless of viewport/DPR, so this doesn't change anything for it.
-  const page = await createSafeBrowserPage(browser, { userAgent: browserUserAgent, viewport: { width: 800, height: 1200 }, deviceScaleFactor: 2 });
+  // Instagram serves "Post isn't available" to requests replayed from Node, so
+  // its own hosts and media CDNs are fetched by Chromium directly.
+  const page = await createSafeBrowserPage(browser, {
+    userAgent: browserUserAgent,
+    viewport: { width: 800, height: 1200 },
+    deviceScaleFactor: 2,
+    directHosts: instagramDirectFetchHosts,
+  });
   try {
     await page.goto(postUrl, { waitUntil: "domcontentloaded", timeout: 20_000 });
     await page.waitForLoadState("networkidle", { timeout: 8_000 }).catch(() => {});

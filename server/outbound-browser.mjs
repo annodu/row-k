@@ -1,6 +1,26 @@
 import { safeFetch } from "./outbound-http.mjs";
 
-export async function createSafeBrowserPage(browser, options = {}) {
+// True only for an https URL on the default port whose host is one of `hosts`
+// or a subdomain of one. Lookalikes ("evilinstagram.com", "instagram.com.evil")
+// and plain http never match.
+export function isDirectFetchHost(rawUrl, hosts = []) {
+  let url;
+  try {
+    url = new URL(rawUrl);
+  } catch {
+    return false;
+  }
+  if (url.protocol !== "https:" || url.port || url.username || url.password) return false;
+  const hostname = url.hostname.toLowerCase();
+  return hosts.some((host) => hostname === host || hostname.endsWith(`.${host}`));
+}
+
+// `directHosts` lets Chromium fetch those well-known public hosts itself instead
+// of through safeFetch. Use it only for big platforms whose DNS nobody else
+// controls: some (Instagram) fingerprint the Node client and serve a "not
+// available" page to it. Everything else, including any navigation away from
+// those hosts, still goes through the pinned client.
+export async function createSafeBrowserPage(browser, { directHosts = [], ...options } = {}) {
   const page = await browser.newPage({ ...options, serviceWorkers: "block", acceptDownloads: false });
   const context = page.context();
   const controller = new AbortController();
@@ -11,6 +31,10 @@ export async function createSafeBrowserPage(browser, options = {}) {
     await context.route("**/*", async (route) => {
       try {
         const request = route.request();
+        if (isDirectFetchHost(request.url(), directHosts)) {
+          await route.continue();
+          return;
+        }
         const response = await safeFetch(request.url(), {
           method: request.method(),
           headers: await request.allHeaders(),
