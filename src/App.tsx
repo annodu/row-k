@@ -5147,7 +5147,7 @@ export default function App() {
         <aside
           className={cn(
             "hidden w-full border-t border-stone-300 py-6 dark:border-stone-800",
-            "lg:sticky lg:top-0 lg:flex lg:min-h-dvh lg:h-auto lg:w-72 lg:flex-none lg:self-start lg:flex-col lg:border-t-0 lg:border-l lg:pl-8 lg:pr-6 lg:py-0 dark:border-stone-800",
+            "lg:sticky lg:top-0 lg:flex lg:h-dvh lg:w-72 lg:flex-none lg:self-start lg:flex-col lg:border-t-0 lg:border-l lg:pl-8 lg:pr-6 lg:py-0 dark:border-stone-800",
             mobileFiltersOpen &&
               "fixed inset-0 z-50 grid h-dvh min-h-dvh w-full grid-rows-[auto_minmax(0,1fr)_auto] overflow-hidden border-b-0 bg-stone-100 px-4 py-0 overscroll-contain dark:bg-stone-950 sm:px-6 lg:static lg:z-auto lg:h-auto lg:min-h-0 lg:w-72 lg:bg-transparent lg:flex lg:flex-col",
           )}
