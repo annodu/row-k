@@ -1,7 +1,7 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-10-02",
+    "updatedAt": "2026-10-04",
     "count": 1157,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
@@ -860,9 +860,18 @@
       ],
       "photoSearchReviewedAt": "2026-09-08",
       "photoOrderBumpedAt": 1201,
-      "updatedAt": "2026-09-08",
+      "updatedAt": "2026-10-04",
       "parkingAvailable": true,
-      "sameDayEmergency": true
+      "sameDayEmergency": true,
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "sellsHairSeparately": false,
+      "customFilters": {}
     },
     {
       "id": "gslhob",
@@ -2667,7 +2676,29 @@
         }
       ],
       "photoSearchReviewedAt": "2026-09-01",
-      "photoOrderBumpedAt": 1150
+      "photoOrderBumpedAt": 1150,
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": false,
+      "sameDayEmergency": false,
+      "customFilters": {},
+      "priceBand": "££",
+      "servicePriceBand": "££",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "manual",
+      "priceEvidence": [],
+      "priceCheckedAt": "",
+      "priceUpdatedAt": "2026-10-04",
+      "priceConfidence": "manual",
+      "updatedAt": "2026-10-04"
     },
     {
       "id": "rayys-touch",
@@ -18330,7 +18361,6 @@
         "Crochet",
         "Soft locs",
         "Updo",
-        "Microbraids / x-small braids",
         "Half braids, half sew-in"
       ],
       "priceBand": "£",
@@ -18470,7 +18500,7 @@
         }
       ],
       "photoSearchReviewedAt": "2026-08-24",
-      "updatedAt": "2026-09-11",
+      "updatedAt": "2026-10-04",
       "canBraidWithoutGel": true,
       "hairShopUrl": "",
       "googleDisplayName": "",
@@ -45077,7 +45107,6 @@
         "Curly cut / wash & go / diffuse",
         "Knotless braids",
         "Box braids",
-        "Microbraids / x-small braids",
         "Wig cornrows",
         "Starter locs / instant locs",
         "Retwist / interlocking",
@@ -45121,16 +45150,16 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-25",
+      "updatedAt": "2026-10-04",
       "addedVia": "Code edit",
       "discoverySource": "Cowork scrape",
       "wheelchairAccessible": true,
-      "googlePlaceId": "ChIJ_YzvJ2scdkgRd0nx4E6uiMM",
+      "googlePlaceId": null,
       "googleReviewCount": 887,
       "googleMapsUri": "https://maps.google.com/?cid=14089703088033188215&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
       "googleMatchConfidence": "high",
       "googleDisplayName": "Ama’s Hair Salon",
-      "googleFormattedAddress": "26 St Ann's Rd, London N15 6DT, UK",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-07-23",
       "portfolioPhotos": [
         {
@@ -45162,7 +45191,8 @@
       "parkingAvailable": false,
       "sellsHairSeparately": false,
       "customFilters": {},
-      "photoSearchReviewedAt": "2026-08-25"
+      "photoSearchReviewedAt": "2026-08-25",
+      "sameDayEmergency": false
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -60655,7 +60685,7 @@
       "neighbourhood": "South East London",
       "postcode": "",
       "bookingPlatform": "Direct website",
-      "bookingUrl": "https://houseofeservices.as.me/schedule/4969b2b3",
+      "bookingUrl": "https://houseofehair.as.me/schedule/af833086",
       "instagramUrl": "https://www.instagram.com/houseofe__/",
       "services": [
         "Knotless braids",
@@ -60686,8 +60716,8 @@
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleDisplayName": null,
-      "googleFormattedAddress": null,
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-07-29",
       "portfolioPhotosCheckedAt": "2026-08-21",
       "portfolioPhotos": [
@@ -60707,7 +60737,23 @@
           "source": "instagram"
         }
       ],
-      "updatedAt": "2026-08-25"
+      "updatedAt": "2026-10-04",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "tiktokUrl": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": false,
+      "sameDayEmergency": false,
+      "customFilters": {},
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only"
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -74483,12 +74529,12 @@
       "priceComparisonMode": "",
       "addedVia": "Code edit",
       "discoverySource": "Cowork scrape",
-      "googlePlaceId": "ChIJZVN-z6kGdkgRNa-_QMsG_ZQ",
+      "googlePlaceId": null,
       "googleReviewCount": 2,
       "googleMapsUri": "https://maps.google.com/?cid=10735744556755562293&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
       "googleMatchConfidence": "high",
       "googleDisplayName": "SIXXX HAIR & BEAUTY",
-      "googleFormattedAddress": "Norwood, London SE27 9NR, UK",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-07-23",
       "parkingAvailable": true,
       "portfolioPhotosCheckedAt": "2026-08-21",
@@ -74502,7 +74548,7 @@
       "lgbtqFriendly": false,
       "sellsHairSeparately": false,
       "customFilters": {},
-      "updatedAt": "2026-08-23",
+      "updatedAt": "2026-10-04",
       "portfolioPhotos": [
         {
           "id": "sixxx-portfolio-photo-8165b522-143e-401d-bdcb-3fbedb9f3e16",
@@ -74529,7 +74575,8 @@
           "url": "/portfolio-photos/sixxx-a91fa1b6-8cd5-4336-8d59-ba0819630c7f.jpg",
           "source": "instagram"
         }
-      ]
+      ],
+      "sameDayEmergency": false
     },
     {
       "id": "sk-beauty-ldn",
