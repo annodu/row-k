@@ -566,9 +566,14 @@ function PortfolioPhotoCarousel({
   isSlowConnectionRef.current = isSlowConnection;
   // "stalled" = still fetching past the timeout below: the placeholder shows, but the
   // img stays mounted so a late-arriving photo still replaces it instead of being lost.
-  const [photoState, setPhotoState] = useState<"loading" | "loaded" | "stalled" | "failed">(
-    isSlowConnection ? "failed" : "loading",
+  // "skipped" = never requested because the connection was flagged slow. Unlike "failed",
+  // it's retried once the connection recovers — Chrome's effectiveType estimate can dip to
+  // 2g for a moment, and cards mounted during that dip (e.g. after a filter change) would
+  // otherwise keep the placeholder for good.
+  const [photoState, setPhotoState] = useState<"loading" | "loaded" | "stalled" | "failed" | "skipped">(
+    isSlowConnection ? "skipped" : "loading",
   );
+  const [loadAttempt, setLoadAttempt] = useState(0);
   const touchStartRef = useRef<{ x: number; y: number } | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
   // We drive visibility ourselves (rather than the img's native loading="lazy") so the
@@ -606,7 +611,7 @@ function PortfolioPhotoCarousel({
   useEffect(() => {
     if (!activePhoto || !isNearViewport) return;
     const slow = isSlowConnectionRef.current;
-    setPhotoState(slow ? "failed" : "loading");
+    setPhotoState(slow ? "skipped" : "loading");
     if (slow) return;
     // A photo that hasn't finished loading after this long once we've started
     // fetching it is shown as the placeholder — catches stalled requests on every
@@ -617,7 +622,11 @@ function PortfolioPhotoCarousel({
       setPhotoState((current) => (current === "loading" ? "stalled" : current));
     }, 10000);
     return () => window.clearTimeout(timeoutId);
-  }, [activePhoto?.url, isNearViewport]);
+  }, [activePhoto?.url, isNearViewport, loadAttempt]);
+
+  useEffect(() => {
+    if (!isSlowConnection && photoState === "skipped") setLoadAttempt((attempt) => attempt + 1);
+  }, [isSlowConnection, photoState]);
 
   if (photos.length === 0 || !activePhoto) return null;
 
@@ -693,7 +702,7 @@ function PortfolioPhotoCarousel({
         onTouchEnd={handleTouchEnd}
         onClick={handleContainerClick}
       >
-        {!isNearViewport ? null : photoState === "failed" ? (
+        {!isNearViewport ? null : photoState === "failed" || photoState === "skipped" ? (
           <PortfolioPlaceholderIcon className="h-full w-full text-stone-100 dark:text-stone-950" />
         ) : (
           <>
