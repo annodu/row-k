@@ -314,8 +314,8 @@ function CoverSlide({ data, aspect }: SlideProps<CoverSlideData>) {
 // ── List (one stylist) ─────────────────────────────────────────────────────
 
 // Stylist card in the ROW K mobile result-row style (stone-100 panel, Figtree,
-// stone-300 rule), sized for TikTok: the name, a full-width divider, then the
-// Instagram handle and the 📍 location, each on its own row.
+// stone-300 rule), sized for TikTok: the Instagram handle and the 📍
+// location, each on its own row. No stylist name — the handle is the credit.
 const ROW = {
   background: "#f5f5f4", // stone-100 — the site's page background
   ink: "#0c0a09", // stone-950
@@ -339,12 +339,6 @@ function CardGap() {
   return <div style={{ height: 63 }} />;
 }
 
-// Edge-to-edge rule under the name: the negative margins cancel the card's
-// side padding. Same 30 + 3 + 30 footprint as CardGap.
-function CardDivider() {
-  return <div style={{ height: 3, background: "#d6d3d1", margin: `30px -${CARD_PADDING_X}px` }} />;
-}
-
 function StylistRowCard({ data }: { data: ListSlideData }) {
   const iconSize = 46;
   const lineStyle = { display: "flex", alignItems: "center", gap: 20 } as const;
@@ -360,20 +354,10 @@ function StylistRowCard({ data }: { data: ListSlideData }) {
         boxShadow: "0 24px 60px rgba(12,10,9,.35)",
       }}
     >
-      <div style={{ display: "flex", alignItems: "center", gap: 28 }}>
-        <div style={{ minWidth: 0, flex: 1 }}>
-          <FitText maxSize={62} minSize={36} style={{ fontWeight: 600, lineHeight: 1.15, whiteSpace: "nowrap", textAlign: "center" }}>
-            {data.name || data.handle}
-          </FitText>
-        </div>
-      </div>
-
-      <CardDivider />
-
       <div style={lineStyle}>
         <InstagramGlyph size={iconSize} color={ROW.ink} />
         <div style={{ minWidth: 0, flex: 1 }}>
-          <FitText maxSize={46} minSize={28} style={{ fontWeight: 600, lineHeight: 1.2, whiteSpace: "nowrap" }}>
+          <FitText maxSize={46} minSize={28} style={{ fontWeight: 600, lineHeight: 1.2, whiteSpace: "nowrap", letterSpacing: "0.04em" }}>
             {data.handle}
           </FitText>
         </div>
@@ -498,7 +482,7 @@ function FilterSheet({ groups, scale = 1, style }: { groups: { group: ChecklistG
           {visiblePanelRows(group.rows, maxRows).map((row) => (
             <div
               key={`${row.indent ? "sub" : "top"}-${row.label}`}
-              style={{ display: "flex", alignItems: "flex-start", gap: Math.round(16 * scale), padding: `${Math.round(9 * scale)}px 0`, paddingLeft: row.indent ? Math.round(34 * scale) : 0 }}
+              style={{ display: "flex", alignItems: "flex-start", gap: Math.round(16 * scale), padding: `${Math.round(9 * scale)}px 0`, paddingLeft: Math.round(Number(row.indent || 0) * 34 * scale) }}
             >
               <SiteCheckbox checked={row.checked} size={box} />
               <span style={{ fontSize: Math.round(25 * scale), lineHeight: 1.2, color: SITE.label, paddingTop: Math.round(2 * scale) }}>{row.label}</span>

@@ -710,7 +710,7 @@ function matchesRegion(salon, regions) {
 // Parent filters are derived: a stylist tagged with a member (e.g. Fulani
 // sew-in) also matches its parent. The hybrid parents are real services for
 // unspecified combos; the "(all)" families are filter-only.
-const derivedServiceMatches = {
+export const derivedServiceMatches = {
   "Hybrid (braids + sew-in)": ["Fulani sew-in", "Boho sew-in", "Feed-in / stitch braid sew-in"],
   "Hybrid installs": ["Tape-ins + sew-in", "K-tips + sew-in"],
   // Sew in / weave's single hybrid group, including both umbrella tags.

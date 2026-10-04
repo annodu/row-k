@@ -4,7 +4,7 @@
 
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { categoryMap, readSalonIndex, searchSalons, serviceAliases } from "./salon-index.mjs";
+import { categoryMap, derivedServiceMatches, readSalonIndex, searchSalons, serviceAliases } from "./salon-index.mjs";
 import sharp from "sharp";
 import { downloadImage } from "../scripts/lib/photo-candidates.mjs";
 import { sanitizeErrorMessage } from "./security.mjs";
@@ -183,7 +183,8 @@ export function registerAdminSocialRoutes(app, { requireAdmin, readJson }) {
     const priceAllowed = (salon) => !priceBands.length || priceBands.includes(comparablePriceBand(salon));
     const briefIds = new Set(briefSearch.results.filter(priceAllowed).map((salon) => salon.brandId || salon.id));
     const featured = buildFeaturedIndex(projectsStore);
-    const serviceScope = service ? [service] : category ? categoryMap[category] ?? [] : [];
+    // A family (e.g. "Fulani (all)") credits stylists with whichever members they do.
+  const serviceScope = service ? [service, ...(derivedServiceMatches[service] ?? [])] : category ? categoryMap[category] ?? [] : [];
 
     let pool;
     if (q) {

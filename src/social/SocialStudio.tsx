@@ -2,10 +2,11 @@
 // who to feature (finder.tsx); "Edit" lays out and exports the slides.
 
 import { type ReactNode, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
-import { AlertTriangle, ArrowDown, ArrowUp, Check, ChevronDown, Download, ImagePlus, Loader2, Plus, ScanLine, Scissors, Trash2, Undo2, X } from "lucide-react";
+import { AlertTriangle, ArrowDown, ArrowUp, Check, ChevronDown, Download, ExternalLink, ImagePlus, Loader2, Plus, ScanLine, Scissors, Trash2, Undo2, X } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { getServiceDisplayName, serviceFilterRows } from "@/lib/serviceTaxonomy";
 import { cn } from "@/lib/utils";
 import { downloadDataUrl, renderSlidePng } from "./export";
 import { type Brief, type BriefOptions, type Candidate, EMPTY_BRIEF, buildCarousel, candidateToListSlide, describeBrief, filterPanelGroups, filtersFromBrief, resolvePhotoUrl } from "./build";
@@ -165,6 +166,11 @@ async function downloadCarouselCopy(result: { imageUrl: string; thumbnailUrl: st
     );
   }
   return payload.dataUrl as string;
+}
+
+function instagramProfileUrl(handle: string) {
+  const username = handle.trim().replace(/^@/, "");
+  return username ? `https://www.instagram.com/${encodeURIComponent(username)}/` : "";
 }
 
 // Same shape the server accepts (admin-stylists validInstagramPostUrl):
@@ -486,11 +492,21 @@ function ListInspector({ slide, onChange, onAddPhoto }: { slide: ListSlideData; 
       <InstagramPhotoFetcher slide={slide} onAddPhoto={onAddPhoto} />
 
       <Field label="Instagram handle" hint="Always shown on stylist slides, as credit for their photos.">
-        <p className="flex h-10 items-center border border-stone-200 bg-stone-100 px-4 text-sm text-stone-700 dark:border-stone-800 dark:bg-stone-900 dark:text-stone-300">
-          {slide.handle || "—"}
-        </p>
+        {instagramProfileUrl(slide.handle) ? (
+          <a
+            href={instagramProfileUrl(slide.handle)}
+            target="_blank"
+            rel="noreferrer"
+            title="Open their Instagram"
+            className="flex h-10 items-center justify-between gap-2 border border-stone-200 bg-stone-100 px-4 text-sm text-stone-700 underline-offset-2 hover:underline dark:border-stone-800 dark:bg-stone-900 dark:text-stone-300"
+          >
+            {slide.handle}
+            <ExternalLink className="size-3.5 shrink-0 text-stone-500" />
+          </a>
+        ) : (
+          <p className="flex h-10 items-center border border-stone-200 bg-stone-100 px-4 text-sm text-stone-700 dark:border-stone-800 dark:bg-stone-900 dark:text-stone-300">—</p>
+        )}
       </Field>
-      <TextField label="Display name" value={slide.name} onChange={(name) => onChange({ ...slide, name })} />
       <TextField label="Location" value={slide.locationTag} onChange={(locationTag) => onChange({ ...slide, locationTag })} hint="Shown next to the pin. Leave blank to hide the row." />
     </div>
   );
@@ -635,9 +651,9 @@ function toggleIn(list: string[], value: string) {
   return list.includes(value) ? list.filter((item) => item !== value) : [...list, value];
 }
 
-function FilterCheckRow({ label, checked, onToggle, indent = false, trailing }: { label: string; checked: boolean; onToggle: () => void; indent?: boolean; trailing?: ReactNode }) {
+function FilterCheckRow({ label, checked, onToggle, indent = 0, trailing }: { label: string; checked: boolean; onToggle: () => void; indent?: boolean | number; trailing?: ReactNode }) {
   return (
-    <div className={cn("flex items-center gap-2", indent && "pl-6")}>
+    <div className={cn("flex items-center gap-2", Number(indent) === 1 && "pl-6", Number(indent) === 2 && "pl-12")}>
       <label className="flex min-w-0 flex-1 cursor-pointer items-center gap-2.5 py-1 text-[13px] text-stone-800 dark:text-stone-200">
         <Checkbox checked={checked} onCheckedChange={onToggle} className="size-4" />
         <span className="truncate">{label}</span>
@@ -738,7 +754,8 @@ function CtaInspector({ slide, onChange, options, brief }: { slide: CtaSlideData
           <div className="border border-stone-200 px-3 dark:border-stone-800">
             <FilterSection title="Services" count={filters.categories.length + filters.services.length}>
               {options.categories.map((category) => {
-                const isOpen = expanded.has(category.id) || filters.categories.includes(category.id) || category.subcategories.some((sub) => filters.services.includes(sub));
+                const rows = serviceFilterRows(category.id, category.subcategories, filters.services);
+                const isOpen = expanded.has(category.id) || filters.categories.includes(category.id) || rows.some((row) => filters.services.includes(row.service));
                 return (
                   <div key={category.id}>
                     <FilterCheckRow
@@ -759,8 +776,14 @@ function CtaInspector({ slide, onChange, options, brief }: { slide: CtaSlideData
                       }
                     />
                     {isOpen
-                      ? category.subcategories.map((sub) => (
-                          <FilterCheckRow key={sub} indent label={sub} checked={filters.services.includes(sub)} onToggle={() => setFilters({ ...filters, services: toggleIn(filters.services, sub) })} />
+                      ? rows.map(({ service, nested }) => (
+                          <FilterCheckRow
+                            key={service}
+                            indent={nested ? 2 : 1}
+                            label={getServiceDisplayName(service)}
+                            checked={filters.services.includes(service)}
+                            onToggle={() => setFilters({ ...filters, services: toggleIn(filters.services, service) })}
+                          />
                         ))
                       : null}
                   </div>

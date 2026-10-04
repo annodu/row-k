@@ -9233,8 +9233,8 @@
       "id": "celine-styles",
       "name": "Celine Styles",
       "areaId": "kent",
-      "areaLabel": "Kent",
-      "neighbourhood": "Kent London",
+      "areaLabel": "Kent / South east London",
+      "neighbourhood": "Kent and South east London London",
       "postcode": "",
       "bookingPlatform": "Direct website",
       "bookingUrl": "https://celinestyles.as.me/schedule/de9601b2",
@@ -9293,7 +9293,22 @@
       ],
       "photoSearchReviewedAt": "2026-08-31",
       "photoOrderBumpedAt": 827,
-      "updatedAt": "2026-10-04"
+      "updatedAt": "2026-10-04",
+      "areaIds": [
+        "kent",
+        "south-east"
+      ],
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": false,
+      "sameDayEmergency": false,
+      "customFilters": {}
     },
     {
       "id": "hair-by-amz",
@@ -11293,6 +11308,16 @@
       "googleCheckedAt": "2026-08-26",
       "portfolioPhotos": [
         {
+          "id": "london-braid-boss-portfolio-photo-bd9d86ee-be21-4efa-b355-c4cd77a7f941",
+          "url": "/portfolio-photos/london-braid-boss-3bfa12b7-b1a7-42d1-9f40-f7e446c3ee9a.jpg",
+          "source": "instagram-reel-frame"
+        },
+        {
+          "id": "london-braid-boss-portfolio-photo-8c70eef7-2299-4605-a4f8-b61505ef4700",
+          "url": "/portfolio-photos/london-braid-boss-aa2ddc90-049e-4162-9deb-480a7f61c584.jpg",
+          "source": "instagram-reel-frame"
+        },
+        {
           "id": "london-braid-boss-portfolio-photo-aad880e6-62af-4a16-ba03-b15196e37842",
           "url": "/portfolio-photos/london-braid-boss-02c68c22-3b92-405d-b1f4-ff1a611c5249.jpg",
           "source": "instagram-reel-frame"
@@ -11303,9 +11328,9 @@
           "source": "instagram-reel-frame"
         }
       ],
-      "photoOrderBumpedAt": 874,
+      "photoOrderBumpedAt": 1251,
       "updatedAt": "2026-10-04",
-      "photoSearchReviewedAt": "2026-08-31",
+      "photoSearchReviewedAt": "2026-10-04",
       "googleDisplayName": "",
       "googleFormattedAddress": "",
       "hijabiFriendly": false,
@@ -42109,7 +42134,8 @@
         "Traditional sew-in / leave out",
         "Knotless braids",
         "Boho braids bob",
-        "Boho sew-in"
+        "Boho sew-in",
+        "Fulani sew-in"
       ],
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
@@ -44330,14 +44356,39 @@
       "portfolioPhotosCheckedAt": "2026-08-20",
       "portfolioPhotos": [
         {
+          "id": "tayra-hair-portfolio-photo-1090c052-fcbf-49b2-aac9-6129dd226945",
+          "url": "/portfolio-photos/tayra-hair-dfa9c031-636a-417c-a9db-ab7c7caa08dd.jpg",
+          "source": "instagram-reel-frame"
+        },
+        {
+          "id": "tayra-hair-portfolio-photo-76689d08-02c7-45b5-8f30-eeb3bffe3484",
+          "url": "/portfolio-photos/tayra-hair-4a405cc5-cebf-46cf-ac12-f7d7a5da8ef5.jpg",
+          "source": "instagram-reel-frame"
+        },
+        {
+          "id": "tayra-hair-portfolio-photo-8254e758-288a-482a-9a59-d1b1013930e0",
+          "url": "/portfolio-photos/tayra-hair-0610fc0e-eb7c-4d03-b5a4-c6385dd546f2.jpg",
+          "source": "instagram-reel-frame"
+        },
+        {
+          "id": "tayra-hair-portfolio-photo-0d56a0b4-7d1b-4ad5-ad3f-0804613b5b09",
+          "url": "/portfolio-photos/tayra-hair-eb6b3235-29ec-48a6-b48c-ad435c373656.jpg",
+          "source": "instagram-reel-frame"
+        },
+        {
+          "id": "tayra-hair-portfolio-photo-654c573b-f2f2-49e8-bd82-d9edfc8622c9",
+          "url": "/portfolio-photos/tayra-hair-78565922-d3d8-48e6-ba8c-9a0f2a9f5c26.jpg",
+          "source": "instagram-reel-frame"
+        },
+        {
           "id": "tayra-hair-portfolio-photo-896d42c4-dda4-459f-9177-ec7fc9184c8c",
           "url": "/portfolio-photos/tayra-hair-4dbdc223-ddb4-409a-b8c0-bd2c5045f062.jpg",
           "source": "instagram-reel-frame"
         }
       ],
       "updatedAt": "2026-10-04",
-      "photoOrderBumpedAt": 1015,
-      "photoSearchReviewedAt": "2026-08-31",
+      "photoOrderBumpedAt": 1249,
+      "photoSearchReviewedAt": "2026-10-04",
       "websiteUrl": "",
       "hairShopUrl": "",
       "tiktokUrl": "",
@@ -44749,6 +44800,11 @@
       "portfolioPhotosCheckedAt": "2026-08-21",
       "portfolioPhotos": [
         {
+          "id": "adonai-hair-ldn-portfolio-photo-87e2fdf6-a9fc-4a7d-a0ef-bac8a290dccf",
+          "url": "/portfolio-photos/adonai-hair-ldn-82ef7757-bcc7-41af-8976-d81d7e70923f.jpg",
+          "source": "instagram-reel-frame"
+        },
+        {
           "id": "adonai-hair-ldn-portfolio-photo-5de06c35-71fa-4f4e-aa9a-d4de88d9afac",
           "url": "/portfolio-photos/adonai-hair-ldn-055e1fa7-4d04-4c5d-9471-5a780863def2.jpg",
           "source": "instagram"
@@ -44790,8 +44846,8 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "photoSearchReviewedAt": "2026-08-26",
-      "photoOrderBumpedAt": 267
+      "photoSearchReviewedAt": "2026-10-04",
+      "photoOrderBumpedAt": 1244
     },
     {
       "id": "adornedbyanj",
@@ -59394,13 +59450,58 @@
       "portfolioPhotosCheckedAt": "2026-08-21",
       "portfolioPhotos": [
         {
+          "id": "hairbyamandaniceandneat-portfolio-photo-292cf9d6-3ea0-49ba-8c20-10332f1c1f1f",
+          "url": "/portfolio-photos/hairbyamandaniceandneat-b69fc845-48dc-4f07-93b5-ba0f13993b12.jpg",
+          "source": "instagram-reel-frame"
+        },
+        {
+          "id": "hairbyamandaniceandneat-portfolio-photo-2543542a-dd8b-4490-a9c3-b8ca735a0773",
+          "url": "/portfolio-photos/hairbyamandaniceandneat-116bc531-70de-439d-8aa7-6eb5561a40cf.jpg",
+          "source": "instagram-reel-frame"
+        },
+        {
+          "id": "hairbyamandaniceandneat-portfolio-photo-271b6275-3499-422c-89bb-614e47aa0752",
+          "url": "/portfolio-photos/hairbyamandaniceandneat-aa1f673d-8d52-4ce7-bd98-65c4601fdac1.jpg",
+          "source": "instagram-reel-frame"
+        },
+        {
+          "id": "hairbyamandaniceandneat-portfolio-photo-e0db4f0a-1c3a-435c-af36-ceebbc11a10f",
+          "url": "/portfolio-photos/hairbyamandaniceandneat-cecffd15-7750-4081-bf78-f7b07536a5d5.jpg",
+          "source": "instagram-reel-frame"
+        },
+        {
+          "id": "hairbyamandaniceandneat-portfolio-photo-85fe3372-288d-4423-b4d6-f340810429de",
+          "url": "/portfolio-photos/hairbyamandaniceandneat-f46bede5-81b3-4657-a956-71c2359418d8.jpg",
+          "source": "instagram-reel-frame"
+        },
+        {
+          "id": "hairbyamandaniceandneat-portfolio-photo-88d5ae3e-477e-49d4-98fd-9de437e4dde5",
+          "url": "/portfolio-photos/hairbyamandaniceandneat-1181bf63-6c26-4a84-8dfb-a392a4410347.jpg",
+          "source": "instagram-reel-frame"
+        },
+        {
+          "id": "hairbyamandaniceandneat-portfolio-photo-baadffa7-a85b-41b5-9032-5491f209057a",
+          "url": "/portfolio-photos/hairbyamandaniceandneat-7995e367-dc70-48e4-a200-3f16a3b90242.jpg",
+          "source": "instagram-reel-frame"
+        },
+        {
+          "id": "hairbyamandaniceandneat-portfolio-photo-abe4ad3c-3206-43b1-95a1-654a123cf2ba",
+          "url": "/portfolio-photos/hairbyamandaniceandneat-71ab015b-42ea-4ff3-bff8-9ba540264933.jpg",
+          "source": "instagram-reel-frame"
+        },
+        {
+          "id": "hairbyamandaniceandneat-portfolio-photo-76e00a71-b4d2-46db-8497-bde00bdae6dc",
+          "url": "/portfolio-photos/hairbyamandaniceandneat-aa8c2e13-ae7a-4542-a908-6d9b7fae107b.jpg",
+          "source": "instagram-reel-frame"
+        },
+        {
           "id": "hairbyamandaniceandneat-portfolio-photo-a741138e-9235-4cc2-854e-48633b0caebe",
           "url": "/portfolio-photos/hairbyamandaniceandneat-55b14acb-b129-4649-a806-2383ed1ca932.jpg",
           "source": "instagram-reel-frame"
         }
       ],
-      "photoSearchReviewedAt": "2026-08-30",
-      "photoOrderBumpedAt": 676
+      "photoSearchReviewedAt": "2026-10-04",
+      "photoOrderBumpedAt": 1267
     },
     {
       "id": "hairbyamaraa",
@@ -63773,8 +63874,8 @@
       "id": "karina-beauty-hub-uk",
       "name": "Karina Beauty Hub UK",
       "areaId": "kent",
-      "areaLabel": "Kent",
-      "neighbourhood": "Kent",
+      "areaLabel": "Kent / South east London",
+      "neighbourhood": "Kent and South east London London",
       "postcode": "",
       "bookingPlatform": "Direct website",
       "bookingUrl": "https://book.getslick.com/#/salon/3526/",
@@ -63793,7 +63894,8 @@
         "Full head colour",
         "Trim / hair cut",
         "Men's braids",
-        "Boho sew-in"
+        "Boho sew-in",
+        "Feed-in / stitch braid sew-in"
       ],
       "canBraidWithoutGel": true,
       "summary": "Manual entry added from your Kent list covering braids, sew-ins, locs, natural hair, and treatments.",
@@ -63888,7 +63990,11 @@
       "parkingAvailable": false,
       "sellsHairSeparately": false,
       "customFilters": {},
-      "sameDayEmergency": false
+      "sameDayEmergency": false,
+      "areaIds": [
+        "kent",
+        "south-east"
+      ]
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -78717,6 +78823,41 @@
       "portfolioPhotosCheckedAt": "2026-08-21",
       "portfolioPhotos": [
         {
+          "id": "the-hair-space-portfolio-photo-ec9333be-03d5-470b-bc21-c4ad0d2824aa",
+          "url": "/portfolio-photos/the-hair-space-347c471e-d237-4a26-932c-078b8c09f8ce.jpg",
+          "source": "instagram-reel-frame"
+        },
+        {
+          "id": "the-hair-space-portfolio-photo-2da3966d-6e85-4c5d-9d7b-c7841a60da8a",
+          "url": "/portfolio-photos/the-hair-space-23b5fa97-89d8-40ad-86ee-72224944a6e7.jpg",
+          "source": "instagram-reel-frame"
+        },
+        {
+          "id": "the-hair-space-portfolio-photo-91ddc7bb-855a-4e02-bc50-077838aebe31",
+          "url": "/portfolio-photos/the-hair-space-5a816919-f569-4416-96a7-a98ad61b3397.jpg",
+          "source": "instagram-reel-frame"
+        },
+        {
+          "id": "the-hair-space-portfolio-photo-00ad052c-bd7a-461c-895b-610021404378",
+          "url": "/portfolio-photos/the-hair-space-e505f355-0c40-4cd4-b083-0a634bed0dfe.jpg",
+          "source": "instagram-reel-frame"
+        },
+        {
+          "id": "the-hair-space-portfolio-photo-e5cb1c76-5290-40b4-a0b7-56746f403023",
+          "url": "/portfolio-photos/the-hair-space-c2763820-ec40-437b-83a1-520b7b79a769.jpg",
+          "source": "instagram-reel-frame"
+        },
+        {
+          "id": "the-hair-space-portfolio-photo-6fbcb531-88f2-4466-a186-e49c4478ffd7",
+          "url": "/portfolio-photos/the-hair-space-510d9169-8dc1-424d-ab61-dac7a3568b95.jpg",
+          "source": "instagram-reel-frame"
+        },
+        {
+          "id": "the-hair-space-portfolio-photo-f76a74f2-b332-4079-ac33-c9e43202f9d0",
+          "url": "/portfolio-photos/the-hair-space-09aa0d6f-6097-4771-ab77-d13aa6d7b1b3.jpg",
+          "source": "instagram-reel-frame"
+        },
+        {
           "id": "the-hair-space-portfolio-photo-9a2223c8-0160-4c00-91b9-44860046fe5a",
           "url": "/portfolio-photos/the-hair-space-e14c282c-d700-4d85-bcb4-172d42dc4936.jpg",
           "source": "instagram"
@@ -78733,7 +78874,7 @@
         }
       ],
       "updatedAt": "2026-10-04",
-      "photoSearchReviewedAt": "2026-08-26",
+      "photoSearchReviewedAt": "2026-10-04",
       "websiteUrl": "",
       "hairShopUrl": "",
       "tiktokUrl": "",
@@ -78755,7 +78896,8 @@
       "priceEvidence": [],
       "priceCheckedAt": "",
       "priceUpdatedAt": "",
-      "priceConfidence": ""
+      "priceConfidence": "",
+      "photoOrderBumpedAt": 1258
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",

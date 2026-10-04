@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { trackEvent as trackAnalyticsEvent } from "@/lib/analytics";
 import { isConstrainedConnection, useIsSlowConnection } from "@/lib/connectionQuality";
 import { cn } from "@/lib/utils";
+import { getServiceDisplayName, serviceFamilies, subcategoryGroupsByCategory } from "@/lib/serviceTaxonomy";
 import {
   getVerifiedReviewsPlatform as getVerifiedReviewsPlatformForUrl,
   getVerifiedReviewsUrl as getVerifiedReviewsUrlForBookingUrl,
@@ -260,44 +261,6 @@ type VendorSearchResponse = {
 };
 
 const regionLabelMap = Object.fromEntries(regions.map((region) => [region.id, region.label])) as Record<string, string>;
-
-// Picking a family matches any of its members (see derivedServiceMatches in
-// salon-index.mjs). The "(all)" families are filter-only headings, not services,
-// so they stay out of filters.json and never show up in the service pickers.
-const serviceFamilies: Record<string, readonly string[]> = {
-  "Boho (all)": ["Boho braids / goddess braids", "Boho braids bob", "Boho sew-in"],
-  "Fulani (all)": ["Fulani / lemonade braids", "Fulani sew-in"],
-  "Feed-in & stitch braids (all)": ["Feed-in braids", "Stitch braids", "Feed-in / stitch braid sew-in"],
-  "French curl (all)": ["French curl", "French curl bob"],
-  "Tape-in (all)": ["Tape ins", "Tape-ins + sew-in"],
-  "K-tip (all)": ["K-tips / invisible strands", "K-tips + sew-in"],
-  "Hybrid (braids + sew-in)": ["Fulani sew-in", "Boho sew-in", "Feed-in / stitch braid sew-in"],
-  "Hybrid installs": ["Tape-ins + sew-in", "K-tips + sew-in"],
-  "Hybrid installs (all)": ["Boho sew-in", "Fulani sew-in", "Feed-in / stitch braid sew-in", "Tape-ins + sew-in", "K-tips + sew-in"],
-};
-
-// Which families nest their members in each category's filter list. Braids
-// groups by style; Sew in / weave groups every hybrid by install.
-const subcategoryGroupsByCategory: Record<string, readonly string[]> = {
-  "braiding-services": ["Boho (all)", "Fulani (all)", "Feed-in & stitch braids (all)", "French curl (all)"],
-  "sew-in-weave": ["Hybrid installs (all)"],
-  "extension-services": ["Tape-in (all)", "K-tip (all)"],
-};
-
-const serviceDisplayNames: Record<string, string> = {
-  "Wig cornrows": "(Wig) cornrows",
-  "Feed-in braids": "Feed-in braids / all backs",
-  "Boho braids / goddess braids": "Boho braids",
-  "Tape ins": "Tape-in install",
-  "Tape-ins + sew-in": "Tapes + sew-in",
-  "K-tips / invisible strands": "K-tip install",
-  "French curl": "French curl braids",
-  ...Object.fromEntries(Object.keys(serviceFamilies).filter((family) => family.endsWith(" (all)")).map((family) => [family, family.slice(0, -" (all)".length)])),
-};
-
-function getServiceDisplayName(service: string) {
-  return serviceDisplayNames[service] ?? service;
-}
 
 function normalizeServiceSearch(s: string) {
   return s.toLowerCase().replace(/[-–—]/g, " ").replace(/\s+/g, " ").trim();
@@ -576,6 +539,7 @@ function PortfolioPhotoCarousel({
   const [loadAttempt, setLoadAttempt] = useState(0);
   const touchStartRef = useRef<{ x: number; y: number } | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
+  const imgRef = useRef<HTMLImageElement | null>(null);
   // We drive visibility ourselves (rather than the img's native loading="lazy") so the
   // stall timeout below starts at the same moment the fetch actually starts. With
   // potentially hundreds of cards on one results page, the browser's own lazy-load
@@ -611,6 +575,15 @@ function PortfolioPhotoCarousel({
   useEffect(() => {
     if (!activePhoto || !isNearViewport) return;
     const slow = isSlowConnectionRef.current;
+    // A cached photo can finish loading (and fire onLoad) before this effect runs —
+    // typical after a filter change re-renders a card whose photo was already seen.
+    // Resetting to "loading" then would leave it waiting on a load event that has
+    // already happened, and the timer below would cover a perfectly good photo.
+    const img = imgRef.current;
+    if (!slow && img?.complete && img.naturalWidth > 0 && img.src === new URL(resolvePortfolioPhotoUrl(activePhoto.url), window.location.href).href) {
+      setPhotoState("loaded");
+      return;
+    }
     setPhotoState(slow ? "skipped" : "loading");
     if (slow) return;
     // A photo that hasn't finished loading after this long once we've started
@@ -707,6 +680,7 @@ function PortfolioPhotoCarousel({
         ) : (
           <>
             <img
+              ref={imgRef}
               src={resolvePortfolioPhotoUrl(activePhoto.url)}
               alt=""
               decoding="async"

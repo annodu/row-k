@@ -2,6 +2,7 @@
 // from directory data — a field with nothing behind it is left blank (and
 // hidden on the slide) rather than guessed.
 
+import { getServiceDisplayName, serviceFilterRows } from "@/lib/serviceTaxonomy";
 import { type ChecklistGroup, type CtaFilters, type ListSlideData, type SlideData, locationLineForAreas } from "./model";
 
 export type FilterCategory = { id: string; label: string; subcategories: string[] };
@@ -58,7 +59,7 @@ export function shortServiceLabel(label: string) {
 }
 
 export function briefServiceLabel(brief: Brief, options: BriefOptions) {
-  if (brief.service) return brief.service;
+  if (brief.service) return getServiceDisplayName(brief.service);
   return options.categories.find((category) => category.id === brief.category)?.label ?? "";
 }
 
@@ -135,10 +136,11 @@ const COMPASS_SHORT: Record<string, string> = {
 export function filterPanelGroups(filters: CtaFilters, options: BriefOptions): ChecklistGroup[] {
   const serviceRows: ChecklistGroup["rows"] = [];
   for (const category of options.categories) {
-    const expanded = filters.categories.includes(category.id) || category.subcategories.some((sub) => filters.services.includes(sub));
+    const rows = serviceFilterRows(category.id, category.subcategories, filters.services);
+    const expanded = filters.categories.includes(category.id) || rows.some((row) => filters.services.includes(row.service));
     serviceRows.push({ label: category.label, checked: filters.categories.includes(category.id) });
     if (expanded) {
-      for (const sub of category.subcategories) serviceRows.push({ label: sub, checked: filters.services.includes(sub), indent: true });
+      for (const row of rows) serviceRows.push({ label: getServiceDisplayName(row.service), checked: filters.services.includes(row.service), indent: row.nested ? 2 : 1 });
     }
   }
 

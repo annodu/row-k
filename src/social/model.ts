@@ -95,7 +95,9 @@ export type ListSlideData = {
 
 export type ChecklistGroup = {
   title: string;
-  rows: { label: string; checked: boolean; indent?: boolean }[];
+  // indent: nesting depth (1 = a category's style or London's area, 2 = a
+  // style family's member). Older saved projects store `true` for 1.
+  rows: { label: string; checked: boolean; indent?: boolean | number }[];
 };
 
 // What's ticked on the closing slide's filter panel — chosen in the side
