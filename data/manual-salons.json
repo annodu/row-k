@@ -1,8 +1,8 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-10-04",
-    "count": 1167,
+    "updatedAt": "2026-10-05",
+    "count": 1166,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
@@ -624,7 +624,25 @@
       ],
       "photoSearchReviewedAt": "2026-10-04",
       "photoOrderBumpedAt": 1233,
-      "updatedAt": "2026-10-04"
+      "updatedAt": "2026-10-04",
+      "celebrityStyles": [
+        {
+          "style": "Alicia Keys braids",
+          "evidence": [
+            "Alicia Keys Braids"
+          ],
+          "source": "https://hairstylesbydzsi.as.me/",
+          "checkedAt": "2026-10-05"
+        },
+        {
+          "style": "Jayda Wayda braids",
+          "evidence": [
+            "Jayda Wayda Fulani braids"
+          ],
+          "source": "https://hairstylesbydzsi.as.me/",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "id": "osparlour",
@@ -691,7 +709,19 @@
         }
       ],
       "photoSearchReviewedAt": "2026-10-04",
-      "photoOrderBumpedAt": 1231
+      "photoOrderBumpedAt": 1231,
+      "celebrityStyles": [
+        {
+          "style": "Alicia Keys braids",
+          "evidence": [
+            "Alicia keys braids (small)",
+            "Alicia keys braids (medium)",
+            "Alicia keys braids (large)"
+          ],
+          "source": "https://osparlour.as.me/",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "id": "semone-lennon-hair",
@@ -1029,7 +1059,21 @@
         }
       ],
       "photoSearchReviewedAt": "2026-09-11",
-      "photoOrderBumpedAt": 1219
+      "photoOrderBumpedAt": 1219,
+      "celebrityStyles": [
+        {
+          "style": "Jayda Wayda braids",
+          "evidence": [
+            "Jayda Wayda style AKA Fulani with curly hair at the back, sewn or crochet (simple design)",
+            "The hair extension is not provided for the crochet & Jayda Wayda hairstyle.",
+            "JAYDA WAYDA STYLE",
+            "Jayda Wayda style AKA Fulani (crochet)",
+            "Jayda Wayda style AKA Fulani (Sewin)"
+          ],
+          "source": "https://melaninhairldn.setmore.com?utm_source=in-app&utm_medium=iosapp&utm_campaign=settsharebp",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "id": "raae-london",
@@ -3121,7 +3165,25 @@
         }
       ],
       "photoSearchReviewedAt": "2026-09-02",
-      "photoOrderBumpedAt": 1160
+      "photoOrderBumpedAt": 1160,
+      "celebrityStyles": [
+        {
+          "style": "Jayda Wayda braids",
+          "evidence": [
+            "‘Jayda wayda’ Inspired fulani x sewin"
+          ],
+          "source": "https://styleddbymv.as.me/",
+          "checkedAt": "2026-10-05"
+        },
+        {
+          "style": "Cassie braids",
+          "evidence": [
+            "Cassie braids"
+          ],
+          "source": "https://styleddbymv.as.me/",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "id": "strands-society-co",
@@ -3405,7 +3467,8 @@
         "Boho braids / goddess braids",
         "Fulani / lemonade braids",
         "Twists (with extensions)",
-        "Colour blend (mixing braiding hair)"
+        "Colour blend (mixing braiding hair)",
+        "Fulani sew-in"
       ],
       "summary": "* Dm to book \n*August bookings available🤍\n* based in South Croydon (CR2)📍\n* Read policy before booking",
       "source": "manual",
@@ -3625,7 +3688,26 @@
         }
       ],
       "photoSearchReviewedAt": "2026-09-01",
-      "photoOrderBumpedAt": 1140
+      "photoOrderBumpedAt": 1140,
+      "celebrityStyles": [
+        {
+          "style": "Alicia Keys braids",
+          "evidence": [
+            "Alicia Keys Braids",
+            "Stitched alicia keys braids"
+          ],
+          "source": "https://hausofbraids.as.me/",
+          "checkedAt": "2026-10-05"
+        },
+        {
+          "style": "Jayda Wayda braids",
+          "evidence": [
+            "Jayda Wayda Braids"
+          ],
+          "source": "https://hausofbraids.as.me/",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "id": "ggrpd-it",
@@ -4134,7 +4216,17 @@
         }
       ],
       "photoSearchReviewedAt": "2026-09-01",
-      "photoOrderBumpedAt": 1122
+      "photoOrderBumpedAt": 1122,
+      "celebrityStyles": [
+        {
+          "style": "Jayda Wayda braids",
+          "evidence": [
+            "Jayda Wayda Knotless"
+          ],
+          "source": "https://smahairuk.as.me/",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "id": "tress-co-uk",
@@ -4233,7 +4325,18 @@
         }
       ],
       "photoSearchReviewedAt": "2026-09-01",
-      "photoOrderBumpedAt": 1121
+      "photoOrderBumpedAt": 1121,
+      "celebrityStyles": [
+        {
+          "style": "Alicia Keys braids",
+          "evidence": [
+            "Small alicia keys braids",
+            "Medium alicia keys braids"
+          ],
+          "source": "https://tresscouk.as.me/",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "id": "thee-hair-quarters",
@@ -4722,7 +4825,9 @@
         "Tape-ins + sew-in",
         "Tape ins",
         "Wig install (frontal / closure)",
-        "Fulani sew-in"
+        "Fulani sew-in",
+        "Boho sew-in",
+        "Creative braids"
       ],
       "priceBand": "£££",
       "servicePriceBand": "£££",
@@ -4785,7 +4890,25 @@
       "parkingAvailable": false,
       "sellsHairSeparately": false,
       "sameDayEmergency": false,
-      "customFilters": {}
+      "customFilters": {},
+      "celebrityStyles": [
+        {
+          "style": "Tyla braids",
+          "evidence": [
+            "Manual check"
+          ],
+          "source": "https://book.heygoldie.com/JOYS-HAIRSTUDIO",
+          "checkedAt": "2026-10-05"
+        },
+        {
+          "style": "Cassie braids",
+          "evidence": [
+            "Manual check"
+          ],
+          "source": "https://book.heygoldie.com/JOYS-HAIRSTUDIO",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "id": "carmys-hair",
@@ -5011,7 +5134,17 @@
       "priceCheckedAt": "2026-09-01",
       "priceUpdatedAt": "2026-09-01",
       "priceConfidence": "high",
-      "updatedAt": "2026-10-04"
+      "updatedAt": "2026-10-04",
+      "celebrityStyles": [
+        {
+          "style": "Jayda Wayda braids",
+          "evidence": [
+            "Jayda wayda"
+          ],
+          "source": "https://www.fresha.com/en-GB/a/hair-by-tess-northfleet-huntley-avenue-zhab9td1",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "id": "braided-by-jada",
@@ -5421,7 +5554,17 @@
         }
       ],
       "photoSearchReviewedAt": "2026-09-01",
-      "photoOrderBumpedAt": 1086
+      "photoOrderBumpedAt": 1086,
+      "celebrityStyles": [
+        {
+          "style": "Alicia Keys braids",
+          "evidence": [
+            "Alicia keys braids"
+          ],
+          "source": "https://hairelysian.as.me/",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "id": "haus-of-cheveux",
@@ -5488,7 +5631,18 @@
         }
       ],
       "photoSearchReviewedAt": "2026-09-01",
-      "photoOrderBumpedAt": 1085
+      "photoOrderBumpedAt": 1085,
+      "celebrityStyles": [
+        {
+          "style": "Alicia Keys braids",
+          "evidence": [
+            "Alicia key braids",
+            "Alicia keys braids bestie deal £90"
+          ],
+          "source": "https://hausofcheveux.as.me/",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "id": "theehaircorner",
@@ -6485,7 +6639,8 @@
         "Half up half down",
         "Wig install (frontal / closure)",
         "Sleek ponytail / bun",
-        "Men's braids"
+        "Men's braids",
+        "Creative braids"
       ],
       "summary": "HausOfDayma ✨\nLuxury Hairstylist & Wig Specialist\nAll Hairstyles • Raw & Virgin Hair 💎\n📍London E2 8LD | Mobile | 📦 Worldwide",
       "source": "manual",
@@ -6538,7 +6693,17 @@
         }
       ],
       "photoSearchReviewedAt": "2026-08-31",
-      "photoOrderBumpedAt": 970
+      "photoOrderBumpedAt": 970,
+      "celebrityStyles": [
+        {
+          "style": "Cassie braids",
+          "evidence": [
+            "Manual Instagram check"
+          ],
+          "source": "https://www.instagram.com/hausofdayma/",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "id": "npelegance",
@@ -6767,7 +6932,17 @@
         }
       ],
       "photoSearchReviewedAt": "2026-08-31",
-      "photoOrderBumpedAt": 964
+      "photoOrderBumpedAt": 964,
+      "celebrityStyles": [
+        {
+          "style": "Alicia Keys braids",
+          "evidence": [
+            "Alicia Keys Braids"
+          ],
+          "source": "https://fcparlour.as.me/schedule/aae4fafc",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "id": "nsk-inspired",
@@ -6842,7 +7017,17 @@
       ],
       "photoSearchReviewedAt": "2026-08-31",
       "photoOrderBumpedAt": 962,
-      "sellsHairSeparately": true
+      "sellsHairSeparately": true,
+      "celebrityStyles": [
+        {
+          "style": "Alicia Keys braids",
+          "evidence": [
+            "Alicia Keys Braids"
+          ],
+          "source": "https://nskinspired.as.me/",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "id": "beauty-by-gk",
@@ -7803,7 +7988,25 @@
       ],
       "photoSearchReviewedAt": "2026-08-31",
       "photoOrderBumpedAt": 939,
-      "updatedAt": "2026-08-31"
+      "updatedAt": "2026-08-31",
+      "celebrityStyles": [
+        {
+          "style": "Alicia Keys braids",
+          "evidence": [
+            "Alicia Keys Braids"
+          ],
+          "source": "http://rhystyle.as.me",
+          "checkedAt": "2026-10-05"
+        },
+        {
+          "style": "Cassie braids",
+          "evidence": [
+            "Cassie ponytail"
+          ],
+          "source": "http://rhystyle.as.me",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "id": "the-seven-touch",
@@ -8088,7 +8291,17 @@
       "lgbtqFriendly": false,
       "parkingAvailable": false,
       "sellsHairSeparately": false,
-      "customFilters": {}
+      "customFilters": {},
+      "celebrityStyles": [
+        {
+          "style": "Jayda Wayda braids",
+          "evidence": [
+            "Half fulani Half sew in (JAYDA WAYDA)"
+          ],
+          "source": "https://braidsbytessa.as.me/schedule/b04022b2",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "id": "adell-s-place",
@@ -8161,7 +8374,25 @@
       "sellsHairSeparately": false,
       "sameDayEmergency": false,
       "customFilters": {},
-      "updatedAt": "2026-08-31"
+      "updatedAt": "2026-08-31",
+      "celebrityStyles": [
+        {
+          "style": "Alicia Keys braids",
+          "evidence": [
+            "Alicia Keys"
+          ],
+          "source": "https://app.acuityscheduling.com/schedule.php?owner=36986694",
+          "checkedAt": "2026-10-05"
+        },
+        {
+          "style": "Jayda Wayda braids",
+          "evidence": [
+            "Jayda Wayda - Half up, Half down"
+          ],
+          "source": "https://app.acuityscheduling.com/schedule.php?owner=36986694",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "id": "braids-by-ym",
@@ -8321,7 +8552,17 @@
       "parkingAvailable": false,
       "sellsHairSeparately": true,
       "customFilters": {},
-      "updatedAt": "2026-09-11"
+      "updatedAt": "2026-09-11",
+      "celebrityStyles": [
+        {
+          "style": "Cassie braids",
+          "evidence": [
+            "CASSIE BRAIDS x SEW IN"
+          ],
+          "source": "https://dynastyluxelounge.as.me/schedule.php",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "id": "jp-styled-it",
@@ -8474,7 +8715,17 @@
       ],
       "photoSearchReviewedAt": "2026-08-31",
       "photoOrderBumpedAt": 909,
-      "updatedAt": "2026-08-31"
+      "updatedAt": "2026-08-31",
+      "celebrityStyles": [
+        {
+          "style": "Alicia Keys braids",
+          "evidence": [
+            "Alicia keys cornrows"
+          ],
+          "source": "https://hairbyniella.as.me/",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "id": "abraideditt",
@@ -8784,7 +9035,26 @@
       ],
       "photoSearchReviewedAt": "2026-08-31",
       "photoOrderBumpedAt": 898,
-      "updatedAt": "2026-08-31"
+      "updatedAt": "2026-08-31",
+      "celebrityStyles": [
+        {
+          "style": "Alicia Keys braids",
+          "evidence": [
+            "Alicia keys Fulani braids",
+            "Alicia keys cornrows"
+          ],
+          "source": "https://luxehairldn.as.me/",
+          "checkedAt": "2026-10-05"
+        },
+        {
+          "style": "Cassie braids",
+          "evidence": [
+            "Cassie braids - sew in"
+          ],
+          "source": "https://luxehairldn.as.me/",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "id": "hair-by-kofs",
@@ -8869,7 +9139,17 @@
       "sellsHairSeparately": false,
       "sameDayEmergency": false,
       "customFilters": {},
-      "updatedAt": "2026-10-04"
+      "updatedAt": "2026-10-04",
+      "celebrityStyles": [
+        {
+          "style": "Jayda Wayda braids",
+          "evidence": [
+            "Jayda Wayda braids"
+          ],
+          "source": "https://hairbykofs.as.me/",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "id": "perfected-by-ash",
@@ -8943,7 +9223,17 @@
         }
       ],
       "photoSearchReviewedAt": "2026-08-31",
-      "photoOrderBumpedAt": 893
+      "photoOrderBumpedAt": 893,
+      "celebrityStyles": [
+        {
+          "style": "Alicia Keys braids",
+          "evidence": [
+            "Alicia Keys X Lemonade Fulani Braids"
+          ],
+          "source": "http://perfectedbyash.as.me",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "id": "locs-by-vee",
@@ -9136,7 +9426,8 @@
         "Boho braids / goddess braids",
         "Knotless braids",
         "Box braids",
-        "Fulani / lemonade braids"
+        "Fulani / lemonade braids",
+        "Colour blend (mixing braiding hair)"
       ],
       "summary": "📍London, Lewisham - Sew ins, braids\n- DM OR WHATSAPP FOR BOOKINGS",
       "source": "manual",
@@ -10104,7 +10395,8 @@
         "Fulani / lemonade braids",
         "Knotless braids",
         "Miracle knots",
-        "Twists (with extensions)"
+        "Twists (with extensions)",
+        "Fulani sew-in"
       ],
       "canBraidWithoutGel": true,
       "summary": "#Susan hair empire#@melangesaloon",
@@ -10266,7 +10558,8 @@
         "Miracle knots",
         "Twists (with extensions)",
         "Wig cornrows",
-        "Colour blend (mixing braiding hair)"
+        "Colour blend (mixing braiding hair)",
+        "Fulani sew-in"
       ],
       "canBraidWithoutGel": true,
       "summary": "🎀 South East 𝐋𝐨𝐧𝐝𝐨𝐧’𝐬 𝐓𝐫𝐮𝐬𝐭𝐞𝐝 𝐁𝐫𝐚𝐢𝐝𝐞𝐫 \n🎀 𝐒𝐩𝐞𝐜𝐢𝐚𝐥𝐢𝐳𝐢𝐧𝐠 𝐢𝐧 𝐚𝐥𝐥 𝐛𝐫𝐚𝐢𝐝 𝐬𝐭𝐲𝐥𝐞𝐬 \n🎀 𝐍𝐞𝐚𝐭 | 𝐋𝐨𝐧𝐠-𝐥𝐚𝐬𝐭𝐢𝐧𝐠 | 𝐆𝐞𝐧𝐭𝐥𝐞 𝐨𝐧 𝐞𝐝𝐠𝐞𝐬\n📍𝐋𝐨𝐧𝐝𝐨𝐧 | 💌 𝐃𝐌 𝐭𝐨 𝐛𝐨𝐨𝐤 𝐲𝐨𝐮𝐫 𝐬𝐥𝐨𝐭",
@@ -11605,7 +11898,8 @@
         "Balayage",
         "Highlights",
         "Boho sew-in",
-        "Fulani sew-in"
+        "Fulani sew-in",
+        "Creative braids"
       ],
       "canBraidWithoutGel": true,
       "priceBand": "£",
@@ -11665,7 +11959,18 @@
         }
       ],
       "photoSearchReviewedAt": "2026-08-31",
-      "photoOrderBumpedAt": 707
+      "photoOrderBumpedAt": 707,
+      "celebrityStyles": [
+        {
+          "style": "Cassie braids",
+          "evidence": [
+            "Cassie Braids/Half Braids Half Quick Weave",
+            "Cassie Braids Weave Sew In"
+          ],
+          "source": "https://dhairlux-ltd.square.site/",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "id": "hair-by-my-stylist",
@@ -12420,7 +12725,8 @@
         "Feed-in braids",
         "French curl",
         "Twists (with extensions)",
-        "Colour blend (mixing braiding hair)"
+        "Colour blend (mixing braiding hair)",
+        "Fulani sew-in"
       ],
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
@@ -12616,7 +12922,6 @@
       "discoverySource": "Manual search",
       "services": [
         "Men's braids",
-        "Boho braids / goddess braids",
         "Knotless braids",
         "Feed-in braids",
         "Stitch braids"
@@ -13092,7 +13397,6 @@
       "services": [
         "Men's braids",
         "Stitch braids",
-        "Boho braids / goddess braids",
         "Knotless braids",
         "Soft locs"
       ],
@@ -13149,7 +13453,8 @@
         "Knotless braids",
         "Boho braids / goddess braids",
         "French curl",
-        "Retwist / interlocking"
+        "Retwist / interlocking",
+        "Creative braids"
       ],
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
@@ -13172,7 +13477,17 @@
       "photoSearchSkippedReason": "no-instagram-results",
       "portfolioPhotosCheckedAt": "2026-08-27",
       "photoOrderBumpedAt": 567,
-      "updatedAt": "2026-08-27"
+      "updatedAt": "2026-08-27",
+      "celebrityStyles": [
+        {
+          "style": "Cassie braids",
+          "evidence": [
+            "Manual Instagram check"
+          ],
+          "source": "https://www.instagram.com/hairhavenbynancy/",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "id": "stylez-by-sara",
@@ -13193,8 +13508,7 @@
         "Men's braids",
         "Fulani sew-in",
         "Sleek ponytail / bun",
-        "Fulani / lemonade braids",
-        "Boho braids / goddess braids"
+        "Fulani / lemonade braids"
       ],
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
@@ -13588,7 +13902,18 @@
       "parkingAvailable": false,
       "sellsHairSeparately": false,
       "sameDayEmergency": false,
-      "customFilters": {}
+      "customFilters": {},
+      "celebrityStyles": [
+        {
+          "style": "Cassie braids",
+          "evidence": [
+            "Fulani Sew-in/Cassie",
+            "Cassie braids"
+          ],
+          "source": "https://jdoneithair.setmore.com",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "id": "braidometry",
@@ -14025,7 +14350,30 @@
           "source": "instagram"
         }
       ],
-      "updatedAt": "2026-08-25"
+      "updatedAt": "2026-08-25",
+      "celebrityStyles": [
+        {
+          "style": "Alicia Keys braids",
+          "evidence": [
+            "Alicia Keys"
+          ],
+          "source": "https://styledbyfaith.com",
+          "checkedAt": "2026-10-05"
+        },
+        {
+          "style": "Jayda Wayda braids",
+          "evidence": [
+            "Front stitch braids for jayda wayda 10-15 cornrows",
+            "Front cornrows for jayda wayda 15+",
+            "Jayda wayda braids - Quick Weave",
+            "Jayda Wayda Braids - Sew In",
+            "Jayda Wayda 4 Cornrow Quick weave",
+            "Jayda Wayda 4 Cornrow Sew In"
+          ],
+          "source": "https://styledbyfaith.com",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "id": "c-braided-it",
@@ -14090,7 +14438,17 @@
           "source": "instagram"
         }
       ],
-      "updatedAt": "2026-08-25"
+      "updatedAt": "2026-08-25",
+      "celebrityStyles": [
+        {
+          "style": "Alicia Keys braids",
+          "evidence": [
+            "Alicia keys braids"
+          ],
+          "source": "https://cbraidedit.as.me",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "id": "the-emporiumm",
@@ -14393,7 +14751,18 @@
       "lgbtqFriendly": false,
       "parkingAvailable": false,
       "sellsHairSeparately": false,
-      "customFilters": {}
+      "customFilters": {},
+      "celebrityStyles": [
+        {
+          "style": "Jayda Wayda braids",
+          "evidence": [
+            "Jayda Half Braids, Half Sew in",
+            "Jayda Freestyle/complex Half Braids, Half Sew in"
+          ],
+          "source": "https://stayslayeduk.as.me",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "id": "braided-by-bibi",
@@ -14475,7 +14844,27 @@
         }
       ],
       "updatedAt": "2026-10-04",
-      "photoSearchReviewedAt": "2026-08-24"
+      "photoSearchReviewedAt": "2026-08-24",
+      "celebrityStyles": [
+        {
+          "style": "Alicia Keys braids",
+          "evidence": [
+            "Alicia Keys Braids - Large",
+            "Alicia Keys Braids - Medium",
+            "Alicia Keys Braids - Small"
+          ],
+          "source": "https://braidsbyfels.as.me/Bibi",
+          "checkedAt": "2026-10-05"
+        },
+        {
+          "style": "Tyla braids",
+          "evidence": [
+            "Tyla Braids"
+          ],
+          "source": "https://braidsbyfels.as.me/Bibi",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "id": "ns-styled-it",
@@ -14685,7 +15074,33 @@
         }
       ],
       "updatedAt": "2026-10-04",
-      "photoSearchReviewedAt": "2026-08-24"
+      "photoSearchReviewedAt": "2026-08-24",
+      "celebrityStyles": [
+        {
+          "style": "Alicia Keys braids",
+          "evidence": [
+            "Alicia Keys braids - all back"
+          ],
+          "source": "https://mitchellstouch.gettimely.com",
+          "checkedAt": "2026-10-05"
+        },
+        {
+          "style": "Jayda Wayda braids",
+          "evidence": [
+            "Including: JaydaBraids, Cassie side braids and anytype of patterns"
+          ],
+          "source": "https://mitchellstouch.gettimely.com",
+          "checkedAt": "2026-10-05"
+        },
+        {
+          "style": "Cassie braids",
+          "evidence": [
+            "Including: JaydaBraids, Cassie side braids and anytype of patterns"
+          ],
+          "source": "https://mitchellstouch.gettimely.com",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "id": "the-s-and-l-parlour",
@@ -14856,7 +15271,18 @@
       "parkingAvailable": false,
       "sellsHairSeparately": false,
       "customFilters": {},
-      "sameDayEmergency": false
+      "sameDayEmergency": false,
+      "celebrityStyles": [
+        {
+          "style": "Alicia Keys braids",
+          "evidence": [
+            "Alicia keys",
+            "Alicia Key"
+          ],
+          "source": "https://tressesbyshayy.as.me",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "id": "braids-from-london",
@@ -15306,6 +15732,19 @@
           "url": "/portfolio-photos/mimas-hair-lounge-0954c6ec-4520-4327-b76b-8b716fdd65a7.jpg",
           "source": "instagram"
         }
+      ],
+      "celebrityStyles": [
+        {
+          "style": "Alicia Keys braids",
+          "evidence": [
+            "extra Small Alicia keys braids (18+ braids)",
+            "Small Alicia keys braids (up to 18 braids",
+            "Smedium Alicia key braids (up to 15 braids)",
+            "Medium Alicia keys braids (up to 10 braids)"
+          ],
+          "source": "https://mhl.as.me",
+          "checkedAt": "2026-10-05"
+        }
       ]
     },
     {
@@ -15406,7 +15845,17 @@
       "parkingAvailable": false,
       "sellsHairSeparately": true,
       "sameDayEmergency": false,
-      "customFilters": {}
+      "customFilters": {},
+      "celebrityStyles": [
+        {
+          "style": "Alicia Keys braids",
+          "evidence": [
+            "Alicia Keys Stitch Braids"
+          ],
+          "source": "https://blessedbyelaa.as.me",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "id": "magicfingersldn",
@@ -15494,7 +15943,17 @@
         }
       ],
       "photoSearchReviewedAt": "2026-08-27",
-      "photoOrderBumpedAt": 421
+      "photoOrderBumpedAt": 421,
+      "celebrityStyles": [
+        {
+          "style": "Alicia Keys braids",
+          "evidence": [
+            "Alicia Keys Braids"
+          ],
+          "source": "https://magicfingersldn.as.me",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "id": "yasmins-touch",
@@ -15657,7 +16116,25 @@
         }
       ],
       "parkingAvailable": true,
-      "sameDayEmergency": true
+      "sameDayEmergency": true,
+      "celebrityStyles": [
+        {
+          "style": "Alicia Keys braids",
+          "evidence": [
+            "Alicia Keys Braids"
+          ],
+          "source": "https://luusbeautylounge.as.me/",
+          "checkedAt": "2026-10-05"
+        },
+        {
+          "style": "Cassie braids",
+          "evidence": [
+            "Cassie Braids"
+          ],
+          "source": "https://luusbeautylounge.as.me/",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "id": "hvney-beauty",
@@ -15745,7 +16222,18 @@
       "sellsHairSeparately": false,
       "sameDayEmergency": true,
       "customFilters": {},
-      "updatedAt": "2026-08-26"
+      "updatedAt": "2026-08-26",
+      "celebrityStyles": [
+        {
+          "style": "Alicia Keys braids",
+          "evidence": [
+            "Alicia Keys Braids (large)",
+            "Alicia Keys Braids (regular)"
+          ],
+          "source": "https://hvneybeauty.as.me",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "id": "mayas-braiding",
@@ -16858,7 +17346,18 @@
       "lgbtqFriendly": false,
       "parkingAvailable": false,
       "sellsHairSeparately": false,
-      "customFilters": {}
+      "customFilters": {},
+      "celebrityStyles": [
+        {
+          "style": "Jayda Wayda braids",
+          "evidence": [
+            "Jayda Wayda Braids Quick Weave (Fulani + Quick Weave)",
+            "Jayda Wayda Braids Sew In (Fulani + Sew In)"
+          ],
+          "source": "https://safiissalon.as.me",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "id": "the-beauty-haven-by-tosin",
@@ -17271,7 +17770,19 @@
         }
       ],
       "photoSearchReviewedAt": "2026-08-24",
-      "updatedAt": "2026-08-27"
+      "updatedAt": "2026-08-27",
+      "celebrityStyles": [
+        {
+          "style": "Alicia Keys braids",
+          "evidence": [
+            "Large Alicia Keys Braids",
+            "Medium Alicia Keys Braids",
+            "Small Alicia Keys Braids"
+          ],
+          "source": "https://indiastouchuk.as.me",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "id": "hair-by-chans",
@@ -17355,7 +17866,17 @@
       "sellsHairSeparately": false,
       "sameDayEmergency": false,
       "customFilters": {},
-      "updatedAt": "2026-08-28"
+      "updatedAt": "2026-08-28",
+      "celebrityStyles": [
+        {
+          "style": "Alicia Keys braids",
+          "evidence": [
+            "Alicia Keys Braids"
+          ],
+          "source": "https://hairbychans.setmore.com/",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "id": "cba-hair-studio",
@@ -17443,7 +17964,17 @@
       "sellsHairSeparately": false,
       "sameDayEmergency": false,
       "customFilters": {},
-      "updatedAt": "2026-08-31"
+      "updatedAt": "2026-08-31",
+      "celebrityStyles": [
+        {
+          "style": "Alicia Keys braids",
+          "evidence": [
+            "Alicia keys braids"
+          ],
+          "source": "https://app.acuityscheduling.com/schedule/ea7399aa",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "id": "38styles",
@@ -18066,7 +18597,21 @@
           "source": "instagram"
         }
       ],
-      "photoSearchReviewedAt": "2026-08-24"
+      "photoSearchReviewedAt": "2026-08-24",
+      "celebrityStyles": [
+        {
+          "style": "Alicia Keys braids",
+          "evidence": [
+            "Alicia keys braids",
+            "Small Alicia keys braids",
+            "Smedium Alicia keys braids",
+            "Medium Alicia keys braids",
+            "Large Alicia keys braids"
+          ],
+          "source": "https://kluxehairr.as.me/schedule/e4940998",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "id": "michelle-monae-hair-studio",
@@ -18301,12 +18846,12 @@
         "Soft locs",
         "Stitch braids",
         "Creative braids",
-        "Editorial / Session styling",
         "Traditional sew-in / leave out",
         "Half up half down",
         "Moisturising treatment",
         "Olaplex treatment",
-        "Wash & blowdry"
+        "Wash & blowdry",
+        "Feed-in / stitch braid sew-in"
       ],
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
@@ -18337,7 +18882,28 @@
         }
       ],
       "photoSearchReviewedAt": "2026-08-25",
-      "updatedAt": "2026-10-04"
+      "updatedAt": "2026-10-05",
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": false,
+      "sameDayEmergency": false,
+      "customFilters": {},
+      "priceBand": "",
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "",
+      "priceSource": "",
+      "priceEvidence": [],
+      "priceCheckedAt": "",
+      "priceUpdatedAt": "",
+      "priceConfidence": ""
     },
     {
       "id": "kimoy-s-unisex-hair-and-beauty",
@@ -19065,7 +19631,22 @@
       "updatedAt": "2026-10-04",
       "photoSearchReviewedAt": "2026-08-27",
       "photoOrderBumpedAt": 409,
-      "canBraidWithoutGel": true
+      "canBraidWithoutGel": true,
+      "celebrityStyles": [
+        {
+          "style": "Alicia Keys braids",
+          "evidence": [
+            "Alicia Keys Braids (London slots)",
+            "Small Alicia Keys Braids",
+            "Medium Alicia Keys Braids",
+            "Medium/Large Alicia Keys Braids",
+            "Large Alicia Keys Braids",
+            "Alicia Keys Braids (Nottingham slots)"
+          ],
+          "source": "https://thebraideruk.as.me/schedule/7e7e307b",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "id": "butterfly-fingaz",
@@ -19484,7 +20065,34 @@
       "googleDisplayName": "",
       "googleFormattedAddress": "",
       "sellsHairSeparately": false,
-      "sameDayEmergency": false
+      "sameDayEmergency": false,
+      "celebrityStyles": [
+        {
+          "style": "Alicia Keys braids",
+          "evidence": [
+            "Medium Alicia Keys Braids",
+            "Small Alicia Keys Braids"
+          ],
+          "source": "https://tjslayedit.as.me/schedule/e92dd5d8",
+          "checkedAt": "2026-10-05"
+        },
+        {
+          "style": "Jayda Wayda braids",
+          "evidence": [
+            "Jayda Wayda Inspired Fulani Sew In"
+          ],
+          "source": "https://tjslayedit.as.me/schedule/e92dd5d8",
+          "checkedAt": "2026-10-05"
+        },
+        {
+          "style": "Cassie braids",
+          "evidence": [
+            "Cassie Inspired Feed Ins X Sew In"
+          ],
+          "source": "https://tjslayedit.as.me/schedule/e92dd5d8",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "id": "milkeys-parlour",
@@ -19945,7 +20553,18 @@
       ],
       "photoSearchReviewedAt": "2026-08-26",
       "photoOrderBumpedAt": 139,
-      "updatedAt": "2026-10-04"
+      "updatedAt": "2026-10-04",
+      "celebrityStyles": [
+        {
+          "style": "Alicia Keys braids",
+          "evidence": [
+            "ALICIA KEYS BRAIDS",
+            "Alicia keys braids -small"
+          ],
+          "source": "https://app.acuityscheduling.com/schedule/df6ae628",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "id": "sandra-webb",
@@ -25721,7 +26340,17 @@
       ],
       "updatedAt": "2026-08-27",
       "photoSearchReviewedAt": "2026-08-27",
-      "photoOrderBumpedAt": 464
+      "photoOrderBumpedAt": 464,
+      "celebrityStyles": [
+        {
+          "style": "Alicia Keys braids",
+          "evidence": [
+            "Alicia Keys Braids"
+          ],
+          "source": "https://slayedbydz.as.me/schedule/60b81dcf",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "id": "rv-the-stylist",
@@ -26275,6 +26904,16 @@
           "url": "/portfolio-photos/beauty-by-the-bankz-7c6d44db-8ae1-42eb-bb46-987b9671017c.jpg",
           "source": "instagram"
         }
+      ],
+      "celebrityStyles": [
+        {
+          "style": "Alicia Keys braids",
+          "evidence": [
+            "Alicia keys braids"
+          ],
+          "source": "https://beautybythebankz1.as.me/schedule/aeb7037b",
+          "checkedAt": "2026-10-05"
+        }
       ]
     },
     {
@@ -26645,7 +27284,17 @@
         }
       ],
       "photoSearchReviewedAt": "2026-08-26",
-      "photoOrderBumpedAt": 117
+      "photoOrderBumpedAt": 117,
+      "celebrityStyles": [
+        {
+          "style": "Jayda Wayda braids",
+          "evidence": [
+            "Jaydawayda freestyle braids"
+          ],
+          "source": "https://hairbyvii.as.me/schedule/7d84707d",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "id": "ajstyles-uk",
@@ -27944,7 +28593,18 @@
           "source": "instagram"
         }
       ],
-      "photoSearchReviewedAt": "2026-08-24"
+      "photoSearchReviewedAt": "2026-08-24",
+      "celebrityStyles": [
+        {
+          "style": "Alicia Keys braids",
+          "evidence": [
+            "Alicia Keys braids (medium)",
+            "Alicia Keys Braids (small)"
+          ],
+          "source": "https://kayhairuk.as.me/schedule/397335e8",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "id": "oclounge",
@@ -28434,7 +29094,17 @@
       "hairShopUrl": "",
       "googleDisplayName": "",
       "googleFormattedAddress": "",
-      "sellsHairSeparately": false
+      "sellsHairSeparately": false,
+      "celebrityStyles": [
+        {
+          "style": "Alicia Keys braids",
+          "evidence": [
+            "Small Alicia Keys Braids"
+          ],
+          "source": "https://cshairuk.as.me/schedule/9ee1810c",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "id": "edslaysuk",
@@ -30802,7 +31472,8 @@
         "Feed-in braids",
         "Knotless braids",
         "Miracle knots",
-        "Wash & blowdry"
+        "Wash & blowdry",
+        "Fulani sew-in"
       ],
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
@@ -33259,6 +33930,16 @@
           "url": "/portfolio-photos/loveroots-c22b4b94-eb59-484d-8d3a-39aa1d866cf9.jpg",
           "source": "instagram"
         }
+      ],
+      "celebrityStyles": [
+        {
+          "style": "Cassie braids",
+          "evidence": [
+            "Cassie Braids/Half Sewin"
+          ],
+          "source": "https://loveeverythinglondon.as.me/schedule/8bc9f7bd",
+          "checkedAt": "2026-10-05"
+        }
       ]
     },
     {
@@ -33882,7 +34563,19 @@
       "senFriendly": false,
       "lgbtqFriendly": false,
       "sellsHairSeparately": false,
-      "sameDayEmergency": false
+      "sameDayEmergency": false,
+      "celebrityStyles": [
+        {
+          "style": "Alicia Keys braids",
+          "evidence": [
+            "Large Curvy Braids (aka Alicia Keys Braids)",
+            "Medium Curvy Braids (aka Alicia Keys Braids)",
+            "Small Curvy Braids (aka 'Alicia Keys' Braids)"
+          ],
+          "source": "https://mochasloungeuk.as.me/schedule/38f251f8",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "id": "jaealexxishair",
@@ -35741,7 +36434,25 @@
           "source": "instagram"
         }
       ],
-      "photoSearchReviewedAt": "2026-08-24"
+      "photoSearchReviewedAt": "2026-08-24",
+      "celebrityStyles": [
+        {
+          "style": "Alicia Keys braids",
+          "evidence": [
+            "Alicia Key braids"
+          ],
+          "source": "https://tress.ly/aaliyahsullivan",
+          "checkedAt": "2026-10-05"
+        },
+        {
+          "style": "Cassie braids",
+          "evidence": [
+            "Cassie braids/sew in"
+          ],
+          "source": "https://tress.ly/aaliyahsullivan",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "id": "hollylondon",
@@ -36281,7 +36992,8 @@
         "Soft locs",
         "Stitch braids",
         "Boho braids bob",
-        "Men's braids"
+        "Men's braids",
+        "Fulani sew-in"
       ],
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
@@ -37045,7 +37757,17 @@
         }
       ],
       "photoSearchReviewedAt": "2026-08-26",
-      "photoOrderBumpedAt": 159
+      "photoOrderBumpedAt": 159,
+      "celebrityStyles": [
+        {
+          "style": "Tyla braids",
+          "evidence": [
+            "Tyla braids ONLY ! no singles"
+          ],
+          "source": "https://braidsnchill.as.me/schedule/6bf0b1a3",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "id": "styledbyroxii",
@@ -37608,6 +38330,16 @@
           "id": "mystictouch-portfolio-photo-2410f129-c2c9-4a0b-a45c-ca64009f8639",
           "url": "/portfolio-photos/mystictouch-0bde610f-fa0a-4972-a3c3-8c8f13bac1ce.jpg",
           "source": "instagram"
+        }
+      ],
+      "celebrityStyles": [
+        {
+          "style": "Alicia Keys braids",
+          "evidence": [
+            "RHYTHM & BRAIDS | ALICIA KEYS BRAIDS"
+          ],
+          "source": "https://mystictouch.as.me/schedule/868ddfc9",
+          "checkedAt": "2026-10-05"
         }
       ]
     },
@@ -39366,7 +40098,17 @@
           "source": "instagram"
         }
       ],
-      "photoOrderBumpedAt": 666
+      "photoOrderBumpedAt": 666,
+      "celebrityStyles": [
+        {
+          "style": "Alicia Keys braids",
+          "evidence": [
+            "Alicia keys braids"
+          ],
+          "source": "https://app.tressly.co/mmluxehair?",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "id": "bychiluxe",
@@ -39503,7 +40245,17 @@
           "source": "instagram"
         }
       ],
-      "photoOrderBumpedAt": 612
+      "photoOrderBumpedAt": 612,
+      "celebrityStyles": [
+        {
+          "style": "Tyla braids",
+          "evidence": [
+            "Tyla Inspired Braids 4 hours from @ £160"
+          ],
+          "source": "https://yndhair.as.me/schedule/b0b7453a?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQPOTM2NjE5NzQzMzkyNDU5AAGn4F3mNOTVBEfguHubS1qM-lDFTiGgci3-KaoysYQ6qKS9_BHnszswL5rZy6o_aem_MvlHiTleQZsbxiQ-zEf8eQ",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "id": "hair-evolve-by-de",
@@ -41083,6 +41835,16 @@
       "areaIds": [
         "east",
         "essex"
+      ],
+      "celebrityStyles": [
+        {
+          "style": "Jayda Wayda braids",
+          "evidence": [
+            "Jayda Wayda Sew-in"
+          ],
+          "source": "https://hairbyhml.as.me/schedule/007f22ef",
+          "checkedAt": "2026-10-05"
+        }
       ]
     },
     {
@@ -41601,7 +42363,28 @@
       "senFriendly": false,
       "lgbtqFriendly": false,
       "sellsHairSeparately": false,
-      "sameDayEmergency": false
+      "sameDayEmergency": false,
+      "celebrityStyles": [
+        {
+          "style": "Alicia Keys braids",
+          "evidence": [
+            "ALICIA KEYS BRAIDS",
+            "Medium Alicia Keys Braids (10-14 plaits)",
+            "Small Alicia Keys Braids (16-20 plaits)",
+            "Large Alicia Keys Braids (6-8 plaits)"
+          ],
+          "source": "https://laidbyjbooking.as.me/schedule/90beb11d",
+          "checkedAt": "2026-10-05"
+        },
+        {
+          "style": "Cassie braids",
+          "evidence": [
+            "'Cassie' Weave Style (8-10plaits)"
+          ],
+          "source": "https://laidbyjbooking.as.me/schedule/90beb11d",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "id": "klacebar",
@@ -41851,7 +42634,8 @@
         "Boho braids bob",
         "Healthy hair plans & consultations",
         "Full head colour",
-        "Trichology / scalp analysis"
+        "Trichology / scalp analysis",
+        "Boho sew-in"
       ],
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
@@ -41912,7 +42696,17 @@
         }
       ],
       "portfolioPhotosCheckedAt": "2026-08-21",
-      "sameDayEmergency": true
+      "sameDayEmergency": true,
+      "celebrityStyles": [
+        {
+          "style": "Alicia Keys braids",
+          "evidence": [
+            "Medium Alicia key braids"
+          ],
+          "source": "https://ajahsbeautybasebookings.as.me/schedule/0ef2ec18/category/X19hbGxfXw%3D%3D",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "id": "hott-uk",
@@ -44609,7 +45403,8 @@
         "Tracks (+ silk press) / partial / invisible sew-in",
         "Stitch braids",
         "Wig cornrows",
-        "Full head colour"
+        "Full head colour",
+        "Fulani sew-in"
       ],
       "summary": "North London Instagram-led entry added from the supplied handle and service list.",
       "source": "manual",
@@ -46465,7 +47260,18 @@
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
       "photoSearchReviewedAt": "2026-10-04",
-      "photoOrderBumpedAt": 1272
+      "photoOrderBumpedAt": 1272,
+      "celebrityStyles": [
+        {
+          "style": "Cassie braids",
+          "evidence": [
+            "Small Cassie Braids",
+            "Medium Cassie Braids"
+          ],
+          "source": "https://arewauk.as.me/schedule/65ed3fe8",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "id": "arinze-studios",
@@ -46540,7 +47346,8 @@
         "U-Part / Half wig install",
         "Frontal ponytail / bun",
         "Boho braids bob",
-        "Boho sew-in"
+        "Boho sew-in",
+        "Creative braids"
       ],
       "summary": "Manual entry added from your East London braids list.",
       "source": "manual",
@@ -46595,7 +47402,17 @@
       ],
       "photoSearchReviewedAt": "2026-08-26",
       "photoOrderBumpedAt": 366,
-      "updatedAt": "2026-10-04"
+      "updatedAt": "2026-10-04",
+      "celebrityStyles": [
+        {
+          "style": "Cassie braids",
+          "evidence": [
+            "Manual check"
+          ],
+          "source": "https://ariyohair.as.me/schedule/e3ff9fbd",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "id": "artistrybyserena",
@@ -46698,7 +47515,8 @@
         "Kids & teens styles",
         "Men's braids",
         "Feed-in / stitch braid sew-in",
-        "Fulani sew-in"
+        "Fulani sew-in",
+        "Boho sew-in"
       ],
       "tiktokUrl": "",
       "hijabiFriendly": false,
@@ -46749,7 +47567,17 @@
       ],
       "photoSearchSkippedAt": "2026-08-24",
       "photoSearchSkippedReason": "manual",
-      "photoSearchReviewedAt": "2026-08-24"
+      "photoSearchReviewedAt": "2026-08-24",
+      "celebrityStyles": [
+        {
+          "style": "Jayda Wayda braids",
+          "evidence": [
+            "Jayda wayda braids ‘sewin’"
+          ],
+          "source": "https://asbraidsnbeauty.as.me/schedule/a8a8e3b6",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "id": "ash-lounge",
@@ -46767,7 +47595,9 @@
         "Wig install (frontal / closure)",
         "Stitch braids",
         "French curl",
-        "Boho braids bob"
+        "Boho braids bob",
+        "Fulani sew-in",
+        "Fulani / lemonade braids"
       ],
       "summary": "Manual Instagram-led entry added from your South East London braids list.",
       "source": "manual",
@@ -48155,7 +48985,17 @@
           "source": "website"
         }
       ],
-      "portfolioPhotosCheckedAt": "2026-08-21"
+      "portfolioPhotosCheckedAt": "2026-08-21",
+      "celebrityStyles": [
+        {
+          "style": "Jayda Wayda braids",
+          "evidence": [
+            "Jayda Wayda"
+          ],
+          "source": "https://www.bestbyjessica.co.uk/book-online",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -48467,7 +49307,28 @@
       "sellsHairSeparately": false,
       "sameDayEmergency": true,
       "photoSearchReviewedAt": "2026-08-30",
-      "photoOrderBumpedAt": 632
+      "photoOrderBumpedAt": 632,
+      "celebrityStyles": [
+        {
+          "style": "Alicia Keys braids",
+          "evidence": [
+            "ALICIA KEYS braids",
+            "ALICIA KEYS braids medium",
+            "ALICIA KEYS braids small"
+          ],
+          "source": "https://bimmytouch.as.me",
+          "checkedAt": "2026-10-05"
+        },
+        {
+          "style": "Jayda Wayda braids",
+          "evidence": [
+            "JAYDAWAYDA/SOW- IN FULANI",
+            "Jaydawayda (half cornrow)"
+          ],
+          "source": "https://bimmytouch.as.me",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "id": "blowoutsbys",
@@ -49731,7 +50592,27 @@
           "source": "instagram"
         }
       ],
-      "sameDayEmergency": false
+      "sameDayEmergency": false,
+      "celebrityStyles": [
+        {
+          "style": "Alicia Keys braids",
+          "evidence": [
+            "Alicia Keys Braids - Small",
+            "Alicia Keys Braids - Medium",
+            "Alicia Keys Braids - Large"
+          ],
+          "source": "https://braidsbyfels.as.me",
+          "checkedAt": "2026-10-05"
+        },
+        {
+          "style": "Tyla braids",
+          "evidence": [
+            "Tyla Braids"
+          ],
+          "source": "https://braidsbyfels.as.me",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "id": "braidzbynadz",
@@ -50418,6 +51299,16 @@
           "id": "bykhalildavies-portfolio-photo-959132de-758c-418d-8a2c-5e7a8070dcc4",
           "url": "/portfolio-photos/bykhalildavies-3600eae9-bc72-45ca-8ab4-be5962d773a5.jpg",
           "source": "instagram"
+        }
+      ],
+      "celebrityStyles": [
+        {
+          "style": "Jayda Wayda braids",
+          "evidence": [
+            "smaller half braids half sew in (Jayda braids)"
+          ],
+          "source": "https://bykhalildavies.as.me",
+          "checkedAt": "2026-10-05"
         }
       ]
     },
@@ -53020,6 +53911,16 @@
           "url": "/portfolio-photos/dbd-hair-studio-cd234cbe-3e8d-44d7-b998-6ed1bcada636.jpg",
           "source": "instagram"
         }
+      ],
+      "celebrityStyles": [
+        {
+          "style": "Alicia Keys braids",
+          "evidence": [
+            "Alicia keys braids"
+          ],
+          "source": "https://dbdhairstudio.as.me/schedule/1458c5ba",
+          "checkedAt": "2026-10-05"
+        }
       ]
     },
     {
@@ -53929,7 +54830,8 @@
         "Moisturising treatment",
         "Knotless braids",
         "Men's braids",
-        "Feed-in / stitch braid sew-in"
+        "Feed-in / stitch braid sew-in",
+        "Creative braids"
       ],
       "summary": "Manual entry added from your North West London wigs, sew-ins, extensions, braids, silk press, ponytail, and locs list.",
       "source": "manual",
@@ -53995,7 +54897,17 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-10-04"
+      "updatedAt": "2026-10-04",
+      "celebrityStyles": [
+        {
+          "style": "Cassie braids",
+          "evidence": [
+            "CASSIE SEW-IN (SIDE BRAIDS)"
+          ],
+          "source": "https://drippinstyless.as.me/schedule/bfebaba6",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "id": "dsrhair",
@@ -54072,6 +54984,16 @@
           "id": "dsrhair-portfolio-photo-8bc7e53a-db68-4ac8-9ac2-c06974a2f0c4",
           "url": "/portfolio-photos/dsrhair-8d80501f-e8ac-4c8d-8b13-0824f3bbd9db.jpg",
           "source": "instagram"
+        }
+      ],
+      "celebrityStyles": [
+        {
+          "style": "Alicia Keys braids",
+          "evidence": [
+            "alicia keys braids"
+          ],
+          "source": "https://tress.ly/dsrhair",
+          "checkedAt": "2026-10-05"
         }
       ]
     },
@@ -56497,6 +57419,16 @@
           "url": "/portfolio-photos/gbraidedit-b11134b9-b515-4921-9eba-945c7de17b64.jpg",
           "source": "instagram"
         }
+      ],
+      "celebrityStyles": [
+        {
+          "style": "Alicia Keys braids",
+          "evidence": [
+            "Alicia keys braids"
+          ],
+          "source": "https://gbraidedit.as.me",
+          "checkedAt": "2026-10-05"
+        }
       ]
     },
     {
@@ -57275,7 +58207,18 @@
         }
       ],
       "photoSearchReviewedAt": "2026-08-31",
-      "photoOrderBumpedAt": 844
+      "photoOrderBumpedAt": 844,
+      "celebrityStyles": [
+        {
+          "style": "Jayda Wayda braids",
+          "evidence": [
+            "4 stitch and sew-in Jayda style deal",
+            "Jayda 4 stitch and sew-in"
+          ],
+          "source": "https://thegrip.as.me/schedule/0d67ca98",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "id": "groath-hair",
@@ -57706,6 +58649,25 @@
           "id": "h-lounge-uk-portfolio-photo-3b4b7b7e-f557-433a-bb01-f1a968cc208f",
           "url": "/portfolio-photos/h-lounge-uk-3b9c9e22-d964-4370-88b6-77e56fa8bf4b.jpg",
           "source": "instagram"
+        }
+      ],
+      "celebrityStyles": [
+        {
+          "style": "Alicia Keys braids",
+          "evidence": [
+            "Freestyle Alicia keys (6-8)"
+          ],
+          "source": "https://hloungeuk8.as.me/schedule/aef0639e",
+          "checkedAt": "2026-10-05"
+        },
+        {
+          "style": "Jayda Wayda braids",
+          "evidence": [
+            "Jayda wayda braids X Quick weave",
+            "Jayda wayda braids x sew in"
+          ],
+          "source": "https://hloungeuk8.as.me/schedule/aef0639e",
+          "checkedAt": "2026-10-05"
         }
       ]
     },
@@ -58396,7 +59358,8 @@
         "French curl bob",
         "Colour blend (mixing braiding hair)",
         "Boho locs",
-        "Fulani sew-in"
+        "Fulani sew-in",
+        "Creative braids"
       ],
       "priceBand": "££",
       "priceSource": "auto",
@@ -58434,7 +59397,17 @@
           "source": "instagram"
         }
       ],
-      "updatedAt": "2026-10-04"
+      "updatedAt": "2026-10-04",
+      "celebrityStyles": [
+        {
+          "style": "Cassie braids",
+          "evidence": [
+            "Cassie braids x leave out"
+          ],
+          "source": "https://hairbykuks.as.me/schedule/5d2ddc2b",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -58862,7 +59835,26 @@
         }
       ],
       "portfolioPhotosCheckedAt": "2026-08-21",
-      "updatedAt": "2026-10-04"
+      "updatedAt": "2026-10-04",
+      "celebrityStyles": [
+        {
+          "style": "Alicia Keys braids",
+          "evidence": [
+            "Alicia Keys Braids"
+          ],
+          "source": "https://hairbyresa.as.me",
+          "checkedAt": "2026-10-05"
+        },
+        {
+          "style": "Cassie braids",
+          "evidence": [
+            "Cassie Braid",
+            "Cassie Braids Ponytail"
+          ],
+          "source": "https://hairbyresa.as.me",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -59837,7 +60829,25 @@
       "sameDayEmergency": false,
       "customFilters": {},
       "photoSearchReviewedAt": "2026-08-31",
-      "photoOrderBumpedAt": 1061
+      "photoOrderBumpedAt": 1061,
+      "celebrityStyles": [
+        {
+          "style": "Alicia Keys braids",
+          "evidence": [
+            "Alicia Keys braids"
+          ],
+          "source": "https://hairbydiorx.as.me/schedule/b407129d",
+          "checkedAt": "2026-10-05"
+        },
+        {
+          "style": "Jayda Wayda braids",
+          "evidence": [
+            "jayda wayda braids (student)"
+          ],
+          "source": "https://hairbydiorx.as.me/schedule/b407129d",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "id": "hairbyjldn",
@@ -59926,6 +60936,17 @@
           "id": "hairbyjldn-portfolio-photo-5089b54f-e62e-4bf6-a864-d4376b0ad8f1",
           "url": "/portfolio-photos/hairbyjldn-a552dfc3-fc6d-48a0-8b02-a52aa54985ad.jpg",
           "source": "instagram"
+        }
+      ],
+      "celebrityStyles": [
+        {
+          "style": "Alicia Keys braids",
+          "evidence": [
+            "Alicia Keys braids -small",
+            "Alicia Keys- medium"
+          ],
+          "source": "https://hairbyjldn.as.me",
+          "checkedAt": "2026-10-05"
         }
       ]
     },
@@ -61979,7 +63000,17 @@
       ],
       "portfolioPhotosCheckedAt": "2026-08-21",
       "photoSearchReviewedAt": "2026-08-31",
-      "photoOrderBumpedAt": 1053
+      "photoOrderBumpedAt": 1053,
+      "celebrityStyles": [
+        {
+          "style": "Jayda Wayda braids",
+          "evidence": [
+            "Jayda Wayda Feedin braids"
+          ],
+          "source": "https://houseofiye.setmore.com",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "id": "houseoflocsuk",
@@ -62485,7 +63516,18 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-10-04"
+      "updatedAt": "2026-10-04",
+      "celebrityStyles": [
+        {
+          "style": "Alicia Keys braids",
+          "evidence": [
+            "Alicia Key Braids (small)",
+            "Alicia Key stitch braids"
+          ],
+          "source": "https://bookwithiislayhair.as.me/schedule/94908167",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -62511,7 +63553,8 @@
         "Feed-in braids",
         "Miracle knots",
         "Quick weave",
-        "Fulani sew-in"
+        "Fulani sew-in",
+        "Feed-in / stitch braid sew-in"
       ],
       "priceBand": "£",
       "priceSource": "auto",
@@ -62552,7 +63595,25 @@
       ],
       "photoSearchReviewedAt": "2026-08-26",
       "photoOrderBumpedAt": 249,
-      "updatedAt": "2026-10-04"
+      "updatedAt": "2026-10-04",
+      "celebrityStyles": [
+        {
+          "style": "Alicia Keys braids",
+          "evidence": [
+            "Alicia keys braids"
+          ],
+          "source": "https://infaithfulhands.as.me/schedule/74c6bf58",
+          "checkedAt": "2026-10-05"
+        },
+        {
+          "style": "Jayda Wayda braids",
+          "evidence": [
+            "Jayda wayda headband quickweave"
+          ],
+          "source": "https://infaithfulhands.as.me/schedule/74c6bf58",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -62929,7 +63990,25 @@
           "source": "instagram"
         }
       ],
-      "updatedAt": "2026-10-04"
+      "updatedAt": "2026-10-04",
+      "celebrityStyles": [
+        {
+          "style": "Alicia Keys braids",
+          "evidence": [
+            "Alicia Keys Braids Package"
+          ],
+          "source": "https://app.squarespacescheduling.com/schedule/6145cdd4",
+          "checkedAt": "2026-10-05"
+        },
+        {
+          "style": "Jayda Wayda braids",
+          "evidence": [
+            "Jayda Wayda Sew in"
+          ],
+          "source": "https://app.squarespacescheduling.com/schedule/6145cdd4",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -63067,6 +64146,18 @@
           "url": "/portfolio-photos/jadeslaysldn-5a10b39e-f4b4-4856-9547-0f86eb0d05e9.jpg",
           "source": "instagram"
         }
+      ],
+      "celebrityStyles": [
+        {
+          "style": "Alicia Keys braids",
+          "evidence": [
+            "Smedium Alicia Keys Braids (16-20 cornrows)",
+            "Small Alicia Keys Braids (20+ Cornrows)",
+            "Medium Alicia Keys Braids (12-16 cornrows)"
+          ],
+          "source": "https://jadeslaysldn.as.me",
+          "checkedAt": "2026-10-05"
+        }
       ]
     },
     {
@@ -63133,7 +64224,17 @@
           "source": "instagram"
         }
       ],
-      "updatedAt": "2026-10-04"
+      "updatedAt": "2026-10-04",
+      "celebrityStyles": [
+        {
+          "style": "Alicia Keys braids",
+          "evidence": [
+            "Alicia keys braids"
+          ],
+          "source": "https://janstouch.as.me/schedule/22f4e700",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -63223,7 +64324,8 @@
         "Traditional sew-in / leave out",
         "Frontal ponytail / bun",
         "Updo",
-        "Fulani sew-in"
+        "Fulani sew-in",
+        "Creative braids"
       ],
       "summary": "Manual entry added from your South East London styling, natural hair, sew-ins, extensions, and wigs list.",
       "source": "manual",
@@ -63276,7 +64378,17 @@
       ],
       "updatedAt": "2026-10-04",
       "photoOrderBumpedAt": 766,
-      "photoSearchReviewedAt": "2026-08-31"
+      "photoSearchReviewedAt": "2026-08-31",
+      "celebrityStyles": [
+        {
+          "style": "Cassie braids",
+          "evidence": [
+            "Cassie half braids & weave"
+          ],
+          "source": "https://jbshairr.as.me/schedule/58ddd979",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "id": "jcdidthat",
@@ -64040,7 +65152,8 @@
         "Trim / hair cut",
         "Men's braids",
         "Boho sew-in",
-        "Feed-in / stitch braid sew-in"
+        "Feed-in / stitch braid sew-in",
+        "Fulani sew-in"
       ],
       "canBraidWithoutGel": true,
       "summary": "Manual entry added from your Kent list covering braids, sew-ins, locs, natural hair, and treatments.",
@@ -64072,7 +65185,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-10-04",
+      "updatedAt": "2026-10-05",
       "googlePlaceId": null,
       "googleReviewCount": 0,
       "googleMapsUri": "",
@@ -64850,7 +65963,28 @@
         }
       ],
       "photoOrderBumpedAt": 685,
-      "photoSearchReviewedAt": "2026-08-31"
+      "photoSearchReviewedAt": "2026-08-31",
+      "celebrityStyles": [
+        {
+          "style": "Alicia Keys braids",
+          "evidence": [
+            "Alicia Keys Braids"
+          ],
+          "source": "https://kitokohairlounge.as.me",
+          "checkedAt": "2026-10-05"
+        },
+        {
+          "style": "Jayda Wayda braids",
+          "evidence": [
+            "JAYDA WAYDA INSPIRED BRAIDS",
+            "Small Jayda wayda braids",
+            "Medium Jayda wayda braids",
+            "s-medium jayda Wayda braids"
+          ],
+          "source": "https://kitokohairlounge.as.me",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -65012,6 +66146,24 @@
           "id": "krownbykrys-portfolio-photo-474305d3-6fa3-4894-8c95-8638c8e58ef9",
           "url": "/portfolio-photos/krownbykrys-19e6e391-9405-4f42-8164-4548327a34cb.jpg",
           "source": "instagram"
+        }
+      ],
+      "celebrityStyles": [
+        {
+          "style": "Alicia Keys braids",
+          "evidence": [
+            "Alicia Keys Braids"
+          ],
+          "source": "https://krownbykrys.as.me",
+          "checkedAt": "2026-10-05"
+        },
+        {
+          "style": "Cassie braids",
+          "evidence": [
+            "Cassie Braids+ Quick Weave"
+          ],
+          "source": "https://krownbykrys.as.me",
+          "checkedAt": "2026-10-05"
         }
       ]
     },
@@ -65258,7 +66410,8 @@
         "Boho braids / goddess braids",
         "Fulani / lemonade braids",
         "French curl",
-        "Miracle knots"
+        "Miracle knots",
+        "Fulani sew-in"
       ],
       "canBraidWithoutGel": true,
       "summary": "Manual Instagram-led entry added from your South East London braids list.",
@@ -65955,7 +67108,18 @@
       "lgbtqFriendly": false,
       "parkingAvailable": false,
       "sellsHairSeparately": false,
-      "customFilters": {}
+      "customFilters": {},
+      "celebrityStyles": [
+        {
+          "style": "Cassie braids",
+          "evidence": [
+            "Cassie Sew In",
+            "'Cassie' Small Knotless BOHO French Curl"
+          ],
+          "source": "https://www.lesbraidit.co.uk/",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "id": "lesley-hairx",
@@ -66036,7 +67200,33 @@
           "source": "instagram"
         }
       ],
-      "updatedAt": "2026-09-08"
+      "updatedAt": "2026-09-08",
+      "celebrityStyles": [
+        {
+          "style": "Alicia Keys braids",
+          "evidence": [
+            "Alicia Keys Braids",
+            "Small Alicia Keys Braids",
+            "Medium Alicia Keys Braids",
+            "Large Alicia Keys Braids"
+          ],
+          "source": "https://lesleyhairx.as.me/schedule/03b16714",
+          "checkedAt": "2026-10-05"
+        },
+        {
+          "style": "Jayda Wayda braids",
+          "evidence": [
+            "Jayda Wayda Braids",
+            "Extra Small Jayda Wayda Braids",
+            "Small Jayda Wayda Braids",
+            "Medium Jayda Wayda Braids",
+            "Large Jayda Wayda Braids",
+            "Small Jayda Wayda Braids Quickweave"
+          ],
+          "source": "https://lesleyhairx.as.me/schedule/03b16714",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "id": "linksldn",
@@ -67294,7 +68484,26 @@
           "source": "google"
         }
       ],
-      "portfolioPhotosCheckedAt": "2026-08-21"
+      "portfolioPhotosCheckedAt": "2026-08-21",
+      "celebrityStyles": [
+        {
+          "style": "Alicia Keys braids",
+          "evidence": [
+            "Alicia keys (10-13)",
+            "Small Alicia Keys (14-18)"
+          ],
+          "source": "https://marnistouch.as.me/schedule/491722ee",
+          "checkedAt": "2026-10-05"
+        },
+        {
+          "style": "Jayda Wayda braids",
+          "evidence": [
+            "JAYDA BUN"
+          ],
+          "source": "https://marnistouch.as.me/schedule/491722ee",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "id": "mb-hair",
@@ -68786,7 +69995,8 @@
         "Trim / hair cut",
         "Silk press",
         "Tracks (+ silk press) / partial / invisible sew-in",
-        "Bouncy blowout / Round Brush Blow dry"
+        "Bouncy blowout / Round Brush Blow dry",
+        "Feed-in / stitch braid sew-in"
       ],
       "summary": "Manual entry added from your latest salon update batch.",
       "source": "manual",
@@ -69683,7 +70893,36 @@
       "senFriendly": false,
       "lgbtqFriendly": false,
       "sellsHairSeparately": true,
-      "sameDayEmergency": false
+      "sameDayEmergency": false,
+      "celebrityStyles": [
+        {
+          "style": "Alicia Keys braids",
+          "evidence": [
+            "‘Alicia Keys’ Braids"
+          ],
+          "source": "https://nsgalore.as.me/",
+          "checkedAt": "2026-10-05"
+        },
+        {
+          "style": "Jayda Wayda braids",
+          "evidence": [
+            "‘Jayda Wayda’ Braids Half Wig",
+            "‘Jayda Wayda’ Braids Sew-In",
+            "'Jayda Wayda' Braids Sew-In"
+          ],
+          "source": "https://nsgalore.as.me/",
+          "checkedAt": "2026-10-05"
+        },
+        {
+          "style": "Cassie braids",
+          "evidence": [
+            "‘Cassie’ Braids Sew-In",
+            "‘Cassie’ Braids"
+          ],
+          "source": "https://nsgalore.as.me/",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -70049,7 +71288,9 @@
         "Boho braids / goddess braids",
         "Fulani / lemonade braids",
         "Stitch braids",
-        "Sleek ponytail / bun"
+        "Sleek ponytail / bun",
+        "Fulani sew-in",
+        "Creative braids"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -70075,7 +71316,17 @@
       ],
       "photoSearchReviewedAt": "2026-08-30",
       "photoOrderBumpedAt": 667,
-      "updatedAt": "2026-08-30"
+      "updatedAt": "2026-08-30",
+      "celebrityStyles": [
+        {
+          "style": "Cassie braids",
+          "evidence": [
+            "Manual Instagram check"
+          ],
+          "source": "https://www.instagram.com/olahairbeau/",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -70370,87 +71621,6 @@
       "sameDayEmergency": false
     },
     {
-      "id": "ovieya-london-ltd",
-      "name": "Ovieya London Ltd",
-      "parkingAvailable": true,
-      "areaId": "north",
-      "areaLabel": "North",
-      "neighbourhood": "North London",
-      "postcode": "",
-      "bookingPlatform": "Direct website",
-      "bookingUrl": "https://www.fresha.com/a/ovieya-london-ltd-london-ovieya-london-480-west-green-road-d1xtxs6y",
-      "instagramUrl": "https://www.instagram.com/ovieyalondon/",
-      "services": [
-        "Knotless braids",
-        "Box braids",
-        "Moisturising treatment",
-        "Silk press",
-        "Wig install (frontal / closure)",
-        "Traditional sew-in / leave out",
-        "Boho braids / goddess braids",
-        "Wash & blowdry",
-        "Trim / hair cut",
-        "Sleek ponytail / bun",
-        "Keratin treatment / Brazilian blowdry",
-        "Highlights",
-        "Balayage",
-        "Soft locs",
-        "Wig cornrows",
-        "Boho braids bob",
-        "Kids & teens styles",
-        "Men's braids"
-      ],
-      "summary": "Manual entry added from your North London braids, natural hair, and wigs list.",
-      "source": "manual",
-      "evidence": [
-        "User-provided manual addition."
-      ],
-      "priceBand": "£",
-      "priceSource": "manual",
-      "priceConfidence": "manual",
-      "priceCheckedAt": "2026-06-05",
-      "priceUpdatedAt": "2026-06-05",
-      "priceEvidence": [
-        "from £38.25",
-        "from £25.50",
-        "from £34"
-      ],
-      "tiktokUrl": "",
-      "hijabiFriendly": false,
-      "canBraidWithoutGel": false,
-      "wheelchairAccessible": true,
-      "servicePriceBand": "",
-      "packagePriceBand": "",
-      "priceIncludesHair": false,
-      "priceComparisonMode": "service-only",
-      "updatedAt": "2026-10-04",
-      "addedVia": "Bulk import",
-      "discoverySource": "Cowork scrape",
-      "verifiedReviewCount": 176,
-      "verifiedReviewCheckedAt": "2026-07-22",
-      "googlePlaceId": "ChIJZUunHoMbdkgReYfaSEixB5k",
-      "googleReviewCount": 98,
-      "googleMapsUri": "https://maps.google.com/?cid=11026977136657991545&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
-      "googleMatchConfidence": "high",
-      "googleDisplayName": "Ovieya London",
-      "googleFormattedAddress": "480 W Green Rd, Duckett's Green, London N15 3DA, UK",
-      "googleCheckedAt": "2026-07-23",
-      "websiteUrl": "https://ovieyalondon.co.uk/",
-      "sellsHairSeparately": true,
-      "hairShopUrl": "https://ovieyalondon.co.uk/shop",
-      "vendorId": "ovieya-london-ltd",
-      "portfolioPhotos": [
-        {
-          "id": "ovieya-london-ltd-portfolio-photo-fb097fa8-8795-4c69-b59a-dbd77ab911a7",
-          "url": "/portfolio-photos/ovieya-london-ltd-59e9aa40-565a-40ec-8127-8445df15b363.jpg",
-          "source": "instagram-reel-frame"
-        }
-      ],
-      "portfolioPhotosCheckedAt": "2026-08-21",
-      "photoSearchReviewedAt": "2026-08-30",
-      "photoOrderBumpedAt": 643
-    },
-    {
       "id": "oyinns-touch",
       "name": "Oyinn's Touch",
       "bookingPlatform": "Direct website",
@@ -70475,7 +71645,9 @@
         "Frontal ponytail / bun",
         "Men's braids",
         "Colour blend (mixing braiding hair)",
-        "Box braids"
+        "Box braids",
+        "Fulani sew-in",
+        "Creative braids"
       ],
       "summary": "Starter verified entry for a South East London salon the project identified as relevant for textured-hair clients looking for smoothing and care services.",
       "source": "manual",
@@ -70952,15 +72124,15 @@
       "tiktokUrl": "",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
-      "updatedAt": "2026-10-04",
+      "updatedAt": "2026-10-05",
       "addedVia": "Code edit",
       "discoverySource": "Cowork scrape",
       "googlePlaceId": null,
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleDisplayName": null,
-      "googleFormattedAddress": null,
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-07-29",
       "websiteUrl": "https://paulamademeuk.com/",
       "portfolioPhotosCheckedAt": "2026-08-21",
@@ -70980,7 +72152,15 @@
           "url": "/portfolio-photos/paula-mademe-6e1383fa-2160-46ec-9654-246fd8b037eb.jpg",
           "source": "instagram"
         }
-      ]
+      ],
+      "hairShopUrl": "https://paulamademeuk.com/",
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": true,
+      "sameDayEmergency": false,
+      "customFilters": {}
     },
     {
       "id": "paule-baptiste",
@@ -71071,7 +72251,26 @@
       "updatedAt": "2026-09-02",
       "photoOrderBumpedAt": 773,
       "photoSearchReviewedAt": "2026-08-31",
-      "sameDayEmergency": false
+      "sameDayEmergency": false,
+      "celebrityStyles": [
+        {
+          "style": "Alicia Keys braids",
+          "evidence": [
+            "Alicia keys / Freestyle Braids Medium",
+            "Alicia Keys/ Freestyle Braids Small"
+          ],
+          "source": "https://paulebaptiste.as.me/schedule/18ba925c",
+          "checkedAt": "2026-10-05"
+        },
+        {
+          "style": "Cassie braids",
+          "evidence": [
+            "Cassie Braids/ Sew-In"
+          ],
+          "source": "https://paulebaptiste.as.me/schedule/18ba925c",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -72194,6 +73393,16 @@
           "id": "rachel-braids-portfolio-photo-5db42342-3262-4cbe-86be-9d3ca39b111d",
           "url": "/portfolio-photos/rachel-braids-48f1b4bd-088f-4974-b710-5a67da3aeac5.jpg",
           "source": "instagram"
+        }
+      ],
+      "celebrityStyles": [
+        {
+          "style": "Alicia Keys braids",
+          "evidence": [
+            "Custom Design Feedin Braids - Alicia Keys Braids"
+          ],
+          "source": "https://rachelbraids.as.me/schedule.php",
+          "checkedAt": "2026-10-05"
         }
       ]
     },
@@ -73784,8 +74993,7 @@
         "Boho braids / goddess braids",
         "Knotless braids",
         "Boho braids bob",
-        "Colour blend (mixing braiding hair)",
-        "Boho sew-in"
+        "Colour blend (mixing braiding hair)"
       ],
       "summary": "Manual Instagram-led entry added from your South East London braids list.",
       "source": "manual",
@@ -73840,7 +75048,7 @@
         }
       ],
       "portfolioPhotosCheckedAt": "2026-08-21",
-      "updatedAt": "2026-10-04",
+      "updatedAt": "2026-10-05",
       "tiktokUrl": "",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
@@ -73910,6 +75118,16 @@
           "id": "savsstyles-portfolio-photo-b8811d1d-7e5a-4baf-83aa-5ad7c4ffaef5",
           "url": "/portfolio-photos/savsstyles-429f865e-54cd-46c1-b3be-2af18dce01e1.jpg",
           "source": "instagram"
+        }
+      ],
+      "celebrityStyles": [
+        {
+          "style": "Jayda Wayda braids",
+          "evidence": [
+            "Jayda Wayda Knotless Braids"
+          ],
+          "source": "https://savsstyles.gettimely.com",
+          "checkedAt": "2026-10-05"
         }
       ]
     },
@@ -74641,7 +75859,9 @@
         "Wash & blowdry",
         "Men's braids",
         "Colour blend (mixing braiding hair)",
-        "Boho locs"
+        "Boho locs",
+        "Fulani sew-in",
+        "Creative braids"
       ],
       "tiktokUrl": "",
       "hijabiFriendly": false,
@@ -74690,6 +75910,16 @@
           "id": "shadia-styles-portfolio-photo-e634de55-9733-455e-a94b-e8f02127ea2f",
           "url": "/portfolio-photos/shadia-styles-b4267c7f-799c-4def-b2b6-c2aa9f1ce94e.jpg",
           "source": "instagram"
+        }
+      ],
+      "celebrityStyles": [
+        {
+          "style": "Cassie braids",
+          "evidence": [
+            "Manual Instagram check"
+          ],
+          "source": "https://www.instagram.com/shadiastyles/",
+          "checkedAt": "2026-10-05"
         }
       ]
     },
@@ -75494,7 +76724,25 @@
           "source": "instagram"
         }
       ],
-      "sameDayEmergency": false
+      "sameDayEmergency": false,
+      "celebrityStyles": [
+        {
+          "style": "Alicia Keys braids",
+          "evidence": [
+            "Alicia key braids (Small/Medium)"
+          ],
+          "source": "https://sixxx.as.me/schedule/a3662958",
+          "checkedAt": "2026-10-05"
+        },
+        {
+          "style": "Jayda Wayda braids",
+          "evidence": [
+            "Jayda ways a half weave half braids (4)"
+          ],
+          "source": "https://sixxx.as.me/schedule/a3662958",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "id": "sk-beauty-ldn",
@@ -75560,7 +76808,17 @@
         }
       ],
       "portfolioPhotosCheckedAt": "2026-08-21",
-      "updatedAt": "2026-10-04"
+      "updatedAt": "2026-10-04",
+      "celebrityStyles": [
+        {
+          "style": "Cassie braids",
+          "evidence": [
+            "Cassie braids"
+          ],
+          "source": "https://skbeautyldn.setmore.com",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -76378,7 +77636,8 @@
         "Creative braids",
         "Boho braids bob",
         "French curl bob",
-        "Boho sew-in"
+        "Boho sew-in",
+        "Microbraids / x-small braids"
       ],
       "summary": "Manual entry added from your South West London list covering braids, sew-ins, natural hair, treatments, extensions, and styling.",
       "source": "manual",
@@ -76463,7 +77722,17 @@
         }
       ],
       "portfolioPhotosCheckedAt": "2026-08-21",
-      "photoSearchReviewedAt": "2026-08-25"
+      "photoSearchReviewedAt": "2026-08-25",
+      "celebrityStyles": [
+        {
+          "style": "Cassie braids",
+          "evidence": [
+            "Manual check"
+          ],
+          "source": "https://www.vagaro.com/southwestsixsalon",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "id": "specialtouch-nuria",
@@ -76639,7 +77908,8 @@
         "Feed-in braids",
         "Boho braids / goddess braids",
         "Knotless braids",
-        "Creative braids"
+        "Creative braids",
+        "Fulani sew-in"
       ],
       "priceBand": "£",
       "priceSource": "manual",
@@ -76761,7 +78031,8 @@
         "Twists (with extensions)",
         "Feed-in braids",
         "Crochet faux locs / invisible locs",
-        "Fulani sew-in"
+        "Fulani sew-in",
+        "Creative braids"
       ],
       "summary": "Manual entry added from your Essex salon update batch.",
       "source": "manual",
@@ -76811,7 +78082,25 @@
           "source": "instagram"
         }
       ],
-      "updatedAt": "2026-10-04"
+      "updatedAt": "2026-10-04",
+      "celebrityStyles": [
+        {
+          "style": "Alicia Keys braids",
+          "evidence": [
+            "Alicia keys braids"
+          ],
+          "source": "https://steazeglam.as.me/schedule/48e1d671",
+          "checkedAt": "2026-10-05"
+        },
+        {
+          "style": "Tyla braids",
+          "evidence": [
+            "Tyla side-part braids + sew-in"
+          ],
+          "source": "https://steazeglam.as.me/schedule/48e1d671",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "id": "stephanie-lebby-hair-limited",
@@ -77529,6 +78818,16 @@
           "url": "/portfolio-photos/styledbyambss-f551cc6e-1675-496b-ac4f-581610af2609.jpg",
           "source": "instagram"
         }
+      ],
+      "celebrityStyles": [
+        {
+          "style": "Alicia Keys braids",
+          "evidence": [
+            "alicia keys inspired braids"
+          ],
+          "source": "https://bookwithstyledbyambss.as.me/schedule/16258fa6",
+          "checkedAt": "2026-10-05"
+        }
       ]
     },
     {
@@ -78094,7 +79393,17 @@
           "source": "instagram"
         }
       ],
-      "portfolioPhotosCheckedAt": "2026-08-21"
+      "portfolioPhotosCheckedAt": "2026-08-21",
+      "celebrityStyles": [
+        {
+          "style": "Alicia Keys braids",
+          "evidence": [
+            "Alicia Keys"
+          ],
+          "source": "https://swishldn.as.me/schedule/e07185ac",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "id": "taiwo-styles",
@@ -78349,7 +79658,18 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-10-04"
+      "updatedAt": "2026-10-04",
+      "celebrityStyles": [
+        {
+          "style": "Alicia Keys braids",
+          "evidence": [
+            "Small Alicia key braids",
+            "Medium Alicia Key braids"
+          ],
+          "source": "https://teeshhair.as.me/schedule/22ee785f",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "id": "texturehairbyfloria",
@@ -79336,7 +80656,17 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-10-04"
+      "updatedAt": "2026-10-04",
+      "celebrityStyles": [
+        {
+          "style": "Alicia Keys braids",
+          "evidence": [
+            "Alicia keys braids"
+          ],
+          "source": "https://thehctstudio.as.me/schedule/26197d98",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -79886,7 +81216,17 @@
         }
       ],
       "photoSearchReviewedAt": "2026-08-27",
-      "photoOrderBumpedAt": 511
+      "photoOrderBumpedAt": 511,
+      "celebrityStyles": [
+        {
+          "style": "Jayda Wayda braids",
+          "evidence": [
+            "4 stitch braids + QW Jayda wayda style"
+          ],
+          "source": "https://theoriginalts.as.me/schedule/ba112022",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -80412,7 +81752,20 @@
       "parkingAvailable": false,
       "sellsHairSeparately": false,
       "photoSearchReviewedAt": "2026-08-26",
-      "photoOrderBumpedAt": 405
+      "photoOrderBumpedAt": 405,
+      "celebrityStyles": [
+        {
+          "style": "Alicia Keys braids",
+          "evidence": [
+            "smedium alicia key fulani braids",
+            "medium alicia key fulani",
+            "Medium Alicia key braids",
+            "small alicia key braids"
+          ],
+          "source": "https://theesbnuk.as.me",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "id": "thegreenchair",
@@ -80817,7 +82170,8 @@
         "Boho braids / goddess braids",
         "Fulani / lemonade braids",
         "Feed-in braids",
-        "Twists (with extensions)"
+        "Twists (with extensions)",
+        "Fulani sew-in"
       ],
       "canBraidWithoutGel": true,
       "addedVia": "Code edit",
@@ -81390,7 +82744,17 @@
           "source": "instagram-reel-frame"
         }
       ],
-      "photoOrderBumpedAt": 600
+      "photoOrderBumpedAt": 600,
+      "celebrityStyles": [
+        {
+          "style": "Jayda Wayda braids",
+          "evidence": [
+            "Fulani Sew-in (Jayda Wayda Braids)"
+          ],
+          "source": "https://tthairbarldn.as.me",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "id": "uni-tinas-saloon",
@@ -81774,7 +83138,17 @@
       "portfolioPhotosCheckedAt": "2026-08-21",
       "updatedAt": "2026-08-31",
       "photoSearchSkippedAt": "2026-08-31",
-      "photoSearchSkippedReason": "no-instagram-results"
+      "photoSearchSkippedReason": "no-instagram-results",
+      "celebrityStyles": [
+        {
+          "style": "Alicia Keys braids",
+          "evidence": [
+            "Alicia Keys (Freestyle) Stitch Braids 16 - 20 Braids"
+          ],
+          "source": "https://vhudzihairbyaliciapearl.setmore.com/",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "id": "vstylsz",
@@ -81861,7 +83235,26 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-10-04"
+      "updatedAt": "2026-10-04",
+      "celebrityStyles": [
+        {
+          "style": "Alicia Keys braids",
+          "evidence": [
+            "Medium Alicia keys braids(up to 14)",
+            "Small Alicia keys braids (up to 24)"
+          ],
+          "source": "https://vstylsz.as.me/schedule/ed30d471",
+          "checkedAt": "2026-10-05"
+        },
+        {
+          "style": "Cassie braids",
+          "evidence": [
+            "Cassie Braids (includes curls)"
+          ],
+          "source": "https://vstylsz.as.me/schedule/ed30d471",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -82493,7 +83886,8 @@
         "French curl",
         "Box braids",
         "Feed-in braids",
-        "Miracle knots"
+        "Miracle knots",
+        "Fulani sew-in"
       ],
       "canBraidWithoutGel": true,
       "addedVia": "Code edit",
@@ -82791,7 +84185,18 @@
       ],
       "photoSearchReviewedAt": "2026-08-26",
       "photoOrderBumpedAt": 198,
-      "updatedAt": "2026-10-04"
+      "updatedAt": "2026-10-04",
+      "celebrityStyles": [
+        {
+          "style": "Alicia Keys braids",
+          "evidence": [
+            "Alicia Keys Braids",
+            "Alicia Keys Braids with Boho"
+          ],
+          "source": "https://zkstouch.as.me/schedule/39b4e5da",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "id": "zulu-bonita",
@@ -86256,7 +87661,17 @@
       ],
       "photoSearchReviewedAt": "2026-08-27",
       "photoOrderBumpedAt": 516,
-      "updatedAt": "2026-08-27"
+      "updatedAt": "2026-08-27",
+      "celebrityStyles": [
+        {
+          "style": "Alicia Keys braids",
+          "evidence": [
+            "alicia keys braids"
+          ],
+          "source": "https://thehairtresser.as.me",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "id": "silkstylistuk",
@@ -86649,7 +88064,17 @@
       "parkingAvailable": false,
       "sellsHairSeparately": true,
       "customFilters": {},
-      "sameDayEmergency": false
+      "sameDayEmergency": false,
+      "celebrityStyles": [
+        {
+          "style": "Cassie braids",
+          "evidence": [
+            "Cassie Braids"
+          ],
+          "source": "https://app.acuityscheduling.com/schedule/7a634868/category/X19hbGxfXw%3D%3D",
+          "checkedAt": "2026-10-05"
+        }
+      ]
     },
     {
       "id": "joycekartistry",

@@ -40,6 +40,7 @@ const countryNames = new Intl.DisplayNames(["en"], { type: "region" });
 const umamiImportedSessionIds = [...umamiDevSessionIds, ...umamiSessionGeo.map((session) => session.sessionId)];
 
 const ZERO_RESULT_LIMIT = 5;
+const UNMATCHED_SERVICE_SEARCH_LIMIT = 30;
 const TOP_STYLISTS_LIMIT = 5;
 const ALL_TIME_MAX_DAYS = 1095; // cap "All time" at 3 years so the chart never grows unbounded
 const RECENT_ACTIVITY_LIMIT = 50;
@@ -265,6 +266,27 @@ async function fetchZeroResultSearches(preset) {
       lastSeenAt: String(lastSeen).slice(0, 10),
     };
   });
+}
+
+// What people typed into "Search services" that matched no service (the `service_search`
+// event from App.tsx). Shows demand for styles we don't list, or only keep hidden.
+async function fetchUnmatchedServiceSearches(preset) {
+  const rows = await runHogQLQuery(`
+    SELECT properties.query AS query, count() AS n, max(timestamp) AS last_seen
+    FROM events
+    WHERE event = 'service_search' AND properties.has_results = false AND timestamp >= now() - INTERVAL ${preset.days} DAY${internalTrafficExclusionClause()}
+    GROUP BY query
+    ORDER BY n DESC, last_seen DESC
+    LIMIT ${UNMATCHED_SERVICE_SEARCH_LIMIT}
+  `);
+
+  return rows
+    .filter(([query]) => query)
+    .map(([query, count, lastSeen]) => ({
+      query: String(query),
+      count: Number(count),
+      lastSeenAt: String(lastSeen).slice(0, 10),
+    }));
 }
 
 async function fetchTopStylists(preset) {
@@ -530,6 +552,7 @@ export async function fetchAnalyticsSummary(range = "7d") {
       clicks,
       filterUsage,
       zeroResultSearches,
+      unmatchedServiceSearches,
       topStylists,
       reviewsClicksByPlatform,
       deviceBreakdown,
@@ -541,6 +564,7 @@ export async function fetchAnalyticsSummary(range = "7d") {
       fetchClickCounts(preset),
       fetchFilterUsage(preset),
       fetchZeroResultSearches(preset),
+      fetchUnmatchedServiceSearches(preset),
       fetchTopStylists(preset),
       fetchReviewsClicksByPlatform(preset),
       fetchDeviceBreakdown(preset),
@@ -558,6 +582,7 @@ export async function fetchAnalyticsSummary(range = "7d") {
       reviewsClicksByPlatform,
       filterUsage,
       zeroResultSearches,
+      unmatchedServiceSearches,
       topStylists,
       deviceBreakdown,
       countryBreakdown: locationBreakdown.countryBreakdown,

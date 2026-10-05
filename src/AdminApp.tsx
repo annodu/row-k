@@ -752,6 +752,7 @@ type AnalyticsSummary = {
   reviewsClicksByPlatform: { platform: string; clicks: number }[];
   filterUsage: { label: string; rows: { label: string; count: number }[] }[];
   zeroResultSearches: { filters: string[]; count: number; lastSeenAt: string }[];
+  unmatchedServiceSearches?: { query: string; count: number; lastSeenAt: string }[];
   topStylists: { name: string; areaLabel: string; clicks: number }[];
   deviceBreakdown: { deviceType: string; visitors: number }[];
   countryBreakdown: { country: string; visitors: number }[];
@@ -806,7 +807,7 @@ const serviceGroups = [
   { label: "Bridal", services: ["Bridal"] },
   { label: "Editorial / Session styling", services: ["Editorial / Session styling"] },
   { label: "Kids & teens styles", services: ["Kids & teens styles"] },
-  { label: "Extensions", services: ["Clip ins (+ silk press)","K-tips / invisible strands","LA weave / microlinks wefts / braidless sew in","I-tips / microlinks strands","Tape ins","Hybrid installs","Tape-ins + sew-in","K-tips + sew-in"] },
+  { label: "Extensions", services: ["Clip ins (+ silk press)","K-tips / invisible strands","LA weave / microlinks wefts / braidless sew in","I-tips / microlinks strands","Tape ins","Tape-ins + sew-in","K-tips + sew-in"] },
   { label: "Locs", services: ["Starter locs / instant locs","Retwist / interlocking","Loc styling","Microlocs / sisterlocs","Loc extensions (permanent)"] },
   { label: "Faux locs", services: ["Soft locs","Boho locs","Crochet faux locs / invisible locs","Butterfly locs"] },
   { label: "Sew in / weave", services: ["Closure sew-in / closure behind the hairline","Flipover / Versatile sew-in","Frontal sew-in","Pixie wig / weave install","Quick weave","Sew-in take-down","Tracks (+ silk press) / partial / invisible sew-in","Traditional sew-in / leave out","Fulani sew-in","Boho sew-in","Feed-in / stitch braid sew-in","Tape-ins + sew-in","K-tips + sew-in"] },
@@ -7007,6 +7008,16 @@ function AnalyticsPage({ onOpenView }: { onOpenView: (view: AdminView) => void }
         </div>
       </div>
 
+      <div className="border border-stone-200 bg-white p-6">
+        <h2 className="text-sm font-semibold text-stone-950">Service searches with no match</h2>
+        <p className="mt-1 text-xs text-stone-500">What people typed into &ldquo;Search services&rdquo; that matched nothing</p>
+        {isRangeLoading ? (
+          <ZeroResultSearchesSkeleton />
+        ) : (
+          <UnmatchedServiceSearchesList rows={analytics?.unmatchedServiceSearches ?? []} />
+        )}
+      </div>
+
       <div className="grid gap-4 lg:grid-cols-3">
         <div className="border border-stone-200 bg-white p-6">
           <h2 className="text-sm font-semibold text-stone-950">Reviews clicks by platform</h2>
@@ -7531,6 +7542,32 @@ function ZeroResultSearchesSkeleton({ pulse = true }: { pulse?: boolean }) {
             <span className={cn("mt-1.5 block h-3 w-24 rounded-none", barLight)} />
           </span>
           <span className={cn("h-3 w-14 shrink-0 rounded-none", bar)} />
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function UnmatchedServiceSearchesList({ rows }: { rows: { query: string; count: number; lastSeenAt: string }[] }) {
+  if (!rows.length) {
+    return (
+      <SkeletonEmptyState label="No unmatched searches yet">
+        <ZeroResultSearchesSkeleton pulse={false} />
+      </SkeletonEmptyState>
+    );
+  }
+
+  return (
+    <ul className="mt-5 grid gap-x-8 gap-y-3 sm:grid-cols-2 lg:grid-cols-3">
+      {rows.map((row) => (
+        <li key={row.query} className="flex items-start justify-between gap-3 border-b border-stone-100 pb-3">
+          <span className="min-w-0 flex-1">
+            <span className="block break-words text-sm text-stone-950">&ldquo;{row.query}&rdquo;</span>
+            <span className="mt-1 block text-xs text-stone-500">Last seen {formatRelativeTime(row.lastSeenAt)}</span>
+          </span>
+          <span className="shrink-0 whitespace-nowrap text-xs font-semibold text-stone-950">
+            {row.count} search{row.count === 1 ? "" : "es"}
+          </span>
         </li>
       ))}
     </ul>

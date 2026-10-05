@@ -1,10 +1,95 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-10-04",
-    "count": 16
+    "updatedAt": "2026-10-05",
+    "count": 17
   },
   "drafts": [
+    {
+      "id": "ovieya-london-ltd",
+      "status": "deprecated",
+      "name": "Ovieya London Ltd",
+      "areaId": "north",
+      "areaIds": [
+        "north"
+      ],
+      "areaLabel": "North",
+      "neighbourhood": "North London",
+      "postcode": "",
+      "bookingPlatform": "Direct website",
+      "bookingUrl": "https://www.fresha.com/a/ovieya-london-ltd-london-ovieya-london-480-west-green-road-d1xtxs6y",
+      "websiteUrl": "https://ovieyalondon.co.uk/",
+      "hairShopUrl": "https://ovieyalondon.co.uk/shop",
+      "instagramUrl": "https://www.instagram.com/ovieyalondon/",
+      "tiktokUrl": "",
+      "addedVia": "Bulk import",
+      "discoverySource": "Cowork scrape",
+      "services": [
+        "Knotless braids",
+        "Box braids",
+        "Moisturising treatment",
+        "Silk press",
+        "Wig install (frontal / closure)",
+        "Traditional sew-in / leave out",
+        "Boho braids / goddess braids",
+        "Wash & blowdry",
+        "Trim / hair cut",
+        "Sleek ponytail / bun",
+        "Keratin treatment / Brazilian blowdry",
+        "Highlights",
+        "Balayage",
+        "Soft locs",
+        "Wig cornrows",
+        "Boho braids bob",
+        "Kids & teens styles",
+        "Men's braids"
+      ],
+      "rawServices": [],
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": true,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": true,
+      "customFilters": {},
+      "sellsHairSeparately": true,
+      "sameDayEmergency": false,
+      "priceBand": "£",
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "manual",
+      "priceEvidence": [
+        "from £38.25",
+        "from £25.50",
+        "from £34"
+      ],
+      "priceCheckedAt": "2026-06-05",
+      "priceUpdatedAt": "2026-06-05",
+      "priceConfidence": "manual",
+      "summary": "Manual entry added from your North London braids, natural hair, and wigs list.",
+      "warnings": [],
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "createdAt": "2026-10-05",
+      "updatedAt": "2026-10-05",
+      "googleMapsUri": "https://maps.google.com/?cid=11026977136657991545&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
+      "googleReviewCount": 98,
+      "googleMatchConfidence": "high",
+      "googleDisplayName": "Ovieya London",
+      "verifiedReviewCount": 176,
+      "portfolioPhotos": [
+        {
+          "id": "ovieya-london-ltd-portfolio-photo-fb097fa8-8795-4c69-b59a-dbd77ab911a7",
+          "url": "/portfolio-photos/ovieya-london-ltd-59e9aa40-565a-40ec-8127-8445df15b363.jpg",
+          "source": "instagram-reel-frame"
+        }
+      ],
+      "googlePlaceId": "",
+      "googleFormattedAddress": ""
+    },
     {
       "id": "the-es-experience",
       "status": "deprecated",

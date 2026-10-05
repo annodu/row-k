@@ -243,7 +243,6 @@ const serviceRuleMatchers = [
   // line names K-tips, I-tips or braids rather than tapes.
   ["Tape-ins + sew-in", [/^(?!.*\b[ki]\s*tips?\b)(?!.*\b(braids?|cornrows?|fulani|boho)\b).*\bhybrid\b.*\b(sew\s*in|sewin|weave)\b/, /\btracks?\b.*\btapes?\b.*\bhybrid\b/, /\bhybrid\b.*\btracks?\b.*\btapes?\b/, /^(?!.*\b(removals?|take\s*down|takedown)\b)(?=.*\btapes?\b)(?=.*\b(sew\s*in|sewin)\b)/]],
   ["K-tips + sew-in", [/^(?!.*\b(removals?|take\s*down|takedown)\b)(?=.*\bk\s*tips?\b)(?=.*\b(sew\s*in|sewin|hybrid)\b)/]],
-  ["Hybrid installs", [/^(?!.*\b(braids?|cornrows?|fulani|boho)\b).*\bhybrid\s+install(s|ation)?\b/]],
   ["Sew-in take-down", [/\b(sew\s*in|sewin|weave|tracks?)\b.*\b(take\s*down|takedown|removal|remove)\b/, /\b(take\s*down|takedown|removal|remove)\b.*\b(sew\s*in|sewin|weave|tracks?)\b/]],
   ["Tracks (+ silk press) / partial / invisible sew-in", [/\btracks?\b/, /\bsingle\s+tracks?\s+weave\b/, /\bsingle\s*\/\s*double\s+tracks?\s+weave\b/, /\bindividual\s+sewn\s+on\s+tracks?\b/, /\bpartial\b.*\b(sew\s*in|sewin|weave)\b/, /\binvisible\b.*\b(sew\s*in|sewin|weave|wefts?)\b/, /\b(row|rows|line)\s+(?:of\s+)?(sew\s*in|sewin|weave)\b/, /\b(sew\s*in|sewin|weave)\s+(row|rows|line)\b/, /\bweave\s+on\s+per\s+row\b/, /\bweave\s+tracks?\s*\(?per\s+track\)?\b/, /\bsew[\s-]*in\s+tracks?\b/, /\bper\s+(track|row|line)\b/, /\btrack\s+per\s+row\b/, /\btracks?\s+per\s+(track|row|line|double\s+row)\b/, /\btraditional\s+weave\s+rows?\b/, /^\d+\s+row$/, /\bone\s+row\b/]],
   ["Traditional sew-in / leave out", [/\bleave\s*out\b/, /\b(middle|side)\s+part\b.*\b(sew\s*in|sewin|weave)\b/, /\btraditional\b.*\b(sew\s*in|sewin|weave)\b/, /\b(sew\s*in|sewin)\b/]],
@@ -365,7 +364,6 @@ export const serviceNegationHints = {
   "Highlights": ["highlights", "high lights"],
   "Tape-ins + sew-in": ["hybrid sew in", "hybrid sewin", "hybrid weave", "tape in sew in", "tapes and sew in"],
   "K-tips + sew-in": ["k tip sew in", "k tips sew in", "hybrid k tips", "k tip hybrid"],
-  "Hybrid installs": ["hybrid install", "hybrid installation", "hybrid extensions"],
   "Japanese straightening": ["japanese straightening"],
   "K18 treatment": ["k 18", "k18", "k-18"],
   "K-tips / invisible strands": ["k tips", "invisible strands", "keratin tip", "keratin tips", "keratin bonds"],

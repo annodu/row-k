@@ -1,16 +1,19 @@
-// How the public filter panel presents filters.json services: umbrella
-// services and friendlier display names. Shared by the site
+// How the public filter panel presents filters.json services: filter-only
+// headings and friendlier display names. Shared by the site
 // (App.tsx) and Social Studio so the carousel's filter sheets match the site.
 
-// Umbrella services that also match their members (see derivedServiceMatches
-// in salon-index.mjs).
+// Filter-only headings that match any of their members (see
+// derivedServiceMatches in salon-index.mjs). They aren't services, so they stay
+// out of filters.json and never show up in the service pickers.
 export const serviceFamilies: Record<string, readonly string[]> = {
-  "Hybrid installs": ["Tape-ins + sew-in", "K-tips + sew-in"],
+  "Hybrid sew ins (all)": ["Boho sew-in", "Feed-in / stitch braid sew-in", "Fulani sew-in", "K-tips + sew-in", "Tape-ins + sew-in"],
 };
 
-// Families that nest their members in a category's filter list. Empty: every
-// style, hybrids included, is listed flat under its category.
-export const subcategoryGroupsByCategory: Record<string, readonly string[]> = {};
+// Families that nest their members in a category's filter list. Only Sew in /
+// weave nests (its hybrids); every other category lists its styles flat.
+export const subcategoryGroupsByCategory: Record<string, readonly string[]> = {
+  "sew-in-weave": ["Hybrid sew ins (all)"],
+};
 
 const serviceDisplayNames: Record<string, string> = {
   "Wig cornrows": "(Wig) cornrows",

@@ -39,7 +39,7 @@ const defaultCategoryMap = {
   "bridal-services": ["Bridal"],
   "editorial-services": ["Editorial / Session styling"],
   "kids-teens-services": ["Kids & teens styles"],
-  "extension-services": ["Clip ins (+ silk press)","K-tips / invisible strands","LA weave / microlinks wefts / braidless sew in","I-tips / microlinks strands","Tape ins","Hybrid installs","Tape-ins + sew-in","K-tips + sew-in"],
+  "extension-services": ["Clip ins (+ silk press)","K-tips / invisible strands","LA weave / microlinks wefts / braidless sew in","I-tips / microlinks strands","Tape ins","Tape-ins + sew-in","K-tips + sew-in"],
   "locs-services": ["Starter locs / instant locs","Retwist / interlocking","Loc styling","Microlocs / sisterlocs","Loc extensions (permanent)"],
   "faux-locs-services": ["Soft locs","Boho locs","Crochet faux locs / invisible locs","Butterfly locs"],
   "sew-in-weave": ["Closure sew-in / closure behind the hairline","Flipover / Versatile sew-in","Frontal sew-in","Pixie wig / weave install","Quick weave","Sew-in take-down","Tracks (+ silk press) / partial / invisible sew-in","Traditional sew-in / leave out","Fulani sew-in","Boho sew-in","Feed-in / stitch braid sew-in","Tape-ins + sew-in","K-tips + sew-in"],
@@ -703,9 +703,10 @@ function matchesRegion(salon, regions) {
 }
 
 // Parent filters are derived: a stylist tagged with a member (e.g. Tape-ins +
-// sew-in) also matches its umbrella service.
+// sew-in) also matches its parent heading.
 export const derivedServiceMatches = {
-  "Hybrid installs": ["Tape-ins + sew-in", "K-tips + sew-in"],
+  // Sew in / weave's filter-only hybrid heading (see serviceFamilies in src/lib/serviceTaxonomy.ts).
+  "Hybrid sew ins (all)": ["Boho sew-in", "Feed-in / stitch braid sew-in", "Fulani sew-in", "K-tips + sew-in", "Tape-ins + sew-in"],
 };
 
 function hasService(services, service) {

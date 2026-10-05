@@ -92,7 +92,7 @@ const categoryMap = {
   "bridal-services": { label: "Bridal", subcategories: ["all","Bridal"] },
   "editorial-services": { label: "Editorial / Session styling", subcategories: ["all","Editorial / Session styling"] },
   "kids-teens-services": { label: "Kids & teens styles", subcategories: ["all","Kids & teens styles"] },
-  "extension-services": { label: "Extensions", subcategories: ["all","Clip ins (+ silk press)","K-tips / invisible strands","LA weave / microlinks wefts / braidless sew in","I-tips / microlinks strands","Tape ins","Hybrid installs","Tape-ins + sew-in","K-tips + sew-in"] },
+  "extension-services": { label: "Extensions", subcategories: ["all","Clip ins (+ silk press)","K-tips / invisible strands","LA weave / microlinks wefts / braidless sew in","I-tips / microlinks strands","Tape ins","Tape-ins + sew-in","K-tips + sew-in"] },
   "locs-services": { label: "Locs", subcategories: ["all","Starter locs / instant locs","Retwist / interlocking","Loc styling","Microlocs / sisterlocs","Loc extensions (permanent)"] },
   "faux-locs-services": { label: "Faux locs", subcategories: ["all","Soft locs","Boho locs","Crochet faux locs / invisible locs","Butterfly locs"] },
   "sew-in-weave": { label: "Sew in / weave", subcategories: ["all","Closure sew-in / closure behind the hairline","Flipover / Versatile sew-in","Frontal sew-in","Pixie wig / weave install","Quick weave","Sew-in take-down","Tracks (+ silk press) / partial / invisible sew-in","Traditional sew-in / leave out","Fulani sew-in","Boho sew-in","Feed-in / stitch braid sew-in","Tape-ins + sew-in","K-tips + sew-in"] },
@@ -109,7 +109,7 @@ const categoryServiceMap = {
   "bridal-services": ["Bridal"],
   "editorial-services": ["Editorial / Session styling"],
   "kids-teens-services": ["Kids & teens styles"],
-  "extension-services": ["Clip ins (+ silk press)","K-tips / invisible strands","LA weave / microlinks wefts / braidless sew in","I-tips / microlinks strands","Tape ins","Hybrid installs","Tape-ins + sew-in","K-tips + sew-in"],
+  "extension-services": ["Clip ins (+ silk press)","K-tips / invisible strands","LA weave / microlinks wefts / braidless sew in","I-tips / microlinks strands","Tape ins","Tape-ins + sew-in","K-tips + sew-in"],
   "locs-services": ["Starter locs / instant locs","Retwist / interlocking","Loc styling","Microlocs / sisterlocs","Loc extensions (permanent)"],
   "faux-locs-services": ["Soft locs","Boho locs","Crochet faux locs / invisible locs","Butterfly locs"],
   "sew-in-weave": ["Closure sew-in / closure behind the hairline","Flipover / Versatile sew-in","Frontal sew-in","Pixie wig / weave install","Quick weave","Sew-in take-down","Tracks (+ silk press) / partial / invisible sew-in","Traditional sew-in / leave out","Fulani sew-in","Boho sew-in","Feed-in / stitch braid sew-in","Tape-ins + sew-in","K-tips + sew-in"],
@@ -263,7 +263,7 @@ type VendorSearchResponse = {
 const regionLabelMap = Object.fromEntries(regions.map((region) => [region.id, region.label])) as Record<string, string>;
 
 function normalizeServiceSearch(s: string) {
-  return s.toLowerCase().replace(/[-–—]/g, " ").replace(/\s+/g, " ").trim();
+  return s.toLowerCase().replace(/[-–—,]/g, " ").replace(/\s+/g, " ").trim();
 }
 
 // Search-only synonyms, merged on top of the server's list. They live here rather
@@ -271,6 +271,9 @@ function normalizeServiceSearch(s: string) {
 // broad word like "twists" would misfire.
 const extraServiceSearchAliases: Record<string, string[]> = {
   "Wig cornrows": ["twists", "wig cornrows", "cornrows for wig", "natural hair cornrows"],
+  "Boho sew-in": ["half braid half sew in", "half braids half sew in", "half sew in half braids", "half braid half weave", "half braids half weave", "half weave half braids", "half braids half quick weave"],
+  "Feed-in / stitch braid sew-in": ["half braid half sew in", "half braids half sew in", "half sew in half braids", "half braid half weave", "half braids half weave", "half weave half braids", "half braids half quick weave"],
+  "Fulani sew-in": ["half braid half sew in", "half braids half sew in", "half sew in half braids", "half braid half weave", "half braids half weave", "half weave half braids", "half braids half quick weave"],
 };
 
 function withExtraServiceSearchAliases(aliases: Record<string, string[]>) {
@@ -304,7 +307,6 @@ const defaultServiceSearchAliases: Record<string, string[]> = {
   "Twists (with extensions)": ["twists with extensions", "passion twists", "marley twists", "senegalese twists", "kinky twists", "rope twists", "island twists", "island twist"],
   "Tape-ins + sew-in": ["hybrid sew in", "hybrid sew-in", "hybrid weave", "tracks + tapes hybrid", "tracks and tapes hybrid", "tape in sew in", "tape-in sew-in", "tapes and sew in"],
   "K-tips + sew-in": ["k tip sew in", "k-tip sew-in", "k tips sew in", "hybrid k tips", "k tip hybrid"],
-  "Hybrid installs": ["hybrid install", "hybrid installation", "hybrid extensions"],
   "Tracks (+ silk press) / partial / invisible sew-in": ["rows", "tracks", "track per row", "per row", "one row", "weave tracks", "partial sew in", "partial sew-in", "invisible sew in", "invisible weave", "invisible weft", "half head weave"],
   "Silk press": ["straightening", "straighten", "silk press", "silkpress", "press and curl"],
   "Bouncy blowout / round brush blow dry": ["bouncy blowout", "bouncy blow out", "bouncy blowdry", "bouncy blow dry", "bouncy blow-dry", "round brush blow dry", "round brush blowdry", "blowout"],
@@ -2881,6 +2883,35 @@ export default function App() {
   const runtimeCategoryServiceMap = Object.fromEntries(
     runtimeCategories.filter((c) => c.id !== "all").map((c) => [c.id, c.subcategories.length ? c.subcategories : [...(categoryServiceMap[c.id as ServiceCategoryId] ?? [])]])
   );
+  function categoryMatchesServiceSearch(item: { label: string; subcategories: string[] }) {
+    if (!serviceSearch.trim()) return true;
+    const q = normalizeServiceSearch(serviceSearch);
+    if (normalizeServiceSearch(item.label).includes(q)) return true;
+    if (item.subcategories.some((s) => s !== "all" && normalizeServiceSearch(s).includes(q))) return true;
+    const aliases = serviceSearchAliases[item.label] ?? [];
+    if (aliases.some((alias) => normalizeServiceSearch(alias).includes(q))) return true;
+    return item.subcategories.some((s) => s !== "all" && (serviceSearchAliases[s] ?? []).some((alias) => normalizeServiceSearch(alias).includes(q)));
+  }
+
+  // Log what people type into "Search services" once they pause, so we can spot demand for
+  // styles we don't list (or only keep hidden, like celebrityStyles). Text and match count only.
+  const lastTrackedServiceSearchRef = useRef("");
+  useEffect(() => {
+    // Skip anything that looks like contact details (an email, or 5+ digits like a phone number).
+    const query = normalizeServiceSearch(serviceSearch).slice(0, 60);
+    if (query.length < 2 || query === lastTrackedServiceSearchRef.current || /@|\d{5,}|\d[\d\s]{6,}\d/.test(query)) return;
+    const timer = window.setTimeout(() => {
+      const matches = (text: string) => normalizeServiceSearch(text).includes(query);
+      const services = new Set(runtimeCategories.filter((c) => c.id !== "all").flatMap((c) => c.subcategories));
+      const matchCount = [...services].filter((service) =>
+        matches(service) || matches(getServiceDisplayName(service)) || (serviceSearchAliases[service] ?? []).some(matches),
+      ).length;
+      lastTrackedServiceSearchRef.current = query;
+      trackAnalyticsEvent("service_search", { query, match_count: matchCount, has_results: matchCount > 0 });
+    }, 1500);
+    return () => window.clearTimeout(timer);
+  }, [serviceSearch]); // eslint-disable-line react-hooks/exhaustive-deps
+
   const submissionServiceGroups = runtimeCategories
     .filter((c) => c.id !== "all")
     .map((c) => ({ id: c.id, label: c.label, services: runtimeCategoryServiceMap[c.id] ?? [] }))
@@ -4861,7 +4892,7 @@ export default function App() {
                 <h2 id="privacy-heading" className="text-[20px] font-medium text-stone-950 dark:text-stone-50">
                   Privacy
                 </h2>
-                <p className="mt-1 text-[13px] leading-[1.5] text-stone-600 dark:text-stone-400">Last updated 1 September 2026.</p>
+                <p className="mt-1 text-[13px] leading-[1.5] text-stone-600 dark:text-stone-400">Last updated 5 October 2026.</p>
               </div>
               <button
                 type="button"
@@ -4890,7 +4921,8 @@ export default function App() {
                     <li>The name, Instagram/booking links, location and service details you enter about the stylist</li>
                   </ul>
                   <p>
-                    We also use privacy-focused analytics (PostHog) to see how the site is used: page views and clicks. This runs without
+                    We also use privacy-focused analytics (PostHog) to see how the site is used: page views, clicks, the filters you pick,
+                    and what you type into the service search (so we can spot styles people look for that we don&rsquo;t list yet). This runs without
                     cookies or any identifier stored on your device, so it can&rsquo;t recognise you across visits, but it does see your IP
                     address and browser at the time.
                   </p>
@@ -4907,7 +4939,7 @@ export default function App() {
                 <section className="flex flex-col gap-2">
                   <h3 className="text-[13px] font-semibold uppercase tracking-[0.08em] text-stone-500">Who we share it with</h3>
                   <p>
-                    PostHog processes analytics data (page views and clicks) on our behalf, but it never receives anything from the
+                    PostHog processes analytics data (page views, clicks, filters and service searches) on our behalf, but it never receives anything from the
                     submission form. Submission details aren&rsquo;t shared with anyone else.
                   </p>
                 </section>
@@ -5535,15 +5567,12 @@ export default function App() {
                         </button>
                       ) : null}
                     </div>
-                    {runtimeSortedCategoryEntries.filter(([id, item]) => {
-                      if (!serviceSearch.trim()) return true;
-                      const q = normalizeServiceSearch(serviceSearch);
-                      if (normalizeServiceSearch(item.label).includes(q)) return true;
-                      if (item.subcategories.some((s) => s !== "all" && normalizeServiceSearch(s).includes(q))) return true;
-                      const aliases = serviceSearchAliases[item.label] ?? [];
-                      if (aliases.some((alias) => normalizeServiceSearch(alias).includes(q))) return true;
-                      return item.subcategories.some((s) => s !== "all" && (serviceSearchAliases[s] ?? []).some((alias) => normalizeServiceSearch(alias).includes(q)));
-                    }).map(([id, item]) => {
+                    {serviceSearch.trim() && !runtimeSortedCategoryEntries.some(([, item]) => categoryMatchesServiceSearch(item)) ? (
+                      <p className="px-1 py-3 text-[13px] text-stone-500 dark:text-stone-400" role="status">
+                        No services match &ldquo;{serviceSearch.trim()}&rdquo;.
+                      </p>
+                    ) : null}
+                    {runtimeSortedCategoryEntries.filter(([, item]) => categoryMatchesServiceSearch(item)).map(([id, item]) => {
                       const isAllServices = id === "all";
                       const isActive = isAllServices
                         ? currentSelectedCategories.length === 0 && currentSelectedSubcategories.length === 0
