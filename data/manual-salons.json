@@ -2,7 +2,7 @@
   "meta": {
     "source": "manual",
     "updatedAt": "2026-10-05",
-    "count": 1166,
+    "count": 1165,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
@@ -577,7 +577,8 @@
         "Starter locs / instant locs",
         "Retwist / interlocking",
         "Pre-parting",
-        "Boho sew-in"
+        "Boho sew-in",
+        "Microbraids / x-small braids"
       ],
       "priceBand": "£",
       "servicePriceBand": "£",
@@ -2677,7 +2678,8 @@
         "Sleek ponytail / bun",
         "Half up half down",
         "Twists (with extensions)",
-        "Starter locs / instant locs"
+        "Starter locs / instant locs",
+        "Microbraids / x-small braids"
       ],
       "priceBand": "£",
       "servicePriceBand": "£",
@@ -4263,7 +4265,8 @@
         "Updo",
         "Colour blend (mixing braiding hair)",
         "Feed-in / stitch braid sew-in",
-        "Fulani sew-in"
+        "Fulani sew-in",
+        "Microbraids / x-small braids"
       ],
       "priceBand": "£",
       "servicePriceBand": "£",
@@ -4827,7 +4830,8 @@
         "Wig install (frontal / closure)",
         "Fulani sew-in",
         "Boho sew-in",
-        "Creative braids"
+        "Creative braids",
+        "Microbraids / x-small braids"
       ],
       "priceBand": "£££",
       "servicePriceBand": "£££",
@@ -5357,7 +5361,8 @@
         "Closure sew-in / closure behind the hairline",
         "Frontal sew-in",
         "Soft locs",
-        "Colour blend (mixing braiding hair)"
+        "Colour blend (mixing braiding hair)",
+        "Microbraids / x-small braids"
       ],
       "priceBand": "£",
       "servicePriceBand": "£",
@@ -5743,7 +5748,8 @@
         "Men's braids",
         "Retwist / interlocking",
         "Colour blend (mixing braiding hair)",
-        "Feed-in / stitch braid sew-in"
+        "Feed-in / stitch braid sew-in",
+        "Microbraids / x-small braids"
       ],
       "priceBand": "££",
       "servicePriceBand": "££",
@@ -7715,7 +7721,8 @@
         "Custom wig",
         "Relaxer / texturiser",
         "Miracle knots",
-        "Silk press"
+        "Silk press",
+        "Microbraids / x-small braids"
       ],
       "priceBand": "£",
       "servicePriceBand": "£",
@@ -8283,7 +8290,8 @@
         "Traditional sew-in / leave out",
         "Frontal sew-in",
         "Closure sew-in / closure behind the hairline",
-        "Bridal"
+        "Bridal",
+        "Microbraids / x-small braids"
       ],
       "priceBand": "££",
       "servicePriceBand": "££",
@@ -8865,7 +8873,8 @@
         "Closure sew-in / closure behind the hairline",
         "Traditional sew-in / leave out",
         "Twists (with extensions)",
-        "Box braids"
+        "Box braids",
+        "Microbraids / x-small braids"
       ],
       "priceBand": "££",
       "servicePriceBand": "££",
@@ -9039,7 +9048,8 @@
         "Half up half down",
         "Sleek ponytail / bun",
         "Creative braids",
-        "Boho sew-in"
+        "Boho sew-in",
+        "Microbraids / x-small braids"
       ],
       "priceBand": "£",
       "servicePriceBand": "£",
@@ -14840,7 +14850,8 @@
         "Stitch braids",
         "Starter locs / instant locs",
         "Retwist / interlocking",
-        "Loc styling"
+        "Loc styling",
+        "Microbraids / x-small braids"
       ],
       "priceBand": "£",
       "servicePriceBand": "",
@@ -15334,7 +15345,8 @@
         "Crochet",
         "Wig cornrows",
         "Colour blend (mixing braiding hair)",
-        "Kids & teens styles"
+        "Kids & teens styles",
+        "Microbraids / x-small braids"
       ],
       "priceBand": "££",
       "servicePriceBand": "",
@@ -17368,18 +17380,13 @@
       "googleCheckedAt": "2026-08-24",
       "portfolioPhotos": [
         {
-          "id": "the-beauty-haven-by-tosin-portfolio-photo-98d4a020-acac-4028-9d9c-9d23db2335b8",
-          "url": "/portfolio-photos/the-beauty-haven-by-tosin-849ea713-2a94-4779-ae10-baa54da7cbfb.jpg",
-          "source": "instagram"
-        },
-        {
-          "id": "the-beauty-haven-by-tosin-portfolio-photo-6f4978ec-b912-401b-a90f-2e98d9a979b2",
-          "url": "/portfolio-photos/the-beauty-haven-by-tosin-55bf48fb-62a9-4bc1-9bdf-2c1e8bc8def5.jpg",
-          "source": "instagram-reel-thumbnail"
+          "id": "the-beauty-haven-by-tosin-portfolio-photo-801185c2-bb58-4b5a-85d8-9887c86368ce",
+          "url": "/portfolio-photos/the-beauty-haven-by-tosin-8ded2571-116a-43bb-830c-015fe38329e6.jpg",
+          "source": "instagram-reel-frame"
         }
       ],
-      "updatedAt": "2026-08-31",
-      "photoOrderBumpedAt": 543,
+      "updatedAt": "2026-10-05",
+      "photoOrderBumpedAt": 1284,
       "googleDisplayName": "",
       "googleFormattedAddress": "",
       "hijabiFriendly": false,
@@ -17390,7 +17397,8 @@
       "parkingAvailable": false,
       "sellsHairSeparately": false,
       "sameDayEmergency": false,
-      "customFilters": {}
+      "customFilters": {},
+      "photoSearchReviewedAt": "2026-10-05"
     },
     {
       "id": "jerusalem-hair",
@@ -17859,7 +17867,8 @@
         "Twists (with extensions)",
         "Wig install (frontal / closure)",
         "Frontal ponytail / bun",
-        "Updo"
+        "Updo",
+        "Microbraids / x-small braids"
       ],
       "priceBand": "£",
       "servicePriceBand": "",
@@ -18493,7 +18502,8 @@
         "Stitch braids",
         "Wig install (frontal / closure)",
         "Loc styling",
-        "Crochet faux locs / invisible locs"
+        "Crochet faux locs / invisible locs",
+        "Microbraids / x-small braids"
       ],
       "priceBand": "£",
       "servicePriceBand": "£",
@@ -19813,7 +19823,8 @@
         "Moisturising treatment",
         "Sew-in take-down",
         "Loc styling",
-        "Kids & teens styles"
+        "Kids & teens styles",
+        "Microbraids / x-small braids"
       ],
       "priceBand": "£",
       "servicePriceBand": "",
@@ -34456,7 +34467,8 @@
         "Knotless braids",
         "Wig cornrows",
         "Boho braids bob",
-        "Colour blend (mixing braiding hair)"
+        "Colour blend (mixing braiding hair)",
+        "Microbraids / x-small braids"
       ],
       "priceBand": "££",
       "servicePriceBand": "",
@@ -39093,7 +39105,8 @@
         "Sew-in take-down",
         "Miracle knots",
         "Braid take-down",
-        "Boho sew-in"
+        "Boho sew-in",
+        "Microbraids / x-small braids"
       ],
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
@@ -39298,7 +39311,8 @@
         "Fulani / lemonade braids",
         "Wig cornrows",
         "Kids & teens styles",
-        "Crochet faux locs / invisible locs"
+        "Crochet faux locs / invisible locs",
+        "Microbraids / x-small braids"
       ],
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
@@ -39984,7 +39998,9 @@
         "Feed-in braids",
         "Kids & teens styles",
         "Loc styling",
-        "Fulani sew-in"
+        "Fulani sew-in",
+        "Microbraids / x-small braids",
+        "Creative braids"
       ],
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
@@ -40057,6 +40073,14 @@
           "style": "Alicia Keys braids",
           "evidence": [
             "Alicia keys braids"
+          ],
+          "source": "https://app.tressly.co/mmluxehair?",
+          "checkedAt": "2026-10-05"
+        },
+        {
+          "style": "Cassie braids",
+          "evidence": [
+            "Manual check"
           ],
           "source": "https://app.tressly.co/mmluxehair?",
           "checkedAt": "2026-10-05"
@@ -41724,7 +41748,8 @@
         "Closure sew-in / closure behind the hairline",
         "Wig install (frontal / closure)",
         "Frontal ponytail / bun",
-        "Loc styling"
+        "Loc styling",
+        "Microbraids / x-small braids"
       ],
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
@@ -42587,46 +42612,45 @@
         "Boho braids bob",
         "Healthy hair plans & consultations",
         "Full head colour",
-        "Trichology / scalp analysis",
-        "Boho sew-in"
+        "Trichology / scalp analysis"
       ],
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
       "evidence": [
         "Submitted link: https://www.instagram.com/ajahsbeautybase/"
       ],
-      "priceBand": "££",
+      "priceBand": "£",
       "priceSource": "auto",
       "priceEvidence": [
-        "Luxury Boho curl refresh - £55",
+        "Luxury Boho curl refresh - - Luxury Boho curl refresh - £55",
         "Luxury Front Boho Touch Up - £85",
-        "Large Boho Knotless Braids - £190",
-        "Medium Boho Knotless Braids - £250",
-        "Smedium Boho Knotless - £290",
-        "Small Boho bob Knotless - £300",
-        "Medium Knotless Braids - £140",
-        "Large Knotless Braids - £120"
+        "Large Boho Knotless Braids - - Large Boho Knotless Braids - £190",
+        "Medium Boho Knotless Braids - - Medium Boho Knotless Braids - £250",
+        "Smedium Boho Knotless - - Smedium Boho Knotless - £290",
+        "Small Boho bob Knotless - - Small Boho bob Knotless - £300",
+        "Medium Knotless Braids - - Medium Knotless Braids - £140",
+        "Large Knotless Braids - - Large Knotless Braids - £120"
       ],
-      "priceCheckedAt": "2026-06-03",
-      "priceConfidence": "high",
-      "priceUpdatedAt": "2026-06-03",
+      "priceCheckedAt": "2026-10-05",
+      "priceConfidence": "manual",
+      "priceUpdatedAt": "2026-10-05",
       "addedVia": "Admin tool",
       "discoverySource": "User submission",
       "tiktokUrl": "",
       "hijabiFriendly": false,
       "canBraidWithoutGel": false,
       "wheelchairAccessible": false,
-      "servicePriceBand": "",
+      "servicePriceBand": "£",
       "packagePriceBand": "",
       "priceIncludesHair": true,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-25",
-      "googlePlaceId": "ChIJ2ZnETE0FdkgRjbWrW9I855w",
+      "updatedAt": "2026-10-05",
+      "googlePlaceId": null,
       "googleReviewCount": 32,
       "googleMapsUri": "https://maps.google.com/?cid=11306072263715698061&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
       "googleMatchConfidence": "high",
       "googleDisplayName": "Ajahsbeautybase",
-      "googleFormattedAddress": "36 Roehampton High St, London SW15 4HJ, UK",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-07-23",
       "websiteUrl": "https://ajahsbeautybase.com",
       "senFriendly": false,
@@ -42782,7 +42806,8 @@
         "Men's braids",
         "Loc styling",
         "Sew-in take-down",
-        "Feed-in / stitch braid sew-in"
+        "Feed-in / stitch braid sew-in",
+        "Microbraids / x-small braids"
       ],
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
@@ -44964,7 +44989,8 @@
         "Men's braids",
         "Loc styling",
         "Colour blend (mixing braiding hair)",
-        "Fulani sew-in"
+        "Fulani sew-in",
+        "Microbraids / x-small braids"
       ],
       "summary": "Manual entry added from your North West London braids, sew-in, quick weave, cornrow, and twists list.",
       "source": "manual",
@@ -45870,7 +45896,8 @@
         "French curl",
         "Men's braids",
         "Loc styling",
-        "Crochet faux locs / invisible locs"
+        "Crochet faux locs / invisible locs",
+        "Microbraids / x-small braids"
       ],
       "summary": "Manual entry added from your mobile braids and locs list.",
       "source": "manual",
@@ -47353,9 +47380,9 @@
           "source": "instagram"
         }
       ],
-      "photoSearchReviewedAt": "2026-08-26",
-      "photoOrderBumpedAt": 366,
-      "updatedAt": "2026-10-04",
+      "photoSearchReviewedAt": "2026-10-05",
+      "photoOrderBumpedAt": 1308,
+      "updatedAt": "2026-10-05",
       "celebrityStyles": [
         {
           "style": "Cassie braids",
@@ -49203,7 +49230,8 @@
         "Stitch braids",
         "Wig cornrows",
         "Wig install (frontal / closure)",
-        "Fulani sew-in"
+        "Fulani sew-in",
+        "Microbraids / x-small braids"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -49823,7 +49851,8 @@
         "Loc styling",
         "Crochet faux locs / invisible locs",
         "Kids & teens styles",
-        "Boho sew-in"
+        "Boho sew-in",
+        "Microbraids / x-small braids"
       ],
       "canBraidWithoutGel": true,
       "priceBand": "£",
@@ -54784,7 +54813,8 @@
         "Knotless braids",
         "Men's braids",
         "Feed-in / stitch braid sew-in",
-        "Creative braids"
+        "Creative braids",
+        "Microbraids / x-small braids"
       ],
       "summary": "Manual entry added from your North West London wigs, sew-ins, extensions, braids, silk press, ponytail, and locs list.",
       "source": "manual",
@@ -55263,7 +55293,7 @@
       "areaLabel": "North West",
       "neighbourhood": "North West London",
       "postcode": "",
-      "bookingPlatform": "Instagram",
+      "bookingPlatform": "Direct website",
       "bookingUrl": "https://layers777.lovable.app/booking",
       "instagramUrl": "https://www.instagram.com/eda.lnd/",
       "services": [
@@ -58477,7 +58507,7 @@
       "hijabiFriendly": false,
       "wheelchairAccessible": false,
       "customFilters": {},
-      "updatedAt": "2026-10-04",
+      "updatedAt": "2026-10-05",
       "sellsHairSeparately": true,
       "hairShopUrl": "https://hhair.co/shop",
       "vendorId": "h-hair",
@@ -58519,7 +58549,8 @@
         }
       ],
       "portfolioPhotosCheckedAt": "2026-08-21",
-      "photoSearchReviewedAt": "2026-08-24"
+      "photoSearchReviewedAt": "2026-10-05",
+      "photoOrderBumpedAt": 1296
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -59312,7 +59343,8 @@
         "Colour blend (mixing braiding hair)",
         "Boho locs",
         "Fulani sew-in",
-        "Creative braids"
+        "Creative braids",
+        "Microbraids / x-small braids"
       ],
       "priceBand": "££",
       "priceSource": "auto",
@@ -60700,7 +60732,8 @@
         "Feed-in braids",
         "Twists (with extensions)",
         "Editorial / Session styling",
-        "Flipover / Versatile sew-in"
+        "Flipover / Versatile sew-in",
+        "Microbraids / x-small braids"
       ],
       "priceBand": "£££",
       "priceSource": "auto",
@@ -60835,7 +60868,10 @@
         "Quick weave",
         "Loc styling",
         "Boho locs",
-        "Crochet faux locs / invisible locs"
+        "Crochet faux locs / invisible locs",
+        "Fulani sew-in",
+        "U-Part / Half wig install",
+        "Creative braids"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -60843,29 +60879,29 @@
         "User-provided Instagram handle awaiting categorisation.",
         "User-confirmed explicit frontal ponytail service from booking-page service list."
       ],
-      "priceBand": "££",
+      "priceBand": "£",
       "priceSource": "auto",
       "priceEvidence": [
-        "Medium boho knotless - - Medium boho knotless - £120",
-        "Smedium boho knotless - - Smedium boho knotless - £130",
-        "Small boho knotless - - Small boho knotless - £150",
+        "Medium boho knotless - £120",
+        "Smedium boho knotless - £130",
+        "Small boho knotless - £150",
         "Boho bob-Medium - £80",
         "Boho bob-Small - £100",
-        "Faux/butterfly locs- shoulder length - - Faux/butterfly locs- shoulder length - £90",
-        "Faux/butterfly locs- mid back - - Faux/butterfly locs- mid back - £115",
-        "Faux/butterfly locs- bum length - - Faux/butterfly locs- bum length - £130"
+        "Faux/butterfly locs- shoulder length - £90",
+        "Faux/butterfly locs- mid back - £115",
+        "Faux/butterfly locs- bum length - £130"
       ],
-      "priceCheckedAt": "2026-07-24",
-      "priceConfidence": "manual",
-      "priceUpdatedAt": "2026-07-24",
+      "priceCheckedAt": "2026-10-05",
+      "priceConfidence": "high",
+      "priceUpdatedAt": "2026-10-05",
       "addedVia": "Bulk import",
       "discoverySource": "Cowork scrape",
       "googlePlaceId": null,
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleDisplayName": null,
-      "googleFormattedAddress": null,
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-07-29",
       "websiteUrl": "",
       "tiktokUrl": "",
@@ -60873,11 +60909,11 @@
       "canBraidWithoutGel": false,
       "wheelchairAccessible": false,
       "customFilters": {},
-      "servicePriceBand": "££",
+      "servicePriceBand": "£",
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-09-08",
+      "updatedAt": "2026-10-05",
       "portfolioPhotosCheckedAt": "2026-08-21",
       "portfolioPhotos": [
         {
@@ -60901,7 +60937,13 @@
           "source": "https://hairbyjldn.as.me",
           "checkedAt": "2026-10-05"
         }
-      ]
+      ],
+      "hairShopUrl": "",
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": false,
+      "sameDayEmergency": false
     },
     {
       "id": "hairbymayldn",
@@ -65860,7 +65902,8 @@
         "Kids & teens styles",
         "Box braids",
         "Feed-in braids",
-        "Half up half down"
+        "Half up half down",
+        "Microbraids / x-small braids"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -70434,7 +70477,8 @@
         "Silk press",
         "Feed-in braids",
         "Roller set",
-        "Feed-in / stitch braid sew-in"
+        "Feed-in / stitch braid sew-in",
+        "Microbraids / x-small braids"
       ],
       "summary": "Manual entry added from your South East London sew-in and wig install list.",
       "source": "manual",
@@ -71162,7 +71206,8 @@
         "Knotless braids",
         "French curl",
         "Twists (with extensions)",
-        "Butterfly locs"
+        "Butterfly locs",
+        "Microbraids / x-small braids"
       ],
       "summary": "Manual entry added from your South East London braids list.",
       "source": "manual",
@@ -72141,7 +72186,8 @@
         "Kids & teens styles",
         "Knotless braids",
         "Olaplex treatment",
-        "Wash & blowdry"
+        "Wash & blowdry",
+        "Microbraids / x-small braids"
       ],
       "summary": "Manual entry added from your latest salon update batch.",
       "source": "manual",
@@ -76720,7 +76766,8 @@
         "Boho braids bob",
         "Kids & teens styles",
         "Colour blend (mixing braiding hair)",
-        "Feed-in / stitch braid sew-in"
+        "Feed-in / stitch braid sew-in",
+        "Microbraids / x-small braids"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -76940,7 +76987,8 @@
         "Crochet faux locs / invisible locs",
         "Bridal",
         "Boho sew-in",
-        "Feed-in / stitch braid sew-in"
+        "Feed-in / stitch braid sew-in",
+        "Microbraids / x-small braids"
       ],
       "summary": "Manual entry added from your East London braids list.",
       "source": "manual",
@@ -77289,7 +77337,8 @@
         "Knotless braids",
         "Soft locs",
         "Fulani / lemonade braids",
-        "Feed-in braids"
+        "Feed-in braids",
+        "Microbraids / x-small braids"
       ],
       "summary": "Manual entry added from your South West London braids and locs list.",
       "source": "manual",
@@ -77636,7 +77685,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-10-04",
+      "updatedAt": "2026-10-05",
       "portfolioPhotos": [
         {
           "id": "south-west-six-salon-portfolio-photo-c7fbd087-7eb5-4995-9984-294379f5f3b5",
@@ -77652,6 +77701,11 @@
           "id": "south-west-six-salon-portfolio-photo-d63e2c5b-91b9-4ed0-8de3-ad92b3aef7b9",
           "url": "/portfolio-photos/south-west-six-salon-8c4d39c7-0a55-481c-bfa2-e2762c5851e8.jpg",
           "source": "instagram"
+        },
+        {
+          "id": "south-west-six-salon-portfolio-photo-bd6532a7-a169-4728-930f-03fa5f083b97",
+          "url": "/portfolio-photos/south-west-six-salon-6c08d9d8-28d3-48cf-8950-f9e1e501fe7b.jpg",
+          "source": "instagram-reel-frame"
         },
         {
           "id": "south-west-six-salon-portfolio-photo-231bb297-512d-45a2-86ba-9a713ca9e6aa",
@@ -77675,7 +77729,7 @@
         }
       ],
       "portfolioPhotosCheckedAt": "2026-08-21",
-      "photoSearchReviewedAt": "2026-08-25",
+      "photoSearchReviewedAt": "2026-10-05",
       "celebrityStyles": [
         {
           "style": "Cassie braids",
@@ -77685,7 +77739,8 @@
           "source": "https://www.vagaro.com/southwestsixsalon",
           "checkedAt": "2026-10-05"
         }
-      ]
+      ],
+      "photoOrderBumpedAt": 1304
     },
     {
       "id": "specialtouch-nuria",
@@ -79848,7 +79903,8 @@
         "Crochet faux locs / invisible locs",
         "Feed-in / stitch braid sew-in",
         "Fulani sew-in",
-        "K-tips + sew-in"
+        "K-tips + sew-in",
+        "Microbraids / x-small braids"
       ],
       "summary": "Manual entry added from your South East London sew-in and wig install list.",
       "source": "manual",
@@ -82328,7 +82384,6 @@
         "Tape ins",
         "Updo",
         "Half up half down",
-        "Boho sew-in",
         "Feed-in / stitch braid sew-in",
         "Fulani sew-in"
       ],
@@ -82363,13 +82418,13 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-10-04",
+      "updatedAt": "2026-10-05",
       "googlePlaceId": null,
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleDisplayName": null,
-      "googleFormattedAddress": null,
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-07-29",
       "websiteUrl": "",
       "senFriendly": false,
@@ -82383,7 +82438,10 @@
           "url": "/portfolio-photos/tressavenue-5d8d26e0-c1e1-47ed-b77f-d3f6d25bd3ba.jpg",
           "source": "instagram-reel-thumbnail"
         }
-      ]
+      ],
+      "hairShopUrl": "",
+      "sellsHairSeparately": false,
+      "sameDayEmergency": false
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -83123,7 +83181,8 @@
         "Closure sew-in / closure behind the hairline",
         "Miracle knots",
         "Boho braids bob",
-        "Fulani sew-in"
+        "Fulani sew-in",
+        "Microbraids / x-small braids"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
