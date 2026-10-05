@@ -1,8 +1,8 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-10-04",
-    "count": 1167,
+    "updatedAt": "2026-10-05",
+    "count": 1166,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
@@ -5887,53 +5887,6 @@
       "photoSearchReviewedAt": "2026-08-31",
       "photoOrderBumpedAt": 991,
       "updatedAt": "2026-08-31"
-    },
-    {
-      "id": "styledbyaisha",
-      "name": "StyledByAisha",
-      "areaId": "east",
-      "areaLabel": "East London",
-      "neighbourhood": "East London London",
-      "postcode": "",
-      "bookingPlatform": "Instagram",
-      "bookingUrl": "https://www.instagram.com/styledbyaishaxx/",
-      "websiteUrl": "",
-      "hairShopUrl": "",
-      "instagramUrl": "https://www.instagram.com/styledbyaishaxx/",
-      "tiktokUrl": "",
-      "addedVia": "Admin tool",
-      "discoverySource": "Instagram auto-fill",
-      "services": [
-        "Wig install (frontal / closure)",
-        "Sleek ponytail / bun",
-        "Boho braids / goddess braids",
-        "Fulani / lemonade braids"
-      ],
-      "summary": "THEBRAIDLOUNGE💕\nWaltham Forest , East London based (Females and males)\nDM TO BOOK 💕\n𝐍𝐎𝐍-𝐑𝐄𝐅𝐔𝐍𝐃𝐀𝐁𝐋𝐄 £𝟏𝟎 𝐃𝐄𝐏𝐎𝐒𝐈𝐓",
-      "source": "manual",
-      "evidence": [
-        "Submitted link: https://www.instagram.com/styledbyaishaxx/",
-        "Raw services provided during admin intake."
-      ],
-      "googlePlaceId": null,
-      "googleReviewCount": 0,
-      "googleMapsUri": "",
-      "googleMatchConfidence": "no-match",
-      "googleCheckedAt": "2026-08-31",
-      "portfolioPhotos": [
-        {
-          "id": "styledbyaisha-portfolio-photo-576148d3-f657-4c3e-9bf8-5d2371ba6b42",
-          "url": "/portfolio-photos/styledbyaisha-643c959a-49fe-4c43-b477-dbb62dd038ef.jpg",
-          "source": "instagram"
-        },
-        {
-          "id": "styledbyaisha-portfolio-photo-db575aea-93b8-4ce2-a5f5-da85fe86301a",
-          "url": "/portfolio-photos/styledbyaisha-dff6d3c2-ae34-4f32-ab97-072af2abab1b.jpg",
-          "source": "instagram"
-        }
-      ],
-      "photoSearchReviewedAt": "2026-08-31",
-      "photoOrderBumpedAt": 989
     },
     {
       "id": "bvhairuk",
