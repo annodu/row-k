@@ -1,37 +1,28 @@
-// How the public filter panel presents filters.json services: style families
-// that nest their members, and friendlier display names. Shared by the site
+// How the public filter panel presents filters.json services: umbrella
+// services and friendlier display names. Shared by the site
 // (App.tsx) and Social Studio so the carousel's filter sheets match the site.
 
-// Picking a family matches any of its members (see derivedServiceMatches in
-// salon-index.mjs). The "(all)" families are filter-only headings, not services,
-// so they stay out of filters.json and never show up in the service pickers.
+// Umbrella services that also match their members (see derivedServiceMatches
+// in salon-index.mjs).
 export const serviceFamilies: Record<string, readonly string[]> = {
-  "Boho (all)": ["Boho braids / goddess braids", "Boho braids bob", "Boho sew-in"],
-  "Fulani (all)": ["Fulani / lemonade braids", "Fulani sew-in"],
-  "Feed-in & stitch braids (all)": ["Feed-in braids", "Stitch braids", "Feed-in / stitch braid sew-in"],
-  "French curl (all)": ["French curl", "French curl bob"],
-  "Tape-in (all)": ["Tape ins", "Tape-ins + sew-in"],
-  "K-tip (all)": ["K-tips / invisible strands", "K-tips + sew-in"],
-  "Hybrid (braids + sew-in)": ["Fulani sew-in", "Boho sew-in", "Feed-in / stitch braid sew-in"],
   "Hybrid installs": ["Tape-ins + sew-in", "K-tips + sew-in"],
-  "Hybrid installs (all)": ["Boho sew-in", "Fulani sew-in", "Feed-in / stitch braid sew-in", "Tape-ins + sew-in", "K-tips + sew-in"],
 };
 
-// Which families nest their members in each category's filter list. Braids
-// groups by style; Sew in / weave groups every hybrid by install.
-export const subcategoryGroupsByCategory: Record<string, readonly string[]> = {
-  "braiding-services": ["Boho (all)", "Fulani (all)", "Feed-in & stitch braids (all)", "French curl (all)"],
-  "sew-in-weave": ["Hybrid installs (all)"],
-  "extension-services": ["Tape-in (all)", "K-tip (all)"],
-};
+// Families that nest their members in a category's filter list. Empty: every
+// style, hybrids included, is listed flat under its category.
+export const subcategoryGroupsByCategory: Record<string, readonly string[]> = {};
 
 const serviceDisplayNames: Record<string, string> = {
   "Wig cornrows": "(Wig) cornrows",
-  "Feed-in braids": "Feed-in braids / all backs",
   "Boho braids / goddess braids": "Boho braids",
-  "Tape ins": "Tape-in install",
-  "Tape-ins + sew-in": "Tapes + sew-in",
-  "K-tips / invisible strands": "K-tip install",
+  "Boho sew-in": "Boho braids sew-in (hybrid)",
+  "Fulani / lemonade braids": "Fulani braids",
+  "Fulani sew-in": "Fulani braids sew-in (hybrid)",
+  "Feed-in braids": "Feed ins / all back braids",
+  "Feed-in / stitch braid sew-in": "Feed in / stitch braids sew-in (hybrid)",
+  "Tape-ins + sew-in": "Tapes + sew-in (hybrid)",
+  "K-tips / invisible strands": "K-tips",
+  "K-tips + sew-in": "K-tips + sew-in (hybrid)",
   "French curl": "French curl braids",
   ...Object.fromEntries(Object.keys(serviceFamilies).filter((family) => family.endsWith(" (all)")).map((family) => [family, family.slice(0, -" (all)".length)])),
 };

@@ -87,7 +87,7 @@ const DISCLAIMER_DISMISSED_KEY = "rowk_disclaimer_dismissed";
 
 const categoryMap = {
   all: { label: "All services", subcategories: ["all"] },
-  "braiding-services": { label: "Braids", subcategories: ["all","Boho braids / goddess braids","Braid take-down","Box braids","Colour blend (mixing braiding hair)","Crochet","Creative braids","Feed-in braids","French curl","Fulani / lemonade braids","Knotless braids","Miracle knots","Microbraids / x-small braids","Pre-parting","Stitch braids","Twists (with extensions)","Boho braids bob","French curl bob","Men's braids","Wig cornrows","Hybrid (braids + sew-in)","Fulani sew-in","Boho sew-in","Feed-in / stitch braid sew-in"] },
+  "braiding-services": { label: "Braids", subcategories: ["all","Boho braids / goddess braids","Braid take-down","Box braids","Colour blend (mixing braiding hair)","Crochet","Creative braids","Feed-in braids","French curl","Fulani / lemonade braids","Knotless braids","Miracle knots","Microbraids / x-small braids","Pre-parting","Stitch braids","Twists (with extensions)","Boho braids bob","French curl bob","Men's braids","Wig cornrows","Fulani sew-in","Boho sew-in","Feed-in / stitch braid sew-in"] },
   "colour-services": { label: "Colour", subcategories: ["all","Balayage","Full head colour","Highlights","Wig colouring / bundle colouring"] },
   "bridal-services": { label: "Bridal", subcategories: ["all","Bridal"] },
   "editorial-services": { label: "Editorial / Session styling", subcategories: ["all","Editorial / Session styling"] },
@@ -104,7 +104,7 @@ const categoryMap = {
 } as const;
 
 const categoryServiceMap = {
-  "braiding-services": ["Boho braids / goddess braids","Braid take-down","Box braids","Colour blend (mixing braiding hair)","Crochet","Creative braids","Feed-in braids","French curl","Fulani / lemonade braids","Knotless braids","Miracle knots","Microbraids / x-small braids","Pre-parting","Stitch braids","Twists (with extensions)","Boho braids bob","French curl bob","Men's braids","Wig cornrows","Hybrid (braids + sew-in)","Fulani sew-in","Boho sew-in","Feed-in / stitch braid sew-in"],
+  "braiding-services": ["Boho braids / goddess braids","Braid take-down","Box braids","Colour blend (mixing braiding hair)","Crochet","Creative braids","Feed-in braids","French curl","Fulani / lemonade braids","Knotless braids","Miracle knots","Microbraids / x-small braids","Pre-parting","Stitch braids","Twists (with extensions)","Boho braids bob","French curl bob","Men's braids","Wig cornrows","Fulani sew-in","Boho sew-in","Feed-in / stitch braid sew-in"],
   "colour-services": ["Balayage","Full head colour","Highlights","Wig colouring / bundle colouring"],
   "bridal-services": ["Bridal"],
   "editorial-services": ["Editorial / Session styling"],
@@ -319,7 +319,6 @@ const defaultServiceSearchAliases: Record<string, string[]> = {
   "Crochet faux locs / invisible locs": ["crochet locs", "crochet faux locs", "invisible locs", "faux locs crochet"],
   "Starter locs / instant locs": ["starter locs", "start locs", "loc start", "instant locs"],
   "Retwist / interlocking": ["retwist", "re twist", "interlocking", "inter locking"],
-  "Hybrid (braids + sew-in)": ["half braids half sew in", "half braid half sew in", "half braid half weave", "braids and sew in", "hybrid braids"],
   "Fulani sew-in": ["fulani braids sew in", "fulani braid sew in", "fulani sew in", "fulani weave", "fulani quick weave", "alicia keys sew in"],
   "Boho sew-in": ["boho braids sew in", "boho braid sew in", "boho sew in", "boho weave", "zoe kravitz sew in"],
   "Feed-in / stitch braid sew-in": ["feed in sew in", "feed ins sew in", "half feed in half sew in", "stitch braids sew in", "stitch braid sew in", "jayda wayda sew in", "tyla sew in"],

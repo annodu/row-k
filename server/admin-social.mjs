@@ -229,7 +229,7 @@ export function registerAdminSocialRoutes(app, { requireAdmin, readJson }) {
     const priceAllowed = (salon) => !priceBands.length || priceBands.includes(comparablePriceBand(salon));
     const briefIds = new Set(briefSearch.results.filter(priceAllowed).map((salon) => salon.brandId || salon.id));
     const featured = buildFeaturedIndex(projectsStore);
-    // A family (e.g. "Fulani (all)") credits stylists with whichever members they do.
+    // An umbrella service (e.g. "Hybrid installs") credits stylists with whichever members they do.
   const serviceScope = service ? [service, ...(derivedServiceMatches[service] ?? [])] : category ? categoryMap[category] ?? [] : [];
 
     let pool;

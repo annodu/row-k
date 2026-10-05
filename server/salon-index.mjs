@@ -34,7 +34,7 @@ export function setRegionParentGroupsCache(groups) {
 const filtersPath = path.resolve(__dirname, "../data/filters.json");
 
 const defaultCategoryMap = {
-  "braiding-services": ["Boho braids / goddess braids","Braid take-down","Box braids","Colour blend (mixing braiding hair)","Crochet","Creative braids","Feed-in braids","French curl","Fulani / lemonade braids","Knotless braids","Miracle knots","Microbraids / x-small braids","Pre-parting","Stitch braids","Twists (with extensions)","Boho braids bob","French curl bob","Men's braids","Wig cornrows","Hybrid (braids + sew-in)","Fulani sew-in","Boho sew-in","Feed-in / stitch braid sew-in"],
+  "braiding-services": ["Boho braids / goddess braids","Braid take-down","Box braids","Colour blend (mixing braiding hair)","Crochet","Creative braids","Feed-in braids","French curl","Fulani / lemonade braids","Knotless braids","Miracle knots","Microbraids / x-small braids","Pre-parting","Stitch braids","Twists (with extensions)","Boho braids bob","French curl bob","Men's braids","Wig cornrows","Fulani sew-in","Boho sew-in","Feed-in / stitch braid sew-in"],
   "colour-services": ["Balayage","Full head colour","Highlights","Wig colouring / bundle colouring"],
   "bridal-services": ["Bridal"],
   "editorial-services": ["Editorial / Session styling"],
@@ -74,8 +74,6 @@ export function setCategoryMapCache(categories) {
 })();
 
 export const serviceAliases = {
-  "Braids + sew-in hybrids": "Hybrid (braids + sew-in)",
-  "Half braids, half sew-in": "Hybrid (braids + sew-in)",
   "Hybrid sew in (tapes + sew in)": "Tape-ins + sew-in",
   "K-18 treatment": "K18 treatment",
   "Colour blend": "Colour blend (mixing braiding hair)",
@@ -360,9 +358,6 @@ export const serviceAliases = {
   "Permanent tint": "Full head colour",
   "Wig colouring / Bundle colouring": "Wig colouring / bundle colouring",
   "Hair Botox": "Hair botox",
-  "Half braid": "Hybrid (braids + sew-in)",
-  "Half weave": "Hybrid (braids + sew-in)",
-  "Half braid / Half weave": "Hybrid (braids + sew-in)",
   "K-tips / Invisible strands": "K-tips / invisible strands",
   "Keratin tip": "K-tips / invisible strands",
   "Keratin tips": "K-tips / invisible strands",
@@ -707,21 +702,10 @@ function matchesRegion(salon, regions) {
   });
 }
 
-// Parent filters are derived: a stylist tagged with a member (e.g. Fulani
-// sew-in) also matches its parent. The hybrid parents are real services for
-// unspecified combos; the "(all)" families are filter-only.
+// Parent filters are derived: a stylist tagged with a member (e.g. Tape-ins +
+// sew-in) also matches its umbrella service.
 export const derivedServiceMatches = {
-  "Hybrid (braids + sew-in)": ["Fulani sew-in", "Boho sew-in", "Feed-in / stitch braid sew-in"],
   "Hybrid installs": ["Tape-ins + sew-in", "K-tips + sew-in"],
-  // Sew in / weave's single hybrid group, including both umbrella tags.
-  "Hybrid installs (all)": ["Boho sew-in", "Fulani sew-in", "Feed-in / stitch braid sew-in", "Tape-ins + sew-in", "K-tips + sew-in", "Hybrid (braids + sew-in)", "Hybrid installs"],
-  // Filter-only style families (see serviceFamilies in src/App.tsx).
-  "Boho (all)": ["Boho braids / goddess braids", "Boho braids bob", "Boho sew-in"],
-  "Fulani (all)": ["Fulani / lemonade braids", "Fulani sew-in"],
-  "Feed-in & stitch braids (all)": ["Feed-in braids", "Stitch braids", "Feed-in / stitch braid sew-in"],
-  "French curl (all)": ["French curl", "French curl bob"],
-  "Tape-in (all)": ["Tape ins", "Tape-ins + sew-in"],
-  "K-tip (all)": ["K-tips / invisible strands", "K-tips + sew-in"],
 };
 
 function hasService(services, service) {
