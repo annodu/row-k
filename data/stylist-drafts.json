@@ -2,12 +2,85 @@
   "meta": {
     "source": "admin-drafts",
     "updatedAt": "2026-10-05",
-    "count": 18
+    "count": 19
   },
   "drafts": [
     {
+      "id": "microlocs-by-dee",
+      "status": "deprecated",
+      "name": "Microlocs by Dee",
+      "areaId": "east",
+      "areaIds": [
+        "east"
+      ],
+      "areaLabel": "East",
+      "neighbourhood": "East London",
+      "postcode": "",
+      "bookingPlatform": "Direct website",
+      "bookingUrl": "https://microlocsbyinlondon.setmore.com/",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/microlocsbydee/",
+      "tiktokUrl": "",
+      "addedVia": "Code edit",
+      "discoverySource": "Cowork scrape",
+      "services": [
+        "Microlocs / sisterlocs"
+      ],
+      "rawServices": [],
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "customFilters": {},
+      "sellsHairSeparately": false,
+      "sameDayEmergency": false,
+      "priceBand": "",
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "",
+      "priceSource": "",
+      "priceEvidence": [],
+      "priceCheckedAt": "",
+      "priceUpdatedAt": "",
+      "priceConfidence": "",
+      "summary": "Manual entry added from your latest salon update batch.",
+      "warnings": [],
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "createdAt": "2026-10-05",
+      "updatedAt": "2026-10-05",
+      "googleMapsUri": "",
+      "googleReviewCount": 0,
+      "googleMatchConfidence": "no-match",
+      "googleDisplayName": "",
+      "verifiedReviewCount": 18,
+      "portfolioPhotos": [
+        {
+          "id": "microlocs-by-dee-portfolio-photo-0",
+          "url": "/portfolio-photos/microlocs-by-dee-1.webp",
+          "source": "website"
+        },
+        {
+          "id": "microlocs-by-dee-portfolio-photo-64f234ed-f4a9-418d-9ff8-8bd538f7c6ac",
+          "url": "/portfolio-photos/microlocs-by-dee-c9843120-8950-490e-9a5a-dc6356f810d8.webp",
+          "source": "website"
+        },
+        {
+          "id": "microlocs-by-dee-portfolio-photo-5f99d225-b292-42fe-8eb7-967b25bab8f7",
+          "url": "/portfolio-photos/microlocs-by-dee-2729b0d5-0f73-4da8-898d-3afa96c446e5.webp",
+          "source": "website"
+        }
+      ],
+      "googlePlaceId": "",
+      "googleFormattedAddress": ""
+    },
+    {
       "id": "styledbyaisha",
-      "status": "ready_to_approve",
+      "status": "deprecated",
       "name": "StyledByAisha",
       "areaId": "east",
       "areaIds": [
@@ -18,7 +91,6 @@
       "postcode": "",
       "bookingPlatform": "Instagram",
       "bookingUrl": "https://www.instagram.com/styledbyaishaxx/",
-      "websiteUrl": "",
       "hairShopUrl": "",
       "instagramUrl": "https://www.instagram.com/styledbyaishaxx/",
       "tiktokUrl": "",
@@ -73,7 +145,9 @@
           "url": "/portfolio-photos/styledbyaisha-dff6d3c2-ae34-4f32-ab97-072af2abab1b.jpg",
           "source": "instagram"
         }
-      ]
+      ],
+      "googlePlaceId": "",
+      "googleFormattedAddress": ""
     },
     {
       "id": "ovieya-london-ltd",

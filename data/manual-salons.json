@@ -2,7 +2,7 @@
   "meta": {
     "source": "manual",
     "updatedAt": "2026-10-05",
-    "count": 1165,
+    "count": 1164,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
@@ -47092,8 +47092,8 @@
       "areaLabel": "West",
       "neighbourhood": "West London / Mobile",
       "postcode": "",
-      "bookingPlatform": "Direct website",
-      "bookingUrl": "https://annelsbeautyhouse.com/make-a-reservation/",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/annelsbraids/",
       "instagramUrl": "https://www.instagram.com/annelsbraids/",
       "services": [
         "Miracle knots",
@@ -47124,15 +47124,15 @@
       "priceCheckedAt": "2026-06-04",
       "priceUpdatedAt": "2026-06-04",
       "priceConfidence": "manual",
-      "updatedAt": "2026-08-27",
+      "updatedAt": "2026-10-05",
       "addedVia": "Code edit",
       "discoverySource": "Cowork scrape",
       "googlePlaceId": null,
       "googleReviewCount": 0,
       "googleMapsUri": "",
       "googleMatchConfidence": "no-match",
-      "googleDisplayName": null,
-      "googleFormattedAddress": null,
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-07-29",
       "websiteUrl": "https://annelsbeautyhouse.com",
       "portfolioPhotos": [
@@ -47143,7 +47143,19 @@
         }
       ],
       "portfolioPhotosCheckedAt": "2026-08-21",
-      "photoSearchReviewedAt": "2026-08-24"
+      "photoSearchReviewedAt": "2026-08-24",
+      "hairShopUrl": "",
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": false,
+      "sameDayEmergency": false,
+      "customFilters": {},
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only"
     },
     {
       "id": "arewa-uk",
@@ -49017,7 +49029,10 @@
         "Colour blend (mixing braiding hair)",
         "Full head colour",
         "Men's braids",
-        "Kids & teens styles"
+        "Kids & teens styles",
+        "Microbraids / x-small braids",
+        "Miracle knots",
+        "Boho sew-in"
       ],
       "priceBand": "£",
       "priceSource": "auto",
@@ -49041,7 +49056,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-09-10",
+      "updatedAt": "2026-10-05",
       "addedVia": "Code edit",
       "discoverySource": "Cowork scrape",
       "websiteUrl": "",
@@ -69030,74 +69045,6 @@
       "evidence": [
         "User-provided manual addition."
       ],
-      "id": "microlocs-by-dee",
-      "name": "Microlocs by Dee",
-      "areaId": "east",
-      "areaLabel": "East",
-      "neighbourhood": "East London",
-      "postcode": "",
-      "bookingPlatform": "Direct website",
-      "bookingUrl": "https://microlocsbyinlondon.setmore.com/",
-      "instagramUrl": "https://www.instagram.com/microlocsbydee/",
-      "services": [
-        "Microlocs / sisterlocs"
-      ],
-      "addedVia": "Code edit",
-      "discoverySource": "Cowork scrape",
-      "googlePlaceId": null,
-      "googleReviewCount": 0,
-      "googleMapsUri": "",
-      "googleMatchConfidence": "no-match",
-      "googleDisplayName": null,
-      "googleFormattedAddress": null,
-      "googleCheckedAt": "2026-07-29",
-      "websiteUrl": "",
-      "tiktokUrl": "",
-      "hijabiFriendly": false,
-      "canBraidWithoutGel": false,
-      "wheelchairAccessible": false,
-      "senFriendly": false,
-      "lgbtqFriendly": false,
-      "parkingAvailable": false,
-      "customFilters": {},
-      "priceBand": "",
-      "servicePriceBand": "",
-      "packagePriceBand": "",
-      "priceIncludesHair": false,
-      "priceComparisonMode": "",
-      "priceSource": "",
-      "priceEvidence": [],
-      "priceCheckedAt": "",
-      "priceUpdatedAt": "",
-      "priceConfidence": "",
-      "updatedAt": "2026-08-23",
-      "verifiedReviewCount": 18,
-      "verifiedReviewCheckedAt": "2026-08-02",
-      "portfolioPhotos": [
-        {
-          "id": "microlocs-by-dee-portfolio-photo-0",
-          "url": "/portfolio-photos/microlocs-by-dee-1.webp",
-          "source": "website"
-        },
-        {
-          "id": "microlocs-by-dee-portfolio-photo-64f234ed-f4a9-418d-9ff8-8bd538f7c6ac",
-          "url": "/portfolio-photos/microlocs-by-dee-c9843120-8950-490e-9a5a-dc6356f810d8.webp",
-          "source": "website"
-        },
-        {
-          "id": "microlocs-by-dee-portfolio-photo-5f99d225-b292-42fe-8eb7-967b25bab8f7",
-          "url": "/portfolio-photos/microlocs-by-dee-2729b0d5-0f73-4da8-898d-3afa96c446e5.webp",
-          "source": "website"
-        }
-      ],
-      "portfolioPhotosCheckedAt": "2026-08-21"
-    },
-    {
-      "summary": "Manual entry added from your latest salon update batch.",
-      "source": "manual",
-      "evidence": [
-        "User-provided manual addition."
-      ],
       "id": "microlocs-with-mimi",
       "name": "Microlocs with Mimi",
       "areaId": "croydon",
@@ -69506,7 +69453,9 @@
         "Boho braids bob",
         "Box braids",
         "Full head colour",
-        "Boho sew-in"
+        "Boho sew-in",
+        "Crochet faux locs / invisible locs",
+        "Boho locs"
       ],
       "priceBand": "££",
       "priceSource": "auto",
@@ -69565,7 +69514,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-10-04",
+      "updatedAt": "2026-10-05",
       "sameDayEmergency": false
     },
     {
@@ -84324,7 +84273,10 @@
         "Stitch braids",
         "Fulani / lemonade braids",
         "Braid take-down",
-        "Highlights"
+        "Miracle knots",
+        "Microbraids / x-small braids",
+        "Soft locs",
+        "Twists (with extensions)"
       ],
       "canBraidWithoutGel": true,
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
@@ -84358,15 +84310,15 @@
       "hijabiFriendly": false,
       "wheelchairAccessible": false,
       "customFilters": {},
-      "updatedAt": "2026-08-24",
+      "updatedAt": "2026-10-05",
       "verifiedReviewCount": 8,
       "verifiedReviewCheckedAt": "2026-07-22",
-      "googlePlaceId": "ChIJ5awrpHMHdkgRrmg4ZQXqCOA",
+      "googlePlaceId": null,
       "googleReviewCount": 26,
       "googleMapsUri": "https://maps.google.com/?cid=16143410173203474606&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
       "googleMatchConfidence": "high",
       "googleDisplayName": "Zuri hair studio",
-      "googleFormattedAddress": "102 Norwood High St, Norwood, London SE27 9NH, UK",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-07-23",
       "sellsHairSeparately": true,
       "hairShopUrl": "https://bohotress.com/",
@@ -84418,7 +84370,10 @@
           "source": "google"
         }
       ],
-      "portfolioPhotosCheckedAt": "2026-08-21"
+      "portfolioPhotosCheckedAt": "2026-08-21",
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "sameDayEmergency": false
     },
     {
       "id": "bkay-thestylist",
