@@ -2,9 +2,79 @@
   "meta": {
     "source": "admin-drafts",
     "updatedAt": "2026-10-05",
-    "count": 17
+    "count": 18
   },
   "drafts": [
+    {
+      "id": "styledbyaisha",
+      "status": "ready_to_approve",
+      "name": "StyledByAisha",
+      "areaId": "east",
+      "areaIds": [
+        "east"
+      ],
+      "areaLabel": "East London",
+      "neighbourhood": "East London London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/styledbyaishaxx/",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/styledbyaishaxx/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Wig install (frontal / closure)",
+        "Sleek ponytail / bun",
+        "Boho braids / goddess braids",
+        "Fulani / lemonade braids"
+      ],
+      "rawServices": [],
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "customFilters": {},
+      "sellsHairSeparately": false,
+      "sameDayEmergency": false,
+      "priceBand": "",
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "",
+      "priceSource": "",
+      "priceEvidence": [],
+      "priceCheckedAt": "",
+      "priceUpdatedAt": "",
+      "priceConfidence": "",
+      "summary": "THEBRAIDLOUNGE💕\nWaltham Forest , East London based (Females and males)\nDM TO BOOK 💕\n𝐍𝐎𝐍-𝐑𝐄𝐅𝐔𝐍𝐃𝐀𝐁𝐋𝐄 £𝟏𝟎 𝐃𝐄𝐏𝐎𝐒𝐈𝐓",
+      "warnings": [],
+      "evidence": [
+        "Submitted link: https://www.instagram.com/styledbyaishaxx/",
+        "Raw services provided during admin intake."
+      ],
+      "createdAt": "2026-10-05",
+      "updatedAt": "2026-10-05",
+      "googleMapsUri": "",
+      "googleReviewCount": 0,
+      "googleMatchConfidence": "no-match",
+      "googleDisplayName": "",
+      "portfolioPhotos": [
+        {
+          "id": "styledbyaisha-portfolio-photo-576148d3-f657-4c3e-9bf8-5d2371ba6b42",
+          "url": "/portfolio-photos/styledbyaisha-643c959a-49fe-4c43-b477-dbb62dd038ef.jpg",
+          "source": "instagram"
+        },
+        {
+          "id": "styledbyaisha-portfolio-photo-db575aea-93b8-4ce2-a5f5-da85fe86301a",
+          "url": "/portfolio-photos/styledbyaisha-dff6d3c2-ae34-4f32-ab97-072af2abab1b.jpg",
+          "source": "instagram"
+        }
+      ]
+    },
     {
       "id": "ovieya-london-ltd",
       "status": "deprecated",
