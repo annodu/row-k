@@ -271,8 +271,11 @@ function normalizeServiceSearch(s: string) {
 // broad word like "twists" would misfire.
 const extraServiceSearchAliases: Record<string, string[]> = {
   "Wig cornrows": ["twists", "wig cornrows", "cornrows for wig", "natural hair cornrows"],
-  "Boho sew-in": ["half braid half sew in", "half braids half sew in", "half sew in half braids", "half braid half weave", "half braids half weave", "half weave half braids", "half braids half quick weave"],
-  "Feed-in / stitch braid sew-in": ["half braid half sew in", "half braids half sew in", "half sew in half braids", "half braid half weave", "half braids half weave", "half weave half braids", "half braids half quick weave"],
+  "Boho braids / goddess braids": ["zoe kravitz", "zoe kravitz braids"],
+  "Creative braids": ["alicia keys braids", "cassie braids"],
+  "Fulani / lemonade braids": ["alicia keys braids"],
+  "Boho sew-in": ["zoe kravitz", "zoe kravitz sew in", "half braid half sew in", "half braids half sew in", "half sew in half braids", "half braid half weave", "half braids half weave", "half weave half braids", "half braids half quick weave"],
+  "Feed-in / stitch braid sew-in": ["cassie braids", "cassie sew in", "half braid half sew in", "half braids half sew in", "half sew in half braids", "half braid half weave", "half braids half weave", "half weave half braids", "half braids half quick weave"],
   "Fulani sew-in": ["half braid half sew in", "half braids half sew in", "half sew in half braids", "half braid half weave", "half braids half weave", "half weave half braids", "half braids half quick weave"],
 };
 
@@ -321,7 +324,7 @@ const defaultServiceSearchAliases: Record<string, string[]> = {
   "Crochet faux locs / invisible locs": ["crochet locs", "crochet faux locs", "invisible locs", "faux locs crochet"],
   "Starter locs / instant locs": ["starter locs", "start locs", "loc start", "instant locs"],
   "Retwist / interlocking": ["retwist", "re twist", "interlocking", "inter locking"],
-  "Fulani sew-in": ["fulani braids sew in", "fulani braid sew in", "fulani sew in", "fulani weave", "fulani quick weave", "alicia keys sew in"],
+  "Fulani sew-in": ["fulani braids sew in", "fulani braid sew in", "fulani sew in", "fulani weave", "fulani quick weave"],
   "Boho sew-in": ["boho braids sew in", "boho braid sew in", "boho sew in", "boho weave", "zoe kravitz sew in"],
   "Feed-in / stitch braid sew-in": ["feed in sew in", "feed ins sew in", "half feed in half sew in", "stitch braids sew in", "stitch braid sew in", "jayda wayda sew in", "tyla sew in"],
   "Braid take-down": ["braids removal", "braid removal", "braids takedown", "braid takedown"],
@@ -5554,7 +5557,7 @@ export default function App() {
                         placeholder="Search services"
                         value={serviceSearch}
                         onChange={(e) => setServiceSearch(e.target.value)}
-                        className="h-10 w-full border border-stone-300 bg-white pl-9 pr-9 text-[13px] text-stone-800 placeholder-stone-400 outline-none focus:border-stone-500 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-200 dark:placeholder-stone-500 dark:focus:border-stone-400"
+                        className="h-10 w-full border border-stone-300 bg-white pl-9 pr-9 text-base text-stone-800 sm:text-[13px] placeholder-stone-400 outline-none focus:border-stone-500 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-200 dark:placeholder-stone-500 dark:focus:border-stone-400"
                       />
                       {serviceSearch ? (
                         <button

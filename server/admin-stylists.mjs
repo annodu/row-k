@@ -229,8 +229,8 @@ const serviceRuleMatchers = [
   ["Boho sew-in", [/\b(boho|zoe\s+kravitz)\b.*\b(sew\s*in|sewin|weave|quick\s*weave|half\s+wig)\b/, /\b(sew\s*in|sewin|weave|quick\s*weave|half\s+wig)\b.*\b(boho|zoe\s+kravitz)\b/]],
   // Visible feed-ins / stitch braids alongside the install. Plain cornrows only
   // count when the service is split ("half cornrows half weave"), so cornrow
-  // prep under a full weave doesn't land here. Tyla and Jayda Wayda count as feed-in.
-  ["Feed-in / stitch braid sew-in", [/\b(feed\s*ins?|stitch(\s+braids?)?|tyla|jayda(\s+wayda)?)\b.*\b(sew\s*in|sewin|weave|quick\s*weave|half\s+wig)\b/, /\b(sew\s*in|sewin|weave|quick\s*weave|half\s+wig)\b.*\b(feed\s*ins?|stitch(\s+braids?)?|tyla|jayda(\s+wayda)?)\b/, /\bhalf\b.*\bcornrows?\b.*\b(weave|sew\s*in|sewin)\b/, /\bhalf\b.*\b(weave|sew\s*in|sewin)\b.*\bcornrows?\b/]],
+  // prep under a full weave doesn't land here. Tyla, Cassie and Jayda Wayda count as feed-in.
+  ["Feed-in / stitch braid sew-in", [/\b(feed\s*ins?|stitch(\s+braids?)?|tyla|cassie|jayda(\s+wayda)?)\b.*\b(sew\s*in|sewin|weave|quick\s*weave|half\s+wig)\b/, /\b(sew\s*in|sewin|weave|quick\s*weave|half\s+wig)\b.*\b(feed\s*ins?|stitch(\s+braids?)?|tyla|cassie|jayda(\s+wayda)?)\b/, /\bhalf\b.*\bcornrows?\b.*\b(weave|sew\s*in|sewin)\b/, /\bhalf\b.*\b(weave|sew\s*in|sewin)\b.*\bcornrows?\b/]],
   ["Wig install (frontal / closure)", [/\bwig\b.*\b(install|instal|installation|application|fit|fitting)\b/, /\b(glueless|lace)\s+wig\b/, /\bfrontal\s+wig\b/, /\bclosure\s+wig\b/, /\b(frontal|closure|ready[\s-]*made)\s+unit\b/, /\bunit\b.*\b(install|instal|installation|application|fit|fitting)\b/, /\b(lace\s+)?frontal\s+installation\b/, /\b(lace\s+)?closure\s+installation\b/, /\bwigs?$/, /\b(frontal|closure)$/]],
   ["U-Part / Half wig install", [/\b(u[\s-]*part|v[\s-]*part|u[\s/-]*v[\s-]*part|uvpart)\b.*\b(wig|install|installation)\b/, /\b(wig|install|installation)\b.*\b(u[\s-]*part|v[\s-]*part|u[\s/-]*v[\s-]*part|uvpart)\b/, /\bhalf\s+wig\b/]],
   ["Custom wig", [/\bcustom\b.*\bwig\b/, /\bbespoke\b.*\bwig\b/, /\bcustom\s+handmade\s+wigs?\b/, /\bwig\b.*\b(custom|bespoke|handmade|made|making|construction|unit)\b/, /\bunit\b.*\bcustomi[sz](ing|ation)\b/, /\bcustomi[sz](ing|ation)\b.*\bunit\b/, /\bcustom(?:\s+made)?\b.*\b(frontal|closure)\s+unit\b/, /\bcustom\b.*\bfrontal\s+closure\s+units?\b/, /\bwig\s+(making|construction|customi[sz](ing|ation))\b/, /\bconstruction\s+of\s+(the\s+)?wig\b/, /\bconstruction\b.*\bcustomi[sz](ing|ation)\b/, /\bcustomi[sz](ing|ation)\b.*\bconstruction\b/, /\b(frontal|closure)\b.*\bcustomi[sz](ing|ation)\b/, /\bcustomi[sz](ing|ation)\b.*\b(frontal|closure|wig)\b/, /\b(frontal|closure|wig)\b.*\b(hand[\s-]*made|handmade)\b/, /\b(hand[\s-]*made|handmade)\b.*\b(frontal|closure|wig)\b/]],
@@ -258,7 +258,7 @@ const serviceRuleMatchers = [
   ["Knotless braids", [/\bknotless\b/]],
   ["Box braids", [/\bbox\b.*\bbraids?\b/]],
   ["Crochet", [/\bcrochet\b/]],
-  ["Creative braids", [/\bcassie\b.*\b(sew\s*in|sewin|weave)\b/, /\bpatewo\b/, /\bdolly\s+braids?\b/, /\bshuku\b/, /\bkoroba\s+braids?\b/, /\bcreative\b.*\bbraids?\b/]],
+  ["Creative braids", [/\bcassie\s+braids?\b/, /\bpatewo\b/, /\bdolly\s+braids?\b/, /\bshuku\b/, /\bkoroba\s+braids?\b/, /\bcreative\b.*\bbraids?\b/]],
   ["Feed-in braids", [/\bfeed\s*in\b/, /\bfeed-in\b/, /\ball\s+back\b.*\b(braids?|cornrows?|feed\s*ins?)\b/, /\b(braids?|cornrows?|feed\s*ins?)\b.*\ball\s+back\b/, /\bbraids?\b.*\bgoing\s+back\b/, /\bgoing\s+back\b.*\bbraids?\b/, /\bcornrows?\b.*\b(extension|extensions|pre\s*pull(ed)?|braiding\s+hair)\b/, /\b(extension|extensions|pre\s*pull(ed)?|braiding\s+hair)\b.*\bcornrows?\b/]],
   // Was never matchable at all before — "Men's Natural Braids/Twists" (a
   // real Acuity line item) doesn't literally contain "men's braids" as a

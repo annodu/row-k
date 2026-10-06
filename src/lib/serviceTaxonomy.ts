@@ -16,7 +16,7 @@ export const subcategoryGroupsByCategory: Record<string, readonly string[]> = {
 };
 
 const serviceDisplayNames: Record<string, string> = {
-  "Wig cornrows": "(Wig) cornrows",
+  "Wig cornrows": "(Wig) cornrows / twists",
   "Boho braids / goddess braids": "Boho braids",
   "Boho sew-in": "Boho braids sew-in (hybrid)",
   "Fulani / lemonade braids": "Fulani braids",
