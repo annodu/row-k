@@ -5095,20 +5095,26 @@ export default function App() {
                   key={`skeleton-${index}`}
                   className="flex w-full flex-col items-start gap-2 border-b border-stone-300 px-0 py-6 text-left last:border-b-0 dark:border-stone-800"
                 >
-                  <article className="flex w-full flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-                    <div className="min-w-0 grow">
-                      <div className="h-6 w-48 animate-pulse rounded-[4px] bg-stone-300/70 dark:bg-stone-800/70" />
-                      <div className="mt-2 h-5 w-32 animate-pulse rounded-[4px] bg-stone-200/70 dark:bg-stone-900/70" />
-                      <div className="mt-3 flex flex-wrap items-center gap-2">
-                        <span className="h-6 w-24 animate-pulse rounded-[4px] bg-stone-200/70 dark:bg-stone-900/70" />
-                        <span className="h-6 w-28 animate-pulse rounded-[4px] bg-stone-200/70 dark:bg-stone-900/70" />
-                        <span className="h-6 w-20 animate-pulse rounded-[4px] bg-stone-200/70 dark:bg-stone-900/70" />
-                      </div>
+                  {/* Mirrors SalonResultCard's grid: portfolio photo on the left
+                      (on top on mobile), name/info + buttons in row 1, the
+                      services block sitting flush with the photo's bottom. */}
+                  <article className="flex w-full flex-col gap-2.5 sm:grid sm:items-start sm:gap-x-4 sm:gap-y-2.5 sm:grid-cols-[220px_minmax(0,1fr)_auto] sm:grid-rows-[min-content_1fr] lg:grid-cols-[240px_minmax(0,1fr)_auto]">
+                    <div className="order-1 mb-1 aspect-[3/2] w-full animate-pulse rounded-none bg-stone-300/70 dark:bg-stone-800/70 sm:row-span-2 sm:mb-0 sm:aspect-auto sm:h-[160px]" />
+
+                    <div className="order-2 min-w-0">
+                      <div className="h-[22px] w-48 max-w-full animate-pulse rounded-none bg-stone-300/70 dark:bg-stone-800/70" />
+                      <div className="mt-1.5 h-4 w-36 max-w-full animate-pulse rounded-none bg-stone-200/70 dark:bg-stone-900/70" />
+                      <div className="mt-2 h-[22px] w-24 animate-pulse rounded-none bg-stone-200/70 dark:bg-stone-900/70" />
                     </div>
 
-                    <div className="flex w-full shrink-0 items-center gap-2 sm:w-auto">
-                      <span className="h-11 flex-1 animate-pulse rounded-[8px] bg-stone-300/70 dark:bg-stone-800/70 sm:w-28 sm:flex-none" />
-                      <span className="h-11 w-11 animate-pulse rounded-[8px] bg-stone-200/70 dark:bg-stone-900/70" />
+                    <div className="order-4 mt-2 flex w-full shrink-0 items-center gap-2 sm:order-2 sm:mt-0 sm:w-auto sm:justify-self-end">
+                      <span className="hidden h-11 w-11 animate-pulse rounded-none bg-stone-200/70 dark:bg-stone-900/70 sm:block" />
+                      <span className="h-12 flex-1 animate-pulse rounded-none bg-stone-300/70 dark:bg-stone-800/70 sm:h-11 sm:w-[68px] sm:flex-none" />
+                    </div>
+
+                    <div className="order-3 mt-2 w-full border-l-2 border-stone-300 pl-2 dark:border-stone-700 sm:col-span-2 sm:mt-0 sm:self-end">
+                      <div className="h-3 w-full animate-pulse rounded-none bg-stone-200/70 dark:bg-stone-900/70" />
+                      <div className="mt-1.5 h-3 w-2/3 animate-pulse rounded-none bg-stone-200/70 dark:bg-stone-900/70" />
                     </div>
                   </article>
                 </li>
