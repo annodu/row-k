@@ -27,6 +27,7 @@ const serviceDisplayNames: Record<string, string> = {
   "K-tips / invisible strands": "K-tips",
   "K-tips + sew-in": "K-tips + sew-in (hybrid)",
   "French curl": "French curl braids",
+  "Cecred treatment": "Cécred treatment",
   ...Object.fromEntries(Object.keys(serviceFamilies).filter((family) => family.endsWith(" (all)")).map((family) => [family, family.slice(0, -" (all)".length)])),
 };
 

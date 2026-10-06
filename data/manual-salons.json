@@ -1,11 +1,129 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-10-05",
-    "count": 1164,
+    "updatedAt": "2026-10-06",
+    "count": 1166,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "marni-kay-beauty",
+      "name": "Marni Kay Beauty",
+      "areaId": "south-east",
+      "areaIds": [
+        "south-east",
+        "east"
+      ],
+      "areaLabel": "South east London / East London",
+      "neighbourhood": "South east London and East London London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/marni.kaybeauty/",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/marni.kaybeauty/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Wig cornrows",
+        "Kids & teens styles",
+        "Fulani / lemonade braids",
+        "Feed-in braids",
+        "Butterfly locs",
+        "Silk press",
+        "Wash & blowdry"
+      ],
+      "summary": "✨ Healthy Hair • Low-Tension Styling\n🏠 Hoxton | 📍 Rotherhithe Saturdays\n🚗 Mobile across London\n👇🏾 Book online",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/marni.kaybeauty/",
+        "Submitted link: http://marnikaybeauty.simplybook.it/"
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-10-06",
+      "portfolioPhotos": [
+        {
+          "id": "marni-kay-beauty-portfolio-photo-312dcb8e-b3ca-4175-a453-e7dc2ea17fba",
+          "url": "/portfolio-photos/marni-kay-beauty-f3f38ea9-3045-4eed-a6d9-8a97c1731a41.jpg",
+          "source": "instagram"
+        },
+        {
+          "id": "marni-kay-beauty-portfolio-photo-1c922665-281e-4ab3-a2f9-4a267353a184",
+          "url": "/portfolio-photos/marni-kay-beauty-424b988a-dd43-48c5-aaaa-8deef7e79146.jpg",
+          "source": "instagram"
+        },
+        {
+          "id": "marni-kay-beauty-portfolio-photo-20334e45-d4a0-4d2e-81e0-19ad13bc889a",
+          "url": "/portfolio-photos/marni-kay-beauty-a8e05347-9e5f-45f2-b479-862be826c420.jpg",
+          "source": "instagram"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-10-06",
+      "photoOrderBumpedAt": 1314
+    },
+    {
+      "id": "lum-hair-salon",
+      "name": "Lumé Hair Salon",
+      "areaId": "north",
+      "areaLabel": "North London",
+      "neighbourhood": "North London London",
+      "postcode": "",
+      "bookingPlatform": "Instagram",
+      "bookingUrl": "https://www.instagram.com/hairbyclodagh_/",
+      "websiteUrl": "",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/hairbyclodagh_/",
+      "tiktokUrl": "",
+      "addedVia": "Admin tool",
+      "discoverySource": "Instagram auto-fill",
+      "services": [
+        "Full head colour",
+        "Balayage",
+        "Moisturising treatment",
+        "Silk press",
+        "Hair botox",
+        "Keratin treatment / Brazilian blowdry",
+        "Trim / hair cut",
+        "K18 treatment",
+        "Highlights",
+        "Cecred treatment"
+      ],
+      "summary": "Specialising In All Hair Types. London 📍 Barnet, EN5 (New Location) \n🗓️ Appointments available Now \n💌 DM me to book / enquire",
+      "source": "manual",
+      "evidence": [
+        "Submitted link: https://www.instagram.com/hairbyclodagh_/",
+        "Raw services provided during admin intake."
+      ],
+      "googlePlaceId": null,
+      "googleReviewCount": 0,
+      "googleMapsUri": "",
+      "googleMatchConfidence": "no-match",
+      "googleCheckedAt": "2026-10-06",
+      "portfolioPhotos": [
+        {
+          "id": "lum-hair-salon-portfolio-photo-ffe4eeeb-1afa-4a55-baaa-4c4b0a726fdd",
+          "url": "/portfolio-photos/lum-hair-salon-08a81c9c-8835-4f95-b9d6-37f5b684eefd.jpg",
+          "source": "instagram"
+        },
+        {
+          "id": "lum-hair-salon-portfolio-photo-367d9103-3acf-4d55-ad2b-e70fcc648de2",
+          "url": "/portfolio-photos/lum-hair-salon-692241e5-0313-4468-a1d7-5dd432fee5df.jpg",
+          "source": "instagram"
+        },
+        {
+          "id": "lum-hair-salon-portfolio-photo-0d0b93a6-2d1e-407b-8a8b-f73c85bfe377",
+          "url": "/portfolio-photos/lum-hair-salon-e8541c1a-9435-4d0a-b251-63e7d81741d8.jpg",
+          "source": "instagram"
+        }
+      ],
+      "photoSearchReviewedAt": "2026-10-06",
+      "photoOrderBumpedAt": 1311,
+      "updatedAt": "2026-10-06"
+    },
     {
       "id": "dolled-by-tems",
       "name": "Dolled by tems",
@@ -21018,7 +21136,8 @@
       "discoverySource": "Manual search",
       "services": [
         "Tape ins",
-        "I-tips / microlinks strands"
+        "I-tips / microlinks strands",
+        "Cecred treatment"
       ],
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
@@ -21048,7 +21167,7 @@
         }
       ],
       "photoSearchReviewedAt": "2026-08-26",
-      "updatedAt": "2026-08-30"
+      "updatedAt": "2026-10-06"
     },
     {
       "id": "hershairsuite",
@@ -29551,7 +29670,8 @@
         "Braid take-down",
         "Custom wig",
         "Wig blowdry",
-        "Kids & teens styles"
+        "Kids & teens styles",
+        "Cecred treatment"
       ],
       "priceBand": "£",
       "servicePriceBand": "",
@@ -29583,7 +29703,7 @@
       "lgbtqFriendly": false,
       "parkingAvailable": true,
       "customFilters": {},
-      "updatedAt": "2026-10-04",
+      "updatedAt": "2026-10-06",
       "portfolioPhotos": [
         {
           "id": "hair-by-rose-essex-portfolio-photo-17bcc673-846b-410b-a2ef-03eb9d8720a0",
@@ -42612,7 +42732,8 @@
         "Boho braids bob",
         "Healthy hair plans & consultations",
         "Full head colour",
-        "Trichology / scalp analysis"
+        "Trichology / scalp analysis",
+        "Cecred treatment"
       ],
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
@@ -42644,7 +42765,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": true,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-10-05",
+      "updatedAt": "2026-10-06",
       "googlePlaceId": null,
       "googleReviewCount": 32,
       "googleMapsUri": "https://maps.google.com/?cid=11306072263715698061&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
@@ -52846,7 +52967,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-27",
+      "updatedAt": "2026-10-06",
       "portfolioPhotosCheckedAt": "2026-08-21",
       "portfolioPhotos": [
         {
@@ -52900,7 +53021,13 @@
       "lgbtqFriendly": false,
       "parkingAvailable": false,
       "sellsHairSeparately": false,
-      "photoSearchReviewedAt": "2026-08-26"
+      "photoSearchReviewedAt": "2026-08-26",
+      "adminNotes": [
+        {
+          "text": "Might offer Cécred treatment, unconfirmed. Not tagged with it yet.",
+          "date": "2026-10-06"
+        }
+      ]
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -58272,7 +58399,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-10-04",
+      "updatedAt": "2026-10-06",
       "websiteUrl": "",
       "googlePlaceId": null,
       "googleReviewCount": 0,
@@ -58289,7 +58416,13 @@
           "source": "instagram-reel-thumbnail"
         }
       ],
-      "photoOrderBumpedAt": 481
+      "photoOrderBumpedAt": 481,
+      "adminNotes": [
+        {
+          "text": "About to start offering Cécred treatment. Not tagged with it yet; add the tag once it's live.",
+          "date": "2026-10-06"
+        }
+      ]
     },
     {
       "id": "gslaysuk",
@@ -64490,7 +64623,8 @@
         "Moisturising treatment",
         "Roller set",
         "Full head colour",
-        "Scalp detox / treatments"
+        "Scalp detox / treatments",
+        "Cecred treatment"
       ],
       "summary": "Manual entry added from your latest salon update batch.",
       "source": "manual",
@@ -64499,7 +64633,7 @@
       ],
       "hijabiFriendly": true,
       "tiktokUrl": "https://www.tiktok.com/@xo_karrieee/video/7592032929845366019?lang=en-GB",
-      "updatedAt": "2026-08-23",
+      "updatedAt": "2026-10-06",
       "priceBand": "£££",
       "priceSource": "auto",
       "priceEvidence": [
@@ -64722,7 +64856,8 @@
         "Bouncy blowout / round brush blow dry",
         "Highlights",
         "Balayage",
-        "Kids & teens styles"
+        "Kids & teens styles",
+        "Cecred treatment"
       ],
       "hijabiFriendly": true,
       "priceBand": "££",
@@ -64741,7 +64876,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-31",
+      "updatedAt": "2026-10-06",
       "addedVia": "Code edit",
       "discoverySource": "Cowork scrape",
       "wheelchairAccessible": false,
@@ -76217,7 +76352,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-27",
+      "updatedAt": "2026-10-06",
       "addedVia": "Code edit",
       "discoverySource": "Cowork scrape",
       "googlePlaceId": null,
@@ -76242,7 +76377,13 @@
         }
       ],
       "photoOrderBumpedAt": 499,
-      "photoSearchReviewedAt": "2026-08-27"
+      "photoSearchReviewedAt": "2026-08-27",
+      "adminNotes": [
+        {
+          "text": "Might offer Cécred treatment, unconfirmed. Not tagged with it yet.",
+          "date": "2026-10-06"
+        }
+      ]
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
