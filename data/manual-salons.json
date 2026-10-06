@@ -43812,9 +43812,9 @@
     {
       "id": "ariela-london",
       "name": "Ariela London",
-      "areaId": "south-west",
-      "areaLabel": "South West London",
-      "neighbourhood": "South West London London",
+      "areaId": "croydon",
+      "areaLabel": "Croydon",
+      "neighbourhood": "Croydon London",
       "postcode": "",
       "bookingPlatform": "Direct website",
       "bookingUrl": "https://www.arielalondon.com/book?category=9019d1e2-baeb-4194-bce7-577551a31455",
@@ -43860,15 +43860,15 @@
       "priceCheckedAt": "2026-06-04",
       "priceUpdatedAt": "2026-06-04",
       "priceConfidence": "manual",
-      "updatedAt": "2026-06-04",
+      "updatedAt": "2026-10-06",
       "addedVia": "Admin tool",
       "discoverySource": "Manual search",
-      "googlePlaceId": "ChIJF802LYsRdkgRxhk0WHG-RDU",
+      "googlePlaceId": null,
       "googleReviewCount": 49,
       "googleMapsUri": "https://maps.google.com/?cid=3838402176446896582",
       "googleMatchConfidence": "high",
       "googleDisplayName": "Ariela London",
-      "googleFormattedAddress": "Studio F10, @ Collaborative One, 360 Brighton Rd, South Croydon CR2 6AL, UK",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-08-31",
       "websiteUrl": "https://www.arielalondon.com",
       "sellsHairSeparately": true,
@@ -43882,7 +43882,16 @@
           "url": "/portfolio-photos/ariela-london-1.jpg",
           "source": "website"
         }
-      ]
+      ],
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sameDayEmergency": false,
+      "customFilters": {},
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceComparisonMode": ""
     },
     {
       "id": "rinsedpeckham",
@@ -44656,8 +44665,8 @@
       "id": "amazonsalonuk",
       "name": "Amazon Salon",
       "areaId": "central",
-      "areaLabel": "Central London",
-      "neighbourhood": "Central London",
+      "areaLabel": "Central London / East London",
+      "neighbourhood": "Central London and East London London",
       "postcode": "",
       "bookingPlatform": "Direct website",
       "bookingUrl": "https://www.amazon.co.uk/b?ie=UTF8&node=26247109031",
@@ -44701,12 +44710,12 @@
       "priceConfidence": "manual",
       "addedVia": "Admin tool",
       "discoverySource": "Manual search",
-      "googlePlaceId": "ChIJ3eioDiQddkgRHeIOJFc9Abg",
+      "googlePlaceId": null,
       "googleReviewCount": 504,
       "googleMapsUri": "https://maps.google.com/?cid=13258946222431855133&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
       "googleMatchConfidence": "high",
       "googleDisplayName": "Amazon Salon",
-      "googleFormattedAddress": "47 Brushfield St, London E1 6AA, UK",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-07-24",
       "websiteUrl": "",
       "tiktokUrl": "",
@@ -44718,7 +44727,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-07-24",
+      "updatedAt": "2026-10-06",
       "portfolioPhotosCheckedAt": "2026-08-20",
       "portfolioPhotos": [
         {
@@ -44737,7 +44746,17 @@
           "source": "instagram"
         }
       ],
-      "photoSearchReviewedAt": "2026-08-25"
+      "photoSearchReviewedAt": "2026-08-25",
+      "areaIds": [
+        "central",
+        "east"
+      ],
+      "hairShopUrl": "",
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": false,
+      "sameDayEmergency": false
     },
     {
       "id": "justcurlsessex",
@@ -46825,7 +46844,7 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-10-04",
+      "updatedAt": "2026-10-06",
       "addedVia": "Code edit",
       "discoverySource": "Cowork scrape",
       "wheelchairAccessible": true,
@@ -46867,7 +46886,13 @@
       "sellsHairSeparately": false,
       "customFilters": {},
       "photoSearchReviewedAt": "2026-08-25",
-      "sameDayEmergency": false
+      "sameDayEmergency": false,
+      "adminNotes": [
+        {
+          "text": "Might offer Cécred treatment, unconfirmed (hosted Cécred for its UK launch). Not tagged with it yet.",
+          "date": "2026-10-06"
+        }
+      ]
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -59019,9 +59044,9 @@
     {
       "id": "hair-by-anais",
       "name": "Hair by Anais",
-      "areaId": "essex",
-      "areaLabel": "Essex",
-      "neighbourhood": "Essex",
+      "areaId": "east",
+      "areaLabel": "East London",
+      "neighbourhood": "East London London",
       "postcode": "",
       "bookingPlatform": "Direct website",
       "bookingUrl": "https://hairbyanais.as.me/schedule/8b59527b",
@@ -59074,12 +59099,12 @@
       "addedVia": "Bulk import",
       "discoverySource": "Cowork scrape",
       "tiktokUrl": "https://www.tiktok.com/@xo_karrieee/video/7592032929845366019",
-      "googlePlaceId": "ChIJSQhOsb2n2EcRaWutY_cmGLU",
+      "googlePlaceId": null,
       "googleReviewCount": 101,
       "googleMapsUri": "https://maps.google.com/?cid=13049222764277099369&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
       "googleMatchConfidence": "high",
       "googleDisplayName": "Hair by Anais",
-      "googleFormattedAddress": "88a Upton Ln, London E7 9LW, UK",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-07-23",
       "portfolioPhotos": [
         {
@@ -59118,8 +59143,9 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-08-25",
-      "photoSearchReviewedAt": "2026-08-25"
+      "updatedAt": "2026-10-06",
+      "photoSearchReviewedAt": "2026-08-25",
+      "sameDayEmergency": false
     },
     {
       "summary": "Manual entry added from your bridal and editorial list.",
@@ -74968,7 +74994,7 @@
       "priceCheckedAt": "",
       "priceUpdatedAt": "2026-06-04",
       "priceConfidence": "manual",
-      "updatedAt": "2026-08-31",
+      "updatedAt": "2026-10-06",
       "servicePriceBand": "",
       "packagePriceBand": "",
       "priceIncludesHair": false,
@@ -75060,7 +75086,13 @@
       "customFilters": {},
       "photoSearchReviewedAt": "2026-08-26",
       "photoOrderBumpedAt": 384,
-      "sameDayEmergency": false
+      "sameDayEmergency": false,
+      "adminNotes": [
+        {
+          "text": "Might offer Cécred treatment, unconfirmed (hosted Cécred for its UK launch). Not tagged with it yet.",
+          "date": "2026-10-06"
+        }
+      ]
     },
     {
       "id": "sashe-amari",
@@ -78251,7 +78283,7 @@
       "priceCheckedAt": "2026-06-04",
       "priceUpdatedAt": "2026-06-04",
       "priceConfidence": "manual",
-      "updatedAt": "2026-08-26",
+      "updatedAt": "2026-10-06",
       "addedVia": "Bulk import",
       "discoverySource": "Cowork scrape",
       "googlePlaceId": "ChIJuSqZu8QDdkgRIKWOM9YAF_Q",
@@ -78318,7 +78350,13 @@
         }
       ],
       "portfolioPhotosCheckedAt": "2026-08-21",
-      "photoSearchReviewedAt": "2026-08-25"
+      "photoSearchReviewedAt": "2026-08-25",
+      "adminNotes": [
+        {
+          "text": "Might offer Cécred treatment, unconfirmed (hosted Cécred for its UK launch). Not tagged with it yet.",
+          "date": "2026-10-06"
+        }
+      ]
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -80312,7 +80350,13 @@
         "Closure sew-in / closure behind the hairline",
         "Flipover / Versatile sew-in",
         "U-Part / Half wig install",
-        "Kids & teens styles"
+        "Kids & teens styles",
+        "Olaplex treatment",
+        "Braid take-down",
+        "Twists (with extensions)",
+        "Natural hair coaches / educators",
+        "Wash & blowdry",
+        "Trichology / scalp analysis"
       ],
       "priceBand": "££",
       "priceSource": "auto",
@@ -80339,13 +80383,13 @@
       "packagePriceBand": "",
       "priceIncludesHair": true,
       "priceComparisonMode": "",
-      "updatedAt": "2026-08-27",
-      "googlePlaceId": "ChIJDyJ5OgABdkgRQBjVjLMaM-U",
+      "updatedAt": "2026-10-06",
+      "googlePlaceId": null,
       "googleReviewCount": 3,
       "googleMapsUri": "https://maps.google.com/?cid=16515573616961984576",
       "googleMatchConfidence": "high",
       "googleDisplayName": "The Hair Spa Clinic",
-      "googleFormattedAddress": "104 Kent House Rd, Beckenham BR3 1JJ, UK",
+      "googleFormattedAddress": "",
       "googleCheckedAt": "2026-08-31",
       "portfolioPhotosCheckedAt": "2026-08-21",
       "websiteUrl": "",
@@ -80362,7 +80406,8 @@
           "source": "instagram"
         }
       ],
-      "photoSearchReviewedAt": "2026-08-25"
+      "photoSearchReviewedAt": "2026-08-25",
+      "sameDayEmergency": false
     },
     {
       "id": "the-hair-space",
