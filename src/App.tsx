@@ -92,10 +92,10 @@ const categoryMap = {
   "bridal-services": { label: "Bridal", subcategories: ["all","Bridal"] },
   "editorial-services": { label: "Editorial / Session styling", subcategories: ["all","Editorial / Session styling"] },
   "kids-teens-services": { label: "Kids & teens styles", subcategories: ["all","Kids & teens styles"] },
-  "extension-services": { label: "Extensions", subcategories: ["all","Clip ins (+ silk press)","K-tips / invisible strands","LA weave / microlinks wefts / braidless sew in","I-tips / microlinks strands","Tape ins","Tape-ins + sew-in","K-tips + sew-in"] },
+  "extension-services": { label: "Extensions", subcategories: ["all","Clip ins (+ silk press)","K-tips / invisible strands","LA weave / microlinks wefts / braidless sew in","I-tips / microlinks strands","Tape ins","Tape-ins + sew-in","K-tips + sew-in","Hair loss systems (e.g. mesh)"] },
   "locs-services": { label: "Locs", subcategories: ["all","Starter locs / instant locs","Retwist / interlocking","Loc styling","Microlocs / sisterlocs","Loc extensions (permanent)"] },
   "faux-locs-services": { label: "Faux locs", subcategories: ["all","Soft locs","Boho locs","Crochet faux locs / invisible locs","Butterfly locs"] },
-  "sew-in-weave": { label: "Sew in / weave", subcategories: ["all","Closure sew-in / closure behind the hairline","Flipover / Versatile sew-in","Frontal sew-in","Pixie wig / weave install","Quick weave","Sew-in take-down","Tracks (+ silk press) / partial / invisible sew-in","Traditional sew-in / leave out","Fulani sew-in","Boho sew-in","Feed-in / stitch braid sew-in","Tape-ins + sew-in","K-tips + sew-in"] },
+  "sew-in-weave": { label: "Sew in / weave", subcategories: ["all","Closure sew-in / closure behind the hairline","Flipover / Versatile sew-in","Frontal sew-in","Pixie wig / weave install","Quick weave","Sew-in take-down","Tracks (+ silk press) / partial / invisible sew-in","Traditional sew-in / leave out","Fulani sew-in","Boho sew-in","Feed-in / stitch braid sew-in","Tape-ins + sew-in","K-tips + sew-in","Hair loss systems (e.g. mesh)"] },
   "styling-services": { label: "Styling (sew in / frontal / relaxer)", subcategories: ["all","Sew in / extensions blowdry","Frontal ponytail / bun","Half up half down","Pixie cut / finger waves","Sleek ponytail / bun","Updo"] },
   "straightening-treatments": { label: "Treatments", subcategories: ["all","Cecred treatment","Hair botox","Japanese straightening","K18 treatment","Keratin treatment / Brazilian blowdry","Moisturising treatment","Olaplex treatment","Relaxer / texturiser","Texture release"] },
   "natural-hair-services": { label: "Natural hair washing & styling", subcategories: ["all","Wig cornrows","Curly cut / wash & go / diffuse","Silk press","Bouncy blowout / round brush blow dry","Trim / hair cut","Roller set","Twist out / flexi rod","Bantu knots","Wash & blowdry","Japanese head spa","Scalp detox / treatments","Men's braids"] },
@@ -109,10 +109,10 @@ const categoryServiceMap = {
   "bridal-services": ["Bridal"],
   "editorial-services": ["Editorial / Session styling"],
   "kids-teens-services": ["Kids & teens styles"],
-  "extension-services": ["Clip ins (+ silk press)","K-tips / invisible strands","LA weave / microlinks wefts / braidless sew in","I-tips / microlinks strands","Tape ins","Tape-ins + sew-in","K-tips + sew-in"],
+  "extension-services": ["Clip ins (+ silk press)","K-tips / invisible strands","LA weave / microlinks wefts / braidless sew in","I-tips / microlinks strands","Tape ins","Tape-ins + sew-in","K-tips + sew-in","Hair loss systems (e.g. mesh)"],
   "locs-services": ["Starter locs / instant locs","Retwist / interlocking","Loc styling","Microlocs / sisterlocs","Loc extensions (permanent)"],
   "faux-locs-services": ["Soft locs","Boho locs","Crochet faux locs / invisible locs","Butterfly locs"],
-  "sew-in-weave": ["Closure sew-in / closure behind the hairline","Flipover / Versatile sew-in","Frontal sew-in","Pixie wig / weave install","Quick weave","Sew-in take-down","Tracks (+ silk press) / partial / invisible sew-in","Traditional sew-in / leave out","Fulani sew-in","Boho sew-in","Feed-in / stitch braid sew-in","Tape-ins + sew-in","K-tips + sew-in"],
+  "sew-in-weave": ["Closure sew-in / closure behind the hairline","Flipover / Versatile sew-in","Frontal sew-in","Pixie wig / weave install","Quick weave","Sew-in take-down","Tracks (+ silk press) / partial / invisible sew-in","Traditional sew-in / leave out","Fulani sew-in","Boho sew-in","Feed-in / stitch braid sew-in","Tape-ins + sew-in","K-tips + sew-in","Hair loss systems (e.g. mesh)"],
   "styling-services": ["Sew in / extensions blowdry","Frontal ponytail / bun","Half up half down","Pixie cut / finger waves","Sleek ponytail / bun","Updo"],
   "straightening-treatments": ["Cecred treatment","Hair botox","Japanese straightening","K18 treatment","Keratin treatment / Brazilian blowdry","Moisturising treatment","Olaplex treatment","Relaxer / texturiser","Texture release"],
   "natural-hair-services": ["Wig cornrows","Curly cut / wash & go / diffuse","Silk press","Bouncy blowout / round brush blow dry","Trim / hair cut","Roller set","Twist out / flexi rod","Bantu knots","Wash & blowdry","Japanese head spa","Scalp detox / treatments","Men's braids"],
@@ -276,6 +276,8 @@ const extraServiceSearchAliases: Record<string, string[]> = {
   "Fulani / lemonade braids": ["alicia keys braids"],
   "Boho sew-in": ["zoe kravitz", "zoe kravitz sew in", "half braid half sew in", "half braids half sew in", "half sew in half braids", "half braid half weave", "half braids half weave", "half weave half braids", "half braids half quick weave"],
   "Feed-in / stitch braid sew-in": ["cassie braids", "cassie sew in", "half braid half sew in", "half braids half sew in", "half sew in half braids", "half braid half weave", "half braids half weave", "half weave half braids", "half braids half quick weave"],
+  "Hair loss systems (e.g. mesh)": ["alopecia", "hair loss", "mesh", "mesh integration", "hair loss system", "hair loss weave", "hair loss unit", "hair integration", "thinning hair", "hair thinning", "bald patches", "traction alopecia"],
+  "Trichology / scalp analysis": ["alopecia", "hair loss", "thinning hair", "hair thinning", "traction alopecia", "alopecia areata", "ccca", "bald patches", "receding hairline", "hair shedding", "breakage", "hair loss specialist"],
   "Fulani sew-in": ["half braid half sew in", "half braids half sew in", "half sew in half braids", "half braid half weave", "half braids half weave", "half weave half braids", "half braids half quick weave"],
 };
 
@@ -2660,6 +2662,9 @@ export default function App() {
   const [selectedRegions, setSelectedRegions] = useState<RegionId[]>(["all"]);
   const [selectedCategories, setSelectedCategories] = useState<ServiceCategoryId[]>([]);
   const [selectedSubcategories, setSelectedSubcategories] = useState<ServiceSubcategoryId[]>([]);
+  // Which category a service listed under several parents was ticked from, so
+  // only that parent expands to show it — display only, the filter is the same.
+  const [subcategoryPickedFrom, setSubcategoryPickedFrom] = useState<Record<string, string>>({});
   const [serviceSearch, setServiceSearch] = useState("");
   const [serviceSearchAliases, setServiceSearchAliases] = useState<Record<string, string[]>>(() => withExtraServiceSearchAliases(defaultServiceSearchAliases));
   const [results, setResults] = useState<SalonResult[]>([]);
@@ -3741,9 +3746,19 @@ export default function App() {
     return runtimeCategories.find((c) => c.id === categoryId)?.label ?? categoryId;
   }
 
+  // A service under several parents belongs to the one it was ticked from, or
+  // the first listed parent when there's no record (e.g. restored from a URL).
+  function getSubcategoryHomeCategory(subcategory: string) {
+    const pickedFrom = subcategoryPickedFrom[subcategory];
+    if (pickedFrom && getCategorySubcategories(pickedFrom).includes(subcategory)) return pickedFrom;
+    return runtimeSortedCategoryEntries.find(([id]) => id !== "all" && getCategorySubcategories(id).includes(subcategory))?.[0];
+  }
+
   function categoryHasSelectedSubcategories(categoryId: ServiceCategoryId) {
     const availableSubcategories = getCategorySubcategories(categoryId);
-    return availableSubcategories.some((subcategory) => currentSelectedSubcategories.includes(subcategory as ServiceSubcategoryId));
+    return availableSubcategories.some(
+      (subcategory) => currentSelectedSubcategories.includes(subcategory as ServiceSubcategoryId) && getSubcategoryHomeCategory(subcategory) === categoryId,
+    );
   }
 
   function toggleCategory(nextCategory: CategoryId) {
@@ -3769,8 +3784,9 @@ export default function App() {
       const isActive = currentCategories.includes(nextCategory);
       const nextSubcategories = new Set(getCategorySubcategories(nextCategory));
 
+      // Leave services picked under another parent alone — they're shown there.
       updateSubcategories((currentSubcategories) =>
-        currentSubcategories.filter((subcategory) => !nextSubcategories.has(subcategory)),
+        currentSubcategories.filter((subcategory) => !nextSubcategories.has(subcategory) || getSubcategoryHomeCategory(subcategory) !== nextCategory),
       );
 
       if (isActive) {
@@ -3796,6 +3812,9 @@ export default function App() {
     const familyMembers = groupedFamilies.has(nextSubcategory) ? (serviceFamilies[nextSubcategory] ?? []) : [];
     const familiesHoldingIt = [...groupedFamilies].filter((family) => (serviceFamilies[family] ?? []).includes(nextSubcategory));
     const familyHere = parentCategory ? (subcategoryGroupsByCategory[parentCategory] ?? []).find((family) => familiesHoldingIt.includes(family)) : undefined;
+    if (parentCategory && !currentSelectedSubcategories.includes(nextSubcategory)) {
+      setSubcategoryPickedFrom((current) => ({ ...current, [nextSubcategory]: parentCategory }));
+    }
 
     updateSubcategories((currentSubcategories) => {
       const isCurrentlySelected = currentSubcategories.includes(nextSubcategory);
@@ -4367,11 +4386,10 @@ export default function App() {
 
 
   const visibleResults = sortedResults.slice(0, visibleResultCount);
-  const selectedServiceCount = runtimeSortedCategoryEntries.reduce((count, [id]) => {
-    if (id === "all") return count;
-    const categoryId = id as ServiceCategoryId;
-    return isCategorySelected(categoryId) || categoryHasSelectedSubcategories(categoryId) ? count + 1 : count;
-  }, 0);
+  // Whole categories plus individual services, so a service listed under two
+  // parents still counts once.
+  const selectedServiceCount =
+    currentSelectedCategories.filter((categoryId) => categoryId !== "all").length + new Set(currentSelectedSubcategories).size;
   const selectedLocationCount = currentSelectedRegions.filter((regionId) => regionId !== "all").length;
   const selectedPriceRangeCount = currentSelectedPriceBands.length;
   const selectedAdditionalNeedsCount =
