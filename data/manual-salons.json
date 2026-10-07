@@ -39109,7 +39109,8 @@
         "Highlights",
         "Balayage",
         "Wig colouring / bundle colouring",
-        "Bridal"
+        "Bridal",
+        "Cecred treatment"
       ],
       "summary": "Admin draft created from stylist intake.",
       "source": "manual",
@@ -73863,7 +73864,8 @@
         "Trim / hair cut",
         "Twists (with extensions)",
         "Men's braids",
-        "Loc styling"
+        "Loc styling",
+        "Cecred treatment"
       ],
       "priceBand": "£",
       "priceSource": "auto",
