@@ -57175,7 +57175,9 @@
         "K-tips / invisible strands",
         "Trim / hair cut",
         "Relaxer / texturiser",
-        "Wash & blowdry"
+        "Wash & blowdry",
+        "Tape-ins + sew-in",
+        "U-Part / Half wig install"
       ],
       "summary": "Manual entry added from your latest salon update batch.",
       "source": "manual",
@@ -57227,8 +57229,9 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-10-04",
-      "photoOrderBumpedAt": 109
+      "updatedAt": "2026-10-07",
+      "photoOrderBumpedAt": 109,
+      "sameDayEmergency": false
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
