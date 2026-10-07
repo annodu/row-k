@@ -1,7 +1,7 @@
 {
   "meta": {
     "source": "manual",
-    "updatedAt": "2026-10-06",
+    "updatedAt": "2026-10-07",
     "count": 1166,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
@@ -79214,7 +79214,9 @@
         "Loc styling",
         "Crochet faux locs / invisible locs",
         "Pixie cut / finger waves",
-        "Boho sew-in"
+        "Boho sew-in",
+        "Cecred treatment",
+        "Hair loss systems (e.g. mesh)"
       ],
       "summary": "Manual Instagram-led entry enriched from your spreadsheet.",
       "source": "manual",
@@ -79257,7 +79259,7 @@
       "packagePriceBand": "££££",
       "priceIncludesHair": true,
       "priceComparisonMode": "mixed",
-      "updatedAt": "2026-10-04",
+      "updatedAt": "2026-10-07",
       "sellsHairSeparately": true,
       "hairShopUrl": "https://currentwigs.com/collections/hair-bundles/hair-bundles",
       "vendorId": "stylesbyfola",
