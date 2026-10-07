@@ -32,7 +32,16 @@ export function markAsInternalVisitor() {
   window.history.replaceState(null, "", url);
 })();
 
+// Local dev/preview servers (any port) — the owner-opt-out flag lives in localStorage, which is
+// per-origin, so it never carries over from the live site to localhost and every reload there
+// was being counted as a fresh visitor.
+function isLocalHost() {
+  const { hostname } = window.location;
+  return hostname === "localhost" || hostname === "127.0.0.1" || hostname === "[::1]" || hostname.endsWith(".localhost");
+}
+
 function isInternalVisitor() {
+  if (isLocalHost()) return true;
   if (window.location.pathname.startsWith("/admin")) return true;
   try {
     return localStorage.getItem(INTERNAL_VISITOR_KEY) === "1";

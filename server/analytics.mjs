@@ -52,18 +52,87 @@ export const RANGE_PRESETS = {
   "90d": { days: 90, granularity: "day", buckets: 90 },
 };
 
+// `parent` nests a fixed-label toggle under another one, mirroring the public filter panel
+// (e.g. "Google" sits under "All reviews"). Services and Locations resolve their nesting from
+// data/filters.json and data/locations.json instead — see resolveFilterParent.
 const FILTER_EVENT_GROUPS = [
   { event: "service_filter_selected", group: "Services", selectedProp: "selected", labelProp: "selection" },
   { event: "location_filter_selected", group: "Locations", selectedProp: "selected", labelProp: "selection" },
   { event: "price_filter_selected", group: "Price", selectedProp: "selected", labelProp: "selection" },
-  { event: "braiding_preference_selected", group: "Preferences", selectedProp: "selected", labelProp: "selection" },
-  { event: "hijabi_toggle_changed", group: "Preferences", selectedProp: "enabled", fixedLabel: "Hijabi friendly" },
-  { event: "verified_reviews_toggle_changed", group: "Preferences", selectedProp: "enabled", fixedLabel: "All reviews" },
-  { event: "google_reviews_only_toggle_changed", group: "Preferences", selectedProp: "enabled", fixedLabel: "Google" },
-  { event: "booking_sites_only_toggle_changed", group: "Preferences", selectedProp: "enabled", fixedLabel: "Booking sites" },
+  { event: "verified_reviews_toggle_changed", group: "Reviews", selectedProp: "enabled", fixedLabel: "All reviews" },
+  { event: "google_reviews_only_toggle_changed", group: "Reviews", selectedProp: "enabled", fixedLabel: "Google", parent: "All reviews" },
+  { event: "booking_sites_only_toggle_changed", group: "Reviews", selectedProp: "enabled", fixedLabel: "Booking sites", parent: "All reviews" },
+  { event: "selling_hair_toggle_changed", group: "Additional needs", selectedProp: "enabled", fixedLabel: "Sells hair" },
+  { event: "price_includes_hair_toggle_changed", group: "Additional needs", selectedProp: "enabled", fixedLabel: "Hair-inclusive packages", parent: "Sells hair" },
+  { event: "sells_hair_separately_toggle_changed", group: "Additional needs", selectedProp: "enabled", fixedLabel: "Hair sold separately", parent: "Sells hair" },
+  { event: "wheelchair_toggle_changed", group: "Additional needs", selectedProp: "enabled", fixedLabel: "Wheelchair accessible" },
+  { event: "hijabi_toggle_changed", group: "Additional needs", selectedProp: "enabled", fixedLabel: "Hijabi-friendly" },
+  { event: "same_day_emergency_toggle_changed", group: "Additional needs", selectedProp: "enabled", fixedLabel: "Same-day / walk-ins" },
+  { event: "lgbtq_friendly_toggle_changed", group: "Additional needs", selectedProp: "enabled", fixedLabel: "LGBTQIA+-friendly" },
+  { event: "braiding_preference_selected", group: "Additional needs", selectedProp: "selected", labelProp: "selection" },
+  { event: "sen_friendly_toggle_changed", group: "Additional needs", selectedProp: "enabled", fixedLabel: "Sensory-safe / SEN-friendly" },
+  { event: "parking_available_toggle_changed", group: "Additional needs", selectedProp: "enabled", fixedLabel: "Parking available" },
 ];
 
-const FILTER_GROUP_ORDER = ["Services", "Locations", "Price", "Preferences"];
+const FILTER_GROUP_ORDER = ["Services", "Locations", "Price", "Reviews", "Additional needs"];
+const FILTER_USAGE_ROW_LIMIT = 50000;
+
+async function readJson(relativePath) {
+  try {
+    return JSON.parse(await fs.readFile(path.resolve(__dirname, relativePath), "utf8"));
+  } catch {
+    return null;
+  }
+}
+
+// Read per request rather than at import so taxonomy edits in the admin show up without a restart.
+async function loadFilterTaxonomy() {
+  const [filters, locations, priceBands] = await Promise.all([
+    readJson("../data/filters.json"),
+    readJson("../data/locations.json"),
+    readJson("../data/price-bands.json"),
+  ]);
+  const categories = filters?.categories ?? [];
+  const regions = locations?.regions ?? [];
+  const regionLabels = new Map(regions.map((region) => [region.id, region.label]));
+  const locationParents = new Map();
+  for (const group of locations?.parentGroups ?? []) {
+    const parentLabel = regionLabels.get(group.parentId);
+    for (const childId of group.childIds ?? []) {
+      const childLabel = regionLabels.get(childId);
+      if (parentLabel && childLabel) locationParents.set(childLabel, parentLabel);
+    }
+  }
+  return {
+    categoryLabels: new Set(categories.map((category) => category.label)),
+    // First listed category wins for a style shared by several (e.g. "Boho sew-in" sits under
+    // both Braids and Sew in / weave) — used only for events that predate the `category` prop.
+    firstCategoryFor: (subcategory) => categories.find((category) => (category.subcategories ?? []).includes(subcategory))?.label ?? null,
+    locationParents,
+    // Price events record the band symbol; show it the way the filter panel does.
+    priceLabels: new Map([
+      ...(priceBands?.bands ?? []).map((band) => [band.symbol, `${band.symbol}: ${band.label}`]),
+      ["not-listed", "Price not listed"],
+    ]),
+  };
+}
+
+// Styles picked before they were renamed or removed (and filter-only families such as
+// "Hybrid sew ins (all)" picked before events carried `category`) have no parent in
+// filters.json — collect them in one place rather than letting them pose as categories.
+const RETIRED_SERVICES_LABEL = "Other / retired styles";
+
+// Returns null for a top-level filter, or the label of the filter it nests under.
+function resolveFilterParent(config, label, type, category, taxonomy) {
+  if (config.parent) return config.parent;
+  if (config.group === "Services") {
+    const isCategory = type ? type === "category" : taxonomy.categoryLabels.has(label);
+    if (isCategory) return null;
+    return category || taxonomy.firstCategoryFor(label) || RETIRED_SERVICES_LABEL;
+  }
+  if (config.group === "Locations") return taxonomy.locationParents.get(label) ?? null;
+  return null;
+}
 
 function isConfigured() {
   return Boolean(process.env.POSTHOG_PERSONAL_API_KEY && process.env.POSTHOG_PROJECT_ID);
@@ -88,15 +157,29 @@ function parseInternalIps() {
 // the whole historical batch shares one fabricated $ip, so applying an IP list to it would catch
 // real backfilled visitors along with dev ones. Those rows rely solely on the dev-session check
 // below instead; IP matching only ever applies to genuinely live traffic.
+// Home broadband hands each device a fresh IPv6 address every day or so (privacy extensions), but
+// they all share the connection's /64 — the first four groups. So an IPv6 entry in
+// POSTHOG_INTERNAL_IPS excludes its whole /64, not just the one address that happened to be
+// copied in. Returns null for IPv4 or a compressed ("::") address too short to take a /64 from.
+function ipv6HouseholdPrefix(ip) {
+  const groups = ip.split(":");
+  if (groups.length < 5 || groups.slice(0, 4).some((group) => !/^[0-9a-f]{1,4}$/i.test(group))) return null;
+  return `${groups.slice(0, 4).join(":")}:`;
+}
+
 function internalTrafficExclusionClause() {
-  const clauses = [];
+  // Events captured on a local dev/preview server (localhost:5173, 127.0.0.1:5174, …) — always
+  // the owner testing. Null $host (e.g. the Umami import) is kept.
+  const clauses = ["coalesce(properties.$host, '') NOT ILIKE 'localhost%' AND coalesce(properties.$host, '') NOT ILIKE '127.0.0.1%' AND coalesce(properties.$host, '') NOT ILIKE '[::1]%'"];
 
   const ips = parseInternalIps();
   if (ips.length) {
     const list = ips.map((ip) => `'${ip}'`).join(", ");
+    const prefixes = [...new Set(ips.map(ipv6HouseholdPrefix).filter(Boolean))];
+    const prefixClauses = prefixes.map((prefix) => ` AND properties.$ip NOT ILIKE '${prefix}%'`).join("");
     const importedList = umamiImportedSessionIds.map((id) => `'${id}'`).join(", ");
     const importedExemption = importedList ? `distinct_id IN (${importedList}) OR ` : "";
-    clauses.push(`(${importedExemption}properties.$ip IS NULL OR properties.$ip NOT IN (${list}))`);
+    clauses.push(`(${importedExemption}properties.$ip IS NULL OR (properties.$ip NOT IN (${list})${prefixClauses}))`);
   }
 
   if (umamiDevSessionIds.length) {
@@ -104,7 +187,6 @@ function internalTrafficExclusionClause() {
     clauses.push(`distinct_id NOT IN (${list})`);
   }
 
-  if (!clauses.length) return "";
   return ` AND ${clauses.join(" AND ")}`;
 }
 
@@ -201,39 +283,81 @@ async function fetchClickCounts(preset) {
   return { bookingClicks: Number(bookingClicks) || 0, instagramClicks: Number(instagramClicks) || 0, reviewsClicks: Number(reviewsClicks) || 0 };
 }
 
+// Counts unique visitors (not raw clicks — toggling a filter on and off repeatedly would inflate
+// those) per filter, nested parent → child, plus each group's utilisation: the share of all
+// visitors in the range who used at least one filter in that group. A parent's count is everyone
+// who picked it *or* any of its children; its "Picked the whole category" child is those who picked it directly.
 async function fetchFilterUsage(preset) {
-  const rows = await runHogQLQuery(`
-    SELECT
-      event,
-      properties.selection AS selection,
-      properties.selected AS selected,
-      properties.enabled AS enabled,
-      count() AS n
-    FROM events
-    WHERE event IN (${FILTER_EVENT_GROUPS.map((entry) => `'${entry.event}'`).join(", ")})
-      AND timestamp >= now() - INTERVAL ${preset.days} DAY${internalTrafficExclusionClause()}
-    GROUP BY event, selection, selected, enabled
-  `);
+  const internalTrafficExclusion = internalTrafficExclusionClause();
+  const [rows, visitorRows, taxonomy] = await Promise.all([
+    runHogQLQuery(`
+      SELECT
+        event,
+        properties.selection AS selection,
+        properties.selected AS selected,
+        properties.enabled AS enabled,
+        properties.type AS type,
+        properties.category AS category,
+        person_id
+      FROM events
+      WHERE event IN (${FILTER_EVENT_GROUPS.map((entry) => `'${entry.event}'`).join(", ")})
+        AND timestamp >= now() - INTERVAL ${preset.days} DAY${internalTrafficExclusion}
+      GROUP BY event, selection, selected, enabled, type, category, person_id
+      LIMIT ${FILTER_USAGE_ROW_LIMIT}
+    `),
+    runHogQLQuery(`
+      SELECT count(DISTINCT person_id)
+      FROM events
+      WHERE event = '$pageview' AND timestamp >= now() - INTERVAL ${preset.days} DAY${internalTrafficExclusion}
+    `),
+    loadFilterTaxonomy(),
+  ]);
+  const totalVisitors = Number(visitorRows[0]?.[0]) || 0;
 
-  const groups = new Map(FILTER_GROUP_ORDER.map((label) => [label, new Map()]));
+  // group → parent label → { direct: Set, children: Map<label, Set> }
+  const groups = new Map(FILTER_GROUP_ORDER.map((label) => [label, { users: new Set(), parents: new Map() }]));
+  const nodeFor = (group, label) => {
+    if (!group.parents.has(label)) group.parents.set(label, { direct: new Set(), children: new Map() });
+    return group.parents.get(label);
+  };
 
-  for (const [event, selection, selected, enabled, count] of rows) {
+  for (const [event, selection, selected, enabled, type, category, personId] of rows) {
     const config = FILTER_EVENT_GROUPS.find((entry) => entry.event === event);
     if (!config) continue;
-    const flag = config.selectedProp === "enabled" ? enabled : selected;
-    if (!isTruthy(flag)) continue;
-    const label = config.fixedLabel ?? selection;
-    if (!label) continue;
-    const rowsForGroup = groups.get(config.group);
-    rowsForGroup.set(label, (rowsForGroup.get(label) ?? 0) + Number(count));
+    if (!isTruthy(config.selectedProp === "enabled" ? enabled : selected)) continue;
+    const rawLabel = config.fixedLabel ?? selection;
+    // "all" is the clear-filters chip, not a filter value.
+    if (!rawLabel || rawLabel === "all") continue;
+    const label = config.group === "Price" ? (taxonomy.priceLabels.get(rawLabel) ?? rawLabel) : rawLabel;
+    const group = groups.get(config.group);
+    const person = String(personId);
+    group.users.add(person);
+    const parent = resolveFilterParent(config, label, type, category, taxonomy);
+    if (parent) {
+      const node = nodeFor(group, parent);
+      if (!node.children.has(label)) node.children.set(label, new Set());
+      node.children.get(label).add(person);
+    } else {
+      nodeFor(group, label).direct.add(person);
+    }
   }
 
-  return FILTER_GROUP_ORDER.map((label) => ({
-    label,
-    rows: [...groups.get(label).entries()]
-      .map(([rowLabel, count]) => ({ label: rowLabel, count }))
-      .sort((a, b) => b.count - a.count),
-  })).filter((group) => group.rows.length > 0);
+  const byUsersDesc = (a, b) => b.users - a.users || a.label.localeCompare(b.label);
+
+  return {
+    totalVisitors,
+    groups: FILTER_GROUP_ORDER.map((label) => {
+      const group = groups.get(label);
+      const rows = [...group.parents.entries()].map(([parentLabel, node]) => {
+        const everyone = new Set(node.direct);
+        for (const people of node.children.values()) for (const person of people) everyone.add(person);
+        const children = [...node.children.entries()].map(([childLabel, people]) => ({ label: childLabel, users: people.size }));
+        if (children.length && node.direct.size) children.push({ label: "Picked the whole category", users: node.direct.size, isParentItself: true });
+        return { label: parentLabel, users: everyone.size, children: children.sort(byUsersDesc) };
+      });
+      return { label, users: group.users.size, rows: rows.sort(byUsersDesc) };
+    }),
+  };
 }
 
 async function fetchZeroResultSearches(preset) {

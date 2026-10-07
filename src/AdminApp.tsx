@@ -743,6 +743,9 @@ type DashboardMetrics = {
   allTime?: { visitors: number; bookingClicks: number; instagramClicks: number };
 };
 
+type FilterUsageRow = { label: string; users: number; isParentItself?: boolean; children?: FilterUsageRow[] };
+type FilterUsage = { totalVisitors: number; groups: { label: string; users: number; rows: FilterUsageRow[] }[] };
+
 type AnalyticsSummary = {
   granularity?: "hour" | "day";
   visitorsByDay: { date: string; count: number }[];
@@ -750,7 +753,7 @@ type AnalyticsSummary = {
   instagramClicks: number;
   reviewsClicks: number;
   reviewsClicksByPlatform: { platform: string; clicks: number }[];
-  filterUsage: { label: string; rows: { label: string; count: number }[] }[];
+  filterUsage: FilterUsage;
   zeroResultSearches: { filters: string[]; count: number; lastSeenAt: string }[];
   unmatchedServiceSearches?: { query: string; count: number; lastSeenAt: string }[];
   topStylists: { name: string; areaLabel: string; clicks: number }[];
@@ -6981,15 +6984,11 @@ function AnalyticsPage({ onOpenView }: { onOpenView: (view: AdminView) => void }
       <div className="grid gap-4 lg:grid-cols-3">
         <div className="border border-stone-200 bg-white p-6 lg:col-span-2">
           <h2 className="text-sm font-semibold text-stone-950">Filters people are selecting</h2>
-          <p className="mt-1 text-xs text-stone-500">Most-used filter values across all visitors</p>
+          <p className="mt-1 text-xs text-stone-500">Unique visitors per filter &middot; % of all visitors in this range</p>
           {isRangeLoading ? (
             <FilterUsageSkeleton />
-          ) : analytics?.filterUsage.length ? (
-            <div className="mt-5 grid grid-cols-2 gap-x-6 gap-y-6">
-              {analytics.filterUsage.map((group) => (
-                <FilterUsageGroup key={group.label} label={group.label} rows={group.rows} />
-              ))}
-            </div>
+          ) : analytics?.filterUsage?.groups?.some((group) => group.users > 0) ? (
+            <FilterUsageBreakdown usage={analytics.filterUsage} />
           ) : (
             <SkeletonEmptyState label="No data">
               <FilterUsageSkeleton pulse={false} />
@@ -7232,6 +7231,135 @@ function FilterUsageGroup({ label, rows }: { label: string; rows: { label: strin
             </div>
           </li>
         ))}
+      </ul>
+    </div>
+  );
+}
+
+function formatShare(users: number, total: number) {
+  if (!total) return "–";
+  const share = (users / total) * 100;
+  if (share > 0 && share < 1) return "<1%";
+  return `${Math.round(share)}%`;
+}
+
+function FilterUsageBreakdown({ usage }: { usage: FilterUsage }) {
+  const { totalVisitors, groups } = usage;
+  const usedGroups = groups.filter((group) => group.rows.length > 0);
+
+  return (
+    <div className="mt-5 space-y-8">
+      <div>
+        <p className="text-xs font-medium uppercase tracking-[0.1em] text-stone-400">Utilisation</p>
+        <p className="mt-1 text-xs text-stone-500">
+          Share of the {totalVisitors.toLocaleString("en-GB")} visitors who used each filter at least once
+        </p>
+        <ul className="mt-3 space-y-2.5">
+          {groups.map((group) => (
+            <li key={group.label}>
+              <div className="flex items-center justify-between gap-3 text-sm">
+                <span className="truncate text-stone-700">{group.label}</span>
+                <span className="shrink-0 tabular-nums">
+                  <span className="font-medium text-stone-950">{formatShare(group.users, totalVisitors)}</span>
+                  <span className="ml-2 text-xs text-stone-400">{group.users}</span>
+                </span>
+              </div>
+              <div className="mt-1 h-1.5 w-full bg-stone-100">
+                <div
+                  className="h-1.5 bg-stone-950"
+                  style={{ width: totalVisitors ? `${Math.min(100, (group.users / totalVisitors) * 100)}%` : "0%" }}
+                />
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div className="grid gap-x-8 gap-y-8 md:grid-cols-2">
+        {usedGroups.map((group) => (
+          <FilterUsageTree key={group.label} label={group.label} groupUsers={group.users} totalVisitors={totalVisitors} rows={group.rows} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// Parents are collapsed by default so the list reads as categories first; expanding one shows
+// its styles, with bars scaled to the parent so the split within a category is easy to compare.
+function FilterUsageTree({ label, groupUsers, totalVisitors, rows }: { label: string; groupUsers: number; totalVisitors: number; rows: FilterUsageRow[] }) {
+  const [expanded, setExpanded] = useState<Set<string>>(() => new Set());
+  const max = Math.max(1, ...rows.map((row) => row.users));
+  const toggle = (rowLabel: string) =>
+    setExpanded((current) => {
+      const next = new Set(current);
+      if (next.has(rowLabel)) next.delete(rowLabel);
+      else next.add(rowLabel);
+      return next;
+    });
+
+  return (
+    <div>
+      <div className="flex items-baseline justify-between gap-3">
+        <p className="text-xs font-medium uppercase tracking-[0.1em] text-stone-400">{label}</p>
+        <p className="text-xs text-stone-400">
+          {groupUsers} {groupUsers === 1 ? "visitor" : "visitors"} &middot; {formatShare(groupUsers, totalVisitors)}
+        </p>
+      </div>
+      <ul className="mt-3 space-y-2.5">
+        {rows.map((row) => {
+          const children = row.children ?? [];
+          const isOpen = expanded.has(row.label);
+          const rowContent = (
+            <>
+              <div className="flex items-center justify-between gap-3 text-sm">
+                <span className="flex min-w-0 items-center gap-1.5">
+                  {children.length ? (
+                    <ChevronDown className={cn("size-3.5 shrink-0 text-stone-400 transition-transform", !isOpen && "-rotate-90")} aria-hidden="true" />
+                  ) : null}
+                  <span className={cn("truncate", children.length ? "font-medium text-stone-950" : "text-stone-700")}>{row.label}</span>
+                  {children.length ? <span className="shrink-0 text-xs text-stone-400">{children.length}</span> : null}
+                </span>
+                <span className="shrink-0 tabular-nums">
+                  <span className="font-medium text-stone-950">{row.users}</span>
+                  <span className="ml-2 inline-block w-9 text-right text-xs text-stone-400">{formatShare(row.users, totalVisitors)}</span>
+                </span>
+              </div>
+              <div className="mt-1 h-1 w-full bg-stone-100">
+                <div className="h-1 bg-stone-950" style={{ width: `${Math.max(4, (row.users / max) * 100)}%` }} />
+              </div>
+            </>
+          );
+
+          return (
+            <li key={row.label}>
+              {children.length ? (
+                <button type="button" onClick={() => toggle(row.label)} aria-expanded={isOpen} className="block w-full text-left">
+                  {rowContent}
+                </button>
+              ) : (
+                rowContent
+              )}
+              {children.length && isOpen ? (
+                <ul className="mt-2.5 space-y-2 border-l border-stone-200 pl-4">
+                  {children.map((child) => (
+                    <li key={child.label}>
+                      <div className="flex items-center justify-between gap-3 text-[13px]">
+                        <span className={cn("truncate", child.isParentItself ? "italic text-stone-400" : "text-stone-600")}>{child.label}</span>
+                        <span className="shrink-0 tabular-nums">
+                          <span className="text-stone-800">{child.users}</span>
+                          <span className="ml-2 inline-block w-9 text-right text-xs text-stone-400">{formatShare(child.users, totalVisitors)}</span>
+                        </span>
+                      </div>
+                      <div className="mt-1 h-0.5 w-full bg-stone-100">
+                        <div className="h-0.5 bg-stone-400" style={{ width: `${Math.max(4, (child.users / Math.max(1, row.users)) * 100)}%` }} />
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              ) : null}
+            </li>
+          );
+        })}
       </ul>
     </div>
   );

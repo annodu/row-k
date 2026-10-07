@@ -3797,14 +3797,15 @@ export default function App() {
   }
 
   function toggleSubcategory(nextSubcategory: ServiceSubcategoryId, categoryId?: string) {
+    const parentCategory = (categoryId ??
+      runtimeCategories.find((cat) => cat.id !== "all" && getCategorySubcategories(cat.id).includes(nextSubcategory))?.id) as ServiceCategoryId | undefined;
     trackAnalyticsEvent("service_filter_selected", {
       selection: nextSubcategory,
       selected: !currentSelectedSubcategories.includes(nextSubcategory),
       type: "subcategory",
+      // Styles like "Boho sew-in" sit under several categories — record which one it was picked from.
+      category: parentCategory ? getCategoryLabel(parentCategory) : undefined,
     });
-
-    const parentCategory = (categoryId ??
-      runtimeCategories.find((cat) => cat.id !== "all" && getCategorySubcategories(cat.id).includes(nextSubcategory))?.id) as ServiceCategoryId | undefined;
     // Style families nest like category → style: picking a family clears its
     // members, picking a member clears every family holding it, and clearing
     // the last picked member falls back to the family it sits under here.
@@ -3858,6 +3859,9 @@ export default function App() {
   }
 
   function toggleWheelchairAccessible() {
+    trackAnalyticsEvent("wheelchair_toggle_changed", {
+      enabled: !currentSelectedWheelchairAccessible,
+    });
     updateWheelchairAccessible((current) => !current);
   }
 
