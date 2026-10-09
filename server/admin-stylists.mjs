@@ -132,7 +132,19 @@ const bookingPlatformMatchers = [
 const browserUserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36";
 let nextInstagramProfileProbeAt = 0;
 let priceCheckBrowserPromise = null;
-const canonicalServices = [...new Set(Object.values(categoryMap).flat().filter(Boolean))].sort((left, right) => left.localeCompare(right));
+// Derived on demand: categoryMap is swapped out when filters.json loads or the
+// admin publishes new categories, and a list frozen at startup would hide
+// renamed services (e.g. from the admin service picker) until a restart.
+let canonicalServicesCache = { source: null, services: [] };
+function getCanonicalServices() {
+  if (canonicalServicesCache.source !== categoryMap) {
+    canonicalServicesCache = {
+      source: categoryMap,
+      services: [...new Set(Object.values(categoryMap).flat().filter(Boolean))].sort((left, right) => left.localeCompare(right)),
+    };
+  }
+  return canonicalServicesCache.services;
+}
 const priceConfidences = new Set(["high", "medium", "low", "manual", "unknown"]);
 
 const defaultPriceBandTiers = [
@@ -224,16 +236,17 @@ const serviceRuleMatchers = [
   // pre-coloured braiding hair for a style.
   ["Colour blend (mixing braiding hair)", [/\bcolou?r\s+(mix|blend)(ed|ing)?\b/, /\bmix(ed)?\s+colou?rs?\b/, /\bcolou?rs?\s+mix(ed|ing)?\b/]],
   ["Frontal ponytail / bun", [/\bfrontal\b.*\b(pony|ponytail|bun)\b/, /\b(pony|ponytail|bun)\b.*\bfrontal\b/]],
-  // A Jayda Wayda sew-in is feed-in even when the name also says Fulani.
-  ["Fulani sew-in / quick weave / half wig", [/^(?!.*\bjayda\b).*\b(fulani|alicia\s+keys?)\b.*\b(sew\s*in|sewin|weave|quick\s*weave|half\s+wig)\b/, /^(?!.*\bjayda\b).*\b(sew\s*in|sewin|weave|quick\s*weave|half\s+wig)\b.*\b(fulani|alicia\s+keys?)\b/]],
-  ["Boho sew-in", [/\b(boho|zoe\s+kravitz)\b.*\b(sew\s*in|sewin|weave|quick\s*weave|half\s+wig)\b/, /\b(sew\s*in|sewin|weave|quick\s*weave|half\s+wig)\b.*\b(boho|zoe\s+kravitz)\b/]],
+  ["Fulani sew-in / quick weave / half wig", [/\bfulani\b.*\b(sew\s*in|sewin|weave|quick\s*weave|half\s+wig)\b/, /\b(sew\s*in|sewin|weave|quick\s*weave|half\s+wig)\b.*\bfulani\b/]],
+  // "Micro braid leave out sew in" is the same hybrid under another name.
+  ["Boho sew-in", [/\b(boho\w*|micro\s*braids?|zo[eë]\s+kravitz|kravitz)\b.*\b(sew\s*in|sewin|weave|quick\s*weave|half\s+wig)\b/, /\b(sew\s*in|sewin|weave|quick\s*weave|half\s+wig)\b.*\b(boho\w*|micro\s*braids?|zo[eë]\s+kravitz|kravitz)\b/]],
   // Visible feed-ins / stitch braids alongside the install. Plain cornrows only
   // count when the service is split ("half cornrows half weave"), so cornrow
-  // prep under a full weave doesn't land here. Tyla, Cassie and Jayda Wayda count as feed-in.
-  ["Feed-in / stitch braid sew-in", [/\b(feed\s*ins?|stitch(\s+braids?)?|tyla|cassie|jayda(\s+wayda)?)\b.*\b(sew\s*in|sewin|weave|quick\s*weave|half\s+wig)\b/, /\b(sew\s*in|sewin|weave|quick\s*weave|half\s+wig)\b.*\b(feed\s*ins?|stitch(\s+braids?)?|tyla|cassie|jayda(\s+wayda)?)\b/, /\bhalf\b.*\bcornrows?\b.*\b(weave|sew\s*in|sewin)\b/, /\bhalf\b.*\b(weave|sew\s*in|sewin)\b.*\bcornrows?\b/]],
+  // prep under a full weave doesn't land here. Celebrity-named hybrids (Tyla,
+  // Cassie, Jayda Wayda) are their own services.
+  ["Feed-in / stitch braid sew-in", [/\b(feed\s*ins?|stitch(\s+braids?)?)\b.*\b(sew\s*in|sewin|weave|quick\s*weave|half\s+wig)\b/, /\b(sew\s*in|sewin|weave|quick\s*weave|half\s+wig)\b.*\b(feed\s*ins?|stitch(\s+braids?)?)\b/, /\bhalf\b.*\bcornrows?\b.*\b(weave|sew\s*in|sewin)\b/, /\bhalf\b.*\b(weave|sew\s*in|sewin)\b.*\bcornrows?\b/]],
   ["Wig install (frontal / closure)", [/\bwig\b.*\b(install|instal|installation|application|fit|fitting)\b/, /\b(glueless|lace)\s+wig\b/, /\bfrontal\s+wig\b/, /\bclosure\s+wig\b/, /\b(frontal|closure|ready[\s-]*made)\s+unit\b/, /\bunit\b.*\b(install|instal|installation|application|fit|fitting)\b/, /\b(lace\s+)?frontal\s+installation\b/, /\b(lace\s+)?closure\s+installation\b/, /\bwigs?$/, /\b(frontal|closure)$/]],
   ["U-Part / Half wig install", [/\b(u[\s-]*part|v[\s-]*part|u[\s/-]*v[\s-]*part|uvpart)\b.*\b(wig|install|installation)\b/, /\b(wig|install|installation)\b.*\b(u[\s-]*part|v[\s-]*part|u[\s/-]*v[\s-]*part|uvpart)\b/, /\bhalf\s+wig\b/]],
-  ["Custom wig", [/\bcustom\b.*\bwig\b/, /\bbespoke\b.*\bwig\b/, /\bcustom\s+handmade\s+wigs?\b/, /\bwig\b.*\b(custom|bespoke|handmade|made|making|construction|unit)\b/, /\bunit\b.*\bcustomi[sz](ing|ation)\b/, /\bcustomi[sz](ing|ation)\b.*\bunit\b/, /\bcustom(?:\s+made)?\b.*\b(frontal|closure)\s+unit\b/, /\bcustom\b.*\bfrontal\s+closure\s+units?\b/, /\bwig\s+(making|construction|customi[sz](ing|ation))\b/, /\bconstruction\s+of\s+(the\s+)?wig\b/, /\bconstruction\b.*\bcustomi[sz](ing|ation)\b/, /\bcustomi[sz](ing|ation)\b.*\bconstruction\b/, /\b(frontal|closure)\b.*\bcustomi[sz](ing|ation)\b/, /\bcustomi[sz](ing|ation)\b.*\b(frontal|closure|wig)\b/, /\b(frontal|closure|wig)\b.*\b(hand[\s-]*made|handmade)\b/, /\b(hand[\s-]*made|handmade)\b.*\b(frontal|closure|wig)\b/]],
+  ["Wig customisation / construction", [/\bcustom\b.*\bwigs?\b/, /\bbespoke\b.*\bwigs?\b/, /\b(handmade|hand\s*made|constructed)\b.*\b(wigs?|units?)\b/, /\bcustom\s+handmade\s+wigs?\b/, /\bwig\b.*\b(custom|bespoke|handmade|made|making|construction|unit)\b/, /\bunit\b.*\bcustomi[sz](ing|ation)\b/, /\bcustomi[sz](ing|ation)\b.*\bunit\b/, /\bcustom(?:\s+made)?\b.*\b(frontal|closure)\s+unit\b/, /\bcustom\b.*\bfrontal\s+closure\s+units?\b/, /\bwig\s+(making|construction|customi[sz](ing|ation))\b/, /\bconstruction\s+of\s+(the\s+)?wig\b/, /\bconstruction\b.*\bcustomi[sz](ing|ation)\b/, /\bcustomi[sz](ing|ation)\b.*\bconstruction\b/, /\b(frontal|closure)\b.*\bcustomi[sz](ing|ation)\b/, /\bcustomi[sz](ing|ation)\b.*\b(frontal|closure|wig)\b/, /\b(frontal|closure|wig)\b.*\b(hand[\s-]*made|handmade)\b/, /\b(hand[\s-]*made|handmade)\b.*\b(frontal|closure|wig)\b/]],
   ["Pixie wig / weave install", [/\bpixie\b.*\b(wig|weave|sew\s*in|sewin|install|making)\b/, /\b(wig|weave|sew\s*in|sewin|making)\b.*\bpixie\b/]],
   ["Closure sew-in", [/\bclosure\b.*\b(sew\s*in|sewin|weave)\b/, /\b(sew\s*in|sewin|weave)\b.*\bclosure\b/, /\bweave\b.*\b(lace\s+)?closure\b/, /\bclosure\b.*\bbehind\s+the\s+hairline\b/]],
   ["Frontal sew-in", [/\bfrontal\b.*\b(sew\s*in|sewin|weave)\b/, /\b(sew\s*in|sewin|weave)\b.*\bfrontal\b/]],
@@ -255,12 +268,13 @@ const serviceRuleMatchers = [
   ["Clip ins (+ silk press)", [/\bclip\s*ins?\b/, /\bclip-in\b/]],
   // "Boho"/"goddess" alone aren't enough — "Boho Island LOCS" is a locs style,
   // not braids, so require the line not also be about locs before matching.
-  ["Boho braids / goddess braids", [/^(?!.*\blocs?\b).*\bboho\b/, /^(?!.*\blocs?\b).*\bgoddess\b/, /\bpick\s+(?:and\s+|n\s+)?drop\b/]],
+  // "Zoe Kravitz braids" is the boho style under a celebrity name.
+  ["Boho braids / goddess braids", [/^(?!.*\blocs?\b).*\bboho\b/, /^(?!.*\blocs?\b).*\bgoddess\b/, /\bpick\s+(?:and\s+|n\s+)?drop\b/, /^(?!.*\b(sew\s*in|sewin|weave|quick\s*weave)\b).*\b(zo[eë]\s+kravitz|kravitz)\b/]],
   ["Boho braids bob", [/\bboho\b.*\bbob\b/, /\bbob\b.*\bboho\b/]],
   ["Knotless braids", [/\bknotless\b/]],
   ["Box braids", [/\bbox\b.*\bbraids?\b/]],
   ["Crochet", [/\bcrochet\b/]],
-  ["Creative braids", [/\bcassie\s+braids?\b/, /\bpatewo\b/, /\bdolly\s+braids?\b/, /\bshuku\b/, /\bkoroba\s+braids?\b/, /\bcreative\b.*\bbraids?\b/]],
+  ["Creative braids", [/\bpatewo\b/, /\bdolly\s+braids?\b/, /\bshuku\b/, /\bkoroba\s+braids?\b/, /\bcreative\b.*\bbraids?\b/]],
   ["Feed-in braids", [/\bfeed\s*in\b/, /\bfeed-in\b/, /\ball\s+back\b.*\b(braids?|cornrows?|feed\s*ins?)\b/, /\b(braids?|cornrows?|feed\s*ins?)\b.*\ball\s+back\b/, /\bbraids?\b.*\bgoing\s+back\b/, /\bgoing\s+back\b.*\bbraids?\b/, /\bcornrows?\b.*\b(extension|extensions|pre\s*pull(ed)?|braiding\s+hair)\b/, /\b(extension|extensions|pre\s*pull(ed)?|braiding\s+hair)\b.*\bcornrows?\b/]],
   // Was never matchable at all before — "Men's Natural Braids/Twists" (a
   // real Acuity line item) doesn't literally contain "men's braids" as a
@@ -269,9 +283,16 @@ const serviceRuleMatchers = [
   // apostrophes to spaces — "Men's" becomes "men s", not "mens" — so match
   // bare "men", not "men's"/"mens".
   ["Men's braids", [/\bmen\b.*\bbraids?\b/, /\bbraids?\b.*\bmen\b/, /\bmale\b.*\bbraids?\b/, /\bboys?\b.*\bbraids?\b/]],
-  ["French curl", [/\bfrench\s+curl\b/]],
-  ["French curl bob", [/\bfrench\s+curl\b.*\bbob\b/, /\bbob\b.*\bfrench\s+curl\b/]],
-  ["Fulani / lemonade braids", [/\bfulani\b/, /\blemonade\b/, /\balicia\s+keys?\s+braids?\b/]],
+  ["French curl", [/\bfrench\s+curls?\b/]],
+  ["French curl bob", [/\bfrench\s+curls?\b.*\bbob\b/, /\bbob\b.*\bfrench\s+curls?\b/]],
+  ["Flip-over Fulani / diva braids", [/\bdiva\s+braids?\b/, /\bflip\s*over\b.*\bfulani\b/, /\bfulani\b.*\bflip\s*over\b/]],
+  ["Alicia Keys braids", [/\balicia\s+keys?\b/]],
+  ["Pop smoke braids", [/\bpop\s*smoke\b/]],
+  ["Jayda Wayda braided sew-in", [/\bjayda\b/, /\bjaida\b/, /\bwayda\b/]],
+  ["Cassie braided sew-in", [/\bcassie\b/]],
+  ["Coi Leray braids", [/\bcoi\s+leray\b/]],
+  ["Tyla braids", [/\btyla\b/]],
+  ["Fulani / lemonade braids", [/\bfulani\b/, /\blemonade\b/, /\balicia\s+keys?\s+braids?\b/, /\btribal\s+braids?\b/]],
   ["Miracle knots", [/\bmiracle\s+knots?\b/]],
   ["Microbraids / x-small braids", [/\bmicro\s*braids?\b/, /\bmicrobraids?\b/, /\bx\s*small\b.*\bbraids?\b/, /\bxs\b.*\bbraids?\b/]],
   ["Pre-parting", [/\bpre\s*part(ing)?\b/, /\bpre-part(ing)?\b/]],
@@ -279,9 +300,11 @@ const serviceRuleMatchers = [
   ["Twists (with extensions)", [/\btwists?\b.*\b(extension|extensions|hair added)\b/, /\b(extension|extensions|hair added)\b.*\btwists?\b/, /\b(passion|marley|senegalese|island|kinky|rope)\s+twists?\b/, /\blarge\s+twists?\b/]],
   ["Braid take-down", [/\bbraids?\b.*\b(take\s*down|takedown|removal|remove)\b/, /\b(take\s*down|takedown|removal|remove)\b.*\bbraids?\b/]],
   ["Starter locs / instant locs", [/\bstarter\s+locs?\b/, /\bstart\s+locs?\b/, /\bstarting\s+locs?\b/, /\bloc\s+start\b/, /\binstant\s+locs?\b/]],
+  // Barrel twists are a locs style unless the line says natural / non-loc hair.
+  ["Loc styling", [/\bbarrel\s+twists?\b/, /\b(locs?|dreads?|dreadlocks?)\s+styl(e|es|ing)\b/, /\bstyl(e|ing)\s+(on\s+)?(locs?|dreads?)\b/]],
   ["Retwist / interlocking", [/\bretwist\b/, /\bre\s*twist\b/, /\binterlock(s|ing)?\b/, /\binter\s*lock(s|ing)?\b/]],
   ["Boho locs", [/\bboho\s+locs?\b/]],
-  ["Soft locs", [/\bfaux\s+locs?\b/, /\bsoft\s+locs?\b/]],
+  ["Faux locs / soft locs", [/\bfaux\s+locs?\b/, /\bsoft\s+locs?\b/]],
   ["Crochet faux locs / invisible locs", [/\bcrochet\s+(faux\s+)?locs?\b/, /\bfaux\s+locs?\s+crochet\b/, /\binvisible\s+locs?\b/]],
   ["Butterfly locs", [/\bbutterfly\s+locs?\b/]],
   ["Microlocs / sisterlocs", [/\bmicro\s*locs?\b/, /\bmicrolocs?\b/, /\bsister\s*locs?\b/, /\bsisterlocs?\b/]],
@@ -305,8 +328,8 @@ const serviceRuleMatchers = [
   ["Japanese head spa", [/\bjapanese\s+head\s+spa\b/, /\bhead\s*spa\b/]],
   ["Scalp detox / treatments", [/\bscalp\b/]],
   ["Curly cut / wash & go", [/\bcurly\s+cut\b/, /\bwash\s*(and|&)?\s*go\b/]],
-  ["Sew in / extensions blowdry & styling", [/\bextensions?\b.*\b(blow\s*dry|blowdry|blow\s*out|blowout)\b/, /\b(blow\s*dry|blowdry|blow\s*out|blowout)\b.*\bextensions?\b/, /\b(weave|sew\s*in|sew-in|sewin|k[\s-]?tips?)\b.*\b(blow\s*dry|blowdry|blow\s*out|blowout)\b/, /\b(blow\s*dry|blowdry|blow\s*out|blowout)\b.*\b(weave|sew\s*in|sew-in|sewin|k[\s-]?tips?)\b/, /\bblow\s*out\b.*\b(sew\s*in|sew-in|sewin)\b.*\bweave\b/]],
-  ["Wig blowdry & styling", [/\bwig\b.*\b(blow\s*dry|blowdry|blow\s*out|blowout)\b/, /\b(blow\s*dry|blowdry|blow\s*out|blowout)\b.*\bwig\b/]],
+  ["Extensions blow-dry / bouncy blowout", [/\bextensions?\b.*\b(blow\s*dry|blowdry|blow\s*out|blowout)\b/, /\b(blow\s*dry|blowdry|blow\s*out|blowout)\b.*\bextensions?\b/, /\b(weave|sew\s*in|sew-in|sewin|k[\s-]?tips?|microlinks?|tapes?|tape\s*ins?|wefts?|tracks?)\b.*\b(blow\s*dry|blowdry|blow\s*out|blowout)\b/, /\b(blow\s*dry|blowdry|blow\s*out|blowout)\b.*\b(weave|sew\s*in|sew-in|sewin|k[\s-]?tips?|microlinks?|tapes?|tape\s*ins?|wefts?|tracks?)\b/, /\bblow\s*out\b.*\b(sew\s*in|sew-in|sewin)\b.*\bweave\b/]],
+  ["Wig blow-dry / bouncy blowout", [/\bwig\b.*\b(blow\s*dry|blowdry|blow\s*out|blowout)\b/, /\b(blow\s*dry|blowdry|blow\s*out|blowout)\b.*\bwig\b/]],
   ["Bouncy blowout / round brush blow dry", [/\bbouncy\b.*\b(blow\s*dry|blowdry|blow\s*out|blowout)\b/, /\b(blow\s*dry|blowdry|blow\s*out|blowout)\b.*\bbouncy\b/, /\bround\s+brush\b.*\b(blow\s*dry|blowdry)\b/]],
   ["Wash & blowdry", [/\bwash\b.*\b(blow\s*dry|blowdry|blowout)\b/, /\bshampoo\b.*\b(blow\s*dry|blowdry|blowout)\b/]],
   ["Trim / hair cut", [/\btrim\b/, /\bhair\s*cut\b/, /\bhaircut\b/, /\bcut\s+and\s+finish\b/]],
@@ -314,6 +337,12 @@ const serviceRuleMatchers = [
   ["Roller set", [/\broller\s*set\b/, /\bwet\s*set\b/, /\bperm\s*rods?\s+set\b/, /\bcurlformers\b/, /\brod\s*set\b/]],
   ["Twist out / flexi rod", [/\btwist\s*out\b/, /\bflexi\s*rod\b/, /\bflexi-rod\b/, /\bperm\s+rod\b/]],
   ["Bantu knots", [/\bbantu\b/]],
+  ["Frontal / closure replacement", [/\b(frontal|closure|lace)\b.*\breplace(ment|ments)?\b/, /\breplace(ment|ments)?\b.*\b(frontal|closure|lace)\b/]],
+  ["Wig reinstall / re-glue", [/\bre\s*install(s|ation|ations)?\b/, /\bre\s*glue(s|ing)?\b/, /\breglue(s|ing)?\b/]],
+  ["Natural twists / plaits", [/\b(two|2)\s*strand\s+twists?\b/, /\bflat\s+twists?\b/, /\bsingle\s+plaits?\b/, /\bplug\s+twists?\b/, /\bbarrel\s+twists?\b/, /\bmini\s+twists?\b/, /\bnatural\s+(hair\s+)?twists?\b/, /\btwists?\b.*\b(natural\s+hair|own\s+hair|no\s+extensions?|without\s+extensions?)\b/]],
+  ["Braided ponytail", [/\bbraid(ed|s)?\s+(pony\s*tails?|ponytails?|pony|bun)\b/, /\b(feed\s*ins?|feedins?|stitch)\b.*\b(pony\s*tails?|ponytails?)\b/, /\b(pony\s*tails?|ponytails?)\b.*\b(braid(ed|s)?|feed\s*ins?|stitch)\b/]],
+  ["Hot oil treatment", [/\bhot\s+oil\b/, /\boil\s+treatments?\b/]],
+  ["Loc wash / detox", [/\b(locs?|dreads?|dreadlocks?)\b.*\b(wash|washing|detox|cleanse|cleansing|acv|shampoo)\b/, /\b(wash|washing|detox|cleanse|acv|shampoo)\b.*\b(locs?|dreads?|dreadlocks?)\b/]],
   ["Wig cornrows", [/\bunder\s*wig\b/, /\bwig\s+(cornrows?|cainrows?|braids?)\b/, /\b(cornrows?|cainrows?)\s+for\s+wig\s+installation\b/, /\b(cornrows?|cainrows?)\s+without\s+extensions?\b/, /\bwig\s+cainrows?\b/, /\bcainrows?\b/, /\bcornrows?\b/]],
   // Also never matchable before — same gap as Men's braids above.
   ["Kids & teens styles", [/\bkids?\b.*\b(braids?|twists?|styles?|hair|cornrows?)\b/, /\b(braids?|twists?|styles?|hair|cornrows?)\b.*\bkids?\b/, /\bteens?\b.*\b(braids?|twists?|styles?|hair)\b/, /\bchildren\b.*\b(braids?|twists?|styles?|hair)\b/]],
@@ -336,12 +365,12 @@ export const serviceNegationHints = {
   "Bantu knots": ["bantu knots", "bantu knot"],
   "Bouncy blowout / round brush blow dry": ["bouncy blowout", "bouncy blow out", "bouncy blowdry", "bouncy blow dry", "bouncy blow-dry", "round brush blow dry", "round brush blowdry", "dry bouncy blow-dry"],
   "Boho braids bob": ["boho bob", "boho bob braids", "boho braids bob"],
-  "Boho braids / goddess braids": ["boho", "goddess", "pick & drop", "pick n drop", "pick and drop"],
+  "Boho braids / goddess braids": ["boho", "goddess", "pick & drop", "pick n drop", "pick and drop", "zoe kravitz", "zoe kravitz braids"],
   "Box braids": ["box braids"],
   "Braid take-down": ["braid take down", "braid takedown", "braid removal", "remove braids"],
   "Bridal": ["bridal", "wedding"],
   "Editorial / Session styling": ["editorial", "session styling", "photoshoot"],
-  "Sew in / extensions blowdry & styling": ["extensions blowdry", "extensions blow dry", "extensions blowout", "extensions blow out", "extension blowdry", "extension blow dry", "extension blowout", "extension blow out", "blowdry with extensions", "blow dry with extensions", "blowout with extensions", "blow out with extensions", "weave blowdry", "weave blow dry", "weave blowout", "weave blow out", "sew in blowdry", "sew in blow dry", "sew-in blowdry", "sew-in blow dry", "sewin blowdry", "sewin blow dry", "sew in blowout", "sew in blow out", "k tips blowdry", "k-tips blowdry", "ktips blowdry", "k tips blow dry", "k-tips blow dry", "ktips blow dry", "blow out on sew in weave", "blowout on sew in weave", "wash blow dry with extensions", "wash and blow dry with extensions", "wig blowdry", "wig blow dry", "wig blowout"],
+  "Extensions blow-dry / bouncy blowout": ["extensions blowdry", "extensions blow dry", "extensions blowout", "extensions blow out", "extension blowdry", "extension blow dry", "extension blowout", "extension blow out", "blowdry with extensions", "blow dry with extensions", "blowout with extensions", "blow out with extensions", "weave blowdry", "weave blow dry", "weave blowout", "weave blow out", "sew in blowdry", "sew in blow dry", "sew-in blowdry", "sew-in blow dry", "sewin blowdry", "sewin blow dry", "sew in blowout", "sew in blow out", "k tips blowdry", "k-tips blowdry", "ktips blowdry", "k tips blow dry", "k-tips blow dry", "ktips blow dry", "blow out on sew in weave", "blowout on sew in weave", "wash blow dry with extensions", "wash and blow dry with extensions", "wig blowdry", "wig blow dry", "wig blowout"],
   "Butterfly locs": ["butterfly locs"],
   "Clip ins (+ silk press)": ["clip ins", "clip in"],
   "Closure sew-in": ["closure sew in", "closure sew-in", "closure sewin", "closure weave", "weave with lace closure", "closure behind the hairline"],
@@ -349,9 +378,9 @@ export const serviceNegationHints = {
   "Creative braids": ["creative braids", "patewo", "dolly braids", "shuku", "koroba braids"],
   "Crochet": ["crochet"],
   "Curly cut / wash & go": ["curly cut", "wash go", "wash and go"],
-  "Custom wig": ["custom wig", "bespoke wig", "custom handmade wig", "custom handmade wigs", "custom made frontal unit", "custom made closure unit", "customised closure unit", "customized closure unit", "custom mini frontal unit", "unit customisation", "unit customization", "wig making", "wig construction", "construction of wig", "construction of the wig", "wig customising", "wig customisation", "wig customization", "construction and customisation", "construction and customization"],
+  "Wig customisation / construction": ["custom wig", "bespoke wig", "custom handmade wig", "custom handmade wigs", "custom made frontal unit", "custom made closure unit", "customised closure unit", "customized closure unit", "custom mini frontal unit", "unit customisation", "unit customization", "wig making", "wig construction", "construction of wig", "construction of the wig", "wig customising", "wig customisation", "wig customization", "construction and customisation", "construction and customization"],
   "Boho locs": ["boho locs"],
-  "Soft locs": ["faux locs", "soft locs"],
+  "Faux locs / soft locs": ["faux locs", "soft locs"],
   "Crochet faux locs / invisible locs": ["crochet locs", "crochet faux locs", "invisible locs", "faux locs crochet"],
   "Feed-in braids": ["feed in", "feed in braids", "all back", "braids going back", "cornrows incl extensions", "cornrows including extensions", "cornrows with extensions", "20 cornrows"],
   "Flipover / versatile sew-in": ["flipover", "flip over", "versatile sew in", "versatile sewin", "versatile weave"],
@@ -359,7 +388,16 @@ export const serviceNegationHints = {
   "French curl bob": ["french curl bob"],
   "Frontal ponytail / bun": ["frontal ponytail", "frontal pony", "frontal bun"],
   "Frontal sew-in": ["frontal sew in", "frontal sewin", "frontal weave"],
-  "Fulani / lemonade braids": ["fulani", "lemonade", "alicia keys braids"],
+  "Fulani / lemonade braids": ["fulani", "lemonade", "tribal braids"],
+  "Flip-over Fulani / diva braids": ["diva braids", "flip over fulani", "flip-over fulani", "flipover fulani"],
+  "Alicia Keys braids": ["alicia keys", "alicia keys braids"],
+  "Pop smoke braids": ["pop smoke", "pop smoke braids"],
+  "Jayda Wayda braided sew-in": ["jayda wayda sew in", "jayda wayda", "jayda wayda braids", "jaida wanda"],
+  "Cassie braided sew-in": ["cassie", "cassie braids", "cassie sew in", "cassie braided sew in"],
+  "Coi Leray braids": ["coi leray", "coi leray braids"],
+  "Tyla braids": ["tyla", "tyla braids"],
+  "Extensions styling only (e.g. layers & curls)": ["layers", "layering", "curls", "curling", "wand curls", "layers and curls", "crimping"],
+  "Wig styling only (e.g. layers & curls)": ["layers", "layering", "curls", "curling", "wand curls", "layers and curls", "crimping"],
   "Full head colour": ["full head colour", "full head color", "colour", "color", "dye", "tint"],
   "Hair botox": ["hair botox", "botox"],
   "Healthy hair plans & consultations": ["healthy hair", "healthy hair plan", "healthy hair plans", "healthy hair consultation", "healthy hair consultations", "healthy hair regime", "healthy hair regimes", "healthy hair regimen", "healthy hair journey", "hair growth plan", "hair health plan"],
@@ -414,6 +452,12 @@ export const serviceNegationHints = {
   "Japanese head spa": ["japanese head spa", "head spa", "headspa"],
   "Wig colouring / bundle colouring": ["wig colour", "wig color", "wig dye", "colour wig", "color wig", "wig colouring service", "hair bundle colouring service", "lace closure colouring", "lace frontal colouring", "highlights frontal bundles", "highlights bundles closure"],
   "Wig cornrows": ["under wig", "wig cornrows", "wig braids", "wig cainrows", "cainrows for wig installation", "cornrows for wig installation", "cornrows without extensions", "cainrows"],
+  "Frontal / closure replacement": ["frontal replacement", "closure replacement", "lace replacement", "frontal/closure replacement"],
+  "Wig reinstall / re-glue": ["reinstall", "re-install", "re install", "reinstallation", "re-installation", "reglue", "re-glue", "re glue", "wig reinstall"],
+  "Natural twists / plaits": ["two strand twists", "two strand twist", "2 strand twists", "flat twists", "single plaits", "barrel twists", "plug twists", "mini twists", "natural twists"],
+  "Braided ponytail": ["braided ponytail", "braided pony", "feed in ponytail", "feed-in ponytail", "stitch braid ponytail"],
+  "Hot oil treatment": ["hot oil", "hot oil treatment", "oil treatment"],
+  "Loc wash / detox": ["loc wash", "locs wash", "loc detox", "locs detox", "dreads wash", "acv locs"],
   "Wig install (frontal / closure)": ["wig install", "wig installs", "wig instal", "wig installation", "wig application", "wig fitting", "glueless wig", "lace wig", "frontal wig", "closure wig", "wig frontal install", "wig closure install", "lace frontal installation", "lace closure installation", "frontal unit", "closure unit", "ready-made unit", "ready made unit", "unit install", "frontal unit install", "closure unit install"],
 };
 
@@ -459,6 +503,144 @@ function insertApprovedPortfolioPhoto(freshIndex, salonId, photo) {
   return freshSalon;
 }
 
+// One batch of the health/pricing check: shared by the admin route and the
+// local `npm run health-check` script.
+export async function runStylistCheckBatch(query = {}) {
+  const index = await readAdminSalonIndex();
+  const manualIndex = await readJson(manualIndexPath, { meta: { source: "manual", updatedAt: null, count: 0 }, salons: [] });
+  const checkedAt = today();
+  const limit = Math.min(Math.max(Number(query.limit || 50), 1), 50);
+  const offset = Math.max(Number(query.offset || 0), 0);
+  const requestedMode = cleanString(query.mode);
+  const mode = requestedMode === "pricing" || requestedMode === "missing-prices" ? "pricing" : "freshness";
+  // An explicit `ids=` list lets an admin re-run this against a hand-picked
+  // set (e.g. exactly the salons a bug just affected) instead of only ever
+  // paging positionally through the entire directory — same pattern as the
+  // photo-search queue's own `ids` support.
+  const requestedIds = String(query.ids || "")
+    .split(",")
+    .map((id) => id.trim())
+    .filter(Boolean);
+  const candidateSalons = requestedIds.length
+    ? requestedIds.map((id) => index.salons.find((salon) => salon.id === id)).filter(Boolean)
+    : index.salons;
+  const batchSalons = candidateSalons.slice(offset, offset + limit);
+  const existingStore = await readFreshnessStore({ meta: { source: "freshness-checks", updatedAt: null, count: 0 }, checks: [], dismissedRecommendations: {} });
+  const dismissedRecommendations = existingStore.dismissedRecommendations || {};
+  const salonsById = new Map((manualIndex.salons || []).map((salon) => [salon.id, salon]));
+  const existingStoredChecks = (existingStore.checks || [])
+    .map((check) => hydrateFreshnessCheckFromSalon(check, salonsById.get(check.id)))
+    .map((check) => applyDismissedRecommendationToCheck(check, dismissedRecommendations[check.id]));
+  const existingReviewChecks = existingStoredChecks.filter(hasActionableFreshnessCheck);
+  const existingChecksById = new Map((existingStore.checks || []).map((check) => [check.id, check]));
+  const checks = await mapWithConcurrency(batchSalons, isHostedRuntime() ? 2 : 6, (salon) => mode === "pricing"
+    ? checkPricingFreshness(salon, dismissedRecommendations[salon.id])
+    : checkSalonFreshness(salon, dismissedRecommendations[salon.id], existingChecksById.get(salon.id)), {
+    delayMs: isHostedRuntime() ? 350 : 0,
+  });
+  const actionableChecks = checks
+    .map((check) => applyDismissedRecommendationToCheck(check, dismissedRecommendations[check.id]))
+    .filter(hasActionableFreshnessCheck);
+  const autoPricingChanges = mode === "pricing"
+    ? checks
+      .map((check) => ({ check, update: getAutoPricingUpdate(check.priceCheck) }))
+      .filter(({ check, update }) => {
+        if (update) {
+          return true;
+        }
+        const salon = manualIndex.salons.find((item) => item.id === check.id);
+        if (!salonHasAutoPricing(salon)) {
+          return false;
+        }
+        return check.backfillStatus === "no-price";
+      })
+    : [];
+  if (autoPricingChanges.length) {
+    const salonsById = new Map(manualIndex.salons.map((salon, index) => [salon.id, { salon, index }]));
+    let changedPricing = false;
+    const now = today();
+    autoPricingChanges.forEach(({ check, update }) => {
+      const match = salonsById.get(check.id);
+      if (!match) {
+        return;
+      }
+      if (!update && salonHasAutoPricing(match.salon)) {
+        manualIndex.salons[match.index] = clearSalonPricing(match.salon);
+        changedPricing = true;
+        return;
+      }
+      const nextPricing = { ...update, priceUpdatedAt: now };
+      if (pricingFieldsEqual(match.salon, nextPricing)) {
+        return;
+      }
+      manualIndex.salons[match.index] = {
+        ...match.salon,
+        ...nextPricing,
+      };
+      changedPricing = true;
+    });
+    if (changedPricing) {
+      manualIndex.meta = {
+        ...manualIndex.meta,
+        updatedAt: now,
+        count: manualIndex.salons.length,
+      };
+      if (isGitHubJsonBacked()) {
+        await writeJsonFilesToGitHub([{ path: "data/manual-salons.json", payload: manualIndex }], "Update automated pricing bands");
+      } else {
+        await tryWriteJson(manualIndexPath, manualIndex);
+      }
+    }
+  }
+  const reviewChecks = mode === "pricing"
+    ? checks.map((check) => applyDismissedRecommendationToCheck(check, dismissedRecommendations[check.id])).filter(hasVisibleMissingPriceBackfillResult)
+    : actionableChecks.map(stripAutoAppliedPriceCheck).filter(hasActionableFreshnessCheck);
+  // Freshness runs keep clean checks too, so every salon's scraped services are stored.
+  const storedChecks = mode === "pricing"
+    ? []
+    : checks
+      .map((check) => applyDismissedRecommendationToCheck(check, dismissedRecommendations[check.id]))
+      .map(stripAutoAppliedPriceCheck);
+  const mergedChecks = mode === "pricing"
+    ? (offset > 0 ? mergeFreshnessChecks(existingReviewChecks, reviewChecks) : reviewChecks)
+    // A full run starts the store afresh; an `ids` run only re-checks those
+    // salons, so it always merges into everyone else's stored checks.
+    : (offset > 0 || requestedIds.length ? mergeFreshnessChecks(existingStoredChecks, storedChecks) : storedChecks);
+
+  const checkedCount = Math.min(offset + batchSalons.length, candidateSalons.length);
+  const persistedChecks = mode === "pricing"
+    ? mergedChecks.filter(hasActionableFreshnessCheck)
+    : mergedChecks;
+  const persisted = await tryWriteJson(freshnessChecksPath, {
+    meta: {
+      source: "freshness-checks",
+      updatedAt: checkedAt,
+      count: persistedChecks.length,
+      checkedCount,
+      total: candidateSalons.length,
+      mode,
+    },
+    dismissedRecommendations,
+    checks: persistedChecks,
+  });
+
+  return {
+    ok: true,
+    checks: reviewChecks,
+    ...(mode === "pricing" ? {} : { storedChecks }),
+    checkedAt,
+    mode,
+    summary: mode === "pricing" ? summarizeMissingPriceBackfillResults(checks) : null,
+    offset,
+    limit,
+    batchCount: batchSalons.length,
+    checkedCount,
+    total: candidateSalons.length,
+    nextOffset: offset + batchSalons.length < candidateSalons.length ? offset + batchSalons.length : null,
+    persisted,
+  };
+}
+
 export function registerAdminStylistRoutes(app) {
   app.use("/api/admin", requireTrustedOrigin);
 
@@ -495,7 +677,7 @@ export function registerAdminStylistRoutes(app) {
       ok: true,
       regions: [...regionOptions, southLondonRegionOption],
       regionParentGroups,
-      services: canonicalServices,
+      services: getCanonicalServices(),
       aliases: Object.keys(serviceAliases).sort((left, right) => left.localeCompare(right)),
       keywordSuggestionGroups: buildServiceKeywordSuggestionGroups(),
     });
@@ -1806,137 +1988,7 @@ export function registerAdminStylistRoutes(app) {
   });
 
   app.get("/api/admin/stylists/checks", requireAdmin, adminExpensiveRateLimit, async (req, res) => {
-    const index = await readAdminSalonIndex();
-    const manualIndex = await readJson(manualIndexPath, { meta: { source: "manual", updatedAt: null, count: 0 }, salons: [] });
-    const checkedAt = today();
-    const limit = Math.min(Math.max(Number(req.query.limit || 50), 1), 50);
-    const offset = Math.max(Number(req.query.offset || 0), 0);
-    const requestedMode = cleanString(req.query.mode);
-    const mode = requestedMode === "pricing" || requestedMode === "missing-prices" ? "pricing" : "freshness";
-    // An explicit `ids=` list lets an admin re-run this against a hand-picked
-    // set (e.g. exactly the salons a bug just affected) instead of only ever
-    // paging positionally through the entire directory — same pattern as the
-    // photo-search queue's own `ids` support.
-    const requestedIds = String(req.query.ids || "")
-      .split(",")
-      .map((id) => id.trim())
-      .filter(Boolean);
-    const candidateSalons = requestedIds.length
-      ? requestedIds.map((id) => index.salons.find((salon) => salon.id === id)).filter(Boolean)
-      : index.salons;
-    const batchSalons = candidateSalons.slice(offset, offset + limit);
-    const existingStore = await readFreshnessStore({ meta: { source: "freshness-checks", updatedAt: null, count: 0 }, checks: [], dismissedRecommendations: {} });
-    const dismissedRecommendations = existingStore.dismissedRecommendations || {};
-    const salonsById = new Map((manualIndex.salons || []).map((salon) => [salon.id, salon]));
-    const existingStoredChecks = (existingStore.checks || [])
-      .map((check) => hydrateFreshnessCheckFromSalon(check, salonsById.get(check.id)))
-      .map((check) => applyDismissedRecommendationToCheck(check, dismissedRecommendations[check.id]));
-    const existingReviewChecks = existingStoredChecks.filter(hasActionableFreshnessCheck);
-    const existingChecksById = new Map((existingStore.checks || []).map((check) => [check.id, check]));
-    const checks = await mapWithConcurrency(batchSalons, isHostedRuntime() ? 2 : 6, (salon) => mode === "pricing"
-      ? checkPricingFreshness(salon, dismissedRecommendations[salon.id])
-      : checkSalonFreshness(salon, dismissedRecommendations[salon.id], existingChecksById.get(salon.id)), {
-      delayMs: isHostedRuntime() ? 350 : 0,
-    });
-    const actionableChecks = checks
-      .map((check) => applyDismissedRecommendationToCheck(check, dismissedRecommendations[check.id]))
-      .filter(hasActionableFreshnessCheck);
-    const autoPricingChanges = mode === "pricing"
-      ? checks
-        .map((check) => ({ check, update: getAutoPricingUpdate(check.priceCheck) }))
-        .filter(({ check, update }) => {
-          if (update) {
-            return true;
-          }
-          const salon = manualIndex.salons.find((item) => item.id === check.id);
-          if (!salonHasAutoPricing(salon)) {
-            return false;
-          }
-          return check.backfillStatus === "no-price";
-        })
-      : [];
-    if (autoPricingChanges.length) {
-      const salonsById = new Map(manualIndex.salons.map((salon, index) => [salon.id, { salon, index }]));
-      let changedPricing = false;
-      const now = today();
-      autoPricingChanges.forEach(({ check, update }) => {
-        const match = salonsById.get(check.id);
-        if (!match) {
-          return;
-        }
-        if (!update && salonHasAutoPricing(match.salon)) {
-          manualIndex.salons[match.index] = clearSalonPricing(match.salon);
-          changedPricing = true;
-          return;
-        }
-        const nextPricing = { ...update, priceUpdatedAt: now };
-        if (pricingFieldsEqual(match.salon, nextPricing)) {
-          return;
-        }
-        manualIndex.salons[match.index] = {
-          ...match.salon,
-          ...nextPricing,
-        };
-        changedPricing = true;
-      });
-      if (changedPricing) {
-        manualIndex.meta = {
-          ...manualIndex.meta,
-          updatedAt: now,
-          count: manualIndex.salons.length,
-        };
-        if (isGitHubJsonBacked()) {
-          await writeJsonFilesToGitHub([{ path: "data/manual-salons.json", payload: manualIndex }], "Update automated pricing bands");
-        } else {
-          await tryWriteJson(manualIndexPath, manualIndex);
-        }
-      }
-    }
-    const reviewChecks = mode === "pricing"
-      ? checks.map((check) => applyDismissedRecommendationToCheck(check, dismissedRecommendations[check.id])).filter(hasVisibleMissingPriceBackfillResult)
-      : actionableChecks.map(stripAutoAppliedPriceCheck).filter(hasActionableFreshnessCheck);
-    // Freshness runs keep clean checks too, so every salon's scraped services are stored.
-    const storedChecks = mode === "pricing"
-      ? []
-      : checks
-        .map((check) => applyDismissedRecommendationToCheck(check, dismissedRecommendations[check.id]))
-        .map(stripAutoAppliedPriceCheck);
-    const mergedChecks = mode === "pricing"
-      ? (offset > 0 ? mergeFreshnessChecks(existingReviewChecks, reviewChecks) : reviewChecks)
-      : (offset > 0 ? mergeFreshnessChecks(existingStoredChecks, storedChecks) : storedChecks);
-
-    const checkedCount = Math.min(offset + batchSalons.length, candidateSalons.length);
-    const persistedChecks = mode === "pricing"
-      ? mergedChecks.filter(hasActionableFreshnessCheck)
-      : mergedChecks;
-    const persisted = await tryWriteJson(freshnessChecksPath, {
-      meta: {
-        source: "freshness-checks",
-        updatedAt: checkedAt,
-        count: persistedChecks.length,
-        checkedCount,
-        total: candidateSalons.length,
-        mode,
-      },
-      dismissedRecommendations,
-      checks: persistedChecks,
-    });
-
-    res.json({
-      ok: true,
-      checks: reviewChecks,
-      ...(mode === "pricing" ? {} : { storedChecks }),
-      checkedAt,
-      mode,
-      summary: mode === "pricing" ? summarizeMissingPriceBackfillResults(checks) : null,
-      offset,
-      limit,
-      batchCount: batchSalons.length,
-      checkedCount,
-      total: candidateSalons.length,
-      nextOffset: offset + batchSalons.length < candidateSalons.length ? offset + batchSalons.length : null,
-      persisted,
-    });
+    res.json(await runStylistCheckBatch(req.query));
   });
 
   app.post("/api/admin/stylists/match-services", requireAdmin, async (req, res) => {
@@ -2284,7 +2336,7 @@ export function registerAdminStylistRoutes(app) {
     const feedbackReason = cleanString(req.body?.feedbackReason);
     if (feedbackReason) {
       const validAttributeFields = new Set(Object.keys(attributeSuggestionConfig));
-      const validServiceNames = new Set(canonicalServices);
+      const validServiceNames = new Set(getCanonicalServices());
       await logHealthCheckFeedback({
         salonId: req.params.id,
         salonName: salon.name || "",
@@ -3681,7 +3733,7 @@ export function getFeedbackEvidenceItems(entry) {
   const context = Array.isArray(entry?.context) ? entry.context : [];
   if (items.length || context.length !== 1) return items;
   const [service] = normalizeServices(context);
-  if (!service || !canonicalServices.includes(service)) return items;
+  if (!service || !getCanonicalServices().includes(service)) return items;
   return [...String(entry.reason || "").matchAll(/["“”]([^"“”]{3,200})["“”]/g)].map((match) => ({ kind: "remove", field: service, evidenceText: match[1].trim() }));
 }
 
@@ -5119,50 +5171,7 @@ async function checkSalonFreshness(salon, dismissedRecommendation = {}, previous
     instagram: instagramLinkCheck?.profileText || "",
     "booking banner": bookingImageText,
   }, resetDismissedAttributeFlags(dismissedRecommendation, hasAttributeDismissals), learnedExclusions.attribute).filter((suggestion) => !dismissedFingerprints.has(attributeRecommendationFingerprint(suggestion)));
-  const currentServices = normalizeServices(salon.services || []);
-  const detectedServices = adjustDetectedServicesForCurrentContext(normalizeServices(serviceCheck.matchedServices), currentServices, serviceCheck.rawServices);
-  const dismissedAddedServices = normalizeServices(dismissedRecommendation.addedServices || []);
-  const dismissedRemovedServices = normalizeServices(dismissedRecommendation.removedServices || []);
-  const dismissedAddedFamilies = new Set(dismissedRecommendation.addedServiceFamilies || []);
-  // "Bantu knots" on its own is ambiguous — a salon that only offers it as an
-  // accent on wefts/straightened styling isn't really a natural-hair bantu
-  // knots offering. Only suggest adding it when the salon also does (or was
-  // just detected doing) some other natural-hair styling; Wash & blowdry
-  // doesn't count since almost every salon offers that regardless.
-  const bantuKnotsQualifyingServices = new Set(
-    (categoryMap["natural-hair-services"] || []).filter((service) => service !== "Wash & blowdry" && service !== "Bantu knots"),
-  );
-  const hasQualifyingNaturalHairStyling = [...currentServices, ...detectedServices].some((service) => bantuKnotsQualifyingServices.has(service));
-  const addedServices = detectedServices.filter((service) => {
-    if (currentServices.includes(service) || (!hasServiceDismissals && dismissedAddedServices.includes(service))) {
-      return false;
-    }
-
-    if (service === "Bantu knots" && !hasQualifyingNaturalHairStyling) {
-      return false;
-    }
-
-    const addEvidence = getServiceEvidence(serviceCheck.rawServices, service, serviceCheck.serviceEvidence);
-    const rejectedAddEvidence = learnedExclusions.add.get(service);
-    if (addEvidence.length && addEvidence.every((line) => isLearnedRejectedText(rejectedAddEvidence, line))) {
-      return false;
-    }
-
-    if (dismissedFingerprints.has(serviceRecommendationFingerprint("add", service, addEvidence))) {
-      return false;
-    }
-
-    const family = serviceFamilyFor(service);
-    if (!family || !dismissedAddedFamilies.has(family)) {
-      return true;
-    }
-
-    return !hasDismissedFamilyContext(serviceCheck.rawServices, service);
-  });
-  const removedServices =
-    serviceCheck.confidence === "medium" || serviceCheck.confidence === "high"
-      ? currentServices.filter((service) => !detectedServices.includes(service) && !getProofedServices(salon).has(service) && (!hasServiceDismissals ? !dismissedRemovedServices.includes(service) : true) && !dismissedFingerprints.has(serviceRecommendationFingerprint("remove", service)))
-      : [];
+  const { currentServices, detectedServices, addedServices, removedServices } = buildServiceSuggestions({ salon, serviceCheck, dismissedRecommendation, learnedExclusions });
 
   if (addedServices.length > 0) {
     issues.push("Possible new services found");
@@ -5228,6 +5237,79 @@ async function checkSalonFreshness(salon, dismissedRecommendation = {}, previous
     locationReviewIgnored: locationReviewIgnored || false,
     checkedAt: today(),
   };
+}
+
+// The add / remove service suggestions for one salon, from its scraped
+// serviceCheck. Shared by the live health check and
+// recomputeStoredServiceSuggestions (re-applying today's rules to a stored check).
+function buildServiceSuggestions({ salon, serviceCheck, dismissedRecommendation = {}, learnedExclusions }) {
+  const dismissedFingerprints = getDismissedFingerprintSet(dismissedRecommendation);
+  const hasServiceDismissals = hasDismissedFingerprintKind(dismissedFingerprints, "service-");
+  const currentServices = normalizeServices(salon.services || []);
+  const detectedServices = adjustDetectedServicesForCurrentContext(normalizeServices(serviceCheck.matchedServices), currentServices, serviceCheck.rawServices);
+  const dismissedAddedServices = normalizeServices(dismissedRecommendation.addedServices || []);
+  const dismissedRemovedServices = normalizeServices(dismissedRecommendation.removedServices || []);
+  const dismissedAddedFamilies = new Set(dismissedRecommendation.addedServiceFamilies || []);
+  // "Bantu knots" on its own is ambiguous — a salon that only offers it as an
+  // accent on wefts/straightened styling isn't really a natural-hair bantu
+  // knots offering. Only suggest adding it when the salon also does (or was
+  // just detected doing) some other natural-hair styling; Wash & blowdry
+  // doesn't count since almost every salon offers that regardless.
+  const bantuKnotsQualifyingServices = new Set(
+    (categoryMap["natural-hair-services"] || []).filter((service) => service !== "Wash & blowdry" && service !== "Bantu knots"),
+  );
+  const hasQualifyingNaturalHairStyling = [...currentServices, ...detectedServices].some((service) => bantuKnotsQualifyingServices.has(service));
+  const addedServices = detectedServices.filter((service) => {
+    if (currentServices.includes(service) || (!hasServiceDismissals && dismissedAddedServices.includes(service))) {
+      return false;
+    }
+
+    if (service === "Bantu knots" && !hasQualifyingNaturalHairStyling) {
+      return false;
+    }
+
+    const addEvidence = getServiceEvidence(serviceCheck.rawServices, service, serviceCheck.serviceEvidence);
+    const rejectedAddEvidence = learnedExclusions.add.get(service);
+    if (addEvidence.length && addEvidence.every((line) => isLearnedRejectedText(rejectedAddEvidence, line))) {
+      return false;
+    }
+
+    if (dismissedFingerprints.has(serviceRecommendationFingerprint("add", service, addEvidence))) {
+      return false;
+    }
+
+    const family = serviceFamilyFor(service);
+    if (!family || !dismissedAddedFamilies.has(family)) {
+      return true;
+    }
+
+    return !hasDismissedFamilyContext(serviceCheck.rawServices, service);
+  });
+  const removedServices =
+    serviceCheck.confidence === "medium" || serviceCheck.confidence === "high"
+      ? currentServices.filter((service) => !detectedServices.includes(service) && !getProofedServices(salon).has(service) && (!hasServiceDismissals ? !dismissedRemovedServices.includes(service) : true) && !dismissedFingerprints.has(serviceRecommendationFingerprint("remove", service)))
+      : [];
+  return { currentServices, detectedServices, addedServices, removedServices };
+}
+
+// Re-applies the current matcher to a stored check's saved menu lines (plus
+// the evidence lines kept for each service, which can come from further down
+// a long menu than rawServices keeps), without fetching anything again.
+export async function recomputeStoredServiceSuggestions(check, salon, dismissedRecommendation = {}) {
+  if (!check?.serviceCheck || !salon) return check;
+  const learnedExclusions = await loadLearnedExclusions();
+  const evidenceLines = Object.values(check.serviceCheck.serviceEvidence || {}).flat();
+  const lines = [...new Set([...toArray(check.serviceCheck.rawServices), ...evidenceLines])];
+  const serviceCheck = {
+    ...check.serviceCheck,
+    matchedServices: matchServices(lines),
+    serviceEvidence: buildServiceEvidence(lines),
+  };
+  const { currentServices, detectedServices, addedServices, removedServices } = buildServiceSuggestions({ salon, serviceCheck, dismissedRecommendation, learnedExclusions });
+  const issues = toArray(check.issues).filter((issue) => issue !== "Possible new services found" && issue !== "Possible removed services found");
+  if (addedServices.length) issues.push("Possible new services found");
+  if (removedServices.length) issues.push("Possible removed services found");
+  return { ...check, serviceCheck, issues, currentServices, detectedServices, addedServices, removedServices };
 }
 
 async function checkPricingFreshness(salon, dismissedRecommendation = {}) {
@@ -5698,17 +5780,23 @@ const serviceEvidenceKeywords = {
   "Highlights": ["highlight", "highlights", "lowlights"],
   "Full head colour": ["colour", "color", "tint", "dye", "rooting"],
   "Wig colouring / bundle colouring": ["wig colour", "wig color", "wig colouring service", "hair bundle colouring service", "lace closure colouring", "lace frontal colouring", "colouring full wig", "custom colour", "colour service", "613", "non-contact", "non contact", "bundle", "bundles", "frontal", "closure"],
-  "Custom wig": ["custom wig", "bespoke wig", "custom lace", "custom unit", "customised closure unit", "customized closure unit", "custom mini frontal unit", "unit customisation", "unit customization", "wig making", "wig construction", "construction of wig", "construction of the wig", "wig customising", "wig customisation", "wig customization", "construction and customisation", "construction and customization"],
+  "Wig customisation / construction": ["custom wig", "bespoke wig", "custom lace", "custom unit", "customised closure unit", "customized closure unit", "custom mini frontal unit", "unit customisation", "unit customization", "wig making", "wig construction", "construction of wig", "construction of the wig", "wig customising", "wig customisation", "wig customization", "construction and customisation", "construction and customization"],
   "Feed-in braids": ["feed in", "feed-in", "all back", "braids going back", "cornrows incl extensions", "cornrows including extensions", "cornrows with extensions", "pre pulled packets", "pre-pulled packets"],
   "K-tips / invisible strands": ["k tips", "k-tips", "keratin tip", "keratin tips", "keratin bonds", "invisible strands"],
   "Wig install (frontal / closure)": ["wig install", "wig installation", "wig application", "wig fitting", "glueless wig", "lace wig", "frontal wig", "closure wig", "wig frontal install", "wig closure install", "lace frontal installation", "lace closure installation", "frontal unit", "closure unit", "ready-made unit", "ready made unit", "unit install", "frontal unit install", "closure unit install"],
   "Pixie wig / weave install": ["pixie wig", "pixie weave", "pixie install", "pixie cut wig making", "pixie cut wig making styling"],
   "Tracks (+ silk press) / partial / invisible sew-in": ["tracks", "track per row", "per track", "per row", "one row", "individual sewn on track", "individual sewn on tracks", "tracks add on", "tracks add-on", "silk press add on tracks", "silk press add-on tracks", "sew in tracks", "sew-in tracks", "weave tracks", "single track weave"],
   "Twists (with extensions)": ["twists with extensions", "passion twists", "marley twists", "senegalese twists", "kinky twists", "rope twists", "island twists", "island twist", "large twist", "large twists"],
-  "Sew in / extensions blowdry & styling": ["extensions blowdry", "extensions blow dry", "extensions blowout", "extensions blow out", "extension blowdry", "extension blow dry", "extension blowout", "extension blow out", "blowdry with extensions", "blow dry with extensions", "blowout with extensions", "blow out with extensions", "weave blowdry", "weave blow dry", "weave blowout", "weave blow out", "sew in blowdry", "sew in blow dry", "sew-in blowdry", "sew-in blow dry", "sewin blowdry", "sewin blow dry", "sew in blowout", "sew in blow out", "k tips blowdry", "k-tips blowdry", "ktips blowdry", "k tips blow dry", "k-tips blow dry", "ktips blow dry", "blow out on sew in weave", "blowout on sew in weave", "wash blow dry with extensions", "wash and blow dry with extensions", "wig blowdry", "wig blow dry", "wig blowout"],
+  "Extensions blow-dry / bouncy blowout": ["extensions blowdry", "extensions blow dry", "extensions blowout", "extensions blow out", "extension blowdry", "extension blow dry", "extension blowout", "extension blow out", "blowdry with extensions", "blow dry with extensions", "blowout with extensions", "blow out with extensions", "weave blowdry", "weave blow dry", "weave blowout", "weave blow out", "sew in blowdry", "sew in blow dry", "sew-in blowdry", "sew-in blow dry", "sewin blowdry", "sewin blow dry", "sew in blowout", "sew in blow out", "k tips blowdry", "k-tips blowdry", "ktips blowdry", "k tips blow dry", "k-tips blow dry", "ktips blow dry", "blow out on sew in weave", "blowout on sew in weave", "wash blow dry with extensions", "wash and blow dry with extensions", "wig blowdry", "wig blow dry", "wig blowout"],
   "Wash & blowdry": ["wash blowdry", "wash blow dry", "wash and blowdry", "wash and blow dry", "washing blow drying", "washing and blow drying", "shampoo blowdry", "shampoo blow dry", "shampoo and blowdry", "shampoo and blow dry"],
   "Japanese head spa": ["japanese head spa", "head spa", "headspa"],
   "Wig cornrows": ["under wig", "wig cornrows", "wig cainrows", "cornrows for wig installation", "cornrows without extensions", "cainrows"],
+  "Frontal / closure replacement": ["frontal replacement", "closure replacement", "lace replacement", "frontal/closure replacement"],
+  "Wig reinstall / re-glue": ["reinstall", "re-install", "re install", "reinstallation", "re-installation", "reglue", "re-glue", "re glue", "wig reinstall"],
+  "Natural twists / plaits": ["two strand twists", "two strand twist", "2 strand twists", "flat twists", "single plaits", "barrel twists", "plug twists", "mini twists", "natural twists"],
+  "Braided ponytail": ["braided ponytail", "braided pony", "feed in ponytail", "feed-in ponytail", "stitch braid ponytail"],
+  "Hot oil treatment": ["hot oil", "hot oil treatment", "oil treatment"],
+  "Loc wash / detox": ["loc wash", "locs wash", "loc detox", "locs detox", "dreads wash", "acv locs"],
   "Scalp detox / treatments": ["scalp", "scalp care", "scalp therapy", "scalp treatment", "scalp treatments", "scalp scrub", "scalp detox", "scalp rejuvenation", "scalp renewal", "exfoliating scalp salt scrub"],
   "Roller set": ["roller set", "roller sets", "wet set", "wet roller set", "perm rod set", "rod set", "curlformers", "rollers"],
 };
@@ -5717,7 +5805,7 @@ function serviceFamilyFor(service) {
   if (["Full head colour", "Balayage", "Highlights", "Wig colouring / bundle colouring"].includes(service)) {
     return "colour";
   }
-  if (["Custom wig", "Wig install (frontal / closure)", "U-Part / Half wig install", "Pixie wig / weave install"].includes(service)) {
+  if (["Wig customisation / construction", "Wig install (frontal / closure)", "U-Part / Half wig install", "Pixie wig / weave install"].includes(service)) {
     return "wig";
   }
   return "";
@@ -6003,6 +6091,11 @@ async function extractBookingServices(url) {
   }
 }
 
+// How many scraped menu lines a check keeps. Long menus (100+ items) are
+// common, and later rule changes can only be re-applied to lines that were
+// kept — so keep enough to cover a whole menu.
+const MAX_STORED_SERVICE_LINES = 250;
+
 function extractBookingServicesFromHtml(html) {
   if (!html) {
     return emptyServiceCheck();
@@ -6013,7 +6106,7 @@ function extractBookingServicesFromHtml(html) {
   const matchedServices = matchServices(rawServices);
   return {
     confidence: structured.rawServices.length >= 3 && matchedServices.length > 0 ? "high" : rawServices.length >= 5 && matchedServices.length > 0 ? "medium" : matchedServices.length > 0 ? "low" : "unknown",
-    rawServices: rawServices.slice(0, 80),
+    rawServices: rawServices.slice(0, MAX_STORED_SERVICE_LINES),
     matchedServices,
     serviceEvidence: buildServiceEvidence(rawServices),
     areaId: structured.areaId,
@@ -6208,7 +6301,7 @@ const learnedKeywordSearchExpansions = [
     ],
   },
   {
-    service: "Sew in / extensions blowdry & styling",
+    service: "Extensions blow-dry / bouncy blowout",
     triggers: ["extensions blowdry", "extensions blow dry", "extensions blowout", "extensions blow out", "extension blowdry", "extension blow dry", "extension blowout", "extension blow out", "weave blowdry", "weave blow dry", "weave blowout", "weave blow out", "sew in blowdry", "sew in blow dry", "sew-in blowdry", "sew-in blow dry", "sewin blowdry", "sewin blow dry", "sew in blowout", "sew in blow out", "k tips blowdry", "k-tips blowdry", "ktips blowdry", "k tips blow dry", "k-tips blow dry", "ktips blow dry", "wash blow dry with extensions", "blow out on sew in weave"],
     keywords: [
       "extensions blowdry",
@@ -6284,7 +6377,7 @@ const learnedKeywordSearchExpansions = [
 ];
 
 function buildServiceKeywordSuggestionGroups() {
-  const aliasesByService = new Map(canonicalServices.map((service) => [service, [service]]));
+  const aliasesByService = new Map(getCanonicalServices().map((service) => [service, [service]]));
   Object.entries(serviceAliases).forEach(([alias, service]) => {
     if (!aliasesByService.has(service)) {
       aliasesByService.set(service, [service]);
@@ -6316,7 +6409,7 @@ function normalizeSelectedKeywordService(value = "") {
   if (!raw) {
     return "";
   }
-  const exact = serviceAliases[raw] || canonicalServices.find((service) => service.toLowerCase() === raw.toLowerCase());
+  const exact = serviceAliases[raw] || getCanonicalServices().find((service) => service.toLowerCase() === raw.toLowerCase());
   if (exact) {
     return exact;
   }
@@ -6563,7 +6656,7 @@ function mergeServiceChecks(primaryCheck = emptyServiceCheck(), fallbackCheck = 
   const rawServices = [...new Set([
     ...toArray(primaryCheck.rawServices),
     ...toArray(fallbackCheck.rawServices),
-  ])].slice(0, 80);
+  ])].slice(0, MAX_STORED_SERVICE_LINES);
   const matchedServices = normalizeServices([
     ...toArray(primaryCheck.matchedServices),
     ...toArray(fallbackCheck.matchedServices),
@@ -7155,7 +7248,7 @@ async function extractAiServiceFallbackCheck({ text = "", sourceUrl = "" } = {})
         : rawServices.length >= 3
           ? "medium"
           : "low",
-      rawServices: rawServices.slice(0, 80),
+      rawServices: rawServices.slice(0, MAX_STORED_SERVICE_LINES),
       matchedServices,
       serviceEvidence: buildServiceEvidence(rawServices),
       areaId: "",
@@ -10062,7 +10155,7 @@ function sanitizeDraftUpdate(input) {
   const rawServices = normalizeLines(input.rawServices);
   // Admin UI sends already-canonical service names — pass them through normalizeServices (alias
   // mapping only) rather than matchServices (fuzzy scraping logic that drops unrecognised names).
-  const allKnownServices = new Set(canonicalServices);
+  const allKnownServices = new Set(getCanonicalServices());
   const inputServices = toArray(input.services);
   const knownInputServices = normalizeServices(inputServices.filter((s) => allKnownServices.has(s) || serviceAliases[s]));
   const unknownInputServices = inputServices.filter((s) => !allKnownServices.has(s) && !serviceAliases[s]);
@@ -10507,7 +10600,28 @@ export function matchServices(values) {
 
 // The exact lines behind each match, so the health check can show the line
 // that triggered a suggestion rather than any line that shares a word with it.
-// Built from the full list before rawServices is trimmed to 80 for storage.
+// Built from the full list before rawServices is trimmed for storage.
+// A line that names a style ("Pop Smoke Braids", "Cassie Braids / Sew-In") is
+// tagged with that style, not the generic braid / sew-in / ponytail / cornrow
+// services its name alone trips. A generic style the line also spells out
+// stays: "Fulani Sew-in (Jayda Wayda Braids)" is Jayda Wayda braids and Fulani
+// sew-in, "Alicia keys fulani braids" is Alicia Keys braids and Fulani braids.
+// Take-downs, washes, treatments and the like on the same line are kept.
+const NAMED_STYLE_SERVICES = new Set(["Alicia Keys braids", "Pop smoke braids", "Jayda Wayda braided sew-in", "Cassie braided sew-in", "Coi Leray braids", "Tyla braids", "Flip-over Fulani / diva braids"]);
+const NAMED_STYLE_KEPT_ALONGSIDE = new Set(["Braid take-down", "Sew-in take-down", "Pre-parting", "Colour blend (mixing braiding hair)"]);
+function isGenericStyleService(service) {
+  if (NAMED_STYLE_SERVICES.has(service) || NAMED_STYLE_KEPT_ALONGSIDE.has(service)) return false;
+  return ["braiding-services", "sew-in-weave", "styling-services"].some((categoryId) => (categoryMap[categoryId] || []).includes(service)) || ["Wig cornrows", "Natural twists / plaits", "Men's braids"].includes(service);
+}
+const NAMED_STYLE_WORDS = /\b(alicia\s+keys?|pop\s*smoke|jayda(\s+wayda)?|jaida(\s+wanda)?|wayda|cassie|coi\s+leray|tyla|diva)\b/gi;
+function applyNamedStylePrecedence(services, line = "") {
+  if (!services.some((service) => NAMED_STYLE_SERVICES.has(service))) return services;
+  // "Our 18-inch 'Jayda' wig available to order" sells a wig, not the style.
+  if (/\bwigs?\b/i.test(line) && /\b(order|available|shop|buy|for\s+sale|in\s+stock)\b/i.test(line)) return services.filter((service) => !NAMED_STYLE_SERVICES.has(service));
+  const spelledOut = new Set(matchServicesByRule(String(line).replace(NAMED_STYLE_WORDS, " ")));
+  return services.filter((service) => !isGenericStyleService(service) || spelledOut.has(service));
+}
+
 function buildServiceEvidence(values) {
   const evidence = {};
   for (const { line, services } of matchServiceLines(values)) {
@@ -10520,9 +10634,9 @@ function buildServiceEvidence(values) {
 }
 
 // matchServices, one result per line: [{ line, services }].
-export function matchServiceLines(values) {
-  const allKnown = new Set(canonicalServices);
-  const knownByLowercase = new Map(canonicalServices.map((service) => [service.toLowerCase(), service]));
+export function matchServiceLines(values, { namedStylePrecedence = true } = {}) {
+  const allKnown = new Set(getCanonicalServices());
+  const knownByLowercase = new Map(getCanonicalServices().map((service) => [service.toLowerCase(), service]));
   const aliasesByLowercase = new Map([
     ...Object.entries(serviceAliases).map(([alias, service]) => [alias.toLowerCase(), service]),
     ...Object.entries(intakeServiceAliases),
@@ -10534,21 +10648,42 @@ export function matchServiceLines(values) {
       .filter(Boolean),
   );
 
-  return normalized.map((service, index) => ({ line: service, services: normalizeServices([...[].concat(matchServiceLine(service, index)).filter(Boolean), ...getLearnedServicesForLine(service)]) }));
+  // Barrel twists are a locs style on a menu that offers real locs, and a
+  // natural-hair style on one that doesn't (faux locs don't count).
+  const menuHasLocs = normalized.some((line) => /\b(locs?|dreads?|dreadlocks?|retwist\w*|interlock\w*)\b/i.test(line) && !/\b(soft|faux|butterfly|boho|crochet|invisible|goddess|island|bohemian)\s+locs?\b/i.test(line) && !/\bbarrel\b/i.test(line));
+  return normalized.map((service, index) => {
+    // Confirmed phrases ("Wig customisation") still respect the context guards,
+    // so "Ready-Made Wig Customisation" doesn't slip back in through them.
+    const learnedContext = { ...buildServiceLineContext(normalized, index), menuHasLocs };
+    const learned = getLearnedServicesForLine(service).filter((learnedService) => !shouldSuppressServiceForSpecificContext(learnedService, learnedContext));
+    const services = normalizeServices([...[].concat(matchServiceLine(service, index)).filter(Boolean), ...learned]);
+    return { line: service, services: namedStylePrecedence ? applyNamedStylePrecedence(services, service) : services };
+  });
 
   function matchServiceLine(service, index) {
         const lower = service.toLowerCase();
-        const context = buildServiceLineContext(normalized, index);
+        const context = { ...buildServiceLineContext(normalized, index), menuHasLocs };
         if (hasStyleRemovalInstructionContext(context.nearby)) {
           return [];
         }
         if (looksLikeRetailProductLine(lower)) {
           return [];
         }
+        // Minified JavaScript scraped off the page ("...}(e", "=>", "new Error(").
+        if (/[{}]|=>|\bnew\s+error\s*\(|\w\s*=\s*\w+\(|\.\w+\(/.test(lower)) {
+          return [];
+        }
         if (hasColourSignal(context.line) && hasWigPieceColourContext(context) && !shouldSuppressForDeclinedContext("Wig colouring / bundle colouring", context)) {
           return ["Wig colouring / bundle colouring"];
         }
-        if (hasShampooBlowdryContext(context.nearby)) {
+        // The line itself must be a wash/blow-dry step — otherwise a neighbouring
+        // "Wash & Blow Dry" item would swallow e.g. "Cornrow (Under Wig)".
+        // "(with / excluding wash & blow-dry)" is a note on an install's price.
+        if (/^(with|without|excluding|excl|including|incl)\b/.test(context.line) && /\b(wash|blow\s*dry|blowdry)\b/.test(context.line)) {
+          return [];
+        }
+        // "K-tips wash & blowdry" names the hair, so the rules below decide it.
+        if (hasShampooBlowdryContext(context.nearby) && /\b(shampoo|wash|washing|blow\s*dry|blowdry|blowout|blow\s*drying)\b/.test(context.line) && (!/\b(extensions?|weave|sew\s*in|sewin|k\s*tips?|tapes?|microlinks?|wefts?|tracks?|wigs?|units?|frontal|closure)\b/.test(context.line) || /\b(cornrows?|cainrows?)\b/.test(context.line))) {
           return ["Wash & blowdry"];
         }
         if (hasCornrowsWithExtensionContext(context)) {
@@ -10557,6 +10692,13 @@ export function matchServiceLines(values) {
         const unitContextServices = getUnitContextServices(context);
         if (unitContextServices.length) {
           return unitContextServices;
+        }
+        const stylingContextServices = getInstallStylingContextServices(context);
+        if (stylingContextServices === null) {
+          return [];
+        }
+        if (stylingContextServices.length) {
+          return stylingContextServices;
         }
         const exact = serviceAliases[service] ?? knownByLowercase.get(lower) ?? aliasesByLowercase.get(lower);
         if (exact && allKnown.has(exact)) {
@@ -10572,7 +10714,7 @@ export function matchServiceLines(values) {
           return filteredMatches;
         }
 
-        const strongMatch = canonicalServices.find((candidate) => isStrongServiceMatch(lower, candidate.toLowerCase()));
+        const strongMatch = getCanonicalServices().find((candidate) => isStrongServiceMatch(lower, candidate.toLowerCase()));
         return strongMatch && !shouldSuppressServiceForSpecificContext(strongMatch, context) && !isServiceNegatedInText(lower, strongMatch) ? strongMatch : [];
   }
 }
@@ -10596,20 +10738,55 @@ function shouldSuppressNaturalColourForWigContext(service, context) {
 }
 
 function getUnitContextServices(context) {
-  const hasUnitTitle = /\b(frontal|closure|ready[\s-]*made|customi[sz]ed|custom\s+mini\s+frontal)\s+unit\b/.test(context.line);
+  const hasUnitTitle = /\b(frontal|closure|ready[\s-]*made|customi[sz]ed|custom\s+mini\s+frontal)\s+units?\b/.test(context.line);
   if (!hasUnitTitle) {
     return [];
   }
 
+  // A handmade / constructed / custom unit is also wig-making.
+  const isFactoryUnit = /\b(ready\s*made|pre\s*made|premade|pre\s*bought|pre\s*constructed|factory\s+made)\b/.test(context.line);
+  const isMakingUnit = /\b(custom\w*|bespoke|hand\s*made|constructed|construction)\b/.test(context.line) && !isFactoryUnit;
   const services = ["Wig install (frontal / closure)"];
   if (/\binstallation\s+of\s+the\s+wig\b|\bwig\b.*\b(install|installation|instal|application|fit|fitting)\b/.test(context.nearby)) {
     services.push("Wig install (frontal / closure)");
   }
-  if (/\bconstruction\s+of\s+the\s+wig\b|\bconstruction\b|\bcustomi[sz]ed\b|\bcustom\b.*\bunit\b|\bcustom\s+mini\s+frontal\b/.test(context.nearby)) {
-    services.push("Custom wig");
+  if (isMakingUnit || !isFactoryUnit && /\bconstruction\s+of\s+the\s+wig\b|\bconstruct(ion|ed)\b|\bcustomi[sz]ed\b|\bhand\s*made\b|\bcustom\b.*\bunit\b|\bcustom\s+mini\s+frontal\b/.test(context.nearby)) {
+    services.push("Wig customisation / construction");
   }
 
   return services;
+}
+
+// "Layers and curls" / "Curling only" / "Wand curls" add-ons restyle an install
+// that's already in, so they're the wig or sew-in / extensions blowdry &
+// styling service. Only lines made up entirely of styling words count —
+// "French curls", "Natural curl define", "Boho style (human curls)" or a curly
+// install all carry other words. Which service is read from the hair named on
+// the line, else the lines around it, and left untagged when neither says.
+const INSTALL_STYLING_WORDS = new Set([
+  "layer", "layers", "layered", "layerd", "layering", "curl", "curls", "curled", "curling", "wand", "ghd", "crimp", "crimping",
+  "straighten", "straightening", "light", "simple", "styling", "stylings", "style", "and", "or", "only",
+  "end", "ends", "ladies", "extra", "add", "on", "addon", "the", "a", "with", "for", "your",
+  "wig", "wigs", "unit", "units", "sew", "in", "ins", "sewin", "sewins", "weave", "weaves", "extension", "extensions",
+  "track", "tracks", "k", "tip", "tips", "tape", "tapes", "microlink", "microlinks",
+]);
+
+function getInstallStylingContextServices(context) {
+  // "Curls and layers - install not by us" restyles someone else's install.
+  const line = context.line.replace(/\binstall(ed)?\s+not\s+by\s+us\b/g, " ").replace(/\s+/g, " ").trim();
+  const isStylingOnly = /\bstyl(e|ing)\s+only\b|^(wig|sew\s*in|extensions?)\s+styling$|^restyl(e|ing)$/.test(line);
+  if (!isStylingOnly && !/\b(layers?|layered|layerd|layering|curls?|curled|curling)\b/.test(line)) return [];
+  const words = line.split(" ").filter((word) => word && !/^\d+$/.test(word));
+  // A lone "curls" is usually a fragment of an install's description.
+  if ((words.length < 2 && !/^restyl/.test(line)) || words.some((word) => !INSTALL_STYLING_WORDS.has(word) && !/^restyl(e|ing)$/.test(word))) return [];
+  const wig = /\b(wigs?|units?)\b/;
+  const sewIn = /\b(sew\s*ins?|sewins?|weaves?|extensions?|tracks?|k\s*tips?|tapes?|microlinks?)\b/;
+  const fromLine = [wig.test(line) && "Wig styling only (e.g. layers & curls)", sewIn.test(line) && "Extensions styling only (e.g. layers & curls)"].filter(Boolean);
+  if (fromLine.length) return fromLine;
+  const fromContext = [wig.test(context.nearby) && "Wig styling only (e.g. layers & curls)", sewIn.test(context.nearby) && "Extensions styling only (e.g. layers & curls)"].filter(Boolean);
+  // Neither says which hair: leave it untagged rather than letting a bare
+  // "Styling only" fall through to the service-name match below.
+  return fromContext.length ? fromContext : null;
 }
 
 function shouldSuppressServiceForSpecificContext(service, context) {
@@ -10625,9 +10802,6 @@ function shouldSuppressForDeclinedContext(service, context) {
     return true;
   }
   switch (service) {
-    // "Hair and scalp assessments" is clinical trichology, not a detox.
-    case "Scalp detox / treatments":
-      return /\b(assess|assessment|assessments|analysis|examination|consultation|consultations|tricholog(y|ist|ists))\b/.test(line);
     // A pixie cut is its own service, not a regular cut and trim — unless the
     // line also offers a trim ("Pixie cut and trim").
     // "Locs - rope twists" is loc styling, not extension twists.
@@ -10648,18 +10822,121 @@ function shouldSuppressForDeclinedContext(service, context) {
     // "A trim may be recommended" / "Book this service with a trim" describe
     // another service; "Maintenance Trim" is still a trim.
     case "Trim / hair cut":
-      return (/\bpixie\b/.test(line) && !/\btrim\b/.test(line)) || /\b(may be recommended|recommended|optional|with a trim|book this service)\b/.test(line);
+      // Men's cuts / barbering aren't a service this directory lists.
+      return (/\bpixie\b/.test(line) && !/\btrim\b/.test(line)) || /\b(may be recommended|recommended|optional|with a trim|book this service)\b/.test(line) || /\b(men\s*s?|mens|barb(er|ers|ering|ing))\b/.test(line);
     // "Colour #33" / "select the colour desired" pick a braiding hair colour.
     case "Wig colouring / bundle colouring":
     case "Full head colour":
       return isHairColourPickLine(line);
     // Tribal cornrows are an extension style, not natural or wig cornrows.
     // (Freestyle cornrows on natural hair do count.)
+    // Fulani cornrows are Fulani braids; "Wig install (cornrow & style)" is the
+    // install itself, with the cornrows as one of its steps.
     case "Wig cornrows":
-      return /\btribal\b/.test(line);
-    // "Keratin Strengthening Treatment" is a protein treatment, not smoothing.
+      return /\btribal\b/.test(line) || /\bfulani\s+(cornrows?|cainrows?)\b/.test(line) || /\bwig\b.*\binstall(ation)?\b/.test(line);
+    // A bare "sew in" is a traditional sew-in only when nothing names another
+    // kind: Fulani / flip-over / half-wig / closure / frontal / braid hybrids
+    // ("stitch braids + sew in", "half cainrows / sew in") are their own services.
+    case "Traditional sew-in / leave out":
+      // Celebrity-named sew-ins (Zoe Kravitz, Tyla, Jayda Wayda...) are hybrids too.
+      // "Middle / side part" keeps it traditional unless braids or Fulani are named.
+      // "Micro braid leave out sew in" leaves braids out, not natural hair.
+      if (/\b(leave\s*out|traditional)\b/.test(line) && !/\b(micro\s*braids?|braids?|braided|fulani|stitch|feed\s*ins?|boho)\b/.test(line)) return false;
+      if (/\b(middle|side)\s+part\b/.test(line) && !/\b(fulani|braids?|braided|stitch|feed\s*ins?|cornrows?|cainrows?|boho|tribal)\b/.test(line)) return false;
+      return /\b(fulani|flip\s*over|flipover|half\s+wig|half\s+sew\s*in|closure|frontal|hybrid|braids?|braided|micro\s*braids?|stitch|feed\s*ins?|cornrows?|cainrows?|half\s+up|versatile|boho\w*|u\s*part|tribal|alicia\s+keys?|pop\s*smoke|jayda|jaida|wayda|cassie|coi\s+leray|tyla|zoe\s+kravitz|kravitz)\b/.test(line);
+    // "Flip over Fulani braids" is a braid style, and "Flipover Fulani sew in" /
+    // "Boho flip over braids x sew in" are Fulani / braid hybrids.
+    case "Flipover / Versatile sew-in":
+      return /\b(fulani|tribal|boho|knotless|braids?|cornrows?|stitch|feed\s*ins?)\b/.test(line);
+    // A "Fulani weave" / "Fulani sew in" is the Fulani sew-in hybrid, not Fulani braids.
+    case "Fulani / lemonade braids":
+      return /\bfulani\b/.test(line) && /\b(weave|sew\s*in|sewin|quick\s*weave)\b/.test(line) && !/\bhalf\b.*\bhalf\b/.test(line);
+    case "Sew-in take-down":
+      return /\bla\s+weave\b/.test(line);
+    // "Frontal sleek weave ponytail" is a frontal ponytail.
+    case "Frontal sew-in":
+      return /\b(pony\s*tails?|ponytails?|pony|bun)\b/.test(line);
+    // "Stitch cornrows with extensions" are stitch braids.
+    // ...and a "cornrow base for your extensions" is install prep.
+    case "Feed-in braids":
+      return (/\bstitch\b/.test(line) && !/\b(feed\s*ins?|feeding|all\s+back)\b/.test(line)) || /\b(cornrows?|cainrows?)\s+base\b/.test(line);
+    // "Wash & blowdry with silk press" / "...with extensions" are those services.
+    // Washing extensions / an install ("K-tips wash & blowdry", "closure sew-in
+    // (including wash & blow dry)") is the extensions blow-dry or the install.
+    case "Wash & blowdry":
+      // ...but "Sew-in take down & wash and blowdry" washes the natural hair after.
+      if (/\b(take\s*down|takedown|take\s*out|takeout|removal|remove|undo)\b/.test(line) && !/\b(silk\s*press|extensions?\s+(wash|blow))/.test(line)) return false;
+      return /\b(silk\s*press|extensions?|k\s*tips?|i\s*tips?|microlinks?|wefts?|tapes?|tape\s*ins?|sew\s*ins?|sewins?|weaves?|closure|frontal|bundles)\b/.test(line);
+    // "Natural hair care" alone says nothing about a moisture treatment.
+    case "Moisturising treatment":
+      return !/\b(moistur\w*|hydrat\w*|deep\s+condition\w*|steam\w*|mask|treatments?)\b/.test(line);
+    // A braided half-up-half-down ("Half up half down feed-in braids") is a
+    // braid style; the service is the sew-in / quick weave / wig version.
+    case "Half up half down":
+      return /\b(braid\w*|feed\s*ins?|feedins?|knotless|fulani|stitch|cornrows?|cainrows?|locs?|bantu)\b/.test(line) && !/\b(sew\s*in|sewin|weave|quick\s*weave|frontal|closure|wig|bundles|extensions?)\b/.test(line);
+    // Blow-drying an install that's in — not a new install ("Blow dry and new
+    // sew-in"), a removal ("Undo weave + wash & blowdry"), natural hair prepped
+    // for one ("Blow dry + wig cornrows") or an install's price note
+    // ("Closure sew-in (excluding wash & blow-dry)").
+    case "Extensions blow-dry / bouncy blowout":
+    case "Wig blow-dry / bouncy blowout":
+    case "Extensions styling only (e.g. layers & curls)":
+    case "Wig styling only (e.g. layers & curls)":
+      return /\b(install\w*|new|fresh|removal|remove|undo|take\s*down|takedown|take\s*out|takeout|excluding|excl|including|incl|included|cornrows?|cainrows?)\b/.test(line) || /\bno\s+(shampoo|wash|blow\s*dry|blowdry)\b/.test(line);
+    // A reinstall / re-glue or a frontal replacement isn't a new wig install,
+    // unless the line also sells one ("Frontal replacement + install").
+    case "Wig install (frontal / closure)":
+      return /\b(re\s*install\w*|re\s*glue\w*|reglue\w*|replace\w*)\b/.test(line) && !/\binstall\w*\b/.test(line.replace(/\bre\s*install\w*/g, " "));
+    // "Soft locs + styling" styles faux locs, not real ones.
+    case "Loc styling":
+      return /\b(soft|faux|butterfly|boho|crochet|invisible|goddess|island|bohemian)\s+locs?\b/.test(line) || /\b(natural|non\s*locs?)\b/.test(line) || (/\bbarrel\b/.test(line) && !/\blocs?\b/.test(line) && context.menuHasLocs === false);
+    // "Locs retwist and simple style - NO WASH"
+    case "Loc wash / detox":
+      return /\b(no|without)\s+wash\b/.test(line);
+    // Tape / K-tip / microlink "re-installs" are extension maintenance.
+    case "Wig reinstall / re-glue":
+      return /\b(tapes?|tape\s*ins?|k\s*tips?|i\s*tips?|microlinks?|micro\s*links?|extensions?|bonds?|clip\s*ins?|locs?|faux)\b/.test(line);
+    // Twists with added hair are Twists (with extensions).
+    case "Natural twists / plaits":
+      return /\b(extensions?|hair\s+(included|added)|braiding\s+hair|kinky|passion|marley|senegalese|spring|rope|island|faux|crochet|locs?|dreads?|retwist\w*|interlock\w*)\b/.test(line.replace(/\bnon\s*locs?\b/g, " ")) && !/\b(no|without)\s+extensions?\b/.test(line)
+        || (/\bbarrel\b/.test(line) && !/\b(two|2)\s*strand|\bflat\b|\bplug\b|\bmini\b|\bplaits?\b/.test(line) && context.menuHasLocs && !/\b(natural|non\s*locs?|own\s+hair)\b/.test(line));
+    // "Flipover Fulani sew in" is a sew-in hybrid, not the braid style.
+    case "Flip-over Fulani / diva braids":
+      return /\b(sew\s*in|sewin|weave|quick\s*weave)\b/.test(line);
+    // Micro braids with a sew-in / quick weave are the boho sew-in hybrid;
+    // "XSmall ponytail braids" is a ponytail.
+    case "Microbraids / x-small braids":
+      return /\b(sew\s*in|sewin|weave|quick\s*weave)\b/.test(line) || /\b(pony\s*tails?|ponytails?|pony)\b/.test(line);
+    // "Stitch braids x weave" is a braided sew-in.
+    case "Stitch braids":
+      return /\b(sew\s*in|sewin|weave|quick\s*weave)\b/.test(line);
+    // "Texture release (relaxer)" is a texture release.
+    case "Relaxer / texturiser":
+      return /\btexture\s+release\b/.test(line);
+    // LA weave is its own method, "Track your order" is shop chrome and
+    // "French roll with tracks install" is an updo.
+    case "Tracks (+ silk press) / partial / invisible sew-in":
+      return /\bla\s+weave\b/.test(line) || /\btrack\s+your\s+order\b/.test(line) || /\bfrench\s+roll\b/.test(line);
+    // "Keratin Strengthening Treatment" is a protein treatment and "Keratin
+    // serum" a product, not smoothing.
     case "Keratin treatment / Brazilian blowdry":
-      return /\bkeratin\s+(strengthening|strengthen|protein|repair|reconstruct\w*|infused|mask)\b/.test(line) && !/\b(smooth\w*|straighten\w*|brazilian|blow\s*dry|blowdry|blowout)\b/.test(line);
+      return (/\bkeratin\s+(strengthening|strengthen|protein|repair|reconstruct\w*|infused|mask)\b/.test(line) && !/\b(smooth\w*|straighten\w*|brazilian|blow\s*dry|blowdry|blowout)\b/.test(line)) || /\bkeratin\s+(serum|oil|spray|shampoo|conditioner)\b/.test(line);
+    // Hair and scalp assessments / PRP are trichology; "scalp bleach" is colour.
+    case "Scalp detox / treatments":
+      return /\b(assess|assessment|assessments|analysis|examination|consultation|consultations|tricholog(y|ist|ists)|prp|platelet|bleach|tone|toner)\b/.test(line);
+    // "(Hair included except French curls)"
+    case "French curl":
+      return /\b(except|excluding|not|no)\s+french\s+curls?\b/.test(line);
+    // "Ultimate Goddess Package" / "Silver Goddess Package" are haircare packages.
+    // Boho twists / boho locs aren't boho braids.
+    case "Boho braids / goddess braids":
+      return (/\bgoddess\b/.test(line) && /\b(package|glow\s*up)\b/.test(line) && !/\bbraids?\b/.test(line)) || (/\bboho\s+(twists?|locs?)\b/.test(line) && !/\bbraids?\b/.test(line));
+    // A boho locs / twists bob or a boho French curl bob isn't a boho braids bob.
+    case "Boho braids bob":
+      return /\b(locs?|twists?|french\s+curls?)\b/.test(line);
+    // Replacing the closure on an existing unit isn't constructing a wig.
+    case "Wig customisation / construction":
+      return /\breplace(ment)?\b/.test(line);
     default:
       return false;
   }
@@ -10745,11 +11022,11 @@ function shouldSuppressNaturalHairEducationForVagueContext(service, context) {
 }
 
 function shouldSuppressCustomWigForFactoryMadeContext(service, context) {
-  if (service !== "Custom wig") {
+  if (service !== "Wig customisation / construction") {
     return false;
   }
 
-  return /\b(factory\s+made|pre\s*made|premade|ready\s*made|raw\s+pre\s*made)\b/.test(context.line);
+  return /\b(factory\s+made|pre\s*made|premade|ready\s*made|raw\s+pre\s*made|pre\s*bought|pre\s*constructed)\b/.test(context.line);
 }
 
 function shouldSuppressTracksForTapeHybridContext(service, context) {
@@ -10793,7 +11070,7 @@ function shouldSuppressStitchBraidsForBohoKnotlessContext(service, context) {
 }
 
 function shouldSuppressLocSubtypeForStarterContext(service, context) {
-  if (service !== "Butterfly locs" && service !== "Soft locs" && service !== "Crochet faux locs / invisible locs") {
+  if (service !== "Butterfly locs" && service !== "Faux locs / soft locs" && service !== "Crochet faux locs / invisible locs") {
     return false;
   }
 
@@ -10855,7 +11132,8 @@ function hasBraidedPonytailContext(text) {
 }
 
 function hasCornrowsWithExtensionContext(context) {
-  return /\bcornrows?\b/.test(context.line) && /\b(extension|extensions|pre\s*pull(ed)?|braiding\s+hair)\b/.test(context.nearby) && !/\b(without|no)\s+extensions?\b/.test(context.nearby);
+  // "Cornrow base for your extensions" is install prep, not feed-ins.
+  return /\bcornrows?\b/.test(context.line) && !/\b(cornrows?|cainrows?)\s+base\b/.test(context.line) && /\b(extension|extensions|pre\s*pull(ed)?|braiding\s+hair)\b/.test(context.nearby) && !/\b(without|no)\s+extensions?\b/.test(context.nearby);
 }
 
 function hasStyleRemovalInstructionContext(text) {
@@ -10930,7 +11208,7 @@ function segmentHashtag(word) {
   return remaining ? null : segments.join(" ");
 }
 
-function expandHashtagsForMatching(text) {
+export function expandHashtagsForMatching(text) {
   const hashtags = String(text || "").match(/#[a-z0-9]+/gi) || [];
   return hashtags
     .map((tag) => segmentHashtag(tag.slice(1).toLowerCase()))

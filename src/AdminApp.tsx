@@ -1,4 +1,4 @@
-import { FormEvent, KeyboardEvent, Suspense, type ComponentType, type ReactNode, createContext, lazy, useCallback, useContext, useEffect, useId, useMemo, useRef, useState } from "react";
+import { FormEvent, KeyboardEvent, Suspense, type ComponentType, type ReactNode, createContext, lazy, useCallback, useContext, useEffect, useId, useLayoutEffect, useMemo, useRef, useState } from "react";
 import {
   Activity,
   AlertTriangle,
@@ -443,7 +443,7 @@ const learnedKeywordSuggestionGroups: KeywordSuggestionGroup[] = [
     ],
   },
   {
-    service: "Sew in / extensions blowdry & styling",
+    service: "Extensions blow-dry / bouncy blowout",
     triggers: ["extensions blowdry", "extensions blow dry", "extensions blowout", "extensions blow out", "extension blowdry", "extension blow dry", "extension blowout", "extension blow out", "weave blowdry", "weave blow dry", "weave blowout", "weave blow out", "sew in blowdry", "sew in blow dry", "sew-in blowdry", "sew-in blow dry", "sewin blowdry", "sewin blow dry", "sew in blowout", "sew in blow out", "k tips blowdry", "k-tips blowdry", "ktips blowdry", "k tips blow dry", "k-tips blow dry", "ktips blow dry", "wash blow dry with extensions", "blow out on sew in weave"],
     keywords: [
       "extensions blowdry",
@@ -841,20 +841,21 @@ const emptyForm: DraftForm = {
 };
 
 const serviceGroups = [
-  { label: "Braids", services: ["Boho braids / goddess braids","Braid take-down","Box braids","Colour blend (mixing braiding hair)","Crochet","Creative braids","Feed-in braids","French curl","Fulani / lemonade braids","Knotless braids","Miracle knots","Microbraids / x-small braids","Pre-parting","Stitch braids","Twists (with extensions)","Boho braids bob","French curl bob","Men's braids","Wig cornrows","Fulani sew-in / quick weave / half wig","Boho sew-in","Feed-in / stitch braid sew-in"] },
+  { label: "Braids", services: ["Boho braids / goddess braids","Braid take-down","Box braids","Colour blend (mixing braiding hair)","Crochet","Creative braids","Feed-in braids","French curl","Fulani / lemonade braids","Knotless braids","Miracle knots","Microbraids / x-small braids","Pre-parting","Stitch braids","Twists (with extensions)","Boho braids bob","French curl bob","Men's braids","Fulani sew-in / quick weave / half wig","Boho sew-in","Feed-in / stitch braid sew-in","Braided ponytail","Flip-over Fulani / diva braids","Alicia Keys braids","Pop smoke braids","Jayda Wayda braided sew-in","Cassie braided sew-in","Coi Leray braids","Tyla braids"] },
   { label: "Colour", services: ["Balayage","Full head colour","Highlights","Wig colouring / bundle colouring"] },
   { label: "Bridal", services: ["Bridal"] },
   { label: "Editorial / Session styling", services: ["Editorial / Session styling"] },
   { label: "Kids & teens styles", services: ["Kids & teens styles"] },
-  { label: "Extensions", services: ["Clip ins (+ silk press)","K-tips / invisible strands","LA weave / microlinks wefts / braidless sew in","I-tips / microlinks strands","Tape ins","Tape-ins + sew-in","K-tips + sew-in","Hair loss systems (e.g. mesh)"] },
-  { label: "Locs", services: ["Starter locs / instant locs","Retwist / interlocking","Loc styling","Microlocs / sisterlocs","Loc extensions (permanent)"] },
-  { label: "Faux locs", services: ["Soft locs","Boho locs","Crochet faux locs / invisible locs","Butterfly locs"] },
-  { label: "Sew in / weave", services: ["Closure sew-in / closure behind the hairline","Flipover / Versatile sew-in","Frontal sew-in","Pixie wig / weave install","Quick weave","Sew-in take-down","Tracks (+ silk press) / partial / invisible sew-in","Traditional sew-in / leave out","Fulani sew-in / quick weave / half wig","Boho sew-in","Feed-in / stitch braid sew-in","Tape-ins + sew-in","K-tips + sew-in","Hair loss systems (e.g. mesh)"] },
-  { label: "Styling (e.g. ponytails, pixies, sew-ins/wigs)", services: ["Frontal ponytail / bun","Half up half down","Pixie cut / finger waves","Sew in / extensions blowdry & styling","Sleek ponytail / bun","Updo","Wig blowdry & styling"] },
-  { label: "Treatments", services: ["Bond repair","Cécred wash & treatment","Hair botox","Japanese straightening","K18 treatment","Keratin treatment / Brazilian blowdry","Moisturising treatment","Olaplex treatment","Protein treatment","Relaxer / texturiser","Texture release"] },
-  { label: "Natural hair washing & styling", services: ["Wig cornrows","Curly cut / wash & go / diffuse","Silk press","Bouncy blowout / round brush blow dry","Trim / hair cut","Roller set","Twist out / flexi rod","Bantu knots","Wash & blowdry","Japanese head spa","Scalp detox / treatments","Men's braids"] },
+  { label: "Extensions", services: ["Clip ins (+ silk press)","K-tips / invisible strands","LA weave / microlinks wefts / braidless sew in","I-tips / microlinks strands","Tape ins","Tape-ins + sew-in","K-tips + sew-in","Hair loss systems (e.g. mesh)","Extensions blow-dry / bouncy blowout","Extensions styling only (e.g. layers & curls)"] },
+  { label: "Locs", services: ["Starter locs / instant locs","Retwist / interlocking","Loc styling","Microlocs / sisterlocs","Loc extensions (permanent)","Loc wash / detox"] },
+  { label: "Faux locs", services: ["Faux locs / soft locs","Boho locs","Crochet faux locs / invisible locs","Butterfly locs"] },
+  { label: "Sew in / weave", services: ["Closure sew-in / closure behind the hairline","Flipover / Versatile sew-in","Frontal sew-in","Pixie wig / weave install","Quick weave","Sew-in take-down","Tracks (+ silk press) / partial / invisible sew-in","Traditional sew-in / leave out","Fulani sew-in / quick weave / half wig","Boho sew-in","Feed-in / stitch braid sew-in","Tape-ins + sew-in","K-tips + sew-in","Hair loss systems (e.g. mesh)","Extensions blow-dry / bouncy blowout","Extensions styling only (e.g. layers & curls)","Cassie braided sew-in","Jayda Wayda braided sew-in"] },
+  { label: "Ponytails & updos", services: ["Frontal ponytail / bun","Half up half down","Sleek ponytail / bun","Updo","Braided ponytail"] },
+  { label: "Pixie cut / finger waves", services: ["Pixie cut / finger waves"] },
+  { label: "Treatments", services: ["Bond repair","Cécred wash & treatment","Hair botox","Japanese straightening","K18 treatment","Keratin treatment / Brazilian blowdry","Moisturising treatment","Olaplex treatment","Protein treatment","Relaxer / texturiser","Texture release","Hot oil treatment"] },
+  { label: "Natural hair washing & styling", services: ["Wig cornrows","Curly cut / wash & go / diffuse","Silk press","Bouncy blowout / round brush blow dry","Trim / hair cut","Roller set","Twist out / flexi rod","Bantu knots","Wash & blowdry","Japanese head spa","Scalp detox / treatments","Men's braids","Natural twists / plaits"] },
   { label: "Natural hair health & trichology", services: ["Healthy hair plans & consultations","Natural hair coaches / educators","Trichology / scalp analysis"] },
-  { label: "Wigs", services: ["Custom wig","Pixie wig / weave install","U-Part / Half wig install","Wig colouring / bundle colouring","Wig install (frontal / closure)","Wig laundry / wig revamp"] },
+  { label: "Wigs", services: ["Wig customisation / construction","Pixie wig / weave install","U-Part / Half wig install","Wig colouring / bundle colouring","Wig install (frontal / closure)","Wig laundry / wig revamp","Wig blow-dry / bouncy blowout","Wig styling only (e.g. layers & curls)","Frontal / closure replacement","Wig reinstall / re-glue"] },
 ];
 
 type ConfirmOptions = {
@@ -8928,6 +8929,67 @@ function FreshnessRecommendationBody({
   );
 }
 
+const evidencePillClass = "shrink-0 whitespace-nowrap rounded-none border border-stone-200 px-2 py-1 text-xs font-medium text-stone-500";
+const evidencePillGap = 6;
+
+// Evidence pills are never cut off with an ellipsis: whole pills are shown while
+// they fit the column, and the rest collapse into "+N" (expand the row to read them).
+function EvidencePillRow({ lines }: { lines: string[] }) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const measureRef = useRef<HTMLDivElement>(null);
+  const [visibleCount, setVisibleCount] = useState(lines.length);
+  const linesKey = lines.join("\u0000");
+
+  useLayoutEffect(() => {
+    const container = containerRef.current;
+    const measure = measureRef.current;
+    if (!container || !measure) {
+      return;
+    }
+    const compute = () => {
+      const available = container.clientWidth;
+      const pills = Array.from(measure.children) as HTMLElement[];
+      const counterWidth = pills.pop()?.offsetWidth ?? 0;
+      let used = 0;
+      let count = 0;
+      for (const pill of pills) {
+        const next = used + (count ? evidencePillGap : 0) + pill.offsetWidth;
+        const hiddenAfter = pills.length - count - 1;
+        if (next + (hiddenAfter ? evidencePillGap + counterWidth : 0) > available) {
+          break;
+        }
+        used = next;
+        count += 1;
+      }
+      setVisibleCount(count);
+    };
+    compute();
+    const observer = new ResizeObserver(compute);
+    observer.observe(container);
+    return () => observer.disconnect();
+  }, [linesKey]);
+
+  const hiddenCount = lines.length - visibleCount;
+  return (
+    <div ref={containerRef} className="relative flex min-w-0 flex-nowrap items-center gap-1.5 overflow-hidden">
+      {lines.slice(0, visibleCount).map((line, index) => (
+        <span key={`${line}-${index}`} className={cn(evidencePillClass, "bg-white")}>
+          {line}
+        </span>
+      ))}
+      {hiddenCount > 0 ? (
+        <span className={cn(evidencePillClass, "bg-stone-50")}>+{hiddenCount}</span>
+      ) : null}
+      <div ref={measureRef} aria-hidden="true" className="pointer-events-none invisible absolute left-0 top-0 flex gap-1.5">
+        {lines.map((line, index) => (
+          <span key={`${line}-${index}`} className={evidencePillClass}>{line}</span>
+        ))}
+        <span className={evidencePillClass}>+{lines.length}</span>
+      </div>
+    </div>
+  );
+}
+
 function FreshnessRecommendationTableRow({
   detail,
   row,
@@ -8990,18 +9052,7 @@ function FreshnessRecommendationTableRow({
         </td>
         <td className="min-w-0 px-4 py-4">
           {detail.evidence?.length ? (
-            <div className="flex min-w-0 flex-nowrap items-center gap-1.5 overflow-hidden">
-              {detail.evidence.slice(0, 3).map((line) => (
-                <span key={line} title={line} className="min-w-0 max-w-[220px] shrink truncate rounded-none border border-stone-200 bg-white px-2 py-1 text-xs font-medium text-stone-500">
-                  {line}
-                </span>
-              ))}
-              {detail.evidence.length > 3 ? (
-                <span title={detail.evidence.slice(3).join(", ")} className="shrink-0 rounded-none border border-stone-200 bg-stone-50 px-2 py-1 text-xs font-medium text-stone-500">
-                  +{detail.evidence.length - 3}
-                </span>
-              ) : null}
-            </div>
+            <EvidencePillRow lines={detail.evidence} />
           ) : (
             <span className="text-sm text-stone-400">—</span>
           )}
@@ -9815,7 +9866,7 @@ function hasSupportedFreshnessEvidence(check: DirectoryCheck, service: string) {
   if (service === "Wig install (frontal / closure)") {
     return hasWigInstallEvidence(check.serviceCheck.rawServices);
   }
-  if (service === "Custom wig") {
+  if (service === "Wig customisation / construction") {
     return hasCustomWigEvidence(check.serviceCheck.rawServices);
   }
   if (service === "Pixie cut / finger waves") {
@@ -9854,7 +9905,7 @@ function hasSupportedFreshnessEvidence(check: DirectoryCheck, service: string) {
   if (service === "Stitch braids") {
     return check.serviceCheck.rawServices.some((line) => hasStitchBraidsEvidence(line));
   }
-  if (service === "Butterfly locs" || service === "Soft locs" || service === "Crochet faux locs / invisible locs") {
+  if (service === "Butterfly locs" || service === "Faux locs / soft locs" || service === "Crochet faux locs / invisible locs") {
     return check.serviceCheck.rawServices.some((line) => hasSpecificLocSubtypeEvidence(line, service));
   }
   if (service === "Full head colour" || service === "Balayage" || service === "Highlights") {
@@ -9988,7 +10039,7 @@ function hasSpecificLocSubtypeEvidence(value: string, service: string) {
   if (service === "Butterfly locs") {
     return /\bbutterfly\s+locs?\b/.test(normalized);
   }
-  if (service === "Soft locs") {
+  if (service === "Faux locs / soft locs") {
     return /\bfaux\s+locs?\b|\bsoft\s+locs?\b/.test(normalized);
   }
   if (service === "Crochet faux locs / invisible locs") {
@@ -10187,7 +10238,7 @@ const serviceEvidenceKeywords: Record<string, string[]> = {
   "K-tips / invisible strands": ["k tips", "k-tips", "keratin tip", "keratin tips", "keratin bonds", "invisible strands"],
   "Frontal ponytail / bun": ["frontal ponytail", "frontal pony", "frontal bun", "frontal updo"],
   "U-Part / Half wig install": ["u part", "upart", "u-part", "u part wig", "u-part wig", "upart wig", "v part", "vpart", "v-part", "u/vpart", "uvpart", "half wig"],
-  "Custom wig": ["custom wig", "bespoke wig", "custom lace", "custom unit", "customised closure unit", "customized closure unit", "custom mini frontal unit", "unit customisation", "unit customization", "construction of wig", "construction of the wig", "wig making", "wig construction", "wig customising", "wig customisation", "wig customization", "construction and customisation", "construction and customization"],
+  "Wig customisation / construction": ["custom wig", "bespoke wig", "custom lace", "custom unit", "customised closure unit", "customized closure unit", "custom mini frontal unit", "unit customisation", "unit customization", "construction of wig", "construction of the wig", "wig making", "wig construction", "wig customising", "wig customisation", "wig customization", "construction and customisation", "construction and customization"],
   "Wig install (frontal / closure)": ["wig install", "wig installation", "installation of the wig", "wig application", "wig fitting", "glueless wig", "lace wig", "frontal wig", "closure wig", "lace frontal installation", "lace closure installation", "frontal unit", "closure unit", "ready-made unit", "ready made unit", "unit install", "frontal unit install", "closure unit install"],
   "Pixie wig / weave install": ["pixie wig", "pixie weave", "pixie install", "pixie sew in", "pixie sew-in", "pixie sewin"],
   "Twists (with extensions)": ["twists with extensions", "passion twists", "marley twists", "senegalese twists", "kinky twists", "rope twists", "island twists", "island twist"],
@@ -10196,13 +10247,13 @@ const serviceEvidenceKeywords: Record<string, string[]> = {
   "Hair loss systems (e.g. mesh)": ["mesh integration", "hair loss system", "hair loss systems", "hair loss weave", "hair loss unit", "for alopecia", "for hair loss"],
   "Tracks (+ silk press) / partial / invisible sew-in": ["tracks", "track per row", "per track", "per row", "one row", "individual sewn on track", "individual sewn on tracks", "tracks add on", "tracks add-on", "silk press add on tracks", "silk press add-on tracks", "row sew in", "rows of sew in", "weave tracks", "weave tracks per track", "weave on per row", "traditional weave rows", "partial sew in", "partial sewin", "invisible sew in", "invisible weave", "invisible weft", "invisible wefts", "half head weave"],
   "Bouncy blowout / round brush blow dry": ["bouncy blowout", "bouncy blow out", "bouncy blowdry", "bouncy blow dry", "bouncy blow-dry", "round brush blow dry", "round brush blowdry", "dry bouncy blow-dry", "blowout"],
-  "Sew in / extensions blowdry & styling": ["extensions blowdry", "extensions blow dry", "extensions blowout", "extensions blow out", "extension blowdry", "extension blow dry", "extension blowout", "extension blow out", "blowdry with extensions", "blow dry with extensions", "blowout with extensions", "blow out with extensions", "weave blowdry", "weave blow dry", "weave blowout", "weave blow out", "sew in blowdry", "sew in blow dry", "sew-in blowdry", "sew-in blow dry", "sewin blowdry", "sewin blow dry", "sew in blowout", "sew in blow out", "k tips blowdry", "k-tips blowdry", "ktips blowdry", "k tips blow dry", "k-tips blow dry", "ktips blow dry", "blow out on sew in weave", "blowout on sew in weave", "wash blow dry with extensions", "wash and blow dry with extensions"],
+  "Extensions blow-dry / bouncy blowout": ["extensions blowdry", "extensions blow dry", "extensions blowout", "extensions blow out", "extension blowdry", "extension blow dry", "extension blowout", "extension blow out", "blowdry with extensions", "blow dry with extensions", "blowout with extensions", "blow out with extensions", "weave blowdry", "weave blow dry", "weave blowout", "weave blow out", "sew in blowdry", "sew in blow dry", "sew-in blowdry", "sew-in blow dry", "sewin blowdry", "sewin blow dry", "sew in blowout", "sew in blow out", "k tips blowdry", "k-tips blowdry", "ktips blowdry", "k tips blow dry", "k-tips blow dry", "ktips blow dry", "blow out on sew in weave", "blowout on sew in weave", "wash blow dry with extensions", "wash and blow dry with extensions"],
   "Wash & blowdry": ["wash blowdry", "wash blow dry", "wash and blowdry", "wash and blow dry", "shampoo blowdry", "shampoo blow dry", "shampoo and blowdry", "shampoo and blow dry"],
   "Japanese head spa": ["japanese head spa", "head spa", "headspa"],
   "Updo": ["updo", "up do", "pin up", "french roll up", "french roll"],
   "Wig cornrows": ["under wig", "wig cornrows", "cornrows for wig installation", "cornrows"],
   "Butterfly locs": ["butterfly locs"],
-  "Soft locs": ["faux locs", "invisible locs", "soft locs", "crochet locs"],
+  "Faux locs / soft locs": ["faux locs", "invisible locs", "soft locs", "crochet locs"],
   "Starter locs / instant locs": ["starter locs", "start locs", "loc start", "instant locs"],
   "Stitch braids": ["stitch braids", "stitch"],
   "Scalp detox / treatments": ["scalp", "scalp care", "scalp therapy", "scalp treatment", "scalp treatments", "scalp scrub", "scalp detox", "scalp rejuvenation", "scalp renewal", "exfoliating scalp salt scrub"],
@@ -10210,7 +10261,7 @@ const serviceEvidenceKeywords: Record<string, string[]> = {
 };
 
 const removalReviewKeywords: Record<string, string[]> = {
-  "Custom wig": ["unit customisation", "unit customization", "wig customisation", "wig customization", "wig customising", "construction of wig", "construction of the wig", "wig making", "wig construction", "bespoke wig", "custom unit"],
+  "Wig customisation / construction": ["unit customisation", "unit customization", "wig customisation", "wig customization", "wig customising", "construction of wig", "construction of the wig", "wig making", "wig construction", "bespoke wig", "custom unit"],
   "Healthy hair plans & consultations": ["healthy hair", "healthy hair plan", "healthy hair plans", "healthy hair consultation", "healthy hair consultations", "healthy hair regime", "healthy hair regimes", "healthy hair regimen", "healthy hair journey", "hair growth plan", "hair health plan"],
   "Wig install (frontal / closure)": ["wig installation", "installation of the wig", "lace frontal installation", "lace closure installation", "frontal unit", "closure unit", "ready-made unit", "ready made unit", "unit install"],
   "Tracks (+ silk press) / partial / invisible sew-in": ["tracks add on", "tracks add-on", "silk press add on tracks", "silk press add-on tracks", "partial sew", "row sew", "one row", "individual sewn on track", "weave tracks", "weave tracks per track", "per track"],

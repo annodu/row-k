@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { type Brief, type BriefOptions, type Candidate, EMPTY_BRIEF, describeBrief, resolvePhotoUrl, shortServiceLabel } from "./build";
 import { locationTagForAreas } from "./model";
-import { getServiceDisplayName, serviceFilterRows, subcategoryGroupsByCategory } from "@/lib/serviceTaxonomy";
+import { getServiceFilterLabel, serviceFilterRows, subcategoryGroupsByCategory } from "@/lib/serviceTaxonomy";
 
 // ── Data ───────────────────────────────────────────────────────────────────
 
@@ -125,7 +125,7 @@ function BriefBar({ brief, onChange, options, sort, onSortChange }: { brief: Bri
                 {/* Same styles and families as the site's filter list, every family open. */}
                 {serviceFilterRows(category.id, category.subcategories, [...category.subcategories, ...(subcategoryGroupsByCategory[category.id] ?? [])]).map(({ service, nested }) => (
                   <option key={service} value={`svc:${category.id}:${service}`}>
-                    {`${nested ? "\u00a0\u00a0\u00a0\u00a0" : ""}${getServiceDisplayName(service)}`}
+                    {`${nested ? "\u00a0\u00a0\u00a0\u00a0" : ""}${getServiceFilterLabel(service, { nested })}`}
                   </option>
                 ))}
               </optgroup>

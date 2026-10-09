@@ -8,7 +8,10 @@
 // service in its own right (salons that don't name a brand), so it's in
 // filters.json too.
 export const serviceFamilies: Record<string, readonly string[]> = {
-  "Hybrid sew ins (all)": ["Boho sew-in", "Feed-in / stitch braid sew-in", "Fulani sew-in / quick weave / half wig", "K-tips + sew-in", "Tape-ins + sew-in"],
+  "Hybrid sew ins (all)": ["Boho sew-in", "Feed-in / stitch braid sew-in", "Fulani sew-in / quick weave / half wig", "K-tips + sew-in", "Tape-ins + sew-in", "Cassie braided sew-in", "Jayda Wayda braided sew-in"],
+  "Hybrid installs (all)": ["K-tips + sew-in", "Tape-ins + sew-in"],
+  "Wig installs (all)": ["Wig install (frontal / closure)", "U-Part / Half wig install", "Pixie wig / weave install"],
+  "Celebrity-inspired braids (all)": ["Alicia Keys braids", "Pop smoke braids", "Jayda Wayda braided sew-in", "Cassie braided sew-in", "Coi Leray braids", "Tyla braids"],
   "Bond repair": ["Olaplex treatment", "K18 treatment"],
 };
 
@@ -16,11 +19,14 @@ export const serviceFamilies: Record<string, readonly string[]> = {
 // category lists its styles flat.
 export const subcategoryGroupsByCategory: Record<string, readonly string[]> = {
   "sew-in-weave": ["Hybrid sew ins (all)"],
+  "extension-services": ["Hybrid installs (all)"],
+  "wig-services": ["Wig installs (all)"],
+  "braiding-services": ["Celebrity-inspired braids (all)"],
   "straightening-treatments": ["Bond repair"],
 };
 
 const serviceDisplayNames: Record<string, string> = {
-  "Wig cornrows": "(Wig) cornrows / twists",
+  "Wig cornrows": "(Wig) cornrows",
   "Boho braids / goddess braids": "Boho braids",
   "Boho sew-in": "Boho braids sew-in (hybrid)",
   "Fulani / lemonade braids": "Fulani braids",
@@ -34,11 +40,33 @@ const serviceDisplayNames: Record<string, string> = {
   "Cecred treatment": "Cécred wash & treatment",
   "Cécred treatment": "Cécred wash & treatment",
   "Bond repair": "Bond repair (e.g. Olaplex, K18)",
+  "Extensions styling only (e.g. layers & curls)": "Extensions styling only",
+  "Wig styling only (e.g. layers & curls)": "Wig styling only",
   ...Object.fromEntries(Object.keys(serviceFamilies).filter((family) => family.endsWith(" (all)")).map((family) => [family, family.slice(0, -" (all)".length)])),
 };
 
 export function getServiceDisplayName(service: string) {
   return serviceDisplayNames[service] ?? service;
+}
+
+// Filter-list names that differ from the stylist-card display names above
+// (cards drop the "e.g." examples to stay short).
+const serviceFilterLabels: Record<string, string> = {
+  "Extensions styling only (e.g. layers & curls)": "Extensions styling only (e.g. layers & curls)",
+  "Wig styling only (e.g. layers & curls)": "Wig styling only (e.g. layers & curls)",
+  "Natural twists / plaits": "Natural twists / plaits (e.g. two strand twists, single plaits)",
+};
+
+// Shorter names when nested under a family heading that already says what
+// they are ("Wig installs" → "Frontal / closure").
+const nestedServiceFilterLabels: Record<string, string> = {
+  "Wig install (frontal / closure)": "Frontal / closure",
+  "U-Part / Half wig install": "U-part / half wig",
+  "Pixie wig / weave install": "Pixie wig / weave",
+};
+
+export function getServiceFilterLabel(service: string, { nested = false } = {}) {
+  return (nested ? nestedServiceFilterLabels[service] : undefined) ?? serviceFilterLabels[service] ?? getServiceDisplayName(service);
 }
 
 export type ServiceFilterRow = { service: string; nested: boolean };
@@ -49,7 +77,7 @@ export type ServiceFilterRow = { service: string; nested: boolean };
 export function serviceFilterRows(categoryId: string, subcategories: readonly string[], selected: readonly string[]): ServiceFilterRow[] {
   const families = (subcategoryGroupsByCategory[categoryId] ?? []).filter((family) => (serviceFamilies[family] ?? []).some((member) => subcategories.includes(member)));
   const nestedHere = new Set(families.flatMap((family) => serviceFamilies[family] ?? []));
-  const sortKey = (service: string) => getServiceDisplayName(service).replace(/^\W+/, "");
+  const sortKey = (service: string) => getServiceFilterLabel(service).replace(/^\W+/, "");
   const topLevel = [...subcategories.filter((service) => service !== "all" && !nestedHere.has(service) && !families.includes(service)), ...families].sort((left, right) =>
     sortKey(left).localeCompare(sortKey(right)),
   );

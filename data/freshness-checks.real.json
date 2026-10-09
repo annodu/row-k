@@ -151,7 +151,7 @@
         "Tracks (+ silk press) / partial / invisible sew-in"
       ],
       "removedServices": [
-        "Custom wig"
+        "Wig customisation / construction"
       ],
       "addedServiceFamilies": [],
       "addedServiceEvidence": {
@@ -221,7 +221,7 @@
         "Stitch braids"
       ],
       "removedServices": [
-        "Custom wig"
+        "Wig customisation / construction"
       ],
       "addedServiceFamilies": [],
       "addedServiceEvidence": {
@@ -340,7 +340,7 @@
       "removedServices": [
         "Pixie cut / finger waves",
         "Wash & blowdry",
-        "Custom wig",
+        "Wig customisation / construction",
         "Wig install (frontal / closure)"
       ],
       "addedServiceFamilies": [],
@@ -368,7 +368,7 @@
       ],
       "removedServices": [
         "Wig install (frontal / closure)",
-        "Custom wig"
+        "Wig customisation / construction"
       ],
       "addedServiceFamilies": [],
       "addedServiceEvidence": {
@@ -400,7 +400,7 @@
       "removedServices": [
         "U-part wig install",
         "Closure sew-in",
-        "Custom wig"
+        "Wig customisation / construction"
       ],
       "addedServiceFamilies": [],
       "addedServiceEvidence": {}
@@ -603,7 +603,7 @@
     "veehairlab": {
       "addedServices": [],
       "removedServices": [
-        "Custom wig"
+        "Wig customisation / construction"
       ],
       "addedServiceFamilies": [],
       "addedServiceEvidence": {}
@@ -614,7 +614,7 @@
         "Closure sew-in",
         "Tracks (+ silk press) / partial / invisible sew-in",
         "Wig install (frontal / closure)",
-        "Custom wig"
+        "Wig customisation / construction"
       ],
       "addedServiceFamilies": [],
       "addedServiceEvidence": {}
@@ -624,7 +624,7 @@
         "Moisturising treatment"
       ],
       "removedServices": [
-        "Custom wig"
+        "Wig customisation / construction"
       ],
       "addedServiceFamilies": [],
       "addedServiceEvidence": {
@@ -802,7 +802,7 @@
         "Wig cornrows"
       ],
       "removedServices": [
-        "Custom wig"
+        "Wig customisation / construction"
       ],
       "addedServiceFamilies": [],
       "addedServiceEvidence": {
@@ -923,7 +923,7 @@
     "shyann-shanece-hair": {
       "addedServices": [],
       "removedServices": [
-        "Custom wig",
+        "Wig customisation / construction",
         "Sleek ponytail / bun"
       ],
       "addedServiceFamilies": [],
@@ -2346,7 +2346,7 @@
         "Pixie cut / finger waves",
         "Tracks (+ silk press) / partial / invisible sew-in",
         "Wig cornrows",
-        "Custom wig"
+        "Wig customisation / construction"
       ],
       "addedServiceFamilies": [],
       "addedServiceEvidence": {}
@@ -2354,7 +2354,7 @@
     "maison-oceane-ltd": {
       "addedServices": [],
       "removedServices": [
-        "Custom wig"
+        "Wig customisation / construction"
       ],
       "addedServiceFamilies": [],
       "addedServiceEvidence": {}
@@ -2373,7 +2373,7 @@
         "Starter locs",
         "Wig cornrows",
         "Wig install (frontal / closure)",
-        "Custom wig"
+        "Wig customisation / construction"
       ],
       "addedServiceFamilies": [],
       "addedServiceEvidence": {}
@@ -2736,7 +2736,7 @@
       "addedServices": [],
       "removedServices": [
         "Wig install (frontal / closure)",
-        "Custom wig"
+        "Wig customisation / construction"
       ],
       "addedServiceFamilies": [],
       "addedServiceEvidence": {}
@@ -2744,7 +2744,7 @@
     "danis-dolls": {
       "addedServices": [],
       "removedServices": [
-        "Custom wig"
+        "Wig customisation / construction"
       ],
       "addedServiceFamilies": [],
       "addedServiceEvidence": {}
@@ -2921,7 +2921,7 @@
           "Hydration & Moisture"
         ],
         "matchedServices": [
-          "Custom wig",
+          "Wig customisation / construction",
           "Wig install (frontal / closure)",
           "U-part wig install",
           "Traditional sew-in / leave out",
@@ -2937,7 +2937,7 @@
         "areaLabel": "London"
       },
       "currentServices": [
-        "Custom wig",
+        "Wig customisation / construction",
         "Wig install (frontal / closure)",
         "U-part wig install",
         "Traditional sew-in / leave out",
@@ -2953,7 +2953,7 @@
         "Moisturising treatment"
       ],
       "detectedServices": [
-        "Custom wig",
+        "Wig customisation / construction",
         "Wig install (frontal / closure)",
         "U-part wig install",
         "Traditional sew-in / leave out",
@@ -3456,7 +3456,7 @@
         ],
         "matchedServices": [
           "Wig install (frontal / closure)",
-          "Custom wig",
+          "Wig customisation / construction",
           "Frontal ponytail / bun",
           "Traditional sew-in / leave out",
           "Quick weave",
@@ -3467,7 +3467,7 @@
       },
       "currentServices": [
         "Wig install (frontal / closure)",
-        "Custom wig",
+        "Wig customisation / construction",
         "Frontal ponytail / bun",
         "Traditional sew-in / leave out",
         "Half up half down",
@@ -3476,7 +3476,7 @@
       ],
       "detectedServices": [
         "Wig install (frontal / closure)",
-        "Custom wig",
+        "Wig customisation / construction",
         "Frontal ponytail / bun",
         "Traditional sew-in / leave out",
         "Quick weave",
@@ -3581,7 +3581,7 @@
           "Flipover / versatile sew-in",
           "Traditional sew-in / leave out",
           "Wig install (frontal / closure)",
-          "Custom wig"
+          "Wig customisation / construction"
         ],
         "areaId": "all-london",
         "areaLabel": "London"
@@ -3594,7 +3594,7 @@
         "Half up half down",
         "Quick weave",
         "Flipover / versatile sew-in",
-        "Custom wig",
+        "Wig customisation / construction",
         "Wig install (frontal / closure)"
       ],
       "detectedServices": [
@@ -3607,7 +3607,7 @@
         "Flipover / versatile sew-in",
         "Traditional sew-in / leave out",
         "Wig install (frontal / closure)",
-        "Custom wig"
+        "Wig customisation / construction"
       ],
       "addedServices": [
         "Traditional sew-in / leave out"
@@ -3675,7 +3675,7 @@
         "Traditional sew-in / leave out",
         "Flipover / versatile sew-in",
         "Wig install (frontal / closure)",
-        "Custom wig"
+        "Wig customisation / construction"
       ],
       "detectedServices": [
         "Traditional sew-in / leave out"
@@ -3745,7 +3745,7 @@
         ],
         "matchedServices": [
           "Wig install (frontal / closure)",
-          "Custom wig",
+          "Wig customisation / construction",
           "Frontal ponytail / bun",
           "Frontal sew-in",
           "Closure sew-in"
@@ -3754,7 +3754,7 @@
         "areaLabel": "South East London"
       },
       "currentServices": [
-        "Custom wig",
+        "Wig customisation / construction",
         "Wig install (frontal / closure)",
         "Quick weave",
         "Frontal sew-in",
@@ -3763,7 +3763,7 @@
       ],
       "detectedServices": [
         "Wig install (frontal / closure)",
-        "Custom wig",
+        "Wig customisation / construction",
         "Frontal ponytail / bun",
         "Frontal sew-in",
         "Closure sew-in"
@@ -3836,7 +3836,7 @@
           "Frontal ponytail / bun",
           "Wig install (frontal / closure)",
           "Pixie wig / weave install",
-          "Custom wig"
+          "Wig customisation / construction"
         ],
         "areaId": "south-east",
         "areaLabel": "South East London"
@@ -3859,7 +3859,7 @@
         "Frontal ponytail / bun",
         "Wig install (frontal / closure)",
         "Pixie wig / weave install",
-        "Custom wig"
+        "Wig customisation / construction"
       ],
       "addedServices": [],
       "removedServices": [
@@ -3921,7 +3921,7 @@
           "Traditional sew-in / leave out",
           "Closure sew-in",
           "Wig install (frontal / closure)",
-          "Custom wig"
+          "Wig customisation / construction"
         ],
         "areaId": "north-west",
         "areaLabel": "North West London"
@@ -3938,11 +3938,11 @@
         "Traditional sew-in / leave out",
         "Closure sew-in",
         "Wig install (frontal / closure)",
-        "Custom wig"
+        "Wig customisation / construction"
       ],
       "addedServices": [
         "Traditional sew-in / leave out",
-        "Custom wig"
+        "Wig customisation / construction"
       ],
       "removedServices": [
         "Bridal",
@@ -4012,7 +4012,7 @@
         ],
         "matchedServices": [
           "Moisturising treatment",
-          "Custom wig",
+          "Wig customisation / construction",
           "Sleek ponytail / bun",
           "Frontal ponytail / bun",
           "Wig install (frontal / closure)"
@@ -4023,13 +4023,13 @@
       "currentServices": [
         "Wig install (frontal / closure)",
         "Frontal ponytail / bun",
-        "Custom wig",
+        "Wig customisation / construction",
         "Sleek ponytail / bun",
         "Updo"
       ],
       "detectedServices": [
         "Moisturising treatment",
-        "Custom wig",
+        "Wig customisation / construction",
         "Sleek ponytail / bun",
         "Frontal ponytail / bun",
         "Wig install (frontal / closure)"
@@ -4104,7 +4104,7 @@
           "Flipover / versatile sew-in",
           "Traditional sew-in / leave out",
           "Wig install (frontal / closure)",
-          "Custom wig"
+          "Wig customisation / construction"
         ],
         "areaId": "all-london",
         "areaLabel": "London"
@@ -4112,7 +4112,7 @@
       "currentServices": [
         "Frontal ponytail / bun",
         "Flipover / versatile sew-in",
-        "Custom wig",
+        "Wig customisation / construction",
         "Wig install (frontal / closure)"
       ],
       "detectedServices": [
@@ -4120,7 +4120,7 @@
         "Flipover / versatile sew-in",
         "Traditional sew-in / leave out",
         "Wig install (frontal / closure)",
-        "Custom wig"
+        "Wig customisation / construction"
       ],
       "addedServices": [
         "Traditional sew-in / leave out"
@@ -4180,7 +4180,7 @@
           "Wig install (frontal / closure)",
           "Frontal ponytail / bun",
           "Silk press",
-          "Custom wig",
+          "Wig customisation / construction",
           "Frontal sew-in",
           "Traditional sew-in / leave out"
         ],
@@ -4191,14 +4191,14 @@
         "Wig install (frontal / closure)",
         "Frontal ponytail / bun",
         "Silk press",
-        "Custom wig",
+        "Wig customisation / construction",
         "Frontal sew-in"
       ],
       "detectedServices": [
         "Wig install (frontal / closure)",
         "Frontal ponytail / bun",
         "Silk press",
-        "Custom wig",
+        "Wig customisation / construction",
         "Frontal sew-in",
         "Traditional sew-in / leave out"
       ],
@@ -4350,7 +4350,7 @@
           "Wig colouring / bundle colouring",
           "Frontal ponytail / bun",
           "Wig install (frontal / closure)",
-          "Custom wig",
+          "Wig customisation / construction",
           "Quick weave",
           "Half up half down"
         ],
@@ -4369,12 +4369,12 @@
         "Wig colouring / bundle colouring",
         "Frontal ponytail / bun",
         "Wig install (frontal / closure)",
-        "Custom wig",
+        "Wig customisation / construction",
         "Quick weave",
         "Half up half down"
       ],
       "addedServices": [
-        "Custom wig"
+        "Wig customisation / construction"
       ],
       "removedServices": [],
       "checkedAt": "2026-05-23"
@@ -4668,7 +4668,7 @@
           "Frontal ponytail / bun",
           "Traditional sew-in / leave out",
           "Wig install (frontal / closure)",
-          "Custom wig"
+          "Wig customisation / construction"
         ],
         "areaId": "all-london",
         "areaLabel": "London"
@@ -4679,13 +4679,13 @@
         "Closure sew-in",
         "Frontal sew-in",
         "Frontal ponytail / bun",
-        "Custom wig"
+        "Wig customisation / construction"
       ],
       "detectedServices": [
         "Frontal ponytail / bun",
         "Traditional sew-in / leave out",
         "Wig install (frontal / closure)",
-        "Custom wig"
+        "Wig customisation / construction"
       ],
       "addedServices": [],
       "removedServices": [
@@ -5218,7 +5218,7 @@
         "Wash & blowdry",
         "Boho braids / goddess braids",
         "Knotless braids",
-        "Custom wig",
+        "Wig customisation / construction",
         "Wig install (frontal / closure)",
         "Traditional sew-in / leave out",
         "Japanese straightening",
@@ -5520,7 +5520,7 @@
           "Frontal sew-in",
           "Half braids, half sew-in",
           "Wig install (frontal / closure)",
-          "Custom wig",
+          "Wig customisation / construction",
           "Frontal ponytail / bun"
         ],
         "areaId": "all-london",
@@ -5543,7 +5543,7 @@
         "Traditional sew-in / leave out",
         "Closure sew-in",
         "Frontal sew-in",
-        "Custom wig",
+        "Wig customisation / construction",
         "Wig cornrows",
         "Retwist",
         "Half braids, half sew-in"
@@ -5569,7 +5569,7 @@
         "Frontal sew-in",
         "Half braids, half sew-in",
         "Wig install (frontal / closure)",
-        "Custom wig",
+        "Wig customisation / construction",
         "Frontal ponytail / bun"
       ],
       "addedServices": [
@@ -5898,7 +5898,7 @@
         "Traditional sew-in / leave out",
         "Closure sew-in",
         "Flipover / versatile sew-in",
-        "Custom wig",
+        "Wig customisation / construction",
         "U-part wig install"
       ],
       "detectedServices": [
@@ -6172,7 +6172,7 @@
           "Sleek ponytail / bun",
           "Tracks (+ silk press) / partial / invisible sew-in",
           "Flipover / versatile sew-in",
-          "Custom wig",
+          "Wig customisation / construction",
           "Pixie wig / weave install",
           "Wig cornrows"
         ],
@@ -6186,7 +6186,7 @@
         "Sleek ponytail / bun",
         "Flipover / versatile sew-in",
         "Wig colouring / bundle colouring",
-        "Custom wig",
+        "Wig customisation / construction",
         "Tracks (+ silk press) / partial / invisible sew-in",
         "U-part wig install",
         "Pixie wig / weave install",
@@ -6209,7 +6209,7 @@
         "Sleek ponytail / bun",
         "Tracks (+ silk press) / partial / invisible sew-in",
         "Flipover / versatile sew-in",
-        "Custom wig",
+        "Wig customisation / construction",
         "Pixie wig / weave install",
         "Wig cornrows",
         "Wig colouring / bundle colouring"
@@ -6279,7 +6279,7 @@
         "matchedServices": [
           "Frontal ponytail / bun",
           "Wig install (frontal / closure)",
-          "Custom wig"
+          "Wig customisation / construction"
         ],
         "areaId": "all-london",
         "areaLabel": "London"
@@ -6291,10 +6291,10 @@
       "detectedServices": [
         "Frontal ponytail / bun",
         "Wig install (frontal / closure)",
-        "Custom wig"
+        "Wig customisation / construction"
       ],
       "addedServices": [
-        "Custom wig"
+        "Wig customisation / construction"
       ],
       "removedServices": [],
       "checkedAt": "2026-05-23"
@@ -6350,7 +6350,7 @@
         ],
         "matchedServices": [
           "Wig install (frontal / closure)",
-          "Custom wig",
+          "Wig customisation / construction",
           "Tape ins",
           "Closure sew-in",
           "Traditional sew-in / leave out"
@@ -6361,13 +6361,13 @@
       "currentServices": [
         "Bridal",
         "Wig install (frontal / closure)",
-        "Custom wig",
+        "Wig customisation / construction",
         "Tape ins",
         "Closure sew-in"
       ],
       "detectedServices": [
         "Wig install (frontal / closure)",
-        "Custom wig",
+        "Wig customisation / construction",
         "Tape ins",
         "Closure sew-in",
         "Traditional sew-in / leave out"
@@ -6683,7 +6683,7 @@
         "Wig install (frontal / closure)",
         "Half braids, half sew-in",
         "U-part wig install",
-        "Custom wig",
+        "Wig customisation / construction",
         "Frontal ponytail / bun",
         "Traditional sew-in / leave out",
         "Closure sew-in",
@@ -6706,7 +6706,7 @@
       ],
       "removedServices": [
         "Half braids, half sew-in",
-        "Custom wig"
+        "Wig customisation / construction"
       ],
       "checkedAt": "2026-05-23"
     },
@@ -6781,7 +6781,7 @@
           "Knotless braids",
           "Fulani / lemonade braids",
           "Wig install (frontal / closure)",
-          "Custom wig",
+          "Wig customisation / construction",
           "Faux locs",
           "Butterfly locs",
           "Frontal ponytail / bun",
@@ -6800,7 +6800,7 @@
         "Wig install (frontal / closure)",
         "Half up half down",
         "Traditional sew-in / leave out",
-        "Custom wig",
+        "Wig customisation / construction",
         "Frontal ponytail / bun",
         "Updo",
         "French curl",
@@ -6811,7 +6811,7 @@
         "Knotless braids",
         "Fulani / lemonade braids",
         "Wig install (frontal / closure)",
-        "Custom wig",
+        "Wig customisation / construction",
         "Faux locs",
         "Butterfly locs",
         "Frontal ponytail / bun",
@@ -7120,7 +7120,7 @@
           "Flipover / versatile sew-in",
           "U-part wig install",
           "Wig install (frontal / closure)",
-          "Custom wig"
+          "Wig customisation / construction"
         ],
         "areaId": "all-london",
         "areaLabel": "London"
@@ -7151,10 +7151,10 @@
         "Flipover / versatile sew-in",
         "U-part wig install",
         "Wig install (frontal / closure)",
-        "Custom wig"
+        "Wig customisation / construction"
       ],
       "addedServices": [
-        "Custom wig"
+        "Wig customisation / construction"
       ],
       "removedServices": [
         "Half braids, half sew-in"
@@ -7297,7 +7297,7 @@
           "Bridal",
           "Scalp detox / treatments",
           "Moisturising treatment",
-          "Custom wig"
+          "Wig customisation / construction"
         ],
         "areaId": "all-london",
         "areaLabel": "London"
@@ -7350,11 +7350,11 @@
         "Bridal",
         "Scalp detox / treatments",
         "Moisturising treatment",
-        "Custom wig"
+        "Wig customisation / construction"
       ],
       "addedServices": [
         "Twists (with extensions)",
-        "Custom wig"
+        "Wig customisation / construction"
       ],
       "removedServices": [],
       "checkedAt": "2026-05-23"
@@ -7707,7 +7707,7 @@
           "Tape ins",
           "U-part wig install",
           "Wig install (frontal / closure)",
-          "Custom wig",
+          "Wig customisation / construction",
           "Knotless braids",
           "Fulani / lemonade braids",
           "Crochet",
@@ -7759,7 +7759,7 @@
         "Pixie cut / finger waves",
         "Crochet",
         "U-part wig install",
-        "Custom wig",
+        "Wig customisation / construction",
         "Traditional sew-in / leave out",
         "Closure sew-in",
         "Frontal sew-in",
@@ -7788,7 +7788,7 @@
         "Tape ins",
         "U-part wig install",
         "Wig install (frontal / closure)",
-        "Custom wig",
+        "Wig customisation / construction",
         "Knotless braids",
         "Fulani / lemonade braids",
         "Crochet",
@@ -8152,7 +8152,7 @@
         ],
         "matchedServices": [
           "Wig install (frontal / closure)",
-          "Custom wig",
+          "Wig customisation / construction",
           "Feed-in braids",
           "Wig cornrows",
           "Traditional sew-in / leave out",
@@ -8173,12 +8173,12 @@
         "Wig install (frontal / closure)",
         "Quick weave",
         "Frontal ponytail / bun",
-        "Custom wig",
+        "Wig customisation / construction",
         "Wig cornrows"
       ],
       "detectedServices": [
         "Wig install (frontal / closure)",
-        "Custom wig",
+        "Wig customisation / construction",
         "Feed-in braids",
         "Wig cornrows",
         "Traditional sew-in / leave out",
@@ -8509,7 +8509,7 @@
           "Half braids, half sew-in",
           "Sleek ponytail / bun",
           "Feed-in braids",
-          "Custom wig"
+          "Wig customisation / construction"
         ],
         "areaId": "south-east",
         "areaLabel": "South East London"
@@ -8523,7 +8523,7 @@
         "Fulani / lemonade braids",
         "Flipover / versatile sew-in",
         "Sleek ponytail / bun",
-        "Custom wig",
+        "Wig customisation / construction",
         "Wig install (frontal / closure)",
         "Quick weave"
       ],
@@ -8540,7 +8540,7 @@
         "Half braids, half sew-in",
         "Sleek ponytail / bun",
         "Feed-in braids",
-        "Custom wig"
+        "Wig customisation / construction"
       ],
       "addedServices": [
         "Traditional sew-in / leave out",
@@ -8753,7 +8753,7 @@
         ],
         "matchedServices": [
           "Wig install (frontal / closure)",
-          "Custom wig",
+          "Wig customisation / construction",
           "Frontal ponytail / bun"
         ],
         "areaId": "all-london",
@@ -8765,11 +8765,11 @@
       ],
       "detectedServices": [
         "Wig install (frontal / closure)",
-        "Custom wig",
+        "Wig customisation / construction",
         "Frontal ponytail / bun"
       ],
       "addedServices": [
-        "Custom wig"
+        "Wig customisation / construction"
       ],
       "removedServices": [],
       "checkedAt": "2026-05-23"
@@ -9795,7 +9795,7 @@
           "Scalp detox / treatments",
           "Relaxer / texturiser",
           "Wig install (frontal / closure)",
-          "Custom wig",
+          "Wig customisation / construction",
           "Sleek ponytail / bun",
           "Half up half down"
         ],
@@ -9815,7 +9815,7 @@
         "Silk press",
         "Relaxer / texturiser",
         "Wig install (frontal / closure)",
-        "Custom wig",
+        "Wig customisation / construction",
         "Tracks (+ silk press) / partial / invisible sew-in",
         "Olaplex treatment",
         "Half up half down"
@@ -9835,7 +9835,7 @@
         "Scalp detox / treatments",
         "Relaxer / texturiser",
         "Wig install (frontal / closure)",
-        "Custom wig",
+        "Wig customisation / construction",
         "Sleek ponytail / bun",
         "Half up half down"
       ],
@@ -10032,7 +10032,7 @@
           "Location"
         ],
         "matchedServices": [
-          "Custom wig",
+          "Wig customisation / construction",
           "Bridal",
           "Full head colour",
           "Wig cornrows"
@@ -10060,11 +10060,11 @@
         "Full head colour",
         "Highlights",
         "Tracks (+ silk press) / partial / invisible sew-in",
-        "Custom wig",
+        "Wig customisation / construction",
         "Bridal"
       ],
       "detectedServices": [
-        "Custom wig",
+        "Wig customisation / construction",
         "Bridal",
         "Full head colour",
         "Wig cornrows"
@@ -10323,7 +10323,7 @@
           "Customised Closure Sew in (6x6 & 7x7)"
         ],
         "matchedServices": [
-          "Custom wig",
+          "Wig customisation / construction",
           "Wig install (frontal / closure)",
           "U-part wig install",
           "Flipover / versatile sew-in",
@@ -10336,12 +10336,12 @@
       "currentServices": [
         "Wig install (frontal / closure)",
         "U-part wig install",
-        "Custom wig",
+        "Wig customisation / construction",
         "Closure sew-in",
         "Traditional sew-in / leave out"
       ],
       "detectedServices": [
-        "Custom wig",
+        "Wig customisation / construction",
         "Wig install (frontal / closure)",
         "U-part wig install",
         "Flipover / versatile sew-in",
@@ -10677,7 +10677,7 @@
         "matchedServices": [
           "Sleek ponytail / bun",
           "Wig install (frontal / closure)",
-          "Custom wig",
+          "Wig customisation / construction",
           "Frontal ponytail / bun",
           "Traditional sew-in / leave out",
           "Half up half down"
@@ -10687,7 +10687,7 @@
       },
       "currentServices": [
         "Wig install (frontal / closure)",
-        "Custom wig",
+        "Wig customisation / construction",
         "Sleek ponytail / bun",
         "Half up half down",
         "Frontal ponytail / bun"
@@ -10695,7 +10695,7 @@
       "detectedServices": [
         "Sleek ponytail / bun",
         "Wig install (frontal / closure)",
-        "Custom wig",
+        "Wig customisation / construction",
         "Frontal ponytail / bun",
         "Traditional sew-in / leave out",
         "Half up half down"
@@ -11220,7 +11220,7 @@
         "matchedServices": [
           "Bridal",
           "Wig install (frontal / closure)",
-          "Custom wig"
+          "Wig customisation / construction"
         ],
         "areaId": "",
         "areaLabel": ""
@@ -11232,10 +11232,10 @@
       "detectedServices": [
         "Bridal",
         "Wig install (frontal / closure)",
-        "Custom wig"
+        "Wig customisation / construction"
       ],
       "addedServices": [
-        "Custom wig"
+        "Wig customisation / construction"
       ],
       "removedServices": [],
       "checkedAt": "2026-05-23"
@@ -12063,7 +12063,7 @@
           "2x6 Closure Sew in"
         ],
         "matchedServices": [
-          "Custom wig",
+          "Wig customisation / construction",
           "Wig install (frontal / closure)",
           "Closure sew-in",
           "Traditional sew-in / leave out"
@@ -12073,11 +12073,11 @@
       },
       "currentServices": [
         "Wig install (frontal / closure)",
-        "Custom wig",
+        "Wig customisation / construction",
         "Closure sew-in"
       ],
       "detectedServices": [
-        "Custom wig",
+        "Wig customisation / construction",
         "Wig install (frontal / closure)",
         "Closure sew-in",
         "Traditional sew-in / leave out"
@@ -12550,7 +12550,7 @@
           "Trim / hair cut",
           "Relaxer / texturiser",
           "Wig install (frontal / closure)",
-          "Custom wig",
+          "Wig customisation / construction",
           "Feed-in braids",
           "Knotless braids",
           "Microbraids / x-small braids"
@@ -12591,14 +12591,14 @@
         "Trim / hair cut",
         "Relaxer / texturiser",
         "Wig install (frontal / closure)",
-        "Custom wig",
+        "Wig customisation / construction",
         "Feed-in braids",
         "Knotless braids",
         "Microbraids / x-small braids"
       ],
       "addedServices": [
         "Pixie wig / weave install",
-        "Custom wig"
+        "Wig customisation / construction"
       ],
       "removedServices": [
         "Moisturising treatment",
@@ -12651,7 +12651,7 @@
         ],
         "matchedServices": [
           "Wig install (frontal / closure)",
-          "Custom wig",
+          "Wig customisation / construction",
           "Traditional sew-in / leave out",
           "Sleek ponytail / bun",
           "Wig cornrows",
@@ -12665,7 +12665,7 @@
       },
       "currentServices": [
         "Wig install (frontal / closure)",
-        "Custom wig",
+        "Wig customisation / construction",
         "Traditional sew-in / leave out",
         "Half up half down",
         "Sleek ponytail / bun",
@@ -12677,7 +12677,7 @@
       ],
       "detectedServices": [
         "Wig install (frontal / closure)",
-        "Custom wig",
+        "Wig customisation / construction",
         "Traditional sew-in / leave out",
         "Sleek ponytail / bun",
         "Wig cornrows",
@@ -12890,7 +12890,7 @@
           "Frontal sew-in",
           "Flipover / versatile sew-in",
           "Wig install (frontal / closure)",
-          "Custom wig"
+          "Wig customisation / construction"
         ],
         "areaId": "east",
         "areaLabel": "East London"
@@ -12898,7 +12898,7 @@
       "currentServices": [
         "Wig install (frontal / closure)",
         "Wig colouring / bundle colouring",
-        "Custom wig",
+        "Wig customisation / construction",
         "Traditional sew-in / leave out",
         "Closure sew-in",
         "Quick weave",
@@ -12912,7 +12912,7 @@
         "Frontal sew-in",
         "Flipover / versatile sew-in",
         "Wig install (frontal / closure)",
-        "Custom wig"
+        "Wig customisation / construction"
       ],
       "addedServices": [],
       "removedServices": [
@@ -13247,7 +13247,7 @@
           "Traditional sew-in / leave out",
           "Flipover / versatile sew-in",
           "Wig install (frontal / closure)",
-          "Custom wig"
+          "Wig customisation / construction"
         ],
         "areaId": "all-london",
         "areaLabel": "London"
@@ -13261,10 +13261,10 @@
         "Traditional sew-in / leave out",
         "Flipover / versatile sew-in",
         "Wig install (frontal / closure)",
-        "Custom wig"
+        "Wig customisation / construction"
       ],
       "addedServices": [
-        "Custom wig"
+        "Wig customisation / construction"
       ],
       "removedServices": [],
       "checkedAt": "2026-05-23"
@@ -13329,7 +13329,7 @@
           "Consultation Tapes Ins"
         ],
         "matchedServices": [
-          "Custom wig",
+          "Wig customisation / construction",
           "Wig install (frontal / closure)",
           "Tape ins"
         ],
@@ -13341,12 +13341,12 @@
         "Tape ins"
       ],
       "detectedServices": [
-        "Custom wig",
+        "Wig customisation / construction",
         "Wig install (frontal / closure)",
         "Tape ins"
       ],
       "addedServices": [
-        "Custom wig"
+        "Wig customisation / construction"
       ],
       "removedServices": [],
       "checkedAt": "2026-05-23"
@@ -13414,7 +13414,7 @@
           "Leave out sew in"
         ],
         "matchedServices": [
-          "Custom wig",
+          "Wig customisation / construction",
           "Wig install (frontal / closure)",
           "Highlights",
           "Wig cornrows",
@@ -13430,13 +13430,13 @@
         "Traditional sew-in / leave out",
         "Half up half down",
         "Wig colouring / bundle colouring",
-        "Custom wig",
+        "Wig customisation / construction",
         "Frontal ponytail / bun",
         "Updo",
         "Wig cornrows"
       ],
       "detectedServices": [
-        "Custom wig",
+        "Wig customisation / construction",
         "Wig install (frontal / closure)",
         "Wig cornrows",
         "Frontal ponytail / bun",
@@ -13673,7 +13673,7 @@
           "6x6 unit"
         ],
         "matchedServices": [
-          "Custom wig",
+          "Wig customisation / construction",
           "Frontal ponytail / bun",
           "Sleek ponytail / bun",
           "Half up half down",
@@ -13692,12 +13692,12 @@
         "Closure sew-in",
         "Frontal sew-in",
         "Wig install (frontal / closure)",
-        "Custom wig",
+        "Wig customisation / construction",
         "Frontal ponytail / bun",
         "Updo"
       ],
       "detectedServices": [
-        "Custom wig",
+        "Wig customisation / construction",
         "Frontal ponytail / bun",
         "Sleek ponytail / bun",
         "Half up half down",
@@ -13931,7 +13931,7 @@
           "Wash & blowdry",
           "Braid take-down",
           "Wig install (frontal / closure)",
-          "Custom wig"
+          "Wig customisation / construction"
         ],
         "areaId": "all-london",
         "areaLabel": "London"
@@ -13947,7 +13947,7 @@
         "Braid take-down",
         "Sew-in take-down",
         "Wig install (frontal / closure)",
-        "Custom wig"
+        "Wig customisation / construction"
       ],
       "detectedServices": [
         "Traditional sew-in / leave out",
@@ -13959,7 +13959,7 @@
         "Wash & blowdry",
         "Braid take-down",
         "Wig install (frontal / closure)",
-        "Custom wig"
+        "Wig customisation / construction"
       ],
       "addedServices": [],
       "removedServices": [
@@ -14028,7 +14028,7 @@
         "LA weave",
         "Sew-in take-down",
         "Wig cornrows",
-        "Custom wig",
+        "Wig customisation / construction",
         "Twist out / flexi rod",
         "Bridal"
       ],
@@ -14213,7 +14213,7 @@
         ],
         "matchedServices": [
           "Traditional sew-in / leave out",
-          "Custom wig",
+          "Wig customisation / construction",
           "Moisturising treatment",
           "Olaplex treatment",
           "K-18 treatment",
@@ -14236,7 +14236,7 @@
       ],
       "detectedServices": [
         "Traditional sew-in / leave out",
-        "Custom wig",
+        "Wig customisation / construction",
         "Moisturising treatment",
         "Olaplex treatment",
         "K-18 treatment",
@@ -14244,7 +14244,7 @@
         "Wig cornrows"
       ],
       "addedServices": [
-        "Custom wig"
+        "Wig customisation / construction"
       ],
       "removedServices": [
         "Knotless braids",
@@ -14390,7 +14390,7 @@
           "Wig install (frontal / closure)",
           "Frontal ponytail / bun",
           "Wig colouring / bundle colouring",
-          "Custom wig",
+          "Wig customisation / construction",
           "Bridal",
           "Updo"
         ],
@@ -14450,12 +14450,12 @@
         "Wig install (frontal / closure)",
         "Frontal ponytail / bun",
         "Wig colouring / bundle colouring",
-        "Custom wig",
+        "Wig customisation / construction",
         "Bridal",
         "Updo"
       ],
       "addedServices": [
-        "Custom wig",
+        "Wig customisation / construction",
         "Bridal",
         "Updo"
       ],
@@ -14822,7 +14822,7 @@
           "Wig Reinstall"
         ],
         "matchedServices": [
-          "Custom wig",
+          "Wig customisation / construction",
           "Quick weave",
           "Half up half down",
           "Wig install (frontal / closure)"
@@ -14835,11 +14835,11 @@
         "Sleek ponytail / bun",
         "Half up half down",
         "Quick weave",
-        "Custom wig",
+        "Wig customisation / construction",
         "Updo"
       ],
       "detectedServices": [
-        "Custom wig",
+        "Wig customisation / construction",
         "Quick weave",
         "Half up half down",
         "Wig install (frontal / closure)"
@@ -15021,7 +15021,7 @@
         "Wig install (frontal / closure)",
         "Traditional sew-in / leave out",
         "Flipover / versatile sew-in",
-        "Custom wig",
+        "Wig customisation / construction",
         "Retwist",
         "Starter locs",
         "Twists (with extensions)",
@@ -15040,7 +15040,7 @@
       ],
       "addedServices": [],
       "removedServices": [
-        "Custom wig"
+        "Wig customisation / construction"
       ],
       "checkedAt": "2026-05-23"
     },
@@ -15096,7 +15096,7 @@
           "Traditional sew-in / leave out",
           "U-part wig install",
           "Wig install (frontal / closure)",
-          "Custom wig"
+          "Wig customisation / construction"
         ],
         "areaId": "all-london",
         "areaLabel": "London"
@@ -15109,11 +15109,11 @@
         "Traditional sew-in / leave out",
         "U-part wig install",
         "Wig install (frontal / closure)",
-        "Custom wig"
+        "Wig customisation / construction"
       ],
       "addedServices": [
         "U-part wig install",
-        "Custom wig"
+        "Wig customisation / construction"
       ],
       "removedServices": [],
       "checkedAt": "2026-05-23"
@@ -16300,7 +16300,7 @@
           "Traditional sew-in / leave out",
           "Half up half down",
           "Wig install (frontal / closure)",
-          "Custom wig"
+          "Wig customisation / construction"
         ],
         "areaId": "all-london",
         "areaLabel": "London"
@@ -16317,7 +16317,7 @@
         "Half up half down",
         "Fulani / lemonade braids",
         "Wig cornrows",
-        "Custom wig",
+        "Wig customisation / construction",
         "Wig install (frontal / closure)",
         "Stitch braids"
       ],
@@ -16336,7 +16336,7 @@
         "Traditional sew-in / leave out",
         "Half up half down",
         "Wig install (frontal / closure)",
-        "Custom wig"
+        "Wig customisation / construction"
       ],
       "addedServices": [
         "Traditional sew-in / leave out"
@@ -16609,7 +16609,7 @@
           "U-part wig install",
           "Closure sew-in",
           "Flipover / versatile sew-in",
-          "Custom wig",
+          "Wig customisation / construction",
           "Wig cornrows",
           "Quick weave"
         ],
@@ -16624,14 +16624,14 @@
         "Quick weave",
         "Wig cornrows",
         "U-part wig install",
-        "Custom wig"
+        "Wig customisation / construction"
       ],
       "detectedServices": [
         "Traditional sew-in / leave out",
         "U-part wig install",
         "Closure sew-in",
         "Flipover / versatile sew-in",
-        "Custom wig",
+        "Wig customisation / construction",
         "Wig cornrows",
         "Quick weave"
       ],
@@ -16935,7 +16935,7 @@
         ],
         "matchedServices": [
           "Wig install (frontal / closure)",
-          "Custom wig",
+          "Wig customisation / construction",
           "Frontal sew-in",
           "Traditional sew-in / leave out"
         ],
@@ -16943,12 +16943,12 @@
         "areaLabel": "London"
       },
       "currentServices": [
-        "Custom wig",
+        "Wig customisation / construction",
         "Wig install (frontal / closure)"
       ],
       "detectedServices": [
         "Wig install (frontal / closure)",
-        "Custom wig",
+        "Wig customisation / construction",
         "Frontal sew-in",
         "Traditional sew-in / leave out"
       ],
@@ -18119,7 +18119,7 @@
           "Closure sew-in",
           "Tracks (+ silk press) / partial / invisible sew-in",
           "Wig install (frontal / closure)",
-          "Custom wig"
+          "Wig customisation / construction"
         ],
         "areaId": "all-london",
         "areaLabel": "London"
@@ -18148,11 +18148,11 @@
         "Closure sew-in",
         "Tracks (+ silk press) / partial / invisible sew-in",
         "Wig install (frontal / closure)",
-        "Custom wig"
+        "Wig customisation / construction"
       ],
       "addedServices": [
         "Tracks (+ silk press) / partial / invisible sew-in",
-        "Custom wig"
+        "Wig customisation / construction"
       ],
       "removedServices": [
         "Sleek ponytail / bun",
@@ -18844,7 +18844,7 @@
           "Olaplex treatment",
           "Sew-in take-down",
           "Wig install (frontal / closure)",
-          "Custom wig",
+          "Wig customisation / construction",
           "Tape ins",
           "Fulani / lemonade braids",
           "Full head colour"
@@ -18906,7 +18906,7 @@
         "Olaplex treatment",
         "Sew-in take-down",
         "Wig install (frontal / closure)",
-        "Custom wig",
+        "Wig customisation / construction",
         "Tape ins",
         "Fulani / lemonade braids",
         "Full head colour"
@@ -18914,7 +18914,7 @@
       "addedServices": [
         "Hybrid sew-in",
         "Sew-in take-down",
-        "Custom wig",
+        "Wig customisation / construction",
         "Fulani / lemonade braids"
       ],
       "removedServices": [
@@ -19219,7 +19219,7 @@
         ],
         "matchedServices": [
           "Wig install (frontal / closure)",
-          "Custom wig",
+          "Wig customisation / construction",
           "Traditional sew-in / leave out",
           "Frontal ponytail / bun"
         ],
@@ -19230,12 +19230,12 @@
         "Wig install (frontal / closure)",
         "Traditional sew-in / leave out",
         "Frontal sew-in",
-        "Custom wig",
+        "Wig customisation / construction",
         "Frontal ponytail / bun"
       ],
       "detectedServices": [
         "Wig install (frontal / closure)",
-        "Custom wig",
+        "Wig customisation / construction",
         "Traditional sew-in / leave out",
         "Frontal ponytail / bun"
       ],
@@ -20371,7 +20371,7 @@
           "Wig install (frontal / closure)",
           "Frontal ponytail / bun",
           "Wig colouring / bundle colouring",
-          "Custom wig",
+          "Wig customisation / construction",
           "Half up half down",
           "Trim / hair cut",
           "Wig cornrows",
@@ -20399,7 +20399,7 @@
         "Quick weave",
         "Trim / hair cut",
         "Wig cornrows",
-        "Custom wig",
+        "Wig customisation / construction",
         "Wig colouring / bundle colouring",
         "U-part wig install",
         "Frontal ponytail / bun",
@@ -20410,7 +20410,7 @@
         "Wig install (frontal / closure)",
         "Frontal ponytail / bun",
         "Wig colouring / bundle colouring",
-        "Custom wig",
+        "Wig customisation / construction",
         "Half up half down",
         "Trim / hair cut",
         "Wig cornrows",
@@ -20943,7 +20943,7 @@
           "13x6 HD frontal raw lace wig 450g jet black"
         ],
         "matchedServices": [
-          "Custom wig",
+          "Wig customisation / construction",
           "Wig install (frontal / closure)",
           "Traditional sew-in / leave out",
           "Flipover / versatile sew-in",
@@ -20969,13 +20969,13 @@
         "Silk press",
         "Sleek ponytail / bun",
         "Half up half down",
-        "Custom wig",
+        "Wig customisation / construction",
         "Sew-in take-down",
         "Frontal sew-in",
         "Olaplex treatment"
       ],
       "detectedServices": [
-        "Custom wig",
+        "Wig customisation / construction",
         "Wig install (frontal / closure)",
         "Traditional sew-in / leave out",
         "Flipover / versatile sew-in",
@@ -21638,7 +21638,7 @@
           "Flipover / versatile sew-in",
           "Fulani / lemonade braids",
           "U-part wig install",
-          "Custom wig",
+          "Wig customisation / construction",
           "Wash & blowdry",
           "Wig install (frontal / closure)"
         ],
@@ -21647,7 +21647,7 @@
       },
       "currentServices": [
         "Wig install (frontal / closure)",
-        "Custom wig",
+        "Wig customisation / construction",
         "Wig colouring / bundle colouring",
         "Sleek ponytail / bun",
         "Closure sew-in",
@@ -21672,7 +21672,7 @@
         "Flipover / versatile sew-in",
         "Fulani / lemonade braids",
         "U-part wig install",
-        "Custom wig",
+        "Wig customisation / construction",
         "Wash & blowdry",
         "Wig install (frontal / closure)"
       ],
@@ -21783,7 +21783,7 @@
         "Wig cornrows",
         "Traditional sew-in / leave out",
         "Wig install (frontal / closure)",
-        "Custom wig"
+        "Wig customisation / construction"
       ],
       "detectedServices": [
         "Feed-in braids",
@@ -21986,7 +21986,7 @@
           "Frontal sew-in",
           "Half braids, half sew-in",
           "Sleek ponytail / bun",
-          "Custom wig",
+          "Wig customisation / construction",
           "Wig install (frontal / closure)",
           "Frontal ponytail / bun",
           "U-part wig install",
@@ -22000,7 +22000,7 @@
         "Traditional sew-in / leave out",
         "Closure sew-in",
         "Wig install (frontal / closure)",
-        "Custom wig",
+        "Wig customisation / construction",
         "Sleek ponytail / bun",
         "U-part wig install",
         "Frontal ponytail / bun",
@@ -22014,7 +22014,7 @@
         "Frontal sew-in",
         "Half braids, half sew-in",
         "Sleek ponytail / bun",
-        "Custom wig",
+        "Wig customisation / construction",
         "Wig install (frontal / closure)",
         "Frontal ponytail / bun",
         "U-part wig install",
@@ -22716,7 +22716,7 @@
           "Tape ins",
           "Clip ins (+ silk press)",
           "Sleek ponytail / bun",
-          "Custom wig",
+          "Wig customisation / construction",
           "Wig colouring / bundle colouring",
           "Traditional sew-in / leave out",
           "Tracks (+ silk press) / partial / invisible sew-in",
@@ -22757,7 +22757,7 @@
         "Hybrid sew-in",
         "Tracks (+ silk press) / partial / invisible sew-in",
         "Tape ins",
-        "Custom wig",
+        "Wig customisation / construction",
         "Half braids, half sew-in",
         "Closure sew-in",
         "Frontal ponytail / bun",
@@ -22770,7 +22770,7 @@
         "Tape ins",
         "Clip ins (+ silk press)",
         "Sleek ponytail / bun",
-        "Custom wig",
+        "Wig customisation / construction",
         "Wig colouring / bundle colouring",
         "Traditional sew-in / leave out",
         "Tracks (+ silk press) / partial / invisible sew-in",
@@ -23060,14 +23060,14 @@
           "Starter locs",
           "Twists (with extensions)",
           "Wig install (frontal / closure)",
-          "Custom wig"
+          "Wig customisation / construction"
         ],
         "areaId": "all-london",
         "areaLabel": "London"
       },
       "currentServices": [
         "Wig install (frontal / closure)",
-        "Custom wig",
+        "Wig customisation / construction",
         "Wig colouring / bundle colouring",
         "Traditional sew-in / leave out",
         "Closure sew-in",
@@ -23120,7 +23120,7 @@
         "Starter locs",
         "Twists (with extensions)",
         "Wig install (frontal / closure)",
-        "Custom wig"
+        "Wig customisation / construction"
       ],
       "addedServices": [
         "Frontal sew-in",
@@ -23243,7 +23243,7 @@
           "Includes weave sew in, customisation of frontal and styling"
         ],
         "matchedServices": [
-          "Custom wig",
+          "Wig customisation / construction",
           "Wig colouring / bundle colouring",
           "Sleek ponytail / bun",
           "Updo",
@@ -23273,7 +23273,7 @@
       },
       "currentServices": [
         "Wig install (frontal / closure)",
-        "Custom wig",
+        "Wig customisation / construction",
         "Wig colouring / bundle colouring",
         "Sleek ponytail / bun",
         "Relaxer / texturiser",
@@ -23296,7 +23296,7 @@
         "Wash & blowdry"
       ],
       "detectedServices": [
-        "Custom wig",
+        "Wig customisation / construction",
         "Wig colouring / bundle colouring",
         "Sleek ponytail / bun",
         "Updo",
@@ -23561,7 +23561,7 @@
           "Pixie cut / finger waves",
           "K-18 treatment",
           "Scalp detox / treatments",
-          "Custom wig",
+          "Wig customisation / construction",
           "Half up half down",
           "Closure sew-in",
           "Frontal sew-in"
@@ -23588,7 +23588,7 @@
         "Pixie cut / finger waves",
         "Scalp detox / treatments",
         "Wash & blowdry",
-        "Custom wig",
+        "Wig customisation / construction",
         "Wig install (frontal / closure)",
         "Half up half down",
         "Traditional sew-in / leave out",
@@ -23629,7 +23629,7 @@
         "Sleek ponytail / bun",
         "K-18 treatment",
         "Scalp detox / treatments",
-        "Custom wig",
+        "Wig customisation / construction",
         "Half up half down",
         "Closure sew-in",
         "Frontal sew-in",
@@ -24075,7 +24075,7 @@
       },
       "currentServices": [
         "Wig install (frontal / closure)",
-        "Custom wig",
+        "Wig customisation / construction",
         "Frontal ponytail / bun",
         "Wig colouring / bundle colouring"
       ],
@@ -24187,7 +24187,7 @@
           "Frontal ponytail / bun",
           "Sleek ponytail / bun",
           "Wig install (frontal / closure)",
-          "Custom wig"
+          "Wig customisation / construction"
         ],
         "areaId": "all-london",
         "areaLabel": "London"
@@ -24207,7 +24207,7 @@
         "Frontal ponytail / bun",
         "Wig cornrows",
         "Closure sew-in",
-        "Custom wig"
+        "Wig customisation / construction"
       ],
       "detectedServices": [
         "Knotless braids",
@@ -24223,7 +24223,7 @@
         "Frontal ponytail / bun",
         "Sleek ponytail / bun",
         "Wig install (frontal / closure)",
-        "Custom wig"
+        "Wig customisation / construction"
       ],
       "addedServices": [],
       "removedServices": [
@@ -24554,14 +24554,14 @@
         "matchedServices": [
           "Frontal ponytail / bun",
           "Wig install (frontal / closure)",
-          "Custom wig"
+          "Wig customisation / construction"
         ],
         "areaId": "south-west",
         "areaLabel": "South West London"
       },
       "currentServices": [
         "Wig install (frontal / closure)",
-        "Custom wig",
+        "Wig customisation / construction",
         "Traditional sew-in / leave out",
         "Flipover / versatile sew-in",
         "Frontal ponytail / bun"
@@ -24569,7 +24569,7 @@
       "detectedServices": [
         "Frontal ponytail / bun",
         "Wig install (frontal / closure)",
-        "Custom wig"
+        "Wig customisation / construction"
       ],
       "addedServices": [],
       "removedServices": [
@@ -24620,7 +24620,7 @@
         ],
         "matchedServices": [
           "Wig install (frontal / closure)",
-          "Custom wig",
+          "Wig customisation / construction",
           "Traditional sew-in / leave out",
           "Closure sew-in",
           "Frontal sew-in"
@@ -24636,13 +24636,13 @@
       ],
       "detectedServices": [
         "Wig install (frontal / closure)",
-        "Custom wig",
+        "Wig customisation / construction",
         "Traditional sew-in / leave out",
         "Closure sew-in",
         "Frontal sew-in"
       ],
       "addedServices": [
-        "Custom wig"
+        "Wig customisation / construction"
       ],
       "removedServices": [],
       "checkedAt": "2026-05-23"
@@ -24855,7 +24855,7 @@
           "Frontal Replacement"
         ],
         "matchedServices": [
-          "Custom wig",
+          "Wig customisation / construction",
           "Wig colouring / bundle colouring",
           "Wig install (frontal / closure)",
           "Pixie cut / finger waves",
@@ -24889,7 +24889,7 @@
         "U-part wig install"
       ],
       "detectedServices": [
-        "Custom wig",
+        "Wig customisation / construction",
         "Wig colouring / bundle colouring",
         "Wig install (frontal / closure)",
         "Pixie wig / weave install",
@@ -24904,7 +24904,7 @@
         "Bridal"
       ],
       "addedServices": [
-        "Custom wig"
+        "Wig customisation / construction"
       ],
       "removedServices": [],
       "checkedAt": "2026-05-23"
@@ -25067,7 +25067,7 @@
           "Updo",
           "Traditional sew-in / leave out",
           "U-part wig install",
-          "Custom wig",
+          "Wig customisation / construction",
           "Half up half down",
           "Sleek ponytail / bun",
           "Tracks (+ silk press) / partial / invisible sew-in",
@@ -25087,13 +25087,13 @@
         "Tracks (+ silk press) / partial / invisible sew-in",
         "Updo",
         "U-part wig install",
-        "Custom wig"
+        "Wig customisation / construction"
       ],
       "detectedServices": [
         "Updo",
         "Traditional sew-in / leave out",
         "U-part wig install",
-        "Custom wig",
+        "Wig customisation / construction",
         "Half up half down",
         "Sleek ponytail / bun",
         "Tracks (+ silk press) / partial / invisible sew-in",
@@ -25380,7 +25380,7 @@
           "Closure sew-in",
           "Sleek ponytail / bun",
           "Wig install (frontal / closure)",
-          "Custom wig",
+          "Wig customisation / construction",
           "Updo"
         ],
         "areaId": "all-london",
@@ -25391,7 +25391,7 @@
         "Half up half down",
         "Flipover / versatile sew-in",
         "Closure sew-in",
-        "Custom wig",
+        "Wig customisation / construction",
         "Wig install (frontal / closure)",
         "Quick weave",
         "Sleek ponytail / bun"
@@ -25404,7 +25404,7 @@
         "Closure sew-in",
         "Sleek ponytail / bun",
         "Wig install (frontal / closure)",
-        "Custom wig",
+        "Wig customisation / construction",
         "Updo"
       ],
       "addedServices": [
@@ -25518,7 +25518,7 @@
           "Japanese straightening",
           "Wig colouring / bundle colouring",
           "Wig install (frontal / closure)",
-          "Custom wig",
+          "Wig customisation / construction",
           "Frontal ponytail / bun",
           "Sleek ponytail / bun",
           "Traditional sew-in / leave out",
@@ -25541,7 +25541,7 @@
         "K-tips / invisible strands",
         "Trim / hair cut",
         "Silk press",
-        "Custom wig",
+        "Wig customisation / construction",
         "Frontal ponytail / bun",
         "Updo",
         "Wig cornrows"
@@ -25552,7 +25552,7 @@
         "Japanese straightening",
         "Wig colouring / bundle colouring",
         "Wig install (frontal / closure)",
-        "Custom wig",
+        "Wig customisation / construction",
         "Frontal ponytail / bun",
         "Sleek ponytail / bun",
         "Traditional sew-in / leave out",
@@ -25630,7 +25630,7 @@
           "Traditional sew-in / leave out",
           "Tape ins",
           "Flipover / versatile sew-in",
-          "Custom wig",
+          "Wig customisation / construction",
           "U-part wig install"
         ],
         "areaId": "all-london",
@@ -25643,7 +25643,7 @@
         "Tape ins",
         "Wig install (frontal / closure)",
         "Flipover / versatile sew-in",
-        "Custom wig",
+        "Wig customisation / construction",
         "U-part wig install"
       ],
       "detectedServices": [
@@ -25652,7 +25652,7 @@
         "Traditional sew-in / leave out",
         "Tape ins",
         "Flipover / versatile sew-in",
-        "Custom wig",
+        "Wig customisation / construction",
         "U-part wig install"
       ],
       "addedServices": [],
@@ -26534,7 +26534,7 @@
           "Sleek ponytail / bun",
           "Tape ins",
           "Flipover / versatile sew-in",
-          "Custom wig",
+          "Wig customisation / construction",
           "Clip ins (+ silk press)",
           "Pixie wig / weave install",
           "Scalp detox / treatments",
@@ -26576,7 +26576,7 @@
         "Clip ins (+ silk press)",
         "Pixie wig / weave install",
         "Scalp detox / treatments",
-        "Custom wig"
+        "Wig customisation / construction"
       ],
       "detectedServices": [
         "LA weave",
@@ -26593,7 +26593,7 @@
         "Sleek ponytail / bun",
         "Tape ins",
         "Flipover / versatile sew-in",
-        "Custom wig",
+        "Wig customisation / construction",
         "Clip ins (+ silk press)",
         "Pixie wig / weave install",
         "Scalp detox / treatments",
@@ -26677,7 +26677,7 @@
         "areaLabel": "London"
       },
       "currentServices": [
-        "Custom wig",
+        "Wig customisation / construction",
         "Wig install (frontal / closure)",
         "Closure sew-in",
         "Frontal sew-in",
@@ -26692,7 +26692,7 @@
       ],
       "addedServices": [],
       "removedServices": [
-        "Custom wig",
+        "Wig customisation / construction",
         "Wig install (frontal / closure)"
       ],
       "checkedAt": "2026-05-23"
@@ -26838,7 +26838,7 @@
           "Frontal sew-in",
           "Sew-in take-down",
           "Wig install (frontal / closure)",
-          "Custom wig",
+          "Wig customisation / construction",
           "Pixie wig / weave install",
           "Tape ins"
         ],
@@ -26893,7 +26893,7 @@
         "Frontal sew-in",
         "Sew-in take-down",
         "Wig install (frontal / closure)",
-        "Custom wig",
+        "Wig customisation / construction",
         "Pixie wig / weave install",
         "Tape ins"
       ],
@@ -26902,7 +26902,7 @@
         "Sleek ponytail / bun",
         "Wig colouring / bundle colouring",
         "Frontal sew-in",
-        "Custom wig",
+        "Wig customisation / construction",
         "Tape ins"
       ],
       "removedServices": [
@@ -26992,7 +26992,7 @@
           "Closure sew-in",
           "Tracks (+ silk press) / partial / invisible sew-in",
           "Updo",
-          "Custom wig",
+          "Wig customisation / construction",
           "Wig install (frontal / closure)"
         ],
         "areaId": "south-east",
@@ -27017,11 +27017,11 @@
         "Closure sew-in",
         "Tracks (+ silk press) / partial / invisible sew-in",
         "Updo",
-        "Custom wig",
+        "Wig customisation / construction",
         "Wig install (frontal / closure)"
       ],
       "addedServices": [
-        "Custom wig"
+        "Wig customisation / construction"
       ],
       "removedServices": [],
       "checkedAt": "2026-05-23"
@@ -27545,7 +27545,7 @@
           "U-part wig install",
           "Frontal ponytail / bun",
           "Sleek ponytail / bun",
-          "Custom wig",
+          "Wig customisation / construction",
           "Trim / hair cut",
           "K-18 treatment",
           "Silk press",
@@ -27571,7 +27571,7 @@
         "Half braids, half sew-in",
         "Full head colour",
         "Highlights",
-        "Custom wig",
+        "Wig customisation / construction",
         "Trim / hair cut",
         "Wig install (frontal / closure)",
         "Tracks (+ silk press) / partial / invisible sew-in",
@@ -27601,7 +27601,7 @@
         "U-part wig install",
         "Frontal ponytail / bun",
         "Sleek ponytail / bun",
-        "Custom wig",
+        "Wig customisation / construction",
         "Trim / hair cut",
         "K-18 treatment",
         "Silk press",
@@ -27907,7 +27907,7 @@
           "Flipover / versatile sew-in",
           "U-part wig install",
           "Wig install (frontal / closure)",
-          "Custom wig"
+          "Wig customisation / construction"
         ],
         "areaId": "east",
         "areaLabel": "East London"
@@ -27923,7 +27923,7 @@
         "Half braids, half sew-in",
         "Fulani / lemonade braids",
         "Traditional sew-in / leave out",
-        "Custom wig",
+        "Wig customisation / construction",
         "Microbraids / x-small braids",
         "Boho braids / goddess braids",
         "Bridal",
@@ -27941,7 +27941,7 @@
         "Flipover / versatile sew-in",
         "U-part wig install",
         "Wig install (frontal / closure)",
-        "Custom wig"
+        "Wig customisation / construction"
       ],
       "addedServices": [],
       "removedServices": [
@@ -28028,7 +28028,7 @@
           "Wig install (frontal / closure)",
           "Sleek ponytail / bun",
           "Flipover / versatile sew-in",
-          "Custom wig"
+          "Wig customisation / construction"
         ],
         "areaId": "all-london",
         "areaLabel": "London"
@@ -28038,7 +28038,7 @@
         "Sleek ponytail / bun",
         "Quick weave",
         "Wig install (frontal / closure)",
-        "Custom wig"
+        "Wig customisation / construction"
       ],
       "detectedServices": [
         "Quick weave",
@@ -28046,7 +28046,7 @@
         "Wig install (frontal / closure)",
         "Sleek ponytail / bun",
         "Flipover / versatile sew-in",
-        "Custom wig"
+        "Wig customisation / construction"
       ],
       "addedServices": [
         "Flipover / versatile sew-in"
@@ -28960,7 +28960,7 @@
           "Traditional sew-in / leave out",
           "Closure sew-in",
           "Frontal sew-in",
-          "Custom wig"
+          "Wig customisation / construction"
         ],
         "areaId": "west",
         "areaLabel": "West London"
@@ -28978,7 +28978,7 @@
         "Closure sew-in",
         "Frontal sew-in",
         "Wig install (frontal / closure)",
-        "Custom wig"
+        "Wig customisation / construction"
       ],
       "detectedServices": [
         "Feed-in braids",
@@ -28990,7 +28990,7 @@
         "Traditional sew-in / leave out",
         "Closure sew-in",
         "Frontal sew-in",
-        "Custom wig"
+        "Wig customisation / construction"
       ],
       "addedServices": [],
       "removedServices": [
@@ -29317,7 +29317,7 @@
           "Pixie to Ponytail Transformation"
         ],
         "matchedServices": [
-          "Custom wig",
+          "Wig customisation / construction",
           "Traditional sew-in / leave out",
           "Wig cornrows",
           "Frontal ponytail / bun",
@@ -29340,7 +29340,7 @@
         "Wig cornrows"
       ],
       "detectedServices": [
-        "Custom wig",
+        "Wig customisation / construction",
         "Traditional sew-in / leave out",
         "Wig cornrows",
         "Frontal ponytail / bun",
@@ -29350,7 +29350,7 @@
         "Pixie wig / weave install"
       ],
       "addedServices": [
-        "Custom wig",
+        "Wig customisation / construction",
         "Pixie wig / weave install"
       ],
       "removedServices": [
@@ -29480,7 +29480,7 @@
           "Flipover / versatile sew-in",
           "U-part wig install",
           "Wig install (frontal / closure)",
-          "Custom wig"
+          "Wig customisation / construction"
         ],
         "areaId": "all-london",
         "areaLabel": "London"
@@ -29498,7 +29498,7 @@
         "Frontal sew-in",
         "Flipover / versatile sew-in",
         "U-part wig install",
-        "Custom wig",
+        "Wig customisation / construction",
         "Wig install (frontal / closure)",
         "Wig colouring / bundle colouring"
       ],
@@ -29516,7 +29516,7 @@
         "Flipover / versatile sew-in",
         "U-part wig install",
         "Wig install (frontal / closure)",
-        "Custom wig"
+        "Wig customisation / construction"
       ],
       "addedServices": [],
       "removedServices": [
@@ -29946,7 +29946,7 @@
         ],
         "matchedServices": [
           "Relaxer / texturiser",
-          "Custom wig",
+          "Wig customisation / construction",
           "Texture release",
           "Updo",
           "Sleek ponytail / bun",
@@ -29973,7 +29973,7 @@
       "currentServices": [
         "Relaxer / texturiser",
         "Scalp detox / treatments",
-        "Custom wig",
+        "Wig customisation / construction",
         "Texture release",
         "Updo",
         "Sleek ponytail / bun",
@@ -29995,7 +29995,7 @@
       ],
       "detectedServices": [
         "Relaxer / texturiser",
-        "Custom wig",
+        "Wig customisation / construction",
         "Texture release",
         "Updo",
         "Sleek ponytail / bun",
@@ -30105,7 +30105,7 @@
           "Flipover / versatile sew-in",
           "Japanese straightening",
           "Wig install (frontal / closure)",
-          "Custom wig"
+          "Wig customisation / construction"
         ],
         "areaId": "all-london",
         "areaLabel": "London"
@@ -30119,7 +30119,7 @@
         "Wig install (frontal / closure)",
         "Highlights",
         "Flipover / versatile sew-in",
-        "Custom wig",
+        "Wig customisation / construction",
         "Silk press",
         "Wash & blowdry"
       ],
@@ -30133,7 +30133,7 @@
         "Flipover / versatile sew-in",
         "Japanese straightening",
         "Wig install (frontal / closure)",
-        "Custom wig"
+        "Wig customisation / construction"
       ],
       "addedServices": [],
       "removedServices": [

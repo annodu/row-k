@@ -114,7 +114,7 @@
       "salonName": "Monique Charles Hair",
       "reason": "does custom wigs",
       "context": [
-        "Custom wig"
+        "Wig customisation / construction"
       ],
       "rejectedEvidence": [],
       "createdAt": "2026-08-01"
@@ -311,7 +311,7 @@
       "salonName": "Hair Kemistry",
       "reason": "it says custom wig on the site",
       "context": [
-        "Custom wig"
+        "Wig customisation / construction"
       ],
       "rejectedEvidence": [],
       "createdAt": "2026-08-01"
@@ -337,7 +337,7 @@
       "salonName": "BySlayTheBrand",
       "reason": "custom frontal is enough evidence",
       "context": [
-        "Custom wig"
+        "Wig customisation / construction"
       ],
       "rejectedEvidence": [],
       "createdAt": "2026-08-01"
@@ -466,7 +466,7 @@
       "salonName": "Afrotherapy Salon",
       "reason": "soft locs and faux locs can be used interchangedly, and they have faux locs on their service menu",
       "context": [
-        "Soft locs"
+        "Faux locs / soft locs"
       ],
       "rejectedEvidence": [],
       "createdAt": "2026-09-10"
@@ -2248,6 +2248,2255 @@
         }
       ],
       "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "adonai-hair-ldn",
+      "salonName": "Adonai Hair LDN",
+      "reason": "no mention of feed in or any of the aliases",
+      "context": [
+        "Feed-in braids"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Feed-in braids",
+          "evidenceText": "Cornrow &#43; Medium Twists"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "adornedbyanj",
+      "salonName": "Adorned by Anj",
+      "reason": "hybrid sew in with tapes only",
+      "context": [
+        "Tape ins"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Tape ins",
+          "evidenceText": "HYBRID SEWIN: Select this option for half sewin half tape ins installation."
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "adysa-studio",
+      "salonName": "Adysa Studio",
+      "reason": "this is a boho locs bob, not braids bob",
+      "context": [
+        "Boho braids bob"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Boho braids bob",
+          "evidenceText": "Bohemian Soft Locs (Small/Medium - Bob Length)"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "akela-jasmin-hair",
+      "salonName": "Akela Jasmin Hair",
+      "reason": "its an la weave removal",
+      "context": [
+        "Sew-in take-down"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Sew-in take-down",
+          "evidenceText": "LA Weave Removal"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "andrellastouch",
+      "salonName": "Andrella's Touch",
+      "reason": "only offers flipover, half wig, closure and frontal. doesnt mention traditional or middle part sew in",
+      "context": [
+        "Traditional sew-in / leave out"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Traditional sew-in / leave out",
+          "evidenceText": "SEW IN"
+        },
+        {
+          "kind": "add",
+          "field": "Traditional sew-in / leave out",
+          "evidenceText": "flip over sew in"
+        },
+        {
+          "kind": "add",
+          "field": "Traditional sew-in / leave out",
+          "evidenceText": "curly flip over sew in + burmese bundles"
+        },
+        {
+          "kind": "add",
+          "field": "Traditional sew-in / leave out",
+          "evidenceText": "half wig sew in"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "arewa-uk",
+      "salonName": "Arewa UK",
+      "reason": "this is flip over fulani braids",
+      "context": [
+        "Flipover / Versatile sew-in"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Flipover / Versatile sew-in",
+          "evidenceText": "Flip-over Fulani Braids"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "braided-by-tayla",
+      "salonName": "Braided by Tayla",
+      "reason": "this is fulani sew in",
+      "context": [
+        "Traditional sew-in / leave out"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Traditional sew-in / leave out",
+          "evidenceText": "Fulani Half Weave (Sew-in Method)"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "braidology",
+      "salonName": "Braidology",
+      "reason": "this is fulani sew in",
+      "context": [
+        "Traditional sew-in / leave out"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Traditional sew-in / leave out",
+          "evidenceText": "Fulani Sew in - Half Wig"
+        },
+        {
+          "kind": "add",
+          "field": "Traditional sew-in / leave out",
+          "evidenceText": "Fulani Sew in"
+        },
+        {
+          "kind": "add",
+          "field": "Traditional sew-in / leave out",
+          "evidenceText": "Fulani Sew in - 2 Bundles (16\")"
+        },
+        {
+          "kind": "add",
+          "field": "Traditional sew-in / leave out",
+          "evidenceText": "Fulani Sew In - 2 Bundles (18\")"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "caeslique",
+      "salonName": "Caeslique",
+      "reason": "this is another type of hybrid sew in",
+      "context": [
+        "K-tips + sew-in"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "K-tips + sew-in",
+          "evidenceText": "Keratin Bond (Invisible K-tips) × Tape-In Hybrid Extensions"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "deethebeautician",
+      "salonName": "Deethebeautician",
+      "reason": "this is half up half down",
+      "context": [
+        "Traditional sew-in / leave out"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Traditional sew-in / leave out",
+          "evidenceText": "SEW IN half up half down"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "dkuk-salon",
+      "salonName": "DKUK Salon",
+      "reason": "this is junk - javascript snippets",
+      "context": [
+        "Tracks (+ silk press) / partial / invisible sew-in"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Tracks (+ silk press) / partial / invisible sew-in",
+          "evidenceText": "e.event?null:new Error(\"missing event field for EventTypes.track\")}(e"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "drippin-styles-hair-studio",
+      "salonName": "Drippin Styles Hair Studio",
+      "reason": "this is a frontal ponytail",
+      "context": [
+        "Frontal sew-in"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Frontal sew-in",
+          "evidenceText": "FRONTAL SLEEK WEAVE PONYTAIL/S"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "dsrhair",
+      "salonName": "DSR Hair",
+      "reason": "they only do hybrid sew ins with braids",
+      "context": [
+        "Traditional sew-in / leave out"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Traditional sew-in / leave out",
+          "evidenceText": "Sew In"
+        },
+        {
+          "kind": "add",
+          "field": "Traditional sew-in / leave out",
+          "evidenceText": "Hybrid Sew In (with braids)"
+        },
+        {
+          "kind": "add",
+          "field": "Traditional sew-in / leave out",
+          "evidenceText": "Hybrid Sew In - Cornrows"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "ellise-tresses",
+      "salonName": "Ellise Tresses",
+      "reason": "this is flipover fulani braids",
+      "context": [
+        "Flipover / Versatile sew-in"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Flipover / Versatile sew-in",
+          "evidenceText": "Flip over Fulani braids"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "elysia-beauty",
+      "salonName": "Elysia Beauty",
+      "reason": "this is a fulani sew in",
+      "context": [
+        "Traditional sew-in / leave out"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Traditional sew-in / leave out",
+          "evidenceText": "Freestyle fulani x sewin"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "elysia-beauty",
+      "salonName": "Elysia Beauty",
+      "reason": "these are fulani braids",
+      "context": [
+        "Wig cornrows"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Wig cornrows",
+          "evidenceText": "Versatile Fulani cornrows"
+        },
+        {
+          "kind": "add",
+          "field": "Wig cornrows",
+          "evidenceText": "Fulani cornrows"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "ess-belle-tresses",
+      "salonName": "Ess Belle Tresses",
+      "reason": "this is flipover braids",
+      "context": [
+        "Flipover / Versatile sew-in"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Flipover / Versatile sew-in",
+          "evidenceText": "FULANI FLIP OVER BOHO BRAIDS"
+        },
+        {
+          "kind": "add",
+          "field": "Flipover / Versatile sew-in",
+          "evidenceText": "FULANI FLIP OVER"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "fc-parlour",
+      "salonName": "FC Parlour",
+      "reason": "this is fulani sew in",
+      "context": [
+        "Traditional sew-in / leave out"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Traditional sew-in / leave out",
+          "evidenceText": "Fulani/sew in"
+        },
+        {
+          "kind": "add",
+          "field": "Traditional sew-in / leave out",
+          "evidenceText": "Fulani/Sew in Bundles included"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "fola-fash",
+      "salonName": "Fola Fash",
+      "reason": "this is in relation to \"Relaxer, Blowdry & Styling\"",
+      "context": [
+        "Extensions blow-dry / bouncy blowout"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Extensions blow-dry / bouncy blowout",
+          "evidenceText": "Relaxer, Blowdry & Styling"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "ggrpd-it",
+      "salonName": "Ggrpd It",
+      "reason": "this is fulani sew in",
+      "context": [
+        "Traditional sew-in / leave out"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Traditional sew-in / leave out",
+          "evidenceText": "Small fulani Sew In"
+        },
+        {
+          "kind": "add",
+          "field": "Traditional sew-in / leave out",
+          "evidenceText": "Small Fulani side sew in"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "glo-lounge-london",
+      "salonName": "Glo Lounge London",
+      "reason": "natural hair care is way too vague - no indication this is a moisture treatment",
+      "context": [
+        "Moisturising treatment"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Moisturising treatment",
+          "evidenceText": "Natural Hair care"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "goddess-dream-booking",
+      "salonName": "Goddess Dream by Amidat",
+      "reason": "mens hair cut",
+      "context": [
+        "Trim / hair cut"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Trim / hair cut",
+          "evidenceText": "Men’s hair cut"
+        },
+        {
+          "kind": "add",
+          "field": "Trim / hair cut",
+          "evidenceText": "Men’s hair cut / barbing"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "hair-by-opee",
+      "salonName": "Hair by Opee",
+      "reason": "this is flipover fulani braids",
+      "context": [
+        "Flipover / Versatile sew-in"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Flipover / Versatile sew-in",
+          "evidenceText": "Flip over tribal braids"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "hair-by-resa",
+      "salonName": "Hair By Resa",
+      "reason": "flipover fulani braids",
+      "context": [
+        "Flipover / Versatile sew-in"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Flipover / Versatile sew-in",
+          "evidenceText": "Flip Over Fulani Braids waist length"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "hair-by-shans",
+      "salonName": "Hair by Shans",
+      "reason": "only stitch braid sew in",
+      "context": [
+        "Traditional sew-in / leave out"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Traditional sew-in / leave out",
+          "evidenceText": "Medium stitch braids + sew in"
+        },
+        {
+          "kind": "add",
+          "field": "Traditional sew-in / leave out",
+          "evidenceText": "Small stitch braids+sew in"
+        },
+        {
+          "kind": "add",
+          "field": "Traditional sew-in / leave out",
+          "evidenceText": "Large stitch braids + sew in"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "hair-by-ssb",
+      "salonName": "Hair by SSB",
+      "reason": "flipover fulani braids",
+      "context": [
+        "Flipover / Versatile sew-in"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Flipover / Versatile sew-in",
+          "evidenceText": "Flip Over Freestyle Knotless Fulani Braids With Curls - Waist Length"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "hair-by-wynn",
+      "salonName": "Hair by Wynn",
+      "reason": "stitch braid sew in",
+      "context": [
+        "Traditional sew-in / leave out"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Traditional sew-in / leave out",
+          "evidenceText": "SEW IN X STITCH BRAIDS"
+        },
+        {
+          "kind": "add",
+          "field": "Traditional sew-in / leave out",
+          "evidenceText": "2 or 4 stitch braids + sew-in"
+        },
+        {
+          "kind": "add",
+          "field": "Traditional sew-in / leave out",
+          "evidenceText": "6 to 10 stitch braids + sew-in"
+        },
+        {
+          "kind": "add",
+          "field": "Traditional sew-in / leave out",
+          "evidenceText": "12 to 16 stitch braids + sew-in"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "hairgurulabldn",
+      "salonName": "Hair Guru Lab LDN",
+      "reason": "hybrid tape in sew in",
+      "context": [
+        "Tape ins"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Tape ins",
+          "evidenceText": "Hybrid weave: Silicone beads or tape inns are added to a sew in install"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "hair-zones-uk",
+      "salonName": "Hair Zones UK",
+      "reason": "it's sitch braids or cornrows",
+      "context": [
+        "Feed-in braids"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Feed-in braids",
+          "evidenceText": "Kids cornrows natural hair simple back from"
+        },
+        {
+          "kind": "add",
+          "field": "Feed-in braids",
+          "evidenceText": "Stitch cornrows with extensions up to 5 rows"
+        },
+        {
+          "kind": "add",
+          "field": "Feed-in braids",
+          "evidenceText": "Cornrows"
+        },
+        {
+          "kind": "add",
+          "field": "Feed-in braids",
+          "evidenceText": "Men Cornrows"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "hairboyldn",
+      "salonName": "HairBoyLdn",
+      "reason": "this is blow dry and cornrows on natural hair, not wigs",
+      "context": [
+        "Wig blow-dry / bouncy blowout"
+      ],
+      "rejectedEvidence": [],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "hannah-gaboardi-clinic",
+      "salonName": "Hannah Gaboardi Clinic",
+      "reason": "cant see this on the site",
+      "context": [
+        "Highlights"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Highlights",
+          "evidenceText": "Hair Colouring Highlights"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "in-faithful-hands",
+      "salonName": "In Faithful Hands",
+      "reason": "sew in is the umbrella heading but they only do \"Curly flip over\"",
+      "context": [
+        "Traditional sew-in / leave out"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Traditional sew-in / leave out",
+          "evidenceText": "sew-in"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "jans-touch",
+      "salonName": "Jans Touch",
+      "reason": "the full service is \"Half Fulani ,Half sew-in\"",
+      "context": [
+        "Traditional sew-in / leave out"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Traditional sew-in / leave out",
+          "evidenceText": "Half sew-in"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "jazzy-thee-hair-artist",
+      "salonName": "Jazzy Thee Hair Artist",
+      "reason": "only does \"Custom U-Part Wig\", \"Custom wigs\" is just the umbrella heading",
+      "context": [
+        "Wig install (frontal / closure)"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Wig install (frontal / closure)",
+          "evidenceText": "Custom Wigs"
+        },
+        {
+          "kind": "add",
+          "field": "Wig install (frontal / closure)",
+          "evidenceText": "Weave with closure"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "jbs-hairr",
+      "salonName": "JBS Hairr",
+      "reason": "this is fulani sew in",
+      "context": [
+        "Fulani / lemonade braids"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Fulani / lemonade braids",
+          "evidenceText": "Tribal Fulani Weave"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "jluxe-hair",
+      "salonName": "JLuxe Hair",
+      "reason": "i believe this is a texture release (texture release is also made of keratin)",
+      "context": [
+        "Keratin treatment / Brazilian blowdry"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Keratin treatment / Brazilian blowdry",
+          "evidenceText": "Keratin Texture release"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "hairbykdouglas",
+      "salonName": "Karen Douglas",
+      "reason": "this is blowdrying natural hair",
+      "context": [
+        "Extensions blow-dry / bouncy blowout"
+      ],
+      "rejectedEvidence": [],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "hairbykdouglas",
+      "salonName": "Karen Douglas",
+      "reason": "its a haircare package called \"goddess\" not braids",
+      "context": [
+        "Boho braids / goddess braids"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Boho braids / goddess braids",
+          "evidenceText": "Ultimate Goddess Package"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "karenwrightsalon",
+      "salonName": "Karen Wright Salon",
+      "reason": "Balayage is on the booking site",
+      "context": [
+        "Balayage"
+      ],
+      "rejectedEvidence": [],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "kayy-didd-thatt",
+      "salonName": "Kayy Didd Thatt",
+      "reason": "this is a braided updo",
+      "context": [
+        "Updo"
+      ],
+      "rejectedEvidence": [],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "lael-london",
+      "salonName": "Lael London",
+      "reason": "I dont think you can get this as a standalone service",
+      "context": [
+        "Wash & blowdry"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Wash & blowdry",
+          "evidenceText": "Frontal/ closure replacement (previously installed by us)"
+        },
+        {
+          "kind": "add",
+          "field": "Wash & blowdry",
+          "evidenceText": "Frontal / closure replacements (for previous clients only"
+        },
+        {
+          "kind": "add",
+          "field": "Wash & blowdry",
+          "evidenceText": "with wash & blow-dry)"
+        },
+        {
+          "kind": "add",
+          "field": "Wash & blowdry",
+          "evidenceText": "without wash & blow- dry)"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "laurslounge",
+      "salonName": "Laurs Lounge",
+      "reason": "only does \"U - Part Wig 16 inches Grey Install\", \"Wigs\" is the umbrella heading",
+      "context": [
+        "Wig install (frontal / closure)"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Wig install (frontal / closure)",
+          "evidenceText": "Wigs"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "maggies-hair",
+      "salonName": "Maggie's Hair",
+      "reason": "these are all related to LA weave, not sew ins or tracks",
+      "context": [
+        "Tracks (+ silk press) / partial / invisible sew-in",
+        "Sew-in take-down"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Tracks (+ silk press) / partial / invisible sew-in",
+          "evidenceText": "2 LA Weave Row"
+        },
+        {
+          "kind": "add",
+          "field": "Tracks (+ silk press) / partial / invisible sew-in",
+          "evidenceText": "3 LA Weave Row"
+        },
+        {
+          "kind": "add",
+          "field": "Tracks (+ silk press) / partial / invisible sew-in",
+          "evidenceText": "4 LA Weave Row"
+        },
+        {
+          "kind": "add",
+          "field": "Sew-in take-down",
+          "evidenceText": "LA Weave Removal"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "magicfingersldn",
+      "salonName": "Magic Fingers LDN",
+      "reason": "natural hair care is too vague",
+      "context": [
+        "Moisturising treatment"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Moisturising treatment",
+          "evidenceText": "Natural Hair Care"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "marnis-touch",
+      "salonName": "Marnis Touch",
+      "reason": "this is a braided bun",
+      "context": [
+        "Sleek ponytail / bun"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Sleek ponytail / bun",
+          "evidenceText": "JAYDA BUN"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "natural-gloe",
+      "salonName": "Natural Gloe",
+      "reason": "say \"Half head highlights\"",
+      "context": [
+        "Highlights"
+      ],
+      "rejectedEvidence": [],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "noble-tiaras",
+      "salonName": "Noble Tiaras Virgin Hair Salon",
+      "reason": "its a closure replacement, not constructing the full wig",
+      "context": [
+        "Wig customisation / construction"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Wig customisation / construction",
+          "evidenceText": "LACE CLOSURE REPLACEMENT ON WIG UNIT"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "oasis-beauty-space",
+      "salonName": "Oasis Beauty Space",
+      "reason": "doesnt mention any of the aliases",
+      "context": [
+        "Feed-in braids"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Feed-in braids",
+          "evidenceText": "Cornrows & Locs"
+        },
+        {
+          "kind": "add",
+          "field": "Feed-in braids",
+          "evidenceText": "Cornrows & Twists"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "rachel-braids",
+      "salonName": "Rachel Braids",
+      "reason": "this is a natural hair updo, not with sew in or frontal",
+      "context": [
+        "Updo"
+      ],
+      "rejectedEvidence": [],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "rens-touch",
+      "salonName": "Ren's Touch",
+      "reason": "says \"track your order\" - completely irrelevant",
+      "context": [
+        "Tracks (+ silk press) / partial / invisible sew-in"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Tracks (+ silk press) / partial / invisible sew-in",
+          "evidenceText": "Track Your Order"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "savsstyles",
+      "salonName": "Savsstyles",
+      "reason": "this is a braiding style",
+      "context": [
+        "Half up half down"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Half up half down",
+          "evidenceText": "Half Up Half Down Feedin Braids"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "savsstyles",
+      "salonName": "Savsstyles",
+      "reason": "this is a braiding style",
+      "context": [
+        "Flipover / Versatile sew-in"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Flipover / Versatile sew-in",
+          "evidenceText": "Flip Over Fulani Braids"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "shaistylesuk",
+      "salonName": "Shaistylesuk",
+      "reason": "a pre-made wig is not a wig thats being constructed in the appt",
+      "context": [
+        "Wig customisation / construction"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Wig customisation / construction",
+          "evidenceText": "Pre-Made Lace Frontal Unit"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "shiannes-touch",
+      "salonName": "Shianne's Touch",
+      "reason": "fulani sew in",
+      "context": [
+        "Traditional sew-in / leave out"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Traditional sew-in / leave out",
+          "evidenceText": "Large Fulani Sew-in"
+        },
+        {
+          "kind": "add",
+          "field": "Traditional sew-in / leave out",
+          "evidenceText": "Medium Fulani Sew-in"
+        },
+        {
+          "kind": "add",
+          "field": "Traditional sew-in / leave out",
+          "evidenceText": "Small Fulani Sew-In"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "sk-beauty-ldn",
+      "salonName": "Sk Beauty Ldn",
+      "reason": "doesnt seem to be a standalone wash & blowdry service",
+      "context": [
+        "Wash & blowdry"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Wash & blowdry",
+          "evidenceText": "Ywigs"
+        },
+        {
+          "kind": "add",
+          "field": "Wash & blowdry",
+          "evidenceText": "Bundles £40"
+        },
+        {
+          "kind": "add",
+          "field": "Wash & blowdry",
+          "evidenceText": "Wash & Silk Press"
+        },
+        {
+          "kind": "add",
+          "field": "Wash & blowdry",
+          "evidenceText": "Wash & blowdry with silk press and a one length trim"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "slayed-by-mayla",
+      "salonName": "Slayed by Mayla",
+      "reason": "this is a braided style",
+      "context": [
+        "Half up half down"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Half up half down",
+          "evidenceText": "Braided Half Up Half Down"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "so-pressed-london",
+      "salonName": "So Pressed London",
+      "reason": "this is an extensions wash & blowdry",
+      "context": [
+        "Wash & blowdry"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Wash & blowdry",
+          "evidenceText": "Hair Extension Maintenance"
+        },
+        {
+          "kind": "add",
+          "field": "Wash & blowdry",
+          "evidenceText": "Microlink Extension Maintenance"
+        },
+        {
+          "kind": "add",
+          "field": "Wash & blowdry",
+          "evidenceText": "Wash and Blow-dry with Extensions"
+        },
+        {
+          "kind": "add",
+          "field": "Wash & blowdry",
+          "evidenceText": "Hair Extension Refitting/Reinstall"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "steaze-glam",
+      "salonName": "Steaze Glam",
+      "reason": "this is a fulani sew in",
+      "context": [
+        "Traditional sew-in / leave out"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Traditional sew-in / leave out",
+          "evidenceText": "Fulani Sew-in or Quickweave"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "styled-by-iman",
+      "salonName": "Styled by Iman",
+      "reason": "this is fulani sew in",
+      "context": [
+        "Traditional sew-in / leave out"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Traditional sew-in / leave out",
+          "evidenceText": "Fulani Sew in(Hair tucked in"
+        },
+        {
+          "kind": "add",
+          "field": "Traditional sew-in / leave out",
+          "evidenceText": "Tyla Side Part Fulani Sew in"
+        },
+        {
+          "kind": "add",
+          "field": "Traditional sew-in / leave out",
+          "evidenceText": "Flipover Fulani Sew in"
+        },
+        {
+          "kind": "add",
+          "field": "Traditional sew-in / leave out",
+          "evidenceText": "Fulani Sew in (Braids Left Out)"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "styled-by-iman",
+      "salonName": "Styled by Iman",
+      "reason": "this is fulani sew in",
+      "context": [
+        "Flipover / Versatile sew-in"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Flipover / Versatile sew-in",
+          "evidenceText": "Flipover Fulani Sew in"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "styled-by-kb",
+      "salonName": "Styled by KB",
+      "reason": "this is a natural hair updo",
+      "context": [
+        "Updo"
+      ],
+      "rejectedEvidence": [],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "swish-london",
+      "salonName": "Swish London",
+      "reason": "this is a hybrid sew in with tapes or brazillian knots",
+      "context": [
+        "Tape ins"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Tape ins",
+          "evidenceText": "Hybrid Sew-in: A weave in the centre and either tapes or brazilian knots around the perimeter.Giving maximum versatility."
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "tamedbyjai",
+      "salonName": "Tamed by Jai",
+      "reason": "this is flipover sew in",
+      "context": [
+        "Traditional sew-in / leave out"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Traditional sew-in / leave out",
+          "evidenceText": "Flip over Sew-in"
+        },
+        {
+          "kind": "add",
+          "field": "Traditional sew-in / leave out",
+          "evidenceText": "Flip Over Sew in - TBJHair"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "the-braider-uk",
+      "salonName": "The Braider UK",
+      "reason": "this is braids + sew in",
+      "context": [
+        "Traditional sew-in / leave out"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Traditional sew-in / leave out",
+          "evidenceText": "Bundles included - Half cainrow/Sew in"
+        },
+        {
+          "kind": "add",
+          "field": "Traditional sew-in / leave out",
+          "evidenceText": "Half sew in + half cainrows"
+        },
+        {
+          "kind": "add",
+          "field": "Traditional sew-in / leave out",
+          "evidenceText": "Fulani + Sew in"
+        },
+        {
+          "kind": "add",
+          "field": "Traditional sew-in / leave out",
+          "evidenceText": "Fulani + sew in"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "the-hct-studio",
+      "salonName": "The HCT Studio",
+      "reason": "this is a fulani sew in",
+      "context": [
+        "Traditional sew-in / leave out"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Traditional sew-in / leave out",
+          "evidenceText": "Fulani Sew -in"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "theheadspaedit",
+      "salonName": "The Head Spa Edit",
+      "reason": "can't see highlights - I wonder if this is a fresha thing, as its come up before",
+      "context": [
+        "Highlights"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Highlights",
+          "evidenceText": "Hair Colouring Highlights"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "the-lace-bandit",
+      "salonName": "The Lace Bandit",
+      "reason": "this is closure sew in",
+      "context": [
+        "Traditional sew-in / leave out"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Traditional sew-in / leave out",
+          "evidenceText": "CLOSURE SEWIN"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "the-reign-spitalfields",
+      "salonName": "The Reign",
+      "reason": "same reason as Karen Douglas",
+      "context": [
+        "Extensions blow-dry / bouncy blowout",
+        "Boho braids / goddess braids"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Boho braids / goddess braids",
+          "evidenceText": "Ultimate Goddess Package"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "tjslayedit",
+      "salonName": "TJ Slayed It",
+      "reason": "this is braids + sew in",
+      "context": [
+        "Traditional sew-in / leave out"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Traditional sew-in / leave out",
+          "evidenceText": "Jayda Wayda Inspired Fulani Sew In"
+        },
+        {
+          "kind": "add",
+          "field": "Traditional sew-in / leave out",
+          "evidenceText": "Cassie Inspired Feed Ins X Sew In"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "tressavenue",
+      "salonName": "TressAvenue",
+      "reason": "this is braids + sew in",
+      "context": [
+        "Flipover / Versatile sew-in"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Flipover / Versatile sew-in",
+          "evidenceText": "Boho flip over braids x Sew in"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "vhudzi-hair-by-alicia-pearl",
+      "salonName": "Vhudzi Hair by Alicia Pearl",
+      "reason": "its only fulani sew in \"sew in styles\" is the umbrella heading",
+      "context": [
+        "Traditional sew-in / leave out"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Traditional sew-in / leave out",
+          "evidenceText": "Sew-In Styles"
+        },
+        {
+          "kind": "add",
+          "field": "Traditional sew-in / leave out",
+          "evidenceText": "Freestyle Fulani Sew-In"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "with-taliyah-marrett",
+      "salonName": "With Taliyah Marrett",
+      "reason": "evidence doesnt match this",
+      "context": [
+        "Wig cornrows"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Wig cornrows",
+          "evidenceText": "Half wig install (cornrow and style)"
+        },
+        {
+          "kind": "add",
+          "field": "Wig cornrows",
+          "evidenceText": "U-Part Wig Install (Cornrow & Style)"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "with-taliyah-marrett",
+      "salonName": "With Taliyah Marrett",
+      "reason": "i think this is sew in takedown",
+      "context": [
+        "Braid take-down"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Braid take-down",
+          "evidenceText": "Take down"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "layered-and-laceduk",
+      "salonName": "Layered&LacedUK",
+      "reason": "keep tagged: \"Pin-Curls to go + layers only(over original style)\" restyles an existing install",
+      "context": [
+        "Extensions styling only (e.g. layers & curls)"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "remove",
+          "field": "Extensions styling only (e.g. layers & curls)",
+          "evidenceText": "Pin-Curls to go + layers only(over original style)"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "adonai-hair-ldn",
+      "salonName": "Adonai Hair LDN",
+      "reason": "cant see the evidence on the site",
+      "context": [
+        "Extensions styling only (e.g. layers & curls)"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Extensions styling only (e.g. layers & curls)",
+          "evidenceText": "Simple stylings (straighten or curls)"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "afrotherapy",
+      "salonName": "Afrotherapy Salon",
+      "reason": "it has \"Faux Locs - Large Sized\"",
+      "context": [
+        "Faux locs / soft locs"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "remove",
+          "field": "Faux locs / soft locs",
+          "evidenceText": "Faux Locs - Large Sized"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "ajstyles-uk",
+      "salonName": "AJSTYLES.UK",
+      "reason": "it says \"frontal install\"",
+      "context": [
+        "Wig install (frontal / closure)"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "remove",
+          "field": "Wig install (frontal / closure)",
+          "evidenceText": "frontal install"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "allseezn",
+      "salonName": "Allseezn",
+      "reason": "not sure what a hot wax treatment is - maybe a leg wax?",
+      "context": [
+        "Moisturising treatment"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Moisturising treatment",
+          "evidenceText": "Hot wax treatment that improves moisture."
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "allseezn",
+      "salonName": "Allseezn",
+      "reason": "cant see this on the site",
+      "context": [
+        "Wig styling only (e.g. layers & curls)"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Wig styling only (e.g. layers & curls)",
+          "evidenceText": "Straighten or Curl ONLY"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "amia-hair-studio",
+      "salonName": "Amia Hair Studio",
+      "reason": "has \"Wig customisation\"",
+      "context": [
+        "Wig customisation / construction"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "remove",
+          "field": "Wig customisation / construction",
+          "evidenceText": "Wig customisation"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "andrewjosesalon",
+      "salonName": "Andrew Jose",
+      "reason": "unsure if this is for 4c hair, as the salon caters to all hair types",
+      "context": [
+        "Keratin treatment / Brazilian blowdry"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Keratin treatment / Brazilian blowdry",
+          "evidenceText": "Brazilian Keratin"
+        },
+        {
+          "kind": "add",
+          "field": "Keratin treatment / Brazilian blowdry",
+          "evidenceText": "Keratin Treatments"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "beauty-by-solange",
+      "salonName": "Beauty by Solange",
+      "reason": "this is an updo",
+      "context": [
+        "Tracks (+ silk press) / partial / invisible sew-in"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Tracks (+ silk press) / partial / invisible sew-in",
+          "evidenceText": "French roll with tracks install"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "blessed-by-sj",
+      "salonName": "Blessed by SJ",
+      "reason": "these are braided sew ins",
+      "context": [
+        "Stitch braids"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Stitch braids",
+          "evidenceText": "Stitch Braids x Weave"
+        },
+        {
+          "kind": "add",
+          "field": "Stitch braids",
+          "evidenceText": "Large/ Medium Stitch Braids x Weave"
+        },
+        {
+          "kind": "add",
+          "field": "Stitch braids",
+          "evidenceText": "Small Stitch Braids x Weave"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "braidbarldn",
+      "salonName": "Braid Bar LDN",
+      "reason": "braiding hair isn't enough context",
+      "context": [
+        "Colour blend (mixing braiding hair)"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Colour blend (mixing braiding hair)",
+          "evidenceText": "Braiding Hair"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "bslayedit",
+      "salonName": "Bslayedit",
+      "reason": "construction of wig in service description",
+      "context": [
+        "Wig customisation / construction"
+      ],
+      "rejectedEvidence": [],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "bybrittss",
+      "salonName": "Bybrittss",
+      "reason": "doesn't mention colouring bundles",
+      "context": [
+        "Wig colouring / bundle colouring"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Wig colouring / bundle colouring",
+          "evidenceText": "Leave Out Sew In + Luxury Bundle package (baby highlights)"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "covemedical",
+      "salonName": "Cove Medical",
+      "reason": "this is a medical trichology treatment but a scalp wash",
+      "context": [
+        "Scalp detox / treatments"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Scalp detox / treatments",
+          "evidenceText": "1 PRP session covering 2 areas of the scalp (edges & nape"
+        },
+        {
+          "kind": "add",
+          "field": "Scalp detox / treatments",
+          "evidenceText": "full scalp )"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "crownedbygabs",
+      "salonName": "Crowned By Gabs",
+      "reason": "this is a faux reinstall",
+      "context": [
+        "Wig reinstall / re-glue"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Wig reinstall / re-glue",
+          "evidenceText": "Signature Island Soft Locs- REINSTALL"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "dash-dept-uk",
+      "salonName": "Dash Dept UK",
+      "reason": "it says frontal install",
+      "context": [
+        "Wig install (frontal / closure)"
+      ],
+      "rejectedEvidence": [],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "dvh-salon",
+      "salonName": "DVH Salon",
+      "reason": "has Custom Closure Wig Making",
+      "context": [
+        "Wig customisation / construction"
+      ],
+      "rejectedEvidence": [],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "elitehairlounge",
+      "salonName": "Elite Hair Lounge",
+      "reason": "they have a number of pixie services like \"Wash, Wrap Set, Style And Trim For Pixie\"",
+      "context": [
+        "Pixie cut / finger waves"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "remove",
+          "field": "Pixie cut / finger waves",
+          "evidenceText": "Wash, Wrap Set, Style And Trim For Pixie"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "elitehairlounge",
+      "salonName": "Elite Hair Lounge",
+      "reason": "they have \"Basic Wash & Blowdry\"",
+      "context": [
+        "Wash & blowdry"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "remove",
+          "field": "Wash & blowdry",
+          "evidenceText": "Basic Wash & Blowdry"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "es-lounge",
+      "salonName": "ES Lounge",
+      "reason": "its ponytail braids, not micro knotless braids which is what this filter is referring to",
+      "context": [
+        "Microbraids / x-small braids"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Microbraids / x-small braids",
+          "evidenceText": "XSmall ponytail braids"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "etl-lounge",
+      "salonName": "ETL Lounge",
+      "reason": "they have Customisation",
+      "context": [
+        "Wig customisation / construction"
+      ],
+      "rejectedEvidence": [],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "hair-by-kuks",
+      "salonName": "Hair by Kuks",
+      "reason": "refers to boho locs",
+      "context": [
+        "Loc styling"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Loc styling",
+          "evidenceText": "LOC STYLES"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "hair-by-kuks",
+      "salonName": "Hair by Kuks",
+      "reason": "refers to boho sew in",
+      "context": [
+        "Traditional sew-in / leave out"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Traditional sew-in / leave out",
+          "evidenceText": "Xsmall bohox sew in"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "hair-by-lauralyn-clinton-london",
+      "salonName": "Hair by Lauralyn Clinton London",
+      "reason": "has \"semi permanent Soft Locs\"",
+      "context": [
+        "Faux locs / soft locs"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "remove",
+          "field": "Faux locs / soft locs",
+          "evidenceText": "semi permanent Soft Locs"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "hair-by-rachael-b",
+      "salonName": "Hair by Rachael B",
+      "reason": "i think this referening to curling the ends of braids",
+      "context": [
+        "Extensions styling only (e.g. layers & curls)"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Extensions styling only (e.g. layers & curls)",
+          "evidenceText": "Curled Ends (+5)"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "hair-by-rose-essex",
+      "salonName": "Hair by Rose Essex",
+      "reason": "says \"sometimes available\" not a regular thing",
+      "context": [
+        "Mark same-day / walk-ins"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "attribute",
+          "field": "sameDayEmergency",
+          "evidenceText": "Same-day appointments are sometimes available, so please send a message as early as possible on whatsapp"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "hairkemistry",
+      "salonName": "Hair Kemistry",
+      "reason": "has custom wigs",
+      "context": [
+        "Wig customisation / construction"
+      ],
+      "rejectedEvidence": [],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "hairboyldn",
+      "salonName": "HairBoyLdn",
+      "reason": "this is talking about a weave install where you come with your hair already shampoo'd and blow dried",
+      "context": [
+        "Extensions blow-dry / bouncy blowout"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Extensions blow-dry / bouncy blowout",
+          "evidenceText": "Full Head weave (With Leave Out)(no shampoo/blowdry)"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "hairboyldn",
+      "salonName": "HairBoyLdn",
+      "reason": "its not cornrows (with extensions), if a cornrow base for your extension. assuming something more like wig cornrows",
+      "context": [
+        "Feed-in braids"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Feed-in braids",
+          "evidenceText": "- flat cornrow base for your extensions"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "hairspace-ldn",
+      "salonName": "Hairspace LDN",
+      "reason": "has \"Medium, waist-length Butterfly Locs\"",
+      "context": [
+        "Butterfly locs"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "remove",
+          "field": "Butterfly locs",
+          "evidenceText": "Medium, waist-length Butterfly Locs"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "hairtherapyy",
+      "salonName": "Hairtherapyy",
+      "reason": "looks like wig styling based on the other services they offer",
+      "context": [
+        "Extensions styling only (e.g. layers & curls)"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Extensions styling only (e.g. layers & curls)",
+          "evidenceText": "Curl and styling"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "highend-hair-parlour-uk",
+      "salonName": "HIGHEND HAIR PARLOUR UK",
+      "reason": "its a texture release",
+      "context": [
+        "Relaxer / texturiser"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Relaxer / texturiser",
+          "evidenceText": "Texture release( relaxer)"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "highend-hair-parlour-uk",
+      "salonName": "HIGHEND HAIR PARLOUR UK",
+      "reason": "its keratin serum, not treatment",
+      "context": [
+        "Keratin treatment / Brazilian blowdry"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Keratin treatment / Brazilian blowdry",
+          "evidenceText": "Keratin serum"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "joycekartistry",
+      "salonName": "Joyce Kartistry",
+      "reason": "its a bantu knots style not weave, tracks or frontal",
+      "context": [
+        "Half up half down"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Half up half down",
+          "evidenceText": "Half down"
+        },
+        {
+          "kind": "add",
+          "field": "Half up half down",
+          "evidenceText": "Bantu Knot Crown Half Up - Half down"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "karina-beauty-hub-uk",
+      "salonName": "Karina Beauty Hub UK",
+      "reason": "has Small Faux Locs",
+      "context": [
+        "Faux locs / soft locs"
+      ],
+      "rejectedEvidence": [],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "kayy-didd-thatt",
+      "salonName": "Kayy Didd Thatt",
+      "reason": "\"messy braided up-do\" is a braided ponytail / bun, not an updo (accepted as Updo by mistake)",
+      "context": [
+        "Updo",
+        "Braided ponytail"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Updo",
+          "evidenceText": "messy braided up-do"
+        },
+        {
+          "kind": "remove",
+          "field": "Braided ponytail",
+          "evidenceText": "messy braided up-do"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "laced-by-shy",
+      "salonName": "Laced by Shy",
+      "reason": "ready made wig",
+      "context": [
+        "Wig customisation / construction"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Wig customisation / construction",
+          "evidenceText": "Ready-Made Wig Customisation"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "lael-london",
+      "salonName": "Lael London",
+      "reason": "its an extensions wash & blowdry",
+      "context": [
+        "Wash & blowdry"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Wash & blowdry",
+          "evidenceText": "K-tips wash & blowdry"
+        },
+        {
+          "kind": "add",
+          "field": "Wash & blowdry",
+          "evidenceText": "wash & blow-dry (Microlinks weft)"
+        },
+        {
+          "kind": "add",
+          "field": "Wash & blowdry",
+          "evidenceText": "closure/ frontal sew-in (excluding wash & blow-dry)"
+        },
+        {
+          "kind": "add",
+          "field": "Wash & blowdry",
+          "evidenceText": "closure/ frontal sew-in (including wash & blow dry)"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "danis-dolls",
+      "salonName": "Danis Dolls",
+      "reason": "handmade closure unit",
+      "context": [
+        "Wig customisation / construction"
+      ],
+      "rejectedEvidence": [],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "ella-iman-hair",
+      "salonName": "Ella Iman Hair",
+      "reason": "all the evidence is correct",
+      "context": [
+        "Full head colour",
+        "Balayage",
+        "Highlights"
+      ],
+      "rejectedEvidence": [],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "hair-priscription",
+      "salonName": "Hair Priscription",
+      "reason": "more aligned with braided ponytail",
+      "context": [
+        "Feed-in braids"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Feed-in braids",
+          "evidenceText": "Half Down Half feed in"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "leema-hairstylist",
+      "salonName": "Leema Hairstylist",
+      "reason": "its a custom upart wig",
+      "context": [
+        "Wig customisation / construction"
+      ],
+      "rejectedEvidence": [],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "mbl-hair",
+      "salonName": "MBL Hair",
+      "reason": "only boho locs or twists",
+      "context": [
+        "Boho braids bob",
+        "Boho braids / goddess braids"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Boho braids bob",
+          "evidenceText": "Boho Bob"
+        },
+        {
+          "kind": "add",
+          "field": "Boho braids bob",
+          "evidenceText": "Boho Twists Bob"
+        },
+        {
+          "kind": "add",
+          "field": "Boho braids / goddess braids",
+          "evidenceText": "Boho Twists"
+        },
+        {
+          "kind": "add",
+          "field": "Boho braids / goddess braids",
+          "evidenceText": "Boho Twists Bob"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "moniquecharleshair",
+      "salonName": "Monique Charles Hair",
+      "reason": "custom wigs",
+      "context": [
+        "Wig customisation / construction"
+      ],
+      "rejectedEvidence": [],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "nelas-hair-uk",
+      "salonName": "Nelas Hair UK",
+      "reason": "handmade = construction",
+      "context": [
+        "Wig customisation / construction"
+      ],
+      "rejectedEvidence": [],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "oraellounge",
+      "salonName": "OraelLounge",
+      "reason": "its referring to loc styling",
+      "context": [
+        "Extensions styling only (e.g. layers & curls)"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Extensions styling only (e.g. layers & curls)",
+          "evidenceText": "Style only"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "patriziamanias",
+      "salonName": "PATRIZIA MANIAS",
+      "reason": "thats a js snippet",
+      "context": [
+        "Trim / hair cut"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Trim / hair cut",
+          "evidenceText": "os = trim(os.replace(data"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "rhy-style",
+      "salonName": "Rhy Style",
+      "reason": "not extra small or micro braids, only small",
+      "context": [
+        "Microbraids / x-small braids"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Microbraids / x-small braids",
+          "evidenceText": "Small Braids"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "sb-hair-company",
+      "salonName": "SB Hair Company",
+      "reason": "his service is for short hair or a root bleach only",
+      "context": [
+        "Scalp detox / treatments"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Scalp detox / treatments",
+          "evidenceText": "Scalp bleach and tone"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "shyann-shanece-hair",
+      "salonName": "Shyann Shanece Hair",
+      "reason": "constructed frontal unit",
+      "context": [
+        "Wig customisation / construction"
+      ],
+      "rejectedEvidence": [],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "slayed-by-phairstyles",
+      "salonName": "Slayed by P Hairstyles",
+      "reason": "its french curl",
+      "context": [
+        "Boho braids bob"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Boho braids bob",
+          "evidenceText": "Small Bob Boho French Curls"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "so-pressed-london",
+      "salonName": "So Pressed London",
+      "reason": "extensions blow dry",
+      "context": [
+        "Wash & blowdry"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Wash & blowdry",
+          "evidenceText": "Wash and Blow-dry with Extensions"
+        },
+        {
+          "kind": "add",
+          "field": "Wash & blowdry",
+          "evidenceText": "Shampoo"
+        },
+        {
+          "kind": "add",
+          "field": "Wash & blowdry",
+          "evidenceText": "Treatment and Blowdry."
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "swish-london",
+      "salonName": "Swish London",
+      "reason": "Blowdry and Trim 1 hour @ £35.00  Includes a wash",
+      "context": [
+        "Wash & blowdry"
+      ],
+      "rejectedEvidence": [],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "the-glo-upp-beauty-salon",
+      "salonName": "The Glo Upp Beauty Salon",
+      "reason": "has \"custom units\"",
+      "context": [
+        "Wig customisation / construction"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "remove",
+          "field": "Wig customisation / construction",
+          "evidenceText": "custom units"
+        }
+      ],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "tifah-s-touch",
+      "salonName": "Tifah's Touch",
+      "reason": "customisation",
+      "context": [
+        "Wig customisation / construction"
+      ],
+      "rejectedEvidence": [],
+      "createdAt": "2026-10-09"
+    },
+    {
+      "salonId": "true-touch-london",
+      "salonName": "True Touch London",
+      "reason": "this sound more like s feed in sew in",
+      "context": [
+        "Wig cornrows"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Wig cornrows",
+          "evidenceText": "MODEL Cornrows/butterfly crown halfuphalfdown"
+        }
+      ],
+      "createdAt": "2026-10-09"
     }
   ]
 }

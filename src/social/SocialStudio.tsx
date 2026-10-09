@@ -6,7 +6,7 @@ import { AlertTriangle, ArrowDown, ArrowUp, Check, ChevronDown, Download, Extern
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { getServiceDisplayName, serviceFilterRows } from "@/lib/serviceTaxonomy";
+import { getServiceFilterLabel, serviceFilterRows } from "@/lib/serviceTaxonomy";
 import { cn } from "@/lib/utils";
 import { downloadDataUrl, renderSlidePng } from "./export";
 import { type Brief, type BriefOptions, type Candidate, EMPTY_BRIEF, buildCarousel, candidateToListSlide, describeBrief, filterPanelGroups, filtersFromBrief, resolvePhotoUrl } from "./build";
@@ -966,7 +966,7 @@ function CtaInspector({ slide, onChange, options, brief }: { slide: CtaSlideData
                           <FilterCheckRow
                             key={service}
                             indent={nested ? 2 : 1}
-                            label={getServiceDisplayName(service)}
+                            label={getServiceFilterLabel(service, { nested })}
                             checked={filters.services.includes(service)}
                             onToggle={() => setFilters({ ...filters, services: toggleIn(filters.services, service) })}
                           />

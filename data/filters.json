@@ -22,10 +22,17 @@
         "Boho braids bob",
         "French curl bob",
         "Men's braids",
-        "Wig cornrows",
         "Fulani sew-in / quick weave / half wig",
         "Boho sew-in",
-        "Feed-in / stitch braid sew-in"
+        "Feed-in / stitch braid sew-in",
+        "Braided ponytail",
+        "Flip-over Fulani / diva braids",
+        "Alicia Keys braids",
+        "Pop smoke braids",
+        "Jayda Wayda braided sew-in",
+        "Cassie braided sew-in",
+        "Coi Leray braids",
+        "Tyla braids"
       ]
     },
     {
@@ -64,7 +71,9 @@
         "Tape ins",
         "Tape-ins + sew-in",
         "K-tips + sew-in",
-        "Hair loss systems (e.g. mesh)"
+        "Hair loss systems (e.g. mesh)",
+        "Extensions blow-dry / bouncy blowout",
+        "Extensions styling only (e.g. layers & curls)"
       ]
     },
     {
@@ -75,14 +84,15 @@
         "Retwist / interlocking",
         "Loc styling",
         "Microlocs / sisterlocs",
-        "Loc extensions (permanent)"
+        "Loc extensions (permanent)",
+        "Loc wash / detox"
       ]
     },
     {
       "id": "faux-locs-services",
       "label": "Faux locs",
       "subcategories": [
-        "Soft locs",
+        "Faux locs / soft locs",
         "Boho locs",
         "Crochet faux locs / invisible locs",
         "Butterfly locs"
@@ -105,21 +115,28 @@
         "Feed-in / stitch braid sew-in",
         "Tape-ins + sew-in",
         "K-tips + sew-in",
-        "Hair loss systems (e.g. mesh)"
+        "Hair loss systems (e.g. mesh)",
+        "Extensions blow-dry / bouncy blowout",
+        "Extensions styling only (e.g. layers & curls)",
+        "Cassie braided sew-in",
+        "Jayda Wayda braided sew-in"
       ]
     },
     {
       "id": "styling-services",
-      "label": "Styling (e.g. ponytails, pixies, sew-ins/wigs)",
+      "label": "Ponytails & updos",
       "subcategories": [
         "Frontal ponytail / bun",
         "Half up half down",
-        "Pixie cut / finger waves",
-        "Sew in / extensions blowdry & styling",
         "Sleek ponytail / bun",
         "Updo",
-        "Wig blowdry & styling"
+        "Braided ponytail"
       ]
+    },
+    {
+      "id": "pixie-services",
+      "label": "Pixie cut / finger waves",
+      "subcategories": []
     },
     {
       "id": "straightening-treatments",
@@ -135,7 +152,8 @@
         "Olaplex treatment",
         "Protein treatment",
         "Relaxer / texturiser",
-        "Texture release"
+        "Texture release",
+        "Hot oil treatment"
       ]
     },
     {
@@ -153,7 +171,8 @@
         "Wash & blowdry",
         "Japanese head spa",
         "Scalp detox / treatments",
-        "Men's braids"
+        "Men's braids",
+        "Natural twists / plaits"
       ]
     },
     {
@@ -169,12 +188,16 @@
       "id": "wig-services",
       "label": "Wigs",
       "subcategories": [
-        "Custom wig",
+        "Wig customisation / construction",
         "Pixie wig / weave install",
         "U-Part / Half wig install",
         "Wig colouring / bundle colouring",
         "Wig install (frontal / closure)",
-        "Wig laundry / wig revamp"
+        "Wig laundry / wig revamp",
+        "Wig blow-dry / bouncy blowout",
+        "Wig styling only (e.g. layers & curls)",
+        "Frontal / closure replacement",
+        "Wig reinstall / re-glue"
       ]
     }
   ]

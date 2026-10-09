@@ -16,7 +16,9 @@
     "test:matcher": "node scripts/test-matcher.mjs",
     "validate:reviews": "node scripts/validate-reviews.mjs",
     "backfill:portfolio-photos": "node scripts/backfill-portfolio-photos.mjs",
-    "build:photo-pages": "node scripts/build-photo-pages.mjs"
+    "build:photo-pages": "node scripts/build-photo-pages.mjs",
+    "health-check": "node scripts/run-health-check.mjs",
+    "recompute-health-check": "node scripts/recompute-health-check.mjs"
   },
   "devDependencies": {
     "@types/react": "^19.2.14",
