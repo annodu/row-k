@@ -87,7 +87,7 @@ const DISCLAIMER_DISMISSED_KEY = "rowk_disclaimer_dismissed";
 
 const categoryMap = {
   all: { label: "All services", subcategories: ["all"] },
-  "braiding-services": { label: "Braids", subcategories: ["all","Boho braids / goddess braids","Braid take-down","Box braids","Colour blend (mixing braiding hair)","Crochet","Creative braids","Feed-in braids","French curl","Fulani / lemonade braids","Knotless braids","Miracle knots","Microbraids / x-small braids","Pre-parting","Stitch braids","Twists (with extensions)","Boho braids bob","French curl bob","Men's braids","Wig cornrows","Fulani sew-in","Boho sew-in","Feed-in / stitch braid sew-in"] },
+  "braiding-services": { label: "Braids", subcategories: ["all","Boho braids / goddess braids","Braid take-down","Box braids","Colour blend (mixing braiding hair)","Crochet","Creative braids","Feed-in braids","French curl","Fulani / lemonade braids","Knotless braids","Miracle knots","Microbraids / x-small braids","Pre-parting","Stitch braids","Twists (with extensions)","Boho braids bob","French curl bob","Men's braids","Wig cornrows","Fulani sew-in / quick weave / half wig","Boho sew-in","Feed-in / stitch braid sew-in"] },
   "colour-services": { label: "Colour", subcategories: ["all","Balayage","Full head colour","Highlights","Wig colouring / bundle colouring"] },
   "bridal-services": { label: "Bridal", subcategories: ["all","Bridal"] },
   "editorial-services": { label: "Editorial / Session styling", subcategories: ["all","Editorial / Session styling"] },
@@ -95,16 +95,16 @@ const categoryMap = {
   "extension-services": { label: "Extensions", subcategories: ["all","Clip ins (+ silk press)","K-tips / invisible strands","LA weave / microlinks wefts / braidless sew in","I-tips / microlinks strands","Tape ins","Tape-ins + sew-in","K-tips + sew-in","Hair loss systems (e.g. mesh)"] },
   "locs-services": { label: "Locs", subcategories: ["all","Starter locs / instant locs","Retwist / interlocking","Loc styling","Microlocs / sisterlocs","Loc extensions (permanent)"] },
   "faux-locs-services": { label: "Faux locs", subcategories: ["all","Soft locs","Boho locs","Crochet faux locs / invisible locs","Butterfly locs"] },
-  "sew-in-weave": { label: "Sew in / weave", subcategories: ["all","Closure sew-in / closure behind the hairline","Flipover / Versatile sew-in","Frontal sew-in","Pixie wig / weave install","Quick weave","Sew-in take-down","Tracks (+ silk press) / partial / invisible sew-in","Traditional sew-in / leave out","Fulani sew-in","Boho sew-in","Feed-in / stitch braid sew-in","Tape-ins + sew-in","K-tips + sew-in","Hair loss systems (e.g. mesh)"] },
-  "styling-services": { label: "Styling (sew in / frontal / relaxer)", subcategories: ["all","Sew in / extensions blowdry","Frontal ponytail / bun","Half up half down","Pixie cut / finger waves","Sleek ponytail / bun","Updo"] },
-  "straightening-treatments": { label: "Treatments", subcategories: ["all","Cecred treatment","Hair botox","Japanese straightening","K18 treatment","Keratin treatment / Brazilian blowdry","Moisturising treatment","Olaplex treatment","Relaxer / texturiser","Texture release"] },
+  "sew-in-weave": { label: "Sew in / weave", subcategories: ["all","Closure sew-in / closure behind the hairline","Flipover / Versatile sew-in","Frontal sew-in","Pixie wig / weave install","Quick weave","Sew-in take-down","Tracks (+ silk press) / partial / invisible sew-in","Traditional sew-in / leave out","Fulani sew-in / quick weave / half wig","Boho sew-in","Feed-in / stitch braid sew-in","Tape-ins + sew-in","K-tips + sew-in","Hair loss systems (e.g. mesh)"] },
+  "styling-services": { label: "Styling (e.g. ponytails, pixies, sew-ins/wigs)", subcategories: ["all","Frontal ponytail / bun","Half up half down","Pixie cut / finger waves","Sew in / extensions blowdry & styling","Sleek ponytail / bun","Updo","Wig blowdry & styling"] },
+  "straightening-treatments": { label: "Treatments", subcategories: ["all","Bond repair","Cécred wash & treatment","Hair botox","Japanese straightening","K18 treatment","Keratin treatment / Brazilian blowdry","Moisturising treatment","Olaplex treatment","Protein treatment","Relaxer / texturiser","Texture release"] },
   "natural-hair-services": { label: "Natural hair washing & styling", subcategories: ["all","Wig cornrows","Curly cut / wash & go / diffuse","Silk press","Bouncy blowout / round brush blow dry","Trim / hair cut","Roller set","Twist out / flexi rod","Bantu knots","Wash & blowdry","Japanese head spa","Scalp detox / treatments","Men's braids"] },
   "natural-hair-scalp-health": { label: "Natural hair health & trichology", subcategories: ["all","Healthy hair plans & consultations","Natural hair coaches / educators","Trichology / scalp analysis"] },
-  "wig-services": { label: "Wigs", subcategories: ["all","Custom wig","Pixie wig / weave install","U-Part / Half wig install","Wig colouring / bundle colouring","Wig install (frontal / closure)","Wig blowdry","Wig laundry"] },
+  "wig-services": { label: "Wigs", subcategories: ["all","Custom wig","Pixie wig / weave install","U-Part / Half wig install","Wig colouring / bundle colouring","Wig install (frontal / closure)","Wig laundry / wig revamp"] },
 } as const;
 
 const categoryServiceMap = {
-  "braiding-services": ["Boho braids / goddess braids","Braid take-down","Box braids","Colour blend (mixing braiding hair)","Crochet","Creative braids","Feed-in braids","French curl","Fulani / lemonade braids","Knotless braids","Miracle knots","Microbraids / x-small braids","Pre-parting","Stitch braids","Twists (with extensions)","Boho braids bob","French curl bob","Men's braids","Wig cornrows","Fulani sew-in","Boho sew-in","Feed-in / stitch braid sew-in"],
+  "braiding-services": ["Boho braids / goddess braids","Braid take-down","Box braids","Colour blend (mixing braiding hair)","Crochet","Creative braids","Feed-in braids","French curl","Fulani / lemonade braids","Knotless braids","Miracle knots","Microbraids / x-small braids","Pre-parting","Stitch braids","Twists (with extensions)","Boho braids bob","French curl bob","Men's braids","Wig cornrows","Fulani sew-in / quick weave / half wig","Boho sew-in","Feed-in / stitch braid sew-in"],
   "colour-services": ["Balayage","Full head colour","Highlights","Wig colouring / bundle colouring"],
   "bridal-services": ["Bridal"],
   "editorial-services": ["Editorial / Session styling"],
@@ -112,12 +112,12 @@ const categoryServiceMap = {
   "extension-services": ["Clip ins (+ silk press)","K-tips / invisible strands","LA weave / microlinks wefts / braidless sew in","I-tips / microlinks strands","Tape ins","Tape-ins + sew-in","K-tips + sew-in","Hair loss systems (e.g. mesh)"],
   "locs-services": ["Starter locs / instant locs","Retwist / interlocking","Loc styling","Microlocs / sisterlocs","Loc extensions (permanent)"],
   "faux-locs-services": ["Soft locs","Boho locs","Crochet faux locs / invisible locs","Butterfly locs"],
-  "sew-in-weave": ["Closure sew-in / closure behind the hairline","Flipover / Versatile sew-in","Frontal sew-in","Pixie wig / weave install","Quick weave","Sew-in take-down","Tracks (+ silk press) / partial / invisible sew-in","Traditional sew-in / leave out","Fulani sew-in","Boho sew-in","Feed-in / stitch braid sew-in","Tape-ins + sew-in","K-tips + sew-in","Hair loss systems (e.g. mesh)"],
-  "styling-services": ["Sew in / extensions blowdry","Frontal ponytail / bun","Half up half down","Pixie cut / finger waves","Sleek ponytail / bun","Updo"],
-  "straightening-treatments": ["Cecred treatment","Hair botox","Japanese straightening","K18 treatment","Keratin treatment / Brazilian blowdry","Moisturising treatment","Olaplex treatment","Relaxer / texturiser","Texture release"],
+  "sew-in-weave": ["Closure sew-in / closure behind the hairline","Flipover / Versatile sew-in","Frontal sew-in","Pixie wig / weave install","Quick weave","Sew-in take-down","Tracks (+ silk press) / partial / invisible sew-in","Traditional sew-in / leave out","Fulani sew-in / quick weave / half wig","Boho sew-in","Feed-in / stitch braid sew-in","Tape-ins + sew-in","K-tips + sew-in","Hair loss systems (e.g. mesh)"],
+  "styling-services": ["Frontal ponytail / bun","Half up half down","Pixie cut / finger waves","Sew in / extensions blowdry & styling","Sleek ponytail / bun","Updo","Wig blowdry & styling"],
+  "straightening-treatments": ["Bond repair","Cécred wash & treatment","Hair botox","Japanese straightening","K18 treatment","Keratin treatment / Brazilian blowdry","Moisturising treatment","Olaplex treatment","Protein treatment","Relaxer / texturiser","Texture release"],
   "natural-hair-services": ["Wig cornrows","Curly cut / wash & go / diffuse","Silk press","Bouncy blowout / round brush blow dry","Trim / hair cut","Roller set","Twist out / flexi rod","Bantu knots","Wash & blowdry","Japanese head spa","Scalp detox / treatments","Men's braids"],
   "natural-hair-scalp-health": ["Healthy hair plans & consultations","Natural hair coaches / educators","Trichology / scalp analysis"],
-  "wig-services": ["Custom wig","Pixie wig / weave install","U-Part / Half wig install","Wig colouring / bundle colouring","Wig install (frontal / closure)","Wig blowdry","Wig laundry"],
+  "wig-services": ["Custom wig","Pixie wig / weave install","U-Part / Half wig install","Wig colouring / bundle colouring","Wig install (frontal / closure)","Wig laundry / wig revamp"],
 } as const satisfies Record<ServiceCategoryId, readonly string[]>;
 
 type RegionId = (typeof regions)[number]["id"];
@@ -263,7 +263,8 @@ type VendorSearchResponse = {
 const regionLabelMap = Object.fromEntries(regions.map((region) => [region.id, region.label])) as Record<string, string>;
 
 function normalizeServiceSearch(s: string) {
-  return s.toLowerCase().replace(/[-–—,]/g, " ").replace(/\s+/g, " ").trim();
+  // "Bohemian" is how some salons and clients say boho.
+  return s.toLowerCase().replace(/[-–—,]/g, " ").replace(/\s+/g, " ").trim().replace(/\bbohemian\b/g, "boho");
 }
 
 // Search-only synonyms, merged on top of the server's list. They live here rather
@@ -278,7 +279,7 @@ const extraServiceSearchAliases: Record<string, string[]> = {
   "Feed-in / stitch braid sew-in": ["cassie braids", "cassie sew in", "half braid half sew in", "half braids half sew in", "half sew in half braids", "half braid half weave", "half braids half weave", "half weave half braids", "half braids half quick weave"],
   "Hair loss systems (e.g. mesh)": ["alopecia", "hair loss", "mesh", "mesh integration", "hair loss system", "hair loss weave", "hair loss unit", "hair integration", "thinning hair", "hair thinning", "bald patches", "traction alopecia"],
   "Trichology / scalp analysis": ["alopecia", "hair loss", "thinning hair", "hair thinning", "traction alopecia", "alopecia areata", "ccca", "bald patches", "receding hairline", "hair shedding", "breakage", "hair loss specialist"],
-  "Fulani sew-in": ["half braid half sew in", "half braids half sew in", "half sew in half braids", "half braid half weave", "half braids half weave", "half weave half braids", "half braids half quick weave"],
+  "Fulani sew-in / quick weave / half wig": ["half braid half sew in", "half braids half sew in", "half sew in half braids", "half braid half weave", "half braids half weave", "half weave half braids", "half braids half quick weave"],
 };
 
 function withExtraServiceSearchAliases(aliases: Record<string, string[]>) {
@@ -315,7 +316,7 @@ const defaultServiceSearchAliases: Record<string, string[]> = {
   "Tracks (+ silk press) / partial / invisible sew-in": ["rows", "tracks", "track per row", "per row", "one row", "weave tracks", "partial sew in", "partial sew-in", "invisible sew in", "invisible weave", "invisible weft", "half head weave"],
   "Silk press": ["straightening", "straighten", "silk press", "silkpress", "press and curl"],
   "Bouncy blowout / round brush blow dry": ["bouncy blowout", "bouncy blow out", "bouncy blowdry", "bouncy blow dry", "bouncy blow-dry", "round brush blow dry", "round brush blowdry", "blowout"],
-  "Sew in / extensions blowdry": ["extensions blowdry", "extensions blow dry", "extensions blowout", "extensions blow out", "extension blowdry", "extension blow dry", "extension blowout", "extension blow out", "blowdry with extensions", "blow dry with extensions", "blowout with extensions", "blow out with extensions", "weave blowdry", "weave blow dry", "weave blowout", "weave blow out", "sew in blowdry", "sew in blow dry", "sew-in blowdry", "sew-in blow dry", "sewin blowdry", "sewin blow dry", "sew in blowout", "sew in blow out", "sew-in blowout", "sew-in blow out", "k tips blowdry", "k-tips blowdry", "ktips blowdry", "k tips blow dry", "k-tips blow dry", "ktips blow dry"],
+  "Sew in / extensions blowdry & styling": ["extensions blowdry", "extensions blow dry", "extensions blowout", "extensions blow out", "extension blowdry", "extension blow dry", "extension blowout", "extension blow out", "blowdry with extensions", "blow dry with extensions", "blowout with extensions", "blow out with extensions", "weave blowdry", "weave blow dry", "weave blowout", "weave blow out", "sew in blowdry", "sew in blow dry", "sew-in blowdry", "sew-in blow dry", "sewin blowdry", "sewin blow dry", "sew in blowout", "sew in blow out", "sew-in blowout", "sew-in blow out", "k tips blowdry", "k-tips blowdry", "ktips blowdry", "k tips blow dry", "k-tips blow dry", "ktips blow dry"],
   "Wash & blowdry": ["wash blowdry", "wash blow dry", "wash and blowdry", "wash and blow dry", "shampoo blowdry", "shampoo blow dry"],
   "Japanese head spa": ["japanese head spa", "head spa", "headspa"],
   "Updo": ["updo", "up do", "pin up", "french roll"],
@@ -326,7 +327,7 @@ const defaultServiceSearchAliases: Record<string, string[]> = {
   "Crochet faux locs / invisible locs": ["crochet locs", "crochet faux locs", "invisible locs", "faux locs crochet"],
   "Starter locs / instant locs": ["starter locs", "start locs", "loc start", "instant locs"],
   "Retwist / interlocking": ["retwist", "re twist", "interlocking", "inter locking"],
-  "Fulani sew-in": ["fulani braids sew in", "fulani braid sew in", "fulani sew in", "fulani weave", "fulani quick weave"],
+  "Fulani sew-in / quick weave / half wig": ["fulani braids sew in", "fulani braid sew in", "fulani sew in", "fulani weave", "fulani quick weave"],
   "Boho sew-in": ["boho braids sew in", "boho braid sew in", "boho sew in", "boho weave", "zoe kravitz sew in"],
   "Feed-in / stitch braid sew-in": ["feed in sew in", "feed ins sew in", "half feed in half sew in", "stitch braids sew in", "stitch braid sew in", "jayda wayda sew in", "tyla sew in"],
   "Braid take-down": ["braids removal", "braid removal", "braids takedown", "braid takedown"],

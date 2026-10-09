@@ -13,6 +13,7 @@
     "test:admin-auth": "node --test server/admin-auth.test.mjs",
     "setup:admin-mfa": "node scripts/setup-admin-mfa.mjs",
     "validate": "node scripts/validate-services.mjs",
+    "test:matcher": "node scripts/test-matcher.mjs",
     "validate:reviews": "node scripts/validate-reviews.mjs",
     "backfill:portfolio-photos": "node scripts/backfill-portfolio-photos.mjs",
     "build:photo-pages": "node scripts/build-photo-pages.mjs"

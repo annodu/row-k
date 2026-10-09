@@ -5,6 +5,7 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { serviceAliases } from "./salon-index.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -275,12 +276,18 @@ async function fetchClickCounts(preset) {
     SELECT
       countIf(event = 'book_click') AS booking_clicks,
       countIf(event = 'instagram_click') AS instagram_clicks,
-      countIf(event = 'verified_reviews_click') AS reviews_clicks
+      countIf(event = 'verified_reviews_click') AS reviews_clicks,
+      countIf(event = 'hair_shop_click') AS hair_shop_clicks
     FROM events
-    WHERE event IN ('book_click', 'instagram_click', 'verified_reviews_click') AND timestamp >= now() - INTERVAL ${preset.days} DAY${internalTrafficExclusionClause()}
+    WHERE event IN ('book_click', 'instagram_click', 'verified_reviews_click', 'hair_shop_click') AND timestamp >= now() - INTERVAL ${preset.days} DAY${internalTrafficExclusionClause()}
   `);
-  const [bookingClicks, instagramClicks, reviewsClicks] = rows[0] ?? [0, 0, 0];
-  return { bookingClicks: Number(bookingClicks) || 0, instagramClicks: Number(instagramClicks) || 0, reviewsClicks: Number(reviewsClicks) || 0 };
+  const [bookingClicks, instagramClicks, reviewsClicks, hairShopClicks] = rows[0] ?? [0, 0, 0, 0];
+  return {
+    bookingClicks: Number(bookingClicks) || 0,
+    instagramClicks: Number(instagramClicks) || 0,
+    reviewsClicks: Number(reviewsClicks) || 0,
+    hairShopClicks: Number(hairShopClicks) || 0,
+  };
 }
 
 // Counts unique visitors (not raw clicks — toggling a filter on and off repeatedly would inflate
@@ -328,7 +335,9 @@ async function fetchFilterUsage(preset) {
     const rawLabel = config.fixedLabel ?? selection;
     // "all" is the clear-filters chip, not a filter value.
     if (!rawLabel || rawLabel === "all") continue;
-    const label = config.group === "Price" ? (taxonomy.priceLabels.get(rawLabel) ?? rawLabel) : rawLabel;
+    // Renamed styles (e.g. "Cécred treatment") count under their current name.
+    const label =
+      config.group === "Price" ? (taxonomy.priceLabels.get(rawLabel) ?? rawLabel) : config.group === "Services" ? (serviceAliases[rawLabel] ?? rawLabel) : rawLabel;
     const group = groups.get(config.group);
     const person = String(personId);
     group.users.add(person);
@@ -432,6 +441,23 @@ async function fetchTopStylists(preset) {
       areaLabel: location ? String(location) : "",
       clicks: Number(clicks),
     }));
+}
+
+// "Buy hair" link clicks (App.tsx fires hair_shop_click on both single-salon
+// and brand-group cards), ranked by stylist.
+async function fetchHairShopClicksByStylist(preset) {
+  const rows = await runHogQLQuery(`
+    SELECT properties.salon AS salon, count() AS clicks
+    FROM events
+    WHERE event = 'hair_shop_click' AND timestamp >= now() - INTERVAL ${preset.days} DAY${internalTrafficExclusionClause()}
+    GROUP BY salon
+    ORDER BY clicks DESC
+    LIMIT ${TOP_STYLISTS_LIMIT}
+  `);
+
+  return rows
+    .filter(([salon]) => Boolean(salon))
+    .map(([salon, clicks]) => ({ name: String(salon), clicks: Number(clicks) }));
 }
 
 async function fetchReviewsClicksByPlatform(preset) {
@@ -679,6 +705,7 @@ export async function fetchAnalyticsSummary(range = "7d") {
       unmatchedServiceSearches,
       topStylists,
       reviewsClicksByPlatform,
+      hairShopClicksByStylist,
       deviceBreakdown,
       locationBreakdown,
       trafficSourceBreakdown,
@@ -691,6 +718,7 @@ export async function fetchAnalyticsSummary(range = "7d") {
       fetchUnmatchedServiceSearches(preset),
       fetchTopStylists(preset),
       fetchReviewsClicksByPlatform(preset),
+      fetchHairShopClicksByStylist(preset),
       fetchDeviceBreakdown(preset),
       fetchLocationBreakdown(preset),
       fetchTrafficSourceBreakdown(preset),
@@ -704,6 +732,8 @@ export async function fetchAnalyticsSummary(range = "7d") {
       instagramClicks: clicks.instagramClicks,
       reviewsClicks: clicks.reviewsClicks,
       reviewsClicksByPlatform,
+      hairShopClicks: clicks.hairShopClicks,
+      hairShopClicksByStylist,
       filterUsage,
       zeroResultSearches,
       unmatchedServiceSearches,

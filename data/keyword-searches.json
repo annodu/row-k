@@ -17,7 +17,7 @@
       "results": [],
       "createdAt": "2026-06-10",
       "updatedAt": "2026-06-10",
-      "lastRunAt": "2026-06-10T23:03:38.306Z"
+      "lastRunAt": "2026-06-11"
     },
     {
       "id": "keyword-tracks",
@@ -810,9 +810,9 @@
           ]
         }
       ],
-      "createdAt": "2026-06-06T03:37:11.930Z",
-      "updatedAt": "2026-06-06T03:37:11.930Z",
-      "lastRunAt": "2026-06-06T03:33:33.395Z"
+      "createdAt": "2026-06-06",
+      "updatedAt": "2026-06-06",
+      "lastRunAt": "2026-06-06"
     },
     {
       "id": "keyword-extensions-blowdry",
@@ -1200,9 +1200,9 @@
           ]
         }
       ],
-      "createdAt": "2026-06-06T02:43:54.919Z",
-      "updatedAt": "2026-06-06T02:49:16.346Z",
-      "lastRunAt": "2026-06-06T02:44:48.862Z"
+      "createdAt": "2026-06-06",
+      "updatedAt": "2026-06-06",
+      "lastRunAt": "2026-06-06"
     }
   ]
 }

@@ -225,7 +225,7 @@ const serviceRuleMatchers = [
   ["Colour blend (mixing braiding hair)", [/\bcolou?r\s+(mix|blend)(ed|ing)?\b/, /\bmix(ed)?\s+colou?rs?\b/, /\bcolou?rs?\s+mix(ed|ing)?\b/]],
   ["Frontal ponytail / bun", [/\bfrontal\b.*\b(pony|ponytail|bun)\b/, /\b(pony|ponytail|bun)\b.*\bfrontal\b/]],
   // A Jayda Wayda sew-in is feed-in even when the name also says Fulani.
-  ["Fulani sew-in", [/^(?!.*\bjayda\b).*\b(fulani|alicia\s+keys?)\b.*\b(sew\s*in|sewin|weave|quick\s*weave|half\s+wig)\b/, /^(?!.*\bjayda\b).*\b(sew\s*in|sewin|weave|quick\s*weave|half\s+wig)\b.*\b(fulani|alicia\s+keys?)\b/]],
+  ["Fulani sew-in / quick weave / half wig", [/^(?!.*\bjayda\b).*\b(fulani|alicia\s+keys?)\b.*\b(sew\s*in|sewin|weave|quick\s*weave|half\s+wig)\b/, /^(?!.*\bjayda\b).*\b(sew\s*in|sewin|weave|quick\s*weave|half\s+wig)\b.*\b(fulani|alicia\s+keys?)\b/]],
   ["Boho sew-in", [/\b(boho|zoe\s+kravitz)\b.*\b(sew\s*in|sewin|weave|quick\s*weave|half\s+wig)\b/, /\b(sew\s*in|sewin|weave|quick\s*weave|half\s+wig)\b.*\b(boho|zoe\s+kravitz)\b/]],
   // Visible feed-ins / stitch braids alongside the install. Plain cornrows only
   // count when the service is split ("half cornrows half weave"), so cornrow
@@ -241,7 +241,8 @@ const serviceRuleMatchers = [
   ["Quick weave", [/\bquick\b.*\bweave\b/, /\bquickweave\b/]],
   // A bare "hybrid sew-in" has long meant tapes + tracks; skip it when the same
   // line names K-tips, I-tips or braids rather than tapes.
-  ["Tape-ins + sew-in", [/^(?!.*\b[ki]\s*tips?\b)(?!.*\b(braids?|cornrows?|fulani|boho)\b).*\bhybrid\b.*\b(sew\s*in|sewin|weave)\b/, /\btracks?\b.*\btapes?\b.*\bhybrid\b/, /\bhybrid\b.*\btracks?\b.*\btapes?\b/, /^(?!.*\b(removals?|take\s*down|takedown)\b)(?=.*\btapes?\b)(?=.*\b(sew\s*in|sewin)\b)/]],
+  // A bare "hybrid sew-in" isn't tapes: it can just as well be braids or K-tips + sew-in.
+  ["Tape-ins + sew-in", [/\btracks?\b.*\btapes?\b.*\bhybrid\b/, /\bhybrid\b.*\btracks?\b.*\btapes?\b/, /^(?!.*\b(removals?|take\s*down|takedown)\b)(?=.*\btapes?\b)(?=.*\b(sew\s*in|sewin)\b)/]],
   ["K-tips + sew-in", [/^(?!.*\b(removals?|take\s*down|takedown)\b)(?=.*\bk\s*tips?\b)(?=.*\b(sew\s*in|sewin|hybrid)\b)/]],
   ["Hair loss systems (e.g. mesh)", [/\bmesh\s+integrations?\b/, /\bhair\s*loss\s+(systems?|weaves?|units?|integrations?|panels?)\b/, /\b(weave|sew\s*in|sewin|illusion|integration)\b.*\bfor\s+(alopecia|hair\s*loss)\b/]],
   ["Sew-in take-down", [/\b(sew\s*in|sewin|weave|tracks?)\b.*\b(take\s*down|takedown|removal|remove)\b/, /\b(take\s*down|takedown|removal|remove)\b.*\b(sew\s*in|sewin|weave|tracks?)\b/]],
@@ -254,7 +255,7 @@ const serviceRuleMatchers = [
   ["Clip ins (+ silk press)", [/\bclip\s*ins?\b/, /\bclip-in\b/]],
   // "Boho"/"goddess" alone aren't enough — "Boho Island LOCS" is a locs style,
   // not braids, so require the line not also be about locs before matching.
-  ["Boho braids / goddess braids", [/^(?!.*\blocs?\b).*\bboho\b/, /^(?!.*\blocs?\b).*\bgoddess\b/]],
+  ["Boho braids / goddess braids", [/^(?!.*\blocs?\b).*\bboho\b/, /^(?!.*\blocs?\b).*\bgoddess\b/, /\bpick\s+(?:and\s+|n\s+)?drop\b/]],
   ["Boho braids bob", [/\bboho\b.*\bbob\b/, /\bbob\b.*\bboho\b/]],
   ["Knotless braids", [/\bknotless\b/]],
   ["Box braids", [/\bbox\b.*\bbraids?\b/]],
@@ -278,7 +279,7 @@ const serviceRuleMatchers = [
   ["Twists (with extensions)", [/\btwists?\b.*\b(extension|extensions|hair added)\b/, /\b(extension|extensions|hair added)\b.*\btwists?\b/, /\b(passion|marley|senegalese|island|kinky|rope)\s+twists?\b/, /\blarge\s+twists?\b/]],
   ["Braid take-down", [/\bbraids?\b.*\b(take\s*down|takedown|removal|remove)\b/, /\b(take\s*down|takedown|removal|remove)\b.*\bbraids?\b/]],
   ["Starter locs / instant locs", [/\bstarter\s+locs?\b/, /\bstart\s+locs?\b/, /\bstarting\s+locs?\b/, /\bloc\s+start\b/, /\binstant\s+locs?\b/]],
-  ["Retwist / interlocking", [/\bretwist\b/, /\bre\s*twist\b/, /\binterlocking\b/, /\binter\s*locking\b/]],
+  ["Retwist / interlocking", [/\bretwist\b/, /\bre\s*twist\b/, /\binterlock(s|ing)?\b/, /\binter\s*lock(s|ing)?\b/]],
   ["Boho locs", [/\bboho\s+locs?\b/]],
   ["Soft locs", [/\bfaux\s+locs?\b/, /\bsoft\s+locs?\b/]],
   ["Crochet faux locs / invisible locs", [/\bcrochet\s+(faux\s+)?locs?\b/, /\bfaux\s+locs?\s+crochet\b/, /\binvisible\s+locs?\b/]],
@@ -294,15 +295,18 @@ const serviceRuleMatchers = [
   ["Texture release", [/\btexture\s+release\b/]],
   ["Japanese straightening", [/\bjapanese\b.*\bstraight(en|ening)\b/, /\bmomoko\b(?:.*\bstraight(en|ening)\b)?/]],
   ["Hair botox", [/\bbotox\b/]],
-  ["Olaplex treatment", [/\bolaplex\b/, /\b(repair|bond)\b.*\b(bond|repair|treatment)\b/]],
+  ["Olaplex treatment", [/\bolaplex\b/]],
   ["K18 treatment", [/\bk\s*18\b/, /\bk-18\b/]],
-  ["Cecred treatment", [/\bc[eé]cred\b/]],
+  // Unbranded bond repair only; dropped in matchServicesByRule when a brand above is named.
+  ["Bond repair", [/\bbond\s*(repair|builder|building|rebuild(er|ing)?|treatment|strengthen(er|ing)?)\b/, /\b(repair|rebuild(ing)?|strengthen(ing)?)\b.*\bbonds?\b/, /\b(wellaplex|fibreplex|fiberplex|smartbond|b3)\b/]],
+  ["Protein treatment", [/\bprotein\s+(treatment|mask|therapy|reconstruct(or|ion|ing)?)\b/, /\bprotein\s*&?\s+moisture\b/, /\baphogee\b/, /\bk[\s-]?pak\b/]],
+  ["Cécred wash & treatment", [/\bc[eé]cred\b/]],
   ["Moisturising treatment", [/\bmoisturi[sz](ing|e)\b/, /\bmoisture\b/, /\bhydrat(e|ing|ion)\b/, /\bprotein\s*&?\s+moisture\b/, /\bdeep\s+condition(ing)?\b/, /\bsteam\s+treat(ment)?\b/, /\bnatural\s+hair\s+care\b/]],
   ["Japanese head spa", [/\bjapanese\s+head\s+spa\b/, /\bhead\s*spa\b/]],
   ["Scalp detox / treatments", [/\bscalp\b/]],
   ["Curly cut / wash & go", [/\bcurly\s+cut\b/, /\bwash\s*(and|&)?\s*go\b/]],
-  ["Sew in / extensions blowdry", [/\bextensions?\b.*\b(blow\s*dry|blowdry|blow\s*out|blowout)\b/, /\b(blow\s*dry|blowdry|blow\s*out|blowout)\b.*\bextensions?\b/, /\b(weave|sew\s*in|sew-in|sewin|k[\s-]?tips?)\b.*\b(blow\s*dry|blowdry|blow\s*out|blowout)\b/, /\b(blow\s*dry|blowdry|blow\s*out|blowout)\b.*\b(weave|sew\s*in|sew-in|sewin|k[\s-]?tips?)\b/, /\bblow\s*out\b.*\b(sew\s*in|sew-in|sewin)\b.*\bweave\b/]],
-  ["Wig blowdry", [/\bwig\b.*\b(blow\s*dry|blowdry|blow\s*out|blowout)\b/, /\b(blow\s*dry|blowdry|blow\s*out|blowout)\b.*\bwig\b/]],
+  ["Sew in / extensions blowdry & styling", [/\bextensions?\b.*\b(blow\s*dry|blowdry|blow\s*out|blowout)\b/, /\b(blow\s*dry|blowdry|blow\s*out|blowout)\b.*\bextensions?\b/, /\b(weave|sew\s*in|sew-in|sewin|k[\s-]?tips?)\b.*\b(blow\s*dry|blowdry|blow\s*out|blowout)\b/, /\b(blow\s*dry|blowdry|blow\s*out|blowout)\b.*\b(weave|sew\s*in|sew-in|sewin|k[\s-]?tips?)\b/, /\bblow\s*out\b.*\b(sew\s*in|sew-in|sewin)\b.*\bweave\b/]],
+  ["Wig blowdry & styling", [/\bwig\b.*\b(blow\s*dry|blowdry|blow\s*out|blowout)\b/, /\b(blow\s*dry|blowdry|blow\s*out|blowout)\b.*\bwig\b/]],
   ["Bouncy blowout / round brush blow dry", [/\bbouncy\b.*\b(blow\s*dry|blowdry|blow\s*out|blowout)\b/, /\b(blow\s*dry|blowdry|blow\s*out|blowout)\b.*\bbouncy\b/, /\bround\s+brush\b.*\b(blow\s*dry|blowdry)\b/]],
   ["Wash & blowdry", [/\bwash\b.*\b(blow\s*dry|blowdry|blowout)\b/, /\bshampoo\b.*\b(blow\s*dry|blowdry|blowout)\b/]],
   ["Trim / hair cut", [/\btrim\b/, /\bhair\s*cut\b/, /\bhaircut\b/, /\bcut\s+and\s+finish\b/]],
@@ -314,7 +318,7 @@ const serviceRuleMatchers = [
   // Also never matchable before — same gap as Men's braids above.
   ["Kids & teens styles", [/\bkids?\b.*\b(braids?|twists?|styles?|hair|cornrows?)\b/, /\b(braids?|twists?|styles?|hair|cornrows?)\b.*\bkids?\b/, /\bteens?\b.*\b(braids?|twists?|styles?|hair)\b/, /\bchildren\b.*\b(braids?|twists?|styles?|hair)\b/]],
   ["Healthy hair plans & consultations", [/\bhealthy\s+hair\s+(regimes?|regimens?|plans?|journey|consultations?)\b/, /\bhair\s+growth\s+plans?\b/, /\bhair\s+health\s+plans?\b/]],
-  ["Trichology / scalp analysis", [/\btricholog(?:y|ist|ists)\b/, /\bscalp\s+analysis\b/]],
+  ["Trichology / scalp analysis", [/\btricholog(?:y|ist|ists)\b/, /\bscalp\s+analysis\b/, /\bscalp\s+(assessments?|examinations?)\b/]],
   ["Natural hair coaches / educators", [/\b(afro|natural|curly|curl|hair)\b.*\beducation\b/, /\beducation\b.*\b(afro|natural|curly|curl|hair)\b/, /\b(hair|curl|styling)\b.*\btutorial\b/, /\btutorial\b.*\b(hair|curl|styling)\b/, /\bhair\s+health\b.*\b(assessment|plan|growth|consultation)\b/, /\bgrowth\s+plan\b/, /\bconsultation\b.*\bnatural\b/, /\bnatural\s+hair\b.*\b(class|education|consultation)\b/, /\bcurl\s+makeover\b.*\b(hands?\s*on|tutorial|styling)\b/]],
   ["Sleek ponytail / bun", [/\bsleek\b.*\b(pony|ponytail|bun)\b/, /\bpony\s*tail\b/, /\bponytail\b/, /\bbun\b/]],
   ["Half up half down", [/\bhalf\s+up\b.*\bhalf\s+down\b/, /\bhalf\s+up\s+half\s+down\b/, /\bhalf\s+up\s+half\s+down\b.*\b(quick\s+weave|sew\s+in|sewin|weave)\b/]],
@@ -332,12 +336,12 @@ export const serviceNegationHints = {
   "Bantu knots": ["bantu knots", "bantu knot"],
   "Bouncy blowout / round brush blow dry": ["bouncy blowout", "bouncy blow out", "bouncy blowdry", "bouncy blow dry", "bouncy blow-dry", "round brush blow dry", "round brush blowdry", "dry bouncy blow-dry"],
   "Boho braids bob": ["boho bob", "boho bob braids", "boho braids bob"],
-  "Boho braids / goddess braids": ["boho", "goddess"],
+  "Boho braids / goddess braids": ["boho", "goddess", "pick & drop", "pick n drop", "pick and drop"],
   "Box braids": ["box braids"],
   "Braid take-down": ["braid take down", "braid takedown", "braid removal", "remove braids"],
   "Bridal": ["bridal", "wedding"],
   "Editorial / Session styling": ["editorial", "session styling", "photoshoot"],
-  "Sew in / extensions blowdry": ["extensions blowdry", "extensions blow dry", "extensions blowout", "extensions blow out", "extension blowdry", "extension blow dry", "extension blowout", "extension blow out", "blowdry with extensions", "blow dry with extensions", "blowout with extensions", "blow out with extensions", "weave blowdry", "weave blow dry", "weave blowout", "weave blow out", "sew in blowdry", "sew in blow dry", "sew-in blowdry", "sew-in blow dry", "sewin blowdry", "sewin blow dry", "sew in blowout", "sew in blow out", "k tips blowdry", "k-tips blowdry", "ktips blowdry", "k tips blow dry", "k-tips blow dry", "ktips blow dry", "blow out on sew in weave", "blowout on sew in weave", "wash blow dry with extensions", "wash and blow dry with extensions", "wig blowdry", "wig blow dry", "wig blowout"],
+  "Sew in / extensions blowdry & styling": ["extensions blowdry", "extensions blow dry", "extensions blowout", "extensions blow out", "extension blowdry", "extension blow dry", "extension blowout", "extension blow out", "blowdry with extensions", "blow dry with extensions", "blowout with extensions", "blow out with extensions", "weave blowdry", "weave blow dry", "weave blowout", "weave blow out", "sew in blowdry", "sew in blow dry", "sew-in blowdry", "sew-in blow dry", "sewin blowdry", "sewin blow dry", "sew in blowout", "sew in blow out", "k tips blowdry", "k-tips blowdry", "ktips blowdry", "k tips blow dry", "k-tips blow dry", "ktips blow dry", "blow out on sew in weave", "blowout on sew in weave", "wash blow dry with extensions", "wash and blow dry with extensions", "wig blowdry", "wig blow dry", "wig blowout"],
   "Butterfly locs": ["butterfly locs"],
   "Clip ins (+ silk press)": ["clip ins", "clip in"],
   "Closure sew-in": ["closure sew in", "closure sew-in", "closure sewin", "closure weave", "weave with lace closure", "closure behind the hairline"],
@@ -359,7 +363,7 @@ export const serviceNegationHints = {
   "Full head colour": ["full head colour", "full head color", "colour", "color", "dye", "tint"],
   "Hair botox": ["hair botox", "botox"],
   "Healthy hair plans & consultations": ["healthy hair", "healthy hair plan", "healthy hair plans", "healthy hair consultation", "healthy hair consultations", "healthy hair regime", "healthy hair regimes", "healthy hair regimen", "healthy hair journey", "hair growth plan", "hair health plan"],
-  "Fulani sew-in": ["fulani sew in", "fulani sewin", "fulani weave", "fulani quick weave"],
+  "Fulani sew-in / quick weave / half wig": ["fulani sew in", "fulani sewin", "fulani weave", "fulani quick weave"],
   "Boho sew-in": ["boho sew in", "boho sewin", "boho weave"],
   "Feed-in / stitch braid sew-in": ["feed in sew in", "feed ins sew in", "stitch braids sew in", "half feed in half sew in", "half feed ins half weave"],
   "Half up half down": ["half up half down"],
@@ -368,8 +372,10 @@ export const serviceNegationHints = {
   "K-tips + sew-in": ["k tip sew in", "k tips sew in", "hybrid k tips", "k tip hybrid"],
   "Hair loss systems (e.g. mesh)": ["mesh integration", "mesh integration system", "hair loss system", "hair loss systems", "hair loss weave", "hair loss unit", "hair integration"],
   "Japanese straightening": ["japanese straightening"],
-  "Cecred treatment": ["cecred", "cécred", "cecred treatment", "cécred treatment"],
+  "Cécred wash & treatment": ["cecred", "cécred", "cecred treatment", "cécred treatment", "cecred wash", "cécred wash"],
   "K18 treatment": ["k 18", "k18", "k-18"],
+  "Bond repair": ["bond repair", "bond builder", "bond building", "bond treatment", "wellaplex", "fibreplex"],
+  "Protein treatment": ["protein treatment", "protein mask", "aphogee", "k pak"],
   "K-tips / invisible strands": ["k tips", "invisible strands", "keratin tip", "keratin tips", "keratin bonds"],
   "Keratin treatment / Brazilian blowdry": ["keratin", "brazilian blow dry", "brazilian blowdry", "brazilian blow out", "brazilian blowout"],
   "Knotless braids": ["knotless"],
@@ -561,6 +567,20 @@ export function registerAdminStylistRoutes(app) {
       ...pricingUpdate,
       updatedAt: now,
     };
+    // Proof only covers services the salon still has; an older client that
+    // doesn't send serviceProof leaves the saved proof alone.
+    const nextServiceProof = sanitizeServiceProof(update.serviceProof !== undefined ? update.serviceProof : currentSalon.serviceProof, nextSalon.services);
+    if (Object.keys(nextServiceProof).length) {
+      nextSalon.serviceProof = nextServiceProof;
+    } else {
+      delete nextSalon.serviceProof;
+    }
+    const nextNeedsProof = sanitizeNeedsProof(update.needsProof !== undefined ? update.needsProof : currentSalon.needsProof, nextSalon);
+    if (Object.keys(nextNeedsProof).length) {
+      nextSalon.needsProof = nextNeedsProof;
+    } else {
+      delete nextSalon.needsProof;
+    }
 
     if (!nextSalon.areaIds) {
       delete nextSalon.areaIds;
@@ -616,10 +636,14 @@ export function registerAdminStylistRoutes(app) {
       count: manualIndex.salons.length,
     };
 
+    // `deprecate: true` comes from the health check's "Mark deprecated" action
+    // (links truly broken, no way to reach the stylist) — it parks the salon in
+    // Drafts as deprecated instead of ready_to_approve.
+    const deprecate = req.body?.deprecate === true;
     const store = await readDraftStore();
     const draft = {
       ...publishedSalonToDraft(salon, now),
-      status: "ready_to_approve",
+      status: deprecate ? "deprecated" : "ready_to_approve",
       updatedAt: now,
     };
     store.drafts = [draft, ...store.drafts.filter((item) => item.id !== draft.id)];
@@ -635,6 +659,17 @@ export function registerAdminStylistRoutes(app) {
     } else {
       await writeJson(manualIndexPath, manualIndex);
       await writeDraftStore(store);
+    }
+
+    // Any unpublish (deprecated or not) leaves nothing for the health check to act on.
+    const freshnessStore = await readFreshnessStore({ meta: { source: "freshness-checks", updatedAt: null, count: 0 }, checks: [], dismissedRecommendations: {} });
+    const remainingChecks = (freshnessStore.checks || []).filter((check) => check.id !== req.params.id);
+    if (remainingChecks.length !== (freshnessStore.checks || []).length) {
+      await writeFreshnessStore({
+        ...freshnessStore,
+        meta: { ...(freshnessStore.meta || {}), updatedAt: now, count: remainingChecks.length },
+        checks: remainingChecks,
+      });
     }
 
     res.json({ ok: true, draft, id: req.params.id });
@@ -1030,6 +1065,11 @@ export function registerAdminStylistRoutes(app) {
     const store = await readJson(healthCheckFeedbackPath, { meta: { source: "health-check-feedback" }, entries: [] });
     const entries = Array.isArray(store.entries) ? store.entries : [];
     res.json({ ok: true, entries: [...entries].reverse() });
+  });
+
+  app.get("/api/admin/health-check-learnings", requireAdmin, async (_req, res) => {
+    const store = await readJson(healthCheckFeedbackPath, { meta: { source: "health-check-feedback" }, entries: [] });
+    res.json({ ok: true, groups: buildHealthCheckLearnings(Array.isArray(store.entries) ? store.entries : []) });
   });
 
   // Shared by the manual "pick a stylist" action below and by draft
@@ -1703,7 +1743,10 @@ export function registerAdminStylistRoutes(app) {
     const manualIndex = await readJson(manualIndexPath, { meta: { source: "manual", count: 0 }, salons: [] });
     const salonsById = new Map((manualIndex.salons || []).map((salon) => [salon.id, salon]));
     const dismissedRecommendations = store.dismissedRecommendations || {};
+    // A check for a salon that's no longer published (unpublished/deprecated)
+    // has nothing left to act on, so it's left out.
     const checks = (store.checks || [])
+      .filter((check) => salonsById.has(check.id))
       .map((check) => hydrateFreshnessCheckFromSalon(check, salonsById.get(check.id)))
       .map((check) => applyDismissedRecommendationToCheck(check, dismissedRecommendations[check.id]))
       .filter(hasActionableFreshnessCheck);
@@ -1724,24 +1767,24 @@ export function registerAdminStylistRoutes(app) {
     const salonsById = new Map((manualIndex.salons || []).map((salon) => [salon.id, salon]));
     const checkedAt = cleanString(req.body?.checkedAt) || today();
     const dismissedRecommendations = existingStore.dismissedRecommendations || {};
+    // Every check is stored, including clean ones, so the scraped service lists
+    // stay searchable; readers filter down to actionable checks for review.
     const checks = (Array.isArray(req.body?.checks) ? req.body.checks : [])
       .map((check) => sanitizeFreshnessCheck(check, check?.id))
       .map((check) => hydrateFreshnessCheckFromSalon(check, salonsById.get(check?.id)))
-      .map((check) => applyDismissedRecommendationToCheck(check, dismissedRecommendations[check?.id]))
-      .filter(hasActionableFreshnessCheck);
+      .map((check) => applyDismissedRecommendationToCheck(check, dismissedRecommendations[check?.id]));
     const checkedCount = Number(req.body?.checkedCount) || 0;
     const total = Number(req.body?.total) || 0;
     const existingChecks = (Array.isArray(existingStore.checks) ? existingStore.checks : [])
       .map((check) => hydrateFreshnessCheckFromSalon(check, salonsById.get(check.id)))
-      .map((check) => applyDismissedRecommendationToCheck(check, dismissedRecommendations[check.id]))
-      .filter(hasActionableFreshnessCheck);
+      .map((check) => applyDismissedRecommendationToCheck(check, dismissedRecommendations[check.id]));
 
     if (checks.length === 0 && existingChecks.length > 0 && checkedCount < total) {
       return res.json({
         ok: true,
         ...(existingStore.meta || {}),
         checkedAt: existingStore.meta?.updatedAt ?? null,
-        checks: existingChecks,
+        checks: existingChecks.filter(hasActionableFreshnessCheck),
         preserved: true,
         message: "Preserved previous health check results because the submitted run was incomplete and empty.",
       });
@@ -1759,7 +1802,7 @@ export function registerAdminStylistRoutes(app) {
       checks,
     };
     await writeFreshnessStore(payload);
-    res.json({ ok: true, ...payload.meta, checkedAt, checks });
+    res.json({ ok: true, ...payload.meta, checkedAt, checks: checks.filter(hasActionableFreshnessCheck) });
   });
 
   app.get("/api/admin/stylists/checks", requireAdmin, adminExpensiveRateLimit, async (req, res) => {
@@ -1785,10 +1828,10 @@ export function registerAdminStylistRoutes(app) {
     const existingStore = await readFreshnessStore({ meta: { source: "freshness-checks", updatedAt: null, count: 0 }, checks: [], dismissedRecommendations: {} });
     const dismissedRecommendations = existingStore.dismissedRecommendations || {};
     const salonsById = new Map((manualIndex.salons || []).map((salon) => [salon.id, salon]));
-    const existingReviewChecks = (existingStore.checks || [])
+    const existingStoredChecks = (existingStore.checks || [])
       .map((check) => hydrateFreshnessCheckFromSalon(check, salonsById.get(check.id)))
-      .map((check) => applyDismissedRecommendationToCheck(check, dismissedRecommendations[check.id]))
-      .filter(hasActionableFreshnessCheck);
+      .map((check) => applyDismissedRecommendationToCheck(check, dismissedRecommendations[check.id]));
+    const existingReviewChecks = existingStoredChecks.filter(hasActionableFreshnessCheck);
     const existingChecksById = new Map((existingStore.checks || []).map((check) => [check.id, check]));
     const checks = await mapWithConcurrency(batchSalons, isHostedRuntime() ? 2 : 6, (salon) => mode === "pricing"
       ? checkPricingFreshness(salon, dismissedRecommendations[salon.id])
@@ -1852,7 +1895,15 @@ export function registerAdminStylistRoutes(app) {
     const reviewChecks = mode === "pricing"
       ? checks.map((check) => applyDismissedRecommendationToCheck(check, dismissedRecommendations[check.id])).filter(hasVisibleMissingPriceBackfillResult)
       : actionableChecks.map(stripAutoAppliedPriceCheck).filter(hasActionableFreshnessCheck);
-    const mergedChecks = offset > 0 ? mergeFreshnessChecks(existingReviewChecks, reviewChecks) : reviewChecks;
+    // Freshness runs keep clean checks too, so every salon's scraped services are stored.
+    const storedChecks = mode === "pricing"
+      ? []
+      : checks
+        .map((check) => applyDismissedRecommendationToCheck(check, dismissedRecommendations[check.id]))
+        .map(stripAutoAppliedPriceCheck);
+    const mergedChecks = mode === "pricing"
+      ? (offset > 0 ? mergeFreshnessChecks(existingReviewChecks, reviewChecks) : reviewChecks)
+      : (offset > 0 ? mergeFreshnessChecks(existingStoredChecks, storedChecks) : storedChecks);
 
     const checkedCount = Math.min(offset + batchSalons.length, candidateSalons.length);
     const persistedChecks = mode === "pricing"
@@ -1874,6 +1925,7 @@ export function registerAdminStylistRoutes(app) {
     res.json({
       ok: true,
       checks: reviewChecks,
+      ...(mode === "pricing" ? {} : { storedChecks }),
       checkedAt,
       mode,
       summary: mode === "pricing" ? summarizeMissingPriceBackfillResults(checks) : null,
@@ -2046,7 +2098,7 @@ export function registerAdminStylistRoutes(app) {
       results: sanitizeKeywordSearchResults(req.body?.results),
       createdAt: existing?.createdAt || now,
       updatedAt: now,
-      lastRunAt: cleanString(req.body?.lastRunAt) || now,
+      lastRunAt: (cleanString(req.body?.lastRunAt) || now).slice(0, 10),
     });
     const searches = existingIndex >= 0
       ? store.searches.map((search, index) => (index === existingIndex ? savedSearch : search))
@@ -2160,6 +2212,13 @@ export function registerAdminStylistRoutes(app) {
       ...sanitizeFreshnessPricingUpdate(req.body || {}, salon),
       services: nextServices,
     };
+    const incomingProof = sanitizeServiceProof(req.body?.serviceProof, nextServices);
+    const mergedProof = sanitizeServiceProof({ ...(salon.serviceProof || {}), ...incomingProof }, nextServices);
+    if (Object.keys(mergedProof).length) {
+      manualIndex.salons[salonIndex].serviceProof = mergedProof;
+    } else {
+      delete manualIndex.salons[salonIndex].serviceProof;
+    }
     if (!manualIndex.salons[salonIndex].areaIds) {
       delete manualIndex.salons[salonIndex].areaIds;
     }
@@ -2183,7 +2242,8 @@ export function registerAdminStylistRoutes(app) {
       locationAreaIds.length ||
       typeof req.body?.bookingUrl === "string" ||
       typeof req.body?.instagramUrl === "string" ||
-      typeof req.body?.websiteUrl === "string"
+      typeof req.body?.websiteUrl === "string" ||
+      Object.keys(incomingProof).length
     ) {
       await writeJson(manualIndexPath, manualIndex);
     }
@@ -2233,11 +2293,11 @@ export function registerAdminStylistRoutes(app) {
         rejectedEvidence: Array.isArray(req.body?.feedbackRejectedEvidence)
           ? req.body.feedbackRejectedEvidence
               .map((item) => ({
-                kind: item?.kind === "add" ? "add" : "attribute",
+                kind: item?.kind === "add" || item?.kind === "remove" ? item.kind : "attribute",
                 field: cleanString(item?.field),
                 evidenceText: cleanString(item?.evidenceText),
               }))
-              .filter((item) => item.evidenceText && (item.kind === "add" ? validServiceNames.has(item.field) : validAttributeFields.has(item.field)))
+              .filter((item) => item.evidenceText && (item.kind === "attribute" ? validAttributeFields.has(item.field) : validServiceNames.has(item.field)))
           : [],
       });
     }
@@ -2613,7 +2673,9 @@ export function registerAdminStylistRoutes(app) {
 
     const manualIndex = await readJson(manualIndexPath, { meta: { source: "manual" }, salons: [] });
     const otherDrafts = store.drafts.filter((draft) => draft.id !== req.params.id);
-    const duplicates = findDraftDuplicates(updatedDraft, { drafts: otherDrafts, salons: manualIndex.salons });
+    // Marking a draft deprecated is retiring it, so a possible duplicate
+    // shouldn't block that.
+    const duplicates = updatedDraft.status === "deprecated" ? [] : findDraftDuplicates(updatedDraft, { drafts: otherDrafts, salons: manualIndex.salons });
     if (duplicates.length) {
       return res.status(409).json({ ok: false, message: formatDuplicateMessage(duplicates), duplicates });
     }
@@ -3205,6 +3267,10 @@ async function migrateRenamedServices(renames) {
       salon.services = next;
       manualChanged = true;
     }
+    if (salon.serviceProof && Object.keys(salon.serviceProof).some((s) => renameMap[s])) {
+      salon.serviceProof = Object.fromEntries(Object.entries(salon.serviceProof).map(([s, proof]) => [renameMap[s] ?? s, proof]));
+      manualChanged = true;
+    }
   }
   if (manualChanged) await writeJson(manualIndexPath, manualData);
 
@@ -3560,6 +3626,8 @@ async function logHealthCheckFeedback({ salonId, salonName, reason, context, rej
     createdAt: today(),
   });
   await writeJson(healthCheckFeedbackPath, { ...store, entries });
+  // So a line confirmed here is recognised on the very next check.
+  await loadLearnedExclusions().catch(() => {});
 }
 
 // Builds { attribute: Map<field, Set<evidence>>, add: Map<service, Set<evidence>> }
@@ -3583,22 +3651,189 @@ async function logHealthCheckFeedback({ salonId, salonName, reason, context, rej
 // areas rather than a single evidence phrase. Those rejections still get
 // logged with their reason for a person to turn into a real fix, same as
 // before this function existed.
-async function loadLearnedExclusions() {
+//
+// The one positive kind: declining a "remove X" suggestion with the line that
+// proves X is still offered ("remove" items, or a quoted line in the reason of
+// older feedback). Those lines go into learnedServiceLines, which the matcher
+// treats as an exact phrase for X on every salon.
+export async function loadLearnedExclusions() {
   const store = await readJson(healthCheckFeedbackPath, { meta: { source: "health-check-feedback" }, entries: [] });
   const entries = Array.isArray(store.entries) ? store.entries : [];
-  const exclusions = { attribute: new Map(), add: new Map() };
+  const exclusions = { attribute: new Map(), add: new Map(), confirm: new Map() };
   for (const entry of entries) {
-    for (const item of entry.rejectedEvidence || []) {
-      if (!item?.field || !item?.evidenceText) continue;
-      const kind = item.kind === "add" ? "add" : "attribute";
-      const normalized = normalizeServiceText(item.evidenceText);
+    for (const item of getFeedbackEvidenceItems(entry)) {
+      const kind = item.kind === "add" || item.kind === "remove" ? (item.kind === "remove" ? "confirm" : "add") : "attribute";
+      const normalized = kind === "confirm" ? normalizeLearnedServiceLine(item.evidenceText) : normalizeServiceText(item.evidenceText);
       if (!normalized) continue;
       const byField = exclusions[kind];
       if (!byField.has(item.field)) byField.set(item.field, new Set());
       byField.get(item.field).add(normalized);
     }
   }
+  learnedServiceLines = exclusions.confirm;
   return exclusions;
+}
+
+// rejectedEvidence, plus confirm lines recovered from older removal declines
+// that quoted the service in the reason but predate "remove" evidence items.
+export function getFeedbackEvidenceItems(entry) {
+  const items = (entry?.rejectedEvidence || []).filter((item) => item?.field && item?.evidenceText);
+  const context = Array.isArray(entry?.context) ? entry.context : [];
+  if (items.length || context.length !== 1) return items;
+  const [service] = normalizeServices(context);
+  if (!service || !canonicalServices.includes(service)) return items;
+  return [...String(entry.reason || "").matchAll(/["“”]([^"“”]{3,200})["“”]/g)].map((match) => ({ kind: "remove", field: service, evidenceText: match[1].trim() }));
+}
+
+// Price and duration are noise around a quoted service name ("Hair wash 35
+// minutes @ £30.00"), so they're dropped before the phrase is compared.
+function normalizeLearnedServiceLine(text) {
+  const cleaned = String(text || "")
+    .replace(/[£$€]\s*\d+(?:[.,]\d+)?/g, " ")
+    .replace(/\b\d+\s*(?:mins?|minutes?|hrs?|hours?)\b/gi, " ")
+    .replace(/@/g, " ");
+  return normalizeServiceText(cleaned);
+}
+
+// Service → normalised lines the admin confirmed mean that service. Refreshed
+// by loadLearnedExclusions(); matchServiceLines() reads it synchronously.
+let learnedServiceLines = new Map();
+loadLearnedExclusions().catch(() => {});
+
+function getLearnedServicesForLine(line) {
+  if (!learnedServiceLines.size) return [];
+  const normalized = normalizeServiceText(line);
+  if (!normalized) return [];
+  const words = normalized.split(" ").length;
+  const services = [];
+  for (const [service, phrases] of learnedServiceLines) {
+    for (const phrase of phrases) {
+      // Exact, the page line contains the phrase, or (for lines of 4+ words)
+      // the phrase contains the page line — the quote often adds a price.
+      if (phrase === normalized || (phrase.split(" ").length >= 2 && ` ${normalized} `.includes(` ${phrase} `)) || (words >= 4 && ` ${phrase} `.includes(` ${normalized} `))) {
+        services.push(service);
+        break;
+      }
+    }
+  }
+  return services;
+}
+
+// Groups every declined health check suggestion by what was suggested, and
+// re-runs each declined phrase through today's rules (ignoring the learned
+// exclusions) so the admin Learnings view can show which patterns a code fix
+// has already cleared and which the rules would still raise if the exact
+// wording weren't remembered. Declines with no evidence phrase (removals,
+// price, location, or an Ignore without a reason) can't be re-tested — they're
+// grouped by suggestion label as "logged only".
+const LEARNING_RECURRING_THRESHOLD = 3;
+
+function buildHealthCheckLearnings(entries) {
+  const groups = new Map();
+  const groupFor = (key, seed) => {
+    if (!groups.has(key)) {
+      groups.set(key, { ...seed, declines: 0, salonIds: new Set(), lastSeen: "", reasons: new Map(), examples: new Map() });
+    }
+    return groups.get(key);
+  };
+
+  for (const entry of entries) {
+    const createdAt = String(entry.createdAt || "").slice(0, 10);
+    const reason = cleanString(entry.reason);
+    const touched = new Set();
+    const evidenceItems = getFeedbackEvidenceItems(entry);
+    const learningKind = (item) => (item.kind === "add" ? "add" : item.kind === "remove" ? "confirm" : "attribute");
+    const targets = evidenceItems.length
+      ? evidenceItems.map((item) => ({
+          key: `${learningKind(item)}:${item.field}`,
+          seed: {
+            kind: learningKind(item),
+            field: item.field,
+            label: item.kind === "add" ? `Add ${item.field}` : item.kind === "remove" ? `Keep ${item.field}` : attributeSuggestionConfig[item.field]?.label || item.field,
+          },
+          evidenceText: item.evidenceText,
+        }))
+      : (Array.isArray(entry.context) ? entry.context : []).filter(Boolean).map((label) => ({
+          key: `other:${label}`,
+          seed: { kind: "other", field: "", label },
+          evidenceText: "",
+        }));
+
+    for (const target of targets) {
+      const group = groupFor(target.key, target.seed);
+      if (!touched.has(target.key)) {
+        touched.add(target.key);
+        group.declines += 1;
+        if (entry.salonId) group.salonIds.add(entry.salonId);
+        if (createdAt > group.lastSeen) group.lastSeen = createdAt;
+        if (reason) group.reasons.set(reason, (group.reasons.get(reason) || 0) + 1);
+      }
+      if (target.evidenceText) {
+        const normalized = normalizeServiceText(target.evidenceText);
+        if (normalized && !group.examples.has(normalized)) {
+          group.examples.set(normalized, { text: target.evidenceText, salonName: entry.salonName || "" });
+        }
+      }
+    }
+  }
+
+  return [...groups.values()]
+    .map((group) => {
+      const examples = [...group.examples.values()].map((example) => ({
+        ...example,
+        // For "confirm" groups this means the line is now recognised (good).
+        stillMatches: group.kind === "add" || group.kind === "confirm"
+          ? matchServices([example.text]).includes(group.field)
+          : group.kind === "attribute"
+            ? findNeedsEvidence(example.text, group.field).length > 0
+            : null,
+      }));
+      const testable = group.kind !== "other" && examples.length > 0;
+      const stillMatching = examples.filter((example) => example.stillMatches === true).length;
+      return {
+        key: `${group.kind}:${group.field || group.label}`,
+        kind: group.kind,
+        field: group.field,
+        label: group.label,
+        declines: group.declines,
+        salons: group.salonIds.size,
+        lastSeen: group.lastSeen,
+        recurring: group.declines >= LEARNING_RECURRING_THRESHOLD,
+        status: !testable ? "logged" : group.kind === "confirm" ? (stillMatching === examples.length ? "fixed" : "needs-fix") : stillMatching === 0 ? "fixed" : "needs-fix",
+        stillMatching,
+        reasons: [...group.reasons.entries()]
+          .sort((left, right) => right[1] - left[1])
+          .slice(0, 6)
+          .map(([text, count]) => ({ text, count })),
+        examples: examples.sort((left, right) => Number(right.stillMatches === true) - Number(left.stillMatches === true)),
+      };
+    })
+    .sort((left, right) => {
+      const rank = { "needs-fix": 0, logged: 1, fixed: 2 };
+      return rank[left.status] - rank[right.status] || right.declines - left.declines;
+    });
+}
+
+// True when `text` matches wording an admin already rejected for this field —
+// exactly, or as a near-match where one contains the other ("Parking is
+// limited" also catches "Parking is limited, you may have to park far").
+// The shorter side must be at least LEARNED_MATCH_MIN_WORDS words, so a
+// rejected one-word line ("PARKING", "Treatment") stays exact-only rather
+// than suppressing every line that happens to contain that word.
+const LEARNED_MATCH_MIN_WORDS = 3;
+
+function isLearnedRejectedText(rejectedTexts, text) {
+  if (!rejectedTexts?.size) return false;
+  const normalized = normalizeServiceText(text);
+  if (!normalized) return false;
+  if (rejectedTexts.has(normalized)) return true;
+  for (const rejected of rejectedTexts) {
+    const [shorter, longer] = rejected.length <= normalized.length ? [rejected, normalized] : [normalized, rejected];
+    if (shorter.split(" ").length >= LEARNED_MATCH_MIN_WORDS && ` ${longer} `.includes(` ${shorter} `)) {
+      return true;
+    }
+  }
+  return false;
 }
 
 async function writeJson(filePath, payload) {
@@ -3908,6 +4143,7 @@ async function updateFreshnessReview(salonId, {
     areaIds,
     areaLabel,
     rawServices: actionCheck?.serviceCheck?.rawServices || [],
+    serviceEvidence: actionCheck?.serviceCheck?.serviceEvidence || null,
   });
   const checks = (store.checks || [])
     .map((check) => {
@@ -3969,8 +4205,7 @@ async function updateFreshnessReview(salonId, {
         ...(reviewedPrice ? { priceCheck: emptyPriceCheck(check.priceCheck?.source || "") } : {}),
         reviewedAt: today(),
       };
-    })
-    .filter(hasActionableFreshnessCheck);
+    });
 
   await writeFreshnessStore({
     meta: {
@@ -3983,7 +4218,8 @@ async function updateFreshnessReview(salonId, {
     checks,
   });
 
-  return checks.find((check) => check.id === salonId) || null;
+  const reviewedCheck = checks.find((check) => check.id === salonId);
+  return reviewedCheck && hasActionableFreshnessCheck(reviewedCheck) ? reviewedCheck : null;
 }
 
 function getReviewedLinkTypes({ bookingUrl, instagramUrl, websiteUrl }) {
@@ -4071,6 +4307,7 @@ function updateDismissedRecommendations(dismissedRecommendations, salonId, {
   areaIds = [],
   areaLabel = "",
   rawServices = [],
+  serviceEvidence = null,
 }) {
   const reviewedAdds = normalizeServices([...addServices, ...rejectAddedServices]);
   const reviewedRemoves = normalizeServices([...removeServices, ...rejectRemovedServices]);
@@ -4112,7 +4349,7 @@ function updateDismissedRecommendations(dismissedRecommendations, salonId, {
   const current = dismissedRecommendations[salonId] || {};
   const addedServiceEvidence = { ...(current.addedServiceEvidence || {}) };
   reviewedAdds.forEach((service) => {
-    const evidence = getServiceEvidence(rawServices, service);
+    const evidence = getServiceEvidence(rawServices, service, serviceEvidence);
     if (evidence.length) {
       addedServiceEvidence[service] = [...new Set([...(addedServiceEvidence[service] || []), ...evidence])];
     }
@@ -4196,7 +4433,7 @@ function buildHandledFingerprintsForUpdate(check, update = {}) {
 
   const fingerprints = [];
   normalizeServices([...(update.addServices || []), ...(update.rejectAddedServices || [])]).forEach((service) => {
-    fingerprints.push(serviceRecommendationFingerprint("add", service, getServiceEvidence(check.serviceCheck?.rawServices || [], service)));
+    fingerprints.push(serviceRecommendationFingerprint("add", service, getServiceEvidence(check.serviceCheck?.rawServices || [], service, check.serviceCheck?.serviceEvidence)));
   });
   normalizeServices([...(update.removeServices || []), ...(update.rejectRemovedServices || [])]).forEach((service) => {
     fingerprints.push(serviceRecommendationFingerprint("remove", service));
@@ -4432,14 +4669,76 @@ function sanitizeFreshnessCheck(check, salonId) {
   };
 }
 
+// Proof an admin attached to a service (a TikTok/Instagram post or comment, a
+// message, ...) for services that aren't on any booking site. A service with
+// proof is never suggested for removal. Proof doesn't expire, and it's
+// admin-only — readSalonIndex() strips it from the public data.
+const serviceProofSources = ["tiktok-post", "tiktok-comment", "instagram-post", "instagram-comment", "message", "booking-site", "in-person", "health-check", "other"];
+
+function sanitizeServiceProof(input, services) {
+  if (!input || typeof input !== "object" || Array.isArray(input)) {
+    return {};
+  }
+  const allowedServices = new Set(normalizeServices(services || []));
+  const keyed = {};
+  for (const [rawService, entry] of Object.entries(input)) {
+    const [service] = normalizeServices([rawService]);
+    if (service && allowedServices.has(service)) keyed[service] = entry;
+  }
+  return sanitizeServiceProofEntries(keyed);
+}
+
+// Validates each { source, url?, note?, addedAt } entry: needs an http(s) link
+// or a note; date-only stamp.
+function sanitizeServiceProofEntries(input) {
+  const proof = {};
+  for (const [service, entry] of Object.entries(input)) {
+    if (!entry || typeof entry !== "object") continue;
+    const rawUrl = cleanString(entry.url);
+    const url = /^https?:\/\//i.test(rawUrl) ? rawUrl.slice(0, 1000) : "";
+    const note = cleanString(entry.note).slice(0, 1000);
+    if (!url && !note) continue;
+    const source = serviceProofSources.includes(entry.source) ? entry.source : "other";
+    const addedAt = /^\d{4}-\d{2}-\d{2}$/.test(cleanString(entry.addedAt)) ? cleanString(entry.addedAt) : today();
+    proof[service] = { source, ...(url ? { url } : {}), ...(note ? { note } : {}), addedAt };
+  }
+  return proof;
+}
+
+// Same proof shape for additional needs (keyed by field, e.g. hijabiFriendly),
+// kept only for needs that are switched on. The health check only ever
+// suggests adding a need, so today this is a record of why one is on.
+function sanitizeNeedsProof(input, flags = {}) {
+  if (!input || typeof input !== "object" || Array.isArray(input)) {
+    return {};
+  }
+  const enabledFields = Object.keys(attributeSuggestionConfig).filter((field) => flags[field] === true);
+  const keyed = Object.fromEntries(Object.entries(input).filter(([field]) => enabledFields.includes(field)));
+  // sanitizeServiceProof's service-name normalisation would drop field keys,
+  // so validate each entry by passing the field through as its own "service".
+  return Object.fromEntries(
+    Object.entries(keyed).flatMap(([field, entry]) => {
+      const [sanitized] = Object.values(sanitizeServiceProofEntries({ [field]: entry }));
+      return sanitized ? [[field, sanitized]] : [];
+    }),
+  );
+}
+
+function getProofedServices(salon = {}) {
+  const proof = salon?.serviceProof;
+  return new Set(proof && typeof proof === "object" ? Object.keys(proof) : []);
+}
+
 function hydrateFreshnessCheckFromSalon(check, salon = {}) {
   if (!check) {
     return null;
   }
 
   const savedPriceBand = sanitizePriceBand(salon.priceBand || check.priceBand);
+  const proofedServices = getProofedServices(salon);
   const next = {
     ...check,
+    removedServices: toArray(check.removedServices).filter((service) => !proofedServices.has(service)),
     hijabiFriendly: salon.hijabiFriendly === true || check.hijabiFriendly === true,
     wheelchairAccessible: salon.wheelchairAccessible === true || check.wheelchairAccessible === true,
     priceBand: savedPriceBand,
@@ -4493,7 +4792,7 @@ function applyDismissedRecommendationToCheck(check, dismissedRecommendation = {}
     if (!hasServiceDismissals && dismissedAddedServices.includes(service)) {
       return false;
     }
-    return !dismissedFingerprints.has(serviceRecommendationFingerprint("add", service, getServiceEvidence(next.serviceCheck?.rawServices || [], service)));
+    return !dismissedFingerprints.has(serviceRecommendationFingerprint("add", service, getServiceEvidence(next.serviceCheck?.rawServices || [], service, next.serviceCheck?.serviceEvidence)));
   });
   next.removedServices = next.removedServices.filter((service) => {
     if (!hasServiceDismissals && dismissedRemovedServices.includes(service)) {
@@ -4843,9 +5142,9 @@ async function checkSalonFreshness(salon, dismissedRecommendation = {}, previous
       return false;
     }
 
-    const addEvidence = getServiceEvidence(serviceCheck.rawServices, service);
+    const addEvidence = getServiceEvidence(serviceCheck.rawServices, service, serviceCheck.serviceEvidence);
     const rejectedAddEvidence = learnedExclusions.add.get(service);
-    if (rejectedAddEvidence && addEvidence.length && addEvidence.every((line) => rejectedAddEvidence.has(normalizeServiceText(line)))) {
+    if (addEvidence.length && addEvidence.every((line) => isLearnedRejectedText(rejectedAddEvidence, line))) {
       return false;
     }
 
@@ -4862,7 +5161,7 @@ async function checkSalonFreshness(salon, dismissedRecommendation = {}, previous
   });
   const removedServices =
     serviceCheck.confidence === "medium" || serviceCheck.confidence === "high"
-      ? currentServices.filter((service) => !detectedServices.includes(service) && (!hasServiceDismissals ? !dismissedRemovedServices.includes(service) : true) && !dismissedFingerprints.has(serviceRecommendationFingerprint("remove", service)))
+      ? currentServices.filter((service) => !detectedServices.includes(service) && !getProofedServices(salon).has(service) && (!hasServiceDismissals ? !dismissedRemovedServices.includes(service) : true) && !dismissedFingerprints.has(serviceRecommendationFingerprint("remove", service)))
       : [];
 
   if (addedServices.length > 0) {
@@ -5150,7 +5449,7 @@ function buildAttributeSuggestions(salon, sources, dismissedRecommendation = {},
     const rejectedTexts = learnedExclusions?.get(field);
     const evidence = Object.entries(sources)
       .flatMap(([source, text]) => config.evidenceFinder(text).map((line) => ({ source, text: line })))
-      .filter((item) => !rejectedTexts || !rejectedTexts.has(normalizeServiceText(item.text)))
+      .filter((item) => !isLearnedRejectedText(rejectedTexts, item.text))
       .slice(0, 6);
 
     return evidence.length
@@ -5189,28 +5488,74 @@ const needsAliases = {
   wheelchairAccessible: ["wheelchair accessible", "wheelchair access", "wheelchair friendly", "step free access", "disabled access", "accessible entrance"],
   senFriendly: ["sen friendly", "send friendly", "send welcome", "sensory safe", "sensory friendly", "neurodivergent", "neurodiverse", "neurodivergent friendly", "autism friendly", "autistic friendly", "additional needs friendly", "additional needs welcome", "additional needs", "special educational needs", "special needs education"],
   lgbtqFriendly: ["queer friendly", "gay friendly", "queer", "queer owned", "queer-owned"],
-  parkingAvailable: ["parking"],
+  parkingAvailable: ["free parking", "parking available", "parking is available", "parking spaces available", "on site parking", "onsite parking", "off street parking", "street parking", "parking nearby", "nearby parking", "parking outside", "parking on site", "car park", "customer parking", "private parking", "plenty of parking", "ample parking", "pay and display"],
   canBraidWithoutGel: ["gel free", "no gel", "without gel", "gel free braiding"],
   sellsHairSeparately: ["hair sold separately", "sells hair", "hair for sale", "buy hair from us", "hair available to purchase", "hair extensions for sale"],
-  sameDayEmergency: ["same day appointment", "same day emergency", "emergency appointment", "last minute appointment", "same day booking", "emergency booking", "walk in", "walk ins", "walk-in", "walk-ins"],
+  // "Emergency appointment" wording is deliberately absent: stylists use it for
+  // a paid surcharge slot, not routine same-day availability. Bare "walk in"
+  // (singular) is absent too — it's almost always the verb ("from the moment
+  // you walk in"); the plural or "walk-in appointment(s)" is the noun.
+  // "Last minute appointments" is absent as well: it means cancellation slots
+  // or a squeeze-in, not something the salon ordinarily offers.
+  sameDayEmergency: ["same day appointment", "same day appointments", "same day booking", "same day bookings", "walk ins", "walk in appointment", "walk in appointments", "walk ins welcome", "walk in welcome"],
 };
 
 // Bare "sen"/"send" alone are far too common in ordinary booking copy ("send
-// us a DM", "send payment in advance") to treat as SEN/SEND evidence on their
-// own, so require the acronym to co-occur on the same line with an actual
-// accessibility-context word — order-agnostic, since real phrasing goes both
-// ways ("SEND-friendly" vs. "we welcome children with SEN"). "clients?" /
-// "kids?" / "children" / "families?" used to also count, but a real Instagram
-// caption ("...for my beautiful client... Send Us a DM") confirmed live that
-// they're common enough in totally unrelated sentences to false-positive on
-// their own — genuine SEN-friendly copy essentially always also carries one
-// of the words below, so dropping them costs little real coverage.
+// us a DM", "send payment in advance") to treat as SEN/SEND evidence, so the
+// acronym has to sit right next to its context ("SEN-friendly", "SEND
+// support", "SEN/SEND", "children with SEND"). Merely sharing a line with a
+// context word wasn't enough — "you will need to send your frontal" and "send
+// me a DM if you need" were the main source of declined suggestions. Words
+// like "children"/"kids"/"clients" after the acronym stay out too: "send
+// clients"/"send kids" reads as the verb far more often than not.
 function hasSenAcronymContext(line) {
   return (
-    /\bsend?\b/i.test(line) &&
-    /\b(friendly|safe|welcome|support|needs?)\b/i.test(line)
+    /\bsend?[\s/&-]*(friendly|safe|welcome|welcomed|support|needs)\b/i.test(line) ||
+    /\bsen\s*\/\s*send\b/i.test(line) ||
+    /\b(with|for)\s+send?\b(?=\s*($|[,;:)!/&]|\s+(and|or)\b))/i.test(line)
   );
 }
+
+// Lines that contain the right words but are a question to the client, a
+// negation, or a caveat — learned from declined suggestions ("Parking is
+// limited", "Do you have parking available?", "We don't accept walk-ins").
+const needsLineExclusions = {
+  parkingAvailable: [
+    /\?/,
+    /\blimited\b/i,
+    /\bno\s+parking\b/i,
+    /\b(not|don'?t|do\s+not|doesn'?t|isn'?t|aren'?t)\b[^.]*\bpark/i,
+    /\brestrictions?\b/i,
+    /\b(confirm|check)\b[^.]*\bparking\b/i,
+    /\b(find|finding)\s+parking\b/i,
+    /\bparking\s+costs?\b/i,
+    /\bresponsible\b/i,
+  ],
+  sameDayEmergency: [
+    /\?/,
+    /\b(no|not|don'?t|do\s+not|doesn'?t|cannot|can'?t|won'?t)\b[^.]*\b(walk|same\s*day|last\s*minute)/i,
+    /\bwalk[\s-]*ins?\b[^.]*\b(not|no\s+longer)\b/i,
+    /\bwithout\s+prior\b/i,
+    // Same-day slots that cost extra are a paid emergency service, not
+    // routine same-day availability.
+    /\bemergency\b/i,
+    /\b(fees?|surcharges?|charged?|charges|incurs?|incurred|premium|additional\s+cost|extra\s+cost|extra)\b/i,
+    /£\s*\d/,
+    /\b(moment|soon\s+as|when)\b[^.]*\bwalk\s+in\b/i,
+    /\bwalk\s+in(to)?\s+the\s+door\b/i,
+    /\bsqueeze[\s-]*ins?\b/i,
+    /\bcancell?ations?\b/i,
+    /\bnotice\b/i,
+  ],
+};
+
+// The fee for a same-day slot is often on the next line of a banner
+// ("Same-day appointments" / "incur a £30 fee"), so the whole text is checked.
+const needsTextExclusions = {
+  sameDayEmergency: [
+    /same[\s-]*day[\s\S]{0,160}?(£\s*\d|\bfees?\b|\bsurcharges?\b|\bcharged?\b|\bincurs?\b|\bextra\b)/i,
+  ],
+};
 
 const needsAcronymGuards = {
   senFriendly: hasSenAcronymContext,
@@ -5240,6 +5585,10 @@ function findNeedsEvidence(value, field) {
     return [];
   }
 
+  if ((needsTextExclusions[field] || []).some((exclusion) => exclusion.test(text))) {
+    return [];
+  }
+
   const pattern = needsAliasPatterns[field];
   const guard = needsAcronymGuards[field];
   return [...new Set(
@@ -5247,6 +5596,7 @@ function findNeedsEvidence(value, field) {
       .split(/\n|\.|•|·|\|/)
       .map((line) => line.replace(/\s+/g, " ").trim())
       .filter((line) => (pattern && pattern.test(line)) || (guard && guard(line)))
+      .filter((line) => !(needsLineExclusions[field] || []).some((exclusion) => exclusion.test(line)))
       .filter((line) => line.length >= 4 && line.length <= 180),
   )].slice(0, 4);
 }
@@ -5322,7 +5672,12 @@ function hasDismissedFamilyContext(rawServices = [], service) {
   return false;
 }
 
-function getServiceEvidence(rawServices = [], service) {
+function getServiceEvidence(rawServices = [], service, serviceEvidence = null) {
+  const matchedLines = serviceEvidence?.[service]?.length ? serviceEvidence[service] : buildServiceEvidence(rawServices)[service];
+  if (matchedLines?.length) {
+    return matchedLines.slice(0, 4);
+  }
+
   const keywords = serviceEvidenceKeywords[service] || service.toLowerCase().split(/\s+|\/|\(|\)|-/).filter((word) => word.length > 3);
   const normalizedKeywords = keywords.map(normalizeServiceText);
   const matches = rawServices.filter((line) => {
@@ -5350,7 +5705,7 @@ const serviceEvidenceKeywords = {
   "Pixie wig / weave install": ["pixie wig", "pixie weave", "pixie install", "pixie cut wig making", "pixie cut wig making styling"],
   "Tracks (+ silk press) / partial / invisible sew-in": ["tracks", "track per row", "per track", "per row", "one row", "individual sewn on track", "individual sewn on tracks", "tracks add on", "tracks add-on", "silk press add on tracks", "silk press add-on tracks", "sew in tracks", "sew-in tracks", "weave tracks", "single track weave"],
   "Twists (with extensions)": ["twists with extensions", "passion twists", "marley twists", "senegalese twists", "kinky twists", "rope twists", "island twists", "island twist", "large twist", "large twists"],
-  "Sew in / extensions blowdry": ["extensions blowdry", "extensions blow dry", "extensions blowout", "extensions blow out", "extension blowdry", "extension blow dry", "extension blowout", "extension blow out", "blowdry with extensions", "blow dry with extensions", "blowout with extensions", "blow out with extensions", "weave blowdry", "weave blow dry", "weave blowout", "weave blow out", "sew in blowdry", "sew in blow dry", "sew-in blowdry", "sew-in blow dry", "sewin blowdry", "sewin blow dry", "sew in blowout", "sew in blow out", "k tips blowdry", "k-tips blowdry", "ktips blowdry", "k tips blow dry", "k-tips blow dry", "ktips blow dry", "blow out on sew in weave", "blowout on sew in weave", "wash blow dry with extensions", "wash and blow dry with extensions", "wig blowdry", "wig blow dry", "wig blowout"],
+  "Sew in / extensions blowdry & styling": ["extensions blowdry", "extensions blow dry", "extensions blowout", "extensions blow out", "extension blowdry", "extension blow dry", "extension blowout", "extension blow out", "blowdry with extensions", "blow dry with extensions", "blowout with extensions", "blow out with extensions", "weave blowdry", "weave blow dry", "weave blowout", "weave blow out", "sew in blowdry", "sew in blow dry", "sew-in blowdry", "sew-in blow dry", "sewin blowdry", "sewin blow dry", "sew in blowout", "sew in blow out", "k tips blowdry", "k-tips blowdry", "ktips blowdry", "k tips blow dry", "k-tips blow dry", "ktips blow dry", "blow out on sew in weave", "blowout on sew in weave", "wash blow dry with extensions", "wash and blow dry with extensions", "wig blowdry", "wig blow dry", "wig blowout"],
   "Wash & blowdry": ["wash blowdry", "wash blow dry", "wash and blowdry", "wash and blow dry", "washing blow drying", "washing and blow drying", "shampoo blowdry", "shampoo blow dry", "shampoo and blowdry", "shampoo and blow dry"],
   "Japanese head spa": ["japanese head spa", "head spa", "headspa"],
   "Wig cornrows": ["under wig", "wig cornrows", "wig cainrows", "cornrows for wig installation", "cornrows without extensions", "cainrows"],
@@ -5660,6 +6015,7 @@ function extractBookingServicesFromHtml(html) {
     confidence: structured.rawServices.length >= 3 && matchedServices.length > 0 ? "high" : rawServices.length >= 5 && matchedServices.length > 0 ? "medium" : matchedServices.length > 0 ? "low" : "unknown",
     rawServices: rawServices.slice(0, 80),
     matchedServices,
+    serviceEvidence: buildServiceEvidence(rawServices),
     areaId: structured.areaId,
     areaLabel: areaLabelFor(structured.areaId),
   };
@@ -5852,7 +6208,7 @@ const learnedKeywordSearchExpansions = [
     ],
   },
   {
-    service: "Sew in / extensions blowdry",
+    service: "Sew in / extensions blowdry & styling",
     triggers: ["extensions blowdry", "extensions blow dry", "extensions blowout", "extensions blow out", "extension blowdry", "extension blow dry", "extension blowout", "extension blow out", "weave blowdry", "weave blow dry", "weave blowout", "weave blow out", "sew in blowdry", "sew in blow dry", "sew-in blowdry", "sew-in blow dry", "sewin blowdry", "sewin blow dry", "sew in blowout", "sew in blow out", "k tips blowdry", "k-tips blowdry", "ktips blowdry", "k tips blow dry", "k-tips blow dry", "ktips blow dry", "wash blow dry with extensions", "blow out on sew in weave"],
     keywords: [
       "extensions blowdry",
@@ -6219,10 +6575,14 @@ function mergeServiceChecks(primaryCheck = emptyServiceCheck(), fallbackCheck = 
     ? primaryCheck.confidence
     : fallbackConfidence;
 
+  // Primary evidence first; the fallback only fills services it alone found.
+  const serviceEvidence = { ...buildServiceEvidence(rawServices), ...(fallbackCheck.serviceEvidence || {}), ...(primaryCheck.serviceEvidence || {}) };
+
   return {
     confidence: confidence || "unknown",
     rawServices,
     matchedServices,
+    serviceEvidence,
     areaId: primaryCheck.areaId || fallbackCheck.areaId || "",
     areaLabel: primaryCheck.areaLabel || fallbackCheck.areaLabel || "",
     source: fallbackCheck.source || primaryCheck.source || "",
@@ -6797,6 +7157,7 @@ async function extractAiServiceFallbackCheck({ text = "", sourceUrl = "" } = {})
           : "low",
       rawServices: rawServices.slice(0, 80),
       matchedServices,
+      serviceEvidence: buildServiceEvidence(rawServices),
       areaId: "",
       areaLabel: "",
       source: "ai",
@@ -8771,6 +9132,7 @@ function extractStructuredBookingData(html) {
       rawServices.push(category);
     }
     rawServices.push(appointment.name);
+    rawServices.push(...getHybridDescriptionLines(appointment));
   });
 
   const calendarLocations = Object.values(business.calendars || {})
@@ -8789,6 +9151,28 @@ function extractStructuredBookingData(html) {
     rawServices: rawServices.filter(Boolean).map((service) => String(service).replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim()),
     areaId,
   };
+}
+
+// A bare "Hybrid sew-in" title doesn't say which hybrid it is, so the
+// description's sentences that name the technique ("half sewin half tape ins
+// installation") are added as their own lines, prefixed with the title so the
+// evidence reads clearly. Only for bare hybrid titles: full descriptions are
+// too noisy to match in general.
+const HYBRID_TECHNIQUE_PATTERN = /\b(tapes?|tape[\s-]*ins?|k[\s-]*tips?|keratin\s+tips?|i[\s-]*tips?|micro[\s-]*links?|beads?|fulani|boho|stitch|feed[\s-]*ins?|braids?|braided)\b/i;
+
+function getHybridDescriptionLines(appointment) {
+  const title = String(appointment?.name || "").replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
+  if (!/\bhybrid\b/i.test(title) || HYBRID_TECHNIQUE_PATTERN.test(title)) {
+    return [];
+  }
+  const description = htmlToReadableText(appointment?.description || "");
+  return description
+    .split(/\n|(?<=[.!?])\s+/)
+    .map((sentence) => sentence.replace(/\s+/g, " ").trim())
+    .filter((sentence) => sentence.length <= 200 && HYBRID_TECHNIQUE_PATTERN.test(sentence))
+    .slice(0, 2)
+    // matchServices splits on commas, which would separate "tape ins" from "sew in".
+    .map((sentence) => `${title}: ${sentence.replace(/,/g, " ")}`);
 }
 
 function extractAcuityBusiness(html) {
@@ -8889,6 +9273,7 @@ function emptyServiceCheck() {
     confidence: "unknown",
     rawServices: [],
     matchedServices: [],
+    serviceEvidence: {},
     areaId: "",
     areaLabel: "",
   };
@@ -9607,6 +9992,12 @@ function normalizeDuplicateUrl(value) {
     if (host === "tiktok.com" && pathParts.length === 1 && pathParts[0]?.startsWith("@")) {
       return `tiktok.com/${pathParts[0].toLowerCase()}`;
     }
+    // Any other TikTok link (a /video/ or /photo/ post) isn't an identity signal at
+    // all — without this it fell through to the generic URL compare below, so two
+    // stylists recommended in the same video were flagged as duplicates.
+    if (host === "tiktok.com" || host.endsWith(".tiktok.com")) {
+      return "";
+    }
 
     const searchParams = new URLSearchParams(parsed.search);
     for (const key of [...searchParams.keys()]) {
@@ -9735,6 +10126,8 @@ function sanitizeDraftUpdate(input) {
     summary: cleanString(input.summary),
     warnings: toArray(input.warnings),
     evidence: toArray(input.evidence),
+    ...(input.serviceProof !== undefined ? { serviceProof: sanitizeServiceProof(input.serviceProof, services) } : {}),
+    ...(input.needsProof !== undefined ? { needsProof: sanitizeNeedsProof(input.needsProof, { ...input, sellsHairSeparately: input.sellsHairSeparately === true || Boolean(hairShopUrl) }) } : {}),
   };
 }
 
@@ -9918,6 +10311,8 @@ function publishedSalonToDraft(salon, fallbackDate = today()) {
     addedVia: salon.addedVia || "",
     discoverySource: salon.discoverySource || "",
     services: Array.isArray(salon.services) ? salon.services : [],
+    serviceProof: salon.serviceProof && typeof salon.serviceProof === "object" ? salon.serviceProof : {},
+    needsProof: salon.needsProof && typeof salon.needsProof === "object" ? salon.needsProof : {},
     rawServices: [],
     hijabiFriendly: salon.hijabiFriendly === true,
     canBraidWithoutGel: salon.canBraidWithoutGel === true,
@@ -10019,6 +10414,8 @@ function draftToSalon(draft, existingIds) {
     addedVia: draft.addedVia || "Code edit",
     discoverySource: draft.discoverySource || "Manual search",
     services: normalizeServices(draft.services),
+    ...(Object.keys(sanitizeServiceProof(draft.serviceProof, draft.services)).length ? { serviceProof: sanitizeServiceProof(draft.serviceProof, draft.services) } : {}),
+    ...(Object.keys(sanitizeNeedsProof(draft.needsProof, draft)).length ? { needsProof: sanitizeNeedsProof(draft.needsProof, draft) } : {}),
     ...(draft.hijabiFriendly === true ? { hijabiFriendly: true } : {}),
     ...(draft.canBraidWithoutGel === true ? { canBraidWithoutGel: true } : {}),
     ...(draft.wheelchairAccessible === true ? { wheelchairAccessible: true } : {}),
@@ -10105,6 +10502,25 @@ function isBookingLikeUrl(url = "") {
 }
 
 export function matchServices(values) {
+  return normalizeServices(matchServiceLines(values).flatMap((entry) => entry.services));
+}
+
+// The exact lines behind each match, so the health check can show the line
+// that triggered a suggestion rather than any line that shares a word with it.
+// Built from the full list before rawServices is trimmed to 80 for storage.
+function buildServiceEvidence(values) {
+  const evidence = {};
+  for (const { line, services } of matchServiceLines(values)) {
+    for (const service of services) {
+      evidence[service] ??= [];
+      if (evidence[service].length < 4 && !evidence[service].includes(line)) evidence[service].push(line);
+    }
+  }
+  return evidence;
+}
+
+// matchServices, one result per line: [{ line, services }].
+export function matchServiceLines(values) {
   const allKnown = new Set(canonicalServices);
   const knownByLowercase = new Map(canonicalServices.map((service) => [service.toLowerCase(), service]));
   const aliasesByLowercase = new Map([
@@ -10118,9 +10534,9 @@ export function matchServices(values) {
       .filter(Boolean),
   );
 
-  return normalizeServices(
-    normalized
-      .flatMap((service, index) => {
+  return normalized.map((service, index) => ({ line: service, services: normalizeServices([...[].concat(matchServiceLine(service, index)).filter(Boolean), ...getLearnedServicesForLine(service)]) }));
+
+  function matchServiceLine(service, index) {
         const lower = service.toLowerCase();
         const context = buildServiceLineContext(normalized, index);
         if (hasStyleRemovalInstructionContext(context.nearby)) {
@@ -10129,7 +10545,7 @@ export function matchServices(values) {
         if (looksLikeRetailProductLine(lower)) {
           return [];
         }
-        if (hasColourSignal(context.line) && hasWigPieceColourContext(context)) {
+        if (hasColourSignal(context.line) && hasWigPieceColourContext(context) && !shouldSuppressForDeclinedContext("Wig colouring / bundle colouring", context)) {
           return ["Wig colouring / bundle colouring"];
         }
         if (hasShampooBlowdryContext(context.nearby)) {
@@ -10150,7 +10566,7 @@ export function matchServices(values) {
         const ruleMatches = matchServicesByRule(lower);
         if (ruleMatches.length) {
           const filteredMatches = ruleMatches.filter((match) => !shouldSuppressServiceForSpecificContext(match, context) && !isServiceNegatedInText(lower, match));
-          if (filteredMatches.length === 0 && ruleMatches.some((match) => isNaturalHairColourService(match)) && hasWigPieceColourContext(context)) {
+          if (filteredMatches.length === 0 && ruleMatches.some((match) => isNaturalHairColourService(match)) && hasWigPieceColourContext(context) && !isHairColourPickLine(context.line)) {
             return ["Wig colouring / bundle colouring"];
           }
           return filteredMatches;
@@ -10158,9 +10574,7 @@ export function matchServices(values) {
 
         const strongMatch = canonicalServices.find((candidate) => isStrongServiceMatch(lower, candidate.toLowerCase()));
         return strongMatch && !shouldSuppressServiceForSpecificContext(strongMatch, context) && !isServiceNegatedInText(lower, strongMatch) ? strongMatch : [];
-      })
-      .filter(Boolean),
-  );
+  }
 }
 
 function buildServiceLineContext(lines, index) {
@@ -10199,7 +10613,60 @@ function getUnitContextServices(context) {
 }
 
 function shouldSuppressServiceForSpecificContext(service, context) {
-  return shouldSuppressNaturalColourForWigContext(service, context) || shouldSuppressGenericWigInstall(service, context) || shouldSuppressSewInForWigContext(service, context) || shouldSuppressTraditionalSewInForTrackContext(service, context) || shouldSuppressFeedInForHalfSewInContext(service, context) || shouldSuppressFeedInForNaturalCornrowsContext(service, context) || shouldSuppressSleekPonytailForFrontalContext(service, context) || shouldSuppressPixieStylingForInstallContext(service, context) || shouldSuppressNaturalHairEducationForVagueContext(service, context) || shouldSuppressCustomWigForFactoryMadeContext(service, context) || shouldSuppressTracksForTapeHybridContext(service, context) || shouldSuppressTapeInsForTrackHybridContext(service, context) || shouldSuppressWashBlowdryForPrepInstructions(service, context) || shouldSuppressWigCornrowsForPrepInstructions(service, context) || shouldSuppressStitchBraidsForBohoKnotlessContext(service, context) || shouldSuppressLocSubtypeForStarterContext(service, context) || shouldSuppressTwistsForGenericExtensionsContext(service, context) || shouldSuppressKeratinTreatmentForTipContext(service, context);
+  return shouldSuppressNaturalColourForWigContext(service, context) || shouldSuppressGenericWigInstall(service, context) || shouldSuppressSewInForWigContext(service, context) || shouldSuppressTraditionalSewInForTrackContext(service, context) || shouldSuppressFeedInForHalfSewInContext(service, context) || shouldSuppressFeedInForNaturalCornrowsContext(service, context) || shouldSuppressSleekPonytailForFrontalContext(service, context) || shouldSuppressPixieStylingForInstallContext(service, context) || shouldSuppressNaturalHairEducationForVagueContext(service, context) || shouldSuppressCustomWigForFactoryMadeContext(service, context) || shouldSuppressTracksForTapeHybridContext(service, context) || shouldSuppressTapeInsForTrackHybridContext(service, context) || shouldSuppressWashBlowdryForPrepInstructions(service, context) || shouldSuppressWigCornrowsForPrepInstructions(service, context) || shouldSuppressStitchBraidsForBohoKnotlessContext(service, context) || shouldSuppressLocSubtypeForStarterContext(service, context) || shouldSuppressTwistsForGenericExtensionsContext(service, context) || shouldSuppressKeratinTreatmentForTipContext(service, context) || shouldSuppressForDeclinedContext(service, context);
+}
+
+// Context guards learned from declined health check suggestions (see the
+// Learnings tab) — each line is a case an admin rejected with a reason.
+function shouldSuppressForDeclinedContext(service, context) {
+  const { line } = context;
+  // A "sew in revamp" maintains an existing install; it isn't a new sew-in of any kind.
+  if (/sew-in\b/i.test(service) && /\brevamp\b/.test(line)) {
+    return true;
+  }
+  switch (service) {
+    // "Hair and scalp assessments" is clinical trichology, not a detox.
+    case "Scalp detox / treatments":
+      return /\b(assess|assessment|assessments|analysis|examination|consultation|consultations|tricholog(y|ist|ists))\b/.test(line);
+    // A pixie cut is its own service, not a regular cut and trim — unless the
+    // line also offers a trim ("Pixie cut and trim").
+    // "Locs - rope twists" is loc styling, not extension twists.
+    case "Twists (with extensions)":
+      return /\blocs?\b/.test(line);
+    // "Half fulani braid down (half wig)" is a hybrid braid style plus a wig braid-down.
+    case "Fulani sew-in / quick weave / half wig":
+      return /\bbraid\s+down\b/.test(line);
+    // A braided ponytail ("Feed-in braid ponytail") isn't a sleek pony, unless the
+    // line says sleek/slick. A bare "Ponytail" item stays a match — on its own it
+    // can't be told apart, so that's left to the exact-wording memory.
+    case "Sleek ponytail / bun":
+      return /\b(braid|braids|braided|feed\s*in|feedin|cornrows?|cainrows?|plaits?)\b/.test(line) && !/\b(sleek|slick|slicked)\b/.test(line);
+    // "Hair loss" on its own (or a PRP treatment for it) is trichology, not a
+    // hair loss system — that needs a system, mesh, unit, integration or install.
+    case "Hair loss systems (e.g. mesh)":
+      return !/\b(systems?|mesh|units?|integrations?|panels?|weaves?|sew\s*in|sewin|wigs?|illusion)\b/.test(line);
+    // "A trim may be recommended" / "Book this service with a trim" describe
+    // another service; "Maintenance Trim" is still a trim.
+    case "Trim / hair cut":
+      return (/\bpixie\b/.test(line) && !/\btrim\b/.test(line)) || /\b(may be recommended|recommended|optional|with a trim|book this service)\b/.test(line);
+    // "Colour #33" / "select the colour desired" pick a braiding hair colour.
+    case "Wig colouring / bundle colouring":
+    case "Full head colour":
+      return isHairColourPickLine(line);
+    // Tribal cornrows are an extension style, not natural or wig cornrows.
+    // (Freestyle cornrows on natural hair do count.)
+    case "Wig cornrows":
+      return /\btribal\b/.test(line);
+    // "Keratin Strengthening Treatment" is a protein treatment, not smoothing.
+    case "Keratin treatment / Brazilian blowdry":
+      return /\bkeratin\s+(strengthening|strengthen|protein|repair|reconstruct\w*|infused|mask)\b/.test(line) && !/\b(smooth\w*|straighten\w*|brazilian|blow\s*dry|blowdry|blowout)\b/.test(line);
+    default:
+      return false;
+  }
+}
+
+function isHairColourPickLine(line) {
+  return /^colou?r\s+\d+\b/.test(line) || /\bselect\b.*\bcolou?r\b/.test(line);
 }
 
 function shouldSuppressGenericWigInstall(service, context) {
@@ -10408,7 +10875,7 @@ function hasShampooBlowdryContext(text) {
 // stylist doesn't perform either — she just sells the product. Catch the
 // product-listing shape itself (retail brand name plus a size/pack signal)
 // and skip the line entirely before it ever reaches rule matching.
-const RETAIL_BRAND_NAMES = /\b(olaplex|color\s*wow|the\s+doux|camille\s+rose|umberto\s+giannini|k18|moroccanoil|redken|k[eé]rastase|bondi\s+boost|mielle|shea\s+moisture|cantu|as\s+i\s+am|design\s+essentials|eco\s*styler)\b/i;
+const RETAIL_BRAND_NAMES = /\b(olaplex|wellaplex|fibreplex|color\s*wow|the\s+doux|camille\s+rose|umberto\s+giannini|k18|moroccanoil|redken|k[eé]rastase|bondi\s+boost|mielle|shea\s+moisture|cantu|as\s+i\s+am|design\s+essentials|eco\s*styler)\b/i;
 const RETAIL_PRODUCT_SIGNAL = /\d+\s*(ml|g|kg|oz|fl\.?\s*oz)\b|\bbundle\b|\bno\.?\s*\d/i;
 function looksLikeRetailProductLine(text) {
   return RETAIL_BRAND_NAMES.test(text) && RETAIL_PRODUCT_SIGNAL.test(text);
@@ -10435,7 +10902,7 @@ const HASHTAG_VOCAB = [
   "haircut", "cut", "install", "installation", "stitch", "tape", "clip", "clips",
   "microlinks", "tips", "starter", "retwist", "interlock", "interlocking",
   "spa", "scalp", "treatment", "gel", "free", "hairstylist", "braider",
-  "hairstyle", "hairstyles", "hair", "goddessbraids", "boho",
+  "hairstyle", "hairstyles", "hair", "goddessbraids", "boho", "bohemian",
 ];
 const HASHTAG_VOCAB_SET = new Set(HASHTAG_VOCAB);
 const HASHTAG_MAX_WORD_LEN = Math.max(...HASHTAG_VOCAB.map((word) => word.length));
@@ -10473,9 +10940,11 @@ function expandHashtagsForMatching(text) {
 function matchServicesByRule(input) {
   const normalized = normalizeServiceText(input);
 
-  return serviceRuleMatchers
+  const matched = serviceRuleMatchers
     .filter(([, patterns]) => patterns.some((pattern) => pattern.test(normalized)))
     .map(([service]) => service);
+  // A named brand already implies Bond repair (it's the brands' filter parent).
+  return matched.includes("Olaplex treatment") || matched.includes("K18 treatment") ? matched.filter((service) => service !== "Bond repair") : matched;
 }
 
 function isStrongServiceMatch(input, candidate) {
@@ -10490,7 +10959,15 @@ function isStrongServiceMatch(input, candidate) {
     return false;
   }
 
-  return normalizedInput.includes(normalizedCandidate) || normalizedCandidate.includes(normalizedInput);
+  if (normalizedInput.includes(normalizedCandidate)) {
+    return true;
+  }
+
+  // The reverse direction (the whole input appears inside a service name)
+  // needs at least two words — a lone generic word like "Treatment" sits
+  // inside lots of service names and used to land on whichever came first
+  // ("Cécred treatment", since renamed "Cécred wash & treatment").
+  return normalizedInput.split(" ").length >= 2 && normalizedCandidate.includes(normalizedInput);
 }
 
 function isServiceNegatedInText(input, service) {
@@ -10554,8 +11031,10 @@ function escapeRegExp(value) {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
+// Accents are folded first (é → e) so "Cécred" and "Cecred" normalise to the
+// same text — stripping non-[a-z0-9] alone used to turn "cécred" into "c cred".
 function normalizeServiceText(value) {
-  return String(value).toLowerCase().replace(/[^a-z0-9]+/g, " ").replace(/\s+/g, " ").trim();
+  return String(value).normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, " ").replace(/\s+/g, " ").trim().replace(/\bbohemian\b/g, "boho");
 }
 
 // Some place names genuinely sit on the border between two of our regions
@@ -10728,4 +11207,27 @@ function titleCase(value) {
     .replace(/[-_.]+/g, " ")
     .replace(/\b\w/g, (letter) => letter.toUpperCase())
     .trim();
+}
+
+// Readable booking/website text for one salon, fetched the same way the health
+// check does (embedded widgets followed, thin SPA pages browser-rendered). For
+// one-off service audits run from scripts.
+export async function fetchSalonPageTextForAudit(salon) {
+  const websiteUrl = salon.websiteUrl && salon.websiteUrl !== salon.bookingUrl ? salon.websiteUrl : "";
+  const [bookingLinkCheck, websiteLinkCheck] = await Promise.all([
+    checkUrl("booking", salon.bookingUrl, { includeText: true }),
+    checkUrl("website", websiteUrl, { includeText: true }),
+  ]);
+  const embedded = await fetchEmbeddedBookingSources([
+    { html: bookingLinkCheck?.responseText || "", url: salon.bookingUrl || "" },
+    { html: websiteLinkCheck?.responseText || "", url: websiteUrl },
+  ]);
+  const [bookingHtml, websiteHtml] = await Promise.all([
+    getAttributeScanText(salon.bookingUrl, combineBookingHtml(bookingLinkCheck?.responseText || "", embedded)),
+    getAttributeScanText(websiteUrl, websiteLinkCheck?.responseText || ""),
+  ]);
+  return {
+    booking: { url: salon.bookingUrl || "", status: bookingLinkCheck?.status ?? "none", html: bookingHtml, text: htmlToReadableText(bookingHtml) },
+    website: { url: websiteUrl, status: websiteLinkCheck?.status ?? "none", html: websiteHtml, text: htmlToReadableText(websiteHtml) },
+  };
 }

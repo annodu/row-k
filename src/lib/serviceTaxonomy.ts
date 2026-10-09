@@ -2,17 +2,21 @@
 // headings and friendlier display names. Shared by the site
 // (App.tsx) and Social Studio so the carousel's filter sheets match the site.
 
-// Filter-only headings that match any of their members (see
-// derivedServiceMatches in salon-index.mjs). They aren't services, so they stay
-// out of filters.json and never show up in the service pickers.
+// Headings that match any of their members (see derivedServiceMatches in
+// salon-index.mjs). "(all)" headings are filter-only, so they stay out of
+// filters.json and never show up in the service pickers. Bond repair is also a
+// service in its own right (salons that don't name a brand), so it's in
+// filters.json too.
 export const serviceFamilies: Record<string, readonly string[]> = {
-  "Hybrid sew ins (all)": ["Boho sew-in", "Feed-in / stitch braid sew-in", "Fulani sew-in", "K-tips + sew-in", "Tape-ins + sew-in"],
+  "Hybrid sew ins (all)": ["Boho sew-in", "Feed-in / stitch braid sew-in", "Fulani sew-in / quick weave / half wig", "K-tips + sew-in", "Tape-ins + sew-in"],
+  "Bond repair": ["Olaplex treatment", "K18 treatment"],
 };
 
-// Families that nest their members in a category's filter list. Only Sew in /
-// weave nests (its hybrids); every other category lists its styles flat.
+// Families that nest their members in a category's filter list. Every other
+// category lists its styles flat.
 export const subcategoryGroupsByCategory: Record<string, readonly string[]> = {
   "sew-in-weave": ["Hybrid sew ins (all)"],
+  "straightening-treatments": ["Bond repair"],
 };
 
 const serviceDisplayNames: Record<string, string> = {
@@ -20,14 +24,16 @@ const serviceDisplayNames: Record<string, string> = {
   "Boho braids / goddess braids": "Boho braids",
   "Boho sew-in": "Boho braids sew-in (hybrid)",
   "Fulani / lemonade braids": "Fulani braids",
-  "Fulani sew-in": "Fulani braids sew-in (hybrid)",
+  "Fulani sew-in": "Fulani sew-in / quick weave / half wig",
   "Feed-in braids": "Feed ins / all back braids",
   "Feed-in / stitch braid sew-in": "Feed in / stitch braids sew-in (hybrid)",
   "Tape-ins + sew-in": "Tapes + sew-in (hybrid)",
   "K-tips / invisible strands": "K-tips",
   "K-tips + sew-in": "K-tips + sew-in (hybrid)",
   "French curl": "French curl braids",
-  "Cecred treatment": "Cécred treatment",
+  "Cecred treatment": "Cécred wash & treatment",
+  "Cécred treatment": "Cécred wash & treatment",
+  "Bond repair": "Bond repair (e.g. Olaplex, K18)",
   ...Object.fromEntries(Object.keys(serviceFamilies).filter((family) => family.endsWith(" (all)")).map((family) => [family, family.slice(0, -" (all)".length)])),
 };
 

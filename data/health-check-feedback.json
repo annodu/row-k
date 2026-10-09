@@ -18,7 +18,7 @@
           "evidenceText": "Parking is limited"
         }
       ],
-      "createdAt": "2026-08-01T22:03:27.709Z"
+      "createdAt": "2026-08-01"
     },
     {
       "salonId": "tapes-n-co-ldn",
@@ -34,7 +34,7 @@
           "evidenceText": "U-Part Wig Installation"
         }
       ],
-      "createdAt": "2026-08-01T22:04:05.426Z"
+      "createdAt": "2026-08-01"
     },
     {
       "salonId": "taiwo-styles",
@@ -50,7 +50,7 @@
           "evidenceText": "YOU WILL NEED TO SEND YOUR FRONTAL AT LEAST 7 DAYS PRIOR"
         }
       ],
-      "createdAt": "2026-08-01T22:14:24.109Z"
+      "createdAt": "2026-08-01"
     },
     {
       "salonId": "sisters-spa-london",
@@ -60,7 +60,7 @@
         "Wash & blowdry"
       ],
       "rejectedEvidence": [],
-      "createdAt": "2026-08-01T22:19:54.956Z"
+      "createdAt": "2026-08-01"
     },
     {
       "salonId": "shannel-watson",
@@ -91,7 +91,7 @@
           "evidenceText": "Hair and scalp examination"
         }
       ],
-      "createdAt": "2026-08-01T22:20:24.644Z"
+      "createdAt": "2026-08-01"
     },
     {
       "salonId": "remolabeauty",
@@ -107,7 +107,7 @@
           "evidenceText": "U-Part Wig Installation"
         }
       ],
-      "createdAt": "2026-08-01T22:21:41.784Z"
+      "createdAt": "2026-08-01"
     },
     {
       "salonId": "moniquecharleshair",
@@ -117,7 +117,7 @@
         "Custom wig"
       ],
       "rejectedEvidence": [],
-      "createdAt": "2026-08-01T22:25:15.602Z"
+      "createdAt": "2026-08-01"
     },
     {
       "salonId": "melsxbeautyhair",
@@ -133,7 +133,7 @@
           "evidenceText": "Parking is limited, you may have to park far, only free packing after certain hours"
         }
       ],
-      "createdAt": "2026-08-01T22:25:54.207Z"
+      "createdAt": "2026-08-01"
     },
     {
       "salonId": "mane-li-studios",
@@ -154,7 +154,7 @@
           "evidenceText": "Hair Classes"
         }
       ],
-      "createdAt": "2026-08-01T22:26:15.612Z"
+      "createdAt": "2026-08-01"
     },
     {
       "salonId": "mane-li-studios",
@@ -185,7 +185,7 @@
           "evidenceText": "Parking is limited"
         }
       ],
-      "createdAt": "2026-08-01T22:26:30.582Z"
+      "createdAt": "2026-08-01"
     },
     {
       "salonId": "london-sensory-hair-care",
@@ -216,7 +216,7 @@
           "evidenceText": "Children's First Haircut/Hairstyling"
         }
       ],
-      "createdAt": "2026-08-01T22:28:48.546Z"
+      "createdAt": "2026-08-01"
     },
     {
       "salonId": "ksleek",
@@ -232,7 +232,7 @@
           "evidenceText": "Please try to arrive to your appointment 10mins Early to find parking (As you will be responsible for your own lateness)"
         }
       ],
-      "createdAt": "2026-08-01T22:29:36.812Z"
+      "createdAt": "2026-08-01"
     },
     {
       "salonId": "kimmie-cosmetics",
@@ -253,7 +253,7 @@
           "evidenceText": "We'll send your stylist to you — so we need your address and contact info"
         }
       ],
-      "createdAt": "2026-08-01T22:29:54.418Z"
+      "createdAt": "2026-08-01"
     },
     {
       "salonId": "kimmie-cosmetics",
@@ -294,7 +294,7 @@
           "evidenceText": "Please confirm if parking is available"
         }
       ],
-      "createdAt": "2026-08-01T22:30:19.796Z"
+      "createdAt": "2026-08-01"
     },
     {
       "salonId": "Yairoby Hair & Beauty",
@@ -304,7 +304,7 @@
         "Highlights"
       ],
       "rejectedEvidence": [],
-      "createdAt": "2026-08-01T22:53:03.093Z"
+      "createdAt": "2026-08-01"
     },
     {
       "salonId": "hairkemistry",
@@ -314,7 +314,7 @@
         "Custom wig"
       ],
       "rejectedEvidence": [],
-      "createdAt": "2026-08-01T22:55:37.890Z"
+      "createdAt": "2026-08-01"
     },
     {
       "salonId": "fulhamscalphair",
@@ -330,7 +330,7 @@
           "evidenceText": "Our clients send us a bunch of smiles for our services and we just love them!"
         }
       ],
-      "createdAt": "2026-08-01T22:57:33.652Z"
+      "createdAt": "2026-08-01"
     },
     {
       "salonId": "byslaythebrand",
@@ -340,7 +340,7 @@
         "Custom wig"
       ],
       "rejectedEvidence": [],
-      "createdAt": "2026-08-01T22:58:29.124Z"
+      "createdAt": "2026-08-01"
     },
     {
       "salonId": "ak-styles-uk",
@@ -356,7 +356,7 @@
           "evidenceText": "Clients are required to send pictures of their desired colour before booking"
         }
       ],
-      "createdAt": "2026-08-01T23:00:46.833Z"
+      "createdAt": "2026-08-02"
     },
     {
       "salonId": "adornedbyanj",
@@ -698,6 +698,1556 @@
         }
       ],
       "createdAt": "2026-09-11"
+    },
+    {
+      "salonId": "celine-styles",
+      "salonName": "Celine Styles",
+      "reason": "dartford is on the border",
+      "context": [
+        "Review location"
+      ],
+      "rejectedEvidence": [],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "zulu-bonita",
+      "salonName": "Zulu Bonita",
+      "reason": "they do do that",
+      "context": [
+        "Bouncy blowout / round brush blow dry"
+      ],
+      "rejectedEvidence": [],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "vhudzi-hair-by-alicia-pearl",
+      "salonName": "Vhudzi Hair by Alicia Pearl",
+      "reason": "doesnt mention sew-in",
+      "context": [
+        "Fulani sew-in / quick weave / half wig"
+      ],
+      "rejectedEvidence": [],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "tresses-by-shayy",
+      "salonName": "Tresses by Shayy",
+      "reason": "doesn't mention sew in",
+      "context": [
+        "Fulani sew-in / quick weave / half wig"
+      ],
+      "rejectedEvidence": [],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "theesbnuk",
+      "salonName": "Thee SBN UK",
+      "reason": "doesnt mention sew in",
+      "context": [
+        "Fulani sew-in / quick weave / half wig"
+      ],
+      "rejectedEvidence": [],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "the-wig-line",
+      "salonName": "The Wig Line",
+      "reason": "charges extra for same day appointments",
+      "context": [
+        "Mark same-day / walk-ins"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "attribute",
+          "field": "sameDayEmergency",
+          "evidenceText": "Booking Banner: will be treated as an emergency appointment, which is"
+        }
+      ],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "the-reign-spitalfields",
+      "salonName": "The Reign",
+      "reason": "doesn't mention cecred",
+      "context": [
+        "Cécred treatment"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Cécred treatment",
+          "evidenceText": "Treatment"
+        },
+        {
+          "kind": "add",
+          "field": "Cécred treatment",
+          "evidenceText": "Basic Treatment with Trim"
+        },
+        {
+          "kind": "add",
+          "field": "Cécred treatment",
+          "evidenceText": "Colour Hairline & Treatment"
+        },
+        {
+          "kind": "add",
+          "field": "Cécred treatment",
+          "evidenceText": "Treatment & Go Curly Finish"
+        }
+      ],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "the-maneline",
+      "salonName": "The Maneline",
+      "reason": "completed wrong, dont know why this was a match",
+      "context": [
+        "Healthy hair plans & consultations"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Healthy hair plans & consultations",
+          "evidenceText": "Coloured from 1B/Natural Black Hair"
+        },
+        {
+          "kind": "add",
+          "field": "Healthy hair plans & consultations",
+          "evidenceText": "Coloured from 613 Hair"
+        }
+      ],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "the-mane-society-and-co",
+      "salonName": "The Mane Society & Co",
+      "reason": "doesn't mention sew-in or weave",
+      "context": [
+        "Fulani sew-in / quick weave / half wig"
+      ],
+      "rejectedEvidence": [],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "thehouseofplush",
+      "salonName": "The House of Plush",
+      "reason": "doesnt mention moisture or steam treatment",
+      "context": [
+        "Moisturising treatment"
+      ],
+      "rejectedEvidence": [],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "shirley-mcdonald-trichologist",
+      "salonName": "The Hair & Scalp Clinic",
+      "reason": "doesn't say cecred. \"treatment\" isnt enough",
+      "context": [
+        "Cécred treatment"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Cécred treatment",
+          "evidenceText": "Treatment"
+        }
+      ],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "the-braider-uk",
+      "salonName": "The Braider UK",
+      "reason": "doesnt mention sew in",
+      "context": [
+        "Feed-in / stitch braid sew-in"
+      ],
+      "rejectedEvidence": [],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "subrina-kidd-hair",
+      "salonName": "Subrina Kidd Hair",
+      "reason": "doesnt mention cecred",
+      "context": [
+        "Cécred treatment"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Cécred treatment",
+          "evidenceText": "Treatment"
+        }
+      ],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "styledbyroxii",
+      "salonName": "Styled By Roxii",
+      "reason": "all the evidence is about boho braids, not feed ins",
+      "context": [
+        "Feed-in / stitch braid sew-in"
+      ],
+      "rejectedEvidence": [],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "styled-by-kadie",
+      "salonName": "Styled by Kadie",
+      "reason": "its a quick weave, not a sew in",
+      "context": [
+        "Traditional sew-in / leave out"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Traditional sew-in / leave out",
+          "evidenceText": "Traditional Quickweave"
+        }
+      ],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "styled-by-faith",
+      "salonName": "Styled By Faith",
+      "reason": "no mention of sew in",
+      "context": [
+        "Feed-in / stitch braid sew-in",
+        "Fulani sew-in / quick weave / half wig"
+      ],
+      "rejectedEvidence": [],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "str8-studio",
+      "salonName": "Str8 studio",
+      "reason": "evidence is for loc styling",
+      "context": [
+        "Twists (with extensions)"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Twists (with extensions)",
+          "evidenceText": "Locs - rope twists"
+        }
+      ],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "ajahsbeautybase",
+      "salonName": "Ajahs Beauty Base",
+      "reason": "confusing because they have sew in revamp, but not actual sew in",
+      "context": [
+        "Boho sew-in",
+        "Traditional sew-in / leave out"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Boho sew-in",
+          "evidenceText": "Boho Maintenance / Touch Up Services"
+        },
+        {
+          "kind": "add",
+          "field": "Boho sew-in",
+          "evidenceText": "Luxury Boho curl refresh"
+        },
+        {
+          "kind": "add",
+          "field": "Boho sew-in",
+          "evidenceText": "Luxury Front Boho Touch Up"
+        },
+        {
+          "kind": "add",
+          "field": "Boho sew-in",
+          "evidenceText": "Online Braiding & boho colour Hair consultation"
+        },
+        {
+          "kind": "add",
+          "field": "Traditional sew-in / leave out",
+          "evidenceText": "Sew in revamp - boho leave out"
+        }
+      ],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "andrewjosesalon",
+      "salonName": "Andrew Jose",
+      "reason": "unsure if they do keratin for 4c hair. Also the review says \"from the moment you walk in\" not that they take walk ins",
+      "context": [
+        "Keratin treatment / Brazilian blowdry",
+        "Mark same-day / walk-ins"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Keratin treatment / Brazilian blowdry",
+          "evidenceText": "All treatments"
+        },
+        {
+          "kind": "add",
+          "field": "Keratin treatment / Brazilian blowdry",
+          "evidenceText": "Autumn / Winter Treatments"
+        },
+        {
+          "kind": "add",
+          "field": "Keratin treatment / Brazilian blowdry",
+          "evidenceText": "Other Conditioning Treatments"
+        },
+        {
+          "kind": "add",
+          "field": "Keratin treatment / Brazilian blowdry",
+          "evidenceText": "Brazilian Keratin"
+        },
+        {
+          "kind": "attribute",
+          "field": "sameDayEmergency",
+          "evidenceText": "The salon atmosphere is described as lovely and relaxing, with attentive staff who offer refreshments and care from the moment clients walk in"
+        }
+      ],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "ariyo-hair",
+      "salonName": "Ariyo Hair",
+      "reason": "no mention of sew in",
+      "context": [
+        "Feed-in / stitch braid sew-in"
+      ],
+      "rejectedEvidence": [],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "as-braids-n-beauty",
+      "salonName": "AS Braids N Beauty",
+      "reason": "no mention of this",
+      "context": [
+        "Healthy hair plans & consultations"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Healthy hair plans & consultations",
+          "evidenceText": "Natural hair braids"
+        },
+        {
+          "kind": "add",
+          "field": "Healthy hair plans & consultations",
+          "evidenceText": "Kid - (natural hair)"
+        }
+      ],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "atstyledit",
+      "salonName": "ATSTYLEDIT",
+      "reason": "emergency appointments is not the same - stylists normally charge quite a lot extra",
+      "context": [
+        "Mark same-day / walk-ins"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "attribute",
+          "field": "sameDayEmergency",
+          "evidenceText": "You can email for an emergency appointment ,enquire a desired date or time if i'll be available, which will result in a £15 fee that will have to be paid alongside deposit"
+        }
+      ],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "b-versatile",
+      "salonName": "B Versatile",
+      "reason": "mo mention of cecred. \"treatment\" isn't enough",
+      "context": [
+        "Cécred treatment"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Cécred treatment",
+          "evidenceText": "B-VERSATILE Hair Treatments"
+        },
+        {
+          "kind": "add",
+          "field": "Cécred treatment",
+          "evidenceText": "Deep conditioning moisture (STEAM TREATMENT)"
+        },
+        {
+          "kind": "add",
+          "field": "Cécred treatment",
+          "evidenceText": "5 hot oils secret (STEAM TREATMENT)"
+        },
+        {
+          "kind": "add",
+          "field": "Cécred treatment",
+          "evidenceText": "Emergency stop breakage (STEAM TREATMENT)"
+        }
+      ],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "blubanhair",
+      "salonName": "B. Luban Hair",
+      "reason": "they have this treatemnt \"Hair wash 35 minutes @ £30.00  Includes: wash condition blow dry (if necessary)\"",
+      "context": [
+        "Wash & blowdry"
+      ],
+      "rejectedEvidence": [],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "be-styled-by-chen",
+      "salonName": "Be Styled by Chen",
+      "reason": "no mention of cecred",
+      "context": [
+        "Cécred treatment"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Cécred treatment",
+          "evidenceText": "The Treatment Files"
+        },
+        {
+          "kind": "add",
+          "field": "Cécred treatment",
+          "evidenceText": "Hair Care Combination Treatment"
+        },
+        {
+          "kind": "add",
+          "field": "Cécred treatment",
+          "evidenceText": "Ladies - Scalp Detox Treatment (add on service only)"
+        },
+        {
+          "kind": "add",
+          "field": "Cécred treatment",
+          "evidenceText": "Existing Clients Services - Treatments"
+        }
+      ],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "beah-and-kadi-hair-lounge",
+      "salonName": "Beah and Kadi Hair Lounge",
+      "reason": "this is a review about the experience you have when you walk in the door, not that they take walk ins",
+      "context": [
+        "Mark same-day / walk-ins"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "attribute",
+          "field": "sameDayEmergency",
+          "evidenceText": "I just love this salon, you&#x27;re made to feel special as soon as you walk in the door"
+        }
+      ],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "bels-beauty-complex",
+      "salonName": "Bels Beauty Complex",
+      "reason": "this isn't styling systems - its hair loss treatment. Falls more under trichology",
+      "context": [
+        "Hair loss systems (e.g. mesh)"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Hair loss systems (e.g. mesh)",
+          "evidenceText": "Platelet-rich plasma (PRP) treatment for hair loss"
+        }
+      ],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "beyondthebrushldn",
+      "salonName": "Beyond The Brush LDN By Monique",
+      "reason": "No mention of cecred",
+      "context": [
+        "Cécred treatment"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Cécred treatment",
+          "evidenceText": "The Treatment Files"
+        },
+        {
+          "kind": "add",
+          "field": "Cécred treatment",
+          "evidenceText": "Moisture or Protein Treatment"
+        },
+        {
+          "kind": "add",
+          "field": "Cécred treatment",
+          "evidenceText": "Smoothing, Straightening & Bond Repair Treatments"
+        },
+        {
+          "kind": "add",
+          "field": "Cécred treatment",
+          "evidenceText": "Filter by treatment"
+        }
+      ],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "bluetit",
+      "salonName": "Blue Tit",
+      "reason": "no mention of cecred",
+      "context": [
+        "Cécred treatment"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Cécred treatment",
+          "evidenceText": "Treatment"
+        }
+      ],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "braided-by-jada",
+      "salonName": "Braided by Jada",
+      "reason": "they do have stitch braids on the site",
+      "context": [
+        "Stitch braids"
+      ],
+      "rejectedEvidence": [],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "braidology",
+      "salonName": "Braidology",
+      "reason": "no mention of sew-in",
+      "context": [
+        "Fulani sew-in / quick weave / half wig"
+      ],
+      "rejectedEvidence": [],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "braids-by-tessa",
+      "salonName": "Braids by Tessa",
+      "reason": "boho braids not locs",
+      "context": [
+        "Boho locs"
+      ],
+      "rejectedEvidence": [],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "byrhii-studios",
+      "salonName": "Byrhii Studios",
+      "reason": "no mention of cecred",
+      "context": [
+        "Cécred treatment"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Cécred treatment",
+          "evidenceText": "Traditional Sew-In + Treatment"
+        },
+        {
+          "kind": "add",
+          "field": "Cécred treatment",
+          "evidenceText": "Sew-In Removal + Treatment"
+        },
+        {
+          "kind": "add",
+          "field": "Cécred treatment",
+          "evidenceText": "Signature Silk Press & Treatment"
+        },
+        {
+          "kind": "add",
+          "field": "Cécred treatment",
+          "evidenceText": "Treatment"
+        }
+      ],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "cba-hair-studio",
+      "salonName": "CBA Hair Studio",
+      "reason": "talking about fulani braids, not sew in",
+      "context": [
+        "Fulani sew-in / quick weave / half wig"
+      ],
+      "rejectedEvidence": [],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "cheveux-by-coco",
+      "salonName": "Cheveux by Coco",
+      "reason": "talking about fulani braids, not sew in",
+      "context": [
+        "Fulani sew-in / quick weave / half wig"
+      ],
+      "rejectedEvidence": [],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "claudiaq-qualitytimehair",
+      "salonName": "Claudiaq Qualitytimehair",
+      "reason": "no mention of cecred",
+      "context": [
+        "Cécred treatment"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Cécred treatment",
+          "evidenceText": "The Treatment Files"
+        },
+        {
+          "kind": "add",
+          "field": "Cécred treatment",
+          "evidenceText": "Ladies - Treatments"
+        },
+        {
+          "kind": "add",
+          "field": "Cécred treatment",
+          "evidenceText": "Ladies - Hair Treatments"
+        },
+        {
+          "kind": "add",
+          "field": "Cécred treatment",
+          "evidenceText": "Filter by treatment"
+        }
+      ],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "cotresshairlounge",
+      "salonName": "Cotress Hair Lounge",
+      "reason": "its actually a braided ponytail",
+      "context": [
+        "Sleek ponytail / bun"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Sleek ponytail / bun",
+          "evidenceText": "Ponytail"
+        }
+      ],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "crown-signed",
+      "salonName": "Crown Signed",
+      "reason": "its like hybrid fulani and another braid style",
+      "context": [
+        "Fulani sew-in / quick weave / half wig"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Fulani sew-in / quick weave / half wig",
+          "evidenceText": "- half fulani braid down (half wig)"
+        },
+        {
+          "kind": "add",
+          "field": "Fulani sew-in / quick weave / half wig",
+          "evidenceText": "Selected braided style: stitch braids or half fulani"
+        }
+      ],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "divas-by-claudia",
+      "salonName": "Divas by Claudia",
+      "reason": "no mention of sew in",
+      "context": [
+        "Feed-in / stitch braid sew-in"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Feed-in / stitch braid sew-in",
+          "evidenceText": "Single Braids/Twists"
+        },
+        {
+          "kind": "add",
+          "field": "Feed-in / stitch braid sew-in",
+          "evidenceText": "Shampoo & deep condition, detangling treatment, securing old stitches & styling"
+        },
+        {
+          "kind": "add",
+          "field": "Feed-in / stitch braid sew-in",
+          "evidenceText": "SMALL BRAIDED PONYTAIL"
+        },
+        {
+          "kind": "add",
+          "field": "Feed-in / stitch braid sew-in",
+          "evidenceText": "MEDIUM BRAIDED PONYTAIL"
+        }
+      ],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "divine-hair-lounge",
+      "salonName": "Divine Hair Lounge",
+      "reason": "no mention of sew in",
+      "context": [
+        "Feed-in / stitch braid sew-in"
+      ],
+      "rejectedEvidence": [],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "elikya-hair",
+      "salonName": "Elikya Hair",
+      "reason": "they say \"from the moment you walk in\" not that they take walk ins",
+      "context": [
+        "Mark same-day / walk-ins"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "attribute",
+          "field": "sameDayEmergency",
+          "evidenceText": "It's honestly one of the best experiences i've had! I feel looked after the moment i walk in"
+        }
+      ],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "elikya-hair",
+      "salonName": "Elikya Hair",
+      "reason": "theres a service called full head balayage",
+      "context": [
+        "Balayage"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "remove",
+          "field": "Balayage",
+          "evidenceText": "full head balayage"
+        }
+      ],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "elikya-hair",
+      "salonName": "Elikya Hair",
+      "reason": "theres a service for kinky or marley twists",
+      "context": [
+        "Twists (with extensions)"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "remove",
+          "field": "Twists (with extensions)",
+          "evidenceText": "kinky twists"
+        },
+        {
+          "kind": "remove",
+          "field": "Twists (with extensions)",
+          "evidenceText": "marley twists"
+        }
+      ],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "beauty-by-solange",
+      "salonName": "Beauty by Solange",
+      "reason": "it says 2 days notice",
+      "context": [
+        "Mark same-day / walk-ins"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "attribute",
+          "field": "sameDayEmergency",
+          "evidenceText": "For last minute appointments, (2 days notice) send a message"
+        }
+      ],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "ccs-glamhousehair",
+      "salonName": "CCS Glamhousehair",
+      "reason": "says same day appt available for a £20 fee",
+      "context": [
+        "Mark same-day / walk-ins"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "attribute",
+          "field": "sameDayEmergency",
+          "evidenceText": "MOBILE, GROUP, SPECIAL OCCASIONS, INTERNATIONAL, SAME DAY BOOKINGS"
+        },
+        {
+          "kind": "attribute",
+          "field": "sameDayEmergency",
+          "evidenceText": "For mobile, group, special occasions, international, and same day bookings, send us a DM or give us a call to arrange appointment"
+        }
+      ],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "es-lounge",
+      "salonName": "ES Lounge",
+      "reason": "no evidence",
+      "context": [
+        "Microbraids / x-small braids"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Microbraids / x-small braids",
+          "evidenceText": "6 All back feed in braids"
+        },
+        {
+          "kind": "add",
+          "field": "Microbraids / x-small braids",
+          "evidenceText": "10 All Back Feed In Braids"
+        },
+        {
+          "kind": "add",
+          "field": "Microbraids / x-small braids",
+          "evidenceText": "8 All Back Feed in Braids"
+        },
+        {
+          "kind": "add",
+          "field": "Microbraids / x-small braids",
+          "evidenceText": "4 All Back Feed In Braids"
+        }
+      ],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "hairbyblessings",
+      "salonName": "Hair by Blessings",
+      "reason": "Full head Permanent Tint is full head colour",
+      "context": [
+        "Full head colour"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "remove",
+          "field": "Full head colour",
+          "evidenceText": "Full head Permanent Tint"
+        }
+      ],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "hairbyhml",
+      "salonName": "Hair By HML",
+      "reason": "no evidence",
+      "context": [
+        "Feed-in / stitch braid sew-in"
+      ],
+      "rejectedEvidence": [],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "hair-by-jkay",
+      "salonName": "Hair by JKay",
+      "reason": "no evidence of feed in sew in",
+      "context": [
+        "Feed-in / stitch braid sew-in"
+      ],
+      "rejectedEvidence": [],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "hair-by-shans",
+      "salonName": "Hair by Shans",
+      "reason": "no evidence of feed in sew in",
+      "context": [
+        "Feed-in / stitch braid sew-in"
+      ],
+      "rejectedEvidence": [],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "iam-ola-eletu",
+      "salonName": "I Am Ola Eletu",
+      "reason": "its an add-on if you select silk press \"Sewn-in track (up to 3) + 45 minutes @ £50.00\"",
+      "context": [
+        "Tracks (+ silk press) / partial / invisible sew-in"
+      ],
+      "rejectedEvidence": [],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "josh-hair-and-beauty",
+      "salonName": "Josh Hair and Beauty",
+      "reason": "cant see it on the site",
+      "context": [
+        "Scalp detox / treatments"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Scalp detox / treatments",
+          "evidenceText": "Scalp Care"
+        }
+      ],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "kayhairuk",
+      "salonName": "Kay Hair UK",
+      "reason": "no evidence",
+      "context": [
+        "Feed-in / stitch braid sew-in"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Feed-in / stitch braid sew-in",
+          "evidenceText": "FEED INS"
+        },
+        {
+          "kind": "add",
+          "field": "Feed-in / stitch braid sew-in",
+          "evidenceText": "6 feed ins"
+        },
+        {
+          "kind": "add",
+          "field": "Feed-in / stitch braid sew-in",
+          "evidenceText": "SMALL FEED INS 14-20"
+        },
+        {
+          "kind": "add",
+          "field": "Feed-in / stitch braid sew-in",
+          "evidenceText": "8 feed ins"
+        }
+      ],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "krownbykrys",
+      "salonName": "KrownByKrys",
+      "reason": "theres only Fulani braids with weave",
+      "context": [
+        "Feed-in / stitch braid sew-in"
+      ],
+      "rejectedEvidence": [],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "lael-london",
+      "salonName": "Lael London",
+      "reason": "no mention of tapes or tape ins",
+      "context": [
+        "Tape-ins + sew-in"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Tape-ins + sew-in",
+          "evidenceText": "Traditional / Hybrid sew-in"
+        },
+        {
+          "kind": "add",
+          "field": "Tape-ins + sew-in",
+          "evidenceText": "Hybrid sew-in (k-tips)"
+        },
+        {
+          "kind": "add",
+          "field": "Tape-ins + sew-in",
+          "evidenceText": "Hybrid sew-in K-tips REFRESH (previous clients only)"
+        },
+        {
+          "kind": "add",
+          "field": "Tape-ins + sew-in",
+          "evidenceText": "Hybrid sew-in (k-tips+ partial texture release)"
+        }
+      ],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "laidby-j",
+      "salonName": "Laid by J",
+      "reason": "no mention of sew in",
+      "context": [
+        "Feed-in / stitch braid sew-in"
+      ],
+      "rejectedEvidence": [],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "le-don-salon",
+      "salonName": "Ledon Salon",
+      "reason": "true, but cant judge whether its formaldehyde free. I don't want to suggest keratin treatments with harsh chemicals",
+      "context": [
+        "Keratin treatment / Brazilian blowdry"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Keratin treatment / Brazilian blowdry",
+          "evidenceText": "Treatment & Restyle Pixie"
+        },
+        {
+          "kind": "add",
+          "field": "Keratin treatment / Brazilian blowdry",
+          "evidenceText": "Keratin Treatment"
+        },
+        {
+          "kind": "add",
+          "field": "Keratin treatment / Brazilian blowdry",
+          "evidenceText": "Treatment and hair care"
+        },
+        {
+          "kind": "add",
+          "field": "Keratin treatment / Brazilian blowdry",
+          "evidenceText": "Deep Conditioning Treatment"
+        }
+      ],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "loveroots",
+      "salonName": "Loveroots",
+      "reason": "no evidence of either",
+      "context": [
+        "Stitch braids",
+        "Feed-in / stitch braid sew-in"
+      ],
+      "rejectedEvidence": [],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "melanin-hair-ldn",
+      "salonName": "Melanin Hair LDN",
+      "reason": "has ISLAND TWIST BRAIDS",
+      "context": [
+        "Twists (with extensions)"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "remove",
+          "field": "Twists (with extensions)",
+          "evidenceText": "ISLAND TWIST BRAIDS"
+        }
+      ],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "melanin-hair-ldn",
+      "salonName": "Melanin Hair LDN",
+      "reason": "thats a standard colour that braids or wigs come in",
+      "context": [
+        "Wig colouring / bundle colouring"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Wig colouring / bundle colouring",
+          "evidenceText": "Colour #613"
+        }
+      ],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "melanin-hair-ldn",
+      "salonName": "Melanin Hair LDN",
+      "reason": "no mention of olaplex",
+      "context": [
+        "Olaplex treatment"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Olaplex treatment",
+          "evidenceText": "TREATMENT"
+        },
+        {
+          "kind": "add",
+          "field": "Olaplex treatment",
+          "evidenceText": "Deep Conditioning Treatment"
+        },
+        {
+          "kind": "add",
+          "field": "Olaplex treatment",
+          "evidenceText": "A moisture treatment for dry, dull or brittle hair."
+        },
+        {
+          "kind": "add",
+          "field": "Olaplex treatment",
+          "evidenceText": "Repair Treatment"
+        }
+      ],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "melanin-hair-ldn",
+      "salonName": "Melanin Hair LDN",
+      "reason": "no mention of cut or trim",
+      "context": [
+        "Trim / hair cut"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Trim / hair cut",
+          "evidenceText": "- Hair Wash & Conditioning"
+        },
+        {
+          "kind": "add",
+          "field": "Trim / hair cut",
+          "evidenceText": "** BRAIDING HAIR EXTENSION PROVIDED **"
+        },
+        {
+          "kind": "add",
+          "field": "Trim / hair cut",
+          "evidenceText": "*Jayda Wayda style AKA Fulani with curly hair at the back, sewn or crochet (simple design)"
+        },
+        {
+          "kind": "add",
+          "field": "Trim / hair cut",
+          "evidenceText": "BRAIDING HAIR EXTENSION PROVIDED."
+        }
+      ],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "melanin-hair-ldn",
+      "salonName": "Melanin Hair LDN",
+      "reason": "not mention of it",
+      "context": [
+        "Keratin treatment / Brazilian blowdry"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Keratin treatment / Brazilian blowdry",
+          "evidenceText": "TREATMENT"
+        },
+        {
+          "kind": "add",
+          "field": "Keratin treatment / Brazilian blowdry",
+          "evidenceText": "Deep Conditioning Treatment"
+        },
+        {
+          "kind": "add",
+          "field": "Keratin treatment / Brazilian blowdry",
+          "evidenceText": "A moisture treatment for dry, dull or brittle hair."
+        },
+        {
+          "kind": "add",
+          "field": "Keratin treatment / Brazilian blowdry",
+          "evidenceText": "Repair Treatment"
+        }
+      ],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "melanin-hair-ldn",
+      "salonName": "Melanin Hair LDN",
+      "reason": "no mention of it",
+      "context": [
+        "Feed-in / stitch braid sew-in"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Feed-in / stitch braid sew-in",
+          "evidenceText": "! Braids party !"
+        },
+        {
+          "kind": "add",
+          "field": "Feed-in / stitch braid sew-in",
+          "evidenceText": "** BRAIDING HAIR EXTENSION PROVIDED **"
+        },
+        {
+          "kind": "add",
+          "field": "Feed-in / stitch braid sew-in",
+          "evidenceText": "BRAIDING HAIR EXTENSION PROVIDED."
+        },
+        {
+          "kind": "add",
+          "field": "Feed-in / stitch braid sew-in",
+          "evidenceText": "Add-on BRAIDS/TWIST ON LOCS"
+        }
+      ],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "melanin-hair-ldn",
+      "salonName": "Melanin Hair LDN",
+      "reason": "unsure what service they're talking about here",
+      "context": [
+        "Mark can braid without gel"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "attribute",
+          "field": "canBraidWithoutGel",
+          "evidenceText": "We finish with a leave-in and light styling without no gel/wax"
+        }
+      ],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "melsxbeautyhair",
+      "salonName": "Mels Hair & Beauty",
+      "reason": "no mention of it",
+      "context": [
+        "Feed-in / stitch braid sew-in"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Feed-in / stitch braid sew-in",
+          "evidenceText": "Braids"
+        },
+        {
+          "kind": "add",
+          "field": "Feed-in / stitch braid sew-in",
+          "evidenceText": "Box braids wasit length"
+        },
+        {
+          "kind": "add",
+          "field": "Feed-in / stitch braid sew-in",
+          "evidenceText": "Box braids bob"
+        },
+        {
+          "kind": "add",
+          "field": "Feed-in / stitch braid sew-in",
+          "evidenceText": "Bob braids full"
+        }
+      ],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "mira-styless",
+      "salonName": "Mira Styless",
+      "reason": "mention of squeeze-in means its not an ordinary thing they do",
+      "context": [
+        "Mark same-day / walk-ins"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "attribute",
+          "field": "sameDayEmergency",
+          "evidenceText": "Booking Banner: FOR A SQUEEZE-IN SLOT) LAST MINUTE APPOINTMENTS"
+        }
+      ],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "mmluxe-hair",
+      "salonName": "Mmluxe Hair",
+      "reason": "starter dreadlocs are starter locs",
+      "context": [
+        "Starter locs / instant locs"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "remove",
+          "field": "Starter locs / instant locs",
+          "evidenceText": "starter dreadlocs"
+        }
+      ],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "mystictouch",
+      "salonName": "MysticTouch",
+      "reason": "they have Clean & Clear | Wash & Dry",
+      "context": [
+        "Wash & blowdry"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "remove",
+          "field": "Wash & blowdry",
+          "evidenceText": "Clean & Clear | Wash & Dry"
+        }
+      ],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "ney-hairs",
+      "salonName": "Ney Hairs",
+      "reason": "It does have a heading \"Washing service/ Braids Takedown\" on the site but all the services listed underneath are wash only services",
+      "context": [
+        "Braid take-down"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Braid take-down",
+          "evidenceText": "Washing service/ Braids Takedown"
+        }
+      ],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "ourahhairsalon",
+      "salonName": "Ourah hair salon",
+      "reason": "has \"Ladies - Shampoo & Blow Dry (AFRO HAIR)\"",
+      "context": [
+        "Wash & blowdry"
+      ],
+      "rejectedEvidence": [],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "ourahhairsalon",
+      "salonName": "Ourah hair salon",
+      "reason": "has Ladies - \"Weave Tracks (Per Track) Styling not inclusive\"",
+      "context": [
+        "Tracks (+ silk press) / partial / invisible sew-in"
+      ],
+      "rejectedEvidence": [],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "ourahhairsalon",
+      "salonName": "Ourah hair salon",
+      "reason": "has \"Ladies - U-Part Wig\"",
+      "context": [
+        "U-Part / Half wig install"
+      ],
+      "rejectedEvidence": [],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "phirasallure",
+      "salonName": "Phiras Allure",
+      "reason": "same day incurs a £50 charge",
+      "context": [
+        "Mark same-day / walk-ins"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "attribute",
+          "field": "sameDayEmergency",
+          "evidenceText": "Booking Banner: SAME-DAY APPOINTMENTS"
+        }
+      ],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "savsstyles",
+      "salonName": "Savsstyles",
+      "reason": "its half sew in half feed in",
+      "context": [
+        "Half up half down"
+      ],
+      "rejectedEvidence": [],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "sb-hair-company",
+      "salonName": "SB Hair Company",
+      "reason": "Under natural hair: Mini twists & Mini braids",
+      "context": [
+        "Wig cornrows"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "remove",
+          "field": "Wig cornrows",
+          "evidenceText": "Mini twists"
+        },
+        {
+          "kind": "remove",
+          "field": "Wig cornrows",
+          "evidenceText": "Mini braids"
+        }
+      ],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "sbeks-hair",
+      "salonName": "Sbeks Hair",
+      "reason": "unsure what the rest of the sentence says, I'm ensuring it'll incur a charge",
+      "context": [
+        "Mark same-day / walk-ins"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "attribute",
+          "field": "sameDayEmergency",
+          "evidenceText": "Booking Banner: Same day appointments will be"
+        }
+      ],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "serene-hair-lounge",
+      "salonName": "Serene Hair Lounge",
+      "reason": "restrictions around parking",
+      "context": [
+        "Mark parking nearby"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "attribute",
+          "field": "parkingAvailable",
+          "evidenceText": "Booking Banner: Hair must be a minimum of chin to shoulder length around the full Paid parking is available with a 2-hour maximum stay"
+        }
+      ],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "sk-beauty-ldn",
+      "salonName": "Sk Beauty Ldn",
+      "reason": "has \"long lemonade fulani twists\"",
+      "context": [
+        "Twists (with extensions)"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "remove",
+          "field": "Twists (with extensions)",
+          "evidenceText": "long lemonade fulani twists"
+        }
+      ],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "skbeauty-uk",
+      "salonName": "SK Beauty UK",
+      "reason": "cant find the evidence on the site",
+      "context": [
+        "Mark same-day / walk-ins"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "attribute",
+          "field": "sameDayEmergency",
+          "evidenceText": "Booking Banner: desired time & same-day bookings"
+        }
+      ],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "slayed-by-mayla",
+      "salonName": "Slayed by Mayla",
+      "reason": "this is half braid half sew in or a hybrid sew in",
+      "context": [
+        "Half up half down"
+      ],
+      "rejectedEvidence": [],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "slayed-by-mayla",
+      "salonName": "Slayed by Mayla",
+      "reason": "judging by the price, i think these cornrows are with extensions",
+      "context": [
+        "Wig cornrows"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "add",
+          "field": "Wig cornrows",
+          "evidenceText": "Freestyle Tribal Cornrows"
+        },
+        {
+          "kind": "add",
+          "field": "Wig cornrows",
+          "evidenceText": "Freestyle Cornrows/Weave"
+        }
+      ],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "south-west-six-salon",
+      "salonName": "South West Six Salon",
+      "reason": "Last minute appointments arent ordinary. Normally due to cancellations",
+      "context": [
+        "Mark same-day / walk-ins"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "attribute",
+          "field": "sameDayEmergency",
+          "evidenceText": "Sign up to get first dibs on cancellations and last minute appointments"
+        }
+      ],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "the-beauty-haven-by-tosin",
+      "salonName": "The Beauty Haven by Tosin",
+      "reason": "this is boho braids, not locs",
+      "context": [
+        "Boho locs"
+      ],
+      "rejectedEvidence": [],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "the-hair-lounge-uk",
+      "salonName": "The Hair Lounge UK",
+      "reason": "last minute appointments, mean the dont happen ordinarily",
+      "context": [
+        "Mark same-day / walk-ins"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "attribute",
+          "field": "sameDayEmergency",
+          "evidenceText": "Booking Banner: DATES/TIMES OR LAST MINUTE APPOINTMENTS"
+        }
+      ],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "vhudzi-hair-by-alicia-pearl",
+      "salonName": "Vhudzi Hair by Alicia Pearl",
+      "reason": "they have \"Twists (with braiding hair) \" including \"kinky twists\"",
+      "context": [
+        "Twists (with extensions)"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "remove",
+          "field": "Twists (with extensions)",
+          "evidenceText": "Twists (with braiding hair)"
+        },
+        {
+          "kind": "remove",
+          "field": "Twists (with extensions)",
+          "evidenceText": "kinky twists"
+        }
+      ],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "vhudzi-hair-by-alicia-pearl",
+      "salonName": "Vhudzi Hair by Alicia Pearl",
+      "reason": "curly ends does not = french curl",
+      "context": [
+        "French curl"
+      ],
+      "rejectedEvidence": [],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "vhudzi-hair-by-alicia-pearl",
+      "salonName": "Vhudzi Hair by Alicia Pearl",
+      "reason": "no mention of trim",
+      "context": [
+        "Trim / hair cut"
+      ],
+      "rejectedEvidence": [],
+      "createdAt": "2026-10-08"
+    },
+    {
+      "salonId": "za-wigs",
+      "salonName": "ZA Wigs",
+      "reason": "same day appointments incur a £30 fee, so its not an ordinary thing",
+      "context": [
+        "Mark same-day / walk-ins"
+      ],
+      "rejectedEvidence": [
+        {
+          "kind": "attribute",
+          "field": "sameDayEmergency",
+          "evidenceText": "Booking Banner: Same-day appointments"
+        }
+      ],
+      "createdAt": "2026-10-08"
     }
   ]
 }

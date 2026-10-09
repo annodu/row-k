@@ -12,3 +12,4 @@ data/portfolio-photo-corrections.json
 data/portfolio-photo-corrections-photos/
 .env*
 .admin-security/
+.cache/

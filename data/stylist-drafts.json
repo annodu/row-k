@@ -1,10 +1,182 @@
 {
   "meta": {
     "source": "admin-drafts",
-    "updatedAt": "2026-10-06",
-    "count": 19
+    "updatedAt": "2026-10-09",
+    "count": 21
   },
   "drafts": [
+    {
+      "id": "theeloungeuk",
+      "status": "deprecated",
+      "name": "Thee Lounge UK",
+      "areaId": "east",
+      "areaIds": [
+        "east"
+      ],
+      "areaLabel": "East London",
+      "neighbourhood": "East London London",
+      "postcode": "",
+      "bookingPlatform": "Direct website",
+      "bookingUrl": "https://eloungee.as.me/schedule/478e13ec",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/theeloungeuk/",
+      "tiktokUrl": "https://www.tiktok.com/@ihsginaa/video/7667238290973576470",
+      "addedVia": "Manual discovery",
+      "discoverySource": "Manual search",
+      "services": [
+        "Wig install (frontal / closure)",
+        "Fulani / lemonade braids",
+        "Traditional sew-in / leave out",
+        "Knotless braids",
+        "French curl",
+        "Boho braids bob",
+        "Stitch braids",
+        "Wig cornrows",
+        "Box braids",
+        "Sleek ponytail / bun",
+        "Twists (with extensions)",
+        "Frontal ponytail / bun",
+        "Custom wig",
+        "Crochet faux locs / invisible locs",
+        "Fulani sew-in / quick weave / half wig"
+      ],
+      "rawServices": [],
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "customFilters": {},
+      "sellsHairSeparately": false,
+      "sameDayEmergency": false,
+      "priceBand": "£",
+      "servicePriceBand": "£",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "Wig install (frontal / closure) - (per wig install stylist roundup video) - Wig install (frontal / closure) - £65 (per wig install stylist roundup video)"
+      ],
+      "priceCheckedAt": "2026-07-31",
+      "priceUpdatedAt": "2026-07-31",
+      "priceConfidence": "manual",
+      "summary": "Admin draft created from stylist intake.",
+      "warnings": [],
+      "evidence": [
+        "Submitted link: https://www.instagram.com/theeloungeuk/",
+        "Source: https://www.tiktok.com/@ihsginaa/video/7667238290973576470 (£65, Hackney)"
+      ],
+      "createdAt": "2026-10-08",
+      "updatedAt": "2026-10-08",
+      "googleMapsUri": "",
+      "googleReviewCount": 0,
+      "googleMatchConfidence": "no-match",
+      "googleDisplayName": "",
+      "portfolioPhotos": [
+        {
+          "id": "theeloungeuk-portfolio-photo-0daae0cb-bce1-4ee5-a5a4-5275509c5e71",
+          "url": "/portfolio-photos/theeloungeuk-4a979c32-8f54-4a95-98d7-537de12bd970.jpg",
+          "source": "instagram"
+        },
+        {
+          "id": "theeloungeuk-portfolio-photo-66f731f9-00c5-4e83-80f0-53b43666c560",
+          "url": "/portfolio-photos/theeloungeuk-e36959c2-cf98-4f1e-b9e9-6e7802f87ce0.jpg",
+          "source": "instagram"
+        },
+        {
+          "id": "theeloungeuk-portfolio-photo-98bede1a-6949-4db6-b405-5f208d1d0370",
+          "url": "/portfolio-photos/theeloungeuk-627aa9de-83bf-44f4-a133-9727892cebbd.jpg",
+          "source": "instagram"
+        }
+      ],
+      "googlePlaceId": "",
+      "googleFormattedAddress": ""
+    },
+    {
+      "id": "fruittii-london",
+      "status": "deprecated",
+      "name": "Fruittii London",
+      "areaId": "south-east",
+      "areaIds": [
+        "south-east"
+      ],
+      "areaLabel": "South East",
+      "neighbourhood": "South East London",
+      "postcode": "",
+      "bookingPlatform": "Direct website",
+      "bookingUrl": "https://www.fresha.com/en-GB/a/fruittii-london-london-unit-a-norfolk-house-9-brookmill-road-tlmiyjhm",
+      "websiteUrl": "http://fruittiilondon.com/",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/fruittii.london/",
+      "tiktokUrl": "",
+      "addedVia": "Code edit",
+      "discoverySource": "Cowork scrape",
+      "services": [
+        "Trim / hair cut",
+        "Curly cut / wash & go / diffuse",
+        "Full head colour",
+        "Highlights",
+        "Balayage",
+        "Editorial / Session styling"
+      ],
+      "rawServices": [],
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": true,
+      "senFriendly": true,
+      "lgbtqFriendly": true,
+      "parkingAvailable": false,
+      "customFilters": {},
+      "sellsHairSeparately": false,
+      "sameDayEmergency": false,
+      "priceBand": "£",
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "Short Haircut - £59",
+        "Medium / Long Haircut - from £79",
+        "Restyle Haircut - £95",
+        "Luxury Hot Towel Skin Detox Facial & Haircut Wash & Finish - - Luxury Hot Towel Skin Detox Facial & Haircut Wash & Finish - £140",
+        "Curly Haircut 3C to 4d Coily Curls - from £100",
+        "Kids Haircut - £55",
+        "Fringe / Clean - Up - £25",
+        "Alternative Style Cut With Wash & Finish - - Alternative Style Cut With Wash & Finish - £115"
+      ],
+      "priceCheckedAt": "2026-07-22",
+      "priceUpdatedAt": "2026-07-22",
+      "priceConfidence": "manual",
+      "summary": "Manual entry added from your latest salon update batch.",
+      "warnings": [],
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "createdAt": "2026-10-08",
+      "updatedAt": "2026-10-08",
+      "googleMapsUri": "https://maps.google.com/?cid=15836739766202083827&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
+      "googleReviewCount": 319,
+      "googleMatchConfidence": "high",
+      "googleDisplayName": "Fruittii London",
+      "verifiedReviewCount": 2450,
+      "portfolioPhotos": [
+        {
+          "id": "fruittii-london-portfolio-photo-ff05331f-46eb-4013-8b7f-744289b6fa23",
+          "url": "/portfolio-photos/fruittii-london-2d1e2927-2ef1-46d9-a4b8-ba72d6743c86.jpg",
+          "source": "instagram"
+        },
+        {
+          "id": "fruittii-london-portfolio-photo-226acfaa-ac22-4f5f-a51c-25a91d68d135",
+          "url": "/portfolio-photos/fruittii-london-99ca3e9f-dcac-4300-b13d-1de966c673cd.jpg",
+          "source": "instagram"
+        }
+      ],
+      "googlePlaceId": "",
+      "googleFormattedAddress": ""
+    },
     {
       "id": "microlocs-by-dee",
       "status": "deprecated",
@@ -256,7 +428,7 @@
         "Traditional sew-in / leave out",
         "Highlights",
         "Frontal ponytail / bun",
-        "Wig laundry",
+        "Wig laundry / wig revamp",
         "Wig install (frontal / closure)",
         "Custom wig",
         "Flipover / Versatile sew-in",
@@ -631,10 +803,7 @@
       "addedVia": "Admin tool",
       "discoverySource": "Manual search",
       "services": [
-        "Full head colour",
-        "Balayage",
-        "Bridal",
-        "Keratin treatment / Brazilian blowdry"
+        "Bouncy blowout / round brush blow dry"
       ],
       "rawServices": [
         "Haircuts & Styles",
@@ -663,7 +832,7 @@
       ],
       "source": "admin-draft",
       "createdAt": "2026-08-25",
-      "updatedAt": "2026-08-31",
+      "updatedAt": "2026-10-08",
       "lastCheckedAt": "2026-08-31",
       "bookingLinkEvidence": "Instagram's own profile API failed for this account (\"Please wait a few minutes before you try again.\") — fetched via AnyAPI instead.\nInstagram bio: \"Luxury hair salon founded by @jonnylockonego and @bencooke_lockonego \n📍King’s Road, Chelsea, London\"\nBio link used as website: http://www.lockonego.com/",
       "attributeSuggestions": [],
@@ -685,7 +854,23 @@
       ],
       "priceCheckedAt": "2026-08-31",
       "priceUpdatedAt": "2026-08-31",
-      "priceConfidence": "high"
+      "priceConfidence": "high",
+      "hairShopUrl": "",
+      "googlePlaceId": "",
+      "googleMapsUri": "",
+      "googleMatchConfidence": "",
+      "googleDisplayName": "",
+      "googleFormattedAddress": "",
+      "hijabiFriendly": false,
+      "canBraidWithoutGel": false,
+      "wheelchairAccessible": false,
+      "senFriendly": false,
+      "lgbtqFriendly": false,
+      "parkingAvailable": false,
+      "sellsHairSeparately": false,
+      "sameDayEmergency": false,
+      "customFilters": {},
+      "serviceProof": {}
     },
     {
       "id": "the-beauty-parlour-by-kimberly-graham",

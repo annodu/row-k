@@ -67,6 +67,34 @@ type RegionOption = {
   label: string;
 };
 
+type ServiceProofSource = "tiktok-post" | "tiktok-comment" | "instagram-post" | "instagram-comment" | "message" | "booking-site" | "in-person" | "health-check" | "other";
+
+// Admin-only proof behind a service that isn't on any booking site — keeps the
+// health check from suggesting its removal. Never expires; stripped from the
+// public data server-side.
+type ServiceProof = {
+  source: ServiceProofSource;
+  url?: string;
+  note?: string;
+  addedAt: string;
+};
+
+const serviceProofSourceOptions: { value: ServiceProofSource; label: string }[] = [
+  { value: "tiktok-post", label: "TikTok post" },
+  { value: "tiktok-comment", label: "TikTok comment" },
+  { value: "instagram-post", label: "Instagram post" },
+  { value: "instagram-comment", label: "Instagram comment" },
+  { value: "message", label: "Message / DM" },
+  { value: "booking-site", label: "Booking site (not linked)" },
+  { value: "in-person", label: "Seen in person" },
+  { value: "other", label: "Other" },
+];
+
+function getServiceProofSourceLabel(source: ServiceProofSource) {
+  if (source === "health-check") return "From health check";
+  return serviceProofSourceOptions.find((option) => option.value === source)?.label ?? "Other";
+}
+
 type BranchDraft = {
   id: string;
   branchLabel: string;
@@ -107,6 +135,8 @@ type StylistDraft = {
   addedVia?: string;
   discoverySource?: string;
   services: string[];
+  needsProof?: Record<string, ServiceProof>;
+  serviceProof?: Record<string, ServiceProof>;
   rawServices: string[];
   hijabiFriendly?: boolean;
   canBraidWithoutGel?: boolean;
@@ -413,7 +443,7 @@ const learnedKeywordSuggestionGroups: KeywordSuggestionGroup[] = [
     ],
   },
   {
-    service: "Sew in / extensions blowdry",
+    service: "Sew in / extensions blowdry & styling",
     triggers: ["extensions blowdry", "extensions blow dry", "extensions blowout", "extensions blow out", "extension blowdry", "extension blow dry", "extension blowout", "extension blow out", "weave blowdry", "weave blow dry", "weave blowout", "weave blow out", "sew in blowdry", "sew in blow dry", "sew-in blowdry", "sew-in blow dry", "sewin blowdry", "sewin blow dry", "sew in blowout", "sew in blow out", "k tips blowdry", "k-tips blowdry", "ktips blowdry", "k tips blow dry", "k-tips blow dry", "ktips blow dry", "wash blow dry with extensions", "blow out on sew in weave"],
     keywords: [
       "extensions blowdry",
@@ -550,6 +580,8 @@ type DirectoryCheck = {
     confidence: string;
     rawServices: string[];
     matchedServices: string[];
+    // Exact lines behind each matched service (newer checks only).
+    serviceEvidence?: Record<string, string[]>;
     areaId?: string;
     areaLabel?: string;
   };
@@ -652,6 +684,8 @@ type FreshnessUpdate = {
   // suggestion — the server suppresses this same phrasing on every future
   // check, for any salon, not just this one.
   feedbackRejectedEvidence?: { kind: "attribute" | "add"; field: string; evidenceText: string }[];
+  // Sent with a declined removal: saves why the service is kept (see ServiceProof).
+  serviceProof?: Record<string, ServiceProof>;
 };
 
 type ManualPriceParseResult = {
@@ -753,6 +787,8 @@ type AnalyticsSummary = {
   instagramClicks: number;
   reviewsClicks: number;
   reviewsClicksByPlatform: { platform: string; clicks: number }[];
+  hairShopClicks?: number;
+  hairShopClicksByStylist?: { name: string; clicks: number }[];
   filterUsage: FilterUsage;
   zeroResultSearches: { filters: string[]; count: number; lastSeenAt: string }[];
   unmatchedServiceSearches?: { query: string; count: number; lastSeenAt: string }[];
@@ -805,7 +841,7 @@ const emptyForm: DraftForm = {
 };
 
 const serviceGroups = [
-  { label: "Braids", services: ["Boho braids / goddess braids","Braid take-down","Box braids","Colour blend (mixing braiding hair)","Crochet","Creative braids","Feed-in braids","French curl","Fulani / lemonade braids","Knotless braids","Miracle knots","Microbraids / x-small braids","Pre-parting","Stitch braids","Twists (with extensions)","Boho braids bob","French curl bob","Men's braids","Wig cornrows","Fulani sew-in","Boho sew-in","Feed-in / stitch braid sew-in"] },
+  { label: "Braids", services: ["Boho braids / goddess braids","Braid take-down","Box braids","Colour blend (mixing braiding hair)","Crochet","Creative braids","Feed-in braids","French curl","Fulani / lemonade braids","Knotless braids","Miracle knots","Microbraids / x-small braids","Pre-parting","Stitch braids","Twists (with extensions)","Boho braids bob","French curl bob","Men's braids","Wig cornrows","Fulani sew-in / quick weave / half wig","Boho sew-in","Feed-in / stitch braid sew-in"] },
   { label: "Colour", services: ["Balayage","Full head colour","Highlights","Wig colouring / bundle colouring"] },
   { label: "Bridal", services: ["Bridal"] },
   { label: "Editorial / Session styling", services: ["Editorial / Session styling"] },
@@ -813,12 +849,12 @@ const serviceGroups = [
   { label: "Extensions", services: ["Clip ins (+ silk press)","K-tips / invisible strands","LA weave / microlinks wefts / braidless sew in","I-tips / microlinks strands","Tape ins","Tape-ins + sew-in","K-tips + sew-in","Hair loss systems (e.g. mesh)"] },
   { label: "Locs", services: ["Starter locs / instant locs","Retwist / interlocking","Loc styling","Microlocs / sisterlocs","Loc extensions (permanent)"] },
   { label: "Faux locs", services: ["Soft locs","Boho locs","Crochet faux locs / invisible locs","Butterfly locs"] },
-  { label: "Sew in / weave", services: ["Closure sew-in / closure behind the hairline","Flipover / Versatile sew-in","Frontal sew-in","Pixie wig / weave install","Quick weave","Sew-in take-down","Tracks (+ silk press) / partial / invisible sew-in","Traditional sew-in / leave out","Fulani sew-in","Boho sew-in","Feed-in / stitch braid sew-in","Tape-ins + sew-in","K-tips + sew-in","Hair loss systems (e.g. mesh)"] },
-  { label: "Styling (sew in / frontal / relaxer)", services: ["Sew in / extensions blowdry","Frontal ponytail / bun","Half up half down","Pixie cut / finger waves","Sleek ponytail / bun","Updo"] },
-  { label: "Treatments", services: ["Cecred treatment","Hair botox","Japanese straightening","K18 treatment","Keratin treatment / Brazilian blowdry","Moisturising treatment","Olaplex treatment","Relaxer / texturiser","Texture release"] },
+  { label: "Sew in / weave", services: ["Closure sew-in / closure behind the hairline","Flipover / Versatile sew-in","Frontal sew-in","Pixie wig / weave install","Quick weave","Sew-in take-down","Tracks (+ silk press) / partial / invisible sew-in","Traditional sew-in / leave out","Fulani sew-in / quick weave / half wig","Boho sew-in","Feed-in / stitch braid sew-in","Tape-ins + sew-in","K-tips + sew-in","Hair loss systems (e.g. mesh)"] },
+  { label: "Styling (e.g. ponytails, pixies, sew-ins/wigs)", services: ["Frontal ponytail / bun","Half up half down","Pixie cut / finger waves","Sew in / extensions blowdry & styling","Sleek ponytail / bun","Updo","Wig blowdry & styling"] },
+  { label: "Treatments", services: ["Bond repair","Cécred wash & treatment","Hair botox","Japanese straightening","K18 treatment","Keratin treatment / Brazilian blowdry","Moisturising treatment","Olaplex treatment","Protein treatment","Relaxer / texturiser","Texture release"] },
   { label: "Natural hair washing & styling", services: ["Wig cornrows","Curly cut / wash & go / diffuse","Silk press","Bouncy blowout / round brush blow dry","Trim / hair cut","Roller set","Twist out / flexi rod","Bantu knots","Wash & blowdry","Japanese head spa","Scalp detox / treatments","Men's braids"] },
   { label: "Natural hair health & trichology", services: ["Healthy hair plans & consultations","Natural hair coaches / educators","Trichology / scalp analysis"] },
-  { label: "Wigs", services: ["Custom wig","Pixie wig / weave install","U-Part / Half wig install","Wig colouring / bundle colouring","Wig install (frontal / closure)","Wig blowdry","Wig laundry"] },
+  { label: "Wigs", services: ["Custom wig","Pixie wig / weave install","U-Part / Half wig install","Wig colouring / bundle colouring","Wig install (frontal / closure)","Wig laundry / wig revamp"] },
 ];
 
 type ConfirmOptions = {
@@ -1419,6 +1455,15 @@ function AdminAppInner() {
       }
       if (isPublished) {
         setPublishedStylists((current) => current.map((item) => (item.id === draft.id ? payload.stylist : item)));
+        // Proof added in the drawer clears any pending removal for that service.
+        const proofedServices = Object.keys(payload.stylist?.serviceProof || {});
+        if (proofedServices.length) {
+          setChecks((current) =>
+            current.map((check) =>
+              check.id === draft.id ? { ...check, removedServices: check.removedServices.filter((service) => !proofedServices.includes(service)) } : check,
+            ),
+          );
+        }
         notify("Published stylist saved.");
       } else {
         setDrafts((current) => current.map((item) => (item.id === draft.id ? payload.draft : item)));
@@ -1814,6 +1859,8 @@ function AdminAppInner() {
       let totalUpdates = 0;
       let lastCheckedAt = "";
       let completedChecks: DirectoryCheck[] = [];
+      // Every check from the run, clean ones included, so the saved store keeps all scraped services.
+      let storedChecks: DirectoryCheck[] = [];
       let completedCount = 0;
       let totalCount = 0;
 
@@ -1835,6 +1882,8 @@ function AdminAppInner() {
         totalUpdates += batchChecks.length;
         lastCheckedAt = payload.checkedAt || lastCheckedAt || today();
         completedChecks = batchOffset === 0 ? batchChecks : [...completedChecks, ...batchChecks];
+        const batchStoredChecks = payload.storedChecks ?? batchChecks;
+        storedChecks = batchOffset === 0 ? batchStoredChecks : [...storedChecks, ...batchStoredChecks];
         setChecks(completedChecks);
         setChecksLoadedAt(lastCheckedAt);
         setCheckProgress({
@@ -1859,7 +1908,7 @@ function AdminAppInner() {
           credentials: "include",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            checks: completedChecks,
+            checks: storedChecks,
             checkedAt: lastCheckedAt || today(),
             checkedCount: completedCount,
             total: totalCount,
@@ -2066,6 +2115,9 @@ function AdminAppInner() {
       setChecks((current) =>
         updateChecksAfterFreshnessAction(current, check, update, payload.check, payload.salon),
       );
+      if (update.serviceProof && payload.salon?.serviceProof) {
+        setPublishedStylists((current) => current.map((item) => (item.id === check.id ? { ...item, serviceProof: payload.salon.serviceProof } : item)));
+      }
       if (update.hijabiFriendly === true) {
         setPublishedStylists((current) => current.map((item) => (item.id === check.id ? { ...item, hijabiFriendly: true } : item)));
       }
@@ -2100,6 +2152,51 @@ function AdminAppInner() {
       }
       setFreshnessUndoStack((current) => [...current, undoState]);
       setMessage("Directory listing updated.");
+    } finally {
+      setIsBusy(false);
+    }
+  }
+
+  async function deprecateFromHealthCheck(check: DirectoryCheck) {
+    const confirmed = await confirm({
+      title: `Mark ${check.name} as deprecated?`,
+      description: "They'll be removed from the live site and moved to Drafts as deprecated. You can restore them from Drafts anytime.",
+      confirmLabel: "Mark deprecated",
+      tone: "danger",
+    });
+    if (!confirmed) return;
+
+    setMessage("");
+    setIsBusy(true);
+    try {
+      const response = await fetch(`/api/admin/stylists/published/${check.id}/unpublish`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({ deprecate: true }),
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (response.status === 404) {
+        // Already unpublished (it's a draft now) — the health check entry was
+        // left over. Deprecate the draft instead and drop the entry.
+        setChecks((current) => current.filter((item) => item.id !== check.id));
+        const existingDraft = drafts.find((item) => item.id === check.id);
+        if (existingDraft && existingDraft.status !== "deprecated") {
+          await saveDraft({ ...existingDraft, status: "deprecated" });
+        }
+        notify(`${check.name} was already unpublished${existingDraft ? " — marked its draft as deprecated" : ""}.`);
+        return;
+      }
+      if (!response.ok) {
+        notify(payload.message || "Could not mark stylist as deprecated.", "error");
+        return;
+      }
+      if (payload.draft) {
+        setDrafts((current) => [payload.draft, ...current.filter((item) => item.id !== payload.draft.id)]);
+      }
+      setPublishedStylists((current) => current.filter((item) => item.id !== check.id));
+      setChecks((current) => current.filter((item) => item.id !== check.id));
+      notify(`${check.name} marked as deprecated.`);
     } finally {
       setIsBusy(false);
     }
@@ -2396,6 +2493,7 @@ function AdminAppInner() {
             lastUndo={freshnessUndoStack[freshnessUndoStack.length - 1] ?? null}
             onRunChecks={() => runChecks(0)}
             onApply={applyFreshnessUpdate}
+            onDeprecate={deprecateFromHealthCheck}
             onUndo={undoFreshnessUpdate}
           />
         ) : null}
@@ -6944,11 +7042,12 @@ function AnalyticsPage({ onOpenView }: { onOpenView: (view: AdminView) => void }
         </div>
       </section>
 
-      <div className="grid grid-cols-2 divide-x divide-y divide-stone-200 rounded-none border border-stone-200 bg-white sm:grid-cols-4 sm:divide-y-0">
+      <div className="grid grid-cols-2 divide-x divide-y divide-stone-200 rounded-none border border-stone-200 bg-white sm:grid-cols-5 sm:divide-y-0">
         <OverviewStatCell label="Unique visitors" value={totalVisitors} state={statState} />
         <OverviewStatCell label="Booking link clicks" value={analytics?.bookingClicks ?? 0} state={statState} />
         <OverviewStatCell label="Instagram link clicks" value={analytics?.instagramClicks ?? 0} state={statState} />
         <OverviewStatCell label="Reviews link clicks" value={analytics?.reviewsClicks ?? 0} state={statState} />
+        <OverviewStatCell label="Buy hair clicks" value={analytics?.hairShopClicks ?? 0} state={statState} />
       </div>
 
       <div className="grid gap-4 lg:grid-cols-3">
@@ -7014,6 +7113,22 @@ function AnalyticsPage({ onOpenView }: { onOpenView: (view: AdminView) => void }
           <ZeroResultSearchesSkeleton />
         ) : (
           <UnmatchedServiceSearchesList rows={analytics?.unmatchedServiceSearches ?? []} />
+        )}
+      </div>
+
+      <div className="border border-stone-200 bg-white p-6">
+        <h2 className="text-sm font-semibold text-stone-950">Buy hair clicks by stylist</h2>
+        <p className="mt-1 text-xs text-stone-500">Who people click &ldquo;Buy hair&rdquo; on</p>
+        {isRangeLoading ? (
+          <FilterUsageSkeleton />
+        ) : analytics?.hairShopClicksByStylist?.length ? (
+          <div className="mt-5">
+            <FilterUsageGroup label="Stylist" rows={analytics.hairShopClicksByStylist.map((row) => ({ label: row.name, count: row.clicks }))} />
+          </div>
+        ) : (
+          <SkeletonEmptyState label="No data">
+            <FilterUsageSkeleton pulse={false} />
+          </SkeletonEmptyState>
         )}
       </div>
 
@@ -7758,6 +7873,7 @@ function FreshnessPage({
   lastUndo,
   onRunChecks,
   onApply,
+  onDeprecate,
   onUndo,
 }: {
   dashboard: DashboardMetrics | null;
@@ -7770,12 +7886,14 @@ function FreshnessPage({
   lastUndo: FreshnessUndoState | null;
   onRunChecks: () => void;
   onApply: FreshnessPageApplyHandler;
+  onDeprecate: (check: DirectoryCheck) => void;
   onUndo: () => void;
 }) {
   const total = checkProgress.total || dashboard?.freshness.total || 0;
   const checkedCount = checkProgress.checkedCount || dashboard?.freshness.checkedCount || 0;
   const [freshnessFilter, setFreshnessFilter] = useState<"all" | "service-changes" | "link-issues" | "location-updates">("all");
   const [freshnessSearchTerm, setFreshnessSearchTerm] = useState("");
+  const [healthTab, setHealthTab] = useState<"suggestions" | "learnings">("suggestions");
 	  const rows = buildFreshnessRecommendationGroups(checks);
   const healthRows = filterFreshnessRowsByDetail(rows, (detail) => detail.kind !== "price" && detail.kind !== "price-info" && detail.kind !== "manual-price");
 	  const recommendationCount = healthRows.length;
@@ -7830,6 +7948,28 @@ function FreshnessPage({
 	        </div>
 	      </section>
 
+      <div className="flex gap-6 border-b border-stone-200">
+        {([
+          { id: "suggestions", label: "Suggestions" },
+          { id: "learnings", label: "Learnings" },
+        ] as const).map((tab) => (
+          <button
+            key={tab.id}
+            type="button"
+            onClick={() => setHealthTab(tab.id)}
+            aria-pressed={healthTab === tab.id}
+            className={cn(
+              "-mb-px border-b-2 pb-3 text-sm font-semibold transition",
+              healthTab === tab.id ? "border-stone-950 text-stone-950" : "border-transparent text-stone-500 hover:text-stone-950",
+            )}
+          >
+            {tab.label}
+          </button>
+        ))}
+      </div>
+
+      {healthTab === "learnings" ? <HealthCheckLearnings /> : (
+      <>
 	      {isWaitingForResults ? (
           <FreshnessMetricSkeleton />
         ) : (
@@ -7871,6 +8011,7 @@ function FreshnessPage({
         isBusy={isBusy}
         isWaitingForResults={isWaitingForResults}
         onApply={onApply}
+        onDeprecate={onDeprecate}
         onRunChecks={onRunChecks}
         onClearFilters={() => {
           setFreshnessSearchTerm("");
@@ -7878,9 +8019,203 @@ function FreshnessPage({
         }}
         isRunningChecks={isRunningChecks}
       />
+      </>
+      )}
 	    </div>
 	  );
 	}
+
+type HealthCheckLearning = {
+  key: string;
+  kind: "add" | "attribute" | "confirm" | "other";
+  field: string;
+  label: string;
+  declines: number;
+  salons: number;
+  lastSeen: string;
+  recurring: boolean;
+  status: "needs-fix" | "logged" | "fixed";
+  stillMatching: number;
+  reasons: { text: string; count: number }[];
+  examples: { text: string; salonName: string; stillMatches: boolean | null }[];
+};
+
+const healthLearningStatusMeta: Record<HealthCheckLearning["status"], { label: string; pillClass: string; description: string }> = {
+  "needs-fix": {
+    label: "Needs a fix",
+    pillClass: "bg-red-50 text-red-700",
+    description: "Today's rules still match some of this declined wording. It's only held back by the exact-wording memory, so similar wording elsewhere will keep being suggested.",
+  },
+  logged: {
+    label: "Logged only",
+    pillClass: "bg-stone-100 text-stone-600",
+    description: "Removal, location, link and no-evidence declines can't be re-tested automatically. Your reasons are kept here for a manual rule fix.",
+  },
+  fixed: {
+    label: "Fixed",
+    pillClass: "bg-emerald-50 text-emerald-700",
+    description: "None of the declined wording matches today's rules any more.",
+  },
+};
+
+function HealthCheckLearnings() {
+  const [groups, setGroups] = useState<HealthCheckLearning[] | null>(null);
+  const [error, setError] = useState("");
+  const [statusFilter, setStatusFilter] = useState<HealthCheckLearning["status"] | "all">("all");
+
+  useEffect(() => {
+    let cancelled = false;
+    fetch("/api/admin/health-check-learnings", { credentials: "include" })
+      .then(async (response) => {
+        const payload = await response.json().catch(() => ({}));
+        if (cancelled) return;
+        if (!response.ok) {
+          setError(payload.message || "Could not load learnings.");
+          return;
+        }
+        setGroups(Array.isArray(payload.groups) ? payload.groups : []);
+      })
+      .catch(() => {
+        if (!cancelled) setError("Could not load learnings.");
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  if (error) {
+    return <p className="text-sm text-red-700">{error}</p>;
+  }
+
+  if (!groups) {
+    return (
+      <section className="overflow-hidden rounded-none border border-stone-200 bg-white">
+        <FreshnessSkeleton />
+      </section>
+    );
+  }
+
+  const countFor = (status: HealthCheckLearning["status"]) => groups.filter((group) => group.status === status).length;
+  const totalDeclines = groups.reduce((sum, group) => sum + group.declines, 0);
+  const visibleGroups = statusFilter === "all" ? groups : groups.filter((group) => group.status === statusFilter);
+
+  return (
+    <div className="space-y-7">
+      <div className="grid grid-cols-2 divide-x divide-y divide-stone-200 rounded-none border border-stone-200 bg-white sm:grid-cols-4 sm:divide-y-0">
+        <StylistStatCell label="Needs a fix" value={countFor("needs-fix")} />
+        <StylistStatCell label="Logged only" value={countFor("logged")} />
+        <StylistStatCell label="Fixed" value={countFor("fixed")} />
+        <StylistStatCell label="Declines with a reason" value={totalDeclines} />
+      </div>
+
+      <div className="flex flex-wrap items-center gap-2">
+        {(["all", "needs-fix", "logged", "fixed"] as const).map((status) => (
+          <button
+            key={status}
+            type="button"
+            onClick={() => setStatusFilter(status)}
+            aria-pressed={statusFilter === status}
+            className={cn(
+              "rounded-none border px-3 py-1.5 text-sm font-medium transition",
+              statusFilter === status ? "border-stone-950 bg-stone-950 text-white" : "border-stone-200 bg-white text-stone-600 hover:border-stone-300 hover:text-stone-950",
+            )}
+          >
+            {status === "all" ? "All" : healthLearningStatusMeta[status].label}
+          </button>
+        ))}
+      </div>
+      {statusFilter !== "all" ? <p className="-mt-4 text-sm text-stone-500">{healthLearningStatusMeta[statusFilter].description}</p> : null}
+
+      <section className="overflow-hidden rounded-none border border-stone-200 bg-white">
+        {visibleGroups.length ? (
+          visibleGroups.map((group) => <HealthCheckLearningRow key={group.key} group={group} />)
+        ) : (
+          <div className="flex min-h-48 flex-col items-center justify-center px-6 py-12 text-center">
+            <SearchX className="mb-4 size-8 text-stone-300" />
+            <p className="text-sm text-stone-500">
+              {groups.length ? "Nothing in this group." : "No learnings yet. Add a reason when you ignore a suggestion and it shows up here."}
+            </p>
+          </div>
+        )}
+      </section>
+    </div>
+  );
+}
+
+function HealthCheckLearningRow({ group }: { group: HealthCheckLearning }) {
+  const [isOpen, setIsOpen] = useState(false);
+  const status = healthLearningStatusMeta[group.status];
+  const kindLabel = group.kind === "add" ? "Service" : group.kind === "attribute" ? "Attribute" : group.kind === "confirm" ? "Kept service" : "Other";
+  // Confirm groups hold lines that prove a service exists, so matching is the good outcome.
+  const isConfirm = group.kind === "confirm";
+
+  return (
+    <div className="border-b border-stone-100 last:border-b-0">
+      <button
+        type="button"
+        onClick={() => setIsOpen((current) => !current)}
+        aria-expanded={isOpen}
+        className="flex w-full items-center gap-4 px-6 py-4 text-left transition hover:bg-stone-50"
+      >
+        <div className="min-w-0 flex-1">
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="font-semibold text-stone-950">{group.label}</span>
+            <span className="rounded-none border border-stone-200 px-2 py-0.5 text-xs font-medium text-stone-500">{kindLabel}</span>
+            {group.recurring ? <span className="rounded-none bg-amber-50 px-2 py-0.5 text-xs font-semibold text-amber-700">Recurring</span> : null}
+          </div>
+          <p className="mt-1 text-sm text-stone-500">
+            {group.declines} decline{group.declines === 1 ? "" : "s"} · {group.salons} salon{group.salons === 1 ? "" : "s"}
+            {group.lastSeen ? ` · last ${formatRelativeTime(group.lastSeen)}` : ""}
+            {group.status === "needs-fix" ? (isConfirm ? ` · ${group.examples.length - group.stillMatching} of ${group.examples.length} lines not recognised` : ` · ${group.stillMatching} of ${group.examples.length} phrases still match`) : ""}
+          </p>
+        </div>
+        <span className={cn("shrink-0 rounded-none px-3 py-1 text-xs font-semibold", status.pillClass)}>{status.label}</span>
+        {isOpen ? <ChevronUp className="size-4 shrink-0 text-stone-400" /> : <ChevronDown className="size-4 shrink-0 text-stone-400" />}
+      </button>
+      {isOpen ? (
+        <div className="grid gap-6 bg-stone-50 px-6 pb-6 pt-2 lg:grid-cols-2">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.12em] text-stone-500">Your reasons</p>
+            {group.reasons.length ? (
+              <ul className="mt-2 space-y-1.5">
+                {group.reasons.map((reason) => (
+                  <li key={reason.text} className="flex items-start justify-between gap-3 border border-stone-200 bg-white px-3 py-2 text-sm text-stone-700">
+                    <span className="min-w-0 break-words">{reason.text}</span>
+                    {reason.count > 1 ? <span className="shrink-0 text-xs font-semibold text-stone-400">×{reason.count}</span> : null}
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p className="mt-2 text-sm text-stone-500">No reason given.</p>
+            )}
+          </div>
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.12em] text-stone-500">{isConfirm ? "Lines that prove it" : "Declined wording"} ({group.examples.length})</p>
+            {group.examples.length ? (
+              <ul className="mt-2 max-h-80 space-y-1.5 overflow-y-auto">
+                {group.examples.map((example) => (
+                  <li key={example.text} className="border border-stone-200 bg-white px-3 py-2 text-sm text-stone-700">
+                    <div className="flex items-start justify-between gap-3">
+                      <span className="min-w-0 whitespace-pre-wrap break-words">{example.text}</span>
+                      {example.stillMatches === null ? null : example.stillMatches === isConfirm ? (
+                        <span className="shrink-0 bg-emerald-50 px-2 py-0.5 text-xs font-semibold text-emerald-700">{isConfirm ? "Recognised" : "No longer matches"}</span>
+                      ) : (
+                        <span className="shrink-0 bg-red-50 px-2 py-0.5 text-xs font-semibold text-red-700">{isConfirm ? "Not recognised" : "Still matches"}</span>
+                      )}
+                    </div>
+                    {example.salonName ? <p className="mt-1 text-xs text-stone-400">{example.salonName}</p> : null}
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p className="mt-2 text-sm text-stone-500">No evidence wording was captured for these declines.</p>
+            )}
+          </div>
+        </div>
+      ) : null}
+    </div>
+  );
+}
 
 function FreshnessInboxLayout({
   rows,
@@ -7888,6 +8223,7 @@ function FreshnessInboxLayout({
   isBusy,
   isWaitingForResults,
   onApply,
+  onDeprecate,
   onRunChecks,
   onClearFilters,
   isRunningChecks,
@@ -7897,6 +8233,7 @@ function FreshnessInboxLayout({
   isBusy: boolean;
   isWaitingForResults: boolean;
   onApply: FreshnessPageApplyHandler;
+  onDeprecate: (check: DirectoryCheck) => void;
   onRunChecks: () => void;
   onClearFilters: () => void;
   isRunningChecks: boolean;
@@ -7965,6 +8302,7 @@ function FreshnessInboxLayout({
           row={selectedRow}
           isBusy={isBusy}
           onApply={onApply}
+          onDeprecate={onDeprecate}
           onBack={() => setMobileDetailOpen(false)}
         />
       </div>
@@ -8044,11 +8382,13 @@ function FreshnessInboxDetail({
   row,
   isBusy,
   onApply,
+  onDeprecate,
   onBack,
 }: {
   row: FreshnessRecommendationGroup | null;
   isBusy: boolean;
   onApply: FreshnessPageApplyHandler;
+  onDeprecate: (check: DirectoryCheck) => void;
   onBack: () => void;
 }) {
   if (!row) {
@@ -8080,7 +8420,7 @@ function FreshnessInboxDetail({
         </div>
       </div>
       <div className="px-6 py-6">
-        <FreshnessRecommendationBody key={row.id} row={row} isBusy={isBusy} onApply={onApply} />
+        <FreshnessRecommendationBody key={row.id} row={row} isBusy={isBusy} onApply={onApply} onDeprecate={onDeprecate} />
       </div>
     </div>
   );
@@ -8260,10 +8600,12 @@ function FreshnessRecommendationBody({
   row,
   isBusy,
   onApply,
+  onDeprecate,
 }: {
   row: FreshnessRecommendationGroup;
   isBusy: boolean;
   onApply: FreshnessPageApplyHandler;
+  onDeprecate?: (check: DirectoryCheck) => void;
 }) {
   const hasWebsiteLinkIssue = row.check.linkChecks.some((linkCheck) => linkCheck.type === "website" && linkCheck.status !== "ok");
   const primaryLinkLabel = hasWebsiteLinkIssue ? "Website URL" : "Booking URL";
@@ -8304,6 +8646,18 @@ function FreshnessRecommendationBody({
     }
   }
 
+  // "Links are fine": the saved URLs actually work, so confirm them as-is.
+  // Re-saving each flagged link unchanged clears it server-side and
+  // fingerprints it so the same issue isn't re-raised on the next check.
+  async function handleDismissLinks() {
+    const linkDetails = row.details.filter((detail) => detail.kind === "fix" || detail.kind === "manual");
+    const merged = mergeFreshnessRejectUpdates(linkDetails, row);
+    if (!merged) {
+      return;
+    }
+    await Promise.resolve(onApply(row.check, merged));
+  }
+
   async function handleBulkAccept() {
     const selectedDetails = Array.from(selectedIndexes).map((index) => row.details[index]).filter(Boolean);
     const merged = mergeFreshnessAcceptUpdates(selectedDetails, row);
@@ -8327,7 +8681,18 @@ function FreshnessRecommendationBody({
     // already raw (no prefix). Remove/price/location rejections aren't
     // included here — see loadLearnedExclusions() server-side for why those
     // need a different kind of learning than "ignore this evidence phrase".
+    // The exception: declining a single removal with the service quoted in
+    // the reason (they have "Shampoo & Blow Dry") teaches the matcher that line.
+    const removeDetails = selectedDetails.filter((detail) => detail.kind === "remove" && detail.service);
+    const quotedLines = [...reason.matchAll(/["“”]([^"“”]{3,200})["“”]/g)].map((match) => match[1].trim()).filter(Boolean);
     const rejectedEvidence = selectedDetails.flatMap((detail) => {
+      if (detail.kind === "remove" && detail.service && removeDetails.length === 1) {
+        return quotedLines.map((line) => ({
+          kind: "remove" as const,
+          field: detail.service as string,
+          evidenceText: line,
+        }));
+      }
       if (detail.kind === "attribute" && detail.attributeField) {
         return (detail.evidence || []).map((line) => ({
           kind: "attribute" as const,
@@ -8390,6 +8755,7 @@ function FreshnessRecommendationBody({
               <th className="w-28 px-4 py-3">Type</th>
               <th className="w-64 px-4 py-3">Suggestion</th>
               <th className="px-4 py-3">Evidence</th>
+              <th className="w-10 px-2 py-3"><span className="sr-only">Expand</span></th>
             </tr>
           </thead>
           <tbody>
@@ -8421,7 +8787,7 @@ function FreshnessRecommendationBody({
                 if (event.key === "Enter") handleBulkIgnore();
                 if (event.key === "Escape") setIgnoreReasonPrompt(false);
               }}
-              placeholder="e.g. it's still on their booking page as..."
+              placeholder={'e.g. they have "Shampoo & Blow Dry"'}
               className="h-8 w-64 rounded-none border border-stone-700 bg-stone-900 px-2 text-sm text-white placeholder:text-stone-500 focus:border-stone-400 focus:outline-none"
             />
             <span className="h-4 w-px bg-white/20" />
@@ -8489,8 +8855,31 @@ function FreshnessRecommendationBody({
       ) : null}
       {hasLinkIssues ? (
         <div className="space-y-3 rounded-none border border-stone-200 bg-stone-50 p-4">
-          <div className="flex items-center justify-between gap-3">
+          <div className="flex flex-wrap items-center justify-between gap-3">
             <p className="text-xs font-semibold uppercase tracking-[0.12em] text-stone-600">Links</p>
+            <div className="flex flex-wrap items-center gap-2">
+            {onDeprecate ? (
+              <button
+                type="button"
+                disabled={isBusy || linkSaveState === "saving"}
+                onClick={() => onDeprecate(row.check)}
+                title="Links are truly broken and there's no way to reach this stylist"
+                className="inline-flex items-center gap-2 rounded-none border border-red-200 bg-white px-3 py-2 text-sm font-semibold text-red-700 transition hover:bg-red-50 disabled:cursor-not-allowed disabled:opacity-35"
+              >
+                <Ban className="size-3.5" />
+                Mark deprecated
+              </button>
+            ) : null}
+            <button
+              type="button"
+              disabled={isBusy || linkSaveState === "saving"}
+              onClick={handleDismissLinks}
+              title="The saved links work — dismiss this suggestion"
+              className="inline-flex items-center gap-2 rounded-none border border-stone-200 bg-white px-3 py-2 text-sm font-semibold text-stone-700 transition hover:border-stone-300 hover:text-stone-950 disabled:cursor-not-allowed disabled:opacity-35"
+            >
+              <Check className="size-3.5" />
+              Links are fine
+            </button>
             <button
               type="button"
               disabled={isBusy || linkSaveState === "saving"}
@@ -8510,6 +8899,7 @@ function FreshnessRecommendationBody({
                 "Update"
               )}
             </button>
+            </div>
           </div>
           <div className="h-px bg-stone-200" />
           <div className="grid gap-3 sm:grid-cols-2">
@@ -8563,6 +8953,7 @@ function FreshnessRecommendationTableRow({
   const isAutoAppliedPrice = isPrice && detail.priceAutoApplied === true;
   const [selectedPriceBand, setSelectedPriceBand] = useState<PriceBand | "">(detail.priceBand || "");
   const [manualPriceResult, setManualPriceResult] = useState<ManualPriceParseResult | null>(null);
+  const [isExpanded, setIsExpanded] = useState(false);
   const visual = getFreshnessDetailVisual(detail);
   const acceptUpdate = getFreshnessDetailAcceptUpdate(detail, row, selectedPriceBand, manualPriceResult);
   const primaryActionLabel = isAdd ? "Add service" : isRemove ? "Remove" : isAttribute ? getAttributeActionLabel(detail.attributeField) : isPrice || isManualPrice ? "Set band" : detail.kind === "location" ? "Update location" : detail.kind === "fix" ? "Save" : "Resolve";
@@ -8576,8 +8967,14 @@ function FreshnessRecommendationTableRow({
 
   return (
     <>
-      <tr className={cn("border-b border-stone-100 last:border-b-0", isSelected ? "bg-emerald-50/40" : "")}>
-        <td className="w-10 px-4 py-4">
+      <tr
+        onClick={() => setIsExpanded((current) => !current)}
+        className={cn(
+          "cursor-pointer border-b border-stone-100 transition last:border-b-0",
+          isSelected ? "bg-emerald-50/40" : isExpanded ? "bg-stone-50" : "hover:bg-stone-50",
+        )}
+      >
+        <td className="w-10 px-4 py-4" onClick={(event) => event.stopPropagation()}>
           <Checkbox checked={isSelected} onCheckedChange={onToggleSelected} disabled={!selectable || isBusy} aria-label={`Select ${detail.label}`} />
         </td>
         <td className="w-28 px-4 py-4">
@@ -8609,14 +9006,70 @@ function FreshnessRecommendationTableRow({
             <span className="text-sm text-stone-400">—</span>
           )}
         </td>
+        <td className="w-10 px-2 py-4 text-stone-400">
+          <button
+            type="button"
+            onClick={(event) => {
+              event.stopPropagation();
+              setIsExpanded((current) => !current);
+            }}
+            className="inline-flex size-7 items-center justify-center rounded-none hover:bg-stone-100 hover:text-stone-950"
+            aria-expanded={isExpanded}
+            aria-label={isExpanded ? `Hide full evidence for ${detail.label}` : `Show full evidence for ${detail.label}`}
+          >
+            {isExpanded ? <ChevronUp className="size-4" /> : <ChevronDown className="size-4" />}
+          </button>
+        </td>
       </tr>
+      {isExpanded ? (
+        <tr className="border-b border-stone-100 bg-stone-50 last:border-b-0">
+          <td colSpan={5} className="px-4 pb-4 pt-1">
+            <div className="space-y-3 border-l-2 border-stone-300 pl-4">
+              {isRemove && detail.service ? (
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.12em] text-stone-500">Keep this service — add proof</p>
+                  <p className="mt-1 text-sm text-stone-500">Found it outside a booking site? Save where, and it won't be suggested for removal again.</p>
+                  <div className="mt-2">
+                    <ServiceProofForm
+                      initialService={detail.service}
+                      submitLabel="Keep with proof"
+                      isBusy={isBusy}
+                      onSubmit={(service, proof) => onApply(row.check, { rejectRemovedServices: [service], serviceProof: { [service]: proof } })}
+                    />
+                  </div>
+                </div>
+              ) : null}
+              <div>
+                <p className="text-sm font-semibold text-stone-950">{detail.label}</p>
+                {suggestionSubtext ? <p className="mt-0.5 whitespace-pre-wrap break-words text-sm text-stone-600">{suggestionSubtext}</p> : null}
+              </div>
+              {detail.evidence?.length ? (
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.12em] text-stone-500">
+                    {detail.evidenceLabel || "Evidence"} ({detail.evidence.length})
+                  </p>
+                  <ul className="mt-2 space-y-1.5">
+                    {detail.evidence.map((line, lineIndex) => (
+                      <li key={`${line}-${lineIndex}`} className="whitespace-pre-wrap break-words border border-stone-200 bg-white px-3 py-2 text-sm text-stone-700">
+                        {line}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ) : (
+                <p className="text-sm text-stone-500">No evidence text captured for this suggestion.</p>
+              )}
+            </div>
+          </td>
+        </tr>
+      ) : null}
       {showCalculator ? (() => {
         const linkUrl = detail.manualPriceReason === "social-only"
           ? (row.check.instagramUrl || row.check.bookingUrl)
           : (row.check.bookingUrl || row.check.instagramUrl);
         return (
           <tr className="border-b border-stone-100 last:border-b-0">
-            <td colSpan={4} className="bg-stone-50 px-4 py-3">
+            <td colSpan={5} className="bg-stone-50 px-4 py-3">
               <ManualPriceCalculator
                 detail={detail}
                 selectedPriceBand={selectedPriceBand}
@@ -9211,7 +9664,7 @@ function buildFreshnessRecommendationGroups(checks: DirectoryCheck[]): Freshness
         label: service,
         description: "New service detected",
         service,
-        evidence: getServiceEvidence(check.serviceCheck.rawServices, service),
+        evidence: getServiceEvidence(check.serviceCheck.rawServices, service, check.serviceCheck.serviceEvidence),
       })),
       ...attributeSuggestions.map((suggestion) => ({
         kind: "attribute" as const,
@@ -9342,7 +9795,7 @@ function isActionableBrokenLink(linkCheck: DirectoryCheck["linkChecks"][number])
 }
 
 function getActionableAddedServices(check: DirectoryCheck) {
-  return check.addedServices.filter((service) => hasSupportedFreshnessEvidence(check, service) && getServiceEvidence(check.serviceCheck.rawServices, service).length > 0);
+  return check.addedServices.filter((service) => hasSupportedFreshnessEvidence(check, service) && getServiceEvidence(check.serviceCheck.rawServices, service, check.serviceCheck.serviceEvidence).length > 0);
 }
 
 function getActionableRemovedServices(check: DirectoryCheck) {
@@ -9662,7 +10115,11 @@ function getFreshnessGroupRecommendation(
   return check.issues.some((issue) => issue.toLowerCase().includes("price")) ? "Review price" : "Review service";
 }
 
-function getServiceEvidence(rawServices: string[] = [], service: string) {
+function getServiceEvidence(rawServices: string[] = [], service: string, serviceEvidence?: Record<string, string[]>) {
+  // Prefer the lines that actually triggered the match; older checks fall back to keywords.
+  if (serviceEvidence?.[service]?.length) {
+    return serviceEvidence[service].slice(0, 4);
+  }
   const keywords = serviceEvidenceKeywords[service] ?? service.toLowerCase().split(/\s+|\/|\(|\)|-/).filter((word) => word.length > 3);
   const normalizedKeywords = keywords.map(normalizeEvidenceText);
   const exactMatches = rawServices.filter((line) => {
@@ -9739,7 +10196,7 @@ const serviceEvidenceKeywords: Record<string, string[]> = {
   "Hair loss systems (e.g. mesh)": ["mesh integration", "hair loss system", "hair loss systems", "hair loss weave", "hair loss unit", "for alopecia", "for hair loss"],
   "Tracks (+ silk press) / partial / invisible sew-in": ["tracks", "track per row", "per track", "per row", "one row", "individual sewn on track", "individual sewn on tracks", "tracks add on", "tracks add-on", "silk press add on tracks", "silk press add-on tracks", "row sew in", "rows of sew in", "weave tracks", "weave tracks per track", "weave on per row", "traditional weave rows", "partial sew in", "partial sewin", "invisible sew in", "invisible weave", "invisible weft", "invisible wefts", "half head weave"],
   "Bouncy blowout / round brush blow dry": ["bouncy blowout", "bouncy blow out", "bouncy blowdry", "bouncy blow dry", "bouncy blow-dry", "round brush blow dry", "round brush blowdry", "dry bouncy blow-dry", "blowout"],
-  "Sew in / extensions blowdry": ["extensions blowdry", "extensions blow dry", "extensions blowout", "extensions blow out", "extension blowdry", "extension blow dry", "extension blowout", "extension blow out", "blowdry with extensions", "blow dry with extensions", "blowout with extensions", "blow out with extensions", "weave blowdry", "weave blow dry", "weave blowout", "weave blow out", "sew in blowdry", "sew in blow dry", "sew-in blowdry", "sew-in blow dry", "sewin blowdry", "sewin blow dry", "sew in blowout", "sew in blow out", "k tips blowdry", "k-tips blowdry", "ktips blowdry", "k tips blow dry", "k-tips blow dry", "ktips blow dry", "blow out on sew in weave", "blowout on sew in weave", "wash blow dry with extensions", "wash and blow dry with extensions"],
+  "Sew in / extensions blowdry & styling": ["extensions blowdry", "extensions blow dry", "extensions blowout", "extensions blow out", "extension blowdry", "extension blow dry", "extension blowout", "extension blow out", "blowdry with extensions", "blow dry with extensions", "blowout with extensions", "blow out with extensions", "weave blowdry", "weave blow dry", "weave blowout", "weave blow out", "sew in blowdry", "sew in blow dry", "sew-in blowdry", "sew-in blow dry", "sewin blowdry", "sewin blow dry", "sew in blowout", "sew in blow out", "k tips blowdry", "k-tips blowdry", "ktips blowdry", "k tips blow dry", "k-tips blow dry", "ktips blow dry", "blow out on sew in weave", "blowout on sew in weave", "wash blow dry with extensions", "wash and blow dry with extensions"],
   "Wash & blowdry": ["wash blowdry", "wash blow dry", "wash and blowdry", "wash and blow dry", "shampoo blowdry", "shampoo blow dry", "shampoo and blowdry", "shampoo and blow dry"],
   "Japanese head spa": ["japanese head spa", "head spa", "headspa"],
   "Updo": ["updo", "up do", "pin up", "french roll up", "french roll"],
@@ -10982,6 +11439,14 @@ function DraftEditor({
         </DraftPropertyRow>
       ) : null}
 
+      <DraftPropertyRow label={<ServiceProofRowLabel />}>
+        <ServiceProofEditor
+          services={draft.services}
+          proof={draft.serviceProof || {}}
+          onChange={(serviceProof) => onChange({ serviceProof })}
+        />
+      </DraftPropertyRow>
+
       <DraftPropertyRow label="Locations">
         <DraftLocationSelector draft={draft} regions={regions} onChange={onChangeLocations} hideLabel />
       </DraftPropertyRow>
@@ -11040,6 +11505,20 @@ function DraftEditor({
             return renderFilterChip(option.id, option.label, isSelected, () => onChange({ [field]: !isSelected }));
           })}
         </div>
+      </DraftPropertyRow>
+
+      <DraftPropertyRow label="Additional needs proof">
+        <ServiceProofEditor
+          services={additionalNeedsOptions
+            .map((option) => additionalNeedsFieldMap[option.id])
+            .filter((field): field is keyof StylistDraft => Boolean(field) && field !== "priceIncludesHair" && draft[field] === true)
+            .map(String)}
+          labelFor={(field) => additionalNeedsOptions.find((option) => additionalNeedsFieldMap[option.id] === field)?.label ?? field}
+          itemLabel="Additional need"
+          emptyLabel="Turn on an additional need first."
+          proof={draft.needsProof || {}}
+          onChange={(needsProof) => onChange({ needsProof })}
+        />
       </DraftPropertyRow>
 
       {customFilterTypes.map((filterType) => {
@@ -11241,6 +11720,207 @@ function HairShopUrlFieldLabel() {
         <Info className="size-3.5 shrink-0 text-stone-400" />
       </span>
     </span>
+  );
+}
+
+function ServiceProofRowLabel() {
+  return (
+    <span className="inline-flex items-center gap-1">
+      Service proof
+      <span title="For services you found outside booking sites (a post, comment or message). The health check never suggests removing a service with proof. Not shown to visitors.">
+        <Info className="size-3.5 shrink-0 text-stone-400" />
+      </span>
+    </span>
+  );
+}
+
+function ServiceProofForm({
+  services,
+  labelFor = (value) => value,
+  itemLabel = "Service",
+  initialService,
+  initialProof,
+  submitLabel,
+  isBusy = false,
+  onSubmit,
+  onCancel,
+}: {
+  services?: string[];
+  labelFor?: (value: string) => string;
+  itemLabel?: string;
+  initialService?: string;
+  initialProof?: ServiceProof;
+  submitLabel: string;
+  isBusy?: boolean;
+  onSubmit: (service: string, proof: ServiceProof) => void;
+  onCancel?: () => void;
+}) {
+  const [service, setService] = useState(initialService || services?.[0] || "");
+  const [source, setSource] = useState<ServiceProofSource>(initialProof?.source && initialProof.source !== "health-check" ? initialProof.source : "tiktok-post");
+  const [url, setUrl] = useState(initialProof?.url || "");
+  const [note, setNote] = useState(initialProof?.note || "");
+  const trimmedUrl = url.trim();
+  const urlIsValid = !trimmedUrl || /^https?:\/\//i.test(trimmedUrl);
+  const canSubmit = Boolean(service) && urlIsValid && Boolean(trimmedUrl || note.trim()) && !isBusy;
+
+  return (
+    <div className="space-y-3 border border-stone-200 bg-white p-3">
+      {services ? (
+        <Field label={itemLabel}>
+          <Select value={service} onChange={setService}>
+            {services.map((option) => (
+              <option key={option} value={option}>
+                {labelFor(option)}
+              </option>
+            ))}
+          </Select>
+        </Field>
+      ) : null}
+      <Field label="Where you found it">
+        <Select value={source} onChange={(value) => setSource(value as ServiceProofSource)}>
+          {serviceProofSourceOptions.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </Select>
+      </Field>
+      <Field label="Link">
+        <Input value={url} onChange={(event) => setUrl(event.target.value)} placeholder="https://www.tiktok.com/@..." className="h-9 rounded-none" />
+      </Field>
+      {!urlIsValid ? <p className="-mt-2 text-xs text-red-700">Links need to start with https://</p> : null}
+      <Field label="Note">
+        <Input value={note} onChange={(event) => setNote(event.target.value)} placeholder="e.g. confirmed in a DM, does Cécred on request" className="h-9 rounded-none" />
+      </Field>
+      <div className="flex items-center justify-end gap-3">
+        <div className="flex items-center gap-2">
+          {onCancel ? (
+            <button type="button" onClick={onCancel} className="px-3 py-2 text-sm font-semibold text-stone-600 hover:text-stone-950">
+              Cancel
+            </button>
+          ) : null}
+          <button
+            type="button"
+            disabled={!canSubmit}
+            onClick={() =>
+              onSubmit(service, {
+                source,
+                ...(trimmedUrl ? { url: trimmedUrl } : {}),
+                ...(note.trim() ? { note: note.trim() } : {}),
+                addedAt: initialProof?.addedAt || today(),
+              })
+            }
+            className="inline-flex items-center gap-2 rounded-none border border-stone-950 bg-stone-950 px-3 py-2 text-sm font-semibold text-white transition hover:bg-stone-800 disabled:cursor-not-allowed disabled:opacity-35"
+          >
+            <Check className="size-3.5" />
+            {submitLabel}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// Shared by "Service proof" (keyed by service name) and "Additional needs
+// proof" (keyed by the needs field, e.g. hijabiFriendly).
+function ServiceProofEditor({
+  services,
+  proof,
+  onChange,
+  labelFor = (value) => value,
+  itemLabel = "Service",
+  emptyLabel = "Add services first.",
+}: {
+  services: string[];
+  proof: Record<string, ServiceProof>;
+  onChange: (proof: Record<string, ServiceProof>) => void;
+  labelFor?: (value: string) => string;
+  itemLabel?: string;
+  emptyLabel?: string;
+}) {
+  // null = closed, "" = adding new, otherwise the service being edited
+  const [editingService, setEditingService] = useState<string | null>(null);
+  // Proof for a service no longer on the salon is dropped on save server-side,
+  // so only show the ones that still apply.
+  const entries = Object.entries(proof).filter(([service]) => services.includes(service));
+  const servicesWithoutProof = services.filter((service) => !proof[service]);
+
+  function saveProof(service: string, next: ServiceProof) {
+    const updated = { ...proof };
+    if (editingService && editingService !== service) {
+      delete updated[editingService];
+    }
+    updated[service] = next;
+    onChange(updated);
+    setEditingService(null);
+  }
+
+  function removeProof(service: string) {
+    const updated = { ...proof };
+    delete updated[service];
+    onChange(updated);
+  }
+
+  return (
+    <div className="space-y-2 pt-1">
+      {entries.length ? (
+        <ul className="space-y-1.5">
+          {entries.map(([service, entry]) =>
+            editingService === service ? (
+              <li key={service}>
+                <ServiceProofForm
+                  services={[service, ...servicesWithoutProof]}
+                  labelFor={labelFor}
+                  itemLabel={itemLabel}
+                  initialService={service}
+                  initialProof={entry}
+                  submitLabel="Save proof"
+                  onSubmit={saveProof}
+                  onCancel={() => setEditingService(null)}
+                />
+              </li>
+            ) : (
+              <li key={service} className="flex items-start gap-3 border border-stone-200 bg-white px-3 py-2 text-sm">
+                <div className="min-w-0 flex-1">
+                  <p className="font-semibold text-stone-950">{labelFor(service)}</p>
+                  <p className="mt-0.5 text-xs text-stone-500">
+                    {getServiceProofSourceLabel(entry.source)} · added {entry.addedAt}
+                  </p>
+                  {entry.url ? (
+                    <a href={entry.url} target="_blank" rel="noopener noreferrer" className="mt-1 block truncate text-sm text-stone-700 underline decoration-stone-300 underline-offset-2 hover:text-stone-950">
+                      {entry.url}
+                    </a>
+                  ) : null}
+                  {entry.note ? <p className="mt-1 whitespace-pre-wrap break-words text-sm text-stone-700">{entry.note}</p> : null}
+                </div>
+                <div className="flex shrink-0 items-center gap-1">
+                  <button type="button" onClick={() => setEditingService(service)} className="inline-flex size-7 items-center justify-center text-stone-400 hover:bg-stone-100 hover:text-stone-950" aria-label={`Edit proof for ${labelFor(service)}`}>
+                    <Pencil className="size-3.5" />
+                  </button>
+                  <button type="button" onClick={() => removeProof(service)} className="inline-flex size-7 items-center justify-center text-stone-400 hover:bg-red-50 hover:text-red-700" aria-label={`Remove proof for ${labelFor(service)}`}>
+                    <Trash2 className="size-3.5" />
+                  </button>
+                </div>
+              </li>
+            ),
+          )}
+        </ul>
+      ) : null}
+      {editingService === "" ? (
+        <ServiceProofForm services={servicesWithoutProof} labelFor={labelFor} itemLabel={itemLabel} submitLabel="Add proof" onSubmit={saveProof} onCancel={() => setEditingService(null)} />
+      ) : servicesWithoutProof.length ? (
+        <button
+          type="button"
+          onClick={() => setEditingService("")}
+          className="inline-flex items-center gap-1.5 text-sm font-semibold text-stone-600 hover:text-stone-950"
+        >
+          <Plus className="size-3.5" />
+          Add proof for {itemLabel === "Service" ? "a service" : "an additional need"}
+        </button>
+      ) : !services.length ? (
+        <p className="text-sm text-stone-400">{emptyLabel}</p>
+      ) : null}
+    </div>
   );
 }
 
@@ -11818,6 +12498,8 @@ function publishedSalonToDraft(salon: Partial<StylistDraft>): StylistDraft {
     addedVia: salon.addedVia || "",
     discoverySource: salon.discoverySource || "",
     services: Array.isArray(salon.services) ? salon.services : [],
+    serviceProof: salon.serviceProof && typeof salon.serviceProof === "object" ? salon.serviceProof : {},
+    needsProof: salon.needsProof && typeof salon.needsProof === "object" ? salon.needsProof : {},
     rawServices: [],
     hijabiFriendly: salon.hijabiFriendly === true,
     canBraidWithoutGel: salon.canBraidWithoutGel === true,

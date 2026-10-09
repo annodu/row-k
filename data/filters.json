@@ -23,7 +23,7 @@
         "French curl bob",
         "Men's braids",
         "Wig cornrows",
-        "Fulani sew-in",
+        "Fulani sew-in / quick weave / half wig",
         "Boho sew-in",
         "Feed-in / stitch braid sew-in"
       ]
@@ -100,7 +100,7 @@
         "Sew-in take-down",
         "Tracks (+ silk press) / partial / invisible sew-in",
         "Traditional sew-in / leave out",
-        "Fulani sew-in",
+        "Fulani sew-in / quick weave / half wig",
         "Boho sew-in",
         "Feed-in / stitch braid sew-in",
         "Tape-ins + sew-in",
@@ -110,27 +110,30 @@
     },
     {
       "id": "styling-services",
-      "label": "Styling (sew in / frontal / relaxer)",
+      "label": "Styling (e.g. ponytails, pixies, sew-ins/wigs)",
       "subcategories": [
-        "Sew in / extensions blowdry",
         "Frontal ponytail / bun",
         "Half up half down",
         "Pixie cut / finger waves",
+        "Sew in / extensions blowdry & styling",
         "Sleek ponytail / bun",
-        "Updo"
+        "Updo",
+        "Wig blowdry & styling"
       ]
     },
     {
       "id": "straightening-treatments",
       "label": "Treatments",
       "subcategories": [
-        "Cecred treatment",
+        "Bond repair",
+        "Cécred wash & treatment",
         "Hair botox",
         "Japanese straightening",
         "K18 treatment",
         "Keratin treatment / Brazilian blowdry",
         "Moisturising treatment",
         "Olaplex treatment",
+        "Protein treatment",
         "Relaxer / texturiser",
         "Texture release"
       ]
@@ -171,8 +174,7 @@
         "U-Part / Half wig install",
         "Wig colouring / bundle colouring",
         "Wig install (frontal / closure)",
-        "Wig blowdry",
-        "Wig laundry"
+        "Wig laundry / wig revamp"
       ]
     }
   ]
