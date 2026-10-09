@@ -8,7 +8,7 @@
 // service in its own right (salons that don't name a brand), so it's in
 // filters.json too.
 export const serviceFamilies: Record<string, readonly string[]> = {
-  "Hybrid sew ins (all)": ["Boho sew-in", "Feed-in / stitch braid sew-in", "Fulani sew-in / quick weave / half wig", "K-tips + sew-in", "Tape-ins + sew-in", "Cassie braided sew-in", "Jayda Wayda braided sew-in"],
+  "Hybrid sew ins (all)": ["Boho sew-in", "Feed-in / stitch braid sew-in", "Fulani sew-in / quick weave", "K-tips + sew-in", "Tape-ins + sew-in", "Cassie braided sew-in", "Jayda Wayda braided sew-in"],
   "Hybrid installs (all)": ["K-tips + sew-in", "Tape-ins + sew-in"],
   "Wig installs (all)": ["Wig install (frontal / closure)", "U-Part / Half wig install", "Pixie wig / weave install"],
   "Celebrity-inspired braids (all)": ["Alicia Keys braids", "Pop smoke braids", "Jayda Wayda braided sew-in", "Cassie braided sew-in", "Coi Leray braids", "Tyla braids"],
@@ -30,7 +30,7 @@ const serviceDisplayNames: Record<string, string> = {
   "Boho braids / goddess braids": "Boho braids",
   "Boho sew-in": "Boho braids sew-in (hybrid)",
   "Fulani / lemonade braids": "Fulani braids",
-  "Fulani sew-in": "Fulani sew-in / quick weave / half wig",
+  "Fulani sew-in": "Fulani sew-in / quick weave",
   "Feed-in braids": "Feed ins / all back braids",
   "Feed-in / stitch braid sew-in": "Feed in / stitch braids sew-in (hybrid)",
   "Tape-ins + sew-in": "Tapes + sew-in (hybrid)",

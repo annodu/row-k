@@ -63,7 +63,7 @@
         "Trim / hair cut",
         "Stitch braids",
         "K18 treatment",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Olaplex treatment"
       ],
       "removedServices": [
@@ -125,7 +125,7 @@
           "Specialist treatment selected according to your hair and scalp needs",
           "Professional bond repair treatment using Olaplex or K18 where suitable"
         ],
-        "Fulani sew-in / quick weave / half wig": [
+        "Fulani sew-in / quick weave": [
           "- half fulani braid down (half wig)",
           "Selected braided style: stitch braids or half fulani"
         ],
@@ -544,7 +544,7 @@
     "wen-hair-ldn": {
       "addedServices": [
         "Stitch braids",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Wig laundry / wig revamp",
         "Wig reinstall / re-glue"
       ],
@@ -563,7 +563,7 @@
           "Shmedium Knotless Boho Braids",
           "BRAIDS / TWISTS"
         ],
-        "Fulani sew-in / quick weave / half wig": [
+        "Fulani sew-in / quick weave": [
           "STITCH / FULANI BRAIDS & TWISTS",
           "Fulani freestyle (braids/twists)",
           "Fulani freestyle (Sew in)"
@@ -656,7 +656,7 @@
         "Feed-in braids",
         "Trim / hair cut",
         "Traditional sew-in / leave out",
-        "Fulani sew-in / quick weave / half wig"
+        "Fulani sew-in / quick weave"
       ],
       "removedServices": [
         "Twists (with extensions)"
@@ -686,7 +686,7 @@
           "Please arrive with your hair freshly washed and product free/minimal for optimal results",
           "Freestyle Fulani Braids (With Braiding Hair)"
         ],
-        "Fulani sew-in / quick weave / half wig": [
+        "Fulani sew-in / quick weave": [
           "Freestyle Fulani Braids (With Braiding Hair)",
           "Fulani Braids (On Natural Hair)",
           "Freestyle Fulani Cornrows (On Natural Hair)",
@@ -832,7 +832,7 @@
         "Starter locs",
         "Miracle knots",
         "Crochet faux locs / invisible locs",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Wig reinstall / re-glue"
       ],
       "removedServices": [
@@ -857,7 +857,7 @@
           "mid back butterfly locs",
           "bum length butterfly locs"
         ],
-        "Fulani sew-in / quick weave / half wig": [
+        "Fulani sew-in / quick weave": [
           "small lemonade fulani with senegalese twists",
           "medium lemonade fulani with Senegalese twists",
           "smedium alicia key fulani braids"
@@ -4468,7 +4468,7 @@
     },
     "fs-hairr-uk": {
       "addedServices": [
-        "Fulani sew-in / quick weave / half wig"
+        "Fulani sew-in / quick weave"
       ],
       "removedServices": [
         "Wig cornrows",
@@ -4476,7 +4476,7 @@
       ],
       "addedServiceFamilies": [],
       "addedServiceEvidence": {
-        "Fulani sew-in / quick weave / half wig": [
+        "Fulani sew-in / quick weave": [
           "Fulani Quick Weave"
         ]
       },
@@ -6065,7 +6065,7 @@
         "Retwist",
         "Starter locs",
         "Stitch braids",
-        "Fulani sew-in / quick weave / half wig"
+        "Fulani sew-in / quick weave"
       ],
       "removedServices": [],
       "addedServiceFamilies": [],
@@ -6095,7 +6095,7 @@
           "6 Stitch Braids",
           "8 Stitch Braids"
         ],
-        "Fulani sew-in / quick weave / half wig": [
+        "Fulani sew-in / quick weave": [
           "Fulani Quickweave",
           "Fulani Sew-In"
         ]
@@ -6421,7 +6421,7 @@
     "mystictouch": {
       "addedServices": [
         "Crochet faux locs / invisible locs",
-        "Fulani sew-in / quick weave / half wig"
+        "Fulani sew-in / quick weave"
       ],
       "removedServices": [
         "Wash & blowdry",
@@ -6435,7 +6435,7 @@
           "Butterfly Locs",
           "THE ROOTED START | STARTER LOCS + MICRO-LOCS"
         ],
-        "Fulani sew-in / quick weave / half wig": [
+        "Fulani sew-in / quick weave": [
           "THE TRIBAL TOUCH | FULANI BRAIDS",
           "Standard - Lemonade Fulani",
           "Freestyle - Lemonade Fulani"
@@ -12581,7 +12581,7 @@
     "mochasloungeuk": {
       "addedServices": [
         "Wig cornrows",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Flipover / Versatile sew-in"
       ],
       "removedServices": [],
@@ -12590,7 +12590,7 @@
         "Wig cornrows": [
           "Wig Cornrows"
         ],
-        "Fulani sew-in / quick weave / half wig": [
+        "Fulani sew-in / quick weave": [
           "Medium Fulani - Cornrows Only",
           "Small Fulani - Cornrows Only",
           "Medium Fulani Braids w/ Half Wig",
@@ -14387,7 +14387,7 @@
     "pheliamarie": {
       "addedServices": [
         "Fulani / lemonade braids",
-        "Fulani sew-in / quick weave / half wig"
+        "Fulani sew-in / quick weave"
       ],
       "removedServices": [],
       "addedServiceFamilies": [],
@@ -14395,7 +14395,7 @@
         "Fulani / lemonade braids": [
           "Fulani sew in"
         ],
-        "Fulani sew-in / quick weave / half wig": [
+        "Fulani sew-in / quick weave": [
           "Fulani sew in"
         ]
       },
@@ -15368,12 +15368,12 @@
     "bolasplace-hair-salon": {
       "addedServices": [
         "Retwist / interlocking",
-        "Fulani sew-in / quick weave / half wig"
+        "Fulani sew-in / quick weave"
       ],
       "removedServices": [],
       "addedServiceFamilies": [],
       "addedServiceEvidence": {
-        "Fulani sew-in / quick weave / half wig": [
+        "Fulani sew-in / quick weave": [
           "cornrow half head",
           "Cornrows half head with a wash",
           "Relock half head for men",
@@ -15390,7 +15390,7 @@
     "braidology": {
       "addedServices": [
         "Wig colouring / bundle colouring",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Traditional sew-in / leave out"
       ],
       "removedServices": [],
@@ -15404,7 +15404,7 @@
           "Medium Miracle Knots - 3 bundles (Triple Colour)",
           "Smedium Miracle Knots - 3 Bundles (Solid Colour)"
         ],
-        "Fulani sew-in / quick weave / half wig": [
+        "Fulani sew-in / quick weave": [
           "All Inclusive Boho Fulani",
           "Flip-over Fulani - Minimal Boho",
           "Flip-over Fulani - Full Boho",
@@ -15562,12 +15562,12 @@
     },
     "cba-hair-studio": {
       "addedServices": [
-        "Fulani sew-in / quick weave / half wig"
+        "Fulani sew-in / quick weave"
       ],
       "removedServices": [],
       "addedServiceFamilies": [],
       "addedServiceEvidence": {
-        "Fulani sew-in / quick weave / half wig": [
+        "Fulani sew-in / quick weave": [
           "Fulani/Lemonade Fulani (starting prices)🩷.",
           "Jumbo fulani/lemonade fulani",
           "Large Fulani/Lemonade Fulani",
@@ -16172,7 +16172,7 @@
         "Boho braids bob",
         "Crochet faux locs / invisible locs",
         "Miracle knots",
-        "Fulani sew-in / quick weave / half wig"
+        "Fulani sew-in / quick weave"
       ],
       "removedServices": [],
       "addedServiceFamilies": [],
@@ -16194,7 +16194,7 @@
         "Miracle knots": [
           "Small Miracle knots"
         ],
-        "Fulani sew-in / quick weave / half wig": [
+        "Fulani sew-in / quick weave": [
           "Stitch Fulani Braids",
           "Side part Fulani braids + twists",
           "Fulani braids + Twists",
@@ -16402,7 +16402,7 @@
     "indias-touch-uk": {
       "addedServices": [
         "Crochet faux locs / invisible locs",
-        "Fulani sew-in / quick weave / half wig"
+        "Fulani sew-in / quick weave"
       ],
       "removedServices": [],
       "addedServiceFamilies": [],
@@ -16413,7 +16413,7 @@
           "Soft Locs - medium",
           "Soft Locs - smedium"
         ],
-        "Fulani sew-in / quick weave / half wig": [
+        "Fulani sew-in / quick weave": [
           "Fulani Styles",
           "Traditional Fulani Braids / Twists",
           "Freestyle Fulani Braids / Twists",
@@ -16630,7 +16630,7 @@
     "kasey-stylesss": {
       "addedServices": [
         "Kids & teens styles",
-        "Fulani sew-in / quick weave / half wig"
+        "Fulani sew-in / quick weave"
       ],
       "removedServices": [
         "Wig cornrows"
@@ -16643,7 +16643,7 @@
           "Kids- Medium Freestyle braids",
           "Kids- Small Freestyle braids"
         ],
-        "Fulani sew-in / quick weave / half wig": [
+        "Fulani sew-in / quick weave": [
           "Fulani Braids",
           "Fulani quick weave"
         ]
@@ -16676,7 +16676,7 @@
     "k-lux-hair": {
       "addedServices": [
         "Crochet faux locs / invisible locs",
-        "Fulani sew-in / quick weave / half wig"
+        "Fulani sew-in / quick weave"
       ],
       "removedServices": [],
       "addedServiceFamilies": [],
@@ -16686,7 +16686,7 @@
           "Faux locs / soft locs",
           "Small soft locs"
         ],
-        "Fulani sew-in / quick weave / half wig": [
+        "Fulani sew-in / quick weave": [
           "Fulani braids",
           "Small Fulani braids",
           "Medium Fulani braids",
@@ -17447,7 +17447,7 @@
     "symphony-styles": {
       "addedServices": [
         "Crochet faux locs / invisible locs",
-        "Fulani sew-in / quick weave / half wig"
+        "Fulani sew-in / quick weave"
       ],
       "removedServices": [],
       "addedServiceFamilies": [],
@@ -17462,7 +17462,7 @@
           "medium invisible locs",
           "fulani invisible locs"
         ],
-        "Fulani sew-in / quick weave / half wig": [
+        "Fulani sew-in / quick weave": [
           "fulani braids/ quick weave fulani",
           "freestyle fulani / diva fulani",
           "fulani invisible locs"
@@ -17754,7 +17754,7 @@
     "theeloungeuk": {
       "addedServices": [
         "Crochet faux locs / invisible locs",
-        "Fulani sew-in / quick weave / half wig"
+        "Fulani sew-in / quick weave"
       ],
       "removedServices": [
         "Faux locs / soft locs"
@@ -17764,7 +17764,7 @@
         "Crochet faux locs / invisible locs": [
           "Invisible locs"
         ],
-        "Fulani sew-in / quick weave / half wig": [
+        "Fulani sew-in / quick weave": [
           "Fulani",
           "Fulani braids with Sew in",
           "Freestyle Fulani braids/twists"
@@ -17840,7 +17840,7 @@
     "tresses-by-shayy": {
       "addedServices": [
         "Crochet faux locs / invisible locs",
-        "Fulani sew-in / quick weave / half wig"
+        "Fulani sew-in / quick weave"
       ],
       "removedServices": [
         "Faux locs / soft locs"
@@ -17853,7 +17853,7 @@
           "Locs",
           "Soft/Butterfly Locs"
         ],
-        "Fulani sew-in / quick weave / half wig": [
+        "Fulani sew-in / quick weave": [
           "Fulani",
           "Invisible Locs / Normal Twist with barrelled ends x Fulani",
           "Fulani Braids"
@@ -18248,7 +18248,7 @@
     "perfected-by-ash": {
       "addedServices": [
         "Miracle knots",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Alicia Keys braids",
         "Flip-over Fulani / diva braids",
         "Pop smoke braids",
@@ -18264,7 +18264,7 @@
           "Smedium Miracle Knots",
           "Medium Miracle Knots"
         ],
-        "Fulani sew-in / quick weave / half wig": [
+        "Fulani sew-in / quick weave": [
           "FULANI BRAIDS",
           "Small Fulani Braids",
           "Medium Fulani Braids",
@@ -18362,12 +18362,12 @@
     },
     "the-mane-society-and-co": {
       "addedServices": [
-        "Fulani sew-in / quick weave / half wig"
+        "Fulani sew-in / quick weave"
       ],
       "removedServices": [],
       "addedServiceFamilies": [],
       "addedServiceEvidence": {
-        "Fulani sew-in / quick weave / half wig": [
+        "Fulani sew-in / quick weave": [
           "FULANI BRAIDED FRONTAL",
           "SMALL FULANI KNOTLESS BRAIDS (ANY DESIGN)",
           "MEDIUM FULANI KNOTLESS BRAIDS (ANY DESIGN)",
@@ -18936,12 +18936,12 @@
     },
     "the-s-and-l-parlour": {
       "addedServices": [
-        "Fulani sew-in / quick weave / half wig"
+        "Fulani sew-in / quick weave"
       ],
       "removedServices": [],
       "addedServiceFamilies": [],
       "addedServiceEvidence": {
-        "Fulani sew-in / quick weave / half wig": [
+        "Fulani sew-in / quick weave": [
           "fulani braids/twists",
           "boho fulani",
           "Fulani quick weave",
@@ -18954,7 +18954,7 @@
     },
     "styledd-by-mv": {
       "addedServices": [
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Feed-in / stitch braid sew-in",
         "Creative braids",
         "Cassie braided sew-in",
@@ -18967,7 +18967,7 @@
       "removedServices": [],
       "addedServiceFamilies": [],
       "addedServiceEvidence": {
-        "Fulani sew-in / quick weave / half wig": [
+        "Fulani sew-in / quick weave": [
           "Fulani French curl braids",
           "Fulani braids",
           "Fulani x Invisible Locs",
@@ -19022,7 +19022,7 @@
     "styled-by-faith": {
       "addedServices": [
         "Feed-in / stitch braid sew-in",
-        "Fulani sew-in / quick weave / half wig"
+        "Fulani sew-in / quick weave"
       ],
       "removedServices": [],
       "addedServiceFamilies": [],
@@ -19033,7 +19033,7 @@
           "10-16 Freestyle Stitch braids",
           "Braided mohawk"
         ],
-        "Fulani sew-in / quick weave / half wig": [
+        "Fulani sew-in / quick weave": [
           "Fulani braids",
           "Freestyle Fulani Braids",
           "Flip over fulani braids"
@@ -19214,7 +19214,7 @@
         "Wig install (frontal / closure)",
         "Closure sew-in / closure behind the hairline",
         "Starter locs / instant locs",
-        "Fulani sew-in / quick weave / half wig"
+        "Fulani sew-in / quick weave"
       ],
       "removedServices": [],
       "addedServiceFamilies": [
@@ -19230,7 +19230,7 @@
         "Starter locs / instant locs": [
           "Starter locs"
         ],
-        "Fulani sew-in / quick weave / half wig": [
+        "Fulani sew-in / quick weave": [
           "Fulani sew in",
           "Fulani braids"
         ]
@@ -19244,12 +19244,12 @@
     },
     "cheveux-by-coco": {
       "addedServices": [
-        "Fulani sew-in / quick weave / half wig"
+        "Fulani sew-in / quick weave"
       ],
       "removedServices": [],
       "addedServiceFamilies": [],
       "addedServiceEvidence": {
-        "Fulani sew-in / quick weave / half wig": [
+        "Fulani sew-in / quick weave": [
           "Fulani braids",
           "Fulani braids (shoulder/mid back length)",
           "Fulani braids (waist length)",
@@ -19365,14 +19365,14 @@
     },
     "en3-did-it": {
       "addedServices": [
-        "Fulani sew-in / quick weave / half wig"
+        "Fulani sew-in / quick weave"
       ],
       "removedServices": [
         "Twists (with extensions)"
       ],
       "addedServiceFamilies": [],
       "addedServiceEvidence": {
-        "Fulani sew-in / quick weave / half wig": [
+        "Fulani sew-in / quick weave": [
           "Fulani Sew in (Half fulani half sew in)"
         ]
       },
@@ -19434,7 +19434,7 @@
     },
     "hair-by-niella": {
       "addedServices": [
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Flip-over Fulani / diva braids",
         "Alicia Keys braids",
         "Wig reinstall / re-glue",
@@ -19443,7 +19443,7 @@
       "removedServices": [],
       "addedServiceFamilies": [],
       "addedServiceEvidence": {
-        "Fulani sew-in / quick weave / half wig": [
+        "Fulani sew-in / quick weave": [
           "Fulani cornrow x Sew in",
           "Fulani Cornrows ( up to 12)",
           "Intricate Fulani Bohemian Cornrows",
@@ -19489,14 +19489,14 @@
     },
     "hvney-beauty": {
       "addedServices": [
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Trim / hair cut",
         "Cassie braided sew-in"
       ],
       "removedServices": [],
       "addedServiceFamilies": [],
       "addedServiceEvidence": {
-        "Fulani sew-in / quick weave / half wig": [
+        "Fulani sew-in / quick weave": [
           "Goddess & Fulani Braids",
           "Fulani braids (natural hair)",
           "Medium FULANI Goddess",
@@ -19528,7 +19528,7 @@
     "kayhairuk": {
       "addedServices": [
         "Feed-in / stitch braid sew-in",
-        "Fulani sew-in / quick weave / half wig"
+        "Fulani sew-in / quick weave"
       ],
       "removedServices": [],
       "addedServiceFamilies": [],
@@ -19540,7 +19540,7 @@
           "8 feed ins",
           "Two Stitch Braids with Quickweave"
         ],
-        "Fulani sew-in / quick weave / half wig": [
+        "Fulani sew-in / quick weave": [
           "FULANI BRAIDS",
           "Lemonade Fulani braids",
           "Fulani Braids with Quickweave"
@@ -19554,12 +19554,12 @@
     },
     "kture-hair": {
       "addedServices": [
-        "Fulani sew-in / quick weave / half wig"
+        "Fulani sew-in / quick weave"
       ],
       "removedServices": [],
       "addedServiceFamilies": [],
       "addedServiceEvidence": {
-        "Fulani sew-in / quick weave / half wig": [
+        "Fulani sew-in / quick weave": [
           "Fulani Sew In",
           "Standard Fulani",
           "FreeStyle Fulani",
@@ -19594,7 +19594,7 @@
     },
     "luxe-hair-london": {
       "addedServices": [
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Feed-in / stitch braid sew-in",
         "Creative braids",
         "Boho braids / goddess braids",
@@ -19608,7 +19608,7 @@
       "removedServices": [],
       "addedServiceFamilies": [],
       "addedServiceEvidence": {
-        "Fulani sew-in / quick weave / half wig": [
+        "Fulani sew-in / quick weave": [
           "Fulani Braids",
           "Fulani Freestyle",
           "Fulani freestyle (twist)"
@@ -19676,7 +19676,7 @@
         "Moisturising treatment",
         "Keratin treatment / Brazilian blowdry",
         "Feed-in / stitch braid sew-in",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Braided ponytail"
       ],
       "removedServices": [
@@ -19721,7 +19721,7 @@
           "BRAIDING HAIR EXTENSION PROVIDED.",
           "Add-on BRAIDS/TWIST ON LOCS"
         ],
-        "Fulani sew-in / quick weave / half wig": [
+        "Fulani sew-in / quick weave": [
           "Jayda Wayda style AKA Fulani (Sewin)"
         ],
         "Braided ponytail": [
@@ -19775,12 +19775,12 @@
     },
     "precioushair-co": {
       "addedServices": [
-        "Fulani sew-in / quick weave / half wig"
+        "Fulani sew-in / quick weave"
       ],
       "removedServices": [],
       "addedServiceFamilies": [],
       "addedServiceEvidence": {
-        "Fulani sew-in / quick weave / half wig": [
+        "Fulani sew-in / quick weave": [
           "TRIBAL/FULANI BRAIDS WITH WEAVE SEW-IN",
           "SMALL | TRIBAL/FULANI BRAIDS",
           "MEDIUM | TRIBAL/FULANI BRAIDS",
@@ -19904,7 +19904,7 @@
     },
     "slayed-by-zayxx": {
       "addedServices": [
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Creative braids",
         "Wig install (frontal / closure)"
       ],
@@ -19913,7 +19913,7 @@
         "wig"
       ],
       "addedServiceEvidence": {
-        "Fulani sew-in / quick weave / half wig": [
+        "Fulani sew-in / quick weave": [
           "Fulani styles",
           "Lemonade fulani braids",
           "Medium Fulani braids",
@@ -23166,7 +23166,7 @@
         ],
         "matchedServices": [
           "Fulani / lemonade braids",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "Traditional sew-in / leave out",
           "Flipover / Versatile sew-in"
         ],
@@ -23174,7 +23174,7 @@
           "Fulani / lemonade braids": [
             "ALL THINGS FULANI"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "Fulani Sew-in (Medium)",
             "Fulani sew in -small freestyle",
             "Fulani sew-in -medium freestyle"
@@ -23214,11 +23214,11 @@
         "Fulani / lemonade braids",
         "Traditional sew-in / leave out",
         "Flipover / Versatile sew-in",
-        "Fulani sew-in / quick weave / half wig"
+        "Fulani sew-in / quick weave"
       ],
       "detectedServices": [
         "Fulani / lemonade braids",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Traditional sew-in / leave out",
         "Flipover / Versatile sew-in"
       ],
@@ -29577,7 +29577,7 @@
           "French curl",
           "Boho braids / goddess braids",
           "Knotless braids",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "Fulani / lemonade braids",
           "Sleek ponytail / bun"
         ],
@@ -29658,7 +29658,7 @@
             "Knotless braids (smedium waist length)",
             "Fulani with knotless braids (smedium waist length)"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "Fulani with curly sew in (smedium)"
           ],
           "Fulani / lemonade braids": [
@@ -29718,7 +29718,7 @@
         "Quick weave",
         "Sew-in take-down",
         "Full head colour",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Hair loss systems (e.g. mesh)"
       ],
       "detectedServices": [
@@ -29741,7 +29741,7 @@
         "French curl",
         "Boho braids / goddess braids",
         "Knotless braids",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Fulani / lemonade braids",
         "Sleek ponytail / bun"
       ],
@@ -30755,7 +30755,7 @@
           "Updo",
           "Fulani / lemonade braids",
           "Flip-over Fulani / diva braids",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "Traditional sew-in / leave out",
           "Cassie braided sew-in",
           "Wig install (frontal / closure)",
@@ -30808,7 +30808,7 @@
           "Flip-over Fulani / diva braids": [
             "Diva braids"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "FULANI X SEWIN",
             "Fulani X half wig",
             "Small Fulani X half wig (includes freestyle designs)",
@@ -30882,7 +30882,7 @@
         "Closure sew-in / closure behind the hairline",
         "Miracle knots",
         "Boho braids bob",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Microbraids / x-small braids",
         "Flip-over Fulani / diva braids",
         "Alicia Keys braids",
@@ -30898,7 +30898,7 @@
         "Updo",
         "Fulani / lemonade braids",
         "Flip-over Fulani / diva braids",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Traditional sew-in / leave out",
         "Cassie braided sew-in",
         "Wig install (frontal / closure)",
@@ -31025,7 +31025,7 @@
           "Alicia Keys braids",
           "Trim / hair cut",
           "Traditional sew-in / leave out",
-          "Fulani sew-in / quick weave / half wig"
+          "Fulani sew-in / quick weave"
         ],
         "serviceEvidence": {
           "Knotless braids": [
@@ -31090,7 +31090,7 @@
           "Traditional sew-in / leave out": [
             "Sew-In Styles"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "Freestyle Fulani Sew-In"
           ]
         },
@@ -31132,7 +31132,7 @@
         "French curl",
         "Feed-in braids",
         "Trim / hair cut",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Alicia Keys braids",
         "Pop smoke braids"
       ],
@@ -31152,7 +31152,7 @@
         "Alicia Keys braids",
         "Trim / hair cut",
         "Traditional sew-in / leave out",
-        "Fulani sew-in / quick weave / half wig"
+        "Fulani sew-in / quick weave"
       ],
       "addedServices": [],
       "removedServices": [
@@ -31555,7 +31555,7 @@
           "Knotless braids",
           "Feed-in braids",
           "Fulani / lemonade braids",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "Jayda Wayda braided sew-in",
           "Flip-over Fulani / diva braids",
           "Wig cornrows",
@@ -31589,7 +31589,7 @@
             "BUM LENGTH- Fulani Braids",
             "WAIST LENGTH- Goddess Fulani Braids"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "Fulani Sew-in (Jayda Wayda Braids)"
           ],
           "Jayda Wayda braided sew-in": [
@@ -31649,7 +31649,7 @@
         "Men's braids",
         "Flip-over Fulani / diva braids",
         "Jayda Wayda braided sew-in",
-        "Fulani sew-in / quick weave / half wig"
+        "Fulani sew-in / quick weave"
       ],
       "detectedServices": [
         "Boho braids / goddess braids",
@@ -31657,7 +31657,7 @@
         "Knotless braids",
         "Feed-in braids",
         "Fulani / lemonade braids",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Jayda Wayda braided sew-in",
         "Flip-over Fulani / diva braids",
         "Wig cornrows",
@@ -32029,7 +32029,7 @@
         "Trim / hair cut",
         "Men's braids",
         "Loc styling",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Feed-in / stitch braid sew-in",
         "Protein treatment",
         "Wig blow-dry / bouncy blowout",
@@ -32082,7 +32082,7 @@
         "Sew-in take-down",
         "Kids & teens styles",
         "Men's braids",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Protein treatment",
         "Wig blow-dry / bouncy blowout"
       ],
@@ -32269,7 +32269,7 @@
         "Healthy hair plans & consultations",
         "Extensions blow-dry / bouncy blowout",
         "Kids & teens styles",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Protein treatment"
       ],
       "detectedServices": [
@@ -32310,7 +32310,7 @@
         "Healthy hair plans & consultations",
         "Extensions blow-dry / bouncy blowout",
         "Kids & teens styles",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Protein treatment"
       ],
       "locationReviewIgnored": false,
@@ -32481,7 +32481,7 @@
         "Updo",
         "Half up half down",
         "Feed-in / stitch braid sew-in",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Boho sew-in",
         "Frontal / closure replacement",
         "Braided ponytail"
@@ -32505,7 +32505,7 @@
       ],
       "addedServices": [],
       "removedServices": [
-        "Fulani sew-in / quick weave / half wig"
+        "Fulani sew-in / quick weave"
       ],
       "locationReviewIgnored": true,
       "checkedAt": "2026-10-09",
@@ -32894,7 +32894,7 @@
           "Flipover / Versatile sew-in",
           "Closure sew-in / closure behind the hairline",
           "Frontal sew-in",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "U-Part / Half wig install",
           "Feed-in / stitch braid sew-in",
           "Wig install (frontal / closure)",
@@ -33010,7 +33010,7 @@
           "Frontal sew-in": [
             "frontal sew in"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "half wig x fulani"
           ],
           "U-Part / Half wig install": [
@@ -33083,7 +33083,7 @@
         "Men's braids",
         "Loc styling",
         "Feed-in / stitch braid sew-in",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Crochet faux locs / invisible locs",
         "Braided ponytail",
         "Flip-over Fulani / diva braids",
@@ -33117,7 +33117,7 @@
         "Flipover / Versatile sew-in",
         "Closure sew-in / closure behind the hairline",
         "Frontal sew-in",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "U-Part / Half wig install",
         "Feed-in / stitch braid sew-in",
         "Wig install (frontal / closure)",
@@ -33727,7 +33727,7 @@
         "Boho braids / goddess braids",
         "Boho braids bob",
         "Feed-in / stitch braid sew-in",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Quick weave",
         "Flipover / Versatile sew-in",
         "Jayda Wayda braided sew-in"
@@ -33750,7 +33750,7 @@
         "Boho braids / goddess braids",
         "Boho braids bob",
         "Feed-in / stitch braid sew-in",
-        "Fulani sew-in / quick weave / half wig"
+        "Fulani sew-in / quick weave"
       ],
       "locationReviewIgnored": false,
       "checkedAt": "2026-10-09",
@@ -34608,7 +34608,7 @@
           "Feed-in braids",
           "Fulani / lemonade braids",
           "Alicia Keys braids",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "French curl",
           "Boho braids / goddess braids",
           "Boho braids bob",
@@ -34636,7 +34636,7 @@
           "Alicia Keys braids": [
             "Alicia keys braids"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "Fulani Sew -in"
           ],
           "French curl": [
@@ -34731,7 +34731,7 @@
         "Boho braids bob",
         "Loc styling",
         "Boho locs",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Quick weave",
         "Traditional sew-in / leave out",
         "Alicia Keys braids",
@@ -34742,7 +34742,7 @@
         "Feed-in braids",
         "Fulani / lemonade braids",
         "Alicia Keys braids",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "French curl",
         "Boho braids / goddess braids",
         "Boho braids bob",
@@ -36009,7 +36009,7 @@
           "Feed-in braids",
           "French curl",
           "Hair loss systems (e.g. mesh)",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "Feed-in / stitch braid sew-in",
           "K-tips / invisible strands",
           "Pixie wig / weave install",
@@ -36158,7 +36158,7 @@
             "Hair Loss Weave Services",
             "Hair Loss Weave + Closure [£375]"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "Freestyle Fulani Hybrid Sew-in [From £160]"
           ],
           "Feed-in / stitch braid sew-in": [
@@ -36368,7 +36368,7 @@
         "Loc styling",
         "Crochet faux locs / invisible locs",
         "Feed-in / stitch braid sew-in",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "K-tips + sew-in",
         "Microbraids / x-small braids",
         "Hair loss systems (e.g. mesh)",
@@ -36402,7 +36402,7 @@
         "Feed-in braids",
         "French curl",
         "Hair loss systems (e.g. mesh)",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Feed-in / stitch braid sew-in",
         "K-tips / invisible strands",
         "Pixie wig / weave install",
@@ -39697,7 +39697,7 @@
         ],
         "matchedServices": [
           "Wash & blowdry",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "Quick weave",
           "Loc styling",
           "Retwist / interlocking",
@@ -39718,7 +39718,7 @@
           "Wash & blowdry": [
             "Wash and Blow dry"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "Half Fulani Sew in/Quick weave"
           ],
           "Quick weave": [
@@ -39826,14 +39826,14 @@
         "Men's braids",
         "Loc styling",
         "Feed-in / stitch braid sew-in",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Wig reinstall / re-glue",
         "Frontal / closure replacement",
         "Pop smoke braids"
       ],
       "detectedServices": [
         "Wash & blowdry",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Quick weave",
         "Loc styling",
         "Retwist / interlocking",
@@ -41593,7 +41593,7 @@
         "Miracle knots",
         "Stitch braids",
         "Boho braids bob",
-        "Fulani sew-in / quick weave / half wig"
+        "Fulani sew-in / quick weave"
       ],
       "detectedServices": [
         "Boho braids / goddess braids",
@@ -41608,7 +41608,7 @@
         "Fulani / lemonade braids",
         "Miracle knots",
         "Boho braids bob",
-        "Fulani sew-in / quick weave / half wig"
+        "Fulani sew-in / quick weave"
       ],
       "locationReviewIgnored": false,
       "checkedAt": "2026-10-09",
@@ -41725,7 +41725,7 @@
           "Wig cornrows",
           "Pop smoke braids",
           "Natural twists / plaits",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "Faux locs / soft locs",
           "Loc styling"
         ],
@@ -41782,7 +41782,7 @@
             "Small Single Plaits",
             "Plug Twists"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "Large Fulani Sew-in",
             "Medium Fulani Sew-in",
             "Small Fulani Sew-In"
@@ -41832,7 +41832,7 @@
         "Men's braids",
         "Loc styling",
         "Crochet faux locs / invisible locs",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Fulani / lemonade braids",
         "Natural twists / plaits",
         "Pop smoke braids"
@@ -41849,7 +41849,7 @@
         "Wig cornrows",
         "Pop smoke braids",
         "Natural twists / plaits",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Faux locs / soft locs",
         "Loc styling"
       ],
@@ -44750,7 +44750,7 @@
           "French curl",
           "Creative braids",
           "Pre-parting",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "Fulani / lemonade braids",
           "Braided ponytail",
           "Feed-in braids",
@@ -44812,7 +44812,7 @@
           "Pre-parting": [
             "Pre-part XS"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "Half Fulani Braids - Half Weave",
             "Fulani Braids and Weave"
           ],
@@ -44929,7 +44929,7 @@
         "Boho braids bob",
         "French curl bob",
         "Wig cornrows",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Traditional sew-in / leave out",
         "Pre-parting",
         "Braided ponytail",
@@ -44949,7 +44949,7 @@
         "French curl",
         "Creative braids",
         "Pre-parting",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Fulani / lemonade braids",
         "Braided ponytail",
         "Feed-in braids",
@@ -46208,7 +46208,7 @@
           "Closure sew-in / closure behind the hairline",
           "Flipover / Versatile sew-in",
           "Half up half down",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "Updo",
           "Sleek ponytail / bun",
           "Wig customisation / construction",
@@ -46251,7 +46251,7 @@
           "Half up half down": [
             "Half Up Half Down sew in"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "Fulani sew in"
           ],
           "Updo": [
@@ -46312,7 +46312,7 @@
         "Bouncy blowout / round brush blow dry",
         "Flipover / Versatile sew-in",
         "LA weave / microlinks wefts / braidless sew in",
-        "Fulani sew-in / quick weave / half wig"
+        "Fulani sew-in / quick weave"
       ],
       "detectedServices": [
         "Full head colour",
@@ -46325,7 +46325,7 @@
         "Closure sew-in / closure behind the hairline",
         "Flipover / Versatile sew-in",
         "Half up half down",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Updo",
         "Sleek ponytail / bun",
         "Wig customisation / construction",
@@ -47500,7 +47500,7 @@
         "Men's braids",
         "Colour blend (mixing braiding hair)",
         "Box braids",
-        "Fulani sew-in / quick weave / half wig"
+        "Fulani sew-in / quick weave"
       ],
       "detectedServices": [
         "Knotless braids",
@@ -47524,7 +47524,7 @@
         "Frontal ponytail / bun",
         "Men's braids",
         "Colour blend (mixing braiding hair)",
-        "Fulani sew-in / quick weave / half wig"
+        "Fulani sew-in / quick weave"
       ],
       "locationReviewIgnored": false,
       "checkedAt": "2026-10-09",
@@ -48656,7 +48656,7 @@
           "Natural twists / plaits",
           "Pop smoke braids",
           "Stitch braids",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "Alicia Keys braids"
         ],
         "serviceEvidence": {
@@ -48732,7 +48732,7 @@
             "8 Stitch Braids",
             "N’s STITCH BRAIDS"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "Fulani Sew-In"
           ],
           "Alicia Keys braids": [
@@ -48776,7 +48776,7 @@
         "Men's braids",
         "Wig install (frontal / closure)",
         "Colour blend (mixing braiding hair)",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Natural twists / plaits",
         "Flip-over Fulani / diva braids",
         "Alicia Keys braids",
@@ -48801,7 +48801,7 @@
         "Natural twists / plaits",
         "Pop smoke braids",
         "Stitch braids",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Alicia Keys braids"
       ],
       "addedServices": [
@@ -49233,7 +49233,7 @@
         "Bridal",
         "Men's braids",
         "Colour blend (mixing braiding hair)",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Wash & blowdry",
         "Braided ponytail"
       ],
@@ -49259,7 +49259,7 @@
         "Traditional sew-in / leave out",
         "Boho braids bob",
         "Colour blend (mixing braiding hair)",
-        "Fulani sew-in / quick weave / half wig"
+        "Fulani sew-in / quick weave"
       ],
       "locationReviewIgnored": false,
       "checkedAt": "2026-10-09",
@@ -51593,7 +51593,7 @@
           "Fulani / lemonade braids",
           "Flip-over Fulani / diva braids",
           "Feed-in / stitch braid sew-in",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "Wig install (frontal / closure)",
           "U-Part / Half wig install",
           "Coi Leray braids",
@@ -51657,7 +51657,7 @@
             "M/L Designer stitch braids & weave",
             "Medium stitch braids & weave"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "Medium Fulani x Half Wig",
             "Small Fulani x Half Wig"
           ],
@@ -51735,7 +51735,7 @@
         "Boho braids bob",
         "Men's braids",
         "Feed-in / stitch braid sew-in",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Flip-over Fulani / diva braids",
         "Alicia Keys braids",
         "Pop smoke braids",
@@ -51754,7 +51754,7 @@
         "Fulani / lemonade braids",
         "Flip-over Fulani / diva braids",
         "Feed-in / stitch braid sew-in",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Wig install (frontal / closure)",
         "U-Part / Half wig install",
         "Coi Leray braids",
@@ -51929,7 +51929,7 @@
         "Wig install (frontal / closure)",
         "Fulani / lemonade braids",
         "Flipover / Versatile sew-in",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Wig reinstall / re-glue",
         "Natural twists / plaits"
       ],
@@ -51949,7 +51949,7 @@
       "removedServices": [
         "Braid take-down",
         "Fulani / lemonade braids",
-        "Fulani sew-in / quick weave / half wig"
+        "Fulani sew-in / quick weave"
       ],
       "locationReviewIgnored": false,
       "checkedAt": "2026-10-09",
@@ -53981,7 +53981,7 @@
           "Fulani / lemonade braids",
           "Boho braids / goddess braids",
           "Traditional sew-in / leave out",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "Cassie braided sew-in",
           "Boho sew-in",
           "Natural twists / plaits",
@@ -54016,7 +54016,7 @@
           "Traditional sew-in / leave out": [
             "The ‘Perfect’ Sew In"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "Fulani Sew in"
           ],
           "Cassie braided sew-in": [
@@ -54069,7 +54069,7 @@
         "Fulani / lemonade braids",
         "Microbraids / x-small braids",
         "Boho braids / goddess braids",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Natural twists / plaits",
         "Cassie braided sew-in",
         "Boho sew-in"
@@ -54081,7 +54081,7 @@
         "Fulani / lemonade braids",
         "Boho braids / goddess braids",
         "Traditional sew-in / leave out",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Cassie braided sew-in",
         "Boho sew-in",
         "Natural twists / plaits",
@@ -57114,7 +57114,7 @@
         "Men's braids",
         "Boho sew-in",
         "Feed-in / stitch braid sew-in",
-        "Fulani sew-in / quick weave / half wig"
+        "Fulani sew-in / quick weave"
       ],
       "detectedServices": [
         "Full head colour"
@@ -57133,7 +57133,7 @@
         "Men's braids",
         "Boho sew-in",
         "Feed-in / stitch braid sew-in",
-        "Fulani sew-in / quick weave / half wig"
+        "Fulani sew-in / quick weave"
       ],
       "locationReviewIgnored": false,
       "checkedAt": "2026-10-09",
@@ -58098,7 +58098,7 @@
           "Traditional sew-in / leave out",
           "Half up half down",
           "Flipover / Versatile sew-in",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "Cassie braided sew-in"
         ],
         "serviceEvidence": {
@@ -58128,7 +58128,7 @@
           "Flipover / Versatile sew-in": [
             "Flip Over"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "Tribal Fulani Weave"
           ],
           "Cassie braided sew-in": [
@@ -58166,7 +58166,7 @@
         "Traditional sew-in / leave out",
         "Frontal ponytail / bun",
         "Updo",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Flipover / Versatile sew-in",
         "Braided ponytail",
         "Cassie braided sew-in"
@@ -58179,7 +58179,7 @@
         "Traditional sew-in / leave out",
         "Half up half down",
         "Flipover / Versatile sew-in",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Cassie braided sew-in"
       ],
       "addedServices": [
@@ -58490,7 +58490,7 @@
           "Knotless braids",
           "Miracle knots",
           "Wig cornrows",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "Wig install (frontal / closure)",
           "U-Part / Half wig install",
           "Stitch braids",
@@ -58530,7 +58530,7 @@
             "Stitch Cornrows",
             "12 - 14 stitch cornrows"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "Half Fulani with a half wig"
           ],
           "Wig install (frontal / closure)": [
@@ -58588,7 +58588,7 @@
         "Wig install (frontal / closure)",
         "Boho braids bob",
         "Miracle knots",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Wig reinstall / re-glue",
         "Alicia Keys braids"
       ],
@@ -58599,7 +58599,7 @@
         "Knotless braids",
         "Miracle knots",
         "Wig cornrows",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Wig install (frontal / closure)",
         "U-Part / Half wig install",
         "Stitch braids",
@@ -58734,7 +58734,7 @@
           "Twists (with extensions)",
           "Half up half down",
           "Traditional sew-in / leave out",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "Wig install (frontal / closure)",
           "Wig customisation / construction"
         ],
@@ -58827,7 +58827,7 @@
           "Traditional sew-in / leave out": [
             "Leave out Sew-in"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "Fulani braids with Sew in"
           ],
           "Wig install (frontal / closure)": [
@@ -58883,7 +58883,7 @@
         "Colour blend (mixing braiding hair)",
         "Miracle knots",
         "Crochet faux locs / invisible locs",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Traditional sew-in / leave out",
         "Wash & blowdry",
         "Natural twists / plaits",
@@ -58913,7 +58913,7 @@
         "Twists (with extensions)",
         "Half up half down",
         "Traditional sew-in / leave out",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Wig install (frontal / closure)",
         "Wig customisation / construction"
       ],
@@ -59013,7 +59013,7 @@
           "Fulani / lemonade braids",
           "Flip-over Fulani / diva braids",
           "Jayda Wayda braided sew-in",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "Quick weave",
           "Traditional sew-in / leave out",
           "Half up half down",
@@ -59053,7 +59053,7 @@
           "Jayda Wayda braided sew-in": [
             "Jayda Wayda Sew in"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "Fulani sew-in package"
           ],
           "Quick weave": [
@@ -59113,7 +59113,7 @@
         "Half up half down",
         "Traditional sew-in / leave out",
         "Boho braids bob",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Flipover / Versatile sew-in",
         "Twists (with extensions)",
         "Flip-over Fulani / diva braids",
@@ -59128,7 +59128,7 @@
         "Fulani / lemonade braids",
         "Flip-over Fulani / diva braids",
         "Jayda Wayda braided sew-in",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Quick weave",
         "Traditional sew-in / leave out",
         "Half up half down",
@@ -59287,7 +59287,7 @@
         "Knotless braids",
         "Traditional sew-in / leave out",
         "Moisturising treatment",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Feed-in / stitch braid sew-in",
         "Wig cornrows",
         "Fulani / lemonade braids",
@@ -59310,7 +59310,7 @@
       "removedServices": [
         "Traditional sew-in / leave out",
         "Moisturising treatment",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Feed-in / stitch braid sew-in"
       ],
       "locationReviewIgnored": false,
@@ -59709,7 +59709,7 @@
           "Miracle knots",
           "Fulani / lemonade braids",
           "Feed-in braids",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "Flip-over Fulani / diva braids",
           "Natural twists / plaits",
           "Pop smoke braids",
@@ -59746,7 +59746,7 @@
           "Feed-in braids": [
             "Fulani braids (going all back)"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "Fulani x weave"
           ],
           "Flip-over Fulani / diva braids": [
@@ -59821,7 +59821,7 @@
         "Feed-in braids",
         "Miracle knots",
         "Quick weave",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Natural twists / plaits",
         "Flip-over Fulani / diva braids",
         "Alicia Keys braids",
@@ -59835,7 +59835,7 @@
         "Miracle knots",
         "Fulani / lemonade braids",
         "Feed-in braids",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Flip-over Fulani / diva braids",
         "Natural twists / plaits",
         "Pop smoke braids",
@@ -63093,7 +63093,7 @@
           "Fulani / lemonade braids",
           "Alicia Keys braids",
           "French curl",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "Flip-over Fulani / diva braids",
           "Twists (with extensions)",
           "Loc styling",
@@ -63166,7 +63166,7 @@
             "Smedium French curls waist",
             "Small French curls waist length"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "Fulani braids/ sew-in",
             "Medium Fulani sew- in",
             "Small Fulani sew in"
@@ -63283,7 +63283,7 @@
         "Loc styling",
         "Boho locs",
         "Crochet faux locs / invisible locs",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "U-Part / Half wig install",
         "Natural twists / plaits",
         "Flip-over Fulani / diva braids",
@@ -63303,7 +63303,7 @@
         "Fulani / lemonade braids",
         "Alicia Keys braids",
         "French curl",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Flip-over Fulani / diva braids",
         "Twists (with extensions)",
         "Loc styling",
@@ -65278,7 +65278,7 @@
         "Box braids",
         "Stitch braids",
         "Fulani / lemonade braids",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Feed-in / stitch braid sew-in",
         "Half up half down",
         "Relaxer / texturiser",
@@ -65323,7 +65323,7 @@
         "Feed-in braids"
       ],
       "removedServices": [
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Feed-in / stitch braid sew-in",
         "Relaxer / texturiser",
         "Men's braids",
@@ -66134,7 +66134,7 @@
           "Stitch braids",
           "Braided ponytail",
           "Fulani / lemonade braids",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "Boho sew-in",
           "Cassie braided sew-in"
         ],
@@ -66205,7 +66205,7 @@
             "Tribal/Fulani Braids",
             "Freestyle Fulani braids"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "Fulani braids + weave(sew in)"
           ],
           "Boho sew-in": [
@@ -66252,7 +66252,7 @@
         "French curl bob",
         "Colour blend (mixing braiding hair)",
         "Boho locs",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Microbraids / x-small braids",
         "Natural twists / plaits",
         "Braided ponytail",
@@ -66279,7 +66279,7 @@
         "Stitch braids",
         "Braided ponytail",
         "Fulani / lemonade braids",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Boho sew-in",
         "Cassie braided sew-in"
       ],
@@ -67517,7 +67517,7 @@
         "matchedServices": [
           "Wig cornrows",
           "Traditional sew-in / leave out",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "Sew-in take-down",
           "Natural twists / plaits"
         ],
@@ -67531,7 +67531,7 @@
             "Sew far sew good (Sew in maintenance)",
             "Sew in Love"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "Fulani Sew in"
           ],
           "Sew-in take-down": [
@@ -67579,13 +67579,13 @@
         "Healthy hair plans & consultations",
         "Fulani / lemonade braids",
         "Men's braids",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Natural twists / plaits"
       ],
       "detectedServices": [
         "Wig cornrows",
         "Traditional sew-in / leave out",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Sew-in take-down",
         "Natural twists / plaits"
       ],
@@ -68178,7 +68178,7 @@
         "Wig install (frontal / closure)",
         "Kids & teens styles",
         "Microbraids / x-small braids",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Feed-in / stitch braid sew-in",
         "Protein treatment",
         "Twists (with extensions)",
@@ -68211,7 +68211,7 @@
       "removedServices": [
         "Kids & teens styles",
         "Microbraids / x-small braids",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Feed-in / stitch braid sew-in",
         "Protein treatment"
       ],
@@ -68929,7 +68929,7 @@
           "Knotless braids",
           "Stitch braids",
           "Wig cornrows",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "Quick weave",
           "Wig install (frontal / closure)",
           "Wig reinstall / re-glue"
@@ -68945,7 +68945,7 @@
           "Wig cornrows": [
             "Cainrows"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "Fulani Quick Weave"
           ],
           "Quick weave": [
@@ -68989,14 +68989,14 @@
         "Quick weave",
         "Fulani / lemonade braids",
         "Stitch braids",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Wig reinstall / re-glue"
       ],
       "detectedServices": [
         "Knotless braids",
         "Stitch braids",
         "Wig cornrows",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Quick weave",
         "Wig install (frontal / closure)",
         "Wig reinstall / re-glue"
@@ -71782,7 +71782,7 @@
         "Knotless braids",
         "French curl",
         "Boho braids / goddess braids",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Feed-in / stitch braid sew-in",
         "Alicia Keys braids"
       ],
@@ -71801,7 +71801,7 @@
       "addedServices": [],
       "removedServices": [
         "Creative braids",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Feed-in / stitch braid sew-in"
       ],
       "locationReviewIgnored": false,
@@ -73316,7 +73316,7 @@
           "Closure sew-in / closure behind the hairline",
           "Frontal sew-in",
           "Traditional sew-in / leave out",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "Wig install (frontal / closure)",
           "U-Part / Half wig install",
           "Half up half down",
@@ -73375,7 +73375,7 @@
             "The 3 Bundle Sew-In Deal 16”-20”",
             "The 4 Bundle Sew-In Deal 16”-20”"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "Fulani sew in",
             "Fulani Sew In (Half wig)"
           ],
@@ -73451,7 +73451,7 @@
         "Wig cornrows",
         "Closure sew-in / closure behind the hairline",
         "Wig customisation / construction",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Wig laundry / wig revamp",
         "Wig reinstall / re-glue",
         "Frontal / closure replacement",
@@ -73470,7 +73470,7 @@
         "Closure sew-in / closure behind the hairline",
         "Frontal sew-in",
         "Traditional sew-in / leave out",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Wig install (frontal / closure)",
         "U-Part / Half wig install",
         "Half up half down",
@@ -76858,7 +76858,7 @@
           "Wig cornrows",
           "Feed-in braids",
           "Fulani / lemonade braids",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "U-Part / Half wig install",
           "Kids & teens styles",
           "Natural twists / plaits",
@@ -76901,7 +76901,7 @@
             "Small Fulani Braids",
             "Fulani Half Weave (Half Wig Method)"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "Fulani Half Weave",
             "Fulani Half Weave (Sew-in Method)",
             "Fulani Half Weave (Half Wig Method)"
@@ -76960,7 +76960,7 @@
         "Creative braids",
         "Wig cornrows",
         "Stitch braids",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Boho braids bob",
         "Kids & teens styles",
         "Men's braids",
@@ -76973,7 +76973,7 @@
         "Wig cornrows",
         "Feed-in braids",
         "Fulani / lemonade braids",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "U-Part / Half wig install",
         "Kids & teens styles",
         "Natural twists / plaits",
@@ -77561,7 +77561,7 @@
           "Stitch braids",
           "Sleek ponytail / bun",
           "Braided ponytail",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "Wig cornrows",
           "Traditional sew-in / leave out",
           "Wig install (frontal / closure)",
@@ -77621,7 +77621,7 @@
           "Braided ponytail": [
             "Stitch ponytail( medium"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "JD fulani weave (medium)",
             "JD Fulani weave (small)"
           ],
@@ -77677,7 +77677,7 @@
         "Stitch braids",
         "Wig cornrows",
         "Wig install (frontal / closure)",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Microbraids / x-small braids",
         "Braided ponytail",
         "Flip-over Fulani / diva braids",
@@ -77695,7 +77695,7 @@
         "Stitch braids",
         "Sleek ponytail / bun",
         "Braided ponytail",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Wig cornrows",
         "Traditional sew-in / leave out",
         "Wig install (frontal / closure)",
@@ -78490,7 +78490,7 @@
         "Wig install (frontal / closure)",
         "Boho braids / goddess braids",
         "Fulani / lemonade braids",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Feed-in / stitch braid sew-in",
         "Frontal sew-in",
         "Closure sew-in / closure behind the hairline",
@@ -78518,7 +78518,7 @@
       "removedServices": [
         "Box braids",
         "Fulani / lemonade braids",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Feed-in / stitch braid sew-in",
         "Wig customisation / construction",
         "Colour blend (mixing braiding hair)"
@@ -81379,7 +81379,7 @@
           "Jayda Wayda braided sew-in",
           "Traditional sew-in / leave out",
           "Flipover / Versatile sew-in",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "Wash & blowdry",
           "Moisturising treatment",
           "Olaplex treatment"
@@ -81460,7 +81460,7 @@
           "Flipover / Versatile sew-in": [
             "Flip over sewin"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "Fulani sewin"
           ],
           "Wash & blowdry": [
@@ -81515,7 +81515,7 @@
         "Updo",
         "Kids & teens styles",
         "Men's braids",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Boho sew-in",
         "Wash & blowdry",
         "Olaplex treatment",
@@ -81543,7 +81543,7 @@
         "Jayda Wayda braided sew-in",
         "Traditional sew-in / leave out",
         "Flipover / Versatile sew-in",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Wash & blowdry",
         "Moisturising treatment",
         "Olaplex treatment"
@@ -83557,7 +83557,7 @@
           "Wig cornrows",
           "Feed-in braids",
           "Fulani / lemonade braids",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "Knotless braids",
           "Sleek ponytail / bun",
           "Traditional sew-in / leave out",
@@ -83577,7 +83577,7 @@
             "Fulani Braids",
             "Freestyle Fulani Cainrows"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "Fulani Braids with Weave (Please provide weave)"
           ],
           "Knotless braids": [
@@ -83629,13 +83629,13 @@
         "Feed-in braids",
         "Fulani / lemonade braids",
         "Twists (with extensions)",
-        "Fulani sew-in / quick weave / half wig"
+        "Fulani sew-in / quick weave"
       ],
       "detectedServices": [
         "Wig cornrows",
         "Feed-in braids",
         "Fulani / lemonade braids",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Knotless braids",
         "Sleek ponytail / bun",
         "Traditional sew-in / leave out",
@@ -85662,7 +85662,7 @@
           "Boho braids / goddess braids",
           "Boho braids bob",
           "Fulani / lemonade braids",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "Knotless braids",
           "Wig cornrows",
           "Miracle knots",
@@ -85688,7 +85688,7 @@
             "medium fulani",
             "small fulani"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "fulani X sew -in (no leave out)"
           ],
           "Knotless braids": [
@@ -85762,7 +85762,7 @@
         "Men's braids",
         "Loc styling",
         "Colour blend (mixing braiding hair)",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Microbraids / x-small braids",
         "Braided ponytail"
       ],
@@ -85770,7 +85770,7 @@
         "Boho braids / goddess braids",
         "Boho braids bob",
         "Fulani / lemonade braids",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Knotless braids",
         "Wig cornrows",
         "Miracle knots",
@@ -88014,7 +88014,7 @@
           "French curl",
           "Fulani / lemonade braids",
           "Flipover / Versatile sew-in",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "Jayda Wayda braided sew-in",
           "Knotless braids",
           "Miracle knots",
@@ -88053,7 +88053,7 @@
           "Flipover / Versatile sew-in": [
             "Diva (flipover) braids"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "Fulani x Sew in",
             "Standard Fulani x Sew in",
             "Freestyle Fulani x Sew in",
@@ -88134,7 +88134,7 @@
         "Knotless braids",
         "Boho braids bob",
         "Boho sew-in",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Miracle knots",
         "Feed-in / stitch braid sew-in",
         "Braided ponytail",
@@ -88147,7 +88147,7 @@
         "French curl",
         "Fulani / lemonade braids",
         "Flipover / Versatile sew-in",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Jayda Wayda braided sew-in",
         "Knotless braids",
         "Miracle knots",
@@ -89237,7 +89237,7 @@
         "matchedServices": [
           "Alicia Keys braids",
           "Feed-in braids",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "Natural twists / plaits",
           "Wig cornrows",
           "Stitch braids",
@@ -89265,7 +89265,7 @@
           "Feed-in braids": [
             "FEED IN BRAIDS"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "FULANI WEAVE",
             "Fulani Weave Style (4-6 plaits)",
             "Fulani Weave Style (8-12 plaits)",
@@ -89379,7 +89379,7 @@
         "Boho braids bob",
         "French curl bob",
         "Men's braids",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Extensions blow-dry / bouncy blowout",
         "Wig reinstall / re-glue",
         "Frontal / closure replacement",
@@ -89391,7 +89391,7 @@
       "detectedServices": [
         "Alicia Keys braids",
         "Feed-in braids",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Natural twists / plaits",
         "Wig cornrows",
         "Stitch braids",
@@ -89697,7 +89697,7 @@
           "Natural twists / plaits",
           "Pop smoke braids",
           "Quick weave",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "Flipover / Versatile sew-in",
           "Closure sew-in / closure behind the hairline",
           "Frontal sew-in",
@@ -89790,7 +89790,7 @@
             "Quick Weave",
             "Fulani Quickweave"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "Fulani Quickweave",
             "Fulani Sew-In"
           ],
@@ -89865,7 +89865,7 @@
         "Men's braids",
         "Loc styling",
         "Protein treatment",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Wig laundry / wig revamp",
         "Wig reinstall / re-glue",
         "Frontal / closure replacement",
@@ -89894,7 +89894,7 @@
         "Natural twists / plaits",
         "Pop smoke braids",
         "Quick weave",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Flipover / Versatile sew-in",
         "Closure sew-in / closure behind the hairline",
         "Frontal sew-in",
@@ -92071,7 +92071,7 @@
       "currentServices": [
         "Boho braids / goddess braids",
         "Knotless braids",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Traditional sew-in / leave out",
         "Flipover / Versatile sew-in",
         "Fulani / lemonade braids",
@@ -92104,7 +92104,7 @@
       ],
       "addedServices": [],
       "removedServices": [
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Feed-in braids",
         "Boho braids bob",
         "Extensions blow-dry / bouncy blowout"
@@ -92308,7 +92308,7 @@
         "Feed-in braids",
         "Kids & teens styles",
         "Loc styling",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Microbraids / x-small braids",
         "Braided ponytail",
         "Alicia Keys braids",
@@ -92337,7 +92337,7 @@
       "removedServices": [
         "Half up half down",
         "Loc styling",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Microbraids / x-small braids",
         "Cassie braided sew-in"
       ],
@@ -94428,7 +94428,7 @@
           "Wash & blowdry",
           "Silk press",
           "Relaxer / texturiser",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "Sleek ponytail / bun",
           "Traditional sew-in / leave out",
           "Wig install (frontal / closure)"
@@ -94509,7 +94509,7 @@
           "Relaxer / texturiser": [
             "Silk Alchemy | Virgin Relaxer"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "Siren Layers | Fulani Sew In (Short)",
             "Siren Layers | Fulani Sew In"
           ],
@@ -94568,7 +94568,7 @@
         "Wig install (frontal / closure)",
         "Kids & teens styles",
         "Crochet faux locs / invisible locs",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Natural twists / plaits",
         "Alicia Keys braids"
       ],
@@ -94591,7 +94591,7 @@
         "Wash & blowdry",
         "Silk press",
         "Relaxer / texturiser",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Sleek ponytail / bun",
         "Traditional sew-in / leave out",
         "Wig install (frontal / closure)"
@@ -95022,7 +95022,7 @@
           "Fulani / lemonade braids",
           "Stitch braids",
           "Flip-over Fulani / diva braids",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "Flipover / Versatile sew-in",
           "Quick weave",
           "Feed-in / stitch braid sew-in",
@@ -95064,7 +95064,7 @@
           "Flip-over Fulani / diva braids": [
             "DIVA/Flip Over Fulani Braids"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "Fulani Flip Over+ Quickweave",
             "Fulani Braids+Quickweave",
             "Half stitch/Fulani+ Half Wig",
@@ -95155,7 +95155,7 @@
         "Quick weave",
         "Highlights",
         "Miracle knots",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Feed-in / stitch braid sew-in",
         "Natural twists / plaits",
         "Flip-over Fulani / diva braids"
@@ -95167,7 +95167,7 @@
         "Fulani / lemonade braids",
         "Stitch braids",
         "Flip-over Fulani / diva braids",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Flipover / Versatile sew-in",
         "Quick weave",
         "Feed-in / stitch braid sew-in",
@@ -96983,7 +96983,7 @@
           "Boho braids / goddess braids",
           "Sleek ponytail / bun",
           "Fulani / lemonade braids",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "Alicia Keys braids",
           "Wash & blowdry",
           "Braid take-down"
@@ -97015,7 +97015,7 @@
             "Half fulani/Half weave with hair included",
             "Half fulani/Half weave"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "Half fulani/Half weave with hair included",
             "Half fulani/Half weave"
           ],
@@ -97064,7 +97064,7 @@
         "Fulani / lemonade braids",
         "Wash & blowdry",
         "Editorial / Session styling",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Alicia Keys braids",
         "Cassie braided sew-in"
       ],
@@ -97076,7 +97076,7 @@
         "Boho braids / goddess braids",
         "Sleek ponytail / bun",
         "Fulani / lemonade braids",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Alicia Keys braids",
         "Wash & blowdry",
         "Braid take-down"
@@ -97183,7 +97183,7 @@
           "Wig cornrows",
           "Natural twists / plaits",
           "Retwist / interlocking",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "Quick weave",
           "Flipover / Versatile sew-in",
           "Traditional sew-in / leave out",
@@ -97231,7 +97231,7 @@
           "Retwist / interlocking": [
             "RETWIST"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "SEW-IN / Quick Weave (Fulani)",
             "Freestyle FULANI & SEW-IN",
             "Straight Fulani + quick weave"
@@ -97298,7 +97298,7 @@
         "Traditional sew-in / leave out",
         "Men's braids",
         "Flipover / Versatile sew-in",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Natural twists / plaits",
         "Flip-over Fulani / diva braids",
         "Pop smoke braids"
@@ -97313,7 +97313,7 @@
         "Wig cornrows",
         "Natural twists / plaits",
         "Retwist / interlocking",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Quick weave",
         "Flipover / Versatile sew-in",
         "Traditional sew-in / leave out",
@@ -97756,7 +97756,7 @@
           "Wig install (frontal / closure)",
           "U-Part / Half wig install",
           "Fulani / lemonade braids",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "Wig cornrows",
           "Alicia Keys braids",
           "Flip-over Fulani / diva braids",
@@ -97806,7 +97806,7 @@
             "Medium Fulani Braids w/ Half Wig",
             "Small Fulani Braids w/ Half Wig"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "Medium Fulani Braids w/ Half Wig",
             "Small Fulani Braids w/ Half Wig",
             "Large Fulani Braids w/ Half Sew In",
@@ -97869,7 +97869,7 @@
         "Boho braids bob",
         "Colour blend (mixing braiding hair)",
         "Microbraids / x-small braids",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Braided ponytail",
         "Flip-over Fulani / diva braids",
         "Alicia Keys braids"
@@ -97883,7 +97883,7 @@
         "Wig install (frontal / closure)",
         "U-Part / Half wig install",
         "Fulani / lemonade braids",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Wig cornrows",
         "Alicia Keys braids",
         "Flip-over Fulani / diva braids",
@@ -98521,7 +98521,7 @@
           "Updo",
           "Flipover / Versatile sew-in",
           "Quick weave",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "Sleek ponytail / bun",
           "Cassie braided sew-in"
         ],
@@ -98550,7 +98550,7 @@
             "The Quick Weave",
             "Half Up Half Down Quick Weave"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "Fulani Sew In"
           ],
           "Sleek ponytail / bun": [
@@ -98596,7 +98596,7 @@
         "Quick weave",
         "Sleek ponytail / bun",
         "Flipover / Versatile sew-in",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Protein treatment",
         "Extensions blow-dry / bouncy blowout",
         "Braided ponytail",
@@ -98610,7 +98610,7 @@
         "Updo",
         "Flipover / Versatile sew-in",
         "Quick weave",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Sleek ponytail / bun",
         "Cassie braided sew-in"
       ],
@@ -100777,7 +100777,7 @@
           "Boho braids / goddess braids",
           "Fulani / lemonade braids",
           "Flip-over Fulani / diva braids",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "Quick weave",
           "Knotless braids",
           "Miracle knots",
@@ -100802,7 +100802,7 @@
           "Flip-over Fulani / diva braids": [
             "Flip Over Fulani"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "Fulani Quickweave"
           ],
           "Quick weave": [
@@ -100872,7 +100872,7 @@
         "Wig cornrows",
         "Quick weave",
         "Boho braids bob",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Wash & blowdry",
         "Flip-over Fulani / diva braids"
       ],
@@ -100880,7 +100880,7 @@
         "Boho braids / goddess braids",
         "Fulani / lemonade braids",
         "Flip-over Fulani / diva braids",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Quick weave",
         "Knotless braids",
         "Miracle knots",
@@ -102125,7 +102125,7 @@
         "Wig cornrows",
         "Flipover / Versatile sew-in",
         "Box braids",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Crochet",
         "Miracle knots",
         "Boho braids / goddess braids",
@@ -102941,7 +102941,7 @@
           "Quick weave",
           "Feed-in / stitch braid sew-in",
           "Flipover / Versatile sew-in",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "Wig install (frontal / closure)",
           "Wig reinstall / re-glue",
           "Frontal / closure replacement",
@@ -102988,7 +102988,7 @@
           "Flipover / Versatile sew-in": [
             "Flip over Quickweave"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "Fulani Braids with Quickweave"
           ],
           "Wig install (frontal / closure)": [
@@ -103046,7 +103046,7 @@
         "Flipover / Versatile sew-in",
         "Frontal sew-in",
         "Traditional sew-in / leave out",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Wig reinstall / re-glue",
         "Frontal / closure replacement",
         "Flip-over Fulani / diva braids",
@@ -103064,7 +103064,7 @@
         "Quick weave",
         "Feed-in / stitch braid sew-in",
         "Flipover / Versatile sew-in",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Wig install (frontal / closure)",
         "Wig reinstall / re-glue",
         "Frontal / closure replacement",
@@ -103569,7 +103569,7 @@
           "Quick weave",
           "Fulani / lemonade braids",
           "Feed-in braids",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "Wig install (frontal / closure)",
           "Frontal ponytail / bun",
           "Closure sew-in / closure behind the hairline",
@@ -103656,7 +103656,7 @@
           "Feed-in braids": [
             "20/22 Straight back feed in braids"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "Fulani braids + Sew in"
           ],
           "Wig install (frontal / closure)": [
@@ -103728,7 +103728,7 @@
         "Updo",
         "Wig customisation / construction",
         "Miracle knots",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Wig reinstall / re-glue",
         "Frontal / closure replacement",
         "Natural twists / plaits",
@@ -103757,7 +103757,7 @@
         "Quick weave",
         "Fulani / lemonade braids",
         "Feed-in braids",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Wig install (frontal / closure)",
         "Frontal ponytail / bun",
         "Closure sew-in / closure behind the hairline",
@@ -105127,7 +105127,7 @@
         ],
         "matchedServices": [
           "Feed-in braids",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "Fulani / lemonade braids",
           "Wig colouring / bundle colouring",
           "Wig customisation / construction",
@@ -105150,7 +105150,7 @@
           "Feed-in braids": [
             "SMALL | ALL BACK BRAIDS"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "TRIBAL/FULANI BRAIDS WITH WEAVE SEW-IN"
           ],
           "Fulani / lemonade braids": [
@@ -105263,14 +105263,14 @@
         "Half up half down",
         "Closure sew-in / closure behind the hairline",
         "Wig customisation / construction",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Wig reinstall / re-glue",
         "Natural twists / plaits",
         "Braided ponytail"
       ],
       "detectedServices": [
         "Feed-in braids",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Fulani / lemonade braids",
         "Wig colouring / bundle colouring",
         "Wig customisation / construction",
@@ -106049,7 +106049,7 @@
           "8 Stitch braids waist length"
         ],
         "matchedServices": [
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "Knotless braids",
           "Fulani / lemonade braids",
           "Faux locs / soft locs",
@@ -106063,7 +106063,7 @@
           "Stitch braids"
         ],
         "serviceEvidence": {
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "Freestyle fulani x sewin"
           ],
           "Knotless braids": [
@@ -106152,12 +106152,12 @@
         "Retwist / interlocking",
         "Stitch braids",
         "Crochet faux locs / invisible locs",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Braided ponytail",
         "Alicia Keys braids"
       ],
       "detectedServices": [
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Knotless braids",
         "Fulani / lemonade braids",
         "Faux locs / soft locs",
@@ -106759,7 +106759,7 @@
           "Alicia Keys braids",
           "Feed-in braids",
           "Braided ponytail",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "Jayda Wayda braided sew-in",
           "Feed-in / stitch braid sew-in",
           "Cassie braided sew-in",
@@ -106810,7 +106810,7 @@
           "Braided ponytail": [
             "Small Feed In Ponytail"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "Jayda Wayda Inspired Fulani Sew In"
           ],
           "Jayda Wayda braided sew-in": [
@@ -106873,7 +106873,7 @@
         "Alicia Keys braids",
         "Jayda Wayda braided sew-in",
         "Cassie braided sew-in",
-        "Fulani sew-in / quick weave / half wig"
+        "Fulani sew-in / quick weave"
       ],
       "detectedServices": [
         "Boho braids / goddess braids",
@@ -106884,7 +106884,7 @@
         "Alicia Keys braids",
         "Feed-in braids",
         "Braided ponytail",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Jayda Wayda braided sew-in",
         "Feed-in / stitch braid sew-in",
         "Cassie braided sew-in",
@@ -107321,7 +107321,7 @@
           "Boho braids / goddess braids",
           "Flip-over Fulani / diva braids",
           "Fulani / lemonade braids",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "Wig install (frontal / closure)",
           "U-Part / Half wig install",
           "Feed-in / stitch braid sew-in",
@@ -107362,7 +107362,7 @@
             "Lemonade Braids",
             "Fulani braids (London slots)"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "Fulani + Sew in",
             "Fulani + sew in"
           ],
@@ -107445,7 +107445,7 @@
         "Knotless braids",
         "Miracle knots",
         "French curl",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Men's braids",
         "Feed-in / stitch braid sew-in",
         "Flip-over Fulani / diva braids",
@@ -107458,7 +107458,7 @@
         "Boho braids / goddess braids",
         "Flip-over Fulani / diva braids",
         "Fulani / lemonade braids",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Wig install (frontal / closure)",
         "U-Part / Half wig install",
         "Feed-in / stitch braid sew-in",
@@ -107733,7 +107733,7 @@
           "Natural twists / plaits",
           "Pop smoke braids",
           "Sleek ponytail / bun",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "Traditional sew-in / leave out",
           "Faux locs / soft locs",
           "Stitch braids",
@@ -107797,7 +107797,7 @@
             "Side part ponytail",
             "High ponytail"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "Fulani braids with weave"
           ],
           "Traditional sew-in / leave out": [
@@ -107856,7 +107856,7 @@
         "Wig install (frontal / closure)",
         "Crochet faux locs / invisible locs",
         "Microbraids / x-small braids",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Natural twists / plaits",
         "Flip-over Fulani / diva braids",
         "Alicia Keys braids",
@@ -107874,7 +107874,7 @@
         "Natural twists / plaits",
         "Pop smoke braids",
         "Sleek ponytail / bun",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Traditional sew-in / leave out",
         "Faux locs / soft locs",
         "Stitch braids",
@@ -108196,7 +108196,7 @@
         "Kids & teens styles",
         "Loc extensions (permanent)",
         "Crochet faux locs / invisible locs",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Feed-in / stitch braid sew-in",
         "Braided ponytail",
         "Pop smoke braids"
@@ -108235,7 +108235,7 @@
         "Men's braids",
         "Kids & teens styles",
         "Loc extensions (permanent)",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Feed-in / stitch braid sew-in"
       ],
       "locationReviewIgnored": false,
@@ -108560,7 +108560,7 @@
           "Knotless braids",
           "Boho braids / goddess braids",
           "Boho braids bob",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "Fulani / lemonade braids",
           "Flip-over Fulani / diva braids",
           "Retwist / interlocking",
@@ -108611,7 +108611,7 @@
           "Boho braids bob": [
             "Boho Knotless Bob"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "Fulani Sew In",
             "Freestyle Fulani Sew In",
             "Quick Weave Fulani"
@@ -108736,7 +108736,7 @@
         "Quick weave",
         "Closure sew-in / closure behind the hairline",
         "Loc styling",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Wig blow-dry / bouncy blowout",
         "Wig laundry / wig revamp",
         "Wig reinstall / re-glue",
@@ -108754,7 +108754,7 @@
         "Knotless braids",
         "Boho braids / goddess braids",
         "Boho braids bob",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Fulani / lemonade braids",
         "Flip-over Fulani / diva braids",
         "Retwist / interlocking",
@@ -109116,7 +109116,7 @@
           "Alicia Keys braids",
           "Braided ponytail",
           "Quick weave",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "Half up half down",
           "Flipover / Versatile sew-in",
           "Wig reinstall / re-glue",
@@ -109157,7 +109157,7 @@
             "2 braids and quick weave",
             "Flip over/quick weave (deal)"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "Fulani quick weave",
             "Fulani sew in"
           ],
@@ -109234,7 +109234,7 @@
         "Frontal ponytail / bun",
         "Updo",
         "Microbraids / x-small braids",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Wig reinstall / re-glue",
         "Braided ponytail",
         "Alicia Keys braids"
@@ -109246,7 +109246,7 @@
         "Alicia Keys braids",
         "Braided ponytail",
         "Quick weave",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Half up half down",
         "Flipover / Versatile sew-in",
         "Wig reinstall / re-glue",
@@ -109521,7 +109521,7 @@
           "Half up half down",
           "Quick weave",
           "Flipover / Versatile sew-in",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "Wig install (frontal / closure)",
           "U-Part / Half wig install"
         ],
@@ -109609,7 +109609,7 @@
             "Flipover Sew In",
             "Flipover Quickweave"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "Fulani Sew In",
             "Fulani Sew In (Half Wig)",
             "Fulani Quickweave"
@@ -109663,7 +109663,7 @@
         "Wig install (frontal / closure)",
         "Loc styling",
         "Crochet faux locs / invisible locs",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Natural twists / plaits",
         "Flip-over Fulani / diva braids",
         "Alicia Keys braids",
@@ -109689,7 +109689,7 @@
         "Half up half down",
         "Quick weave",
         "Flipover / Versatile sew-in",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Wig install (frontal / closure)",
         "U-Part / Half wig install"
       ],
@@ -110291,7 +110291,7 @@
         ],
         "matchedServices": [
           "U-Part / Half wig install",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "Quick weave",
           "Jayda Wayda braided sew-in",
           "Sleek ponytail / bun",
@@ -110318,7 +110318,7 @@
           "U-Part / Half wig install": [
             "Half Wig Installation + Cornrows"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "Jayda Wayda Braids Quick Weave (Fulani + Quick Weave)",
             "Jayda Wayda Braids Sew In (Fulani + Sew In)"
           ],
@@ -110468,11 +110468,11 @@
         "Loc wash / detox",
         "Pop smoke braids",
         "Jayda Wayda braided sew-in",
-        "Fulani sew-in / quick weave / half wig"
+        "Fulani sew-in / quick weave"
       ],
       "detectedServices": [
         "U-Part / Half wig install",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Quick weave",
         "Jayda Wayda braided sew-in",
         "Sleek ponytail / bun",
@@ -111339,7 +111339,7 @@
           "Flipover / Versatile sew-in",
           "Traditional sew-in / leave out",
           "Half up half down",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "Braided ponytail",
           "Sleek ponytail / bun",
           "Knotless braids",
@@ -111384,7 +111384,7 @@
           "Half up half down": [
             "Half up half down"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "Fulani sew in"
           ],
           "Braided ponytail": [
@@ -111450,7 +111450,7 @@
         "Wig install (frontal / closure)",
         "Closure sew-in / closure behind the hairline",
         "Starter locs / instant locs",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Braided ponytail"
       ],
       "detectedServices": [
@@ -111464,7 +111464,7 @@
         "Flipover / Versatile sew-in",
         "Traditional sew-in / leave out",
         "Half up half down",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Braided ponytail",
         "Sleek ponytail / bun",
         "Knotless braids",
@@ -111726,7 +111726,7 @@
         "matchedServices": [
           "Boho braids / goddess braids",
           "Fulani / lemonade braids",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "Quick weave",
           "Wig cornrows",
           "Knotless braids",
@@ -111750,7 +111750,7 @@
             "Fulani Braids",
             "Lemonade braids"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "Fulani Quick weave"
           ],
           "Quick weave": [
@@ -111828,7 +111828,7 @@
         "Stitch braids",
         "Loc styling",
         "Crochet faux locs / invisible locs",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Natural twists / plaits",
         "Pop smoke braids",
         "Coi Leray braids"
@@ -111836,7 +111836,7 @@
       "detectedServices": [
         "Boho braids / goddess braids",
         "Fulani / lemonade braids",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Quick weave",
         "Wig cornrows",
         "Knotless braids",
@@ -111963,7 +111963,7 @@
           "Men's braids",
           "French curl",
           "Frontal ponytail / bun",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "Quick weave",
           "Fulani / lemonade braids",
           "Traditional sew-in / leave out",
@@ -112004,7 +112004,7 @@
           "Frontal ponytail / bun": [
             "frontal ponytail"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "fulani braids/ quick weave fulani"
           ],
           "Quick weave": [
@@ -112111,7 +112111,7 @@
         "Wig cornrows",
         "Wig install (frontal / closure)",
         "Loc styling",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Wig reinstall / re-glue",
         "Natural twists / plaits",
         "Pop smoke braids",
@@ -112124,7 +112124,7 @@
         "Men's braids",
         "French curl",
         "Frontal ponytail / bun",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Quick weave",
         "Fulani / lemonade braids",
         "Traditional sew-in / leave out",
@@ -112492,7 +112492,7 @@
           "Stitch braids",
           "Twists (with extensions)",
           "Cassie braided sew-in",
-          "Fulani sew-in / quick weave / half wig"
+          "Fulani sew-in / quick weave"
         ],
         "serviceEvidence": {
           "Braided ponytail": [
@@ -112597,7 +112597,7 @@
           "Cassie braided sew-in": [
             "Cassie hairstyle"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "Fulani Sew-In"
           ]
         },
@@ -112643,7 +112643,7 @@
         "Stitch braids",
         "Twists (with extensions)",
         "Loc styling",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Natural twists / plaits",
         "Braided ponytail",
         "Alicia Keys braids",
@@ -112675,7 +112675,7 @@
         "Stitch braids",
         "Twists (with extensions)",
         "Cassie braided sew-in",
-        "Fulani sew-in / quick weave / half wig"
+        "Fulani sew-in / quick weave"
       ],
       "addedServices": [],
       "removedServices": [
@@ -113765,7 +113765,7 @@
         "Loc styling",
         "Crochet faux locs / invisible locs",
         "Kids & teens styles",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Wig laundry / wig revamp",
         "Natural twists / plaits",
         "Braided ponytail",
@@ -113808,7 +113808,7 @@
       "addedServices": [],
       "removedServices": [
         "Men's braids",
-        "Fulani sew-in / quick weave / half wig"
+        "Fulani sew-in / quick weave"
       ],
       "locationReviewIgnored": false,
       "checkedAt": "2026-10-09",
@@ -113895,7 +113895,7 @@
           "Knotless braids",
           "Feed-in braids",
           "Fulani / lemonade braids",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "Faux locs / soft locs",
           "Wig cornrows",
           "Loc styling",
@@ -113918,7 +113918,7 @@
             "Fulani braids (waist length)",
             "Fulani braids (bum length)"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "Small half fulani half sew-in",
             "Medium half fulani half sew-in",
             "Large half fulani half sew-in"
@@ -113976,13 +113976,13 @@
         "Wig cornrows",
         "Flipover / Versatile sew-in",
         "Loc styling",
-        "Fulani sew-in / quick weave / half wig"
+        "Fulani sew-in / quick weave"
       ],
       "detectedServices": [
         "Knotless braids",
         "Feed-in braids",
         "Fulani / lemonade braids",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Faux locs / soft locs",
         "Wig cornrows",
         "Loc styling",
@@ -114348,7 +114348,7 @@
           "Creative braids",
           "Feed-in braids",
           "Fulani / lemonade braids",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "Boho braids / goddess braids",
           "Twists (with extensions)",
           "Knotless braids",
@@ -114388,7 +114388,7 @@
             "Medium Fulani braids",
             "Small fulani braids"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "Fulani with sew in"
           ],
           "Boho braids / goddess braids": [
@@ -114463,7 +114463,7 @@
         "Retwist / interlocking",
         "Frontal ponytail / bun",
         "Loc styling",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Wig reinstall / re-glue",
         "Natural twists / plaits",
         "Creative braids",
@@ -114477,7 +114477,7 @@
         "Creative braids",
         "Feed-in braids",
         "Fulani / lemonade braids",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Boho braids / goddess braids",
         "Twists (with extensions)",
         "Knotless braids",
@@ -114899,7 +114899,7 @@
           "Retwist / interlocking",
           "Twists (with extensions)",
           "Loc styling",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "Traditional sew-in / leave out",
           "Bantu knots",
           "Natural twists / plaits",
@@ -114968,7 +114968,7 @@
             "4 Barrel Twists",
             "6 Barrel Twist"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "Fulani/TBS Sig Style x Sewin Maintenance",
             "Fulani Sew in",
             "DIY Fulani Sew-In Base"
@@ -115036,7 +115036,7 @@
         "Boho braids / goddess braids",
         "Loc styling",
         "Crochet faux locs / invisible locs",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Natural twists / plaits",
         "Flip-over Fulani / diva braids",
         "Alicia Keys braids"
@@ -115056,7 +115056,7 @@
         "Retwist / interlocking",
         "Twists (with extensions)",
         "Loc styling",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Traditional sew-in / leave out",
         "Bantu knots",
         "Natural twists / plaits",
@@ -115171,7 +115171,7 @@
           "Bantu knots",
           "Half up half down",
           "Traditional sew-in / leave out",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "Sew-in take-down",
           "Sleek ponytail / bun",
           "Braided ponytail",
@@ -115228,7 +115228,7 @@
             "bantu knot/crown sew in",
             "middle/side part sew in"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "Fulani quick weave",
             "Fulani sew in"
           ],
@@ -115303,7 +115303,7 @@
         "Knotless braids",
         "Retwist / interlocking",
         "Starter locs / instant locs",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Natural twists / plaits",
         "Braided ponytail"
       ],
@@ -115318,7 +115318,7 @@
         "Bantu knots",
         "Half up half down",
         "Traditional sew-in / leave out",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Sew-in take-down",
         "Sleek ponytail / bun",
         "Braided ponytail",
@@ -116280,7 +116280,7 @@
           "Natural twists / plaits",
           "Knotless braids",
           "Stitch braids",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "Fulani / lemonade braids",
           "Feed-in braids",
           "Men's braids",
@@ -116310,7 +116310,7 @@
             "4-6 Stitch Braids",
             "8-10 Stitch Braids"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "Fulani Sew in (Half fulani half sew in)"
           ],
           "Fulani / lemonade braids": [
@@ -116384,7 +116384,7 @@
         "Sleek ponytail / bun",
         "Half up half down",
         "Loc styling",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Natural twists / plaits",
         "Pop smoke braids"
       ],
@@ -116393,7 +116393,7 @@
         "Natural twists / plaits",
         "Knotless braids",
         "Stitch braids",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Fulani / lemonade braids",
         "Feed-in braids",
         "Men's braids",
@@ -117035,7 +117035,7 @@
           "Fulani / lemonade braids",
           "Flip-over Fulani / diva braids",
           "Quick weave",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "Knotless braids",
           "Loc styling",
           "Retwist / interlocking",
@@ -117088,7 +117088,7 @@
             "Jayda Wayda 4 Cornrow Quick weave",
             "Half up half down quick weave"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "Fulani quick Weave",
             "Fulani sew in"
           ],
@@ -117166,7 +117166,7 @@
         "Half up half down",
         "Faux locs / soft locs",
         "Wig install (frontal / closure)",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Natural twists / plaits",
         "Braided ponytail",
         "Flip-over Fulani / diva braids",
@@ -117184,7 +117184,7 @@
         "Fulani / lemonade braids",
         "Flip-over Fulani / diva braids",
         "Quick weave",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Knotless braids",
         "Loc styling",
         "Retwist / interlocking",
@@ -118119,7 +118119,7 @@
           "Loc wash / detox",
           "Starter locs / instant locs",
           "Fulani / lemonade braids",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "Cassie braided sew-in",
           "Wig install (frontal / closure)",
           "U-Part / Half wig install"
@@ -118192,7 +118192,7 @@
             "Fulani braids- small",
             "Lemonade Fulani braids medium"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "Fulani Sew-in/Cassie",
             "Fulani sew-in L/M",
             "Fulani sew-in small",
@@ -118253,7 +118253,7 @@
         "Loc styling",
         "Colour blend (mixing braiding hair)",
         "U-Part / Half wig install",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Feed-in / stitch braid sew-in",
         "Braided ponytail",
         "Loc wash / detox",
@@ -118277,7 +118277,7 @@
         "Loc wash / detox",
         "Starter locs / instant locs",
         "Fulani / lemonade braids",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Cassie braided sew-in",
         "Wig install (frontal / closure)",
         "U-Part / Half wig install"
@@ -118446,7 +118446,7 @@
         "Knotless braids",
         "Traditional sew-in / leave out",
         "Half up half down",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Feed-in / stitch braid sew-in",
         "Sleek ponytail / bun",
         "Braided ponytail",
@@ -118466,7 +118466,7 @@
       "addedServices": [],
       "removedServices": [
         "Men's braids",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Feed-in / stitch braid sew-in"
       ],
       "locationReviewIgnored": false,
@@ -121783,7 +121783,7 @@
           "Quick weave",
           "Closure sew-in / closure behind the hairline",
           "Traditional sew-in / leave out",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "Twists (with extensions)",
           "Natural twists / plaits",
           "Box braids"
@@ -121875,7 +121875,7 @@
           "Traditional sew-in / leave out": [
             "WEAVE WITH LEAVE-OUT"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "FULANI WEAVE"
           ],
           "Twists (with extensions)": [
@@ -121938,7 +121938,7 @@
         "Twists (with extensions)",
         "Box braids",
         "Microbraids / x-small braids",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Natural twists / plaits",
         "Braided ponytail",
         "Flip-over Fulani / diva braids"
@@ -121963,7 +121963,7 @@
         "Quick weave",
         "Closure sew-in / closure behind the hairline",
         "Traditional sew-in / leave out",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Twists (with extensions)",
         "Natural twists / plaits",
         "Box braids"
@@ -122667,7 +122667,7 @@
           "French curl bob",
           "Fulani / lemonade braids",
           "Creative braids",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "Jayda Wayda braided sew-in",
           "Bantu knots",
           "Twists (with extensions)",
@@ -122707,7 +122707,7 @@
           "Creative braids": [
             "Shuku x French curl braids"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "Half fulani Half sew in (JAYDA WAYDA)"
           ],
           "Jayda Wayda braided sew-in": [
@@ -122781,7 +122781,7 @@
         "Miracle knots",
         "Boho locs",
         "Jayda Wayda braided sew-in",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Feed-in / stitch braid sew-in",
         "Creative braids"
       ],
@@ -122792,7 +122792,7 @@
         "French curl bob",
         "Fulani / lemonade braids",
         "Creative braids",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Jayda Wayda braided sew-in",
         "Bantu knots",
         "Twists (with extensions)",
@@ -123164,7 +123164,7 @@
           "Frontal ponytail / bun",
           "Updo",
           "Fulani / lemonade braids",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "Wig colouring / bundle colouring",
           "Wig customisation / construction",
           "Relaxer / texturiser",
@@ -123262,7 +123262,7 @@
             "Fulani Cornrow twist",
             "Lemonade cornrow"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "fulani Cornrow on weave"
           ],
           "Wig colouring / bundle colouring": [
@@ -123330,7 +123330,7 @@
         "Silk press",
         "Microbraids / x-small braids",
         "Retwist / interlocking",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Hot oil treatment"
       ],
       "detectedServices": [
@@ -123352,7 +123352,7 @@
         "Frontal ponytail / bun",
         "Updo",
         "Fulani / lemonade braids",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Wig colouring / bundle colouring",
         "Wig customisation / construction",
         "Relaxer / texturiser",
@@ -124319,7 +124319,7 @@
         "matchedServices": [
           "Fulani / lemonade braids",
           "Wig cornrows",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "Feed-in / stitch braid sew-in",
           "Quick weave",
           "U-Part / Half wig install",
@@ -124344,7 +124344,7 @@
             "Fulani (half cornrows half braids)",
             "Wig braids"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "Fulani/sew in",
             "Fulani/Sew in Bundles included",
             "Fulani/Half wig included 18’’"
@@ -124433,7 +124433,7 @@
         "Miracle knots",
         "Wash & blowdry",
         "Feed-in / stitch braid sew-in",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Natural twists / plaits",
         "Braided ponytail",
         "Alicia Keys braids"
@@ -124441,7 +124441,7 @@
       "detectedServices": [
         "Fulani / lemonade braids",
         "Wig cornrows",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Feed-in / stitch braid sew-in",
         "Quick weave",
         "U-Part / Half wig install",
@@ -125641,7 +125641,7 @@
         "Wig cornrows",
         "Frontal ponytail / bun",
         "Colour blend (mixing braiding hair)",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Wig reinstall / re-glue",
         "Alicia Keys braids"
       ],
@@ -125660,7 +125660,7 @@
       "removedServices": [
         "Quick weave",
         "Colour blend (mixing braiding hair)",
-        "Fulani sew-in / quick weave / half wig"
+        "Fulani sew-in / quick weave"
       ],
       "locationReviewIgnored": false,
       "checkedAt": "2026-10-09",
@@ -125923,7 +125923,7 @@
           "Starter locs / instant locs",
           "Miracle knots",
           "Natural twists / plaits",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "Wig install (frontal / closure)",
           "U-Part / Half wig install",
           "Tyla braids",
@@ -126000,7 +126000,7 @@
           "Natural twists / plaits": [
             "Natural Mini Twists"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "Fulani Half Wig",
             "Fulani Sew in(Hair tucked in",
             "Tyla Side Part Fulani Sew in",
@@ -126068,7 +126068,7 @@
         "Men's braids",
         "Colour blend (mixing braiding hair)",
         "Feed-in / stitch braid sew-in",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Natural twists / plaits",
         "Braided ponytail",
         "Boho sew-in",
@@ -126089,7 +126089,7 @@
         "Starter locs / instant locs",
         "Miracle knots",
         "Natural twists / plaits",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Wig install (frontal / closure)",
         "U-Part / Half wig install",
         "Tyla braids",
@@ -126732,7 +126732,7 @@
         "Wig install (frontal / closure)",
         "Men's braids",
         "Full head colour",
-        "Fulani sew-in / quick weave / half wig"
+        "Fulani sew-in / quick weave"
       ],
       "detectedServices": [
         "Feed-in braids",
@@ -126750,7 +126750,7 @@
         "Creative braids",
         "French curl",
         "Men's braids",
-        "Fulani sew-in / quick weave / half wig"
+        "Fulani sew-in / quick weave"
       ],
       "locationReviewIgnored": false,
       "checkedAt": "2026-10-09",
@@ -127004,7 +127004,7 @@
           "Boho sew-in",
           "Fulani / lemonade braids",
           "Traditional sew-in / leave out",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "Tape ins",
           "Wig install (frontal / closure)",
           "Closure sew-in / closure behind the hairline",
@@ -127060,7 +127060,7 @@
             "SEW-in leave out",
             "Sew-in 360 leave-out or Faux middle part"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "HALF SEW-IN/Fulani braids"
           ],
           "Tape ins": [
@@ -127134,7 +127134,7 @@
         "Tape-ins + sew-in",
         "Tape ins",
         "Wig install (frontal / closure)",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Boho sew-in",
         "Microbraids / x-small braids",
         "Natural twists / plaits"
@@ -127150,7 +127150,7 @@
         "Boho sew-in",
         "Fulani / lemonade braids",
         "Traditional sew-in / leave out",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Tape ins",
         "Wig install (frontal / closure)",
         "Closure sew-in / closure behind the hairline",
@@ -127267,7 +127267,7 @@
           "Quick weave",
           "Sleek ponytail / bun",
           "Half up half down",
-          "Fulani sew-in / quick weave / half wig"
+          "Fulani sew-in / quick weave"
         ],
         "serviceEvidence": {
           "Boho braids / goddess braids": [
@@ -127324,7 +127324,7 @@
           "Half up half down": [
             "Half Up Half Down Quickweave"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "Fulani Quickweave"
           ]
         },
@@ -127364,7 +127364,7 @@
         "Sleek ponytail / bun",
         "Half up half down",
         "Colour blend (mixing braiding hair)",
-        "Fulani sew-in / quick weave / half wig"
+        "Fulani sew-in / quick weave"
       ],
       "detectedServices": [
         "Boho braids / goddess braids",
@@ -127378,7 +127378,7 @@
         "Quick weave",
         "Sleek ponytail / bun",
         "Half up half down",
-        "Fulani sew-in / quick weave / half wig"
+        "Fulani sew-in / quick weave"
       ],
       "addedServices": [],
       "removedServices": [
@@ -127508,7 +127508,7 @@
           "Stitch braids",
           "Feed-in / stitch braid sew-in",
           "Alicia Keys braids",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "Updo"
         ],
         "serviceEvidence": {
@@ -127600,7 +127600,7 @@
             "Small alicia keys braids",
             "Medium alicia keys braids"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "Half cornrow/ sew in fulani no leave out"
           ],
           "Updo": [
@@ -127650,7 +127650,7 @@
         "Updo",
         "Colour blend (mixing braiding hair)",
         "Feed-in / stitch braid sew-in",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Microbraids / x-small braids",
         "Natural twists / plaits",
         "Flip-over Fulani / diva braids",
@@ -127677,7 +127677,7 @@
         "Stitch braids",
         "Feed-in / stitch braid sew-in",
         "Alicia Keys braids",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Updo"
       ],
       "addedServices": [],
@@ -128286,7 +128286,7 @@
           "Crochet faux locs / invisible locs",
           "Miracle knots",
           "Wig colouring / bundle colouring",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "Wig install (frontal / closure)",
           "U-Part / Half wig install",
           "Flipover / Versatile sew-in",
@@ -128339,7 +128339,7 @@
             "Medium Miracle Knots - 3 bundles (Triple Colour)",
             "Smedium Miracle Knots - 3 Bundles (Solid Colour)"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "Fulani Sew in - Half Wig",
             "Fulani Sew in",
             "Fulani Sew in - 2 Bundles (16\")",
@@ -128398,7 +128398,7 @@
         "U-Part / Half wig install",
         "Stitch braids",
         "Colour blend (mixing braiding hair)",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Flip-over Fulani / diva braids"
       ],
       "detectedServices": [
@@ -128410,7 +128410,7 @@
         "Crochet faux locs / invisible locs",
         "Miracle knots",
         "Wig colouring / bundle colouring",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Wig install (frontal / closure)",
         "U-Part / Half wig install",
         "Flipover / Versatile sew-in",
@@ -128842,7 +128842,7 @@
           "Boho braids bob",
           "Feed-in braids",
           "Fulani / lemonade braids",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "Knotless braids",
           "French curl",
           "French curl bob",
@@ -128872,7 +128872,7 @@
             "Smedium Fulani Braids",
             "Small lemonade braids"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "Small fulani Sew In",
             "Small Fulani side sew in"
           ],
@@ -128939,14 +128939,14 @@
         "Sleek ponytail / bun",
         "Miracle knots",
         "Colour blend (mixing braiding hair)",
-        "Fulani sew-in / quick weave / half wig"
+        "Fulani sew-in / quick weave"
       ],
       "detectedServices": [
         "Boho braids / goddess braids",
         "Boho braids bob",
         "Feed-in braids",
         "Fulani / lemonade braids",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Knotless braids",
         "French curl",
         "French curl bob",
@@ -131185,7 +131185,7 @@
           "Protein treatment",
           "Retwist / interlocking",
           "Starter locs / instant locs",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "Twists (with extensions)",
           "Boho braids / goddess braids",
           "Boho braids bob",
@@ -131256,7 +131256,7 @@
             "Starting locs consultation",
             "Starting locs"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "Jayda Wayda style AKA Fulani (Sewin)"
           ],
           "Twists (with extensions)": [
@@ -131347,7 +131347,7 @@
         "Moisturising treatment",
         "Jayda Wayda braided sew-in",
         "Trim / hair cut",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Braided ponytail"
       ],
       "detectedServices": [
@@ -131364,7 +131364,7 @@
         "Protein treatment",
         "Retwist / interlocking",
         "Starter locs / instant locs",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Twists (with extensions)",
         "Boho braids / goddess braids",
         "Boho braids bob",
@@ -132415,7 +132415,7 @@
           "Half up half down",
           "Sleek ponytail / bun",
           "Fulani / lemonade braids",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "Updo",
           "Braided ponytail"
         ],
@@ -132453,7 +132453,7 @@
           "Fulani / lemonade braids": [
             "Fulani braids"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "Fulani sew in"
           ],
           "Updo": [
@@ -132494,7 +132494,7 @@
         "Half up half down",
         "Sleek ponytail / bun",
         "Fulani / lemonade braids",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Traditional sew-in / leave out",
         "Updo",
         "Creative braids",
@@ -132510,7 +132510,7 @@
         "Half up half down",
         "Sleek ponytail / bun",
         "Fulani / lemonade braids",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Updo",
         "Braided ponytail"
       ],
@@ -132882,7 +132882,7 @@
         ],
         "matchedServices": [
           "Traditional sew-in / leave out",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "Fulani / lemonade braids",
           "Sleek ponytail / bun",
           "Quick weave",
@@ -132899,7 +132899,7 @@
             "Traditional Sew in : [ Hair Included - 3x 20” bundles]",
             "Traditional Sew In [Hair Included 3x 22” bundles]"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "Half Fulani x Half Sew In [Hair Included 3x 18” bundles]",
             "Half Fulani x Half Sew In [Hair Included 3x 20” bundles]",
             "Half Fulani x Half Sew In [Hair Included 3 x 22” bundles]",
@@ -132967,7 +132967,7 @@
       "attributeSuggestions": [],
       "currentServices": [
         "Traditional sew-in / leave out",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Fulani / lemonade braids",
         "Sleek ponytail / bun",
         "Quick weave",
@@ -132979,7 +132979,7 @@
       ],
       "detectedServices": [
         "Traditional sew-in / leave out",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Fulani / lemonade braids",
         "Sleek ponytail / bun",
         "Quick weave",
@@ -133401,7 +133401,7 @@
           "French curl",
           "Fulani / lemonade braids",
           "Flip-over Fulani / diva braids",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "Knotless braids"
         ],
         "serviceEvidence": {
@@ -133438,7 +133438,7 @@
           "Flip-over Fulani / diva braids": [
             "Diva Braids (Versatile Fulani)"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "Sew-In Fulani Braids"
           ],
           "Knotless braids": [
@@ -133479,7 +133479,7 @@
         "Feed-in braids",
         "French curl",
         "Fulani / lemonade braids",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Knotless braids",
         "Flip-over Fulani / diva braids"
       ],
@@ -133491,7 +133491,7 @@
         "French curl",
         "Fulani / lemonade braids",
         "Flip-over Fulani / diva braids",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Knotless braids"
       ],
       "addedServices": [],
@@ -134195,7 +134195,7 @@
           "Frontal sew-in",
           "Traditional sew-in / leave out",
           "Flipover / Versatile sew-in",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "Pixie wig / weave install"
         ],
         "serviceEvidence": {
@@ -134252,7 +134252,7 @@
           "Flipover / Versatile sew-in": [
             "Versatile Sew-In or Quick Weave"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "Fulani Sew-In or Quick Weave"
           ],
           "Pixie wig / weave install": [
@@ -134296,7 +134296,7 @@
         "Wig customisation / construction",
         "Frontal sew-in",
         "Pixie wig / weave install",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Frontal / closure replacement",
         "Wig reinstall / re-glue"
       ],
@@ -134315,7 +134315,7 @@
         "Frontal sew-in",
         "Traditional sew-in / leave out",
         "Flipover / Versatile sew-in",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Pixie wig / weave install"
       ],
       "addedServices": [],
@@ -135154,7 +135154,7 @@
           "Miracle knots",
           "French curl",
           "Crochet faux locs / invisible locs",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "Jayda Wayda braided sew-in",
           "Butterfly locs",
           "Faux locs / soft locs",
@@ -135207,7 +135207,7 @@
             "Fulani x Invisible Locs",
             "Invisible Locs"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "Fulani x Sewin",
             "‘Jayda wayda’ Inspired fulani x sewin"
           ],
@@ -135302,7 +135302,7 @@
         "Wig cornrows",
         "Flipover / Versatile sew-in",
         "Wig install (frontal / closure)",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Feed-in / stitch braid sew-in",
         "Cassie braided sew-in",
         "Jayda Wayda braided sew-in",
@@ -135320,7 +135320,7 @@
         "Miracle knots",
         "French curl",
         "Crochet faux locs / invisible locs",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Jayda Wayda braided sew-in",
         "Butterfly locs",
         "Faux locs / soft locs",
@@ -137935,7 +137935,7 @@
           "Traditional sew-in / leave out",
           "Closure sew-in / closure behind the hairline",
           "Miracle knots",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "Flipover / Versatile sew-in",
           "Stitch braids",
           "Fulani / lemonade braids",
@@ -137986,7 +137986,7 @@
             "Miracle knots 18 inch (bundles included)",
             "Miracle knots 20 inch (bundles included)"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "Fulani cornrow x Sew in",
             "Intricate Fulani sew in"
           ],
@@ -138076,7 +138076,7 @@
         "Wig install (frontal / closure)",
         "Wig customisation / construction",
         "Frontal ponytail / bun",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Flip-over Fulani / diva braids",
         "Alicia Keys braids",
         "Wig reinstall / re-glue",
@@ -138090,7 +138090,7 @@
         "Traditional sew-in / leave out",
         "Closure sew-in / closure behind the hairline",
         "Miracle knots",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Flipover / Versatile sew-in",
         "Stitch braids",
         "Fulani / lemonade braids",
@@ -138337,7 +138337,7 @@
           "Fulani / lemonade braids",
           "Flip-over Fulani / diva braids",
           "Alicia Keys braids",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "Cassie braided sew-in",
           "Wig cornrows",
           "Retwist / interlocking",
@@ -138377,7 +138377,7 @@
             "Alicia keys Fulani braids",
             "Alicia keys cornrows"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "Fulani sew in (no leave out)"
           ],
           "Cassie braided sew-in": [
@@ -138463,7 +138463,7 @@
         "Stitch braids",
         "Miracle knots",
         "Flipover / Versatile sew-in",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Feed-in / stitch braid sew-in",
         "Boho braids / goddess braids",
         "Flip-over Fulani / diva braids",
@@ -138479,7 +138479,7 @@
         "Fulani / lemonade braids",
         "Flip-over Fulani / diva braids",
         "Alicia Keys braids",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Cassie braided sew-in",
         "Wig cornrows",
         "Retwist / interlocking",
@@ -138631,7 +138631,7 @@
           "Natural twists / plaits",
           "Miracle knots",
           "Quick weave",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "Wig install (frontal / closure)",
           "U-Part / Half wig install",
           "Half up half down",
@@ -138698,7 +138698,7 @@
           "Quick weave": [
             "SEW-INS / QUICK WEAVES"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "Fulani Half Wig",
             "Freestyle Fulani Half Wig"
           ],
@@ -138774,7 +138774,7 @@
         "U-Part / Half wig install",
         "Sleek ponytail / bun",
         "Miracle knots",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Alicia Keys braids",
         "Flip-over Fulani / diva braids",
         "Pop smoke braids",
@@ -138796,7 +138796,7 @@
         "Natural twists / plaits",
         "Miracle knots",
         "Quick weave",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Wig install (frontal / closure)",
         "U-Part / Half wig install",
         "Half up half down",
@@ -140884,7 +140884,7 @@
         "Balayage",
         "Highlights",
         "Boho sew-in",
-        "Fulani sew-in / quick weave / half wig"
+        "Fulani sew-in / quick weave"
       ],
       "detectedServices": [],
       "addedServices": [],
@@ -140959,7 +140959,7 @@
           "Half up half down",
           "Traditional sew-in / leave out",
           "Flipover / Versatile sew-in",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "Wig install (frontal / closure)",
           "Wig customisation / construction",
           "Braided ponytail",
@@ -140984,7 +140984,7 @@
             "Flip over sew in",
             "Versatile Sew in"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "Fulani sew in"
           ],
           "Wig install (frontal / closure)": [
@@ -141038,7 +141038,7 @@
         "Wig install (frontal / closure)",
         "Wig customisation / construction",
         "Wig cornrows",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Braided ponytail"
       ],
       "detectedServices": [
@@ -141046,7 +141046,7 @@
         "Half up half down",
         "Traditional sew-in / leave out",
         "Flipover / Versatile sew-in",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Wig install (frontal / closure)",
         "Wig customisation / construction",
         "Braided ponytail",
@@ -141625,7 +141625,7 @@
           "Feed-in braids",
           "French curl",
           "Fulani / lemonade braids",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "Quick weave",
           "Boho braids / goddess braids",
           "Kids & teens styles",
@@ -141644,7 +141644,7 @@
           "Fulani / lemonade braids": [
             "Fulani Braids"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "Fulani quick weave"
           ],
           "Quick weave": [
@@ -141711,13 +141711,13 @@
         "Knotless braids",
         "Creative braids",
         "Kids & teens styles",
-        "Fulani sew-in / quick weave / half wig"
+        "Fulani sew-in / quick weave"
       ],
       "detectedServices": [
         "Feed-in braids",
         "French curl",
         "Fulani / lemonade braids",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Quick weave",
         "Boho braids / goddess braids",
         "Kids & teens styles",
@@ -142952,7 +142952,7 @@
           "Silk press",
           "Pre-parting",
           "Quick weave",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "Traditional sew-in / leave out",
           "Jayda Wayda braided sew-in",
           "Sleek ponytail / bun",
@@ -143015,7 +143015,7 @@
             "Jayda Wayda sew-in/quickweave",
             "Half up half down Quick weave"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "Fulani x Quick weave"
           ],
           "Traditional sew-in / leave out": [
@@ -143077,7 +143077,7 @@
         "Retwist / interlocking",
         "Wash & blowdry",
         "Quick weave",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Traditional sew-in / leave out",
         "Feed-in / stitch braid sew-in",
         "Sleek ponytail / bun",
@@ -143102,7 +143102,7 @@
         "Silk press",
         "Pre-parting",
         "Quick weave",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Traditional sew-in / leave out",
         "Jayda Wayda braided sew-in",
         "Sleek ponytail / bun",
@@ -143716,7 +143716,7 @@
         "Faux locs / soft locs",
         "Updo",
         "Feed-in / stitch braid sew-in",
-        "Fulani sew-in / quick weave / half wig"
+        "Fulani sew-in / quick weave"
       ],
       "detectedServices": [],
       "addedServices": [],
@@ -143829,7 +143829,7 @@
           "Feed-in braids",
           "Stitch braids",
           "Fulani / lemonade braids",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "Wash & blowdry",
           "Silk press",
           "Trim / hair cut",
@@ -143883,7 +143883,7 @@
             "FULANI MOHAWK",
             "FULANI FRESHER"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "FULANI WEAVE"
           ],
           "Wash & blowdry": [
@@ -144000,7 +144000,7 @@
         "Wash & blowdry",
         "Trim / hair cut",
         "Crochet faux locs / invisible locs",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Natural twists / plaits",
         "Braided ponytail"
       ],
@@ -144012,7 +144012,7 @@
         "Feed-in braids",
         "Stitch braids",
         "Fulani / lemonade braids",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Wash & blowdry",
         "Silk press",
         "Trim / hair cut",
@@ -168291,7 +168291,7 @@
           "Frontal / closure replacement",
           "Frontal sew-in",
           "Flipover / Versatile sew-in",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "U-Part / Half wig install",
           "Wig customisation / construction",
           "Wash & blowdry",
@@ -168353,7 +168353,7 @@
             "Leave Out/Flip Over/Versatile Sew In (hair purchased from us)",
             "Leave Out/Flip Over/Versatile Sew In (hair provided by client)"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "Fulani Braids + Sew In (hair provided by client)",
             "Fulani Braids + Sew In (hair purchased from us)"
           ],
@@ -168417,7 +168417,7 @@
         "Quick weave",
         "Frontal sew-in",
         "Fulani / lemonade braids",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Flipover / Versatile sew-in",
         "Wash & blowdry",
         "Frontal / closure replacement",
@@ -168435,7 +168435,7 @@
         "Frontal / closure replacement",
         "Frontal sew-in",
         "Flipover / Versatile sew-in",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "U-Part / Half wig install",
         "Wig customisation / construction",
         "Wash & blowdry",
@@ -169422,7 +169422,7 @@
           "Butterfly locs",
           "Boho locs",
           "Traditional sew-in / leave out",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "Quick weave",
           "Half up half down",
           "Sleek ponytail / bun"
@@ -169483,7 +169483,7 @@
           "Traditional sew-in / leave out": [
             "Sew-in"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "Fulani sew in"
           ],
           "Quick weave": [
@@ -169535,7 +169535,7 @@
         "Crochet",
         "Traditional sew-in / leave out",
         "Crochet faux locs / invisible locs",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Boho locs",
         "Flip-over Fulani / diva braids"
       ],
@@ -169553,7 +169553,7 @@
         "Butterfly locs",
         "Boho locs",
         "Traditional sew-in / leave out",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Quick weave",
         "Half up half down",
         "Sleek ponytail / bun"
@@ -169820,7 +169820,7 @@
         "Boho braids bob",
         "French curl bob",
         "Boho sew-in",
-        "Fulani sew-in / quick weave / half wig"
+        "Fulani sew-in / quick weave"
       ],
       "detectedServices": [],
       "addedServices": [],
@@ -170964,7 +170964,7 @@
         "Boho braids / goddess braids",
         "Traditional sew-in / leave out",
         "Half up half down",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Feed-in / stitch braid sew-in",
         "Closure sew-in / closure behind the hairline",
         "French curl",
@@ -170999,7 +170999,7 @@
       "addedServices": [],
       "removedServices": [
         "Half up half down",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Feed-in / stitch braid sew-in",
         "Closure sew-in / closure behind the hairline",
         "Retwist / interlocking",
@@ -178492,7 +178492,7 @@
           "French curl bob",
           "Twists (with extensions)",
           "Natural twists / plaits",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "Jayda Wayda braided sew-in",
           "Knotless braids",
           "Wig cornrows",
@@ -178537,7 +178537,7 @@
             "MINI TWIST/BRAIDS WITH NATURAL HAIR",
             "Small mini twist"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "JAYDA WAYDA/ FULANI X SEW IN"
           ],
           "Jayda Wayda braided sew-in": [
@@ -178592,7 +178592,7 @@
         "Fulani / lemonade braids",
         "Feed-in braids",
         "Twists (with extensions)",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Boho braids bob",
         "French curl",
         "Feed-in / stitch braid sew-in",
@@ -178610,7 +178610,7 @@
         "French curl bob",
         "Twists (with extensions)",
         "Natural twists / plaits",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Jayda Wayda braided sew-in",
         "Knotless braids",
         "Wig cornrows",
@@ -178886,7 +178886,7 @@
         "Tracks (+ silk press) / partial / invisible sew-in",
         "Microlocs / sisterlocs",
         "Crochet",
-        "Fulani sew-in / quick weave / half wig"
+        "Fulani sew-in / quick weave"
       ],
       "detectedServices": [],
       "addedServices": [],
@@ -178968,7 +178968,7 @@
           "Flipover / Versatile sew-in",
           "Fulani / lemonade braids",
           "Stitch braids",
-          "Fulani sew-in / quick weave / half wig",
+          "Fulani sew-in / quick weave",
           "Wig install (frontal / closure)",
           "Wig reinstall / re-glue",
           "Wig customisation / construction",
@@ -179006,7 +179006,7 @@
             "Freestyle Stitch Braids",
             "Lemonade Freestyle stitch braids"
           ],
-          "Fulani sew-in / quick weave / half wig": [
+          "Fulani sew-in / quick weave": [
             "Fulani freestyle (Sew in)"
           ],
           "Wig install (frontal / closure)": [
@@ -179062,7 +179062,7 @@
         "Flipover / Versatile sew-in",
         "Wig customisation / construction",
         "Closure sew-in / closure behind the hairline",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Stitch braids",
         "Wig laundry / wig revamp",
         "Wig reinstall / re-glue"
@@ -179074,7 +179074,7 @@
         "Flipover / Versatile sew-in",
         "Fulani / lemonade braids",
         "Stitch braids",
-        "Fulani sew-in / quick weave / half wig",
+        "Fulani sew-in / quick weave",
         "Wig install (frontal / closure)",
         "Wig reinstall / re-glue",
         "Wig customisation / construction",

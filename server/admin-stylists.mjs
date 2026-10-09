@@ -236,7 +236,7 @@ const serviceRuleMatchers = [
   // pre-coloured braiding hair for a style.
   ["Colour blend (mixing braiding hair)", [/\bcolou?r\s+(mix|blend)(ed|ing)?\b/, /\bmix(ed)?\s+colou?rs?\b/, /\bcolou?rs?\s+mix(ed|ing)?\b/]],
   ["Frontal ponytail / bun", [/\bfrontal\b.*\b(pony|ponytail|bun)\b/, /\b(pony|ponytail|bun)\b.*\bfrontal\b/]],
-  ["Fulani sew-in / quick weave / half wig", [/\bfulani\b.*\b(sew\s*in|sewin|weave|quick\s*weave|half\s+wig)\b/, /\b(sew\s*in|sewin|weave|quick\s*weave|half\s+wig)\b.*\bfulani\b/]],
+  ["Fulani sew-in / quick weave", [/\bfulani\b.*\b(sew\s*in|sewin|weave|quick\s*weave|half\s+wig)\b/, /\b(sew\s*in|sewin|weave|quick\s*weave|half\s+wig)\b.*\bfulani\b/]],
   // "Micro braid leave out sew in" is the same hybrid under another name.
   ["Boho sew-in", [/\b(boho\w*|micro\s*braids?|zo[eë]\s+kravitz|kravitz)\b.*\b(sew\s*in|sewin|weave|quick\s*weave|half\s+wig)\b/, /\b(sew\s*in|sewin|weave|quick\s*weave|half\s+wig)\b.*\b(boho\w*|micro\s*braids?|zo[eë]\s+kravitz|kravitz)\b/]],
   // Visible feed-ins / stitch braids alongside the install. Plain cornrows only
@@ -401,7 +401,7 @@ export const serviceNegationHints = {
   "Full head colour": ["full head colour", "full head color", "colour", "color", "dye", "tint"],
   "Hair botox": ["hair botox", "botox"],
   "Healthy hair plans & consultations": ["healthy hair", "healthy hair plan", "healthy hair plans", "healthy hair consultation", "healthy hair consultations", "healthy hair regime", "healthy hair regimes", "healthy hair regimen", "healthy hair journey", "hair growth plan", "hair health plan"],
-  "Fulani sew-in / quick weave / half wig": ["fulani sew in", "fulani sewin", "fulani weave", "fulani quick weave"],
+  "Fulani sew-in / quick weave": ["fulani sew in", "fulani sewin", "fulani weave", "fulani quick weave"],
   "Boho sew-in": ["boho sew in", "boho sewin", "boho weave"],
   "Feed-in / stitch braid sew-in": ["feed in sew in", "feed ins sew in", "stitch braids sew in", "half feed in half sew in", "half feed ins half weave"],
   "Half up half down": ["half up half down"],
@@ -10808,7 +10808,7 @@ function shouldSuppressForDeclinedContext(service, context) {
     case "Twists (with extensions)":
       return /\blocs?\b/.test(line);
     // "Half fulani braid down (half wig)" is a hybrid braid style plus a wig braid-down.
-    case "Fulani sew-in / quick weave / half wig":
+    case "Fulani sew-in / quick weave":
       return /\bbraid\s+down\b/.test(line);
     // A braided ponytail ("Feed-in braid ponytail") isn't a sleek pony, unless the
     // line says sleek/slick. A bare "Ponytail" item stays a match — on its own it

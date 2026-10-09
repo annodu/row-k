@@ -724,7 +724,7 @@
       "salonName": "Vhudzi Hair by Alicia Pearl",
       "reason": "doesnt mention sew-in",
       "context": [
-        "Fulani sew-in / quick weave / half wig"
+        "Fulani sew-in / quick weave"
       ],
       "rejectedEvidence": [],
       "createdAt": "2026-10-08"
@@ -734,7 +734,7 @@
       "salonName": "Tresses by Shayy",
       "reason": "doesn't mention sew in",
       "context": [
-        "Fulani sew-in / quick weave / half wig"
+        "Fulani sew-in / quick weave"
       ],
       "rejectedEvidence": [],
       "createdAt": "2026-10-08"
@@ -744,7 +744,7 @@
       "salonName": "Thee SBN UK",
       "reason": "doesnt mention sew in",
       "context": [
-        "Fulani sew-in / quick weave / half wig"
+        "Fulani sew-in / quick weave"
       ],
       "rejectedEvidence": [],
       "createdAt": "2026-10-08"
@@ -822,7 +822,7 @@
       "salonName": "The Mane Society & Co",
       "reason": "doesn't mention sew-in or weave",
       "context": [
-        "Fulani sew-in / quick weave / half wig"
+        "Fulani sew-in / quick weave"
       ],
       "rejectedEvidence": [],
       "createdAt": "2026-10-08"
@@ -911,7 +911,7 @@
       "reason": "no mention of sew in",
       "context": [
         "Feed-in / stitch braid sew-in",
-        "Fulani sew-in / quick weave / half wig"
+        "Fulani sew-in / quick weave"
       ],
       "rejectedEvidence": [],
       "createdAt": "2026-10-08"
@@ -1219,7 +1219,7 @@
       "salonName": "Braidology",
       "reason": "no mention of sew-in",
       "context": [
-        "Fulani sew-in / quick weave / half wig"
+        "Fulani sew-in / quick weave"
       ],
       "rejectedEvidence": [],
       "createdAt": "2026-10-08"
@@ -1270,7 +1270,7 @@
       "salonName": "CBA Hair Studio",
       "reason": "talking about fulani braids, not sew in",
       "context": [
-        "Fulani sew-in / quick weave / half wig"
+        "Fulani sew-in / quick weave"
       ],
       "rejectedEvidence": [],
       "createdAt": "2026-10-08"
@@ -1280,7 +1280,7 @@
       "salonName": "Cheveux by Coco",
       "reason": "talking about fulani braids, not sew in",
       "context": [
-        "Fulani sew-in / quick weave / half wig"
+        "Fulani sew-in / quick weave"
       ],
       "rejectedEvidence": [],
       "createdAt": "2026-10-08"
@@ -1337,17 +1337,17 @@
       "salonName": "Crown Signed",
       "reason": "its like hybrid fulani and another braid style",
       "context": [
-        "Fulani sew-in / quick weave / half wig"
+        "Fulani sew-in / quick weave"
       ],
       "rejectedEvidence": [
         {
           "kind": "add",
-          "field": "Fulani sew-in / quick weave / half wig",
+          "field": "Fulani sew-in / quick weave",
           "evidenceText": "- half fulani braid down (half wig)"
         },
         {
           "kind": "add",
-          "field": "Fulani sew-in / quick weave / half wig",
+          "field": "Fulani sew-in / quick weave",
           "evidenceText": "Selected braided style: stitch braids or half fulani"
         }
       ],

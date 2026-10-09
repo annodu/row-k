@@ -87,7 +87,7 @@ const DISCLAIMER_DISMISSED_KEY = "rowk_disclaimer_dismissed";
 
 const categoryMap = {
   all: { label: "All services", subcategories: ["all"] },
-  "braiding-services": { label: "Braids", subcategories: ["all","Boho braids / goddess braids","Braid take-down","Box braids","Colour blend (mixing braiding hair)","Crochet","Creative braids","Feed-in braids","French curl","Fulani / lemonade braids","Knotless braids","Miracle knots","Microbraids / x-small braids","Pre-parting","Stitch braids","Twists (with extensions)","Boho braids bob","French curl bob","Men's braids","Fulani sew-in / quick weave / half wig","Boho sew-in","Feed-in / stitch braid sew-in","Braided ponytail","Flip-over Fulani / diva braids","Alicia Keys braids","Pop smoke braids","Jayda Wayda braided sew-in","Cassie braided sew-in","Coi Leray braids","Tyla braids"] },
+  "braiding-services": { label: "Braids", subcategories: ["all","Boho braids / goddess braids","Braid take-down","Box braids","Colour blend (mixing braiding hair)","Crochet","Creative braids","Feed-in braids","French curl","Fulani / lemonade braids","Knotless braids","Miracle knots","Microbraids / x-small braids","Pre-parting","Stitch braids","Twists (with extensions)","Boho braids bob","French curl bob","Men's braids","Fulani sew-in / quick weave","Boho sew-in","Feed-in / stitch braid sew-in","Braided ponytail","Flip-over Fulani / diva braids","Alicia Keys braids","Pop smoke braids","Jayda Wayda braided sew-in","Cassie braided sew-in","Coi Leray braids","Tyla braids"] },
   "colour-services": { label: "Colour", subcategories: ["all","Balayage","Full head colour","Highlights","Wig colouring / bundle colouring"] },
   "bridal-services": { label: "Bridal", subcategories: ["all","Bridal"] },
   "editorial-services": { label: "Editorial / Session styling", subcategories: ["all","Editorial / Session styling"] },
@@ -95,7 +95,7 @@ const categoryMap = {
   "extension-services": { label: "Extensions", subcategories: ["all","Clip ins (+ silk press)","K-tips / invisible strands","LA weave / microlinks wefts / braidless sew in","I-tips / microlinks strands","Tape ins","Tape-ins + sew-in","K-tips + sew-in","Hair loss systems (e.g. mesh)","Extensions blow-dry / bouncy blowout","Extensions styling only (e.g. layers & curls)"] },
   "locs-services": { label: "Locs", subcategories: ["all","Starter locs / instant locs","Retwist / interlocking","Loc styling","Microlocs / sisterlocs","Loc extensions (permanent)","Loc wash / detox"] },
   "faux-locs-services": { label: "Faux locs", subcategories: ["all","Faux locs / soft locs","Boho locs","Crochet faux locs / invisible locs","Butterfly locs"] },
-  "sew-in-weave": { label: "Sew in / weave", subcategories: ["all","Closure sew-in / closure behind the hairline","Flipover / Versatile sew-in","Frontal sew-in","Pixie wig / weave install","Quick weave","Sew-in take-down","Tracks (+ silk press) / partial / invisible sew-in","Traditional sew-in / leave out","Fulani sew-in / quick weave / half wig","Boho sew-in","Feed-in / stitch braid sew-in","Tape-ins + sew-in","K-tips + sew-in","Hair loss systems (e.g. mesh)","Extensions blow-dry / bouncy blowout","Extensions styling only (e.g. layers & curls)","Cassie braided sew-in","Jayda Wayda braided sew-in"] },
+  "sew-in-weave": { label: "Sew in / weave", subcategories: ["all","Closure sew-in / closure behind the hairline","Flipover / Versatile sew-in","Frontal sew-in","Pixie wig / weave install","Quick weave","Sew-in take-down","Tracks (+ silk press) / partial / invisible sew-in","Traditional sew-in / leave out","Fulani sew-in / quick weave","Boho sew-in","Feed-in / stitch braid sew-in","Tape-ins + sew-in","K-tips + sew-in","Hair loss systems (e.g. mesh)","Extensions blow-dry / bouncy blowout","Extensions styling only (e.g. layers & curls)","Cassie braided sew-in","Jayda Wayda braided sew-in"] },
   "styling-services": { label: "Ponytails & updos", subcategories: ["all","Frontal ponytail / bun","Half up half down","Sleek ponytail / bun","Updo","Braided ponytail"] },
   "pixie-services": { label: "Pixie cut / finger waves", subcategories: ["all","Pixie cut / finger waves"] },
   "straightening-treatments": { label: "Treatments", subcategories: ["all","Bond repair","Cécred wash & treatment","Hair botox","Japanese straightening","K18 treatment","Keratin treatment / Brazilian blowdry","Moisturising treatment","Olaplex treatment","Protein treatment","Relaxer / texturiser","Texture release","Hot oil treatment"] },
@@ -105,7 +105,7 @@ const categoryMap = {
 } as const;
 
 const categoryServiceMap = {
-  "braiding-services": ["Boho braids / goddess braids","Braid take-down","Box braids","Colour blend (mixing braiding hair)","Crochet","Creative braids","Feed-in braids","French curl","Fulani / lemonade braids","Knotless braids","Miracle knots","Microbraids / x-small braids","Pre-parting","Stitch braids","Twists (with extensions)","Boho braids bob","French curl bob","Men's braids","Fulani sew-in / quick weave / half wig","Boho sew-in","Feed-in / stitch braid sew-in","Braided ponytail","Flip-over Fulani / diva braids","Alicia Keys braids","Pop smoke braids","Jayda Wayda braided sew-in","Cassie braided sew-in","Coi Leray braids","Tyla braids"],
+  "braiding-services": ["Boho braids / goddess braids","Braid take-down","Box braids","Colour blend (mixing braiding hair)","Crochet","Creative braids","Feed-in braids","French curl","Fulani / lemonade braids","Knotless braids","Miracle knots","Microbraids / x-small braids","Pre-parting","Stitch braids","Twists (with extensions)","Boho braids bob","French curl bob","Men's braids","Fulani sew-in / quick weave","Boho sew-in","Feed-in / stitch braid sew-in","Braided ponytail","Flip-over Fulani / diva braids","Alicia Keys braids","Pop smoke braids","Jayda Wayda braided sew-in","Cassie braided sew-in","Coi Leray braids","Tyla braids"],
   "colour-services": ["Balayage","Full head colour","Highlights","Wig colouring / bundle colouring"],
   "bridal-services": ["Bridal"],
   "editorial-services": ["Editorial / Session styling"],
@@ -113,7 +113,7 @@ const categoryServiceMap = {
   "extension-services": ["Clip ins (+ silk press)","K-tips / invisible strands","LA weave / microlinks wefts / braidless sew in","I-tips / microlinks strands","Tape ins","Tape-ins + sew-in","K-tips + sew-in","Hair loss systems (e.g. mesh)","Extensions blow-dry / bouncy blowout","Extensions styling only (e.g. layers & curls)"],
   "locs-services": ["Starter locs / instant locs","Retwist / interlocking","Loc styling","Microlocs / sisterlocs","Loc extensions (permanent)","Loc wash / detox"],
   "faux-locs-services": ["Faux locs / soft locs","Boho locs","Crochet faux locs / invisible locs","Butterfly locs"],
-  "sew-in-weave": ["Closure sew-in / closure behind the hairline","Flipover / Versatile sew-in","Frontal sew-in","Pixie wig / weave install","Quick weave","Sew-in take-down","Tracks (+ silk press) / partial / invisible sew-in","Traditional sew-in / leave out","Fulani sew-in / quick weave / half wig","Boho sew-in","Feed-in / stitch braid sew-in","Tape-ins + sew-in","K-tips + sew-in","Hair loss systems (e.g. mesh)","Extensions blow-dry / bouncy blowout","Extensions styling only (e.g. layers & curls)","Cassie braided sew-in","Jayda Wayda braided sew-in"],
+  "sew-in-weave": ["Closure sew-in / closure behind the hairline","Flipover / Versatile sew-in","Frontal sew-in","Pixie wig / weave install","Quick weave","Sew-in take-down","Tracks (+ silk press) / partial / invisible sew-in","Traditional sew-in / leave out","Fulani sew-in / quick weave","Boho sew-in","Feed-in / stitch braid sew-in","Tape-ins + sew-in","K-tips + sew-in","Hair loss systems (e.g. mesh)","Extensions blow-dry / bouncy blowout","Extensions styling only (e.g. layers & curls)","Cassie braided sew-in","Jayda Wayda braided sew-in"],
   "styling-services": ["Frontal ponytail / bun","Half up half down","Sleek ponytail / bun","Updo","Braided ponytail"],
   "pixie-services": ["Pixie cut / finger waves"],
   "straightening-treatments": ["Bond repair","Cécred wash & treatment","Hair botox","Japanese straightening","K18 treatment","Keratin treatment / Brazilian blowdry","Moisturising treatment","Olaplex treatment","Protein treatment","Relaxer / texturiser","Texture release","Hot oil treatment"],
@@ -284,7 +284,7 @@ const extraServiceSearchAliases: Record<string, string[]> = {
   "Wig styling only (e.g. layers & curls)": ["layers", "layering", "curls", "curling", "wand curls", "layers and curls", "crimping"],
   "Extensions blow-dry / bouncy blowout": ["bouncy blowout", "extensions bouncy blowout", "weave blowout"],
   "Wig blow-dry / bouncy blowout": ["bouncy blowout", "wig bouncy blowout", "wig blowout"],
-  "Fulani sew-in / quick weave / half wig": ["half braid half sew in", "half braids half sew in", "half sew in half braids", "half braid half weave", "half braids half weave", "half weave half braids", "half braids half quick weave"],
+  "Fulani sew-in / quick weave": ["half braid half sew in", "half braids half sew in", "half sew in half braids", "half braid half weave", "half braids half weave", "half weave half braids", "half braids half quick weave"],
 };
 
 function withExtraServiceSearchAliases(aliases: Record<string, string[]>) {
@@ -345,7 +345,7 @@ const defaultServiceSearchAliases: Record<string, string[]> = {
   "Crochet faux locs / invisible locs": ["crochet locs", "crochet faux locs", "invisible locs", "faux locs crochet"],
   "Starter locs / instant locs": ["starter locs", "start locs", "loc start", "instant locs"],
   "Retwist / interlocking": ["retwist", "re twist", "interlocking", "inter locking"],
-  "Fulani sew-in / quick weave / half wig": ["fulani braids sew in", "fulani braid sew in", "fulani sew in", "fulani weave", "fulani quick weave"],
+  "Fulani sew-in / quick weave": ["fulani braids sew in", "fulani braid sew in", "fulani sew in", "fulani weave", "fulani quick weave"],
   "Boho sew-in": ["boho braids sew in", "boho braid sew in", "boho sew in", "boho weave", "zoe kravitz sew in"],
   "Feed-in / stitch braid sew-in": ["feed in sew in", "feed ins sew in", "half feed in half sew in", "stitch braids sew in", "stitch braid sew in", "jayda wayda sew in", "tyla sew in"],
   "Braid take-down": ["braids removal", "braid removal", "braids takedown", "braid takedown"],
@@ -2486,6 +2486,9 @@ function FilterNeedCheckbox({
   onToggle: () => void;
 }) {
   const [infoOpen, setInfoOpen] = useState(false);
+  const lastSpace = label.lastIndexOf(" ");
+  const labelLead = lastSpace >= 0 ? label.slice(0, lastSpace + 1) : "";
+  const labelLast = lastSpace >= 0 ? label.slice(lastSpace + 1) : label;
 
   return (
     <div>
@@ -2507,16 +2510,20 @@ function FilterNeedCheckbox({
         >
           {checked ? <Check className="size-3.5" /> : null}
         </span>
-        <span className="flex flex-1 items-start gap-1.5">
-          <span id={labelId} className="translate-y-[1.5px] text-[15px] text-stone-800 dark:text-stone-200">
-            {label}
+        {/* The info button sits inline after the label's last word, so it stays
+            next to the text when the label wraps instead of at the row's edge. */}
+        <span className="flex-1 translate-y-[1.5px] text-[15px] text-stone-800 dark:text-stone-200">
+          <span id={labelId} className="sr-only">{label}</span>
+          <span aria-hidden="true">{labelLead}</span>
+          <span className="whitespace-nowrap">
+            <span aria-hidden="true">{labelLast}</span>
+            <NeedInfoButton
+              description={description}
+              open={infoOpen}
+              onToggle={() => setInfoOpen((open) => !open)}
+              className="inline-flex -ml-[9px] align-middle"
+            />
           </span>
-          <NeedInfoButton
-            description={description}
-            open={infoOpen}
-            onToggle={() => setInfoOpen((open) => !open)}
-            className="-mt-[9px]"
-          />
         </span>
       </div>
       {infoOpen ? (
@@ -5272,9 +5279,9 @@ export default function App() {
         <aside
           className={cn(
             "hidden w-full border-t border-stone-300 py-6 dark:border-stone-800",
-            "lg:sticky lg:top-0 lg:flex lg:h-dvh lg:w-80 lg:flex-none lg:self-start lg:flex-col lg:border-t-0 lg:border-l lg:pl-8 lg:pr-6 lg:py-0 dark:border-stone-800",
+            "lg:sticky lg:top-0 lg:flex lg:h-dvh lg:w-1/3 lg:flex-none lg:self-start lg:flex-col lg:border-t-0 lg:border-l lg:pl-8 lg:pr-6 lg:py-0 dark:border-stone-800",
             mobileFiltersOpen &&
-              "fixed inset-0 z-50 grid h-dvh min-h-dvh w-full grid-rows-[auto_minmax(0,1fr)_auto] overflow-hidden border-b-0 bg-stone-100 px-4 py-0 overscroll-contain dark:bg-stone-950 sm:px-6 lg:static lg:z-auto lg:h-auto lg:min-h-0 lg:w-80 lg:bg-transparent lg:flex lg:flex-col",
+              "fixed inset-0 z-50 grid h-dvh min-h-dvh w-full grid-rows-[auto_minmax(0,1fr)_auto] overflow-hidden border-b-0 bg-stone-100 px-4 py-0 overscroll-contain dark:bg-stone-950 sm:px-6 lg:static lg:z-auto lg:h-auto lg:min-h-0 lg:w-1/3 lg:bg-transparent lg:flex lg:flex-col",
           )}
         >
           <div className="flex items-center justify-between border-b border-stone-300 px-0 py-4 dark:border-stone-800 lg:hidden">

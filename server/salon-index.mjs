@@ -34,7 +34,7 @@ export function setRegionParentGroupsCache(groups) {
 const filtersPath = path.resolve(__dirname, "../data/filters.json");
 
 const defaultCategoryMap = {
-  "braiding-services": ["Boho braids / goddess braids","Braid take-down","Box braids","Colour blend (mixing braiding hair)","Crochet","Creative braids","Feed-in braids","French curl","Fulani / lemonade braids","Knotless braids","Miracle knots","Microbraids / x-small braids","Pre-parting","Stitch braids","Twists (with extensions)","Boho braids bob","French curl bob","Men's braids","Fulani sew-in / quick weave / half wig","Boho sew-in","Feed-in / stitch braid sew-in","Braided ponytail","Flip-over Fulani / diva braids","Alicia Keys braids","Pop smoke braids","Jayda Wayda braided sew-in","Cassie braided sew-in","Coi Leray braids","Tyla braids"],
+  "braiding-services": ["Boho braids / goddess braids","Braid take-down","Box braids","Colour blend (mixing braiding hair)","Crochet","Creative braids","Feed-in braids","French curl","Fulani / lemonade braids","Knotless braids","Miracle knots","Microbraids / x-small braids","Pre-parting","Stitch braids","Twists (with extensions)","Boho braids bob","French curl bob","Men's braids","Fulani sew-in / quick weave","Boho sew-in","Feed-in / stitch braid sew-in","Braided ponytail","Flip-over Fulani / diva braids","Alicia Keys braids","Pop smoke braids","Jayda Wayda braided sew-in","Cassie braided sew-in","Coi Leray braids","Tyla braids"],
   "colour-services": ["Balayage","Full head colour","Highlights","Wig colouring / bundle colouring"],
   "bridal-services": ["Bridal"],
   "editorial-services": ["Editorial / Session styling"],
@@ -42,7 +42,7 @@ const defaultCategoryMap = {
   "extension-services": ["Clip ins (+ silk press)","K-tips / invisible strands","LA weave / microlinks wefts / braidless sew in","I-tips / microlinks strands","Tape ins","Tape-ins + sew-in","K-tips + sew-in","Hair loss systems (e.g. mesh)","Extensions blow-dry / bouncy blowout","Extensions styling only (e.g. layers & curls)"],
   "locs-services": ["Starter locs / instant locs","Retwist / interlocking","Loc styling","Microlocs / sisterlocs","Loc extensions (permanent)","Loc wash / detox"],
   "faux-locs-services": ["Faux locs / soft locs","Boho locs","Crochet faux locs / invisible locs","Butterfly locs"],
-  "sew-in-weave": ["Closure sew-in / closure behind the hairline","Flipover / Versatile sew-in","Frontal sew-in","Pixie wig / weave install","Quick weave","Sew-in take-down","Tracks (+ silk press) / partial / invisible sew-in","Traditional sew-in / leave out","Fulani sew-in / quick weave / half wig","Boho sew-in","Feed-in / stitch braid sew-in","Tape-ins + sew-in","K-tips + sew-in","Hair loss systems (e.g. mesh)","Extensions blow-dry / bouncy blowout","Extensions styling only (e.g. layers & curls)","Cassie braided sew-in","Jayda Wayda braided sew-in"],
+  "sew-in-weave": ["Closure sew-in / closure behind the hairline","Flipover / Versatile sew-in","Frontal sew-in","Pixie wig / weave install","Quick weave","Sew-in take-down","Tracks (+ silk press) / partial / invisible sew-in","Traditional sew-in / leave out","Fulani sew-in / quick weave","Boho sew-in","Feed-in / stitch braid sew-in","Tape-ins + sew-in","K-tips + sew-in","Hair loss systems (e.g. mesh)","Extensions blow-dry / bouncy blowout","Extensions styling only (e.g. layers & curls)","Cassie braided sew-in","Jayda Wayda braided sew-in"],
   "styling-services": ["Frontal ponytail / bun","Half up half down","Sleek ponytail / bun","Updo","Braided ponytail"],
   "pixie-services": ["Pixie cut / finger waves"],
   "straightening-treatments": ["Bond repair","Cécred wash & treatment","Hair botox","Japanese straightening","K18 treatment","Keratin treatment / Brazilian blowdry","Moisturising treatment","Olaplex treatment","Protein treatment","Relaxer / texturiser","Texture release","Hot oil treatment"],
@@ -76,7 +76,7 @@ export function setCategoryMapCache(categories) {
 
 export const serviceAliases = {
   "Cecred treatment": "Cécred wash & treatment",
-  "Fulani sew-in": "Fulani sew-in / quick weave / half wig",
+  "Fulani sew-in": "Fulani sew-in / quick weave",
   "Cécred treatment": "Cécred wash & treatment",
   "Hybrid sew in (tapes + sew in)": "Tape-ins + sew-in",
   "K-18 treatment": "K18 treatment",
@@ -99,6 +99,7 @@ export const serviceAliases = {
   "Soft locs": "Faux locs / soft locs",
   "Cassie braids": "Cassie braided sew-in",
   "Jayda Wayda braids": "Jayda Wayda braided sew-in",
+  "Fulani sew-in / quick weave / half wig": "Fulani sew-in / quick weave",
   "Zoe Kravitz braids": "Boho braids / goddess braids",
   "Custom made frontal unit": "Wig customisation / construction",
   "Custom made closure unit": "Wig customisation / construction",
@@ -728,7 +729,7 @@ function matchesRegion(salon, regions) {
 // sew-in) also matches its parent heading.
 export const derivedServiceMatches = {
   // Sew in / weave's filter-only hybrid heading (see serviceFamilies in src/lib/serviceTaxonomy.ts).
-  "Hybrid sew ins (all)": ["Boho sew-in", "Feed-in / stitch braid sew-in", "Fulani sew-in / quick weave / half wig", "K-tips + sew-in", "Tape-ins + sew-in", "Cassie braided sew-in", "Jayda Wayda braided sew-in"],
+  "Hybrid sew ins (all)": ["Boho sew-in", "Feed-in / stitch braid sew-in", "Fulani sew-in / quick weave", "K-tips + sew-in", "Tape-ins + sew-in", "Cassie braided sew-in", "Jayda Wayda braided sew-in"],
   // Extensions' filter-only hybrid heading: just the extension hybrids.
   "Hybrid installs (all)": ["K-tips + sew-in", "Tape-ins + sew-in"],
   // Wigs' filter-only install heading.
