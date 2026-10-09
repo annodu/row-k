@@ -192,7 +192,7 @@
     },
     {
       "id": "fruittii-london",
-      "status": "deprecated",
+      "status": "ready_to_approve",
       "name": "Fruittii London",
       "areaId": "south-east",
       "areaIds": [
@@ -252,7 +252,7 @@
         "User-provided manual addition."
       ],
       "createdAt": "2026-10-08",
-      "updatedAt": "2026-10-08",
+      "updatedAt": "2026-10-09",
       "googleMapsUri": "https://maps.google.com/?cid=15836739766202083827&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
       "googleReviewCount": 319,
       "googleMatchConfidence": "high",
