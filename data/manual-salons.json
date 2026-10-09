@@ -2,10 +2,82 @@
   "meta": {
     "source": "manual",
     "updatedAt": "2026-10-09",
-    "count": 1185,
+    "count": 1186,
     "notes": "Add salons you already know here. This file is never overwritten by the Exa sync."
   },
   "salons": [
+    {
+      "id": "fruittii-london",
+      "name": "Fruittii London",
+      "areaId": "south-east",
+      "areaLabel": "South East",
+      "neighbourhood": "South East London",
+      "postcode": "SE8 4HL",
+      "bookingPlatform": "Direct website",
+      "bookingUrl": "https://www.fresha.com/en-GB/a/fruittii-london-london-unit-a-norfolk-house-9-brookmill-road-tlmiyjhm",
+      "websiteUrl": "http://fruittiilondon.com/",
+      "hairShopUrl": "",
+      "instagramUrl": "https://www.instagram.com/fruittii.london/",
+      "tiktokUrl": "",
+      "addedVia": "Code edit",
+      "discoverySource": "Cowork scrape",
+      "services": [
+        "Trim / hair cut",
+        "Curly cut / wash & go / diffuse",
+        "Full head colour",
+        "Highlights",
+        "Balayage",
+        "Editorial / Session styling"
+      ],
+      "wheelchairAccessible": true,
+      "senFriendly": true,
+      "lgbtqFriendly": true,
+      "priceBand": "£",
+      "servicePriceBand": "",
+      "packagePriceBand": "",
+      "priceIncludesHair": false,
+      "priceComparisonMode": "service-only",
+      "priceSource": "auto",
+      "priceEvidence": [
+        "Short Haircut - £59",
+        "Medium / Long Haircut - from £79",
+        "Restyle Haircut - £95",
+        "Luxury Hot Towel Skin Detox Facial & Haircut Wash & Finish - - Luxury Hot Towel Skin Detox Facial & Haircut Wash & Finish - £140",
+        "Curly Haircut 3C to 4d Coily Curls - from £100",
+        "Kids Haircut - £55",
+        "Fringe / Clean - Up - £25",
+        "Alternative Style Cut With Wash & Finish - - Alternative Style Cut With Wash & Finish - £115"
+      ],
+      "priceCheckedAt": "2026-07-22",
+      "priceUpdatedAt": "2026-07-22",
+      "priceConfidence": "manual",
+      "summary": "Manual entry added from your latest salon update batch.",
+      "source": "manual",
+      "evidence": [
+        "User-provided manual addition."
+      ],
+      "portfolioPhotos": [
+        {
+          "id": "fruittii-london-portfolio-photo-ff05331f-46eb-4013-8b7f-744289b6fa23",
+          "url": "/portfolio-photos/fruittii-london-2d1e2927-2ef1-46d9-a4b8-ba72d6743c86.jpg",
+          "source": "instagram"
+        },
+        {
+          "id": "fruittii-london-portfolio-photo-226acfaa-ac22-4f5f-a51c-25a91d68d135",
+          "url": "/portfolio-photos/fruittii-london-99ca3e9f-dcac-4300-b13d-1de966c673cd.jpg",
+          "source": "instagram"
+        }
+      ],
+      "googlePlaceId": "ChIJ79qdiPQCdkgR8ynHJOlmx9s",
+      "googleReviewCount": 334,
+      "googleMapsUri": "https://maps.google.com/?cid=15836739766202083827&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
+      "googleMatchConfidence": "high",
+      "googleDisplayName": "Fruittii London",
+      "googleFormattedAddress": "Unit A, Norfolk House, Brookmill Rd, Deptford SE8 4HL, UK",
+      "googleCheckedAt": "2026-10-09",
+      "verifiedReviewCount": 2578,
+      "verifiedReviewCheckedAt": "2026-10-09"
+    },
     {
       "id": "nads-tees-hairlounge",
       "name": "Nads Tees Hairlounge",
