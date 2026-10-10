@@ -2,9 +2,9 @@
   "meta": {
     "source": "freshness-checks",
     "updatedAt": "2026-10-10",
-    "count": 928,
-    "checkedCount": 73,
-    "total": 73,
+    "count": 929,
+    "checkedCount": 2,
+    "total": 2,
     "mode": "freshness"
   },
   "dismissedRecommendations": {
@@ -22069,6 +22069,78 @@
   },
   "checks": [
     {
+      "id": "slidercuts-studios",
+      "name": "SliderCuts Studios",
+      "areaLabel": "East London",
+      "bookingUrl": "https://slidercuts.com/",
+      "instagramUrl": "https://www.instagram.com/slidercutsstudios/",
+      "websiteUrl": "https://slidercuts.com/",
+      "hairShopUrl": "",
+      "hijabiFriendly": false,
+      "wheelchairAccessible": false,
+      "priceBand": "£",
+      "priceSource": "auto",
+      "priceConfidence": "high",
+      "issues": [
+        "Possible wheelchair accessibility wording found"
+      ],
+      "linkChecks": [],
+      "serviceCheck": {
+        "confidence": "unknown",
+        "rawServices": [],
+        "matchedServices": [],
+        "serviceEvidence": {},
+        "areaId": "",
+        "areaLabel": ""
+      },
+      "priceCheck": {
+        "source": "booking",
+        "confidence": "unknown",
+        "priceBand": "",
+        "medianPrice": null,
+        "prices": [],
+        "priceCount": 0,
+        "evidence": [],
+        "servicePriceBand": "",
+        "serviceMedianPrice": null,
+        "servicePrices": [],
+        "servicePriceCount": 0,
+        "packagePriceBand": "",
+        "packageMedianPrice": null,
+        "packagePrices": [],
+        "packagePriceCount": 0,
+        "priceIncludesHair": false,
+        "priceComparisonMode": ""
+      },
+      "attributeSuggestions": [
+        {
+          "field": "wheelchairAccessible",
+          "value": true,
+          "label": "Wheelchair accessible",
+          "evidence": [
+            {
+              "source": "Google Maps",
+              "text": "Google Maps lists a wheelchair-accessible entrance — check Street View before accepting: https://maps.google.com/?cid=14570904294311976728"
+            }
+          ]
+        }
+      ],
+      "currentServices": [
+        "Barbering (women welcome)"
+      ],
+      "detectedServices": [],
+      "addedServices": [],
+      "removedServices": [],
+      "locationReviewIgnored": false,
+      "checkedAt": "2026-10-10",
+      "googleAmenities": {
+        "placeId": "ChIJ96clV54bdkgRGN-tdkFANso",
+        "wheelchairAccessibleEntrance": true,
+        "parkingOptions": [],
+        "checkedAt": "2026-10-10"
+      }
+    },
+    {
       "id": "cdcolourist",
       "name": "CD Colourist",
       "areaLabel": "London",
@@ -22313,7 +22385,10 @@
         "Healthy hair plans & consultations"
       ],
       "locationReviewIgnored": false,
-      "checkedAt": "2026-10-09"
+      "checkedAt": "2026-10-09",
+      "priceBand": "£",
+      "priceSource": "auto",
+      "priceConfidence": "high"
     },
     {
       "id": "dkuk-salon",
@@ -22450,7 +22525,10 @@
         "Silk press"
       ],
       "locationReviewIgnored": false,
-      "checkedAt": "2026-10-09"
+      "checkedAt": "2026-10-09",
+      "priceBand": "£",
+      "priceSource": "auto",
+      "priceConfidence": "manual"
     },
     {
       "id": "alternativee-hair",
@@ -22727,7 +22805,10 @@
         "Bond repair"
       ],
       "locationReviewIgnored": false,
-      "checkedAt": "2026-10-09"
+      "checkedAt": "2026-10-09",
+      "priceBand": "££",
+      "priceSource": "auto",
+      "priceConfidence": "high"
     },
     {
       "id": "crown-signed",
@@ -22738,9 +22819,7 @@
       "websiteUrl": "",
       "hijabiFriendly": false,
       "wheelchairAccessible": false,
-      "issues": [
-        "Possible removed services found"
-      ],
+      "issues": [],
       "linkChecks": [
         {
           "type": "booking",
@@ -22946,7 +23025,10 @@
         "Wig laundry / wig revamp"
       ],
       "locationReviewIgnored": false,
-      "checkedAt": "2026-10-09"
+      "checkedAt": "2026-10-09",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceConfidence": "manual"
     },
     {
       "id": "ifes-chair",
@@ -23157,7 +23239,10 @@
         "Quick weave"
       ],
       "locationReviewIgnored": true,
-      "checkedAt": "2026-10-09"
+      "checkedAt": "2026-10-09",
+      "priceBand": "£",
+      "priceSource": "auto",
+      "priceConfidence": "high"
     },
     {
       "id": "hairology-by-christiana-e",
@@ -23262,7 +23347,10 @@
         "Feed-in braids"
       ],
       "locationReviewIgnored": false,
-      "checkedAt": "2026-10-09"
+      "checkedAt": "2026-10-09",
+      "priceBand": "£",
+      "priceSource": "auto",
+      "priceConfidence": "manual"
     },
     {
       "id": "hairtology-uk",
@@ -23452,7 +23540,10 @@
         "LA weave / microlinks wefts / braidless sew in"
       ],
       "locationReviewIgnored": true,
-      "checkedAt": "2026-10-09"
+      "checkedAt": "2026-10-09",
+      "priceBand": "££",
+      "priceSource": "auto",
+      "priceConfidence": "high"
     },
     {
       "id": "k-luxe-hair",
@@ -23662,7 +23753,10 @@
         "Protein treatment"
       ],
       "locationReviewIgnored": true,
-      "checkedAt": "2026-10-09"
+      "checkedAt": "2026-10-09",
+      "priceBand": "£",
+      "priceSource": "auto",
+      "priceConfidence": "high"
     },
     {
       "id": "zateesha-hairstylist",
@@ -23818,7 +23912,10 @@
         "Bond repair"
       ],
       "locationReviewIgnored": false,
-      "checkedAt": "2026-10-09"
+      "checkedAt": "2026-10-09",
+      "priceBand": "£££",
+      "priceSource": "manual",
+      "priceConfidence": "manual"
     },
     {
       "id": "thebosslook",
@@ -24035,7 +24132,10 @@
         "Feed-in / stitch braid sew-in"
       ],
       "locationReviewIgnored": false,
-      "checkedAt": "2026-10-09"
+      "checkedAt": "2026-10-09",
+      "priceBand": "££",
+      "priceSource": "manual",
+      "priceConfidence": "manual"
     },
     {
       "id": "joycekartistry",
@@ -24196,7 +24296,10 @@
       ],
       "locationReviewIgnored": true,
       "checkedAt": "2026-10-09",
-      "reviewedAt": "2026-10-09"
+      "reviewedAt": "2026-10-09",
+      "priceBand": "£",
+      "priceSource": "auto",
+      "priceConfidence": "high"
     },
     {
       "id": "flawsrawsome",
@@ -24411,7 +24514,10 @@
       "addedServices": [],
       "removedServices": [],
       "locationReviewIgnored": false,
-      "checkedAt": "2026-10-09"
+      "checkedAt": "2026-10-09",
+      "priceBand": "££",
+      "priceSource": "auto",
+      "priceConfidence": "high"
     },
     {
       "id": "moniquecharleshair",
@@ -25872,9 +25978,7 @@
       "websiteUrl": "",
       "hijabiFriendly": false,
       "wheelchairAccessible": false,
-      "issues": [
-        "Possible removed services found"
-      ],
+      "issues": [],
       "linkChecks": [
         {
           "type": "booking",
@@ -33499,10 +33603,7 @@
       "websiteUrl": "",
       "hijabiFriendly": false,
       "wheelchairAccessible": false,
-      "issues": [
-        "Possible new services found",
-        "Possible removed services found"
-      ],
+      "issues": [],
       "linkChecks": [
         {
           "type": "booking",
@@ -35177,9 +35278,7 @@
       "websiteUrl": "",
       "hijabiFriendly": false,
       "wheelchairAccessible": false,
-      "issues": [
-        "Possible removed services found"
-      ],
+      "issues": [],
       "linkChecks": [
         {
           "type": "booking",
@@ -52182,9 +52281,7 @@
       "websiteUrl": "https://maisonstyle.co.uk",
       "hijabiFriendly": false,
       "wheelchairAccessible": false,
-      "issues": [
-        "Possible removed services found"
-      ],
+      "issues": [],
       "linkChecks": [
         {
           "type": "booking",
@@ -64169,10 +64266,7 @@
       "websiteUrl": "https://hairzones.com/",
       "hijabiFriendly": false,
       "wheelchairAccessible": false,
-      "issues": [
-        "Possible new services found",
-        "Possible removed services found"
-      ],
+      "issues": [],
       "linkChecks": [
         {
           "type": "booking",
@@ -66063,9 +66157,7 @@
       "websiteUrl": "",
       "hijabiFriendly": false,
       "wheelchairAccessible": false,
-      "issues": [
-        "Possible removed services found"
-      ],
+      "issues": [],
       "linkChecks": [
         {
           "type": "booking",
@@ -70769,9 +70861,7 @@
       "websiteUrl": "",
       "hijabiFriendly": false,
       "wheelchairAccessible": false,
-      "issues": [
-        "Possible removed services found"
-      ],
+      "issues": [],
       "linkChecks": [
         {
           "type": "booking",
@@ -72568,8 +72658,8 @@
       ],
       "locationReviewIgnored": false,
       "checkedAt": "2026-10-09",
-      "priceBand": "££",
-      "priceSource": "manual",
+      "priceBand": "£",
+      "priceSource": "auto",
       "priceConfidence": "manual",
       "reviewedAt": "2026-10-09"
     },
@@ -79357,9 +79447,7 @@
       "websiteUrl": "",
       "hijabiFriendly": false,
       "wheelchairAccessible": false,
-      "issues": [
-        "Possible removed services found"
-      ],
+      "issues": [],
       "linkChecks": [
         {
           "type": "booking",
@@ -88850,9 +88938,7 @@
       "websiteUrl": "https://ajahsbeautybase.com",
       "hijabiFriendly": false,
       "wheelchairAccessible": false,
-      "issues": [
-        "Possible removed services found"
-      ],
+      "issues": [],
       "linkChecks": [
         {
           "type": "booking",
@@ -96356,9 +96442,7 @@
       "websiteUrl": "https://www.crownedbeauty22.com",
       "hijabiFriendly": false,
       "wheelchairAccessible": false,
-      "issues": [
-        "Possible removed services found"
-      ],
+      "issues": [],
       "linkChecks": [
         {
           "type": "booking",
@@ -114543,10 +114627,7 @@
       "websiteUrl": "",
       "hijabiFriendly": false,
       "wheelchairAccessible": false,
-      "issues": [
-        "Possible new services found",
-        "Possible removed services found"
-      ],
+      "issues": [],
       "linkChecks": [
         {
           "type": "booking",
@@ -116640,9 +116721,7 @@
       "websiteUrl": "",
       "hijabiFriendly": false,
       "wheelchairAccessible": false,
-      "issues": [
-        "Possible removed services found"
-      ],
+      "issues": [],
       "linkChecks": [
         {
           "type": "booking",
@@ -126634,9 +126713,7 @@
       "websiteUrl": "",
       "hijabiFriendly": false,
       "wheelchairAccessible": false,
-      "issues": [
-        "Possible removed services found"
-      ],
+      "issues": [],
       "linkChecks": [
         {
           "type": "booking",
@@ -132569,9 +132646,7 @@
       "websiteUrl": "https://www.houseofsikana.com",
       "hijabiFriendly": false,
       "wheelchairAccessible": false,
-      "issues": [
-        "Possible removed services found"
-      ],
+      "issues": [],
       "linkChecks": [
         {
           "type": "booking",
@@ -132852,6 +132927,7 @@
       "bookingUrl": "https://chevelurefx.as.me/",
       "instagramUrl": "https://www.instagram.com/chevelure.fx/",
       "websiteUrl": "",
+      "hairShopUrl": "https://www.instagram.com/blushecollection/",
       "hijabiFriendly": false,
       "wheelchairAccessible": false,
       "issues": [],
@@ -132868,6 +132944,14 @@
           "type": "instagram",
           "url": "https://www.instagram.com/chevelure.fx/",
           "finalUrl": "https://www.instagram.com/chevelure.fx/",
+          "status": "ok",
+          "httpStatus": 200,
+          "issues": []
+        },
+        {
+          "type": "hairShop",
+          "url": "https://www.instagram.com/blushecollection/",
+          "finalUrl": "https://www.instagram.com/blushecollection/",
           "status": "ok",
           "httpStatus": 200,
           "issues": []
@@ -133010,7 +133094,8 @@
         "Half up half down",
         "Stitch braids",
         "Wig cornrows",
-        "Braided ponytail"
+        "Braided ponytail",
+        "Tyla braids"
       ],
       "detectedServices": [
         "Traditional sew-in / leave out",
@@ -133027,11 +133112,7 @@
       "addedServices": [],
       "removedServices": [],
       "locationReviewIgnored": false,
-      "checkedAt": "2026-10-09",
-      "priceBand": "££££",
-      "priceSource": "auto",
-      "priceConfidence": "high",
-      "reviewedAt": "2026-10-09"
+      "checkedAt": "2026-10-10"
     },
     {
       "id": "annienimz",
@@ -134078,9 +134159,9 @@
       ],
       "locationReviewIgnored": false,
       "checkedAt": "2026-10-09",
-      "priceBand": "",
-      "priceSource": "",
-      "priceConfidence": "",
+      "priceBand": "£",
+      "priceSource": "auto",
+      "priceConfidence": "high",
       "reviewedAt": "2026-10-09"
     },
     {
@@ -169863,7 +169944,7 @@
       "locationReviewIgnored": false,
       "checkedAt": "2026-10-09",
       "priceBand": "££",
-      "priceSource": "manual",
+      "priceSource": "auto",
       "priceConfidence": "manual"
     },
     {
@@ -169974,6 +170055,7 @@
       "bookingUrl": "https://www.hairbyesther.uk/book-an-appointment",
       "instagramUrl": "https://www.instagram.com/_hair.by.esther/",
       "websiteUrl": "https://www.hairbyesther.uk",
+      "hairShopUrl": "https://www.hairbyesther.uk/shop",
       "hijabiFriendly": false,
       "wheelchairAccessible": false,
       "issues": [],
@@ -169998,6 +170080,14 @@
           "type": "website",
           "url": "https://www.hairbyesther.uk",
           "finalUrl": "https://www.hairbyesther.uk/",
+          "status": "ok",
+          "httpStatus": 200,
+          "issues": []
+        },
+        {
+          "type": "hairShop",
+          "url": "https://www.hairbyesther.uk/shop",
+          "finalUrl": "https://www.hairbyesther.uk/shop",
           "status": "ok",
           "httpStatus": 200,
           "issues": []
@@ -170040,10 +170130,7 @@
       "addedServices": [],
       "removedServices": [],
       "locationReviewIgnored": false,
-      "checkedAt": "2026-10-09",
-      "priceBand": "££££",
-      "priceSource": "manual",
-      "priceConfidence": "medium"
+      "checkedAt": "2026-10-10"
     },
     {
       "id": "hairbynoella",
@@ -181970,7 +182057,10 @@
       "addedServices": [],
       "removedServices": [],
       "locationReviewIgnored": false,
-      "checkedAt": "2026-10-09"
+      "checkedAt": "2026-10-09",
+      "priceBand": "£",
+      "priceSource": "auto",
+      "priceConfidence": "high"
     },
     {
       "id": "heautyldn",
@@ -182133,7 +182223,10 @@
       "removedServices": [],
       "locationReviewIgnored": true,
       "checkedAt": "2026-10-09",
-      "reviewedAt": "2026-10-09"
+      "reviewedAt": "2026-10-09",
+      "priceBand": "£",
+      "priceSource": "auto",
+      "priceConfidence": "high"
     },
     {
       "id": "cg-hair",
@@ -182268,7 +182361,10 @@
       "removedServices": [],
       "locationReviewIgnored": false,
       "checkedAt": "2026-10-09",
-      "reviewedAt": "2026-10-09"
+      "reviewedAt": "2026-10-09",
+      "priceBand": "££",
+      "priceSource": "auto",
+      "priceConfidence": "high"
     },
     {
       "id": "bylextee",
@@ -182342,7 +182438,10 @@
       "addedServices": [],
       "removedServices": [],
       "locationReviewIgnored": false,
-      "checkedAt": "2026-10-09"
+      "checkedAt": "2026-10-09",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceConfidence": "manual"
     },
     {
       "id": "branco-hair",
@@ -182500,7 +182599,10 @@
       "removedServices": [],
       "locationReviewIgnored": false,
       "checkedAt": "2026-10-09",
-      "reviewedAt": "2026-10-09"
+      "reviewedAt": "2026-10-09",
+      "priceBand": "£",
+      "priceSource": "manual",
+      "priceConfidence": "manual"
     },
     {
       "id": "blessed-by-sj",
@@ -182661,7 +182763,10 @@
       ],
       "locationReviewIgnored": false,
       "checkedAt": "2026-10-09",
-      "reviewedAt": "2026-10-09"
+      "reviewedAt": "2026-10-09",
+      "priceBand": "££",
+      "priceSource": "auto",
+      "priceConfidence": "high"
     },
     {
       "id": "capitao-london-bridal",
@@ -182757,7 +182862,10 @@
       "addedServices": [],
       "removedServices": [],
       "locationReviewIgnored": false,
-      "checkedAt": "2026-10-09"
+      "checkedAt": "2026-10-09",
+      "priceBand": "££",
+      "priceSource": "auto",
+      "priceConfidence": "high"
     },
     {
       "id": "sd-hair-bridal",
@@ -182844,7 +182952,10 @@
       "addedServices": [],
       "removedServices": [],
       "locationReviewIgnored": false,
-      "checkedAt": "2026-10-09"
+      "checkedAt": "2026-10-09",
+      "priceBand": "££££",
+      "priceSource": "manual",
+      "priceConfidence": "manual"
     },
     {
       "id": "shirley-mcdonald-trichologist",
@@ -182913,7 +183024,10 @@
       "addedServices": [],
       "removedServices": [],
       "locationReviewIgnored": false,
-      "checkedAt": "2026-10-09"
+      "checkedAt": "2026-10-09",
+      "priceBand": "£",
+      "priceSource": "auto",
+      "priceConfidence": "low"
     },
     {
       "id": "shannel-watson",
@@ -182995,7 +183109,10 @@
       "addedServices": [],
       "removedServices": [],
       "locationReviewIgnored": false,
-      "checkedAt": "2026-10-09"
+      "checkedAt": "2026-10-09",
+      "priceBand": "",
+      "priceSource": "",
+      "priceConfidence": ""
     },
     {
       "id": "cherub-tricho",
@@ -183121,7 +183238,10 @@
       "removedServices": [],
       "locationReviewIgnored": false,
       "checkedAt": "2026-10-09",
-      "reviewedAt": "2026-10-09"
+      "reviewedAt": "2026-10-09",
+      "priceBand": "",
+      "priceSource": "",
+      "priceConfidence": ""
     }
   ]
 }

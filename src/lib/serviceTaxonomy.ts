@@ -13,6 +13,7 @@ export const serviceFamilies: Record<string, readonly string[]> = {
   "Wig installs (all)": ["Wig install (frontal / closure)", "U-Part / Half wig install", "Pixie wig / weave install"],
   "Celebrity-inspired braids (all)": ["Alicia Keys braids", "Pop smoke braids", "Jayda Wayda braided sew-in", "Cassie braided sew-in", "Coi Leray braids", "Tyla braids"],
   "Bond repair": ["Olaplex treatment", "K18 treatment"],
+  "Barbering (women welcome)": ["Female barbers available"],
 };
 
 // Families that nest their members in a category's filter list. Every other
@@ -23,6 +24,7 @@ export const subcategoryGroupsByCategory: Record<string, readonly string[]> = {
   "wig-services": ["Wig installs (all)"],
   "braiding-services": ["Celebrity-inspired braids (all)"],
   "straightening-treatments": ["Bond repair"],
+  "pixie-services": ["Barbering (women welcome)"],
 };
 
 const serviceDisplayNames: Record<string, string> = {

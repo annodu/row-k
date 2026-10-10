@@ -44,7 +44,7 @@ const defaultCategoryMap = {
   "faux-locs-services": ["Faux locs / soft locs","Boho locs","Crochet faux locs / invisible locs","Butterfly locs"],
   "sew-in-weave": ["Closure sew-in / closure behind the hairline","Flipover / Versatile sew-in","Frontal sew-in","Pixie wig / weave install","Quick weave","Sew-in take-down","Tracks (+ silk press) / partial / invisible sew-in","Traditional sew-in / leave out","Fulani sew-in / quick weave","Boho sew-in","Feed-in / stitch braid sew-in","Tape-ins + sew-in","K-tips + sew-in","Hair loss systems (e.g. mesh)","Extensions blow-dry / bouncy blowout","Extensions styling only (e.g. layers & curls)","Cassie braided sew-in","Jayda Wayda braided sew-in"],
   "styling-services": ["Frontal ponytail / bun","Half up half down","Sleek ponytail / bun","Updo","Braided ponytail"],
-  "pixie-services": ["Pixie cut / finger waves"],
+  "pixie-services": ["Pixie cut / finger waves","Barbering (women welcome)","Female barbers available"],
   "straightening-treatments": ["Bond repair","Cécred wash & treatment","Hair botox","Japanese straightening","K18 treatment","Keratin treatment / Brazilian blowdry","Moisturising treatment","Olaplex treatment","Protein treatment","Relaxer / texturiser","Texture release","Hot oil treatment"],
   "natural-hair-services": ["Wig cornrows","Curly cut / wash & go / diffuse","Silk press","Bouncy blowout / round brush blow dry","Trim / hair cut","Roller set","Twist out / flexi rod","Bantu knots","Wash & blowdry","Japanese head spa","Scalp detox / treatments","Men's braids","Natural twists / plaits"],
   "natural-hair-scalp-health": ["Healthy hair plans & consultations","Natural hair coaches / educators","Trichology / scalp analysis"],
@@ -481,6 +481,20 @@ export const serviceAliases = {
   "Pixie cut / wrap": "Pixie cut / finger waves",
   Wrap: "Pixie cut / finger waves",
   "Finger waves": "Pixie cut / finger waves",
+  "Barber cuts / fades (women welcome)": "Barbering (women welcome)",
+  "Barber cuts / fades": "Barbering (women welcome)",
+  "Barber cut": "Barbering (women welcome)",
+  "Barber cuts": "Barbering (women welcome)",
+  "Buzz cut": "Barbering (women welcome)",
+  "Buzz cuts": "Barbering (women welcome)",
+  "Clipper cut": "Barbering (women welcome)",
+  "Clipper cuts": "Barbering (women welcome)",
+  "Skin fade": "Barbering (women welcome)",
+  "Skin fades": "Barbering (women welcome)",
+  "Shape up": "Barbering (women welcome)",
+  "Female barber": "Female barbers available",
+  "Lady barber": "Female barbers available",
+  "Woman barber": "Female barbers available",
   Bridal: "Bridal",
   "Bridal hair": "Bridal",
   "Bridal styling": "Bridal",
@@ -739,6 +753,8 @@ export const derivedServiceMatches = {
   // Bond repair is also a real service (salons that don't name a brand), so it
   // matches its own tag as well as the named brands.
   "Bond repair": ["Olaplex treatment", "K18 treatment"],
+  // A female barber is a more specific match within the women-welcome barber heading.
+  "Barbering (women welcome)": ["Female barbers available"],
 };
 
 function hasService(services, service) {

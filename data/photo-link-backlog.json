@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updatedAt": "2026-10-06"
+    "updatedAt": "2026-10-10"
   },
   "entries": [
     {
@@ -12,6 +12,21 @@
         "https://www.instagram.com/p/DUgSl6MDDlr/"
       ],
       "addedAt": "2026-08-31"
+    },
+    {
+      "salonId": "dk-styles-uk",
+      "postUrls": [
+        "https://www.instagram.com/p/DeFImDjIfqb/"
+      ],
+      "addedAt": "2026-10-10"
+    },
+    {
+      "salonId": "boujee-blendss",
+      "postUrls": [
+        "https://www.instagram.com/p/DVwopGvAi8l/",
+        "https://www.instagram.com/p/DYRVhrwihGs/"
+      ],
+      "addedAt": "2026-10-10"
     }
   ]
 }

@@ -97,7 +97,7 @@ const categoryMap = {
   "faux-locs-services": { label: "Faux locs", subcategories: ["all","Faux locs / soft locs","Boho locs","Crochet faux locs / invisible locs","Butterfly locs"] },
   "sew-in-weave": { label: "Sew in / weave", subcategories: ["all","Closure sew-in / closure behind the hairline","Flipover / Versatile sew-in","Frontal sew-in","Pixie wig / weave install","Quick weave","Sew-in take-down","Tracks (+ silk press) / partial / invisible sew-in","Traditional sew-in / leave out","Fulani sew-in / quick weave","Boho sew-in","Feed-in / stitch braid sew-in","Tape-ins + sew-in","K-tips + sew-in","Hair loss systems (e.g. mesh)","Extensions blow-dry / bouncy blowout","Extensions styling only (e.g. layers & curls)","Cassie braided sew-in","Jayda Wayda braided sew-in"] },
   "styling-services": { label: "Ponytails & updos", subcategories: ["all","Frontal ponytail / bun","Half up half down","Sleek ponytail / bun","Updo","Braided ponytail"] },
-  "pixie-services": { label: "Pixie cut / finger waves", subcategories: ["all","Pixie cut / finger waves"] },
+  "pixie-services": { label: "Short cuts & styling", subcategories: ["all","Pixie cut / finger waves","Barbering (women welcome)","Female barbers available"] },
   "straightening-treatments": { label: "Treatments", subcategories: ["all","Bond repair","Cécred wash & treatment","Hair botox","Japanese straightening","K18 treatment","Keratin treatment / Brazilian blowdry","Moisturising treatment","Olaplex treatment","Protein treatment","Relaxer / texturiser","Texture release","Hot oil treatment"] },
   "natural-hair-services": { label: "Natural hair washing & styling", subcategories: ["all","Wig cornrows","Curly cut / wash & go / diffuse","Silk press","Bouncy blowout / round brush blow dry","Trim / hair cut","Roller set","Twist out / flexi rod","Bantu knots","Wash & blowdry","Japanese head spa","Scalp detox / treatments","Men's braids","Natural twists / plaits"] },
   "natural-hair-scalp-health": { label: "Natural hair health & trichology", subcategories: ["all","Healthy hair plans & consultations","Natural hair coaches / educators","Trichology / scalp analysis"] },
@@ -115,7 +115,7 @@ const categoryServiceMap = {
   "faux-locs-services": ["Faux locs / soft locs","Boho locs","Crochet faux locs / invisible locs","Butterfly locs"],
   "sew-in-weave": ["Closure sew-in / closure behind the hairline","Flipover / Versatile sew-in","Frontal sew-in","Pixie wig / weave install","Quick weave","Sew-in take-down","Tracks (+ silk press) / partial / invisible sew-in","Traditional sew-in / leave out","Fulani sew-in / quick weave","Boho sew-in","Feed-in / stitch braid sew-in","Tape-ins + sew-in","K-tips + sew-in","Hair loss systems (e.g. mesh)","Extensions blow-dry / bouncy blowout","Extensions styling only (e.g. layers & curls)","Cassie braided sew-in","Jayda Wayda braided sew-in"],
   "styling-services": ["Frontal ponytail / bun","Half up half down","Sleek ponytail / bun","Updo","Braided ponytail"],
-  "pixie-services": ["Pixie cut / finger waves"],
+  "pixie-services": ["Pixie cut / finger waves","Barbering (women welcome)","Female barbers available"],
   "straightening-treatments": ["Bond repair","Cécred wash & treatment","Hair botox","Japanese straightening","K18 treatment","Keratin treatment / Brazilian blowdry","Moisturising treatment","Olaplex treatment","Protein treatment","Relaxer / texturiser","Texture release","Hot oil treatment"],
   "natural-hair-services": ["Wig cornrows","Curly cut / wash & go / diffuse","Silk press","Bouncy blowout / round brush blow dry","Trim / hair cut","Roller set","Twist out / flexi rod","Bantu knots","Wash & blowdry","Japanese head spa","Scalp detox / treatments","Men's braids","Natural twists / plaits"],
   "natural-hair-scalp-health": ["Healthy hair plans & consultations","Natural hair coaches / educators","Trichology / scalp analysis"],
@@ -354,6 +354,8 @@ const defaultServiceSearchAliases: Record<string, string[]> = {
   "Scalp detox / treatments": ["scalp", "scalp care", "scalp therapy", "scalp treatment", "scalp scrub", "scalp detox"],
   "Trichology / scalp analysis": ["scalp", "scalp analysis", "scalp health", "trichology"],
   "Kids & teens styles": ["kids", "kid", "teen", "teens", "children", "child"],
+  "Barbering (women welcome)": ["barber cut", "barber cuts", "barbering", "buzz cut", "clipper cut", "skin fade", "shape up", "women's barbering"],
+  "Female barbers available": ["female barber", "female barbers", "lady barber", "woman barber"],
 };
 
 const sortedCategoryEntries = [
@@ -1010,11 +1012,13 @@ function getLocationLabels(result: SalonResult) {
 function BrandGroupCard({
   brandBranches,
   orderedServices,
+  showFemaleBarbersBadge,
   customFilterTypes,
   preferBookingPlatform,
 }: {
   brandBranches: SalonResult[];
   orderedServices: string[];
+  showFemaleBarbersBadge: boolean;
   customFilterTypes: CustomFilterType[];
   preferBookingPlatform: boolean;
 }) {
@@ -1054,6 +1058,7 @@ function BrandGroupCard({
     brand.canBraidWithoutGel ? "can braid without gel" : null,
     brand.senFriendly ? "sensory-safe / sen-friendly" : null,
     brand.lgbtqFriendly ? "lgbtqia+-friendly" : null,
+    showFemaleBarbersBadge && brand.services.includes(FEMALE_BARBERS_SERVICE) ? "female barbers" : null,
     brand.priceIncludesHair ? "hair-inclusive packages" : null,
     !hairShopLink && brand.sellsHairSeparately ? "hair sold separately" : null,
     brand.sameDayEmergency ? "same-day / walk-ins" : null,
@@ -1721,6 +1726,22 @@ function orderServicesBySelection(
   return [...matchingServices, ...remainingServices];
 }
 
+// "Female barbers available" stays in salon data (filters and search match on
+// it) but shows on cards as a badge rather than a service, and only when the
+// search is about short cuts / barbering.
+const FEMALE_BARBERS_SERVICE = "Female barbers available";
+
+function shouldShowFemaleBarbersBadge(selectedCategories: string[], selectedSubcategories: string[]) {
+  return (
+    selectedCategories.includes("pixie-services") ||
+    selectedSubcategories.some((subcategory) => subcategory === "Barbering (women welcome)" || subcategory === FEMALE_BARBERS_SERVICE)
+  );
+}
+
+function withoutFemaleBarbersService(services: string[]) {
+  return services.filter((service) => service !== FEMALE_BARBERS_SERVICE);
+}
+
 function InstagramIcon({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={className} aria-hidden="true">
@@ -2128,7 +2149,7 @@ type CustomFilterType = {
   options: { id: string; label: string }[];
 };
 
-const terminalServiceCategoryIds = new Set<string>(["bridal-services", "editorial-services", "pixie-services"]);
+const terminalServiceCategoryIds = new Set<string>(["bridal-services", "editorial-services"]);
 
 function normalizeRuntimeCategory(category: RuntimeCategory): RuntimeCategory {
   if (!terminalServiceCategoryIds.has(category.id)) {
@@ -4432,6 +4453,7 @@ export default function App() {
 
 
   const visibleResults = sortedResults.slice(0, visibleResultCount);
+  const showFemaleBarbersBadge = shouldShowFemaleBarbersBadge(selectedCategories, selectedSubcategories);
   // Whole categories plus individual services, so a service listed under two
   // parents still counts once.
   const selectedServiceCount =
@@ -5196,17 +5218,15 @@ export default function App() {
                     const brandBranches = results.filter((other) => other.brandId === result.brandId);
                     if (brandBranches.length > 1) {
                       renderedBrandIds.add(result.brandId);
-                      const brandOrderedServices = orderServicesBySelection(
-                        result.services,
-                        selectedCategories,
-                        selectedSubcategories,
-                        runtimeCategoryServiceMap,
+                      const brandOrderedServices = withoutFemaleBarbersService(
+                        orderServicesBySelection(result.services, selectedCategories, selectedSubcategories, runtimeCategoryServiceMap),
                       );
                       return (
                         <BrandGroupCard
                           key={result.brandId}
                           brandBranches={brandBranches}
                           orderedServices={brandOrderedServices}
+                          showFemaleBarbersBadge={showFemaleBarbersBadge}
                           customFilterTypes={customFilterTypes}
                           preferBookingPlatform={currentSelectedBookingSitesOnly && !currentSelectedGoogleReviewsOnly}
                         />
@@ -5215,7 +5235,9 @@ export default function App() {
                   }
 
                   const locationLabels = getLocationLabels(result);
-                  const orderedServices = orderServicesBySelection(result.services, selectedCategories, selectedSubcategories, runtimeCategoryServiceMap);
+                  const orderedServices = withoutFemaleBarbersService(
+                    orderServicesBySelection(result.services, selectedCategories, selectedSubcategories, runtimeCategoryServiceMap),
+                  );
 
                   const activeServices = [...selectedCategories, ...selectedSubcategories].join(", ") || "none";
                   const reviewsBanner = getReviewsBannerInfo(result, {
@@ -5228,6 +5250,7 @@ export default function App() {
                     result.canBraidWithoutGel ? "can braid without gel" : null,
                     result.senFriendly ? "sensory-safe / sen-friendly" : null,
                     result.lgbtqFriendly ? "lgbtqia+-friendly" : null,
+                    showFemaleBarbersBadge && result.services.includes(FEMALE_BARBERS_SERVICE) ? "female barbers" : null,
                     result.priceIncludesHair ? "hair-inclusive packages" : null,
                     !hairShopLink && result.sellsHairSeparately ? "hair sold separately" : null,
                     result.sameDayEmergency ? "same-day / walk-ins" : null,

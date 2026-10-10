@@ -552,6 +552,7 @@ type DirectoryCheck = {
   bookingUrl?: string;
   instagramUrl?: string;
   websiteUrl?: string;
+  hairShopUrl?: string;
   hijabiFriendly?: boolean;
   wheelchairAccessible?: boolean;
   senFriendly?: boolean;
@@ -644,6 +645,7 @@ type FreshnessUpdate = {
   bookingPlatform?: string;
   instagramUrl?: string;
   websiteUrl?: string;
+  hairShopUrl?: string;
   hijabiFriendly?: boolean;
   wheelchairAccessible?: boolean;
   senFriendly?: boolean;
@@ -851,7 +853,7 @@ const serviceGroups = [
   { label: "Faux locs", services: ["Faux locs / soft locs","Boho locs","Crochet faux locs / invisible locs","Butterfly locs"] },
   { label: "Sew in / weave", services: ["Closure sew-in / closure behind the hairline","Flipover / Versatile sew-in","Frontal sew-in","Pixie wig / weave install","Quick weave","Sew-in take-down","Tracks (+ silk press) / partial / invisible sew-in","Traditional sew-in / leave out","Fulani sew-in / quick weave","Boho sew-in","Feed-in / stitch braid sew-in","Tape-ins + sew-in","K-tips + sew-in","Hair loss systems (e.g. mesh)","Extensions blow-dry / bouncy blowout","Extensions styling only (e.g. layers & curls)","Cassie braided sew-in","Jayda Wayda braided sew-in"] },
   { label: "Ponytails & updos", services: ["Frontal ponytail / bun","Half up half down","Sleek ponytail / bun","Updo","Braided ponytail"] },
-  { label: "Pixie cut / finger waves", services: ["Pixie cut / finger waves"] },
+  { label: "Short cuts & styling", services: ["Pixie cut / finger waves","Barbering (women welcome)","Female barbers available"] },
   { label: "Treatments", services: ["Bond repair","Cécred wash & treatment","Hair botox","Japanese straightening","K18 treatment","Keratin treatment / Brazilian blowdry","Moisturising treatment","Olaplex treatment","Protein treatment","Relaxer / texturiser","Texture release","Hot oil treatment"] },
   { label: "Natural hair washing & styling", services: ["Wig cornrows","Curly cut / wash & go / diffuse","Silk press","Bouncy blowout / round brush blow dry","Trim / hair cut","Roller set","Twist out / flexi rod","Bantu knots","Wash & blowdry","Japanese head spa","Scalp detox / treatments","Men's braids","Natural twists / plaits"] },
   { label: "Natural hair health & trichology", services: ["Healthy hair plans & consultations","Natural hair coaches / educators","Trichology / scalp analysis"] },
@@ -4558,7 +4560,13 @@ function getDraftDisplayStatus(draft: StylistDraft) {
 
 type GoogleMatchSummary = {
   attempted: boolean;
-  google: { confidence: string; displayName: string | null; formattedAddress: string | null; reviewCount: number } | null;
+  google: {
+    confidence: string;
+    displayName: string | null;
+    formattedAddress: string | null;
+    reviewCount: number;
+    suggested?: string[];
+  } | null;
   googleError: string | null;
   verified: { reviewCount: number } | null;
   verifiedError: string | null;
@@ -4567,11 +4575,18 @@ type GoogleMatchSummary = {
 function describeGoogleMatch(match: GoogleMatchSummary) {
   if (!match || !match.attempted) return "";
   if (match.google) {
-    const { confidence, displayName, formattedAddress, reviewCount } = match.google;
+    const { confidence, displayName, formattedAddress, reviewCount, suggested = [] } = match.google;
     if (confidence === "no-match") return " No matching Google listing was found.";
     const where = displayName ? ` "${displayName}"${formattedAddress ? ` (${formattedAddress})` : ""}` : "";
     const confidenceNote = confidence === "high" ? "" : " — low confidence, worth double-checking";
-    return ` Google:${where}, ${reviewCount} reviews${confidenceNote}.`;
+    const amenityLabels = [
+      suggested.includes("wheelchairAccessible") ? "wheelchair-accessible entrance" : "",
+      suggested.includes("parkingAvailable") ? "parking" : "",
+    ].filter(Boolean);
+    const amenities = amenityLabels.length
+      ? ` Google lists ${amenityLabels.join(" and ")} — suggested in Health check; check Street View before accepting.`
+      : "";
+    return ` Google:${where}, ${reviewCount} reviews${confidenceNote}.${amenities}`;
   }
   if (match.googleError) return ` Google lookup failed: ${match.googleError}`;
   return "";
@@ -8613,6 +8628,8 @@ function FreshnessRecommendationBody({
   const primaryLinkValue = (hasWebsiteLinkIssue ? row.check.websiteUrl : row.bookingUrl) || "";
   const [primaryLinkUrl, setPrimaryLinkUrl] = useState(primaryLinkValue);
   const [instagramUrl, setInstagramUrl] = useState(row.instagramUrl || "");
+  const hasHairShopLinkIssue = row.check.linkChecks.some((linkCheck) => linkCheck.type === "hairShop" && linkCheck.status !== "ok");
+  const [hairShopUrl, setHairShopUrl] = useState(row.check.hairShopUrl || "");
   const [linkSaveState, setLinkSaveState] = useState<"idle" | "saving" | "saved">("idle");
   const [selectedIndexes, setSelectedIndexes] = useState<Set<number>>(new Set());
   const [ignoreReasonPrompt, setIgnoreReasonPrompt] = useState(false);
@@ -8639,7 +8656,7 @@ function FreshnessRecommendationBody({
             bookingUrl: primaryLinkUrl,
             ...(bookingLinkMatchesInstagram ? { bookingPlatform: "Instagram" } : {}),
           };
-      await Promise.resolve(onApply(row.check, { ...linkUpdate, instagramUrl }));
+      await Promise.resolve(onApply(row.check, { ...linkUpdate, instagramUrl, ...(hasHairShopLinkIssue ? { hairShopUrl } : {}) }));
       setLinkSaveState("saved");
       setTimeout(() => setLinkSaveState("idle"), 2500);
     } catch {
@@ -8910,6 +8927,11 @@ function FreshnessRecommendationBody({
             <Field label="Instagram URL">
               <Input value={instagramUrl} onChange={(event) => setInstagramUrl(event.target.value)} placeholder="https://www.instagram.com/..." className="h-9 rounded-none" />
             </Field>
+            {hasHairShopLinkIssue ? (
+              <Field label="Hair shop URL">
+                <Input value={hairShopUrl} onChange={(event) => setHairShopUrl(event.target.value)} placeholder="https://www.instagram.com/..." className="h-9 rounded-none" />
+              </Field>
+            ) : null}
           </div>
           {!hasWebsiteLinkIssue ? (
             <label className="flex items-center gap-2 text-sm font-medium text-stone-700">
@@ -9440,6 +9462,9 @@ function getFreshnessDetailRejectUpdate(detail: FreshnessRecommendationDetail, r
     if (detail.linkType === "website") {
       return { websiteUrl: row.check.websiteUrl };
     }
+    if (detail.linkType === "hairShop") {
+      return { hairShopUrl: row.check.hairShopUrl };
+    }
   }
   return row.rejectUpdate;
 }
@@ -9498,6 +9523,9 @@ function mergeFreshnessRejectUpdates(details: FreshnessRecommendationDetail[], r
     }
     if (update.websiteUrl !== undefined) {
       merged.websiteUrl = update.websiteUrl;
+    }
+    if (update.hairShopUrl !== undefined) {
+      merged.hairShopUrl = update.hairShopUrl;
     }
   }
   return Object.keys(merged).length ? merged : undefined;
@@ -9689,13 +9717,13 @@ function buildFreshnessRecommendationGroups(checks: DirectoryCheck[]): Freshness
     const details: FreshnessRecommendationDetail[] = [
       ...brokenLinks.map((linkCheck) => ({
         kind: "fix" as const,
-        label: `${titleCase(linkCheck.type)} link`,
+        label: linkCheckLabel(linkCheck.type),
         description: linkCheck.issues[0] || "Link not loading",
         linkType: linkCheck.type,
       })),
       ...manualLinks.map((linkCheck) => ({
         kind: "manual" as const,
-        label: `${titleCase(linkCheck.type)} link`,
+        label: linkCheckLabel(linkCheck.type),
         description: getManualCheckDescription(linkCheck),
         linkType: linkCheck.type,
       })),
@@ -9872,6 +9900,9 @@ function hasSupportedFreshnessEvidence(check: DirectoryCheck, service: string) {
   if (service === "Pixie cut / finger waves") {
     return hasRawEvidenceForService(check.serviceCheck.rawServices, service);
   }
+  if (service === "Barbering (women welcome)" || service === "Female barbers available") {
+    return hasRawEvidenceForService(check.serviceCheck.rawServices, service);
+  }
   if (service === "Feed-in braids") {
     return !check.serviceCheck.rawServices.some((line) => hasHalfBraidsHalfSewInEvidence(line));
   }
@@ -9923,6 +9954,12 @@ function hasRawEvidenceForService(rawServices: string[], service: string) {
   }
   if (service === "Pixie cut / finger waves") {
     return /\b(finger\s+waves?|pixie\s+cut|short\s+pixie|wrap)\b/.test(normalizedRaw) && !hasRawEvidenceForService(rawServices, "Pixie wig / weave install");
+  }
+  if (service === "Barbering (women welcome)") {
+    return /\b(barber(?:ed|ing)?\s+(?:cut|cuts|haircut|haircuts)|buzz\s+cuts?|clipper\s+cuts?|skin\s+fades?|taper(?:ed)?\s+(?:cuts?|fades?)|shape[\s-]*ups?|line[\s-]*ups?)\b/.test(normalizedRaw);
+  }
+  if (service === "Female barbers available") {
+    return /\b(female|lady|woman)\s+barber\b/.test(normalizedRaw);
   }
   if (service === "Wig colouring / bundle colouring") {
     return hasWigColourEvidence(rawServices);
@@ -10066,11 +10103,21 @@ function isManualCheckLink(linkCheck: DirectoryCheck["linkChecks"][number]) {
     return false;
   }
 
-  if (linkCheck.type === "instagram" && linkCheck.status === "unverified" && !linkCheck.issues.length) {
+  if (isInstagramLinkCheck(linkCheck) && linkCheck.status === "unverified" && !linkCheck.issues.length) {
     return false;
   }
 
   return true;
+}
+
+// Mirrors the server: a hair-shop link pointing at an Instagram profile is
+// checked (and judged) like the stylist's own Instagram.
+function isInstagramLinkCheck(linkCheck: DirectoryCheck["linkChecks"][number]) {
+  return linkCheck.type === "instagram" || (linkCheck.type === "hairShop" && /^https?:\/\/(www\.)?instagram\.com\//i.test(linkCheck.url));
+}
+
+function linkCheckLabel(type: string) {
+  return type === "hairShop" ? "Hair shop link" : `${titleCase(type)} link`;
 }
 
 function hasDetectedLocationUpdate(check: DirectoryCheck) {
@@ -10101,6 +10148,9 @@ function getLinkDismissUpdate(check: DirectoryCheck): FreshnessUpdate | undefine
   }
   if (linkTypes.has("website") && check.websiteUrl !== undefined) {
     update.websiteUrl = check.websiteUrl;
+  }
+  if (linkTypes.has("hairShop") && check.hairShopUrl !== undefined) {
+    update.hairShopUrl = check.hairShopUrl;
   }
 
   return Object.keys(update).length ? update : undefined;
@@ -14789,6 +14839,9 @@ function removeReviewedLinkChecks(check: DirectoryCheck, update: FreshnessUpdate
   if (update.websiteUrl !== undefined) {
     reviewedLinkTypes.add("website");
   }
+  if (update.hairShopUrl !== undefined) {
+    reviewedLinkTypes.add("hairShop");
+  }
   const reviewedIssues = new Set(
     check.linkChecks
       .filter((linkCheck) => reviewedLinkTypes.has(linkCheck.type))
@@ -14822,6 +14875,7 @@ function updateChecksAfterFreshnessAction(
           ...item,
           bookingUrl: update.bookingUrl ?? item.bookingUrl,
           instagramUrl: update.instagramUrl ?? item.instagramUrl,
+          hairShopUrl: update.hairShopUrl ?? item.hairShopUrl,
           areaId: update.areaId ?? item.areaId,
           areaIds: update.areaIds ?? item.areaIds,
           areaLabel: update.areaLabel ?? item.areaLabel,

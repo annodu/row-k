@@ -223,6 +223,12 @@ export async function searchPlace(query, apiKey) {
 // batch backfill script uses, but for a single salon — used both by that script
 // and by the admin approve-draft flow so a newly published stylist gets matched
 // immediately instead of waiting on the next manual backfill run.
+// Places API appends a long `g_mp` tracking param to googleMapsUri; the bare
+// ?cid= link opens the same listing, so store it without the noise.
+function stripGoogleMapsTracking(uri) {
+  return uri.replace(/&g_mp=[^&]*/, "");
+}
+
 export async function matchSalonToGoogle(salon, { apiKey } = {}) {
   const key = apiKey || (await loadGooglePlacesApiKey());
   if (!key) {
@@ -277,7 +283,7 @@ export async function matchSalonToGoogle(salon, { apiKey } = {}) {
   return {
     googlePlaceId: place.id,
     googleReviewCount: place.userRatingCount || 0,
-    googleMapsUri: place.googleMapsUri || "",
+    googleMapsUri: stripGoogleMapsTracking(place.googleMapsUri || ""),
     googleMatchConfidence: "high",
     googleDisplayName: place.displayName?.text || "",
     googleFormattedAddress: place.formattedAddress || "",

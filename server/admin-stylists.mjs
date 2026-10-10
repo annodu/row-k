@@ -352,6 +352,8 @@ const serviceRuleMatchers = [
   ["Sleek ponytail / bun", [/\bsleek\b.*\b(pony|ponytail|bun)\b/, /\bpony\s*tail\b/, /\bponytail\b/, /\bbun\b/]],
   ["Half up half down", [/\bhalf\s+up\b.*\bhalf\s+down\b/, /\bhalf\s+up\s+half\s+down\b/, /\bhalf\s+up\s+half\s+down\b.*\b(quick\s+weave|sew\s+in|sewin|weave)\b/]],
   ["Pixie cut / finger waves", [/\bfinger\s+waves?\b/, /\bpixie\b/, /\bwrap\b/]],
+  ["Barbering (women welcome)", [/\bbarber(?:ed|ing)?\s+(?:cut|cuts|haircut|haircuts)\b/, /\bbuzz\s+cuts?\b/, /\bclipper\s+cuts?\b/, /\bskin\s+fades?\b/, /\bshape[\s-]*ups?\b/]],
+  ["Female barbers available", [/\b(female|lady|woman)\s+barbers?\b/]],
   ["Updo", [/\bup\s*do\b/, /\bupdo\b/, /\bpin\s*up\b/, /\bfrench\s+roll\s+up\b/, /\bfrench\s+roll\b/]],
 ];
 
@@ -427,6 +429,8 @@ export const serviceNegationHints = {
   "Trichology / scalp analysis": ["trichologist", "trichologists", "trichology", "scalp analysis"],
   "Olaplex treatment": ["olaplex"],
   "Pixie cut / finger waves": ["pixie", "finger waves"],
+  "Barbering (women welcome)": ["barber cut", "barber cuts", "barbering", "buzz cut", "clipper cut", "skin fade", "shape up", "women's barbering", "womens barbering"],
+  "Female barbers available": ["female barber", "female barbers", "lady barber", "woman barber"],
   "Pixie wig / weave install": ["pixie wig", "pixie weave", "pixie install", "pixie cut wig making", "pixie cut wig making styling"],
   "Pre-parting": ["pre parting", "pre part"],
   "Quick weave": ["quick weave", "quickweave"],
@@ -2245,6 +2249,7 @@ export function registerAdminStylistRoutes(app) {
       ...(typeof req.body?.bookingUrl === "string" && resolveBookingPlatform(req.body.bookingUrl) ? { bookingPlatform: resolveBookingPlatform(cleanString(req.body.bookingUrl)) } : {}),
       ...(typeof req.body?.instagramUrl === "string" ? { instagramUrl: cleanString(req.body.instagramUrl) } : {}),
       ...(typeof req.body?.websiteUrl === "string" ? { websiteUrl: cleanString(req.body.websiteUrl) } : {}),
+      ...(typeof req.body?.hairShopUrl === "string" ? { hairShopUrl: cleanString(req.body.hairShopUrl) } : {}),
       ...(locationAreaIds.length
         ? {
             areaId: locationAreaIds[0],
@@ -2295,6 +2300,7 @@ export function registerAdminStylistRoutes(app) {
       typeof req.body?.bookingUrl === "string" ||
       typeof req.body?.instagramUrl === "string" ||
       typeof req.body?.websiteUrl === "string" ||
+      typeof req.body?.hairShopUrl === "string" ||
       Object.keys(incomingProof).length
     ) {
       await writeJson(manualIndexPath, manualIndex);
@@ -2318,6 +2324,7 @@ export function registerAdminStylistRoutes(app) {
       bookingUrl: typeof req.body?.bookingUrl === "string" ? cleanString(req.body.bookingUrl) : undefined,
       instagramUrl: typeof req.body?.instagramUrl === "string" ? cleanString(req.body.instagramUrl) : undefined,
       websiteUrl: typeof req.body?.websiteUrl === "string" ? cleanString(req.body.websiteUrl) : undefined,
+      hairShopUrl: typeof req.body?.hairShopUrl === "string" ? cleanString(req.body.hairShopUrl) : undefined,
       hijabiFriendly: req.body?.hijabiFriendly === true ? true : undefined,
       wheelchairAccessible: req.body?.wheelchairAccessible === true ? true : undefined,
       senFriendly: req.body?.senFriendly === true ? true : undefined,
@@ -2889,7 +2896,7 @@ export function registerAdminStylistRoutes(app) {
 
     const existingIds = new Set(manualIndex.salons.map((salon) => salon.id));
     const salon = draftToSalon(draft, existingIds);
-    const googleMatch = await enrichSalonWithReviews(salon);
+    const { googleAmenities, ...googleMatch } = await enrichSalonWithReviews(salon);
     manualIndex.salons.unshift(salon);
     manualIndex.meta = {
       ...manualIndex.meta,
@@ -2916,6 +2923,7 @@ export function registerAdminStylistRoutes(app) {
     // there even if it already has some photos and needs a proper review
     // pass rather than only showing up if it happens to have none.
     await addSalonIdToPhotoSearchPicks(salon.id);
+    await addPublishTimeAttributeSuggestions(salon, googleAmenities);
 
     res.json({ ok: true, salon, googleMatch });
   });
@@ -3089,7 +3097,8 @@ async function enrichSalonWithReviews(salon) {
   const summary = { attempted: true, google: null, googleError: null, verified: null, verifiedError: null };
 
   try {
-    const googleUpdate = await matchSalonToGoogle(salon);
+    const apiKey = await loadGooglePlacesApiKey();
+    const googleUpdate = await matchSalonToGoogle(salon, { apiKey });
     const { nameScore, ...fields } = googleUpdate;
     Object.assign(salon, fields);
     // Only trust the matched address enough to fill in a missing postcode when
@@ -3100,6 +3109,15 @@ async function enrichSalonWithReviews(salon) {
       salon.postcode = extractPostcodeToken(fields.googleFormattedAddress);
     }
     summary.google = { confidence: fields.googleMatchConfidence, displayName: fields.googleDisplayName || null, formattedAddress: fields.googleFormattedAddress || null, reviewCount: fields.googleReviewCount };
+    // Google's accessibility/parking data only ever becomes a health-check
+    // suggestion the admin Accepts after checking Street View — many listings
+    // that claim an accessible entrance aren't step-free in practice — so it
+    // is never written onto the salon here. See buildGoogleAttributeSuggestions.
+    const googleAmenities = await getGoogleAmenitiesForSalon(salon, null, apiKey);
+    if (googleAmenities) {
+      summary.googleAmenities = googleAmenities;
+      summary.google.suggested = buildGoogleAttributeSuggestions(salon, googleAmenities).map((suggestion) => suggestion.field);
+    }
   } catch (error) {
     summary.googleError = error.message;
   }
@@ -3117,6 +3135,192 @@ async function enrichSalonWithReviews(salon) {
   }
 
   return summary;
+}
+
+// Wheelchair access and parking from a high-confidence Google match, in one
+// Places request. Cached on the salon's freshness check (googleAmenities) so a
+// health-check run doesn't re-query Google for every salon every time; the
+// cache is dropped when the salon's googlePlaceId changes. Returns null when
+// there's nothing to look up or the lookup fails.
+async function getGoogleAmenitiesForSalon(salon, previousCheck = null, apiKey = null) {
+  if (salon.branches || !salon.googlePlaceId || salon.googleMatchConfidence !== "high") {
+    return null;
+  }
+  const cached = sanitizeGoogleAmenities(previousCheck?.googleAmenities);
+  if (cached?.placeId === salon.googlePlaceId) {
+    return cached;
+  }
+  try {
+    const key = apiKey || (await loadGooglePlacesApiKey());
+    if (!key) {
+      return null;
+    }
+    const response = await fetch(`https://places.googleapis.com/v1/places/${salon.googlePlaceId}`, {
+      headers: { "X-Goog-Api-Key": key, "X-Goog-FieldMask": "accessibilityOptions,parkingOptions" },
+    });
+    if (!response.ok) {
+      return null;
+    }
+    const data = await response.json();
+    return {
+      placeId: salon.googlePlaceId,
+      wheelchairAccessibleEntrance: data.accessibilityOptions?.wheelchairAccessibleEntrance === true,
+      parkingOptions: Object.entries(data.parkingOptions || {}).filter(([, value]) => value === true).map(([option]) => option),
+      checkedAt: today(),
+    };
+  } catch {
+    return null;
+  }
+}
+
+function sanitizeGoogleAmenities(amenities) {
+  if (!amenities || typeof amenities !== "object" || !cleanString(amenities.placeId)) {
+    return null;
+  }
+  return {
+    placeId: cleanString(amenities.placeId),
+    wheelchairAccessibleEntrance: amenities.wheelchairAccessibleEntrance === true,
+    parkingOptions: toArray(amenities.parkingOptions).map(cleanString).filter((option) => /^[a-zA-Z]+$/.test(option)),
+    checkedAt: cleanString(amenities.checkedAt),
+  };
+}
+
+// Turns Google's amenities into ordinary attribute suggestions (same shape as
+// buildAttributeSuggestions) so they go through the health check's Accept /
+// Reject flow — never set directly. The evidence text is deliberately stable
+// (no dates) so a rejection's fingerprint keeps matching on later runs.
+function buildGoogleAttributeSuggestions(salon, amenities, dismissedRecommendation = {}, learnedExclusions = null) {
+  if (!amenities) {
+    return [];
+  }
+  const streetView = salon.googleMapsUri ? ` — check Street View before accepting: ${salon.googleMapsUri}` : " — check Street View before accepting";
+  const candidates = [];
+  if (amenities.wheelchairAccessibleEntrance) {
+    candidates.push(["wheelchairAccessible", `Google Maps lists a wheelchair-accessible entrance${streetView}`]);
+  }
+  if (amenities.parkingOptions?.length) {
+    const options = amenities.parkingOptions.map((option) => option.replace(/([A-Z])/g, " $1").toLowerCase()).join(", ");
+    candidates.push(["parkingAvailable", `Google Maps lists parking (${options})${streetView}`]);
+  }
+  return candidates
+    .filter(([field, text]) => salon[field] !== true && dismissedRecommendation[field] !== true && !isLearnedRejectedText(learnedExclusions?.get(field), text))
+    .map(([field, text]) => ({
+      field,
+      value: true,
+      label: attributeSuggestionConfig[field].label,
+      evidence: [{ source: "Google Maps", text }],
+    }));
+}
+
+// Treatwell awards some venues an LGBTQIA+ badge ("accolade"), listed in the
+// venue page's embedded JSON as e.g. {"name":"lgbtqiaplus","tooltipTextCMSKey":"lgbtqi"}.
+// That's quotable source text, so it becomes an lgbtqFriendly suggestion for
+// the admin to Accept — never set directly. pages: [{ url, html }] of raw
+// fetched booking/website HTML.
+function buildBookingBadgeAttributeSuggestions(salon, pages, dismissedRecommendation = {}, learnedExclusions = null) {
+  if (salon.lgbtqFriendly === true || dismissedRecommendation.lgbtqFriendly === true) {
+    return [];
+  }
+  const evidence = [];
+  const seen = new Set();
+  for (const { url, html } of pages) {
+    if (!html || !safeHost(url || "").endsWith("treatwell.co.uk")) {
+      continue;
+    }
+    const badge = findTreatwellAccolades(html).find((accolade) => accolade?.tooltipTextCMSKey === "lgbtqi" || /lgbtq/i.test(accolade?.name || ""));
+    if (!badge) {
+      continue;
+    }
+    const pageUrl = String(url).split(/[?#]/)[0];
+    if (seen.has(pageUrl)) {
+      continue;
+    }
+    seen.add(pageUrl);
+    const description = html.match(/"lgbtqi":\{"description":"([^"]{1,300})"/)?.[1];
+    const text = `Treatwell shows its LGBTQIA+ badge on this venue${description ? ` ("${description}")` : ""} — ${pageUrl}`;
+    if (!isLearnedRejectedText(learnedExclusions?.get("lgbtqFriendly"), text)) {
+      evidence.push({ source: "Treatwell badge", text });
+    }
+  }
+  return evidence.length
+    ? [{ field: "lgbtqFriendly", value: true, label: attributeSuggestionConfig.lgbtqFriendly.label, evidence }]
+    : [];
+}
+
+// The venue's own "accolades":[...] array from a Treatwell page's embedded
+// JSON (the first occurrence is the venue itself). Empty when absent or
+// unparseable.
+function findTreatwellAccolades(html) {
+  const marker = '"accolades":[';
+  const start = html.indexOf(marker);
+  if (start === -1) {
+    return [];
+  }
+  const arrayStart = start + marker.length - 1;
+  let depth = 0;
+  for (let index = arrayStart; index < html.length && index < arrayStart + 50_000; index += 1) {
+    const char = html[index];
+    if (char === "[") {
+      depth += 1;
+    } else if (char === "]") {
+      depth -= 1;
+      if (depth === 0) {
+        try {
+          const parsed = JSON.parse(html.slice(arrayStart, index + 1));
+          return Array.isArray(parsed) ? parsed : [];
+        } catch {
+          return [];
+        }
+      }
+    }
+  }
+  return [];
+}
+
+// Folds extra suggestions into an existing list, appending evidence when the
+// field is already suggested from page text.
+function mergeAttributeSuggestions(suggestions, extra) {
+  const merged = suggestions.map((suggestion) => ({ ...suggestion, evidence: [...suggestion.evidence] }));
+  for (const suggestion of extra) {
+    const existing = merged.find((item) => item.field === suggestion.field);
+    if (existing) {
+      existing.evidence = [...existing.evidence, ...suggestion.evidence].slice(0, 6);
+    } else {
+      merged.push(suggestion);
+    }
+  }
+  return merged;
+}
+
+// A newly published stylist has no health check yet, so Google-derived
+// suggestions from publish are written as a fresh check entry straight away —
+// they show up in Health check for Accept/Reject without waiting for a run.
+async function addPublishTimeAttributeSuggestions(salon, googleAmenities) {
+  if (!googleAmenities) {
+    return;
+  }
+  try {
+    const store = await readFreshnessStore({ meta: { source: "freshness-checks", updatedAt: null, count: 0 }, checks: [], dismissedRecommendations: {} });
+    const dismissedRecommendations = store.dismissedRecommendations || {};
+    const attributeSuggestions = buildGoogleAttributeSuggestions(salon, googleAmenities, dismissedRecommendations[salon.id] || {});
+    if (!attributeSuggestions.length) {
+      return;
+    }
+    const check = {
+      ...emptyFreshnessCheckForSalon(salon),
+      googleAmenities,
+      attributeSuggestions,
+      issues: attributeSuggestions.map((suggestion) => attributeSuggestionConfig[suggestion.field].issue),
+    };
+    const checks = [check, ...(store.checks || []).filter((item) => item.id !== salon.id)];
+    await writeFreshnessStore({
+      meta: { ...(store.meta || {}), source: "freshness-checks", updatedAt: today(), count: checks.length },
+      dismissedRecommendations,
+      checks,
+    });
+  } catch (error) {
+    console.warn(`Could not record Google attribute suggestions for ${salon.id}.`, error);
+  }
 }
 
 // Same Google-match pipeline as matchSalonToGoogle, scoped to a single branch
@@ -4142,6 +4346,7 @@ async function updateFreshnessReview(salonId, {
   bookingUrl,
   instagramUrl,
   websiteUrl,
+  hairShopUrl,
   hijabiFriendly,
   wheelchairAccessible,
   senFriendly,
@@ -4185,6 +4390,7 @@ async function updateFreshnessReview(salonId, {
     bookingUrl,
     instagramUrl,
     websiteUrl,
+    hairShopUrl,
     currentCheck: actionCheck,
     rejectPriceBand,
     dismissedPriceBand: rejectPriceBand ? sanitizePriceBand(actionCheck?.priceCheck?.priceBand) || "" : priceBand || "",
@@ -4202,7 +4408,7 @@ async function updateFreshnessReview(salonId, {
       if (check.id !== salonId) {
         return check;
       }
-      const reviewedLinkTypes = getReviewedLinkTypes({ bookingUrl, instagramUrl, websiteUrl });
+      const reviewedLinkTypes = getReviewedLinkTypes({ bookingUrl, instagramUrl, websiteUrl, hairShopUrl });
       const reviewedLinkIssues = new Set(
         (check.linkChecks || [])
           .filter((linkCheck) => reviewedLinkTypes.has(linkCheck.type))
@@ -4218,6 +4424,7 @@ async function updateFreshnessReview(salonId, {
         ...(bookingUrl !== undefined ? { bookingUrl } : {}),
         ...(instagramUrl !== undefined ? { instagramUrl } : {}),
         ...(websiteUrl !== undefined ? { websiteUrl } : {}),
+        ...(hairShopUrl !== undefined ? { hairShopUrl } : {}),
         ...(hijabiFriendly === true ? { hijabiFriendly: true } : {}),
         ...(wheelchairAccessible === true ? { wheelchairAccessible: true } : {}),
         ...(senFriendly === true ? { senFriendly: true } : {}),
@@ -4274,7 +4481,7 @@ async function updateFreshnessReview(salonId, {
   return reviewedCheck && hasActionableFreshnessCheck(reviewedCheck) ? reviewedCheck : null;
 }
 
-function getReviewedLinkTypes({ bookingUrl, instagramUrl, websiteUrl }) {
+function getReviewedLinkTypes({ bookingUrl, instagramUrl, websiteUrl, hairShopUrl }) {
   const reviewedLinkTypes = new Set();
   if (bookingUrl !== undefined) {
     reviewedLinkTypes.add("booking");
@@ -4284,6 +4491,9 @@ function getReviewedLinkTypes({ bookingUrl, instagramUrl, websiteUrl }) {
   }
   if (instagramUrl !== undefined) {
     reviewedLinkTypes.add("instagram");
+  }
+  if (hairShopUrl !== undefined) {
+    reviewedLinkTypes.add("hairShop");
   }
   return reviewedLinkTypes;
 }
@@ -4349,6 +4559,7 @@ function updateDismissedRecommendations(dismissedRecommendations, salonId, {
   bookingUrl,
   instagramUrl,
   websiteUrl,
+  hairShopUrl,
   currentCheck = null,
   rejectPriceBand = false,
   dismissedPriceBand = "",
@@ -4387,6 +4598,7 @@ function updateDismissedRecommendations(dismissedRecommendations, salonId, {
     bookingUrl,
     instagramUrl,
     websiteUrl,
+    hairShopUrl,
     priceBand,
     rejectPriceBand,
     rejectLocation,
@@ -4701,6 +4913,7 @@ function sanitizeFreshnessCheck(check, salonId) {
     bookingUrl: cleanString(check.bookingUrl),
     instagramUrl: cleanString(check.instagramUrl),
     websiteUrl: cleanString(check.websiteUrl),
+    hairShopUrl: cleanString(check.hairShopUrl),
     hijabiFriendly: check.hijabiFriendly === true,
     wheelchairAccessible: check.wheelchairAccessible === true,
     priceBand: sanitizePriceBand(check.priceBand),
@@ -4713,6 +4926,7 @@ function sanitizeFreshnessCheck(check, salonId) {
     serviceCheck: check.serviceCheck || emptyServiceCheck(),
     priceCheck: sanitizePriceCheck(check.priceCheck),
     attributeSuggestions: sanitizeAttributeSuggestions(check.attributeSuggestions),
+    ...(sanitizeGoogleAmenities(check.googleAmenities) ? { googleAmenities: sanitizeGoogleAmenities(check.googleAmenities) } : {}),
     currentServices: normalizeServices(toArray(check.currentServices)),
     detectedServices: normalizeServices(toArray(check.detectedServices)),
     addedServices: normalizeServices(toArray(check.addedServices)),
@@ -5092,23 +5306,33 @@ function mergeFreshnessChecks(existingChecks, nextChecks) {
   return merged;
 }
 
+// Covers the stylist's own Instagram and an Instagram hair-shop link alike: a
+// login-redirect "ok" is too weak to overturn a confirmed 404 from last time.
+// Only applies while the saved URL is unchanged — an edited link starts fresh.
 function preserveKnownBrokenInstagramLink(linkChecks, previousCheck) {
-  const previousInstagramCheck = previousCheck?.linkChecks?.find((linkCheck) => linkCheck.type === "instagram");
-  if (!isActionableBrokenLink(previousInstagramCheck)) {
-    return linkChecks;
-  }
-
   return linkChecks.map((linkCheck) => {
-    if (linkCheck?.type !== "instagram") {
+    if (!isWeakInstagramOk(linkCheck)) {
       return linkCheck;
     }
 
-    return isWeakInstagramOk(linkCheck) ? previousInstagramCheck : linkCheck;
+    const previousLinkCheck = previousCheck?.linkChecks?.find((previous) => previous?.type === linkCheck.type);
+    if (!isActionableBrokenLink(previousLinkCheck) || normalizeFingerprintText(previousLinkCheck.url) !== normalizeFingerprintText(linkCheck.url)) {
+      return linkCheck;
+    }
+
+    return previousLinkCheck;
   });
 }
 
 function isWeakInstagramOk(linkCheck) {
-  return linkCheck?.type === "instagram" && linkCheck.status === "ok" && isInstagramLoginUrl(linkCheck.finalUrl);
+  return isInstagramLinkCheck(linkCheck) && linkCheck.status === "ok" && isInstagramLoginUrl(linkCheck.finalUrl);
+}
+
+// A hair-shop link is checked as an Instagram profile when it points at one
+// (most do — the shop is a separate hair brand's account); website shops get a
+// plain HTTP check.
+function isInstagramLinkCheck(linkCheck) {
+  return linkCheck?.type === "instagram" || (linkCheck?.type === "hairShop" && Boolean(getInstagramProfilePath(linkCheck.url)));
 }
 
 async function checkSalonFreshness(salon, dismissedRecommendation = {}, previousCheck = null) {
@@ -5116,12 +5340,14 @@ async function checkSalonFreshness(salon, dismissedRecommendation = {}, previous
   const hasServiceDismissals = hasDismissedFingerprintKind(dismissedFingerprints, "service-");
   const hasAttributeDismissals = hasDismissedFingerprintKind(dismissedFingerprints, "attribute");
   const hasLocationDismissals = hasDismissedFingerprintKind(dismissedFingerprints, "location");
-  const [bookingLinkCheck, instagramLinkCheck, websiteLinkCheck] = await Promise.all([
+  const [bookingLinkCheck, instagramLinkCheck, websiteLinkCheck, hairShopLinkCheck] = await Promise.all([
     checkUrl("booking", salon.bookingUrl, { includeText: true }),
     checkUrl("instagram", salon.instagramUrl),
     checkUrl("website", salon.websiteUrl && salon.websiteUrl !== salon.bookingUrl ? salon.websiteUrl : "", { includeText: true }),
+    // Link health only — the shop's page text never feeds service/price/attribute extraction.
+    checkUrl("hairShop", salon.hairShopUrl || ""),
   ]);
-  const linkChecks = preserveKnownBrokenInstagramLink([bookingLinkCheck, instagramLinkCheck, websiteLinkCheck].map(stripLinkCheckResponseText), previousCheck);
+  const linkChecks = preserveKnownBrokenInstagramLink([bookingLinkCheck, instagramLinkCheck, websiteLinkCheck, hairShopLinkCheck].map(stripLinkCheckResponseText), previousCheck);
   const activeLinkChecks = linkChecks.filter(Boolean).filter((linkCheck) => {
     if (linkCheck.status === "ok") {
       return true;
@@ -5165,12 +5391,24 @@ async function checkSalonFreshness(salon, dismissedRecommendation = {}, previous
       bookingImageAreaIds = inferAreaIdsFromText(imageText.transcript).filter((id) => id !== "all-london");
     }
   }
-  const attributeSuggestions = buildAttributeSuggestions(salon, {
-    booking: attributeBookingText,
-    website: attributeWebsiteText,
-    instagram: instagramLinkCheck?.profileText || "",
-    "booking banner": bookingImageText,
-  }, resetDismissedAttributeFlags(dismissedRecommendation, hasAttributeDismissals), learnedExclusions.attribute).filter((suggestion) => !dismissedFingerprints.has(attributeRecommendationFingerprint(suggestion)));
+  const attributeDismissals = resetDismissedAttributeFlags(dismissedRecommendation, hasAttributeDismissals);
+  const googleAmenities = await getGoogleAmenitiesForSalon(salon, previousCheck);
+  const attributeSuggestions = mergeAttributeSuggestions(
+    buildAttributeSuggestions(salon, {
+      booking: attributeBookingText,
+      website: attributeWebsiteText,
+      instagram: instagramLinkCheck?.profileText || "",
+      "booking banner": bookingImageText,
+    }, attributeDismissals, learnedExclusions.attribute),
+    [
+      ...buildGoogleAttributeSuggestions(salon, googleAmenities, attributeDismissals, learnedExclusions.attribute),
+      ...buildBookingBadgeAttributeSuggestions(salon, [
+        { url: salon.bookingUrl, html: bookingLinkCheck?.responseText || "" },
+        { url: salon.websiteUrl, html: websiteLinkCheck?.responseText || "" },
+        ...embeddedBookingSources,
+      ], attributeDismissals, learnedExclusions.attribute),
+    ],
+  ).filter((suggestion) => !dismissedFingerprints.has(attributeRecommendationFingerprint(suggestion)));
   const { currentServices, detectedServices, addedServices, removedServices } = buildServiceSuggestions({ salon, serviceCheck, dismissedRecommendation, learnedExclusions });
 
   if (addedServices.length > 0) {
@@ -5223,6 +5461,7 @@ async function checkSalonFreshness(salon, dismissedRecommendation = {}, previous
     bookingUrl: salon.bookingUrl || "",
     instagramUrl: salon.instagramUrl || "",
     websiteUrl: salon.websiteUrl || "",
+    hairShopUrl: salon.hairShopUrl || "",
     hijabiFriendly: salon.hijabiFriendly === true,
     wheelchairAccessible: salon.wheelchairAccessible === true,
     issues: actionableIssues,
@@ -5230,6 +5469,7 @@ async function checkSalonFreshness(salon, dismissedRecommendation = {}, previous
     serviceCheck,
     priceCheck: emptyPriceCheck("health"),
     attributeSuggestions,
+    ...(googleAmenities ? { googleAmenities } : {}),
     currentServices,
     detectedServices,
     addedServices,
@@ -5455,6 +5695,7 @@ function emptyFreshnessCheckForSalon(salon) {
     bookingUrl: salon.bookingUrl || "",
     instagramUrl: salon.instagramUrl || "",
     websiteUrl: salon.websiteUrl || "",
+    hairShopUrl: salon.hairShopUrl || "",
     hijabiFriendly: salon.hijabiFriendly === true,
     wheelchairAccessible: salon.wheelchairAccessible === true,
     priceBand: sanitizePriceBand(salon.priceBand),
@@ -5826,7 +6067,8 @@ async function checkUrl(type, url, { includeText = false, timeoutMs } = {}) {
   };
 
   try {
-    if (type === "instagram") {
+    const isInstagramLink = isInstagramLinkCheck(result);
+    if (isInstagramLink) {
       const instagramProfileCheck = await checkInstagramProfileUrl(result);
       if (instagramProfileCheck) {
         return instagramProfileCheck;
@@ -5836,8 +6078,8 @@ async function checkUrl(type, url, { includeText = false, timeoutMs } = {}) {
     const response = await fetchWithTimeout(url, { method: "GET", redirect: "follow", timeoutMs });
     result.finalUrl = response.url || url;
     result.httpStatus = response.status;
-    const instagramIssue = type === "instagram" ? getInstagramProfileIssue(url, result.finalUrl) : "";
-    const isWeakInstagramLoginShell = type === "instagram" && isInstagramLoginUrl(result.finalUrl);
+    const instagramIssue = isInstagramLink ? instagramIssuePrefix(type, getInstagramProfileIssue(url, result.finalUrl)) : "";
+    const isWeakInstagramLoginShell = isInstagramLink && isInstagramLoginUrl(result.finalUrl);
 
     if (response.ok) {
       result.status = instagramIssue || isWeakInstagramLoginShell ? "unverified" : "ok";
@@ -5990,14 +6232,14 @@ async function checkInstagramProfileUrl(result) {
         result.status = "ok";
       } else {
         result.status = "unverified";
-        result.issues.push(resolvedUsername ? `Instagram profile resolved as /${resolvedUsername}/ instead of /${profile}/` : "Instagram profile response did not include a username");
+        result.issues.push(instagramIssuePrefix(result.type, resolvedUsername ? `Instagram profile resolved as /${resolvedUsername}/ instead of /${profile}/` : "Instagram profile response did not include a username"));
       }
       return result;
     }
 
     if (response.status === 404 || response.status === 410) {
       result.status = "broken";
-      result.issues.push("Instagram profile appears to be gone");
+      result.issues.push(instagramIssuePrefix(result.type, "Instagram profile appears to be gone"));
       return result;
     }
 
@@ -6041,6 +6283,12 @@ async function checkInstagramProfileUrl(result) {
   return null;
 }
 
+// Issue strings double as dedupe keys when a link is reviewed, so a hair-shop
+// Instagram's issues must never read the same as the stylist's own Instagram.
+function instagramIssuePrefix(type, issue) {
+  return issue && type === "hairShop" ? `Hair shop ${issue.charAt(0).toLowerCase()}${issue.slice(1)}` : issue;
+}
+
 async function fetchInstagramProfileWithThrottle(url, options) {
   const now = Date.now();
   const waitMs = Math.max(0, nextInstagramProfileProbeAt - now);
@@ -6071,7 +6319,7 @@ function isManualCheckLink(linkCheck) {
     return false;
   }
 
-  if (linkCheck.type === "instagram" && linkCheck.status === "unverified" && !(linkCheck.issues || []).length) {
+  if (isInstagramLinkCheck(linkCheck) && linkCheck.status === "unverified" && !(linkCheck.issues || []).length) {
     return false;
   }
 
@@ -9421,7 +9669,7 @@ function wait(ms) {
 }
 
 function linkLabel(type) {
-  return type === "booking" ? "Booking link" : type === "instagram" ? "Instagram" : "Website";
+  return type === "booking" ? "Booking link" : type === "instagram" ? "Instagram" : type === "hairShop" ? "Hair shop link" : "Website";
 }
 
 function safeHost(url) {
@@ -9673,6 +9921,9 @@ export async function buildDraftFromInstagram(rawInstagramInput) {
   let serviceCheck = emptyServiceCheck();
   let priceCheck = emptyPriceCheck("booking");
   const attributeSources = { instagram: [profile.fullName, profile.bio].filter(Boolean).join("\n") };
+  // Raw booking/website HTML, kept for buildBookingBadgeAttributeSuggestions
+  // (the Treatwell LGBTQIA+ badge lives in embedded JSON, not page text).
+  const badgePages = [];
   const captionEvidenceLines = [];
   let captionAreaIds = [];
   let captionLocationQuote = "";
@@ -9690,6 +9941,7 @@ export async function buildDraftFromInstagram(rawInstagramInput) {
     ]);
     const enrichedBookingHtml = combineBookingHtml(bookingHtml, embeddedBookingSources);
     const resolvedBookingUrl = embeddedBookingSources[0]?.url || bookingUrl;
+    badgePages.push({ url: bookingUrl, html: bookingHtml }, { url: websiteUrl, html: websiteHtml }, ...embeddedBookingSources);
 
     [serviceCheck, priceCheck, attributeSources.booking, attributeSources.website] = await Promise.all([
       extractBestServiceCheck({ booking: enrichedBookingHtml, website: websiteHtml, bookingUrl: resolvedBookingUrl, websiteUrl, allowAiFallback: true }),
@@ -9736,7 +9988,10 @@ export async function buildDraftFromInstagram(rawInstagramInput) {
   }
 
   const learnedExclusions = await loadLearnedExclusions();
-  const attributeSuggestions = buildAttributeSuggestions({}, attributeSources, {}, learnedExclusions.attribute);
+  const attributeSuggestions = mergeAttributeSuggestions(
+    buildAttributeSuggestions({}, attributeSources, {}, learnedExclusions.attribute),
+    buildBookingBadgeAttributeSuggestions({}, badgePages, {}, learnedExclusions.attribute),
+  );
 
   // The bio/full_name text is often a slogan or a bunch of emoji rather than
   // an actual business name ("UNAVAILABLE", "NORTH LONDON HAIRDRESSER") — the

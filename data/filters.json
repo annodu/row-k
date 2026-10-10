@@ -135,8 +135,12 @@
     },
     {
       "id": "pixie-services",
-      "label": "Pixie cut / finger waves",
-      "subcategories": []
+      "label": "Short cuts & styling",
+      "subcategories": [
+        "Pixie cut / finger waves",
+        "Barbering (women welcome)",
+        "Female barbers available"
+      ]
     },
     {
       "id": "straightening-treatments",
