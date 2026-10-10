@@ -153,7 +153,8 @@
         "service-add:stitch braids|- 6-8 stitch braids|selected braided style: stitch braids or half fulani",
         "service-add:olaplex treatment|standard conditioning treatment|specialist treatments|specialist treatment selected according to your hair and scalp needs|professional bond repair treatment using olaplex or k18 where suitable",
         "service-add:k18 treatment|standard conditioning treatment|specialist treatments|specialist treatment selected according to your hair and scalp needs|professional bond repair treatment using olaplex or k18 where suitable",
-        "attribute:canbraidwithoutgel|true|booking:i requested no gel in my stitch braids and i love the result"
+        "attribute:canbraidwithoutgel|true|booking:i requested no gel in my stitch braids and i love the result",
+        "issue:possible removed services found"
       ],
       "canBraidWithoutGel": true
     },
@@ -908,7 +909,9 @@
         "Wig customisation / construction"
       ],
       "addedServiceFamilies": [],
-      "addedServiceEvidence": {}
+      "addedServiceEvidence": {},
+      "handledFingerprints": [],
+      "sellsHairSeparately": true
     },
     "the-original-ts": {
       "addedServices": [
@@ -3065,8 +3068,10 @@
       "handledFingerprints": [
         "location:essex|kent|kent",
         "location:kent|kent",
-        "service-remove:soft locs"
+        "service-remove:soft locs",
+        "issue:possible removed services found"
       ],
+      "sellsHairSeparately": true,
       "locationLabel": "Kent"
     },
     "awralla-london": {
@@ -4431,7 +4436,11 @@
         "Wig customisation / construction"
       ],
       "addedServiceFamilies": [],
-      "addedServiceEvidence": {}
+      "addedServiceEvidence": {},
+      "handledFingerprints": [
+        "issue:possible removed services found"
+      ],
+      "sellsHairSeparately": true
     },
     "maison-oceane-ltd": {
       "addedServices": [
@@ -4891,7 +4900,9 @@
         "service-add:sew-in take-down",
         "service-add:fulani / lemonade braids|box braids|pick n drop braids ex/small|box braids|hybrid braids (twb)",
         "service-add:hot oil treatment|*ayurvedic hot oil treatment",
-        "service-add:keratin treatment / brazilian blowdry|keratin straightening treatment from|keratin treatment"
+        "service-add:keratin treatment / brazilian blowdry|keratin straightening treatment from|keratin treatment",
+        "issue:possible new services found",
+        "issue:possible removed services found"
       ],
       "sellsHairSeparately": true
     },
@@ -6353,8 +6364,10 @@
         "service-add:trichology / scalp analysis|scalp detox therapy|luxury scalp clinic|luxury hair & scalp consultation|luxury scalp analysis",
         "attribute:samedayemergency|true|website:walk ins welcome",
         "service-add:boho sew-in|boho maintenance / touch up services|luxury boho curl refresh|luxury front boho touch up|online braiding & boho colour hair consultation",
-        "service-add:traditional sew-in / leave out|sew in revamp - boho leave out"
+        "service-add:traditional sew-in / leave out|sew in revamp - boho leave out",
+        "issue:possible removed services found"
       ],
+      "sellsHairSeparately": true,
       "sameDayEmergency": true,
       "locationLabel": "Kent"
     },
@@ -10663,8 +10676,10 @@
         "service-add:braid take-down|take down, aloe vera & sea moss treatment and re do cornrows|sew in take down and sea moss treatment|braids & locs|small knotless braids (waist length)",
         "service-add:boho braids / goddess braids|braids & locs|small knotless braids (waist length)|medium knotless braids (waist length)|fulani knotless braids (waist length)",
         "service-add:wig laundry / wig revamp",
-        "service-add:frontal / closure replacement|frontal or closure replacement"
+        "service-add:frontal / closure replacement|frontal or closure replacement",
+        "issue:possible removed services found"
       ],
+      "sellsHairSeparately": true,
       "locationLabel": "Kent"
     },
     "the-reign-spitalfields": {
@@ -15744,8 +15759,11 @@
         ]
       },
       "handledFingerprints": [
-        "service-add:kids & teens styles|natural hairstyles|kids cornrows (no extensions)"
-      ]
+        "service-add:kids & teens styles|natural hairstyles|kids cornrows (no extensions)",
+        "issue:possible new services found",
+        "issue:possible removed services found"
+      ],
+      "sellsHairSeparately": true
     },
     "edslaysuk": {
       "addedServices": [
@@ -16125,10 +16143,12 @@
         "service-remove:twists (with extensions)",
         "attribute:lgbtqfriendly|true|booking:lgbtq+",
         "attribute:parkingavailable|true|booking:parking available",
-        "service-remove:stitch braids"
+        "service-remove:stitch braids",
+        "issue:possible removed services found"
       ],
       "lgbtqFriendly": true,
-      "parkingAvailable": true
+      "parkingAvailable": true,
+      "sellsHairSeparately": true
     },
     "hair-by-vanaa": {
       "addedServices": [
@@ -16435,8 +16455,10 @@
       "addedServiceFamilies": [],
       "addedServiceEvidence": {},
       "handledFingerprints": [
-        "service-remove:full head colour"
-      ]
+        "service-remove:full head colour",
+        "issue:possible removed services found"
+      ],
+      "sellsHairSeparately": true
     },
     "jadeslaysldn": {
       "addedServices": [
@@ -17006,7 +17028,8 @@
         "service-add:wig reinstall / re-glue|frontal reinstall|frontal reinstall (not my own work)",
         "service-add:frontal / closure replacement|frontal replacements +install"
       ],
-      "parkingAvailable": true
+      "parkingAvailable": true,
+      "sellsHairSeparately": true
     },
     "madouss-hair-studio": {
       "addedServices": [
@@ -20008,8 +20031,10 @@
       "addedServiceFamilies": [],
       "addedServiceEvidence": {},
       "handledFingerprints": [
-        "service-remove:twists (with extensions)"
-      ]
+        "service-remove:twists (with extensions)",
+        "issue:possible removed services found"
+      ],
+      "sellsHairSeparately": true
     },
     "laurslounge": {
       "addedServices": [
@@ -22032,6 +22057,14 @@
       "handledFingerprints": [
         "service-add:natural twists / plaits|barrel twists (non-loc style)"
       ]
+    },
+    "queens-luxe": {
+      "addedServices": [],
+      "removedServices": [],
+      "addedServiceFamilies": [],
+      "addedServiceEvidence": {},
+      "handledFingerprints": [],
+      "sellsHairSeparately": true
     }
   },
   "checks": [
