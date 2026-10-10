@@ -1,7 +1,7 @@
 {
   "meta": {
     "source": "freshness-checks",
-    "updatedAt": "2026-10-09",
+    "updatedAt": "2026-10-10",
     "count": 928,
     "checkedCount": 73,
     "total": 73,
@@ -14069,8 +14069,10 @@
         "service-remove:butterfly locs",
         "service-remove:soft locs",
         "service-add:loc styling|loc styles",
-        "service-add:traditional sew-in / leave out|xsmall bohox sew in"
-      ]
+        "service-add:traditional sew-in / leave out|xsmall bohox sew in",
+        "issue:possible removed services found"
+      ],
+      "sellsHairSeparately": true
     },
     "hair-by-rose-essex": {
       "addedServices": [

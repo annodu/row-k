@@ -465,7 +465,10 @@ function getHairShopLinkInfo(result: SalonResult): { label: string; mobileLabel:
     return null;
   }
 
-  const url = result.hairShopUrl || result.websiteUrl;
+  // Only an explicit hair shop link earns a "Buy hair" button — the
+  // stylist's main website isn't a vetted shop, so without one the card
+  // shows the plain "hair sold separately" badge instead.
+  const url = result.hairShopUrl;
   if (!url) {
     return null;
   }
@@ -3918,27 +3921,40 @@ export default function App() {
       enabled: nextEnabled,
     });
     updateSellingHair(nextEnabled);
-    if (!nextEnabled) {
-      // Closing the group clears its subfilters too, so it doesn't stay
-      // active-but-hidden behind a collapsed parent — mirrors unchecking a
-      // service category clearing its selected subcategories.
-      updatePriceIncludesHair(false);
-      updateSellsHairSeparately(false);
-    }
+    // Selecting the parent directly (either direction) resets its subfilters,
+    // mirroring the "All reviews" parent/child behaviour.
+    updatePriceIncludesHair(false);
+    updateSellsHairSeparately(false);
   }
 
   function togglePriceIncludesHair() {
+    const nextEnabled = !currentSelectedPriceIncludesHair;
     trackAnalyticsEvent("price_includes_hair_toggle_changed", {
-      enabled: !currentSelectedPriceIncludesHair,
+      enabled: nextEnabled,
     });
-    updatePriceIncludesHair((current) => !current);
+    updatePriceIncludesHair(nextEnabled);
+    if (nextEnabled) {
+      // Narrowing to a specific subfilter deselects the "Sells hair" parent.
+      updateSellingHair(false);
+    } else if (!currentSelectedSellsHairSeparately) {
+      // No subfilter remains selected — fall back to "Sells hair".
+      updateSellingHair(true);
+    }
   }
 
   function toggleSellsHairSeparately() {
+    const nextEnabled = !currentSelectedSellsHairSeparately;
     trackAnalyticsEvent("sells_hair_separately_toggle_changed", {
-      enabled: !currentSelectedSellsHairSeparately,
+      enabled: nextEnabled,
     });
-    updateSellsHairSeparately((current) => !current);
+    updateSellsHairSeparately(nextEnabled);
+    if (nextEnabled) {
+      // Narrowing to a specific subfilter deselects the "Sells hair" parent.
+      updateSellingHair(false);
+    } else if (!currentSelectedPriceIncludesHair) {
+      // No subfilter remains selected — fall back to "Sells hair".
+      updateSellingHair(true);
+    }
   }
 
   function toggleSameDayEmergency() {
@@ -4423,7 +4439,7 @@ export default function App() {
   const selectedLocationCount = currentSelectedRegions.filter((regionId) => regionId !== "all").length;
   const selectedPriceRangeCount = currentSelectedPriceBands.length;
   const selectedAdditionalNeedsCount =
-    (currentSelectedHijabiFriendly ? 1 : 0) + (currentSelectedCanBraidWithoutGel ? 1 : 0) + (currentSelectedWheelchairAccessible ? 1 : 0) + (currentSelectedSenFriendly ? 1 : 0) + (currentSelectedLgbtqFriendly ? 1 : 0) + (currentSelectedParkingAvailable ? 1 : 0) + (currentSelectedSellingHair ? 1 : 0) + (currentSelectedSameDayEmergency ? 1 : 0);
+    (currentSelectedHijabiFriendly ? 1 : 0) + (currentSelectedCanBraidWithoutGel ? 1 : 0) + (currentSelectedWheelchairAccessible ? 1 : 0) + (currentSelectedSenFriendly ? 1 : 0) + (currentSelectedLgbtqFriendly ? 1 : 0) + (currentSelectedParkingAvailable ? 1 : 0) + (showSellingHairSubfilters ? 1 : 0) + (currentSelectedSameDayEmergency ? 1 : 0);
   const selectedReviewsCount = currentSelectedHasVerifiedReviews || currentSelectedGoogleReviewsOnly || currentSelectedBookingSitesOnly ? 1 : 0;
   const selectedCustomFilterCounts = Object.fromEntries(
     customFilterTypes.map((filterType) => [filterType.id, (currentSelectedCustomFilters[filterType.id] ?? []).length]),
