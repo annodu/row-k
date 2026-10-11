@@ -354,6 +354,7 @@ const serviceRuleMatchers = [
   ["Pixie cut / finger waves", [/\bfinger\s+waves?\b/, /\bpixie\b/, /\bwrap\b/]],
   ["Barbering (women welcome)", [/\bbarber(?:ed|ing)?\s+(?:cut|cuts|haircut|haircuts)\b/, /\bbuzz\s+cuts?\b/, /\bclipper\s+cuts?\b/, /\bskin\s+fades?\b/, /\bshape[\s-]*ups?\b/]],
   ["Female barbers available", [/\b(female|lady|woman)\s+barbers?\b/]],
+  ["Formaldehyde-free keratin", [/\bformaldehyde[\s-]*free\b/, /\bfree\s+(?:of|from)\s+formaldehyde\b/]],
   ["Updo", [/\bup\s*do\b/, /\bupdo\b/, /\bpin\s*up\b/, /\bfrench\s+roll\s+up\b/, /\bfrench\s+roll\b/]],
 ];
 
@@ -431,6 +432,7 @@ export const serviceNegationHints = {
   "Pixie cut / finger waves": ["pixie", "finger waves"],
   "Barbering (women welcome)": ["barber cut", "barber cuts", "barbering", "buzz cut", "clipper cut", "skin fade", "shape up", "women's barbering", "womens barbering"],
   "Female barbers available": ["female barber", "female barbers", "lady barber", "woman barber"],
+  "Formaldehyde-free keratin": ["formaldehyde free", "formaldehyde-free"],
   "Pixie wig / weave install": ["pixie wig", "pixie weave", "pixie install", "pixie cut wig making", "pixie cut wig making styling"],
   "Pre-parting": ["pre parting", "pre part"],
   "Quick weave": ["quick weave", "quickweave"],

@@ -2604,6 +2604,7 @@
       "discoverySource": "Instagram auto-fill",
       "services": [
         "Keratin treatment / Brazilian blowdry",
+        "Formaldehyde-free keratin",
         "Balayage",
         "Highlights",
         "Scalp detox / treatments",
@@ -24504,7 +24505,8 @@
         "Quick weave",
         "Tracks (+ silk press) / partial / invisible sew-in",
         "Protein treatment",
-        "Hot oil treatment"
+        "Hot oil treatment",
+        "Keratin treatment / Brazilian blowdry"
       ],
       "priceBand": "£",
       "servicePriceBand": "",
@@ -60751,7 +60753,6 @@
         "Feed-in braids",
         "Bridal",
         "Loc styling",
-        "Keratin treatment / Brazilian blowdry",
         "Crochet faux locs / invisible locs",
         "Loc extensions (permanent)",
         "Boho locs",
@@ -61895,6 +61896,7 @@
         "Silk press",
         "Texture release",
         "Keratin treatment / Brazilian blowdry",
+        "Formaldehyde-free keratin",
         "Tape ins",
         "LA weave / microlinks wefts / braidless sew in",
         "Traditional sew-in / leave out",
@@ -61969,6 +61971,12 @@
           "url": "https://www.folafash.com/book-online",
           "note": "\"Hybrid Sew-In Package\" description: \"The hybrid sew-in weave install also includes a cut and styling and either 2 rows of LA Weave or up to 10 tape-ins.\"",
           "addedAt": "2026-10-09"
+        },
+        "Formaldehyde-free keratin": {
+          "source": "booking-site",
+          "url": "https://www.folafash.com/book-online",
+          "note": "Keratin Treatment: \"This formaldehyde-free treatment is designed to smoothen the hair\"",
+          "addedAt": "2026-10-10"
         }
       }
     },
@@ -62414,6 +62422,7 @@
       "instagramUrl": "https://www.instagram.com/glaysson.rc/",
       "services": [
         "Keratin treatment / Brazilian blowdry",
+        "Formaldehyde-free keratin",
         "Olaplex treatment",
         "Balayage",
         "Highlights",
@@ -62473,7 +62482,15 @@
           "source": "instagram-reel-thumbnail"
         }
       ],
-      "portfolioPhotosCheckedAt": "2026-08-21"
+      "portfolioPhotosCheckedAt": "2026-08-21",
+      "serviceProof": {
+        "Formaldehyde-free keratin": {
+          "source": "other",
+          "url": "https://www.fresha.com/a/glaysson-carvalho-hair-studio-london-16b-pratt-street-qicyaz7o",
+          "note": "Confirmed formaldehyde-free by admin. Booking page lists \"Organic Protein (Brazilian Keratin treatment)\".",
+          "addedAt": "2026-10-10"
+        }
+      }
     },
     {
       "id": "glo-lounge-london",
@@ -66808,6 +66825,7 @@
       "services": [
         "Silk press",
         "Keratin treatment / Brazilian blowdry",
+        "Formaldehyde-free keratin",
         "Traditional sew-in / leave out",
         "Flipover / Versatile sew-in",
         "Tape-ins + sew-in",
@@ -66866,7 +66884,15 @@
       "packagePriceBand": "",
       "priceIncludesHair": true,
       "priceComparisonMode": "",
-      "updatedAt": "2026-10-04"
+      "updatedAt": "2026-10-04",
+      "serviceProof": {
+        "Formaldehyde-free keratin": {
+          "source": "booking-site",
+          "url": "https://hauteglamhair.as.me/schedule/4489666d",
+          "note": "Keratin Straightening Treatment description: \"Formaldehyde-free\"",
+          "addedAt": "2026-10-10"
+        }
+      }
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -66945,6 +66971,7 @@
       "instagramUrl": "https://www.instagram.com/helenamacrissalon/",
       "services": [
         "Keratin treatment / Brazilian blowdry",
+        "Formaldehyde-free keratin",
         "Traditional sew-in / leave out",
         "Highlights",
         "Full head colour",
@@ -67009,7 +67036,15 @@
         }
       ],
       "photoSearchReviewedAt": "2026-08-24",
-      "updatedAt": "2026-08-27"
+      "updatedAt": "2026-08-27",
+      "serviceProof": {
+        "Formaldehyde-free keratin": {
+          "source": "booking-site",
+          "url": "https://www.helenamacris.com/book-online",
+          "note": "Keratin Treatment description: \"Aids with manageability, formaldehyde & Urea free\"",
+          "addedAt": "2026-10-10"
+        }
+      }
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -70573,7 +70608,8 @@
       "services": [
         "Trim / hair cut",
         "Wash & blowdry",
-        "Keratin treatment / Brazilian blowdry"
+        "Keratin treatment / Brazilian blowdry",
+        "Formaldehyde-free keratin"
       ],
       "summary": "Manual entry added from your latest salon update batch.",
       "source": "manual",
@@ -70629,7 +70665,15 @@
           "source": "instagram-reel-thumbnail"
         }
       ],
-      "photoOrderBumpedAt": 482
+      "photoOrderBumpedAt": 482,
+      "serviceProof": {
+        "Formaldehyde-free keratin": {
+          "source": "booking-site",
+          "url": "https://www.fresha.com/en-GB/a/keratin-by-anais-london-16b-pratt-street-pmuvwulr",
+          "note": "Salon description: \"Specialising in Lyla Smooth Organic Protein treatments, the salon offers formaldehyde-free, organic solutions\"",
+          "addedAt": "2026-10-10"
+        }
+      }
     },
     {
       "summary": "Manual entry added from your latest salon update batch.",
@@ -72995,6 +73039,7 @@
       "services": [
         "Traditional sew-in / leave out",
         "Keratin treatment / Brazilian blowdry",
+        "Formaldehyde-free keratin",
         "Knotless braids",
         "Boho braids / goddess braids",
         "Moisturising treatment",
@@ -73061,7 +73106,15 @@
         }
       ],
       "portfolioPhotosCheckedAt": "2026-08-21",
-      "updatedAt": "2026-08-21"
+      "updatedAt": "2026-08-21",
+      "serviceProof": {
+        "Formaldehyde-free keratin": {
+          "source": "booking-site",
+          "url": "https://madousshairstudio.as.me/schedule/6419b51a",
+          "note": "Keratin Treatment description: \"This is a formaldehyde-free smoothing treatment\"",
+          "addedAt": "2026-10-10"
+        }
+      }
     },
     {
       "id": "maggies-hair",
@@ -73080,6 +73133,7 @@
         "Wash & blowdry",
         "Silk press",
         "Keratin treatment / Brazilian blowdry",
+        "Formaldehyde-free keratin",
         "Hair botox",
         "Braided ponytail",
         "Hot oil treatment"
@@ -73137,7 +73191,15 @@
       "packagePriceBand": "",
       "priceIncludesHair": false,
       "priceComparisonMode": "service-only",
-      "updatedAt": "2026-09-11"
+      "updatedAt": "2026-09-11",
+      "serviceProof": {
+        "Formaldehyde-free keratin": {
+          "source": "booking-site",
+          "url": "https://maggieshair.as.me/schedule/5ce5c061",
+          "note": "Brazilian Blow Dry (Progressiva) description: \"Our formaldehyde-free Brazilian Blow Dry\"",
+          "addedAt": "2026-10-10"
+        }
+      }
     },
     {
       "id": "maison-oceane-ltd",
@@ -84591,6 +84653,7 @@
         "Texture release",
         "Silk press",
         "Keratin treatment / Brazilian blowdry",
+        "Formaldehyde-free keratin",
         "Trim / hair cut",
         "Full head colour"
       ],
@@ -84681,7 +84744,15 @@
           "url": "/portfolio-photos/stylesbyfarahpearl-ee767331-e601-4d85-a289-189731543f51.jpg",
           "source": "instagram"
         }
-      ]
+      ],
+      "serviceProof": {
+        "Formaldehyde-free keratin": {
+          "source": "booking-site",
+          "url": "https://book.squareup.com/appointments/m56r9d15tn5tgg/location/LY51RMTY6E5DM/services",
+          "note": "\"Keratin Treatment (No formaldehyde)\" - Keratin Revolution, \"uses a formaldehyde-free formula\"",
+          "addedAt": "2026-10-10"
+        }
+      }
     },
     {
       "id": "stylesbyfola",
@@ -84998,6 +85069,7 @@
         "Updo",
         "Starter locs / instant locs",
         "Keratin treatment / Brazilian blowdry",
+        "Formaldehyde-free keratin",
         "LA weave / microlinks wefts / braidless sew in",
         "Kids & teens styles",
         "Men's braids",
@@ -85081,7 +85153,15 @@
           "source": "https://swishldn.as.me/schedule/e07185ac",
           "checkedAt": "2026-10-05"
         }
-      ]
+      ],
+      "serviceProof": {
+        "Formaldehyde-free keratin": {
+          "source": "booking-site",
+          "url": "https://swishldn.as.me/schedule/e07185ac",
+          "note": "Keratin Treatment description: \"This is a formaldehyde free treatment\"",
+          "addedAt": "2026-10-10"
+        }
+      }
     },
     {
       "id": "taiwo-styles",

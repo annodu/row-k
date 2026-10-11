@@ -1012,13 +1012,13 @@ function getLocationLabels(result: SalonResult) {
 function BrandGroupCard({
   brandBranches,
   orderedServices,
-  showFemaleBarbersBadge,
+  activeBadgeServices,
   customFilterTypes,
   preferBookingPlatform,
 }: {
   brandBranches: SalonResult[];
   orderedServices: string[];
-  showFemaleBarbersBadge: boolean;
+  activeBadgeServices: readonly (typeof BADGE_SERVICES)[number][];
   customFilterTypes: CustomFilterType[];
   preferBookingPlatform: boolean;
 }) {
@@ -1058,7 +1058,7 @@ function BrandGroupCard({
     brand.canBraidWithoutGel ? "can braid without gel" : null,
     brand.senFriendly ? "sensory-safe / sen-friendly" : null,
     brand.lgbtqFriendly ? "lgbtqia+-friendly" : null,
-    showFemaleBarbersBadge && brand.services.includes(FEMALE_BARBERS_SERVICE) ? "female barbers" : null,
+    ...getServiceBadgeLabels(brand.services, activeBadgeServices),
     brand.priceIncludesHair ? "hair-inclusive packages" : null,
     !hairShopLink && brand.sellsHairSeparately ? "hair sold separately" : null,
     brand.sameDayEmergency ? "same-day / walk-ins" : null,
@@ -1726,20 +1726,42 @@ function orderServicesBySelection(
   return [...matchingServices, ...remainingServices];
 }
 
-// "Female barbers available" stays in salon data (filters and search match on
-// it) but shows on cards as a badge rather than a service, and only when the
-// search is about short cuts / barbering.
-const FEMALE_BARBERS_SERVICE = "Female barbers available";
+// Sub-services that stay in salon data (filters and search match on them) but
+// show on cards as a badge rather than a service, and only when the search is
+// about their category or parent service.
+const BADGE_SERVICES = [
+  { service: "Female barbers available", label: "female barbers", categoryId: "pixie-services", parentService: "Barbering (women welcome)" },
+] as const;
 
-function shouldShowFemaleBarbersBadge(selectedCategories: string[], selectedSubcategories: string[]) {
-  return (
-    selectedCategories.includes("pixie-services") ||
-    selectedSubcategories.some((subcategory) => subcategory === "Barbering (women welcome)" || subcategory === FEMALE_BARBERS_SERVICE)
+// Tracked in salon data and admin, but not shown publicly yet: no filter
+// option, search alias, card service or badge.
+const HIDDEN_PUBLIC_SERVICES = new Set<string>(["Formaldehyde-free keratin"]);
+
+function withoutHiddenPublicCategories<T extends { subcategories: string[] }>(categories: T[]): T[] {
+  return categories.map((category) => ({ ...category, subcategories: category.subcategories.filter((service) => !HIDDEN_PUBLIC_SERVICES.has(service)) }));
+}
+
+function withoutHiddenPublicAliases(aliases: Record<string, string[]>) {
+  return Object.fromEntries(Object.entries(aliases).filter(([service]) => !HIDDEN_PUBLIC_SERVICES.has(service)));
+}
+
+const badgeServiceNames = new Set<string>([...BADGE_SERVICES.map((badge) => badge.service), ...HIDDEN_PUBLIC_SERVICES]);
+
+// The badge services relevant to the current search.
+function getActiveBadgeServices(selectedCategories: string[], selectedSubcategories: string[]) {
+  return BADGE_SERVICES.filter(
+    (badge) =>
+      selectedCategories.includes(badge.categoryId) ||
+      selectedSubcategories.some((subcategory) => subcategory === badge.parentService || subcategory === badge.service),
   );
 }
 
-function withoutFemaleBarbersService(services: string[]) {
-  return services.filter((service) => service !== FEMALE_BARBERS_SERVICE);
+function getServiceBadgeLabels(services: string[], activeBadgeServices: readonly (typeof BADGE_SERVICES)[number][]) {
+  return activeBadgeServices.filter((badge) => services.includes(badge.service)).map((badge) => badge.label);
+}
+
+function withoutBadgeServices(services: string[]) {
+  return services.filter((service) => !badgeServiceNames.has(service));
 }
 
 function InstagramIcon({ className }: { className?: string }) {
@@ -4294,7 +4316,7 @@ export default function App() {
       .then((res) => res.json())
       .then((data) => {
         if (data.ok && Array.isArray(data.categories)) {
-          setFilterConfig(buildRuntimeConfig(data.categories, data.locations ?? null));
+          setFilterConfig(buildRuntimeConfig(withoutHiddenPublicCategories(data.categories), data.locations ?? null));
         }
         if (data.ok && Array.isArray(data.priceBands) && data.priceBands.length) {
           priceBandTiersCache = data.priceBands;
@@ -4304,7 +4326,7 @@ export default function App() {
           setCustomFilterTypes(data.customFilterTypes);
         }
         if (data.ok && data.searchAliases && typeof data.searchAliases === "object") {
-          setServiceSearchAliases(withExtraServiceSearchAliases(data.searchAliases));
+          setServiceSearchAliases(withExtraServiceSearchAliases(withoutHiddenPublicAliases(data.searchAliases)));
         }
         if (data.ok && data.vendorFilterOptions && typeof data.vendorFilterOptions === "object") {
           setVendorFilterOptions({
@@ -4453,7 +4475,7 @@ export default function App() {
 
 
   const visibleResults = sortedResults.slice(0, visibleResultCount);
-  const showFemaleBarbersBadge = shouldShowFemaleBarbersBadge(selectedCategories, selectedSubcategories);
+  const activeBadgeServices = getActiveBadgeServices(selectedCategories, selectedSubcategories);
   // Whole categories plus individual services, so a service listed under two
   // parents still counts once.
   const selectedServiceCount =
@@ -5218,7 +5240,7 @@ export default function App() {
                     const brandBranches = results.filter((other) => other.brandId === result.brandId);
                     if (brandBranches.length > 1) {
                       renderedBrandIds.add(result.brandId);
-                      const brandOrderedServices = withoutFemaleBarbersService(
+                      const brandOrderedServices = withoutBadgeServices(
                         orderServicesBySelection(result.services, selectedCategories, selectedSubcategories, runtimeCategoryServiceMap),
                       );
                       return (
@@ -5226,7 +5248,7 @@ export default function App() {
                           key={result.brandId}
                           brandBranches={brandBranches}
                           orderedServices={brandOrderedServices}
-                          showFemaleBarbersBadge={showFemaleBarbersBadge}
+                          activeBadgeServices={activeBadgeServices}
                           customFilterTypes={customFilterTypes}
                           preferBookingPlatform={currentSelectedBookingSitesOnly && !currentSelectedGoogleReviewsOnly}
                         />
@@ -5235,7 +5257,7 @@ export default function App() {
                   }
 
                   const locationLabels = getLocationLabels(result);
-                  const orderedServices = withoutFemaleBarbersService(
+                  const orderedServices = withoutBadgeServices(
                     orderServicesBySelection(result.services, selectedCategories, selectedSubcategories, runtimeCategoryServiceMap),
                   );
 
@@ -5250,7 +5272,7 @@ export default function App() {
                     result.canBraidWithoutGel ? "can braid without gel" : null,
                     result.senFriendly ? "sensory-safe / sen-friendly" : null,
                     result.lgbtqFriendly ? "lgbtqia+-friendly" : null,
-                    showFemaleBarbersBadge && result.services.includes(FEMALE_BARBERS_SERVICE) ? "female barbers" : null,
+                    ...getServiceBadgeLabels(result.services, activeBadgeServices),
                     result.priceIncludesHair ? "hair-inclusive packages" : null,
                     !hairShopLink && result.sellsHairSeparately ? "hair sold separately" : null,
                     result.sameDayEmergency ? "same-day / walk-ins" : null,

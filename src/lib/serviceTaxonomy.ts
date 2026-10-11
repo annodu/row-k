@@ -14,6 +14,7 @@ export const serviceFamilies: Record<string, readonly string[]> = {
   "Celebrity-inspired braids (all)": ["Alicia Keys braids", "Pop smoke braids", "Jayda Wayda braided sew-in", "Cassie braided sew-in", "Coi Leray braids", "Tyla braids"],
   "Bond repair": ["Olaplex treatment", "K18 treatment"],
   "Barbering (women welcome)": ["Female barbers available"],
+  "Keratin treatment / Brazilian blowdry": ["Formaldehyde-free keratin"],
 };
 
 // Families that nest their members in a category's filter list. Every other
@@ -23,7 +24,7 @@ export const subcategoryGroupsByCategory: Record<string, readonly string[]> = {
   "extension-services": ["Hybrid installs (all)"],
   "wig-services": ["Wig installs (all)"],
   "braiding-services": ["Celebrity-inspired braids (all)"],
-  "straightening-treatments": ["Bond repair"],
+  "straightening-treatments": ["Bond repair", "Keratin treatment / Brazilian blowdry"],
   "pixie-services": ["Barbering (women welcome)"],
 };
 

@@ -994,11 +994,6 @@
           "evidenceText": "Other Conditioning Treatments"
         },
         {
-          "kind": "add",
-          "field": "Keratin treatment / Brazilian blowdry",
-          "evidenceText": "Brazilian Keratin"
-        },
-        {
           "kind": "attribute",
           "field": "sameDayEmergency",
           "evidenceText": "The salon atmosphere is described as lovely and relaxing, with attentive staff who offer refreshments and care from the moment clients walk in"
@@ -1681,11 +1676,6 @@
           "kind": "add",
           "field": "Keratin treatment / Brazilian blowdry",
           "evidenceText": "Treatment & Restyle Pixie"
-        },
-        {
-          "kind": "add",
-          "field": "Keratin treatment / Brazilian blowdry",
-          "evidenceText": "Keratin Treatment"
         },
         {
           "kind": "add",
@@ -3731,18 +3721,7 @@
       "context": [
         "Keratin treatment / Brazilian blowdry"
       ],
-      "rejectedEvidence": [
-        {
-          "kind": "add",
-          "field": "Keratin treatment / Brazilian blowdry",
-          "evidenceText": "Brazilian Keratin"
-        },
-        {
-          "kind": "add",
-          "field": "Keratin treatment / Brazilian blowdry",
-          "evidenceText": "Keratin Treatments"
-        }
-      ],
+      "rejectedEvidence": [],
       "createdAt": "2026-10-09"
     },
     {

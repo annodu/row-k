@@ -45,7 +45,7 @@ const defaultCategoryMap = {
   "sew-in-weave": ["Closure sew-in / closure behind the hairline","Flipover / Versatile sew-in","Frontal sew-in","Pixie wig / weave install","Quick weave","Sew-in take-down","Tracks (+ silk press) / partial / invisible sew-in","Traditional sew-in / leave out","Fulani sew-in / quick weave","Boho sew-in","Feed-in / stitch braid sew-in","Tape-ins + sew-in","K-tips + sew-in","Hair loss systems (e.g. mesh)","Extensions blow-dry / bouncy blowout","Extensions styling only (e.g. layers & curls)","Cassie braided sew-in","Jayda Wayda braided sew-in"],
   "styling-services": ["Frontal ponytail / bun","Half up half down","Sleek ponytail / bun","Updo","Braided ponytail"],
   "pixie-services": ["Pixie cut / finger waves","Barbering (women welcome)","Female barbers available"],
-  "straightening-treatments": ["Bond repair","Cécred wash & treatment","Hair botox","Japanese straightening","K18 treatment","Keratin treatment / Brazilian blowdry","Moisturising treatment","Olaplex treatment","Protein treatment","Relaxer / texturiser","Texture release","Hot oil treatment"],
+  "straightening-treatments": ["Bond repair","Cécred wash & treatment","Hair botox","Japanese straightening","K18 treatment","Keratin treatment / Brazilian blowdry","Formaldehyde-free keratin","Moisturising treatment","Olaplex treatment","Protein treatment","Relaxer / texturiser","Texture release","Hot oil treatment"],
   "natural-hair-services": ["Wig cornrows","Curly cut / wash & go / diffuse","Silk press","Bouncy blowout / round brush blow dry","Trim / hair cut","Roller set","Twist out / flexi rod","Bantu knots","Wash & blowdry","Japanese head spa","Scalp detox / treatments","Men's braids","Natural twists / plaits"],
   "natural-hair-scalp-health": ["Healthy hair plans & consultations","Natural hair coaches / educators","Trichology / scalp analysis"],
   "wig-services": ["Wig customisation / construction","Pixie wig / weave install","U-Part / Half wig install","Wig colouring / bundle colouring","Wig install (frontal / closure)","Wig laundry / wig revamp","Wig blow-dry / bouncy blowout","Wig styling only (e.g. layers & curls)","Frontal / closure replacement","Wig reinstall / re-glue"],
@@ -755,6 +755,8 @@ export const derivedServiceMatches = {
   "Bond repair": ["Olaplex treatment", "K18 treatment"],
   // A female barber is a more specific match within the women-welcome barber heading.
   "Barbering (women welcome)": ["Female barbers available"],
+  // Same for keratin: a confirmed formaldehyde-free keratin is a keratin match.
+  "Keratin treatment / Brazilian blowdry": ["Formaldehyde-free keratin"],
 };
 
 function hasService(services, service) {
